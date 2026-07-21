@@ -60,8 +60,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
@@ -84,10 +83,11 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   @Deprecated
-  public static final int MY_CONST = 13; // ok
+  public static final int MY_CONST = 13;
 
   /** This javadoc is missing deprecated tag. */
-  // violation below '@deprecated Javadoc tag with description.'
+  // violation 2 lines below """Must include both @java.lang.Deprecated annotation
+  //  and @deprecated Javadoc tag with description."""
   @Deprecated
   public static final int COUNTER = 10;
 
@@ -96,14 +96,14 @@ class Example1 {
    * &lt;p&gt;&lt;/p&gt;
    */
   @Deprecated
-    public static final int NUM = 123456; // ok
+  public static final int NUM = 123456;
 
   /**
    * @deprecated
-   *  &lt;p&gt;
-   */
+   * &lt;p&gt;
+  */
   @Deprecated
-  public static final int CONST = 12; // ok
+  public static final int CONST = 12;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -123,10 +123,11 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   @Deprecated
-  public static final int MY_CONST = 13; // ok
+  public static final int MY_CONST = 13;
 
   /** This javadoc is missing deprecated tag. */
-  // violation below '@deprecated Javadoc tag with description.'
+  // violation 2 lines below """Must include both @java.lang.Deprecated annotation
+  //  and @deprecated Javadoc tag with description."""
   @Deprecated
   public static final int COUNTER = 10;
 
@@ -135,7 +136,7 @@ class Example2 {
    * &lt;p&gt;&lt;/p&gt;
    */
   @Deprecated
-  public static final int NUM = 123456; // ok
+  public static final int NUM = 123456;
 
   /**
    * @deprecated
@@ -186,8 +187,12 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MissingDeprecated_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="MissingDeprecated_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="MissingDeprecated_Parent_Module">

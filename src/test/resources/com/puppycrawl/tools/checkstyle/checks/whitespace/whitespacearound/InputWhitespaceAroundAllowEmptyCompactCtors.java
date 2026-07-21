@@ -6,24 +6,28 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
-         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
-         LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
-         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, \
-         LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, \
-         NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
-         SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND
-
+         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, \
+         LAMBDA, LAND, LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
+         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TR \
+          Y, LITERAL_WHILE, LOR, \
+         LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, \
+         QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, \
+         STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, LITERAL_WHEN
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundAllowEmptyCompactCtors {
     //simple record def
-    record MyRecord() {} // 2 violations
+    record MyRecord() {}
+    // 2 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''}' is not preceded with whitespace.'
 
     // simple record def
     record MyRecord1() {
@@ -31,9 +35,18 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
 
     // nested constructs
     record MyRecord2() {
-        class MyClass {} // 2 violations
-        interface Foo {} // 2 violations
-        record MyRecord () {} // 2 violations
+        class MyClass {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+        interface Foo {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
+        record MyRecord () {}
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 
     // method
@@ -41,7 +54,10 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
         void method (){ // violation ''{' is not preceded with whitespace'
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
 
     }
@@ -51,7 +67,10 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
         public MyRecord4() {
             final int a = 1;
             int b= 1; // violation ''=' is not preceded with whitespace'
-            b=1; // 2 violations
+            b=1;
+            // 2 violations above:
+            // ''=' is not followed by whitespace.'
+            // ''=' is not preceded with whitespace.'
         }
     }
 
@@ -81,8 +100,12 @@ class foo2 {
 }
 
 class foo3 {
-    public foo3(){System.out.println();} // 3 violations
-                                    //-^--- violation, no WS before '}'
+    public foo3(){System.out.println();}
+    // 3 violations above:
+    // ''{' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
+    // ''}' is not preceded with whitespace.'
+                                    // ok, no WS before '}'
 }
 
 record TestRecord8(int a, int b) {

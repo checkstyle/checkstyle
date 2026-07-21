@@ -35,7 +35,10 @@ class InputRightCurlyTestTryWithResourceAlone {
         try (BufferedReader br1 = new BufferedReader(null);
 
                 BufferedReader br2 = new BufferedReader(br1)) {} catch (IOException e) { ; }
-        try (BufferedReader br1 = new BufferedReader(null); // 2 violations above
+        // 2 violations above:
+        // ''}' at column 64 should be alone on a line.'
+        // ''}' at column 92 should be alone on a line.'
+        try (BufferedReader br1 = new BufferedReader(null);
                 BufferedReader br2 = new BufferedReader(br1)) {
             ;
         }

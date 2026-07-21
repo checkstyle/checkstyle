@@ -6,9 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that a local variable is declared and/or assigned, but not used.
- Doesn't support
+ Supports
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30"&gt;
- pattern variables yet&lt;/a&gt;.
+ pattern variables&lt;/a&gt;.
  Doesn't check
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3"&gt;
  array components&lt;/a&gt; as array
@@ -17,9 +17,11 @@
  &lt;/div&gt;</description>
          <properties>
             <property default-value="true" name="allowUnnamedVariables" type="boolean">
-               <description>Allow variables named with a single underscore
- (known as &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+               <description>Allow variables named with a single underscore (known as &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
  unnamed variables&lt;/a&gt; in Java 21+).</description>
+            </property>
+            <property default-value="22" name="jdkVersion" type="int">
+               <description>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release. Before JDK 22, named pattern variables in switch labels and instanceof record Destructuring cannot be replaced with &lt;code&gt;_&lt;/code&gt;, so violations on them are suppressed when jdkVersion is set below 22.</description>
             </property>
          </properties>
          <message-keys>

@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = protected
 excludeScope = (default)null
+scope = protected
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -10,7 +11,8 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypePublicOnly2Two // violation
+// violation below 'Missing a Javadoc comment.'
+public class InputMissingJavadocTypePublicOnly2Two
 {
     private int mSize; // ignore - when not relaxed about Javadoc
     int mLen; // ignore - when not relaxed about Javadoc

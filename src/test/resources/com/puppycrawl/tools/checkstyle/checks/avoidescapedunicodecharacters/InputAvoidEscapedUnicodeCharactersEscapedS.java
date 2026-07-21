@@ -8,7 +8,7 @@ allowNonPrintableEscapes = (default)false
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
 public class InputAvoidEscapedUnicodeCharactersEscapedS {
@@ -28,15 +28,15 @@ public class InputAvoidEscapedUnicodeCharactersEscapedS {
             \s\s\s\n not all escaped chars
             """; // ok, no unicode chars
     // violation below, 'Unicode escape(s) usage should be avoided.'
-    String value7 = /* violation */"""
+    String value7 = /* bla */"""
             \u03bc\s not all escaped chars
             """;
     // violation below, 'Unicode escape(s) usage should be avoided.'
-    String value8 = /* violation */"""
+    String value8 = /* bla */"""
             \u03bc\n not all escaped chars
             """;
     // violation below, 'Unicode escape(s) usage should be avoided.'
-    String value9 = /* violation */"""
+    String value9 = /* bla */"""
             l\u03bc\n
             """;
     // violation below, 'Unicode escape(s) usage should be avoided.'

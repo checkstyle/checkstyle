@@ -74,4 +74,5 @@ public class CrAwareLexerSimulator extends LexerATNSimulator {
         }
         input.consume();
     }
+
 }

@@ -28,7 +28,6 @@ import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.sink.Sink;
 import org.codehaus.plexus.component.annotations.Component;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -37,18 +36,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @Component(role = Macro.class, hint = "since")
 public class SinceMacro extends AbstractMacro {
 
+    /**
+     * Creates a new {@code SinceMacro} instance.
+     */
+    public SinceMacro() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final Path modulePath = Path.of((String) request.getParameter("modulePath"));
         final String moduleName = CommonUtil.getFileNameWithoutExtension(modulePath.toString());
 
-        final DetailNode moduleJavadoc = SiteUtil.getModuleJavadoc(moduleName, modulePath);
-        if (moduleJavadoc == null) {
-            throw new MacroExecutionException("Javadoc of module " + moduleName + " is not found.");
-        }
-
-        final String moduleSinceVersion = ModuleJavadocParsingUtil
-                .getModuleSinceVersion(moduleJavadoc);
+        final String moduleSinceVersion = SiteUtil.getModuleSinceVersion(moduleName, modulePath);
         sink.paragraph();
         sink.text("Since Checkstyle " + moduleSinceVersion);
         sink.paragraph_();

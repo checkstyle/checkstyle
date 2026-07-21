@@ -25,6 +25,7 @@ import java.util.List;
 
 /** Simple POJO class for module details. */
 public final class ModuleDetails {
+
     /** List of properties of the module. */
     private final List<ModulePropertyDetails> properties = new ArrayList<>();
 
@@ -217,4 +218,5 @@ public final class ModuleDetails {
     public void setModuleType(ModuleType moduleType) {
         this.moduleType = moduleType;
     }
+
 }

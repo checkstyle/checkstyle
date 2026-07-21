@@ -98,7 +98,8 @@
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure Check to demand <code>@since</code> tag
-          and in the same time print violation with specific severity on each presence of such tag.
+          to be present with digital value on method javadocs also in addition to default tokens,
+          reporting a mismatched tag format as an error severity violation.
         </p>
         <macro name="example">
           <param name="path"
@@ -111,6 +112,26 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="WriteTag_Use_Cases">
+        <p id="UseCase1-config">
+          To configure Check to demand <code>@since</code> tag
+          and in the same time print violation with specific severity on each presence of such tag.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+        Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -135,9 +156,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="WriteTag_Package">
+      <subsection name="Fully Qualified Name" id="WriteTag_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

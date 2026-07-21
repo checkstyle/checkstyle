@@ -143,8 +143,11 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      * @return regular expression pattern given key name
      */
     private static Pattern getKeyPattern(String keyName) {
-        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*$";
+        final String keyNameWithEscapedSpaces = SPACE_PATTERN.matcher(keyName)
+                .replaceAll(Matcher.quoteReplacement("\\ "));
+        final String keyPatternString = "^"
+                + Pattern.quote(keyNameWithEscapedSpaces)
+                + "[\\s:=].*$";
         return Pattern.compile(keyPatternString);
     }
 
@@ -165,6 +168,13 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          * already exist in Properties' inner map.
          */
         private final Map<String, Integer> duplicatedKeys = new HashMap<>();
+
+        /**
+         * Creates a new {@code UniqueProperties} instance.
+         */
+        private UniqueProperties() {
+            // no code by default
+        }
 
         /**
          * Puts the value into properties by the key specified.

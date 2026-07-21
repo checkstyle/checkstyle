@@ -41,12 +41,12 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnInterfaceNoImpliedPublicAbstract() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_KEY, "public"),
-            "27:5: " + getCheckMessage(MSG_KEY, "public"),
-            "34:5: " + getCheckMessage(MSG_KEY, "public"),
-            "36:5: " + getCheckMessage(MSG_KEY, "abstract"),
-            "38:5: " + getCheckMessage(MSG_KEY, "public"),
-            "38:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "22:5: " + getCheckMessage(MSG_KEY, "public"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "37:5: " + getCheckMessage(MSG_KEY, "public"),
+            "40:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "42:5: " + getCheckMessage(MSG_KEY, "public"),
+            "42:5: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface.java"),
@@ -72,8 +72,8 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnInterfaceNoImpliedAbstractAllowImpliedPublic() throws Exception {
         final String[] expected = {
-            "36:5: " + getCheckMessage(MSG_KEY, "abstract"),
-            "38:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "37:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "40:5: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface2.java"),
@@ -83,10 +83,10 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnInterfaceNoImpliedPublicAllowImpliedAbstract() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_KEY, "public"),
-            "27:5: " + getCheckMessage(MSG_KEY, "public"),
-            "34:5: " + getCheckMessage(MSG_KEY, "public"),
-            "38:5: " + getCheckMessage(MSG_KEY, "public"),
+            "22:5: " + getCheckMessage(MSG_KEY, "public"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "37:5: " + getCheckMessage(MSG_KEY, "public"),
+            "42:5: " + getCheckMessage(MSG_KEY, "public"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface3.java"),
@@ -112,12 +112,12 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnInterfaceNestedNoImpliedPublicAbstract() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_KEY, "public"),
-            "29:9: " + getCheckMessage(MSG_KEY, "public"),
-            "34:9: " + getCheckMessage(MSG_KEY, "public"),
-            "36:9: " + getCheckMessage(MSG_KEY, "abstract"),
-            "38:9: " + getCheckMessage(MSG_KEY, "public"),
-            "38:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "24:9: " + getCheckMessage(MSG_KEY, "public"),
+            "31:9: " + getCheckMessage(MSG_KEY, "public"),
+            "37:9: " + getCheckMessage(MSG_KEY, "public"),
+            "40:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "42:9: " + getCheckMessage(MSG_KEY, "public"),
+            "42:9: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnInterfaceNested.java"),
@@ -127,12 +127,12 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testMethodsOnClassNestedNoImpliedPublicAbstract() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_KEY, "public"),
-            "29:9: " + getCheckMessage(MSG_KEY, "public"),
-            "34:9: " + getCheckMessage(MSG_KEY, "public"),
-            "36:9: " + getCheckMessage(MSG_KEY, "abstract"),
-            "38:9: " + getCheckMessage(MSG_KEY, "public"),
-            "38:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "24:9: " + getCheckMessage(MSG_KEY, "public"),
+            "31:9: " + getCheckMessage(MSG_KEY, "public"),
+            "37:9: " + getCheckMessage(MSG_KEY, "public"),
+            "40:9: " + getCheckMessage(MSG_KEY, "abstract"),
+            "42:9: " + getCheckMessage(MSG_KEY, "public"),
+            "42:9: " + getCheckMessage(MSG_KEY, "abstract"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnClassNested.java"),
@@ -142,18 +142,18 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testFieldsOnInterfaceNoImpliedPublicStaticFinal() throws Exception {
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_KEY, "final"),
-            "22:5: " + getCheckMessage(MSG_KEY, "static"),
+            "21:5: " + getCheckMessage(MSG_KEY, "final"),
             "24:5: " + getCheckMessage(MSG_KEY, "static"),
-            "24:5: " + getCheckMessage(MSG_KEY, "final"),
-            "26:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "final"),
-            "30:5: " + getCheckMessage(MSG_KEY, "public"),
-            "30:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "final"),
             "32:5: " + getCheckMessage(MSG_KEY, "public"),
-            "32:5: " + getCheckMessage(MSG_KEY, "static"),
-            "32:5: " + getCheckMessage(MSG_KEY, "final"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:5: " + getCheckMessage(MSG_KEY, "final"),
+            "39:5: " + getCheckMessage(MSG_KEY, "public"),
+            "39:5: " + getCheckMessage(MSG_KEY, "static"),
+            "43:5: " + getCheckMessage(MSG_KEY, "public"),
+            "43:5: " + getCheckMessage(MSG_KEY, "static"),
+            "43:5: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface.java"),
@@ -163,14 +163,14 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testFieldsOnInterfaceNoImpliedPublicStaticAllowImpliedFinal() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY, "static"),
-            "24:5: " + getCheckMessage(MSG_KEY, "static"),
-            "26:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "public"),
-            "30:5: " + getCheckMessage(MSG_KEY, "public"),
-            "30:5: " + getCheckMessage(MSG_KEY, "static"),
+            "23:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "static"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
             "32:5: " + getCheckMessage(MSG_KEY, "public"),
-            "32:5: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:5: " + getCheckMessage(MSG_KEY, "static"),
+            "39:5: " + getCheckMessage(MSG_KEY, "public"),
+            "39:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface2.java"),
@@ -180,14 +180,14 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testFieldsOnInterfaceNoImpliedPublicFinalAllowImpliedStatic() throws Exception {
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_KEY, "final"),
-            "24:5: " + getCheckMessage(MSG_KEY, "final"),
-            "26:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "final"),
-            "30:5: " + getCheckMessage(MSG_KEY, "public"),
-            "32:5: " + getCheckMessage(MSG_KEY, "public"),
-            "32:5: " + getCheckMessage(MSG_KEY, "final"),
+            "21:5: " + getCheckMessage(MSG_KEY, "final"),
+            "26:5: " + getCheckMessage(MSG_KEY, "final"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "31:5: " + getCheckMessage(MSG_KEY, "public"),
+            "31:5: " + getCheckMessage(MSG_KEY, "final"),
+            "37:5: " + getCheckMessage(MSG_KEY, "public"),
+            "39:5: " + getCheckMessage(MSG_KEY, "public"),
+            "39:5: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface3.java"),
@@ -197,14 +197,14 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testFieldsOnInterfaceNoImpliedStaticFinalAllowImpliedPublic() throws Exception {
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_KEY, "final"),
-            "22:5: " + getCheckMessage(MSG_KEY, "static"),
+            "21:5: " + getCheckMessage(MSG_KEY, "final"),
             "24:5: " + getCheckMessage(MSG_KEY, "static"),
-            "24:5: " + getCheckMessage(MSG_KEY, "final"),
-            "28:5: " + getCheckMessage(MSG_KEY, "final"),
-            "30:5: " + getCheckMessage(MSG_KEY, "static"),
-            "32:5: " + getCheckMessage(MSG_KEY, "static"),
-            "32:5: " + getCheckMessage(MSG_KEY, "final"),
+            "26:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "final"),
+            "34:5: " + getCheckMessage(MSG_KEY, "final"),
+            "37:5: " + getCheckMessage(MSG_KEY, "static"),
+            "39:5: " + getCheckMessage(MSG_KEY, "static"),
+            "39:5: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface4.java"),
@@ -230,18 +230,18 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testNestedOnInterfaceNoImpliedPublicStatic() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_KEY, "static"),
-            "24:5: " + getCheckMessage(MSG_KEY, "public"),
-            "27:5: " + getCheckMessage(MSG_KEY, "public"),
-            "27:5: " + getCheckMessage(MSG_KEY, "static"),
-            "35:5: " + getCheckMessage(MSG_KEY, "static"),
-            "40:5: " + getCheckMessage(MSG_KEY, "public"),
-            "45:5: " + getCheckMessage(MSG_KEY, "public"),
-            "45:5: " + getCheckMessage(MSG_KEY, "static"),
-            "53:5: " + getCheckMessage(MSG_KEY, "static"),
-            "56:5: " + getCheckMessage(MSG_KEY, "public"),
-            "59:5: " + getCheckMessage(MSG_KEY, "public"),
-            "59:5: " + getCheckMessage(MSG_KEY, "static"),
+            "22:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "public"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "29:5: " + getCheckMessage(MSG_KEY, "static"),
+            "40:5: " + getCheckMessage(MSG_KEY, "static"),
+            "46:5: " + getCheckMessage(MSG_KEY, "public"),
+            "51:5: " + getCheckMessage(MSG_KEY, "public"),
+            "51:5: " + getCheckMessage(MSG_KEY, "static"),
+            "63:5: " + getCheckMessage(MSG_KEY, "static"),
+            "67:5: " + getCheckMessage(MSG_KEY, "public"),
+            "69:5: " + getCheckMessage(MSG_KEY, "public"),
+            "69:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterface.java"),
@@ -251,12 +251,12 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testNestedOnInterfaceNoImpliedStaticAllowImpliedPublic() throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(MSG_KEY, "static"),
-            "27:5: " + getCheckMessage(MSG_KEY, "static"),
-            "35:5: " + getCheckMessage(MSG_KEY, "static"),
-            "45:5: " + getCheckMessage(MSG_KEY, "static"),
-            "53:5: " + getCheckMessage(MSG_KEY, "static"),
-            "59:5: " + getCheckMessage(MSG_KEY, "static"),
+            "22:5: " + getCheckMessage(MSG_KEY, "static"),
+            "29:5: " + getCheckMessage(MSG_KEY, "static"),
+            "38:5: " + getCheckMessage(MSG_KEY, "static"),
+            "49:5: " + getCheckMessage(MSG_KEY, "static"),
+            "58:5: " + getCheckMessage(MSG_KEY, "static"),
+            "65:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterface2.java"),
@@ -266,12 +266,12 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testNestedOnInterfaceNoImpliedPublicAllowImpliedStatic() throws Exception {
         final String[] expected = {
-            "24:5: " + getCheckMessage(MSG_KEY, "public"),
-            "27:5: " + getCheckMessage(MSG_KEY, "public"),
-            "40:5: " + getCheckMessage(MSG_KEY, "public"),
+            "23:5: " + getCheckMessage(MSG_KEY, "public"),
+            "26:5: " + getCheckMessage(MSG_KEY, "public"),
+            "39:5: " + getCheckMessage(MSG_KEY, "public"),
             "45:5: " + getCheckMessage(MSG_KEY, "public"),
-            "56:5: " + getCheckMessage(MSG_KEY, "public"),
-            "59:5: " + getCheckMessage(MSG_KEY, "public"),
+            "55:5: " + getCheckMessage(MSG_KEY, "public"),
+            "58:5: " + getCheckMessage(MSG_KEY, "public"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterface3.java"),
@@ -299,10 +299,10 @@ public class InterfaceMemberImpliedModifierCheckTest
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, "public"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
-            "23:9: " + getCheckMessage(MSG_KEY, "public"),
-            "23:9: " + getCheckMessage(MSG_KEY, "static"),
-            "28:9: " + getCheckMessage(MSG_KEY, "public"),
-            "28:9: " + getCheckMessage(MSG_KEY, "static"),
+            "25:9: " + getCheckMessage(MSG_KEY, "public"),
+            "25:9: " + getCheckMessage(MSG_KEY, "static"),
+            "33:9: " + getCheckMessage(MSG_KEY, "public"),
+            "33:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterfaceNested.java"),
@@ -314,10 +314,10 @@ public class InterfaceMemberImpliedModifierCheckTest
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, "public"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
-            "23:9: " + getCheckMessage(MSG_KEY, "public"),
-            "23:9: " + getCheckMessage(MSG_KEY, "static"),
-            "28:9: " + getCheckMessage(MSG_KEY, "public"),
-            "28:9: " + getCheckMessage(MSG_KEY, "static"),
+            "25:9: " + getCheckMessage(MSG_KEY, "public"),
+            "25:9: " + getCheckMessage(MSG_KEY, "static"),
+            "33:9: " + getCheckMessage(MSG_KEY, "public"),
+            "33:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnClassNested.java"),
@@ -327,28 +327,28 @@ public class InterfaceMemberImpliedModifierCheckTest
     @Test
     public void testPackageScopeInterface() throws Exception {
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_KEY, "final"),
-            "22:5: " + getCheckMessage(MSG_KEY, "static"),
+            "21:5: " + getCheckMessage(MSG_KEY, "final"),
             "24:5: " + getCheckMessage(MSG_KEY, "static"),
-            "24:5: " + getCheckMessage(MSG_KEY, "final"),
-            "26:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "public"),
-            "28:5: " + getCheckMessage(MSG_KEY, "final"),
-            "30:5: " + getCheckMessage(MSG_KEY, "public"),
-            "30:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "static"),
+            "26:5: " + getCheckMessage(MSG_KEY, "final"),
             "32:5: " + getCheckMessage(MSG_KEY, "public"),
-            "32:5: " + getCheckMessage(MSG_KEY, "static"),
-            "32:5: " + getCheckMessage(MSG_KEY, "final"),
-            "37:5: " + getCheckMessage(MSG_KEY, "public"),
-            "43:5: " + getCheckMessage(MSG_KEY, "public"),
-            "48:5: " + getCheckMessage(MSG_KEY, "public"),
-            "50:5: " + getCheckMessage(MSG_KEY, "abstract"),
-            "52:5: " + getCheckMessage(MSG_KEY, "public"),
-            "52:5: " + getCheckMessage(MSG_KEY, "abstract"),
-            "57:5: " + getCheckMessage(MSG_KEY, "static"),
-            "60:5: " + getCheckMessage(MSG_KEY, "public"),
-            "63:5: " + getCheckMessage(MSG_KEY, "public"),
-            "63:5: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+            "34:5: " + getCheckMessage(MSG_KEY, "final"),
+            "39:5: " + getCheckMessage(MSG_KEY, "public"),
+            "39:5: " + getCheckMessage(MSG_KEY, "static"),
+            "44:5: " + getCheckMessage(MSG_KEY, "public"),
+            "44:5: " + getCheckMessage(MSG_KEY, "static"),
+            "44:5: " + getCheckMessage(MSG_KEY, "final"),
+            "54:5: " + getCheckMessage(MSG_KEY, "public"),
+            "59:5: " + getCheckMessage(MSG_KEY, "public"),
+            "64:5: " + getCheckMessage(MSG_KEY, "public"),
+            "67:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "69:5: " + getCheckMessage(MSG_KEY, "public"),
+            "69:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "77:5: " + getCheckMessage(MSG_KEY, "static"),
+            "80:5: " + getCheckMessage(MSG_KEY, "public"),
+            "82:5: " + getCheckMessage(MSG_KEY, "public"),
+            "82:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierPackageScopeInterface.java"),
@@ -406,4 +406,5 @@ public class InterfaceMemberImpliedModifierCheckTest
                 getPath("InputInterfaceMemberImpliedModifierSealedClasses.java"),
             expected);
     }
+
 }

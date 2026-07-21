@@ -111,16 +111,24 @@ class InputRightCurlyTestWithAnnotations
 
     @Deprecated
     private void foo16() {
-        if (true) { return; } else { } // 2 violations
+        if (true) { return; } else { }
+        // 2 violations above:
+        // ''}' at column 29 should be alone on a line.'
+        // ''}' at column 38 should be alone on a line.'
         if (false) {
         }
 
-        if (true) { return; } else { } // 2 violations
+        if (true) { return; } else { }
+        // 2 violations above:
+        // ''}' at column 29 should be alone on a line.'
+        // ''}' at column 38 should be alone on a line.'
     }
 
     @Deprecated
     void foo17() { int v1 = 5; v2 = 6; } @Deprecated void foo18() {int v1 = 5; v2 = 6; }
-    // 2 violations above
+    // 2 violations above:
+    // ''}' at column 40 should be alone on a line.'
+    // ''}' at column 88 should be alone on a line.'
     private void foo19() {int var1 = 5;
         var2 = 6;} // violation ''}' at column 18 should be alone on a line'
 
@@ -146,7 +154,10 @@ class InputRightCurlyTestWithAnnotations
             toString();
         } catch (Exception e) { // violation ''}' at column 9 should be alone on a line'
             throw new RuntimeException(e);
-        } finally { toString(); } // 2 violations
+        } finally { toString(); }
+        // 2 violations above:
+        // ''}' at column 9 should be alone on a line.'
+        // ''}' at column 33 should be alone on a line.'
     }
 
     @SuppressWarnings("")
@@ -156,27 +167,30 @@ class InputRightCurlyTestWithAnnotations
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");
-        }}; //NO violation
+        }};
         // violation below ''}' at col.* 75 should be alone on a line'
         Thread t = new Thread() {@Override public void run() {super.run();}};
-        new Object() { public int hashCode() { return 1; }  { int a = 5; }}; // 2 violations
+        new Object() { public int hashCode() { return 1; }  { int a = 5; }};
+        // 2 violations above:
+        // ''}' at column 58 should be alone on a line.'
+        // ''}' at column 74 should be alone on a line.'
         new Object() { public int hashCode() { return 1; }  int b = 10; };
         // violation above ''}' at column 58 should be alone on a line'
         new Object() { public int hashCode() { return 1; } { int c = 5; } int d = 8; };
-        // 2 violations above
+        // 2 violations above:
+        // ''}' at column 58 should be alone on a line.'
+        // ''}' at column 73 should be alone on a line.'
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");}  // violation ''}' at column 37 should be alone on a line'
         };
-
         java.util.Map<String, String> map3 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
             put("alpha", "betical");}};  // violation ''}' at column 37 should be alone on a line'
-
         java.util.Map<String, String> map4 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
@@ -197,7 +211,10 @@ class InputRightCurlyTestWithAnnotations
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});} // 2 violations
+        }});}
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 13 should be alone on a line.'
 
     void foo23(java.util.HashSet<String> set) {
     }
@@ -205,14 +222,24 @@ class InputRightCurlyTestWithAnnotations
     void foo25() {
         for (int i = 0; i < 10; i++) {
             System.identityHashCode("Hello, world!");
-        }} // 2 violations
+        }}
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 10 should be alone on a line.'
 
     void foo26() {
         for (int i = 0; i < 10; i++) {
-            System.identityHashCode("Hello, world!");}} // 2 violations
+            System.identityHashCode("Hello, world!");}}
+    // 2 violations above:
+    // ''}' at column 54 should be alone on a line.'
+    // ''}' at column 55 should be alone on a line.'
 
     void foo27() {
-        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} // 3 violations
+        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}}
+    // 3 violations above:
+    // ''}' at column 75 should be alone on a line.'
+    // ''}' at column 76 should be alone on a line.'
+    // ''}' at column 77 should be alone on a line.'
 
     private java.util.ArrayList<Integer> foo28(int delta) {
         return new java.util.ArrayList<Integer>() {
@@ -256,10 +283,10 @@ class InputRightCurlyTestWithAnnotations
         String value();
     }
 
-    public @interface TestAnnottation4 { String value();
+    public @interface TestAnnotation4 { String value();
     }
 
-    public @interface TestAnnnotation5 {
+    public @interface TestAnnotation5 {
         String someValue(); }; // violation ''}' at column 29 should be alone on a line'
 
     public @interface TestAnnotation6 {}; // violation ''}' at column 40 should be alone on a line'

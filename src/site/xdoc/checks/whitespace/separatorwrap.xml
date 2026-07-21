@@ -86,33 +86,33 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.
-          IOException; // ok, dot is on the previous line
+        IOException; // ok, '.' is on the previous line
 
 class Example1 {
   String s;
 
-  public void foo(int a,
-                    int b) { // ok, comma is on the previous line
+  int a,
+          b; // ok, ',' is on the previous line
+
+  void foo(int x,
+           int y) { // ok, ',' is on the previous line
   }
 
-  public void bar(int p
-                    , int q) { // violation '',' should be on the previous line'
+  void bar(int p
+          , int q) { // violation, ',' should be on the previous line
     if (s
-          .isEmpty()) { // violation ''.' should be on the previous line'
+            .isEmpty()) { // violation, '.' should be on the previous line
     }
   }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check for
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-            METHOD_REF</a> at new line:
+          To configure the check for separator at the new line:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SeparatorWrap"&gt;
-      &lt;property name="tokens" value="METHOD_REF"/&gt;
       &lt;property name="option" value="nl"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -122,17 +122,24 @@ class Example1 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.util.Arrays;
+import java.io.
+        IOException; // violation above '.' should be on a new line
 
 class Example2 {
-  String[] stringArray = {"foo", "bar"};
+  String s;
 
-  void fun() {
-    // violation below ''::' should be on a new line'
-    Arrays.sort(stringArray, String::
-      compareToIgnoreCase);
-    Arrays.sort(stringArray, String
-      ::compareTo); // ok, because it is on a new line
+  int a,
+          b;         // violation above, ',' should be on a new line
+
+  void foo(int x,
+           int y) {  // violation above, ',' should be on a new line
+  }
+
+  void bar(int p
+          , int q) {      // ok, ',' is on a new line
+    if (s
+            .isEmpty()) { // ok, '.' is on a new line
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -153,20 +160,60 @@ class Example2 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.io.
+        IOException;
+
 class Example3 {
   String s;
 
   int a,
-    b; // violation above '',' should be on a new line'
+          b; // violation above, ',' should be on a new line
 
-  void foo(int a,
-                int b) { // violation above '',' should be on a new line'
-    int r
-      , t; // ok, because it is on a new line
+  void foo(int x,
+           int y) { // violation above, ',' should be on a new line
   }
 
   void bar(int p
-                , int q) { // ok, because it is on a new line
+          , int q) { // ok, ',' is on a new line
+    if (s
+            .isEmpty()) {
+    }
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="SeparatorWrap_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+            METHOD_REF</a> at new line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SeparatorWrap"&gt;
+      &lt;property name="tokens" value="METHOD_REF"/&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Arrays;
+
+class UseCase1 {
+  String[] stringArray = {"foo", "bar"};
+
+  void fun() {
+    // violation below ''::' should be on a new line'
+    Arrays.sort(stringArray, String::
+      compareToIgnoreCase);
+    Arrays.sort(stringArray, String
+      ::compareTo); // ok, because it is on a new line
   }
 }
 </code></pre></div>
@@ -177,6 +224,10 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
@@ -205,9 +256,11 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="SeparatorWrap_Package">
+      <subsection name="Fully Qualified Name" id="SeparatorWrap_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

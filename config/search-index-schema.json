@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["title", "url", "category", "type", "description", "keywords"],
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "Display name of the entry"
+      },
+      "url": {
+        "type": "string",
+        "description": "Relative URL to the documentation page"
+      },
+      "category": {
+        "type": "string",
+        "description": "Category label (e.g., 'Annotation', 'Block Checks', 'General')"
+      },
+      "type": {
+        "type": "string",
+        "description": "Document type (e.g., 'Check', 'Filter', 'File Filter')"
+      },
+      "description": {
+        "type": "string",
+        "description": "Short description of the entry"
+      },
+      "keywords": {
+        "type": "string",
+        "description": "Comma-separated keywords for search"
+      }
+    }
+  }
+}

@@ -13,18 +13,18 @@ JAVA_RELEASE=${2:-$DEFAULT_JAVA_RELEASE}
 
 ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
 
-# hard coded versions until #18251
-ECJ_MAVEN_VERSION="R-4.37-202509050730" 
+ECJ_MAVEN_VERSION=$(curl --fail-with-body -s "$ECLIPSE_URL/?C=M;O=D" \
+    | grep -o "R-[^/]*" | head -n1)
+echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
-echo "Using pinned eclipse release: $ECJ_MAVEN_VERSION"
-
-ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
+ECJ_JAR=$(curl --fail-with-body -s "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" \
+    | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
 if [ ! -f "$ECJ_PATH" ]; then
     echo "$ECJ_PATH is not found, downloading ..."
     cd target
-    wget $ECLIPSE_URL/"$ECJ_MAVEN_VERSION"/"$ECJ_JAR"
+    curl --fail-with-body -O "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR"
     echo "test jar after download:"
     jar -tvf "$ECJ_JAR" > /dev/null
     echo "check compiler options"
@@ -75,7 +75,7 @@ if [[ $EXIT_CODE != 0 ]]; then
   cat $RESULT_FILE
   false
 else
-    JAVA_RELEASE=24
+    JAVA_RELEASE=26
     echo "In eclipse, Preview of features is supported only at the latest source level"
     echo "JAVA_RELEASE isset to ${JAVA_RELEASE}"
     echo "Executing eclipse compiler on generated resources with all warnings suppressed..."
@@ -101,4 +101,3 @@ else
       false
     fi
 fi
-

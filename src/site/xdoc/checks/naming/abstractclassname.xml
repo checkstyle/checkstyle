@@ -125,6 +125,7 @@ class Example3 {
   class AbstractThird {} // violation 'must be declared as 'abstract''
   class Fourth {}
   abstract class GeneratorFifth {}
+
   class GeneratorSixth {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -144,13 +145,13 @@ class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  // violation below 'must match pattern'
-  abstract class AbstractFirst {}
+  abstract class AbstractFirst {} // violation 'must match pattern'
   abstract class Second {} // violation 'must match pattern'
   class AbstractThird {}
   class Fourth {}
   abstract class GeneratorFifth {}
-  class GeneratorSixth {} // violation 'must be declared as 'abstract''
+  // violation below 'must be declared as 'abstract''
+  class GeneratorSixth {}
 }
 </code></pre></div>
       </subsection>
@@ -184,8 +185,12 @@ class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AbstractClassName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="AbstractClassName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AbstractClassName_Parent_Module">

@@ -82,63 +82,65 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
+      </subsection>
 
-        <p id="Example4-config">
+      <subsection name="Use Cases" id="TrailingComment_Use_Cases">
+
+        <p id="UseCase1-config">
           To configure check so that trailing comment starting with "SUPPRESS CHECKSTYLE",
           "NOPMD", "NOSONAR" are suppressed:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
 
-        <p id="Example4-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure the check to allow trailing comments that match a specific pattern:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
 
-        <p id="Example5-code">
+        <p id="UseCase2-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example6-config">
+        <p id="UseCase3-config">
           To configure the check to allow trailing multiline comments that match a specific pattern:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/UseCase3.java"/>
           <param name="type" value="config"/>
         </macro>
 
-        <p id="Example6-code">
+        <p id="UseCase3-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/UseCase3.java"/>
           <param name="type" value="code"/>
         </macro>
-
       </subsection>
 
       <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">
@@ -161,9 +163,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="TrailingComment_Package">
+      <subsection name="Fully Qualified Name" id="TrailingComment_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

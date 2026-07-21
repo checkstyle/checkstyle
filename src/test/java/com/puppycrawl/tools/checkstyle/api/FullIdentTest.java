@@ -249,7 +249,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     @Test
     public void testCreateFullIdentBelow2() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(ImportOrderCheck.class,
+            "19:1: " + getCheckMessage(ImportOrderCheck.class,
                     MSG_ORDERING_LEX,
                     "java.util.HashMap",
                     "java.util.LinkedList"),
@@ -262,7 +262,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     @Test
     public void testLiteralNewCondition() throws Exception {
         final String[] expected = {
-            "11:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "12:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "j"),
         };
 
@@ -286,4 +286,5 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputFullIdentCommentInFullIdent.java"),
                 expected);
     }
+
 }

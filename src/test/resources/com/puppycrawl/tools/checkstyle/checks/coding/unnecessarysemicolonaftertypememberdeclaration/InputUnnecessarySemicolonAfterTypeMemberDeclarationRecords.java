@@ -7,7 +7,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public record InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords() {
@@ -40,15 +40,15 @@ public record InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords() {
     ; // violation, 'Unnecessary semicolon.'
 
     static {
-        ; // no violation, it is empty statement inside init block
+        ; // ok, it is empty statement inside init block
     }
 
     static {
-        ; // no violation, it is empty statement inside static init block
+        ; // ok, it is empty statement inside static init block
     }
 
     void anotherMethod() {
-        ; // no violation, it is empty statement
-        if (true) ; // no violation, it is empty statement
+        ; // ok, it is empty statement
+        if (true) ; // ok, it is empty statement
     }
 }; // ok, this check does not apply to outer types

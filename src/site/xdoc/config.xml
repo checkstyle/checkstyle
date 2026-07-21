@@ -505,11 +505,15 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Checker">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Checker">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
 
-      <subsection name="Package" id="Checker_Package">
-        <p> com.puppycrawl.tools.checkstyle </p>
+      <subsection name="Fully Qualified Name" id="Checker_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.Checker </p>
       </subsection>
     </section>
 
@@ -673,11 +677,15 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TreeWalker">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TreeWalker">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
 
-      <subsection name="Package" id="TreeWalker_Package">
-        <p> com.puppycrawl.tools.checkstyle </p>
+      <subsection name="Fully Qualified Name" id="TreeWalker_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.TreeWalker </p>
       </subsection>
 
       <subsection name="Parent Module" id="TreeWalker_Parent_Module">

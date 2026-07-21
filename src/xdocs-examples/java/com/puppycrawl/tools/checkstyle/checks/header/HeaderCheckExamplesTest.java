@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/header/header";
@@ -73,4 +74,5 @@ public class HeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
                                     getPath("Example4.java"),
                                     expected);
     }
+
 }

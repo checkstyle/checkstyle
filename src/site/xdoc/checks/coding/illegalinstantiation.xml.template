@@ -63,19 +63,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegalinstantiation/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalInstantiation_Use_Cases">
+        <p id="UseCase1-config">
           Finally, there is a limitation that it is currently not possible to specify array classes:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegalinstantiation/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegalinstantiation/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegalinstantiation/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegalinstantiation/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -104,9 +107,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="IllegalInstantiation_Package">
+      <subsection name="Fully Qualified Name" id="IllegalInstantiation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

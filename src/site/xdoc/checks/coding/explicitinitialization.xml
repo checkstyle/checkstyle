@@ -99,15 +99,16 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  private int intField1 = 0; // ignored
+  private int intField1 = 0;
   private int intField2 = 1;
   private int intField3;
 
-  private char charField1 = '\0'; // ignored
+  private char charField1 = '\0';
   private char charField2 = 'b';
   private char charField3;
 
-  private boolean boolField1 = false; // ignored
+  private boolean boolField1 = false;
+
   private boolean boolField2 = true;
   private boolean boolField3;
 
@@ -146,9 +147,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ExplicitInitialization_Package">
+      <subsection name="Fully Qualified Name" id="ExplicitInitialization_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+           Use this fully qualified class name in configuration when an exact class reference is
+           required.
         </p>
       </subsection>
 

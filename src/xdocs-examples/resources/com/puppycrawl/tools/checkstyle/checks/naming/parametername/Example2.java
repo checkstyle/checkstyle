@@ -12,8 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 // xdoc section -- start
 class Example2 {
+  void method0(int v) {}             // violation 'Name 'v' must match pattern'
   void method1(int v1) {}
-  void method2(int v_2) {}
-  void method3(int V3) {} // violation
+  void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 // xdoc section -- end

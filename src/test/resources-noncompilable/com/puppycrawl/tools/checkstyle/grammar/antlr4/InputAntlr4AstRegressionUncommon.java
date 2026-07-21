@@ -1,4 +1,5 @@
 // non-compiled with eclipse: Type arguments are not allowed
+// non-compiled with javac: contains specially crafted set of imports that requires classpath
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 import java.io.Serializable;

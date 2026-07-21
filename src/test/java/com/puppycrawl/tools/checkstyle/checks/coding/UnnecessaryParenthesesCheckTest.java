@@ -191,7 +191,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "31:13: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                 "InputUnnecessaryParenthesesCheckPatterns.java"),
             expected);
     }
@@ -375,4 +375,5 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnnecessaryParenthesesConditionalExpression.java"), expected);
 
     }
+
 }

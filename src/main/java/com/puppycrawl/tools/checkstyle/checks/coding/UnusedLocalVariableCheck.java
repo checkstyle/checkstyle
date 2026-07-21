@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks that a local variable is declared and/or assigned, but not used.
- * Doesn't support
+ * Supports
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
- * pattern variables yet</a>.
+ * pattern variables</a>.
  * Doesn't check
  * <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
  * array components</a> as array
@@ -141,6 +142,16 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static final String PACKAGE_SEPARATOR = ".";
 
     /**
+     *  Symbol used to represent unnamed variables in Java pattern matching.
+     */
+    private static final String UNNAMED_VAR = "_";
+
+    /**
+     * Constant for JDK 22 version number.
+     */
+    private static final int JDK_22 = 22;
+
+    /**
      * Keeps tracks of the variables declared in file.
      */
     private final Deque<VariableDesc> variables = new ArrayDeque<>();
@@ -177,6 +188,19 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private boolean allowUnnamedVariables = true;
 
     /**
+     * Set the JDK version that you are using.
+     * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
+     * as well as just the major JDK version alone (e.g. 8) is supported.
+     * This property only considers features from officially released
+     * Java versions as supported. Features introduced in preview releases
+     * are not considered supported until they are included in a non-preview release.
+     * Before JDK 22, named pattern variables in switch labels and instanceof
+     * record Destructuring cannot be replaced with {@code _}, so violations
+     * on them are suppressed when jdkVersion is set below 22.
+     */
+    private int jdkVersion = JDK_22;
+
+    /**
      * Name of the package.
      */
     private String packageName;
@@ -185,6 +209,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Depth at which a type declaration is nested, 0 for top level type declarations.
      */
     private int depth;
+
+    /**
+     * Creates a new {@code UnusedLocalVariableCheck} instance.
+     */
+    public UnusedLocalVariableCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to allow variables named with a single underscore
@@ -196,6 +227,31 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     public void setAllowUnnamedVariables(boolean allowUnnamedVariables) {
         this.allowUnnamedVariables = allowUnnamedVariables;
+    }
+
+    /**
+     * Setter to set the JDK version that you are using.
+     * Old JDK version numbering is supported (e.g. 1.8 for Java 8)
+     * as well as just the major JDK version alone (e.g. 8) is supported.
+     * This property only considers features from officially released
+     * Java versions as supported. Features introduced in preview releases
+     * are not considered supported until they are included in a non-preview release.
+     * Before JDK 22, named pattern variables in switch labels and instanceof
+     * record Destructuring cannot be replaced with {@code _}, so violations
+     * on them are suppressed when jdkVersion is set below 22.
+     *
+     * @param jdkVersion the Java version.
+     * @since 13.7.0
+     */
+    public void setJdkVersion(String jdkVersion) {
+        final String singleVersionNumber;
+        if (jdkVersion.startsWith("1.")) {
+            singleVersionNumber = jdkVersion.substring(2);
+        }
+        else {
+            singleVersionNumber = jdkVersion;
+        }
+        this.jdkVersion = Integer.parseInt(singleVersionNumber);
     }
 
     @Override
@@ -221,6 +277,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             TokenTypes.ENUM_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -253,6 +310,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
         else if (type == TokenTypes.VARIABLE_DEF && !skipUnnamedVariables(ast)) {
             visitVariableDefToken(ast);
+        }
+        else if (type == TokenTypes.PATTERN_VARIABLE_DEF
+                && !skipUnnamedPatternVariables(ast)) {
+            addPatternVariable(ast, variables);
         }
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
@@ -363,7 +424,63 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private boolean skipUnnamedVariables(DetailAST varDefAst) {
         final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-        return allowUnnamedVariables && "_".equals(ident.getText());
+        return allowUnnamedVariables && UNNAMED_VAR.equals(ident.getText());
+    }
+
+    /**
+     * Checks whether the specified current pattern variable is an unnamed pattern variable.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the current pattern variable should be skipped.
+     */
+    private static boolean skipUnnamedPatternVariables(DetailAST patternVarDefAst) {
+        final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
+        return UNNAMED_VAR.equals(ident.getText());
+    }
+
+    /**
+     * Add a pattern variable to the {@code variablesStack} stack.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @param variablesStack stack of all the relevant variables in the scope
+     */
+    private static void addPatternVariable(DetailAST patternVarDefAst,
+            Deque<VariableDesc> variablesStack) {
+        final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
+        final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
+        final VariableDesc desc = new VariableDesc(ident.getText(), ident, scope);
+        if (isForcedNamePatternVariable(patternVarDefAst)) {
+            desc.registerAsNamedPatternVar();
+        }
+        variablesStack.push(desc);
+    }
+
+    /**
+     * Checks whether the pattern variable is declared in a switch labels and instanceof.
+     *
+     * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
+     * @return true if the pattern variable is in a forced-name context
+     */
+    private static boolean isForcedNamePatternVariable(DetailAST patternVarDefAst) {
+        return patternVarDefAst.getParent().getType() != TokenTypes.LITERAL_INSTANCEOF;
+    }
+
+    /**
+     * Find the scope of a pattern variable.
+     *
+     * @param patternVarDefAst ast of type.
+     * @return the outermost enclosing {@link TokenTypes#SLIST}, or {@code null} if none.
+     */
+    private static DetailAST findScopeOfPatternVariable(DetailAST patternVarDefAst) {
+        final Deque<DetailAST> slistAncestors = new ArrayDeque<>();
+        for (DetailAST current = patternVarDefAst;
+             current != null;
+             current = current.getParent()) {
+            if (current.getType() == TokenTypes.SLIST) {
+                slistAncestors.push(current);
+            }
+        }
+        return slistAncestors.peekLast();
     }
 
     /**
@@ -378,7 +495,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST lastChild = literalNewAst.getLastChild();
         if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
             DetailAST currentAst = literalNewAst;
-            while (!TokenUtil.isTypeDeclaration(currentAst.getType())) {
+            while (currentAst != null
+                    && !TokenUtil.isTypeDeclaration(currentAst.getType())) {
                 if (currentAst.getType() == TokenTypes.SLIST) {
                     result = true;
                     break;
@@ -396,16 +514,22 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void logViolations(DetailAST scopeAst, Deque<VariableDesc> variablesStack) {
-        while (!variablesStack.isEmpty() && variablesStack.peek().getScope() == scopeAst) {
-            final VariableDesc variableDesc = variablesStack.pop();
-            if (!variableDesc.isUsed()
-                    && !variableDesc.isInstVarOrClassVar()) {
-                final DetailAST typeAst = variableDesc.getTypeAst();
-                if (allowUnnamedVariables) {
-                    log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
-                }
-                else {
-                    log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
+        final Iterator<VariableDesc> iterator = variablesStack.iterator();
+        while (iterator.hasNext()) {
+            final VariableDesc variableDesc = iterator.next();
+            if (variableDesc.getScope() == scopeAst) {
+                iterator.remove();
+                if (!variableDesc.isUsed()
+                        && !variableDesc.isInstVarOrClassVar()
+                        && !(jdkVersion < JDK_22
+                                && variableDesc.isNamedPatternVar())) {
+                    final DetailAST typeAst = variableDesc.getTypeAst();
+                    if (allowUnnamedVariables) {
+                        log(typeAst, MSG_UNUSED_NAMED_LOCAL_VARIABLE, variableDesc.getName());
+                    }
+                    else {
+                        log(typeAst, MSG_UNUSED_LOCAL_VARIABLE, variableDesc.getName());
+                    }
                 }
             }
         }
@@ -476,18 +600,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
-        final boolean isInstanceVarInInnerClass =
-                grandParent.getType() == TokenTypes.LITERAL_NEW
-                || grandParent.getType() == TokenTypes.CLASS_DEF;
-        if (isInstanceVarInInnerClass
-                || parentAst.getType() != TokenTypes.OBJBLOCK) {
-            final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
-            final VariableDesc desc = new VariableDesc(ident.getText(),
-                    varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
-            if (isInstanceVarInInnerClass) {
-                desc.registerAsInstOrClassVar();
+
+        if (grandParent != null) {
+            final boolean isInstanceVarInInnerClass =
+                    grandParent.getType() == TokenTypes.LITERAL_NEW
+                    || grandParent.getType() == TokenTypes.CLASS_DEF;
+            if (isInstanceVarInInnerClass
+                    || parentAst.getType() != TokenTypes.OBJBLOCK) {
+                final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
+                final VariableDesc desc = new VariableDesc(ident.getText(),
+                        varDefAst.findFirstToken(TokenTypes.TYPE), findScopeOfVariable(varDefAst));
+                if (isInstanceVarInInnerClass) {
+                    desc.registerAsInstOrClassVar();
+                }
+                variablesStack.push(desc);
             }
-            variablesStack.push(desc);
         }
     }
 
@@ -499,11 +626,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void addInstanceOrClassVar(DetailAST varDefAst) {
         final DetailAST parentAst = varDefAst.getParent();
-        if (isNonLocalTypeDeclaration(parentAst.getParent())
+        final DetailAST grandParentAst = parentAst.getParent();
+        if (grandParentAst != null
+                && isNonLocalTypeDeclaration(grandParentAst)
                 && !isPrivateInstanceVariable(varDefAst)) {
             final DetailAST ident = varDefAst.findFirstToken(TokenTypes.IDENT);
             final VariableDesc desc = new VariableDesc(ident.getText());
-            typeDeclAstToTypeDeclDesc.get(parentAst.getParent()).addInstOrClassVar(desc);
+            typeDeclAstToTypeDeclDesc.get(grandParentAst).addInstOrClassVar(desc);
         }
     }
 
@@ -888,24 +1017,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         private boolean instVarOrClassVar;
 
         /**
+         * Is a named pattern variable declared in a switch label.
+         */
+        private boolean namedPatternVar;
+
+        /**
          * Is the variable used.
          */
         private boolean used;
-
-        /**
-         * Create a new VariableDesc instance.
-         *
-         * @param name name of the variable
-         * @param typeAst ast of type {@link TokenTypes#TYPE}
-         * @param scope ast of type {@link TokenTypes#SLIST} or
-         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
-         *              which is enclosing the variable
-         */
-        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
-            this.name = name;
-            this.typeAst = typeAst;
-            this.scope = scope;
-        }
 
         /**
          * Create a new VariableDesc instance.
@@ -926,6 +1045,21 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          */
         private VariableDesc(String name, DetailAST scope) {
             this(name, null, scope);
+        }
+
+        /**
+         * Create a new VariableDesc instance.
+         *
+         * @param name name of the variable
+         * @param typeAst ast of type {@link TokenTypes#TYPE}
+         * @param scope ast of type {@link TokenTypes#SLIST} or
+         *              {@link TokenTypes#LITERAL_FOR} or {@link TokenTypes#OBJBLOCK}
+         *              which is enclosing the variable
+         */
+        private VariableDesc(String name, DetailAST typeAst, DetailAST scope) {
+            this.name = name;
+            this.typeAst = typeAst;
+            this.scope = scope;
         }
 
         /**
@@ -973,6 +1107,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
+         * Register the variable as a forced-name pattern variable declared
+         * in a switch label or instanceof record Destructuring.
+         */
+        /* package */ void registerAsNamedPatternVar() {
+            namedPatternVar = true;
+        }
+
+        /**
          * Is the variable used or not.
          *
          * @return true if variable is used
@@ -988,6 +1130,17 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          */
         /* package */ boolean isInstVarOrClassVar() {
             return instVarOrClassVar;
+        }
+
+        /**
+         * Is a forced-name pattern variable from a switch label or
+         * instanceof record Destructuring.
+         *
+         * @return true if this variable was declared in a context where
+         *         pre-JDK 22 forces a name to be given even when unused
+         */
+        /* package */ boolean isNamedPatternVar() {
+            return namedPatternVar;
         }
     }
 
@@ -1089,4 +1242,5 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             instanceAndClassVarStack.push(variableDesc);
         }
     }
+
 }

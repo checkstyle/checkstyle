@@ -12,7 +12,8 @@ ignoreComments = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsinglelinejava;
 
-public class InputRegexpSinglelineJavaTrailingComment2 { // violation below
+public class InputRegexpSinglelineJavaTrailingComment2 {
+    // violation below "Line matches the illegal pattern 'don't"
     int i; // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */

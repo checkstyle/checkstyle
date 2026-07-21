@@ -4,7 +4,7 @@ ParameterAssignment
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
 
 public class InputParameterAssignmentWithEnhancedSwitch {

@@ -102,7 +102,7 @@ private static int checkPitestReport(String profile) {
 
     if (survivingMutations.isEmpty()) {
         if (suppressionFile.exists()) {
-            suppressionFile.delete()
+            println 'No surviving mutations.'
         }
     }
     else {

@@ -318,13 +318,6 @@
                   config</a>)
                   <br />
                   <br />
-                  Rule is not enforced in <code>package-info.java</code> file.
-                  It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17541">
-                    #17541
-                  </a>
-                  <br />
-                  <br />
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt="" />
                   </span>
@@ -732,12 +725,10 @@
                   <br/>
                   <br/>
                   There are some false-negatives regarding <code>ELSE</code>
-                  and <code>DEFAULT</code> blocks, they will be addressed at:
+                  blocks, they will be addressed at:
                   <a href="https://github.com/checkstyle/checkstyle/issues/15791">
                     #15791
                   </a>
-                  and
-                  <a href="https://github.com/checkstyle/checkstyle/issues/14782">#14782</a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks">
@@ -911,7 +902,7 @@
                   <br />
                   <br />
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
@@ -924,13 +915,6 @@
                   <a href="checks/whitespace/methodparampad.html#MethodParamPad">MethodParamPad</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodParamPad">
                   config</a>)
-                  <br />
-                  <br />
-                  Line break before and after the lambda(<code>-></code>) is not covered.
-                  It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17253">
-                    #17253
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak">
@@ -1320,18 +1304,11 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/misc/indentation.html#Indentation">Indentation</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
                   config</a>)
-                  <br/>
-                  <br/>
-                  Line break after <code>{</code> of non-empty block in switch-rule is
-                  not covered. It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17565">
-                    #17565
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation">
@@ -1625,6 +1602,16 @@
                     CommentsIndentation</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
                   config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/todocomment.html#TodoComment"
+                     id="BoxComments">
+                    TodoComment</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment+BoxComments">
+                  config</a>)
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle">
@@ -1648,9 +1635,10 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
-                  <a href="checks/misc/todocomment.html#TodoComment">
+                  <a href="checks/misc/todocomment.html#TodoComment"
+                     id="TodoFormat">
                     TodoComment</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment+TodoFormat">
                   config</a>)
                 </td>
                 <td>
@@ -2058,6 +2046,14 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
+                  <a href="checks/naming/localfinalvariablename.html#LocalFinalVariableName">LocalFinalVariableName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="checks/naming/patternvariablename.html#PatternVariableName">PatternVariableName</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
                   config</a>)
@@ -2156,14 +2152,11 @@
                   <br />
                   <br />
                   2. There are some false-negatives regarding the use of underscores in
-                  method and member names.
+                  method names.
                   They will be addressed at:
                   <a href="https://github.com/checkstyle/checkstyle/issues/17841">
                     #17841
-                  </a> and
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17842">
-                    #17842
-                  </a> respectively.
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase">
@@ -2437,7 +2430,7 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_blue.png"
+                        src="images/ok_green.png"
                         alt="" />
                   </span>
                   <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
@@ -2686,6 +2679,10 @@
                     InvalidJavadocPosition</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
                   config</a>)
+                  <br/>
+                  <br/>
+                  Checkstyle cannot distinguish whether a comment describes purpose/behavior or
+                  an implementation detail, as this depends on developer intent.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc">

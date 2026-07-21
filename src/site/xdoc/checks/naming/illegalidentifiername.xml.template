@@ -59,6 +59,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/illegalidentifiername/Example2.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p>
+          To configure the check to target only a specific token:
+        </p>
+        <p id="Example3-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/illegalidentifiername/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/illegalidentifiername/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -68,6 +83,10 @@
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
               Checkstyle Style
             </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -83,8 +102,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="IllegalIdentifierName_Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      <subsection name="Fully Qualified Name" id="IllegalIdentifierName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="IllegalIdentifierName_Parent_Module">

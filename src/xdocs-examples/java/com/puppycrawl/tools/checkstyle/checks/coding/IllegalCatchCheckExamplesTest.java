@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class IllegalCatchCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegalcatch";
@@ -50,4 +51,5 @@ public class IllegalCatchCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -76,6 +76,8 @@
                     IMPORT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
                     STATIC_IMPORT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_IMPORT">
+                    MODULE_IMPORT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -105,6 +107,8 @@
                     IMPORT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
                     STATIC_IMPORT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_IMPORT">
+                    MODULE_IMPORT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -510,6 +514,10 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
             Checkstyle Style</a>
           </li>
@@ -546,10 +554,12 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
         </p>
       </subsection>
 
-      <subsection name="Package" id="EmptyLineSeparator_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
+      <subsection name="Fully Qualified Name" id="EmptyLineSeparator_Fully_Qualified_Name">
+          <p> com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</p>
+          <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+          </p>
       </subsection>
 
       <subsection name="Parent Module" id="EmptyLineSeparator_Parent_Module">

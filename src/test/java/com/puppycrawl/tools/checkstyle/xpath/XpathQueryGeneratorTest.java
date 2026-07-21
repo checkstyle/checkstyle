@@ -744,4 +744,5 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
             .that(actualTest)
             .isEqualTo(expectedXpathQueries);
     }
+
 }

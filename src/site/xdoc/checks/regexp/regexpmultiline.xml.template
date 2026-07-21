@@ -84,7 +84,8 @@
           expression being too greedy, avoid overusing matching all text or allow it to be
           optional, like <code>.*?</code>. Changing the example expression to not be greedy
           will allow multiple violations in the example to be found in the same file.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example4-config">
         To configure the check to match a maximum of three test strings:
         </p>
@@ -138,6 +139,23 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp/Test.java // violation, a file must not be empty.
         </code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example7-config">
+        To configure the check to match a minimum of two test strings:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
@@ -160,9 +178,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpMultiline_Package">
+      <subsection name="Fully Qualified Name" id="RegexpMultiline_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

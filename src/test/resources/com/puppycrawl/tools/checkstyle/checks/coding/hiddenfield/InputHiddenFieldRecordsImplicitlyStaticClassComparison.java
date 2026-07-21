@@ -4,11 +4,12 @@ ignoreConstructorParameter = true
 ignoreSetter = true
 setterCanReturnItsClass = true
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
+ignoreFormat = (default)(null)
 
 */
 
-// Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.io.Externalizable;
@@ -41,7 +42,7 @@ class Test {
         public void m(int x) {}
     }
 
-    // non-static class, should have a violation
+    // non-static class
     public class C2 {
         public void m(int x) {} // violation ''x' hides a field'
     }

@@ -1,0 +1,26 @@
+steps:
+  - label: ":checkstyle: checkstyle"
+    command: "./.ci/validation.sh checkstyle"
+    plugins:
+      - docker#v5.0.0:
+          image: "maven:3.9-eclipse-temurin-21"
+          volumes:
+            - "/tmp/buildkite-maven-cache:/root/.m2"
+
+  - label: ":maven: test"
+    command: "./mvnw -e --no-transfer-progress clean test"
+    plugins:
+      - docker#v5.0.0:
+          image: "mcr.microsoft.com/openjdk/jdk:21-ubuntu"
+          drop-caps:
+            - DAC_OVERRIDE
+          volumes:
+            - "/tmp/buildkite-maven-cache:/root/.m2"
+
+  - label: ":clean: spotless"
+    command: "./.ci/validation.sh spotless"
+    plugins:
+      - docker#v5.0.0:
+          image: "maven:3.9-eclipse-temurin-21"
+          volumes:
+            - "/tmp/buildkite-maven-cache:/root/.m2"

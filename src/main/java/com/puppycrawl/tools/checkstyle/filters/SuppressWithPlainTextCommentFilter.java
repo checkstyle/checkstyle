@@ -116,6 +116,13 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     private String idFormat;
 
     /**
+     * Creates a new {@code SuppressWithPlainTextCommentFilter} instance.
+     */
+    public SuppressWithPlainTextCommentFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern off comment format pattern.
@@ -137,6 +144,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
 
     /**
      * Setter to specify check pattern to suppress.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param format pattern for check format.
      * @since 8.6

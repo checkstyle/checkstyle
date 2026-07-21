@@ -149,4 +149,5 @@ public class XdocsTemplateSink extends XdocSink {
             super.write(lineBreakReplacedLine, 0, lineBreakReplacedLine.length());
         }
     }
+
 }

@@ -10,8 +10,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section -- start
+
 /**
  * Some class
+ *
  */
 public class Example2 {
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'

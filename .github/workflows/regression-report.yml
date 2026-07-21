@@ -20,10 +20,12 @@ env:
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/test-configs/main/extractor/src/main/resources/list-of-projects.yml"
   BASE_TEST_CONFIGS_URL: "https://raw.githubusercontent.com/checkstyle/test-configs/main"
   EXTRACTOR_VERSION: 2024-10-08
-  DIFF_TOOL_VERSION: "1.0-2025-01-30"
+  DIFF_TOOL_VERSION: "1.0-2026-07-14"
   PATCH_DIFF_TOOL_VERSION: "0.1-SNAPSHOT"
   CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
   GENERATED_CONFIGS_PATH: generated_configs
+  LOCAL_CONFIG_BASE_PATH: "src/main/resources"
+  LOCAL_PROJECTS_FILE_PATH: "config/list-of-projects.yml"
 
 on:
   issue_comment:
@@ -51,7 +53,11 @@ jobs:
           ||  startsWith(github.event.comment.body,
                          'Github, generate report by config from')
           ||  startsWith(github.event.comment.body,
-                         'GitHub, generate report by config from'))
+                         'GitHub, generate report by config from')
+          ||  startsWith(github.event.comment.body,
+                         'Github, generate baseline report')
+          ||  startsWith(github.event.comment.body,
+                         'GitHub, generate baseline report'))
 
     runs-on: ubuntu-latest
     steps:
@@ -74,8 +80,6 @@ jobs:
     outputs:
       pr_branch: ${{ steps.get_pr_details.outputs.branch }}
       commit_sha: ${{ steps.get_pr_details.outputs.commit_sha }}
-    env:
-      CACHE_KEY: "regression-report-${{ github.sha }}-${{ github.event.comment.id }}"
     steps:
       - name: Create .ci-temp directory
         run: mkdir -p .ci-temp
@@ -97,13 +101,13 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Checkout PR branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
       - name: Checkout master branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle
@@ -118,11 +122,22 @@ jobs:
           git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
                forked/${{ steps.get_pr_details.outputs.branch }}
 
-      - name: Save cache
-        uses: actions/cache/save@v5
+      - name: Tar workspace artifact
+        run: |
+          echo "sleep 30 seconds to let git finish maintenance task on files, avoid conflict on tar"
+          sleep 30s
+          tar --exclude='.ci-temp/checkstyle/.git/objects/pack/tmp_pack_*' \
+            --exclude="$RUNNER_TEMP/workspace.tar" \
+            --warning=no-file-changed \
+            -cf "$RUNNER_TEMP/workspace.tar" .
+
+      - name: Upload workspace artifact
+        uses: actions/upload-artifact@v7
         with:
-          path: .
-          key: ${{ env.CACHE_KEY }}
+          name: ${{ env.CACHE_KEY }}
+          path: ${{ runner.temp }}/workspace.tar
+          retention-days: 1
+          if-no-files-found: error
 
   parse_comment:
     runs-on: ubuntu-latest
@@ -131,9 +146,11 @@ jobs:
       mode: ${{ steps.parse.outputs.mode }}
       config_bundle: ${{ steps.parse.outputs.config_bundle }}
       input_file: ${{ steps.parse.outputs.input_file }}
+      project_name: ${{ steps.parse.outputs.project_name }}
+      config_path: ${{ steps.parse.outputs.config_path }}
     steps:
       - name: React to comment
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -144,12 +161,16 @@ jobs:
               content: 'rocket'
             })
 
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Parse comment
         id: parse
@@ -158,11 +179,18 @@ jobs:
         run: |
           NAME='^Git[Hh]ub,'
           PATTERN_FOR_DESCRIPTION=$NAME' generate report for configs in PR description[[:space:]]*$'
+          PATTERN_LOCAL_CONFIG=$NAME' generate report for ([^[:space:]]+) with (.*)'
           PATTERN_FOR=$NAME' generate report for'
           PATTERN_BY_CONFIG_FROM=$NAME' generate report by config from'
+          PATTERN_FOR_BASELINE_REPORT=$NAME' generate baseline report for ([^[:space:]]+) with (.*)'
 
           if [[ "$COMMENT_BODY" =~ $PATTERN_FOR_DESCRIPTION ]]; then
             ./.ci/append-to-github-output.sh "mode" "configs_in_pr_description"
+
+          elif [[ "$COMMENT_BODY" =~ $PATTERN_LOCAL_CONFIG ]]; then
+            ./.ci/append-to-github-output.sh "mode" "local_config_for_project"
+            ./.ci/append-to-github-output.sh "project_name" "${BASH_REMATCH[1]}"
+            ./.ci/append-to-github-output.sh "config_path" "${BASH_REMATCH[2]}"
 
           elif [[ "$COMMENT_BODY" =~ $PATTERN_FOR ]]; then
             ./.ci/append-to-github-output.sh "mode" "existing_config_bundle"
@@ -173,6 +201,11 @@ jobs:
             ./.ci/append-to-github-output.sh "mode" "generated_config_bundle"
             INPUT_FILE=$(echo "$COMMENT_BODY" | sed -E "s/$PATTERN_BY_CONFIG_FROM //g")
             ./.ci/append-to-github-output.sh "input_file" "$INPUT_FILE"
+
+          elif [[ "$COMMENT_BODY" =~ $PATTERN_FOR_BASELINE_REPORT ]]; then
+            ./.ci/append-to-github-output.sh "mode" "local_config_for_baseline_report"
+            ./.ci/append-to-github-output.sh "project_name" "${BASH_REMATCH[1]}"
+            ./.ci/append-to-github-output.sh "config_path" "${BASH_REMATCH[2]}"
 
           else
             echo "No recognized pattern found in '$COMMENT_BODY'."
@@ -188,12 +221,16 @@ jobs:
       projects_link: ${{ steps.set_links.outputs.projects_link }}
       label: ${{ steps.create_label.outputs.label }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xf workspace.tar
+          rm workspace.tar
 
       - name: Set config and projects links
         id: set_links
@@ -221,12 +258,16 @@ jobs:
       projects_link: ${{ steps.generated_config_bundle.outputs.projects_link }}
       label: ${{ steps.create_label.outputs.label }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xf workspace.tar
+          rm workspace.tar
 
       - name: Find input file
         id: find_input_file
@@ -293,11 +334,17 @@ jobs:
           echo "Contents of CONFIG_FILE_PATH:"
           cat "$CONFIG_FILE_PATH"
 
-      - name: Cache Generated Config and Project Files
-        uses: actions/cache@v5
+      - name: Tar generated config and project files
+        run: |
+          tar -cf "$RUNNER_TEMP/generated-configs.tar" "${{ env.GENERATED_CONFIGS_PATH }}"
+
+      - name: Upload generated config and project files
+        uses: actions/upload-artifact@v7
         with:
-          path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY }}-generated-configs
+          name: ${{ env.CACHE_KEY }}-generated-configs
+          path: ${{ runner.temp }}/generated-configs.tar
+          retention-days: 1
+          if-no-files-found: error
 
       - name: Extract filename and create label
         id: create_label
@@ -318,12 +365,16 @@ jobs:
       patch_config_link: ${{ steps.parse_description.outputs.patch_config_link }}
       new_module_config_link: ${{ steps.parse_description.outputs.new_module_config_link }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Getting PR description
         env:
@@ -341,18 +392,104 @@ jobs:
         run: |
           ./.ci/diff-report.sh parse-pr-description-text
 
+  handle_local_config_for_project:
+    needs: [ parse_comment, checkout_and_cache ]
+    if: needs.parse_comment.outputs.mode == 'local_config_for_project'
+    runs-on: ubuntu-latest
+    outputs:
+      config_link: ${{ steps.set_links.outputs.config_link }}
+      patch_config_link: ${{ steps.set_links.outputs.patch_config_link }}
+      projects_link: ${{ steps.set_links.outputs.projects_link }}
+      label: ${{ steps.create_label.outputs.label }}
+      project_name: ${{ needs.parse_comment.outputs.project_name }}
+    steps:
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ env.CACHE_KEY }}
+          path: .
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
+
+      - name: Set config and projects links
+        id: set_links
+        run: |
+          BASE="${{ env.LOCAL_CONFIG_BASE_PATH }}"
+          CONF="${{ needs.parse_comment.outputs.config_path }}"
+          CONFIG_PATH="$BASE/$CONF"
+          PROJECTS_FILE="${{ env.LOCAL_PROJECTS_FILE_PATH }}"
+
+          ./.ci/append-to-github-output.sh "config_link" "$CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "patch_config_link" "$CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_FILE"
+
+      - name: Create label
+        id: create_label
+        run: |
+          PROJECT_NAME="${{ needs.parse_comment.outputs.project_name }}"
+          CONFIG_PATH="${{ needs.parse_comment.outputs.config_path }}"
+          LABEL="Diff report for $PROJECT_NAME with $CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "label" "$LABEL"
+
+  handle_local_config_for_baseline_report:
+    needs: [ parse_comment, checkout_and_cache ]
+    if: needs.parse_comment.outputs.mode == 'local_config_for_baseline_report'
+    runs-on: ubuntu-latest
+    outputs:
+      config_link: ${{ steps.set_links.outputs.config_link }}
+      projects_link: ${{ steps.set_links.outputs.projects_link }}
+      label: ${{ steps.create_label.outputs.label }}
+      project_name: ${{ needs.parse_comment.outputs.project_name }}
+    steps:
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ env.CACHE_KEY }}
+          path: .
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
+
+      - name: Set config and project link
+        id: set_links
+        run: |
+          BASE="${{ env.LOCAL_CONFIG_BASE_PATH }}"
+          CONF="${{ needs.parse_comment.outputs.config_path }}"
+          CONFIG_PATH="$BASE/$CONF"
+          PROJECTS_FILE="${{ env.LOCAL_PROJECTS_FILE_PATH }}"
+
+          ./.ci/append-to-github-output.sh "config_link" "$CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_FILE"
+
+      - name: Create label
+        id: create_label
+        run: |
+          PROJECT_NAME="${{ needs.parse_comment.outputs.project_name }}"
+          CONFIG_PATH="${{ needs.parse_comment.outputs.config_path }}"
+          LABEL="Baseline report for $PROJECT_NAME with $CONFIG_PATH"
+          ./.ci/append-to-github-output.sh "label" "$LABEL"
+
   download_configs:
     needs: [
       parse_comment,
       handle_existing_config_bundle,
       handle_generated_config_bundle,
-      handle_configs_in_pr_description
+      handle_configs_in_pr_description,
+      handle_local_config_for_project,
+      handle_local_config_for_baseline_report
     ]
     if: |
       always() &&
       (needs.handle_existing_config_bundle.result == 'success'
         || needs.handle_generated_config_bundle.result == 'success'
-        || needs.handle_configs_in_pr_description.result == 'success')
+        || needs.handle_configs_in_pr_description.result == 'success'
+        || needs.handle_local_config_for_project.result == 'success'
+        || needs.handle_local_config_for_baseline_report.result == 'success')
     runs-on: ubuntu-latest
     outputs:
       report_label: >-
@@ -360,22 +497,34 @@ jobs:
           needs.handle_configs_in_pr_description.outputs.report_label
           || needs.handle_generated_config_bundle.outputs.label
           || needs.handle_existing_config_bundle.outputs.label
+          || needs.handle_local_config_for_project.outputs.label
+          || needs.handle_local_config_for_baseline_report.outputs.label
           || ''
         }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
 
-      - name: Restore Generated Config and Project Files
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
+
+      - name: Download generated config and project files
         if: needs.handle_generated_config_bundle.result == 'success'
-        uses: actions/cache@v5
+        uses: actions/download-artifact@v8
         with:
-          path: ${{ env.GENERATED_CONFIGS_PATH }}
-          key: ${{ env.CACHE_KEY }}-generated-configs
+          name: ${{ env.CACHE_KEY }}-generated-configs
+          path: .
+
+      - name: Extract generated config and project files
+        if: needs.handle_generated_config_bundle.result == 'success'
+        run: |
+          tar -xvf generated-configs.tar
+          rm generated-configs.tar
 
       - name: Process local-based generated Config and Project File
         if: needs.handle_generated_config_bundle.result == 'success'
@@ -433,15 +582,42 @@ jobs:
               "${CONFIG_FOLDER_URL}/java.header" || true
           fi
 
-      - name: Cache config files
-        uses: actions/cache@v5
+      - name: Process local-repo based config files
+        if: needs.handle_local_config_for_project.result == 'success'
+        env:
+          PROJECT_NAME: ${{ needs.handle_local_config_for_project.outputs.project_name }}
+          CONFIG_LINK: ${{ needs.handle_local_config_for_project.outputs.config_link }}
+          PATCH_CONFIG_LINK: ${{ needs.handle_local_config_for_project.outputs.patch_config_link }}
+          PROJECTS_LINK: ${{ needs.handle_local_config_for_project.outputs.projects_link }}
+        run: |
+          ./.ci/diff-report.sh process-local-repo-config-files
+
+      - name: Process local-repo based config file for baseline report
+        if: needs.handle_local_config_for_baseline_report.result == 'success'
+        env:
+          PROJECT_NAME: ${{ needs.handle_local_config_for_baseline_report.outputs.project_name }}
+          CONFIG_LINK: ${{ needs.handle_local_config_for_baseline_report.outputs.config_link }}
+          PROJECTS_LINK: ${{ needs.handle_local_config_for_baseline_report.outputs.projects_link }}
+        run: |
+          ./.ci/diff-report.sh process-local-repo-config-files-for-baseline-report
+
+      - name: Tar config files artifact
+        run: |
+          files=()
+          for path in .ci-temp/*.{xml,header} .ci-temp/projects.{yml,properties}; do
+            if [ -f "$path" ]; then
+              files+=("$path")
+            fi
+          done
+          tar -cvf "$RUNNER_TEMP/config-files.tar" "${files[@]}"
+
+      - name: Upload config files artifact
+        uses: actions/upload-artifact@v7
         with:
-          path: |
-            .ci-temp/*.xml
-            .ci-temp/*.header
-            .ci-temp/projects.yml
-            .ci-temp/projects.properties
-          key: ${{ env.CACHE_KEY }}-config-files
+          name: ${{ env.CACHE_KEY }}-config-files
+          path: ${{ runner.temp }}/config-files.tar
+          retention-days: 1
+          if-no-files-found: error
 
   make_report:
     needs: [ download_configs, checkout_and_cache ]
@@ -450,25 +626,30 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message }}
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
 
-      - name: Restore config files from cache
-        uses: actions/cache/restore@v5
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
+
+      - name: Download config files artifact
+        uses: actions/download-artifact@v8
         with:
-          path: |
-            .ci-temp/*.xml
-            .ci-temp/*.header
-            .ci-temp/projects.yml
-            .ci-temp/projects.properties
-          key: ${{ env.CACHE_KEY }}-config-files
+          name: ${{ env.CACHE_KEY }}-config-files
+          path: .
+
+      - name: Extract config files artifact
+        run: |
+          tar -xvf config-files.tar
+          rm config-files.tar
 
       - name: Restore local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -552,6 +733,17 @@ jobs:
           fi
           echo "-----------------------------------"
 
+      - name: Print baseline_config.xml
+        run: |
+          echo "Contents of baseline_config.xml:"
+          echo "-----------------------------------"
+          if [ -f .ci-temp/baseline_config.xml ]; then
+            cat .ci-temp/baseline_config.xml
+          else
+            echo "baseline_config.xml not found"
+          fi
+          echo "-----------------------------------"
+
       - name: Generate report
         run: |
           cd .ci-temp
@@ -565,6 +757,7 @@ jobs:
           DIFF_CONFIG="${{ github.workspace }}/.ci-temp/diff_config.xml"
           PATCH_CONFIG="${{ github.workspace }}/.ci-temp/patch_config.xml"
           NEW_MODULE_CONFIG="${{ github.workspace }}/.ci-temp/new_module_config.xml"
+          BASELINE_CONFIG="${{ github.workspace }}/.ci-temp/baseline_config.xml"
 
           # Determine the projects file path
           if [ -f "${{ github.workspace }}/.ci-temp/projects.yml" ]; then
@@ -596,6 +789,17 @@ jobs:
               -xm "$EXTRA_MVN_OPTIONS" \
               --allowExcludes \
               --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
+          elif [ -f "$BASELINE_CONFIG" ]; then
+            echo "Generating complete report for config"
+            java -jar "$DIFFTOOL_JAR" \
+              -r "$REPO" \
+              -p "$PR_BRANCH" \
+              -pc "$BASELINE_CONFIG" \
+              -m single \
+              -l "$PROJECTS_FILE" \
+              -xm "$EXTRA_MVN_OPTIONS" \
+              --allowExcludes \
+              --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           elif [ -f "$PATCH_CONFIG" ]; then
             echo "Generating report with patch config"
             java -jar "$DIFFTOOL_JAR" \
@@ -621,6 +825,19 @@ jobs:
               --diffToolJarPath "$PATCH_DIFF_TOOL_JAR"
           fi
 
+      - name: Tar report artifact
+        run: |
+          tar -cvf "$RUNNER_TEMP/regression-report.tar" -C .ci-temp/reports diff
+
+      - name: Upload report artifact
+        id: upload_report
+        uses: actions/upload-artifact@v7
+        with:
+          name: checkstyle-regression-report-${{ needs.checkout_and_cache.outputs.commit_sha }}
+          path: ${{ runner.temp }}/regression-report.tar
+          retention-days: 1
+          if-no-files-found: error
+
       - name: Copy Report to AWS S3 Bucket
         env:
           LABEL: ${{ needs.download_configs.outputs.report_label }}
@@ -640,6 +857,7 @@ jobs:
       - name: Set output
         id: out
         run: |
+          echo "Link: ""$(cat .ci-temp/message)"
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
   add_sad_Emoji:
@@ -648,7 +866,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add sad Emoji
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -669,6 +887,8 @@ jobs:
       handle_existing_config_bundle,
       handle_generated_config_bundle,
       handle_configs_in_pr_description,
+      handle_local_config_for_project,
+      handle_local_config_for_baseline_report,
       download_configs,
       make_report,
       add_sad_Emoji
@@ -680,17 +900,23 @@ jobs:
           || needs.handle_existing_config_bundle.result == 'failure'
           || needs.handle_generated_config_bundle.result == 'failure'
           || needs.handle_configs_in_pr_description.result == 'failure'
+          || needs.handle_local_config_for_project.result == 'failure'
+          || needs.handle_local_config_for_baseline_report.result == 'failure'
           || needs.check_pr_status.result == 'failure'
           || needs.checkout_and_cache.result == 'failure'
           || needs.parse_comment.result == 'failure'
           || needs.add_sad_Emoji.result == 'failure')
     steps:
-      - name: Restore cache
-        uses: actions/cache/restore@v5
+      - name: Download workspace artifact
+        uses: actions/download-artifact@v8
         with:
+          name: ${{ env.CACHE_KEY }}
           path: .
-          key: ${{ env.CACHE_KEY }}
-          fail-on-cache-miss: true
+
+      - name: Extract workspace artifact
+        run: |
+          tar -xvf workspace.tar
+          rm workspace.tar
 
       - name: Get message
         env:
@@ -700,6 +926,8 @@ jobs:
           EXISTING_CONFIG_RESULT: ${{ needs.handle_existing_config_bundle.result }}
           GENERATED_CONFIG_RESULT: ${{ needs.handle_generated_config_bundle.result }}
           CONFIGS_IN_PR_RESULT: ${{ needs.handle_configs_in_pr_description.result }}
+          LOCAL_CONFIG_RESULT: ${{ needs.handle_local_config_for_project.result }}
+          LOCAL_CONFIG_BASELINE_RESULT: ${{needs.handle_local_config_for_baseline_report.result}}
           PR_STATUS_RESULT: ${{ needs.check_pr_status.result }}
           CHECKOUT_RESULT: ${{ needs.checkout_and_cache.result }}
           PARSE_RESULT: ${{ needs.parse_comment.result }}
@@ -747,6 +975,21 @@ jobs:
               echo "Failed to process existing config bundle."
               echo "Please verify the config bundle path is correct."
               echo "<br>Usage: 'GitHub, generate report for <config_bundle_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$LOCAL_CONFIG_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process diff report locally."
+              echo "Please verify the config file and project name are correct."
+              echo "<br>Usage: 'GitHub, generate report for <project_name> with <config_path>'"
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$LOCAL_CONFIG_BASELINE_RESULT" == "failure" ]; then
+            {
+              echo "Failed to process full report locally."
+              echo "Please verify the config file and project name are correct."
+              echo -n "<br>Usage: 'GitHub, generate baseline report for "
+              echo "<project_name> with <config_path>'"
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
           elif [ "$MAKE_REPORT_RESULT" == "failure" ]; then

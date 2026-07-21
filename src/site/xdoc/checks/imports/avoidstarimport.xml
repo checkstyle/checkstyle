@@ -59,6 +59,13 @@
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>
+            <tr>
+              <td><a id="maxAllowedStarImports"/><a href="#maxAllowedStarImports">maxAllowedStarImports</a></td>
+              <td>Control how many star imports are allowed.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>0</code></td>
+              <td>13.5.0</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -202,11 +209,40 @@ import java.io.*;
 import static java.lang.Math.*;
 import java.util.*; // violation, 'Using the '.*' form of import should be avoided.'
 import java.net.*;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
+          OpenJDK guidelines</a>,
+          where at most one star import is allowed per file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="maxAllowedStarImports" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation, 'Only '1' star import is allowed per file.'
+import java.util.*; // violation, 'Only '1' star import is allowed per file.'
+import java.net.*; // violation, 'Only '1' star import is allowed per file.'
 </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Google Style</a>
@@ -228,6 +264,11 @@ import java.net.*;
               import.avoidStar
             </a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.avoidStarCount%22">
+              import.avoidStarCount
+            </a>
+          </li>
         </ul>
         <p>
           All messages can be customized if the default message doesn't suit you.
@@ -235,8 +276,12 @@ import java.net.*;
           to learn how to.
         </p>
       </subsection>
-      <subsection name="Package" id="AvoidStarImport_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+      <subsection name="Fully Qualified Name" id="AvoidStarImport_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AvoidStarImport_Parent_Module">

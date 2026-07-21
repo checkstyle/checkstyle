@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/linelength";
@@ -37,6 +38,8 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 80, 84),
             "21: " + getCheckMessage(MSG_KEY, 80, 92),
+            "24: " + getCheckMessage(MSG_KEY, 80, 89),
+            "29: " + getCheckMessage(MSG_KEY, 80, 89),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -53,6 +56,8 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         final String[] expected = {
             "11: " + getCheckMessage(MSG_KEY, 80, 83),
             "23: " + getCheckMessage(MSG_KEY, 80, 92),
+            "26: " + getCheckMessage(MSG_KEY, 80, 89),
+            "31: " + getCheckMessage(MSG_KEY, 80, 89),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -70,6 +75,8 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
             "11: " + getCheckMessage(MSG_KEY, 60, 64),
             "17: " + getCheckMessage(MSG_KEY, 60, 84),
             "25: " + getCheckMessage(MSG_KEY, 60, 92),
+            "28: " + getCheckMessage(MSG_KEY, 60, 89),
+            "33: " + getCheckMessage(MSG_KEY, 60, 89),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -77,7 +84,10 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
     @Test
     public void testExample6() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "29: " + getCheckMessage(MSG_KEY, 84, 92),
+        };
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
 }

@@ -1,8 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="ClassMemberImpliedModifier" />
+    <module name="ClassMemberImpliedModifier">
       <property name="violateImpliedStaticOnNestedInterface" value="false"/>
+    </module>
   </module>
 </module>
 */
@@ -14,7 +15,7 @@ public final class Example3 {
   static interface Address1 {
   }
 
-  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  interface Address2 {
   }
 
   static enum Age1 {

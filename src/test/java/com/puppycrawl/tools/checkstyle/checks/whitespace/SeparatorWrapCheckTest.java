@@ -61,7 +61,7 @@ public class SeparatorWrapCheckTest
     @Test
     public void testMethodRef() throws Exception {
         final String[] expected = {
-            "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
+            "25:50: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForTestMethodRef.java"), expected);
@@ -147,4 +147,5 @@ public class SeparatorWrapCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputSeparatorWrapForTestTrailingWhitespace.java"), expected);
     }
+
 }

@@ -50,6 +50,13 @@ public final class UnnecessarySemicolonAfterOuterTypeDeclarationCheck extends Ab
      */
     public static final String MSG_SEMI = "unnecessary.semicolon";
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonAfterOuterTypeDeclarationCheck} instance.
+     */
+    public UnnecessarySemicolonAfterOuterTypeDeclarationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -75,9 +82,10 @@ public final class UnnecessarySemicolonAfterOuterTypeDeclarationCheck extends Ab
     public void visitToken(DetailAST ast) {
         final DetailAST nextSibling = ast.getNextSibling();
         if (nextSibling != null
-                && ScopeUtil.isOuterMostType(ast)
-                && nextSibling.getType() == TokenTypes.SEMI) {
+                && nextSibling.getType() == TokenTypes.SEMI
+                && ScopeUtil.isOuterMostType(ast)) {
             log(nextSibling, MSG_SEMI);
         }
     }
+
 }

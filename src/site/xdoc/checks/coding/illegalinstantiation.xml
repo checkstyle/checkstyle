@@ -79,12 +79,12 @@ class Example1 {
     public Boolean (boolean a) { this.a = a; }
   }
 
-  void Example1 () {
+  Example1 () {
     java.lang.Boolean[] newBoolArray = new java.lang.Boolean[]{true,true,false};
     Integer[] newIntArray = new Integer[]{1,2,3};
   }
 
-  void Example1 (boolean a, int b) {
+  Example1 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
 
@@ -116,12 +116,12 @@ class Example2 {
     public Boolean (boolean a) { this.a = a; }
   }
 
-  void Example2 () {
+  Example2 () {
     java.lang.Boolean[] newBoolArray = new java.lang.Boolean[]{true,true,false};
     Integer[] newIntArray = new Integer[]{1,2,3};
   }
 
-  void Example2 (boolean a, int b) {
+  Example2 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
     // violation above, 'Instantiation of java.lang.Boolean should be avoided'
@@ -130,8 +130,11 @@ class Example2 {
     Integer f = Integer.valueOf(b);
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalInstantiation_Use_Cases">
+        <p id="UseCase1-config">
           Finally, there is a limitation that it is currently not possible to specify array classes:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -144,20 +147,20 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   class Boolean {
     boolean a;
     public Boolean (boolean a) { this.a = a; }
   }
 
-  void Example3 () {
+  UseCase1 () {
     java.lang.Boolean[] newBoolArray = new java.lang.Boolean[]{true,true,false};
     Integer[] newIntArray = new Integer[]{1,2,3};
   }
 
-  void Example3 (boolean a, int b) {
+  UseCase1 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
 
@@ -197,9 +200,11 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="IllegalInstantiation_Package">
+      <subsection name="Fully Qualified Name" id="IllegalInstantiation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

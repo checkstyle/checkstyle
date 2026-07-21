@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = Ann1, AnnClass.Ann3
+violateExecutionOnNonTightHtml = (default)false
 tokens = INTERFACE_DEF
 
 
@@ -26,7 +27,8 @@ public class InputMissingJavadocTypeMultipleQualifiedAnnotation {
     @Ann3
     public interface A { }
 
-    @Ann2 // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @Ann2
     @Ann3
     public interface B { }
 
@@ -35,7 +37,8 @@ public class InputMissingJavadocTypeMultipleQualifiedAnnotation {
     @Ann1
     public interface C { }
 
-    @AnnClass.Ann1 // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @AnnClass.Ann1
     @Ann2
     @Ann3
     public interface D { }

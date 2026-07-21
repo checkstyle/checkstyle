@@ -111,4 +111,5 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

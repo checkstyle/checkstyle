@@ -56,6 +56,35 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "constructors.declaration.grouping";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_ORDER = "constructors.declaration.order";
+
+    /**
+     * Control whether to order constructors by increasing parameter count or not.
+     */
+    private boolean orderByIncreasingParameterCount;
+
+    /**
+     * Creates a new {@code ConstructorsDeclarationGroupingCheck} instance.
+     */
+    public ConstructorsDeclarationGroupingCheck() {
+        // no code by default
+    }
+
+    /**
+     * Setter to control whether to enforce order by increasing parameter count (arity) or not.
+     *
+     * @param orderByIncreasingParameterCount true if order by increasing parameter
+     *        count is required.
+     * @since 13.6.0
+     */
+    public void setOrderByIncreasingParameterCount(boolean orderByIncreasingParameterCount) {
+        this.orderByIncreasingParameterCount = orderByIncreasingParameterCount;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -118,6 +147,25 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
             // log all constructors that are not grouped
             constructorsToLog
                     .forEach(ctor -> log(ctor, MSG_KEY, lastGroupedConstructor.getLineNo()));
+
+            if (orderByIncreasingParameterCount) {
+
+                // list of all constructor ASTs
+                final List<DetailAST> allConstructors = children.stream()
+                        .filter(ConstructorsDeclarationGroupingCheck::isConstructor)
+                        .toList();
+
+                int previousParamCount = 0;
+                boolean isOrdered = true;
+                for (DetailAST constructor : allConstructors) {
+                    final int currentParamCount = getParameterCount(constructor);
+                    isOrdered = isOrdered && currentParamCount >= previousParamCount;
+                    previousParamCount = currentParamCount;
+                    if (!isOrdered) {
+                        log(constructor, MSG_ORDER);
+                    }
+                }
+            }
         }
     }
 
@@ -147,4 +195,20 @@ public class ConstructorsDeclarationGroupingCheck extends AbstractCheck {
         return ast.getType() == TokenTypes.CTOR_DEF
                 || ast.getType() == TokenTypes.COMPACT_CTOR_DEF;
     }
+
+    /**
+     * Get the parameter count of a constructor.
+     *
+     * @param constructor the constructor AST
+     * @return the parameter count of the constructor
+     */
+    private static int getParameterCount(DetailAST constructor) {
+        final DetailAST params = constructor.findFirstToken(TokenTypes.PARAMETERS);
+        int parameterCount = 0;
+        if (params != null) {
+            parameterCount = params.getChildCount(TokenTypes.PARAMETER_DEF);
+        }
+        return parameterCount;
+    }
+
 }

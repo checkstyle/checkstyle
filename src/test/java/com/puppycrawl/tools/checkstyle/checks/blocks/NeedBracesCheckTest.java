@@ -100,10 +100,10 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "63:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
             "66:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
             "72:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "101:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "105:11: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
-            "118:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "125:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "84:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "88:11: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "101:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "108:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesSingleLineStatements.java"), expected);
@@ -140,8 +140,8 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "81:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "84:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "131:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "133:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "107:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "109:17: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestSingleLineCaseDefault.java"), expected);
@@ -189,7 +189,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowEmptyLoopBodyTrue() throws Exception {
         final String[] expected = {
-            "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "100:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesLoopBodyTrue.java"), expected);
@@ -211,10 +211,10 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "63:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
             "69:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
             "76:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "98:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
-            "102:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
-            "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
-            "117:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "92:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "96:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "100:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "105:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesLoopBodyFalse.java"), expected);
@@ -256,7 +256,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNeedBracesSwitchExpression() throws Exception {
+    public void testNeedBracesSwitchExpression1() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "18:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -267,15 +267,24 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "36:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "39:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "42:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "49:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "50:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
-            "53:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "56:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
-            "59:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
-            "73:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputNeedBracesTestSwitchExpression.java"),
+                getPath("InputNeedBracesTestSwitchExpression1.java"),
+            expected);
+    }
+
+    @Test
+    public void testNeedBracesSwitchExpression2() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "17:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "20:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "23:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "26:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "40:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesTestSwitchExpression2.java"),
             expected);
     }
 
@@ -356,6 +365,80 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
                 getPath(
                         "InputNeedBracesSwitchExpressionAndLambdaAllowSingleLine.java"),
             expected);
+    }
+
+    @Test
+    public void testAllowEmptyLoopBodyFalse2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesLoopBodyFalse2.java"), expected);
+    }
+
+    @Test
+    public void testAllowEmptyLoopBodyTrue2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesLoopBodyTrue2.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineStatements2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesSingleLineStatements2.java"), expected);
+    }
+
+    @Test
+    public void testIt2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesTestIt2.java"), expected);
+    }
+
+    @Test
+    public void testItWithAllowsOn2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesTestItWithAllowsOn2.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineCaseDefault3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesTestSingleLineCaseDefault3.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "15:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "16:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "17:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNeedBracesCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileSingleLine() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNeedBracesCompactSourceFileSingleLine.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileEmptyLoopBody() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNeedBracesCompactSourceFileEmptyLoopBody.java"),
+                expected);
     }
 
 }

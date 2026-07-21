@@ -56,11 +56,11 @@ public class NoLineWrapCheckTest
     public void testCustomTokensLineWrapping()
             throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_KEY, "import"),
-            "17:1: " + getCheckMessage(MSG_KEY, "import"),
-            "20:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
-            "23:9: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
-            "30:1: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
+            "14:1: " + getCheckMessage(MSG_KEY, "import"),
+            "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "21:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "24:9: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "31:1: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapBad2.java"), expected);
@@ -71,19 +71,52 @@ public class NoLineWrapCheckTest
             throws Exception {
 
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
-            "19:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
-            "28:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
-            "34:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
-            "36:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
-            "40:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
-            "42:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
-            "47:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
-            "49:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "14:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "20:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "29:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "35:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "37:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "42:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "44:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "49:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "51:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapRecordsAndCompactCtors.java"),
                 expected);
+    }
+
+    @Test
+    public void testNoLineWrapModuleImport() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_KEY, "import"),
+            "22:1: " + getCheckMessage(MSG_KEY, "import"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputNoLineWrapModuleImport.java"), expected);
+    }
+
+    @Test
+    public void testNoLineWrapWithSkipAnnotationsFalse() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "14:5: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "19:5: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "25:5: " + getCheckMessage(MSG_KEY, "ENUM_DEF"),
+            "31:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "34:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoLineWrapSkipAnnotationsFalse.java"), expected);
+    }
+
+    @Test
+    public void testNoLineWrapWithSkipAnnotationsTrue() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNoLineWrapSkipAnnotationsTrue.java"), expected);
     }
 
 }

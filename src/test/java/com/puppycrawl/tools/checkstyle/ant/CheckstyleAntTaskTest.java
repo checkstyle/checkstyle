@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -1014,7 +1013,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     private static List<String> readWholeFile(File outputFile) throws IOException {
-        return Files.readAllLines(outputFile.toPath(), StandardCharsets.UTF_8);
+        return Files.readAllLines(outputFile.toPath());
     }
 
     private static long getNumberFromLine(String line) {

@@ -2,18 +2,18 @@
 CyclomaticComplexity
 max = 0
 switchBlockAsSingleDecisionPoint = true
-tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
-         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, LITERAL_WHEN
-
+tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, LITERAL_WHILE, LITERAL_DO, \
+           LITERAL_FOR, LITERAL_IF, \
+         LITERAL_SWITCH, LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, COMPACT_CTOR_DEF, LITER \
+          AL_WHEN
 
 */
 
-// Java21
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexitySwitchBlocks6 {
 
-    // violation below, 'Cyclomatic Complexity is 2 (max allowed is 0)'
+    // violation below, 'Cyclomatic Complexity is 2 (max allowed is 0).'
     void test1(Object obj1, Object obj2) { // 1, method declaration
         switch (obj1) { // 2, switch
             case Integer i1 when obj2 instanceof Integer i2 -> System.out.println("1");
@@ -22,7 +22,7 @@ public class InputCyclomaticComplexitySwitchBlocks6 {
         }
     }
 
-    // violation below, 'Cyclomatic Complexity is 2 (max allowed is 0)'
+    // violation below, 'Cyclomatic Complexity is 2 (max allowed is 0).'
     void test2(Object obj1, Object obj2) { // 1, method declaration
         switch (obj1) { // 2, switch
             case Integer i1 -> {
@@ -37,7 +37,7 @@ public class InputCyclomaticComplexitySwitchBlocks6 {
         }
     }
 
-    // violation below, 'Cyclomatic Complexity is 2 (max allowed is 0)'
+    // violation below, 'Cyclomatic Complexity is 2 (max allowed is 0).'
     void test3(Object obj1, Object obj2, Object obj3) {
         int j1 = 0, k1 = 0, l1 = 0, m1 = 0; // Initialized variables
 

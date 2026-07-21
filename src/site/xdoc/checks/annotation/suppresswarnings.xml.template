@@ -56,6 +56,21 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example2.java"/>
             <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check so that the "unchecked" and "unused"
+          warnings cannot be suppressed at any location:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/Example3.java"/>
+            <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -79,8 +94,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="SuppressWarnings_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="SuppressWarnings_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarnings_Parent_Module">

@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/needbraces";
@@ -69,10 +70,10 @@ public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -85,11 +86,12 @@ public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "25:38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

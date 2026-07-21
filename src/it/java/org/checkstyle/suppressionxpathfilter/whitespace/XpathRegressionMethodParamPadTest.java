@@ -112,4 +112,5 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

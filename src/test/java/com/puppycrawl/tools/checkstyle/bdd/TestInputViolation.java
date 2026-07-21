@@ -89,4 +89,5 @@ public record TestInputViolation(int lineNo, String message)
         return object instanceof TestInputViolation violation
             && compareTo(violation) == 0;
     }
+
 }

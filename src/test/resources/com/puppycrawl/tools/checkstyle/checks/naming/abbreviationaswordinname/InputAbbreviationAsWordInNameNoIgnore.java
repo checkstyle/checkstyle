@@ -45,13 +45,16 @@ public class InputAbbreviationAsWordInNameNoIgnore {
     }
 
     abstract class AbstractClassName3 {
-        class AbstractINNERSClass { // violation
+        // violation below 'Abbreviation in name 'AbstractINNERSClass''
+        class AbstractINNERSClass {
         }
     }
 
     abstract class Class3Factory {
-        class WellNamedFACTORY { // violation
-            public void systematicMETHODName() { // violation
+        // violation below 'Abbreviation in name 'WellNamedFACTORY''
+        class WellNamedFACTORY {
+            // violation below 'Abbreviation in name 'systematicMETHODName''
+            public void systematicMETHODName() {
                 int systematicVARIABLEName = 2;
                 int SYSTEMATICVariableName = 1;
             }
@@ -79,25 +82,29 @@ public class InputAbbreviationAsWordInNameNoIgnore {
 
     interface Interface1 {
 
-        String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        String VALUELONG = "value";
 
     }
 
     interface Interface2 {
 
-        static String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        static String VALUELONG = "value";
 
     }
 
     interface Interface3 {
 
-        final String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        final String VALUELONG = "value";
 
     }
 
     interface Interface4 {
 
-        final static String VALUELONG = "value"; // violation
+        // violation below 'Abbreviation in name 'VALUELONG''
+        final static String VALUELONG = "value";
 
     }
 

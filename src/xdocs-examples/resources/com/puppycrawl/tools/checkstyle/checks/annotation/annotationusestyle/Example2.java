@@ -17,8 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 @Deprecated // ok as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
 @SomeArrays({"unchecked","unused"})
-public class Example2
-{
+public class Example2 {
 
 }
 

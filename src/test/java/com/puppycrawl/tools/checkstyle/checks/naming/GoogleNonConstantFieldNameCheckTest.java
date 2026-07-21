@@ -155,4 +155,5 @@ public class GoogleNonConstantFieldNameCheckTest extends AbstractModuleTestSuppo
         verifyWithInlineConfigParser(
                 getPath("InputGoogleNonConstantFieldNameMixedModifiers.java"), expected);
     }
+
 }

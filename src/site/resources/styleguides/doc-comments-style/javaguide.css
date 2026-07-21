@@ -1,0 +1,29 @@
+h1 {font-size: 2.4em;}
+h2 {font-size: 2em;}
+h3 {font-size: 1.7em;}
+h4 {font-size: 1.4em;}
+h5 {font-size: 1.2em;}
+h6 {font-size: 1.1em;}
+
+main {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+  h1 {font-size: 1.8em;}
+  h2 {font-size: 1.5em;}
+  h3 {font-size: 1.3em;}
+  h4 {font-size: 1.15em;}
+  h5 {font-size: 1.05em;}
+  h6 {font-size: 1em;}
+
+  main {
+    padding: 0.75rem;
+  }
+}

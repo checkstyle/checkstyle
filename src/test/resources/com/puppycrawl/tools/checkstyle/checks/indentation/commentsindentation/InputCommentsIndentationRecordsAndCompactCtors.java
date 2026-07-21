@@ -5,7 +5,7 @@ tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
 public class InputCommentsIndentationRecordsAndCompactCtors {

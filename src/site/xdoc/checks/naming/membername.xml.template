@@ -74,6 +74,51 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check which is applied to
+          public and protected member:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check which is applied to
+          package-private member:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check which is applied to
+          private member:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/membername/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -82,6 +127,11 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
@@ -101,8 +151,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MemberName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="MemberName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="MemberName_Parent_Module">

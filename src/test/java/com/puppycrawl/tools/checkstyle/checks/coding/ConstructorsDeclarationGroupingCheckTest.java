@@ -21,12 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck.MSG_ORDER;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
 public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping";
@@ -35,13 +37,13 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_KEY, 19),
-            "28:5: " + getCheckMessage(MSG_KEY, 19),
-            "45:9: " + getCheckMessage(MSG_KEY, 39),
-            "55:13: " + getCheckMessage(MSG_KEY, 49),
-            "59:9: " + getCheckMessage(MSG_KEY, 39),
-            "63:5: " + getCheckMessage(MSG_KEY, 19),
-            "66:5: " + getCheckMessage(MSG_KEY, 19),
+            "24:5: " + getCheckMessage(MSG_KEY, 20),
+            "29:5: " + getCheckMessage(MSG_KEY, 20),
+            "46:9: " + getCheckMessage(MSG_KEY, 40),
+            "56:13: " + getCheckMessage(MSG_KEY, 50),
+            "60:9: " + getCheckMessage(MSG_KEY, 40),
+            "64:5: " + getCheckMessage(MSG_KEY, 20),
+            "67:5: " + getCheckMessage(MSG_KEY, 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputConstructorsDeclarationGrouping.java"), expected);
@@ -50,10 +52,10 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     @Test
     public void testConstructorsDeclarationGroupingInner() throws Exception {
         final String[] expected = {
-            "29:9: " + getCheckMessage(MSG_KEY, 25),
-            "34:9: " + getCheckMessage(MSG_KEY, 25),
-            "37:9: " + getCheckMessage(MSG_KEY, 25),
-            "41:5: " + getCheckMessage(MSG_KEY, 11),
+            "30:9: " + getCheckMessage(MSG_KEY, 26),
+            "35:9: " + getCheckMessage(MSG_KEY, 26),
+            "38:9: " + getCheckMessage(MSG_KEY, 26),
+            "42:5: " + getCheckMessage(MSG_KEY, 12),
 
         };
         verifyWithInlineConfigParser(
@@ -64,14 +66,60 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     public void testConstructorsDeclarationGroupingRecords() throws Exception {
 
         final String[] expected = {
-            "20:9: " + getCheckMessage(MSG_KEY, 12),
-            "23:9: " + getCheckMessage(MSG_KEY, 12),
-            "28:9: " + getCheckMessage(MSG_KEY, 12),
-            "45:9: " + getCheckMessage(MSG_KEY, 39),
+            "21:9: " + getCheckMessage(MSG_KEY, 13),
+            "24:9: " + getCheckMessage(MSG_KEY, 13),
+            "29:9: " + getCheckMessage(MSG_KEY, 13),
+            "46:9: " + getCheckMessage(MSG_KEY, 40),
         };
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputConstructorsDeclarationGroupingRecords.java"),
+                expected);
+    }
+
+    @Test
+    public void testConstructorsDeclarationGroupingArity() throws Exception {
+
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_ORDER),
+            "17:5: " + getCheckMessage(MSG_ORDER),
+            "20:5: " + getCheckMessage(MSG_ORDER),
+            "31:5: " + getCheckMessage(MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputConstructorsDeclarationGroupingArity.java"),
+                expected);
+    }
+
+    @Test
+    public void testConstructorsDeclarationGroupingRecordArity() throws Exception {
+
+        final String[] expected = {
+            "24:9: " + getCheckMessage(MSG_ORDER),
+            "33:9: " + getCheckMessage(MSG_ORDER),
+            "37:9: " + getCheckMessage(MSG_ORDER),
+            "41:9: " + getCheckMessage(MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputConstructorsDeclarationGroupingRecord.java"),
+                expected);
+    }
+
+    @Test
+    public void testConstructorsDeclarationGroupingMisc() throws Exception {
+
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY, 15),
+            "20:5: " + getCheckMessage(MSG_ORDER),
+            "30:9: " + getCheckMessage(MSG_KEY, 25),
+            "35:9: " + getCheckMessage(MSG_KEY, 25),
+            "35:9: " + getCheckMessage(MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputConstructorsDeclarationGroupingMisc.java"),
                 expected);
     }
 

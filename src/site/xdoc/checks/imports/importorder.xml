@@ -87,7 +87,7 @@
             </tr>
             <tr>
               <td><a id="separatedStaticGroups"/><a href="#separatedStaticGroups">separatedStaticGroups</a></td>
-              <td>Control whether static import groups should be separated by, at least, one blank line or comment and aren't separated internally. This property has effect only when the property <code>option</code> is set to <code>top</code> or <code>bottom</code> and when property <code>staticGroups</code> is enabled.</td>
+              <td>Control whether static import groups should be separated by, at least, one blank line or comment and aren't separated internally. When the property <code>option</code> is set to <code>top</code> or <code>bottom</code>, this property requires <code>staticGroups</code> to be enabled. When the property <code>option</code> is set to <code>under</code> or <code>above</code>, this property allows blank lines between static and non-static imports within the same group.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.12</td>
@@ -256,7 +256,8 @@ import com.sun.source.tree.Tree;
           ImportOrder has a limitation by design to enforce an empty line between groups
           (&quot;java&quot;, &quot;javax&quot;). There is no flexibility to enforce empty lines between some
           groups and no empty lines between other groups.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example4-config">
           Note: &quot;separated&quot; option is disabled because IDEA default has blank line
           between &quot;java&quot; and static imports, and no blank line between &quot;javax&quot; and &quot;java&quot;.
@@ -332,6 +333,7 @@ import static javax.swing.JTree.*;
           this wildcard group. The wildcard group position can be specified using the
           <code>*</code> character.
         </p>
+        <hr class="example-separator"/>
         <p>
           Check also has on option making it more flexible:
           <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped by
@@ -339,7 +341,7 @@ import static javax.swing.JTree.*;
           not, default value is <b>false</b>. It is applied to static imports grouped
           with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
           of this Check and other tools like Eclipse's Organize Imports feature.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example6-config">
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
@@ -469,9 +471,10 @@ import static java.lang.Character.valueOf;
 import static java.lang.Character.UnicodeBlock.BASIC_LATIN;
 // violation above 'Wrong lexicographical order for ...'
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure the check to enforce static import group separation
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example10-config">
           Example for <code>separatedStaticGroups=true</code>
         </p>
@@ -553,6 +556,10 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
             Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
 
@@ -591,9 +598,11 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
         </p>
       </subsection>
 
-      <subsection name="Package" id="ImportOrder_Package">
+      <subsection name="Fully Qualified Name" id="ImportOrder_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.imports
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -26,8 +26,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -178,9 +177,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NonEmptyAtclauseDescription_Package">
+      <subsection name="Fully Qualified Name" id="NonEmptyAtclauseDescription_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

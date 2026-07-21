@@ -147,6 +147,10 @@
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
             Sun Style</a>
           </li>
@@ -168,9 +172,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="LineLength_Package">
+      <subsection name="Fully Qualified Name" id="LineLength_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

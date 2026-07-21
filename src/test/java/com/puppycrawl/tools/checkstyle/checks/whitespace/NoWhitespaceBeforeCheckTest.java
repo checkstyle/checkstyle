@@ -39,17 +39,17 @@ public class NoWhitespaceBeforeCheckTest
         final String[] expected = {
             "34:15: " + getCheckMessage(MSG_KEY, "++"),
             "34:22: " + getCheckMessage(MSG_KEY, "--"),
-            "180:19: " + getCheckMessage(MSG_KEY, ";"),
-            "182:24: " + getCheckMessage(MSG_KEY, ";"),
-            "189:19: " + getCheckMessage(MSG_KEY, ";"),
-            "191:28: " + getCheckMessage(MSG_KEY, ";"),
-            "199:27: " + getCheckMessage(MSG_KEY, ";"),
-            "215:16: " + getCheckMessage(MSG_KEY, ";"),
-            "270:1: " + getCheckMessage(MSG_KEY, ";"),
-            "274:16: " + getCheckMessage(MSG_KEY, ";"),
-            "288:1: " + getCheckMessage(MSG_KEY, ";"),
-            "291:62: " + getCheckMessage(MSG_KEY, "..."),
-            "295:16: " + getCheckMessage(MSG_KEY, ":"),
+            "183:19: " + getCheckMessage(MSG_KEY, ";"),
+            "185:24: " + getCheckMessage(MSG_KEY, ";"),
+            "192:19: " + getCheckMessage(MSG_KEY, ";"),
+            "194:28: " + getCheckMessage(MSG_KEY, ";"),
+            "202:27: " + getCheckMessage(MSG_KEY, ";"),
+            "218:16: " + getCheckMessage(MSG_KEY, ";"),
+            "273:1: " + getCheckMessage(MSG_KEY, ";"),
+            "277:16: " + getCheckMessage(MSG_KEY, ";"),
+            "291:1: " + getCheckMessage(MSG_KEY, ";"),
+            "294:62: " + getCheckMessage(MSG_KEY, "..."),
+            "299:16: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceBeforeDefault.java"), expected);

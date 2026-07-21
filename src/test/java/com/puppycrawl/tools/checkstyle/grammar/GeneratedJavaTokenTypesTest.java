@@ -743,6 +743,9 @@ public class GeneratedJavaTokenTypesTest {
         assertWithMessage(message)
             .that(JavaLanguageLexer.UNNAMED_PATTERN_DEF)
             .isEqualTo(225);
+        assertWithMessage(message)
+            .that(JavaLanguageLexer.COMPACT_COMPILATION_UNIT)
+            .isEqualTo(228);
 
         final Set<String> modeNames = Set.of(JavaLanguageLexer.modeNames);
         final Set<String> channelNames = Set.of(JavaLanguageLexer.channelNames);
@@ -760,7 +763,7 @@ public class GeneratedJavaTokenTypesTest {
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(227);
+            .isEqualTo(228);
     }
 
     /**
@@ -802,4 +805,5 @@ public class GeneratedJavaTokenTypesTest {
                 && Modifier.isStatic(mods)
                 && Modifier.isFinal(mods);
     }
+
 }

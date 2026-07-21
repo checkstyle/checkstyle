@@ -3,7 +3,7 @@ SimplifyBooleanReturn
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanreturn;
 
 public class InputSimplifyBooleanReturnWithYield {

@@ -37,19 +37,23 @@ public class SimplifyBooleanExpressionCheckTest
     @Test
     public void testIt() throws Exception {
         final String[] expected = {
-            "22:18: " + getCheckMessage(MSG_KEY),
-            "43:36: " + getCheckMessage(MSG_KEY),
-            "44:36: " + getCheckMessage(MSG_KEY),
-            "45:16: " + getCheckMessage(MSG_KEY),
-            "45:32: " + getCheckMessage(MSG_KEY),
-            "95:27: " + getCheckMessage(MSG_KEY),
-            "96:24: " + getCheckMessage(MSG_KEY),
-            "98:27: " + getCheckMessage(MSG_KEY),
-            "104:23: " + getCheckMessage(MSG_KEY),
-            "106:17: " + getCheckMessage(MSG_KEY),
-            "109:21: " + getCheckMessage(MSG_KEY),
-            "110:23: " + getCheckMessage(MSG_KEY),
-            "111:20: " + getCheckMessage(MSG_KEY),
+            "20:18: " + getCheckMessage(MSG_KEY),
+            "41:36: " + getCheckMessage(MSG_KEY),
+            "42:36: " + getCheckMessage(MSG_KEY),
+            "43:16: " + getCheckMessage(MSG_KEY),
+            "43:32: " + getCheckMessage(MSG_KEY),
+            "93:27: " + getCheckMessage(MSG_KEY),
+            "94:24: " + getCheckMessage(MSG_KEY),
+            "96:27: " + getCheckMessage(MSG_KEY),
+            "102:23: " + getCheckMessage(MSG_KEY),
+            "104:17: " + getCheckMessage(MSG_KEY),
+            "107:21: " + getCheckMessage(MSG_KEY),
+            "108:23: " + getCheckMessage(MSG_KEY),
+            "109:20: " + getCheckMessage(MSG_KEY),
+            "111:27: " + getCheckMessage(MSG_KEY),
+            "112:35: " + getCheckMessage(MSG_KEY),
+            "114:31: " + getCheckMessage(MSG_KEY),
+            "115:35: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSimplifyBooleanExpression.java"), expected);
@@ -65,7 +69,7 @@ public class SimplifyBooleanExpressionCheckTest
             "23:44: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputSimplifyBooleanExpressionWithWhen.java"), expected);
+                getNonCompilablePath("InputSimplifyBooleanExpressionWithWhen.java"), expected);
     }
 
     @Test

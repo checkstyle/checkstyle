@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/membername";
@@ -34,10 +35,10 @@ public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "21:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
-            "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
-            "25:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
-            "27:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
+            "17:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+            "18:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "19:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -47,7 +48,9 @@ public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     public void testExample2() throws Exception {
         final String[] expected = {
             "16:14: " + getCheckMessage(MSG_INVALID_PATTERN, "num1", "^m[A-Z][a-zA-Z0-9]*$"),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "num4", "^m[A-Z][a-zA-Z0-9]*$"),
+            "19:15: " + getCheckMessage(MSG_INVALID_PATTERN, "num4", "^m[A-Z][a-zA-Z0-9]*$"),
+            "21:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^m[A-Z][a-zA-Z0-9]*$"),
+            "24:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^m[A-Z][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -56,10 +59,43 @@ public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "16:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
-            "18:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+            "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "22:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+            "23:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "19:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "19:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "21:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
 }

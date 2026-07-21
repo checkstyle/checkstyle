@@ -52,16 +52,15 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
-
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+// violation above 'Outer types defined is 2 (max allowed is 1)'
 public class Example1 {
+  enum outer {
+  }
 }
 
-class Example {
+class ExampleOne {
   void exampleMethod() {}
-}
-
-enum outer {
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -79,14 +78,15 @@ enum outer {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+
 public class Example2 {
+  enum outer {
+  }
 }
 
-class Examples {
+class ExampleTwo {
   void exampleMethod() {}
-}
-
-enum outer1 {
 }
 </code></pre></div>
 
@@ -116,9 +116,11 @@ enum outer1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="OuterTypeNumber_Package">
+      <subsection name="Fully Qualified Name" id="OuterTypeNumber_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

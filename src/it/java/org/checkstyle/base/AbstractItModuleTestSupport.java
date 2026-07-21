@@ -33,6 +33,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -413,8 +414,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final List<Integer> theWarnings = new ArrayList<>();
-        Collections.addAll(theWarnings, warnsExpected);
+        final List<Integer> expectedWarnings = Arrays.asList(warnsExpected);
+        final List<Integer> actualWarnings = new ArrayList<>();
         final int errs = checker.process(theFiles);
 
         // process each of the lines
@@ -422,7 +423,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            int previousLineNumber = 0;
+            Integer previousLineNumber = 0;
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
@@ -434,22 +435,26 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
-                final int lineNumber = Integer.parseInt(parseInt);
-                assertWithMessage(
-                        "input file is expected to have a warning comment on line number %s",
-                        lineNumber)
-                    .that(previousLineNumber == lineNumber
-                            || theWarnings.remove((Integer) lineNumber))
-                    .isTrue();
+                final Integer lineNumber = Integer.parseInt(parseInt);
+                if (!previousLineNumber.equals(lineNumber)) {
+                    assertWithMessage(
+                            "input file is expected to have a warning comment on line number %s",
+                            lineNumber)
+                        .that(expectedWarnings.contains(lineNumber))
+                        .isTrue();
+
+                    actualWarnings.add(lineNumber);
+                }
                 previousLineNumber = lineNumber;
             }
 
             assertWithMessage("unexpected output: %s", lnr.readLine())
                 .that(errs)
                 .isEqualTo(expected.length);
-            assertWithMessage("unexpected warnings %s", theWarnings)
-                .that(theWarnings)
-                .isEmpty();
+            assertWithMessage("warning line numbers should match expected")
+                .that(actualWarnings)
+                .containsExactlyElementsIn(expectedWarnings)
+                .inOrder();
         }
 
         checker.destroy();
@@ -553,16 +558,17 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Gets the check message 'as is' from appropriate 'messages.properties'
      * file.
      *
-     * @param aClass the package the message is located in.
+     * @param reporterClass the package the message is located in.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments  the arguments of message in 'messages.properties' file.
      * @return The message of the check with the arguments applied.
      * @throws IOException if there is a problem loading the property file.
      */
-    protected static String getCheckMessage(Class<? extends AbstractViolationReporter> aClass,
-            String messageKey, Object... arguments) throws IOException {
+    protected static String getCheckMessage(
+            Class<? extends AbstractViolationReporter> reporterClass, String messageKey,
+            Object... arguments) throws IOException {
         final Properties pr = new Properties();
-        pr.load(aClass.getResourceAsStream("messages.properties"));
+        pr.load(reporterClass.getResourceAsStream("messages.properties"));
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),
                 Locale.ROOT);
         return formatter.format(arguments);

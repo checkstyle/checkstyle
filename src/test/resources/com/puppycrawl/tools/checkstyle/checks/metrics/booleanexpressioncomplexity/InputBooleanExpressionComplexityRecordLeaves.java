@@ -1,12 +1,12 @@
 /*
 BooleanExpressionComplexity
 max = (default)3
-tokens = (default)LAND, BAND, LOR, BOR, BXOR
+tokens = (default)CTOR_DEF,METHOD_DEF,EXPR,LAND,BAND,LOR,BOR,BXOR,COMPACT_CTOR_DEF
 
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
 public record InputBooleanExpressionComplexityRecordLeaves() {

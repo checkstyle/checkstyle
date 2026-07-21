@@ -20,6 +20,9 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -27,16 +30,24 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 
-public class JavadocUtilTest {
+public class JavadocUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/javadocutil";
+    }
 
     @Test
     public void testTags() {
@@ -388,6 +399,92 @@ public class JavadocUtilTest {
         assertWithMessage("%s tag name", message)
             .that(actual.getTagName())
             .isEqualTo(expected.getTagName());
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForMethodDefinitions() throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "26:29: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+            "34: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "34:6: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "<T>"),
+            "34:31: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+            "40: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "60: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilMethodDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForConstructorDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "21:26: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+            "27:39: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+            "36:10: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "<T>"),
+            "36:33: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+            "51:26: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilCtorDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForAnnotationFieldDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "24: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "30: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilAnnotationFieldDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForCompactConstructorDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "22:9: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+            "41:9: " + getCheckMessage(JavadocMethodCheck.class,
+                    MSG_EXPECTED_TAG, "@param", "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilCompactCtorDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "24:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "32:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilVariableDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForEnumConstantDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "28:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "31:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
     }
 
 }

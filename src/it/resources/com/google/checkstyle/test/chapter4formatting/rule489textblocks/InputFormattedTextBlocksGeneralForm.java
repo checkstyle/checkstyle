@@ -22,7 +22,8 @@ public class InputFormattedTextBlocksGeneralForm {
         This is a multi-line message.
         """);
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     return """
     this is sample text
     """; // violation 'Text-block quotes are not vertically aligned'
@@ -43,7 +44,8 @@ public class InputFormattedTextBlocksGeneralForm {
         This is a multi-line message.
         """);
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     return """
     THE MULTI-LINE MESSAGE
     """; // violation 'Text-block quotes are not vertically aligned'
@@ -65,7 +67,8 @@ public class InputFormattedTextBlocksGeneralForm {
         """,
         0);
 
-    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Each line of text in the text block must be indented'
     return s
         + """
         very good
@@ -74,13 +77,34 @@ public class InputFormattedTextBlocksGeneralForm {
         + getName();
   }
 
+  /** Some javadoc. */
+  public void method() {
+    getData(
+        """
+        Hello there
+        """,
+        """
+        Hii
+         there
+        """);
+
+    getData(
+        """
+        Good
+          Bad
+        """,
+        """
+         Ok
+        """);
+  }
+
   /** Somejavadoc. */
   public String getName() {
     return "name";
   }
 
   /** Somejavadoc. */
-  public static void getData(String data) {}
+  public static void getData(String... data) {}
 
   /** Somejavadoc. */
   public static void getData(String data, int length) {}

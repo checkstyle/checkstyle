@@ -4,7 +4,7 @@ StringLiteralEquality
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.stringliteralequality;
 
 public class InputStringLiteralEqualityCheckTextBlocks {

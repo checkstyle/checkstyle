@@ -5,7 +5,7 @@
     <property name="optional" value="false"/>
   </module>
   <module name="TreeWalker">
-    <module name="JavadocStyle"/>
+    <module name="MemberName"/>
     <module name="MagicNumber"/>
     <module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/>
   </module>
@@ -16,10 +16,9 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
 // xdoc section -- start
 public class Example1 {
 
-  // filtered violation below 'First sentence should end with a period.'
-  /**
-   * This field a is missing period
-   */
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
+
   int a = 10; // filtered violation ''10' is a magic number.'
 
   public void exampleMethod() {

@@ -41,25 +41,6 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example1.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p>
-          Check is able to detect a block of initialization methods, as a single point for distance.
-          If a variable is used in such a block and there are no other statements after
-          variable declaration, then distance = 1.
-        </p>
-        <p id="Example2-config">
-          Configure the check to default:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example2-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/Example2.java"/>
-          <param name="type" value="code"/>
         </macro>
         <p>
           The distance for the variable "minutes" in the method <code>case1</code> is 1 even
@@ -69,7 +50,8 @@
           The distance for the variable "minutes" in the method <code>case2</code> is 6
           because there is one more expression (except the initialization block) between the
           declaration of this variable and its usage.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check to set allowed distance:
         </p>
@@ -131,6 +113,28 @@
         </macro>
       </subsection>
 
+      <subsection name="Use Cases" id="VariableDeclarationUsageDistance_Use_Cases">
+        <p>
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
+        </p>
+        <p id="UseCase1-config">
+          Configure the check to default:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
       <subsection name="Example of Usage" id="VariableDeclarationUsageDistance_Example_of_Usage">
         <ul>
           <li>
@@ -140,6 +144,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -156,9 +164,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="VariableDeclarationUsageDistance_Package">
+      <subsection name="Fully Qualified Name"
+                   id="VariableDeclarationUsageDistance_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

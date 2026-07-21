@@ -468,8 +468,11 @@ public final class CommonUtil {
         String result = template;
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
-                // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                final String group = matcher.group(i);
+                if (group != null) {
+                    // $n expands comment match like in Pattern.subst().
+                    result = result.replaceAll("\\$" + i, Matcher.quoteReplacement(group));
+                }
             }
         }
         return result;

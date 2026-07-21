@@ -8,8 +8,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section -- start
+
 /**
  * Some class
+ *
  */
 public class Example1 {
 

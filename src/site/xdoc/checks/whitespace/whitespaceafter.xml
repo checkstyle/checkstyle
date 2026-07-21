@@ -139,51 +139,35 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
+  int a = 0; int b = 1;
+  int c = 2;int d = 3; // violation 'not followed by whitespace'
+
   void example() throws Exception {
-    if (true) {
-    } else if(false) { // violation 'not followed by whitespace'
-    }
+    if (true) {} else if(false) {} // violation 'not followed by whitespace'
 
-    testOne("x", "y");
-    testOne("z","o"); // violation 'not followed by whitespace'
+    test("a", "b");
+    test("a","b"); // violation 'not followed by whitespace'
 
-    for (int i = 0; i &lt; 10; i++){}
-    for(int i = 0; i &lt; 10; i++){} // violation 'not followed by whitespace'
+    for (int i = 0; i &lt; 1; i++) {}
+    for(int i = 0; i &lt; 1; i++) {} // violation 'not followed by whitespace'
 
     try (InputStream ignored = System.in) {}
     try(InputStream ignored = System.in) {} // violation 'not followed by whitespace'
 
-    try {} catch (Exception e){}
-    try{} catch (Exception e) {} // violation ''try' is not followed by whitespace'
+    try {} catch (Exception e) {}
+    try {} catch(Exception e) {} // violation 'not followed by whitespace'
 
-    try {} finally {}
-    try {} finally{} // violation 'not followed by whitespace'
-
-    try {} catch (Error e){} finally {}
-    try {} catch (Error e){} finally{} // violation 'not followed by whitespace'
-
-    try {} catch (Exception e){}
-    try {} catch(Exception e){} // violation 'not followed by whitespace'
-
-    synchronized (this) { }
-    synchronized(this) { } // violation 'not followed by whitespace'
+    yieldExample();
   }
 
-  public String testOne(String a, String b) {
-    return (a + b);
-  }
-  public String testTwo(String a, String b) {
+  String test(String a, String b) {
     return(a + b); // violation 'not followed by whitespace'
   }
 
-  void switchExample() {
-    int a = switch ("hello") {
-      case "got":
-        yield (1); // ok, followed by whitespace
-      case "my":
-        yield(3); // violation ''yield' is not followed by whitespace'
-      default:
-        yield 2;
+  void yieldExample() {
+    int x = switch ("a") {
+      case "a" -&gt; { yield(1); } // violation ''yield' is not followed by whitespace'
+      default -&gt; { yield 2; }
     };
   }
 }
@@ -205,16 +189,37 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  void example() {
-    int a = 0; int b = 1;
-    int c = 2;int d = 3; // violation 'not followed by whitespace'
+  int a = 0; int b = 1;
+  int c = 2;int d = 3; // violation 'not followed by whitespace'
 
-    testMethod(a, b);
-    testMethod(c,d); // violation 'not followed by whitespace'
+  void example() throws Exception {
+    if (true) {} else if(false) {}
 
-    for(;;) {}
+    test("a", "b");
+    test("a","b"); // violation 'not followed by whitespace'
+
+    for (int i = 0; i &lt; 1; i++) {}
+    for(int i = 0; i &lt; 1; i++) {}
+
+    try (InputStream ignored = System.in) {}
+    try(InputStream ignored = System.in) {}
+
+    try {} catch (Exception e) {}
+    try {} catch(Exception e) {}
+
+    yieldExample();
   }
-  void testMethod(int a, int b) { }
+
+  String test(String a, String b) {
+    return(a + b);
+  }
+
+  void yieldExample() {
+    int x = switch ("a") {
+      case "a" -&gt; { yield(1); }
+      default -&gt; { yield 2; }
+    };
+  }
 }
 </code></pre></div>
       </subsection>
@@ -224,6 +229,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
@@ -256,9 +265,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="WhitespaceAfter_Package">
+      <subsection name="Fully Qualified Name" id="WhitespaceAfter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -49,6 +49,13 @@
               <td>8.20</td>
             </tr>
             <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -98,13 +105,28 @@
 
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {}
-  private class testClass2 {}
-  protected class testClass3 {}
-  class testClass4 {}
+/** Documented. */
+public class Example1 {
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}
+
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -122,13 +144,28 @@ class Example1 {
 
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 { // violation, 'Missing a Javadoc comment'
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {} // violation, 'Missing a Javadoc comment'
-  private class testClass2 {} // violation, 'Missing a Javadoc comment'
-  protected class testClass3 {} // violation, 'Missing a Javadoc comment'
-  class testClass4 {} // violation, 'Missing a Javadoc comment'
+/** Documented. */
+public class Example2 {
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}   // violation, 'Missing a Javadoc comment'
+
+  protected class C {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -146,14 +183,28 @@ class Example2 { // violation, 'Missing a Javadoc comment'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
-  /** Javadoc.*/
-  public class testClass0 {}
-  public class testClass1 {}
-  private class testClass2 {} // violation, 'Missing a Javadoc comment'
-  protected class testClass3 {}
-  class testClass4 {}
+/** Documented. */
+public class Example3 {
+  /** Javadoc. */
+  public class A {}
 
+  private class B {} // violation, 'Missing a Javadoc comment'
+
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
+
+  public interface F {}
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -174,18 +225,71 @@ class Example3 {
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
-class Example4 {
-  /** Javadoc.*/
+public class Example4 {
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}   // violation, 'Missing a Javadoc comment'
+
+  protected class C {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
   @SpringBootApplication
-  private class Application { } // ok
-
+  private class App {}
+  /** Javadoc. */
   @Configuration
-  private class DatabaseConfiguration { } // ok
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
 
-  private class MissingDoc { } // violation, 'Missing a Javadoc comment'
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
+          To configure the check for <code>INTERFACE_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocType"&gt;
+      &lt;property name="tokens" value="INTERFACE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example5:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/** Documented. */
+public class Example5 {
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}
+
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
+
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocType_Use_Cases">
+        <p id="UseCase1-config">
           To configure a check that allows missing comments for classes annotated with
           <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
         </p>
@@ -199,18 +303,18 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
-          Example5:
+        <p id="UseCase1-code">
+          UseCase1:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /** Documented. */
-class Example5 {
+class UseCase1 {
   /** Javadoc.*/
   @Annotation
-  private class Class1 { } // ok
+  private class Class1 { }
 
   @MyClass.Annotation
-  private class Class2 { } // ok
+  private class Class2 { }
 
   private class Class3 { } // violation, 'Missing a Javadoc comment'
 }
@@ -237,6 +341,16 @@ class Example5 {
               javadoc.missing
             </a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
         </ul>
         <p>
           All messages can be customized if the default message doesn't suit you.
@@ -245,9 +359,11 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MissingJavadocType_Package">
+      <subsection name="Fully Qualified Name" id="MissingJavadocType_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

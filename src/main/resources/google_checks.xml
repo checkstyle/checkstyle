@@ -64,6 +64,11 @@
     <property name="offCommentFormat" value='^.*"""\s*$'/>
     <property name="onCommentFormat" value='^\s*"""\s*(?:[,;]|.+)$'/>
   </module>
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="checkFormat" value="\.IndentationCheck$"/>
+    <property name="offCommentFormat" value='^""".?'/>
+    <property name="onCommentFormat" value='.'/>
+  </module>
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
     <module name="MatchXpath">
@@ -132,8 +137,8 @@
       <property name="tokens"
                value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
                     INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF, RECORD_DEF,
-                    COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_FINALLY,
-                    LITERAL_CATCH"/>
+                    COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT,
+                    LITERAL_FINALLY, LITERAL_CATCH"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
       <!-- suppression is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
@@ -273,6 +278,12 @@
       <message key="name.invalidPattern"
              value="Local variable name ''{0}'' must match pattern ''{1}''."/>
     </module>
+    <module name="LocalFinalVariableName">
+      <property name="format" value="^(_|[a-z]([a-z0-9][a-zA-Z0-9]*)?)$"/>
+      <property name="tokens" value="VARIABLE_DEF, PARAMETER_DEF, RESOURCE"/>
+      <message key="name.invalidPattern"
+               value="Local final variable name ''{0}'' must match pattern ''{1}''."/>
+    </module>
     <module name="PatternVariableName">
       <property name="format" value="^(_|[a-z]([a-z0-9][a-zA-Z0-9]*)?)$"/>
       <message key="name.invalidPattern"
@@ -366,17 +377,28 @@
                     RECORD_DEF, RECORD_PATTERN_DEF"/>
     </module>
     <module name="OperatorWrap">
+      <property name="id" value="OperatorWrapNL"/>
       <property name="option" value="NL"/>
       <property name="tokens"
                value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR,
                     LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF,
                     TYPE_EXTENSION_AND "/>
     </module>
+    <module name="OperatorWrap">
+      <property name="id" value="OperatorWrapEOL"/>
+      <property name="option" value="EOL"/>
+      <property name="tokens" value="LAMBDA"/>
+    </module>
     <module name="AnnotationLocation">
-      <property name="id" value="AnnotationLocationMostCases"/>
+      <property name="id" value="AnnotationLocationTypeAndPackage"/>
       <property name="tokens"
-               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF,
-                      RECORD_DEF, COMPACT_CTOR_DEF, PACKAGE_DEF"/>
+               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, PACKAGE_DEF"/>
+      <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+    </module>
+    <module name="AnnotationLocation">
+      <property name="id" value="AnnotationLocationMethodsAndCtors"/>
+      <property name="tokens"
+               value="METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationVariables"/>
@@ -397,8 +419,8 @@
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="AtclauseOrder">
       <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
-      <property name="target"
-               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
+      <property name="target" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF,
+                                  VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="JavadocMethod">
       <property name="accessModifiers" value="public"/>
@@ -444,9 +466,16 @@
     </module>
     <module name="SingleLineJavadoc"/>
     <module name="TodoComment">
+      <property name="id" value="TodoFormat"/>
       <property name="format" value="^[ \t]*(?!TODO:)(?i:TODO)\b:?"/>
       <message key="todo.match"
                value="''TODO:'' must be written in all caps and followed by a colon."/>
+    </module>
+    <module name="TodoComment">
+      <property name="id" value="BoxComments"/>
+      <property name="format" value="^[ \t]*([*=#])\1{8,}[ \t]*$"/>
+      <message key="todo.match"
+               value="Comment uses box-like repetitive character pattern."/>
     </module>
     <module name="EmptyCatchBlock">
       <property name="commentFormat" value="\w+"/>

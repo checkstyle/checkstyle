@@ -73,7 +73,7 @@ public class InputNeedBracesTestSingleLineCaseDefault
         for (int i = 0; ; ) this.notify();
     }
 
-    private int getSmth(int num)
+    private int getSomething(int num)
     {
         int counter = 0;
         switch (num) {
@@ -90,32 +90,8 @@ public class InputNeedBracesTestSingleLineCaseDefault
         return counter;
     }
 
-    private void testElse(int k) {
-        if (k == 4) System.identityHashCode("yes");
-        else System.identityHashCode("no");
-        for (;;);
-    }
-
-    private int testMissingWarnings() {
-        if (true)
-            throw new RuntimeException();
-        if (true) {
-            return 1;
-        } else
-            return 2;
-    }
-
     void enhancedForLoop(int[] array) {
         for (int value: array) return;
-    }
-
-    int[] sourceLocators;
-
-    private class StateInfo {
-        public boolean isInitial() {
-            for (int locator: sourceLocators) if (locator != 0) return false;
-            return true;
-        }
     }
 
     private void forEachLoop() {

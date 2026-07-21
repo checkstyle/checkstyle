@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.SinglelineDetector.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_MINIMUM;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -45,7 +45,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIt() throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic.java"), expected);
@@ -55,7 +55,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testMessageProperty()
             throws Exception {
         final String[] expected = {
-            "78: Bad line :(",
+            "79: Bad line :(",
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic2.java"), expected);
@@ -65,7 +65,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreCaseTrue() throws Exception {
 
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+            "79: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic3.java"), expected);
@@ -120,7 +120,8 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
                 .build();
 
         final SinglelineDetector detector =
-                new SinglelineDetector(detectorOptions);
+                new SinglelineDetector(detectorOptions,
+                        MSG_REGEXP_EXCEEDED, MSG_REGEXP_MINIMUM);
         final File file = new File(getPath("InputRegexpSinglelineSemantic8.java"));
 
         detector.processLines(new FileText(file, StandardCharsets.UTF_8.name()));
@@ -140,9 +141,10 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     public void testMessage() throws Exception {
 
         final String[] expected = {
-            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+            "18: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineSemantic10.java"), expected);
     }
+
 }

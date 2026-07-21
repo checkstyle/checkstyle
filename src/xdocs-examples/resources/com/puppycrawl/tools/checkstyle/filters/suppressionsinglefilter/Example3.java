@@ -14,17 +14,19 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example3 {
 
+  private int MyVariable = 5;
+  // filtered violation below 'Line matches the illegal pattern'
+  public void exampleMethod(int a, int b) {
+    int value = 100;
+
+    Integer. parseInt("3");
+  }
+
   public void printExample() {
+    int [] x;
     System.out.println(
-      "example" // filtered violation 'Line matches the illegal pattern 'example''
+            "example" // filtered violation 'Line matches the illegal pattern'
     );
   }
-
-  public void noViolation() {
-    System.out.println(
-      "RegexpSingleline is case sensitive by default. 'Example' in not matching."
-    );
-  }
-
 }
 // xdoc section -- end

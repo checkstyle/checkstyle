@@ -172,7 +172,7 @@ public class Example1 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -221,7 +221,7 @@ public class Example2 {
   private class ClassF&lt;T&gt; {}
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -270,7 +270,7 @@ public class Example3 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -319,7 +319,7 @@ public class Example4 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -369,7 +369,7 @@ public class Example5 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -418,7 +418,7 @@ public class Example6 {
   private class ClassF&lt;T&gt; {}
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -467,7 +467,7 @@ public class Example7 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -519,7 +519,58 @@ public class Example8 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
+  @Generated("tool") // violation, 'Type Javadoc comment is missing @param '&lt;T&gt;' tag'
+  public class ClassG&lt;T&gt; {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check for <code>CLASS_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Example9:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class Example9 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
+    /** */
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {}  // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div>
@@ -561,6 +612,11 @@ public class Example8 {
             </a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTagWithQuotes%22">
+              type.missingTagWithQuotes
+            </a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.tagFormat%22">
               type.tagFormat
             </a>
@@ -573,9 +629,11 @@ public class Example8 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocType_Package">
+      <subsection name="Fully Qualified Name" id="JavadocType_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

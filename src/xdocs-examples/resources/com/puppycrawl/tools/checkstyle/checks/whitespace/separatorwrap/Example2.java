@@ -2,28 +2,32 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SeparatorWrap">
-      <property name="tokens" value="METHOD_REF"/>
       <property name="option" value="nl"/>
     </module>
   </module>
 </module>
-
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 // xdoc section -- start
-import java.util.Arrays;
+import java.io.
+        IOException; // violation above '.' should be on a new line
 
 class Example2 {
-  String[] stringArray = {"foo", "bar"};
+  String s;
 
-  void fun() {
-    // violation below ''::' should be on a new line'
-    Arrays.sort(stringArray, String::
-      compareToIgnoreCase);
-    Arrays.sort(stringArray, String
-      ::compareTo); // ok, because it is on a new line
+  int a,
+          b;         // violation above, ',' should be on a new line
+
+  void foo(int x,
+           int y) {  // violation above, ',' should be on a new line
+  }
+
+  void bar(int p
+          , int q) {      // ok, ',' is on a new line
+    if (s
+            .isEmpty()) { // ok, '.' is on a new line
+    }
   }
 }
 // xdoc section -- end

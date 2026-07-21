@@ -76,6 +76,7 @@ public class Example1 {
   public void foo1() {
     // violation below, 'variable 'num' declaration and its first usage is 4.'
     int num;
+
     final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -97,48 +98,6 @@ public class Example1 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p>
-          Check is able to detect a block of initialization methods, as a single point for distance.
-          If a variable is used in such a block and there are no other statements after
-          variable declaration, then distance = 1.
-        </p>
-        <p id="Example2-config">
-          Configure the check to default:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="VariableDeclarationUsageDistance"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
-
-  public void case1(long timeNow, int hh, int min) {
-    int minutes = min + 5; // ok, No violation reported
-    Calendar cal = Calendar.getInstance();
-    cal.setTimeInMillis(timeNow);
-    cal.set(Calendar.SECOND, 0);
-    cal.set(Calendar.MILLISECOND, 0);
-    cal.set(Calendar.HOUR_OF_DAY, hh);
-    cal.set(Calendar.MINUTE, minutes);
-  }
-
-  public void case2(long timeNow, int hh, int min){
-    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
-    int minutes = min + 5000;
-    Calendar cal = Calendar.getInstance();
-    cal.setTimeInMillis(timeNow);
-    cal.set(Calendar.SECOND, 0);
-    cal.set(Calendar.MILLISECOND, 0);
-    cal.set(Calendar.HOUR_OF_DAY, hh);
-    System.out.println("Hello World");
-    cal.set(Calendar.MINUTE, minutes);
-  }
-}
 </code></pre></div>
         <p>
           The distance for the variable &quot;minutes&quot; in the method <code>case1</code> is 1 even
@@ -148,7 +107,8 @@ public class Example2 {
           The distance for the variable &quot;minutes&quot; in the method <code>case2</code> is 6
           because there is one more expression (except the initialization block) between the
           declaration of this variable and its usage.
-        </p><hr class="example-separator"/>
+        </p>
+        <hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check to set allowed distance:
         </p>
@@ -166,7 +126,9 @@ public class Example2 {
 public class Example3 {
 
   public void foo1() {
+
     int num;        // ok, distance = 4
+
     final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -209,7 +171,9 @@ public class Example3 {
 public class Example4 {
 
   public void foo1() {
+
     int num;        // ok, variable ignored
+
     final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -251,6 +215,7 @@ public class Example5 {
   public void foo1() {
     // violation below, 'variable 'num' declaration and its first usage is 4.'
     int num;
+
     final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -262,9 +227,8 @@ public class Example5 {
   public void foo2() {
     int a;          // ok, distance = 2
     int b;          // ok, distance = 3
-    // violation below, 'variable 'count' declaration and its first usage is 4.'
     int count = 0;
-
+    // violation above, 'variable 'count' declaration and its first usage is 4.'
     {
       System.out.println("Inside inner scope");
       a = 1;
@@ -318,6 +282,51 @@ public class Example6 {
 </code></pre></div>
       </subsection>
 
+      <subsection name="Use Cases" id="VariableDeclarationUsageDistance_Use_Cases">
+        <p>
+          Check is able to detect a block of initialization methods, as a single point for distance.
+          If a variable is used in such a block and there are no other statements after
+          variable declaration, then distance = 1.
+        </p>
+        <p id="UseCase1-config">
+          Configure the check to default:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="VariableDeclarationUsageDistance"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+
+  public void case1(long timeNow, int hh, int min) {
+    int minutes = min + 5;
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    cal.set(Calendar.MINUTE, minutes);
+  }
+
+  public void case2(long timeNow, int hh, int min){
+    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
+    int minutes = min + 5000;
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeInMillis(timeNow);
+    cal.set(Calendar.SECOND, 0);
+    cal.set(Calendar.MILLISECOND, 0);
+    cal.set(Calendar.HOUR_OF_DAY, hh);
+    System.out.println("Hello World");
+    cal.set(Calendar.MINUTE, minutes);
+  }
+}
+</code></pre></div>
+      </subsection>
+
       <subsection name="Example of Usage" id="VariableDeclarationUsageDistance_Example_of_Usage">
         <ul>
           <li>
@@ -327,6 +336,10 @@ public class Example6 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -352,9 +365,12 @@ public class Example6 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="VariableDeclarationUsageDistance_Package">
+      <subsection name="Fully Qualified Name"
+                   id="VariableDeclarationUsageDistance_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

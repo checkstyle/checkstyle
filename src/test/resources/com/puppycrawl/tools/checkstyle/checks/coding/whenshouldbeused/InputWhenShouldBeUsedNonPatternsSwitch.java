@@ -3,7 +3,7 @@ WhenShouldBeUsed
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.whenshouldbeused;
 
 public class InputWhenShouldBeUsedNonPatternsSwitch {

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 
 /**
@@ -84,13 +83,16 @@ public class RootNode extends AbstractRootNode {
     }
 
     /**
-     * Getter method for token type.
+     * Getter method for token type. Returns the actual type of the underlying
+     * AST root, which is either {@code COMPILATION_UNIT} for an ordinary
+     * compilation unit or {@code COMPACT_COMPILATION_UNIT} for a JEP 512
+     * compact source file.
      *
-     * @return token type
+     * @return token type of the underlying AST root
      */
     @Override
     public int getTokenType() {
-        return TokenTypes.COMPILATION_UNIT;
+        return detailAst.getType();
     }
 
     /**

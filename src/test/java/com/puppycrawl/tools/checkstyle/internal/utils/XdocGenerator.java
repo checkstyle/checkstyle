@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.site.XdocsTemplateSinkFactory;
  * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
  */
 public final class XdocGenerator {
+
     private static final String XDOCS_TEMPLATE_HINT = "xdocs-template";
 
     private XdocGenerator() {
@@ -58,21 +59,31 @@ public final class XdocGenerator {
             final File outputFile = new File(pathToFile.replace(".template", ""));
             final File tempFile = new File(temporaryFolder, outputFile.getName());
             tempFile.deleteOnExit();
-            final XdocsTemplateSinkFactory sinkFactory = (XdocsTemplateSinkFactory)
-                    plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
-            final Sink sink = sinkFactory.createSink(tempFile.getParentFile(),
-                    tempFile.getName(), String.valueOf(StandardCharsets.UTF_8));
-            final XdocsTemplateParser parser = (XdocsTemplateParser)
-                    plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
-            try (Reader reader = ReaderFactory.newReader(inputFile,
-                    String.valueOf(StandardCharsets.UTF_8))) {
+
+            final XdocsTemplateSinkFactory sinkFactory =
+                (XdocsTemplateSinkFactory) plexus.lookup(SinkFactory.ROLE, XDOCS_TEMPLATE_HINT);
+            final Sink sink = sinkFactory.createSink(tempFile.getParentFile(), tempFile.getName(),
+                String.valueOf(StandardCharsets.UTF_8));
+            final XdocsTemplateParser parser =
+                (XdocsTemplateParser) plexus.lookup(Parser.ROLE, XDOCS_TEMPLATE_HINT);
+
+            try (Reader reader =
+                    ReaderFactory.newReader(inputFile, String.valueOf(StandardCharsets.UTF_8))) {
                 parser.parse(reader, sink);
+            }
+            // -@cs[IllegalCatch] we need to get details in wrapping exception
+            catch (Exception exc) {
+                throw new IllegalStateException("Exception during handing " + path, exc);
             }
             finally {
                 sink.close();
             }
-            final StandardCopyOption copyOption = StandardCopyOption.REPLACE_EXISTING;
-            Files.copy(tempFile.toPath(), outputFile.toPath(), copyOption);
+            Files.move(
+                    tempFile.toPath(),
+                    outputFile.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING
+            );
         }
     }
+
 }

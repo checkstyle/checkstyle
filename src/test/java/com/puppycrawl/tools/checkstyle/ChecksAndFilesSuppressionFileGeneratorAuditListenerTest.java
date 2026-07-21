@@ -221,6 +221,23 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     }
 
     @Test
+    public void testFileNameWithXmlSpecialCharacter() {
+        final AuditEvent event = createAuditEvent(
+                "Input&SuppressionFileGenerator.java", FIRST_MESSAGE);
+
+        final String expected = SUPPRESSION_XML_HEADER
+                + "<suppressions>" + EOL
+                + "  <suppress" + EOL
+                + "      files=\"Input&amp;SuppressionFileGenerator.java\""
+                + EOL
+                + "      checks=\"LeftCurlyCheck\""
+                + "/>" + EOL
+                + "</suppressions>" + EOL;
+
+        verifyOutput(expected, event);
+    }
+
+    @Test
     public void testFileNameNullCase() {
         final AuditEvent event1 = new AuditEvent(this, "/", FIRST_MESSAGE);
 
@@ -261,17 +278,17 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
                 .isEqualTo("Parameter outputStreamOptions can not be null");
     }
 
+    private AuditEvent createAuditEvent(String fileName, Violation violation) {
+        return new AuditEvent(this,
+                getPath(fileName), violation);
+    }
+
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final Violation violation =
                 new Violation(lineNumber, columnNumber, "messages.properties", null,
                         null, null, sourceClass, null);
 
-        return new AuditEvent(this,
-                getPath(fileName), violation);
-    }
-
-    private AuditEvent createAuditEvent(String fileName, Violation violation) {
         return new AuditEvent(this,
                 getPath(fileName), violation);
     }
@@ -305,4 +322,5 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
             .that(actual)
             .isEqualTo(expected);
     }
+
 }

@@ -74,9 +74,10 @@ class InputRegexpMultilineSemantic
             }
             // can never happen, empty compound statement is another workaround
         }
-        catch (UnsupportedOperationException handledException) { // violation below
+        catch (UnsupportedOperationException handledException) {
             System.out.println(handledException.getMessage());
         }
+        // violation 2 lines above 'Line matches the illegal pattern'
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}
         catch (IllegalArgumentException ex) { }

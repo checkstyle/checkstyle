@@ -290,6 +290,8 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
+  int a = 10, b = 12;
+  boolean x = true, y = false;
 
   public int square(int a, int b) {
     // violation below, 'Unnecessary parentheses around assignment right-hand side'
@@ -308,33 +310,23 @@ class Example1 {
     }
   }
 
-  List&lt;String&gt; myList = List.of("a1", "b1", "c1");
-  public void filter() {
-    myList.stream()
-        // violation below, 'Unnecessary parentheses around lambda value'
-        .filter((s) -&gt; s.startsWith("c"))
-            .forEach(System.out::println);
-  }
+  void method() {
+    int x = 9, y = 8;
 
-  int a = 10, b = 12, c = 15;
-  boolean x = true, y = false, z = true;
-  public void test() {
-    // 3 violations below
-    if ((a &gt;= 0 &amp;&amp; b &lt;= 9) || (c &gt;= 5 &amp;&amp; b &lt;= 5) || (c &gt;= 3 &amp;&amp; a &lt;= 7)) {
+    if (x &gt;= 0 ^ (x &lt;= 8 &amp; y &lt;= 11) ^ y &gt;= 8) {
       return;
     }
-    // violation below, 'Unnecessary parentheses around expression'
-    if ((-a) != -27 &amp;&amp; b &gt; 5) {
+    if (x &gt;= 0 ^ x &lt;= 8 &amp; y &lt;= 11 ^ y &gt;= 8) {
       return;
     }
-    if (x == (a &lt;= 15)) {
+
+    if (x &gt;= 0 || (x &lt;= 8 &amp; y &lt;= 11) &amp;&amp; y &gt;= 8) {
       return;
     }
-    if (x == (y == z)) {
+    if (x &gt;= 0 || x &lt;= 8 &amp; y &lt;= 11 &amp;&amp; y &gt;= 8) {
       return;
     }
   }
-
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -354,33 +346,49 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+  int a = 10, b = 12;
+  boolean x = true, y = false;
+
+  public int square(int a, int b) {
+
+    int square = (a * b);
+
+    return (square);
+  }
+
+  int sumOfSquares = 0;
+  public void sumOfSquares() {
+
+    for (int i = (0); i &lt; 10; i++) {
+
+      int x = (i + 1);
+      sumOfSquares += (square(x,x));
+    }
+  }
 
   void method() {
     int x = 9, y = 8;
     // violation below, 'Unnecessary parentheses around expression'
-    if (x &gt;= 0 ^ (x &lt;= 8 &amp; y &lt;= 11)
-         ^ y &gt;= 8) {
+    if (x &gt;= 0 ^ (x &lt;= 8 &amp; y &lt;= 11) ^ y &gt;= 8) {
       return;
     }
     if (x &gt;= 0 ^ x &lt;= 8 &amp; y &lt;= 11 ^ y &gt;= 8) {
       return;
     }
     // violation below, 'Unnecessary parentheses around expression'
-    if (x &gt;= 0 || (x &lt;= 8 &amp; y &lt;= 11)
-        &amp;&amp; y &gt;= 8) {
+    if (x &gt;= 0 || (x &lt;= 8 &amp; y &lt;= 11) &amp;&amp; y &gt;= 8) {
       return;
     }
     if (x &gt;= 0 || x &lt;= 8 &amp; y &lt;= 11 &amp;&amp; y &gt;= 8) {
       return;
     }
-    if (x &gt;= 0 &amp; (x &lt;= 8 ^ y &lt;= 11) &amp; y &gt;= 8) {
-      return;
-    }
   }
-
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="UnnecessaryParentheses_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to detect unnecessary parentheses around conditional expressions
           <code> '?' </code>:
         </p>
@@ -393,9 +401,9 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
 
   void method() {
     int a = 9, b = 8;
@@ -463,9 +471,11 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UnnecessaryParentheses_Package">
+      <subsection name="Fully Qualified Name" id="UnnecessaryParentheses_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

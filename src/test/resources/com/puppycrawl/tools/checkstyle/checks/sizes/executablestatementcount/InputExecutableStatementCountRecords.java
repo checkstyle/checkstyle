@@ -1,18 +1,19 @@
 /*
 ExecutableStatementCount
 max = 1
-tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR_DEF, LAMBDA
+tokens = (default)CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,SLIST,COMPACT_CTOR_DEF,LAMBDA
 
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountRecords {
 
     record MyTestRecord() {
-        static { // violation
+        // violation below 'Executable statement count is 3'
+        static {
             System.out.println("test");
             System.out.println("test");
             System.out.println("test");
@@ -21,7 +22,8 @@ public class InputExecutableStatementCountRecords {
 
     //compact ctor
     record MyTestRecord2() {
-        public MyTestRecord2 { // violation
+        // violation below 'Executable statement count is 3'
+        public MyTestRecord2 {
             System.out.println("test");
             System.out.println("test");
             System.out.println("test");
@@ -30,7 +32,8 @@ public class InputExecutableStatementCountRecords {
     }
 
     record MyTestRecord3(String str) {
-        void foo() { // violation
+        // violation below 'Executable statement count is 3'
+        void foo() {
             System.out.println("test");
             System.out.println("test");
             System.out.println("test");
@@ -38,7 +41,8 @@ public class InputExecutableStatementCountRecords {
     }
 
     record MyTestRecord4(int x, int y) {
-        public MyTestRecord4() { // violation
+        // violation below 'Executable statement count is 4'
+        public MyTestRecord4() {
             this(4, 5);
             System.out.println("test");
             System.out.println("test");
@@ -48,7 +52,8 @@ public class InputExecutableStatementCountRecords {
     }
 
     record MyTestRecord5() {
-        static { // violation
+        // violation below 'Executable statement count is 6'
+        static {
             int y = 5;
             int z = 10;
             String newString = String.valueOf(y);
@@ -62,7 +67,8 @@ public class InputExecutableStatementCountRecords {
         Class<?> m(int x) {
             record R76(int x) {
 
-                public R76 { // violation
+                // violation below 'Executable statement count is 6'
+                public R76 {
                     int y = 5;
                     int z = 10;
                     String newString = String.valueOf(y);

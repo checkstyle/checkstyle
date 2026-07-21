@@ -104,6 +104,7 @@ public abstract class AbstractNode implements NodeInfo {
      * @return {@code TreeInfo}
      */
     @Override
+    @SuppressWarnings("ReferenceEquality")
     public boolean isSameNodeInfo(NodeInfo nodeInfo) {
         return this == nodeInfo;
     }

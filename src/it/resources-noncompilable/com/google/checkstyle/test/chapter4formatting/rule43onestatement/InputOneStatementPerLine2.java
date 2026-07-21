@@ -1,4 +1,5 @@
 // non-compiled with eclipse: extra semicolumn in imports
+// non-compiled with javac: but was compiled on jdk before 21, so we need to continue to support
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 

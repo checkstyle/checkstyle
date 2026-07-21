@@ -109,8 +109,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   // ✅ Enhancement completed // violation 'Illegal symbol detected: '✅''
-  // 😀 Happy coding // violation 'Illegal symbol detected: '😀''
-  int value = 1;
+  // 😀 Happy coding          // violation 'Illegal symbol detected: '😀''
+  int value1 = 1;
+  String value2 = "Hello 😀";
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -131,10 +132,39 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   // 🌟 Star // violation 'Illegal symbol detected: '🌟''
-  int value = 1;
+
+  int value1 = 1;
+  String value2 = "Hello 😀";
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example4-config">
+          To configure the check for ASCII-only mode:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"&gt;
+      &lt;property name="symbolCodes" value="0x1F600-0x1F64F"/&gt;
+      &lt;property name="tokens" value="STRING_LITERAL"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  // ok, 😀 comment in emoji
+
+  int value1 = 1;
+  String value2 = "Hello 😀"; // violation 'Illegal symbol detected: '😀''
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalSymbol_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for ASCII-only mode:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -146,12 +176,37 @@ public class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">
+        <p id="UseCase1-code">
             Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
   // café // violation 'Illegal symbol detected: 'é''
+
+  int value1 = 1;
+  String value2 = "Hello 😀";
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check for ASCII-only mode:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"&gt;
+      &lt;property name="symbolCodes" value="0x0080-0x10FFFF"/&gt;
+      &lt;message key="illegal.symbol"
+               value="Only ASCII characters are allowed."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase2 {
+  // café // violation 'Only ASCII characters are allowed.'
   int value = 1;
 }
 </code></pre></div>
@@ -181,9 +236,11 @@ public class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="IllegalSymbol_Package">
+      <subsection name="Fully Qualified Name" id="IllegalSymbol_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

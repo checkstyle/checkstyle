@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidStaticImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/avoidstaticimport";
@@ -34,8 +35,9 @@ public class AvoidStaticImportCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.pow"),
-            "13:31: " + getCheckMessage(MSG_KEY, "java.lang.System.*"),
+            "12:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.*"),
+            "13:31: " + getCheckMessage(MSG_KEY, "java.lang.System.out"),
+            "14:32: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -49,4 +51,5 @@ public class AvoidStaticImportCheckExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

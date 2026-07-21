@@ -51,6 +51,20 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     /** Tracks the number of outer types found. */
     private int outerNum;
 
+    /**
+     * Whether the file is a JEP 512 compact source file. All its type
+     * declarations are members of the implicit class, so it always has exactly
+     * one outer type and the limit can never be exceeded.
+     */
+    private boolean isCompactSourceFile;
+
+    /**
+     * Creates a new {@code OuterTypeNumberCheck} instance.
+     */
+    public OuterTypeNumberCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -76,11 +90,13 @@ public class OuterTypeNumberCheck extends AbstractCheck {
     public void beginTree(DetailAST ast) {
         currentDepth = 0;
         outerNum = 0;
+        isCompactSourceFile = ast != null
+                && ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     @Override
     public void finishTree(DetailAST ast) {
-        if (max < outerNum) {
+        if (!isCompactSourceFile && max < outerNum) {
             log(ast, MSG_KEY, outerNum, max);
         }
     }

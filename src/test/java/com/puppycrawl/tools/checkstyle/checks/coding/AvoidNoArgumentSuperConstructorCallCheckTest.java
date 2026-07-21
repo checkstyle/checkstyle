@@ -66,4 +66,5 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
                 .that(check.getRequiredTokens())
                 .isEqualTo(expected);
     }
+
 }

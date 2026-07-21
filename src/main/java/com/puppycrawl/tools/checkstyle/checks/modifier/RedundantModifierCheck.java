@@ -72,6 +72,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ol>
  *
  * <p>
+ * ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+ * </p>
+ *
+ * <p>
  * interfaces by definition are abstract so the {@code abstract} modifier is redundant on them.
  * </p>
  *
@@ -199,6 +203,13 @@ public class RedundantModifierCheck
      *
      */
     private int jdkVersion = JDK_22;
+
+    /**
+     * Creates a new {@code RedundantModifierCheck} instance.
+     */
+    public RedundantModifierCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to set the JDK version that you are using.

@@ -10,7 +10,7 @@ tokens = PATTERN_VARIABLE_DEF
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
 import java.util.Locale;

@@ -39,13 +39,9 @@ public class JavadocTag {
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
-     * @param firstArg the tag argument
      **/
-    public JavadocTag(int line, int column, String tag, String firstArg) {
-        lineNo = line;
-        columnNo = column;
-        this.firstArg = firstArg;
-        tagInfo = JavadocTagInfo.fromName(tag);
+    public JavadocTag(int line, int column, String tag) {
+        this(line, column, tag, null);
     }
 
     /**
@@ -54,9 +50,13 @@ public class JavadocTag {
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
+     * @param firstArg the tag argument
      **/
-    public JavadocTag(int line, int column, String tag) {
-        this(line, column, tag, null);
+    public JavadocTag(int line, int column, String tag, String firstArg) {
+        lineNo = line;
+        columnNo = column;
+        this.firstArg = firstArg;
+        tagInfo = JavadocTagInfo.fromName(tag);
     }
 
     /**
@@ -129,15 +129,6 @@ public class JavadocTag {
     public boolean isThrowsTag() {
         return tagInfo == JavadocTagInfo.THROWS
             || tagInfo == JavadocTagInfo.EXCEPTION;
-    }
-
-    /**
-     * Checks that the tag is a 'see' or 'inheritDoc' tag.
-     *
-     * @return whether the tag is a 'see' or 'inheritDoc' tag
-     */
-    public boolean isSeeOrInheritDocTag() {
-        return tagInfo == JavadocTagInfo.SEE || isInheritDocTag();
     }
 
     /**

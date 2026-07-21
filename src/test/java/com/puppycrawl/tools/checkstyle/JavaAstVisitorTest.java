@@ -81,6 +81,8 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitClassDef",
             "visitInterfaceMemberDeclaration",
             "visitMemberDeclaration",
+            "visitCompactMember",
+            "visitCompactMemberDeclaration",
             "visitLiteralPrimary",
             "visitPatternDefinition",
             "visitLocalType",
@@ -90,6 +92,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitVariableInitializer",
             "visitLambdaBody",
             "visitPatternVariableDef",
+            "visitConstructorBlockStatement",
 
             // AST built in parent rule
             "visitCreatedNameExtended",
@@ -299,4 +302,5 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .that(root)
                 .isNotNull();
     }
+
 }

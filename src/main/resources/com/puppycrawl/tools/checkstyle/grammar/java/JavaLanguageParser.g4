@@ -78,7 +78,17 @@ options { tokenVocab=JavaLanguageLexer; }
 }
 
 compilationUnit
-    : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    : packageDeclaration? importDeclaration*
+      (typeDeclaration | compactMemberDeclaration)* EOF
+    ;
+
+compactMemberDeclaration
+    : mods+=modifier* type=compactMember[$ctx.mods]
+    ;
+
+compactMember[List<ModifierContext> mods]
+    : methodDeclaration[mods]
+    | fieldDeclaration[mods]
     ;
 
 packageDeclaration
@@ -491,10 +501,12 @@ defaultValue
 
 // STATEMENTS / BLOCKS
 constructorBlock
-    : LCURLY
-      explicitConstructorInvocation?
-      blockStatement*
-      RCURLY
+    : LCURLY constructorBlockStatement* RCURLY
+    ;
+
+constructorBlockStatement
+    : explicitConstructorInvocation
+    | blockStatement
     ;
 
 explicitConstructorInvocation

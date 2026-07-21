@@ -21,11 +21,5 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
 // xdoc section -- start
-public class Example5 {
-  // CHECKSTYLE_OFF: ALMOST_ALL
-  public static final int MAX_ITEMS = 100;
-  private String[] stringArray;
-  // CHECKSTYLE_ON: ALMOST_ALL
-  private int[] intArray;
-}
+public class Example5 { }
 // xdoc section -- end

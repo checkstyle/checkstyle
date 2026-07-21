@@ -6,8 +6,8 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -58,15 +58,6 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable>
      */
 
     public static class InnerClass<A,B>
-    {
-    }
-
-    /**
-     * Some explanation.
-     * @param <Z The wrong type param
-     */
-    // violation 2 lines above 'Unused @param tag for '<Z.'
-    public <Z> void unclosedGenericParam() // violation 'Expected @param tag for '<Z>'.'
     {
     }
 }

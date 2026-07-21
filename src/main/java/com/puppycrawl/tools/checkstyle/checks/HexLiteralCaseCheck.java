@@ -49,6 +49,13 @@ public class HexLiteralCaseCheck extends AbstractCheck {
     /** ASCII value for lowercase 'f'. */
     private static final int F_LOWER_ASCII = 102;
 
+    /**
+     * Creates a new {@code HexLiteralCaseCheck} instance.
+     */
+    public HexLiteralCaseCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -122,4 +129,5 @@ public class HexLiteralCaseCheck extends AbstractCheck {
 
         return result;
     }
+
 }

@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = SomeAnnotation
+violateExecutionOnNonTightHtml = (default)false
 tokens = INTERFACE_DEF
 
 
@@ -35,7 +36,7 @@ public class InputMissingJavadocTypeQualifiedAnnotationWithParameters {
 
     // violation below 'Missing a Javadoc comment.'
     @InputMissingJavadocTypeQualifiedAnnotationWithParameters
-        .SomeAnnotation(value = "value", isOk = false)
+    .SomeAnnotation(value = "value", isOk = false)
     public interface E { }
 
     // violation below 'Missing a Javadoc comment.'
@@ -48,7 +49,7 @@ public class InputMissingJavadocTypeQualifiedAnnotationWithParameters {
 
     // violation below 'Missing a Javadoc comment.'
     @InputMissingJavadocTypeQualifiedAnnotationWithParameters
-        .SomeAnnotation(
+    .SomeAnnotation(
         value = "value",
         isOk = false
     )

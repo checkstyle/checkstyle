@@ -10,7 +10,8 @@ public class InputInnerTypeLastClassCtorsInitBlocks {
     public class Inner {
     }
 
-    public InputInnerTypeLastClassCtorsInitBlocks() { // violation
+    // violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+    public InputInnerTypeLastClassCtorsInitBlocks() {
     }
 }
 
@@ -19,7 +20,8 @@ class BeforeInitBlock {
     public class Inner2 {
     }
 
-    {} // violation
+    // violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+    {}
 
 }
 
@@ -28,5 +30,6 @@ class BeforeStaticInitBlock {
     public interface Inner3 {
     }
 
-    static {} // violation
+    // violation below 'Init blocks, constructors, fields and methods should be before inner types.'
+    static {}
 }

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap";
@@ -34,20 +35,17 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "package"),
-            "15:1: " + getCheckMessage(MSG_KEY, "import"),
-            "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "10:1: " + getCheckMessage(MSG_KEY, "package"),
+            "13:1: " + getCheckMessage(MSG_KEY, "import"),
+            "16:1: " + getCheckMessage(MSG_KEY, "import"),
         };
-
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "12:1: " + getCheckMessage(MSG_KEY, "package"),
-            "16:1: " + getCheckMessage(MSG_KEY, "import"),
-            "19:1: " + getCheckMessage(MSG_KEY, "import"),
+            "15:1: " + getCheckMessage(MSG_KEY, "import"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -56,29 +54,39 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14:1: " + getCheckMessage(MSG_KEY, "import"),
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
+            "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "22:1: " + getCheckMessage(MSG_KEY, "import"),
+            "26:1: " + getCheckMessage(MSG_KEY, "import"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "18:1: " + getCheckMessage(MSG_KEY, "import"),
+            "14:1: " + getCheckMessage(MSG_KEY, "package"),
+            "17:1: " + getCheckMessage(MSG_KEY, "import"),
+            "20:1: " + getCheckMessage(MSG_KEY, "import"),
+            "23:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "26:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "28:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
+            "30:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "19:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
-            "25:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
-            "31:5: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "21:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+            "24:3: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "26:3: " + getCheckMessage(MSG_KEY, "METHOD_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

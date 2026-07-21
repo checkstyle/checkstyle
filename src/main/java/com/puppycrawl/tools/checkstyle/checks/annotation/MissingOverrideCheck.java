@@ -95,6 +95,13 @@ public final class MissingOverrideCheck extends AbstractCheck {
     private boolean javaFiveCompatibility;
 
     /**
+     * Creates a new {@code MissingOverrideCheck} instance.
+     */
+    public MissingOverrideCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to enable java 5 compatibility mode.
      *
      * @param compatibility compatibility or not
@@ -132,25 +139,30 @@ public final class MissingOverrideCheck extends AbstractCheck {
             log(ast, MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
         }
-        else {
-            boolean check = true;
-
-            if (javaFiveCompatibility) {
-                final DetailAST defOrNew = ast.getParent().getParent();
-
-                if (defOrNew.findFirstToken(TokenTypes.EXTENDS_CLAUSE) != null
-                    || defOrNew.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE) != null
-                    || defOrNew.getType() == TokenTypes.LITERAL_NEW) {
-                    check = false;
-                }
-            }
-
-            if (check
-                && containsTag
-                && !AnnotationUtil.hasOverrideAnnotation(ast)) {
-                log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
-            }
+        else if (containsTag
+                && !AnnotationUtil.hasOverrideAnnotation(ast)
+                && (!javaFiveCompatibility || doesOverrideOnlyObjectMethods(ast))) {
+            log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
         }
+    }
+
+    /**
+     * Checks whether the method's enclosing type can only be overriding methods
+     * declared in {@code java.lang.Object}. This is the case when the enclosing type
+     * does not extend or implement anything and is not an anonymous class. A top-level
+     * method in a compact source file has no enclosing type node ({@code defOrNew} is
+     * null); its implicit class satisfies this condition as well.
+     *
+     * @param ast method AST node
+     * @return true if the method's enclosing type can only override
+     *     {@code java.lang.Object} methods
+     */
+    private static boolean doesOverrideOnlyObjectMethods(DetailAST ast) {
+        final DetailAST defOrNew = ast.getParent().getParent();
+        return defOrNew == null
+            || defOrNew.findFirstToken(TokenTypes.EXTENDS_CLAUSE) == null
+                && defOrNew.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE) == null
+                && defOrNew.getType() != TokenTypes.LITERAL_NEW;
     }
 
     /**

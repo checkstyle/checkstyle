@@ -19,6 +19,12 @@
           Draft v6, December 2015.
         </p>
         <p>
+          The OpenJDK style guide says that, apart from <code>LF</code>, the only allowed
+          whitespace character is Space, and that <code>\'</code>, <code>\"</code>, <code>\\</code>,
+          <code>\t</code>, <code>\b</code>, <code>\r</code>, <code>\f</code>, and <code>\n</code>
+          should be preferred over corresponding octal or Unicode escaped characters.
+        </p>
+        <p>
           <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/openjdk_checks.xml">
             Incomplete Checkstyle configuration for 'OpenJDK Java Style'</a>
         </p>
@@ -70,16 +76,16 @@
               <!-- 1 Introduction -->
               <tr>
                 <td>
-                  <a name="a1"/>
-                  <a href="#1">
+                  <a name="introduction"/>
+                  <a href="#introduction">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1-introduction">
-                    <strong>1 - Introduction</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#introduction">
+                    <strong>Introduction</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -87,16 +93,16 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a1.1"/>
-                  <a href="#1.1">
+                  <a name="motivation"/>
+                  <a href="#motivation">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.1-motivation">
-                    1.1 Motivation
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#motivation">
+                    Motivation
                   </a>
                 </td>
                 <td>--</td>
@@ -104,16 +110,16 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a1.2"/>
-                  <a href="#1.2">
+                  <a name="guiding-principles"/>
+                  <a href="#guiding-principles">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.2-guiding-principles">
-                    1.2 Guiding Principles
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#guiding-principles">
+                    Guiding Principles
                   </a>
                 </td>
                 <td>--</td>
@@ -122,320 +128,697 @@
               <!-- 2 Java Source Files -->
               <tr>
                 <td>
-                  <a name="a2"/>
-                  <a href="#2">
+                  <a name="java-source-files"/>
+                  <a href="#java-source-files">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2-java-source-files">
-                    <strong>2 - Java Source Files</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#java-source-files">
+                    <strong>Java Source Files</strong>
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="https://checkstyle.org/config.html#Checker">charset=US-ASCII</a>,
+                  <a href="checks/misc/lineending.html#LineEnding">LineEnding</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineEnding">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/regexp/regexpsingleline.html#RegexpSingleline">
+                    RegexpSingleline</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/outertypefilename.html#OuterTypeFilename">
+                    OuterTypeFilename</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeFilename">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterjavasourcefiles/rulejavasourcefiles">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a2.1"/>
-                  <a href="#2.1">
+                  <a name="special-characters"/>
+                  <a href="#special-characters">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2.1-special-characters">
-                    2.1 Special Characters
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#special-characters">
+                    Special Characters
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
+                    IllegalTokenText</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
+                  config</a>),
+                  <a href="checks/misc/avoidescapedunicodecharacters.html#AvoidEscapedUnicodeCharacters">
+                    AvoidEscapedUnicodeCharacters</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterjavasourcefiles/rulespecialcharacters">
+                    samples
+                  </a>
+                </td>
               </tr>
               <!-- 3 Formatting -->
               <tr>
                 <td>
-                  <a name="a3"/>
-                  <a href="#3">
+                  <a name="formatting"/>
+                  <a href="#formatting">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3-formatting">
-                    <strong>3 - Formatting</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#formatting">
+                    <strong>Formatting</strong>
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/design/onetoplevelclass.html#OneTopLevelClass">
+                    OneTopLevelClass</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleformatting">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.1"/>
-                  <a href="#3.1">
+                  <a name="copyright-notice"/>
+                  <a href="#copyright-notice">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.1-copyright-notice">
-                    3.1 Copyright notice
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#copyright-notice">
+                    Copyright notice
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
+                    MultiFileRegexpHeader</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulecopyrightnotice">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.2"/>
-                  <a href="#3.2">
+                  <a name="package-declaration"/>
+                  <a href="#package-declaration">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.2-package-declaration">
-                    3.2 Package declaration
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#package-declaration">
+                    Package declaration
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">
+                    NoLineWrap</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulepackagedeclaration">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.3"/>
-                  <a href="#3.3">
+                  <a name="import-statements"/>
+                  <a href="#import-statements">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3-import-statements">
-                    3.3 Import statements
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#import-statements">
+                    Import statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportOrder">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedImports">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleimportstatements">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.3.1"/>
-                  <a href="#3.3.1">
+                  <a name="wildcard-imports"/>
+                  <a href="#wildcard-imports">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3.1-wildcard-imports">
-                    3.3.1 Wildcard Imports
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wildcard-imports">
+                    Wildcard Imports
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/imports/avoidstarimport.html#AvoidStarImport">AvoidStarImport</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewildcardimports">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.4"/>
-                  <a href="#3.4">
+                  <a name="class-structure"/>
+                  <a href="#class-structure">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4-class-structure">
-                    3.4 Class Structure
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.4.1"/>
-                  <a href="#3.4.1">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4.1-order-of-constructors-and-overloaded-methods">
-                    3.4.1 Order of Constructors and Overloaded Methods
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.5"/>
-                  <a href="#3.5">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.5-modifiers">
-                    3.5 Modifiers
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.6"/>
-                  <a href="#3.6">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6-braces">
-                    3.6 Braces
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.6.1"/>
-                  <a href="#3.6.1">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6.1-short-forms">
-                    3.6.1 Short Forms
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.7"/>
-                  <a href="#3.7">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.7-indentation">
-                    3.7 Indentation
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.8"/>
-                  <a href="#3.8">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8-wrapping-lines">
-                    3.8 Wrapping Lines
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#class-structure">
+                    Class Structure
                   </a>
                 </td>
                 <td>
                   <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt=""/>
                   </span>
+                  <a href="checks/coding/declarationorder.html#DeclarationOrder">DeclarationOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Factory Method is not covered by DeclarationOrder. Checkstyle is a static tool
+                  it can not determine the difference between normal and factory methods and also
+                  the relation between fields can not be determined.
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Ordering of nested types can not be covered until
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19636">
+                    #19636
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleclassstructure">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="order-of-constructors-and-overloaded-methods"/>
+                  <a href="#order-of-constructors-and-overloaded-methods">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#order-of-constructors-and-overloaded-methods">
+                    Order of Constructors and Overloaded Methods
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/overloadmethodsdeclarationorder.html#OverloadMethodsDeclarationOrder">
+                    OverloadMethodsDeclarationOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/constructorsdeclarationgrouping.html#ConstructorsDeclarationGrouping">
+                    ConstructorsDeclarationGrouping</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleorderofconstructorsandoverloadedmethods">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="modifiers"/>
+                  <a href="#modifiers">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#modifiers">
+                    Modifiers
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/modifier/redundantmodifier.html#RedundantModifier">RedundantModifier</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Modifiers order can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19513">
+                    #19513
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle can not determine whether a final modifier increases the readability
+                  of method parameters and local variables and also we can not find is there any
+                  compelling reason present for a field which is declared as final.
+
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulemodifiers">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="braces"/>
+                  <a href="#braces">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#braces">
+                    Braces
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Closing braces rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/7541">
+                    #7541
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  False positive present regarding to LeftCurly:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20636">
+                    #20636
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulebraces">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="short-forms"/>
+                  <a href="#short-forms">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#short-forms">
+                    Short Forms
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  This section can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/7541">
+                    #7541
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleshortforms">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="indentation"/>
+                  <a href="#indentation">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#indentation">
+                    Indentation
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
+                    FileTabCharacter</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">Indentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleindentation">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="wrapping-lines"/>
+                  <a href="#wrapping-lines">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-lines">
+                    Wrapping Lines
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">
+                    LineLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                  config</a>)
+                  <br />
+                  Checkstyle is a static tool it can only apply strict column limit it can not
+                  apply column limit on basis of readability.
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Wrapping at a higher syntactical level rule not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20716">
+                    #20716
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
                   <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
                     OneStatementPerLine</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">
+                    Indentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Not completely covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20714">
+                    #20714
+                  </a>
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/openjdk/checkstyle/test/chapter3formatting/rule38wrappinglines/OneStatementPerLineTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewrappinglines">
+                    samples
                   </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8.1"/>
-                  <a href="#3.8.1">
+                  <a name="wrapping-class-declarations"/>
+                  <a href="#wrapping-class-declarations">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.1-wrapping-class-declarations">
-                    3.8.1 Wrapping Class Declarations
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-class-declarations">
+                    Wrapping Class Declarations
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  This section can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20595">
+                    #20595
+                  </a>
+                </td>
                 <td/>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8.2"/>
-                  <a href="#3.8.2">
+                  <a name="wrapping-method-declarations"/>
+                  <a href="#wrapping-method-declarations">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.2-wrapping-method-declarations">
-                    3.8.2 Wrapping Method Declarations
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-method-declarations">
+                    Wrapping Method Declarations
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Parameter alignment rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20638">
+                    #20638
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Throws clause alignment rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20639">
+                    #20639
+                  </a>
+                </td>
                 <td/>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.8.3"/>
-                  <a href="#3.8.3">
+                  <a name="wrapping-expressions"/>
+                  <a href="#wrapping-expressions">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.3-wrapping-expressions">
-                    3.8.3 Wrapping Expressions
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-expressions">
+                    Wrapping Expressions
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/operatorwrap.html#OperatorWrap">OperatorWrap</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OperatorWrap">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  False positive is present for lambda expression:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20541">
+                    #20541
+                  </a>
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  We can not distinguish whether a line breaks into multiple statements or
+                  expressions or the line is simply wrapped.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulewrappingexpressions">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.9"/>
-                  <a href="#3.9">
+                  <a name="whitespace"/>
+                  <a href="#whitespace">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9-whitespace">
-                    3.9 Whitespace
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#whitespace">
+                    Whitespace
                   </a>
                 </td>
                 <td>↓</td>
@@ -443,308 +826,834 @@
               </tr>
               <tr>
                 <td>
-                  <a name="a3.9.1"/>
-                  <a href="#3.9.1">
+                  <a name="vertical-whitespace"/>
+                  <a href="#vertical-whitespace">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.1-vertical-whitespace">
-                    3.9.1 Vertical Whitespace
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#vertical-whitespace">
+                    Vertical Whitespace
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">EmptyLineSeparator</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleverticalwhitespace">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="horizontal-whitespace"/>
+                  <a href="#horizontal-whitespace">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#horizontal-whitespace">
+                    Horizontal Whitespace
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">WhitespaceAround</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">WhitespaceAfter</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">NoWhitespaceBefore</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">NoWhitespaceBeforeCaseDefaultColon</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/typecastparenpad.html#TypecastParenPad">TypecastParenPad</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/matchxpath.html#MatchXpath">MatchXpath</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/whitespace/singlespaceseparator.html#SingleSpaceSeparator">SingleSpaceSeparator</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulehorizontalwhitespace">
+                    samples
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="variable-declarations"/>
+                  <a href="#variable-declarations">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#variable-declarations">
+                    Variable Declarations
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
+                    MultipleVariableDeclarations</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">
+                    ArrayTypeStyle</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayTypeStyle">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                    VariableDeclarationUsageDistance</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulevariabledeclarations">
+                    samples</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="annotations"/>
+                  <a href="#annotations">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#annotations">
+                    Annotations
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  This section can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20209">
+                    #20209
+                  </a>
+                </td>
                 <td/>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.9.2"/>
-                  <a href="#3.9.2">
+                  <a name="lambda-expressions"/>
+                  <a href="#lambda-expressions">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.2-horizontal-whitespace">
-                    3.9.2 Horizontal Whitespace
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#lambda-expressions">
+                    Lambda Expressions
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/sizes/lambdabodylength.html#LambdaBodyLength">
+                    LambdaBodyLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Expressions over single line lambda not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20692">
+                    #20692
+                  </a>
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Method Reference over lambda expressions not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20693">
+                    #20693
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulelambdaexpressions">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.10"/>
-                  <a href="#3.10">
+                  <a name="redundant-parentheses"/>
+                  <a href="#redundant-parentheses">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.10-variable-declarations">
-                    3.10 Variable Declarations
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#redundant-parentheses">
+                    Redundant Parentheses
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/matchxpath.html#MatchXpath">
+                    MatchXpath</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Note: Automated enforcement of this rule is not supported, as determining
+                  whether redundant parentheses improve code readability requires human context
+                  and subjective judgment.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleredundantparenthesis">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.11"/>
-                  <a href="#3.11">
+                  <a name="literals"/>
+                  <a href="#literals">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.11-annotations">
-                    3.11 Annotations
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#literals">
+                    Literals
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/upperell.html#UpperEll">UpperEll</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/hexliteralcase.html#HexLiteralCase">
+                    HexLiteralCase</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HexLiteralCase">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/misc/numericalprefixesinfixessuffixescharactercase.html#NumericalPrefixesInfixesSuffixesCharacterCase">
+                    NumericalPrefixesInfixesSuffixesCharacterCase</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NumericalPrefixesInfixesSuffixesCharacterCase">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/ruleliterals">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a3.12"/>
-                  <a href="#3.12">
+                  <a name="javadoc"/>
+                  <a href="#javadoc">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.12-lambda-expressions">
-                    3.12 Lambda Expressions
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.13"/>
-                  <a href="#3.13">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#javadoc">
+                    Javadoc
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.13-redundant-parentheses">
-                    3.13 Redundant Parentheses
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
+                    SummaryJavadoc</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadoccontentlocation.html#JavadocContentLocation">
+                    JavadocContentLocation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Inline tag rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/18570">
+                    #18570
+                  </a>
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Paragraph tag rule can not be covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20628">
+                    #20628
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
                 <td>
-                  <a name="a3.14"/>
-                  <a href="#3.14">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulejavadoc">
+                    samples
                   </a>
                 </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.14-literals">
-                    3.14 Literals
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a3.15"/>
-                  <a href="#3.15">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
-                  </a>
-                </td>
-                <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.15-javadoc">
-                    3.15 Javadoc
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
               </tr>
               <!-- 4 Naming -->
               <tr>
                 <td>
-                  <a name="a4"/>
-                  <a href="#4">
+                  <a name="naming"/>
+                  <a href="#naming">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4-naming">
-                    <strong>4 - Naming</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#naming">
+                    <strong>Naming</strong>
                   </a>
                 </td>
-                <td>↓</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Method and Type Variables shadowing can not be covered due to
+                  checkstyle limitations:
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle is a Static analysis tool. It lacks the linguistic dictionary and
+                  contextual awareness required to identify verbosity of a names and determine
+                  whether a name is descriptive or not.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulenaming">
+                    samples</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a name="package-names"/>
+                  <a href="#package-names">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#package-names">
+                    Package Names
+                  </a>
+                </td>
+                <td>
+                    <p>
+                        Note: Detection of plural forms or
+                      semantic word variations is not supported,
+                        as there is no valid method to do it.
+                    </p>
+                    <span class="wrapper inline">
+                        <img src="images/ok_blue.png" alt=""/>
+                    </span>
+                    <a href="checks/naming/packagename.html#PackageName">PackageName</a>
+                    (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">config</a>)
+                </td>
+                <td>
+                    <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulepackagenames">
+                       samples
+                    </a>
+                </td>
                 <td/>
               </tr>
               <tr>
                 <td>
-                  <a name="a4.1"/>
-                  <a href="#4.1">
+                  <a name="class-interface-and-enum-names"/>
+                  <a href="#class-interface-and-enum-names">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.1-package-names">
-                    4.1 Package Names
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#class-interface-and-enum-names">
+                    Class, Interface and Enum Names
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/naming/typename.html#TypeName">TypeName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/abbreviationaswordinname.html#AbbreviationAsWordInName">
+                    AbbreviationAsWordInName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle is a Static analysis tool. It lacks the linguistic dictionary and
+                  contextual awareness required to identify grammatical parts of speech like nouns
+                  or adjectives. Consequently, it cannot evaluate word meanings to judge whether an
+                  abbreviation is widely understood or if a term is being used correctly.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/ruleclassinterfaceandenumnames">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a4.2"/>
-                  <a href="#4.2">
+                  <a name="method-names"/>
+                  <a href="#method-names">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.2-class-interface-enum-names">
-                    4.2 Class, Interface and Enum Names
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#method-names">
+                    Method Names
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/naming/methodname.html#MethodName">MethodName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+                  config</a>)
+                  <br />
+                  Method names should typically be verbs or other descriptions of actions.
+                  This cannot be fully covered because Checkstyle does not have English vocabulary
+                  to determine whether a method name is a verb or action description.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulemethodnames">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a4.3"/>
-                  <a href="#4.3">
+                  <a name="variables"/>
+                  <a href="#variables">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.3-method-names">
-                    4.3 Method Names
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#variables">
+                    Variables
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/membername.html#MemberName">MemberName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/staticvariablename.html#StaticVariableName">StaticVariableName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/localvariablename.html#LocalVariableName">LocalVariableName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/localfinalvariablename.html#LocalFinalVariableName">LocalFinalVariableName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/parametername.html#ParameterName">ParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/lambdaparametername.html#LambdaParameterName">LambdaParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/patternvariablename.html#PatternVariableName">PatternVariableName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/recordcomponentname.html#RecordComponentName">RecordComponentName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/naming/catchparametername.html#CatchParameterName">CatchParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/rulevariables">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a4.4"/>
-                  <a href="#4.4">
+                  <a name="type-variables"/>
+                  <a href="#type-variables">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.4-variables">
-                    4.4 Variables
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#type-variables">
+                    Type Variables
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/classtypeparametername.html#ClassTypeParameterName">
+                    ClassTypeParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/interfacetypeparametername.html#InterfaceTypeParameterName">
+                    InterfaceTypeParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceTypeParameterName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/methodtypeparametername.html#MethodTypeParameterName">
+                    MethodTypeParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/recordtypeparametername.html#RecordTypeParameterName">
+                    RecordTypeParameterName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Checkstyle is a Static analysis tool. It lacks the linguistic dictionary and
+                  contextual awareness required to identify that a given word is descriptive or
+                  not also it can not determine that a given case is complex or simple.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/ruletypevariables">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a4.5"/>
-                  <a href="#4.5">
+                  <a name="constants"/>
+                  <a href="#constants">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.5-type-variables">
-                    4.5 Type Variables
-                  </a>
-                </td>
-                <td>???</td>
-                <td/>
-              </tr>
-              <tr>
-                <td>
-                  <a name="a4.6"/>
-                  <a href="#4.6">
-                    <span class="wrapper inline">
-                      <img src="images/anchor.png" alt=""/>
-                    </span>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#constants">
+                    Constants
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.6-constants">
-                    4.6 Constants
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/constantname.html#ConstantName">
+                    ConstantName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/naming/illegalidentifiername.html#IllegalIdentifierName">
+                    IllegalIdentifierName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  These checks partially covers the rule for constants because these can not
+                  determine whether two words are separated by underscore (_) or not.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapternaming/ruleconstants">
+                    samples
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
               </tr>
               <!-- 5 Programming Practices -->
               <tr>
                 <td>
-                  <a name="a5"/>
-                  <a href="#5">
+                  <a name="programming-practices"/>
+                  <a href="#programming-practices">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5-programming-practices">
-                    <strong>5 - Programming Practices</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#programming-practices">
+                    <strong>Programming Practices</strong>
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/annotation/missingoverrideonrecordaccessor.html#MissingOverrideOnRecordAccessor">
+                    MissingOverrideOnRecordAccessor</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Only checks missing override for explicitly declared record accessor methods.
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/annotation/missingoverride.html#MissingOverride">
+                    MissingOverride</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverride">
+                  config</a>)
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Only checks for missing override when @inheritDoc javadoc tag is present.
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/sizes/methodlength.html#MethodLength">
+                    MethodLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/fallthrough.html#FallThrough">
+                    FallThrough</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/matchxpath.html#MatchXpath">
+                    MatchXpath</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/parameterassignment.html#ParameterAssignment">
+                    ParameterAssignment</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterAssignment">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/todocomment.html#TodoComment">
+                    TodoComment</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Some rules cannot be covered due to limitations of checkstyle like checkstyle
+                  cannot determine whether code is dead or not or all non-obvious pre and post
+                  conditions are documented or not or a static field/method is called using
+                  class identifiers and not variable identifiers.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterprogrammingpractices/ruleprogrammingpractices">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
-                  <a name="a5.1"/>
-                  <a href="#5.1">
+                  <a name="commenting-code"/>
+                  <a href="#commenting-code">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5.1-commenting-code">
-                    5.1 Commenting Code
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#commenting-code">
+                    Commenting Code
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
               <!-- 6 When to reformat code -->
               <tr>
                 <td>
-                  <a name="a6"/>
-                  <a href="#6">
+                  <a name="when-to-reformat-code"/>
+                  <a href="#when-to-reformat-code">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s6-when-to-reformat">
-                    <strong>6 - When to reformat code</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#when-to-reformat-code">
+                    <strong>When to reformat code</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -753,16 +1662,16 @@
               <!-- 7 Cases not covered -->
               <tr>
                 <td>
-                  <a name="a7"/>
-                  <a href="#7">
+                  <a name="cases-not-covered"/>
+                  <a href="#cases-not-covered">
                     <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s7-cases-not-covered">
-                    <strong>7 - Cases not covered</strong>
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#cases-not-covered">
+                    <strong>Cases not covered</strong>
                   </a>
                 </td>
                 <td>--</td>
@@ -772,28 +1681,115 @@
           </table>
         </div>
       </subsection>
+      <subsection name="Header" id="OpenJDK_Header">
+        <p>
+          For enabling copyright-notice validation, add your custom header file paths
+          using the following system property:
+        </p>
+        <p>
+          <code>header.file.paths.separated.by.coma</code>
+        </p>
+        <p>
+          Until this variable is not configured, no header validation will be performed.
+        </p>
+      </subsection>
+      <subsection name="Severity Level" id="OpenJDK_Severity_Level">
+        <p>
+          To adjust the default severity level for violations using Checkstyle's
+          OpenJDK style configuration, set the following system property:
+        </p>
+        <p>
+          <code>org.checkstyle.openjdk.severity</code>
+        </p>
+        <p>
+          For detailed guidance on severity levels, refer to the
+          <a href="./property_types.html#SeverityLevel">Severity Level</a>.
+          To configure this property, see the instructions for the
+          <a href="./cmdline.html#Command_line_usage">CLI's <code>-p</code> option</a> , or use the
+          <a href="./anttask.html#Parameters"><code>properties</code> parameter in Ant</a>,
+          or set the Java system property before running Checkstyle.
+        </p>
+      </subsection>
       <subsection name="Suppressions" id="OpenJDK_Suppressions">
         <p>
           It is possible to suppress some violations by embedded filters
           <a href="filters/suppressionfilter.html#SuppressionFilter">
-            SuppressionFilter</a>
-          and
+            SuppressionFilter</a>,
           <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">
-            SuppressionXpathFilter</a>.
-          Location of config file for <i>SuppressionFilter</i> can be defined by system property
-          <i>org.checkstyle.openjdk.suppressionfilter.config</i> (default value is
-          <i>checkstyle-suppressions.xml</i>).
-          Location of config file for <i>SuppressionXpathFilter</i>
+            SuppressionXpathFilter</a>,
+          <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>,
+          <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">
+            SuppressionCommentFilter</a>,
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">
+            SuppressWarningsFilter</a>
+          and
+          <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+            SuppressWithNearbyTextFilter</a>.
+        </p>
+        <p>
+          Location of config file for
+          <a href="filters/suppressionfilter.html#SuppressionFilter">SuppressionFilter</a> can
+          be defined by system property <i>org.checkstyle.openjdk.suppressionfilter.config</i>
+          (default value is <i>checkstyle-suppressions.xml</i>).
+        </p>
+        <p>
+          Location of config file for
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">SuppressionXpathFilter</a>
           can be defined by system property
           <i>org.checkstyle.openjdk.suppressionxpathfilter.config</i> (default value is
           <i>checkstyle-xpath-suppressions.xml</i>).
+        </p>
+        <p>
+          To suppress a check in the next line of code using
+          <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>precede the line of code with
+          <i>// CHECKSTYLE.SUPPRESS: NameOfTheCheck</i> (replace <i>NameOfTheCheck</i> with
+          the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check on a block of code using
+          <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
+          add <i>// CHECKSTYLE.OFF: NameOfTheCheck</i> before the beginning of the code block and
+          <i>// CHECKSTYLE.ON: NameOfTheCheck</i> after the end of the code block (replace
+          <i>NameOfTheCheck</i> with the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check using
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          use Java's<i>@SuppressWarnings({"checkstyle:name_of_the_check", ...})</i> annotation.
+          Each value passed in the array parameter must meet the format
+          <i>checkstyle:name_of_the_check</i> where the <i>checkstyle:</i> is optional and
+          <i>name_of_the_check</i> is the actual name of check to be suppressed in lowercase
+          format.
+        </p>
+        <p>
+          To suppress a check for few lines below or above, use
+          <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+            SuppressWithNearbyTextFilter
+          </a>
+          suppression, use
+          <code>// CHECKSTYLE.SUPPRESS: NameOfCheck for ([+-]\d+) lines</code> comment.
+          ( replace NameOfCheck with the check you want to suppress.
+          For suppressing a check few lines below,
+          replace <i>([+-]\d+)</i> with <i>+NumberOfLines</i> where <i>NumberOfLines</i>
+          is number of the lines below from the comment's line number,
+          for suppressing a check few lines above, use &quot;-&quot; instead of &quot;+&quot;. )
         </p>
         <p>
           For more details please review exact configuration of Filters in openjdk_checks.xml:
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
                     SuppressionFilter</a>,
           <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
-                    SuppressionXpathFilter</a>.
+                    SuppressionXpathFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
+                    SuppressWithNearbyCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+                    SuppressionCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+                    SuppressWarningsFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+                    SuppressWithNearbyTextFilter</a>
         </p>
       </subsection>
     </section>

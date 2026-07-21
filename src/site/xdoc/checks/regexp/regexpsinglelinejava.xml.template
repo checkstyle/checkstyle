@@ -118,8 +118,11 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example6.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example7-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="RegexpSinglelineJava_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to find all occurrences of
           "private". We want to ignore comments,
           display "private member found" for each violation
@@ -127,13 +130,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example7-code">Example7:</p>
+        <p id="UseCase1-code">UseCase1:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -162,11 +165,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpSinglelineJava_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="RegexpSinglelineJava_Fully_Qualified_Name">
+      <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck</p>
+      <p>
+        Use this fully qualified class name in configuration when an exact class reference is
+        required.
+      </p>
+  </subsection>
 
       <subsection name="Parent Module" id="RegexpSinglelineJava_Parent_Module">
         <macro name="parent-module">

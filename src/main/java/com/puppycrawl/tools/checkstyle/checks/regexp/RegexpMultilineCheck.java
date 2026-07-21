@@ -42,6 +42,18 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 @StatelessCheck
 public class RegexpMultilineCheck extends AbstractFileSetCheck {
 
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
+
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
+
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_EMPTY = "regexp.empty";
+
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_STACKOVERFLOW = "regexp.StackOverflowError";
+
     /** Specify the format of the regular expression to match. */
     @XdocsPropertyType(PropertyType.PATTERN)
     private String format = "$.";
@@ -62,6 +74,13 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
     /** The detector to use. */
     private MultilineDetector detector;
 
+    /**
+     * Creates a new {@code RegexpMultilineCheck} instance.
+     */
+    public RegexpMultilineCheck() {
+        // no code by default
+    }
+
     @Override
     public void beginProcessing(String charset) {
         final DetectorOptions options = DetectorOptions.newBuilder()
@@ -73,7 +92,9 @@ public class RegexpMultilineCheck extends AbstractFileSetCheck {
             .maximum(maximum)
             .ignoreCase(ignoreCase)
             .build();
-        detector = new MultilineDetector(options);
+        detector = new MultilineDetector(options,
+                MSG_REGEXP_EXCEEDED, MSG_REGEXP_MINIMUM,
+                MSG_EMPTY, MSG_STACKOVERFLOW);
     }
 
     @Override

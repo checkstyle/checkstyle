@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter";
@@ -33,12 +34,18 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "13:20: '24' is a magic number.",
-            "14:20: '7' is a magic number.",
+            "18:11: '42' is a magic number.",
+            "19:11: '43' is a magic number.",
+            "21: Line is longer than 55 characters (found 74).",
+            "24: Line is longer than 55 characters (found 84).",
+            "28: Line is longer than 55 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
-            "14:20: '7' is a magic number.",
+            "19:11: '43' is a magic number.",
+            "21: Line is longer than 55 characters (found 74).",
+            "24: Line is longer than 55 characters (found 84).",
+            "28: Line is longer than 55 characters (found 72).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -49,6 +56,29 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
+        };
+
+        final String[] expectedWithFilter = {
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+
+        final String[] expectedWithoutFilter = {
             "15:11: '42' is a magic number.",
             "16:11: '43' is a magic number.",
         };
@@ -57,7 +87,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "16:11: '43' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
@@ -65,11 +95,16 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "16: Line is longer than 70 characters (found 74).",
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
-
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
@@ -81,11 +116,17 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
 
         final String[] expectedWithoutFilter = {
             "20:11: '42' is a magic number.",
-            "21: Line is longer than 55 characters (found 65).",
+            "21:11: '43' is a magic number.",
+            "23: Line is longer than 55 characters (found 74).",
+            "26: Line is longer than 55 characters (found 84).",
+            "30: Line is longer than 55 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
-            "21: Line is longer than 55 characters (found 65).",
+            "21:11: '43' is a magic number.",
+            "23: Line is longer than 55 characters (found 74).",
+            "26: Line is longer than 55 characters (found 84).",
+            "30: Line is longer than 55 characters (found 72).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example4.java"),
@@ -95,24 +136,26 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample5() throws Exception {
 
-        final String[] expectedWithoutFilters = {
-            "1: Duplicated property 'key.one' (3 occurrence(s)).",
-            "5: Duplicated property 'key.two' (2 occurrence(s)).",
+        final String[] expectedWithoutFilter = {
+            "21:11: '42' is a magic number.",
+            "22:11: '43' is a magic number.",
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
         };
 
-        final String[] expectedWithFilters = {
-            "5: Duplicated property 'key.two' (2 occurrence(s)).",
+        final String[] expectedWithFilter = {
+            "24: Line is longer than 55 characters (found 74).",
+            "27: Line is longer than 55 characters (found 84).",
+            "31: Line is longer than 55 characters (found 72).",
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example5.java"),
-                getPath("Example5.properties"),
-                expectedWithoutFilters,
-                expectedWithFilters);
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilters = {
             "2: Duplicated property 'key.one' (2 occurrence(s)).",
@@ -124,14 +167,14 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
         };
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example6.java"),
-                getPath("Example6.properties"),
+                getPath("UseCase2.java"),
+                getPath("UseCase2.properties"),
                 expectedWithoutFilters,
                 expectedWithFilters);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase3() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "17:11: '42' is a magic number.",
@@ -142,12 +185,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "18:11: '43' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase4() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "18:11: '42' is a magic number.",
@@ -161,7 +204,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "22:11: '46' is a magic number.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase4.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
@@ -169,14 +212,22 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample9() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "19: Line is longer than 70 characters (found 72).",
+            "23:11: '42' is a magic number.",
+            "24:11: '43' is a magic number.",
+            "26: Line is longer than 55 characters (found 74).",
+            "29: Line is longer than 55 characters (found 84).",
+            "33: Line is longer than 55 characters (found 72).",
         };
 
         final String[] expectedWithFilter = {
-
+            "23:11: '42' is a magic number.",
+            "24:11: '43' is a magic number.",
+            "26: Line is longer than 55 characters (found 74).",
+            "29: Line is longer than 55 characters (found 84).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example9.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

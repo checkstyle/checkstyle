@@ -1,13 +1,13 @@
 /*
 LineLength
-fileExtensions = (default)
+fileExtensions = (default)(null)
 ignorePattern = (default)^(package|import) .*
 max = (default)80
 
 
 */
 
-// non-compiled with javac: contains different package by demand of test
+// non-compiled with javac: package statement is different than folder
 package com.nameofcompany.nameofdivision.nameofproject.systemtests.
         parallel.areaoftest.featuretested.flowtested;
 

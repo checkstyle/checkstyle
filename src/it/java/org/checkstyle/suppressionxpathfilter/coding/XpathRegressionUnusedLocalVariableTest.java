@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 
 public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSupport {
+
     private final String checkName = UnusedLocalVariableCheck.class.getSimpleName();
 
     @Override

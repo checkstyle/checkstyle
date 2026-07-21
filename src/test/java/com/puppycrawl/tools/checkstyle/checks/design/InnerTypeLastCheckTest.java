@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
 
@@ -54,11 +53,11 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMembersBeforeInner() throws Exception {
         final String[] expected = {
-            "50:9: " + getCheckMessage(MSG_KEY),
-            "71:9: " + getCheckMessage(MSG_KEY),
-            "75:9: " + getCheckMessage(MSG_KEY),
-            "84:5: " + getCheckMessage(MSG_KEY),
-            "101:9: " + getCheckMessage(MSG_KEY),
+            "51:9: " + getCheckMessage(MSG_KEY),
+            "73:9: " + getCheckMessage(MSG_KEY),
+            "78:9: " + getCheckMessage(MSG_KEY),
+            "88:9: " + getCheckMessage(MSG_KEY),
+            "106:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClass.java"), expected);
@@ -66,14 +65,19 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIfRootClassChecked() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass.java"), expected);
     }
 
     @Test
     public void testIfRootClassChecked2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_KEY),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass2.java"), expected);
     }
@@ -82,19 +86,24 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     public void testIfRootClassChecked3() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerTypeLastCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+            "20:5: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+        };
         verify(createChecker(checkConfig), new File[] {
             new File(getPath("InputInnerTypeLastClassRootClass.java")),
             new File(getPath("InputInnerTypeLastClassRootClass.java")),
-        }, "InputInnerTypeLastClassRootClass.java", expected);
+        }, getPath("InputInnerTypeLastClassRootClass.java"), expected);
     }
 
     @Test
     public void testInnerTypeBeforeCtor() throws Exception {
         final String[] expected = {
-            "13:5: " + getCheckMessage(MSG_KEY),
-            "22:5: " + getCheckMessage(MSG_KEY),
-            "31:5: " + getCheckMessage(MSG_KEY),
+            "14:5: " + getCheckMessage(MSG_KEY),
+            "24:5: " + getCheckMessage(MSG_KEY),
+            "34:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassCtorsInitBlocks.java"), expected);
@@ -104,13 +113,13 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     public void testInnerTypeLastRecords() throws Exception {
 
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY),
-            "21:5: " + getCheckMessage(MSG_KEY),
-            "30:9: " + getCheckMessage(MSG_KEY),
-            "40:13: " + getCheckMessage(MSG_KEY),
-            "46:13: " + getCheckMessage(MSG_KEY),
-            "50:9: " + getCheckMessage(MSG_KEY),
-            "52:9: " + getCheckMessage(MSG_KEY),
+            "18:9: " + getCheckMessage(MSG_KEY),
+            "23:5: " + getCheckMessage(MSG_KEY),
+            "33:9: " + getCheckMessage(MSG_KEY),
+            "44:13: " + getCheckMessage(MSG_KEY),
+            "51:13: " + getCheckMessage(MSG_KEY),
+            "56:9: " + getCheckMessage(MSG_KEY),
+            "59:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastRecords.java"), expected);
@@ -119,10 +128,10 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInnerTypeLastCstyleArray() throws Exception {
         final String[] expected = {
-            "11:5: " + getCheckMessage(MSG_KEY),
             "12:5: " + getCheckMessage(MSG_KEY),
-            "13:5: " + getCheckMessage(MSG_KEY),
             "14:5: " + getCheckMessage(MSG_KEY),
+            "16:5: " + getCheckMessage(MSG_KEY),
+            "18:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastArray.java"), expected);
@@ -139,6 +148,25 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Default acceptable tokens are invalid")
             .that(obj.getAcceptableTokens())
             .isEqualTo(expected);
+    }
+
+    @Test
+    public void testInnerTypeLastCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testInnerTypeLastCompactSourceFileNested() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerTypeLastCompactSourceFileNested.java"),
+                expected);
     }
 
 }

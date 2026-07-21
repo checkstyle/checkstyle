@@ -39,4 +39,5 @@ public class MethodNamesTest extends AbstractGoogleModuleTestSupport {
     public void testMethodName2() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodName2.java"));
     }
+
 }

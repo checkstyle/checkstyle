@@ -234,4 +234,19 @@ public class MethodNameCheckTest
                 getPath("InputMethodNameProperties.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "19:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Bad_Method", pattern),
+            "25:9: " + getCheckMessage(MSG_KEY, "Helper"),
+            "25:9: " + getCheckMessage(MSG_INVALID_PATTERN, "Helper", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodNameCompactSourceFile.java"), expected);
+    }
+
 }

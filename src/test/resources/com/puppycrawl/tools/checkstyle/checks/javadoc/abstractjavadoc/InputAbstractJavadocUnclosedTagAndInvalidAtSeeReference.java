@@ -6,11 +6,15 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$ParseJav
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
+    // Details: no viable alternative at input
+    // 'javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent'
+    // while parsing REFERENCE
+    // violation 4 lines below 'Javadoc comment at column 12 has parse error.'
     /**
+     * @see javax.swing.tree.DefaultTreeCellRenderer#getTreeCellRendererComponent()
+     * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent
      * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent()
      */
-    // violation 2 lines above 'Javadoc comment at column 81 has parse error.'
-    // Details: mismatched input '(' expecting <EOF> while parsing JAVADOC
     void invalidAtSeeReference() {
     }
 }

@@ -134,13 +134,16 @@ public class Example2 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="CommentsIndentation_Use_Cases">
         <p>Please take a look at the following examples to understand how the check works:</p>
-        <p id="Example3-code">
+        <p id="UseCase1-code">
           Example #3: Comment is used as a single-line border to separate groups of methods.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
   /////////////////////////////// it is OK
 
   public void foo1() {
@@ -152,7 +155,7 @@ public class Example3 {
   public void foo2() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-code">
+        <p id="UseCase2-code">
           Example #4: Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
@@ -161,7 +164,7 @@ public class Example3 {
           right curly brace.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
   public void foo1() {
     // comment
     // block
@@ -175,7 +178,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
+        <p id="UseCase3-code">Example #5: 'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
            clearly detect user intention of explanation target - above or below.
@@ -184,14 +187,16 @@ public class Example4 {
            indentation level of the next case.
           token.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class UseCase3 {
   void testMethod(String a) {
     switch(a) {
       case "1":
         int j = 7;
         // it is OK
         break;
-      case "3": // violation 2 lines below 'Comment has incorrect indentation level'
+      case "3":
+        // violation 3 lines below """Comment has incorrect indentation level 12,
+        //  expected is 8, indentation should be the same level as line 23."""
         if (true) {}
             //It is not okay
         break;
@@ -201,15 +206,16 @@ public class Example5 {
       case "6":
      // It is not okay
       case "7":
-       // violation 2 lines above 'Comment has incorrect indentation level 5'
+       // violation 2 lines above """Comment has incorrect indentation level 5,
+       // expected is 6, 6, indentation should be the same level as line 27, 29"""
       default:
     }
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
+        <p id="UseCase4-code">Example #6: Comment is placed within a distributed statement.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class UseCase4 {
   void testMethod() {
     // violation 2 lines below 'Comment has incorrect indentation level 4'
     String breaks = "J"
@@ -224,11 +230,11 @@ public class Example6 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-code">
+        <p id="UseCase5-code">
           Example #7: Single line block comment has previous and next statement.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
+public class UseCase5 {
   void testMethod() {
     String s1 = "Clean code!";
     s1.toString().toString().toString();
@@ -249,11 +255,11 @@ public class Example7 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-code">
+        <p id="UseCase6-code">
           Example #8: Comment within the block tries to describe the next code block.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase6 {
   public void foo42() {
     int a = 5;
     if (a == 5) {
@@ -306,9 +312,11 @@ public class Example8 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="CommentsIndentation_Package">
+      <subsection name="Fully Qualified Name" id="CommentsIndentation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.indentation
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

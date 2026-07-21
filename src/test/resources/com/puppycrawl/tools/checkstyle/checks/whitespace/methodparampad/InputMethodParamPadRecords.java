@@ -8,7 +8,7 @@ tokens = (default)CTOR_DEF, CTOR_CALL, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUP
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 import org.w3c.dom.Node;

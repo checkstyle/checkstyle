@@ -61,6 +61,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -218,6 +219,89 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputMethodCountRecords.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodCountCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileModifiers() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 2, 1),
+            "19:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 1, 0),
+            "19:1: " + getCheckMessage(MSG_PROTECTED_METHODS, 1, 0),
+            "19:1: " + getCheckMessage(MSG_PUBLIC_METHODS, 1, 0),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodCountCompactSourceFileModifiers.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileWithType() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
+            "19:1: " + getCheckMessage(MSG_MANY_METHODS, 3, 2),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodCountCompactSourceFileWithType.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileInnerClasses() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+            "19:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputMethodCountCompactSourceFileInnerClasses.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileValid() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodCountCompactSourceFileValid.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileFieldInitializer() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputMethodCountCompactSourceFileFieldInitializer.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileStatic() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 3, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodCountCompactSourceFileStatic.java"), expected);
+    }
+
+    @Test
+    public void testEmptyFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMethodCountEmpty.java"), expected);
     }
 
 }

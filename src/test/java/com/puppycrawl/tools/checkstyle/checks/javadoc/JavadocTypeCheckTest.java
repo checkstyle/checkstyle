@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_MISSING_TAG_WITH_QUOTES;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNKNOWN_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck.MSG_UNUSED_TAG;
@@ -119,7 +120,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPkg() throws Exception {
         final String[] expected = {
-            "53:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "53:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeScopeInnerClasses.java"), expected);
@@ -217,8 +218,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopes() throws Exception {
         final String[] expected = {
-            "18:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "137:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "18:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "137:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeNoJavadoc.java"),
@@ -236,7 +237,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopes2() throws Exception {
         final String[] expected = {
-            "18:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "18:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeNoJavadoc_2.java"),
@@ -246,7 +247,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludeScope() throws Exception {
         final String[] expected = {
-            "137:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "137:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeNoJavadoc_1.java"),
@@ -256,12 +257,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTypeParameters() throws Exception {
         final String[] expected = {
-            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-            "25:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
-            "59:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "62:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
-            "75:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
-            "79:5: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
+            "22:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+            "26:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<C456>"),
+            "61:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "64:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<B>"),
+            "69:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "73:5: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);
@@ -270,9 +271,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllowMissingTypeParameters() throws Exception {
         final String[] expected = {
-            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-            "58:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "74:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "22:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+            "60:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "68:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeTypeParamsTags.java"), expected);
@@ -281,9 +282,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDontAllowUnusedParameterTag() throws Exception {
         final String[] expected = {
-            "20:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
-            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
-            "23:4: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL, "@param"),
+            "22:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
+            "23:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeUnusedParamInJavadocForClass.java"),
@@ -293,9 +293,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadTag() throws Exception {
         final String[] expected = {
-            "19:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
             "21:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
-            "28:5: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
+            "22:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
+            "29:5: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeBadTag.java"),
@@ -340,7 +340,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAllowedAnnotationsNotAllowed() throws Exception {
 
         final String[] expected = {
-            "38:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "38:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAllowedAnnotations_3.java"),
@@ -370,11 +370,21 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocTypeRecordComponentNameMismatch() throws Exception {
+        final String[] expected1 = {
+            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "valueExtra"),
+            "23:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeRecordComponentNameMismatch.java"), expected1);
+    }
+
+    @Test
     public void testJavadocTypeParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
-            "44:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "46:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
-            "50:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "53:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "55:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<U>"),
+            "60:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
         };
 
         verifyWithInlineConfigParser(
@@ -384,12 +394,12 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeRecordParamDescriptionWithAngularTags() throws Exception {
         final String[] expected = {
-            "51:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
-            "53:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <U>"),
-            "57:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
-            "60:1: " + getCheckMessage(MSG_MISSING_TAG, "@param a"),
-            "73:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
-            "76:1: " + getCheckMessage(MSG_MISSING_TAG, "@param c"),
+            "60:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<P>"),
+            "62:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<U>"),
+            "67:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "region"),
+            "69:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "a"),
+            "83:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "e"),
+            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "c"),
         };
 
         verifyWithInlineConfigParser(
@@ -402,18 +412,18 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTypeRecordComponents2() throws Exception {
 
         final String[] expected = {
-            "44:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <X>"),
-            "48:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
-            "59:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
-            "62:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
-            "62:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
-            "66:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
-            "68:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myList"),
-            "75:1: " + getCheckMessage(MSG_MISSING_TAG, "@param X"),
-            "78:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
-            "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
-            "81:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
+            "44:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<X>"),
+            "49:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "61:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "64:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myString"),
+            "64:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myInt"),
+            "69:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "71:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myList"),
+            "78:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "X"),
+            "82:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myInt"),
+            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myString"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeRecordComponents2.java"), expected);
@@ -432,11 +442,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTrimOptionProperty() throws Exception {
-        final String[] expected = {
-            "21:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-        };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeTestTrimProperty.java"), expected);
+                getJavadocWithErrorPath("InputJavadocTypeTestTrimProperty.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -449,7 +457,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAuthorFormat2() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "21:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocType2.java"), expected);
@@ -458,10 +466,10 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocType() throws Exception {
         final String[] expected = {
-            "28:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "23:5: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputJavadocType3.java"), expected);
+                getJavadocWithErrorPath("InputJavadocType3.java"), expected);
     }
 
     @Test
@@ -474,8 +482,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocTypeAboveComments() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "41:15: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "48:15: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAboveComments.java"), expected);
@@ -542,4 +550,5 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAnnotationsInCodeBlock4.java"), expected);
     }
+
 }

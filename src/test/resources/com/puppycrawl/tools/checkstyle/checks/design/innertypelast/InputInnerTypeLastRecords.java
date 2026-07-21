@@ -4,7 +4,7 @@ InnerTypeLast
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
 public class InputInnerTypeLastRecords {
@@ -14,11 +14,13 @@ public class InputInnerTypeLastRecords {
         record InnerTest1() {
         }
 
-        public void test() { // violation
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        public void test() {
         }
     }
 
-    public void test() { // violation
+    // violation below 'Init blocks, constructors, fields and methods should be.*'
+    public void test() {
     }
 
     record Test3() {
@@ -27,7 +29,8 @@ public class InputInnerTypeLastRecords {
         class InnerTest1 {
         }
 
-        public void test() { // violation
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        public void test() {
         }
     }
 
@@ -37,19 +40,23 @@ public class InputInnerTypeLastRecords {
         record MyInnerRecord() {
             void foo() {}
             class InnerInnerClass{}
-            public MyInnerRecord{} // violation
+            // violation below 'Init blocks, constructors, fields and methods should be.*'
+            public MyInnerRecord{}
         }
 
         class MyInnerClass {
             void foo (){}
             class InnerInnerClass{}
-            public MyInnerClass(){} // violation
+            // violation below 'Init blocks, constructors, fields and methods should be.*'
+            public MyInnerClass(){}
 
         }
 
-        static Test3 innerRecord = new Test3(); // violation
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        static Test3 innerRecord = new Test3();
 
-        public void test() { // violation
+        // violation below 'Init blocks, constructors, fields and methods should be.*'
+        public void test() {
         }
     }
 

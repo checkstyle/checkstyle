@@ -7,7 +7,7 @@ tokens = PATTERN_VARIABLE_DEF
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 public class InputFinalParametersPatternVariables {

@@ -2654,7 +2654,7 @@
                    enabled_by_default="true"/>
   <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
-  <!-- disabled until https://github.com/checkstyle/checkstyle/issues/17298 -->
+  <!-- disabled until https://youtrack.jetbrains.com/issue/IDEA-387427 -->
   <inspection_tool class="JavadocBlankLines" enabled="false" level="WARNING"
                    enabled_by_default="false"/>
   <inspection_tool class="JBoss" enabled="false" level="ERROR" enabled_by_default="false"/>
@@ -4511,6 +4511,8 @@
         <option value="CanBeFinal"/>
         <!-- false positive from Language Injection in snippet block -->
         <option value="EmptyClass"/>
+        <!-- false positive from errorprone -->
+        <option value="ReferenceEquality"/>
       </list>
     </option>
   </inspection_tool>
@@ -4713,9 +4715,8 @@
                    enabled_by_default="true">
     <option name="ignoreRethrownExceptions" value="false"/>
   </inspection_tool>
-  <!-- disabled till we switch to jacoco that support try-with-resources -->
-  <inspection_tool class="ThrowFromFinallyBlock" enabled="false" level="ERROR"
-                   enabled_by_default="false"/>
+  <inspection_tool class="ThrowFromFinallyBlock" enabled="true" level="ERROR"
+                   enabled_by_default="true"/>
   <inspection_tool class="ThrowFromFinallyBlockJS" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="ThrowableInstanceNeverThrown" enabled="true" level="ERROR"
@@ -4888,7 +4889,8 @@
                    enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryConstantArrayCreationExpression" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
-  <inspection_tool class="UnnecessaryConstructor" enabled="true" level="ERROR"
+  <!-- javadoc tool raises warning if ctor is implicit; explicit ctor needed -->
+  <inspection_tool class="UnnecessaryConstructor" enabled="false" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="UnnecessaryContinue" enabled="true" level="ERROR"
                    enabled_by_default="true"/>

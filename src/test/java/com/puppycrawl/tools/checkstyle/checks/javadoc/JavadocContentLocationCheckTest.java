@@ -57,8 +57,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
-            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "23:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationDefault.java"), expected);
@@ -67,8 +67,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFirstLine() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
-            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationFirstLine.java"), expected);
@@ -77,7 +77,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPackage() throws Exception {
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
+            "9:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
         verifyWithInlineConfigParser(
                 getPath("package-info.java"), expected);
@@ -86,7 +86,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInterface() throws Exception {
         final String[] expected = {
-            "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "11:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationInterface.java"), expected);
@@ -102,8 +102,8 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
-            "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationTrimOptionProperty.java"), expected);
@@ -117,4 +117,5 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocation.java"), expected);
     }
+
 }

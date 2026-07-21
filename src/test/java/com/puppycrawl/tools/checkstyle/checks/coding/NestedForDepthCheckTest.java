@@ -101,4 +101,5 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNestedForDepthCheckDefaultMaxLevel.java"),
                expected);
     }
+
 }

@@ -468,9 +468,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAliasList() throws Exception {
         final String[] expected = {
-            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "19:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
-            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "31:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
         };
         verifyWithInlineConfigParser(
@@ -496,9 +496,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testAliasList3() throws Exception {
         final String[] expected = {
-            "16:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "18:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
-            "28:17: " + getCheckMessage(ParameterNumberCheck.class,
+            "30:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
         };
 
@@ -528,8 +528,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
             "23: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 83),
             "33: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 96),
             "33: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 96),
-            "63: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
-            "70: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
+            "62: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 76),
+            "69: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 87),
         };
 
         verifyWithInlineConfigParser(
@@ -581,9 +581,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testIdent2() throws Exception {
         final String[] expected = {
-            "37:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "41:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     MSG_UNUSED_LOCAL_VARIABLE, "a"),
-            "42:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
+            "46:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     MSG_UNUSED_LOCAL_VARIABLE, "a"),
         };
         verifyWithInlineConfigParser(
@@ -603,4 +603,5 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressWarningsHolder8.java"),
                 expected);
     }
+
 }

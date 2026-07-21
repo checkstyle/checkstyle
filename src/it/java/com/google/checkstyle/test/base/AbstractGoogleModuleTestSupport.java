@@ -86,4 +86,5 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     protected void verifyWithWholeConfig(String filePath) throws Exception {
         verifyWithItConfig(CONFIGURATION, filePath);
     }
+
 }

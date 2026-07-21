@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder";
@@ -33,16 +34,12 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample1() throws Exception {
-        final String tagOrder = "[@author, @version, @param, @return, @throws"
-            + ", @exception, @see,"
-            + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String tagOrder = "[@author, @version, @param, @return"
+            + ", @throws, @exception,"
+            + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
 
         final String[] expected = {
-            "42: " + getCheckMessage(MSG_KEY, tagOrder),
-            "44: " + getCheckMessage(MSG_KEY, tagOrder),
-            "52: " + getCheckMessage(MSG_KEY, tagOrder),
-            "54: " + getCheckMessage(MSG_KEY, tagOrder),
-            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+            "48: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -56,7 +53,9 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         final String[] expected = {
             "29: " + getCheckMessage(MSG_KEY, tagOrder),
-            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+            "44: " + getCheckMessage(MSG_KEY, tagOrder),
+            "45: " + getCheckMessage(MSG_KEY, tagOrder),
+            "52: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -69,9 +68,24 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
             + " @deprecated, @see, @serial, @serialField, @serialData]";
 
         final String[] expected = {
-            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+            "44: " + getCheckMessage(MSG_KEY, tagOrder),
+            "45: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String tagOrder = "[@author, @version, @param, @return"
+            + ", @throws, @exception,"
+            + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
+
+        final String[] expected = {
+            "48: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }

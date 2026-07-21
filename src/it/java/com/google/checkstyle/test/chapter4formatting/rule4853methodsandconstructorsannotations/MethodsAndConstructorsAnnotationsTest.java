@@ -40,4 +40,5 @@ public class MethodsAndConstructorsAnnotationsTest extends AbstractGoogleModuleT
     public void testAnnotationFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedMethodsAndConstructorsAnnotations.java"));
     }
+
 }

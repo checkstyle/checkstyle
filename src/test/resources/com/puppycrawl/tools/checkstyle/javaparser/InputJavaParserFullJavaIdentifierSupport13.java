@@ -1,4 +1,4 @@
-// Java17
+
 package com.puppycrawl.tools.checkstyle.javaparser;
 
 public class InputJavaParserFullJavaIdentifierSupport13 {

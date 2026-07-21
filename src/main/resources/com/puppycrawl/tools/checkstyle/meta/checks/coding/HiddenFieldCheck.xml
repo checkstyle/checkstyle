@@ -63,8 +63,7 @@
                <description>Allow to ignore the parameter of a property setter method.</description>
             </property>
             <property default-value="false" name="setterCanReturnItsClass" type="boolean">
-               <description>Allow to expand the definition of a setter method to include methods
- that return the class' instance.</description>
+               <description>Allow to expand the definition of a setter method to include methods that return the class' instance.</description>
             </property>
             <property default-value="VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA,RECORD_COMPONENT_DEF"
                       name="tokens"

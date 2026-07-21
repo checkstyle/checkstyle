@@ -2,7 +2,7 @@
 SealedShouldHavePermitsList
 
 */
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.design.sealedshouldhavepermitslist;
 
 public class InputSealedShouldHavePermitsListInnerClass {

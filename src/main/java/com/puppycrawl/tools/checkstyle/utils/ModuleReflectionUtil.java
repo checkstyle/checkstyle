@@ -186,4 +186,5 @@ public final class ModuleReflectionUtil {
     private static boolean isNotXpathFileGenerator(Class<?> clazz) {
         return !clazz.getSimpleName().startsWith("XpathFileGenerator");
     }
+
 }

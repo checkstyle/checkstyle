@@ -78,38 +78,40 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example3.java"/>
             <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="EmptyCatchBlock_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to suppress empty catch block if single-line comment inside
           is "This is expected":
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Such empty blocks would be both suppressed:</p>
+        <p id="UseCase1-code">Such empty blocks would be both suppressed:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example4.java"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/UseCase1.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure the check to suppress empty catch block if
           exception's variable name is "myException":
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Such empty blocks would be both suppressed:</p>
+        <p id="UseCase2-code">Such empty blocks would be both suppressed:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/Example5.java"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/blocks/emptycatchblock/UseCase2.java"/>
             <param name="type" value="code"/>
         </macro>
-
       </subsection>
 
       <subsection name="Example of Usage" id="EmptyCatchBlock_Example_of_Usage">
@@ -136,8 +138,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="EmptyCatchBlock_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="EmptyCatchBlock_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="EmptyCatchBlock_Parent_Module">

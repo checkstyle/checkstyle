@@ -158,6 +158,68 @@ class Example2 {
   public void methodWithVeryLongName
   () {} // ok, because allowLineBreaks is true
 }
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the check to require a space after the identifier of a
+          method definition:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodParamPad"&gt;
+      &lt;property name="option" value="space"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  public Example3() {     // violation ''(' is not preceded with whitespace'
+    super();              // violation ''(' is not preceded with whitespace'
+  }
+
+  public Example3 (int aParam) {
+    super ();
+  }
+
+  public void method() {} // violation ''(' is not preceded with whitespace'
+
+  public void methodWithVeryLongName
+  () {} // violation ''(' should be on the previous line.'
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          To configure the check to allow line breaks between the identifier and
+          the left parenthesis:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodParamPad"&gt;
+      &lt;property name="allowLineBreaks" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public Example4() {
+    super();
+  }
+
+  public Example4 (int aParam) { // violation ''(' is preceded with whitespace'
+    super (); // violation ''(' is preceded with whitespace'
+  }
+
+  public void method() {}
+
+  public void methodWithVeryLongName
+  () {} // ok, because allowLineBreaks is true
+}
 </code></pre></div>
       </subsection>
 
@@ -203,9 +265,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodParamPad_Package">
+      <subsection name="Fully Qualified Name" id="MethodParamPad_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

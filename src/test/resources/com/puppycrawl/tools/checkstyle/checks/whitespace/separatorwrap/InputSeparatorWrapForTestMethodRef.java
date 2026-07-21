@@ -22,7 +22,7 @@ public class InputSeparatorWrapForTestMethodRef {
     void badCase() {
         String[] stringArray = { "Barbara", "James", "Mary", "John",
             "Patricia", "Linda" }; // violation below ''::' should be on a new line'
-        /* violation */ Arrays.sort(stringArray, String::
+        /* bla */ Arrays.sort(stringArray, String::
                 compareToIgnoreCase);
     }
 }

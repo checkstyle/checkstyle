@@ -8,12 +8,15 @@
   </module>
 </module>
 */
-
-// xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
+// xdoc section -- start
+import java.awt.Image;
+import java.lang.ref.SoftReference;
 
-import java.io.File; // ok, import control pkg attribute does not package this class
+import java.io.File;
 import java.io.FileReader;
+import java.util.Date;
+import java.util.List;
 
 public class Example2 {}
 // xdoc section -- end

@@ -57,6 +57,7 @@ class Example1 {
     if (o1 instanceof Integer num_1) {}
     // violation above, 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
+
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -81,33 +82,9 @@ class Example2 {
     // violation above, 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
+
     if (o1 instanceof Integer n) {}
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
-          An example of how to configure the check to that all variables have 3 or more
-          chars in name:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="PatternVariableName"&gt;
-      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example3-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
-  void foo(Object o1){
-    if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
-    if (o1 instanceof Integer num) {}
-    if (o1 instanceof Integer num_1) {}
-    if (o1 instanceof Integer n) {}
-    // violation above, 'Name 'n' must match pattern*.'
+
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -146,10 +123,43 @@ class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
   void foo(Object o1){
-    if (o1 instanceof String BAD) {} // violation
-    if (o1 instanceof String good) {}
-    if (o1 instanceof final String GOOD) {}
-    if (o1 instanceof final String bad) {} // violation
+    if (o1 instanceof String STRING) {}
+    // violation above, 'Name 'STRING' must match pattern*.'
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {}
+    // violation above, 'Name 'num_1' must match pattern*.'
+    if (o1 instanceof Integer n) {}
+
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="PatternVariableName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check to that all variables have 3 or more
+          chars in name:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PatternVariableName"&gt;
+      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  void foo(Object o1){
+    if (o1 instanceof String STRING) {}
+    // violation above, 'Name 'STRING' must match pattern*.'
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {}
+
+    if (o1 instanceof Integer n) {}
+    // violation above, 'Name 'n' must match pattern*.'
   }
 }
 </code></pre></div>
@@ -160,6 +170,11 @@ class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
               Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+              OpenJDK Style
             </a>
           </li>
           <li>
@@ -185,8 +200,12 @@ class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="PatternVariableName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="PatternVariableName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="PatternVariableName_Parent_Module">

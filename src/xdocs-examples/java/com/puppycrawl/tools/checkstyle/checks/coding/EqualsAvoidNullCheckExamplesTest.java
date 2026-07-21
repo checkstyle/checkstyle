@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EqualsAvoidNullCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/equalsavoidnull";
@@ -35,7 +36,7 @@ public class EqualsAvoidNullCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "18:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "22:32: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
 
@@ -45,9 +46,10 @@ public class EqualsAvoidNullCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "19:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "20:22: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

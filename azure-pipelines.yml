@@ -95,11 +95,29 @@ strategy:
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_21_X64 ./mvnw -e --no-transfer-progress verify"
 
+    # OpenJDK25 verify
+    'OpenJDK25 verify':
+      image: 'ubuntu-24.04'
+      cmd: "JAVA_HOME=$JAVA_HOME_25_X64 ./mvnw -e --no-transfer-progress verify"
+
+    # MacOS JDK25 verify
+    'MacOS JDK25 verify':
+      image: 'macOS-14'
+      cmd: "JAVA_HOME=$JAVA_HOME_25_X64 ./mvnw -e --no-transfer-progress verify"
+
+    # check that the PR does not introduce outdated dependencies when pom.xml changes
+    'versions-on-pr':
+      image: 'ubuntu-24.04'
+      cmd: "./.ci/validation.sh versions-on-pr"
+      skipCache: true
+      needXmlstarlet: true
+
     # versions to update
     'versions':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh versions"
       onCronOnly: true
+      needXmlstarlet: true
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
@@ -123,7 +141,7 @@ variables:
 
 steps:
   - bash: |
-      apt-fast install -y xmlstarlet
+      sudo apt-get install -y xmlstarlet
     condition: |
         and(
              ne(variables['Agent.OS'], 'Darwin'),

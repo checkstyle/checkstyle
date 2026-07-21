@@ -118,4 +118,5 @@ public final class ModuleInputConfiguration {
             );
         }
     }
+
 }

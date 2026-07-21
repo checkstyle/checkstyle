@@ -53,8 +53,8 @@
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to apply the <code>nlow</code> policy to
-          type blocks:
+          To configure the check to apply the <code>nl</code> policy to
+          all blocks:
         </p>
         <macro name="example">
             <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/Example3.java"/>
@@ -79,11 +79,31 @@
         </macro>
       </subsection>
 
+      <subsection name="Use Cases" id="LeftCurly_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to apply the <code>nlow</code> policy to
+          type blocks:
+        </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/UseCase1.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example: </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly/UseCase1.java"/>
+            <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
       <subsection name="Example of Usage" id="LeftCurly_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
@@ -107,8 +127,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="LeftCurly_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="LeftCurly_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="LeftCurly_Parent_Module">

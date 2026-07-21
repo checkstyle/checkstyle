@@ -11,6 +11,10 @@ updates:
           - "> 2.1"
     commit-message:
       prefix: dependency
+    groups:
+      rewrite:
+        patterns:
+          - "*rewrite*"
   - package-ecosystem: github-actions
     directory: "/"
     schedule:

@@ -40,10 +40,11 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -56,12 +57,13 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           To configure to check all variables and identifiers
           (including ones with the static modifier) and enforce
           no abbreviations (essentially camel case) except for
           words like 'XML' and 'URL'.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example3-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -74,11 +76,11 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
-          To configure to check variables, excluding fields with
-          the static modifier, and allow abbreviations up to 2
-          consecutive capital letters ignoring the longer word 'CSV'.
-        </p><hr class="example-separator"/>
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
+        </p>
         <p id="Example4-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -91,26 +93,10 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
-          To configure to check variables, enforcing no abbreviations
-          except for variables that are both static and final.
-        </p><hr class="example-separator"/>
-        <p id="Example5-config">Configuration:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p>
-          To configure to check variables, enforcing no abbreviations
-          and ignoring static (but non-final) variables only.
-        </p><hr class="example-separator"/>
+          To configure to allow abbreviations up to 2 consecutive capital letters.
+        </p>
         <p id="Example6-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -123,11 +109,10 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
-          To configure to check variables, enforce
-          no abbreviations (essentially camel case) except for
-          words like 'ALLOWED'.
-        </p><hr class="example-separator"/>
+          To configure to check only method names.
+        </p>
         <p id="Example7-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -138,6 +123,95 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          To configure to allow abbreviations up to 1 consecutive capital letter,
+          allow specific abbreviations, and check overridden methods.
+        </p>
+        <p id="Example8-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
+        </p>
+        <p id="Example5-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="AbbreviationAsWordInName_Use_Cases">
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p id="UseCase1-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          To configure to check variables, enforcing no abbreviations
+          and ignoring static (but non-final) variables only.
+        </p>
+        <p id="UseCase2-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          To configure to check variables, enforce
+          no abbreviations (essentially camel case) except for
+          words like 'ALLOWED'.
+        </p>
+        <p id="UseCase3-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/UseCase3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -151,6 +225,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -166,8 +244,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="AbbreviationAsWordInName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="AbbreviationAsWordInName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AbbreviationAsWordInName_Parent_Module">

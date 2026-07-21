@@ -44,9 +44,9 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     public void testIt() throws Exception {
 
         final String[] expected = {
-            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "17:17: " + getCheckMessage(MSG_KEY, "\"\"", 4),
-            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "19:17: " + getCheckMessage(MSG_KEY, "\"\"", 4),
+            "22:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
         verifyWithInlineConfigParser(
@@ -58,8 +58,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     public void testItIgnoreEmpty() throws Exception {
 
         final String[] expected = {
-            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "21:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
         verifyWithInlineConfigParser(
@@ -79,8 +79,8 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         final File[] inputs = {new File(firstInput), new File(secondInput)};
 
         final List<String> expectedFirstInput = Arrays.asList(
-            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "21:23: " + getCheckMessage(MSG_KEY, "\", \"", 3)
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
 
@@ -93,7 +93,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     public void testItIgnoreEmptyAndComspace() throws Exception {
 
         final String[] expected = {
-            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
         };
 
         verifyWithInlineConfigParser(
@@ -105,7 +105,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     public void testItWithoutIgnoringAnnotations() throws Exception {
 
         final String[] expected = {
-            "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
+            "29:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
         };
 
         verifyWithInlineConfigParser(
@@ -130,9 +130,9 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
-            "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
-            "16:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
-            "19:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
+            "15:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
+            "18:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
+            "22:23: " + getCheckMessage(MSG_KEY, "\", \"", 3),
         };
 
         verifyWithInlineConfigParser(
@@ -143,7 +143,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnores() throws Exception {
         final String[] expected = {
-            "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
+            "29:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
         };
 
         verifyWithInlineConfigParser(
@@ -152,31 +152,38 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleStringLiteralsTextBlocks() throws Exception {
-
+    public void testMultipleStringLiteralsTextBlocks1() throws Exception {
         final String[] expected = {
-            "14:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
-            "19:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
-            "23:25: " + getCheckMessage(MSG_KEY, "\"other string\\n\"", 2),
-            "30:25: " + getCheckMessage(MSG_KEY, "\"<html>\\u000D\\u000A\\n\\u2000\\n "
+            "15:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
+            "21:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
+            "26:25: " + getCheckMessage(MSG_KEY, "\"other string\\n\"", 2),
+            "33:25: " + getCheckMessage(MSG_KEY, "\"<html>\\u000D\\u000A\\n\\u2000\\n "
                 + "   <body>\\u000D\\u000A\\n\\u2000\\n        <p>Hello, world</p>\\u000D\\"
                 + "u000A\\n\\u2000\\n    </body>\\u000D\\u000A\\n\\u2000\\n</html>\\u000D\\"
                 + "u000A\\u2000\\n\"", 2),
-            "37:34: " + getCheckMessage(MSG_KEY, "\"fun with\\n\\n whitespace\\t"
+            "41:34: " + getCheckMessage(MSG_KEY, "\"fun with\\n\\n whitespace\\t"
                 + "\\r\\n and other escapes \\\"\"\"\\n\"", 2),
-            "42:34: " + getCheckMessage(MSG_KEY, "\"\\b \\f \\\\ \\0 \\1 \\2 "
+            "47:34: " + getCheckMessage(MSG_KEY, "\"\\b \\f \\\\ \\0 \\1 \\2 "
                 + "\\r \\r\\n \\\\r\\\\n \\\\''\\n\\\\11 \\\\57 \\n\\\\n\\n\\\\\\n\\n \\\\ \"\"a "
                 + "\"a\\n\\\\' \\\\\\' \\'\\n\"", 2),
-            "65:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
-            "73:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
-            "77:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
-            "88:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
-            "104:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
-                + "       bar\"", 2),
-            };
-
+            "71:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
+        };
         verifyWithInlineConfigParser(
-                getPath("InputMultipleStringLiteralsTextBlocks.java"),
+                getPath("InputMultipleStringLiteralsTextBlocks1.java"),
+            expected);
+    }
+
+    @Test
+    public void testMultipleStringLiteralsTextBlocks2() throws Exception {
+        final String[] expected = {
+            "15:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
+            "20:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
+            "31:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
+            "47:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
+                + "       bar\"", 2),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMultipleStringLiteralsTextBlocks2.java"),
             expected);
     }
 

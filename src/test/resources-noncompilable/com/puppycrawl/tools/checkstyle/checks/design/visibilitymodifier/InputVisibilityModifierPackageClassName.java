@@ -12,7 +12,7 @@ ignoreAnnotationCanonicalNames = (default)com.google.common.annotations.VisibleF
 
 */
 
-// non-compiled: bad import for testing
+// non-compiled with javac: contains specially crafted set of imports
 package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 
 import com.PackageClass.*;

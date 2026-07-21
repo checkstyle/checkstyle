@@ -5,7 +5,7 @@ format = (default)^[A-Z]$
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.naming.recordtypeparametername;
 
 import java.io.Serializable;
@@ -13,14 +13,16 @@ import java.util.LinkedHashMap;
 
 import org.w3c.dom.Node;
 
-public record InputRecordTypeParameterName<t>(Integer x, String str) { // violation
+// violation below 'Name 't' must match pattern'
+public record InputRecordTypeParameterName<t>(Integer x, String str) {
     public <TT> void foo() { }
 
     <e_e> void foo(int i) {
     }
 }
 
-record OtherOne <foo extends Serializable & Cloneable> // violation
+// violation below 'Name 'foo' must match pattern'
+record OtherOne <foo extends Serializable & Cloneable>
 (LinkedHashMap<String, Node> linkedHashMap) {
 
     foo getOne() {
@@ -35,7 +37,8 @@ record OtherOne <foo extends Serializable & Cloneable> // violation
         return null;
     }
 
-    static record Junk <foo>() { // violation
+    // violation below 'Name 'foo' must match pattern'
+    static record Junk <foo>() {
         <_fo extends foo> void getMoreFoo() {
         }
     }

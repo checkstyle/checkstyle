@@ -84,6 +84,13 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
      */
     private final Deque<CatchParameterDetails> catchParameters = new ArrayDeque<>();
 
+    /**
+     * Creates a new {@code UnusedCatchParameterShouldBeUnnamedCheck} instance.
+     */
+    public UnusedCatchParameterShouldBeUnnamedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -245,4 +252,5 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
             return parameterDefinition;
         }
     }
+
 }

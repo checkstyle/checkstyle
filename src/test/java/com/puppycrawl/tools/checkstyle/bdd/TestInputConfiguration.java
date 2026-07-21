@@ -62,8 +62,7 @@ public final class TestInputConfiguration {
             "com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheckTest$ViolationFileSetCheck",
             "com.puppycrawl.tools.checkstyle.api.FileSetCheckTest$TestFileSetCheck",
             "com.puppycrawl.tools.checkstyle.internal.testmodules"
-                + ".VerifyPositionAfterLastTabFileSet",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
+                + ".VerifyPositionAfterLastTabFileSet"
     ));
 
     private final List<ModuleInputConfiguration> childrenModules;
@@ -209,4 +208,5 @@ public final class TestInputConfiguration {
             return Collections.unmodifiableList(childrenModules);
         }
     }
+
 }

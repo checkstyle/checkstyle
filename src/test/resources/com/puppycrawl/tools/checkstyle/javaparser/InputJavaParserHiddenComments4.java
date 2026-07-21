@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck
-
+location = (default)SECOND_LINE
 
 */
 

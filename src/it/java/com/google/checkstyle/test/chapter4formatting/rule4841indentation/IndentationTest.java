@@ -199,4 +199,5 @@ public class IndentationTest extends AbstractIndentationTestSupport {
         verifyWithWholeConfig(
             getPath("InputFormattedLineBreakAfterLeftCurlyOfBlockInSwitch.java"));
     }
+
 }

@@ -139,4 +139,5 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     public void testNoWrappingAfterRecordNameFormatted2() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWrappingAfterRecordName2.java"));
     }
+
 }

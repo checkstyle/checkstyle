@@ -133,4 +133,5 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -28,4 +28,16 @@ public interface InputRequireThisLocalClassesInsideLambdas {
             }
         });
     }
+
+    private static void testFieldRefInCtorInsideStaticLambda() {
+        method(s -> {
+            class Inner implements InputRequireThisLocalClassesInsideLambdas {
+                int index;
+
+                Inner() {
+                    int x = index;
+                }
+            }
+        });
+    }
 }

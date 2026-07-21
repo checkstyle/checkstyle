@@ -77,8 +77,13 @@
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
+  void method0(int v) {}
   void method1(int v1) {}
-  void method2(int V2) {} // violation
+  void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -97,12 +102,15 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+  void method0(int v) {}             // violation 'Name 'v' must match pattern'
   void method1(int v1) {}
-  void method2(int v_2) {}
-  void method3(int V3) {} // violation
+  void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
-
         <p id="Example3-config">
             An example of how to configure the check to skip methods with Override annotation from
             validation:
@@ -119,33 +127,13 @@ class Example2 {
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+  void method0(int v) {}
   void method1(int v1) {}
-  void method2(int V2) {} // violation
+  void method2(int V2) {} // violation 'Name 'V2' must match pattern'
   @Override
   public boolean equals(Object V3) {
     return true;
   }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          An example of how to configure the check for names that begin with
-          a lower case letter, followed by letters and digits is:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="ParameterName"&gt;
-      &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  void method1(int v1) {}
-  void method2(int v_2) {} // violation
-  void method3(int V3) {} // violation
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -174,10 +162,41 @@ class Example4 {
         <p id="Example5-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
-  void fn1(int v1) {}
-  protected void fn2(int V2) {} // violation "Parameter name 'V2' must match pattern"
-  private void fn3(int a) {}
-  public void fn4(int b) {} // violation "Parameter name 'b' must match pattern"
+  void method0(int v) {}
+  void method1(int v1) {}
+  void method2(int V2) {}
+  @Override              // violation above "Parameter name 'V2' must match pattern"
+  public boolean equals(Object V3) {
+    return true;         // violation above "Parameter name 'V3' must match pattern"
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ParameterName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check for names that begin with
+          a lower case letter, followed by letters and digits is:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  void method0(int v) {}             // violation 'Name 'v' must match pattern'
+  void method1(int v1) {}
+  void method2(int V2) {}            // violation 'Name 'V2' must match pattern'
+  @Override
+  public boolean equals(Object V3) { // violation 'Name 'V3' must match pattern'
+    return true;
+  }
 }
 </code></pre></div>
       </subsection>
@@ -191,6 +210,11 @@ class Example5 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
@@ -214,8 +238,12 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ParameterName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="ParameterName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ParameterName_Parent_Module">

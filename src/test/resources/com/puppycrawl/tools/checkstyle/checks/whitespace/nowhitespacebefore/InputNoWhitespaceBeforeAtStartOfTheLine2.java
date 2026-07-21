@@ -19,6 +19,6 @@ public class InputNoWhitespaceBeforeAtStartOfTheLine2 {
 
     public <V> void methodName(V value) {
         Supplier<?> t =
-A ::new; // violation
+A ::new; // violation ''::' is preceded with whitespace.'
     }
 }

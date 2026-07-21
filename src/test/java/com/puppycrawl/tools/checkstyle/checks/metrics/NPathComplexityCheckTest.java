@@ -61,11 +61,11 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "83:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "95:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "111:13: " + getCheckMessage(MSG_KEY, 2, 0),
-            "120:5: " + getCheckMessage(MSG_KEY, 48, 0),
-            "130:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "131:5: " + getCheckMessage(MSG_KEY, 1, 0),
-            "137:17: " + getCheckMessage(MSG_KEY, 3, 0),
-            "151:21: " + getCheckMessage(MSG_KEY, 3, 0),
+            "121:5: " + getCheckMessage(MSG_KEY, 48, 0),
+            "132:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "134:5: " + getCheckMessage(MSG_KEY, 1, 0),
+            "140:17: " + getCheckMessage(MSG_KEY, 3, 0),
+            "156:21: " + getCheckMessage(MSG_KEY, 3, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -83,12 +83,12 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             "72:5: " + getCheckMessage(MSG_KEY, 15, 0),
             "97:5: " + getCheckMessage(MSG_KEY, 11, 0),
             "107:5: " + getCheckMessage(MSG_KEY, 8, 0),
-            "120:5: " + getCheckMessage(MSG_KEY, 120, 0),
-            "132:5: " + getCheckMessage(MSG_KEY, 6, 0),
-            "142:5: " + getCheckMessage(MSG_KEY, 21, 0),
-            "155:5: " + getCheckMessage(MSG_KEY, 35, 0),
-            "163:5: " + getCheckMessage(MSG_KEY, 25, 0),
-            "178:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "121:5: " + getCheckMessage(MSG_KEY, 120, 0),
+            "134:5: " + getCheckMessage(MSG_KEY, 6, 0),
+            "145:5: " + getCheckMessage(MSG_KEY, 21, 0),
+            "159:5: " + getCheckMessage(MSG_KEY, 35, 0),
+            "168:5: " + getCheckMessage(MSG_KEY, 25, 0),
+            "184:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -98,7 +98,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCalculation3() throws Exception {
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, 64, 0),
+            "13:5: " + getCheckMessage(MSG_KEY, 64, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -111,7 +111,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final long largerThanMaxInt = 3_486_784_401L;
 
         final String[] expected = {
-            "20:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
+            "21:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
         };
 
         verifyWithInlineConfigParser(
@@ -196,10 +196,10 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final int max = 1;
 
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_KEY, 3, max),
-            "25:9: " + getCheckMessage(MSG_KEY, 2, max),
-            "30:21: " + getCheckMessage(MSG_KEY, 2, max),
-            "44:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "16:5: " + getCheckMessage(MSG_KEY, 3, max),
+            "26:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "31:21: " + getCheckMessage(MSG_KEY, 2, max),
+            "46:9: " + getCheckMessage(MSG_KEY, 3, max),
         };
 
         verifyWithInlineConfigParser(
@@ -212,10 +212,10 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final int max = 1;
 
         final String[] expected = {
-            "12:5: " + getCheckMessage(MSG_KEY, 5, max),
-            "29:5: " + getCheckMessage(MSG_KEY, 5, max),
-            "44:5: " + getCheckMessage(MSG_KEY, 6, max),
-            "60:5: " + getCheckMessage(MSG_KEY, 6, max),
+            "13:5: " + getCheckMessage(MSG_KEY, 5, max),
+            "31:5: " + getCheckMessage(MSG_KEY, 5, max),
+            "47:5: " + getCheckMessage(MSG_KEY, 6, max),
+            "64:5: " + getCheckMessage(MSG_KEY, 6, max),
         };
 
         verifyWithInlineConfigParser(
@@ -266,7 +266,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputNPathComplexityPatternMatchingForSwitch.java"),
+                getNonCompilablePath("InputNPathComplexityPatternMatchingForSwitch.java"),
             expected);
 
     }

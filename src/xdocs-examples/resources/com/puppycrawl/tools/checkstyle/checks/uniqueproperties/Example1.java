@@ -6,6 +6,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.uniqueproperties;
 
-public class Example1 { }
 // xdoc section -- start
+public class Example1 { }
 // xdoc section -- end

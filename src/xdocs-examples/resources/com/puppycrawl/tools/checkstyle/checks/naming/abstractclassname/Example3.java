@@ -19,6 +19,7 @@ class Example3 {
   class AbstractThird {} // violation 'must be declared as 'abstract''
   class Fourth {}
   abstract class GeneratorFifth {}
+
   class GeneratorSixth {}
 }
 // xdoc section -- end

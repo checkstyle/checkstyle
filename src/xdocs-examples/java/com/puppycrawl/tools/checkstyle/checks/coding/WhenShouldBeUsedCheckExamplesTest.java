@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class WhenShouldBeUsedCheckExamplesTest
     extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/whenshouldbeused";
@@ -39,6 +40,7 @@ public class WhenShouldBeUsedCheckExamplesTest
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example1.java"), expected);
+                getNonCompilablePath("Example1.java"), expected);
     }
+
 }

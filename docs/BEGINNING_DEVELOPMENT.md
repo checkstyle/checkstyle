@@ -17,16 +17,9 @@ everything you need to do to complete your first pull request.**
 - Ensure that Git and Java JDK >= 21 are installed.
 
 You can find information about development environment preparation here:
-[Prepare development environment in Ubuntu](https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04)
+[Prepare development environment in Ubuntu][ubuntu-dev-guide].
 
-Note: JDK 25 is currently not supported.
-Some test dependencies (cacio-tta, Mockito/ByteBuddy)
-are incompatible with JDK 25. Please use JDK 21 (LTS)
-for development until this issue is resolved.
-See [issue #18361](https://github.com/checkstyle/checkstyle/issues/18361)
-for more details.
-
-- Fork Checkstyle upstream project. As it is described [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+- Fork Checkstyle upstream project. As it is described [here][fork-repo].
 
 - Clone your forked repository to your computer:
 
@@ -50,7 +43,7 @@ Here you can find instructions about importing and debugging the project for IDE
 [IntelliJ IDEA IDE](https://checkstyle.sourceforge.io/idea.html)
 
 Community video walk throughs of these instructions are available in SteLeo1602's
-[playlist on YouTube](https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj)
+[playlist on YouTube][youtube-playlist].
 
 Follow these instructions of Git usage and creating a Pull Request:
 1) Configure remotes by pointing to the official checkstyle repository,
@@ -79,10 +72,10 @@ git commit -m "commit message"
 git push origin my-new-check
 ```
 
-5) Repeat steps 3-4 till development is complete
-All additional commits, please [squash to first](https://davidwalsh.name/squash-commits-git)
+5) Repeat steps 3-4 till development is complete.
+All additional commits, please [squash to first][squash-commits].
 Please read all rules for PullRequest at our
-[wiki](https://github.com/checkstyle/checkstyle/wiki/PR-rules).
+[wiki][pr-rules].
 
 ```bash
 git rebase -i master
@@ -126,7 +119,7 @@ git push --force origin my-new-check
 ```
 
 10) Only after all content is finished and testing is done - send a
-[Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
+[Pull Request][pr]
 
 ## Prerequisites
 
@@ -143,7 +136,7 @@ You must have the following installed on your local machine:
 You must fork the repository to your own GitHub account. This will allow you to make
 changes to the code and submit a pull request to the main repository.
 
-Navigate to https://github.com/checkstyle/checkstyle/fork and click the "Create fork" button. It is
+Navigate to [Checkstyle fork page][checkstyle-fork] and click the "Create fork" button. It is
 recommended to NOT rename the forked repository, and the rest of this guide assumes that
 you have not renamed the forked repository.
 
@@ -188,7 +181,7 @@ Using an IDE is not required, but it is recommended.
 ## Selecting an issue
 
 - Browse through issues with the
-   https://github.com/checkstyle/checkstyle/labels/good%20first%20issue label.
+  [good first issue][good-first-issue] label.
 - Read the issue description and comments to understand the problem.
 - Look at some previous pull requests to help to understand what you will need to do.
 - Make a comment on the issue to let others know that you are working on it.
@@ -215,8 +208,8 @@ git commit -m "Issue #1234: Fixing the issue"
 Run `mvn clean verify` to ensure that your changes have not broken the build and that all tests
 are still passing. If the build does not succeed, carefully read the error messages and try to
 fix the issue. If you are unable to fix the issue, reach out in our
-[Contributors Chat](https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im) or in the
-[Google Group Forum](https://groups.google.com/g/checkstyle-devel) for help.
+[Contributors Chat][contributors-chat] or in the
+[Google Group Forum][google-group-forum] for help.
 
 Push your changes to your forked repository using the following command:
 
@@ -381,3 +374,24 @@ guide to help you through it:
 - Run `mvn clean verify` to ensure that your changes have not broken the build and that all tests
   are still passing.
 - Run `git push origin issue-1234 --force` to push your changes to your forked repository.
+
+[squash-commits]:
+https://davidwalsh.name/squash-commits-git
+[pr-rules]:
+https://github.com/checkstyle/checkstyle/wiki/PR-rules
+[youtube-playlist]:
+https://www.youtube.com/playlist?list=PLHM9s_lN4X0hzOQ0sUmGdroxW0HfREAqj
+[checkstyle-fork]:
+https://github.com/checkstyle/checkstyle/fork
+[good-first-issue]:
+https://github.com/checkstyle/checkstyle/labels/good%20first%20issue
+[contributors-chat]:
+https://app.element.io/#/room/#checkstyle_checkstyle:gitter.im
+[google-group-forum]:
+https://groups.google.com/g/checkstyle-devel
+[ubuntu-dev-guide]:
+https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04
+[fork-repo]:
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
+[pr]:
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests

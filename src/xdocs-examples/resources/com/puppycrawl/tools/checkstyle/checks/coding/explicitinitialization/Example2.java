@@ -11,15 +11,16 @@ package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 // xdoc section -- start
 public class Example2 {
-  private int intField1 = 0; // ignored
+  private int intField1 = 0;
   private int intField2 = 1;
   private int intField3;
 
-  private char charField1 = '\0'; // ignored
+  private char charField1 = '\0';
   private char charField2 = 'b';
   private char charField3;
 
-  private boolean boolField1 = false; // ignored
+  private boolean boolField1 = false;
+
   private boolean boolField2 = true;
   private boolean boolField3;
 

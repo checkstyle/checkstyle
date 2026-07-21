@@ -60,17 +60,18 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
     @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@since"),
-            "20: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
-            "28: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
-            "35: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@return"),
-            "47: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
-            "63: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
-            "74: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
-            "87: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@serial"),
+            "15: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@since"),
+            "22: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
+            "31: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
+            "39: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@return"),
+            "52: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
+            "69: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
+            "81: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
+            "95: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@serial"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupIncorrect.java"),
                 expected);
     }
+
 }

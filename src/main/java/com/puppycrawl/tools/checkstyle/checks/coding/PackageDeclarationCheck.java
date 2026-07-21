@@ -65,8 +65,21 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     /** Is package defined. */
     private boolean defined;
 
+    /**
+     * Whether the file is a JEP 512 compact source file, which lives in the
+     * unnamed package by definition and cannot declare a package.
+     */
+    private boolean isCompactSourceFile;
+
     /** Control whether to check for directory and package name match. */
     private boolean matchDirectoryStructure = true;
+
+    /**
+     * Creates a new {@code PackageDeclarationCheck} instance.
+     */
+    public PackageDeclarationCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to control whether to check for directory and package name match.
@@ -96,11 +109,13 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST ast) {
         defined = false;
+        isCompactSourceFile = ast != null
+                && ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     @Override
     public void finishTree(DetailAST ast) {
-        if (!defined && ast != null) {
+        if (!defined && !isCompactSourceFile && ast != null) {
             log(ast, MSG_KEY_MISSING);
         }
     }

@@ -7,7 +7,7 @@ validateOnlyOverlapping = false
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public record InputRequireThisRecordAsTopLevel(int x, int y) {

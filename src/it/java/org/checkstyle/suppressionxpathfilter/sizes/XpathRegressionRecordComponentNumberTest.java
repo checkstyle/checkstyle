@@ -131,4 +131,5 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

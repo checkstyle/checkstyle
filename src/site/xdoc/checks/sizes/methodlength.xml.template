@@ -72,6 +72,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with default settings, so that it accepts
+          methods with at most 150 lines:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -80,6 +95,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
@@ -99,9 +118,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodLength_Package">
+      <subsection name="Fully Qualified Name" id="MethodLength_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

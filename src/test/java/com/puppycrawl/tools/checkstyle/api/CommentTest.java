@@ -93,4 +93,5 @@ public class CommentTest {
                 .that(comment.intersects(1, Integer.MAX_VALUE, 1, 2))
                 .isFalse();
     }
+
 }

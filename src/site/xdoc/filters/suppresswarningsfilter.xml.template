@@ -36,13 +36,14 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip
           validations near code that has  <code>@SuppressWarnings("checkstyle:&lt;ID&gt;")</code> or
           just <code>@SuppressWarnings("&lt;ID&gt;")</code> annotation, where ID is the ID of checks
           you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">Example of suppression by prefix "checkstyle:":</p>
         <macro name="example">
           <param name="path"
@@ -66,10 +67,18 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWarningsFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressWarningsFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarningsFilter_Parent_Module">

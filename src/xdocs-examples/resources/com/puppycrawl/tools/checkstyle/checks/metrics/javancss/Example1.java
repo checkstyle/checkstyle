@@ -18,10 +18,23 @@ class Example1 {
     System.out.println("m-1:Line 5");
   }
 
-  public void testMethod2() {
-    System.out.println("m-2:Line 1");
-    System.out.println("m-2:Line 2");
-    System.out.println("m-2:Line 3");
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
   }
 }
 // xdoc section -- end

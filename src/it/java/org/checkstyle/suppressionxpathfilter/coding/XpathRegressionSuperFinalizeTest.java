@@ -102,4 +102,5 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

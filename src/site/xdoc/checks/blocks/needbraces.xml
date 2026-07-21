@@ -101,7 +101,7 @@ class Example1 {
   int count = 0;
   int num = 12;
   String o = "O";
-  public boolean Example1() {
+  public boolean test() {
     if (obj.equals(num)) return true;
     // violation above, ''if' construct must use '{}'s.'
     if (true) {
@@ -153,7 +153,7 @@ class Example2 {
   int count = 0;
   int num = 12;
   String o = "O";
-  public boolean Example2() {
+  public boolean test() {
     if (obj.equals(num)) return true;
     // violation above, ''if' construct must use '{}'s.'
     if (true) {
@@ -207,7 +207,7 @@ class Example3 {
   int count = 0;
   int num = 12;
   String o = "O";
-  public boolean Example3() {
+  public boolean test() {
     if (obj.equals(num)) return true;
     // ok above, because single line IF statement is allowed in config.
     if (true) {
@@ -229,62 +229,6 @@ class Example3 {
         ++count;
     while (value.charAt(12) &lt; 5);
     // ok above, because single line FOR statement is allowed in config.
-    switch (num) {
-      case 1: counter++; break;
-      // ok above, because break in case blocks is not counted to allow compact view
-    }
-    return true;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          To configure the check to allow <code>case, default</code> single-line statements
-          without braces:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="NeedBraces"&gt;
-      &lt;property name="tokens" value="LITERAL_CASE, LITERAL_DEFAULT"/&gt;
-      &lt;property name="allowSingleLineStatement" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">
-        Next statements won't be violated by check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  String obj = new String();
-  String value = new String();
-  int counter = 1;
-  int count = 0;
-  int num = 12;
-  String o = "O";
-  public boolean Example4() {
-
-    if (obj.equals(num)) return true;
-    // ok above, because IF is not a target of validation
-    if (true) {
-      count = 2;
-    } else
-        // ok above, because ELSE is not a target of validation
-        return false;
-    for (int i = 0; i &lt; 5; i++) {
-      ++count;}
-    do // ok, because DO is not a target of validation
-        ++count;
-    while (false);
-    for (int j = 0; j &lt; 10; j++);
-    // ok above, because FOR is not a target of validation
-    for(int i = 0; i &lt; 10; value.charAt(12));
-    // ok above, because FOR is not a target of validation
-    while (counter &lt; 10)
-        // ok above, because WHILE is not a target of validation
-        ++count;
-    while (value.charAt(12) &lt; 5);
-    // ok above, because WHILE is not a target of validation
     switch (num) {
       case 1: counter++; break;
       // ok above, because break in case blocks is not counted to allow compact view
@@ -315,7 +259,7 @@ class Example5 {
   int count = 0;
   int num = 12;
   String o = "O";
-  public boolean Example5() {
+  public boolean test() {
     if (obj.equals(num)) return true;
     // ok above, because IF is not a target of validation
     if (true) {
@@ -344,8 +288,66 @@ class Example5 {
     return true;
   }
 }
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NeedBraces_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to allow <code>case, default</code> single-line statements
+          without braces:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NeedBraces"&gt;
+      &lt;property name="tokens" value="LITERAL_CASE, LITERAL_DEFAULT"/&gt;
+      &lt;property name="allowSingleLineStatement" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+        Next statements won't be violated by check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  String obj = new String();
+  String value = new String();
+  int counter = 1;
+  int count = 0;
+  int num = 12;
+  String o = "O";
+  public boolean test() {
+    if (obj.equals(num)) return true;
+    // ok above, because IF is not a target of validation
+    if (true) {
+      count = 2;
+    } else
+        // ok above, because ELSE is not a target of validation
+        return false;
+    for (int i = 0; i &lt; 5; i++) {
+      ++count;}
+    do // ok, because DO is not a target of validation
+        ++count;
+    while (false);
+    for (int j = 0; j &lt; 10; j++);
+    // ok above, because FOR is not a target of validation
+    for(int i = 0; i &lt; 10; value.charAt(12));
+    // ok above, because FOR is not a target of validation
+    while (counter &lt; 10)
+        // ok above, because WHILE is not a target of validation
+        ++count;
+    while (value.charAt(12) &lt; 5);
+    // ok above, because WHILE is not a target of validation
+    switch (num) {
+      case 1: counter++; break;
+      // ok above, because break in case blocks is not counted to allow compact view
+    }
+    return true;
+  }
+}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the check to lambdas:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -358,13 +360,13 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Results in following:</p>
+        <p id="UseCase2-code">Results in following:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   enum HttpMethod {GET, OPTIONS}
   Object result = new Object();
   private CustomCompletableFuture&lt;Object&gt; allowedFuture;
-  Example6() {
+  UseCase2() {
     allowedFuture = new CustomCompletableFuture&lt;&gt;();
     // violation below ''-&gt;' construct must use '{}'s'
     allowedFuture.addCallback(result -&gt; assertEquals("Invalid response",
@@ -400,6 +402,10 @@ class CustomCompletableFuture&lt;T&gt; {
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
             Sun Style</a>
           </li>
@@ -425,8 +431,12 @@ class CustomCompletableFuture&lt;T&gt; {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NeedBraces_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="NeedBraces_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="NeedBraces_Parent_Module">

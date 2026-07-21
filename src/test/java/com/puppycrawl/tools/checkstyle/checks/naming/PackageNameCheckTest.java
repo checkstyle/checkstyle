@@ -56,15 +56,61 @@ public class PackageNameCheckTest
                 "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
         verifyWithInlineConfigParser(
-                getPath("InputPackageNameSimple1.java"), expected);
+                getPath("InputPackageNameSimple11.java"), expected);
     }
 
     @Test
-    public void testDefault()
+    public void testSpecified2()
+            throws Exception {
+
+        final String pattern = "[A-Z]+";
+
+        final String[] expected = {
+            "8:9: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputPackageNameSimple12.java"), expected);
+    }
+
+    @Test
+    public void testSpecified3()
+            throws Exception {
+
+        final String pattern = "[A-Z]+";
+
+        final String[] expected = {
+            "8:9: " + getCheckMessage(MSG_KEY,
+                "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputPackageNameSimple13.java"), expected);
+    }
+
+    @Test
+    public void testDefaultA()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputPackageNameSimple.java"), expected);
+                getPath("InputPackageNameSimpleA.java"), expected);
+    }
+
+    @Test
+    public void testDefaultB()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputPackageNameSimpleB.java"), expected);
+    }
+
+    @Test
+    public void testDefaultC()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputPackageNameSimpleC.java"), expected);
     }
 
     @Test

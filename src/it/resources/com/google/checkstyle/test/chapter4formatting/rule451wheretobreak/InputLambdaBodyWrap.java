@@ -23,6 +23,7 @@ public class InputLambdaBodyWrap {
   }
 
   private void runTask() {
+    // violation 2 lines below ''->' should be on the previous line.'
     Runnable runTask = ()
         -> {
           System.out.println("Starting task");
@@ -67,6 +68,7 @@ public class InputLambdaBodyWrap {
           return value;
         };
 
+    // violation 3 lines below ''->' should be on the previous line.'
     // violation 3 lines below ''{' at column 11 should be on the previous line.'
     java.util.function.Predicate<String> predicate = str
         ->

@@ -1,7 +1,7 @@
 @Grapes(
-        @Grab(group='org.codenarc', module='CodeNarc', version='2.2.0')
+        @Grab(group='org.codenarc', module='CodeNarc', version='3.4.0-groovy-4.0')
 )
-@GrabExclude('org.codehaus.groovy:groovy-xml')
+@GrabExclude('org.apache.groovy:groovy-xml')
 import java.lang.Object
 
 org.codenarc.CodeNarc.main([

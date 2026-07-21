@@ -68,6 +68,13 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private int offset = DEFAULT_INDENTATION;
 
     /**
+     * Creates a new {@code JavadocTagContinuationIndentationCheck} instance.
+     */
+    public JavadocTagContinuationIndentationCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify how many spaces to use for new indentation level.
      *
      * @param offset custom value.
@@ -129,8 +136,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private static List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
         final List<DetailNode> textNodes = new ArrayList<>();
-
         if (!JavadocUtil.isTag(ast, PRE_TAG) && !isInsidePreTag(ast)) {
+            final DetailNode prevSibling = ast.getPreviousSibling();
+            if (prevSibling != null && isTargetTextNode(prevSibling)) {
+                textNodes.add(prevSibling);
+            }
             DetailNode node = ast.getFirstChild();
             while (node != null) {
                 if (node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
@@ -326,4 +336,5 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         }
         return isInline;
     }
+
 }

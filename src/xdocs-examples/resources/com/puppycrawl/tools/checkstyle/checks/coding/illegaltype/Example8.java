@@ -17,6 +17,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 // xdoc section -- start
+
 public class Example8 extends TreeSet {
 
   public <T extends java.util.HashSet> void method() {

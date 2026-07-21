@@ -32,45 +32,7 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]model[\\/]util[\\/]elements[\\/]TestGetDocComment_Line.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/17052 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]FeatureFlexibleConstructors.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]PreviewFeatureUse.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]UninitializedThisException.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]LambdaOuterCapture.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest1.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLambdaReturn.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest2.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalCtorRef.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest4.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest5.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest3.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]SuperInitGood.java$"/>
-</module>
-
-<!-- until https://github.com/checkstyle/checkstyle/issues/17810 -->
+<!-- until https://github.com/checkstyle/checkstyle/issues/19971 -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClass.java$"/>
 </module>
@@ -741,6 +703,9 @@
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyInnerAccessErrorMessageTest.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]jdk[\\/]jfr[\\/]event[\\/]tracing[\\/]TestConstructors.java$"/>
 </module>
 <!-- Parenthesized patterns removed from grammar -->
 <module name="BeforeExecutionExclusionFileFilter">

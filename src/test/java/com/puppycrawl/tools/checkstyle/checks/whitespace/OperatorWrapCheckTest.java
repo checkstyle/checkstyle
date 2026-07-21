@@ -200,7 +200,7 @@ public class OperatorWrapCheckTest
             "82:38: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputOperatorWrapInstanceOfOperator.java"), expected);
+                getNonCompilablePath("InputOperatorWrapInstanceOfOperator.java"), expected);
     }
 
     @Test
@@ -213,8 +213,23 @@ public class OperatorWrapCheckTest
             "88:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "instanceof"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputOperatorWrapInstanceOfOperatorEndOfLine.java"), expected);
+    }
+
+    @Test
+    public void testLambdaEol() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "29:9: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "38:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "47:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "60:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "70:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+            "81:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapLambda.java"), expected);
     }
 
 }

@@ -84,4 +84,5 @@ public interface DetailNode {
      * @return sibling node
      */
     DetailNode getPreviousSibling();
+
 }

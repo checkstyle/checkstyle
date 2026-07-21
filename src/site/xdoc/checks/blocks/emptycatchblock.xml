@@ -189,8 +189,11 @@ public class Example3 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="EmptyCatchBlock_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to suppress empty catch block if single-line comment inside
           is &quot;This is expected&quot;:
         </p>
@@ -203,9 +206,9 @@ public class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Such empty blocks would be both suppressed:</p>
+        <p id="UseCase1-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase1 {
   private void exampleMethod1() {
     try {
       throw new RuntimeException();
@@ -252,7 +255,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure the check to suppress empty catch block if
           exception's variable name is &quot;myException&quot;:
         </p>
@@ -265,9 +268,9 @@ public class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Such empty blocks would be both suppressed:</p>
+        <p id="UseCase2-code">Such empty blocks would be both suppressed:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class UseCase2 {
   private void exampleMethod1() {
     try {
       throw new RuntimeException();
@@ -283,7 +286,6 @@ public class Example5 {
   }
 }
 </code></pre></div>
-
       </subsection>
 
       <subsection name="Example of Usage" id="EmptyCatchBlock_Example_of_Usage">
@@ -314,8 +316,12 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="EmptyCatchBlock_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="EmptyCatchBlock_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="EmptyCatchBlock_Parent_Module">

@@ -3,18 +3,18 @@ EmptyLineSeparator
 allowNoEmptyLineBetweenFields = (default)false
 allowMultipleEmptyLines = (default)true
 allowMultipleEmptyLinesInsideClassMembers = (default)true
-tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF, \
-         STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, \
-         COMPACT_CTOR_DEF
+tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT, CLASS_DEF, \
+         INTERFACE_DEF, ENUM_DEF, STATIC_INIT, INSTANCE_INIT, METHOD_DEF, \
+         CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
-import java.lang.Object; // no violation
+import java.lang.Object;
 
-import java.lang.Class; // no violation
+import java.lang.Class;
 
 // ok below
 import java.lang.Long;
@@ -48,7 +48,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     public int testNoViolation1 = 1;
 
-    public int testNoViolation2 = 2; // no violation
+    public int testNoViolation2 = 2;
 
     // Should
     // not
@@ -68,17 +68,17 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
     public int testNoViolationWithJavadoc = 5;
 
     public void testNoViolationMethod1() {
-    } // no violation
+    }
 
     public void testNoViolationMethod2() {
-    } // no violation
+    }
 
     // Should not have
 
     public void testNoViolationMethod3() {
 
 
-        // no violation
+
 
     }
 
@@ -89,7 +89,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
      * violation
      */
     public void testNoViolationMethod4() {
-        // no violation
+
     }
 
     /*
@@ -109,10 +109,10 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     }
 
-    // no violation
 
-    // no violation
-    // no violation
+
+
+
 
     /**
      * Should have
@@ -121,7 +121,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
     public void testNoViolationWithJavadoc1() {
 
 
-        // no violation
+
 
 
 
@@ -129,7 +129,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
 
 
-        // no violation
+
 
     }
 
@@ -137,33 +137,33 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
      * Should not have
      * violation
      */
-    public void testNoViolationWithJavadoc2() { // no violation
+    public void testNoViolationWithJavadoc2() {
     }
 
-    public static class Class1 { } // no violation
+    public static class Class1 { }
 
 
     public static class Class2 { }
 
-    // no violation
+
 
     public static class Class3 {
 
 
-        // no violation
+
 
 
 
         /* no violation */
 
 
-        // no violation
+
 
     }
 
-    // no violation
 
-    // no violation
+
+
 
     public static class Class4 {
 
@@ -180,18 +180,18 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     /* no violation */
     public
-    // no violation
+
     static class Class5 {
 
 
-        // no violation
+
 
     }
 
     public
     /* no violation */
 
-    // no violation
+
     static class Class6 { }
 
     /*
@@ -200,11 +200,11 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
      */
     public static class Class7 { }
 
-    // no violation
 
-    // no violation
 
-    // no violation
+
+
+
 
     /*
      * Should have
@@ -218,15 +218,15 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
      */
     public static class Class9 {
         {
-            // no violation
+
         }
     }
 
-    // no violation
+
     public interface Interface1 {
 
 
-        // no violation
+
 
 
 
@@ -234,14 +234,14 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
 
 
-        // no violation
+
 
 
     }
 
     /** no violation */
     public interface Interface2 { }
-    // no violation
+
 
     public
     // .
@@ -254,13 +254,13 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
     interface Interface4 {
 
 
-        // no violation
+
 
     }
 
-    // no violation
 
-    // no violation
+
+
     // .
     // .
     // .
@@ -277,7 +277,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     }
 
-    // no violation
+
     public enum Enum1 {
         E1, E2
     }
@@ -287,11 +287,11 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
      * violation.
      */
 
-    // no violation
+
     public enum Enum2 {
 
 
-        // no violation
+
 
 
 
@@ -299,22 +299,22 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
 
 
-        // no violation
+
 
 
     }
 
-    // no violation
-    // no violation
 
-    // no violation
+
+
+
     public enum Enum3 {
 
 
-        // no violation
+
 
     }
-    // no violation
+
 
     public enum Enum4 {
         /*
@@ -322,11 +322,11 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
          * violation
          */
     }
-    // no violation
+
 
     public enum Enum5 { /* no violation */ }
 
-    // no violation
+
 
     public
 
@@ -335,19 +335,19 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     enum Enum6 { }
 
-    // no violation
+
     static {
         Math.abs(2);
     }
 
-    // no violation
 
-    // no violation
+
+
     {
         Math.abs(1);
 
 
-        // no violation
+
 
     }
 
@@ -369,13 +369,13 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
         int i = 1;
     }
 
-    // no violation
+
     // .
     /* . */ public InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments() {
         testNoViolationWithJavadoc = 1;
 
 
-        //no violation
+
 
 
 
@@ -389,28 +389,28 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
     }
 
-    // no violation
+
     /* . */ public InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments(int i) {
         testNoViolationWithJavadoc = 1;
-        // no violation
+
     }
 
-    // no violation
-    // no violation
 
-    // no violation
+
+
+
     public InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments(int i, int j) {
         testNoViolationWithJavadoc = 1;
     }
 
     /* no violation */
 
-    // no violation
-    // no violation
 
-    // no violation
 
-    // no violation
+
+
+
+
     public InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments(int i, int j, int k) {
         testNoViolationWithJavadoc = 1;
     }
@@ -418,7 +418,7 @@ public class InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments {
 
 
 
-    // no violation
+
 
 }
 

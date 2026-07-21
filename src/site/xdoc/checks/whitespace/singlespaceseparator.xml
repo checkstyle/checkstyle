@@ -76,12 +76,23 @@ public long toMicros(long d) { return d / (C1 / C0); }
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   int foo()   { // violation 'Use a single space'
-    return  1; // violation 'Use a single space'
+    return  1;  // violation 'Use a single space'
   }
-  int fun1() {
-    return 3;
-  }
-  void  fun2() {} // violation 'Use a single space'
+
+  void fun1() {}
+
+
+  // violation below 'Use a single space'
+  void  fun2() { return; }  /* 2 whitespaces before the comment starts */
+
+  /* 2 whitespaces after the comment ends */  int a;
+
+  String s; /* OK, 1 whitespace */
+
+  /**
+   * This is a Javadoc comment
+   */  int b;
+
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -100,10 +111,15 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  // violation below 'Use a single space'
-  void fun1() {}  // 2 whitespaces before the comment starts
-  // violation below 'Use a single space'
-  void fun2() { return; }  /* 2 whitespaces before the comment starts */
+  int foo()   { // violation 'Use a single space'
+    return  1; // violation 'Use a single space'
+  }
+
+  void fun1() {}
+  // 2 violations 3 lines below:
+  // 'Use a single space to separate non-whitespace characters.'
+  // 'Use a single space to separate non-whitespace characters.'
+  void  fun2() { return; }  /* 2 whitespaces before the comment starts */
   // violation below 'Use a single space'
   /* 2 whitespaces after the comment ends */  int a;
 
@@ -111,19 +127,18 @@ class Example2 {
 
   /**
    * This is a Javadoc comment
-   */  int b; // 2 whitespaces after the javadoc comment ends
+   */  int b;
   // violation above 'Use a single space'
-  float f1;
-
-  /**
-   * OK, 1 white space after the doc comment ends
-   */ float f2;
 }
 </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="SingleSpaceSeparator_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+            OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
             Checkstyle Style</a>
@@ -146,9 +161,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="SingleSpaceSeparator_Package">
+      <subsection name="Fully Qualified Name" id="SingleSpaceSeparator_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

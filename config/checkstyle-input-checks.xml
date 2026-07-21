@@ -21,8 +21,56 @@
     <property name="fileExtensions" value="java"/>
     <property name="message" value="Inputs should not reference checkstyle's own files"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="presenceOfCompilationComment"/>
+    <property name="format" value="^// non-compiled with javac: (Compilable with Java(\d+)|(contains specially crafted set of imports)|(but was compiled on jdk before)|(missing package)|(package statement is different than folder)|(reference to non existent))"/>
+    <property name="message"
+              value="Missing compilation comment"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="2"/>
+  </module>
+
+  <module name="RegexpMultiline">
+    <property name="id" value="noViolationCommentsInJavadoc"/>
+    <property name="matchAcrossLines" value="true"/>
+    <property name="format"
+              value="\/\*\*[^\/](?:[^*]|\*(?!\/))*?(\/\/[^\n]+violation[^\n]+)\n(?:[^*]|\*(?!\/))*?\*\/"/>
+    <property name="message" value="Violation comments should not be placed inside Javadoc."/>
+  </module>
 
   <module name="TreeWalker">
+    <module name="MatchXpath">
+      <property name="id" value="violationBetweenAnnotationAndMethod"/>
+      <property name="query"
+                value="//*[self::METHOD_DEF or self::CTOR_DEF
+                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
+                              or self::INTERFACE_DEF or self::ENUM_DEF
+                              or self::ANNOTATION_DEF or self::RECORD_DEF
+                              or self::ANNOTATION_FIELD_DEF
+                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
+                       ./COMMENT_CONTENT[contains(@text, 'violation')]
+                       and preceding-sibling::ANNOTATION]"/>
+      <message key="matchxpath.match"
+               value="Violation comment must not be placed between an annotation and its target.
+Place it before the annotation block instead."/>
+    </module>
+    <module name="MatchXpath">
+      <property name="id" value="violationBetweenJavadocAndMethod"/>
+      <property name="query"
+                value="//*[self::METHOD_DEF or self::CTOR_DEF
+                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
+                              or self::INTERFACE_DEF or self::ENUM_DEF
+                              or self::ANNOTATION_DEF or self::RECORD_DEF
+                              or self::ANNOTATION_FIELD_DEF
+                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
+                       ./COMMENT_CONTENT[contains(@text, 'violation')]
+                       and preceding-sibling::BLOCK_COMMENT_BEGIN[
+                       ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
+      <message key="matchxpath.match"
+               value="Violation comment must not be placed between a Javadoc block and its target.
+Place it before the Javadoc block instead."/>
+    </module>
     <module name="Regexp">
       <property name="id" value="UnnecessaryOkComment"/>
       <property name="format"

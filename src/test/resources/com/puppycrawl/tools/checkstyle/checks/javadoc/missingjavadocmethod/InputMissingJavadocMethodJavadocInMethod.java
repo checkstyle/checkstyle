@@ -17,21 +17,21 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
  * scope = "private"
  */
 public class InputMissingJavadocMethodJavadocInMethod {
-    public void foo1() { } // violation
+    public void foo1() { } // violation 'Missing a Javadoc comment.'
 
-    @Deprecated // violation
+    @Deprecated // violation 'Missing a Javadoc comment.'
     public void foo2() { }
 
-    @Deprecated // violation
+    @Deprecated // violation 'Missing a Javadoc comment.'
     /** */
     public void foo3() { }
 
-    public void foo4() { /** */ } // violation
+    public void foo4() { /** */ } // violation 'Missing a Javadoc comment.'
 
-    @Deprecated
+    @Deprecated // violation 'Missing a Javadoc comment.'
     public void foo5() { /** */ }
 
-    @Deprecated
+    @Deprecated // violation 'Missing a Javadoc comment.'
     /** */
     public void foo6() { /** */ }
 

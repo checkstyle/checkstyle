@@ -119,4 +119,14 @@ public class StringLiteralEqualityCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:14: " + getCheckMessage(MSG_KEY, "=="),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputStringLiteralEqualityCompactSourceFile.java"),
+                expected);
+    }
+
 }

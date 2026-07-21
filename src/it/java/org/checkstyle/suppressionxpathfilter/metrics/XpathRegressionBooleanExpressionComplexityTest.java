@@ -113,4 +113,5 @@ public class XpathRegressionBooleanExpressionComplexityTest
         runVerifications(moduleConfig, fileToProcess,
                 expectedViolationMessages, expectedXpathQueries);
     }
+
 }

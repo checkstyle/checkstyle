@@ -14,14 +14,19 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example2 {
 
+  private int MyVariable = 5;
+
   public void exampleMethod(int a, int b) {
+    int value = 100;
     // filtered violation below ''.' is followed by whitespace'
     Integer. parseInt("3");
   }
 
-  public void exampleMethod2() {
+  public void printExample() {
     int [] x; // violation ''int' is followed by whitespace'
+    System.out.println(
+            "example"
+    );
   }
-
 }
 // xdoc section -- end

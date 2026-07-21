@@ -31,7 +31,7 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
     }
     ;
 
-    public @interface TestAnnnotation5 {
+    public @interface TestAnnotation5 {
         String someValue(); }; // violation ''}' at column 29 should have line break before'
 
     public @interface TestAnnotation6 {};

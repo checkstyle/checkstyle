@@ -27,21 +27,18 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
@@ -111,8 +108,8 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  *
  * @since 3.0
  */
-@StatelessCheck
-public class JavadocMethodCheck extends AbstractCheck {
+@FileStatefulCheck
+public class JavadocMethodCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -162,35 +159,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Html element end symbol. */
     private static final String ELEMENT_END = ">";
 
-    /** Compiled regexp to match Javadoc tags that take an argument. */
-    private static final Pattern MATCH_JAVADOC_ARG = CommonUtil.createPattern(
-            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+(\\S+)\\s+\\S*");
-    /** Compiled regexp to match Javadoc tags with argument but with missing description. */
-    private static final Pattern MATCH_JAVADOC_ARG_MISSING_DESCRIPTION =
-        CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(throws|exception|param)\\s+"
-            + "(\\S[^*]*)(?:(\\s+|\\*\\/))?");
-
-    /** Compiled regexp to look for a continuation of the comment. */
-    private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
-            CommonUtil.createPattern("(\\*\\/|@|[^\\s\\*])");
-
-    /** Multiline finished at end of comment. */
-    private static final String END_JAVADOC = "*/";
-    /** Multiline finished at next Javadoc. */
-    private static final String NEXT_TAG = "@";
-
-    /** Compiled regexp to match Javadoc tags with no argument. */
-    private static final Pattern MATCH_JAVADOC_NOARG =
-            CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(return|see)\\s+\\S");
-    /** Compiled regexp to match Javadoc tags with no argument allowing inline return tag. */
-    private static final Pattern MATCH_JAVADOC_NOARG_INLINE_RETURN =
-            CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*\\{?@(return|see)\\s+\\S");
-    /** Compiled regexp to match first part of multilineJavadoc tags. */
-    private static final Pattern MATCH_JAVADOC_NOARG_MULTILINE_START =
-            CommonUtil.createPattern("^\\s*(?>\\*|\\/\\*\\*)?\\s*@(return|see)\\s*$");
-    /** Compiled regexp to match Javadoc tags with no argument and {}. */
-    private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
-            CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
+    /** Javadoc tags collected from the current Javadoc tree. */
+    private final List<JavadocTag> javadocTags = new ArrayList<>();
 
     /**
      * Control whether to allow inline return tags.
@@ -224,6 +194,16 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /** Specify annotations that allow missed documentation. */
     private Set<String> allowedAnnotations = Set.of("Override");
+
+    /** Java AST node whose attached Javadoc is currently being processed. */
+    private DetailAST currentAst;
+
+    /**
+     * Creates a new {@code JavadocMethodCheck} instance.
+     */
+    public JavadocMethodCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to control whether to allow inline return tags.
@@ -288,6 +268,21 @@ public class JavadocMethodCheck extends AbstractCheck {
         allowMissingReturnTag = flag;
     }
 
+    /**
+     * Setter to control when to print violations if the Javadoc being examined by this check
+     * violates the tight html rules defined at
+     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     *     Tight-HTML Rules</a>.
+     *
+     * @param shouldReportViolation value to which the field shall be set to
+     * @since 8.3
+     * @propertySince 13.7.0
+     */
+    @Override
+    public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
+        super.setViolateExecutionOnNonTightHtml(shouldReportViolation);
+    }
+
     @Override
     public final int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
@@ -310,33 +305,152 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     @Override
     public final void visitToken(DetailAST ast) {
-        processAST(ast);
-    }
-
-    /**
-     * Called to process an AST when visiting it.
-     *
-     * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
-     *             IMPORT tokens.
-     */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19144
-    @SuppressWarnings("deprecation")
-    private void processAST(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
-
-            if (textBlock != null) {
-                checkComment(ast, textBlock);
+            final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
+            if (blockCommentNode != null) {
+                currentAst = ast;
+                super.visitToken(blockCommentNode);
             }
         }
     }
 
+    @Override
+    public void beginJavadocTree(DetailNode rootAst) {
+        javadocTags.clear();
+    }
+
+    @Override
+    public void finishJavadocTree(DetailNode rootAst) {
+        checkCollectedTags();
+    }
+
+    @Override
+    public int[] getDefaultJavadocTokens() {
+        return getRequiredJavadocTokens();
+    }
+
+    @Override
+    public int[] getRequiredJavadocTokens() {
+        return new int[] {
+            JavadocCommentsTokenTypes.PARAM_BLOCK_TAG,
+            JavadocCommentsTokenTypes.RETURN_BLOCK_TAG,
+            JavadocCommentsTokenTypes.RETURN_INLINE_TAG,
+            JavadocCommentsTokenTypes.THROWS_BLOCK_TAG,
+            JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG,
+            JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG,
+        };
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+        switch (ast.getType()) {
+            case JavadocCommentsTokenTypes.RETURN_BLOCK_TAG -> collectReturn(ast);
+            case JavadocCommentsTokenTypes.RETURN_INLINE_TAG -> {
+                if (allowInlineReturn) {
+                    collectReturn(ast);
+                }
+            }
+            case JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG -> collectInheritDoc();
+            case JavadocCommentsTokenTypes.PARAM_BLOCK_TAG -> collectParam(ast);
+            case JavadocCommentsTokenTypes.THROWS_BLOCK_TAG -> collectThrows(ast, "throws");
+            case JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG -> collectThrows(ast, "exception");
+            default -> throw new IllegalArgumentException("Unknown javadoc token type " + ast);
+        }
+    }
+
     /**
-     * Whether we should check this node.
+     * Collects a return tag if it has a description.
      *
-     * @param ast a given node.
-     * @return whether we should check a given node.
+     * @param ast the return tag node
+     */
+    private void collectReturn(DetailNode ast) {
+        if (JavadocUtil.findFirstToken(ast, JavadocCommentsTokenTypes.DESCRIPTION) != null) {
+            javadocTags.add(new JavadocTag(ast.getLineNumber(), ast.getColumnNumber(), "return"));
+        }
+    }
+
+    /**
+     * Collects an inheritDoc tag.
+     */
+    private void collectInheritDoc() {
+        javadocTags.add(new JavadocTag(0, 0, "inheritDoc"));
+    }
+
+    /**
+     * Collects a param tag.
+     *
+     * @param ast the param tag node
+     */
+    private void collectParam(DetailNode ast) {
+        final DetailNode parameterName = JavadocUtil.findFirstToken(
+                ast, JavadocCommentsTokenTypes.PARAMETER_NAME);
+        if (parameterName != null) {
+            javadocTags.add(new JavadocTag(ast.getLineNumber(), ast.getColumnNumber(),
+                    "param", parameterName.getText()));
+        }
+    }
+
+    /**
+     * Collects a throws or exception tag.
+     *
+     * @param ast the throws or exception tag node
+     * @param tagName the tag name
+     */
+    private void collectThrows(DetailNode ast, String tagName) {
+        final DetailNode identifier = JavadocUtil.findFirstToken(
+                ast, JavadocCommentsTokenTypes.IDENTIFIER);
+        if (identifier != null) {
+            javadocTags.add(new JavadocTag(0, 0,
+                    tagName, identifier.getText()));
+        }
+    }
+
+    /**
+     * Checks collected Javadoc tags against the current AST node.
+     */
+    private void checkCollectedTags() {
+        final List<JavadocTag> tagsToCheck = new ArrayList<>(javadocTags);
+        if (!hasShortCircuitTag(currentAst, tagsToCheck)) {
+            if (currentAst.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+                checkReturnTag(tagsToCheck, currentAst.getLineNo(), true);
+            }
+            else {
+                boolean hasInheritDocTag = false;
+                final Iterator<JavadocTag> iterator = tagsToCheck.iterator();
+                while (!hasInheritDocTag && iterator.hasNext()) {
+                    hasInheritDocTag = iterator.next().isInheritDocTag();
+                }
+                final boolean reportExpectedTags = !hasInheritDocTag
+                        && !AnnotationUtil.containsAnnotation(currentAst, allowedAnnotations);
+                if (currentAst.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                    checkRecordParamTags(tagsToCheck, currentAst, reportExpectedTags);
+                }
+                else {
+                    checkParamTags(tagsToCheck, currentAst, reportExpectedTags);
+                }
+                final List<ExceptionInfo> thrown =
+                        combineExceptionInfo(getThrows(currentAst), getThrowed(currentAst));
+                checkThrowsTags(tagsToCheck, thrown, reportExpectedTags);
+                if (CheckUtil.isNonVoidMethod(currentAst)) {
+                    checkReturnTag(tagsToCheck, currentAst.getLineNo(), reportExpectedTags);
+                }
+            }
+        }
+        tagsToCheck.stream()
+                .filter(javadocTag -> !javadocTag.isInheritDocTag())
+                .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
+    }
+
+    /**
+     * Checks whether the given declaration should be validated.
+     *
+     * <p>The declaration is checked only when both its own access modifier and the
+     * access modifier of the surrounding type match the configured
+     * {@code accessModifiers}.</p>
+     *
+     * @param ast the method, constructor, annotation field, or compact constructor
+     *        AST node to check
+     * @return {@code true} if the declaration is inside the configured access scope
      */
     private boolean shouldCheck(final DetailAST ast) {
         final Optional<AccessModifierOption> surroundingAccessModifier = CheckUtil
@@ -346,48 +460,6 @@ public class JavadocMethodCheck extends AbstractCheck {
         return surroundingAccessModifier.isPresent() && Arrays.stream(accessModifiers)
                         .anyMatch(modifier -> modifier == surroundingAccessModifier.get())
                 && Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
-    }
-
-    /**
-     * Checks the Javadoc for a method.
-     *
-     * @param ast the token for the method
-     * @param comment the Javadoc comment
-     */
-    private void checkComment(DetailAST ast, TextBlock comment) {
-        final List<JavadocTag> tags = getMethodTags(comment);
-
-        if (!hasShortCircuitTag(ast, tags)) {
-            if (ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
-                checkReturnTag(tags, ast.getLineNo(), true);
-            }
-            else {
-                final Iterator<JavadocTag> it = tags.iterator();
-                // Check for inheritDoc
-                boolean hasInheritDocTag = false;
-                while (!hasInheritDocTag && it.hasNext()) {
-                    hasInheritDocTag = it.next().isInheritDocTag();
-                }
-                final boolean reportExpectedTags = !hasInheritDocTag
-                    && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
-
-                // COMPACT_CTOR_DEF has no parameters
-                if (ast.getType() == TokenTypes.COMPACT_CTOR_DEF) {
-                    checkRecordParamTags(tags, ast, reportExpectedTags);
-                }
-                else {
-                    checkParamTags(tags, ast, reportExpectedTags);
-                }
-                final List<ExceptionInfo> throwed =
-                    combineExceptionInfo(getThrows(ast), getThrowed(ast));
-                checkThrowsTags(tags, throwed, reportExpectedTags);
-                if (CheckUtil.isNonVoidMethod(ast)) {
-                    checkReturnTag(tags, ast.getLineNo(), reportExpectedTags);
-                }
-            }
-        }
-        tags.stream().filter(javadocTag -> !javadocTag.isSeeOrInheritDocTag())
-            .forEach(javadocTag -> log(javadocTag.getLineNo(), MSG_UNUSED_TAG_GENERAL));
     }
 
     /**
@@ -446,111 +518,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             result = false;
         }
         return result;
-    }
-
-    /**
-     * Returns the tags in a javadoc comment. Only finds throws, exception,
-     * param, return and see tags.
-     *
-     * @param comment the Javadoc comment
-     * @return the tags found
-     */
-    private List<JavadocTag> getMethodTags(TextBlock comment) {
-        Pattern matchJavadocNoArg = MATCH_JAVADOC_NOARG;
-        if (allowInlineReturn) {
-            matchJavadocNoArg = MATCH_JAVADOC_NOARG_INLINE_RETURN;
-        }
-        final String[] lines = comment.getText();
-        final List<JavadocTag> tags = new ArrayList<>();
-        int currentLine = comment.getStartLineNo() - 1;
-        final int startColumnNumber = comment.getStartColNo();
-
-        for (int i = 0; i < lines.length; i++) {
-            currentLine++;
-            final Matcher javadocArgMatcher =
-                MATCH_JAVADOC_ARG.matcher(lines[i]);
-            final Matcher javadocArgMissingDescriptionMatcher =
-                MATCH_JAVADOC_ARG_MISSING_DESCRIPTION.matcher(lines[i]);
-            final Matcher javadocNoargMatcher =
-                matchJavadocNoArg.matcher(lines[i]);
-            final Matcher noargCurlyMatcher =
-                MATCH_JAVADOC_NOARG_CURLY.matcher(lines[i]);
-            final Matcher noargMultilineStart =
-                MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
-
-            if (javadocArgMatcher.find()) {
-                final int col = calculateTagColumn(javadocArgMatcher, i, startColumnNumber);
-                tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),
-                        javadocArgMatcher.group(2)));
-            }
-            else if (javadocArgMissingDescriptionMatcher.find()) {
-                final int col = calculateTagColumn(javadocArgMissingDescriptionMatcher, i,
-                    startColumnNumber);
-                tags.add(new JavadocTag(currentLine, col,
-                    javadocArgMissingDescriptionMatcher.group(1),
-                    javadocArgMissingDescriptionMatcher.group(2)));
-            }
-            else if (javadocNoargMatcher.find()) {
-                final int col = calculateTagColumn(javadocNoargMatcher, i, startColumnNumber);
-                tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));
-            }
-            else if (noargCurlyMatcher.find()) {
-                tags.add(new JavadocTag(currentLine, 0, noargCurlyMatcher.group(1)));
-            }
-            else if (noargMultilineStart.find()) {
-                tags.addAll(getMultilineNoArgTags(noargMultilineStart, lines, i, currentLine));
-            }
-        }
-        return tags;
-    }
-
-    /**
-     * Calculates column number using Javadoc tag matcher.
-     *
-     * @param javadocTagMatchResult found javadoc tag match result
-     * @param lineNumber line number of Javadoc tag in comment
-     * @param startColumnNumber column number of Javadoc comment beginning
-     * @return column number
-     */
-    private static int calculateTagColumn(MatchResult javadocTagMatchResult,
-            int lineNumber, int startColumnNumber) {
-        int col = javadocTagMatchResult.start(1) - 1;
-        if (lineNumber == 0) {
-            col += startColumnNumber;
-        }
-        return col;
-    }
-
-    /**
-     * Gets multiline Javadoc tags with no arguments.
-     *
-     * @param noargMultilineStart javadoc tag Matcher
-     * @param lines comment text lines
-     * @param lineIndex line number that contains the javadoc tag
-     * @param tagLine javadoc tag line number in file
-     * @return javadoc tags with no arguments
-     */
-    private static List<JavadocTag> getMultilineNoArgTags(final Matcher noargMultilineStart,
-            final String[] lines, final int lineIndex, final int tagLine) {
-        int remIndex = lineIndex;
-        Matcher multilineCont;
-
-        do {
-            remIndex++;
-            multilineCont = MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remIndex]);
-        } while (!multilineCont.find());
-
-        final List<JavadocTag> tags = new ArrayList<>();
-        final String lFin = multilineCont.group(1);
-        if (!NEXT_TAG.equals(lFin)
-            && !END_JAVADOC.equals(lFin)) {
-            final String param1 = noargMultilineStart.group(1);
-            final int col = noargMultilineStart.start(1) - 1;
-
-            tags.add(new JavadocTag(tagLine, col, param1));
-        }
-
-        return tags;
     }
 
     /**

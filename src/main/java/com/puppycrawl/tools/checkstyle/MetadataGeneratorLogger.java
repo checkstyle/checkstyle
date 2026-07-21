@@ -105,4 +105,5 @@ public class MetadataGeneratorLogger extends AbstractAutomaticBean implements Au
     protected void finishLocalSetup() {
         // No code by default.
     }
+
 }

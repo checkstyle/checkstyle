@@ -8,11 +8,12 @@ offset = 3
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- *   Some javadoc. // violation
+    // violation 5 lines below 'Line continuation .* expected level should be 3'
+    /**
+     * Some javadoc.
+     *
+     * @since Some javadoc.
+     *   Some javadoc.
  * @version 1.0
  * @deprecated Some javadoc.
  *    Some javadoc.
@@ -21,10 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
  *     Some javadoc.
  */
 class InputJavadocTagContinuationIndentationOffset3 {
+    // violation 4 lines below 'Line continuation .* expected level should be 3'
         /**
      * The client's first name.
      * @serial Some javadoc.
-        *   Some javadoc. // violation
+        *   Some javadoc.
      */
     private String fFirstName;
 

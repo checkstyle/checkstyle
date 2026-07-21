@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class CyclomaticComplexityCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/cyclomaticcomplexity";
@@ -55,4 +56,14 @@ public class CyclomaticComplexityCheckExamplesTest extends AbstractExamplesModul
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "34:3: " + getCheckMessage(CyclomaticComplexityCheck.MSG_KEY, 13, 12),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }

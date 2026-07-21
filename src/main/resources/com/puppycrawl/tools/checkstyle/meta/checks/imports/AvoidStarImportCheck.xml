@@ -21,22 +21,23 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowClassImports" type="boolean">
-               <description>Control whether to allow starred class imports like
- &lt;code&gt;import java.util.*;&lt;/code&gt;.</description>
+               <description>Control whether to allow starred class imports like &lt;code&gt;import java.util.*;&lt;/code&gt;.</description>
             </property>
             <property default-value="false"
                       name="allowStaticMemberImports"
                       type="boolean">
-               <description>Control whether to allow starred static member imports like
- &lt;code&gt;import static org.junit.Assert.*;&lt;/code&gt;.</description>
+               <description>Control whether to allow starred static member imports like &lt;code&gt;import static org.junit.Assert.*;&lt;/code&gt;.</description>
             </property>
             <property default-value="" name="excludes" type="java.lang.String[]">
-               <description>Specify packages where starred class imports are
- allowed and classes where starred static member imports are allowed.</description>
+               <description>Specify packages where starred class imports are allowed and classes where starred static member imports are allowed.</description>
+            </property>
+            <property default-value="0" name="maxAllowedStarImports" type="int">
+               <description>Control how many star imports are allowed.</description>
             </property>
          </properties>
          <message-keys>
             <message-key key="import.avoidStar"/>
+            <message-key key="import.avoidStarCount"/>
          </message-keys>
       </check>
    </module>

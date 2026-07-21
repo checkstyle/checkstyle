@@ -3,11 +3,11 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 /** Some javadoc. */
 public class InputTryCatchIfElse {
 
-  @interface TesterAnnotation {} // ok
+  @interface TesterAnnotation {}
 
   void foo() throws Exception {
     int a = 90;
-    boolean test = true;
+    boolean test = true; // violation 'Distance .* is .*, but allowed 3.'
 
     if (a == 1) {
     } else {}

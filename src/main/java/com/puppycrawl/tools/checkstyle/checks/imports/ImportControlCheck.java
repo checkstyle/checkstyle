@@ -166,6 +166,13 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      */
     private AbstractImportControl currentImportControl;
 
+    /**
+     * Creates a new {@code ImportControlCheck} instance.
+     */
+    public ImportControlCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -284,4 +291,5 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
     public void setPath(Pattern pattern) {
         path = pattern;
     }
+
 }

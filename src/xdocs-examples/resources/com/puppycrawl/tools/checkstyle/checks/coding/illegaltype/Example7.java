@@ -29,6 +29,7 @@ import java.util.AbstractList;
 import java.util.function.Consumer;
 
 // xdoc section -- start
+
 public class Example7 extends TreeSet {
 
   public <T extends java.util.HashSet> void method() {

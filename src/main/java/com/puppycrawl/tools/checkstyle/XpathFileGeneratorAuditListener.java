@@ -105,7 +105,7 @@ public final class XpathFileGeneratorAuditListener
 
             writer.println("  <suppress-xpath");
             writer.print("       files=\"");
-            writer.print(path.getFileName());
+            writer.print(XMLLogger.encode(String.valueOf(path.getFileName())));
             writer.println(QUOTE_CHAR);
 
             if (event.getModuleId() == null) {
@@ -152,4 +152,5 @@ public final class XpathFileGeneratorAuditListener
     protected void finishLocalSetup() {
         // No code by default
     }
+
 }

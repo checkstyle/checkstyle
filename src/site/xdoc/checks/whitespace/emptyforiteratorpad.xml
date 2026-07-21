@@ -61,9 +61,9 @@ class Example1 {
   Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
   void example() {
     for (Iterator it = map.entrySet().iterator();  it.hasNext(););
+
     for (Iterator it = map.entrySet().iterator();  it.hasNext(); );
     // violation above '';' is followed by whitespace'
-
     for (Iterator foo = map.entrySet().iterator();
          foo.hasNext();
          );
@@ -135,9 +135,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="EmptyForIteratorPad_Package">
+      <subsection name="Fully Qualified Name" id="EmptyForIteratorPad_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -1,0 +1,94 @@
+#####################################################################################
+# GitHub Action to run link checks on PRs via issue comment.
+#
+# Workflow starts when:
+# 1) issue comment - created
+#
+#####################################################################################
+name: "Linkcheck on Comment"
+
+on:
+  issue_comment:
+    types: [ created ]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run_linkcheck:
+    if: >-
+      github.repository == 'checkstyle/checkstyle'
+      && github.event.issue.pull_request != null
+      && (contains(github.event.comment.body, 'Github, validate links')
+          || contains(github.event.comment.body, 'GitHub, validate links'))
+      && contains(fromJson('["OWNER","MEMBER","COLLABORATOR"]'),
+                  github.event.comment.author_association)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download checkstyle for PR
+        uses: actions/checkout@v7
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Run link check
+        id: linkcheck
+        continue-on-error: true
+        run: |
+          mkdir -p .ci-temp
+          set -o pipefail
+          ./.ci/run-link-check-plugin.sh 2>&1 | tee .ci-temp/linkcheck-output.txt
+          status=${PIPESTATUS[0]}
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare comment
+        id: comment
+        if: always()
+        run: |
+          RESULT="${{ steps.linkcheck.outputs.status }}"
+          if [ -z "$RESULT" ]; then
+            RESULT=1
+          fi
+          if [ "$RESULT" -eq 0 ]; then
+            STATUS="PASSED"
+          else
+            STATUS="FAILED"
+          fi
+          JOBS_LINK="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          {
+            echo "Linkcheck $STATUS"
+            echo ""
+            echo "Run: $JOBS_LINK"
+            echo ""
+          } > .ci-temp/message
+
+      - name: Comment result
+        if: always()
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.issue.number }}
+          body-path: .ci-temp/message
+
+      - name: Fail if linkcheck failed
+        if: steps.linkcheck.outputs.status != '0'
+        run: |
+          exit 1

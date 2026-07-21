@@ -102,4 +102,5 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
                         "InputSealedShouldHavePermitsListJepExample.java"),
                 expected);
     }
+
 }

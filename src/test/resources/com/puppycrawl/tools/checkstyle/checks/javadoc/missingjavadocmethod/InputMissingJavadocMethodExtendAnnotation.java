@@ -41,7 +41,7 @@ public abstract class InputMissingJavadocMethodExtendAnnotation<E>
   private static final String SUPPORTS_ADD = "";
   private static final String SUPPORTS_REMOVE = null;
 
-@CollectionFeature.Require // violation
+@CollectionFeature.Require // violation 'Missing a Javadoc comment.'
   public void testSetCount_zeroToZero_unsupported() {
     try {
       assertZeroToZero();

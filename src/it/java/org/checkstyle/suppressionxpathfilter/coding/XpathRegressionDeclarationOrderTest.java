@@ -132,4 +132,5 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

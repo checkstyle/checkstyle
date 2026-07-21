@@ -22,7 +22,10 @@ public class InputSingleSpaceSeparatorCommentsWithEmoji {
     }
 
     /* ok */ /*🧐*/ String s = "🎄😉";
-    String /* 🧐  ok  */  st = "🎄  assa"; // 2 violations
+    String /* 🧐  ok  */  st = "🎄  assa";
+    // 2 violations above:
+    //     'Use a single space to separate non-whitespace characters.'
+    //     'Use a single space to separate non-whitespace characters.'
     String str = "🤩🎄";   // violation 'Use a single space to separate non-whitespace characters'
     ;       String j = ""; // violation 'Use a single space to separate non-whitespace characters'
     /**

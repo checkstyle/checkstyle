@@ -70,6 +70,7 @@ public class Example1 {
     try {
       throw new InterruptedException();
     } catch (ArithmeticException e) {
+
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
       // violation above, 'Name 'e123' must match pattern'
@@ -82,6 +83,7 @@ public class Example1 {
     } catch (Exception EighthException) {
       // violation above, 'Name 'EighthException' must match pattern'
     } catch (Throwable t) {
+
     }
   }
 }
@@ -110,9 +112,12 @@ public class Example2 {
       // violation above, 'Name 'e' must match pattern'
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
+
     } catch (NullPointerException ab) {
+
     } catch (ArrayStoreException abc) {
     } catch (InterruptedException aBC) {
+
     } catch (RuntimeException abC) {
     } catch (Exception EighthException) {
       // violation above, 'Name 'EighthException' must match pattern'
@@ -129,6 +134,11 @@ public class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
               Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+              OpenJDK Style
             </a>
           </li>
           <li>
@@ -154,8 +164,12 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="CatchParameterName_Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      <subsection name="Fully Qualified Name" id="CatchParameterName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="CatchParameterName_Parent_Module">

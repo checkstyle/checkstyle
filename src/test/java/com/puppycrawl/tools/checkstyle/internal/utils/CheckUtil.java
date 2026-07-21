@@ -78,6 +78,10 @@ public final class CheckUtil {
         return getCheckStyleModulesReferencedInConfig("src/main/resources/openjdk_checks.xml");
     }
 
+    public static Set<String> getConfigDocCommentsStyleModules() {
+        return getCheckStyleModulesReferencedInConfig("src/main/resources/doc_comments_checks.xml");
+    }
+
     /**
      * Retrieves a set of class names, removing 'Check' from the end if the class is
      * a checkstyle check.
@@ -394,4 +398,5 @@ public final class CheckUtil {
         }
         return result;
     }
+
 }

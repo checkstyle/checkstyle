@@ -110,6 +110,10 @@ class Example3 {
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassTypeParameterName">
             Checkstyle Style</a>
           </li>
@@ -131,8 +135,12 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ClassTypeParameterName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="ClassTypeParameterName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ClassTypeParameterName_Parent_Module">

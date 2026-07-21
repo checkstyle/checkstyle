@@ -1,4 +1,4 @@
-// Java17
+
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public interface InputAntlr4AstRegressionInterfaceRecordDef {

@@ -45,9 +45,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check for
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-            METHOD_REF</a> at new line:
+          To configure the check for separator at the new line:
         </p>
         <macro name="example">
           <param name="path"
@@ -80,11 +78,36 @@
         </macro>
       </subsection>
 
+      <subsection name="Use Cases" id="SeparatorWrap_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+            METHOD_REF</a> at new line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
       <subsection name="Example of Usage" id="SeparatorWrap_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
@@ -104,9 +127,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="SeparatorWrap_Package">
+      <subsection name="Fully Qualified Name" id="SeparatorWrap_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

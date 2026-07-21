@@ -45,8 +45,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -101,10 +100,10 @@ class Example1 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
    */
   public void testMethodCode(String input) {}
 
@@ -164,10 +163,10 @@ class Example2 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 2'
+   * out.writeByte(1); // violation 'expected level should be 2'
+   * out.writeInt(nanos); // violation 'expected level should be 2'
+   * &lt;/code&gt; // violation 'expected level should be 2'
    */
   public void testMethodCode(String input) {}
 
@@ -201,7 +200,6 @@ class Example2 {
    */
 class Example3 {
   // violation 3 lines above 'Unclosed HTML tag found: a'
-
   /**
    * @param input comment with
    *     indentation spacing for the tag
@@ -228,10 +226,10 @@ class Example3 {
    * Writes the object using a
    * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
    * @serialData
-   * &lt;code&gt; // violation
-   * out.writeByte(1); // violation
-   * out.writeInt(nanos); // violation
-   * &lt;/code&gt; // violation
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
    */
   public void testMethodCode(String input) {}
 
@@ -285,9 +283,12 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocTagContinuationIndentation_Package">
+      <subsection name="Fully Qualified Name"
+                   id="JavadocTagContinuationIndentation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -146,6 +146,10 @@
             Sun Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
             Checkstyle Style</a>
           </li>
@@ -163,9 +167,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="HiddenField_Package">
+      <subsection name="Fully Qualified Name" id="HiddenField_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

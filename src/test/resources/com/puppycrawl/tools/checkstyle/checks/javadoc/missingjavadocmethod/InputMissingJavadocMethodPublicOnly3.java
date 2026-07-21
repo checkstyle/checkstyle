@@ -62,11 +62,13 @@ public class InputMissingJavadocMethodPublicOnly3
     {
     }
 
-    protected InputMissingJavadocMethodPublicOnly3(Object aA) // violation
+    protected InputMissingJavadocMethodPublicOnly3(Object aA)
+    // violation above 'Missing a Javadoc comment.'
     {
     }
 
-    public InputMissingJavadocMethodPublicOnly3(Class<Object> aA) // violation
+    public InputMissingJavadocMethodPublicOnly3(Class<Object> aA)
+    // violation above 'Missing a Javadoc comment.'
     {
     }
 
@@ -78,11 +80,11 @@ public class InputMissingJavadocMethodPublicOnly3
     {
     }
 
-    protected void method(Class<Object> aA) // violation
+    protected void method(Class<Object> aA) // violation 'Missing a Javadoc comment.'
     {
     }
 
-    public void method(StringBuffer aA) // violation
+    public void method(StringBuffer aA) // violation 'Missing a Javadoc comment.'
     {
     }
 

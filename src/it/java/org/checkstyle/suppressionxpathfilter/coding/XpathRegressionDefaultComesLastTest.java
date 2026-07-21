@@ -124,4 +124,5 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

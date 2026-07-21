@@ -1,7 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="ConstructorsDeclarationGrouping"/>
+    <module name="ConstructorsDeclarationGrouping">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
   </module>
 </module>
 */
@@ -10,34 +12,43 @@ package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgro
 
 // xdoc section -- start
 public class Example2 {
-
   int x;
-
   Example2() {}
 
-  Example2(String s){}
+  Example2(String s, int x, int y) {}
 
-  void foo() {}
+  // comments between constructors are allowed.
+  Example2(int x) {}
+  // violation above 'Constructors should be ordered by increasing parameter count.'
+  int a = 0;
 
-  Example2(int x) {} // violation 'Constructors should be grouped together'
-
-  Example2(String s, int x) {} // violation 'Constructors should be grouped together'
-
+  // violation 2 lines below """Constructors should be grouped together.
+  // The last grouped constructor is declared at line '21'."""
+  Example2(String s, int x) {}
+  // violation above 'Constructors should be ordered by increasing parameter count.'
   private enum ExampleEnum {
 
     ONE, TWO, THREE;
 
     ExampleEnum() {}
 
-    ExampleEnum(int x) {}
-
-    final int x = 10;
-
-    ExampleEnum(String str) {} // violation 'Constructors should be grouped together'
-
     void foo() {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '33'."""
+    ExampleEnum(int x, int y) {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '33'."""
+    ExampleEnum(String s, int x) {}
+
   }
 
-  Example2(float f) {} // violation 'Constructors should be grouped together'
+  class InputWithOrderedCtors {
+    InputWithOrderedCtors() {}
+    InputWithOrderedCtors(String s) {}
+    InputWithOrderedCtors(int x) {}
+    InputWithOrderedCtors(String s, int x) {}
+  }
 }
 // xdoc section -- end

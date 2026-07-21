@@ -49,7 +49,7 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  void Example1() {
+  void Test() {
     if (true) {
       if (true) {}
       else {}
@@ -101,7 +101,7 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  void Example2() {
+  void Test() {
     if (true) {
       if (true) {}
       else {}
@@ -164,9 +164,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NestedIfDepth_Package">
+      <subsection name="Fully Qualified Name" id="NestedIfDepth_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

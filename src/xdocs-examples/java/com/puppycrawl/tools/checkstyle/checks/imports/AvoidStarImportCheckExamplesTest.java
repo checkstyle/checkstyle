@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck.MSG_COUNT;
 import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck.MSG_KEY;
 
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidStarImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport";
@@ -89,4 +91,16 @@ public class AvoidStarImportCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "16:29: " + getCheckMessage(MSG_COUNT, 1),
+            "17:17: " + getCheckMessage(MSG_COUNT, 1),
+            "18:16: " + getCheckMessage(MSG_COUNT, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
 }

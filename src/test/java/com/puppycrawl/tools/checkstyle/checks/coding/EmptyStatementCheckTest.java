@@ -74,4 +74,18 @@ public class EmptyStatementCheckTest
                 .isNotNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY),
+            "12:5: " + getCheckMessage(MSG_KEY),
+            "15:18: " + getCheckMessage(MSG_KEY),
+            "17:14: " + getCheckMessage(MSG_KEY),
+            "21:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputEmptyStatementCompactSourceFile.java"),
+                expected);
+    }
+
 }

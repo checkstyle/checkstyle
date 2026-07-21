@@ -44,4 +44,5 @@ public class SourceFileStructureTest extends AbstractGoogleModuleTestSupport {
     public void testEmptyLineSeparatorPackageInfo() throws Exception {
         verifyWithWholeConfig(getPath("package-info.java"));
     }
+
 }

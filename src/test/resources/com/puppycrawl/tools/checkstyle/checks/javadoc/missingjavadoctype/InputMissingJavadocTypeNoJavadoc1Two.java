@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = PRIVATE
 excludeScope = (default)null
+scope = PRIVATE
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -10,9 +11,11 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypeNoJavadoc1Two {} // violation
+// violation below 'Missing a Javadoc comment.'
+public class InputMissingJavadocTypeNoJavadoc1Two {}
 
-class PackageClass1 { // violation
+// violation below 'Missing a Javadoc comment.'
+class PackageClass1 {
     public int i1;
     protected int i2;
     int i3;
@@ -23,7 +26,8 @@ class PackageClass1 { // violation
     void foo3() {}
     private void foo4() {}
 
-    public class PublicInner { // violation
+    // violation below 'Missing a Javadoc comment.'
+    public class PublicInner {
         public int i1;
         protected int i2;
         int i3;
@@ -35,7 +39,8 @@ class PackageClass1 { // violation
         private void foo4() {}
     }
 
-    protected class ProtectedInner { // violation
+    // violation below 'Missing a Javadoc comment.'
+    protected class ProtectedInner {
         public int i1;
         protected int i2;
         int i3;
@@ -47,7 +52,8 @@ class PackageClass1 { // violation
         private void foo4() {}
     }
 
-    class PackageInner { // violation
+    // violation below 'Missing a Javadoc comment.'
+    class PackageInner {
         public int i1;
         protected int i2;
         int i3;
@@ -59,7 +65,8 @@ class PackageClass1 { // violation
         private void foo4() {}
     }
 
-    private class PrivateInner { // violation
+    // violation below 'Missing a Javadoc comment.'
+    private class PrivateInner {
         public int i1;
         protected int i2;
         int i3;
@@ -71,7 +78,8 @@ class PackageClass1 { // violation
         private void foo4() {}
     }
 
-    class IgnoredName { // violation
+    // violation below 'Missing a Javadoc comment.'
+    class IgnoredName {
         // ignore by name
         private int logger;
         // no warning, 'serialVersionUID' fields do not require Javadoc

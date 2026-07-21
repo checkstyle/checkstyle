@@ -87,14 +87,10 @@ public final class DetailAstImpl implements DetailAST {
     private BitSet branchTokenTypes;
 
     /**
-     * Initializes this DetailAstImpl.
-     *
-     * @param tokenType the type of this DetailAstImpl
-     * @param tokenText the text of this DetailAstImpl
+     * Creates a new {@code DetailAstImpl} instance.
      */
-    public void initialize(int tokenType, String tokenText) {
-        type = tokenType;
-        text = tokenText;
+    public DetailAstImpl() {
+        // no code by default
     }
 
     /**
@@ -107,6 +103,17 @@ public final class DetailAstImpl implements DetailAST {
         type = token.getType();
         lineNo = token.getLine();
         columnNo = token.getCharPositionInLine();
+    }
+
+    /**
+     * Initializes this DetailAstImpl.
+     *
+     * @param tokenType the type of this DetailAstImpl
+     * @param tokenText the text of this DetailAstImpl
+     */
+    public void initialize(int tokenType, String tokenText) {
+        type = tokenType;
+        text = tokenText;
     }
 
     /**
@@ -538,4 +545,5 @@ public final class DetailAstImpl implements DetailAST {
     public void setHiddenAfter(List<Token> hiddenAfter) {
         this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
     }
+
 }

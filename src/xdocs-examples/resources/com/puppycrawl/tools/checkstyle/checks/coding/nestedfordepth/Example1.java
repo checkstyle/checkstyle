@@ -15,7 +15,6 @@ public class Example1 {
       for(int j=0; j<i; j++) {
       }
     }
-
     // violation 3 lines below 'Nested for depth is 2 (max allowed is 1).'
     for(int i=0; i<10; i++) {
       for(int j=0; j<i; j++) {
@@ -23,7 +22,6 @@ public class Example1 {
         }
       }
     }
-
     // violation 4 lines below 'Nested for depth is 2 (max allowed is 1).'
     // violation 4 lines below 'Nested for depth is 3 (max allowed is 1).'
     for(int i=0; i<10; i++) {

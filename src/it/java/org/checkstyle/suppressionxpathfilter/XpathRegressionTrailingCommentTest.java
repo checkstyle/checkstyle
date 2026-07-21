@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
 
 public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
+
     private final String checkName = TrailingCommentCheck.class.getSimpleName();
 
     @Override
@@ -106,4 +107,5 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

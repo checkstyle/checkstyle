@@ -195,4 +195,5 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

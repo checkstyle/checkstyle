@@ -170,6 +170,15 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(expected2);
     }
 
+    @Test
+    public void testRegexMetaCharacters() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, "some.key[index-with-dash]", 2),
+        };
+        verify(checkConfig, getPath("InputUniquePropertiesRegex.properties"), expected);
+    }
+
     /**
      * Method generates NoSuchFileException details. It tries to open a file that does not exist.
      *

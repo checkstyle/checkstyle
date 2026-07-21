@@ -161,9 +161,8 @@ class Example1 {
   void setTestField(String testField) { // violation, ''testField' hides a field'
     this.field = field;
   }
-  Example1 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'
@@ -198,9 +197,8 @@ class Example2 {
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;
   }
-  Example2 setField(String field) { // ok, because PARAMETER_DEF not configured
+  void setField(String field) { // ok, because PARAMETER_DEF not configured
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured
@@ -235,9 +233,8 @@ class Example3 {
   void setTestField(String testField) { // ok, because it match ignoreFormat
     this.field = field;
   }
-  Example3 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'
@@ -271,9 +268,8 @@ class Example4 {
   void setTestField(String testField) { // violation, ''testField' hides a field'
     this.field = field;
   }
-  Example4 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'
@@ -308,9 +304,8 @@ class Example5 {
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
   }
-  Example5 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) {
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'
@@ -347,9 +342,8 @@ class Example6 {
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
   }
-  Example6 setField(String field) { // ok, because setterCanReturnItsClass is true
+  void setField(String field) {
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // violation, ''field' hides a field'
@@ -375,7 +369,7 @@ class Example7 {
   private String field;
   private String testField;
 
-  Example7(String field) { // violation, ''field' hides a field'
+  Example7(String testField) { // violation, ''field' hides a field
   }
   void method(String param) {
     String field = param; // violation, ''field' hides a field'
@@ -383,9 +377,8 @@ class Example7 {
   void setTestField(String testField) { // violation, 'testField' hides a field'
     this.field = field;
   }
-  Example7 setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation, ''field' hides a field'
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // ok, because ignoreAbstractMethods is true
@@ -399,6 +392,10 @@ class Example7 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
@@ -422,9 +419,11 @@ class Example7 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="HiddenField_Package">
+      <subsection name="Fully Qualified Name" id="HiddenField_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

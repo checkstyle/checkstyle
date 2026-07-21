@@ -9,7 +9,7 @@ ignoreComments = true
 
 
 */
-// violation 11 lines above 'Required pattern .* missing'
+// violation first line 'Required pattern .* missing'
 // due to ignoreComments=true
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 

@@ -6,15 +6,16 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
-         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
-         LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
-         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, \
-         LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, \
-         NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
-         SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND
-
+         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, \
+         LAMBDA, LAND, LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
+         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TR \
+          Y, LITERAL_WHILE, LOR, \
+         LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, \
+         QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, \
+         STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, LITERAL_WHEN
 
 */
 
@@ -24,8 +25,11 @@ import java.util.Collection;
 import java.util.Map;
 
 public class InputWhitespaceAroundGenerics<A, B extends Collection<?>,
-    C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>> // 2 violations
+    C extends D&E, F extends Collection<? extends InputWhitespaceAroundGenerics[]>>
 {
+    // 2 violations 2 lines above:
+    // ''&' is not followed by whitespace.'
+    // ''&' is not preceded with whitespace.'
 }
 
 //No whitespace after commas

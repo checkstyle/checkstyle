@@ -98,6 +98,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private boolean ignoreFinal = true;
 
     /**
+     * Creates a new {@code VariableDeclarationUsageDistanceCheck} instance.
+     */
+    public VariableDeclarationUsageDistanceCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the maximum distance between a variable's declaration and its first usage.
      * Value should be greater than 0.
      *
@@ -310,7 +317,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR,
                  TokenTypes.LITERAL_WHILE,
                  TokenTypes.LITERAL_DO,
-                 TokenTypes.LITERAL_IF -> currentDistToVarUsage + 1;
+                 TokenTypes.LITERAL_IF,
+                 TokenTypes.LITERAL_TRY -> currentDistToVarUsage + 1;
             default -> {
                 if (childNode.findFirstToken(TokenTypes.SLIST) == null) {
                     yield currentDistToVarUsage + 1;

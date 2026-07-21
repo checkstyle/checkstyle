@@ -34,12 +34,10 @@
                <description>Specify method names to ignore.</description>
             </property>
             <property default-value="2" name="max" type="int">
-               <description>Specify maximum allowed number of return statements
- in non-void methods/lambdas.</description>
+               <description>Specify maximum allowed number of return statements in non-void methods/lambdas.</description>
             </property>
             <property default-value="1" name="maxForVoid" type="int">
-               <description>Specify maximum allowed number of return statements
- in void methods/constructors/lambdas.</description>
+               <description>Specify maximum allowed number of return statements in void methods/constructors/lambdas.</description>
             </property>
             <property default-value="CTOR_DEF,METHOD_DEF,LAMBDA"
                       name="tokens"

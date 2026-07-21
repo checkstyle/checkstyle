@@ -1,6 +1,7 @@
 /*
 UnusedLocalVariable
 allowUnnamedVariables = false
+jdkVersion = (default)22
 
 */
 
@@ -82,5 +83,28 @@ public class InputUnusedLocalVariableAnonInnerClasses {
         protected int m = 11;
         int l = 14;
     }
+         void m() {
+         class InnerClassInMethod { }
+         Object o = new Object() { }; // violation, 'Unused local variable'
 
+         class C {
+             class MemberClass {
+                 class NestedMemberClass { }
+            }
+
+             {
+                 class InnerClassInInit { }
+                 Object o = new Object() { }; // violation, 'Unused local variable'
+             }
+
+             C(Object unused) {
+                 class InnerClassInConstr { }
+                 Object o = new Object() { }; // violation, 'Unused local variable'
+             }
+             void m() {
+                 class InnerClassInMethod { }
+                Object o = new Object() { }; // violation, 'Unused local variable'
+             }
+         }
+     }
 }

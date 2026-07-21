@@ -5,7 +5,7 @@ tokens = LITERAL_SWITCH
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 public class InputRightCurlyTestSwitchExpression6 {

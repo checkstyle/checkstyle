@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
  * extension is ignored.
  */
 class FileImportControl extends AbstractImportControl {
+
     /** The name for the file. */
     private final String name;
     /** The regex pattern for exact matches - only not null if regex is true. */
@@ -83,4 +84,5 @@ class FileImportControl extends AbstractImportControl {
         }
         return result;
     }
+
 }

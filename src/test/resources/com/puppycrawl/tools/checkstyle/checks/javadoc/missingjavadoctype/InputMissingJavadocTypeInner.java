@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = PRIVATE
 excludeScope = (default)null
+scope = PRIVATE
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -15,21 +16,24 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  **/
 class InputMissingJavadocTypeInner
 {
-    // Ignore - two violations
-    class InnerInner2 // violation
+
+    // violation below 'Missing a Javadoc comment.'
+    class InnerInner2
     {
         // Ignore
         public int fData;
     }
 
-    // Ignore - 2 violations
-    interface InnerInterface2 // violation
+
+    // violation below 'Missing a Javadoc comment.'
+    interface InnerInterface2
     {
         // Ignore - should be all upper case
         String data = "zxzc";
 
         // Ignore
-        class InnerInterfaceInnerClass // violation
+        // violation below 'Missing a Javadoc comment.'
+        class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
             public int rData;

@@ -68,7 +68,7 @@ private static int checkErrorProneReport(String profile, String flag) {
     final File suppressionFile = new File(suppressedErrorsFileUri)
     Set<ErrorProneError> suppressedErrors = Collections.emptySet()
     if (suppressionFile.exists()) {
-        final groovy.util.Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
+        final Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
     return compareErrors(errors, suppressedErrors, flag)
@@ -82,7 +82,7 @@ private static int checkErrorProneReport(String profile, String flag) {
  */
 private static List<String> getErrorProneErrors(String profile) {
     final List<String> errorProneErrors = [] as ArrayList
-    final String command = "mvn -e --no-transfer-progress clean" +
+    final String command = "./mvnw -e --no-transfer-progress clean" +
             " ${profile} -Perror-prone-${profile}"
     println "Execution of error-prone by command:"
     println command

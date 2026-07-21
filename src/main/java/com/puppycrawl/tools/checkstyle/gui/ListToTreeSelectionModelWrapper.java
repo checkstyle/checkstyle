@@ -45,10 +45,10 @@ public final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionM
     /**
      * Constructor to initialise treeTable.
      *
-     * @param jTreeTable TreeTable to perform updates on.
+     * @param treeTable TreeTable to perform updates on.
      */
-    /* package */ ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
-        treeTable = jTreeTable;
+    /* package */ ListToTreeSelectionModelWrapper(TreeTable treeTable) {
+        this.treeTable = treeTable;
         getListSelectionModel().addListSelectionListener(event -> {
             updateSelectedPathsFromSelectedRows();
         });

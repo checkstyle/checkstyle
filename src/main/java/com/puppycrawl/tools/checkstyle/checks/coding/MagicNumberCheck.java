@@ -117,6 +117,13 @@ public class MagicNumberCheck extends AbstractCheck {
     /** Ignore magic numbers in annotation elements defaults. */
     private boolean ignoreAnnotationElementDefaults = true;
 
+    /**
+     * Creates a new {@code MagicNumberCheck} instance.
+     */
+    public MagicNumberCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -339,13 +346,24 @@ public class MagicNumberCheck extends AbstractCheck {
             node = node.getParent();
         }
 
-        // contains variable declaration
-        // and it is directly inside class or record declaration
-        return varDefAST != null
-                && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
-                || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF
-                || varDefAST.getParent().getParent().getType() == TokenTypes.LITERAL_NEW);
+        boolean result = false;
 
+        if (varDefAST != null) {
+            final DetailAST parent = varDefAST.getParent();
+
+            if (parent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+                result = true;
+            }
+            else {
+                final DetailAST grandParent = parent.getParent();
+
+                result = grandParent.getType() == TokenTypes.CLASS_DEF
+                    || grandParent.getType() == TokenTypes.RECORD_DEF
+                    || grandParent.getType() == TokenTypes.LITERAL_NEW;
+            }
+        }
+
+        return result;
     }
 
     /**

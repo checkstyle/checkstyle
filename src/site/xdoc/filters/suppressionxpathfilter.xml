@@ -57,9 +57,6 @@
           JavadocParagraph
         </li>
         <li>
-          JavadocStyle
-        </li>
-        <li>
           JavadocTagContinuationIndentation
         </li>
         <li>
@@ -176,7 +173,8 @@
           <code>files</code> -
           a <a href="../property_types.html#Pattern">Pattern</a>
           matched against the file name associated with an audit
-          event. It is optional.
+          event. It is optional. If unmatched, all Unix path separators (/)
+          are converted to Windows separators (\) and retried.
         </li>
         <li>
           <code>checks</code> -
@@ -253,17 +251,18 @@
       </subsection>
       <subsection name="Examples" id="SuppressionXpathFilter_Examples">
 
-        <p id="Example1-config">
-          For example #1, the following configuration example directs the
+        <p id="Example0-config">
+          For example #0, the following configuration example directs the
           Checker to use a <code>SuppressionXpathFilter</code>
           with suppressions
-          file <code>config/suppressions1.xml</code>:
+          file <code>config/suppressions0.xml</code> and
+          <code>optional</code> property set to <code>false</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions1.xml"/&gt;
+      &lt;property name="file" value="${config.folder}/suppressions0.xml"/&gt;
       &lt;property name="optional" value="false"/&gt;
     &lt;/module&gt;
     &lt;module name="CyclomaticComplexity"&gt;
@@ -276,10 +275,12 @@
           The following suppressions XML document directs
           a <code>SuppressionXpathFilter</code> to
           reject <code>CyclomaticComplexity</code> violations for
-          all methods with name <i>sayHelloWorld</i> inside <i>Example1</i>
-          and <i>Test</i> files:
+          all methods with name <i>sayHelloWorld</i> inside <i>Example0</i>
+          and <i>Test</i> files.
+          The <code>optional</code> property is set to <code>false</code>,
+          which means the suppressions file must exist, otherwise checkstyle ends with error.
         </p>
-        <p id="suppressions1-raw">
+        <p id="suppressions0-raw">
           Currently, xpath queries support one type of attribute <code>@text</code>.
           <code>@text</code> - addresses to the text value of the node. For example: variable name,
           annotation name, text content, etc.
@@ -301,507 +302,119 @@
 
 &lt;suppressions&gt;
   &lt;suppress-xpath checks="CyclomaticComplexity"
-  files="Example1.java|Test.java"
+  files="Example0.java|Test.java"
   query="//METHOD_DEF[./IDENT[@text='sayHelloWorld']]"/&gt;
 &lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example0-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example0 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example1-config">
+          For example #1, the following configuration demonstrates the
+          <code>optional</code> property. The <code>file</code> property points to a
+          non-existent suppressions file and <code>optional</code> is set to <code>true</code>,
+          so suppressions are skipped and violations are reported:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/non-existent-suppressions.xml"/&gt;
+      &lt;property name="optional" value="true"/&gt;
+    &lt;/module&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="3"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  int a, b, c, d, e, n;
-
-  public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
-    if (a == b) {
-      System.out.println("Hello World");
-    }
-    else if (a == 0 &amp;&amp; b == c) {
-      System.out.println("*Silence*");
-    }
-  }
-
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example2-config">
-          For example #2, To configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions2.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="EmptyLineSeparator"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions2-raw">
-          In order to suppress checks for package definitions:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks=".*" query="/COMPILATION_UNIT/PACKAGE_DEF"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example2-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// filtered violation below "'package' should be separated from previous line"
-package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
-public class Example2 { }
-// violation above, "'CLASS_DEF' should be separated from previous line"
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example3-config">
-          For example #3, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions3.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="LeftCurly"&gt;
-      &lt;property name="option" value="nl"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions3-raw">
-          In order to suppress checks for parent element of the first-ever variable definition:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks=".*" query="descendant::VARIABLE_DEF[1]/.."/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example3-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3
-{
-
-  // filtered violation below "'{' at column 31 should be on a new line."
-  public void testMethodOne() {
-    int x = 5;
-  }
-
-  // violation below, "'{' at column 31 should be on a new line."
-  public void testMethodTwo() {
-    int z = 17;
-    int y;
-  }
-
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example4-config">
-          For example #4, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions4.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="EmptyLineSeparator"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions4-raw">
-          In order to suppress checks for elements which are either class definitions,
-          or method definitions.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example4-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
-  int y = 3;
-  int x = 5; // violation, "'VARIABLE_DEF' should be separated from previous line."
-  public void testMethod() {}
-  // filtered violation above "'METHOD_DEF' should be separated from previous line."
-
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example5-config">
-          For example #5, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions5.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MethodName"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions5-raw">
-          In order to suppress checks for certain methods:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks=".*" query="//METHOD_DEF/IDENT[@text='GetSomeVar' or @text='SetSomeVar']"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example5-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
-  // filtered violation below "Name 'SetSomeVar' must match pattern"
-  public void SetSomeVar() {}
-
-  public void TestMethod() {} // violation, "Name 'TestMethod' must match pattern"
-
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example6-config">
-          For example #6, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions6.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="LocalVariableName"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions6-raw">
-          In order to suppress checks for variable <i>TestVariable</i> inside <i>testMethod</i>
-          method inside <i>Example6</i> class.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='Example6']]
-          //METHOD_DEF[./IDENT[@text='testMethod']]
-          //VARIABLE_DEF/IDENT[@text='TestVariable']"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example6-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
-
-  public void testMethod() {
-
-    int TestVariable; // filtered violation 'Name 'TestVariable' must match pattern'
-
-    int WeirdName; // violation, "Name 'WeirdName' must match pattern"
-  }
-
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example7-config">
-          For example #7, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions7.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MagicNumber"/&gt;
-    &lt;module name="MethodName"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions7-raw">
-          In the following sample, violations for <code>MethodName</code> check will be suppressed
-          for classes with name <i>Main</i> or for methods with name <i>DoMATH</i>:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-   &lt;suppress-xpath checks="MethodName" query="//CLASS_DEF[./IDENT[@text='Main']]//*
-          | //METHOD_DEF[./IDENT[@text='DoMATH']]/*"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example7-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
-  public void DoMATH() {} // filtered violation "Name 'DoMATH' must match pattern"
-  public void DoEng() {} // violation, "Name 'DoEng' must match pattern"
-}
-
-class Main {
-  int someField = 11; // violation, "'11' is a magic number."
-  void FOO() {} // filtered violation "Name 'FOO' must match pattern"
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example8-config">
-          For example #8, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions8.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="RequireThis"&gt;
-      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions8-raw">
-          In order to suppress <code>RequireThis</code> violations for
-          variable <i>age</i> inside <i>changeAge</i> method.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks="RequireThis"
-     query="//CLASS_DEF[./IDENT[@text='Example8']]
-          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example8-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
-
   int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
 
   public void changeAge() {
-    age = 24; // filtered violation 'Reference to instance variable'
+    age = 24;
   }
 
-  public int getAge() {
-    return age; // violation, 'Reference to instance variable'
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
   }
 
+  public void sayHelloWorld() { // violation 'Cyclomatic Complexity is 4'
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
-
-        <p id="Example9-config">
-          For example 9, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions9.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="IllegalThrows"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p>
-          In order to suppress <code>IllegalThrows</code> violations only for methods with name
-          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions:
-        </p>
-        <p id="suppressions9-raw">
-          (Double colon is used for axis iterations. In the following example <code>ancestor</code>
-          axis is used to iterate all ancestor nodes of the current node with type
-          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes
-          at <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.)
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-   &lt;suppress-xpath checks="IllegalThrows" query="//LITERAL_THROWS
-          /IDENT[@text='RuntimeException' and
-          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example9-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
-  // filtered violation below "Throwing 'RuntimeException' is not allowed."
-  public void throwsMethod() throws RuntimeException {
-  }
-
-  // violation below, "Throwing 'RuntimeException' is not allowed."
-  public void sampleMethod() throws RuntimeException {
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example10-config">
-          For example #10, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions10.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="ModifierOrder"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="suppressions10-raw">
-          The following sample demonstrates how to suppress all violations for method itself and
-          all descendants. <code>descendant-or-self</code> axis iterates through current node and
-          all children nodes at any level. Keyword <code>node()</code> selects node elements.
-          Please read more about xpath syntax at
-          <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-    &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
-          /descendant-or-self::node()"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example10-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example10 {
-
-  final public void legacyMethod() { // filtered violation 'modifier out of order'
-    strictfp abstract class legacyClass {}
-    // filtered violation above 'modifier out of order'
-  }
-
-  public void otherMethod() {
-    strictfp abstract class strangeClass {} // violation, 'modifier out of order'
-  }
-
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p>Some elements can be suppressed in different ways.
-          For example, to suppress violation on variable <code>wordCount</code> in following code:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-    private int wordCount = 11;
-}
-        </code></pre></div>
-        <p>You need to look at AST of such code by our CLI tool:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-$ java -jar checkstyle-X.XX-all.jar -t InputTest.java
-CLASS_DEF -&gt; CLASS_DEF [1:0]
-|--MODIFIERS -&gt; MODIFIERS [1:0]
-|   `--LITERAL_PUBLIC -&gt; public [1:0]
-|--LITERAL_CLASS -&gt; class [1:7]
-|--IDENT -&gt; InputTest [1:13]
-`--OBJBLOCK -&gt; OBJBLOCK [1:23]
-|--LCURLY -&gt; { [1:23]
-|--VARIABLE_DEF -&gt; VARIABLE_DEF [2:4]
-|   |--MODIFIERS -&gt; MODIFIERS [2:4]
-|   |   `--LITERAL_PRIVATE -&gt; private [2:4]
-|   |--TYPE -&gt; TYPE [2:12]
-|   |   `--LITERAL_INT -&gt; int [2:12]
-|   |--IDENT -&gt; wordCount [2:16]
-|   |--ASSIGN -&gt; = [2:26]
-|   |   `--EXPR -&gt; EXPR [2:28]
-|   |       `--NUM_INT -&gt; 11 [2:28]
-|   `--SEMI -&gt; ; [2:30]
-`--RCURLY -&gt; } [3:0]
-        </code></pre></div>
-        <p id="Example11-config">
-          For example #11, to configure the check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions11.xml"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MagicNumber"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p>
-          The easiest way is to suppress by variable name. As you can see <code>VARIABLE_DEF</code>
-          node refers to variable declaration statement and has child node with token type
-          <code>IDENT</code> which is used for storing class, method, variable names.
-        </p>
-        <p id="suppressions11-raw">
-          The following example demonstrates how variable can be queried by its name:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-   &lt;suppress-xpath checks="." query="//VARIABLE_DEF[
-            ./IDENT[@text='wordCount']]//*"/&gt;
-&lt;/suppressions&gt;
-</code></pre></div>
-        <p id="Example11-code">
-          Results:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example11 {
-  private int wordCount = 11; // filtered violation "'11' is a magic number."
-}
-</code></pre></div><hr class="example-separator"/>
-
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionXpathFilter_Use_Cases">
         <p>
           Another way is to suppress by variable value.
         </p>
-        <p id="Example12-config">
-          For example #12, to configure the check:
+        <p id="UseCase1-config">
+          For UseCase #1, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -832,12 +445,45 @@ public class Example11 {
     &lt;suppress-xpath checks="." query="//VARIABLE_DEF//NUM_INT[@text=11]"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example12-code">
+        <p id="UseCase1-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example12 {
+public class UseCase1 {
+  int age = 23;  // violation "'23' is a magic number."
   private int wordCount = 11; // filtered violation "'11' is a magic number."
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;  // violation "'24' is a magic number."
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -900,8 +546,8 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       `--RCURLY -&gt; } [8:4]
 `--RCURLY -&gt; } [9:0]
         </code></pre></div>
-        <p id="Example13-config">
-          For example #13, to configure the check:
+        <p id="UseCase2-config">
+          For UseCase #2, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -929,15 +575,42 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             .//ANNOTATION/IDENT[@text='Generated']]//*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example13-code">
+        <p id="UseCase2-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example13 {
+public class UseCase2 {
+  int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+  // violation above, "Name 'DoMATH' must match pattern"
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
   // filtered violation 2 lines below "Name 'Test1' must match pattern"
   @Generated("first")
   public void Test1() {}
-
   // filtered violation 2 lines below "Name 'Test2' must match pattern"
   @Generated("second")
   public void Test2() {}
@@ -948,8 +621,8 @@ public class Example13 {
           The problem with query above that it will suppress violations for all methods with
           annotation <code>@Generated</code>.
         </p>
-        <p id="Example14-config">
-          For next example #14, to configure the check:
+        <p id="UseCase3-config">
+          For UseCase #3, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -981,21 +654,794 @@ public class Example13 {
             ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example14-code">
+        <p id="UseCase3-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example14 {
+public class UseCase3 {
+  int age = 23; // violation 2 lines below "Name 'SetSomeVar' must match pattern"
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+  // violation above "Name 'DoMATH' must match pattern"
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
   // violation 2 lines below "Name 'Test1' must match pattern"
   @Generated("first")
   public void Test1() {}
-
   // filtered violation 2 lines below "Name 'Test2' must match pattern"
   @Generated("second")
   public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="UseCase4-config">
+          For UseCase #4, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions2.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions2-raw">
+          In order to suppress checks for package definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
 
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="/COMPILATION_UNIT/PACKAGE_DEF"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase4-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
+public class UseCase4 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {} // violation 'should be separated from previous line'
+  public void DoMATH() {}     // violation 'should be separated from previous line'
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase5-config">
+          For UseCase #5, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions3.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="LeftCurly"&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions3-raw">
+          In order to suppress checks for parent element of the first-ever variable definition:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="descendant::VARIABLE_DEF[1]/.."/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase5-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// filtered violation below "'{' at column 23 should be on a new line."
+public class UseCase5 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+  // violation below, "'{' at column 36 should be on a new line."
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+  // violation below, "'{' at column 27 should be on a new line."
+  public void changeAge() {
+    age = 24;
+  }
+  // violation below, "'{' at column 28 should be on a new line."
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+  // violation below, "'{' at column 31 should be on a new line."
+  public void sayHelloWorld() {// violation below, 'should be on a new line."
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    } // violation below, "'{' at column 23 should be on a new line."
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase6-config">
+          For UseCase #6, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions4.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions4-raw">
+          In order to suppress checks for elements which are either class definitions,
+          or method definitions.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase6-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 3 lines below "'VARIABLE_DEF' should be separated from previous line"
+public class UseCase6 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {} // filtered violation 'separated from previous line'
+  public void DoMATH() {}     // filtered violation 'separated from previous line'
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase7-config">
+          For UseCase #7, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions5.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions5-raw">
+          In order to suppress checks for certain methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//METHOD_DEF/IDENT[@text='GetSomeVar' or @text='SetSomeVar']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase7-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// filtered violation 4 lines below "Name 'SetSomeVar' must match pattern"
+public class UseCase7 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {} // violation, "Name 'DoMATH' must match pattern"
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {} // violation, "Name 'Test1' must match pattern"
+
+  @Generated("second")
+  public void Test2() {} // violation, "Name 'Test2' must match pattern"
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase8-config">
+          For UseCase #8, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions6.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="LocalVariableName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions6-raw">
+          In order to suppress checks for variable <i>TestVariable</i> inside <i>testMethod</i>
+          method inside <i>UseCase8</i> class.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='UseCase8']]
+          //METHOD_DEF[./IDENT[@text='testMethod']]
+          //VARIABLE_DEF/IDENT[@text='TestVariable']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase8-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase8 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable; // filtered violation 'Name 'TestVariable' must match pattern'
+    int WeirdName; // violation, "Name 'WeirdName' must match pattern"
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase9-config">
+          For UseCase #9, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions7.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions7-raw">
+          In the following sample, violations for <code>MethodName</code> check will be suppressed
+          for classes with name <i>Main</i> or for methods with name <i>DoMATH</i>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="MethodName" query="//CLASS_DEF[./IDENT[@text='Main']]//*
+          | //METHOD_DEF[./IDENT[@text='DoMATH']]/*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase9-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase9 {
+  int age = 23; // violation, "'23' is a magic number."
+  private int wordCount = 11; // violation, "'11' is a magic number."
+  public void SetSomeVar() {}  // violation "Name 'SetSomeVar' must match pattern"
+  public void DoMATH() {}  // filtered violation "Name 'DoMATH' must match pattern"
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24; // violation, "'24' is a magic number."
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {} // violation, "Name 'Test1' must match pattern"
+
+  @Generated("second")
+  public void Test2() {} // violation, "Name 'Test2' must match pattern"
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase10-config">
+          For UseCase #10, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions8.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions8-raw">
+          In order to suppress <code>RequireThis</code> violations for
+          variable <i>age</i> inside <i>changeAge</i> method.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks="RequireThis"
+     query="//CLASS_DEF[./IDENT[@text='UseCase10']]
+          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase10-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase10 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24; // filtered violation 'Reference to instance variable'
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() { // violation below 'Reference to instance variable'
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) { // violation 'Reference to instance variable'
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) { // violation 'Reference to instance variable'
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase11-config">
+          For UseCase #11, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions9.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="IllegalThrows"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          In order to suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions:
+        </p>
+        <p id="suppressions9-raw">
+          (Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          axis is used to iterate all ancestor nodes of the current node with type
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes
+          at <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.)
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="IllegalThrows" query="//LITERAL_THROWS
+          /IDENT[@text='RuntimeException' and
+          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase11-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase11 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+  // filtered violation below "Throwing 'RuntimeException' is not allowed."
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase12-config">
+          For UseCase #12, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions10.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="ModifierOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions10-raw">
+          The following sample demonstrates how to suppress all violations for method itself and
+          all descendants. <code>descendant-or-self</code> axis iterates through current node and
+          all children nodes at any level. Keyword <code>node()</code> selects node elements.
+          Please read more about xpath syntax at
+          <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
+          /descendant-or-self::node()"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase12-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase12 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() { // filtered violation 'modifier out of order'
+    strictfp abstract class Legacy {} // filtered violation 'modifier out of order'
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p>Some elements can be suppressed in different ways.
+          For example, to suppress violation on variable <code>wordCount</code> in following code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class InputTest {
+    private int wordCount = 11;
+}
+        </code></pre></div>
+        <p>You need to look at AST of such code by our CLI tool:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+$ java -jar checkstyle-X.XX-all.jar -t InputTest.java
+CLASS_DEF -&gt; CLASS_DEF [1:0]
+|--MODIFIERS -&gt; MODIFIERS [1:0]
+|   `--LITERAL_PUBLIC -&gt; public [1:0]
+|--LITERAL_CLASS -&gt; class [1:7]
+|--IDENT -&gt; InputTest [1:13]
+`--OBJBLOCK -&gt; OBJBLOCK [1:23]
+|--LCURLY -&gt; { [1:23]
+|--VARIABLE_DEF -&gt; VARIABLE_DEF [2:4]
+|   |--MODIFIERS -&gt; MODIFIERS [2:4]
+|   |   `--LITERAL_PRIVATE -&gt; private [2:4]
+|   |--TYPE -&gt; TYPE [2:12]
+|   |   `--LITERAL_INT -&gt; int [2:12]
+|   |--IDENT -&gt; wordCount [2:16]
+|   |--ASSIGN -&gt; = [2:26]
+|   |   `--EXPR -&gt; EXPR [2:28]
+|   |       `--NUM_INT -&gt; 11 [2:28]
+|   `--SEMI -&gt; ; [2:30]
+`--RCURLY -&gt; } [3:0]
+        </code></pre></div>
+        <p id="UseCase13-config">
+          For UseCase #13, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions11.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          The easiest way is to suppress by variable name. As you can see <code>VARIABLE_DEF</code>
+          node refers to variable declaration statement and has child node with token type
+          <code>IDENT</code> which is used for storing class, method, variable names.
+        </p>
+        <p id="suppressions11-raw">
+          The following example demonstrates how variable can be queried by its name:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="." query="//VARIABLE_DEF[
+            ./IDENT[@text='wordCount']]//*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="UseCase13-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase13 {
+  int age = 23;  // violation "'23' is a magic number."
+  private int wordCount = 11; // filtered violation "'11' is a magic number."
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;  // violation "'24' is a magic number."
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionXpathFilter_Example_of_Usage">
         <ul>
@@ -1015,10 +1461,18 @@ public class Example14 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionXpathFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressionXpathFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressionXpathFilter_Parent_Module">

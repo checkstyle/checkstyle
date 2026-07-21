@@ -1,4 +1,4 @@
-// Java17
+
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
 public record InputJava14RecordsTopLevel(Integer i, String s, Character c) {

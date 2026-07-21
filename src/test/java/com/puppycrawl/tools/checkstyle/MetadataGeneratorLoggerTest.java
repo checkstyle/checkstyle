@@ -127,4 +127,5 @@ public class MetadataGeneratorLoggerTest {
                     .isEqualTo(3);
         }
     }
+
 }

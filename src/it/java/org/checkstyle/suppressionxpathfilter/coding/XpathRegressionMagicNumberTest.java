@@ -119,4 +119,5 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

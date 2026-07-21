@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/todocomment";
@@ -34,7 +35,7 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:14: " + getCheckMessage(MSG_KEY, "TODO:"),
+            "16:14: " + getCheckMessage(MSG_KEY, "TODO:"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -44,11 +45,24 @@ public class TodoCommentCheckExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample2() throws Exception {
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
-            "18:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
-            "19:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
             "20:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "22:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
+            "24:14: " + getCheckMessage(MSG_KEY, "(?i)(TODO)|(FIXME)"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "17:3: Comment uses box-like repetitive character pattern.",
+            "26:5: Comment uses box-like repetitive character pattern.",
+            "32:5: Comment uses box-like repetitive character pattern.",
+            "38:5: Comment uses box-like repetitive character pattern.",
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
 }

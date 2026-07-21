@@ -158,4 +158,5 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

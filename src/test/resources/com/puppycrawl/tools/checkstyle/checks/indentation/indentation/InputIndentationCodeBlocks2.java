@@ -1,5 +1,5 @@
 
-// Java17                                                                    //indent:0 exp:0
+//                                                                           //indent:0 exp:0
 
 /* Config:                                                                   //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:  //indent:1 exp:1

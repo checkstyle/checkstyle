@@ -10,35 +10,43 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore;
 
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example1;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.UseCase1;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.CharArrayWriter;
 import java.io.PipedReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
-import java.util.HashMap;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
 // xdoc section -- start
-import java.io.BufferedReader;
 
 public class Example9 {
-  Set set = new HashSet(); // Ignored by default
-  Map map = new HashMap(); // Ignored by default
+  private Set<Object> set = new HashSet<>();         // ok, ignored
+  private Map<Object, Object> map = new HashMap<>(); // ok, ignored
+  private Object object = new Object();              // ok, ignored
 
-  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger("0");
-  BigDecimal bigDecimal = new BigDecimal("0");
-  MathContext mathContext = new MathContext(0); // Counted 4
+  private AtomicInteger atomicInteger = new AtomicInteger();
+  private BigInteger bigInteger = new BigInteger("0");
+  private BigDecimal bigDecimal = new BigDecimal("0");
+  private MathContext mathContext = new MathContext(0);
 
-  // Ignored using module excludedPackages property
-  ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(new byte[1]);
-  CharArrayWriter charArrayWriter = new CharArrayWriter();
-  PipedReader pipedReader = new PipedReader();
-  BufferedReader bufferedReader = new BufferedReader(pipedReader);
+  private Example1 example1 = new Example1(); // ok, ignored
+  private UseCase1 useCase1 = new UseCase1();
+
+  private ByteArrayInputStream byteArrayInputStream =
+      new ByteArrayInputStream(new byte[1]); // ok, ignored
+  private CharArrayWriter charArrayWriter = new CharArrayWriter(); // ok, ignored
+
+  private PipedReader pipedReader = new PipedReader(); // ok, ignored
+  private BufferedReader bufferedReader =
+      new BufferedReader(pipedReader); // ok, ignored
 }
 // xdoc section -- end

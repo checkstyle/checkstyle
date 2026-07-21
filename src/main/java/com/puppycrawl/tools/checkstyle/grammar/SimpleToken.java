@@ -91,4 +91,5 @@ public final class SimpleToken extends CommonToken {
                 getStopIndex()
         );
     }
+
 }

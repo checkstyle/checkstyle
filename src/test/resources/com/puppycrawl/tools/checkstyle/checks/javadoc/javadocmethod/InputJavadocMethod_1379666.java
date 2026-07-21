@@ -6,8 +6,8 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -42,6 +42,7 @@ public class InputJavadocMethod_1379666 {
         /**
          * Some comment.
          * @param s string.
+         * @param
          */
         BadStringFormat(String s) {
             super(s);

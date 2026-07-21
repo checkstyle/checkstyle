@@ -11,7 +11,7 @@ violateImpliedStaticNested = (default)true
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmodifier;
 
 public interface InputInterfaceMemberImpliedModifierSealedClasses {

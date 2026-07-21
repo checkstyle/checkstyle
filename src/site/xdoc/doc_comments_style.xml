@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0
+                              https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Documentation Comments Style</title>
+  </head>
+
+  <body>
+    <section name="Documentation Comments Style Checkstyle Coverage ">
+      <subsection name="Useful information" id="Documentation_Comments_Useful_information">
+        <p>
+          This coverage report was created for
+          <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
+            Documentation Comments Style</a>
+          (<a href="styleguides/doc-comments-style/doc-comments-styleguide.html">cached page</a>),
+        </p>
+        <p>
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/doc_comments_checks.xml">
+            Checkstyle configuration for 'Documentation Comments Style'</a>
+        </p>
+      </subsection>
+
+      <subsection name="Legend" id="Documentation_Comments_Legend">
+        <p>
+          "???" - Report is incomplete in this line.
+          <br />
+          "--" - There is no rule in this paragraph.
+          <br />
+          "↓" - This paragraph is the high-level point of some group.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_green.png"
+                alt="" />
+          </span>
+          - Existing Check covers all requirements.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ok_blue.png"
+                alt="" />
+          </span>
+          - Existing Check covers some part of requirements.
+          <br />
+          <span class="wrapper inline">
+            <img
+                src="images/ban_red.png"
+                alt="" />
+          </span>
+          - Requirements are not possible to check by Checkstyle at all.
+          <br />
+        </p>
+      </subsection>
+
+      <subsection name="Coverage table" id="Documentation_Comments_Coverage_table">
+        <p>
+          <b>ATTENTION:</b>
+          Links to config and sample files in the following table reference to latest
+            (not released yet) config. Config might be slightly different from what we
+            have in the latest release. Please always use config that is embedded to jar
+            or use a custom version copied from one that matches your checkstyle version.
+        </p>
+
+        <div class="wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th/>
+                <th>Documentation Comments Rule</th>
+                <th>Checkstyle Checks Used</th>
+                <th>Sample files</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- INTRODUCTION -->
+              <tr>
+                <td><a name="introduction"/>
+                  <a href="#introduction"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#introduction">
+                    <strong>Introduction</strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="principles"/>
+                  <a href="#principles"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#principles">
+                    <strong><em>Principles</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="writing-api-specs"/>
+                  <a href="#writing-api-specs"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#writing-api-specs">
+                    Writing API Specifications
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="api-spec-doc-comments"/>
+                  <a href="#api-spec-doc-comments"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#api-spec-doc-comments">
+                    Java Platform API Specification is defined
+                      by the documentation comments in the source code
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="api-spec-contract"/>
+                  <a href="#api-spec-contract"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#api-spec-contract">
+                    Java Platform API Specification is a contract
+                      between callers and implementations
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="api-spec-implementation-independent"/>
+                  <a href="#api-spec-implementation-independent"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#api-spec-implementation-independent">
+                    Java API Specification assertions need to be implementation-independent
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="api-spec-assertions"/>
+                  <a href="#api-spec-assertions"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#api-spec-assertions">
+                    Java API Specification should contain assertions
+                      sufficient to enable Software Quality Assurance
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="writing-programming-guide-docs"/>
+                  <a href="#writing-programming-guide-docs"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#writing-programming-guide-docs">
+                    Writing Programming Guide Documentation
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="api-spec-bugs"/>
+                  <a href="#api-spec-bugs"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#api-spec-bugs">
+                    API spec bugs
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="code-bugs"/>
+                  <a href="#code-bugs"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#code-bugs">
+                    Code bugs
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="doc-comment-ownership"/>
+                  <a href="#doc-comment-ownership"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#doc-comment-ownership">
+                    Who Owns and Edits the Doc Comments
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="terminology"/>
+                  <a href="#terminology"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#terminology">
+                    <strong><em>Terminology</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="source-files"/>
+                  <a href="#source-files"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#source-files">
+                    <strong><em>Source Files</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- WRITING DOC COMMENTS -->
+              <tr>
+                <td><a name="writing-doc-comments"/>
+                  <a href="#writing-doc-comments"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#writing-doc-comments">
+                    <strong>Writing Doc Comments</strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <!-- FORMAT -->
+              <tr>
+                <td><a name="format-doc-comment"/>
+                  <a href="#format-doc-comment"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#format-doc-comment">
+                    <strong><em>Format of a Doc Comment</em></strong>
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="notes"/>
+                  <a href="#notes"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#notes">
+                    Notes
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="get-image"/>
+                  <a href="#get-image"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#get-image">
+                    getImage
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- DOC TOOL -->
+              <tr>
+                <td><a name="doc-comment-checking-tool"/>
+                  <a href="#doc-comment-checking-tool"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#doc-comment-checking-tool">
+                    <strong><em>Doc Comment Checking Tool</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- DESCRIPTIONS -->
+              <tr>
+                <td><a name="descriptions"/>
+                  <a href="#descriptions"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#descriptions">
+                    <strong><em>Descriptions</em></strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="first-sentence"/>
+                  <a href="#first-sentence"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#first-sentence">
+                    First Sentence
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">
+                    SummaryJavadoc</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/descriptions/firstsentence">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="implementation-independence"/>
+                  <a href="#implementation-independence"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#implementation-independence">
+                    Implementation-Independence
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="automatic-reuse-method-comments"/>
+                  <a href="#automatic-reuse-method-comments"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#automatic-reuse-method-comments">
+                    Automatic re-use of method comments
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Violations of this guideline cannot be detected by Checkstyle due to its
+                  <a href="writingchecks.html#Limitations">
+                    limitation</a>, multiple file checking is not supported.
+                </td>
+                <td/>
+              </tr>
+
+              <!-- STYLE GUIDE -->
+              <tr>
+                <td><a name="style-guide"/>
+                  <a href="#style-guide"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#style-guide">
+                    <strong><em>A Style Guide</em></strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="code-style-keywords-names"/>
+                  <a href="#code-style-keywords-names"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#code-style-keywords-names">
+                    Use &lt;code&gt; style for keywords and names
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="inline-links-economically"/>
+                  <a href="#inline-links-economically"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#inline-links-economically">
+                    Use in-line links economically
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Guidelines are not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19937">#19937</a>,
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19938">#19938</a>.
+                </td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="omit-parentheses-general-methods"/>
+                  <a href="#omit-parentheses-general-methods"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#omit-parentheses-general-methods">
+                    Omit parentheses for the general form of methods and constructors
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="phrases-instead-complete-sentences"/>
+                  <a href="#phrases-instead-complete-sentences"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#phrases-instead-complete-sentences">
+                    OK to use phrases instead of complete sentences
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="third-person-descriptive"/>
+                  <a href="#third-person-descriptive"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#third-person-descriptive">
+                    Use 3rd person descriptive
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="method-descriptions-verb-phrase"/>
+                  <a href="#method-descriptions-verb-phrase"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#method-descriptions-verb-phrase">
+                    Method descriptions begin with a verb phrase
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="class-interface-field-descriptions"/>
+                  <a href="#class-interface-field-descriptions"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#class-interface-field-descriptions">
+                    Class/interface/field descriptions can omit
+                      the subject and simply state the object
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="use-this-instead-of-the"/>
+                  <a href="#use-this-instead-of-the"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#use-this-instead-of-the">
+                    Use "this" instead of "the" when referring to an
+                      object created from the current class
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="add-description-beyond-api-name"/>
+                  <a href="#add-description-beyond-api-name"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#add-description-beyond-api-name">
+                    Add description beyond the API name
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="term-field"/>
+                  <a href="#term-field"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#term-field">
+                    Be clear when using the term "field"
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="avoid-latin"/>
+                  <a href="#avoid-latin"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#avoid-latin">
+                    Avoid Latin
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <!-- TAGS -->
+              <tr>
+                <td><a name="tag-conventions"/>
+                  <a href="#tag-conventions"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#tag-conventions">
+                    <strong><em>Tag Conventions</em></strong>
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td>
+                  <a name="order-of-tags"/>
+                  <a href="#order-of-tags"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a>
+                </td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#order-of-tags">
+                    Order of Tags
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/atclauseorder.html#AtclauseOrder">
+                    AtclauseOrder</a>
+                  (
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+                    config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/orderoftags">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="ordering-multiple-tags"/>
+                  <a href="#ordering-multiple-tags"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#ordering-multiple-tags">
+                    Ordering Multiple Tags
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="required-tags"/>
+                  <a href="#required-tags"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#required-tags">
+                    Required Tags
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/requiredtags">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="tag-comments"/>
+                  <a href="#tag-comments"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#tag-comments">
+                    Tag Comments
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="author-tag"/>
+                  <a href="#author-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#author-tag">
+                    @author
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="version-tag"/>
+                  <a href="#version-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#version-tag">
+                    @version
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="param-tag"/>
+                  <a href="#param-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#param-tag">
+                    @param
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="return-tag"/>
+                  <a href="#return-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#return-tag">
+                    @return
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/returntag">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="deprecated-tag"/>
+                  <a href="#deprecated-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#deprecated-tag">
+                    @deprecated
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="since-tag"/>
+                  <a href="#since-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#since-tag">
+                    @since
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="throws-tag"/>
+                  <a href="#throws-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#throws-tag">
+                    @throws
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Cannot cover the guideline that <code>Error</code> should not be documented,
+                    as Checkstyle does not have a Check for this yet. See
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20792">#20792</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/throwstag">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="see-tag"/>
+                  <a href="#see-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#see-tag">
+                    @see
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="serial-tag"/>
+                  <a href="#serial-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#serial-tag">
+                    @serial
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="serial-field-tag"/>
+                  <a href="#serial-field-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#serial-field-tag">
+                    @serialField
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="serial-data-tag"/>
+                  <a href="#serial-data-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#serial-data-tag">
+                    @serialData
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="link-tag"/>
+                  <a href="#link-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#link-tag">
+                    {@link}
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="custom-tags-annotations"/>
+                  <a href="#custom-tags-annotations"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#custom-tags-annotations">
+                    Custom Tags and Annotations
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <!-- DEFAULT CONSTRUCTORS -->
+              <tr>
+                <td><a name="documenting-default-constructors"/>
+                  <a href="#documenting-default-constructors"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#documenting-default-constructors">
+                    <strong><em>Documenting Default Constructors</em></strong>
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/missingctor.html#MissingCtor">
+                    MissingCtor</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Cannot cover compatibility rule for replacing an implicit default constructor,
+                    as Checkstyle analyzes only the current source snapshot and cannot know whether
+                    the constructor was part of a previously released API.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/docdefaultconstr">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <!-- EXCEPTIONS -->
+              <tr>
+                <td><a name="documenting-exceptions-throws-tag"/>
+                  <a href="#documenting-exceptions-throws-tag"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#documenting-exceptions-throws-tag">
+                    <strong><em>Documenting Exceptions with @throws Tag</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="documenting-exceptions-api-specs"/>
+                  <a href="#documenting-exceptions-api-specs"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#documenting-exceptions-api-specs">
+                    Documenting Exceptions in API Specs
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="throws-tag-purpose"/>
+                  <a href="#throws-tag-purpose"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#throws-tag-purpose">
+                    Throws Tag
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="exceptions-to-document"/>
+                  <a href="#exceptions-to-document"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#exceptions-to-document">
+                    Guidelines - Which Exceptions to Document
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle cannot distinguish checked from unchecked exceptions due to its
+                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
+                    validate differences between exceptions declared in method signatures and
+                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
+                    may reveal extra unchecked exceptions declared in signatures, but this
+                    validation cannot fully decide which unchecked exceptions should be documented.
+                    Not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/documentingexceptionswiththrowstag/exceptionstodocument">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="documenting-unchecked-exceptions"/>
+                  <a href="#documenting-unchecked-exceptions"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#documenting-unchecked-exceptions">
+                    Documenting Unchecked Exceptions
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="checked-unchecked-exceptions-background"/>
+                  <a href="#checked-unchecked-exceptions-background"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#checked-unchecked-exceptions-background">
+                    Background on Checked and Unchecked Exceptions
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="throws-clause-background"/>
+                  <a href="#throws-clause-background"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#throws-clause-background">
+                    Background on the Throws Clause
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle cannot distinguish checked from unchecked exceptions due to its
+                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
+                    validate differences between exceptions declared in method signatures and
+                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
+                    may reveal extra unchecked exceptions declared in signatures, but this
+                    validation cannot fully decide which unchecked exceptions should be documented.
+                    Not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                </td>
+                <td/>
+              </tr>
+
+              <!-- PACKAGE -->
+              <tr>
+                <td><a name="package-level-comments"/>
+                  <a href="#package-level-comments"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#package-level-comments">
+                    <strong><em>Package-Level Comments</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="package-html-template"/>
+                  <a href="#package-html-template"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#package-html-template">
+                    Template for package.html source file
+                  </a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocpackage.html#JavadocPackage">
+                    JavadocPackage</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/packagelevelcomments/packagehtmltemplate">
+                    samples
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td><a name="package-html-contents"/>
+                  <a href="#package-html-contents"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#package-html-contents">
+                    Contents of package.html source file
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <!-- ANONYMOUS INNER CLASSES -->
+              <tr>
+                <td><a name="documenting-anonymous-inner-classes"/>
+                  <a href="#documenting-anonymous-inner-classes"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#documenting-anonymous-inner-classes">
+                    <strong><em>Documenting Anonymous Inner Classes</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- IMAGES -->
+              <tr>
+                <td><a name="including-images"/>
+                  <a href="#including-images"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#including-images">
+                    <strong><em>Including Images</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="images-source-tree"/>
+                  <a href="#images-source-tree"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#images-source-tree">
+                    Images in Source Tree
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="naming-doc-images-source-tree"/>
+                  <a href="#naming-doc-images-source-tree"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#naming-doc-images-source-tree">
+                    Naming of doc images in source tree
+                  </a>
+                </td>
+                <td>???</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="location-doc-images-source-tree"/>
+                  <a href="#location-doc-images-source-tree"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#location-doc-images-source-tree">
+                    Location of doc images in source tree
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="images-html-destination"/>
+                  <a href="#images-html-destination"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#images-html-destination">
+                    Images in HTML Destination
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="naming-doc-images-html-destination"/>
+                  <a href="#naming-doc-images-html-destination"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#naming-doc-images-html-destination">
+                    Naming of doc images in HTML destination
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <tr>
+                <td><a name="location-doc-images-html-destination"/>
+                  <a href="#location-doc-images-html-destination"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#location-doc-images-html-destination">
+                    Location of doc images in HTML destination
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- EXAMPLES -->
+              <tr>
+                <td><a name="examples-doc-comments"/>
+                  <a href="#examples-doc-comments"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#examples-doc-comments">
+                    <strong><em>Examples of Doc Comments</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+              <!-- MICROSOFT WORD -->
+              <tr>
+                <td><a name="troubleshooting-curly-quotes"/>
+                  <a href="#troubleshooting-curly-quotes"><span class="wrapper inline">
+                  <img src="images/anchor.png" alt=""/></span></a></td>
+                <td>
+                  <a href="styleguides/doc-comments-style/doc-comments-styleguide.html#troubleshooting-curly-quotes">
+                    <strong><em>Troubleshooting Curly Quotes (Microsoft Word)</em></strong>
+                  </a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </subsection>
+
+    </section>
+  </body>
+</document>

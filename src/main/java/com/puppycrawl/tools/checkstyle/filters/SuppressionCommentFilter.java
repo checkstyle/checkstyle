@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -148,6 +148,13 @@ public class SuppressionCommentFilter
     private String idFormat;
 
     /**
+     * Creates a new {@code SuppressionCommentFilter} instance.
+     */
+    public SuppressionCommentFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
@@ -169,6 +176,7 @@ public class SuppressionCommentFilter
 
     /**
      * Setter to specify check pattern to suppress.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param format a {@code String} value
      * @since 3.5
@@ -277,7 +285,7 @@ public class SuppressionCommentFilter
                     .getBlockComments().values();
             cComments.forEach(this::tagSuppressions);
         }
-        Collections.sort(tags);
+        tags.sort(Comparator.naturalOrder());
     }
 
     /**

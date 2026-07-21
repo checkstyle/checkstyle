@@ -26,12 +26,11 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -118,6 +117,13 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private Set<String> allowedAnnotations = Set.of("Override");
 
     /**
+     * Creates a new {@code MissingJavadocMethodCheck} instance.
+     */
+    public MissingJavadocMethodCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to configure annotations that allow missed documentation.
      *
      * @param userAnnotations user's value.
@@ -198,16 +204,17 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19148
     @Override
-    @SuppressWarnings("deprecation")
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public final void visitToken(DetailAST ast) {
         final Scope theScope = ScopeUtil.getScope(ast);
         if (shouldCheck(ast, theScope)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
-
-            if (textBlock == null && !isMissingJavadocAllowed(ast)) {
+            final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
+            if (blockCommentNode == null && !isMissingJavadocAllowed(ast)) {
                 log(ast, MSG_JAVADOC_MISSING);
             }
         }
@@ -220,16 +227,13 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return Some javadoc.
      */
     private static int getMethodsNumberOfLine(DetailAST methodDef) {
-        final int numberOfLines;
+        int numberOfLines = 1;
         final DetailAST lcurly = methodDef.getLastChild();
         final DetailAST rcurly = lcurly.getLastChild();
-
-        if (lcurly.getFirstChild() == rcurly) {
-            numberOfLines = 1;
-        }
-        else {
+        if (rcurly != null && lcurly.getLineNo() != rcurly.getLineNo()) {
             numberOfLines = rcurly.getLineNo() - lcurly.getLineNo() - 1;
         }
+
         return numberOfLines;
     }
 
@@ -311,7 +315,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         // is allowed in a proper getter method which does not throw any
         // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+                && getChildCount(ast) == SETTER_GETTER_MAX_CHILDREN) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesGetterFormat = GETTER_PATTERN.matcher(name).matches();
@@ -326,7 +330,10 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
                 if (slist != null) {
-                    final DetailAST expr = slist.getFirstChild();
+                    DetailAST expr = slist.getFirstChild();
+                    while (expr.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                        expr = expr.getNextSibling();
+                    }
                     getterMethod = expr.getType() == TokenTypes.LITERAL_RETURN;
                 }
             }
@@ -347,7 +354,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         // is allowed in a proper setter method which does not throw any
         // exceptions.
         if (ast.getType() == TokenTypes.METHOD_DEF
-                && ast.getChildCount() == SETTER_GETTER_MAX_CHILDREN) {
+                && getChildCount(ast) == SETTER_GETTER_MAX_CHILDREN) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final String name = type.getNextSibling().getText();
             final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
@@ -362,7 +369,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
                 // RCURLY
                 final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-                if (slist != null && slist.getChildCount() == SETTER_BODY_SIZE) {
+                if (slist != null && getChildCount(slist) == SETTER_BODY_SIZE) {
                     final DetailAST expr = slist.getFirstChild();
                     setterMethod = expr.getFirstChild().getType() == TokenTypes.ASSIGN;
                 }
@@ -370,4 +377,24 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         }
         return setterMethod;
     }
+
+    /**
+     * Returns the number of children without counting comments.
+     *
+     * @param detailAst parent ast
+     * @return the number of children
+     */
+    private static int getChildCount(DetailAST detailAst) {
+        int childCount = 0;
+        DetailAST child = detailAst.getFirstChild();
+
+        while (child != null) {
+            if (child.getType() != TokenTypes.SINGLE_LINE_COMMENT) {
+                childCount += 1;
+            }
+            child = child.getNextSibling();
+        }
+        return childCount;
+    }
+
 }

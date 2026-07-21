@@ -13,20 +13,24 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
 // xdoc section -- start
+import java.io.
+        IOException;
+
 class Example3 {
   String s;
 
   int a,
-    b; // violation above '',' should be on a new line'
+          b; // violation above, ',' should be on a new line
 
-  void foo(int a,
-                int b) { // violation above '',' should be on a new line'
-    int r
-      , t; // ok, because it is on a new line
+  void foo(int x,
+           int y) { // violation above, ',' should be on a new line
   }
 
   void bar(int p
-                , int q) { // ok, because it is on a new line
+          , int q) { // ok, ',' is on a new line
+    if (s
+            .isEmpty()) {
+    }
   }
 }
 // xdoc section -- end

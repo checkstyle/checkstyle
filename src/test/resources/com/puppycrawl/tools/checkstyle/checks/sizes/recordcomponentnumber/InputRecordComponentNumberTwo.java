@@ -6,7 +6,7 @@ accessModifiers = (default)public, protected, package, private
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.util.ArrayDeque;
@@ -35,7 +35,8 @@ public class InputRecordComponentNumberTwo {
 
   }
 
-  private static record MyPrivateRecord1(int x, int y, int z, // violation
+  // violation below 'Number of record components is 15'
+  private static record MyPrivateRecord1(int x, int y, int z,
                                            int a, int b, int c,
                                            int d, int e, int f,
                                            int g, int h, int i,
@@ -45,7 +46,8 @@ public class InputRecordComponentNumberTwo {
 
   protected static record MyProtectedRecord1(int x, int y) {}
 
-  protected static record MyProtectedRecord2(int x, int y, int z, // violation
+  // violation below 'Number of record components is 15'
+  protected static record MyProtectedRecord2(int x, int y, int z,
                                                int a, int b, int c,
                                                int d, int e, int f,
                                                int g, int h, int i,

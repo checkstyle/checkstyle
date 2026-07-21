@@ -39,7 +39,8 @@
       <fileset dir="src"
                includes="**/*"
                excludes="it/resources/**/*,it/resources-noncompilable/**/*,
-               test/resources/**/*,test/resources-noncompilable/**/*,**/gen/**,
+               test/resources/**/*,test/resources-noncompilable/**/*,
+               test/resources-with-javadoc-error/**/*,**/gen/**,
                xdocs-examples/resources/**/*,xdocs-examples/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
@@ -164,7 +165,8 @@
                 >
       <path>
         <fileset dir="src"
-            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*">
+            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*,
+                test/resources-with-javadoc-error/**/*">
           <!-- bad syntax, permanent exclude -->
           <exclude name="**/InputAstTreeStringPrinter.java" />
           <exclude name="**/InputSuppressionsStringPrinter.java"/>
@@ -205,7 +207,8 @@
     >
       <path>
         <fileset dir="src"
-                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java">
+                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java,
+                 it/resources/**/*.java,it/resources-noncompilable/**/*.java">
           <!-- bad syntax, permanent exclude -->
           <exclude name="**/InputAstTreeStringPrinter.java" />
           <exclude name="**/InputSuppressionsStringPrinter.java"/>

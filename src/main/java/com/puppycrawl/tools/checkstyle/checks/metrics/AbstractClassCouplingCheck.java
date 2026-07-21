@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
@@ -82,7 +81,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     );
 
     /** Package names to ignore. */
-    private static final Set<String> DEFAULT_EXCLUDED_PACKAGES = Collections.emptySet();
+    private static final Set<String> DEFAULT_EXCLUDED_PACKAGES = Set.of();
 
     /** Pattern to match brackets in a full type name. */
     private static final Pattern BRACKET_PATTERN = Pattern.compile("\\[[^]]*]");
@@ -90,7 +89,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Specify user-configured regular expressions to ignore classes. */
     private final List<Pattern> excludeClassesRegexps = new ArrayList<>();
 
-    /** A map of (imported class name -&gt; class name with package) pairs. */
+    /** A map of {@literal (imported class name -> class name with package)} pairs. */
     private final Map<String, String> importedClassPackages = new HashMap<>();
 
     /** Stack of class contexts. */
@@ -195,6 +194,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                  TokenTypes.ANNOTATION_DEF,
                  TokenTypes.ENUM_DEF,
                  TokenTypes.RECORD_DEF -> visitClassDef(ast);
+            case TokenTypes.COMPACT_COMPILATION_UNIT -> visitCompactCompilationUnit(ast);
             case TokenTypes.EXTENDS_CLAUSE,
                  TokenTypes.IMPLEMENTS_CLAUSE,
                  TokenTypes.TYPE -> visitType(ast);
@@ -207,7 +207,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isTypeDeclaration(ast.getType())) {
+        if (TokenUtil.isTypeDeclaration(ast.getType())
+                || ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             leaveClassDef();
         }
     }
@@ -230,6 +231,16 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private void visitClassDef(DetailAST classDef) {
         final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
         createNewClassContext(className, classDef);
+    }
+
+    /**
+     * Creates new context for the implicit class declared by a compact
+     * compilation unit (JEP 512).
+     *
+     * @param compactCompilationUnit COMPACT_COMPILATION_UNIT node.
+     */
+    private void visitCompactCompilationUnit(DetailAST compactCompilationUnit) {
+        createNewClassContext("", compactCompilationUnit);
     }
 
     /** Restores previous context. */
@@ -477,4 +488,5 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             return result;
         }
     }
+
 }

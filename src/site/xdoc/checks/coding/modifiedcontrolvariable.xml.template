@@ -44,6 +44,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/modifiedcontrolvariable/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           By default, This Check validates
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -52,7 +53,7 @@
         <p>
           Option 'skipEnhancedForLoopVariable' could be used to skip check of variable
           from Enhanced For Loop.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">
           An example of how to configure the check so that it skips enhanced For Loop Variable is:
         </p>
@@ -89,9 +90,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="ModifiedControlVariable_Package">
+      <subsection name="Fully Qualified Name" id="ModifiedControlVariable_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

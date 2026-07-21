@@ -63,8 +63,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -100,33 +99,34 @@
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
-public class Example1 {}
+public class Example1 {
+  class Valid implements Serializable {}
 
-class Valid1 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc. // violation
- * @deprecated
- * @see Some javadoc. // violation
- */
-class Invalid1 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc. // violation
- * @deprecated
- * @see Some javadoc. // violation
- * @author max // violation
- */
-enum Test1 {}
+  // ok below 'Block tags have to appear in the order'
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
             To configure the check such that it checks in the custom order:
@@ -147,6 +147,7 @@ enum Test1 {}
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 11 lines below 'Block tags have to appear in the order'
 /**
 * Some javadoc.
 *
@@ -157,35 +158,36 @@ enum Test1 {}
 * @throws Some javadoc.
 * @exception Some javadoc.
 * @see Some javadoc.
-* @since Some javadoc. // violation
+* @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
-public class Example2 {}
-
-class Valid2 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- */
-class Invalid2 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated Some javadoc.
- * @see Some javadoc.
- * @author max // violation
- */
-enum Test2 {}
+public class Example2 {
+  class Valid implements Serializable {}
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
             To configure the check such that it targets only enums:
@@ -219,33 +221,91 @@ enum Test2 {}
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
-public class Example3 {}
+public class Example3 {
+  class Valid implements Serializable {}
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
 
-class Valid3 implements Serializable {}
-
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+            To configure the check such that it targets only methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AtclauseOrder"&gt;
+      &lt;property name="target" value="METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- */
-class Invalid3 implements Serializable {}
+* Some javadoc.
+*
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField field Object Field description.
+* @serialData
+*/
+public class Example4 {
+  class Valid implements Serializable {}
 
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- * @author Some javadoc. // violation
- */
-enum Test3 {}
+  // ok below 'Block tags have to appear in the order'
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
+}
 </code></pre></div>
       </subsection>
 
@@ -254,6 +314,10 @@ enum Test3 {}
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
+            Documentation Comments Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AtclauseOrder">
@@ -287,9 +351,11 @@ enum Test3 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="AtclauseOrder_Package">
+      <subsection name="Fully Qualified Name" id="AtclauseOrder_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

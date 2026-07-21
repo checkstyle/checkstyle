@@ -43,6 +43,10 @@ import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
         return VOID_TAGS.contains(tagName.toLowerCase());
     }
 
+    private boolean isSimpleIdentifier() {
+        return !_input.LT(1).getText().contains(".");
+    }
+
     public JavadocCommentsParser(CommonTokenStream tokens, Set<SimpleToken> unclosed) {
         super(tokens);
         _interp = new ParserATNSimulator(
@@ -213,12 +217,13 @@ customInlineTag
 
 // Components
 reference
-    : HASH memberReference
-    | (module=qualifiedName SLASH)? type=typeName (HASH memberReference)?
+    : HASH (HASH IDENTIFIER | memberReference)
+    | methodReferenceWithoutHash
+    | (module=qualifiedName SLASH)? type=typeName (HASH (HASH IDENTIFIER | memberReference))?
     ;
 
 typeName
-    : qualifiedName (typeArguments)?
+    : (qualifiedName typeArguments?)+
     ;
 
 qualifiedName
@@ -238,6 +243,11 @@ typeArgument
 
 memberReference
     : IDENTIFIER (LPAREN parameterTypeList? RPAREN)?
+    ;
+
+methodReferenceWithoutHash
+    : { isSimpleIdentifier() }?
+      IDENTIFIER LPAREN parameterTypeList? RPAREN
     ;
 
 parameterTypeList

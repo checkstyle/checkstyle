@@ -44,11 +44,11 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     public void testBadOverrideFromObject() throws Exception {
 
         final String[] expected = {
-            "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "51:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "74:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "16:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "28:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "39:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "69:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
@@ -64,9 +64,9 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "36:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "46:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
-            "55:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "26:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "36:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
         verifyWithInlineConfigParser(
@@ -225,6 +225,16 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingOverrideGoodOverrideJava5.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingOverrideCompactSourceFile.java"), expected);
     }
 
     @Test

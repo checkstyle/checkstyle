@@ -70,10 +70,12 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import static java.lang.Math.pow;          // violation, 'Using a static member import should be avoided.'
-import static java.lang.System.*;          // violation, 'Using a static member import should be avoided.'
+import static java.lang.Math.*;           // violation, 'Using a static member import should be avoided.'
+import static java.lang.System.out;       // violation, 'Using a static member import should be avoided.'
+import static java.lang.Integer.parseInt; // violation, 'Using a static member import should be avoided.'
+
 import java.io.File;
-import java.util.*;
+import java.util.List;
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check so that the <code>java.lang.System.out</code>
@@ -94,9 +96,10 @@ import java.util.*;
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.*;
 import static java.lang.System.out;
-import static java.lang.Integer.parseInt;  // violation, 'Using a static member import should be avoided.'
-import java.io.*;
-import java.util.*;
+import static java.lang.Integer.parseInt; // violation, 'Using a static member import should be avoided.'
+
+import java.io.File;
+import java.util.List;
 </code></pre></div>
       </subsection>
 
@@ -124,8 +127,12 @@ import java.util.*;
         </p>
       </subsection>
 
-      <subsection name="Package" id="AvoidStaticImport_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+      <subsection name="Fully Qualified Name" id="AvoidStaticImport_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AvoidStaticImport_Parent_Module">

@@ -3,7 +3,7 @@ name: "Checkstyle CI pipeline on Semaphore"
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu2004
+    os_image: ubuntu2404
 auto_cancel:
   running:
     when: "branch != 'master'"
@@ -16,11 +16,19 @@ blocks:
           - cache restore m2
           - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
           - sudo apt-get update
-          - sudo apt-get install -y ant groovy xsltproc xmlstarlet
+          - sudo apt-get install -y ant xsltproc xmlstarlet
           - sudo apt-get install -y openjdk-21-jdk
           - export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
           - export PATH=$JAVA_HOME/bin:$PATH
           - java -version
+          - |
+            for i in 1 2 3 4 5; do
+                curl --fail-with-body -s "https://get.sdkman.io?ci=true" | bash && break \
+                    || sleep 15s;
+            done
+          - source "$HOME/.sdkman/bin/sdkman-init.sh"
+          - sdk install groovy
+          - groovy --version
           - export GRADLE_OPTS=-Dorg.gradle.console=plain
       epilogue:
         commands:
@@ -33,7 +41,7 @@ blocks:
       jobs:
         - name: sevntu
           commands:
-            - ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
+            - ./.ci/validation.sh sevntu
 
         - name: codenarc analysis
           commands:
@@ -98,3 +106,40 @@ blocks:
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
             - ./.ci/validation.sh ci-temp-check
+
+  - name: "Linux openjdk25 build"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore m2-jdk25
+          - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
+          - sudo apt-get update
+          - sudo apt-get install -y ant xsltproc xmlstarlet
+          - sudo apt-get install -y openjdk-25-jdk
+          - export JAVA_HOME=/usr/lib/jvm/java-25-openjdk-amd64
+          - export PATH=$JAVA_HOME/bin:$PATH
+          - java -version
+          - export GRADLE_OPTS=-Dorg.gradle.console=plain
+      epilogue:
+        commands:
+          - |
+            if [[ ${M2_CACHE_SIZE} -ne $(du -s $HOME/.m2 | cut -f1) ]]
+            then
+              cache delete m2-jdk25
+              cache store m2-jdk25 $HOME/.m2
+            fi
+      jobs:
+        - name: No Error Test (openjdk25, fast pool)
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh no-error-hibernate-search
+                - .ci/validation.sh no-error-spring-integration
+
+          commands:
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
+            - ./.ci/validation.sh git-diff

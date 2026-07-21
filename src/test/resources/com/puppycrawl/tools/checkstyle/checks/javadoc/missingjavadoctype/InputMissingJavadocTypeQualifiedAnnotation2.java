@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = SomeAnnotation
+violateExecutionOnNonTightHtml = (default)false
 tokens = INTERFACE_DEF
 
 
@@ -20,7 +21,8 @@ public class InputMissingJavadocTypeQualifiedAnnotation2 {
     @InputMissingJavadocTypeQualifiedAnnotation2.SomeAnnotation
     public interface B { }
 
-    @com.puppycrawl.tools.checkstyle.checks.javadoc // violation 'Missing a Javadoc comment.'
+    // violation below 'Missing a Javadoc comment.'
+    @com.puppycrawl.tools.checkstyle.checks.javadoc
         .missingjavadoctype.InputMissingJavadocTypeQualifiedAnnotation2.SomeAnnotation
     public interface C { }
 }

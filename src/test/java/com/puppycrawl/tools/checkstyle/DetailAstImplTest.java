@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.io.Writer;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -58,7 +57,11 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                  "InputNoCodeInFile1.java",
                  "InputNoCodeInFile2.java",
                  "InputNoCodeInFile3.java",
-                 "InputNoCodeInFile5.java"
+                 "InputNoCodeInFile5.java",
+                 "InputOuterTypeFilenameEmpty.java",
+                 "InputOneTopLevelClassEmpty.java",
+                 "InputMethodCountEmpty.java",
+                 "InputDeclarationOrderEmpty.java"
         );
 
     @TempDir
@@ -680,7 +683,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     public void testManyComments() throws Exception {
         final File file = new File(temporaryFolder, "InputDetailASTManyComments.java");
 
-        try (Writer bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        try (Writer bw = Files.newBufferedWriter(file.toPath())) {
             bw.write(
                     """
                     /*

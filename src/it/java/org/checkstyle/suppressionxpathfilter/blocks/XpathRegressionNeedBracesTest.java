@@ -135,4 +135,5 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

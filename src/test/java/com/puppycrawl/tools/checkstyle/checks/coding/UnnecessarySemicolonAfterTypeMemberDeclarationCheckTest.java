@@ -82,6 +82,28 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+
+        final String[] expected = {
+            "14:2: " + getCheckMessage(MSG_SEMI),
+            "18:2: " + getCheckMessage(MSG_SEMI),
+            "22:2: " + getCheckMessage(MSG_SEMI),
+            "26:2: " + getCheckMessage(MSG_SEMI),
+            "30:2: " + getCheckMessage(MSG_SEMI),
+            "36:6: " + getCheckMessage(MSG_SEMI),
+            "38:2: " + getCheckMessage(MSG_SEMI),
+            "41:5: " + getCheckMessage(MSG_SEMI),
+            "48:11: " + getCheckMessage(MSG_SEMI),
+            "52:2: " + getCheckMessage(MSG_SEMI),
+        };
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputUnnecessarySemicolonAfterTypeMemberDeclarationCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
     public void testTokens() {
         final UnnecessarySemicolonAfterTypeMemberDeclarationCheck check =
             new UnnecessarySemicolonAfterTypeMemberDeclarationCheck();
@@ -119,4 +141,5 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
                 getPath("InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"),
                 expected);
     }
+
 }

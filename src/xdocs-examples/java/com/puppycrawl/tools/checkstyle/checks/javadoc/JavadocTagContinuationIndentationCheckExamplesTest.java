@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocTagContinuationIndentationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation";
@@ -61,12 +62,13 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
     public void testExample3() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "a"),
-            "28: " + getCheckMessage(MSG_KEY, 4),
+            "27: " + getCheckMessage(MSG_KEY, 4),
+            "44: " + getCheckMessage(MSG_KEY, 4),
             "45: " + getCheckMessage(MSG_KEY, 4),
             "46: " + getCheckMessage(MSG_KEY, 4),
             "47: " + getCheckMessage(MSG_KEY, 4),
-            "48: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

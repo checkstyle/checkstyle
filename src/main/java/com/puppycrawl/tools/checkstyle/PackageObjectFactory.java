@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -128,6 +127,26 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Creates a new {@code PackageObjectFactory} instance.
      *
+     * @param packageName The package name to use
+     * @param moduleClassLoader class loader used to load Checkstyle
+     *          core and custom modules
+     * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
+     */
+    public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
+        if (moduleClassLoader == null) {
+            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
+        }
+        if (packageName == null) {
+            throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
+        }
+
+        packages = Set.of(packageName);
+        this.moduleClassLoader = moduleClassLoader;
+    }
+
+    /**
+     * Creates a new {@code PackageObjectFactory} instance.
+     *
      * @param packageNames package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
@@ -147,26 +166,6 @@ public class PackageObjectFactory implements ModuleFactory {
         packages = new LinkedHashSet<>(packageNames);
         this.moduleClassLoader = moduleClassLoader;
         this.moduleLoadOption = moduleLoadOption;
-    }
-
-    /**
-     * Creates a new {@code PackageObjectFactory} instance.
-     *
-     * @param packageName The package name to use
-     * @param moduleClassLoader class loader used to load Checkstyle
-     *          core and custom modules
-     * @throws IllegalArgumentException if moduleClassLoader is null or packageNames is null
-     */
-    public PackageObjectFactory(String packageName, ClassLoader moduleClassLoader) {
-        if (moduleClassLoader == null) {
-            throw new IllegalArgumentException(NULL_LOADER_MESSAGE);
-        }
-        if (packageName == null) {
-            throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
-        }
-
-        packages = Collections.singleton(packageName);
-        this.moduleClassLoader = moduleClassLoader;
     }
 
     /**
@@ -312,7 +311,7 @@ public class PackageObjectFactory implements ModuleFactory {
                         Collectors.toCollection(HashSet::new))));
         }
         catch (IOException ignore) {
-            returnValue = Collections.emptyMap();
+            returnValue = Map.of();
         }
         return returnValue;
     }
@@ -617,6 +616,10 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessaryNullCheckWithInstanceOfCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessaryNullCheckWithInstanceOfCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnusedTryResourceShouldBeUnnamedCheck",
+                BASE_PACKAGE + ".checks.coding.UnusedTryResourceShouldBeUnnamedCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnnecessaryTypeArgumentsWithRecordPatternCheck",
+                BASE_PACKAGE + ".checks.coding.UnnecessaryTypeArgumentsWithRecordPatternCheck");
     }
 
     /**
@@ -713,8 +716,6 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocPackageCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocParagraphCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocParagraphCheck");
-        NAME_TO_FULL_MODULE_NAME.put("JavadocStyleCheck",
-                BASE_PACKAGE + ".checks.javadoc.JavadocStyleCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTagContinuationIndentationCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocTagContinuationIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTypeCheck",
@@ -761,6 +762,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from modifier package.
      */
     private static void fillChecksFromModifierPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("AnnotatedDeclarationVisibilityCheck",
+                BASE_PACKAGE + ".checks.modifier.AnnotatedDeclarationVisibilityCheck");
         NAME_TO_FULL_MODULE_NAME.put("ClassMemberImpliedModifierCheck",
             BASE_PACKAGE + ".checks.modifier.ClassMemberImpliedModifierCheck");
         NAME_TO_FULL_MODULE_NAME.put("InterfaceMemberImpliedModifierCheck",
@@ -893,6 +896,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.SeparatorWrapCheck");
         NAME_TO_FULL_MODULE_NAME.put("SingleSpaceSeparatorCheck",
                 BASE_PACKAGE + ".checks.whitespace.SingleSpaceSeparatorCheck");
+        NAME_TO_FULL_MODULE_NAME.put("TypeBodyPaddingCheck",
+                BASE_PACKAGE + ".checks.whitespace.TypeBodyPaddingCheck");
         NAME_TO_FULL_MODULE_NAME.put("TypecastParenPadCheck",
                 BASE_PACKAGE + ".checks.whitespace.TypecastParenPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("WhitespaceAfterCheck",

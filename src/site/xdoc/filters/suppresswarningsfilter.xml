@@ -52,7 +52,10 @@
 </code></pre></div>
         <p id="Example1-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
+
 public class Example1 {
+
   @SuppressWarnings("memberName")
   int J; // filtered violation 'must match pattern'
   int JJ; // violation 'must match pattern'
@@ -60,18 +63,26 @@ public class Example1 {
   @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
   int [] ARRAY; // filtered violation
   // filtered violation above
-
   int [] ARRAY2; // violation
   // violation above
+  @SuppressWarnings("checkstyle:systemout")
+  public static void foo() {
+    System.out.println("Debug info.");
+  }
+
+  public static void boo() {
+    System.out.println("Some info.");
+  }
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip
           validations near code that has  <code>@SuppressWarnings(&quot;checkstyle:&lt;ID&gt;&quot;)</code> or
           just <code>@SuppressWarnings(&quot;&lt;ID&gt;&quot;)</code> annotation, where ID is the ID of checks
           you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -90,12 +101,23 @@ public class Example1 {
         <p id="Example2-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
-
+// violation 9 lines above 'use SLF4J instead.'
 public class Example2 {
+
+  @SuppressWarnings("memberName")
+  int J;
+  int JJ;
+
+  @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
+  int [] ARRAY;
+
+  int [] ARRAY2;
+
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
     System.out.println("Debug info."); // filtered violation 'use SLF4J instead.'
   }
+
   public static void boo() {
     System.out.println("Some info."); // violation 'use SLF4J instead.'
   }
@@ -112,10 +134,18 @@ public class Example2 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWarningsFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressWarningsFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarningsFilter_Parent_Module">

@@ -106,6 +106,13 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     private boolean skipEnhancedForLoopVariable;
 
     /**
+     * Creates a new {@code ModifiedControlVariableCheck} instance.
+     */
+    public ModifiedControlVariableCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for-loop</a> variable.
@@ -126,6 +133,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     public int[] getRequiredTokens() {
         return new int[] {
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_FOR,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.FOR_EACH_CLAUSE,
@@ -162,7 +170,8 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK -> enterBlock();
+            case TokenTypes.OBJBLOCK,
+                 TokenTypes.COMPACT_COMPILATION_UNIT -> enterBlock();
             case TokenTypes.LITERAL_FOR,
                  TokenTypes.FOR_ITERATOR,
                  TokenTypes.FOR_EACH_CLAUSE -> {
@@ -200,7 +209,8 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
                 }
             }
             case TokenTypes.LITERAL_FOR -> leaveForDef(ast);
-            case TokenTypes.OBJBLOCK -> exitBlock();
+            case TokenTypes.OBJBLOCK,
+                 TokenTypes.COMPACT_COMPILATION_UNIT -> exitBlock();
             case TokenTypes.ASSIGN,
                  TokenTypes.PLUS_ASSIGN,
                  TokenTypes.MINUS_ASSIGN,

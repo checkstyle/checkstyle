@@ -220,14 +220,14 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "20:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "24:45: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "28:55: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "36:22: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "36:36: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "38:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "38:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "41:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "41:49: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "44:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "44:41: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "38:22: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "38:36: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "42:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "42:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "47:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "47:49: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "52:21: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "52:41: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -281,10 +281,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
             "21:42: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "25:46: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "29:56: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "37:24: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "37:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "43:41: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
-            "43:52: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "39:24: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "39:39: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "47:41: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "47:52: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
         verifyWithInlineConfigParser(

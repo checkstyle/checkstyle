@@ -54,27 +54,171 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.checkstyle.StaticAnalysis
 description: OpenRewrite standard fixes.
 recipeList:
-  # composite list
-  - org.openrewrite.staticanalysis.CodeCleanup:
-      exclude:
-        # all suppressions until https://github.com/checkstyle/checkstyle/issues/18952
-        - org.openrewrite.staticanalysis.DefaultComesLast
-        - org.openrewrite.staticanalysis.EmptyBlock
-        - org.openrewrite.staticanalysis.FinalizePrivateFields
-        - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
-        - org.openrewrite.java.format.MethodParamPad
-        - org.openrewrite.java.format.NoWhitespaceAfter
-        - org.openrewrite.java.format.NoWhitespaceBefore
-        - org.openrewrite.staticanalysis.TypecastParenPad
-        - org.openrewrite.staticanalysis.ExplicitInitialization
-        - org.openrewrite.staticanalysis.FallThrough
-        - org.openrewrite.staticanalysis.HideUtilityClassConstructor
-        - org.openrewrite.staticanalysis.NeedBraces
-        - org.openrewrite.staticanalysis.OperatorWrap
-        - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
-        - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
-        - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
-        - org.openrewrite.staticanalysis.CustomImportOrder
+  # ###
+  # composite list org.openrewrite.staticanalysis.CodeCleanup
+  # https://docs.openrewrite.org/recipes/staticanalysis/codecleanup
+  # ###
+  # Kept excluded: OpenRewrite's DefaultComesLast always moves default to
+  # the end of a switch statement, ignoring Checkstyle's
+  # DefaultComesLastCheck option `skipIfLastAndSharedWithCase`. When set
+  # to true, Checkstyle permits default to share a case group
+  # (e.g. case 1: default: break;), which OpenRewrite would incorrectly
+  # reorder.
+  # - org.openrewrite.staticanalysis.DefaultComesLast
+  # Kept excluded: OpenRewrite's EmptyBlock removes blocks entirely,
+  # which conflicts with Checkstyle's EmptyBlockCheck that requires
+  # blocks to have statements or text. Automatic deletion is too aggressive.
+  # - org.openrewrite.staticanalysis.EmptyBlock
+  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
+  # Kept excluded: OpenRewrite's ForLoopControlVariablePostfixOperators
+  # always replaces pre-increment (++i) with post-increment (i++) in for
+  # loop update clauses, but Checkstyle has no equivalent check for this.
+  # Both forms are functionally identical in for loops, and some style
+  # guides prefer pre-increment.
+  - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
+  # Kept excluded: OpenRewrite's FinalizePrivateFields automatically adds
+  # final to private instance fields, but Checkstyle has no equivalent
+  # check for private fields (FinalLocalVariable only covers local
+  # variables). Adding final to fields can break frameworks that mutate
+  # fields via reflection such as Spring, Hibernate, and Mockito.
+  # - org.openrewrite.staticanalysis.FinalizePrivateFields
+  # conflicts with MethodParamPadCheck in checkstyle_checks.xml
+  # - org.openrewrite.java.format.MethodParamPad
+  # conflicts with NoWhitespaceAfterCheck in checkstyle_checks.xml
+  # - org.openrewrite.java.format.NoWhitespaceAfter
+  # conflicts with NoWhitespaceBeforeCheck in checkstyle_checks.xml
+  # - org.openrewrite.java.format.NoWhitespaceBefore
+  - org.openrewrite.java.format.PadEmptyForLoopComponents
+  # Kept excluded: OpenRewrite's TypecastParenPad always removes spaces around
+  # typecast parentheses, while Checkstyle's TypecastParenPadCheck allows
+  # configuration via the `option` property (`space` or `nospace`).
+  # - org.openrewrite.staticanalysis.TypecastParenPad
+  - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  # Kept excluded: OpenRewrite's ExplicitInitialization automatically removes
+  # explicit initializations to default values (null, 0, false), while
+  # Checkstyle's ExplicitInitializationCheck only reports violations,
+  # allowing developers to decide whether to keep them for clarity.
+  # Checkstyle also provides the `onlyObjectReferences` option to limit
+  # checks to object references only.
+  # - org.openrewrite.staticanalysis.ExplicitInitialization
+  # Kept excluded: OpenRewrite's FallThrough always adds break statements,
+  # ignoring Checkstyle's FallThroughCheck which allows configurable relief
+  # comments via `reliefPattern` and can optionally skip checking the last
+  # case group with `checkLastCaseGroup`
+  # - org.openrewrite.staticanalysis.FallThrough
+  - org.openrewrite.staticanalysis.HideUtilityClassConstructor
+  # Kept excluded: OpenRewrite's NeedBraces always adds braces, overriding
+  # Checkstyle's NeedBracesCheck which allows configuration for single-line
+  # statements and empty loop bodies via `allowSingleLineStatement` and
+  # `allowEmptyLoopBody` options.
+  # - org.openrewrite.staticanalysis.NeedBraces
+  # Kept excluded: OpenRewrite's OperatorWrap forces operators to the end of
+  # the line with no configuration, while Checkstyle's OperatorWrapCheck
+  # allows projects to choose between `nl` (new line) and `eol` (end of line)
+  # via the `option` property, and can limit checks to specific tokens.
+  # - org.openrewrite.staticanalysis.OperatorWrap
+  - org.openrewrite.staticanalysis.UnnecessaryParentheses
+  - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
+  - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+  - org.openrewrite.staticanalysis.RemoveMethodsOnlyCallSuper
+  - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
+  - org.openrewrite.java.SimplifySingleElementAnnotation
+  # conflict with ImportOrder Check
+  # - org.openrewrite.java.OrderImports
+  - org.openrewrite.staticanalysis.RemoveUnusedLabels
+
+  # ###
+  # composite list org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # https://docs.openrewrite.org/recipes/staticanalysis/commonstaticanalysis
+  # ###
+  - org.openrewrite.staticanalysis.AbstractClassPublicConstructor
+  - org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet
+  - org.openrewrite.staticanalysis.BigDecimalDoubleConstructorRecipe
+  - org.openrewrite.staticanalysis.BigDecimalRoundingConstantsToEnums
+  - org.openrewrite.staticanalysis.BooleanChecksNotInverted
+  - org.openrewrite.staticanalysis.CaseInsensitiveComparisonsDoNotChangeCase
+  - org.openrewrite.staticanalysis.CatchClauseOnlyRethrows
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+  - org.openrewrite.staticanalysis.CollectionToArrayShouldHaveProperType
+  - org.openrewrite.staticanalysis.CovariantEquals
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.DefaultComesLast
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.EmptyBlock
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.ExplicitInitialization
+  - org.openrewrite.staticanalysis.ExternalizableHasNoArgsConstructor
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.FinalizePrivateFields
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.FallThrough
+  - org.openrewrite.staticanalysis.FinalClass
+  - org.openrewrite.staticanalysis.FixStringFormatExpressions
+  - org.openrewrite.staticanalysis.ForLoopIncrementInUpdate
+  - org.openrewrite.staticanalysis.IndexOfChecksShouldUseAStartPosition
+  - org.openrewrite.staticanalysis.IndexOfReplaceableByContains
+  - org.openrewrite.staticanalysis.IndexOfShouldNotCompareGreaterThanZero
+  - org.openrewrite.staticanalysis.InlineVariable
+  - org.openrewrite.staticanalysis.IsEmptyCallOnCollections
+  # there is some problem in their implementation, let us revisit it in few years.
+  # https://github.com/checkstyle/checkstyle/pull/18903#discussion_r3215832346
+  # - org.openrewrite.staticanalysis.LambdaBlockToExpression
+  - org.openrewrite.staticanalysis.MethodNameCasing
+  - org.openrewrite.staticanalysis.MinimumSwitchCases
+  - org.openrewrite.staticanalysis.ModifierOrder
+  - org.openrewrite.staticanalysis.MultipleVariableDeclarations
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.NeedBraces
+  - org.openrewrite.staticanalysis.NestedEnumsAreNotStatic
+  - org.openrewrite.staticanalysis.NewStringBuilderBufferWithCharArgument
+  - org.openrewrite.staticanalysis.NoDoubleBraceInitialization
+  - org.openrewrite.staticanalysis.NoEmptyCollectionWithRawType
+  - org.openrewrite.staticanalysis.NoEqualityInForCondition
+  - org.openrewrite.staticanalysis.NoFinalizer
+  - org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo
+  - org.openrewrite.staticanalysis.NoRedundantJumpStatements
+  - org.openrewrite.staticanalysis.NoToStringOnStringType
+  - org.openrewrite.staticanalysis.NoValueOfOnStringType
+  - org.openrewrite.staticanalysis.ObjectFinalizeCallsSuper
+  - org.openrewrite.staticanalysis.PreferSystemGetPropertyOverGetenv
+  - org.openrewrite.staticanalysis.PrimitiveWrapperClassConstructorToValueOf
+  - org.openrewrite.staticanalysis.RedundantFileCreation
+  - org.openrewrite.staticanalysis.RemoveExtraSemicolons
+  - org.openrewrite.staticanalysis.RemoveRedundantNullCheckBeforeInstanceof
+  - org.openrewrite.staticanalysis.RemoveRedundantNullCheckBeforeLiteralEquals
+  - org.openrewrite.staticanalysis.RenameMethodsNamedHashcodeEqualOrToString
+  - org.openrewrite.staticanalysis.ReplaceClassIsInstanceWithInstanceof
+  - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+  - org.openrewrite.staticanalysis.ReplaceStringConcatenationWithStringValueOf
+  - org.openrewrite.staticanalysis.SimplifyArraysAsList
+  - org.openrewrite.staticanalysis.SimplifyBooleanExpression
+  - org.openrewrite.staticanalysis.SimplifyBooleanReturn
+  - org.openrewrite.staticanalysis.StaticMethodNotFinal
+  - org.openrewrite.staticanalysis.StringLiteralEquality
+  - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
+  # cause changes that are not compiled
+  # - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.UnnecessaryParentheses
+  - org.openrewrite.staticanalysis.UnnecessaryPrimitiveAnnotations
+  - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
+  - org.openrewrite.staticanalysis.UpperCaseLiteralSuffixes
+  - org.openrewrite.staticanalysis.UseDiamondOperator
+  - org.openrewrite.staticanalysis.UseJavaStyleArrayDeclarations
+  - org.openrewrite.staticanalysis.UsePortableNewlines
+  - org.openrewrite.staticanalysis.WhileInsteadOfFor
+  - org.openrewrite.staticanalysis.WriteOctalValuesAsDecimal
+  - org.openrewrite.kotlin.cleanup.EqualsMethodUsage
+  - org.openrewrite.kotlin.cleanup.ImplicitParameterInLambda
+  - org.openrewrite.kotlin.cleanup.ReplaceCharToIntWithCode
+  # managed by org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.java.OrderImports
 
   # individual recipes
   - org.openrewrite.java.RemoveUnusedImports
@@ -104,6 +248,5 @@ recipeList:
   - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
   - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
-  - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface

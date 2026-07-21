@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class OverloadMethodsDeclarationOrderCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder";
@@ -33,9 +34,24 @@ public class OverloadMethodsDeclarationOrderCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "23:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "20"),
+            "28:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "24"),
+            "41:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "35"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "17:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
+            "19:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
+            "28:3: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "24"),
+            "41:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_KEY, "35"),
+            "41:5: " + getCheckMessage(OverloadMethodsDeclarationOrderCheck.MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
 }

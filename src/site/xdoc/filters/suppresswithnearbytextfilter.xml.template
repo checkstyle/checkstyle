@@ -49,8 +49,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the filter to suppress audit events on any line that contains
-          <code>DO NOT CHECK THIS LINE</code>:
+          To configure the filter to suppress audit events for checks whose
+          name matches the given pattern:
         </p>
         <macro name="example">
           <param name="path"
@@ -101,69 +101,19 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure the filter to suppress audit events for the current and next 2 lines:
+          To configure the filter to suppress audit events for the current and next line:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-raw">
+        <p id="Example5-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example5.properties"/>
-          <param name="type" value="raw"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example6-config">
-          To configure the filter to suppress audit events for the current and previous line:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example6.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example6-raw">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example6.properties"/>
-          <param name="type" value="raw"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example7-config">
-          To configure the filter with a more compact <code>nearbyTextPattern</code>
-          to accept variable <code>checkPattern</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example7.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example7-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example7.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example8-config">
-          To configure the filter to accept variable <code>checkPattern</code>
-          and <code>lineRange</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example8.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example8-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example8.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example9-config">
@@ -182,6 +132,75 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/Example9.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase1-config">
+          To configure the filter to suppress audit events on any line that contains
+          <code>DO NOT CHECK THIS LINE</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithNearbyTextFilter_Use_Cases">
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase1.java"/>
+          <param name="type" value="code"/>
+</macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the filter to suppress audit events for the current and previous line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-raw">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase2.properties"/>
+          <param name="type" value="raw"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase3-config">
+          To configure the filter with a more compact <code>nearbyTextPattern</code>
+          to accept variable <code>checkPattern</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase4-config">
+          To configure the filter to accept variable <code>checkPattern</code>
+          and <code>lineRange</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase4.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="SuppressWithNearbyTextFilter_Example_of_Usage">
@@ -194,10 +213,19 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWithNearbyTextFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithNearbyTextFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter</p>
+        <p>
+              This is the fully qualified class name of the module.
+              Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWithNearbyTextFilter_Parent_Module">

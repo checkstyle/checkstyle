@@ -73,22 +73,19 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          An example of how to configure the check to disallow method names to be equal to the
-          residing class name is:
+          An example of how to suppress the check to public methods:
         </p>
         <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Code Example:</p>
         <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          An example of how to suppress the check to public and protected methods:
+          An example of how to suppress the check to protected methods:
         </p>
         <macro name="example">
           <param name="path"
@@ -129,6 +126,24 @@
         <param name="path"
                value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example7.java"/>
         <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="MethodName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check to disallow method names to be equal to the
+          residing class name is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/UseCase1.java"/>
+          <param name="type" value="code"/>
       </macro>
       </subsection>
 
@@ -141,6 +156,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
@@ -160,8 +179,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="MethodName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="MethodName_Parent_Module">

@@ -57,6 +57,13 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
      */
     public static final String MSG_PKG_JAVADOC_MISSING = "package.javadoc.missing";
 
+    /**
+     * Creates a new {@code MissingJavadocPackageCheck} instance.
+     */
+    public MissingJavadocPackageCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -132,4 +139,5 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
     private static boolean isJavadoc(DetailAST ast) {
         return ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && JavadocUtil.isJavadocComment(ast);
     }
+
 }

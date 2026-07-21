@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AnnotationOnSameLineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline";
@@ -34,10 +35,11 @@ public class AnnotationOnSameLineCheckExamplesTest extends AbstractExamplesModul
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "34:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Override"),
-            "38:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Before"),
-            "43:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "19:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "28:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Nullable"),
+            "36:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Before"),
+            "39:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Before"),
+            "42:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -46,10 +48,11 @@ public class AnnotationOnSameLineCheckExamplesTest extends AbstractExamplesModul
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "26:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
-            "35:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Nullable"),
+            "22:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "31:3: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Nullable"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -94,6 +94,13 @@ public class JavadocTypeCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_MISSING_TAG_WITH_QUOTES =
+            "type.missingTagWithQuotes";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_UNUSED_TAG = "javadoc.unusedTag";
 
     /**
@@ -143,6 +150,13 @@ public class JavadocTypeCheck
      * Only short names are allowed, e.g. {@code Generated}.
      */
     private Set<String> allowedAnnotations = Set.of("Generated");
+
+    /**
+     * Creates a new {@code JavadocTypeCheck} instance.
+     */
+    public JavadocTypeCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the visibility scope where Javadoc comments are checked.
@@ -407,12 +421,15 @@ public class JavadocTypeCheck
 
         final boolean found = tags
             .stream()
-            .filter(JavadocTag::isParamTag)
-            .anyMatch(tag -> tag.getFirstArg().indexOf(recordComponentName) == 0);
+                .filter(JavadocTag::isParamTag).anyMatch(tag -> {
+                    final String arg = tag.getFirstArg();
+                    return arg.equals(recordComponentName)
+                            || arg.startsWith(recordComponentName + SPACE);
+                });
 
         if (!found) {
-            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + recordComponentName);
+            log(ast, MSG_MISSING_TAG_WITH_QUOTES,
+                JavadocTagInfo.PARAM.getText(), recordComponentName);
         }
     }
 
@@ -435,8 +452,8 @@ public class JavadocTypeCheck
             .anyMatch(tag -> tag.getFirstArg().indexOf(typeParamNameWithBrackets) == 0);
 
         if (!found) {
-            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + SPACE + typeParamNameWithBrackets);
+            log(ast, MSG_MISSING_TAG_WITH_QUOTES, JavadocTagInfo.PARAM.getText(),
+                typeParamNameWithBrackets);
         }
     }
 
@@ -514,4 +531,5 @@ public class JavadocTypeCheck
 
         return componentList;
     }
+
 }

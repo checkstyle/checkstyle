@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava";
@@ -91,12 +92,13 @@ public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModul
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "23: " + "private member found",
             "30: " + "private member found",
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

@@ -23,26 +23,31 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
-
 /**
  * Class with result data of ClassAndPropertiesSettersJavadocScraper.
  */
 public final class JavadocScraperResultUtil {
-    /**
-     * Map of scraped properties javadocs - name of property, javadoc detail node.
-     */
-    private static final Map<String, DetailNode> PROPERTIES_JAVADOC_NODES =
-            new LinkedHashMap<>();
 
     /**
-     * The javadoc of class.
-     *
-     * @noinspection - StaticVariableMayNotBeInitialized
-     * @noinspectionreason StaticVariableMayNotBeInitialized -
-     *      no initial initialization value available except null
+     * Map of scraped properties details - name of property, property details object.
      */
-    private static DetailNode moduleJavadocNode;
+    private static final Map<String, PropertyDetails> PROPERTIES_DETAILS =
+             new LinkedHashMap<>();
+
+    /**
+     * The since version of the module.
+     */
+    private static String moduleSinceVersion = "";
+
+    /**
+     * The description of the module.
+     */
+    private static String moduleDescription = "";
+
+    /**
+     * The notes of the module.
+     */
+    private static String moduleNotes = "";
 
     /**
      * Private utility constructor.
@@ -53,49 +58,85 @@ public final class JavadocScraperResultUtil {
     /**
      * Resets the fields.
      */
-    /* package */ static void clearData() {
-        PROPERTIES_JAVADOC_NODES.clear();
-        moduleJavadocNode = null;
+    public static void clearData() {
+        PROPERTIES_DETAILS.clear();
+        moduleSinceVersion = "";
+        moduleDescription = "";
+        moduleNotes = "";
     }
 
     /**
-     * Get the properties javadocs map.
+     * Get the properties details map.
      *
-     * @return the javadocs.
+     * @return the details map.
      */
-    public static Map<String, DetailNode> getPropertiesJavadocNode() {
-        return Collections.unmodifiableMap(PROPERTIES_JAVADOC_NODES);
+    public static Map<String, PropertyDetails> getPropertiesDetails() {
+        return Collections.unmodifiableMap(PROPERTIES_DETAILS);
     }
 
     /**
-     * Get the module javadoc.
+     * Get the module's since version.
      *
-     * @noinspection - StaticVariableUsedBeforeInitialization
-     * @noinspectionreason StaticVariableUsedBeforeInitialization -
-     *      no initial initialization value available
-     * @return the module's javadoc.
+     * @return the module's since version.
      */
-    public static DetailNode getModuleJavadocNode() {
-        return moduleJavadocNode;
+    public static String getModuleSinceVersion() {
+        return moduleSinceVersion;
     }
 
     /**
-     * Sets the module javadoc.
+     * Sets the module's since version.
      *
-     * @param moduleJavadoc module's javadoc.
+     * @param sinceVersion module's since version.
      */
-    /* package */ static void setModuleJavadocNode(DetailNode moduleJavadoc) {
-        moduleJavadocNode = moduleJavadoc;
+    /* package */ static void setModuleSinceVersion(String sinceVersion) {
+        moduleSinceVersion = sinceVersion;
     }
 
     /**
-     * Sets additional property javadoc to property map.
+     * Get the module's description.
+     *
+     * @return the module's description.
+     */
+    public static String getModuleDescription() {
+        return moduleDescription;
+    }
+
+    /**
+     * Sets the module's description.
+     *
+     * @param description module's description.
+     */
+    /* package */ static void setModuleDescription(String description) {
+        moduleDescription = description;
+    }
+
+    /**
+     * Get the module's notes.
+     *
+     * @return the module's notes.
+     */
+    public static String getModuleNotes() {
+        return moduleNotes;
+    }
+
+    /**
+     * Sets the module's notes.
+     *
+     * @param notes module's notes.
+     */
+    /* package */ static void setModuleNotes(String notes) {
+        moduleNotes = notes;
+    }
+
+    /**
+     * Sets additional property details to property map.
      *
      * @param propertyName name of property.
-     * @param propertyJavadoc property's javadoc.
+     * @param details property's details.
      */
-    /* package */ static void putPropertyJavadocNode(String propertyName,
-                                                     DetailNode propertyJavadoc) {
-        PROPERTIES_JAVADOC_NODES.put(propertyName, propertyJavadoc);
+    /* package */ static void putPropertyDetails(String propertyName,
+                                                 PropertyDetails details) {
+        PROPERTIES_DETAILS.put(propertyName, details);
     }
+
 }

@@ -6,7 +6,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 import java.lang.annotation.Target;

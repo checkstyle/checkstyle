@@ -6,8 +6,8 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
-
 
 */
 
@@ -32,7 +32,7 @@ public class InputJavadocMethodIgnoreThrowsTwo {
             System.out.println(s);
             if (s.length() == 0) {
                 // false negative, unable to tell what was caught
-                throw new IllegalArgumentException("empty input"); // no violation
+                throw new IllegalArgumentException("empty input");
             }
             else {
                 throw new IOException(); // ok, exception was caught

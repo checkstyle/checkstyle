@@ -183,6 +183,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Returns canonical path for the Javadoc file that intentionally contains errors.
+     *
+     * @param filename file name.
+     * @return canonical path for the file with Javadoc errors.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getJavadocWithErrorPath(String filename) throws IOException {
+        return new File("src/" + getResourceLocation()
+                + "/resources-with-javadoc-error/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
+    }
+
+    /**
      * Creates a RootNode for non-compilable test files.
      *
      * @param fileName name of the test file
@@ -578,6 +591,42 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of the given files.
+     *
+     * @param checker {@link Checker} instance
+     * @param processedFiles files to process.
+     * @param expectedViolations a map of expected violations per files.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verify(Checker checker,
+                          File[] processedFiles,
+                          Map<String, List<String>> expectedViolations)
+            throws Exception {
+        stream.flush();
+        stream.reset();
+        final List<File> theFiles = new ArrayList<>();
+        Collections.addAll(theFiles, processedFiles);
+        checker.process(theFiles);
+
+        // process each of the lines
+        final Map<String, List<String>> actualViolations = getActualViolations();
+        final Map<String, List<String>> realExpectedViolations =
+                Maps.filterValues(expectedViolations, input -> !input.isEmpty());
+
+        assertWithMessage("Files with expected violations and actual violations differ.")
+            .that(actualViolations.keySet())
+            .isEqualTo(realExpectedViolations.keySet());
+
+        realExpectedViolations.forEach((fileName, violationList) -> {
+            assertWithMessage("Violations for %s differ.", fileName)
+                .that(actualViolations.get(fileName))
+                .containsExactlyElementsIn(violationList);
+        });
+
+        checker.destroy();
+    }
+
+    /**
      * Performs verification of the file with the given file name.
      * Uses provided {@link Checker} instance.
      * Expected messages are represented by the array of strings.
@@ -621,42 +670,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Performs verification of the given files.
-     *
-     * @param checker {@link Checker} instance
-     * @param processedFiles files to process.
-     * @param expectedViolations a map of expected violations per files.
-     * @throws Exception if exception occurs during verification process.
-     */
-    protected final void verify(Checker checker,
-                          File[] processedFiles,
-                          Map<String, List<String>> expectedViolations)
-            throws Exception {
-        stream.flush();
-        stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        checker.process(theFiles);
-
-        // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations();
-        final Map<String, List<String>> realExpectedViolations =
-                Maps.filterValues(expectedViolations, input -> !input.isEmpty());
-
-        assertWithMessage("Files with expected violations and actual violations differ.")
-            .that(actualViolations.keySet())
-            .isEqualTo(realExpectedViolations.keySet());
-
-        realExpectedViolations.forEach((fileName, violationList) -> {
-            assertWithMessage("Violations for %s differ.", fileName)
-                .that(actualViolations.get(fileName))
-                .containsExactlyElementsIn(violationList);
-        });
-
-        checker.destroy();
-    }
-
-    /**
      * Runs 'verifyWithInlineConfigParser' with limited stack size and time duration.
      *
      * @param fileName file name to verify.
@@ -666,6 +679,23 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final void verifyWithLimitedResources(String fileName, String... expected)
             throws Exception {
         TestUtil.getResultWithLimitedResources(() -> {
+            verifyWithInlineConfigParser(fileName, expected);
+            return null;
+        });
+    }
+
+    /**
+     * Runs 'verifyWithInlineConfigParser' with limited stack size suitable for XPath-based
+     * checks, allowing Saxon's XPath engine to initialize while still detecting stack
+     * overflows caused by deep AST traversal.
+     *
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithLimitedXpathResources(String fileName, String... expected)
+            throws Exception {
+        TestUtil.runWithLimitedXpathResources(() -> {
             verifyWithInlineConfigParser(fileName, expected);
             return null;
         });

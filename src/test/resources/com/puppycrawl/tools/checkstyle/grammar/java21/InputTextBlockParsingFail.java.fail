@@ -4,12 +4,10 @@ package com.puppycrawl.tools.checkstyle.grammar.java21;
 public class InputTextBlockParsingFail {
 
     // This should fail to parse since it is not
-    // compilable with javac; String templates must be on the
-    // RHS of a template processor expression. Our grammar
-    // previously parsed this code as a text block,
-    // but this is not a legal escape to be used
-    // in a text block.
+    // compilable with javac; a text block must not contain
+    // an unescaped triple-quote sequence before its closing
+    // delimiter.
     String s = """
-            \{}
+            """
             """;
 }

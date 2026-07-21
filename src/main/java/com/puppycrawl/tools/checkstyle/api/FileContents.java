@@ -109,12 +109,6 @@ public final class FileContents implements CommentListener {
         return text.getFile().toString();
     }
 
-    @Override
-    public void reportSingleLineComment(String type, int startLineNo,
-            int startColNo) {
-        reportSingleLineComment(startLineNo, startColNo);
-    }
-
     /**
      * Report the location of a single-line comment.
      *
@@ -130,9 +124,9 @@ public final class FileContents implements CommentListener {
     }
 
     @Override
-    public void reportBlockComment(String type, int startLineNo,
-            int startColNo, int endLineNo, int endColNo) {
-        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
+    public void reportSingleLineComment(String type, int startLineNo,
+            int startColNo) {
+        reportSingleLineComment(startLineNo, startColNo);
     }
 
     /**
@@ -161,6 +155,12 @@ public final class FileContents implements CommentListener {
         if (firstLine.contains("/**") && !firstLine.contains("/**/")) {
             javadocComments.put(endLineNo - 1, comment);
         }
+    }
+
+    @Override
+    public void reportBlockComment(String type, int startLineNo,
+            int startColNo, int endLineNo, int endColNo) {
+        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
     /**
@@ -378,4 +378,5 @@ public final class FileContents implements CommentListener {
     public boolean inPackageInfo() {
         return "package-info.java".equals(text.getFile().getName());
     }
+
 }

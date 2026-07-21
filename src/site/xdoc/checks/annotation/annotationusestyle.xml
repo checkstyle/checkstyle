@@ -139,19 +139,17 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @SuppressWarnings("unchecked") // ok as it's in implied style
 @Deprecated // ok as it matches closingParens default property
+
 @SomeArrays({"unchecked","unused"}) // ok as it's in implied style
-public class Example1
-{
+public class Example1 {
 
 }
-
 // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
 @SuppressWarnings(value={"unchecked"})
 @Deprecated() // violation 'Annotation cannot have closing parenthesis'
 // violation below 'Annotation array values cannot contain trailing comma'
 @SomeArrays(value={"unchecked","unused",})
-class TestStyle1
-{
+class TestStyle1 {
 
 }
 </code></pre></div><hr class="example-separator"/>
@@ -176,8 +174,7 @@ class TestStyle1
 @Deprecated // ok as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
 @SomeArrays({"unchecked","unused"})
-public class Example2
-{
+public class Example2 {
 
 }
 
@@ -208,12 +205,11 @@ class TestStyle2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @SuppressWarnings("unchecked") // ok as element style set to compact
 @Deprecated // violation 'Annotation must have closing parenthesis'
+
 @SomeArrays({"unchecked","unused"}) // ok as it's in compact style
-public class Example3
-{
+public class Example3 {
 
 }
-
 // violation below 'Annotation style must be 'COMPACT''
 @SuppressWarnings(value={"unchecked"})
 @Deprecated() // ok as closingParens set to always
@@ -241,17 +237,15 @@ class TestStyle3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @SuppressWarnings("unchecked") // ok as element style set to 'ignore'
-@Deprecated // ok as 'closingParens' is set to 'ignore
+@Deprecated // ok as 'closingParens' is set to 'ignore'
 // violation below 'Annotation array values must contain trailing comma'
 @SomeArrays({"unchecked","unused"})
-public class Example4
-{
+public class Example4 {
 
 }
-
 // violation below 'Annotation array values must contain trailing comma'
 @SuppressWarnings(value={"unchecked"})
-@Deprecated() // ok as 'closingParens' is set to 'ignore
+@Deprecated() // ok as 'closingParens' is set to 'ignore'
 // ok below as it has a trailing array comma
 @SomeArrays(value={"unchecked","unused",})
 class TestStyle4 {
@@ -304,8 +298,12 @@ class TestStyle4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AnnotationUseStyle_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="AnnotationUseStyle_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AnnotationUseStyle_Parent_Module">

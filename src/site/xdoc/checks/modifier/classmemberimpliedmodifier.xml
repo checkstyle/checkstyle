@@ -129,8 +129,9 @@ public final class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="ClassMemberImpliedModifier" /&gt;
+    &lt;module name="ClassMemberImpliedModifier"&gt;
       &lt;property name="violateImpliedStaticOnNestedEnum" value="false"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -149,7 +150,7 @@ public final class Example2 {
     CHILD, ADULT
   }
 
-  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+  enum Age2 {
     CHILD, ADULT
   }
 
@@ -172,8 +173,9 @@ public final class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="ClassMemberImpliedModifier" /&gt;
+    &lt;module name="ClassMemberImpliedModifier"&gt;
       &lt;property name="violateImpliedStaticOnNestedInterface" value="false"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -185,7 +187,7 @@ public final class Example3 {
   static interface Address1 {
   }
 
-  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  interface Address2 {
   }
 
   static enum Age1 {
@@ -215,8 +217,9 @@ public final class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="ClassMemberImpliedModifier" /&gt;
+    &lt;module name="ClassMemberImpliedModifier"&gt;
       &lt;property name="violateImpliedStaticOnNestedRecord" value="false"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -240,12 +243,12 @@ public final class Example4 {
   }
 
   public static record GoodRecord() {}
-  // violation below, 'Implied modifier 'static' should be explicit'
+
   public record BadRecord() {}
 
   public static record OuterRecord() {
     static record InnerRecord1(){}
-    // violation below, 'Implied modifier 'static' should be explicit'
+
     record InnerRecord2(){}
   }
 }
@@ -276,8 +279,12 @@ public final class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ClassMemberImpliedModifier_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      <subsection name="Fully Qualified Name" id="ClassMemberImpliedModifier_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ClassMemberImpliedModifier_Parent_Module">

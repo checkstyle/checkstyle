@@ -30,6 +30,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * on the default one.
  * </div>
  *
+ * <p>
+ * Compatibility note: <b>when creating</b> an explicit constructor already
+ * in existing class that used by other in codebases that you do not own, it must match
+ * precisely the declaration of the automatically generated constructor;
+ * even if the constructor should logically be protected, it must be made
+ * public to match the declaration of the automatically generated
+ * constructor, for <b>compatibility</b>.
+ * </p>
+ *
+ * <p>
+ * See
+ * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#defaultconstructors">
+ * Documentation Comments Style Guide</a>.
+ * </p>
+ *
  * @since 3.4
  */
 @StatelessCheck
@@ -40,6 +55,13 @@ public class MissingCtorCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "missing.ctor";
+
+    /**
+     * Creates a new {@code MissingCtorCheck} instance.
+     */
+    public MissingCtorCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

@@ -203,6 +203,24 @@
 .../TestExample2.xml
 .../TestExample3.md
 .../TestExample4.xml
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to forbid files that do not start with 'Test' in folders
+          named 'regexponfilename':
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpOnFilename"&gt;
+    &lt;property name="folderPattern" value="[\\/]regexponfilename$"/&gt;
+    &lt;property name="fileNamePattern" value="^Test.*\.xml$"/&gt;
+    &lt;property name="match" value="false"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example6:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+.../TestExample2.xml
+.../Example1.java // violation, 'File match folder pattern'
 </code></pre></div>
       </subsection>
 
@@ -235,11 +253,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpOnFilename_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+        <subsection name="Fully Qualified Name" id="RegexpOnFilename_Fully_Qualified_Name">
+          <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck</p>
+          <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+          </p>
+        </subsection>
 
       <subsection name="Parent Module" id="RegexpOnFilename_Parent_Module">
         <p>

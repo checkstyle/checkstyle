@@ -90,23 +90,23 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testFormat() throws Exception {
         final String[] expected = {
             "1:1: " + getCheckMessage(MSG_KEY),
-            "12:12: " + getCheckMessage(MSG_KEY),
-            "13:5: " + getCheckMessage(MSG_KEY),
-            "14:33: " + getCheckMessage(MSG_KEY),
-            "15:39: " + getCheckMessage(MSG_KEY),
-            "16:22: " + getCheckMessage(MSG_KEY),
-            "21:44: " + getCheckMessage(MSG_KEY),
-            "22:7: " + getCheckMessage(MSG_KEY),
-            "23:5: " + getCheckMessage(MSG_KEY),
-            "26:19: " + getCheckMessage(MSG_KEY),
-            "27:36: " + getCheckMessage(MSG_KEY),
-            "34:5: " + getCheckMessage(MSG_KEY),
-            "37:50: " + getCheckMessage(MSG_KEY),
-            "38:62: " + getCheckMessage(MSG_KEY),
-            "39:31: " + getCheckMessage(MSG_KEY),
-            "42:39: " + getCheckMessage(MSG_KEY),
-            "43:9: " + getCheckMessage(MSG_KEY),
-            "51:5: " + getCheckMessage(MSG_KEY),
+            "14:12: " + getCheckMessage(MSG_KEY),
+            "16:5: " + getCheckMessage(MSG_KEY),
+            "18:5: " + getCheckMessage(MSG_KEY),
+            "20:12: " + getCheckMessage(MSG_KEY),
+            "22:22: " + getCheckMessage(MSG_KEY),
+            "28:17: " + getCheckMessage(MSG_KEY),
+            "30:7: " + getCheckMessage(MSG_KEY),
+            "32:5: " + getCheckMessage(MSG_KEY),
+            "36:19: " + getCheckMessage(MSG_KEY),
+            "38:21: " + getCheckMessage(MSG_KEY),
+            "47:5: " + getCheckMessage(MSG_KEY),
+            "50:50: " + getCheckMessage(MSG_KEY),
+            "52:51: " + getCheckMessage(MSG_KEY),
+            "54:31: " + getCheckMessage(MSG_KEY),
+            "58:9: " + getCheckMessage(MSG_KEY),
+            "60:9: " + getCheckMessage(MSG_KEY),
+            "69:5: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTrailingComment3.java"), expected);
@@ -127,11 +127,10 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "15:27: " + getCheckMessage(MSG_KEY),
             "21:33: " + getCheckMessage(MSG_KEY),
             "25:13: " + getCheckMessage(MSG_KEY),
-            "27:16: " + getCheckMessage(MSG_KEY),
-            "28:24: " + getCheckMessage(MSG_KEY),
-            "33:37: " + getCheckMessage(MSG_KEY),
+            "28:16: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
             getPath("InputTrailingCommentWithEmoji.java"), expected);
     }
+
 }

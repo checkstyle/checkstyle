@@ -242,6 +242,30 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
+    public void testFileNameWithXmlSpecialCharacter() {
+        final AuditEvent event = createAuditEvent("Input&XpathFileGenerator.java",
+                FIRST_MESSAGE);
+
+        final String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
+                + "<!DOCTYPE suppressions PUBLIC" + EOL
+                + "    \"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2"
+                + "//EN\"" + EOL
+                + "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd\">"
+                + EOL
+                + "<suppressions>" + EOL
+                + "  <suppress-xpath" + EOL
+                + "       files=\"Input&amp;XpathFileGenerator.java\"" + EOL
+                + "       checks=\"LeftCurlyCheck\""
+                + EOL
+                + "       query=\"/COMPILATION_UNIT/CLASS_DEF[./IDENT"
+                + "[@text='InputXpathFileGeneratorAuditListener']]"
+                + "/OBJBLOCK/LCURLY\"/>" + EOL
+                + "</suppressions>" + EOL;
+
+        verifyOutput(expected, event);
+    }
+
+    @Test
     public void testCloseStream() {
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(outStream, OutputStreamOptions.CLOSE);
@@ -278,17 +302,17 @@ public class XpathFileGeneratorAuditListenerTest {
                 .isEqualTo("Parameter outputStreamOptions can not be null");
     }
 
+    private AuditEvent createAuditEvent(String fileName, Violation violation) {
+        return new AuditEvent(this,
+                getPath(fileName), violation);
+    }
+
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final Violation violation =
                 new Violation(lineNumber, columnNumber, "messages.properties", null,
                         null, null, sourceClass, null);
 
-        return new AuditEvent(this,
-                getPath(fileName), violation);
-    }
-
-    private AuditEvent createAuditEvent(String fileName, Violation violation) {
         return new AuditEvent(this,
                 getPath(fileName), violation);
     }
@@ -362,4 +386,5 @@ public class XpathFileGeneratorAuditListenerTest {
         }
 
     }
+
 }

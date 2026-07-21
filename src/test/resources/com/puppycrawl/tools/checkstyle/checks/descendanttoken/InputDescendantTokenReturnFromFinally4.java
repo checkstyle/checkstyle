@@ -34,8 +34,14 @@ public class InputDescendantTokenReturnFromFinally4 {
         }
     }
     public void thisNull() {
-        boolean result = (this == null) || (null == this); // 2 violations
-        boolean result2 = (this != null) && (null != this); // 2 violations
+        boolean result = (this == null) || (null == this);
+        // 2 violations above:
+        // 'Total count of 2 exceeds maximum count 1 under 'EQUAL'.'
+        // 'Total count of 2 exceeds maximum count 1 under 'EQUAL'.'
+        boolean result2 = (this != null) && (null != this);
+        // 2 violations above:
+        // 'Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.'
+        // 'Total count of 2 exceeds maximum count 1 under 'NOT_EQUAL'.'
         boolean result3 = (this.getClass().getName()
             == String.valueOf(null == System.getProperty("abc")));
     }

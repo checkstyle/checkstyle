@@ -112,22 +112,6 @@ class InputNeedBracesTestItWithAllowsOn
         switch (a) {default: {}}
     }
 
-    void whitespaceAfterSemi()
-    {
-        //reject
-        int i = 1;int j = 2;
-
-        //accept
-        for (;;) {
-        }
-    }
-
-    /** Empty constructor block. **/
-    public InputNeedBracesTestItWithAllowsOn() {}
-
-    /** Empty method block. **/
-    public void emptyImplementation() {}
-
     public void method() {
         if (true
             || true || true) return;

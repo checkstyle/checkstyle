@@ -1,7 +1,8 @@
 /*
 RedundantModifier
 tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
-         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE, ANNOTATION_DEF, RECORD_DEF, \
+         PATTERN_VARIABLE_DEF, LITERAL_CATCH, LAMBDA
 jdkVersion = 11
 
 */
@@ -53,33 +54,36 @@ strictfp final class InputRedundantModifierItOne // illegal order of modifiers f
     {
     }
 
+    // violation 2 lines below 'Redundant 'static' modifier.'
     /** holder for redundant 'public' modifier check. */
-    public static interface InputRedundantPublicModifier // violation
+    public static interface InputRedundantPublicModifier
     {
         /** redundant 'public' modifier */
-        public void a(); // violation
+        public void a(); // violation 'Redundant 'public' modifier.'
 
         /** all OK */
         void b();
 
         /** redundant abstract modifier */
-        abstract void c(); // violation
+        abstract void c(); // violation 'Redundant 'abstract' modifier.'
 
+        // violation 2 lines below 'Redundant 'public' modifier.'
         /** redundant 'public' modifier */
-        public float PI_PUBLIC = (float) 3.14; // violation
+        public float PI_PUBLIC = (float) 3.14;
 
-        /** redundant 'abstract' modifier (field can not be abstract) */
+        // redundant 'abstract' modifier (field can not be abstract)
 //        abstract float PI_ABSTRACT = (float) 3.14;
 
+        // violation 2 lines below 'Redundant 'final' modifier.'
         /** redundant 'final' modifier */
-        final float PI_FINAL = (float) 3.14; // violation
+        final float PI_FINAL = (float) 3.14;
 
         /** all OK */
         float PI_OK = (float) 3.14;
     }
 
     /** redundant 'final' modifier */
-    private final void method() // violation
+    private final void method() // violation 'Redundant 'final' modifier.'
     {
     }
 }
@@ -88,19 +92,17 @@ strictfp final class InputRedundantModifierItOne // illegal order of modifiers f
 final class RedundantFinalClass
 {
     /** redundant 'final' modifier */
-    public final void finalMethod() // violation
+    public final void finalMethod() // violation 'Redundant 'final' modifier.'
     {
     }
 
     /** OK */
-    public void method()
-    {
-    }
+    public void method() {}
 }
 
+// violation 2 lines below 'Redundant 'abstract' modifier.'
 /** Holder for redundant modifiers of inner implementation */
-abstract interface InnerImplementation // violation
-{
+abstract interface InnerImplementation {
     InnerImplementation inner =
             new InnerImplementation()
             {
@@ -112,8 +114,6 @@ abstract interface InnerImplementation // violation
 
     void method();
 }
-@interface MyAnnotation2 {
-}
+@interface MyAnnotation2 {}
 
-@interface MyAnnotation4 {
-}
+@interface MyAnnotation4 {}

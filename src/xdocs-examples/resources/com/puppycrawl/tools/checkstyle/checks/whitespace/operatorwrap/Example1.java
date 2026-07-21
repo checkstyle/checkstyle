@@ -20,15 +20,35 @@ class Example1 {
             20) {
     }
 
-    if (10
-            ==
-            20) { }
-
     int c = 10 /
             5; // violation above ''/' should be on a new line'
 
-    int d = c
-            + 10;
+    int b
+            = 10;
+    int e =
+            10;
+    b
+            += 10;
+    b +=
+            10;
+    c
+            *= 10;
+    c
+            -= 5;
+    c -=
+            5;
+    c
+            /= 2;
+    c
+            %= 1;
+    c
+            >>= 1;
+    c
+        >>>= 1;
+    c
+            &=1 ;
+    c
+            <<= 1;
   }
 }
 // xdoc section -- end

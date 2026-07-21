@@ -1,4 +1,4 @@
-/* // violation
+/* // violation 'matches to-do format'
 TodoComment
 format = FIXME:
 

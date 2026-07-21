@@ -29,14 +29,11 @@ jobs:
           - javadoc
         include:
           - target: java
-            BASELINE_SECONDS: 390.70
             CONFIG_FILE: './config/benchmark-config.xml'
           - target: javadoc
-            BASELINE_SECONDS: 424.59
             CONFIG_FILE: './config/benchmark-javadoc-config.xml'
     runs-on: ubuntu-latest
     env:
-      BASELINE_SECONDS: ${{ matrix.BASELINE_SECONDS }}
       CONFIG_FILE: ${{ matrix.CONFIG_FILE }}
     steps:
       - name: Set up JDK 21
@@ -46,20 +43,20 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout Pull Request Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Clone JDK 25 Repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: openjdk/jdk25u
           path: ./.ci-temp/jdk25
 
       - name: Setup local maven cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Run performance test
         run: |
-          ./.ci/check-performance-regression.sh "$BASELINE_SECONDS" "$CONFIG_FILE"
+          ./.ci/check-performance-regression.sh "$CONFIG_FILE"

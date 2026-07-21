@@ -1,0 +1,201 @@
+#####################################################################################
+# GitHub Action to generate Checkstyle ANTLR Regression Report (AST diff).
+#
+# Workflow starts when:
+# 1) issue comment - created or edited - with body exactly:
+#    "GitHub, generate ANTLR report"
+#
+# Requirements:
+# 1) secrets.AWS_ACCESS_KEY_ID - access key for AWS S3 service user
+# 2) secrets.AWS_SECRET_ACCESS_KEY - security access key for AWS S3 service user
+#####################################################################################
+name: ANTLR-Report
+env:
+  AWS_REGION: us-east-2
+  AWS_BUCKET_NAME: "checkstyle-diff-reports"
+  USER_LOGIN: ${{ github.event.issue.user.login }}
+
+on:
+  issue_comment:
+    types: [ created, edited ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  # run_id is guaranteed to be unique and present
+  group: ${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  make_report:
+    if: github.event.issue.pull_request != null
+        && github.event.comment.body == 'GitHub, generate ANTLR report'
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.out.outputs.message }}
+    steps:
+      - name: React to comment
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            })
+
+      - name: Download checkstyle
+        uses: actions/checkout@v7
+
+      - name: Resolve PR branch and SHA
+        id: branch
+        env:
+          PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p .ci-temp
+          curl --fail-with-body -X GET "${PULL_REQUEST_URL}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+          BRANCH=$(jq --raw-output .head.ref .ci-temp/info.json)
+          COMMIT_SHA=$(jq --raw-output .head.sha .ci-temp/info.json | cut -c 1-7)
+          ./.ci/append-to-github-output.sh "ref" "$BRANCH"
+          ./.ci/append-to-github-output.sh "commit_sha" "$COMMIT_SHA"
+
+      - name: Set upstream and forked remotes
+        run: |
+          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+          git remote add upstream "$MAIN_REPO_GIT_URL"
+          git fetch upstream
+          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          git remote add forked "$FORK_REPO_GIT_URL"
+          git fetch forked
+
+      - name: Setup local maven cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.m2/repository
+          key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Download contribution
+        uses: actions/checkout@v7
+        with:
+          repository: checkstyle/contribution
+          path: .ci-temp/contribution
+
+      - name: Build patch-diff-report-tool
+        run: |
+          cd .ci-temp/contribution/patch-diff-report-tool
+          mvn -e --no-transfer-progress --batch-mode -DskipTests package
+
+      - name: Generate ANTLR report
+        env:
+          BRANCH: ${{ steps.branch.outputs.ref }}
+        run: |
+          cd .ci-temp/contribution/checkstyle-tester
+
+          # Overwrite launch_diff_variables.sh with CI-specific paths.
+          # CHECKSTYLE_DIR points at the checkout in $GITHUB_WORKSPACE;
+          # PULL_REMOTE=forked matches the remote added above.
+          DIFF_JAR_NAME=patch-diff-report-tool-0.1-SNAPSHOT-jar-with-dependencies.jar
+          cat > launch_diff_variables.sh <<EOF
+          CONTACTSERVER=true
+          PULL_REMOTE=forked
+          CHECKSTYLE_DIR=$GITHUB_WORKSPACE
+          CONTRIBUTION_DIR=$GITHUB_WORKSPACE/.ci-temp/contribution
+          TEMP_DIR=$RUNNER_TEMP/launch_diff
+          TESTER_DIR=\$CONTRIBUTION_DIR/checkstyle-tester
+          DIFF_JAR=\$CONTRIBUTION_DIR/patch-diff-report-tool/target/$DIFF_JAR_NAME
+          REPOSITORIES_DIR=\$TESTER_DIR/repositories
+          FINAL_RESULTS_DIR=\$TESTER_DIR/reports/diff
+          SITE_SAVE_MASTER_DIR=\$TESTER_DIR/reports/savemaster
+          SITE_SAVE_PULL_DIR=\$TESTER_DIR/reports/savepull
+          MINIMIZE=true
+          SITE_SOURCES_DIR=\$TESTER_DIR/src/main/java
+          SITE_SAVE_REF_DIR=\$TESTER_DIR/reports/saverefs
+          EOF
+
+          mkdir -p "$RUNNER_TEMP/launch_diff"
+
+          echo "checkstyle|git|https://github.com/$USER_LOGIN/checkstyle.git|$BRANCH||" \
+            > projects-to-test-on.properties
+
+          export MAVEN_OPTS="-Xmx5g"
+          bash ./launch_diff_antlr.sh "$BRANCH"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Copy Report to AWS S3 Bucket
+        id: out
+        run: |
+          TIME=$(date +%Y%H%M%S)
+          FOLDER="antlr_${{ steps.branch.outputs.commit_sha }}_$TIME"
+          DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
+          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
+          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" \
+            --recursive --storage-class STANDARD_IA
+          echo "ANTLR report: $LINK/$FOLDER/reports/diff/index.html" > .ci-temp/message
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
+
+  # should be always last step
+  send_message:
+    runs-on: ubuntu-latest
+    needs: [ make_report ]
+    if: failure() || success()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Get message
+        env:
+          MSG: ${{ needs.make_report.outputs.message }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p .ci-temp
+          if [ -z "$MSG" ]; then
+            JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
+            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
+            API_LINK="${API_LINK}${{github.run_id}}/jobs"
+
+            curl --fail-with-body -X GET "${API_LINK}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Authorization: token $GITHUB_TOKEN" \
+              -o .ci-temp/info.json
+
+            jq '.jobs' .ci-temp/info.json > ".ci-temp/jobs"
+            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
+            jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
+            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
+            echo "ANTLR report failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
+            echo "step $(cat .ci-temp/step_name).<br>Link: $JOBS_LINK" >> .ci-temp/message
+          else
+            echo "$MSG" > .ci-temp/message
+          fi
+
+      - name: Set message
+        id: out
+        run: |
+          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
+
+      - name: Comment PR
+        uses: checkstyle/contribution/comment-action@master
+        with:
+          message: ${{steps.out.outputs.message}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

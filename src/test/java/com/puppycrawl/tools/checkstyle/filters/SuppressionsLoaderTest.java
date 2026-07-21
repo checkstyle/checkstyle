@@ -396,4 +396,5 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             .that(filterSet)
             .hasSize(1);
     }
+
 }

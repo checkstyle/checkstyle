@@ -68,6 +68,10 @@
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
               Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
 
@@ -82,9 +86,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="LambdaBodyLength_Package">
+      <subsection name="Fully Qualified Name" id="LambdaBodyLength_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

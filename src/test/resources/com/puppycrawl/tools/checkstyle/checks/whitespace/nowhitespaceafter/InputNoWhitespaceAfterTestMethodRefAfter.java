@@ -26,6 +26,6 @@ public class InputNoWhitespaceAfterTestMethodRefAfter {
         // violation above, ''::' is followed by whitespace.'
         Supplier<SomeClass.Nested<V>> passes = SomeClass.Nested:: new;
         // violation above, ''::' is followed by whitespace.'
-        Supplier<SomeClass.Nested<V>> fails = SomeClass.Nested<V>::new; //no violation
+        Supplier<SomeClass.Nested<V>> fails = SomeClass.Nested<V>::new;
     }
 }

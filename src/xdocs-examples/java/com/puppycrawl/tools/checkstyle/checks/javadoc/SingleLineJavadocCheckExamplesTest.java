@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SingleLineJavadocCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/singlelinejavadoc";
@@ -69,4 +70,5 @@ public class SingleLineJavadocCheckExamplesTest extends AbstractExamplesModuleTe
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

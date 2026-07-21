@@ -89,20 +89,37 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure a check that allows missing comments for classes annotated with
-          <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
+          To configure the check for <code>INTERFACE_DEF</code> tokens only:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">
-          Example5:
-        </p>
+        <p id="Example5-code">Example5:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocType_Use_Cases">
+        <p id="UseCase1-config">
+          To configure a check that allows missing comments for classes annotated with
+          <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          UseCase1:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -131,9 +148,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MissingJavadocType_Package">
+      <subsection name="Fully Qualified Name" id="MissingJavadocType_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

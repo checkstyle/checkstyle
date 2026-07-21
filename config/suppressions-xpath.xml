@@ -13,10 +13,10 @@
   <suppress-xpath checks="CyclomaticComplexity"
                    query="//CLASS_DEF[./IDENT[@text='XdocsPagesTest']]//METHOD_DEF"/>
   <!-- Suppressions from PMD configuration -->
-  <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtil.getJavadocTags() - deprecated -->
+  <!-- JavadocMethodCheck, JavadocUtil.getJavadocTags() - deprecated -->
   <suppress-xpath checks="CyclomaticComplexity"
-                   query="//CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
-                     or @text='JavadocStyleCheck' or @text='CustomImportOrderCheck']]//METHOD_DEF"/>
+    query="//CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
+                     or @text='CustomImportOrderCheck']]//METHOD_DEF"/>
   <!-- there are 3 thrown and all of them could be caused by xml parsing -->
   <suppress-xpath checks="ThrowsCount"
                   query="//CLASS_DEF[./IDENT[@text='XmlMetaReader']]
@@ -511,4 +511,13 @@
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
+
+  <!-- Property orderByIncreasingParameterCount of ConstructorsDeclarationGrouping conflicts
+  with CustomDeclarationOrder.CustomDeclarationOrder intentionally keeps publicly usable
+  constructors before private implementation details, even if it breaks constructor ordering
+  by params for private constructors.      -->
+  <suppress-xpath
+          files="IndentLevel.java"
+          checks="ConstructorsDeclarationGroupingCheck"
+          query="//CTOR_DEF[./IDENT[@text='IndentLevel']][./MODIFIERS/LITERAL_PRIVATE]"/>
 </suppressions>

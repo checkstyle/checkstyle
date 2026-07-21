@@ -23,12 +23,12 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarningsholder";
@@ -37,16 +37,15 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String pattern1 = "^[a-z][a-zA-Z0-9]*$";
-        final String pattern2 = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "20:15: " + getCheckMessage(MemberNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern1),
-            "24:28: " + getCheckMessage(ConstantNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "i", pattern2),
-            "34:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "28:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                         NoWhitespaceAfterCheck.MSG_KEY, "int"),
-            "34:18: " + getCheckMessage(MemberNameCheck.class,
+            "28:18: " + getCheckMessage(MemberNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "ARR", pattern1),
+            "34:17: " + getCheckMessage(ParameterNumberCheck.class,
+                        ParameterNumberCheck.MSG_KEY, 7, 8),
 
         };
 
@@ -55,32 +54,41 @@ public class SuppressWarningsHolderExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample2() throws Exception {
+        final String pattern1 = "^[a-z][a-zA-Z0-9]*$";
         final String[] expected = {
-            "19:15: " + getCheckMessage(ParameterNumberCheck.class,
-                        ParameterNumberCheck.MSG_KEY, 7, 8),
-
+            "24:15: " + getCheckMessage(MemberNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern1),
+            "32:15: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                        NoWhitespaceAfterCheck.MSG_KEY, "int"),
+            "32:18: " + getCheckMessage(MemberNameCheck.class,
+                        AbstractNameCheck.MSG_INVALID_PATTERN, "ARR", pattern1),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "18:15: " + getCheckMessage(ParameterNumberCheck.class,
+            "29:15: " + getCheckMessage(ParameterNumberCheck.class,
+                        ParameterNumberCheck.MSG_KEY, 7, 8),
+            "35:15: " + getCheckMessage(ParameterNumberCheck.class,
                         ParameterNumberCheck.MSG_KEY, 7, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
-            "18:15: " + getCheckMessage(ParameterNumberCheck.class,
+            "29:15: " + getCheckMessage(ParameterNumberCheck.class,
+                        ParameterNumberCheck.MSG_KEY, 7, 8),
+            "35:15: " + getCheckMessage(ParameterNumberCheck.class,
                         ParameterNumberCheck.MSG_KEY, 7, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

@@ -101,4 +101,5 @@ public class XpathRegressionLambdaBodyLengthTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

@@ -123,6 +123,13 @@ public class SuppressWithNearbyCommentFilter
     private String influenceFormat = DEFAULT_INFLUENCE_FORMAT;
 
     /**
+     * Creates a new {@code SuppressWithNearbyCommentFilter} instance.
+     */
+    public SuppressWithNearbyCommentFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
@@ -134,6 +141,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to specify check pattern to suppress.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param format a {@code String} value
      * @since 5.0

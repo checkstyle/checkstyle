@@ -18,14 +18,26 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
 // xdoc section -- start
 /** Documented. */
-class Example4 {
-  /** Javadoc.*/
+public class Example4 {
+  /** Javadoc. */
+  public class A {}
+
+  private class B {}   // violation, 'Missing a Javadoc comment'
+
+  protected class C {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
   @SpringBootApplication
-  private class Application { } // ok
-
+  private class App {}
+  /** Javadoc. */
   @Configuration
-  private class DatabaseConfiguration { } // ok
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
 
-  private class MissingDoc { } // violation, 'Missing a Javadoc comment'
+  public interface F {} // violation, 'Missing a Javadoc comment'
+  /** Javadoc. */
+  public interface G {}
 }
 // xdoc section -- end

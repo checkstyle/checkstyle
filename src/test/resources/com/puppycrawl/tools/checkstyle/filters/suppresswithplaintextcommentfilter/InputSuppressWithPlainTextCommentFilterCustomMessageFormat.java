@@ -1,7 +1,7 @@
 /*
 SuppressWithPlainTextCommentFilter
-offCommentFormat = // CHECKSTYLE:OFF
-onCommentFormat = // CHECKSTYLE:ON
+offCommentFormat = (default)// CHECKSTYLE:OFF
+onCommentFormat = (default)// CHECKSTYLE:ON
 checkFormat = (default).*
 messageFormat = .*tab.*
 idFormat = (default)(null)
@@ -10,7 +10,7 @@ idFormat = (default)(null)
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 id = ignore
 format = .*[a-zA-Z][0-9].*
-message = (default)
+message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0
@@ -19,7 +19,7 @@ fileExtensions = (default)(null)
 
 com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
 eachLine = true
-fileExtensions = (default)
+fileExtensions = (default)(null)
 
 
 */

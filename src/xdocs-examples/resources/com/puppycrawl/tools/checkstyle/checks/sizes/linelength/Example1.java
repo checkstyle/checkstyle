@@ -19,6 +19,15 @@ class Example1 {
     System.out.println("This is a short line.");
     // violation below, 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
+
+    String str1 = """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer than 80 characters'
+
+    String str2 =
+        """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer than 80 characters'
   }
 }
 // xdoc section -- end

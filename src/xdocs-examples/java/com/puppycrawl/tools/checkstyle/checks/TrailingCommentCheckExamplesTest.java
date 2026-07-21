@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/trailingcomment";
@@ -34,7 +35,8 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:16: " + getCheckMessage(MSG_KEY),
+            "16:10: " + getCheckMessage(MSG_KEY),
+            "22:16: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -43,8 +45,12 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:16: " + getCheckMessage(MSG_KEY),
-            "24:8: " + getCheckMessage(MSG_KEY),
+            "15:10: " + getCheckMessage(MSG_KEY),
+            "16:10: " + getCheckMessage(MSG_KEY),
+            "17:10: " + getCheckMessage(MSG_KEY),
+            "18:10: " + getCheckMessage(MSG_KEY),
+            "24:16: " + getCheckMessage(MSG_KEY),
+            "27:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,35 +60,37 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample3() throws Exception {
         final String[] expected = {
             "18:10: " + getCheckMessage(MSG_KEY),
+            "24:16: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "18:10: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
             "24:10: " + getCheckMessage(MSG_KEY),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
     }
+
 }

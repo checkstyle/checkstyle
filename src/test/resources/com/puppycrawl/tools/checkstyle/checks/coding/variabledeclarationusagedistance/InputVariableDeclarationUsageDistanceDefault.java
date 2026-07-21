@@ -976,7 +976,7 @@ class New6 {
     }
 
     void tryWithoutFinally() {
-        int a = 1;
+        int a = 1; // violation 'Distance .* is 4.'
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();

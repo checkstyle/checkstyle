@@ -33,6 +33,20 @@
       </subsection>
 
       <subsection name="Examples" id="MatchXpath_Examples">
+        <p id="Example1-config">
+          The following example demonstrates validation of methods order, so that public methods
+          should come before the private ones:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p>
           Checkstyle provides <a href="https://checkstyle.org/cmdline.html">command line tool</a>
           and <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">GUI
@@ -79,92 +93,85 @@ $ java -jar checkstyle-X.XX-all.jar Main.java -b "//METHOD_DEF[./IDENT[@text='sa
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 `--OBJBLOCK -&gt; OBJBLOCK [1:18]
 |--METHOD_DEF -&gt; METHOD_DEF [2:4]
-        </code></pre></div><hr class="example-separator"/>
-        <p id="Example1-config">
-          The following example demonstrates validation of methods order, so that public methods
-          should come before the private ones:</p>
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MatchXpath_Use_Cases">
+        <p id="UseCase1-config">To violate if there are any parametrized constructors</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example2-config">To violate if there are any parametrized constructors</p>
+        <p id="UseCase2-config">To violate if method name is 'test' or 'foo'</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example3.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example3-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example3.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase3-config">
           To violate if new instance creation was done without <b>var</b> type to avoid duplication
           of reference in statement
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase3.java"/>
           <param name="type" value="code"/>
                   </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase4-config">
           To violate if class has more than <b>1</b> constructor
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase4-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase5-config">
           Reports a violation if an array initialization has more than <b>10</b> elements.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">Example:</p>
+        <p id="UseCase5-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/UseCase5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="MatchXpath_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+              OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
               Checkstyle Style</a>
@@ -187,9 +194,11 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
       </subsection>
 
-      <subsection name="Package" id="MatchXpath_Package">
+      <subsection name="Fully Qualified Name" id="MatchXpath_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

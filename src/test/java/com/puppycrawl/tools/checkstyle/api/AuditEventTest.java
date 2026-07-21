@@ -88,4 +88,5 @@ public class AuditEventTest {
                 .that(event.getSourceName())
                 .isEqualTo("com.puppycrawl.tools.checkstyle.api.AuditEventTest");
     }
+
 }

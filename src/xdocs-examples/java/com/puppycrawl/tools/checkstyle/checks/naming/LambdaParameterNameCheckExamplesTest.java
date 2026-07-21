@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/lambdaparametername";
@@ -34,7 +35,8 @@ public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:11: " + getCheckMessage(MSG_INVALID_PATTERN, "S", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "19:11: " + getCheckMessage(MSG_INVALID_PATTERN, "S", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "25:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", "^([a-z][a-zA-Z0-9]*|_)$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -43,10 +45,12 @@ public class LambdaParameterNameCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "_s", "^[a-z]([a-zA-Z]+)*$"),
-            "26:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", "^[a-z]([a-zA-Z]+)*$"),
+            "18:40: " + getCheckMessage(MSG_INVALID_PATTERN, "str1", "^[a-z]([a-zA-Z]+)*$"),
+            "21:11: " + getCheckMessage(MSG_INVALID_PATTERN, "S", "^[a-z]([a-zA-Z]+)*$"),
+            "27:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", "^[a-z]([a-zA-Z]+)*$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

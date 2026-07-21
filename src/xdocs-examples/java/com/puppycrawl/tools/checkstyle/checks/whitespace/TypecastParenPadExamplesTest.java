@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class TypecastParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/typecastparenpad";
@@ -39,8 +40,10 @@ public class TypecastParenPadExamplesTest extends AbstractExamplesModuleTestSupp
         final String[] expected = {
             "17:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "17:17: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "21:21: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "25:14: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "19:16: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "21:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "29:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "29:17: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -50,11 +53,14 @@ public class TypecastParenPadExamplesTest extends AbstractExamplesModuleTestSupp
     public void testExample2() throws Exception {
         final String[] expected = {
             "21:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "23:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
             "25:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "25:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "27:16: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "29:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "29:15: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

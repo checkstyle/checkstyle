@@ -43,8 +43,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          An example of how to configure the check for names that are only upper case letters and
-          digits is:
+          To configure the check with default properties:
         </p>
         <macro name="example">
           <param name="path"
@@ -74,11 +73,38 @@
         </macro>
       </subsection>
 
+      <subsection name="Use Cases" id="LocalFinalVariableName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check for names that are only upper case letters and
+          digits is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
       <subsection name="Example of Usage" id="LocalFinalVariableName_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+            Google Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalFinalVariableName">
@@ -98,8 +124,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="LocalFinalVariableName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="LocalFinalVariableName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="LocalFinalVariableName_Parent_Module">

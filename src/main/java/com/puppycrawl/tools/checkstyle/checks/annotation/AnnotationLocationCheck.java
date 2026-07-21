@@ -112,6 +112,13 @@ public class AnnotationLocationCheck extends AbstractCheck {
     private boolean allowSamelineMultipleAnnotations;
 
     /**
+     * Creates a new {@code AnnotationLocationCheck} instance.
+     */
+    public AnnotationLocationCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to allow single parameterless annotation to be located on the same line as
      * target element.
      *
@@ -187,7 +194,8 @@ public class AnnotationLocationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         // ignore variable def tokens that are not field definitions
         if (ast.getType() != TokenTypes.VARIABLE_DEF
-                || ast.getParent().getType() == TokenTypes.OBJBLOCK) {
+                || ast.getParent().getType() == TokenTypes.OBJBLOCK
+                || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (node == null) {
                 node = ast.findFirstToken(TokenTypes.ANNOTATIONS);

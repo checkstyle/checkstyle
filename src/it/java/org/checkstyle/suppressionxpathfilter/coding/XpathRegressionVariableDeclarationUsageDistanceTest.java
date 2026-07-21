@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck;
 
 public class XpathRegressionVariableDeclarationUsageDistanceTest extends AbstractXpathTestSupport {
+
     private final String checkName = VariableDeclarationUsageDistanceCheck.class.getSimpleName();
 
     @Override
@@ -117,6 +118,50 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
                         + "'InputXpathVariableDeclarationUsageDistanceTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
                         + "/SLIST/VARIABLE_DEF[./IDENT[@text='count']]/TYPE/LITERAL_INT"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testConstructor() throws Exception {
+        final File fileToProcess = new File(getPath(
+                "InputXpathVariableDeclarationUsageDistanceConstructor.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
+        moduleConfig.addProperty("allowedDistance", "1");
+        moduleConfig.addProperty("ignoreVariablePattern", "");
+        moduleConfig.addProperty("validateBetweenScopes", "true");
+        moduleConfig.addProperty("ignoreFinal", "false");
+
+        final String[] expectedViolation = {
+            "7:9: " + getCheckMessage(VariableDeclarationUsageDistanceCheck.class,
+                    VariableDeclarationUsageDistanceCheck.MSG_KEY, "temp", 2, 1),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/MODIFIERS",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE",
+                "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/OBJBLOCK/CTOR_DEF[./IDENT[@text="
+                        + "'InputXpathVariableDeclarationUsageDistanceConstructor']]"
+                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='temp']]/TYPE/LITERAL_INT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

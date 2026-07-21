@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
-aliasList = (default)
+aliasList = (default)(null)
 
 com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
@@ -14,7 +14,7 @@ applyToPrivate = (default)true
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
 /* Config:

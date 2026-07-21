@@ -18,7 +18,7 @@ excludedPackages = (default)
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import javax.naming.NamingException;
@@ -29,7 +29,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-class InputClassFanOutComplexityRecords { // violation
+// violation below 'Class Fan-Out Complexity is 4 (max allowed is 2).'
+class InputClassFanOutComplexityRecords {
     private class InnerClass {
         public List _list = new ArrayList();
     }
@@ -50,7 +51,8 @@ class InputClassFanOutComplexityRecords { // violation
     }
 }
 
-record MyRecord1(boolean a, boolean b) { // violation
+// violation below 'Class Fan-Out Complexity is 4 (max allowed is 2).'
+record MyRecord1(boolean a, boolean b) {
     private class InnerClass {
         public List _list = new ArrayList();
     }

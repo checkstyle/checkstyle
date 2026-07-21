@@ -45,9 +45,8 @@ public class FallThroughCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "34:9: " + getCheckMessage(MSG_FALL_THROUGH),
-            "38:9: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "35:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "39:9: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -56,7 +55,7 @@ public class FallThroughCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "23:9: " + getCheckMessage(MSG_FALL_THROUGH),
+            "24:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);

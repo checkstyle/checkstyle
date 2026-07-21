@@ -42,6 +42,10 @@
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
             Checkstyle Style</a>
           </li>
@@ -60,11 +64,14 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="NoWhitespaceBeforeCaseDefaultColon_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
-        </p>
-      </subsection>
+<subsection name="Fully Qualified Name"
+              id="NoWhitespaceBeforeCaseDefaultColon_Fully_Qualified_Name">
+  <p> com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck</p>
+  <p>
+    Use this fully qualified class name in configuration when an exact class reference is
+    required.
+  </p>
+</subsection>
 
       <subsection name="Parent Module" id="NoWhitespaceBeforeCaseDefaultColon_Parent_Module">
         <macro name="parent-module">

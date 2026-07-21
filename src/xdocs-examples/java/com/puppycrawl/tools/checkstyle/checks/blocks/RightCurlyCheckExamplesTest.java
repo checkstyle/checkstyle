@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly";
@@ -52,12 +53,13 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "46:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
-            "52:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "48:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "50:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -70,10 +72,11 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
-            "52:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
+            "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

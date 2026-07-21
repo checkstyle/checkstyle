@@ -14,6 +14,7 @@ public class Example1 {
     try {
       throw new InterruptedException();
     } catch (ArithmeticException e) {
+
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
       // violation above, 'Name 'e123' must match pattern'
@@ -26,6 +27,7 @@ public class Example1 {
     } catch (Exception EighthException) {
       // violation above, 'Name 'EighthException' must match pattern'
     } catch (Throwable t) {
+
     }
   }
 }

@@ -349,7 +349,7 @@ public class WhitespaceAfterCheckTest
     public void testUnnamedPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getPath("InputWhitespaceAfterUnnamedPattern.java"),
+            getNonCompilablePath("InputWhitespaceAfterUnnamedPattern.java"),
             expected);
 
     }
@@ -413,4 +413,5 @@ public class WhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
             getPath("example2/package-info.java"), expected);
     }
+
 }

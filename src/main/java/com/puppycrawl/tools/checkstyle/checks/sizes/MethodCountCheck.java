@@ -127,6 +127,13 @@ public final class MethodCountCheck extends AbstractCheck {
     /** Specify the maximum number of methods allowed at all scope levels. */
     private int maxTotal = DEFAULT_MAX_METHODS;
 
+    /**
+     * Creates a new {@code MethodCountCheck} instance.
+     */
+    public MethodCountCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -142,6 +149,7 @@ public final class MethodCountCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -185,8 +193,16 @@ public final class MethodCountCheck extends AbstractCheck {
 
         if (!counters.isEmpty()) {
             final DetailAST latestDefinition = counters.peek().getScopeDefinition();
+            final DetailAST methodParent = methodDef.getParent();
+            final DetailAST scopeDefinition;
+            if (methodParent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+                scopeDefinition = methodParent;
+            }
+            else {
+                scopeDefinition = methodParent.getParent();
+            }
 
-            result = latestDefinition == methodDef.getParent().getParent();
+            result = latestDefinition == scopeDefinition;
         }
 
         return result;

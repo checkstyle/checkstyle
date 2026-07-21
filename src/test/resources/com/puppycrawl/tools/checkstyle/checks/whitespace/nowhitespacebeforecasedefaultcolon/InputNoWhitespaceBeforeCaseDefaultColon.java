@@ -12,11 +12,11 @@ import java.util.Calendar;
 public class InputNoWhitespaceBeforeCaseDefaultColon {
     {
         switch(1) {
-            case 1 : // violation
+            case 1 : // violation '':' is preceded with whitespace.'
                 break;
             case 2:
                 break;
-            default : // violation
+            default : // violation '':' is preceded with whitespace.'
                 break;
         }
 
@@ -29,7 +29,7 @@ public class InputNoWhitespaceBeforeCaseDefaultColon {
         }
 
         switch(3) {
-            case 3/* space after */ : // violation
+            case 3/* space after */ : // violation '':' is preceded with whitespace.'
                 break;
             default/* no space after */:
                 break;
@@ -37,17 +37,17 @@ public class InputNoWhitespaceBeforeCaseDefaultColon {
 
         switch(4) {
             case 4
-                    : // violation
+                    : // violation '':' is preceded with whitespace.'
                 break;
             default:
                 switch(5) {
-                    case 5 : // violation
+                    case 5 : // violation '':' is preceded with whitespace.'
                         break;
                     case 6
-: // violation
+: // violation '':' is preceded with whitespace.'
                         break;
                     case 7
-                          : // violation
+                          : // violation '':' is preceded with whitespace.'
                         break;
                     default:
                         break;
@@ -58,12 +58,12 @@ public class InputNoWhitespaceBeforeCaseDefaultColon {
         switch(8) {
             case 8/* no space after */:
                 break;
-            default/* space after */ : // violation
+            default/* space after */ : // violation '':' is preceded with whitespace.'
                 break;
         }
 
         switch (Calendar.MONDAY) {
-            case Calendar.TUESDAY    : // violation
+            case Calendar.TUESDAY    : // violation '':' is preceded with whitespace.'
                 break;
             case Calendar.WEDNESDAY:
                 break;
@@ -76,20 +76,20 @@ public class InputNoWhitespaceBeforeCaseDefaultColon {
                     9:
                 break;
             case
-                    10 : // violation
+                    10 : // violation '':' is preceded with whitespace.'
                 break;
             default
-                    : // violation
+                    : // violation '':' is preceded with whitespace.'
                 break;
 
         }
 
         switch(11) {
             case
-                    /* comment */ 11 : // violation
+                    /* comment */ 11 : // violation '':' is preceded with whitespace.'
                 break;
             default
-                    /* comment */ : // violation
+                    /* comment */ : // violation '':' is preceded with whitespace.'
                 break;
 
         }

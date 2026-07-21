@@ -1,12 +1,14 @@
 /*xml
 <module name="Checker">
-  <module name="NewlineAtEndOfFile"/>
+  <module name="NewlineAtEndOfFile">
+    <property name="lineSeparator" value="crlf"/>
+  </module>
 </module>
 */
-// violation 5 lines above 'File does not end with a newline.'
+
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 // xdoc section -- start
 public class Example5 { // ⤶
 // ⤶
-} // no ⤶ below it is violation
+} // violation first line 'File does not end with a newline 'crlf'.'
 // xdoc section -- end

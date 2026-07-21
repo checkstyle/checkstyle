@@ -45,9 +45,9 @@ public class InputJavadocLeadingAsteriskAlignTabs {
 		 */
 	public InputJavadocLeadingAsteriskAlignTabs() {}
 
+	// violation 2 lines below 'Leading asterisk has .* indentation .* 5, expected is 4.'
 	/***
 	  * @param x testing..... */
-  // violation above 'Leading asterisk has .* indentation .* 5, expected is 4.'
 	public InputJavadocLeadingAsteriskAlignTabs(int x) {}
 
 	/*****
@@ -56,9 +56,11 @@ public class InputJavadocLeadingAsteriskAlignTabs {
 
 	private enum enumWithTabs {
 
+	  // violation 3 lines below 'Leading asterisk has .* indentation .* 5, expected is 6.'
+	  // violation 3 lines below 'Leading asterisk has .* indentation .* 7, expected is 6.'
 	  /**
-		*  // violation 'Leading asterisk has .* indentation .* 5, expected is 6.'
-		  */ // violation 'Leading asterisk has .* indentation .* 7, expected is 6.'
+		*
+		  */
 		ONE,
 
 		/**
@@ -66,9 +68,11 @@ public class InputJavadocLeadingAsteriskAlignTabs {
 		 */
 		TWO,
 
+		// violation 3 lines below 'Leading asterisk has .* indentation .* 7, expected is 6.'
+		// violation 3 lines below 'Leading asterisk has .* indentation .* 5, expected is 6.'
 		/**
-			* // violation 'Leading asterisk has .* indentation .* 7, expected is 6.'
-		*/ // violation 'Leading asterisk has .* indentation .* 5, expected is 6.'
+			*
+		*/
 		THREE,
 
 		/**

@@ -1,7 +1,7 @@
 /*
 BooleanExpressionComplexity
 max = (default)3
-tokens = (default)LAND, BAND, LOR, BOR, BXOR
+tokens = (default)CTOR_DEF,METHOD_DEF,EXPR,LAND,BAND,LOR,BOR,BXOR,COMPACT_CTOR_DEF
 
 
 */
@@ -18,7 +18,8 @@ public class InputBooleanExpressionComplexity {
         if (_a && _b || _c ^ _d) {
         }
 
-        if (((_a && (_b & _c)) || (_c ^ _d))) { // violation
+        if (((_a && (_b & _c)) || (_c ^ _d))) {
+            // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
         }
 
         if (_a && _b && _c) {
@@ -35,7 +36,8 @@ public class InputBooleanExpressionComplexity {
         new NestedClass() {
             public void method() {
                 new Settings(Settings.FALSE || Settings.FALSE ||
-                        Settings.FALSE || _a || _b); // violation
+                        Settings.FALSE || _a || _b);
+                // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
             }
             public void method2() {
             }
@@ -45,15 +47,18 @@ public class InputBooleanExpressionComplexity {
 
     public boolean bitwise()
     {
-        return (((_a & (_b & _c)) | (_c ^ _d) | (_a & _d))); // violation
+        return (((_a & (_b & _c)) | (_c ^ _d) | (_a & _d)));
+        // violation above 'Boolean expression complexity is 6 (max allowed is 3).'
     }
 
     public void notIgnoredMethodParameters()
     {
         new Settings(Settings.FALSE && Settings.FALSE && Settings.FALSE
-                && Settings.TRUE && Settings.TRUE); // violation
+                && Settings.TRUE && Settings.TRUE);
+        // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
         new Settings(Settings.FALSE || Settings.FALSE || Settings.FALSE
-                || Settings.TRUE || Settings.TRUE); // violation
+                || Settings.TRUE || Settings.TRUE);
+        // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
     }
 
     public void ignoredMethodParameters()

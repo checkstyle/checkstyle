@@ -46,6 +46,13 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     private int depth;
 
     /**
+     * Creates a new {@code NestedIfDepthCheck} instance.
+     */
+    public NestedIfDepthCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify maximum allowed nesting depth.
      *
      * @param max maximum allowed nesting depth.
@@ -119,4 +126,5 @@ public final class NestedIfDepthCheck extends AbstractCheck {
     private static boolean isElseWithCurlyBraces(DetailAST ast) {
         return ast.getChildCount() == 2 && isElse(ast.getParent());
     }
+
 }

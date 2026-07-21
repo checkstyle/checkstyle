@@ -317,4 +317,5 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         verifyFilterWithInlineConfigParser(getPath("InputSuppressionFilter8.java"),
                                            expected, removeSuppressed(expected, suppressed));
     }
+
 }

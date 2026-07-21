@@ -14,10 +14,15 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 // xdoc section -- start
 class Example2 {
-  // violation below 'Use a single space'
-  void fun1() {}  // 2 whitespaces before the comment starts
-  // violation below 'Use a single space'
-  void fun2() { return; }  /* 2 whitespaces before the comment starts */
+  int foo()   { // violation 'Use a single space'
+    return  1; // violation 'Use a single space'
+  }
+
+  void fun1() {}
+  // 2 violations 3 lines below:
+  // 'Use a single space to separate non-whitespace characters.'
+  // 'Use a single space to separate non-whitespace characters.'
+  void  fun2() { return; }  /* 2 whitespaces before the comment starts */
   // violation below 'Use a single space'
   /* 2 whitespaces after the comment ends */  int a;
 
@@ -25,12 +30,7 @@ class Example2 {
 
   /**
    * This is a Javadoc comment
-   */  int b; // 2 whitespaces after the javadoc comment ends
+   */  int b;
   // violation above 'Use a single space'
-  float f1;
-
-  /**
-   * OK, 1 white space after the doc comment ends
-   */ float f2;
 }
 // xdoc section -- end

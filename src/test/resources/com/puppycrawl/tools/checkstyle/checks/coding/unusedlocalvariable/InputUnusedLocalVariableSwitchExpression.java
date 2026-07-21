@@ -1,10 +1,11 @@
 /*
 UnusedLocalVariable
 allowUnnamedVariables = false
+jdkVersion = (default)22
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 
 public class InputUnusedLocalVariableSwitchExpression {

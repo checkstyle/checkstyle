@@ -1,0 +1,12 @@
+* Nested class documentation fragment:
+* {@link java.util.Map.Entry##api-note Entry API note}
+*
+* Fragment in current class documentation:
+* {@link ##thread-safety Thread Safety section}
+* {@linkplain java.lang.String##compact-strings compact strings}
+* {@link java.lang##wrapperClass}
+* {@linkplain java.lang.String##compact-strings}
+* {@link ##thread-safety}
+*
+* @see java.lang##wrapperClass
+* @see java.lang.String##compact-strings

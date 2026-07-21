@@ -137,11 +137,34 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
+          OpenJDK guidelines</a>,
+          where at most one star import is allowed per file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="AvoidStarImport_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
+            OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStarImport">
             Google Style</a>
@@ -166,8 +189,12 @@
           to learn how to.
         </p>
       </subsection>
-      <subsection name="Package" id="AvoidStarImport_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
+      <subsection name="Fully Qualified Name" id="AvoidStarImport_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AvoidStarImport_Parent_Module">

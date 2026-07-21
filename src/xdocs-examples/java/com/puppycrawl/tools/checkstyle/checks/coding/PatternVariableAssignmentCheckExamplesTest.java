@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class PatternVariableAssignmentCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/patternvariableassignment";
@@ -40,7 +41,8 @@ public class PatternVariableAssignmentCheckExamplesTest extends AbstractExamples
             "31:7: " + getCheckMessage(MSG_KEY, "c"),
         };
 
-        verifyWithInlineXmlConfig(getPath(
+        verifyWithInlineXmlConfig(getNonCompilablePath(
             "Example1.java"), expected);
     }
+
 }

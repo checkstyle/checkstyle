@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * <div>
  * Checks that the whitespace around the Generic tokens (angle brackets)
- * "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+ * "{@literal <}" and "{@literal >}" are correct to the <i>typical</i> convention.
  * The convention is not configurable.
  * </div>
  *
@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
- * Left angle bracket ("&lt;"):
+ * Left angle bracket ("{@literal <}"):
  * </p>
  * <ul>
  * <li> should be preceded with whitespace only
@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </ul>
  *
  * <p>
- * Right angle bracket ("&gt;"):
+ * Right angle bracket ("{@literal >}"):
  * </p>
  * <ul>
  * <li> should not be preceded with whitespace in all cases.</li>
@@ -98,6 +98,13 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /** Used to count the depth of a Generic expression. */
     private int depth;
+
+    /**
+     * Creates a new {@code GenericWhitespaceCheck} instance.
+     */
+    public GenericWhitespaceCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -229,9 +236,12 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return true if generic is before record header
      */
     private static boolean isGenericBeforeRecordHeader(DetailAST ast) {
-        final DetailAST grandParent = ast.getParent().getParent();
-        return grandParent.getType() == TokenTypes.RECORD_DEF
-                || grandParent.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
+        DetailAST typeNode = ast.getParent().getParent();
+        if (typeNode.getType() == TokenTypes.DOT) {
+            typeNode = typeNode.getParent();
+        }
+        return typeNode.getType() == TokenTypes.RECORD_DEF
+                || typeNode.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
     }
 
     /**
@@ -281,11 +291,11 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if current generic end ('&gt;') is located after
+     * Checks if current generic end ('{@literal >}') is located after
      * {@link TokenTypes#METHOD_REF method reference operator}.
      *
      * @param genericEnd {@link TokenTypes#GENERIC_END}
-     * @return true if '&gt;' follows after method reference.
+     * @return true if '{@literal >}' follows after method reference.
      */
     private static boolean isAfterMethodReference(DetailAST genericEnd) {
         return genericEnd.getParent().getParent().getType() == TokenTypes.METHOD_REF;

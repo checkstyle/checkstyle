@@ -19,7 +19,7 @@ public interface InputMissingJavadocMethodInterfaceMemberScopeIsPublic {
 
         ;
 
-        public static void method() {} // violation
+        public static void method() {} // violation 'Missing a Javadoc comment.'
 
         void packagePrivateMethod() {}
 
@@ -27,7 +27,7 @@ public interface InputMissingJavadocMethodInterfaceMemberScopeIsPublic {
 
     class Class {
 
-        public void method() {} // violation
+        public void method() {} // violation 'Missing a Javadoc comment.'
 
         void packagePrivateMethod() {}
 

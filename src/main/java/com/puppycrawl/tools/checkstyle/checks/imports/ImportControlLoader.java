@@ -173,16 +173,16 @@ public final class ImportControlLoader extends XmlLoader {
     @Override
     public void startElement(String namespaceUri,
                              String localName,
-                             String qName,
+                             String qualifiedName,
                              Attributes attributes)
             throws SAXException {
-        if ("import-control".equals(qName)) {
+        if ("import-control".equals(qualifiedName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
             final boolean regex = containsRegexAttribute(attributes);
             stack.push(new PkgImportControl(pkg, regex, strategyOnMismatch));
         }
-        else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
+        else if (SUBPACKAGE_ELEMENT_NAME.equals(qualifiedName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForSubpackage(attributes);
             final boolean regex = containsRegexAttribute(attributes);
@@ -192,7 +192,7 @@ public final class ImportControlLoader extends XmlLoader {
             parentImportControl.addChild(importControl);
             stack.push(importControl);
         }
-        else if (FILE_ELEMENT_NAME.equals(qName)) {
+        else if (FILE_ELEMENT_NAME.equals(qualifiedName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final boolean regex = containsRegexAttribute(attributes);
             final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
@@ -202,7 +202,7 @@ public final class ImportControlLoader extends XmlLoader {
             stack.push(importControl);
         }
         else {
-            final AbstractImportRule rule = createImportRule(qName, attributes);
+            final AbstractImportRule rule = createImportRule(qualifiedName, attributes);
             stack.peek().addImportRule(rule);
         }
     }
@@ -211,15 +211,15 @@ public final class ImportControlLoader extends XmlLoader {
      * Constructs an instance of an import rule based on the given {@code name} and
      * {@code attributes}.
      *
-     * @param qName The qualified name.
+     * @param qualifiedName The qualified name.
      * @param attributes The attributes attached to the element.
      * @return The created import rule.
      * @throws SAXException if an error occurs.
      */
-    private static AbstractImportRule createImportRule(String qName, Attributes attributes)
+    private static AbstractImportRule createImportRule(String qualifiedName, Attributes attributes)
             throws SAXException {
 
-        final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
+        final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qualifiedName);
         final boolean isLocalOnly = attributes.getValue("local-only") != null;
         final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
         final String module = attributes.getValue("module");
@@ -252,8 +252,9 @@ public final class ImportControlLoader extends XmlLoader {
 
     @Override
     public void endElement(String namespaceUri, String localName,
-        String qName) {
-        if (SUBPACKAGE_ELEMENT_NAME.equals(qName) || FILE_ELEMENT_NAME.equals(qName)) {
+        String qualifiedName) {
+        if (SUBPACKAGE_ELEMENT_NAME.equals(qualifiedName)
+            || FILE_ELEMENT_NAME.equals(qualifiedName)) {
             stack.pop();
         }
     }

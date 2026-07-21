@@ -46,7 +46,7 @@ public class MagicNumberCheckTest
     public void testLocalVariables2()
             throws Exception {
         final String[] expected = {
-            "27:17: " + getCheckMessage(MSG_KEY, "8"),
+            "28:17: " + getCheckMessage(MSG_KEY, "8"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberLocalVariables2.java"), expected);
@@ -582,6 +582,17 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testIgnoreFieldDeclaration7()
+            throws Exception {
+        final String[] expected = {
+            "19:38: " + getCheckMessage(MSG_KEY, "10"),
+            "20:46: " + getCheckMessage(MSG_KEY, "15"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMagicNumberIgnoreFieldDeclaration7.java"), expected);
+    }
+
+    @Test
     public void testWaiverParentToken()
             throws Exception {
         final String[] expected = {
@@ -797,7 +808,7 @@ public class MagicNumberCheckTest
             "46:23: " + getCheckMessage(MSG_KEY, "6"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumberInGuards.java"), expected);
+                getNonCompilablePath("InputMagicNumberMagicNumberInGuards.java"), expected);
     }
 
     @Test
@@ -808,7 +819,7 @@ public class MagicNumberCheckTest
             "25:20: " + getCheckMessage(MSG_KEY, "3.1415"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
+                getNonCompilablePath("InputMagicNumberMagicNumberWithUnnamedVariables.java"),
                 expected);
     }
 
@@ -853,4 +864,15 @@ public class MagicNumberCheckTest
                 getPath("InputMagicNumberWithOperatorsWithIgnoreFieldsFalse.java"),
                 expected);
     }
+
+    @Test
+    public void testMagicNumberInCompactSourceFilesWithIgnoreFieldDeclaration() throws Exception {
+        final String[] expected = {
+            "21:24: " + getCheckMessage(MSG_KEY, "456"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMagicNumberCompactSourceFile.java"), expected);
+    }
+
 }

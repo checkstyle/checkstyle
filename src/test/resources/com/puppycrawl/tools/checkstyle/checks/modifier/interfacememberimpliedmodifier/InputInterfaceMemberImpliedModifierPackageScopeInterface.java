@@ -17,50 +17,71 @@ interface InputInterfaceMemberImpliedModifierPackageScopeInterface {
 
     public static final int fieldPublicStaticFinal = 1;
 
-    public static int fieldPublicStatic = 1; // violation
+    // violation below 'Implied modifier 'final' should be explicit.'
+    public static int fieldPublicStatic = 1;
 
-    public final int fieldPublicFinal = 1; // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public final int fieldPublicFinal = 1;
 
-    public int fieldPublic = 1; // 2 violations
+    public int fieldPublic = 1;
+    // 2 violations above:
+    //     'Implied modifier 'final' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
-    static final int fieldStaticFinal = 1; // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static final int fieldStaticFinal = 1;
 
-    static int fieldStatic = 1; // 2 violations
+    static int fieldStatic = 1;
+    // 2 violations above:
+    //     'Implied modifier 'final' should be explicit.'
+    //     'Implied modifier 'public' should be explicit.'
 
-    final int fieldFinal = 1; // 2 violations
+    final int fieldFinal = 1;
+    // 2 violations above:
+    //     'Implied modifier 'public' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
-    int field = 1; // 3 violations
+    int field = 1;
+    // 3 violations above:
+    //     'Implied modifier 'final' should be explicit.'
+    //     'Implied modifier 'public' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
     public static void methodPublicStatic() {
     }
 
-    static void methodStatic() { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static void methodStatic() {}
 
-    public default void methodPublicDefault() {
-    }
+    public default void methodPublicDefault() {}
 
-    default void methodDefault() { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    default void methodDefault() {}
 
     public abstract void methodPublicAbstract();
 
-    abstract void methodAbstract(); // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    abstract void methodAbstract();
 
-    public void methodPublic(); // violation
+    // violation below 'Implied modifier 'abstract' should be explicit.'
+    public void methodPublic();
 
-    void method(); // 2 violations
+    void method();
+    // 2 violations above:
+    //     'Implied modifier 'abstract' should be explicit.'
+    //     'Implied modifier 'public' should be explicit.'
 
-    public static interface NestedInterfacePublicStatic {
-    }
+    public static interface NestedInterfacePublicStatic {}
 
-    public interface NestedInterfacePublic { // violation
-    }
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public interface NestedInterfacePublic {}
 
-    static interface NestedInterfaceStatic { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static interface NestedInterfaceStatic {}
 
-    interface NestedInterface { // 2 violations
-    }
+    interface NestedInterface {}
+    // 2 violations above:
+    //     'Implied modifier 'public' should be explicit.'
+    //     'Implied modifier 'static' should be explicit.'
 
 }

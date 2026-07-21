@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck;
 
 public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSupport {
+
     @Override
     protected String getCheckName() {
         return IllegalInstantiationCheck.class.getSimpleName();
@@ -131,4 +132,5 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

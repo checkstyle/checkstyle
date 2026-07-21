@@ -141,4 +141,5 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

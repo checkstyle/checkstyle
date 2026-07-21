@@ -49,10 +49,6 @@
     <exclude name="JUnitUseExpected"/>
     <!-- will be addressed in https://github.com/checkstyle/checkstyle/projects/5 -->
     <exclude name="NonThreadSafeSingleton"/>
-    <!-- Clashes with CommentDefaultAccessModifier. We do not like package and protected
-      visibility, they are HACK in design and illusion of protection of method from outside.
-      Keeping them public is ok. -->
-    <exclude name="JUnit5TestShouldBePackagePrivate"/>
   </rule>
 
   <rule ref="category/java/design.xml/NcssCount">
@@ -76,7 +72,8 @@
                        //MethodDeclaration[@Name='testTokenNumbering']    
                    | //ClassDeclaration[@SimpleName='GeneratedJavadocCommentsTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']
+                   | //ClassDeclaration[@SimpleName='XdocsPagesTest']"/>
     </properties>
   </rule>
 
@@ -146,13 +143,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/bestpractices.xml/UnitTestShouldUseBeforeAnnotation">
-    <properties>
-      <!-- A false positive. -->
-      <property name="violationSuppressXPath"
-               value="//ClassDeclaration[@SimpleName='CommitValidationTest']"/>
-    </properties>
-  </rule>
   <rule ref="category/java/bestpractices.xml/UnitTestContainsTooManyAsserts">
     <properties>
       <property name="maximumAsserts" value="11"/>
@@ -193,19 +183,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/design.xml/UseObjectForClearerAPI">
-    <properties>
-      <!-- This is checking for amount of String arguments more than 3 (hardcoded).
-         Extra abstraction(object) for single method does not make code more readable or
-         easy to maintain. The rule should also only check public methods but has a bug.
-         Suppress the false-positives. -->
-      <property name="violationSuppressXPath"
-               value="//ClassDeclaration[@SimpleName='SuppressionXpathSingleFilterTest']
-                        //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                    | //ClassDeclarationClassDeclaration[@SimpleName='XdocsPagesTest']
-                        //MethodDeclaration[@Name='validateRuleNameOrder']"/>
-    </properties>
-  </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <!-- we do close streams in special methods -->

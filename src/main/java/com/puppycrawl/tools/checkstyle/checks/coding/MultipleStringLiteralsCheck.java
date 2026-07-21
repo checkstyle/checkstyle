@@ -217,4 +217,5 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
             }
         }
     }
+
 }

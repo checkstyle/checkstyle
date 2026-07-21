@@ -19,12 +19,12 @@ public class Example2 {
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below, 'Unicode escape(s) usage should be avoided.'
-  String unitAbbrev3 = "\u03bcs";
+  String unitAbbrev3 = "\u03bcs"; // it is μs
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // ok, non-printable control character.
+    // ok, all control characters are escaped below
     return '\ufeff' + content;
   }
 }

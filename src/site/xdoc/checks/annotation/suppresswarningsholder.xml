@@ -50,7 +50,7 @@
     &lt;module name="MemberName"/&gt;
     &lt;module name="ConstantName"/&gt;
     &lt;module name="ParameterNumber"&gt;
-      &lt;property name="id" value="ParamNumberId"/&gt;
+      &lt;property name="id" value="ParamListShouldBeShort"/&gt;
     &lt;/module&gt;
     &lt;module name="NoWhitespaceAfter"/&gt;
     &lt;module name="SuppressWarningsHolder"/&gt;
@@ -63,22 +63,20 @@
 class Example1 {
   private int K; // violation, 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
-  private int J; // violation suppressed
+  private int J;
 
-  private static final int i = 0; // violation, 'Name 'i' must match pattern'
-  @SuppressWarnings("checkstyle:constantname")
-  private static final int m = 0; // violation suppressed
-
-  @SuppressWarnings("ParamNumberId")
-    public void needsLotsOfParameters1 (int a, // violation suppressed
-     int b, int c, int d, int e, int f, int g, int h) {
-     // ...
-  }
+  @SuppressWarnings("ParamListShouldBeShort")
+    public void needsLotsOfParameters1 (int a,
+     int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above, 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
-  private int [] ARRAY; // violation suppressed
+  private int [] ARRAY;
+  // violation 2 lines below 'More than 7 parameters (found 8)'
+  @SuppressWarnings("paramcounter")
+    public void needsLotsOfParameters2 (int a,
+     int b, int c, int d, int e, int f, int g, int h) {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p>The general rule is that the argument of the <code>@SuppressWarnings</code> will be
@@ -88,40 +86,54 @@ class Example1 {
         <p id="Example2-config">
           If <code>aliasList</code> property was provided you can use your own names e.g. below
           code will work if there was provided a
-          <code>com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum</code>
+          <code>
+          com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramcounter</code>
           in the <code>aliasList</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="ParameterNumber"/&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="ParameterNumber"&gt;
+      &lt;property name="id" value="ParamListShouldBeShort"/&gt;
+    &lt;/module&gt;
     &lt;module name="SuppressWarningsHolder"&gt;
       &lt;property name="aliasList"
-        value="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramnum"/&gt;
+        value="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramcounter"/&gt;
     &lt;/module&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
+    &lt;module name="SuppressWarningsHolder"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
-  // violation below, 'More than 7 parameters (found 8)'
-  public void needsLotsOfParameters (int a,
-    int b, int c, int d, int e, int f, int g, int h) {
-    // ...
-  }
+class Example2 {
+  private int K; // violation, 'Name 'K' must match pattern'
+  @SuppressWarnings({"membername"})
+  private int J;
 
-  @SuppressWarnings("paramnum")
-  public void needsLotsOfParameters1 (int a, // violation suppressed
-    int b, int c, int d, int e, int f, int g, int h) {
-    // ...
-  }
+  @SuppressWarnings("ParamListShouldBeShort")
+  public void needsLotsOfParameters1 (int a,
+    int b, int c, int d, int e, int f, int g, int h) {}
 
+  private int [] ARR; // violation ''int' is followed by whitespace'
+  // violation above, 'Name 'ARR' must match pattern'
+  @SuppressWarnings("all")
+  private int [] ARRAY;
+
+  @SuppressWarnings("paramcounter")
+  public void needsLotsOfParameters2 (int a,
+    int b, int c, int d, int e, int f, int g, int h) {}
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
-          You can also use simple check name like <code>ParameterNumberCheck=paramnum</code>
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="SuppressWarningsHolder_Use_Cases">
+        <p id="UseCase1-config">
+          You can also use simple check name like <code>ParameterNumberCheck=paramcounter</code>
           instead to use fully qualified name of check in the <code>aliasList</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -129,62 +141,99 @@ public class Example2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"/&gt;
     &lt;module name="SuppressWarningsHolder"&gt;
-      &lt;property name="aliasList" value="ParameterNumberCheck=paramnum"/&gt;
+      &lt;property name="aliasList" value="ParameterNumberCheck=paramcounter"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
+
+  private int K;
+
+  @SuppressWarnings({"membername"})
+  private int J;
+
+  private static final int i = 0;
+
+  @SuppressWarnings("checkstyle:constantname")
+  private static final int m = 0;
+
   // violation below, 'More than 7 parameters (found 8)'
-  public void needsLotsOfParameters (int a,
-    int b, int c, int d, int e, int f, int g, int h) {
-    // ...
-  }
+  public void needsLotsOfParameters(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {}
 
-  @SuppressWarnings("paramnum")
-  public void needsLotsOfParameters1 (int a, // violation suppressed
-    int b, int c, int d, int e, int f, int g, int h) {
-    // ...
-  }
+  // violation 2 lines below 'More than 7 parameters (found 8)'
+  @SuppressWarnings("ParamNumberId")
+  public void needsLotsOfParameters1(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {}
 
+  @SuppressWarnings("paramcounter")
+  public void needsLotsOfParameters2(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {}
+
+  private int [] ARR;
+
+  @SuppressWarnings("all")
+  private int [] ARRAY;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           The check can also be used without suffix of &quot;Check&quot; like
-          <code>ParameterNumber=paramnum</code> in the <code>aliasList</code>:
+          <code>ParameterNumber=paramcounter</code> in the <code>aliasList</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ParameterNumber"/&gt;
     &lt;module name="SuppressWarningsHolder"&gt;
-      &lt;property name="aliasList" value="ParameterNumber=paramnum"/&gt;
+      &lt;property name="aliasList" value="ParameterNumber=paramcounter"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
+
+  private int K;
+
+  @SuppressWarnings({"membername"})
+  private int J;
+
+  private static final int i = 0;
+
+  @SuppressWarnings("checkstyle:constantname")
+  private static final int m = 0;
+
   // violation below, 'More than 7 parameters (found 8)'
-  public void needsLotsOfParameters (int a,
-    int b, int c, int d, int e, int f, int g, int h) {
-    // ...
-  }
+  public void needsLotsOfParameters(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {}
 
-  @SuppressWarnings("paramnum")
-  public void needsLotsOfParameters1 (int a, // violation suppressed
-    int b, int c, int d, int e, int f, int g, int h) {
-    // ...
-  }
+  // violation 2 lines below 'More than 7 parameters (found 8)'
+  @SuppressWarnings("ParamNumberId")
+  public void needsLotsOfParameters1(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {}
 
+  @SuppressWarnings("paramcounter")
+  public void needsLotsOfParameters2(
+          int a, int b, int c, int d,
+          int e, int f, int g, int h) {}
+
+  private int [] ARR;
+
+  @SuppressWarnings("all")
+  private int [] ARRAY;
 }
 </code></pre></div>
-
       </subsection>
 
       <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">
@@ -200,8 +249,12 @@ public class Example4 {
         </ul>
       </subsection>
 
-      <subsection name="Package" id="SuppressWarningsHolder_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks </p>
+      <subsection name="Fully Qualified Name" id="SuppressWarningsHolder_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder</p>
+        <p>
+         Use this fully qualified class name in configuration when an exact class reference is
+         required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarningsHolder_Parent_Module">

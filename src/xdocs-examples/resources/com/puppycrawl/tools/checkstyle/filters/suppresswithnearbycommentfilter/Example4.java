@@ -2,27 +2,27 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SuppressWithNearbyCommentFilter">
-      <property name="commentFormat"
-          value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
-      <property name="checkFormat" value="$1"/>
-      <property name="influenceFormat" value="$2"/>
+      <property name="checkC" value="false"/>
     </module>
-    <module name="ConstantName"/>
+    <module name="NoWhitespaceAfter"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example4 {
-  // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 8 LINES
-  // filtered violation below 'must match pattern'
-  static final int lowerCaseConstant1 = 1;
-  // filtered violation below 'must match pattern'
-  static final int lowerCaseConstant2 = 2;
-  // filtered violation below 'must match pattern'
-  static final int lowerCaseConstant3 = 3;
-  // filtered violation below 'must match pattern'
-  static final int lowerCaseConstant4 = 4;
-  static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
+  // filtered violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
 }
 // xdoc section -- end

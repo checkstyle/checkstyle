@@ -13,7 +13,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
 import java.util.*;
@@ -22,8 +22,10 @@ import java.util.Locale;
 public class InputAbbreviationAsWordInNameCheckEnhancedInstanceof {
 
     public void t(Object o1, Object o2) {
-        if (!(o1 instanceof String STRING) // violation
-                && (o2 instanceof Integer INTEGER)) {} // violation
+        // violation below 'Abbreviation in name 'STRING''
+        if (!(o1 instanceof String STRING)
+                // violation below 'Abbreviation in name 'INTEGER''
+                && (o2 instanceof Integer INTEGER)) {}
 
         List<Integer> arrayList = new ArrayList<Integer>();
         if (arrayList instanceof ArrayList<Integer> aXML) {
@@ -32,10 +34,12 @@ public class InputAbbreviationAsWordInNameCheckEnhancedInstanceof {
 
         boolean result = (o1 instanceof String a1) ?
                 (o1 instanceof String aTXT) :
-                (!(o1 instanceof String ssSTRING)); // violation
+                // violation below 'Abbreviation in name 'ssSTRING''
+                (!(o1 instanceof String ssSTRING));
 
         String formatted;
-        if (o1 instanceof Integer XMLHTTP) formatted = // violation
+        // violation below 'Abbreviation in name 'XMLHTTP''
+        if (o1 instanceof Integer XMLHTTP) formatted =
                 String.format("int %d", XMLHTTP);
         else if (o1 instanceof Byte bYT) formatted = String.format("byte %d", bYT);
         else formatted = String.format("Something else "+ o1.toString());

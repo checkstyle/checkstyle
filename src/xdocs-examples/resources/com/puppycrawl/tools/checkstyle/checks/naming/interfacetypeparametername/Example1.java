@@ -12,5 +12,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming.interfacetypeparametername
 class Example1 {
   interface FirstInterface<T> {}
   interface SecondInterface<t> {} // violation 'Name 't' must match pattern'
+  interface ThirdInterface<type> {} // violation 'Name 'type' must match pattern'
 }
 // xdoc section -- end

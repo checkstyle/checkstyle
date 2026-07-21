@@ -52,8 +52,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -77,50 +76,36 @@
         <p id="Example1-code"> Example1: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-
-  /**
-   * {@inheritDoc}
-   */
-  public String m1(){ return ""; }
   // violation below, 'Summary javadoc is missing'
   /** */
-  public String m2(){ return ""; }
+  public String withoutJavadoc() { return ""; }
 
   /**
    * {@summary  }
    */
-  public String m3(){ return ""; }
+  public String withJavadoc() { return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
-  /**
-   * {@summary &lt;p&gt; &lt;p/&gt;}
-   */
-  public String m4() { return ""; }
-  // violation 3 lines above 'Summary javadoc is missing'
-  /**
-   * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
-   */
-  public void m5() {}
 
+  /**
+   * {@summary This is a java doc with dot period.}
+   */
+  public void withPeriod() {}
+
+  /**
+   * {@summary This is a java doc with ideographic period。}
+   */
+  public void withoutPeriod() {}
+  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
   /**
    * This method returns nothing.
    */
-  void m6() {}
+  void withDotPeriod() {}
 
   /**
-  * {@summary This is a java doc with period symbol。}
-  */
-  public void m7() {}
-  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
-  /**
-  * {@summary First sentence is normally the summary.
-  * Use of html tags:
-  * &lt;ul&gt;
-  * &lt;li&gt;Item one.&lt;/li&gt;
-  * &lt;li&gt;Item two.&lt;/li&gt;
-  * &lt;/ul&gt;}
-  */
-  public void m8() {}
-
+   * This method returns nothing。
+   */
+  void withoutDotPeriod() {}
+  // violation 4 lines above 'First sentence of Javadoc is missing an ending period'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -140,50 +125,36 @@ class Example1 {
         <p id="Example2-code"> Example2: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-
-  /**
-   * {@inheritDoc}
-   */
-  public String m1(){ return ""; }
   // violation below, 'Summary javadoc is missing'
   /** */
-  public String m2(){ return ""; }
+  public String withoutJavadoc() { return ""; }
 
   /**
    * {@summary  }
    */
-  public String m3(){ return ""; }
+  public String withJavadoc() { return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
-  /**
-   * {@summary &lt;p&gt; &lt;p/&gt;}
-   */
-  public String m4() { return ""; }
-  // violation 3 lines above 'Summary javadoc is missing'
-  /**
-   * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
-   */
-  public void m5() {}
 
+  /**
+   * {@summary This is a java doc with dot period.}
+   */
+  public void withPeriod() {}
+
+  /**
+   * {@summary This is a java doc with ideographic period。}
+   */
+  public void withoutPeriod() {}
+  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
   /**
    * This method returns nothing.
    */
-  void m6() {}
+  void withDotPeriod() {}
   // violation 4 lines above 'Forbidden summary fragment'
   /**
-  * {@summary This is a java doc with period symbol。}
-  */
-  public void m7() {}
-  // violation 3 lines above 'Summary of Javadoc is missing an ending period'
-  /**
-  * {@summary First sentence is normally the summary.
-  * Use of html tags:
-  * &lt;ul&gt;
-  * &lt;li&gt;Item one.&lt;/li&gt;
-  * &lt;li&gt;Item two.&lt;/li&gt;
-  * &lt;/ul&gt;}
-  */
-  public void m8() {}
-
+   * This method returns nothing。
+   */
+  void withoutDotPeriod() {}
+  // violation 4 lines above 'First sentence of Javadoc is missing an ending period'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -201,50 +172,36 @@ class Example2 {
         <p id="Example3-code"> Example3: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-
-  /**
-   * {@inheritDoc}
-   */
-  public String m1(){ return ""; }
   // violation below, 'Summary javadoc is missing'
   /** */
-  public String m2(){ return ""; }
+  public String withoutJavadoc() { return ""; }
 
   /**
    * {@summary  }
    */
-  public String m3(){ return ""; }
+  public String withJavadoc() { return ""; }
   // violation 3 lines above 'Summary javadoc is missing'
+
   /**
-   * {@summary &lt;p&gt; &lt;p/&gt;}
+   * {@summary This is a java doc with dot period.}
    */
-  public String m4() { return ""; }
-  // violation 3 lines above 'Summary javadoc is missing'
-  /**
-   * {@summary &lt;p&gt;This is a javadoc with period.&lt;p/&gt;}
-   */
-  public void m5() {}
+  public void withPeriod() {}
   // violation 3 lines above 'Summary of Javadoc is missing an ending period'
+  /**
+   * {@summary This is a java doc with ideographic period。}
+   */
+  public void withoutPeriod() {}
+
   /**
    * This method returns nothing.
    */
-  void m6() {}
+  void withDotPeriod() {}
   // violation 4 lines above 'First sentence of Javadoc is missing an ending period'
   /**
-  * {@summary This is a java doc without period。}
-  */
-  public void m7() {}
+   * This method returns nothing。
+   */
+  void withoutDotPeriod() {}
 
-  /**
-  * {@summary First sentence is normally the summary。
-  * Use of html tags:
-  * &lt;ul&gt;
-  * &lt;li&gt;Item one.&lt;/li&gt;
-  * &lt;li&gt;Item two.&lt;/li&gt;
-  * &lt;/ul&gt;}
-  */
-  public void m8() {}
-  // violation 8 lines above 'Summary of Javadoc is missing an ending period'
 }
 </code></pre></div>
       </subsection>
@@ -253,6 +210,14 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+            Documentation Comments Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
@@ -301,9 +266,11 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="SummaryJavadoc_Package">
+      <subsection name="Fully Qualified Name" id="SummaryJavadoc_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

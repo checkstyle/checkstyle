@@ -53,6 +53,10 @@
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
             Checkstyle Style</a>
           </li>
@@ -68,9 +72,13 @@
           see the documentation</a> to learn how to.
         </p>
       </subsection>
-      <subsection name="Package" id="MissingOverrideOnRecordAccessor_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="MissingOverrideOnRecordAccessor_Fully_Qualified_Name">
+    <p> com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideOnRecordAccessorCheck</p>
+    <p>
+      Use this fully qualified class name in configuration when an exact class reference is
+      required.
+    </p>
+  </subsection>
       <subsection name="Parent Module" id="MissingOverrideOnRecordAccessor_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="MissingOverrideOnRecordAccessor"/>

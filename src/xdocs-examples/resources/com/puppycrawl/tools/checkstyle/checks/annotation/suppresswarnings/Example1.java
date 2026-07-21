@@ -26,8 +26,10 @@ class Example1 {
 
   @SuppressWarnings("all")
   void foo2(int param) {}
+
   @SuppressWarnings("unused")
   void foo3(int param) {}
+
   @SuppressWarnings(true?"all":"unused")
   void foo4(int param) {}
 }

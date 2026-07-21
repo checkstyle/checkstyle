@@ -2,24 +2,32 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="NoLineWrap">
-      <property name="tokens" value="IMPORT"/>
+      <property name="tokens" value="IMPORT, STATIC_IMPORT,
+      PACKAGE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF"/>
+      <property name="skipAnnotations" value="false"/>
     </module>
   </module>
 </module>
-
-
 */
 
 // xdoc section -- start
-package com.puppycrawl. // ok, PACKAGE_DEF is not part of the tokens
+package com.puppycrawl.      // violation 'should not be line-wrapped'
   tools.checkstyle.checks.whitespace.nolinewrap;
 
-import java.io.*;
-import java.lang. // violation 'should not be line-wrapped'
-  Boolean;
+import com.puppycrawl.tools. // violation 'should not be line-wrapped'
+  checkstyle.api.AbstractCheck;
 
-import static java.math. // ok, STATIC_IMPORT is not part of the tokens
+import static java.math.     // violation 'should not be line-wrapped'
   BigInteger.ZERO;
-// xdoc section -- end
 
-class Example4 { }
+class                        // violation 'should not be line-wrapped'
+  Example4 {
+
+  public                     // violation 'should not be line-wrapped'
+    Example4() {}
+  public void                // violation 'should not be line-wrapped'
+    doSomething() {}
+  @Deprecated                // violation 'should not be line-wrapped'
+  private void doNothing() {}
+}
+// xdoc section -- end

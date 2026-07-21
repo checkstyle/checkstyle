@@ -6,10 +6,8 @@
 </module>
 */
 
-// violation 8 lines above 'The file does not contain any code'
-
 // xdoc section -- start
-/* the violation is on first line of file */
+// violation first line 'The file does not contain any code'
 /*
  public class Example2 {
  block comment is not code

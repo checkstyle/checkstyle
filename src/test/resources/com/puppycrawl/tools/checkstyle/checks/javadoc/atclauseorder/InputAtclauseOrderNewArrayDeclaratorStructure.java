@@ -3,8 +3,8 @@ AtclauseOrder
 violateExecutionOnNonTightHtml = (default)false
 target = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, \
          CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
-tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
-           @see, @serial, @serialData, @serialField, @since, @throws, @version
+tagOrder = (default)@author, @version, @param, @return, @throws, @exception, \
+         @see, @since, @serial, @serialField, @serialData, @deprecated
 
 
 */
@@ -22,6 +22,7 @@ import javax.transaction.xa.Xid;
 
 public interface InputAtclauseOrderNewArrayDeclaratorStructure
         <D extends GenericDeclaration> extends Type, AnnotatedElement {
+    // violation 17 lines below 'Block tags have to appear in the order .\[@author.*'
      /**
       * Returns an array of {@code Type} objects representing the
       * upper bound(s) of this type variable.  If no upper bound is
@@ -38,11 +39,12 @@ public interface InputAtclauseOrderNewArrayDeclaratorStructure
       * @throws MalformedParameterizedTypeException if any of the
       *     bounds refer to a parameterized type that cannot be instantiated
       *     for any reason
-      * @return an array of {@code Type}s representing the upper  // violation
+      * @return an array of {@code Type}s representing the upper
       *     bound(s) of this type variable
       */
      Type[] getBounds();
 
+     // violation 13 lines below 'Block tags have to appear in the order .\[@author.*'
       /**
        * Obtains a list of prepared transaction branches from a resource
        * manager. The transaction manager calls this method during recovery
@@ -55,7 +57,7 @@ public interface InputAtclauseOrderNewArrayDeclaratorStructure
        * @exception XAException An error has occurred. Possible values are
        * XAER_RMERR, XAER_RMFAIL, XAER_INVAL, and XAER_PROTO.
        *
-       * @return The resource manager returns zero or more XIDs of the   // violation
+       * @return The resource manager returns zero or more XIDs of the
        * transaction branches that are currently in a prepared or
        * heuristically completed state. If an error occurs during the
        * operation, the resource manager should throw the appropriate
@@ -66,6 +68,9 @@ public interface InputAtclauseOrderNewArrayDeclaratorStructure
 }
 
 class Other {
+    // violation 12 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 12 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 12 lines below 'Block tags have to appear in the order .\[@author.*'
     /**
      * The focus traversal keys. These keys will generate focus traversal
      * behavior for Components for which focus traversal keys are enabled. If a
@@ -75,9 +80,9 @@ class Other {
      * KeyboardFocusManager's default traversal key is used.
      *
      * @serial
-     * @see #setFocusTraversalKeys      // violation
-     * @see #getFocusTraversalKeys      // violation
-     * @since 1.4                       // violation
+     * @see #setFocusTraversalKeys
+     * @see #getFocusTraversalKeys
+     * @since 1.4
      */
     Set<AWTKeyStroke>[] focusTraversalKeys;
 }

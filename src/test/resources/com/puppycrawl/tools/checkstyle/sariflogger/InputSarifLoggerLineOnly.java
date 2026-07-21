@@ -11,7 +11,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.sariflogger;
-/* violation on first line 'File must contain copyright statement' */
+// violation first line 'File must contain copyright statement'
 public class InputSarifLoggerLineOnly {
 
 }

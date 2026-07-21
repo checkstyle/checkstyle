@@ -112,4 +112,5 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -6,6 +6,7 @@ accessModifiers = (default)public, protected, package, private
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 allowInlineReturn = (default)false
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 */
@@ -49,8 +50,7 @@ public class InputJavadocMethodTags1One {
     /** missing throws **/
     void method5()
         throws Exception // violation 'Expected @throws tag for 'Exception'.'
-    {
-    }
+    {}
 
     /**
      * @see missing throws

@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MethodParamPadExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad";
@@ -52,4 +53,27 @@ public class MethodParamPadExamplesTest extends AbstractExamplesModuleTestSuppor
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "15:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "16:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "23:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
+            "26:3: " + getCheckMessage(MSG_LINE_PREVIOUS, "("),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "19:19: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "20:11: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }

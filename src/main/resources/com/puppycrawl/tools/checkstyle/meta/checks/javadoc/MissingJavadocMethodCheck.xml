@@ -42,8 +42,7 @@
             <property default-value="false"
                       name="allowMissingPropertyJavadoc"
                       type="boolean">
-               <description>Control whether to allow missing Javadoc on accessor methods for properties
- (setters and getters).</description>
+               <description>Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).</description>
             </property>
             <property default-value="Override"
                       name="allowedAnnotations"

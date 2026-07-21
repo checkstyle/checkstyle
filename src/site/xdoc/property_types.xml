@@ -214,7 +214,10 @@
             <td>Definition</td>
           </tr>
           <tr>
-            <td><code>text</code></td>
+            <td>
+              <a id="BlockOption-text"/>
+              <a href="#BlockOption-text">text</a>
+            </td>
             <td>
               Require that there is some text in the block. For example:
               <div class="wrapper">
@@ -227,7 +230,10 @@
             </td>
           </tr>
           <tr>
-            <td><code>statement</code></td>
+            <td>
+              <a id="BlockOption-statement"/>
+              <a href="#BlockOption-statement">statement</a>
+            </td>
             <td>
               Require that there is a statement in the block. For example:
               <div class="wrapper">
@@ -257,7 +263,10 @@
           </tr>
 
           <tr>
-            <td><code>always</code></td>
+            <td>
+              <a id="ClosingParensOption-always"/>
+              <a href="#ClosingParensOption-always">always</a>
+            </td>
             <td>
               Example:
               <div class="wrapper">
@@ -268,7 +277,10 @@
           </tr>
 
           <tr>
-            <td><code>never</code></td>
+            <td>
+              <a id="ClosingParensOption-never"/>
+              <a href="#ClosingParensOption-never">never</a>
+            </td>
             <td>
               Example:
               <div class="wrapper">
@@ -279,7 +291,10 @@
           </tr>
 
           <tr>
-            <td><code>ignore</code></td>
+            <td>
+              <a id="ClosingParensOption-ignore"/>
+              <a href="#ClosingParensOption-ignore">ignore</a>
+            </td>
             <td>
               Anything goes.
             </td>
@@ -303,7 +318,10 @@
           </tr>
 
           <tr>
-            <td><code>expanded</code></td>
+            <td>
+              <a id="ElementStyleOption-expanded"/>
+              <a href="#ElementStyleOption-expanded">expanded</a>
+            </td>
             <td>
               The expanded version is sometimes referred to as "named parameters"
               in other languages.
@@ -321,7 +339,10 @@
           </tr>
 
           <tr>
-            <td><code>compact</code></td>
+            <td>
+              <a id="ElementStyleOption-compact"/>
+              <a href="#ElementStyleOption-compact">compact</a>
+            </td>
             <td>
               This style can only be used when there is an element called 'value'
               which is either the sole element or all other elements have default
@@ -344,7 +365,10 @@
           </tr>
 
           <tr>
-            <td><code>compact_no_array</code></td>
+            <td>
+              <a id="ElementStyleOption-compact_no_array"/>
+              <a href="#ElementStyleOption-compact_no_array">compact_no_array</a>
+            </td>
             <td>
               It is similar to the <code>compact</code> style but
               single value arrays are flagged. With annotations a single value
@@ -367,7 +391,10 @@
           </tr>
 
           <tr>
-            <td><code>ignore</code></td>
+            <td>
+              <a id="ElementStyleOption-ignore"/>
+              <a href="#ElementStyleOption-ignore">ignore</a>
+            </td>
             <td>
               Anything goes.
             </td>
@@ -398,7 +425,10 @@
           </tr>
 
           <tr>
-            <td><code>top</code></td>
+            <td>
+              <a id="ImportOrderOption-top"/>
+              <a href="#ImportOrderOption-top">top</a>
+            </td>
             <td>All static imports are at the top.
                 Groups for static import are defined by the property 'staticGroups'.
                 The blank line between groups is driven by the property 'separatedStaticGroups'.
@@ -415,7 +445,10 @@
           </tr>
 
           <tr>
-            <td><code>above</code></td>
+            <td>
+              <a id="ImportOrderOption-above"/>
+              <a href="#ImportOrderOption-above">above</a>
+            </td>
             <td>All static imports are above the local group. For example:
               <div class="wrapper">
                 <pre><code class="language-java">
@@ -429,7 +462,10 @@
           </tr>
 
           <tr>
-            <td><code>inflow</code></td>
+            <td>
+              <a id="ImportOrderOption-inflow"/>
+              <a href="#ImportOrderOption-inflow">inflow</a>
+            </td>
             <td>All static imports are processed like non static
                 imports. For example:
               <div class="wrapper">
@@ -444,7 +480,10 @@
           </tr>
 
           <tr>
-            <td><code>under</code></td>
+            <td>
+              <a id="ImportOrderOption-under"/>
+              <a href="#ImportOrderOption-under">under</a>
+            </td>
             <td>All static imports are under the local group. For example:
               <div class="wrapper">
                 <pre><code class="language-java">
@@ -458,7 +497,10 @@
           </tr>
 
           <tr>
-            <td><code>bottom</code></td>
+            <td>
+              <a id="ImportOrderOption-bottom"/>
+              <a href="#ImportOrderOption-bottom">bottom</a>
+            </td>
             <td>All static imports are at the bottom.
                 Groups for static import are defined by the property 'staticGroups'.
                 The blank line between groups is driven by the property 'separatedStaticGroups'.
@@ -491,7 +533,10 @@
           </tr>
 
           <tr>
-            <td><code>FIRST_LINE</code></td>
+            <td>
+              <a id="JavadocContentLocationOption-FIRST_LINE"/>
+              <a href="#JavadocContentLocationOption-FIRST_LINE">FIRST_LINE</a>
+            </td>
             <td>
               Represents the policy for Javadoc content starts from the same line
               as <code>/**</code>.
@@ -509,7 +554,10 @@
           </tr>
 
           <tr>
-            <td><code>SECOND_LINE</code></td>
+            <td>
+              <a id="JavadocContentLocationOption-SECOND_LINE"/>
+              <a href="#JavadocContentLocationOption-SECOND_LINE">SECOND_LINE</a>
+            </td>
             <td>
               Represents the policy for Javadoc content starts from the next line
               after <code>/**</code>.
@@ -546,7 +594,10 @@
           </tr>
 
           <tr>
-            <td><code>eol</code></td>
+            <td>
+              <a id="LeftCurlyOption-eol"/>
+              <a href="#LeftCurlyOption-eol">eol</a>
+            </td>
             <td>
               The brace must always be on the end of the line. For example:#
               <div class="wrapper">
@@ -559,7 +610,10 @@
           </tr>
 
           <tr>
-            <td><code>nl</code></td>
+            <td>
+              <a id="LeftCurlyOption-nl"/>
+              <a href="#LeftCurlyOption-nl">nl</a>
+            </td>
             <td>
               The brace must always be on a new line. For example:
               <div class="wrapper">
@@ -573,7 +627,10 @@
           </tr>
 
           <tr>
-            <td><code>nlow</code></td>
+            <td>
+              <a id="LeftCurlyOption-nlow"/>
+              <a href="#LeftCurlyOption-nlow">nlow</a>
+            </td>
             <td>
               If the statement/expression/declaration connected to the brace spans multiple lines,
               then apply <code>nl</code> rule. Otherwise, apply the <code>eol</code> rule.
@@ -614,15 +671,24 @@
             <td>Definition</td>
           </tr>
           <tr>
-            <td><code>crlf</code></td>
+            <td>
+              <a id="LineEndingOption-crlf"/>
+              <a href="#LineEndingOption-crlf">crlf</a>
+            </td>
             <td>Windows-style</td>
           </tr>
           <tr>
-            <td><code>lf</code></td>
+            <td>
+              <a id="LineEndingOption-lf"/>
+              <a href="#LineEndingOption-lf">lf</a>
+            </td>
             <td>Unix-style</td>
           </tr>
           <tr>
-            <td><code>cr</code></td>
+            <td>
+              <a id="LineEndingOption-cr"/>
+              <a href="#LineEndingOption-cr">cr</a>
+            </td>
             <td>Mac-style</td>
           </tr>
         </table>
@@ -642,23 +708,38 @@
             <td>Definition</td>
           </tr>
           <tr>
-            <td><code>crlf</code></td>
+            <td>
+              <a id="LineSeparatorOption-crlf"/>
+              <a href="#LineSeparatorOption-crlf">crlf</a>
+            </td>
             <td>Windows-style</td>
           </tr>
           <tr>
-            <td><code>cr</code></td>
+            <td>
+              <a id="LineSeparatorOption-cr"/>
+              <a href="#LineSeparatorOption-cr">cr</a>
+            </td>
             <td>Mac-style</td>
           </tr>
           <tr>
-            <td><code>lf</code></td>
+            <td>
+              <a id="LineSeparatorOption-lf"/>
+              <a href="#LineSeparatorOption-lf">lf</a>
+            </td>
             <td>Unix-style</td>
           </tr>
           <tr>
-            <td><code>lf_cr_crlf</code></td>
+            <td>
+              <a id="LineSeparatorOption-lf_cr_crlf"/>
+              <a href="#LineSeparatorOption-lf_cr_crlf">lf_cr_crlf</a>
+            </td>
             <td>lf, cr or crlf</td>
           </tr>
           <tr>
-            <td><code>system</code></td>
+            <td>
+              <a id="LineSeparatorOption-system"/>
+              <a href="#LineSeparatorOption-system">system</a>
+            </td>
             <td>system default</td>
           </tr>
         </table>
@@ -678,13 +759,19 @@
             <td>Definition</td>
           </tr>
           <tr>
-            <td><code>nospace</code></td>
+            <td>
+              <a id="PadOption-nospace"/>
+              <a href="#PadOption-nospace">nospace</a>
+            </td>
             <td>
               Do not pad. For example, <code>method(a, b);</code>
             </td>
           </tr>
           <tr>
-            <td><code>space</code></td>
+            <td>
+              <a id="PadOption-space"/>
+              <a href="#PadOption-space">space</a>
+            </td>
             <td>
               Ensure padding. For example,
               <code>method( a, b );</code>
@@ -739,7 +826,10 @@
           </tr>
 
           <tr>
-            <td><code>alone</code></td>
+            <td>
+              <a id="RightCurlyOption-alone"/>
+              <a href="#RightCurlyOption-alone">alone</a>
+            </td>
             <td>
               The brace must be alone on the line. For example:
               <div class="wrapper">
@@ -756,7 +846,10 @@
           </tr>
 
           <tr>
-            <td><code>alone_or_singleline</code></td>
+            <td>
+              <a id="RightCurlyOption-alone_or_singleline"/>
+              <a href="#RightCurlyOption-alone_or_singleline">alone_or_singleline</a>
+            </td>
             <td>
                     The brace must be alone on the line, yet
                     single-line format of block is allowed.
@@ -779,7 +872,10 @@
           </tr>
 
           <tr>
-            <td><code>same</code></td>
+            <td>
+              <a id="RightCurlyOption-same"/>
+              <a href="#RightCurlyOption-same">same</a>
+            </td>
             <td>
               Works like <code>alone_or_singleline</code> but the brace should be on the same line
               as the next part of a multi-block statement
@@ -890,7 +986,10 @@
           </tr>
 
           <tr>
-            <td><code>ignore</code></td>
+            <td>
+              <a id="SeverityLevel-ignore"/>
+              <a href="#SeverityLevel-ignore">ignore</a>
+            </td>
             <td>
               If a violation occurs, modules with this severity are ignored as if they never
               occurred.
@@ -913,7 +1012,10 @@
           </tr>
 
           <tr>
-            <td><code>info</code></td>
+            <td>
+              <a id="SeverityLevel-info"/>
+              <a href="#SeverityLevel-info">info</a>
+            </td>
             <td>
               If a violation occurs, modules with this severity are displayed as informational.
             </td>
@@ -926,7 +1028,10 @@
           </tr>
 
           <tr>
-            <td><code>warning</code></td>
+            <td>
+              <a id="SeverityLevel-warning"/>
+              <a href="#SeverityLevel-warning">warning</a>
+            </td>
             <td>
               This severity behaves exactly the same as <code>info</code> in Checkstyle.
               It can be used to let user bring more attention to reviewers of such violations.
@@ -942,7 +1047,10 @@
           </tr>
 
           <tr>
-            <td><code>error</code></td>
+            <td>
+              <a id="SeverityLevel-error"/>
+              <a href="#SeverityLevel-error">error</a>
+            </td>
             <td>
               If a violation occurs, modules with this severity are displayed as error and should
               be considered as a failure.
@@ -1001,7 +1109,10 @@
           </tr>
 
           <tr>
-            <td><code>always</code></td>
+            <td>
+              <a id="TrailingArrayCommaOption-always"/>
+              <a href="#TrailingArrayCommaOption-always">always</a>
+            </td>
             <td>
               Example:
               <div class="wrapper">
@@ -1012,7 +1123,10 @@
           </tr>
 
           <tr>
-            <td><code>never</code></td>
+            <td>
+              <a id="TrailingArrayCommaOption-never"/>
+              <a href="#TrailingArrayCommaOption-never">never</a>
+            </td>
             <td>
               Example:
               <div class="wrapper">
@@ -1023,7 +1137,10 @@
           </tr>
 
           <tr>
-            <td><code>ignore</code></td>
+            <td>
+              <a id="TrailingArrayCommaOption-ignore"/>
+              <a href="#TrailingArrayCommaOption-ignore">ignore</a>
+            </td>
             <td>
               Anything goes.
             </td>
@@ -1058,7 +1175,10 @@
             <td>Definition</td>
           </tr>
           <tr>
-            <td><code>nl</code></td>
+            <td>
+              <a id="WrapOption-nl"/>
+              <a href="#WrapOption-nl">nl</a>
+            </td>
             <td>
               The token must be on a new line. For example:
               <div class="wrapper">
@@ -1070,7 +1190,10 @@
             </td>
           </tr>
           <tr>
-            <td><code>eol</code></td>
+            <td>
+              <a id="WrapOption-eol"/>
+              <a href="#WrapOption-eol">eol</a>
+            </td>
             <td>
               The token must be at the end of the line. For example:
               <div class="wrapper">

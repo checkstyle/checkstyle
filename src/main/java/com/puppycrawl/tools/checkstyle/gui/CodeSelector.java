@@ -36,7 +36,7 @@ public class CodeSelector {
     /** Editor. */
     private final JTextArea editor;
     /** Presentation model. */
-    private final CodeSelectorPresentation pModel;
+    private final CodeSelectorPresentation presentationModel;
 
     /**
      * Constructor.
@@ -49,11 +49,11 @@ public class CodeSelector {
                         final Collection<Integer> lines2position) {
         this.editor = editor;
         if (node instanceof DetailAST detailAst) {
-            pModel = new CodeSelectorPresentation(detailAst,
+            presentationModel = new CodeSelectorPresentation(detailAst,
                     new ArrayList<>(lines2position));
         }
         else {
-            pModel = new CodeSelectorPresentation((DetailNode) node,
+            presentationModel = new CodeSelectorPresentation((DetailNode) node,
                     new ArrayList<>(lines2position));
         }
     }
@@ -62,11 +62,11 @@ public class CodeSelector {
      * Set selection.
      */
     public void select() {
-        pModel.findSelectionPositions();
+        presentationModel.findSelectionPositions();
         editor.setSelectedTextColor(Color.blue);
         editor.requestFocusInWindow();
-        editor.setCaretPosition(pModel.getSelectionStart());
-        editor.moveCaretPosition(pModel.getSelectionEnd());
+        editor.setCaretPosition(presentationModel.getSelectionStart());
+        editor.moveCaretPosition(presentationModel.getSelectionEnd());
     }
 
 }

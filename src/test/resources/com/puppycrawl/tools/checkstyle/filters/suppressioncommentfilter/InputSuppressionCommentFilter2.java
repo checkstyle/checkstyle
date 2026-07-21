@@ -36,10 +36,7 @@ illegalClassNames = (default)Error, Exception, RuntimeException, Throwable, java
 
 package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 
-/**
- * Test input for using comments to suppress violations.
- * @author Rick Giles
- **/
+/** Test input for using comments to suppress violations. */
 class InputSuppressionCommentFilter2
 {
     private int I; // violation

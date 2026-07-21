@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class NoEnumTrailingCommaCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/noenumtrailingcomma";
@@ -41,4 +42,5 @@ public class NoEnumTrailingCommaCheckExamplesTest extends AbstractExamplesModule
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

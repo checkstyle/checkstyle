@@ -12,48 +12,48 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
 // xdoc section -- start
 class Example2 {
-    String field = "example";                  // basicOffset
-    int[] values = {                           // basicOffset
-        10,
-        20,
-        30
+    int a;
+    boolean x, y;
+    String field = "example";
+    int[] values = {
+        1, 2, 3
+    };
+    int[] values2 = {
+  10 // violation, 'level 2, expected level should be 8'
     };
 
-    void processValues() throws Exception {
-        handleValue("Test String", 42);          // basicOffset
+    void method2()
+        throws Exception {
+        switch (a) {
+            case 1:             // violation, 'level 12, expected level should be 8'
+                break;          // violation, 'level 16, expected level should be 12'
+            case 2:             // violation, 'level 12, expected level should be 8'
+                break;          // violation, 'level 16, expected level should be 12'
+        }
+    }
+    void method3(int a,
+                 int b) {
+        if (x
+                && y) {
+            method3(a, b);
+        }
     }
 
     void handleValue(String aFooString,
                      int aFooInt) {
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
+
         cond1=cond2=cond3=cond4=cond5=cond6=false;
-
         if (cond1
-            || cond2) {
+                || cond2) {
             field = field.toUpperCase()
-                .concat(" TASK");
-        }
-
-        if ((cond1 && cond2)
-                || (cond3 && cond4)           // ok, lineWrappingIndentation
-                || !(cond5 && cond6)) {       // ok, lineWrappingIndentation
-            field.toUpperCase()
-                 .concat(" TASK")             // ok, lineWrappingIndentation
-                 .chars().forEach(c -> {      // ok, lineWrappingIndentation
-                     System.out.println((char) c);
-                 });
+                    .concat(" TASK");
         }
     }
 
-    void demonstrateSwitch() throws Exception {
-        switch (field) {
-        case "EXAMPLE": processValues();                            // caseIndent
-        case "COMPLETED": handleValue("Completed Case", 456);       // caseIndent
-        }
+    void methodBrace()
+    {
     }
 }
 // xdoc section -- end
-
-
-

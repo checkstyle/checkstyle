@@ -6,7 +6,7 @@ max = 75
 tabWidth = (default)0
 
 */
-// Java17
+
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 

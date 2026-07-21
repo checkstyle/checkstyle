@@ -42,15 +42,27 @@ function getCheckstylePomVersionWithoutSnapshotWithXmlstarlet {
 
 function checkout_from {
   CLONE_URL=$1
+  TARGET_SHA=$2
   PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
   mkdir -p .ci-temp
   cd .ci-temp
   if [ -d "$PROJECT" ]; then
-    echo "Target project $PROJECT is already cloned, latest changes will be fetched and reset"
+    if [ -n "$TARGET_SHA" ]; then
+      cd "$PROJECT"
+      git checkout "$TARGET_SHA"
+      cd ../
+    else
+      echo "Target project $PROJECT is already cloned, latest changes will be fetched and reset"
+      cd "$PROJECT"
+      git fetch
+      git reset --hard HEAD
+      git clean -f -d
+      cd ../
+    fi
+  elif [ -n "$TARGET_SHA" ]; then
+    git clone "$CLONE_URL"
     cd "$PROJECT"
-    git fetch
-    git reset --hard HEAD
-    git clean -f -d
+    git checkout "$TARGET_SHA"
     cd ../
   else
     for i in 1 2 3 4 5; do git clone --depth 1 "$CLONE_URL" && break || sleep 15s; done

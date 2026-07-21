@@ -52,9 +52,6 @@
  JavadocParagraph
  &lt;/li&gt;
  &lt;li&gt;
- JavadocStyle
- &lt;/li&gt;
- &lt;li&gt;
  JavadocTagContinuationIndentation
  &lt;/li&gt;
  &lt;li&gt;
@@ -165,7 +162,8 @@
  &lt;code&gt;files&lt;/code&gt; -
  a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
  matched against the file name associated with an audit
- event. It is optional.
+ event. It is optional. If unmatched, all Unix path separators (/)
+ are converted to Windows separators (\) and retried.
  &lt;/li&gt;
  &lt;li&gt;
  &lt;code&gt;checks&lt;/code&gt; -
@@ -208,10 +206,7 @@
                <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
             </property>
             <property default-value="false" name="optional" type="boolean">
-               <description>Control what to do when the file is not existing.
- If optional is set to false the file must exist, or else it ends with error.
- On the other hand if optional is true and file is not found,
- the filter accepts all audit events.</description>
+               <description>Control what to do when the file is not existing. If optional is set to false the file must exist, or else it ends with error. On the other hand if optional is true and file is not found, the filter accepts all audit events.</description>
             </property>
          </properties>
       </filter>

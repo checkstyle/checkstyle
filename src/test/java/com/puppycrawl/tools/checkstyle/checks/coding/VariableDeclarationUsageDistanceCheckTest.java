@@ -192,6 +192,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "913:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
             "924:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "945:9: " + getCheckMessage(MSG_KEY, "a", 5, 1),
+            "979:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "990:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "1001:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "1036:9: " + getCheckMessage(MSG_KEY, "c", 4, 1),
@@ -275,6 +276,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "913:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
             "945:9: " + getCheckMessage(MSG_KEY_EXT, "a", 5, 3),
             "1036:9: " + getCheckMessage(MSG_KEY_EXT, "c", 4, 3),
+            "979:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
             "1001:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
             "1066:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
         };
@@ -370,6 +372,20 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
+    public void testVariableDeclarationUsageDistanceTryBlock() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "28:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "40:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "76:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+            "88:9: " + getCheckMessage(MSG_KEY_EXT, "a", 4, 3),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceTryBlock.java"), expected);
+    }
+
+    @Test
     public void testVariableDeclarationUsageDistance4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -413,7 +429,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
             "35:9: " + getCheckMessage(MSG_KEY, "b", 5, 1),
         };
         verifyWithInlineConfigParser(
-                getPath("InputVariableDeclarationUsageDistancePatternVariables.java"),
+                getNonCompilablePath("InputVariableDeclarationUsageDistancePatternVariables.java"),
                 expected);
     }
 
@@ -423,4 +439,5 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceMethodDef.java"), expected);
     }
+
 }

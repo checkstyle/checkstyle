@@ -7,7 +7,7 @@ public class InputFormattedTryCatchIfElse {
 
   void foo() throws Exception {
     int a = 90;
-    boolean test = true;
+    boolean test = true; // violation 'Distance .* is .*, but allowed 3.'
 
     if (a == 1) {
     } else {

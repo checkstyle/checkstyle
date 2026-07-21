@@ -84,7 +84,7 @@ public class InputIndentationInvalidForIndent {                           //inde
         }                                                                 //indent:8 exp:8
     }                                                                     //indent:4 exp:4
 
-  public void doSmth() {                                                  //indent:2 exp:4 warn
+  public void doSomething() {                                             //indent:2 exp:4 warn
     for (int h                                                            //indent:4 exp:8 warn
         : new int[] {}) {                                                 //indent:8 exp:12 warn
       System.getProperty(                                                 //indent:6 exp:12 warn

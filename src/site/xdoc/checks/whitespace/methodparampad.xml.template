@@ -58,6 +58,38 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example2.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the check to require a space after the identifier of a
+          method definition:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          To configure the check to allow line breaks between the identifier and
+          the left parenthesis:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/methodparampad/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -89,9 +121,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodParamPad_Package">
+      <subsection name="Fully Qualified Name" id="MethodParamPad_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

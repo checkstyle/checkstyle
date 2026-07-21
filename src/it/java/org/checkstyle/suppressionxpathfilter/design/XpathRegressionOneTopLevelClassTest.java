@@ -111,4 +111,5 @@ public class XpathRegressionOneTopLevelClassTest extends AbstractXpathTestSuppor
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                          expectedXpathQueries);
     }
+
 }

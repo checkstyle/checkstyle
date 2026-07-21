@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = package, private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -70,7 +70,7 @@ class InputJavadocVariableNoJavadoc3Package
 
     class IgnoredName {
         // ignore by name
-        private int logger; // violation
+        private int logger; // violation, 'Missing a Javadoc comment'
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }

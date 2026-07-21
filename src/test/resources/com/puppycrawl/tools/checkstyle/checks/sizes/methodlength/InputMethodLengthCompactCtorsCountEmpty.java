@@ -7,7 +7,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
 public class InputMethodLengthCompactCtorsCountEmpty {

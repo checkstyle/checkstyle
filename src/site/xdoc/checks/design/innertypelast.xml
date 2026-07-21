@@ -32,13 +32,15 @@
 class Test1 {
   private String s;
   class InnerTest1 {}
-  public void test() {} // violation
+  // violation below, 'fields and methods should be before inner types'
+  public void test() {}
 }
 
 class Test2 {
   static {};
   class InnerTest1 {}
-  public Test2() {} // violation
+  // violation below, 'fields and methods should be before inner types'
+  public Test2() {}
 }
 
 class Example1 {
@@ -73,9 +75,11 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="InnerTypeLast_Package">
+      <subsection name="Fully Qualified Name" id="InnerTypeLast_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.design
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

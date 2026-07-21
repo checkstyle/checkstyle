@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = PRIVATE
 excludeScope = (default)null
+scope = PRIVATE
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -11,7 +12,8 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 import java.io.IOException;
 // Tests for Javadoc tags.
-class InputMissingJavadocTypeTags1One // violation
+// violation below 'Missing a Javadoc comment.'
+class InputMissingJavadocTypeTags1One
 {
      /**
      * @exception WrongException exception w/o class info but matched by name
@@ -31,7 +33,7 @@ class InputMissingJavadocTypeTags1One // violation
     }
 
     /**
-         * Bug 841942, "ArrayIndexOutOfBounds in JavadocStyle".
+         * Bug 841942, "ArrayIndexOutOfBounds in Javadoc handling".
          * @param aParam there is no such param in the method.
          * The problem should be reported with correct line number.
          */
@@ -41,7 +43,8 @@ class InputMissingJavadocTypeTags1One // violation
         }
 }
 
-enum InputJavadocTypeTagsEnum // violation
+// violation below 'Missing a Javadoc comment.'
+enum InputJavadocTypeTagsEnum
 {
     CONSTANT_A,
 
@@ -66,7 +69,8 @@ enum InputJavadocTypeTagsEnum // violation
     }
 }
 
-@interface InputJavadocTypeTagsAnnotation // violation
+// violation below 'Missing a Javadoc comment.'
+@interface InputJavadocTypeTagsAnnotation
 {
     String someField();
     int A_CONSTANT = 0;

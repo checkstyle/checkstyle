@@ -39,16 +39,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </p>
  * <ul>
  * <li>There is one blank line between each of two paragraphs.</li>
- * <li>Each paragraph but the first has &lt;p&gt; immediately
+ * <li>Each paragraph but the first has {@literal <p>} immediately
  * before the first word, with no space after.</li>
  * <li>The outer most paragraph tags should not precede
  * <a href="https://www.w3schools.com/html/html_blocks.asp">HTML block-tag</a>.
  * Nested paragraph tags are allowed to do that. This check only supports following block-tags:
- * &lt;address&gt;,&lt;blockquote&gt;
- * ,&lt;div&gt;,&lt;dl&gt;
- * ,&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;,&lt;h6&gt;,&lt;hr&gt;
- * ,&lt;ol&gt;,&lt;p&gt;,&lt;pre&gt;
- * ,&lt;table&gt;,&lt;ul&gt;.
+ * {@literal <address>},{@literal <blockquote>}
+ * ,{@literal <div>},{@literal <dl>}
+ * ,{@literal <h1>},{@literal <h2>},{@literal <h3>},{@literal <h4>},{@literal <h5>},
+ * {@literal <h6>},{@literal <hr>}
+ * ,{@literal <ol>},{@literal <p>},{@literal <pre>}
+ * ,{@literal <table>},{@literal <ul>}.
  * </li>
  * </ul>
  *
@@ -109,12 +110,19 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                    "ol", PARAGRAPH_TAG, "pre", "table", "ul");
 
     /**
-     * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
+     * Control whether the {@literal <p>} tag should be placed immediately before the first word.
      */
     private boolean allowNewlineParagraph = true;
 
     /**
-     * Setter to control whether the &lt;p&gt; tag should be placed
+     * Creates a new {@code JavadocParagraphCheck} instance.
+     */
+    public JavadocParagraphCheck() {
+        // no code by default
+    }
+
+    /**
+     * Setter to control whether the {@literal <p>} tag should be placed
      * immediately before the first word.
      *
      * @param value value to set.
@@ -156,7 +164,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         final DetailNode nearestToken = getNearestNode(newline);
         if (nearestToken != null && nearestToken.getType() == JavadocCommentsTokenTypes.TEXT
                 && !CommonUtil.isBlank(nearestToken.getText())) {
-            log(newline.getLineNumber(), newline.getColumnNumber(), MSG_TAG_AFTER);
+            log(newline, MSG_TAG_AFTER);
         }
     }
 
@@ -169,23 +177,22 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         if (!isNestedParagraph(tag) && !isInsideBlockTag(tag)) {
             final DetailNode newLine = getNearestEmptyLine(tag);
             if (isFirstParagraph(tag)) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_REDUNDANT_PARAGRAPH);
+                log(tag, MSG_REDUNDANT_PARAGRAPH);
             }
             else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_LINE_BEFORE);
+                log(tag, MSG_LINE_BEFORE);
             }
 
             final String blockTagName = findFollowedBlockTagName(tag);
             if (blockTagName != null) {
-                log(tag.getLineNumber(), tag.getColumnNumber(),
-                        MSG_PRECEDED_BLOCK_TAG, blockTagName);
+                log(tag, MSG_PRECEDED_BLOCK_TAG, blockTagName);
             }
 
             if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
+                log(tag, MSG_MISPLACED_TAG);
             }
             if (isImmediatelyFollowedByText(tag)) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
+                log(tag, MSG_MISPLACED_TAG);
             }
         }
     }
@@ -453,4 +460,5 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         }
         return nextSibling;
     }
+
 }

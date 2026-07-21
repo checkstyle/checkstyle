@@ -129,4 +129,5 @@ public class InnerAssignmentCheckTest
                 getPath("InputInnerAssignmentSwitchAndSwitchExpression.java"),
                 expected);
     }
+
 }

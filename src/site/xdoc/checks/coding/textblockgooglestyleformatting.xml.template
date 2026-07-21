@@ -12,14 +12,14 @@
         <param name="modulePath"
             value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/TextBlockGoogleStyleFormattingCheck.java"/>
       </macro>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="TextBlockGoogleStyleFormatting_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/TextBlockGoogleStyleFormattingCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="TextBlockGoogleStyleFormatting_Examples">
         <p id="Example1-config">To configure the check:</p>
           <macro name="example">
             <param name="path"
@@ -51,10 +51,19 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-code">
+            Example: Each line of text in the text block must be indented at
+            least as much as the opening and closing quotes.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/textblockgooglestyleformatting/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="TextBlockGoogleStyleFormatting_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TextBlockGoogleStyleFormatting">
@@ -67,7 +76,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="TextBlockGoogleStyleFormatting_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="TextBlockGoogleStyleFormatting"/>
         </macro>
@@ -78,13 +87,16 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Fully Qualified Name"
+                   id="TextBlockGoogleStyleFormatting_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="TextBlockGoogleStyleFormatting_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="OverloadMethodsDeclarationOrder"/>
         </macro>

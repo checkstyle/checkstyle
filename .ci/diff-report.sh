@@ -31,6 +31,24 @@ validate_url () {
   fi
 }
 
+# Modifies the given config file to prevent parser failures
+setup_config_properties () {
+  CONFIG_FILE=$1
+
+  # Add config-level property (Checker)
+  CHECKER_MATCH='<module name="Checker">'
+  CHECKER_PROP='<property name="haltOnException" value="false"\/>'
+  sed -i "s/$CHECKER_MATCH/$CHECKER_MATCH\n  $CHECKER_PROP/g" \
+    "$CONFIG_FILE"
+
+  # Add TreeWalker-level properties
+  TW_MATCH='<module name="TreeWalker">'
+  TW_PROP1='<property name="skipFileOnJavaParseException" value="true"\/>'
+  TW_PROP2='<property name="javaParseExceptionSeverity" value="ignore"\/>'
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_PROP1\n    $TW_PROP2/g" \
+    "$CONFIG_FILE"
+}
+
 case $1 in
 
 # Downloads all files necessary to generate regression report to the parent directory.
@@ -129,6 +147,45 @@ parse-pr-description-text)
   ./.ci/append-to-github-output.sh "new_module_config_link" "$NEW_MODULE_CONFIG_LINK"
   ./.ci/append-to-github-output.sh "patch_config_link" "$PATCH_CONFIG_LINK"
   ./.ci/append-to-github-output.sh "report_label" "$REPORT_LABEL"
+  ;;
+
+process-local-repo-config-files)
+  # Some properties and modules are explicitly added in the config files to prevent parser failures
+  mkdir -p .ci-temp
+  # Extract master branch config for the base diff_config
+  git -C .ci-temp/checkstyle show upstream/master:"$CONFIG_LINK" > .ci-temp/diff_config.xml
+  # Use PR branch config for the patch_config
+  cp "$PATCH_CONFIG_LINK" .ci-temp/patch_config.xml
+
+  # This module is added to remove parse failure messages from the report
+  TW_MATCH='<module name="TreeWalker">'
+  TW_MODULE1='<module name="SuppressionXpathSingleFilter">\n'
+  TW_MODULE1+='      <property name="message" '
+  TW_MODULE1+='value="Javadoc comment at column \\d+ has parse error"\/>\n'
+  TW_MODULE1+='    <\/module>'
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_MODULE1/g" \
+    .ci-temp/diff_config.xml
+  sed -i "s/$TW_MATCH/$TW_MATCH\n    $TW_MODULE1/g" \
+    .ci-temp/patch_config.xml
+
+  setup_config_properties .ci-temp/diff_config.xml
+  setup_config_properties .ci-temp/patch_config.xml
+
+  yq ".projects = [.projects[] | select(.name == \"$PROJECT_NAME\")]" \
+    "$PROJECTS_LINK" > .ci-temp/projects.yml
+  ;;
+
+process-local-repo-config-files-for-baseline-report)
+  # Some properties and modules are explicitly added in the config files to prevent parser failures
+  mkdir -p .ci-temp
+
+  # Use PR branch config
+  cp "$CONFIG_LINK" .ci-temp/baseline_config.xml
+
+  setup_config_properties .ci-temp/baseline_config.xml
+
+  yq ".projects = [.projects[] | select(.name == \"$PROJECT_NAME\")]" \
+    "$PROJECTS_LINK" > .ci-temp/projects.yml
   ;;
 
 *)

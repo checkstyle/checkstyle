@@ -190,10 +190,10 @@ ok=OK
 </code></pre></div>
         <p id="Example3-code">Validation for Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-messages_home.properties   // violation,
-                          'Properties file 'messages_home_fr.properties' missing.'
-messages_home.translations // violation,
-                          'Properties file 'messages_home_fr.translations' missing.'
+messages_home.properties
+// violation above 'Properties file 'messages_home_fr.properties' missing.'
+messages_home.translations
+// violation above 'Properties file 'messages_home_fr.translations' missing.'
 </code></pre></div>
       </subsection>
 
@@ -230,9 +230,11 @@ messages_home.translations // violation,
         </p>
       </subsection>
 
-      <subsection name="Package" id="Translation_Package">
+      <subsection name="Fully Qualified Name" id="Translation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TranslationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

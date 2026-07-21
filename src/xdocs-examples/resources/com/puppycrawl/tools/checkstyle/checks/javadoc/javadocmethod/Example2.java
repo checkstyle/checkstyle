@@ -10,6 +10,8 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
+import java.io.IOException;
+
 // xdoc section -- start
 public class Example2 {
 
@@ -17,20 +19,30 @@ public class Example2 {
   Example2(int x) {}
 
   /** */
-  public int m1(int p1) { return p1; }
-  // 1 violations above:
-  //    '@return tag should be present'
-  // ok, No missing param tag violation
+  public int m1(int p1) throws IOException {
+    // violation above, '@return tag should be present and have description.'
+
+    // ok, allowMissingParamTags is true
+    throw new IOException();
+  }
 
   /**
    * @param p1 The first number
    */
   @Deprecated
-  private int m2(int p1) { return p1; }
-  // ok, only public methods are checked
+  private int m2(int p1) {
+    return p1;
+  }
 
   /** */
   void m3(int p1) {}
 
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+    // violation above, '@return tag should be present and have description.'
+    return 0;
+  }
 }
 // xdoc section -- end

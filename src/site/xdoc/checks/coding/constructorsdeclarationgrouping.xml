@@ -25,6 +25,27 @@
         </p>
       </subsection>
 
+      <subsection name="Properties" id="ConstructorsDeclarationGrouping_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="orderByIncreasingParameterCount"/><a href="#orderByIncreasingParameterCount">orderByIncreasingParameterCount</a></td>
+              <td>Control whether to enforce order by increasing parameter count (arity) or not.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.6.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="ConstructorsDeclarationGrouping_Examples">
         <p id="Example1-config">To configure the check:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -34,22 +55,22 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">Example of correct grouping of constructors:</p>
+        <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-
   int x;
-
   Example1() {}
 
-  Example1(String s) {}
+  Example1(String s, int x, int y) {}
 
   // comments between constructors are allowed.
   Example1(int x) {}
 
-  Example1(String s, int x) {}
+  int a = 0;
 
-  void foo() {}
+  // violation 2 lines below """Constructors should be grouped together.
+  // The last grouped constructor is declared at line '21'."""
+  Example1(String s, int x) {}
 
   private enum ExampleEnum {
 
@@ -57,48 +78,81 @@ public class Example1 {
 
     ExampleEnum() {}
 
-    ExampleEnum(int x) {}
-
-    ExampleEnum(String s) {}
-
-    int x = 10;
-
     void foo() {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '33'."""
+    ExampleEnum(int x, int y) {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '33'."""
+    ExampleEnum(String s, int x) {}
+
+  }
+
+  class InputWithOrderedCtors {
+    InputWithOrderedCtors() {}
+    InputWithOrderedCtors(String s) {}
+    InputWithOrderedCtors(int x) {}
+    InputWithOrderedCtors(String s, int x) {}
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-code">Example of incorrect grouping of constructors:</p>
+        <p id="Example2-config"> To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-structure">
+          OpenJDK guidelines</a>,
+          where constructors should be grouped together and ordered by increasing parameter count:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ConstructorsDeclarationGrouping"&gt;
+      &lt;property name="orderByIncreasingParameterCount" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-
   int x;
-
   Example2() {}
 
-  Example2(String s){}
+  Example2(String s, int x, int y) {}
 
-  void foo() {}
+  // comments between constructors are allowed.
+  Example2(int x) {}
+  // violation above 'Constructors should be ordered by increasing parameter count.'
+  int a = 0;
 
-  Example2(int x) {} // violation 'Constructors should be grouped together'
-
-  Example2(String s, int x) {} // violation 'Constructors should be grouped together'
-
+  // violation 2 lines below """Constructors should be grouped together.
+  // The last grouped constructor is declared at line '21'."""
+  Example2(String s, int x) {}
+  // violation above 'Constructors should be ordered by increasing parameter count.'
   private enum ExampleEnum {
 
     ONE, TWO, THREE;
 
     ExampleEnum() {}
 
-    ExampleEnum(int x) {}
-
-    final int x = 10;
-
-    ExampleEnum(String str) {} // violation 'Constructors should be grouped together'
-
     void foo() {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '33'."""
+    ExampleEnum(int x, int y) {}
+
+    // violation 2 lines below """Constructors should be grouped together.
+    // The last grouped constructor is declared at line '33'."""
+    ExampleEnum(String s, int x) {}
+
   }
 
-  Example2(float f) {} // violation 'Constructors should be grouped together'
+  class InputWithOrderedCtors {
+    InputWithOrderedCtors() {}
+    InputWithOrderedCtors(String s) {}
+    InputWithOrderedCtors(int x) {}
+    InputWithOrderedCtors(String s, int x) {}
+  }
 }
 </code></pre></div>
       </subsection>
@@ -113,6 +167,10 @@ public class Example2 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
 
@@ -123,6 +181,11 @@ public class Example2 {
               constructors.declaration.grouping
             </a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22constructors.declaration.order%22">
+              constructors.declaration.order
+            </a>
+          </li>
         </ul>
         <p>
           All messages can be customized if the default message doesn't suit you.
@@ -131,9 +194,12 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ConstructorsDeclarationGrouping_Package">
+      <subsection name="Fully Qualified Name"
+                   id="ConstructorsDeclarationGrouping_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+           Use this fully qualified class name in configuration when an exact class reference is
+           required.
         </p>
       </subsection>
 

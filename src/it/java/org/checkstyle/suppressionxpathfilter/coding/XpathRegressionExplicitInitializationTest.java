@@ -111,4 +111,5 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

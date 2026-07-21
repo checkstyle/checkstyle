@@ -9,6 +9,7 @@
         |com\.google\.checkstyle\.test|
         |com\.openjdk\.checkstyle\.test|
         |com\.sun\.checkstyle\.test|
+        |com\.doccomments\.checkstyle\.test|
         |org\.checkstyle.*)"
         regex="true">
 
@@ -67,6 +68,12 @@
       <allow class="org.junit.jupiter.api.BeforeAll" />
       <!-- Uses reflection to validate properties. -->
       <allow pkg="java.lang.reflect" />
+    </file>
+  </subpackage>
+
+  <subpackage name="site">
+    <file name="SearchIndexGeneratorTest">
+      <allow class="java.lang.reflect.Field" />
     </file>
   </subpackage>
 

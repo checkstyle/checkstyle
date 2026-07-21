@@ -14,6 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 
 public class InputRegexpSinglelineSemantic10 {
     public static void main(String[] args) {
-        System.out.println("str"); // violation ''
+        // violation below 'Line matches the illegal pattern 'SYSTEM\\.'
+        System.out.println("str");
     }
 }

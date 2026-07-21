@@ -1,4 +1,4 @@
-// java21
+
 package org.checkstyle.suppressionxpathfilter.naming.patternvariablename;
 
 public class InputXpathPatternVariableNameThree {

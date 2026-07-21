@@ -5,11 +5,12 @@ max = 0
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 public class InputNPathComplexityDefault3 {
-    @java.lang.SuppressWarnings({(false) ? "unchecked" : // violation
+    // violation below 'NPath Complexity is 64 (max allowed is 0).'
+    @java.lang.SuppressWarnings({(false) ? "unchecked" :
             ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
         (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
     public void seriously() {

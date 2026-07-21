@@ -6,7 +6,7 @@ requiredJavadocPhrase = (default).*
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public record InputDesignForExtensionRecords(String string) {

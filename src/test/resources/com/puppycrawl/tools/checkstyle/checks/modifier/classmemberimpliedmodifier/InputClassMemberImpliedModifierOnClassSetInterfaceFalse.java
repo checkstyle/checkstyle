@@ -49,7 +49,8 @@ public class InputClassMemberImpliedModifierOnClassSetInterfaceFalse {
             RED, GREEN, BLUE;
         }
 
-        enum SimpleInnerEnum {  // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        enum SimpleInnerEnum {
             RED, GREEN, BLUE;
         }
 
@@ -60,14 +61,16 @@ public class InputClassMemberImpliedModifierOnClassSetInterfaceFalse {
         }
     }
 
-    enum SimpleEnum {  // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    enum SimpleEnum {
         RED, GREEN, BLUE;
 
         static enum StaticInnerEnum {
             RED, GREEN, BLUE;
         }
 
-        enum SimpleInnerEnum {  // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        enum SimpleInnerEnum {
             RED, GREEN, BLUE;
         }
 

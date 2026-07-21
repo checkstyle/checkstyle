@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class CommentsIndentationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation";
@@ -52,49 +53,49 @@ public class CommentsIndentationCheckExamplesTest extends AbstractExamplesModule
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(
                     CommentsIndentationCheck.MSG_KEY_SINGLE, 20, 4, 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "21:2: " + getCheckMessage(
                     CommentsIndentationCheck.MSG_KEY_SINGLE, 22, 1, 2),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
-            "20:13: " + getCheckMessage(
-                    CommentsIndentationCheck.MSG_KEY_SINGLE, 21, 12, 8),
-            "26:6: " + getCheckMessage(
-                    CommentsIndentationCheck.MSG_KEY_SINGLE, "25, 27", 5, "6, 6"),
+            "22:13: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, 23, 12, 8),
+            "28:6: " + getCheckMessage(
+                    CommentsIndentationCheck.MSG_KEY_SINGLE, "27, 29", 5, "6, 6"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase4() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(
                     CommentsIndentationCheck.MSG_KEY_SINGLE, 16, 4, 8),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase4.java"), expected);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase5() throws Exception {
         final String[] expected = {
             "22:15: " + getCheckMessage(
                     CommentsIndentationCheck.MSG_KEY_SINGLE, 25, 14, 4),
@@ -104,17 +105,17 @@ public class CommentsIndentationCheckExamplesTest extends AbstractExamplesModule
                     CommentsIndentationCheck.MSG_KEY_SINGLE, 25, 7, 4),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase5.java"), expected);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase6() throws Exception {
         final String[] expected = {
             "24:6: " + getCheckMessage(
                     CommentsIndentationCheck.MSG_KEY_SINGLE, "23, 25", 5, "6, 4"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase6.java"), expected);
     }
 
 }

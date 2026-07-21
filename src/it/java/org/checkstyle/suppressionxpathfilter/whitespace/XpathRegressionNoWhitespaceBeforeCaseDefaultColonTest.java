@@ -143,4 +143,5 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

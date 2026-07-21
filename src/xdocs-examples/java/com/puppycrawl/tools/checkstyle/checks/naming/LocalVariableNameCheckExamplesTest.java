@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/localvariablename";
@@ -35,8 +36,12 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
     public void testExample1() throws Exception {
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
         final String[] expected = {
-            "15:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
-            "17:14: " + getCheckMessage(MSG_INVALID_PATTERN, "var_1", pattern),
+            "20:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
+            "23:14: " + getCheckMessage(MSG_INVALID_PATTERN, "var_1", pattern),
+            "28:14: " + getCheckMessage(MSG_INVALID_PATTERN, "V", pattern),
+            "30:11: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "36:17: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
+            "38:14: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -46,21 +51,25 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final String[] expected = {
-            "17:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
+            "22:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
+            "30:14: " + getCheckMessage(MSG_INVALID_PATTERN, "V", pattern),
+            "32:11: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "38:17: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
+            "40:14: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_INVALID_PATTERN, "K", pattern),
             "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -68,24 +77,25 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
         final String pattern = "^[a-z][_a-zA-Z0-9]+$";
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_INVALID_PATTERN, "g", pattern),
-            "23:11: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
-            "26:11: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
-            "30:14: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
-            "33:14: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
+            "23:14: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR", pattern),
+            "29:11: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
+            "33:11: " + getCheckMessage(MSG_INVALID_PATTERN, "I", pattern),
+            "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "a", pattern),
+            "41:14: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String pattern = "^[a-z][_a-zA-Z0-9]{2,}$";
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
             "19:11: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
-}
 
+}

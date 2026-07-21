@@ -20,7 +20,7 @@ class Example3 {
   int count = 0;
   int num = 12;
   String o = "O";
-  public boolean Example3() {
+  public boolean test() {
     if (obj.equals(num)) return true;
     // ok above, because single line IF statement is allowed in config.
     if (true) {

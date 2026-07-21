@@ -1,7 +1,8 @@
 /*
 RedundantModifier
 tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
-         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE, ANNOTATION_DEF, RECORD_DEF, \
+         PATTERN_VARIABLE_DEF, LITERAL_CATCH, LAMBDA
 jdkVersion = 11
 
 */
@@ -19,12 +20,12 @@ strictfp final class InputRedundantModifierItTwo {
 /** Holder for redundant modifiers of annotation fields/variables */
 @interface Annotation
 {
-    public String s1 = ""; // violation
-    final String s2 = ""; // violation
-    static String s3 = ""; // violation
+    public String s1 = ""; // violation 'Redundant 'public' modifier.'
+    final String s2 = ""; // violation 'Redundant 'final' modifier.'
+    static String s3 = ""; // violation 'Redundant 'static' modifier.'
     String s4 = "";
-    public String blah(); // violation
-    abstract String blah2(); // violation
+    public String blah(); // violation 'Redundant 'public' modifier.'
+    abstract String blah2(); // violation 'Redundant 'abstract' modifier.'
 }
 
 class SafeVarargsUsage {

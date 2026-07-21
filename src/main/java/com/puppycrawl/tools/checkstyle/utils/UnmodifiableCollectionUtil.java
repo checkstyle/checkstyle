@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -44,6 +43,9 @@ public final class UnmodifiableCollectionUtil {
 
     /**
      * Creates an unmodifiable list based on the provided collection.
+     * This does NOT handle null — if called with null it will throw NPE.
+     * This is intentional: see
+     * <a href="https://github.com/hcoles/pitest/issues/1462">pitest issue #1462</a>.
      *
      * @param collection the collection to create an unmodifiable list from
      * @param <T> the type of elements in the set
@@ -65,7 +67,7 @@ public final class UnmodifiableCollectionUtil {
     public static <T> List<T> unmodifiableList(Collection<? extends T> collection) {
         final List<T> result;
         if (collection == null) {
-            result = Collections.emptyList();
+            result = List.of();
         }
         else {
             result = List.copyOf(collection);
@@ -101,18 +103,6 @@ public final class UnmodifiableCollectionUtil {
     }
 
     /**
-     * Creates a copy of Map.
-     *
-     * @param map map to create a copy of
-     * @param <K> the type of keys in the map
-     * @param <V> the type of values in the map
-     * @return an immutable copy of the input map
-     */
-    public static <K, V> Map<K, V> copyOfMap(Map<? extends K, ? extends V> map) {
-        return Map.copyOf(map);
-    }
-
-    /**
      * Returns an immutable set containing only the specified object.
      *
      * @param obj the type of object in the set
@@ -120,6 +110,7 @@ public final class UnmodifiableCollectionUtil {
      * @return immutable set
      */
     public static <T> Set<T> singleton(T obj) {
-        return Collections.singleton(obj);
+        return Set.of(obj);
     }
+
 }

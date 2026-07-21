@@ -9,8 +9,9 @@ package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
 class InputUnusedImportsJavadocSetters {
 
+    // violation 2 lines below 'Unclosed HTML tag found: p'
     /**
-     * <p> // violation, 'Unclosed HTML tag found: p'
+     * <p>
      */
     public static final int CONST = 12;
 

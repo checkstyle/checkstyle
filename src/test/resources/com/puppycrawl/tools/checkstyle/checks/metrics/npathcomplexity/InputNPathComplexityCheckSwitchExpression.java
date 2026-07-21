@@ -5,11 +5,12 @@ max = 1
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 public class InputNPathComplexityCheckSwitchExpression {
-    void howMany1(Nums k) { // violation
+    // violation below 'NPath Complexity is 5 (max allowed is 1).'
+    void howMany1(Nums k) {
         switch (k) {
             case ONE: {
                 System.out.println("case two");
@@ -26,7 +27,8 @@ public class InputNPathComplexityCheckSwitchExpression {
         }
     }
 
-    void howMany2(Nums k) { // violation
+    // violation below 'NPath Complexity is 5 (max allowed is 1).'
+    void howMany2(Nums k) {
         switch (k) {
             case ONE -> {
                 System.out.println("case one");
@@ -41,7 +43,8 @@ public class InputNPathComplexityCheckSwitchExpression {
         }
     }
 
-    int howMany3(Nums k) { // violation
+    // violation below 'NPath Complexity is 6 (max allowed is 1).'
+    int howMany3(Nums k) {
         return switch (k) {
             case ONE:
                 yield 3;
@@ -57,7 +60,8 @@ public class InputNPathComplexityCheckSwitchExpression {
         };
     }
 
-    int howMany4(Nums k) { // violation
+    // violation below 'NPath Complexity is 6 (max allowed is 1).'
+    int howMany4(Nums k) {
         return switch (k) {
             case ONE -> {
                 yield 4;

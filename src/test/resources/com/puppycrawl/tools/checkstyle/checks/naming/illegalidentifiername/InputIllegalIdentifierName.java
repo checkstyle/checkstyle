@@ -54,9 +54,11 @@ public class InputIllegalIdentifierName {
     }
 
     public static void main(String... args) {
-        var var = 4; // violation, 'Name 'var' must match pattern'
+        // violation below 'Name 'var' must match pattern'
+        var var = 4;
 
-        int $amt = 15; // violation, 'must match pattern'
+        // violation below 'Name '\$amt' must match pattern'
+        int $amt = 15;
 
         String yield = "yield";
 
@@ -73,8 +75,8 @@ public class InputIllegalIdentifierName {
 
         record MyOtherRecord(String record, String yield$text, String... var) {
         // 2 violations above:
-        //            'must match pattern'
-        //            'Name 'var' must match pattern'
+        //    'Name 'yield\$text' must match pattern'
+        //    'Name 'var' must match pattern'
         }
     }
 }

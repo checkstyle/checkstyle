@@ -41,6 +41,13 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
      */
     public static final String MSG_SEMI = "unnecessary.semicolon";
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonInEnumerationCheck} instance.
+     */
+    public UnnecessarySemicolonInEnumerationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -61,19 +68,52 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST enumBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
-        final DetailAST semicolon = enumBlock.findFirstToken(TokenTypes.SEMI);
-        if (semicolon != null && isEndOfEnumerationAfter(semicolon)) {
-            log(semicolon, MSG_SEMI);
+        final boolean hasMembers = hasMembersAfterConstants(enumBlock);
+        DetailAST sibling = enumBlock.getFirstChild();
+        while (sibling != null) {
+            if (sibling.getType() == TokenTypes.SEMI
+                    && (!hasMembers || isPrecededBySemi(sibling))) {
+                log(sibling, MSG_SEMI);
+            }
+            sibling = sibling.getNextSibling();
         }
     }
 
     /**
-     * Checks if enum body has no code elements after enum constants semicolon.
+     * Checks if enum body contains any member (method, constructor, field, etc.)
+     * in addition to enum constants and semicolons.
      *
-     * @param ast semicolon in enum constants definition end
-     * @return true if there is no code elements, false otherwise.
+     * @param enumBlock the enum body to check
+     * @return true if enum body has members, false if it only has constants and semicolons.
      */
-    private static boolean isEndOfEnumerationAfter(DetailAST ast) {
-        return ast.getNextSibling().getType() == TokenTypes.RCURLY;
+    private static boolean hasMembersAfterConstants(DetailAST enumBlock) {
+        boolean result = false;
+        DetailAST sibling = enumBlock.getFirstChild();
+        while (sibling != null) {
+            final int type = sibling.getType();
+            if (type != TokenTypes.LCURLY
+                    && type != TokenTypes.RCURLY
+                    && type != TokenTypes.ENUM_CONSTANT_DEF
+                    && type != TokenTypes.SEMI
+                    && type != TokenTypes.COMMA) {
+                result = true;
+                break;
+            }
+            sibling = sibling.getNextSibling();
+        }
+        return result;
     }
+
+    /**
+     * Checks if semicolon is immediately preceded by another semicolon,
+     * making it a redundant duplicate.
+     *
+     * @param ast semicolon to check
+     * @return true if previous sibling is also a semicolon, false otherwise.
+     */
+    private static boolean isPrecededBySemi(DetailAST ast) {
+        final DetailAST prev = ast.getPreviousSibling();
+        return prev.getType() == TokenTypes.SEMI;
+    }
+
 }

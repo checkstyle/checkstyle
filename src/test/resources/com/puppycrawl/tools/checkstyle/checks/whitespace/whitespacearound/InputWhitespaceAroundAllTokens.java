@@ -6,6 +6,7 @@ allowEmptyTypes = true
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = true
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = ASSIGN, ARRAY_INIT, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
          BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, LCURLY, \
@@ -24,5 +25,15 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 import java.util.Set;
 
 public class InputWhitespaceAroundAllTokens {
-    private static final Set<Class<?>> FIELD = null; // 9 violations
+    private static final Set<Class<?>> FIELD = null;
+    // 9 violations above:
+    // ''<' is not followed by whitespace.'
+    // ''<' is not preceded with whitespace.'
+    // ''<' is not followed by whitespace.'
+    // ''<' is not preceded with whitespace.'
+    // ''\?' is not followed by whitespace.'
+    // ''\?' is not preceded with whitespace.'
+    // ''>' is not followed by whitespace.'
+    // ''>' is not preceded with whitespace.'
+    // ''>' is not preceded with whitespace.'
 }

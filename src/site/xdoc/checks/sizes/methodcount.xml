@@ -114,6 +114,8 @@ public class ExampleClass {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_COMPILATION_UNIT">
+                    COMPACT_COMPILATION_UNIT</a>
                   .
               </td>
               <td>
@@ -129,6 +131,8 @@ public class ExampleClass {
                     ANNOTATION_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
                     RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_COMPILATION_UNIT">
+                    COMPACT_COMPILATION_UNIT</a>
                   .
               </td>
               <td>5.3</td>
@@ -158,7 +162,7 @@ class Example1 {
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example1
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -166,8 +170,8 @@ class Example1 {
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example1
-    public void innerMethod2() {} // NOT counted towards Example1
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -193,7 +197,7 @@ class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example2
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -201,8 +205,8 @@ class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example2
-    public void innerMethod2() {} // NOT counted towards Example2
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -230,7 +234,7 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example3
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -238,8 +242,8 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example3
-    public void innerMethod2() {} // NOT counted towards Example3
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -265,7 +269,7 @@ class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example1
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -273,8 +277,8 @@ class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example1
-    public void innerMethod2() {} // NOT counted towards Example1
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -300,7 +304,7 @@ class Example5 { // violation, 'Number of package methods is 1 (max allowed is 0
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example1
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -308,8 +312,8 @@ class Example5 { // violation, 'Number of package methods is 1 (max allowed is 0
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example1
-    public void innerMethod2() {} // NOT counted towards Example1
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -327,7 +331,7 @@ class Example5 { // violation, 'Number of package methods is 1 (max allowed is 0
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 { // no violations: there are no protected methods in this class
+class Example6 { // ok, there are no protected methods in this class
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}
@@ -335,7 +339,7 @@ class Example6 { // no violations: there are no protected methods in this class
 
   private void outerMethod4() {
     Runnable r = (new Runnable() {
-      public void run() {} // NOT counted towards Example1
+      public void run() {} // NOT counted towards Example
     });
   }
 
@@ -343,11 +347,47 @@ class Example6 { // no violations: there are no protected methods in this class
   void outerMethod6(int i, int j) {}
 
   public static class InnerExample{
-    public void innerMethod1() {} // NOT counted towards Example1
-    public void innerMethod2() {} // NOT counted towards Example1
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to use tokens:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxTotal" value="2"/&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 { // violation, 'Total number of methods is 6 (max allowed is 2)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example
+    public void innerMethod2() {} // NOT counted towards Example
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
@@ -394,9 +434,11 @@ class Example6 { // no violations: there are no protected methods in this class
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodCount_Package">
+      <subsection name="Fully Qualified Name" id="MethodCount_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

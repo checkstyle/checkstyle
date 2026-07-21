@@ -23,6 +23,26 @@ function list_tasks() {
   cat "${0}" | sed -E -n 's/^([a-zA-Z0-9\-]*)\)$/\1/p' | sort
 }
 
+function get_outdated_dependencies() {
+  local report_xml=$1
+  xmlstarlet sel \
+    -N d="https://www.mojohaus.org/VERSIONS/DEPENDENCY-UPDATES-REPORT/2.0.0" \
+    -t -m "//d:dependency[d:status!='no new available']" \
+    -v "d:groupId" -o ":" -v "d:artifactId" -o " " \
+    -v "d:currentVersion" -o " -> " -v "d:lastVersion" -n \
+    "$report_xml" | sort
+}
+
+function get_outdated_plugins() {
+  local report_xml=$1
+  xmlstarlet sel \
+    -N p="https://www.mojohaus.org/VERSIONS/PLUGIN-UPDATES-REPORT/2.0.0" \
+    -t -m "//p:plugin[p:status!='no new available']" \
+    -v "p:groupId" -o ":" -v "p:artifactId" -o " " \
+    -v "p:currentVersion" -o " -> " -v "p:lastVersion" -n \
+    "$report_xml" | sort
+}
+
 case $1 in
 
 all-sevntu-checks)
@@ -33,7 +53,7 @@ all-sevntu-checks)
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
     | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
 
-  wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
+  curl --fail-with-body -s http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html \
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
     | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
@@ -196,19 +216,78 @@ test-al)
 versions)
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
-  if [ "$(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l)" -gt 0 ]; then
-    echo "Version reports (dependency-updates-report.xml):"
-    cat target/dependency-updates-report.xml
-    echo "Version reports (plugin-updates-report.xml):"
-    cat target/plugin-updates-report.xml
+  DEP_UPDATES=$(get_outdated_dependencies "target/dependency-updates-report.xml")
+  PLUGIN_UPDATES=$(get_outdated_plugins "target/plugin-updates-report.xml")
+  if [ -n "${DEP_UPDATES}" ] || [ -n "${PLUGIN_UPDATES}" ]; then
     echo "New dependency versions:"
-    grep -B 7 -A 7 "<nextVersion>" target/dependency-updates-report.xml | cat
+    echo "${DEP_UPDATES}"
     echo "New plugin versions:"
-    grep -B 4 -A 7 "<nextVersion>" target/plugin-updates-report.xml | cat
+    echo "${PLUGIN_UPDATES}"
     echo "Verification is failed."
     false
   else
     echo "No new versions found"
+  fi
+  ;;
+
+versions-on-pr)
+  MASTER_WORKTREE=".ci-temp/versions-on-pr-master"
+  mkdir -p .ci-temp
+
+  echo "=== Running versions report on origin/master ==="
+  git worktree add "$MASTER_WORKTREE" origin/master
+
+  (
+    cd "$MASTER_WORKTREE"
+    ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
+      versions:plugin-updates-report
+  )
+
+  MASTER_DEPS=$(get_outdated_dependencies "$MASTER_WORKTREE/target/dependency-updates-report.xml")
+  MASTER_PLUGINS=$(get_outdated_plugins "$MASTER_WORKTREE/target/plugin-updates-report.xml")
+
+  git worktree remove --force "$MASTER_WORKTREE"
+
+  echo "Master - outdated dependencies:"
+  echo "${MASTER_DEPS:-(none)}"
+  echo "Master - outdated plugins:"
+  echo "${MASTER_PLUGINS:-(none)}"
+
+  echo "=== Running versions report on PR branch ==="
+  ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
+    versions:plugin-updates-report
+
+  PR_DEPS=$(get_outdated_dependencies "target/dependency-updates-report.xml")
+  PR_PLUGINS=$(get_outdated_plugins "target/plugin-updates-report.xml")
+
+  echo "PR - outdated dependencies:"
+  echo "${PR_DEPS:-(none)}"
+  echo "PR - outdated plugins:"
+  echo "${PR_PLUGINS:-(none)}"
+
+  echo "=== Checking for NEW outdated dependencies introduced by PR ==="
+  # comm -13: suppress lines only-in-master and common lines; keep only PR-only lines
+  # i.e. deps that are outdated in PR but were NOT already outdated in master
+  NEW_OUTDATED_DEPS=$(comm -13 \
+    <(echo "${MASTER_DEPS}") \
+    <(echo "${PR_DEPS}"))
+  NEW_OUTDATED_PLUGINS=$(comm -13 \
+    <(echo "${MASTER_PLUGINS}") \
+    <(echo "${PR_PLUGINS}"))
+
+  if [ -n "${NEW_OUTDATED_DEPS}" ] || [ -n "${NEW_OUTDATED_PLUGINS}" ]; then
+    echo "FAILURE: PR introduces outdated dependencies not already present in master."
+    if [ -n "${NEW_OUTDATED_DEPS}" ]; then
+      echo "New outdated dependencies (please update to latest):"
+      echo "${NEW_OUTDATED_DEPS}"
+    fi
+    if [ -n "${NEW_OUTDATED_PLUGINS}" ]; then
+      echo "New outdated plugins (please update to latest):"
+      echo "${NEW_OUTDATED_PLUGINS}"
+    fi
+    false
+  else
+    echo "SUCCESS: PR does not introduce any new outdated dependencies."
   fi
   ;;
 
@@ -238,13 +317,15 @@ EOF
   ;;
 
 no-error-pmd)
-  export MAVEN_OPTS="-XX:MaxRAMPercentage=75"
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from "https://github.com/pmd/build-tools.git"
   cd .ci-temp/build-tools/
+  PMD_BUILD_TOOLS_VERSION="$(mvn -e --no-transfer-progress -q help:evaluate \
+    -Dexpression=project.version -DforceStdout)"
   mvn -e --no-transfer-progress install
   cd ..
   git clone https://github.com/pmd/pmd.git
@@ -254,7 +335,12 @@ no-error-pmd)
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
                 -Dpmd.skip=true \
+                -Dcpd.skip=true \
+                -Djapicmp.skip=true \
+                -Dcyclonedx.skip=true \
+                -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
+                -Dpmd.build-tools.version="${PMD_BUILD_TOOLS_VERSION}" \
                 -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles build-tools
@@ -317,20 +403,6 @@ EOF
 
   cd ..
   removeFolderWithProtectedFiles hazelcast
-  ;;
-
-no-error-configurate)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from "https://github.com/SpongePowered/Configurate.git"
-  cd .ci-temp/Configurate
-  git fetch --depth 1 origin major-checkstyle-12:major-checkstyle-12
-  git checkout major-checkstyle-12
-  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
-  cd ..
-  removeFolderWithProtectedFiles Configurate
   ;;
 
 no-error-xwiki)
@@ -403,13 +475,11 @@ verify-no-exception-configs)
 
   mkdir -p .ci-temp/verify-no-exception-configs
   working_dir=.ci-temp/verify-no-exception-configs
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-nonjavadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
-  wget -q \
-    --directory-prefix $working_dir \
-    --no-clobber \
+  curl -s --fail-with-body -o "$working_dir/checks-only-javadoc-error.xml" \
+    -H "Authorization: token $GITHUB_TOKEN" \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
@@ -650,107 +720,43 @@ compile-test-resources)
   # this task is useful during migration to new JDK to let compile resources on new jdk only
   ./mvnw -e --no-transfer-progress clean test-compile \
   -Dcheckstyle.skipCompileInputResources=false \
-  -Dmaven.compiler.release=21 \
-  -Dmaven.compiler.enablePreview=true
+  -Dmaven.compiler.release=21
   ;;
 
-javac17_standard)
-  # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
-  # InputIllegalTypePackageClassName - bad import for testing
-  # InputVisibilityModifierPackageClassName - bad import for testing
+javac21-exceptional)
+  # InputPackageDeclarationEmptyFile - empty file, no ability to put explanation comment
+  # beforeexecutionexclusionfilefilter - exceptional hack for examples
   files=($(grep -RELi --include='*.java' \
-        --exclude='InputCustomImportOrderNoPackage2.java' \
-        --exclude='InputIllegalTypePackageClassName.java' \
-        --exclude='InputVisibilityModifierPackageClassName.java' \
-        '// non-compiled (syntax|with javac|with eclipse)?\:' \
+        --exclude='module-info.java' \
+        --exclude='InputPackageDeclarationEmptyFile.java' \
+        --exclude-dir="beforeexecutionexclusionfilefilter" \
+        '// non-compiled (syntax|with javac)?\:' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"
   do
-    echo "Compiling ${file} with standard JDK17"
+    echo ""
+    echo "Compiling ${file} with standard JDK21"
+    echo "Reason: " "$(grep "non-compiled" "${file}")"
     javac -d target "${file}"
   done
-  ;;
 
-javac17)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java17' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable \
-        | grep -v 'importorder/' || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java17 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 17 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac19)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java19' \
+  files=($(grep -Rli --include='*.java' ': No package statement for testing purposes.' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java19 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 19 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac20)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java20' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java20 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 20 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac21)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java21 files to process"
+    echo "No Java files to process"
   else
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 21 --enable-preview -d target "${file}"
-    done
-  fi
-  ;;
-
-javac22)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java22' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java22 files to process"
-  else
-    mkdir -p target
-    for file in "${files[@]}"
-    do
-      javac --release 22 --enable-preview -d target "${file}"
+      echo ""
+      echo "Compiling ${file} with standard JDK21"
+      echo "Reason: " "$(grep "non-compiled" "${file}")"
+      javac -d target "${file}"
     done
   fi
   ;;
@@ -766,9 +772,157 @@ javac25)
     mkdir -p target
     for file in "${files[@]}"
     do
-      javac --release 25 --enable-preview -d target "${file}"
+      javac --release 25 -d target "${file}"
     done
   fi
+  ;;
+
+javadoc-tool-validate)
+  output_dir=.ci-temp/javadoc
+  classpath_file=.ci-temp/javadoc-test-classpath.txt
+  # until https://github.com/checkstyle/checkstyle/issues/20675
+  source ./.ci/javadoc-tool-excluded-packages.sh
+  mkdir -p "$output_dir"
+
+  ./mvnw -e --no-transfer-progress -q -Djacoco.skip=true -DskipTests clean test-compile
+  ./mvnw -e --no-transfer-progress -q dependency:build-classpath \
+    -Dmdep.outputFile="$classpath_file"
+  dependency_classpath=$(<"$classpath_file")
+  project_classpath="${dependency_classpath}:target/classes::target/test-classes"
+  project_classpath="${project_classpath}:target/generated-classes"
+
+  javadoc_source_version=$(java -version 2>&1 \
+    | sed -n 's/.* version "\([0-9][0-9]*\).*/\1/p' \
+    | head -n 1)
+  javadoc_preview_args=(--source "$javadoc_source_version")
+
+  custom_tags=(
+    -tag 'apiNote:a:API Note:'
+    -tag 'customTag:a:Custom tag:'
+    -tag 'doubletag:a:Double tag:'
+    -tag 'emptytag:a:Empty tag:'
+    -tag 'implNote:a:Implementation Note:'
+    -tag 'incomplete:a:Incomplete:'
+    -tag 'mytag:a:Custom tag:'
+    -tag 'todo:a:Todo:'
+    -tag 'unknownTag:a:Unknown tag:'
+  )
+
+  validate_javadoc_packages() {
+    local description=$1
+    local source_root=$2
+    local subpackages=$3
+    local output_name=$4
+    local log_file="$output_dir/$output_name.log"
+    local root
+    local package_name
+    local excluded_packages=()
+
+    for excluded_package in "${JAVADOC_TOOL_EXCLUDED_PACKAGES[@]}"
+    do
+      read -r root package_name _ <<< "$excluded_package"
+      if [[ -n $root && $root != \#* && $root == "$source_root" ]]; then
+        excluded_packages+=(-exclude "$package_name")
+      fi
+    done
+
+    echo "Validating Javadoc syntax in $description"
+    if ! javadoc -quiet \
+      "${javadoc_preview_args[@]}" \
+      -sourcepath "$source_root" \
+      -classpath "$project_classpath" \
+      -Xdoclint:syntax \
+      "${custom_tags[@]}" \
+      "${excluded_packages[@]}" \
+      -subpackages "$subpackages" \
+      -d "$output_dir/$output_name" 2> "$log_file"
+    then
+      cat "$log_file"
+      exit 1
+    fi
+  }
+
+  validate_javadoc_java25_noncompilable_files() {
+    local description=$1
+    local source_root=$2
+    local output_name=$3
+    local log_file="$output_dir/$output_name.log"
+    local files=()
+    local file
+
+    while IFS= read -r file
+    do
+      files+=("$file")
+    done < <(grep -Rli --include='*.java' ': Compilable with Java25' "$source_root" \
+      | sort || true)
+
+    if [[ ${#files[@]} -eq 0 ]]; then
+      echo "No Java25 noncompilable files to validate in $description"
+      return
+    fi
+
+    echo "Validating Javadoc syntax in $description"
+    if ! javadoc -quiet \
+      "${javadoc_preview_args[@]}" \
+      -classpath "$dependency_classpath" \
+      -Xdoclint:syntax \
+      "${custom_tags[@]}" \
+      -d "$output_dir/$output_name" \
+      "${files[@]}" 2> "$log_file"
+    then
+      cat "$log_file"
+      exit 1
+    fi
+  }
+
+  validate_javadoc_packages \
+    "test resources" \
+    src/test/resources \
+    com \
+    test-resources
+  validate_javadoc_packages \
+    "IT resources" \
+    src/it/resources \
+    com \
+    it-resources
+  validate_javadoc_packages \
+    "Xdoc Javadoc examples" \
+    src/xdocs-examples/resources \
+    com.puppycrawl.tools.checkstyle.checks.javadoc \
+    xdocs-examples
+
+  if [[ $javadoc_source_version -ge 25 ]]; then
+    validate_javadoc_java25_noncompilable_files \
+      "Java25 test noncompilable resources" \
+      src/test/resources-noncompilable \
+      test-resources-noncompilable-java25
+    validate_javadoc_java25_noncompilable_files \
+      "Java25 IT noncompilable resources" \
+      src/it/resources-noncompilable \
+      it-resources-noncompilable-java25
+    validate_javadoc_java25_noncompilable_files \
+      "Java25 Xdoc noncompilable examples" \
+      src/xdocs-examples/resources-noncompilable \
+      xdocs-examples-noncompilable-java25
+  else
+    echo "Skipping Java25 noncompilable resources on JDK $javadoc_source_version"
+  fi
+
+  rm "$classpath_file"
+  ;;
+
+jdeprscan)
+  ./mvnw -e --no-transfer-progress clean compile test-compile \
+    dependency:build-classpath -Dmdep.outputFile=target/classpath.txt -Pno-validations
+  mkdir -p .ci-temp
+  jdeprscan --class-path "$(cat target/classpath.txt)" --release 25 \
+        target/classes target/test-classes > .ci-temp/jdeprscan.log 2>&1 || true
+  if grep -qvE '(^Directory)|(^$)' .ci-temp/jdeprscan.log ; then
+    cat .ci-temp/jdeprscan.log
+    echo "jdeprscan reported deprecated API usage or errors."
+    exit 1
+  fi
+  rm .ci-temp/jdeprscan.log
   ;;
 
 package-site)
@@ -836,14 +990,9 @@ no-error-orekit)
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
   cd -
-  checkout_from https://github.com/CS-SI/Orekit.git
+  checkout_from https://github.com/CS-SI/Orekit.git \
+    "c25721337d7ea92f76fc5883d84e5745a""af2786f"
   cd .ci-temp/Orekit
-  # no CI is enforced in project, so to make our build stable we should
-  # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
-  # git checkout $(git describe --abbrev=0 --tags)
-  SHA_OREKIT="fd""d9ce1bc4fa0d2765""f4""5d33db""f32253d1abb85f"
-  git fetch --depth 1 origin "$SHA_OREKIT"
-  git checkout "$SHA_OREKIT"
   echo "checkstyle.header.file=license-header.txt" > checkstyle.properties
   readarray -t files < <(find src/main/java -name "*.java")
   java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
@@ -862,11 +1011,14 @@ no-error-hibernate-search)
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -pl build/config -am \
+  ./mvnw --version
+  java -version
+  ./mvnw -e --no-transfer-progress clean install -pl build/config -am \
      -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
+     -Denforcer.skip=true \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress -f build/config/pom.xml checkstyle:check \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles hibernate-search
@@ -989,14 +1141,18 @@ no-error-htmlunit)
   echo CS_version: "${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
-  checkout_from https://github.com/HtmlUnit/htmlunit
+  checkout_from https://github.com/HtmlUnit/htmlunit.git
   cd .ci-temp/htmlunit
+  # HtmlUnit is incrementally resolving violations from its new SummaryJavadoc check.
+  sed -i'' '/<module name="SummaryJavadoc">/,/<\/module>/ {
+    s|<module name="SummaryJavadoc">|<!-- <module name="SummaryJavadoc">|
+    s|</module>|</module> -->|
+  }' checkstyle.xml
   echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
-  readarray -t files < <(find src/main/java src/test/java -name "*.java")
-  java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
+  find src/main/java src/test/java -name "*.java" -print0 | \
+    xargs -0 -n 200 java -jar "../../target/checkstyle-${CS_POM_VERSION}-all.jar" \
     -c checkstyle.xml \
-    -p checkstyle.properties \
-    "${files[@]}"
+    -p checkstyle.properties
   cd ../
   removeFolderWithProtectedFiles htmlunit
   ;;
@@ -1032,6 +1188,7 @@ no-error-trino)
   ;;
 
 no-exception-struts)
+  export MAVEN_OPTS="-XX:MaxRAMPercentage=90"
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1046,7 +1203,6 @@ no-exception-struts)
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
-
 
 no-exception-checkstyle-sevntu)
   export MAVEN_OPTS="-Xmx4g"
@@ -1068,6 +1224,7 @@ no-exception-checkstyle-sevntu)
   ;;
 
 no-exception-checkstyle-sevntu-javadoc)
+  export MAVEN_OPTS="-Xmx4g"
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -1443,7 +1600,7 @@ run-test)
   ;;
 
 sevntu)
-  ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
+  ./mvnw -e --no-transfer-progress compile antrun:run@ant-phase-verify-sevntu -Psevntu
   ;;
 
 spotless)
@@ -1455,7 +1612,7 @@ openrewrite-checkstyle-auto-fix)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1474,7 +1631,7 @@ openrewrite-checkstyle-auto-fix)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-refaster-rules-1)
@@ -1482,7 +1639,7 @@ openrewrite-refaster-rules-1)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1497,7 +1654,7 @@ openrewrite-refaster-rules-1)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-refaster-rules-2)
@@ -1505,7 +1662,7 @@ openrewrite-refaster-rules-2)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1520,7 +1677,7 @@ openrewrite-refaster-rules-2)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 openrewrite-static-analysis)
@@ -1528,7 +1685,7 @@ openrewrite-static-analysis)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
+  mkdir -p .ci-temp && cd .ci-temp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   ./mvnw -e --no-transfer-progress clean install -DskipTests
@@ -1543,7 +1700,7 @@ openrewrite-static-analysis)
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
+  rm -rf .ci-temp/checkstyle-openrewrite-recipes
   ;;
 
 *)

@@ -61,4 +61,5 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
             .that(check.getRequiredTokens())
             .isNotNull();
     }
+
 }

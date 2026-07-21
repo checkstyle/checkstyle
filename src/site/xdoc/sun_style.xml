@@ -87,7 +87,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc.html#a18407">
-                    <strong>1 - Introduction</strong>
+                    <strong>1 Introduction</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -138,7 +138,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc1.html#a16732">
-                    <strong>2 - File Names</strong>
+                    <strong>2 File Names</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -189,7 +189,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a3043">
-                    <strong>3 - File Organization</strong>
+                    <strong>3 File Organization</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -267,17 +267,15 @@
                   <a href="checks/coding/declarationorder.html#DeclarationOrder">
                     DeclarationOrder
                   </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
+                    config
+                  </a>)
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DeclarationOrder">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter3fileorganization/rule313classdeclarations/DeclarationOrderTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter3fileorganization/rule313classdeclarations">
+                    samples
                   </a>
                 </td>
-                <td/>
               </tr>
               <tr>
                 <td>
@@ -290,7 +288,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc3.html#a262">
-                    <strong>4 - Indentation</strong>
+                    <strong>4 Indentation</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -341,7 +339,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc4.html#a385">
-                    <strong>5 - Comments</strong>
+                    <strong>5 Comments</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -453,14 +451,13 @@
                   <a href="checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
                     InvalidJavadocPosition
                   </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
+                    config
+                  </a>)
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter5comments/rule52documentationcomments/InvalidJavadocPositionTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter5comments/rule52documentationcomments">
+                    samples
                   </a>
                 </td>
               </tr>
@@ -475,7 +472,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2991">
-                    <strong>6 - Declarations</strong>
+                    <strong>6 Declarations</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -502,14 +499,13 @@
                   <a href="checks/coding/multiplevariabledeclarations.html#MultipleVariableDeclarations">
                     MultipleVariableDeclarations
                   </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
+                    config
+                  </a>)
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultipleVariableDeclarations">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter6declarations/rule61numberperline/MultipleVariableDeclarationsTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter6declarations/rule61numberperline">
+                    samples
                   </a>
                 </td>
               </tr>
@@ -575,7 +571,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc6.html#a430">
-                    <strong>7 - Statements</strong>
+                    <strong>7 Statements</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -602,17 +598,15 @@
                   <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
                     OneStatementPerLine
                   </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+                    config
+                  </a>)
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter7statements/rule71simplestatements/OneStatementPerLineTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter7statements/rule71simplestatements">
+                    samples
                   </a>
                 </td>
-                <td/>
               </tr>
               <tr>
                 <td>
@@ -737,17 +731,15 @@
                   <a href="checks/coding/fallthrough.html#FallThrough">
                     FallThrough
                   </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+                    config
+                  </a>)
                 </td>
                 <td>
-                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
-                    config
-                  </a>
-                  <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter7statements/rule78switchstatements/FallThroughTest.java">
-                    test
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter7statements/rule78switchstatements">
+                    samples
                   </a>
                 </td>
-                <td/>
               </tr>
               <tr>
                 <td>
@@ -777,7 +769,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc7.html#a475">
-                    <strong>8 - White Space</strong>
+                    <strong>8 White Space</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -828,7 +820,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc8.html#a367">
-                    <strong>9 - Naming Conventions</strong>
+                    <strong>9 Naming Conventions</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -845,7 +837,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc9.html#a529">
-                    <strong>10 - Programming Practices</strong>
+                    <strong>10 Programming Practices</strong>
                   </a>
                 </td>
                 <td>???</td>
@@ -1015,7 +1007,7 @@
                 </td>
                 <td>
                   <a href="styleguides/sun-code-conventions-19990420/CodeConventions.doc10.html#a186">
-                    <strong>11 - Code Examples</strong>
+                    <strong>11 Code Examples</strong>
                   </a>
                 </td>
                 <td>???</td>

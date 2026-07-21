@@ -135,4 +135,5 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

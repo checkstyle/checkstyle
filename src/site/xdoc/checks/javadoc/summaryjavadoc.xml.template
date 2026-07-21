@@ -81,6 +81,14 @@
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
+            Documentation Comments Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
             Checkstyle Style</a>
           </li>
@@ -98,9 +106,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="SummaryJavadoc_Package">
+      <subsection name="Fully Qualified Name" id="SummaryJavadoc_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

@@ -39,12 +39,12 @@ public final class ScopeUtil {
      * Returns the {@code Scope} explicitly specified by the modifier set.
      * Returns {@code null} if there are no modifiers.
      *
-     * @param aMods root node of a modifier set
+     * @param mods root node of a modifier set
      * @return a {@code Scope} value or {@code null}
      */
-    public static Optional<Scope> getDeclaredScopeFromMods(DetailAST aMods) {
+    public static Optional<Scope> getDeclaredScopeFromMods(DetailAST mods) {
         Optional<Scope> result = Optional.empty();
-        for (DetailAST token = aMods.getFirstChild(); token != null;
+        for (DetailAST token = mods.getFirstChild(); token != null;
              token = token.getNextSibling()) {
             result = switch (token.getType()) {
                 case TokenTypes.LITERAL_PUBLIC -> Optional.of(Scope.PUBLIC);
@@ -72,13 +72,13 @@ public final class ScopeUtil {
      * Returns the {@code Scope} specified by the modifier set. If no modifiers are present,
      * the default scope is used.
      *
-     * @param aMods root node of a modifier set
+     * @param mods root node of a modifier set
      * @return a {@code Scope} value
      * @see #getDefaultScope(DetailAST)
      */
-    public static Scope getScopeFromMods(DetailAST aMods) {
-        return getDeclaredScopeFromMods(aMods)
-                .orElseGet(() -> getDefaultScope(aMods));
+    public static Scope getScopeFromMods(DetailAST mods) {
+        return getDeclaredScopeFromMods(mods)
+                .orElseGet(() -> getDefaultScope(mods));
     }
 
     /**
@@ -125,9 +125,10 @@ public final class ScopeUtil {
      */
     public static Optional<Scope> getSurroundingScope(DetailAST node) {
         Optional<Scope> returnValue = Optional.empty();
+        DetailAST child = null;
         for (DetailAST token = node;
              token != null;
-             token = token.getParent()) {
+             child = token, token = token.getParent()) {
             final int type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
                 final Scope tokenScope = getScope(token);
@@ -139,6 +140,12 @@ public final class ScopeUtil {
                 returnValue = Optional.of(Scope.ANONINNER);
                 // because Scope.ANONINNER is not in any other Scope
                 break;
+            }
+            else if (type == TokenTypes.COMPACT_COMPILATION_UNIT
+                        && !TokenUtil.isOfType(child, TokenTypes.IMPORT,
+                                TokenTypes.STATIC_IMPORT, TokenTypes.MODULE_IMPORT)
+                        && (returnValue.isEmpty() || returnValue.get().isIn(Scope.PACKAGE))) {
+                returnValue = Optional.of(Scope.PACKAGE);
             }
         }
 
@@ -284,7 +291,8 @@ public final class ScopeUtil {
         for (DetailAST parent = node.getParent();
              parent != null;
              parent = parent.getParent()) {
-            if (TokenUtil.isTypeDeclaration(parent.getType())) {
+            if (TokenUtil.isTypeDeclaration(parent.getType())
+                    || parent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
                 returnValue = false;
                 break;
             }

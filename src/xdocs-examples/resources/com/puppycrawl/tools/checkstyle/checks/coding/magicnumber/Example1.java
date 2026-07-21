@@ -8,8 +8,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
+@interface Annotation {
+  int value() default 10;
+}
+
 // xdoc section -- start
-@Example1.Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation, ''6' is a magic number.'
 public class Example1 {
   private int field = 7; // violation, ''7' is a magic number.'
 
@@ -19,15 +23,19 @@ public class Example1 {
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
+
     final int a = 3;
     final int[] b = {4, 5};
     final int c = -3;
     final int d = +4;
     final int e = method3(10, 20);
+
     final int f = 3 * 4;
+
     final int g = 3 / 4;
     final int h = 3 + 4;
     final int i = 3 - 4;
+
     final int j = (int) 3.4;
   }
   private int method3(int a, int b) {

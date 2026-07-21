@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad";
@@ -37,9 +38,15 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:8: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
-            "21:25: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
-            "29:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "23:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "24:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "25:9: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "25:33: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "33:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "43:15: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "46:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "46:16: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "50:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -48,11 +55,38 @@ public class ParenPadExamplesTest extends AbstractExamplesModuleTestSupport {
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "29:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "39:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "45:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "26:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "27:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "28:9: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "28:33: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "46:15: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "49:12: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "49:16: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "53:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "18:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "23:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "24:10: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "33:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "43:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "45:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "50:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
 }

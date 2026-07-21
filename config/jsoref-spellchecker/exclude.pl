@@ -9,7 +9,10 @@ my @excludes=qw(
   ^src/it/resources/
   ^src/test/resources/
   ^src/site/resources/styleguides/
+  ^src/site/resources/css/
+  ^src/site/resources/js/
   ^src/test/resources-noncompilable/
+  ^src/test/resources-with-javadoc-error/
   /messages.*_..\.properties$
   /releasenotes_old.*\.xml$
   /releasenotes\.xml$
@@ -20,6 +23,7 @@ my @excludes=qw(
   ^config/projects-to-test/openjdk19-excluded\.files$
   ^config/projects-to-test/openjdk20-excluded\.files$
   ^config/projects-to-test/openjdk25-excluded\.files$
+  ^config/list-of-projects\.yml$
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/

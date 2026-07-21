@@ -37,14 +37,13 @@ public class Example2 {
   }
 
   public void secondMethod() {
-    // comments are counted by default
+
     System.out.println("line 3");
   }
-
   // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
-    // empty line above is counted by default,just like this comment
+    // ok, empty line above is counted by default,just like this comment
     System.out.println("line 4");
   }
 

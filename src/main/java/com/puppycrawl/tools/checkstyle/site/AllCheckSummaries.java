@@ -42,7 +42,6 @@ import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.sink.Sink;
 import org.codehaus.plexus.component.annotations.Component;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -168,6 +167,13 @@ public class AllCheckSummaries extends AbstractMacro {
     private static final Pattern CODE_SPACE_PATTERN = Pattern.compile(WHITESPACE_REGEX
             + "(" + CLOSING_ANCHOR_TAG.substring(0, 2) + "code>)");
 
+    /**
+     * Creates a new {@code AllCheckSummaries} instance.
+     */
+    public AllCheckSummaries() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final String packageFilter = (String) request.getParameter("package");
@@ -229,11 +235,15 @@ public class AllCheckSummaries extends AbstractMacro {
      * @return true if the path is a Check or Holder file, false otherwise
      */
     private static boolean isCheckOrHolderFile(Path path) {
-        final Path fileName = path.getFileName();
-        return fileName != null
-                && (fileName.toString().endsWith("Check.java")
-                || fileName.toString().endsWith("Holder.java"))
-                && Files.isRegularFile(path);
+        final Path fileNamePath = path.getFileName();
+        boolean isCheckOrHolder = false;
+        if (fileNamePath != null && Files.isRegularFile(path)) {
+            final String fileName = fileNamePath.toString();
+            isCheckOrHolder = (fileName.endsWith("Check.java") || fileName.endsWith("Holder.java"))
+                    && (!fileName.startsWith("Abstract")
+                    || "AbstractClassNameCheck.java".equals(fileName));
+        }
+        return isCheckOrHolder;
     }
 
     /**
@@ -260,17 +270,18 @@ public class AllCheckSummaries extends AbstractMacro {
                                          String packageFilter) {
         try {
             final String moduleName = CommonUtil.getFileNameWithoutExtension(path.toString());
-            final DetailNode javadoc = SiteUtil.getModuleJavadoc(moduleName, path);
-            if (javadoc != null) {
-                String description = getDescriptionIfPresent(javadoc);
-                if (description != null) {
-                    description = sanitizeAnchorUrls(description);
+            SiteUtil.processModule(moduleName, path);
+            if (!JavadocScraperResultUtil.getModuleSinceVersion().isEmpty()) {
+                final String description = JavadocScraperResultUtil.getModuleDescription();
+                if (!description.isEmpty()) {
 
                     final String[] moduleInfo = determineModuleInfo(path, moduleName);
                     final String packageName = moduleInfo[1];
                     if (packageFilter == null || packageFilter.equals(packageName)) {
+                        final String sanitizedDescription = sanitizeAnchorUrls(description);
+
                         final String simpleName = moduleInfo[0];
-                        final String summary = sanitizeAndFirstSentence(description);
+                        final String summary = sanitizeAndFirstSentence(sanitizedDescription);
                         final String href = resolveHref(xmlHrefMap, packageName, simpleName,
                                 packageFilter);
                         infos.put(simpleName, new CheckInfo(simpleName, href, summary));
@@ -309,32 +320,6 @@ public class AllCheckSummaries extends AbstractMacro {
         }
 
         return new String[] {simpleName, packageName};
-    }
-
-    /**
-     * Returns the module description if present and non-empty.
-     *
-     * @param javadoc the parsed Javadoc node
-     * @return the description text, or {@code null} if not present
-     */
-    @Nullable
-    private static String getDescriptionIfPresent(DetailNode javadoc) {
-        String result = null;
-        if (javadoc != null) {
-            try {
-                if (ModuleJavadocParsingUtil
-                        .getModuleSinceVersionTagStartNode(javadoc) != null) {
-                    final String desc = ModuleJavadocParsingUtil.getModuleDescription(javadoc);
-                    if (!desc.isEmpty()) {
-                        result = desc;
-                    }
-                }
-            }
-            catch (IllegalStateException exception) {
-                result = null;
-            }
-        }
-        return result;
     }
 
     /**
@@ -842,4 +827,5 @@ public class AllCheckSummaries extends AbstractMacro {
      */
     private record CheckInfo(String simpleName, String link, String summary) {
     }
+
 }

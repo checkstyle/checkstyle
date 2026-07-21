@@ -33,8 +33,10 @@ public interface InputInterfaceMemberImpliedModifierMethodsOnInterface2 {
 
     abstract void methodAbstract();
 
-    public void methodPublic(); // violation
+    // violation below 'Implied modifier 'abstract' should be explicit.'
+    public void methodPublic();
 
-    void method(); // violation
+    // violation below 'Implied modifier 'abstract' should be explicit.'
+    void method();
 
 }

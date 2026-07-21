@@ -38,7 +38,7 @@ public class SuperFinalizeCheckTest
         final String[] expected = {
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
-            "83:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "84:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuperFinalizeVariations.java"), expected);

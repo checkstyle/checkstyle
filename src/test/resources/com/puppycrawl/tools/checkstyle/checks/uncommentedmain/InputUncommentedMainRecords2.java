@@ -5,7 +5,7 @@ excludedClasses = (default)^$
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 public record InputUncommentedMainRecords2(Integer x) {

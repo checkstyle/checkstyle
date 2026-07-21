@@ -226,11 +226,11 @@ public final class XmlMetaReader {
      * Utility to get the children of an element by tag name.
      *
      * @param element parent element
-     * @param sTagName tag name of children required
+     * @param tagName tag name of children required
      * @return list of elements retrieved
      */
-    private static List<Element> getDirectChildsByTag(Element element, String sTagName) {
-        final NodeList children = element.getElementsByTagName(sTagName);
+    private static List<Element> getDirectChildsByTag(Element element, String tagName) {
+        final NodeList children = element.getElementsByTagName(tagName);
         final List<Element> res = new ArrayList<>();
         for (int i = 0; i < children.getLength(); i++) {
             if (children.item(i).getParentNode().equals(element)) {

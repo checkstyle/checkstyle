@@ -48,4 +48,5 @@ public class MissingOverrideOnRecordAccessorCheckExamplesTest
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

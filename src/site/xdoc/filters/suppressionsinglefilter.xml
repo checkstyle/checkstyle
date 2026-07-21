@@ -48,7 +48,7 @@
             </tr>
             <tr>
               <td><a id="checks"/><a href="#checks">checks</a></td>
-              <td>Define the RegExp for matching against the name of the check associated with an audit event.</td>
+              <td>Define the RegExp for matching against the name of the check associated with an audit event. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
@@ -93,18 +93,18 @@
       </subsection>
       <subsection name="Examples" id="SuppressionSingleFilter_Examples">
         <p id="Example1-config">
-          To configure a filter to suppress violations of <code>JavadocStyle</code> and
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code> and
           <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
           using <code>SuppressionSingleFilter</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="checks" value="JavadocStyle|MagicNumber"/&gt;
+    &lt;property name="checks" value="NoWhitespaceAfter|MagicNumber"/&gt;
     &lt;property name="files" value="Example1.java"/&gt;
     &lt;property name="lines" value="1,5-100"/&gt;
   &lt;/module&gt;
@@ -117,8 +117,20 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  public void exampleMethod() {
+  // filtered violation below ''5' is a magic number'
+  private int MyVariable = 5;
+
+  public void exampleMethod(int a, int b) {
     int value = 100; // filtered violation ''100' is a magic number'
+
+    Integer. parseInt("3"); // filtered violation ''.' is followed by whitespace'
+  }
+
+  public void printExample() {
+    int [] x; // filtered violation ''int' is followed by whitespace'
+    System.out.println(
+            "example"
+    );
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -144,15 +156,20 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 
+  private int MyVariable = 5;
+
   public void exampleMethod(int a, int b) {
+    int value = 100;
     // filtered violation below ''.' is followed by whitespace'
     Integer. parseInt("3");
   }
 
-  public void exampleMethod2() {
+  public void printExample() {
     int [] x; // violation ''int' is followed by whitespace'
+    System.out.println(
+            "example"
+    );
   }
-
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -175,18 +192,20 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
 
+  private int MyVariable = 5;
+  // filtered violation below 'Line matches the illegal pattern'
+  public void exampleMethod(int a, int b) {
+    int value = 100;
+
+    Integer. parseInt("3");
+  }
+
   public void printExample() {
+    int [] x;
     System.out.println(
-      "example" // filtered violation 'Line matches the illegal pattern 'example''
+            "example" // filtered violation 'Line matches the illegal pattern'
     );
   }
-
-  public void noViolation() {
-    System.out.println(
-      "RegexpSingleline is case sensitive by default. 'Example' in not matching."
-    );
-  }
-
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -212,6 +231,55 @@ public class Example3 {
 public class Example4 {
   // filtered violation below 'Name 'MyVariable' must match pattern'
   private int MyVariable = 5;
+
+  public void exampleMethod(int a, int b) {
+    int value = 100;
+
+    Integer. parseInt("3");
+  }
+
+  public void printExample() {
+    int [] x;
+    System.out.println(
+            "example"
+    );
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter to suppress <code>MagicNumber</code> violations
+          whose message matches <code>100</code> using <code>SuppressionSingleFilter</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SuppressionSingleFilter"&gt;
+    &lt;property name="checks" value="MagicNumber"/&gt;
+    &lt;property name="message" value="100"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  // violation below ''5' is a magic number'
+  private int MyVariable = 5;
+
+  public void exampleMethod(int a, int b) {
+    int value = 100; // filtered violation ''100' is a magic number'
+
+    Integer. parseInt("3");
+  }
+
+  public void printExample() {
+    int [] x;
+    System.out.println(
+            "example"
+    );
+  }
 }
 </code></pre></div>
       </subsection>
@@ -223,8 +291,12 @@ public class Example4 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionSingleFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressionSingleFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
       <subsection name="Parent Module" id="SuppressionSingleFilter_Parent_Module">
         <p>

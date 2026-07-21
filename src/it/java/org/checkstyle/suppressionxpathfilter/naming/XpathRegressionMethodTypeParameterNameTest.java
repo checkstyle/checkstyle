@@ -129,4 +129,5 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

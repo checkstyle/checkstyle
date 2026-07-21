@@ -231,6 +231,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     /** Depth of nested assignments.  Normally this will be 0 or 1. */
     private int assignDepth;
 
+    /**
+     * Creates a new {@code UnnecessaryParenthesesCheck} instance.
+     */
+    public UnnecessaryParenthesesCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

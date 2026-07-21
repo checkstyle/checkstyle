@@ -203,4 +203,5 @@ public class FileTextTest extends AbstractPathTestSupport {
         assertWithMessage("Should not be null")
                 .that(copy.getCharset()).isNotNull();
     }
+
 }

@@ -73,7 +73,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "103:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputUnusedCatchParameterShouldBeUnnamed.java"),
+                getNonCompilablePath("InputUnusedCatchParameterShouldBeUnnamed.java"),
                 expected);
     }
 
@@ -86,7 +86,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "70:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally.java"),
                 expected);
     }
@@ -101,7 +101,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "87:22: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "ex"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputUnusedCatchParameterShouldBeUnnamedNested.java"),
                 expected);
     }
@@ -128,7 +128,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
                 new UnusedCatchParameterShouldBeUnnamedCheck();
 
         final DetailAST root = JavaParser.parseFile(
-                new File(getPath(
+                new File(getNonCompilablePath(
                         "InputUnusedCatchParameterShouldBeUnnamed.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
 

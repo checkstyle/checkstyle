@@ -2,7 +2,7 @@
 SummaryJavadoc
 violateExecutionOnNonTightHtml = (default)false
 forbiddenSummaryFragments = .*CheckStyle$
-
+period = (default).
 
 */
 

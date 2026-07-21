@@ -108,6 +108,7 @@ org.eclipse.jdt.core.compiler.problem.varargsArgumentNeedCast=error
 org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
 # We can not enforce this rule as we are library and we keep deprecated stuff for some time
 org.eclipse.jdt.core.compiler.problem.deprecation=ignore
+org.eclipse.jdt.core.compiler.problem.memberOfDeprecatedTypeNotDeprecated=ignore
 # Preview features can be enabled be enabled only at source level 14, we are using 8
 org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
 # We don't document the tests. As we cannot exclude them, this check is muted.

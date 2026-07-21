@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = PRIVATE
 excludeScope = (default)null
+scope = PRIVATE
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -10,14 +11,17 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypePublicOnly1One { // violation
+// violation below 'Missing a Javadoc comment.'
+public class InputMissingJavadocTypePublicOnly1One {
 
-    private interface InnerInterface // violation
+    // violation below 'Missing a Javadoc comment.'
+    private interface InnerInterface
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
 
-        class InnerInnerClass // violation
+        // violation below 'Missing a Javadoc comment.'
+        class InnerInnerClass
         {
             private int mData; // ignore - when not relaxed about Javadoc
 
@@ -37,7 +41,8 @@ public class InputMissingJavadocTypePublicOnly1One { // violation
         }
     }
 
-    private class InnerClass // violation
+    // violation below 'Missing a Javadoc comment.'
+    private class InnerClass
     {
         private int mDiff; // ignore - when not relaxed about Javadoc
 

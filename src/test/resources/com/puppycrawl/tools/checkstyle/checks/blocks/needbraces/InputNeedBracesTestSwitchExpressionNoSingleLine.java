@@ -7,7 +7,7 @@ tokens = LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
 public class InputNeedBracesTestSwitchExpressionNoSingleLine {
@@ -62,7 +62,7 @@ public class InputNeedBracesTestSwitchExpressionNoSingleLine {
     }
 
     /**
-     * Braces required in switch expression with switch labled block
+     * Braces required in switch expression with switch labeled block
      */
     int howMany4(NumsOne k) {
         return switch (k) {

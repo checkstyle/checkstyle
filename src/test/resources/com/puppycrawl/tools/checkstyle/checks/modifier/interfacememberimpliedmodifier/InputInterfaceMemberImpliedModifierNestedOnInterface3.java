@@ -15,17 +15,15 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmo
 
 public interface InputInterfaceMemberImpliedModifierNestedOnInterface3 {
 
-    public static interface NestedInterfacePublicStatic {
-    }
+    public static interface NestedInterfacePublicStatic {}
 
-    public interface NestedInterfacePublic {
-    }
+    public interface NestedInterfacePublic {}
 
-    static interface NestedInterfaceStatic { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static interface NestedInterfaceStatic {}
 
-    interface NestedInterface { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    interface NestedInterface {}
 
     public static enum NestedEnumPublicStatic {
         TRUE,
@@ -37,27 +35,27 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface3 {
         FALSE
     }
 
-    static enum NestedEnumStatic { // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static enum NestedEnumStatic {
         TRUE,
         FALSE
     }
 
-    enum NestedEnum { // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    enum NestedEnum {
         TRUE,
         FALSE
     }
 
-    public static class NestedClassPublicStatic {
-    }
+    public static class NestedClassPublicStatic {}
 
-    public class NestedClassPublic {
-    }
+    public class NestedClassPublic {}
 
-    static class NestedClassStatic { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static class NestedClassStatic {}
 
-    class NestedClass { // violation
-    }
+    // violation below 'Implied modifier 'public' should be explicit.'
+    class NestedClass {}
 
     public default boolean methodWithLocalClass(String input) {
         class LocalClass {

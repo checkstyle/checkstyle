@@ -130,6 +130,13 @@ public class DeclarationOrderCheck extends AbstractCheck {
     /** Control whether to ignore modifiers (fields, ...). */
     private boolean ignoreModifiers;
 
+    /**
+     * Creates a new {@code DeclarationOrderCheck} instance.
+     */
+    public DeclarationOrderCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -156,6 +163,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         scopeStates = new ArrayDeque<>();
         classFieldNames = new HashSet<>();
+        scopeStates.push(new ScopeState());
     }
 
     @Override
@@ -167,7 +175,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
 
             case TokenTypes.MODIFIERS -> {
                 if (parentType == TokenTypes.VARIABLE_DEF
-                    && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
+                    && isTypeMemberContainer(ast.getParent().getParent().getType())) {
                     processModifiers(ast);
                 }
             }
@@ -179,7 +187,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
             }
 
             case TokenTypes.METHOD_DEF -> {
-                if (parentType == TokenTypes.OBJBLOCK) {
+                if (isTypeMemberContainer(parentType)) {
                     final ScopeState state = scopeStates.peek();
                     // nothing can be bigger than method's state
                     state.currentScopeState = STATE_METHOD_DEF;
@@ -197,6 +205,19 @@ public class DeclarationOrderCheck extends AbstractCheck {
                 // do nothing
             }
         }
+    }
+
+    /**
+     * Checks whether the given token type is a container of class-level
+     * members: an object block, or the implicit class of a JEP 512 compact
+     * source file.
+     *
+     * @param type the token type to check
+     * @return true if the type holds class-level members
+     */
+    private static boolean isTypeMemberContainer(int type) {
+        return type == TokenTypes.OBJBLOCK
+                || type == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     /**
@@ -370,6 +391,12 @@ public class DeclarationOrderCheck extends AbstractCheck {
         /** The sub-state the check is in. */
         private Scope declarationAccess = Scope.PUBLIC;
 
+        /**
+         * Creates a new {@code ScopeState} instance.
+         */
+        private ScopeState() {
+            // no code by default
+        }
     }
 
 }

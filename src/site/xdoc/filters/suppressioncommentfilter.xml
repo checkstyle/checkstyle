@@ -73,7 +73,7 @@
             </tr>
             <tr>
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
-              <td>Specify check pattern to suppress.</td>
+              <td>Specify check pattern to suppress. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>3.5</td>
@@ -128,36 +128,34 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1
-{
+class Example1 {
+
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
   //CHECKSTYLE:OFF
   int VAR2; // filtered violation 'must match pattern'
   //CHECKSTYLE:ON
 
-  public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  //stop constant check
+  public static final int var3 = 1; // violation 'must match pattern'
+  //resume constant check
 
-  //CHECKSTYLE:OFF
-  public static final int var4 = 1; // filtered violation 'must match pattern'
-  //CHECKSTYLE:ON
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-
-    //CHECKSTYLE:OFF
-
-    try {}
-    catch(Exception ex) {}
-    // filtered violation above 'Catching 'Exception' is not allowed'
-    catch(Error err) {}
-    // filtered violation above 'Catching 'Error' is not allowed'
-
-    //CHECKSTYLE:ON
+  //ILLEGAL OFF: Exception
+  void method1() {
+    try {
+    }
+    catch (Exception ex) { } // violation, Catching 'Exception' is not allowed.
+    catch (Error err) { }    // violation, Catching 'Exception' is not allowed.
   }
+  //ILLEGAL ON: Exception
+
+  //CSOFF MemberID
+  int VAR4;   // violation, Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CSON MemberID
+
+  /*CHECKSTYLE:OFF*/
+  public static final int varC = 1; // filtered violation 'must match pattern'
+  /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -181,34 +179,34 @@ class Example1
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2
-{
+class Example2 {
+
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
-  //stop constant check
+  //CHECKSTYLE:OFF
   int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
-  //resume constant check
-
-  public static final int var3 = 1;
-  // violation above, Name 'must match pattern'
+  //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var4 = 1; // filtered violation 'must match pattern'
+  public static final int var3 = 1; // filtered violation 'must match pattern'
   //resume constant check
 
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-
-    //stop constant check
-
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-    catch(Error err) {} // violation, Catching 'Error' is not allowed
-
-    //resume constant check
+  //ILLEGAL OFF: Exception
+  void method1() {
+    try {
+    }
+    catch (Exception ex) { }  // violation, Catching 'Exception' is not allowed
+    catch (Error err) { }     // violation, Catching 'Error' is not allowed
   }
+  //ILLEGAL ON: Exception
+
+  //CSOFF MemberID
+  int VAR4;   // violation, Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CSON MemberID
+
+  /*CHECKSTYLE:OFF*/
+  public static final int varC = 1; // violation, 'must match pattern'
+  /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -234,143 +232,34 @@ class Example2
 </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3
-{
+class Example3 {
+
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
-  //ILLEGAL OFF: Exception
+  //CHECKSTYLE:OFF
   int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
-  //ILLEGAL ON: Exception
+  //CHECKSTYLE:ON
 
-  public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  //stop constant check
+  public static final int var3 = 1; // violation, 'must match pattern'
+  //resume constant check
 
   //ILLEGAL OFF: Exception
-  public static final int var4 = 1;
-  // violation above,  Name 'must match pattern'
+  void method1() {
+    try {
+    } // filtered violation below 'Catching 'Exception' is not allowed'
+    catch (Exception ex) { }
+    catch (Error err) { }     // violation, Catching 'Error' is not allowed
+  }
   //ILLEGAL ON: Exception
 
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
+  //CSOFF MemberID
+  int VAR4;   // violation, Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CSON MemberID
 
-    //ILLEGAL OFF: Exception
-
-    try {}
-    catch(Exception ex) {}
-    // filtered violation above 'Catching 'Exception' is not allowed'
-    catch(Error err) {} // violation, Catching 'Error' is not allowed
-
-    //ILLEGAL ON: Exception
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          To configure a filter so that name of suppressed check mentioned
-          in comment <code>CSOFF: <i>regexp</i></code>
-          and <code>CSON: <i>regexp</i></code> mark a matching check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionCommentFilter"&gt;
-      &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
-      &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
-      &lt;property name="checkFormat" value="$1"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MemberName"/&gt;
-    &lt;module name="ConstantName"/&gt;
-    &lt;module name="IllegalCatch"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4
-{
-  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CSOFF: MemberName
-  int VAR2; // filtered violation 'must match pattern'
-  //CSON: MemberName
-
-  public static final int var3 = 1;
-  // violation above, 'must match pattern'
-
-  //CSOFF: ConstantName
-  public static final int var4 = 1; // filtered violation 'must match pattern'
-  //CSON: ConstantName
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-
-    //CSOFF: IllegalCatch
-
-    try {}
-    catch(Exception ex) {}
-    // filtered violation above 'Catching 'Exception' is not allowed'
-    catch(Error err) {}
-    // filtered violation above 'Catching 'Error' is not allowed'
-
-    //CSON: IllegalCatch
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure a filter to suppress all audit events between a comment
-          containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
-          <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionCommentFilter"&gt;
-      &lt;property name="offCommentFormat" value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
-      &lt;property name="onCommentFormat" value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
-      &lt;property name="checkFormat" value="^((?!(ConstantName)).)*$"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MemberName"/&gt;
-    &lt;module name="ConstantName"/&gt;
-    &lt;module name="IllegalCatch"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5
-{
-  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CHECKSTYLE_OFF: ALMOST_ALL
-  int VAR2; // filtered violation 'must match pattern'
-  //CHECKSTYLE_ON: ALMOST_ALL
-
-  public static final int var3 = 1;
-  // violation above, 'must match pattern'
-
-  //CHECKSTYLE_OFF: ALMOST_ALL
-  public static final int var4 = 1;
-  // violation above, 'must match pattern'
-  //CHECKSTYLE_ON: ALMOST_ALL
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-
-    //CHECKSTYLE_OFF: ALMOST_ALL
-
-    try {}
-    catch(Exception ex) {}
-    // filtered violation above 'Catching 'Exception' is not allowed'
-    catch(Error err) {}
-    // filtered violation above 'Catching 'Error' is not allowed'
-
-    //CHECKSTYLE_ON: ALMOST_ALL
-  }
+  /*CHECKSTYLE:OFF*/
+  public static final int varC = 1; // violation, 'must match pattern'
+  /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -404,27 +293,128 @@ class Example5
 </code></pre></div>
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6
+class Example6 {
+
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+
+  //CHECKSTYLE:OFF
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CHECKSTYLE:ON
+
+  //stop constant check
+  public static final int var3 = 1; // violation, 'must match pattern'
+  //resume constant check
+
+  //ILLEGAL OFF: Exception
+  void method1() {
+    try {
+    }
+    catch (Exception ex) { }  // violation, Catching 'Exception' is not allowed
+    catch (Error err) { }     // violation, Catching 'Error' is not allowed
+  }
+  //ILLEGAL ON: Exception
+
+  //CSOFF MemberID
+  int VAR4;   // filtered violation 'must match pattern'
+  //CSON MemberID
+
+  /*CHECKSTYLE:OFF*/
+  public static final int varC = 1;  // violation, 'must match pattern'
+  /*CHECKSTYLE:ON*/
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          Example depicting use of checkC and checkCPP style comments
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="checkC" value="true"/&gt;
+      &lt;property name="checkCPP" value="false"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+
+  //CHECKSTYLE:OFF
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CHECKSTYLE:ON
+
+  //stop constant check
+  public static final int var3 = 1;  // violation, 'must match pattern'
+  //resume constant check
+
+  //ILLEGAL OFF: Exception
+  void method1() {
+    try {
+    }
+    catch (Exception ex) { }  // violation, Catching 'Exception' is not allowed
+    catch (Error err) { }     // violation, Catching 'Error' is not allowed
+  }
+  //ILLEGAL ON: Exception
+
+  //CSOFF MemberID
+  int VAR4;   // violation, Name 'VAR4' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CSON MemberID
+
+  /*CHECKSTYLE:OFF*/
+  public static final int varC = 1; // filtered violation 'must match pattern'
+  /*CHECKSTYLE:ON*/
+}
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionCommentFilter_Use_Cases">
+        <p id="UseCase1-config">
+          To configure a filter so that name of suppressed check mentioned
+          in comment <code>CSOFF: <i>regexp</i></code>
+          and <code>CSON: <i>regexp</i></code> mark a matching check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
+      &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+      &lt;property name="checkFormat" value="$1"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
-  //CSOFF MemberID
+  //CSOFF: MemberName
   int VAR2; // filtered violation 'must match pattern'
-  //CSON: MemberID
+  //CSON: MemberName
 
   public static final int var3 = 1;
   // violation above, 'must match pattern'
 
-  //CSOFF ConstantID
+  //CSOFF: ConstantName
   public static final int var4 = 1; // filtered violation 'must match pattern'
-  //CSON ConstantID
+  //CSON: ConstantName
 
   public void method1()
   {
     try {}
     catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
 
-    //CSOFF IllegalID
+    //CSOFF: IllegalCatch
 
     try {}
     catch(Exception ex) {}
@@ -432,11 +422,65 @@ class Example6
     catch(Error err) {}
     // filtered violation above 'Catching 'Error' is not allowed'
 
-    //CSON IllegalID
+    //CSON: IllegalCatch
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="UseCase2-config">
+          To configure a filter to suppress all audit events between a comment
+          containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing
+          <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the <em>ConstantName</em> check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionCommentFilter"&gt;
+      &lt;property name="offCommentFormat" value="CHECKSTYLE_OFF: ALMOST_ALL"/&gt;
+      &lt;property name="onCommentFormat" value="CHECKSTYLE_ON: ALMOST_ALL"/&gt;
+      &lt;property name="checkFormat" value="^((?!(ConstantName)).)*$"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="ConstantName"/&gt;
+    &lt;module name="IllegalCatch"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase2
+{
+  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
+
+  //CHECKSTYLE_OFF: ALMOST_ALL
+  int VAR2; // filtered violation 'must match pattern'
+  //CHECKSTYLE_ON: ALMOST_ALL
+
+  public static final int var3 = 1;
+  // violation above, 'must match pattern'
+
+  //CHECKSTYLE_OFF: ALMOST_ALL
+  public static final int var4 = 1;
+  // violation above, 'must match pattern'
+  //CHECKSTYLE_ON: ALMOST_ALL
+
+  public void method1()
+  {
+    try {}
+    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
+
+    //CHECKSTYLE_OFF: ALMOST_ALL
+
+    try {}
+    catch(Exception ex) {}
+    // filtered violation above 'Catching 'Exception' is not allowed'
+    catch(Error err) {}
+    // filtered violation above 'Catching 'Error' is not allowed'
+
+    //CHECKSTYLE_ON: ALMOST_ALL
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-config">
           Example of how to configure the check to suppress checks by name defined in comment.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -453,9 +497,9 @@ class Example6
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7
+class UseCase3
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
@@ -488,54 +532,6 @@ class Example7
   //cson IllegalCatch
 
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
-          Example depicting use of checkC and checkCPP style comments
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionCommentFilter"&gt;
-      &lt;property name="checkC" value="true"/&gt;
-      &lt;property name="checkCPP" value="false"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MemberName"/&gt;
-    &lt;module name="ConstantName"/&gt;
-    &lt;module name="IllegalCatch"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8
-{
-  int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
-
-  //CHECKSTYLE:OFF
-  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
-  //CHECKSTYLE:ON
-
-  public static final int var3 = 1;
-  // violation above, Name 'must match pattern'
-
-  /*CHECKSTYLE:OFF*/
-  public static final int var4 = 1; // filtered violation 'must match pattern'
-  /*CHECKSTYLE:ON*/
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-
-    //CHECKSTYLE:OFF
-
-    try {}
-    catch(Exception ex) {} // violation, Catching 'Exception' is not allowed
-    catch(Error err) {} // violation, Catching 'Error' is not allowed
-
-    //CHECKSTYLE:ON
-  }
-}
 </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionCommentFilter_Example_of_Usage">
@@ -548,10 +544,18 @@ class Example8
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionCommentFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressionCommentFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter </p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressionCommentFilter_Parent_Module">

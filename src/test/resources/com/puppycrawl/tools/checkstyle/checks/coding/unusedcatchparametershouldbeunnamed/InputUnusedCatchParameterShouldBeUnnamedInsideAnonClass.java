@@ -3,7 +3,7 @@ UnusedCatchParameterShouldBeUnnamed
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedcatchparametershouldbeunnamed;
 
 public class InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass {

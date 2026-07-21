@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 public class LocalizedMessage {
 
     /** The locale to localise messages to. **/
-    private static Locale sLocale = Locale.getDefault();
+    private static Locale messageLocale = Locale.getDefault();
 
     /** Name of the resource bundle to get messages from. **/
     private final String bundle;
@@ -92,10 +92,10 @@ public class LocalizedMessage {
      */
     public static void setLocale(Locale locale) {
         if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
-            sLocale = Locale.ROOT;
+            messageLocale = Locale.ROOT;
         }
         else {
-            sLocale = locale;
+            messageLocale = locale;
         }
     }
 
@@ -134,7 +134,7 @@ public class LocalizedMessage {
      * @return a ResourceBundle.
      */
     private ResourceBundle getBundle() {
-        return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),
+        return ResourceBundle.getBundle(bundle, messageLocale, sourceClass.getClassLoader(),
                 new Utf8Control());
     }
 
@@ -143,6 +143,12 @@ public class LocalizedMessage {
      * the properties files as UTF-8.
      */
     public static class Utf8Control extends Control {
+        /**
+         * Creates a new {@code Utf8Control} instance.
+         */
+        public Utf8Control() {
+            // no code by default
+        }
 
         @Override
         public ResourceBundle newBundle(String baseName, Locale locale, String format,

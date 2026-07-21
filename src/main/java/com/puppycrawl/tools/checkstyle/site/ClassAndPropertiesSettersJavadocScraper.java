@@ -20,7 +20,15 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.beans.Introspector;
+import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
+
+import org.apache.maven.doxia.macro.MacroExecutionException;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -41,14 +49,40 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
     /** Name of the module being scraped. */
     private static String moduleName = "";
 
+    /** The instance of the module. */
+    private static Object moduleInstance = new Object();
+
+    /** The properties of the module. */
+    private static Set<String> properties = Set.of();
+
+    /** Map of property names to their setter javadoc nodes. */
+    private final Map<String, DetailNode> setterNodes = new HashMap<>();
+
+    /**
+     * Creates a new {@code ClassAndPropertiesSettersJavadocScraper} instance.
+     */
+    public ClassAndPropertiesSettersJavadocScraper() {
+        // no code by default
+    }
+
     /**
      * Initialize the scraper. Clears static context and sets the module name.
      *
      * @param newModuleName the module name.
+     * @param instance the module instance.
+     * @param propertiesSet the set of properties to document.
      */
-    public static void initialize(String newModuleName) {
+    public static void initialize(String newModuleName, Object instance,
+                                  Set<String> propertiesSet) {
         JavadocScraperResultUtil.clearData();
         moduleName = newModuleName;
+        moduleInstance = instance;
+        if (propertiesSet == null) {
+            properties = Set.of();
+        }
+        else {
+            properties = Collections.unmodifiableSet(new TreeSet<>(propertiesSet));
+        }
     }
 
     @Override
@@ -61,24 +95,130 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
     @Override
     public void visitJavadocToken(DetailNode ast) {
         final DetailAST blockCommentAst = getBlockCommentAst();
-        if (BlockCommentPosition.isOnMethod(blockCommentAst)) {
-            final DetailAST methodDef = getParentAst(blockCommentAst, TokenTypes.METHOD_DEF);
-            if (methodDef != null
-                    && isSetterMethod(methodDef)
-                    && isMethodOfScrapedModule(methodDef)) {
-                final String methodName = TokenUtil.getIdent(methodDef).getText();
-                final String propertyName = getPropertyName(methodName);
-                JavadocScraperResultUtil.putPropertyJavadocNode(propertyName, ast);
-            }
 
+        if (BlockCommentPosition.isOnMethod(blockCommentAst)) {
+            handleMethodComment(ast, blockCommentAst);
+        }
+        else if (BlockCommentPosition.isOnField(blockCommentAst)) {
+            handleFieldComment(ast, blockCommentAst);
         }
         else if (BlockCommentPosition.isOnClass(blockCommentAst)) {
-            final DetailAST classDef = getParentAst(blockCommentAst, TokenTypes.CLASS_DEF);
-            if (classDef != null) {
-                final String className = TokenUtil.getIdent(classDef).getText();
-                if (className.equals(moduleName)) {
-                    JavadocScraperResultUtil.setModuleJavadocNode(ast);
-                }
+            handleClassComment(ast, blockCommentAst);
+        }
+    }
+
+    /**
+     * Processes method Javadoc. If the method is a setter for a property of the
+     * module being scraped, the Javadoc node is stored.
+     *
+     * @param ast the Javadoc node.
+     * @param blockCommentAst the block comment AST.
+     */
+    private void handleMethodComment(DetailNode ast, DetailAST blockCommentAst) {
+        final DetailAST methodDef = getParentAst(blockCommentAst, TokenTypes.METHOD_DEF);
+
+        if (methodDef != null
+                && isSetterMethod(methodDef)
+                && isMethodOfScrapedModule(methodDef)) {
+            final String methodName = TokenUtil.getIdent(methodDef).getText();
+            final String propertyName = getPropertyName(methodName);
+            setterNodes.put(propertyName, ast);
+        }
+    }
+
+    /**
+     * Processes field Javadoc. If the field is a known property of the module
+     * being scraped, the Javadoc node is stored.
+     *
+     * @param ast the Javadoc node.
+     * @param blockCommentAst the block comment AST.
+     */
+    private void handleFieldComment(DetailNode ast, DetailAST blockCommentAst) {
+        final DetailAST fieldDef = getParentAst(blockCommentAst, TokenTypes.VARIABLE_DEF);
+
+        if (fieldDef != null && isMethodOfScrapedModule(fieldDef)) {
+            final String fieldName = TokenUtil.getIdent(fieldDef).getText();
+            if (isKnownProperty(fieldName)) {
+                setterNodes.put(fieldName, ast);
+            }
+        }
+    }
+
+    /**
+     * Checks if the field name is a known property that should be documented.
+     *
+     * @param fieldName the name of the field.
+     * @return true if it is a known property, false otherwise.
+     */
+    private static boolean isKnownProperty(String fieldName) {
+        final boolean result;
+        if (properties.isEmpty()) {
+            result = SiteUtil.VIOLATE_EXECUTION_ON_NON_TIGHT_HTML.equals(fieldName);
+        }
+        else {
+            result = properties.contains(fieldName);
+        }
+        return result;
+    }
+
+    /**
+     * Processes class Javadoc. Extracts module metadata such as 'since' version,
+     * description, and notes.
+     *
+     * @param ast the Javadoc node.
+     * @param blockCommentAst the block comment AST.
+     */
+    private static void handleClassComment(DetailNode ast, DetailAST blockCommentAst) {
+        final DetailAST classDef = getParentAst(blockCommentAst, TokenTypes.CLASS_DEF);
+        if (classDef != null) {
+            final String className = TokenUtil.getIdent(classDef).getText();
+
+            final boolean isModuleNameNotEmpty = moduleName != null && !moduleName.isEmpty();
+
+            final boolean isSameClass = className.equals(moduleName);
+
+            final boolean isModuleInstanceValid = moduleInstance != null
+                    && moduleInstance.getClass() != Object.class;
+
+            if (isModuleNameNotEmpty && isSameClass && isModuleInstanceValid) {
+
+                final String moduleSinceVersion =
+                        ModuleJavadocParsingUtil.getModuleSinceVersion(ast);
+                JavadocScraperResultUtil.setModuleSinceVersion(moduleSinceVersion);
+
+                final String moduleDescription =
+                        ModuleJavadocParsingUtil.getModuleDescription(ast);
+                JavadocScraperResultUtil.setModuleDescription(moduleDescription);
+
+                final String moduleNotes =
+                        ModuleJavadocParsingUtil.getModuleNotes(ast);
+                JavadocScraperResultUtil.setModuleNotes(moduleNotes);
+            }
+        }
+    }
+
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        final Set<String> propsToProcess;
+        if (properties.isEmpty()) {
+            propsToProcess = setterNodes.keySet();
+        }
+        else {
+            propsToProcess = properties;
+        }
+
+        for (String property : propsToProcess) {
+            final boolean isRealInstance = moduleInstance != null
+                    && moduleInstance.getClass() != Object.class;
+            if (isRealInstance && !setterNodes.containsKey(property)) {
+                continue;
+            }
+            try {
+                final PropertyDetails details = createPropertyDetails(property);
+                JavadocScraperResultUtil.putPropertyDetails(property, details);
+            }
+            catch (MacroExecutionException ignored) {
+            // Property details cannot be created for this property, skip it.
             }
         }
     }
@@ -94,13 +234,11 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
      */
     private static boolean isMethodOfScrapedModule(DetailAST methodDef) {
         final DetailAST classDef = getParentAst(methodDef, TokenTypes.CLASS_DEF);
-
         boolean isMethodOfModule = false;
         if (classDef != null) {
             final String className = TokenUtil.getIdent(classDef).getText();
             isMethodOfModule = className.equals(moduleName);
         }
-
         return isMethodOfModule;
     }
 
@@ -114,11 +252,9 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
      */
     private static DetailAST getParentAst(DetailAST ast, int type) {
         DetailAST node = ast.getParent();
-
         while (node != null && node.getType() != type) {
             node = node.getParent();
         }
-
         return node;
     }
 
@@ -152,4 +288,49 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
         }
         return setterMethod;
     }
+
+    /**
+     * Creates a PropertyDetails object for the given property.
+     *
+     * @param propertyName the name of the property.
+     * @return the PropertyDetails object.
+     * @throws MacroExecutionException if an error occurs
+     */
+    private PropertyDetails createPropertyDetails(String propertyName)
+            throws MacroExecutionException {
+        final DetailNode setterJavadoc = setterNodes.get(propertyName);
+        final Class<?> instanceClass;
+        if (moduleInstance == null) {
+            instanceClass = Object.class;
+        }
+        else {
+            instanceClass = moduleInstance.getClass();
+        }
+
+        final String description = SiteUtil.getPropertyDescriptionForXdoc(propertyName,
+                setterJavadoc, moduleName);
+        final String moduleSinceVersion = JavadocScraperResultUtil.getModuleSinceVersion();
+        final String since = SiteUtil.getPropertySinceVersion(moduleSinceVersion,
+                setterJavadoc);
+
+        final PropertyDetails.Builder builder = new PropertyDetails.Builder()
+                .name(propertyName)
+                .description(description)
+                .sinceVersion(since);
+
+        final boolean isDefaultInstance = moduleInstance == null
+                || moduleInstance.getClass() == Object.class;
+
+        final PropertyDetails result;
+        if (isDefaultInstance) {
+            result = builder.build();
+        }
+        else {
+            final Field field = SiteUtil.getField(instanceClass, propertyName);
+            result = SiteUtil.constructPropertyDetails(builder, moduleInstance, field,
+                    propertyName, moduleName);
+        }
+        return result;
+    }
+
 }

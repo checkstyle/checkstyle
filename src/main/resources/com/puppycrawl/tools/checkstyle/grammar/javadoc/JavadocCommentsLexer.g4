@@ -69,7 +69,9 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     private boolean hasSeenTagName = false;
     private int braceCounter = 0;
     private boolean inSeeReferencePart = false;
+    private boolean inFragmentReference = false;
 
+    private final Deque<Integer> braceCounters = new ArrayDeque<>();
     private final Deque<Token> openTagNameTokens = new ArrayDeque<>();
     private final Deque<Token> closeTagNameTokens = new ArrayDeque<>();
 
@@ -105,12 +107,44 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 
     public boolean isJavadocBlockTag() {
         int nextChar = _input.LA(1);
+        int tagStartChar = _input.LA(2);
 
         return (previousTokenType == WS
                 || previousTokenType == LEADING_ASTERISK
                 || previousToken == null
                 || previousTokenType == NEWLINE)
-                && nextChar == '@';
+                && nextChar == '@'
+                && tagStartChar != '@';
+    }
+
+    private void switchFromReferenceModeOnWhitespace() {
+        int la = _input.LA(1);
+        if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
+            if (inSeeReferencePart) {
+                pushMode(DEFAULT_MODE);
+                inSeeReferencePart = false;
+            } else {
+                pushMode(LINK_TAG_DESCRIPTION);
+            }
+        }
+    }
+
+    private void pushBraceCounter() {
+        braceCounters.push(braceCounter);
+        braceCounter = 1;
+    }
+
+    private void finishPlainTextTag() {
+        braceCounter--;
+        if (!braceCounters.isEmpty()) {
+            braceCounter = braceCounters.pop();
+        }
+    }
+
+    private void restoreBraceCounter() {
+        if (!braceCounters.isEmpty()) {
+            braceCounter = braceCounters.pop();
+        }
     }
 
     @Override
@@ -353,7 +387,7 @@ Code_RBRACE
     ;
 
 JAVADOC_INLINE_TAG_END
-    : '}' { braceCounter == 1 }? { braceCounter--; } -> popMode, popMode
+    : '}' { braceCounter == 1 }? { finishPlainTextTag(); } -> popMode, popMode
     ;
 
 Code_TEXT
@@ -388,7 +422,7 @@ SnippetAttribute_WS
     ;
 
 SnippetAttribute_JAVADOC_INLINE_TAG_END
-    : '}' { braceCounter--; } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 SnippetAttribute_LEADING_ASTERISK
@@ -449,22 +483,17 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : (LetterOrDigit | '.')+
+    : ({inFragmentReference}? ~[ \t\r\n}]+ | (LetterOrDigit | '.')+)
       {
-          int la = _input.LA(1);
-          if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
-              if (inSeeReferencePart) {
-                  pushMode(DEFAULT_MODE);
-                  inSeeReferencePart = false;
-              } else {
-                  pushMode(LINK_TAG_DESCRIPTION);
-              }
-          }
+          inFragmentReference = false;
+          switchFromReferenceModeOnWhitespace();
       }
     ;
 
 QUESTION: '?';
-HASH: '#';
+HASH
+    : '#' { inFragmentReference = previousTokenType == HASH; }
+    ;
 LPAREN: '(' -> pushMode(PARAMETER_LIST);
 SLASH: '/';
 
@@ -473,7 +502,7 @@ Link_WS
     ;
 
 Link_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 LT
@@ -537,12 +566,20 @@ LinkDescription_TEXT
     ;
 
 LinkDescription_JAVADOC_INLINE_TAG_START
-    : '{@' { braceCounter = 1; } -> pushMode(JAVADOC_INLINE_TAG_MODE),
+    : '{@' { pushBraceCounter(); } -> pushMode(JAVADOC_INLINE_TAG_MODE),
       type(JAVADOC_INLINE_TAG_START)
     ;
 
 LinkDescription_NEWLINE
     : NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES)
+    ;
+
+LinkDescription_LBRACE
+    : '{' { braceCounter++; } -> type(TEXT)
+    ;
+
+LinkDescription_RBRACE
+    : '}' { braceCounter > 1 }? { braceCounter--; } -> type(TEXT)
     ;
 
 LinkDescription_LEADING_ASTERISK
@@ -551,7 +588,7 @@ LinkDescription_LEADING_ASTERISK
     ;
 
 LinkDescription_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode, popMode
     ;
 
 LinkDescription_TAG
@@ -578,8 +615,12 @@ ParameterList_LEADING_ASTERISK
       -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
     ;
 
+fragment PARAMETER_TYPE_CHAR
+    : LetterOrDigit | [.<>[\]?]
+    ;
+
 PARAMETER_TYPE
-    : (LetterOrDigit | '.' | '[' | ']')+
+    : PARAMETER_TYPE_CHAR+ (' ' PARAMETER_TYPE_CHAR+)*
     ;
 
 COMMA: ',';
@@ -604,6 +645,15 @@ Value_IDENTIFIER
     ;
 
 FORMAT_SPECIFIER
+    : QUOTED_FORMAT_SPECIFIER
+    | FORMAT_CONVERSION
+    ;
+
+fragment QUOTED_FORMAT_SPECIFIER
+    : '"' ~["\r\n}%]* FORMAT_CONVERSION ~["\r\n}%]* '"'
+    ;
+
+fragment FORMAT_CONVERSION
     : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
     ;
 
@@ -623,7 +673,7 @@ Value_LEADING_ASTERISK
     ;
 
 Value_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 // --- INLINE_TAG_DESCRIPTION ---
@@ -656,7 +706,7 @@ InlineDescription_LEADING_ASTERISK
     ;
 
 InlineDescription_JAVADOC_INLINE_TAG_END
-    : '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
+    : '}' { restoreBraceCounter(); } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
 // --- INDEX_TERM_MODE ---

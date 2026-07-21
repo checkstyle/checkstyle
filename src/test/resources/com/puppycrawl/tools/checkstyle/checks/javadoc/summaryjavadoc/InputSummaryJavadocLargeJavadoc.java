@@ -9,7 +9,6 @@ period = (default).
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
-// violation below 'Summary javadoc is missing.'
 /**
  * <body>
  * <p> This class is only meant for testing. </p>

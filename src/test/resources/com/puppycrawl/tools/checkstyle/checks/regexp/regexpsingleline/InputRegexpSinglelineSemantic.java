@@ -1,7 +1,7 @@
 /*
 RegexpSingleline
 format = System\\.(out)|(err)\\.print(ln)?\\(
-message = (default)
+message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0
@@ -74,7 +74,8 @@ class InputRegexpSinglelineSemantic
             // can never happen, empty compound statement is another workaround
         }
         catch (UnsupportedOperationException handledException) {
-            System.out.println(handledException.getMessage()); // violation
+            // violation below 'Line matches the illegal pattern 'System\\.'
+            System.out.println(handledException.getMessage());
         }
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}

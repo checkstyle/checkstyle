@@ -61,9 +61,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void test() throws Exception {
 
         final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "17:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "37:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "17:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "19:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "39:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
         verifyWithInlineConfigParser(
@@ -73,9 +73,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageDirectPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "29:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
+            "33:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -86,9 +86,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageCommonPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[ImmutablePair, StrTokenizer]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicThreadFactory.Builder, MutablePair]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "29:1: " + getCheckMessage(MSG_KEY, 2, 0, "[ImmutablePair, StrTokenizer]"),
+            "33:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicThreadFactory.Builder, MutablePair]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -122,9 +122,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "29:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
+            "33:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -157,8 +157,8 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testRegularExpression() throws Exception {
 
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
-            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "23:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
+            "25:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
         };
 
         verifyWithInlineConfigParser(
@@ -169,9 +169,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testEmptyRegularExpression() throws Exception {
 
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
-            "23:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
-            "43:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
+            "23:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
+            "25:5: " + getCheckMessage(MSG_KEY, 1, 0, "[ArrayList]"),
+            "45:1: " + getCheckMessage(MSG_KEY, 2, 0, "[HashMap, HashSet]"),
         };
 
         verifyWithInlineConfigParser(
@@ -183,11 +183,11 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
         final int maxAbstraction = 1;
         final String[] expected = {
-            "31:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "36:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "46:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "55:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
-            "67:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
+            "32:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "49:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "58:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "71:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
         };
 
         verifyWithInlineConfigParser(
@@ -199,7 +199,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     public void testNew() throws Exception {
 
         final String[] expected = {
-            "19:1: " + getCheckMessage(MSG_KEY, 2, 0, "[File, Random]"),
+            "20:1: " + getCheckMessage(MSG_KEY, 2, 0, "[File, Random]"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCoupling5.java"), expected);

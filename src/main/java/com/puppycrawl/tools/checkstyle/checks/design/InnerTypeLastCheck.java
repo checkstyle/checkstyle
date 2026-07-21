@@ -19,14 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import java.util.BitSet;
+import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -37,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * @since 5.2
  */
-@FileStatefulCheck
+@StatelessCheck
 public class InnerTypeLastCheck extends AbstractCheck {
 
     /**
@@ -47,7 +46,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
     public static final String MSG_KEY = "arrangement.members.before.inner";
 
     /** Set of class member tokens. */
-    private static final BitSet CLASS_MEMBER_TOKENS = TokenUtil.asBitSet(
+    private static final Set<Integer> CLASS_MEMBER_TOKENS = Set.of(
             TokenTypes.VARIABLE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
@@ -56,8 +55,12 @@ public class InnerTypeLastCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF
     );
 
-    /** Meet a root class. */
-    private boolean rootClass;
+    /**
+     * Creates a new {@code InnerTypeLastCheck} instance.
+     */
+    public InnerTypeLastCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -79,32 +82,14 @@ public class InnerTypeLastCheck extends AbstractCheck {
     }
 
     @Override
-    public void beginTree(DetailAST rootAST) {
-        rootClass = true;
-    }
-
-    @Override
     public void visitToken(DetailAST ast) {
-        // First root class
-        if (rootClass) {
-            rootClass = false;
-        }
-        else {
-            DetailAST nextSibling = ast;
-            while (nextSibling != null) {
-                if (!ScopeUtil.isInCodeBlock(ast)
-                        && CLASS_MEMBER_TOKENS.get(nextSibling.getType())) {
-                    log(nextSibling, MSG_KEY);
-                }
-                nextSibling = nextSibling.getNextSibling();
+        DetailAST nextSibling = ast;
+        while (nextSibling != null) {
+            if (!ScopeUtil.isInCodeBlock(ast)
+                    && CLASS_MEMBER_TOKENS.contains(nextSibling.getType())) {
+                log(nextSibling, MSG_KEY);
             }
-        }
-    }
-
-    @Override
-    public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isRootNode(ast.getParent())) {
-            rootClass = true;
+            nextSibling = nextSibling.getNextSibling();
         }
     }
 

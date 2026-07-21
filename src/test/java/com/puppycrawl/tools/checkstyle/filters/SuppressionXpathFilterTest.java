@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -273,4 +274,27 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                                            ALL_MESSAGES,
                                            removeSuppressed(ALL_MESSAGES, suppressed));
     }
+
+    @Test
+    public void testNonMatchingFileRegexpByXpath() throws Exception {
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathFilterNonMatchingFile.java"),
+            ALL_MESSAGES,
+            removeSuppressed(ALL_MESSAGES, suppressed));
+    }
+
+    @Test
+    public void testDecideByMessageByXpath() throws Exception {
+        final String[] expected = {
+            "20:7: " + getCheckMessage(TypeNameCheck.class, MSG_INVALID_PATTERN,
+                "inputSuppressionXpathFilterDecideByMessage", "^[A-Z][a-zA-Z0-9]*$"),
+        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressionXpathFilterDecideByMessage.java"),
+            expected,
+            removeSuppressed(expected, suppressed));
+    }
+
 }

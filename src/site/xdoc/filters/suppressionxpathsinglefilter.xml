@@ -53,7 +53,7 @@
             </tr>
             <tr>
               <td><a id="checks"/><a href="#checks">checks</a></td>
-              <td>Define a Regular Expression matched against the name of the check associated with an audit event.</td>
+              <td>Define a Regular Expression matched against the name of the check associated with an audit event. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
@@ -112,9 +112,16 @@
 </code></pre></div>
         <p id="Example1-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example1 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
-  // filtered violation above 'Name 'MyMethod' must match pattern'
+  // violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -133,13 +140,16 @@ public class Example1 {
 </code></pre></div>
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example2 {
-  // filtered violation below 'Name 'MyMethod1' must match pattern'
-  public void MyMethod1() {}
+  // violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
   // filtered violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
   // violation below 'Name 'MyMethodA' must match pattern'
   public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -160,9 +170,16 @@ public class Example2 {
 </code></pre></div>
         <p id="Example3-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example3 {
   // filtered violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
+  // filtered violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // filtered violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -188,27 +205,41 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 // filtered violation above 'must match pattern'
+public class Example4 {
 
-public class Example4 {}
+  public void MyMethod() {}
+
+  public void MyMethod2() {}
+
+  public void MyMethodA() {}
+  private int field = 177;
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
-          To suppress RedundantModifier check for interface definitions:
+          To suppress MethodName check for all methods:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="RedundantModifier"/&gt;
+    &lt;module name="MethodName"/&gt;
     &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="RedundantModifier"/&gt;
-      &lt;property name="query" value="//INTERFACE_DEF//*"/&gt;
+      &lt;property name="checks" value="MethodName"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Code Example:</p>
+        <p id="Example5-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public interface Example5 {
-  public int CONSTANT1 = 1; // filtered violation 'Redundant 'public' modifier.'
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+public class Example5 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
+  // filtered violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // filtered violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -227,232 +258,16 @@ public interface Example5 {
 </code></pre></div>
         <p id="Example6-code">Code example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
 public class Example6 {
-  private int field = 177; // filtered violation ''177' is a magic number.'
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
-          Suppress checks for elements which are either class definitions,
-          or method definitions:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="AbstractClassName"/&gt;
-    &lt;module name="MethodName"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value=".*"/&gt;
-      &lt;property name="query"
-                value="(//CLASS_DEF[./IDENT[@text='Example7']])|
-                (//CLASS_DEF[./IDENT[@text='Example7']]/OBJBLOCK/METHOD_DEF
-                /IDENT[@text='MyMethod'])"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example7-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// filtered violation below 'Name 'Example7' must match pattern'
-abstract class Example7 {
-  public void MyMethod() {}
-  // filtered violation above 'Name 'MyMethod' must match pattern'
-}
 
-// violation below, 'Name 'AnotherClass' must match pattern'
-abstract class AnotherClass {
   public void MyMethod() {}
-  // violation above, 'Name 'MyMethod' must match pattern'
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
-          Suppress checks for MyMethod1 or MyMethod2 methods:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MethodName"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="MethodName"/&gt;
-      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='Example8']]/OBJBLOCK/
-                METHOD_DEF/IDENT[@text='MyMethod1' or @text='MyMethod2']"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">Code example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
-  // filtered violation below 'Name 'MyMethod1' must match pattern'
-  public void MyMethod1() {}
-  // filtered violation below 'Name 'MyMethod2' must match pattern'
+
   public void MyMethod2() {}
-  // violation below, 'Name 'MyMethod3' must match pattern'
-  public void MyMethod3() {}
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
-          Suppress checks for variable testVariable1 inside
-          testMethod method inside Example9 class:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="LocalFinalVariableName"&gt;
-      &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
-    &lt;/module&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="LocalFinalVariableName"/&gt;
-      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='Example9']]/OBJBLOCK
-            /METHOD_DEF[./IDENT[@text='testMethod']]/SLIST
-            /VARIABLE_DEF/IDENT[@text='testVariable1']"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example9-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
-  public void testMethod() {
-    // filtered violation below 'Name 'testVariable1' must match pattern'
-    final int testVariable1 = 10;
-    // violation below, 'Name 'testVariable2' must match pattern'
-    final int testVariable2 = 10;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example10-config">
-          In the following sample, violations for LeftCurly check
-          will be suppressed for methods with name testMethod1 inside
-          Example10 file.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="LeftCurly"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="LeftCurly"/&gt;
-      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='Example10']]/OBJBLOCK
-            /METHOD_DEF[./IDENT[@text='testMethod1']]/SLIST"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example10-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example10 {
-  public void testMethod1()
-  { // filtered violation ''{' at column 3 should be on the previous line.'
-  }
 
-  public void testMethod2()
-  { // violation, ''{' at column 3 should be on the previous line.'
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example11-config">
-          The following example demonstrates how to suppress
-          RequireThis violations for variable age inside changeAge method.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="RequireThis"&gt;
-      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
-    &lt;/module&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="RequireThis"/&gt;
-      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='Example11']]
-            //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example11-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example11 {
-  private int age = 23;
-  private int number = 100;
-
-  public void changeAge() {
-    // filtered violation below 'Reference to instance variable 'age' needs "this.".'
-    age = 24;
-  }
-  public void changeNumber(int number) {
-    // violation below, 'Reference to instance variable 'number' needs "this.".'
-    number = number;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example12-config">
-          Suppress <code>IllegalThrows</code> violations only for methods with name
-          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
-          Double colon is used for axis iterations. In the following example <code>ancestor</code>
-          axis is used to iterate all ancestor nodes of the current node with type
-          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
-          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="IllegalThrows"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="IllegalThrows"/&gt;
-      &lt;property name="query" value="//LITERAL_THROWS/IDENT[@text='RuntimeException'
-                    and ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example12-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example12 {
-  // filtered violation below 'Throwing 'RuntimeException' is not allowed.'
-  public void throwsMethod() throws RuntimeException {
-  }
-
-  // violation below, 'Throwing 'RuntimeException' is not allowed.'
-  public void sampleMethod() throws RuntimeException {
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example13-config">
-          The following sample demonstrates how to suppress all violations for method itself and
-          all descendants. <code>descendant-or-self</code> axis iterates through current node and
-          all children nodes at any level. Keyword <code>node()</code> selects node elements.
-          Please read more about xpath syntax at
-          <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="LocalFinalVariableName"&gt;
-      &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
-    &lt;/module&gt;
-    &lt;module name="MethodName"&gt;
-      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
-    &lt;/module&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value=".*"/&gt;
-      &lt;property name="query" value="//METHOD_DEF[./IDENT[@text='TestMethod1']]
-            /descendant-or-self::node()"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example13-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example13 {
-  // filtered violation below 'Name 'TestMethod1' must match pattern'
-  public void TestMethod1() {
-    // filtered violation below 'Name 'num' must match pattern'
-    final int num = 10;
-  }
-
-  // violation below, 'Name 'TestMethod2' must match pattern'
-  public void TestMethod2() {
-    // violation below, 'Name 'num' must match pattern'
-    final int num = 10;
-  }
+  public void MyMethodA() {}
+  private int field = 177; // filtered violation ''177' is a magic number.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example14-config">
@@ -488,7 +303,253 @@ public class Example13 {
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionXpathSingleFilter_Use_Cases">
+        <p id="UseCase1-config">
+          In the following sample, violations for LeftCurly check
+          will be suppressed for methods with name testMethod1 inside
+          UseCase1 file.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LeftCurly"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="LeftCurly"/&gt;
+      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='UseCase1']]/OBJBLOCK
+            /METHOD_DEF[./IDENT[@text='testMethod1']]/SLIST"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
+        <p id="UseCase1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+  public void testMethod1()
+  { // filtered violation ''{' at column 3 should be on the previous line.'
+  }
+
+  public void testMethod2()
+  { // violation, ''{' at column 3 should be on the previous line.'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          The following example demonstrates how to suppress
+          RequireThis violations for variable age inside changeAge method.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="RequireThis"/&gt;
+      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='UseCase2']]
+            //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase2 {
+  private int age = 23;
+  private int number = 100;
+
+  public void changeAge() {
+    // filtered violation below 'Reference to instance variable 'age' needs "this.".'
+    age = 24;
+  }
+  public void changeNumber(int number) {
+    // violation below, 'Reference to instance variable 'number' needs "this.".'
+    number = number;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-config">
+          Suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
+          Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          axis is used to iterate all ancestor nodes of the current node with type
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
+          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalThrows"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="IllegalThrows"/&gt;
+      &lt;property name="query" value="//LITERAL_THROWS/IDENT[@text='RuntimeException'
+                    and ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase3-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase3 {
+  // filtered violation below 'Throwing 'RuntimeException' is not allowed.'
+  public void throwsMethod() throws RuntimeException {
+  }
+
+  // violation below, 'Throwing 'RuntimeException' is not allowed.'
+  public void sampleMethod() throws RuntimeException {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase4-config">
+          The following sample demonstrates how to suppress all violations for method itself and
+          all descendants. <code>descendant-or-self</code> axis iterates through current node and
+          all children nodes at any level. Keyword <code>node()</code> selects node elements.
+          Please read more about xpath syntax at
+          <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"&gt;
+      &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+    &lt;/module&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value=".*"/&gt;
+      &lt;property name="query" value="//METHOD_DEF[./IDENT[@text='TestMethod1']]
+            /descendant-or-self::node()"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase4 {
+  // filtered violation below 'Name 'TestMethod1' must match pattern'
+  public void TestMethod1() {
+    // filtered violation below 'Name 'num' must match pattern'
+    final int num = 10;
+  }
+
+  // violation below, 'Name 'TestMethod2' must match pattern'
+  public void TestMethod2() {
+    // violation below, 'Name 'num' must match pattern'
+    final int num = 10;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase5-config">
+          To suppress RedundantModifier check for interface definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RedundantModifier"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="RedundantModifier"/&gt;
+      &lt;property name="query" value="//INTERFACE_DEF//*"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface UseCase5 {
+  public int CONSTANT1 = 1; // filtered violation 'Redundant 'public' modifier.'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase6-config">
+          Suppress checks for elements which are either class definitions,
+          or method definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbstractClassName"/&gt;
+    &lt;module name="MethodName"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value=".*"/&gt;
+      &lt;property name="query"
+                value="(//CLASS_DEF[./IDENT[@text='UseCase6']])|
+                (//CLASS_DEF[./IDENT[@text='UseCase6']]/OBJBLOCK/METHOD_DEF
+                /IDENT[@text='MyMethod'])"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase6-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// filtered violation below 'Name 'UseCase6' must match pattern'
+abstract class UseCase6 {
+  public void MyMethod() {}
+  // filtered violation above 'Name 'MyMethod' must match pattern'
+}
+
+// violation below, 'Name 'AnotherClass' must match pattern'
+abstract class AnotherClass {
+  public void MyMethod() {}
+  // violation above, 'Name 'MyMethod' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase7-config">
+          Suppress checks for MyMethod1 or MyMethod2 methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="MethodName"/&gt;
+      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='UseCase7']]/OBJBLOCK/
+                METHOD_DEF/IDENT[@text='MyMethod1' or @text='MyMethod2']"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase7-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase7 {
+  // filtered violation below 'Name 'MyMethod1' must match pattern'
+  public void MyMethod1() {}
+  // filtered violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // violation below, 'Name 'MyMethod3' must match pattern'
+  public void MyMethod3() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase8-config">
+          Suppress checks for variable testVariable1 inside
+          testMethod method inside UseCase8 class:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"&gt;
+      &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
+    &lt;/module&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="LocalFinalVariableName"/&gt;
+      &lt;property name="query" value="//CLASS_DEF[./IDENT[@text='UseCase8']]/OBJBLOCK
+            /METHOD_DEF[./IDENT[@text='testMethod']]/SLIST
+            /VARIABLE_DEF/IDENT[@text='testVariable1']"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase8-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase8 {
+  public void testMethod() {
+    // filtered violation below 'Name 'testVariable1' must match pattern'
+    final int testVariable1 = 10;
+    // violation below, 'Name 'testVariable2' must match pattern'
+    final int testVariable2 = 10;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionXpathSingleFilter_Example_of_Usage">
         <ul>
@@ -502,10 +563,19 @@ public class Example13 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionXpathSingleFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name"
+                   id="SuppressionXpathSingleFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter</p>
+        <p>
+              This is the fully qualified class name of the module.
+              Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
       <subsection name="Parent Module" id="SuppressionXpathSingleFilter_Parent_Module">
         <p>

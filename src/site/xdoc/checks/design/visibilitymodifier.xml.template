@@ -117,24 +117,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example7-config">
-          Note, if allowPublicImmutableFields is set to true, the check will also check whether
-          generic type parameters are immutable. If at least one generic type parameter is mutable,
-          there will be a violation.
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example7.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example7-code">
-          Example of how the check works:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example7.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example8-config">
           To configure the Check passing fields annotated with @java.lang.Deprecated:
         </p>
@@ -151,59 +133,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example8.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example9-config">
-          To configure the Check passing fields annotated with @org.junit.Rule,
-          @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example9.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example9-code">
-          Example of allowed fields:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example9.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example10-config">
-          To configure the Check passing fields annotated with short annotation name:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example10.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example10-code">
-          Example of allowed fields:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example10.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <p>
-          To understand the difference between allowPublicImmutableFields and
-          allowPublicFinalFields options, please, study the following examples.
-        </p><hr class="example-separator"/>
-        <p id="Example11-config">
-           1) To configure the check to use only 'allowPublicImmutableFields' option:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example11.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example11-code">
-          Code example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example11.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example12-config">
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>
@@ -218,6 +147,81 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="VisibilityModifier_Use_Cases">
+        <p id="UseCase1-config">
+          Note, if allowPublicImmutableFields is set to true, the check will also check whether
+          generic type parameters are immutable. If at least one generic type parameter is mutable,
+          there will be a violation.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example of how the check works:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the Check passing fields annotated with @org.junit.Rule,
+          @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+          Example of allowed fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase3-config">
+          To configure the Check passing fields annotated with short annotation name:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-code">
+          Example of allowed fields:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          To understand the difference between allowPublicImmutableFields and
+          allowPublicFinalFields options, please, study the following examples.
+        </p>
+        <p id="UseCase4-config">
+           1) To configure the check to use only 'allowPublicImmutableFields' option:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase4-code">
+          Code example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/visibilitymodifier/UseCase4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -246,9 +250,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="VisibilityModifier_Package">
+      <subsection name="Fully Qualified Name" id="VisibilityModifier_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.design
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

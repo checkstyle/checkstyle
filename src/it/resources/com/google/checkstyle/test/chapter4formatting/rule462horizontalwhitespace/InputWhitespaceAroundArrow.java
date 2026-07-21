@@ -1,5 +1,3 @@
-// Java21
-
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
 import java.awt.event.ActionEvent;
@@ -73,8 +71,8 @@ public class InputWhitespaceAroundArrow {
     //     ''{' is not preceded with whitespace.'
     new LinkedList<Integer>().stream()
         .map(t ->{
-            return t * 2;
-          }
+          return t * 2;
+        }
         )
         .filter(t -> {
           return false;

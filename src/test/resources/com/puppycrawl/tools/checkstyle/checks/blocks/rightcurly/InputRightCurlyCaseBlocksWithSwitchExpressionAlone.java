@@ -5,7 +5,7 @@ tokens = LITERAL_CASE, LITERAL_IF
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 public class InputRightCurlyCaseBlocksWithSwitchExpressionAlone {

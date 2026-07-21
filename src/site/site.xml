@@ -59,6 +59,7 @@
                 src="$relativePath/js/copy-clipboard.js" defer async></script>
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
+        <script src="$relativePath/js/search.js" defer async></script>
       ]]>
     </head>
     <links>
@@ -191,11 +192,15 @@
                 href="checks/coding/unnecessarysemicoloninenumeration.html"/>
           <item name="UnnecessarySemicolonInTryWithResources"
                 href="checks/coding/unnecessarysemicolonintrywithresources.html"/>
+          <item name="UnnecessaryTypeArgumentsWithRecordPattern"
+                href="checks/coding/unnecessarytypeargumentswithrecordpattern.html"/>
           <item name="UnusedCatchParameterShouldBeUnnamed"
                 href="checks/coding/unusedcatchparametershouldbeunnamed.html"/>
           <item name="UnusedLambdaParameterShouldBeUnnamed"
                 href="checks/coding/unusedlambdaparametershouldbeunnamed.html"/>
           <item name="UnusedLocalVariable" href="checks/coding/unusedlocalvariable.html"/>
+          <item name="UnusedTryResourceShouldBeUnnamed"
+                href="checks/coding/unusedtryresourceshouldbeunnamed.html"/>
           <item name="UseEnhancedSwitch"
                 href="checks/coding/useenhancedswitch.html"/>
           <item name="VariableDeclarationUsageDistance"
@@ -232,7 +237,6 @@
                 href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html"/>
           <item name="JavadocPackage" href="checks/javadoc/javadocpackage.html"/>
           <item name="JavadocParagraph" href="checks/javadoc/javadocparagraph.html"/>
-          <item name="JavadocStyle" href="checks/javadoc/javadocstyle.html"/>
           <item name="JavadocTagContinuationIndentation"
                 href="checks/javadoc/javadoctagcontinuationindentation.html"/>
           <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
@@ -282,6 +286,8 @@
           <item name="UpperEll" href="checks/misc/upperell.html"/>
         </item>
         <item name="Modifiers" href="checks/modifier/index.html" collapse="true">
+          <item name="AnnotatedDeclarationVisibility"
+                href="checks/modifier/annotateddeclarationvisibility.html"/>
           <item name="ClassMemberImpliedModifier"
                 href="checks/modifier/classmemberimpliedmodifier.html"/>
           <item name="InterfaceMemberImpliedModifier"
@@ -352,6 +358,7 @@
           <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
           <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>
           <item name="SingleSpaceSeparator" href="checks/whitespace/singlespaceseparator.html"/>
+          <item name="TypeBodyPadding" href="checks/whitespace/typebodypadding.html"/>
           <item name="TypecastParenPad" href="checks/whitespace/typecastparenpad.html"/>
           <item name="WhitespaceAfter" href="checks/whitespace/whitespaceafter.html"/>
           <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>
@@ -384,6 +391,7 @@
         <item name="Google's Style" href="google_style.html"/>
         <item name="OpenJDK's Style" href="openjdk_style.html"/>
         <item name="Sun's Style" href="sun_style.html"/>
+        <item name="Documentation Comments Style" href="doc_comments_style.html"/>
       </item>
     </menu>
 

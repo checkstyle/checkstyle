@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.util.Set;
 
@@ -44,15 +45,13 @@ public class ThreadModeSettingsTest {
     public void testResolveCheckerInMultiThreadMode() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
-        try {
-            configuration.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
-            assertWithMessage("An exception is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                    .that(exc.getMessage())
-                    .isEqualTo("Multi thread mode for Checker module is not implemented");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    configuration.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
+                }, "An exception is expected");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("Multi thread mode for Checker module is not implemented");
     }
 
     @Test
@@ -69,15 +68,13 @@ public class ThreadModeSettingsTest {
     public void testResolveTreeWalker() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
-        try {
-            configuration.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (IllegalArgumentException exc) {
-            assertWithMessage("Invalid exception message")
-                    .that(exc.getMessage())
-                    .isEqualTo("Multi thread mode for TreeWalker module is not implemented");
-        }
+        final IllegalArgumentException exc =
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
+                    configuration.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
+                }, "Exception is expected");
+        assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("Multi thread mode for TreeWalker module is not implemented");
     }
 
     @Test

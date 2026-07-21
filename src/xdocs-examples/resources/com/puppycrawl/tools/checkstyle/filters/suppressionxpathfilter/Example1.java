@@ -2,8 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SuppressionXpathFilter">
-      <property name="file" value="${config.folder}/suppressions1.xml"/>
-      <property name="optional" value="false"/>
+      <property name="file" value="${config.folder}/non-existent-suppressions.xml"/>
+      <property name="optional" value="true"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="max" value="3"/>
@@ -13,19 +13,44 @@
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
+import javax.annotation.processing.Generated;
 
 // xdoc section -- start
-public class Example1 {
-  int a, b, c, d, e, n;
 
-  public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
-    if (a == b) {
-      System.out.println("Hello World");
+public class Example1 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() { // violation 'Cyclomatic Complexity is 4'
+    if (age > 0 && wordCount > 0) {
+      System.out.println("Hello");
     }
-    else if (a == 0 && b == c) {
-      System.out.println("*Silence*");
+    else if (age < 0) {
+      System.out.println("World");
     }
   }
 
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
 }
 // xdoc section -- end

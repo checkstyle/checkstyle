@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = PRIVATE
 excludeScope = (default)null
+scope = PRIVATE
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -17,7 +18,8 @@ import java.io.IOException;
 public class InputMissingJavadocTypeTagsTwo {}
 
 // Tests for Javadoc tags.
-class InputMissingJavadocTypeTags1Two // violation
+// violation below 'Missing a Javadoc comment.'
+class InputMissingJavadocTypeTags1Two
 {
     // Invalid - should be Javadoc
     private int mMissingJavadoc;

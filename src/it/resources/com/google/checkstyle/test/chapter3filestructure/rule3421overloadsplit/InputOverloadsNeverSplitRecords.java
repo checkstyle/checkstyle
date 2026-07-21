@@ -1,4 +1,4 @@
-// Java17
+//
 
 package com.google.checkstyle.test.chapter3filestructure.rule3421overloadsplit;
 

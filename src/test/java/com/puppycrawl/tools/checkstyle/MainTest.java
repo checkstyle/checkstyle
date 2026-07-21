@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.mockito.Mockito.mock;
@@ -39,6 +40,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -243,7 +245,7 @@ public class MainTest {
             boolean found = false;
 
             for (Handler savedHandler : HANDLERS) {
-                if (handler == savedHandler) {
+                if (Objects.equals(handler, savedHandler)) {
                     found = true;
                     break;
                 }
@@ -813,38 +815,36 @@ public class MainTest {
     @Test
     public void testLoadPropertiesIoException() throws Exception {
         final Class<?> cliOptionsClass = Class.forName(Main.class.getName());
-        try {
-            TestUtil.invokeVoidStaticMethod(cliOptionsClass,
-                    "loadProperties", new File("."));
-            assertWithMessage("Exception was expected").fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Invalid error cause")
-                    .that(exc)
-                    .hasCauseThat()
-                    .isInstanceOf(CheckstyleException.class);
-            // We do separate validation for message as in Windows
-            // disk drive letter appear in message,
-            // so we skip that drive letter for compatibility issues
-            final Violation loadPropertiesMessage = new Violation(1,
-                    Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
-                    new String[] {""}, null, getClass(), null);
-            final String causeMessage = exc.getCause().getLocalizedMessage();
-            final String violation = loadPropertiesMessage.getViolation();
-            final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
-                    .equals(violation
-                            .substring(0, violation.indexOf(' ')));
-            final boolean sameSuffix =
-                    causeMessage.substring(causeMessage.lastIndexOf(' '))
-                    .equals(violation
-                            .substring(violation.lastIndexOf(' ')));
-            assertWithMessage("Invalid violation")
-                    .that(samePrefix || sameSuffix)
-                    .isTrue();
-            assertWithMessage("Invalid violation")
-                    .that(causeMessage)
-                    .contains(".'");
-        }
+        final ReflectiveOperationException exc =
+                getExpectedThrowable(ReflectiveOperationException.class, () -> {
+                    TestUtil.invokeVoidStaticMethod(cliOptionsClass,
+                            "loadProperties", new File("."));
+                }, "Exception was expected");
+        assertWithMessage("Invalid error cause")
+                .that(exc)
+                .hasCauseThat()
+                .isInstanceOf(CheckstyleException.class);
+        // We do separate validation for message as in Windows
+        // disk drive letter appear in message,
+        // so we skip that drive letter for compatibility issues
+        final Violation loadPropertiesMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
+                new String[] {""}, null, getClass(), null);
+        final String causeMessage = exc.getCause().getLocalizedMessage();
+        final String violation = loadPropertiesMessage.getViolation();
+        final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
+                .equals(violation
+                        .substring(0, violation.indexOf(' ')));
+        final boolean sameSuffix =
+                causeMessage.substring(causeMessage.lastIndexOf(' '))
+                .equals(violation
+                        .substring(violation.lastIndexOf(' ')));
+        assertWithMessage("Invalid violation")
+                .that(samePrefix || sameSuffix)
+                .isTrue();
+        assertWithMessage("Invalid violation")
+                .that(causeMessage)
+                .contains(".'");
     }
 
     @Test
@@ -852,10 +852,10 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         // we just reference there all violations
         final String[][] outputValues = {
-                {"InputMainComplexityOverflow", "1", "172"},
+                {"InputMainComplexityOverflow", "1", "108"},
         };
 
-        final int allowedLength = 170;
+        final int allowedLength = 106;
         final String msgKey = "maxLen.file";
         final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 
@@ -1257,12 +1257,12 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputJavadocComment.txt")))
-            .replaceAll("\\\\r\\\\n", "\\\\n").replaceAll("\r\n", "\n");
+            .replace("\\\\r\\\\n", "\\\\n").replace("\r\n", "\n");
 
         assertMainReturnCode(0, "-j", getPath("InputMainJavadocComment.javadoc"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
-                        .replaceAll("\r\n", "\n"))
+                        .replace("\r\n", "\n"))
             .isEqualTo(expected);
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
@@ -1727,12 +1727,12 @@ public class MainTest {
         final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputAstTreeStringPrinterJavadoc.txt")))
                 .replaceAll("\\\\r\\\\n", "\\\\n")
-                .replaceAll("\r\n", "\n");
+                .replace("\r\n", "\n");
 
         assertMainReturnCode(0, "-J", getPath("InputMainAstTreeStringPrinterJavadoc.java"));
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData().replaceAll("\\\\r\\\\n", "\\\\n")
-                        .replaceAll("\r\n", "\n"))
+                        .replace("\r\n", "\n"))
             .isEqualTo(expected);
         assertWithMessage("Unexpected system error log")
             .that(systemErr.getCapturedData())
@@ -2057,7 +2057,8 @@ public class MainTest {
      * @noinspectionreason ResultOfMethodCallIgnored - Setup for mockito to only
      *                     mock getRuntime to avoid VM termination.
      */
-    private static void assertMainReturnCode(int expectedExitCode, String... arguments) {
+    private static void assertMainReturnCode(int expectedExitCode,
+            String... arguments) {
         final Runtime mock = mock();
         try (MockedStatic<Runtime> runtime = mockStatic(Runtime.class)) {
             runtime.when(Runtime::getRuntime)
@@ -2065,7 +2066,7 @@ public class MainTest {
             Main.main(arguments);
         }
         catch (IOException exception) {
-            assertWithMessage("Unexpected exception: %s", exception).fail();
+            throw new IllegalStateException("Unexpected IOException", exception);
         }
         verify(mock).exit(expectedExitCode);
     }
@@ -2089,4 +2090,5 @@ public class MainTest {
         }
 
     }
+
 }

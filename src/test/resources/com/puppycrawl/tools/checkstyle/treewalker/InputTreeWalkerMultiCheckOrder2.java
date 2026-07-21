@@ -1,10 +1,12 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck
 format = ^[a-z]([a-z0-9][a-zA-Z0-9]*)?$
+ignoreOverridden = (default)false
 accessModifiers =  protected, package, private
 
 com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck
 format = ^[a-z][a-z0-9][a-zA-Z0-9]*$
+ignoreOverridden = (default)false
 accessModifiers = public
 
 */

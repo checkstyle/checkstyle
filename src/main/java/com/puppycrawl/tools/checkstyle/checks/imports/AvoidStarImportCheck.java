@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 3.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class AvoidStarImportCheck
     extends AbstractCheck {
 
@@ -57,6 +57,12 @@ public class AvoidStarImportCheck
      * file.
      */
     public static final String MSG_KEY = "import.avoidStar";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_COUNT = "import.avoidStarCount";
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
@@ -78,6 +84,23 @@ public class AvoidStarImportCheck
      * {@code import static org.junit.Assert.*;}.
      */
     private boolean allowStaticMemberImports;
+
+    /**
+     * Maximum number of allowed star imports.
+     */
+    private int maxAllowedStarImports;
+
+    /**
+     * Counter for used star imports.
+     */
+    private int currentStarImportsCount;
+
+    /**
+     * Creates a new {@code AvoidStarImportCheck} instance.
+     */
+    public AvoidStarImportCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -144,6 +167,21 @@ public class AvoidStarImportCheck
         allowStaticMemberImports = allow;
     }
 
+    /**
+     * Setter to control how many star imports are allowed.
+     *
+     * @param count the number of star imports allowed
+     * @since 13.5.0
+     */
+    public void setMaxAllowedStarImports(int count) {
+        maxAllowedStarImports = count;
+    }
+
+    @Override
+    public void beginTree(DetailAST rootAST) {
+        currentStarImportsCount = 0;
+    }
+
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.IMPORT) {
@@ -168,8 +206,18 @@ public class AvoidStarImportCheck
     private void logsStarredImportViolation(DetailAST startingDot) {
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
-        if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
-            log(startingDot, MSG_KEY, importText);
+        final boolean isStarImport = importText.endsWith(STAR_IMPORT_SUFFIX);
+        if (isStarImport) {
+            currentStarImportsCount++;
+            if (currentStarImportsCount > maxAllowedStarImports
+                    && !excludes.contains(importText)) {
+                if (maxAllowedStarImports > 0) {
+                    log(startingDot, MSG_COUNT, maxAllowedStarImports);
+                }
+                else {
+                    log(startingDot, MSG_KEY, importText);
+                }
+            }
         }
     }
 

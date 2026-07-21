@@ -66,10 +66,29 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   void MyMethod() {
+    int good = 1;
+    int g = 0;
     for (int var = 1; var &lt; 10; var++) {}
-    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation
+    for (int VAR = 1; VAR &lt; 10; VAR++) {}
+    // violation above, 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
-    for (int var_1 = 0; var_1 &lt; 10; var_1++) {} // violation
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
+    // violation above, 'Name 'var_1' must match pattern*'
+    for (int v = 1; v &lt; 10; v++) {
+      int a = 1;
+    }
+    for (int V = 1; V &lt; 10; V++) {
+      // violation above, 'Name 'V' must match pattern*'
+      int I = 1; // violation, 'Name 'I' must match pattern*'
+    }
+    List list = new ArrayList();
+    for (Object o : list) {
+      String a = "";
+    }
+    for (Object O : list) {
+      // violation above, 'Name 'O' must match pattern*'
+      String A = ""; // violation, 'Name 'A' must match pattern*'
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -90,25 +109,29 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void MyMethod() {
+    int good = 1;
+    int g = 0;
     for (int var = 1; var &lt; 10; var++) {}
-    for (int VAR = 1; VAR &lt; 10; VAR++) {} // violation
+    for (int VAR = 1; VAR &lt; 10; VAR++) {}
+    // violation above, 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-code">
-          An example of one character variable name in initialization expression(like &quot;i&quot;)
-          in FOR loop:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
-  void myMethod () {
-    for(int i = 1; i &lt; 10; i++) {}
-    for(int K = 1; K &lt; 10; K++) {} // violation
+
+    for (int v = 1; v &lt; 10; v++) {
+      int a = 1;
+    }
+    for (int V = 1; V &lt; 10; V++) {
+      // violation above, 'Name 'V' must match pattern*'
+      int I = 1; // violation, 'Name 'I' must match pattern*'
+    }
     List list = new ArrayList();
-    for (Object o : list) {}
-    for (Object O : list) {} // violation
+    for (Object o : list) {
+      String a = "";
+    }
+    for (Object O : list) {
+      // violation above, 'Name 'O' must match pattern*'
+      String A = ""; // violation, 'Name 'A' must match pattern*'
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -133,24 +156,50 @@ class Example3 {
 class Example4 {
   void MyMethod() {
     int good = 1;
-    int g = 0; // violation
+    int g = 0; // violation, 'Name 'g' must match pattern*'
+    for (int var = 1; var &lt; 10; var++) {}
+    for (int VAR = 1; VAR &lt; 10; VAR++) {}
+    // violation above, 'Name 'VAR' must match pattern*'
+    for (int i = 1; i &lt; 10; i++) {}
+    for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
+
     for (int v = 1; v &lt; 10; v++) {
-      int a = 1; // violation
+      int a = 1; // violation, 'Name 'a' must match pattern*'
     }
     for (int V = 1; V &lt; 10; V++) {
-      int I = 1; // violation
+
+      int I = 1; // violation, 'Name 'I' must match pattern*'
     }
     List list = new ArrayList();
     for (Object o : list) {
-      String a = ""; // violation
+      String a = ""; // violation, 'Name 'a' must match pattern*'
     }
     for (Object O : list) {
-      String A = ""; // violation
+
+      String A = ""; // violation, 'Name 'A' must match pattern*'
     }
   }
 }
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalVariableName_Use_Cases">
+        <p id="UseCase1-code">
+          An example of one character variable name in initialization expression(like &quot;i&quot;)
+          in FOR loop:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  void myMethod () {
+    for(int i = 1; i &lt; 10; i++) {}
+    for(int K = 1; K &lt; 10; K++) {} // violation, 'Name 'K' must match pattern*'
+    List list = new ArrayList();
+    for (Object o : list) {}
+    for (Object O : list) {} // violation, 'Name 'O' must match pattern*'
+  }
+}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -162,14 +211,14 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase2 {
   void MyMethod() {
     int goodName = 0;
-    int i = 1; // violation
+    int i = 1; // violation, 'Name 'i' must match pattern*'
     for (int var = 1; var &lt; 10; var++) {
-      int j = 1; // violation
+      int j = 1; // violation, 'Name 'j' must match pattern*'
     }
   }
 }
@@ -185,6 +234,11 @@ class Example5 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
@@ -208,8 +262,12 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="LocalVariableName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="LocalVariableName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="LocalVariableName_Parent_Module">

@@ -1670,9 +1670,9 @@ public final class JavadocCommentsTokenTypes {
      * is ability include a format string inside the tag.
      *
      * <p>In this example, the format specifier {@code 0x%04x} is used to format the integer
-     * {@code Modifier#MANDATED} as a hexadecimal value, padded with zeros to a width of four characters.</p>
+     * {@code Modifier#PUBLIC} as a hexadecimal value, padded with zeros to a width of four characters.</p>
      * <pre>{@code
-     * {@value %04x Modifier#MANDATED}
+     * {@value %04x java.lang.reflect.Modifier#PUBLIC}
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -1685,10 +1685,10 @@ public final class JavadocCommentsTokenTypes {
      *     |--FORMAT_SPECIFIER -> %04x
      *     |--TEXT ->
      *     |--REFERENCE -> REFERENCE
-     *     |   |--IDENTIFIER -> Modifier
+     *     |   |--IDENTIFIER -> java.lang.reflect.Modifier
      *     |   |--HASH -> #
      *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
-     *     |       `--IDENTIFIER -> MANDATED
+     *     |       `--IDENTIFIER -> PUBLIC
      *     `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
      *
@@ -2546,4 +2546,5 @@ public final class JavadocCommentsTokenTypes {
     /** Empty private constructor of the current class. */
     private JavadocCommentsTokenTypes() {
     }
+
 }

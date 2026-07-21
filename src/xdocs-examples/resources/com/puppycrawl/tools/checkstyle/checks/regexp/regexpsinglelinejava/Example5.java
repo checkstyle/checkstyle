@@ -38,7 +38,7 @@ class Example5 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example5.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second"); // violation, 'Line matches the illegal pattern'
     logger.info("third");  // violation, 'Line matches the illegal pattern'

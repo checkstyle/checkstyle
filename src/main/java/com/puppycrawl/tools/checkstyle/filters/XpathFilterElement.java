@@ -248,4 +248,5 @@ public final class XpathFilterElement implements TreeWalkerFilter {
         }
         return result;
     }
+
 }

@@ -6,15 +6,16 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = true
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, BXOR, \
-         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, LAMBDA, LAND, \
-         LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
-         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, \
-         LITERAL_TRY, LITERAL_WHILE, LOR, LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, \
-         NOT_EQUAL, PLUS, PLUS_ASSIGN, QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, \
-         SR_ASSIGN, STAR, STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND
-
+         BXOR_ASSIGN, COLON, DIV, DIV_ASSIGN, DO_WHILE, EQUAL, GE, GT, \
+         LAMBDA, LAND, LCURLY, LE, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, \
+         LITERAL_FOR, LITERAL_IF, LITERAL_RETURN, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TR \
+          Y, LITERAL_WHILE, LOR, \
+         LT, MINUS, MINUS_ASSIGN, MOD, MOD_ASSIGN, NOT_EQUAL, PLUS, PLUS_ASSIGN, \
+         QUESTION, RCURLY, SL, SLIST, SL_ASSIGN, SR, SR_ASSIGN, STAR, \
+         STAR_ASSIGN, LITERAL_ASSERT, TYPE_EXTENSION_AND, LITERAL_WHEN
 
 */
 
@@ -35,7 +36,7 @@ class InputWhitespaceAroundEmptyTypesAndCycles2
     private static final String ALLOWS_NULL_KEYS = "";
     private static final String ALLOWS_NULL_VALUES = "";
 
-    @MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
+    @MapFeature2.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
     private void foo()
     {
         int i = 0;
@@ -53,17 +54,29 @@ class InputWhitespaceAroundEmptyTypesAndCycles2
     }
 }
 
-interface SupplierFunction2<T> extends Function<Supplier<T>, T> {} // 2 violations
+interface SupplierFunction2<T> extends Function<Supplier<T>, T> {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
 
-class EmptyFoo2 {} // 2 violations
+class EmptyFoo2 {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
 
-enum EmptyFooEnum2 {} // 2 violations
+enum EmptyFooEnum2 {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
 
 class WithEmptyAnonymous2
 {
     private void foo()
     {
-        MyClass c = new MyClass() {}; // 2 violations
+        MyClass2 c = new MyClass2() {};
+        // 2 violations above:
+        // ''{' is not followed by whitespace.'
+        // ''}' is not preceded with whitespace.'
     }
 }
 
@@ -73,7 +86,11 @@ class WithEmptyAnonymous2
     ElementType.ANNOTATION_TYPE)
 @Documented
 @Deprecated
-@interface Beta2 {} // 2 violations
+@interface Beta2 {}
+// 2 violations above:
+// ''{' is not followed by whitespace.'
+// ''}' is not preceded with whitespace.'
+
 @interface MapFeature2 {
     @interface Require {
 

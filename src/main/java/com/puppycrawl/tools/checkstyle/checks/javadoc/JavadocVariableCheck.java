@@ -25,11 +25,10 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
@@ -70,6 +69,13 @@ public class JavadocVariableCheck
     private Pattern ignoreNamePattern;
 
     /**
+     * Creates a new {@code JavadocVariableCheck} instance.
+     */
+    public JavadocVariableCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the set of access modifiers used to determine which fields should be
      * checked. This includes both explicitly declared modifiers and implicit ones, such as
      * package-private for fields without an explicit modifier. It also accounts for special
@@ -97,6 +103,11 @@ public class JavadocVariableCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
@@ -120,16 +131,11 @@ public class JavadocVariableCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19147
     @Override
-    @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getLineNo());
-
-            if (textBlock == null) {
+            final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
+            if (blockCommentNode == null) {
                 log(ast, MSG_JAVADOC_MISSING);
             }
         }
@@ -202,4 +208,5 @@ public class JavadocVariableCheck
 
         return CheckUtil.getAccessModifierFromModifiersToken(selectedAst);
     }
+
 }

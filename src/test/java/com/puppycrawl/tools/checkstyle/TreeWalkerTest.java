@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.doThrow;
@@ -150,7 +151,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testConditionRequiredWithoutOrdinaryChecks() throws Exception {
         final String[] expected = {
-            "7:5: " + getCheckMessage(JavadocParagraphCheck.class,
+            "10:5: " + getCheckMessage(JavadocParagraphCheck.class,
                     JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
         };
         final String path = getPath("InputTreeWalkerJavadoc.java");
@@ -199,29 +200,25 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptableTokens()
-            throws Exception {
+    public void testAcceptableTokens() {
         final DefaultConfiguration checkConfig =
             createModuleConfig(HiddenFieldCheck.class);
         checkConfig.addProperty("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
-        try {
-            execute(checkConfig, getPath("InputTreeWalker.java"));
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String errorMsg = exc.getMessage();
-            final Pattern expected = Pattern.compile(Pattern.quote("cannot initialize module"
-                    + " com.puppycrawl.tools.checkstyle.TreeWalker - Token ")
-                    + "\"(ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
-                    + Pattern.quote(" was not found in Acceptable tokens list in check"
-                    + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
-
-            final Matcher errorMsgMatcher = expected.matcher(errorMsg);
-            assertWithMessage("Failure for: %s", errorMsg)
-                    .that(errorMsgMatcher.matches())
-                    .isTrue();
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    execute(checkConfig, getPath("InputTreeWalker.java"));
+                }, "CheckstyleException is expected");
+        final String errorMsg = exc.getMessage();
+        final Pattern expected = Pattern.compile(Pattern.quote("cannot initialize module"
+                + " com.puppycrawl.tools.checkstyle.TreeWalker - Token ")
+                + "\"(ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
+                + Pattern.quote(" was not found in Acceptable tokens list in check"
+                + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
+        final Matcher errorMsgMatcher = expected.matcher(errorMsg);
+        assertWithMessage("Failure for: %s", errorMsg)
+            .that(errorMsgMatcher.matches())
+            .isTrue();
     }
 
     @Test
@@ -238,20 +235,18 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithCheckNotHavingTreeWalkerAsParent() throws Exception {
+    public void testWithCheckNotHavingTreeWalkerAsParent() {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocPackageCheck.class);
 
-        try {
-            final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
-            final File filePath = new File(temporaryFolder, uniqueFileName);
-            execute(createTreeWalkerConfig(checkConfig), filePath.toString());
-            assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exception) {
-            assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage())
-                    .contains("TreeWalker is not allowed as a parent of");
-        }
+        final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        final CheckstyleException exception =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    execute(createTreeWalkerConfig(checkConfig), filePath.toString());
+                }, "CheckstyleException is expected");
+        assertWithMessage("Error message is unexpected")
+            .that(exception.getMessage())
+            .contains("TreeWalker is not allowed as a parent of");
     }
 
     @Test
@@ -262,17 +257,15 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setModuleFactory(factory);
 
         final Configuration config = new DefaultConfiguration("java.lang.String");
-        try {
-            treeWalker.setupChild(config);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
-                    + "Please review 'Parent Module' section for this Check in "
-                    + "web documentation if Check is standard.");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    treeWalker.setupChild(config);
+                }, "Exception is expected");
+        assertWithMessage("Error message is not expected")
+            .that(exc.getMessage())
+            .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
+                + "Please review 'Parent Module' section for this Check in "
+                + "web documentation if Check is standard.");
     }
 
     @Test
@@ -294,27 +287,25 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForInvalidCheckImplementation() throws Exception {
+    public void testForInvalidCheckImplementation() {
         final DefaultConfiguration checkConfig = createModuleConfig(BadJavaDocCheck.class);
         final String uniqueFileName = "file_" + UUID.randomUUID() + ".java";
         final File pathToEmptyFile = new File(temporaryFolder, uniqueFileName);
 
-        try {
-            execute(checkConfig, pathToEmptyFile.toString());
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Error message is unexpected")
-                    .that(exc.getMessage())
-                    .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
-                            + "TreeWalker - Check 'com.puppycrawl.tools.checkstyle."
-                            + "TreeWalkerTest$BadJavaDocCheck' waits for comment type token "
-                            + "('SINGLE_LINE_COMMENT') and should override "
-                            + "'isCommentNodesRequired()' method to return 'true'");
-            assertWithMessage("Error message is unexpected")
-                    .that(exc.getMessage())
-                    .contains("isCommentNodesRequired");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    execute(checkConfig, pathToEmptyFile.toString());
+                }, "Exception is expected");
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
+                    + "TreeWalker - Check 'com.puppycrawl.tools.checkstyle."
+                    + "TreeWalkerTest$BadJavaDocCheck' waits for comment type token "
+                    + "('SINGLE_LINE_COMMENT') and should override "
+                    + "'isCommentNodesRequired()' method to return 'true'");
+        assertWithMessage("Error message is unexpected")
+            .that(exc.getMessage())
+            .contains("isCommentNodesRequired");
     }
 
     @Test
@@ -332,15 +323,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 "error public class InputTreeWalkerFileWithViolation {}"));
         final FileText fileText = new FileText(file, lines);
         treeWalker.setFileContents(new FileContents(fileText));
-        try {
-            treeWalker.processFiltered(file, fileText);
-            assertWithMessage("Exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("IllegalStateException occurred while parsing file input.java.");
-        }
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    treeWalker.processFiltered(file, fileText);
+                }, "Exception expected");
+        assertWithMessage("Invalid exception message")
+            .that(exc.getMessage())
+            .isEqualTo("IllegalStateException occurred while parsing file input.java.");
     }
 
     @Test
@@ -378,15 +367,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         lines.add(" classD a {} ");
         final FileText fileText = new FileText(file, lines);
         treeWalker.setFileContents(new FileContents(fileText));
-        try {
-            treeWalker.processFiltered(file, fileText);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
-            assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage())
-                    .contains("occurred while parsing file");
-        }
+        final CheckstyleException exception =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    treeWalker.processFiltered(file, fileText);
+                }, "Exception is expected");
+        assertWithMessage("Error message is unexpected")
+            .that(exception.getMessage())
+            .contains("occurred while parsing file");
     }
 
     @Test
@@ -402,21 +389,19 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         lines.add(" class a%$# {} ");
         final FileText fileText = new FileText(file, lines);
         treeWalker.setFileContents(new FileContents(fileText));
-        try {
-            treeWalker.processFiltered(file, fileText);
-            assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
-            assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage())
-                    .contains("IllegalStateException occurred while parsing file");
-        }
+        final CheckstyleException exception =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    treeWalker.processFiltered(file, fileText);
+                }, "Exception is expected");
+        assertWithMessage("Error message is unexpected")
+            .that(exception.getMessage())
+            .contains("IllegalStateException occurred while parsing file");
     }
 
     @Test
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final File file = new File(temporaryFolder, "file.java");
-        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        try (Writer writer = Files.newBufferedWriter(file.toPath())) {
             final String configComment =
                     """
                     /*
@@ -465,16 +450,14 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, lines);
         treeWalker.setFileContents(new FileContents(fileText));
 
-        try {
-            treeWalker.processFiltered(file, fileText);
-            assertWithMessage("file is not compilable, exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
-            final String message = "IllegalStateException occurred while parsing file";
-            assertWithMessage("Error message is unexpected")
-                    .that(exception.getMessage())
-                    .contains(message);
-        }
+        final CheckstyleException exception =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    treeWalker.processFiltered(file, fileText);
+                }, "file is not compilable, exception is expected");
+        final String message = "IllegalStateException occurred while parsing file";
+        assertWithMessage("Error message is unexpected")
+            .that(exception.getMessage())
+            .contains(message);
     }
 
     @Test
@@ -505,9 +488,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testBehaviourWithChecksAndFilters() throws Exception {
 
         final String[] expected = {
-            "22:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
+            "28:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
                     "^[a-z][a-zA-Z0-9]*$"),
-            "17:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
+            "23:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
                     "^[a-z][a-zA-Z0-9]*$"),
         };
 
@@ -520,8 +503,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOrder() throws Exception {
 
         final String[] expected = {
-            "13:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
-            "13:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
+            "29:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+            "29:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
         verifyWithInlineConfigParserTwice(
@@ -533,9 +516,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOfSameTypeNoIdResultsInOrderingByHash() throws Exception {
 
         final String[] expected = {
-            "15:28: " + getCheckMessage(ParameterNameCheck.class,
+            "17:28: " + getCheckMessage(ParameterNameCheck.class,
                     "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
-            "17:25: " + getCheckMessage(ParameterNameCheck.class,
+            "19:25: " + getCheckMessage(ParameterNameCheck.class,
                     "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
         };
 
@@ -678,15 +661,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 Collections.singletonList(new File(getPath("InputTreeWalker2.java")));
         final Checker checker = createChecker(treeWalkerConfig);
 
-        try {
-            checker.process(files);
-            assertWithMessage("exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
-            assertWithMessage("wrong order of Check executions")
-                    .that(exception.getCause().getMessage())
-                    .isEqualTo(AaCheck.class.toString());
-        }
+        final CheckstyleException exception =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    checker.process(files);
+                }, "exception is expected");
+        assertWithMessage("wrong order of Check executions")
+            .that(exception.getCause().getMessage())
+            .isEqualTo(AaCheck.class.toString());
     }
 
     @Test
@@ -762,7 +743,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             getPath("InputTreeWalkerProperFileExtension.java"),
             getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
         };
-        final Exception ex = TestUtil.getExpectedThrowable(CheckstyleException.class,
+        final Exception ex = getExpectedThrowable(CheckstyleException.class,
                 () -> execute(config, files),
                 "Exception is expected");
         assertWithMessage("Error message is unexpected")

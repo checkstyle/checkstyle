@@ -70,11 +70,34 @@
         </macro>
       </subsection>
 
+      <subsection name="Use Cases" id="TodoComment_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to detect box comments (Google Java Style Guide §4.8.6.1):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
       <subsection name="Example of Usage" id="TodoComment_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
@@ -98,9 +121,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="TodoComment_Package">
+      <subsection name="Fully Qualified Name" id="TodoComment_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

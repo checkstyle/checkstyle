@@ -1,11 +1,10 @@
-// Java21
-
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /**Some javadoc.*/
 public class InputSingleSwitchStatementWithoutCurly {
   void testCorrectIndentation(int obj) {
     switch (obj) {
+      // violation 2 lines below ''->' should be on the previous line.'
       case 0
           ->
               System.out.println("Test");
@@ -21,7 +20,10 @@ public class InputSingleSwitchStatementWithoutCurly {
   void testIncorrectIndentation(int obj) {
     switch (obj) {
       case 1
-      ->                            // violation '.* incorrect indentation level 6, expected .* 10.'
+      ->
+      // 2 violations above:
+      //  '.* incorrect indentation level 6, expected .* 10.'
+      //  ''->' should be on the previous line.'
       System.out.println("Test");
       // violation above '.* incorrect indentation level 6, expected .* 14.'
     case 2 ->                      // violation '.* incorrect indentation level 4, expected .* 6.'
@@ -33,6 +35,7 @@ System.out.println("Test");        // violation '.* incorrect indentation level 
   void testMixedCases(int obj) {
     switch (obj) {
       case 1 -> System.out.println("TEST");
+      // violation 2 lines below ''->' should be on the previous line.'
       case 2
           -> System.out.println("Test");
       case 3 ->

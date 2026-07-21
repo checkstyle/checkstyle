@@ -66,6 +66,16 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputUnnecessarySemicolonAfterOuterTypeDeclarationCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
     public void testTokens() {
         final UnnecessarySemicolonAfterOuterTypeDeclarationCheck check =
             new UnnecessarySemicolonAfterOuterTypeDeclarationCheck();
@@ -86,4 +96,5 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             .that(check.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
+
 }

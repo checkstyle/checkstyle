@@ -226,4 +226,5 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

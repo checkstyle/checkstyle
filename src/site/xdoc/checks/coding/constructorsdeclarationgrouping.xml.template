@@ -18,6 +18,15 @@
         </macro>
       </subsection>
 
+      <subsection name="Properties" id="ConstructorsDeclarationGrouping_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="ConstructorsDeclarationGrouping_Examples">
         <p id="Example1-config">To configure the check:</p>
         <macro name="example">
@@ -25,13 +34,23 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example of correct grouping of constructors:</p>
+        <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example2-code">Example of incorrect grouping of constructors:</p>
+        <p id="Example2-config"> To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-structure">
+          OpenJDK guidelines</a>,
+          where constructors should be grouped together and ordered by increasing parameter count:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/constructorsdeclarationgrouping/Example2.java"/>
@@ -49,6 +68,10 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
 
@@ -63,9 +86,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="ConstructorsDeclarationGrouping_Package">
+      <subsection name="Fully Qualified Name"
+                   id="ConstructorsDeclarationGrouping_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ConstructorsDeclarationGroupingCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+           Use this fully qualified class name in configuration when an exact class reference is
+           required.
         </p>
       </subsection>
 

@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -140,6 +142,13 @@ public class RequireThisCheck extends AbstractCheck {
     private boolean validateOnlyOverlapping = true;
 
     /**
+     * Creates a new {@code RequireThisCheck} instance.
+     */
+    public RequireThisCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to check references to fields.
      *
      * @param checkFields should we check fields usage or not
@@ -190,6 +199,7 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.LITERAL_TRY,
             TokenTypes.RESOURCE,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -223,7 +233,8 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.IDENT -> processIdent(ast);
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF ->
+                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF,
+                 TokenTypes.COMPACT_COMPILATION_UNIT ->
                 current.push(frames.get(ast));
             case TokenTypes.LITERAL_TRY -> {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
@@ -261,18 +272,9 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.EXPR
-                && ast.getParent().getParent().getParent().getType()
-                    == TokenTypes.ANNOTATION_FIELD_DEF) {
-            parentType = TokenTypes.ANNOTATION_FIELD_DEF;
-        }
-        switch (parentType) {
-            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR, TokenTypes.ANNOTATION,
-                 TokenTypes.ANNOTATION_FIELD_DEF -> {
-                // no need to check annotations content
-            }
-            case TokenTypes.METHOD_CALL -> {
+        if (!shouldSkipAnnotationContext(ast)) {
+            final int parentType = ast.getParent().getType();
+            if (parentType == TokenTypes.METHOD_CALL) {
                 if (checkMethods) {
                     final AbstractFrame frame = getMethodWithoutThis(ast);
                     if (frame != null) {
@@ -280,7 +282,7 @@ public class RequireThisCheck extends AbstractCheck {
                     }
                 }
             }
-            default -> {
+            else {
                 if (checkFields) {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
                     final boolean canUseThis = !isInCompactConstructor(ast);
@@ -290,6 +292,61 @@ public class RequireThisCheck extends AbstractCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Determines whether the given IDENT should be skipped because it is
+     * in an annotation context. When {@code validateOnlyOverlapping} is
+     * {@code true}, all annotation contexts are skipped. When it is
+     * {@code false}, only annotation structural elements (member names,
+     * type names, and annotation field defaults) are skipped, while actual
+     * field reference values inside annotations are still processed.
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT should be skipped
+     */
+    private static boolean shouldSkipAnnotationContext(DetailAST ast) {
+        return isInsideAnnotationFieldDef(ast) || isAnnotationStructuralElement(ast);
+    }
+
+    /**
+     * Checks whether the given IDENT is inside an annotation field definition
+     * (e.g., default values in {@code @interface} members).
+     *
+     * @param ast IDENT token
+     * @return true if IDENT is inside an annotation field definition
+     */
+    private static boolean isInsideAnnotationFieldDef(DetailAST ast) {
+        DetailAST current = ast;
+        boolean insideAnnotationFieldDef = false;
+        while (current != null) {
+            if (current.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
+                insideAnnotationFieldDef = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return insideAnnotationFieldDef;
+    }
+
+    /**
+     * Checks if an IDENT is an annotation structural element — either
+     * an annotation type name (e.g., {@code SuppressWarnings} in
+     * {@code @SuppressWarnings}) or an annotation member name (e.g.,
+     * {@code value} in {@code value = "unused"}).
+     *
+     * @param ast IDENT token
+     * @return true if the IDENT is an annotation type name or member name
+     */
+    private static boolean isAnnotationStructuralElement(DetailAST ast) {
+        DetailAST current = ast.getParent();
+        final int parentType = current.getType();
+        while (current.getType() == TokenTypes.DOT) {
+            current = current.getParent();
+        }
+        final int topType = current.getType();
+        return topType == TokenTypes.ANNOTATION
+                || parentType == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
     }
 
     /**
@@ -303,7 +360,8 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getFrameName().equals(getNearestClassFrameName())) {
             log(ast, msgKey, ast.getText(), "");
         }
-        else if (!(frame instanceof AnonymousClassFrame)) {
+        else if (!(frame instanceof AnonymousClassFrame)
+                && !(frame instanceof CompactCompilationUnitFrame)) {
             log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
     }
@@ -325,9 +383,9 @@ public class RequireThisCheck extends AbstractCheck {
 
         if (!importOrPackage
                 && !typeName
-                && !isDeclarationToken(parentType)
+                && !DECLARATION_TOKENS.get(parentType)
                 && !isLambdaParameter(ast)) {
-            final AbstractFrame fieldFrame = findClassFrame(ast, false);
+            final AbstractFrame fieldFrame = findClassFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
 
             if (fieldFrame != null && ((ClassFrame) fieldFrame).hasInstanceMember(ast)) {
                 frame = getClassFrameWhereViolationIsFound(ast);
@@ -393,6 +451,9 @@ public class RequireThisCheck extends AbstractCheck {
                 frameStack.addFirst(new ClassFrame(frame, classFrameNameIdent));
             }
 
+            case TokenTypes.COMPACT_COMPILATION_UNIT ->
+                frameStack.addFirst(new CompactCompilationUnitFrame(frame, ast));
+
             case TokenTypes.SLIST -> frameStack.addFirst(new BlockFrame(frame, ast));
 
             case TokenTypes.METHOD_DEF -> collectMethodDeclarations(frameStack, ast, frame);
@@ -418,7 +479,8 @@ public class RequireThisCheck extends AbstractCheck {
             }
 
             case TokenTypes.LITERAL_NEW -> {
-                if (isAnonymousClassDef(ast)) {
+                final DetailAST lastChild = ast.getLastChild();
+                if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
                     frameStack.addFirst(new AnonymousClassFrame(frame, ast.toString()));
                 }
             }
@@ -447,6 +509,7 @@ public class RequireThisCheck extends AbstractCheck {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
             if (ScopeUtil.isInInterfaceBlock(ast)
+                    || ScopeUtil.isInAnnotationBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
@@ -490,11 +553,13 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
                  TokenTypes.CTOR_DEF, TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_FOR,
-                 TokenTypes.RECORD_DEF, TokenTypes.COMPACT_CTOR_DEF ->
+                 TokenTypes.RECORD_DEF, TokenTypes.COMPACT_CTOR_DEF,
+                 TokenTypes.COMPACT_COMPILATION_UNIT ->
                 frames.put(ast, frameStack.poll());
 
             case TokenTypes.LITERAL_NEW -> {
-                if (isAnonymousClassDef(ast)) {
+                final DetailAST lastChild = ast.getLastChild();
+                if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
                     frameStack.remove();
                 }
             }
@@ -512,15 +577,66 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
-     * Whether the AST is a definition of an anonymous class.
+     * Returns the class frame where violation is found (where the field is used without 'this')
+     * or null otherwise.
      *
-     * @param ast the AST to process.
-     * @return true if the AST is a definition of an anonymous class.
+     * @param ast IDENT ast to check.
+     * @return the class frame where violation is found or null otherwise.
      */
-    private static boolean isAnonymousClassDef(DetailAST ast) {
-        final DetailAST lastChild = ast.getLastChild();
-        return lastChild != null
-            && lastChild.getType() == TokenTypes.OBJBLOCK;
+    @Nullable
+    private AbstractFrame getClassFrameWhereViolationIsFound(DetailAST ast) {
+        AbstractFrame frameWhereViolationIsFound = null;
+        final AbstractFrame variableDeclarationFrame = findFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
+        final FrameType variableDeclarationFrameType = variableDeclarationFrame.getType();
+
+        if (variableDeclarationFrameType == FrameType.CLASS_FRAME
+                && isViolationNoOverlapping(ast)) {
+            frameWhereViolationIsFound = variableDeclarationFrame;
+        }
+        else if (variableDeclarationFrameType == FrameType.METHOD_FRAME) {
+            frameWhereViolationIsFound = getFrameForMethod(ast, variableDeclarationFrame);
+        }
+        else if (variableDeclarationFrameType == FrameType.CTOR_FRAME
+               && isOverlappingByArgument(ast)
+               && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)) {
+            frameWhereViolationIsFound = findFrame(ast, LookMode.LOOK_FOR_METHOD);
+        }
+        else if (variableDeclarationFrameType == FrameType.BLOCK_FRAME
+                && isViolationForBlockFrame(ast, variableDeclarationFrame)) {
+            frameWhereViolationIsFound = findFrame(ast, LookMode.LOOK_FOR_METHOD);
+        }
+        return frameWhereViolationIsFound;
+    }
+
+    /**
+     * Checks if a violation occurred for a CLASS_FRAME when not overlapping.
+     *
+     * @param ast IDENT ast to check.
+     * @return true if a violation occurred.
+     */
+    private boolean isViolationNoOverlapping(DetailAST ast) {
+        final DetailAST prevSibling = ast.getPreviousSibling();
+        final int parentType = ast.getParent().getType();
+        return !validateOnlyOverlapping
+                && (prevSibling == null
+                    || parentType != TokenTypes.DOT && parentType != TokenTypes.METHOD_REF)
+                && canBeReferencedFromStaticContext(ast);
+    }
+
+    /**
+     * Checks if a violation occurred for a BLOCK_FRAME.
+     *
+     * @param ast IDENT ast to check.
+     * @param variableDeclarationFrame the frame where the variable is declared.
+     * @return true if a violation occurred.
+     */
+    private boolean isViolationForBlockFrame(DetailAST ast,
+                                             AbstractFrame variableDeclarationFrame) {
+        return isOverlappingByLocalVariable(ast)
+                && canAssignValueToClassField(ast)
+                && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                && !isReturnedVariable(variableDeclarationFrame, ast)
+                && canBeReferencedFromStaticContext(ast);
     }
 
     /**
@@ -528,64 +644,54 @@ public class RequireThisCheck extends AbstractCheck {
      * or null otherwise.
      *
      * @param ast IDENT ast to check.
+     * @param variableDeclarationFrame the frame where the variable is declared.
      * @return the class frame where violation is found or null otherwise.
      */
-    // -@cs[CyclomaticComplexity] Method already invokes too many methods that fully explain
-    // a logic, additional abstraction will not make logic/algorithm more readable.
-    private AbstractFrame getClassFrameWhereViolationIsFound(DetailAST ast) {
+    private AbstractFrame getFrameForMethod(DetailAST ast,
+                                            AbstractFrame variableDeclarationFrame) {
         AbstractFrame frameWhereViolationIsFound = null;
-        final AbstractFrame variableDeclarationFrame = findFrame(ast, false);
-        final FrameType variableDeclarationFrameType = variableDeclarationFrame.getType();
-        final DetailAST prevSibling = ast.getPreviousSibling();
-        if (variableDeclarationFrameType == FrameType.CLASS_FRAME
-                && !validateOnlyOverlapping
-                && (prevSibling == null || !isInExpression(ast))
-                && canBeReferencedFromStaticContext(ast)) {
-            frameWhereViolationIsFound = variableDeclarationFrame;
-        }
-        else if (variableDeclarationFrameType == FrameType.METHOD_FRAME) {
-            if (isOverlappingByArgument(ast)) {
-                if (!isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                        && !isReturnedVariable(variableDeclarationFrame, ast)
-                        && canBeReferencedFromStaticContext(ast)
-                        && canAssignValueToClassField(ast)) {
-                    frameWhereViolationIsFound = findFrame(ast, true);
-                }
-            }
-            else if (!validateOnlyOverlapping
-                     && prevSibling == null
-                     && isAssignToken(ast.getParent().getType())
-                     && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                     && canBeReferencedFromStaticContext(ast)
-                     && canAssignValueToClassField(ast)) {
-                frameWhereViolationIsFound = findFrame(ast, true);
+        if (isOverlappingByArgument(ast)) {
+            if (isViolationForMethodOverlapping(ast, variableDeclarationFrame)) {
+                frameWhereViolationIsFound = findFrame(ast, LookMode.LOOK_FOR_METHOD);
             }
         }
-        else if (variableDeclarationFrameType == FrameType.CTOR_FRAME
-                 && isOverlappingByArgument(ast)
-                 && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)) {
-            frameWhereViolationIsFound = findFrame(ast, true);
-        }
-        else if (variableDeclarationFrameType == FrameType.BLOCK_FRAME
-                    && isOverlappingByLocalVariable(ast)
-                    && canAssignValueToClassField(ast)
-                    && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
-                    && !isReturnedVariable(variableDeclarationFrame, ast)
-                    && canBeReferencedFromStaticContext(ast)) {
-            frameWhereViolationIsFound = findFrame(ast, true);
+        else if (isViolationForMethodNoOverlapping(ast, variableDeclarationFrame)) {
+            frameWhereViolationIsFound = findFrame(ast, LookMode.LOOK_FOR_METHOD);
         }
         return frameWhereViolationIsFound;
     }
 
     /**
-     * Checks ast parent is in expression.
+     * Checks if a violation occurred for a METHOD_FRAME when overlapping.
      *
-     * @param ast token to check
-     * @return true if token is part of expression, false otherwise
+     * @param ast IDENT ast to check.
+     * @param variableDeclarationFrame the frame where the variable is declared.
+     * @return true if a violation occurred.
      */
-    private static boolean isInExpression(DetailAST ast) {
-        return TokenTypes.DOT == ast.getParent().getType()
-                || TokenTypes.METHOD_REF == ast.getParent().getType();
+    private boolean isViolationForMethodOverlapping(DetailAST ast,
+                                                     AbstractFrame variableDeclarationFrame) {
+        return !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                && !isReturnedVariable(variableDeclarationFrame, ast)
+                && canBeReferencedFromStaticContext(ast)
+                && canAssignValueToClassField(ast);
+    }
+
+    /**
+     * Checks if a violation occurred for a METHOD_FRAME when not overlapping.
+     *
+     * @param ast IDENT ast to check.
+     * @param variableDeclarationFrame the frame where the variable is declared.
+     * @return true if a violation occurred.
+     */
+    private boolean isViolationForMethodNoOverlapping(DetailAST ast,
+                                                       AbstractFrame variableDeclarationFrame) {
+        final DetailAST prevSibling = ast.getPreviousSibling();
+        return !validateOnlyOverlapping
+                && prevSibling == null
+                && ASSIGN_TOKENS.get(ast.getParent().getType())
+                && !isUserDefinedArrangementOfThis(variableDeclarationFrame, ast)
+                && canBeReferencedFromStaticContext(ast)
+                && canAssignValueToClassField(ast);
     }
 
     /**
@@ -733,27 +839,17 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if a value can be assigned to a field.
      */
     private boolean canAssignValueToClassField(DetailAST ast) {
-        final AbstractFrame fieldUsageFrame = findFrame(ast, false);
-        final boolean fieldUsageInConstructor = isInsideConstructorFrame(fieldUsageFrame);
-
-        final AbstractFrame declarationFrame = findFrame(ast, true);
-        final boolean finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
-
-        return fieldUsageInConstructor || !finalField;
-    }
-
-    /**
-     * Checks whether a field usage frame is inside constructor frame.
-     *
-     * @param frame frame, where field is used.
-     * @return true if the field usage frame is inside constructor frame.
-     */
-    private static boolean isInsideConstructorFrame(AbstractFrame frame) {
-        AbstractFrame fieldUsageFrame = frame;
+        AbstractFrame fieldUsageFrame = findFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
         while (fieldUsageFrame.getType() == FrameType.BLOCK_FRAME) {
             fieldUsageFrame = fieldUsageFrame.getParent();
         }
-        return fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
+        final boolean fieldUsageInConstructor =
+            fieldUsageFrame.getType() == FrameType.CTOR_FRAME;
+
+        final AbstractFrame declarationFrame = findFrame(ast, LookMode.LOOK_FOR_METHOD);
+        final boolean finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
+
+        return fieldUsageInConstructor || !finalField;
     }
 
     /**
@@ -766,12 +862,12 @@ public class RequireThisCheck extends AbstractCheck {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
         final DetailAST sibling = ast.getNextSibling();
-        if (sibling != null && isAssignToken(parent.getType())) {
-            if (isCompoundAssignToken(parent.getType())) {
+        if (sibling != null && ASSIGN_TOKENS.get(parent.getType())) {
+            if (COMPOUND_ASSIGN_TOKENS.get(parent.getType())) {
                 overlapping = true;
             }
             else {
-                final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
+                final ClassFrame classFrame = (ClassFrame) findFrame(ast, LookMode.LOOK_FOR_METHOD);
                 final Set<DetailAST> exprIdents = getAllTokensOfType(sibling, TokenTypes.IDENT);
                 overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
             }
@@ -788,8 +884,8 @@ public class RequireThisCheck extends AbstractCheck {
     private boolean isOverlappingByLocalVariable(DetailAST ast) {
         boolean overlapping = false;
         final DetailAST parent = ast.getParent();
-        if (isAssignToken(parent.getType())) {
-            final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
+        if (ASSIGN_TOKENS.get(parent.getType())) {
+            final ClassFrame classFrame = (ClassFrame) findFrame(ast, LookMode.LOOK_FOR_METHOD);
             final Set<DetailAST> exprIdents =
                 getAllTokensOfType(ast.getNextSibling(), TokenTypes.IDENT);
             overlapping = classFrame.containsFieldOrVariableDef(exprIdents, ast);
@@ -902,7 +998,7 @@ public class RequireThisCheck extends AbstractCheck {
     private AbstractFrame getMethodWithoutThis(DetailAST ast) {
         AbstractFrame result = null;
         if (!validateOnlyOverlapping) {
-            final AbstractFrame frame = findFrame(ast, true);
+            final AbstractFrame frame = findFrame(ast, LookMode.LOOK_FOR_METHOD);
             if (frame != null
                     && ((ClassFrame) frame).hasInstanceMethod(ast)
                     && !((ClassFrame) frame).hasStaticMethod(ast)) {
@@ -916,14 +1012,14 @@ public class RequireThisCheck extends AbstractCheck {
      * Find the class frame containing declaration.
      *
      * @param name IDENT ast of the declaration to find.
-     * @param lookForMethod whether we are looking for a method name.
+     * @param lookMode mode defining whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
      */
-    private AbstractFrame findClassFrame(DetailAST name, boolean lookForMethod) {
+    private AbstractFrame findClassFrame(DetailAST name, LookMode lookMode) {
         AbstractFrame frame = current.peek();
 
         while (true) {
-            frame = findFrame(frame, name, lookForMethod);
+            frame = findFrame(frame, name, lookMode);
 
             if (frame == null || frame instanceof ClassFrame) {
                 break;
@@ -939,11 +1035,11 @@ public class RequireThisCheck extends AbstractCheck {
      * Find frame containing declaration.
      *
      * @param name IDENT ast of the declaration to find.
-     * @param lookForMethod whether we are looking for a method name.
+     * @param lookMode mode defining whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
      */
-    private AbstractFrame findFrame(DetailAST name, boolean lookForMethod) {
-        return findFrame(current.peek(), name, lookForMethod);
+    private AbstractFrame findFrame(DetailAST name, LookMode lookMode) {
+        return findFrame(current.peek(), name, lookMode);
     }
 
     /**
@@ -951,42 +1047,12 @@ public class RequireThisCheck extends AbstractCheck {
      *
      * @param frame The parent frame to searching in.
      * @param name IDENT ast of the declaration to find.
-     * @param lookForMethod whether we are looking for a method name.
+     * @param lookMode mode defining whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
      */
     private static AbstractFrame findFrame(AbstractFrame frame, DetailAST name,
-            boolean lookForMethod) {
-        return frame.getIfContains(name, lookForMethod);
-    }
-
-    /**
-     * Check that token is related to Definition tokens.
-     *
-     * @param parentType token Type.
-     * @return true if token is related to Definition Tokens.
-     */
-    private static boolean isDeclarationToken(int parentType) {
-        return DECLARATION_TOKENS.get(parentType);
-    }
-
-    /**
-     * Check that token is related to assign tokens.
-     *
-     * @param tokenType token type.
-     * @return true if token is related to assign tokens.
-     */
-    private static boolean isAssignToken(int tokenType) {
-        return ASSIGN_TOKENS.get(tokenType);
-    }
-
-    /**
-     * Check that token is related to compound assign tokens.
-     *
-     * @param tokenType token type.
-     * @return true if token is related to compound assign tokens.
-     */
-    private static boolean isCompoundAssignToken(int tokenType) {
-        return COMPOUND_ASSIGN_TOKENS.get(tokenType);
+            LookMode lookMode) {
+        return frame.getIfContains(name, lookMode);
     }
 
     /**
@@ -1009,33 +1075,62 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if the token is a Lambda parameter
      */
     private static boolean isLambdaParameter(DetailAST ast) {
-        DetailAST parent;
-        for (parent = ast; parent != null; parent = parent.getParent()) {
+        boolean result = false;
+        for (DetailAST parent = ast; parent != null; parent = parent.getParent()) {
             if (parent.getType() == TokenTypes.LAMBDA) {
+                result = !isInsideTypeDefInsideLambda(ast)
+                        && isMatchingLambdaParam(ast, parent);
                 break;
             }
         }
-        final boolean isLambdaParameter;
-        if (parent == null) {
-            isLambdaParameter = false;
-        }
-        else if (ast.getType() == TokenTypes.PARAMETER_DEF) {
-            isLambdaParameter = true;
+        return result;
+    }
+
+    /**
+     * Checks whether the given AST matches a parameter of the specified lambda.
+     *
+     * @param ast the AST node to check.
+     * @param lambda the lambda expression AST node.
+     * @return true if the AST matches a lambda parameter.
+     */
+    private static boolean isMatchingLambdaParam(DetailAST ast, DetailAST lambda) {
+        final boolean isMatchingParam;
+        if (ast.getType() == TokenTypes.PARAMETER_DEF) {
+            isMatchingParam = true;
         }
         else {
-            final DetailAST lambdaParameters = parent.findFirstToken(TokenTypes.PARAMETERS);
+            final DetailAST lambdaParameters = lambda.findFirstToken(TokenTypes.PARAMETERS);
             if (lambdaParameters == null) {
-                isLambdaParameter = parent.getFirstChild().getText().equals(ast.getText());
+                isMatchingParam = lambda.getFirstChild().getText().equals(ast.getText());
             }
             else {
-                isLambdaParameter = TokenUtil.findFirstTokenByPredicate(lambdaParameters,
+                isMatchingParam = TokenUtil.findFirstTokenByPredicate(lambdaParameters,
                     paramDef -> {
                         final DetailAST param = paramDef.findFirstToken(TokenTypes.IDENT);
                         return param != null && param.getText().equals(ast.getText());
                     }).isPresent();
             }
         }
-        return isLambdaParameter;
+        return isMatchingParam;
+    }
+
+    /**
+     * Checks if the given AST is inside a type declaration (class, interface, enum,
+     * record, or anonymous class) that is nested within the enclosing lambda.
+     *
+     * @param ast the AST node to check.
+     * @return true if there is a type declaration boundary between {@code ast} and the lambda.
+     */
+    private static boolean isInsideTypeDefInsideLambda(DetailAST ast) {
+        boolean isInside = false;
+        for (DetailAST parent = ast; parent.getType() != TokenTypes.LAMBDA;
+                parent = parent.getParent()) {
+            if (parent.getType() == TokenTypes.OBJBLOCK) {
+                isInside = true;
+                break;
+            }
+        }
+        return isInside;
     }
 
     /**
@@ -1070,6 +1165,18 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
+     * Defines whether a method name is being looked for during a frame lookup.
+     */
+    private enum LookMode {
+
+        /** Look for a method name. */
+        LOOK_FOR_METHOD,
+        /** Do not look for a method name. */
+        NO_LOOK_FOR_METHOD
+
+    }
+
+    /**
      * A declaration frame.
      */
     private abstract static class AbstractFrame {
@@ -1089,7 +1196,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param parent parent frame.
          * @param ident frame name ident.
          */
-        /* package */ AbstractFrame(AbstractFrame parent, DetailAST ident) {
+        protected AbstractFrame(AbstractFrame parent, DetailAST ident) {
             this.parent = parent;
             frameNameIdent = ident;
             varIdents = new HashSet<>();
@@ -1100,7 +1207,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return a FrameType.
          */
-        /* package */ abstract FrameType getType();
+        public abstract FrameType getType();
 
         /**
          * Add a name to the frame.
@@ -1116,7 +1223,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the parent frame
          */
-        /* package */ AbstractFrame getParent() {
+        public AbstractFrame getParent() {
             return parent;
         }
 
@@ -1125,7 +1232,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the name identifier text
          */
-        /* package */ String getFrameName() {
+        public String getFrameName() {
             return frameNameIdent.getText();
         }
 
@@ -1134,7 +1241,7 @@ public class RequireThisCheck extends AbstractCheck {
          *
          * @return the name identifier token
          */
-        /* package */ DetailAST getFrameNameIdent() {
+        public DetailAST getFrameNameIdent() {
             return frameNameIdent;
         }
 
@@ -1144,7 +1251,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param identToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
-        /* package */ boolean containsFieldOrVariable(DetailAST identToFind) {
+        public boolean containsFieldOrVariable(DetailAST identToFind) {
             return containsFieldOrVariableDef(varIdents, identToFind);
         }
 
@@ -1152,18 +1259,18 @@ public class RequireThisCheck extends AbstractCheck {
          * Check whether the frame contains a given name.
          *
          * @param identToFind IDENT ast of the name we're looking for.
-         * @param lookForMethod whether we are looking for a method name.
+         * @param lookMode mode defining whether we are looking for a method name.
          * @return whether it was found.
          */
-        /* package */ AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        public AbstractFrame getIfContains(DetailAST identToFind, LookMode lookMode) {
             final AbstractFrame frame;
 
-            if (!lookForMethod
+            if (lookMode == LookMode.NO_LOOK_FOR_METHOD
                 && containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else {
-                frame = parent.getIfContains(identToFind, lookForMethod);
+                frame = parent.getIfContains(identToFind, lookMode);
             }
             return frame;
         }
@@ -1177,7 +1284,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if the set contains a declaration with the text of the specified
          *         IDENT ast and it is declared in a proper position.
          */
-        /* package */ boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
+        public boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
             boolean result = false;
             for (DetailAST ast: set) {
                 if (isProperDefinition(ident, ast)) {
@@ -1195,7 +1302,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @param ast the IDENT ast of the definition to check.
          * @return true if ast is correspondent to ident.
          */
-        /* package */ boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+        public boolean isProperDefinition(DetailAST ident, DetailAST ast) {
             final String identToFind = ident.getText();
             return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
@@ -1218,7 +1325,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.METHOD_FRAME;
         }
 
@@ -1240,7 +1347,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.CTOR_FRAME;
         }
 
@@ -1275,7 +1382,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.CLASS_FRAME;
         }
 
@@ -1373,19 +1480,26 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected boolean containsFieldOrVariable(DetailAST identToFind) {
+        public boolean containsFieldOrVariable(DetailAST identToFind) {
             return containsFieldOrVariableDef(instanceMembers, identToFind)
                     || containsFieldOrVariableDef(staticMembers, identToFind);
         }
 
         @Override
-        protected boolean isProperDefinition(DetailAST ident, DetailAST ast) {
+        public boolean isProperDefinition(DetailAST ident, DetailAST ast) {
             final String identToFind = ident.getText();
             return identToFind.equals(ast.getText());
         }
 
+        /**
+         * Check whether the frame contains a given name.
+         *
+         * @param identToFind IDENT ast of the name we're looking for.
+         * @param lookMode mode defining whether we are looking for a method name.
+         * @return whether it was found.
+         */
         @Override
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        public AbstractFrame getIfContains(DetailAST identToFind, LookMode lookMode) {
             AbstractFrame frame = null;
 
             if (containsMethod(identToFind)
@@ -1393,7 +1507,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frame = this;
             }
             else if (getParent() != null) {
-                frame = getParent().getIfContains(identToFind, lookForMethod);
+                frame = getParent().getIfContains(identToFind, lookMode);
             }
             return frame;
         }
@@ -1471,8 +1585,28 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected String getFrameName() {
+        public String getFrameName() {
             return frameName;
+        }
+
+    }
+
+    /**
+     * A frame for the implicit class of a compact source file (JEP 512).
+     * The class is unnamed in source code, so a reference to one of its members
+     * from a nested class cannot be qualified with {@code <ClassName>.this} and is
+     * not flagged, the same way references to anonymous class members are skipped.
+     */
+    private static class CompactCompilationUnitFrame extends ClassFrame {
+
+        /**
+         * Creates compact compilation unit frame.
+         *
+         * @param parent parent frame.
+         * @param ident frame name ident.
+         */
+        /* package */ CompactCompilationUnitFrame(AbstractFrame parent, DetailAST ident) {
+            super(parent, ident);
         }
 
     }
@@ -1493,7 +1627,7 @@ public class RequireThisCheck extends AbstractCheck {
         }
 
         @Override
-        protected FrameType getType() {
+        public FrameType getType() {
             return FrameType.BLOCK_FRAME;
         }
 
@@ -1519,20 +1653,27 @@ public class RequireThisCheck extends AbstractCheck {
             return FrameType.CATCH_FRAME;
         }
 
+        /**
+         * Check whether the frame contains a given name.
+         *
+         * @param identToFind IDENT ast of the name we're looking for.
+         * @param lookMode mode defining whether we are looking for a method name.
+         * @return whether it was found.
+         */
         @Override
-        protected AbstractFrame getIfContains(DetailAST identToFind, boolean lookForMethod) {
+        public AbstractFrame getIfContains(DetailAST identToFind, LookMode lookMode) {
             final AbstractFrame frame;
 
-            if (!lookForMethod
+            if (lookMode == LookMode.NO_LOOK_FOR_METHOD
                     && containsFieldOrVariable(identToFind)) {
                 frame = this;
             }
             else if (getParent().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
                 // Skip try-with-resources frame because resources cannot be accessed from catch
-                frame = getParent().getParent().getIfContains(identToFind, lookForMethod);
+                frame = getParent().getParent().getIfContains(identToFind, lookMode);
             }
             else {
-                frame = getParent().getIfContains(identToFind, lookForMethod);
+                frame = getParent().getIfContains(identToFind, lookMode);
             }
             return frame;
         }

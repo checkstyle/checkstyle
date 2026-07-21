@@ -10,43 +10,43 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
-
 // xdoc section -- start
 class Example7 {
-  void testMethod1() {
-    try {}
-    catch (Exception e) {
-      System.out.println("xyz");
-      return;
-    }
-    finally {
-      System.out.println("xyz");
-    }
-  }
+  private int field1;
+  private int field2;
 
-  void testMethod2() {
-    try {}
-    catch (Exception e) {
-      System.out.println("xyz");
-      return;
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
     }
-    finally {
-      System.out.println("xyz");
-    }
-    try {}
+
+    try { }
     catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
-      try {}
-      catch (Exception ex) {
-        // handle exception
-      }
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
     finally { // violation, 'Count of 1 for 'LITERAL_FINALLY' descendant '
-      try {}
-      catch (Exception e) {
-        // handle exception
-      }
+      try { }
+      catch (Exception ex) { }
     }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end
-

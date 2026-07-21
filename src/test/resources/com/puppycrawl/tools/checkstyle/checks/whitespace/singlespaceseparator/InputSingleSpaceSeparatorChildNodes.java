@@ -9,5 +9,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.singlespaceseparator;
 
 public class InputSingleSpaceSeparatorChildNodes {
     int j = 0;
-    int i = 1  + j; // violation
+    // violation below 'Use a single space to separate non-whitespace characters.'
+    int i = 1  + j;
 }

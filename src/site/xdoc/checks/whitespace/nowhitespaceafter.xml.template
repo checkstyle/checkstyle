@@ -55,6 +55,20 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example2.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to forbid whitespace after DOT token:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespaceafter/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -82,9 +96,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="NoWhitespaceAfter_Package">
+      <subsection name="Fully Qualified Name" id="NoWhitespaceAfter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

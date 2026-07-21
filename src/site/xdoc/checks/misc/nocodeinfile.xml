@@ -42,14 +42,14 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/* the violation is on first line of file */
+// violation first line 'The file does not contain any code'
 // public class Example1 {
 // single-line comment is not code
 // }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/* the violation is on first line of file */
+// violation first line 'The file does not contain any code'
 /*
  public class Example2 {
  block comment is not code
@@ -82,9 +82,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="NoCodeInFile_Package">
+      <subsection name="Fully Qualified Name" id="NoCodeInFile_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

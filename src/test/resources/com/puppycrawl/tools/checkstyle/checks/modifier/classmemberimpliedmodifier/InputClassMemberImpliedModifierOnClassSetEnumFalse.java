@@ -56,7 +56,8 @@ public class InputClassMemberImpliedModifierOnClassSetEnumFalse {
         static interface StaticInnerInterface {
         }
 
-        interface SimpleInnerInterface {  // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        interface SimpleInnerInterface {
         }
     }
 
@@ -74,13 +75,15 @@ public class InputClassMemberImpliedModifierOnClassSetEnumFalse {
         static interface StaticInnerInterface {
         }
 
-        interface SimpleInnerInterface {  // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        interface SimpleInnerInterface {
         }
     }
 
     static interface StaticInterface {
     }
 
-    interface SimpleInterface {  // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    interface SimpleInterface {
     }
 }

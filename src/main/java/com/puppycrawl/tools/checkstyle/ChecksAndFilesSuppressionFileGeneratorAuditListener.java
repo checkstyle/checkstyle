@@ -190,7 +190,7 @@ public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
     private void suppressXmlWriter(Path fileName, String checkName, String moduleIdName) {
         writer.println("  <suppress");
         writer.print("      files=\"");
-        writer.print(fileName);
+        writer.print(XMLLogger.encode(fileName.toString()));
         writer.println(QUOTE_CHAR);
 
         if (moduleIdName == null) {
@@ -255,4 +255,5 @@ public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
     protected void finishLocalSetup() {
         // No code by default
     }
+
 }

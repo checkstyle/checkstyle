@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/matchxpath";
@@ -40,49 +41,50 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "20:3: " + "Parameterized constructors are not allowed",
             "22:3: " + "Parameterized constructors are not allowed",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "18:3: " + "Method name should not be test or foo",
             "21:3: " + "Method name should not be test or foo",
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
             "20:5: " + "New instances should be created via var keyword",
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase4() throws Exception {
         final String[] expected = {
             "19:3: " + "Classes with more than 1 constructor are not allowed",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase4.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase5() throws Exception {
         final String[] expected = {
             "19:17: " + "Array initialization should contain at most 10 elements",
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase5.java"), expected);
     }
+
 }

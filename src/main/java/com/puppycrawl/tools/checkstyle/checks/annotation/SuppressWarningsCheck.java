@@ -104,6 +104,13 @@ public class SuppressWarningsCheck extends AbstractCheck {
     private Pattern format = Pattern.compile("^\\s*+$");
 
     /**
+     * Creates a new {@code SuppressWarningsCheck} instance.
+     */
+    public SuppressWarningsCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the RegExp to match against warnings. Any warning
      * being suppressed matching this pattern will be flagged.
      *
@@ -183,17 +190,17 @@ public class SuppressWarningsCheck extends AbstractCheck {
     /**
      * Processes a single warning expression.
      *
-     * @param fChild  the first child AST of the expression
+     * @param firstChild  the first child AST of the expression
      * @param warning the parent warning AST node
      */
-    private void processWarningExpr(final DetailAST fChild, final DetailAST warning) {
-        switch (fChild.getType()) {
+    private void processWarningExpr(final DetailAST firstChild, final DetailAST warning) {
+        switch (firstChild.getType()) {
             case TokenTypes.STRING_LITERAL -> logMatch(warning,
                     removeQuotes(warning.getFirstChild().getText()));
 
             case TokenTypes.QUESTION ->
                 // ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
-                walkConditional(fChild);
+                walkConditional(firstChild);
 
             default -> {
             // Known limitation: cases like @SuppressWarnings("un" + "used") or

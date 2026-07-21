@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/leftcurly";
@@ -53,10 +54,21 @@ public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppor
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "1"),
+            "18:3: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", "3"),
+            "23:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "13"),
+            "25:15: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", "15"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -72,4 +84,5 @@ public class LeftCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppor
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

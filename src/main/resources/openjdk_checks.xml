@@ -16,7 +16,8 @@
 -->
 
 <module name="Checker">
-  <property name="severity" value="error"/>
+  <property name="severity" value="${org.checkstyle.openjdk.severity}" default="error"/>
+  <property name="charset" value="US-ASCII"/>
 
   <property name="fileExtensions" value="java, properties, xml"/>
 
@@ -33,11 +34,231 @@
     <property name="optional" value="true"/>
   </module>
 
+  <module name="SuppressWarningsFilter"/>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+              value="CHECKSTYLE.SUPPRESS\: (\w+) for ([+-]\d+) lines"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+
+  <module name="MultiFileRegexpHeader">
+    <property name="fileExtensions" value="java"/>
+    <property name="headerFiles"
+              value="${header.file.paths.separated.by.coma}"
+              default="/com/puppycrawl/tools/checkstyle/any.header"/>
+  </module>
+
+  <module name="LineEnding">
+    <property name="lineEnding" value="lf"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+
+  <module name="RegexpSingleline">
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Line has trailing spaces."/>
+  </module>
+
   <!-- Add OpenJDK-specific checks here based on the style guide -->
+
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
+
+  <module name="LineLength">
+    <property name="fileExtensions" value="java"/>
+    <property name="max" value="100"/>
+    <property name="ignorePattern"
+          value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
+  </module>
 
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on OpenJDK style guide -->
+    <module name="Indentation">
+      <property name="basicOffset" value="4"/>
+      <property name="caseIndent" value="4"/>
+      <property name="throwsIndent" value="8"/>
+      <property name="lineWrappingIndentation" value="8"/>
+      <property name="arrayInitIndent" value="4"/>
+    </module>
+    <module name="OneTopLevelClass"/>
+
     <module name="OneStatementPerLine"/>
+    <module name="OuterTypeFilename"/>
+    <module name="IllegalTokenText">
+      <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL, TEXT_BLOCK_CONTENT"/>
+      <property name="format"
+          value="\\u00(08|09|0(a|A)|0(c|C)|0(d|D)|20|22|27|5(C|c))|\\(0(10|11|12|14|15|40|42|47)|134)"/>
+      <property name="message"
+                value="Consider using special escape sequence instead of octal value or Unicode escaped value."/>
+    </module>
+    <module name="AvoidEscapedUnicodeCharacters"/>
+
+    <module name="OverloadMethodsDeclarationOrder">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
+
+    <module name="ConstructorsDeclarationGrouping">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
+
+    <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
+    <module name="LambdaBodyLength"/>
+    <module name="NoLineWrap">
+      <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
+    </module>
+
+    <module name="DeclarationOrder">
+      <property name="ignoreModifiers" value="true"/>
+      <message key="declaration.order.instance" value="Field declaration is in wrong order"/>
+      <message key="declaration.order.static" value="Field declaration is in wrong order"/>
+    </module>
+
+    <module name="WhitespaceAround">
+      <property name="allowEmptyCatches" value="true"/>
+      <property name="allowEmptyConstructors" value="true"/>
+      <property name="allowEmptyMethods" value="true"/>
+      <property name="allowEmptyTypes" value="true"/>
+      <property name="allowEmptyLoops" value="true"/>
+      <property name="allowEmptyLambdas" value="true"/>
+      <property name="allowEmptySwitchBlockStatements" value="true"/>
+      <property name="ignoreEnhancedForColon" value="false"/>
+    </module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="LABELED_STAT"/>
+    </module>
+    <module name="SingleSpaceSeparator"/>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+    <module name="WhitespaceAfter">
+      <property name="tokens" value="COMMA, SEMI, TYPECAST"/>
+    </module>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+    <module name="MatchXpath">
+      <property name="id" value="singleLineCommentStartWithSpace"/>
+      <property name="query"
+                value="//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with(@text, ' '))
+                       and not(starts-with(@text, '/'))
+                       and not(@text = '\n') and not(ends-with(@text, '//\n'))]]"/>
+      <message key="matchxpath.match" value="''//'' must be followed by a whitespace."/>
+    </module>
+
+    <module name="EmptyLineSeparator">
+      <property name="allowMultipleEmptyLines" value="false"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="EmptyLineSeparator"/>
+      <property name="query"
+                value="//IMPORT | //STATIC_IMPORT | //MODULE_IMPORT | //VARIABLE_DEF"/>
+    </module>
+
+    <module name="HiddenField">
+      <property name="ignoreAbstractMethods" value="true"/>
+      <property name="ignoreConstructorParameter" value="true"/>
+    </module>
+
+    <module name="UpperEll"/>
+    <module name="HexLiteralCase"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
+
+    <module name="MultipleVariableDeclarations"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="VariableDeclarationUsageDistance"/>
+
+    <module name="MethodName">
+      <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
+    </module>
+
+    <module name="MemberName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="StaticVariableName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="LocalVariableName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="LocalFinalVariableName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="ParameterName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="LambdaParameterName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="PatternVariableName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="RecordComponentName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="CatchParameterName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    </module>
+
+    <module name="ClassTypeParameterName">
+      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+    </module>
+    <module name="InterfaceTypeParameterName">
+      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+    </module>
+    <module name="MethodTypeParameterName">
+      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+    </module>
+    <module name="RecordTypeParameterName">
+      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+    </module>
+
+    <module name="TypeName">
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF"/>
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+    </module>
+    <module name="AbbreviationAsWordInName">
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF"/>
+      <property name="allowedAbbreviationLength" value="0"/>
+      <property name="ignoreFinal" value="false"/>
+      <property name="ignoreStatic" value="false"/>
+      <property name="ignoreStaticFinal" value="false"/>
+    </module>
+    <module name="ConstantName">
+      <property name="format" value="^[A-Z0-9]+(_[A-Z0-9]+)*$"/>
+    </module>
+    <module name="IllegalIdentifierName">
+      <property name="tokens" value="ENUM_CONSTANT_DEF"/>
+      <property name="format" value="^[A-Z0-9]+(_[A-Z0-9]+)*$"/>
+    </module>
+
+    <module name="AvoidStarImport">
+      <property name="maxAllowedStarImports" value="1"/>
+    </module>
+
+    <module name="ImportOrder">
+      <property name="groups" value="java,javax,org,com"/>
+      <property name="ordered" value="true"/>
+      <property name="option" value="bottom"/>
+      <property name="staticGroups" value="java,javax,org,com"/>
+      <property name="sortStaticImportsAlphabetically" value="true"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="ImportOrder"/>
+      <property name="message" value=".*(separation|separated).*"/>
+    </module>
+
+    <module name="UnusedImports"/>
+
+    <module name="MatchXpath">
+      <property name="id" value="unnecessaryParenthesesInReturn"/>
+      <property name="query"
+                value="//LITERAL_RETURN/EXPR[./LPAREN and ./RPAREN
+                       and not(./LPAREN/preceding-sibling::*)]"/>
+      <message key="matchxpath.match" value="Unnecessary parentheses in return statement."/>
+    </module>
+
+    <module name="RedundantModifier"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
@@ -45,7 +266,82 @@
                 default="checkstyle-xpath-suppressions.xml" />
       <property name="optional" value="true"/>
     </module>
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)" />
+      <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)" />
+      <property name="checkFormat" value="$1" />
+    </module>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="CHECKSTYLE.SUPPRESS\: ([\w\|]+)"/>
+      <!-- $1 refers to the first match group in the regex defined in commentFormat -->
+      <property name="checkFormat" value="$1"/>
+      <!-- The check is suppressed in the next line of code after the comment -->
+      <property name="influenceFormat" value="1"/>
+    </module>
 
+    <module name="OperatorWrap">
+      <property name="option" value="nl"/>
+      <property name="tokens"
+                value="QUESTION, COLON, EQUAL, NOT_EQUAL, DIV, PLUS, MINUS,
+                  STAR, MOD, SR, BSR, GE, GT, SL, LE, LT, BXOR, BOR, LOR, BAND,
+                  LAND, LITERAL_INSTANCEOF, TYPE_EXTENSION_AND, ASSIGN, DIV_ASSIGN,
+                  PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, MOD_ASSIGN, SR_ASSIGN, BSR_ASSIGN,
+                  SL_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, BAND_ASSIGN, METHOD_REF"/>
+    </module>
+
+    <module name="SeparatorWrap">
+      <property name="id" value="MethodChainDotWrap"/>
+      <property name="tokens" value="DOT"/>
+      <property name="option" value="nl"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="MethodChainDotWrap"/>
+      <property name="query" value="//DOT[not(parent::METHOD_CALL)]"/>
+    </module>
+
+    <module name="SummaryJavadoc"/>
+    <module name="JavadocContentLocation"/>
+
+    <module name="MissingOverride"/>
+    <module name="MissingOverrideOnRecordAccessor"/>
+    <module name="TodoComment"/>
+    <module name="ParameterAssignment"/>
+    <module name="FallThrough"/>
+    <module name="MethodLength"/>
+    <module name="MatchXpath">
+      <property name="id" value="PublicStaticFinalVariable"/>
+      <property name="query"
+        value="//VARIABLE_DEF[MODIFIERS[LITERAL_PUBLIC and LITERAL_STATIC and not(FINAL)]]"/>
+      <message key="matchxpath.match"
+        value="Public static variable must be final."/>
+    </module>
+
+    <module name="PackageName">
+      <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+    </module>
+
+    <module name="LeftCurly"/>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="LeftCurly"/>
+      <property name="query"
+                value="//METHOD_DEF/SLIST[LITERAL_RETURN
+                        or EXPR[following-sibling::SEMI[following-sibling::*[self::RCURLY]]]]"/>
+    </module>
+    <module name="RightCurly">
+      <property name="id" value="RightCurlySame"/>
+      <property name="tokens" value="LITERAL_IF, LITERAL_TRY, LITERAL_DO, LITERAL_CATCH"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="id" value="RightCurlySame"/>
+      <property name="query" value="//RCURLY[parent::SLIST[parent::LITERAL_IF/LITERAL_ELSE
+             /LITERAL_IF or parent::LITERAL_TRY/LITERAL_FINALLY
+             [not(preceding-sibling::LITERAL_CATCH)]
+             or parent::LITERAL_CATCH/following-sibling::LITERAL_FINALLY]]"/>
+    </module>
+    <module name="NeedBraces">
+      <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR,
+                   LITERAL_IF, LITERAL_WHILE, LITERAL_CASE, LITERAL_DEFAULT"/>
+    </module>
   </module>
 
 </module>

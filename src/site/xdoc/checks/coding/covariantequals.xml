@@ -28,6 +28,16 @@
         </p>
 
         <p>
+          Note: Compact source files
+          (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+          are skipped by design. Implicit classes in compact source files are not
+          reusable types and cannot be referenced by name, so they cannot participate
+          in the polymorphic contexts and collections where covariant <code>equals()</code>
+          silently falls back to identity comparison. The rationale for this check
+          does not extend to compact source files.
+        </p>
+
+        <p>
           Inspired by <a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf">
           Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'</a>:
         </p>
@@ -95,7 +105,7 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  public boolean equals(Example2 same) {  // no violation
+  public boolean equals(Example2 same) {
     return false;
   }
 
@@ -104,7 +114,7 @@ public class Example2 {
   }
 
   record Test(String str) {
-    public boolean equals(Test same) {  // no violation
+    public boolean equals(Test same) {
       return false;
     }
 
@@ -140,9 +150,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="CovariantEquals_Package">
+      <subsection name="Fully Qualified Name" id="CovariantEquals_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+           Use this fully qualified class name in configuration when an exact class reference is
+           required.
         </p>
       </subsection>
 

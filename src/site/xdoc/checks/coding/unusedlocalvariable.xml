@@ -11,9 +11,9 @@
       <subsection name="Description" id="UnusedLocalVariable_Description">
         <div>
           Checks that a local variable is declared and/or assigned, but not used.
-          Doesn't support
+          Supports
           <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
-          pattern variables yet</a>.
+          pattern variables</a>.
           Doesn't check
           <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-4.html#jls-4.12.3">
           array components</a> as array
@@ -39,6 +39,13 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>10.18.0</td>
+            </tr>
+            <tr>
+              <td><a id="jdkVersion"/><a href="#jdkVersion">jdkVersion</a></td>
+              <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release. Before JDK 22, named pattern variables in switch labels and instanceof record Destructuring cannot be replaced with <code>_</code>, so violations on them are suppressed when jdkVersion is set below 22.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>22</code></td>
+              <td>13.7.0</td>
             </tr>
           </table>
         </div>
@@ -168,6 +175,81 @@ public class Example2 {
     obj.test("Test");
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+           Example with pattern variable:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedLocalVariable"&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  sealed abstract static class Shape permits Circle, Rect {}
+  static final class Circle extends Shape {}
+  static final class Rect extends Shape {}
+  void patternVariables(Object obj, Shape s) {
+    if (obj instanceof String str) {
+    } // violation above, unused named local variable 'str'
+    if (obj instanceof String t) { // ok, 't' is used
+      System.out.println(t);
+    }
+    if (obj instanceof String _) { // ok, '_' is unnamed variable
+      System.out.println("string");
+    }
+    switch (s) { // violation below, unused local variable 'c'
+      case Circle c -&gt; System.out.println("circle");
+      case Rect r   -&gt; System.out.println(r); // ok, 'r' is used
+      default       -&gt; { }
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+           Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedLocalVariable"&gt;
+        &lt;property name="allowUnnamedVariables" value="false"/&gt;
+        &lt;property name="jdkVersion" value="21"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  sealed abstract static class Shape permits Circle, Rect {}
+  static final class Circle extends Shape {}
+  static final class Rect extends Shape {}
+  void patternVariables(Object obj, Shape s) {
+    if (obj instanceof String str) { // violation, unused local variable 'str'
+      System.out.println("string");
+    }
+    if (obj instanceof String t) { // ok, 't' is used
+      System.out.println(t);
+    }
+    if (obj instanceof String _) { // ok, pattern variable '_' is always skipped
+      System.out.println("string");
+    }
+    switch (s) {
+      case Circle c -&gt; System.out.println("circle");
+      case Rect r   -&gt; System.out.println(r); // ok, 'r' is used
+      default       -&gt; { }
+    }
+  }
+}
 </code></pre></div>
       </subsection>
 
@@ -200,9 +282,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UnusedLocalVariable_Package">
+      <subsection name="Fully Qualified Name" id="UnusedLocalVariable_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

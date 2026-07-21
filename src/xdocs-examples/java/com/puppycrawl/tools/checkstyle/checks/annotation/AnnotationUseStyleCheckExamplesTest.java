@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle";
@@ -38,9 +39,9 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
-            "26:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "28:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "24:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
+            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "27:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -51,8 +52,8 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
             "19:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
-            "26:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
-            "28:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
+            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
+            "27:40: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
 
         };
 
@@ -63,8 +64,8 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     public void testExample3() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
-            "25:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
-            "28:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "24:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
+            "27:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
 
         };
 
@@ -75,10 +76,11 @@ public class AnnotationUseStyleCheckExamplesTest extends AbstractExamplesModuleT
     public void testExample4() throws Exception {
         final String[] expected = {
             "19:34: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "26:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "24:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
 
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

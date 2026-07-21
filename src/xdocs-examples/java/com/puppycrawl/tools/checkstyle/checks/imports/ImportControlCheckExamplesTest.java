@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/importcontrol";
@@ -34,8 +35,16 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
+            "13:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
             "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.lang.ref.SoftReference"),
+            "16:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "19:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -55,11 +64,16 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED,
-                "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"),
+            "13:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
             "18:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.lang.ref.ReferenceQueue"),
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "19:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
@@ -72,7 +86,7 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED,
@@ -83,7 +97,7 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         final String examplePath = new File("src/" + getResourceLocation()
                 + "/resources/" + getPackageLocation() + "/"
-                + "newdomain/dao/Example4.java").getCanonicalPath();
+                + "newdomain/dao/UseCase1.java").getCanonicalPath();
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
@@ -91,7 +105,7 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(
                 ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
@@ -101,35 +115,30 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getPath("Example5.java"), expected);
+        verifyWithInlineXmlConfig(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
-            "17:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.Random"),
-        };
-
-        final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources/" + getPackageLocation() + "/"
-                + "someImports/Example6.java").getCanonicalPath();
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyWithInlineXmlConfig(examplePath, expected);
-    }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-            "17:1: " + getCheckMessage(
+            "16:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+            "20:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
+            "21:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
+            "23:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
+
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
                 + "/resources/" + getPackageLocation() + "/"
-                + "someImports/Example7.java").getCanonicalPath();
+                + "someImports/UseCase3.java").getCanonicalPath();
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
@@ -137,7 +146,33 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase4() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+            "20:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
+            "21:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
+            "23:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "someImports/UseCase4.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
+    public void testUseCase5() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.sql.Blob"),
@@ -145,7 +180,7 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         final String examplePath = new File("src/" + getResourceLocation()
                 + "/resources/" + getPackageLocation() + "/"
-                + "gui/Example8.java").getCanonicalPath();
+                + "gui/UseCase5.java").getCanonicalPath();
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
@@ -153,14 +188,22 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase6() throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
+            "14:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "com.google.common.io.Files"),
+            "15:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"),
+            "18:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "java.lang.ref.ReferenceQueue"),
+            "20:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED,
+                    "java.lang.ref.SoftReference"),
+            "24:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
                 + "/resources/" + getPackageLocation() + "/"
-                + "filters/Example9.java").getCanonicalPath();
+                + "filters/UseCase6.java").getCanonicalPath();
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
@@ -168,37 +211,47 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample10() throws Exception {
+    public void testUseCase7() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
-            "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
-        };
-
-        final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources/" + getPackageLocation() + "/"
-                + "someImports/Example10.java").getCanonicalPath();
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyWithInlineXmlConfig(examplePath, expected);
-    }
-
-    @Test
-    public void testExample11() throws Exception {
-        final String[] expected = {
-            "15:1: " + getCheckMessage(
-                ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
-            "16:1: " + getCheckMessage(
-                ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+                    ImportControlCheck.MSG_DISALLOWED, "javax.swing.Action"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
             "19:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+            "21:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
+            "22:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
+            "24:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "someImports/UseCase7.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
+    public void testUseCase8() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(
+                ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+            "18:1: " + getCheckMessage(
+                ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+            "23:1: " + getCheckMessage(
                 ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
             + "/resources/" + getPackageLocation() + "/"
-            + "someImports/Example11.java").getCanonicalPath();
+            + "someImports/UseCase8.java").getCanonicalPath();
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
@@ -206,15 +259,21 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample12() throws Exception {
+    public void testUseCase9() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "15:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.FileReader"),
+            "17:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getPath("Example12.java"), expected);
+        verifyWithInlineXmlConfig(getPath("UseCase9.java"), expected);
     }
 
     @Test

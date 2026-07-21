@@ -23,9 +23,8 @@ class Example2 {
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;
   }
-  Example2 setField(String field) { // ok, because PARAMETER_DEF not configured
+  void setField(String field) { // ok, because PARAMETER_DEF not configured
     this.field = field;
-    return null;
   }
   abstract class Inner {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured

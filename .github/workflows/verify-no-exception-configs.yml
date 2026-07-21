@@ -17,7 +17,7 @@ jobs:
         run: sudo apt install xmlstarlet
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Run verify-no-exception-configs
         env:

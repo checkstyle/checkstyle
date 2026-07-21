@@ -164,28 +164,42 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 extends SuperClass { // ok, camel case
-  int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
-  static int GLOBAL_COUNTER; // ok, static is ignored
+  int CURRENT_COUNTER;  // violation 'no more than '4' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, static is ignored
+
   final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
+  int firstNum;
+  int secondNUM;
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;
+  String firstURL;
+  final int TOTAL = 5;              // ok, final is ignored
+  static final int LIMIT = 10;      // ok, static final is ignored
+  int nextXYZ = 1;
+  final int countID = 2;
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}
 
   @Override
-  public void printCOUNTER() { // ok, overridden method is ignored
-    System.out.println(CURRENT_COUNTER);
-  }
+  public void printCOUNTER() {}     // ok, overridden method is ignored
   // violation below 'no more than '4' consecutive capital letters'
-  void incrementCOUNTER() {
-    CURRENT_COUNTER++; // ok, only definitions are checked
-  }
+  void incrementCOUNTER() {}
   // violation below 'no more than '4' consecutive capital letters'
-  static void incrementGLOBAL() {
-    GLOBAL_COUNTER++; // ok, only definitions are checked
-  }
+  static void incrementGLOBAL() {}
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to include static variables and
           methods tagged with <code>@Override</code> annotation.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example2-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -200,31 +214,44 @@ class Example1 extends SuperClass { // ok, camel case
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 extends SuperClass { // ok, camel case
-  int CURRENT_COUNTER; // violation 'no more than '4' consecutive capital letters'
+  int CURRENT_COUNTER;  // violation 'no more than '4' consecutive capital letters'
   // violation below 'no more than '4' consecutive capital letters'
   static int GLOBAL_COUNTER;
+
   final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
+  int firstNum;
+  int secondNUM;
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;
+  String firstURL;
+  final int TOTAL = 5;              // ok, final is ignored
+  static final int LIMIT = 10;      // ok, static final is ignored
+  int nextXYZ = 1;
+  final int countID = 2;
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}
 
   @Override // violation below 'no more than '4' consecutive capital letters'
-  public void printCOUNTER() {
-    System.out.println(CURRENT_COUNTER); // ok, only definitions are checked
-  }
+  public void printCOUNTER() {}
   // violation below 'no more than '4' consecutive capital letters'
-  void incrementCOUNTER() {
-    CURRENT_COUNTER++; // ok, only definitions are checked
-  }
+  void incrementCOUNTER() {}
   // violation below 'no more than '4' consecutive capital letters'
-  static void incrementGLOBAL() {
-    GLOBAL_COUNTER++; // ok, only definitions are checked
-  }
+  static void incrementGLOBAL() {}
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check all variables and identifiers
           (including ones with the static modifier) and enforce
           no abbreviations (essentially camel case) except for
           words like 'XML' and 'URL'.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example3-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -240,56 +267,239 @@ class Example2 extends SuperClass { // ok, camel case
 </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class Example3 extends SuperClass {
+  int CURRENT_COUNTER;  // violation 'no more than '1' consecutive capital letters'
+  // violation below 'no more than '1' consecutive capital letters'
+  static int GLOBAL_COUNTER;
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
   int firstNum;
-  int secondNUM; // violation 'no more than '1' consecutive capital letters'
-  static int thirdNum; // ok, the static modifier would be checked
+  int secondNUM;        // violation 'no more than '1' consecutive capital letters'
+  static int thirdNum;  // ok, the static modifier would be checked
   static int fourthNUm; // violation 'no more than '1' consecutive capital letters'
-  String firstXML; // ok, XML abbreviation is allowed
-  String firstURL; // ok, URL abbreviation is allowed
-  final int TOTAL = 5; // ok, final is ignored
-  static final int LIMIT = 10; // ok, static final is ignored
+  String firstXML;      // ok, XML abbreviation is allowed
+  String firstURL;      // ok, URL abbreviation is allowed
+  final int TOTAL = 5;              // ok, final is ignored
+  static final int LIMIT = 10;      // ok, static final is ignored
+  int nextXYZ = 1;      // violation 'no more than '1' consecutive capital letters'
+  final int countID = 2;            // ok, final is ignored
+  // violation below 'no more than '1' consecutive capital letters'
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, static final is ignored
+
   void newOAuth2Client() {} // ok, O abbreviation is allowed
-  void OAuth2() {} // ok, O abbreviation is allowed
+  void OAuth2() {}          // ok, O abbreviation is allowed
   void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {}
+
+  void incrementCOUNTER() {}
+
+  static void incrementGLOBAL() {}
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
-          To configure to check variables, excluding fields with
-          the static modifier, and allow abbreviations up to 2
-          consecutive capital letters ignoring the longer word 'CSV'.
-        </p><hr class="example-separator"/>
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
+        </p>
         <p id="Example4-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
-      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
-      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
-      &lt;property name="ignoreStatic" value="true"/&gt;
-      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="ignoreFinal" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 { // ok, ignore checking the class name
-  int firstNum; // ok, abbreviation "N" is of allowed length 1
-  int secondNUm;
-  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
-  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
-  static int fourthNUM; // ok, variables with static modifier would be ignored
-  String firstCSV; // ok, CSV abbreviation is allowed
-  String firstXML; // violation 'no more than '2' consecutive capital letters'
-  final int TOTAL = 5; // ok, final is ignored
-  static final int LIMIT = 10; // ok, static final is ignored
+class Example4 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // violation 'no more than '4' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, static is ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;();
+  int firstNum;
+  int secondNUM;
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;
+  String firstURL;
+  final int TOTAL = 5;  // violation 'no more than '4' consecutive capital letters'
+  static final int LIMIT = 10;      // ok, static final is ignored
+  int nextXYZ = 1;
+  final int countID = 2;            // ok, final is checked but run is short
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {}     // ok, overridden method is ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {}
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {}
 }
 </code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          To configure to allow abbreviations up to 2 consecutive capital letters.
+        </p>
+        <p id="Example6-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // violation 'no more than '3' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, static is ignored
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
+  int firstNum;
+  int secondNUM;         // ok, run of 3 capitals is allowed
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;       // ok, run of 3 capitals is allowed
+  String firstURL;       // ok, run of 3 capitals is allowed
+  final int TOTAL = 5;               // ok, final is ignored
+  static final int LIMIT = 10;       // ok, static final is ignored
+  int nextXYZ = 1;        // ok, run of 3 capitals is allowed
+  final int countID = 2;             // ok, final is ignored
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4;  // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}          // ok, run of 3 capitals is allowed
+
+  @Override
+  public void printCOUNTER() {}     // ok, overridden method is ignored
+  // violation below 'no more than '3' consecutive capital letters'
+  void incrementCOUNTER() {}
+  // violation below 'no more than '3' consecutive capital letters'
+  static void incrementGLOBAL() {}
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          To configure to check only method names.
+        </p>
+        <p id="Example7-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // ok, only METHOD_DEF is checked
+
+  static int GLOBAL_COUNTER;        // ok, only METHOD_DEF is checked
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, only METHOD_DEF is checked
+  int firstNum;
+  int secondNUM;
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;
+  String firstURL;
+  final int TOTAL = 5;              // ok, only METHOD_DEF is checked
+  static final int LIMIT = 10;      // ok, only METHOD_DEF is checked
+  int nextXYZ = 1;
+  final int countID = 2;
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, only METHOD_DEF is checked
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {}     // ok, overridden method is ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {}
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {}
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          To configure to allow abbreviations up to 1 consecutive capital letter,
+          allow specific abbreviations, and check overridden methods.
+        </p>
+        <p id="Example8-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+      &lt;property name="allowedAbbreviations" value="COUNTER,GLOBAL"/&gt;
+      &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // violation 'no more than '2' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, GLOBAL and COUNTER are allowed
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
+  int firstNum;
+  int secondNUM;         // violation 'no more than '2' consecutive capital letters'
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;       // violation 'no more than '2' consecutive capital letters'
+  String firstURL;       // violation 'no more than '2' consecutive capital letters'
+  final int TOTAL = 5;               // ok, final is ignored
+  static final int LIMIT = 10;       // ok, static final is ignored
+  int nextXYZ = 1;        // violation 'no more than '2' consecutive capital letters'
+  final int countID = 2;             // ok, final is ignored
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4;  // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}        // violation 'no more than '2' consecutive capital letters'
+
+  @Override
+  public void printCOUNTER() {}     // ok, COUNTER is allowed
+
+  void incrementCOUNTER() {}        // ok, COUNTER is allowed
+
+  static void incrementGLOBAL() {}  // ok, GLOBAL is allowed
+}
+</code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           except for variables that are both static and final.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example5-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -306,19 +516,79 @@ class Example4 { // ok, ignore checking the class name
 </code></pre></div>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-  int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
+class Example5 extends SuperClass {
+  int CURRENT_COUNTER;  // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
-  final int customerID = 2;
+  static int GLOBAL_COUNTER;
+  // violation below 'no more than '1' consecutive capital letters'
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;();
+  int firstNum;
+  int secondNUM;        // violation 'no more than '1' consecutive capital letters'
+  static int thirdNum;
+  static int fourthNUm; // violation 'no more than '1' consecutive capital letters'
+  String firstXML;      // violation 'no more than '1' consecutive capital letters'
+  String firstURL;      // violation 'no more than '1' consecutive capital letters'
+  final int TOTAL = 5;  // violation 'no more than '1' consecutive capital letters'
+  static final int LIMIT = 10;
+  int nextXYZ = 1;       // violation 'no more than '1' consecutive capital letters'
+  final int countID = 2; // violation 'no more than '1' consecutive capital letters'
+
   static int nextID = 3; // violation 'no more than '1' consecutive capital letters'
-  static final int MAX_ALLOWED = 4; // ok, ignored
+  static final int MAX_ALLOWED = 4;
+
+  void newOAuth2Client() {} // ok, O abbreviation is allowed
+  void OAuth2() {}          // ok, O abbreviation is allowed
+  void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {}
+
+  void incrementCOUNTER() {}
+
+  static void incrementGLOBAL() {}
 }
 </code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AbbreviationAsWordInName_Use_Cases">
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p id="UseCase1-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
+      &lt;property name="ignoreStatic" value="true"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 { // ok, ignore checking the class name
+  int firstNum; // ok, abbreviation "N" is of allowed length 1
+  int secondNUm;
+  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
+  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
+  static int fourthNUM; // ok, variables with static modifier would be ignored
+  String firstCSV; // ok, CSV abbreviation is allowed
+  String firstXML; // violation 'no more than '2' consecutive capital letters'
+  final int TOTAL = 5; // ok, final is ignored
+  static final int LIMIT = 10; // ok, static final is ignored
+}
+</code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
-        </p><hr class="example-separator"/>
-        <p id="Example6-config">Configuration:</p>
+        </p>
+        <p id="UseCase2-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -332,9 +602,9 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
@@ -343,12 +613,13 @@ class Example6 {
   static final int MAX_ALLOWED = 4;
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure to check variables, enforce
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
-        </p><hr class="example-separator"/>
-        <p id="Example7-config">Configuration:</p>
+        </p>
+        <p id="UseCase3-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -359,9 +630,9 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase3 {
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;
@@ -379,6 +650,10 @@ class Example7 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AbbreviationAsWordInName">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -398,8 +673,12 @@ class Example7 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AbbreviationAsWordInName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="AbbreviationAsWordInName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AbbreviationAsWordInName_Parent_Module">

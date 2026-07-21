@@ -51,9 +51,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="EqualsAvoidNull"&gt;
-      &lt;property name="ignoreEqualsIgnoreCase" value="false"/&gt;
-    &lt;/module&gt;
+    &lt;module name="EqualsAvoidNull"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -65,10 +63,12 @@ public class Example1 {
   public void foo() {
     String nullString = null;
 
-    // violation below 'String literal expressions should be on the left side'
+    // violation 2 lines below """String literal expressions should
+    //  be on the left side of an equals comparison."""
     nullString.equals("My_Sweet_String");
     "My_Sweet_String".equals(nullString);
-    // violation below 'String literal expressions should be on the left side'
+    // violation 2 lines below """String literal expressions should
+    //  be on the left side of an equalsIgnoreCase comparison."""
     nullString.equalsIgnoreCase("My_Sweet_String");
     "My_Sweet_String".equalsIgnoreCase(nullString);
   }
@@ -94,10 +94,12 @@ public class Example2 {
   public void foo() {
     String nullString = null;
 
-    // violation below 'String literal expressions should be on the left side'
+    // violation 2 lines below """String literal expressions should
+    //  be on the left side of an equals comparison."""
     nullString.equals("My_Sweet_String");
     "My_Sweet_String".equals(nullString);
 
+    // ok, ignoreEqualsIgnoreCase is true
     nullString.equalsIgnoreCase("My_Sweet_String");
     "My_Sweet_String".equalsIgnoreCase(nullString);
   }
@@ -134,9 +136,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="EqualsAvoidNull_Package">
+      <subsection name="Fully Qualified Name" id="EqualsAvoidNull_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

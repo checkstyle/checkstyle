@@ -113,6 +113,20 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to use tokens:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodcount/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
@@ -135,9 +149,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MethodCount_Package">
+      <subsection name="Fully Qualified Name" id="MethodCount_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

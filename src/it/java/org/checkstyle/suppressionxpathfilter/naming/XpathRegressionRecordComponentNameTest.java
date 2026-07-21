@@ -118,4 +118,5 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -18,20 +18,21 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
 
+// Fan-out count: Date, Time, Place, File
+// Total = 4
 // xdoc section -- start
-class Example4{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Counted, 1
-  Time4 time = new Time4(); // Counted, 2
-  Place4 place = new Place4(); // Counted, 3
-  int value = 10; // int is ignored
-  BufferedReader br; // Ignored
-  File file; // Counted, 4
+class Example4 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, primitive types are ignored
+  BufferedReader br;         // ok, Reader is excluded
+  File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place4 {}
-class Time4 {}
 // xdoc section -- end

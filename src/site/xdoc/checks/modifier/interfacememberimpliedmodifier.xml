@@ -174,7 +174,7 @@ public interface Example1 {
   //    'Implied modifier 'final' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   //    'Implied modifier 'static' should be explicit'
-  public static Example1 instance() { return null; }
+  public static Address instance() {return null;}
 
   public abstract Address createAddress(String addressLine, String city);
   List&lt;Address&gt; findAddresses(String city);
@@ -221,7 +221,7 @@ public interface Example2 {
   //    'Implied modifier 'final' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   //    'Implied modifier 'static' should be explicit'
-  public static Example2 instance() { return null; }
+  public static Address instance() {return null;}
 
   public abstract Address createAddress(String addressLine, String city);
   List&lt;Address&gt; findAddresses(String city);
@@ -229,8 +229,8 @@ public interface Example2 {
   //    'Implied modifier 'abstract' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   interface Address {
-    // ok above because of configured properties
-    // ok above because of configured properties
+    // ok, because violateImpliedPublicNested=false
+    // ok, because violateImpliedStaticNested=false
 
     String getCity();
     // 2 violations above:
@@ -265,8 +265,11 @@ public interface Example3 {
 
   public static final String UNKNOWN = "Unknown";
   String OTHER = "Other";
+  // ok, because 'violateImpliedFinalField' is false
+  // ok, because 'violateImpliedPublicField' is false
+  // ok, because 'violateImpliedStaticField' is false
 
-  public static Example3 instance() { return null; }
+  public static Address instance() {return null;}
 
   public abstract Address createAddress(String addressLine, String city);
   List&lt;Address&gt; findAddresses(String city);
@@ -313,16 +316,21 @@ public interface Example4 {
   //    'Implied modifier 'final' should be explicit'
   //    'Implied modifier 'public' should be explicit'
   //    'Implied modifier 'static' should be explicit'
-  public static Example4 instance() { return null; }
+  public static Address instance() {return null;}
 
   public abstract Address createAddress(String addressLine, String city);
   List&lt;Address&gt; findAddresses(String city);
+  // ok, because 'violateImpliedAbstractMethod' is false
+  // ok, because 'violateImpliedPublicMethod' is false
 
   interface Address {
     // 2 violations above:
     //    'Implied modifier 'public' should be explicit'
     //    'Implied modifier 'static' should be explicit'
     String getCity();
+    // ok, because 'violateImpliedAbstractMethod' is false
+    // ok, because 'violateImpliedPublicMethod' is false
+
   }
 }
 </code></pre></div>
@@ -352,8 +360,13 @@ public interface Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="InterfaceMemberImpliedModifier_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      <subsection name="Fully Qualified Name"
+                   id="InterfaceMemberImpliedModifier_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="InterfaceMemberImpliedModifier_Parent_Module">

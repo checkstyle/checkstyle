@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class BooleanExpressionComplexityCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/booleanexpressioncomplexity";
@@ -36,7 +37,7 @@ public class BooleanExpressionComplexityCheckExamplesTest
     public void testExample1() throws Exception {
         final String[] expected = {
             "20:15: " + getCheckMessage(MSG_KEY, 5, 3),
-            "24:15: " + getCheckMessage(MSG_KEY, 6, 3),
+            "23:15: " + getCheckMessage(MSG_KEY, 6, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -59,4 +60,5 @@ public class BooleanExpressionComplexityCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

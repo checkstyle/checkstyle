@@ -33,6 +33,7 @@ import net.sf.saxon.tree.iter.AxisIterator;
  * to iterate from last child backwards to the first one, for example in {@link PrecedingIterator}.
  */
 public class ReverseDescendantIterator implements AxisIterator {
+
     /**
      * Queue for sibling nodes.
      */
@@ -89,4 +90,5 @@ public class ReverseDescendantIterator implements AxisIterator {
         }
         return result;
     }
+
 }

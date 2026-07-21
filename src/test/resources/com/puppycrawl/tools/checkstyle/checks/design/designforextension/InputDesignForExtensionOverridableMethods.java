@@ -11,7 +11,8 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 public class InputDesignForExtensionOverridableMethods {
 
     public class A {
-        public int foo1(int a, int b) {return a + b;} // violation
+        // violation below ''foo1' does not have javadoc that explains how to do that safely'
+        public int foo1(int a, int b) {return a + b;}
 
         public void foo2() { }
 
@@ -35,45 +36,52 @@ public class InputDesignForExtensionOverridableMethods {
              */
         }
 
-        public int foo8(int a, int b) { // violation
+        // violation below ''foo8' does not have javadoc that explains how to do that safely'
+        public int foo8(int a, int b) {
             // single-line comment before content
             return a + b;
         }
 
-        public int foo9(int a, int b) { // violation
+        // violation below ''foo9' does not have javadoc that explains how to do that safely'
+        public int foo9(int a, int b) {
             /*
              * block comment before content
              */
             return a + b;
         }
 
-        public int foo10(int a, int b) { // violation
+        // violation below ''foo10' does not have javadoc that explains how to do that safely'
+        public int foo10(int a, int b) {
             /**
              * javadoc block comment before content
              */
             return a + b;
         }
 
-        public int foo11(int a, int b) { // violation
+        // violation below ''foo11' does not have javadoc that explains how to do that safely'
+        public int foo11(int a, int b) {
             return a + b;
             // single-line comment after content
         }
 
-        public int foo12(int a, int b) { // violation
+        // violation below ''foo12' does not have javadoc that explains how to do that safely'
+        public int foo12(int a, int b) {
             return a + b;
             /*
              * block comment after content
              */
         }
 
-        public int foo13(int a, int b) { // violation
+        // violation below ''foo13' does not have javadoc that explains how to do that safely'
+        public int foo13(int a, int b) {
             return a + b;
             /**
              * javadoc block comment after content
              */
         }
 
-        protected int foo14(int a) {return a -1;} // violation
+        // violation below ''foo14' does not have javadoc that explains how to do that safely'
+        protected int foo14(int a) {return a -1;}
 
         public final int foo15(int a) {return a - 2;}
 
@@ -95,13 +103,15 @@ public class InputDesignForExtensionOverridableMethods {
         protected final int foo21(int a) {return a - 2;}
 
         // Single line comment
-        public void foo22() { // violation
+        // violation below ''foo22' does not have javadoc that explains how to do that safely'
+        public void foo22() {
             return;
         }
 
         // Single line comments
         // organized in a block
-        public void foo23() { // violation
+        // violation below ''foo23' does not have javadoc that explains how to do that safely'
+        public void foo23() {
             return;
         }
 
@@ -110,19 +120,22 @@ public class InputDesignForExtensionOverridableMethods {
         public void foo24() {}
 
         /* Block comment violation */
-        public void foo25() { // violation
+        // violation below ''foo25' does not have javadoc that explains how to do that safely'
+        public void foo25() {
             return;
         }
 
         // Single line comment
-        @Deprecated // violation
+        // violation below ''foo26' does not have javadoc that explains how to do that safely'
+        @Deprecated
         public void foo26() {
             return;
         }
 
         // Single line comments
         // organized in a block
-        @Deprecated // violation
+        // violation below ''foo27' does not have javadoc that explains how to do that safely'
+        @Deprecated
         public void foo27() {
             return;
         }
@@ -134,7 +147,8 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /* Block comment violation */
-        @Deprecated // violation
+        // violation below ''foo29' does not have javadoc that explains how to do that safely'
+        @Deprecated
         public void foo29() {
             return;
         }
@@ -156,7 +170,8 @@ public class InputDesignForExtensionOverridableMethods {
         }
 
         /* */
-        public int foo31() { // violation
+        // violation below ''foo31' does not have javadoc that explains how to do that safely'
+        public int foo31() {
             /** */
             return 1;
         }
@@ -167,13 +182,15 @@ public class InputDesignForExtensionOverridableMethods {
             return 1;
         }
 
-        @Deprecated // violation
+        // violation below ''foo33' does not have javadoc that explains how to do that safely'
+        @Deprecated
         /** */
         public int foo33() {
             return 1;
         }
 
-        @Deprecated // violation
+        // violation below ''foo34' does not have javadoc that explains how to do that safely'
+        @Deprecated
         /* */
         public int foo34() {
             return 1;
@@ -195,19 +212,21 @@ public class InputDesignForExtensionOverridableMethods {
         // comment
         public void foo38() { }
 
-        @Deprecated /** */ // violation
+        // violation below ''foo39' does not have javadoc that explains how to do that safely'
+        @Deprecated /** */
         public void foo39() {return; }
 
-        void foo40() { // no violation: empty body
+        void foo40() { // ok, empty body
             /** */
         }
 
-        void foo41() { // violation
+        // violation below ''foo41' does not have javadoc that explains how to do that safely'
+        void foo41() {
             return;
         }
 
         /** */
-        void foo42() { // no violation: has javadoc comment
+        void foo42() { // ok, has javadoc comment
         }
 
         /** */

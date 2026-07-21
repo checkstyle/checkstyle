@@ -10,12 +10,12 @@
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
 
 // xdoc section -- start
+// violation 11 lines below 'Block tags have to appear in the order'
 /**
 * Some javadoc.
 *
@@ -26,33 +26,34 @@ import java.io.Serializable;
 * @throws Some javadoc.
 * @exception Some javadoc.
 * @see Some javadoc.
-* @since Some javadoc. // violation
+* @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
-public class Example2 {}
-
-class Valid2 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated
- * @see Some javadoc.
- */
-class Invalid2 implements Serializable {}
-
-/**
- * Some javadoc.
- *
- * @since Some javadoc.
- * @version Some javadoc.
- * @deprecated Some javadoc.
- * @see Some javadoc.
- * @author max // violation
- */
-enum Test2 {}
+public class Example2 {
+  class Valid implements Serializable {}
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
+  /**
+   * Some javadoc.
+   *
+   * @author max
+   * @version Some javadoc.
+   * @see Some javadoc.
+   * @since Some javadoc.
+   * @deprecated
+   */
+  enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
+}
 // xdoc section -- end

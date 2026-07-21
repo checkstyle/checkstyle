@@ -62,6 +62,13 @@ public final class IllegalCatchCheck extends AbstractCheck {
             .collect(Collectors.toCollection(HashSet::new));
 
     /**
+     * Creates a new {@code IllegalCatchCheck} instance.
+     */
+    public IllegalCatchCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify exception class names to reject.
      *
      * @param classNames
@@ -106,4 +113,5 @@ public final class IllegalCatchCheck extends AbstractCheck {
             currentNode = currentNode.getNextSibling();
         }
     }
+
 }

@@ -20,7 +20,7 @@
   <!-- Regexp -->
   <module name="RegexpOnFilename">
     <property name="id" value="exampleFileName"/>
-    <property name="fileNamePattern" value="^Example\d+$"/>
+    <property name="fileNamePattern" value="^(Example|UseCase)\d+$"/>
     <property name="ignoreFileNameExtensions" value="true"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
@@ -91,6 +91,33 @@
     <property name="maximum" value="0"/>
   </module>
 
+  <module name="RegexpSingleline">
+    <property name="id" value="UnnecessaryOkComment"/>
+    <property name="format" value="(?i)//\s*ok\s*$"/>
+    <property name="message" value="'// ok' comments should have an explanation, or they are unnecessary."/>
+    <property name="maximum" value="0"/>
+  </module>
+
+  <module name="RegexpMultiline">
+    <property name="id" value="markerCommentBetweenAnnotationAndTarget"/>
+    <property name="format"
+              value="(?:\r?\n|\A)[ \t]*@[A-Za-z_][\w.]*(?:\([^\r\n]*\))?[ \t]*\r?\n[ \t]*//[ \t]*(?:ok|[^\r\n]*violation)"/>
+    <property name="message"
+              value="Marker comments must not be placed alone on a line between an
+annotation and its target. Place it before the annotation,
+or inline on the same line as the annotation."/>
+  </module>
+
+  <module name="RegexpMultiline">
+    <property name="id" value="markerCommentBetweenJavadocAndTarget"/>
+    <property name="format"
+              value="(?:\r?\n|\A)[ \t]*\*/[ \t]*\r?\n[ \t]*//[ \t]*(?:ok|[^\r\n]*violation)"/>
+    <property name="message"
+              value="Marker comments must not be placed alone on a line between a
+Javadoc block and its target. Place it before the Javadoc
+block, or inline on the same line as the closing '*/'."/>
+  </module>
+
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile"/>
 
@@ -115,7 +142,7 @@
   <module name="TreeWalker">
 
     <module name="SuppressionXpathSingleFilter">
-      <property name="files" value="Example\d+.java"/>
+      <property name="files" value="(Example|UseCase)\d+.java"/>
       <property name="id" value="exampleClassName"/>
       <property name="query" value="//CLASS_DEF//CLASS_DEF/IDENT
                                     | COMPILATION_UNIT/CLASS_DEF[position() > 1]/IDENT"/>
@@ -136,7 +163,7 @@
     <!-- Regexp -->
     <module name="TypeName">
       <property name="id" value="exampleClassName"/>
-      <property name="format" value="Example\d+"/>
+      <property name="format" value="(Example|UseCase)\d+"/>
       <property name="tokens" value="CLASS_DEF"/>
       <property name="applyToPrivate" value="false"/>
       <property name="applyToPublic" value="true"/>

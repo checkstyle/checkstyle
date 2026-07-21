@@ -4,7 +4,7 @@ max = (default)1
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedifdepth;
 
 public class InputNestedIfDepthInsideCaseBody {

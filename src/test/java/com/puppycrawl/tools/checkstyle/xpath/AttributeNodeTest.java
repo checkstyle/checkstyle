@@ -193,4 +193,5 @@ public class AttributeNodeTest {
             .that(exc.getMessage())
             .isEqualTo("Operation is not supported");
     }
+
 }

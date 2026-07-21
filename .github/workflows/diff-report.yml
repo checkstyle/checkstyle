@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: React to comment
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
@@ -60,7 +60,7 @@ jobs:
             })
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Getting PR description
         env:
@@ -108,7 +108,7 @@ jobs:
     steps:
 
       - name: Download checkstyle
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download files
         env:
@@ -133,7 +133,7 @@ jobs:
           git fetch forked
 
       - name: Setup local maven cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -145,7 +145,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Download contribution
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/contribution
           path: .ci-temp/contribution
@@ -154,7 +154,10 @@ jobs:
         run: |
           mv .ci-temp/projects.properties ./.ci-temp/contribution/checkstyle-tester/
           mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
-          sudo apt install groovy
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
@@ -215,7 +218,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Get message
         env:

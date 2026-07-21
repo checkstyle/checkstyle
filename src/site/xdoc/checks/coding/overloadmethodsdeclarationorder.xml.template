@@ -18,6 +18,15 @@
         </macro>
       </subsection>
 
+      <subsection name="Properties" id="OverloadMethodsDeclarationOrder_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java"/>
+          </macro>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="OverloadMethodsDeclarationOrder_Examples">
         <p id="Example1-config">To configure the check:</p>
         <macro name="example">
@@ -25,16 +34,36 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example1-code">Example of correct and incorrect grouping of overloaded methods:</p>
+        <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">To configure the check according to
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-structure">
+          OpenJDK guidelines</a>, where
+          overloaded methods should be grouped together and ordered by increasing parameter count:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/overloadmethodsdeclarationorder/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="OverloadMethodsDeclarationOrder_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
+            OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OverloadMethodsDeclarationOrder">
             Google Style</a>
@@ -57,9 +86,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="OverloadMethodsDeclarationOrder_Package">
+      <subsection name="Fully Qualified Name"
+                   id="OverloadMethodsDeclarationOrder_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

@@ -32,7 +32,7 @@ public class ParameterNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testLambdaParameterName() throws Exception {
-        verifyWithWholeConfig(getPath("InputLambdaParameterName.java"));
+        verifyWithWholeConfig(getNonCompilablePath("InputLambdaParameterName.java"));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ParameterNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testCatchParameterName() throws Exception {
-        verifyWithWholeConfig(getPath("InputCatchParameterName.java"));
+        verifyWithWholeConfig(getNonCompilablePath("InputCatchParameterName.java"));
     }
 
 }

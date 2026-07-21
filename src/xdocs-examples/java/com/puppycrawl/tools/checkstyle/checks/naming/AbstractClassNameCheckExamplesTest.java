@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final String DEFAULT_PATTERN = "^Abstract.+$";
 
     @Override
@@ -73,12 +74,13 @@ public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTe
         final String pattern = "^Generator.+$";
 
         final String[] expected = {
-            "18:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractFirst", pattern),
-            "19:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", pattern),
+            "17:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractFirst", pattern),
+            "18:3: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "Second", pattern),
             "23:3: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "GeneratorSixth",
                 pattern),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

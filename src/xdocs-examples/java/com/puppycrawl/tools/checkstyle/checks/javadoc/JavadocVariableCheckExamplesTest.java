@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable";
@@ -58,8 +59,9 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample3() throws Exception {
         final String[] expected = {
             "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -80,16 +82,28 @@ public class JavadocVariableCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "12:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "13:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:15: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
+    @Test
+    public void testUseCase2() throws Exception {
+        final String[] expected = {
+            "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
+    }
+
 }

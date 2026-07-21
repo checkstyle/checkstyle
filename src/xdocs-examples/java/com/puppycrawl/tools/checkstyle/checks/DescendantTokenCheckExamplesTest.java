@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/descendanttoken";
@@ -36,10 +37,7 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "29:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
-            "63:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
-            "68:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
-            "70:9: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
+            "23:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -48,7 +46,7 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "47:5: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_SWITCH", "LITERAL_CASE"),
+            "23:5: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_SWITCH", "LITERAL_CASE"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -57,7 +55,6 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "68:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_SWITCH", "LITERAL_SWITCH"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -66,27 +63,25 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "21:12: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_CONDITION", "EXPR"),
+            "40:11: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_CONDITION", "EXPR"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "21:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),
-            "33:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),
+            "40:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "18:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_CATCH", "LITERAL_RETURN"),
-            "29:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_CATCH", "LITERAL_RETURN"),
+            "30:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_CATCH", "LITERAL_RETURN"),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
@@ -95,103 +90,101 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "37:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_CATCH", "LITERAL_TRY"),
-            "43:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_TRY"),
+            "29:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_CATCH", "LITERAL_TRY"),
+            "34:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_FINALLY", "LITERAL_TRY"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "20:3: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "METHOD_DEF", "VARIABLE_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = {
-            "24:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "LITERAL_RETURN"),
-            "33:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "LITERAL_RETURN"),
+            "19:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "LITERAL_RETURN"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
     }
 
     @Test
-    public void testExample10() throws Exception {
+    public void testUseCase4() throws Exception {
         final String[] expected = {
-            "20:22: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_THROWS", "IDENT"),
+            "20:11: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_THROWS", "IDENT"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase4.java"), expected);
     }
 
     @Test
-    public void testExample11() throws Exception {
+    public void testUseCase5() throws Exception {
         final String[] expected = {
-            "21:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "EXPR"),
+            "19:3: " + getCheckMessage(MSG_KEY_MAX, 10, 2, "METHOD_DEF", "EXPR"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase5.java"), expected);
     }
 
     @Test
     public void testExample12() throws Exception {
         final String[] expected = {
-            "23:7: " + "Empty statement is not allowed.",
+            "51:5: " + "Empty statement is not allowed.",
         };
 
         verifyWithInlineConfigParser(getPath("Example12.java"), expected);
     }
 
     @Test
-    public void testExample13() throws Exception {
+    public void testUseCase6() throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "CLASS_DEF", "VARIABLE_DEF"),
-            "32:1: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "INTERFACE_DEF", "VARIABLE_DEF"),
+            "16:1: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "CLASS_DEF", "VARIABLE_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example13.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase6.java"), expected);
     }
 
     @Test
     public void testExample14() throws Exception {
         final String[] expected = {
-            "20:14: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
-            "23:14: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
+            "47:14: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
         };
 
         verifyWithInlineConfigParser(getPath("Example14.java"), expected);
     }
 
     @Test
-    public void testExample15() throws Exception {
+    public void testUseCase7() throws Exception {
         final String[] expected = {
-            "22:13: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "EQUAL", "STRING_LITERAL"),
+            "46:29: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "EQUAL", "STRING_LITERAL"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example15.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase7.java"), expected);
     }
 
     @Test
-    public void testExample16() throws Exception {
+    public void testUseCase8() throws Exception {
         final String[] expected = {
-            "22:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_ASSERT", "POST_INC"),
+            "50:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_ASSERT", "POST_INC"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example16.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase8.java"), expected);
     }
 
     @Test
     public void testExample17() throws Exception {
         final String[] expected = {
-            "21:5: Switch must contain at least one default branch.",
+            "24:5: Switch must contain at least one default branch.",
         };
 
         verifyWithInlineConfigParser(getPath("Example17.java"), expected);
     }
+
 }

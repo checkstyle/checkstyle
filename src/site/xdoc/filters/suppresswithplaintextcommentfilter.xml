@@ -59,7 +59,7 @@
             </tr>
             <tr>
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
-              <td>Specify check pattern to suppress.</td>
+              <td>Specify check pattern to suppress. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>8.6</td>
@@ -332,13 +332,14 @@ keyC=value5
   &lt;/macro&gt;
 &lt;/project&gt;
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           It is possible to specify the ID of checks, which can be used by the
           SuppressWithPlainTextCommentFilter to suppress audit events.
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check
@@ -432,7 +433,7 @@ JOIN jobs AS j ON u.job_id = j.id
 WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
 -- // filtered violation above 'Line is longer ...'
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="UseCase1-config">
           This check is not limited to comments. It can match any symbols in the given file
           as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression.
           The following example shows how to suppress violations within a text block for the
@@ -452,10 +453,12 @@ WHERE u.registration_date &gt;= '2023-01-01' AND u.status = 'active';
   &lt;/module&gt;
 
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example9-code">Example:</p>
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithPlainTextCommentFilter_Use_Cases">
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
+public class UseCase1 {
 
   static final String LOCATION_CSV_SAMPLE = """
           locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
@@ -483,8 +486,13 @@ public class Example9 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWithPlainTextCommentFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithPlainTextCommentFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWithPlainTextCommentFilter_Parent_Module">

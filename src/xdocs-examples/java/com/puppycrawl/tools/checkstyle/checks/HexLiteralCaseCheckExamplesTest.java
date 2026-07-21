@@ -54,4 +54,5 @@ public class HexLiteralCaseCheckExamplesTest extends AbstractExamplesModuleTestS
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

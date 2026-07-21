@@ -98,23 +98,40 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   int foo = 5;
+  int[][] array = { { 1, 2 }
+                    , { 3, 4 } }; // violation '',' is preceded with whitespace'
+  int[][] array2 = { { 1, 2 },
+                       { 3, 4 } };
+  void ellipsisExample(String ...params) {}
+  // violation above ''...' is preceded with whitespace'
+  void ellipsisExample2(String
+                            ...params) {
+    // violation above ''...' is preceded with whitespace'
+    Lists.charactersOf("foo")
+        .listIterator()
+        .forEachRemaining(System.out::print);
+
+  }
+
   void example() {
     foo ++; // violation 'is preceded with whitespace'
     foo++;
-    for (int i = 0 ; i &lt; 5; i++) {}  // violation '';' is preceded with whitespace'
+    for (int i = 0 ; i &lt; 5; i++) {} // violation '';' is preceded with whitespace'
     for (int i = 0; i &lt; 5; i++) {}
-    int[][] array = { { 1, 2 }
-                    , { 3, 4 } }; // violation '',' is preceded with whitespace'
-    int[][] array2 = { { 1, 2 },
-                       { 3, 4 } };
     Lists.charactersOf("foo").listIterator()
-           .forEachRemaining(System.out::print)
-           ; // violation '';' is preceded with whitespace'
+        .forEachRemaining(System.out::print);
+
+    Lists.charactersOf("foo").listIterator().forEachRemaining(System.out ::print);
+
+    Lists.charactersOf("foo").listIterator().forEachRemaining(System.out::print);
+    Lists.charactersOf("foo").listIterator()
+        .forEachRemaining(System.out::print)
+
+    ; // violation '';' is preceded with whitespace'
     {
       label1 : // violation '':' is preceded with whitespace'
       for (int i = 0; i &lt; 10; i++) {}
     }
-
     {
       label2:
       while (foo &lt; 5) {}
@@ -137,18 +154,46 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+  int foo = 5;
   int[][] array = { { 1, 2 }
-                  , { 3, 4 } };
+                    , { 3, 4 } };
   int[][] array2 = { { 1, 2 },
-                     { 3, 4 } };
-  void ellipsisExample(String ...params) {};
+                       { 3, 4 } };
+  void ellipsisExample(String ...params) {}
   // violation above ''...' is preceded with whitespace'
   void ellipsisExample2(String
-                          ...params) {
+                            ...params) {
+
     Lists.charactersOf("foo")
-         .listIterator()
-         .forEachRemaining(System.out::print);
-  };
+        .listIterator()
+        .forEachRemaining(System.out::print);
+
+  }
+
+  void example() {
+    foo ++; // violation 'is preceded with whitespace'
+    foo++;
+    for (int i = 0 ; i &lt; 5; i++) {} // violation '';' is preceded with whitespace'
+    for (int i = 0; i &lt; 5; i++) {}
+    Lists.charactersOf("foo").listIterator()
+        .forEachRemaining(System.out::print);
+
+    Lists.charactersOf("foo").listIterator().forEachRemaining(System.out ::print);
+
+    Lists.charactersOf("foo").listIterator().forEachRemaining(System.out::print);
+    Lists.charactersOf("foo").listIterator()
+        .forEachRemaining(System.out::print)
+
+    ;
+    {
+      label1 : // violation '':' is preceded with whitespace'
+      for (int i = 0; i &lt; 10; i++) {}
+    }
+    {
+      label2:
+      while (foo &lt; 5) {}
+    }
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -166,17 +211,52 @@ class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+  int foo = 5;
+  int[][] array = { { 1, 2 }
+                    , { 3, 4 } };
+  int[][] array2 = { { 1, 2 },
+                       { 3, 4 } };
+  void ellipsisExample(String ...params) {}
+
+  void ellipsisExample2(String
+                            ...params) {
+
+    Lists.charactersOf("foo")
+        .listIterator() // violation ''.' is preceded with whitespace'
+        .forEachRemaining(System.out::print);
+    // violation above ''.' is preceded with whitespace'
+  }
+
   void example() {
+    foo ++;
+    foo++;
+    for (int i = 0 ; i &lt; 5; i++) {}
+    for (int i = 0; i &lt; 5; i++) {}
     Lists.charactersOf("foo").listIterator()
-         .forEachRemaining(System.out::print);
+        .forEachRemaining(System.out::print);
     // violation above ''.' is preceded with whitespace'
     Lists.charactersOf("foo").listIterator().forEachRemaining(System.out ::print);
     // violation above ''::' is preceded with whitespace'
     Lists.charactersOf("foo").listIterator().forEachRemaining(System.out::print);
+    Lists.charactersOf("foo").listIterator()
+        .forEachRemaining(System.out::print)
+    // violation above ''.' is preceded with whitespace'
+    ;
+    {
+      label1 :
+      for (int i = 0; i &lt; 10; i++) {}
+    }
+    {
+      label2:
+      while (foo &lt; 5) {}
+    }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NoWhitespaceBefore_Use_Cases">
+        <p id="UseCase1-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -189,9 +269,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class UseCase1 {
   void example() {
     Lists .charactersOf("foo") // violation ''.' is preceded with whitespace'
           .listIterator()
@@ -210,6 +290,10 @@ class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
@@ -237,9 +321,11 @@ class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NoWhitespaceBefore_Package">
+      <subsection name="Fully Qualified Name" id="NoWhitespaceBefore_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

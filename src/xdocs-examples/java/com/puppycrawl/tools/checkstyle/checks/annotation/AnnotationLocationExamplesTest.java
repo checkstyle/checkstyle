@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AnnotationLocationExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation";
@@ -34,9 +35,9 @@ public class AnnotationLocationExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "31:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
             "33:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
-            "35:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Mock"),
+            "35:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "37:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Mock"),
 
         };
 
@@ -55,10 +56,9 @@ public class AnnotationLocationExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "24:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Nonnull"),
-            "26:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Override"),
-            "36:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Nonnull"),
-            "36:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Mock"),
+            "25:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Override"),
+            "37:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Nonnull"),
+            "37:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Mock"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -67,9 +67,21 @@ public class AnnotationLocationExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "33:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "36:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "28:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "30:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "32:12: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Mock"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
 }

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/javancss";
@@ -46,6 +47,7 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
     public void testExample2() throws Exception {
         final String[] expected = {
             "15:3: " + getCheckMessage(MSG_METHOD, 6, 4),
+            "34:5: " + getCheckMessage(MSG_METHOD, 5, 4),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,7 +56,7 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_CLASS, 11, 10),
+            "13:1: " + getCheckMessage(MSG_CLASS, 18, 10),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -63,7 +65,7 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "11:1: " + getCheckMessage(MSG_FILE, 12, 10),
+            "11:1: " + getCheckMessage(MSG_FILE, 19, 10),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -72,9 +74,10 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "24:3: " + getCheckMessage(MSG_RECORD, 6, 5),
+            "33:3: " + getCheckMessage(MSG_RECORD, 6, 5),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
 }

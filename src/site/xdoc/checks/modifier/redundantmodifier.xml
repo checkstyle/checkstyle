@@ -50,6 +50,10 @@
         </ol>
 
         <p>
+          ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+        </p>
+
+        <p>
           interfaces by definition are abstract so the <code>abstract</code> modifier is redundant on them.
         </p>
 
@@ -235,7 +239,6 @@ public class ClassExtending extends ClassExample {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-
   void test() {
     // violation below, 'Redundant 'final' modifier'
     try (final var a = lock()) {
@@ -244,7 +247,6 @@ public class Example1 {
 
     }
   }
-
   // violation below, 'Redundant 'abstract' modifier'
   abstract interface I {
     public abstract void m();
@@ -255,16 +257,14 @@ public class Example1 {
   }
 
   static enum E { // violation, 'Redundant 'static' modifier'
-        A, B, C
+    A, B, C
   }
-
   // violation below, 'Redundant 'strictfp' modifier'
   public strictfp class Test { }
 
   AutoCloseable lock() {
     return null;
   }
-
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -285,8 +285,8 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-
   void test() {
+
     try (final var a = lock()) {
 
     } catch (Exception e) {
@@ -303,7 +303,7 @@ public class Example2 {
   }
 
   static enum E {
-        A, B, C
+    A, B, C
   }
 
   public strictfp class Test { }
@@ -330,7 +330,6 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-
   void test() {
     // violation below, 'Redundant 'final' modifier'
     try (final var a = lock()) {
@@ -339,7 +338,6 @@ public class Example3 {
 
     }
   }
-
   // violation below, 'Redundant 'abstract' modifier'
   abstract interface I {
     public abstract void m();
@@ -350,16 +348,14 @@ public class Example3 {
   }
 
   static enum E { // violation, 'Redundant 'static' modifier'
-        A, B, C
+    A, B, C
   }
-
   // ok below, 'strictfp' is not redundant before JDK 17
   public strictfp class Test { }
 
   AutoCloseable lock() {
     return null;
   }
-
 }
 </code></pre></div>
       </subsection>
@@ -373,6 +369,10 @@ public class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifier">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -392,8 +392,12 @@ public class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="RedundantModifier_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
+      <subsection name="Fully Qualified Name" id="RedundantModifier_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="RedundantModifier_Parent_Module">

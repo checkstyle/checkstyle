@@ -96,6 +96,8 @@ public class JavadocVariableCheckTest
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "41:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:38: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "77:47: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocVariableTagsEnums.java"), expected);
@@ -409,10 +411,10 @@ public class JavadocVariableCheckTest
     @Test
     public void testMethodInnerClass() throws Exception {
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableMethodInnerClass.java"),
@@ -422,10 +424,24 @@ public class JavadocVariableCheckTest
     @Test
     public void testJavadocVariableAboveComment() throws Exception {
         final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableAboveComment.java"),
             expected);
     }
+
+    @Test
+    public void testJavadocVariableOddCases() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "21:18: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "43:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputJavadocVariableOddCases.java"),
+            expected);
+    }
+
 }

@@ -5,14 +5,15 @@ max = 1
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 public class InputNPathComplexityRecords {
 
     // in compact ctor, NP=3
     record MyRecord1(boolean t, boolean f) {
-    public MyRecord1 { // violation
+        // violation below 'NPath Complexity is 3 (max allowed is 1).'
+    public MyRecord1 {
             int i = 1;
             // NP = (if-range=1) + (else-range=2) + 0 = 3
             if (t) {
@@ -21,13 +22,13 @@ public class InputNPathComplexityRecords {
             }
         }
 
-        // in method, NP=2
-        public void foo() { // violation
+        // violation below 'NPath Complexity is 2 (max allowed is 1).'
+        public void foo() {
             //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
             while (true) {
                 Runnable runnable = new Runnable() {
-                    // NP = 2
-                    public void run() { // violation
+                    // violation below 'NPath Complexity is 2 (max allowed is 1).'
+                    public void run() {
                         // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                         while (true) {
                         }
@@ -41,7 +42,8 @@ public class InputNPathComplexityRecords {
 
     // in ctor NP=3
     record MyRecord2(boolean a, boolean b) {
-        MyRecord2() { // violation
+        // violation below 'NPath Complexity is 3 (max allowed is 1).'
+        MyRecord2() {
             this(true, false);
             int i = 1;
             // NP = (if-range=1) + (else-range=2) + 0 = 3

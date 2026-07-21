@@ -1,5 +1,5 @@
 /* /nodynamiccopyright/ */ class InputEmptyLineSeparatorCompactNoPackage { // test
-    // add two lines
+// non-compiled with javac: missing package. Used for Testing purpose.
     // to check separator capabilities
     void top() {
         return;

@@ -11,8 +11,8 @@
       <subsection name="Description" id="RightCurly_Description">
         <div>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
-          supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
-          for-loops, method definitions, class definitions, constructor definitions,
+          supports if-else, try-catch-finally blocks, switch statements, switch cases, switch default,
+          while-loops, for-loops, method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks of arrays, lambdas and class instances
           please follow issue
@@ -83,6 +83,8 @@
                     LITERAL_SWITCH</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
                     LITERAL_CASE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                    LITERAL_DEFAULT</a>
                   .
               </td>
               <td>
@@ -139,8 +141,10 @@ public class Example1 {
   }
   private void bar() {
   }
-  public void testSingleLine() { bar(); }
-  public void violate() { Object b = "b"; }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
   public void method0() {
     int mode = 0;
     int x;
@@ -148,7 +152,7 @@ public class Example1 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
@@ -209,70 +213,11 @@ public class Example2 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
       default: x = 0; }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
-          To configure the check with policy <code>alone</code> for
-          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
-          Switch</a>
-          Statements and Switch Cases:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="RightCurly"&gt;
-      &lt;property name="option" value="alone"/&gt;
-      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
-  public void test() {
-    boolean f = false;
-    if (f) {
-      bar();
-    }
-    else {
-      bar();
-    }
-    if (f) {
-      bar();
-    } else {
-      bar();
-    }
-    if (f) { bar(); } int i = 0;
-    try {
-      bar();
-    }
-    catch (Exception e) {
-      bar();
-    }
-  }
-  private void bar() {
-  }
-  public void testSingleLine() { bar(); }
-  public void violate() { Object b = "b"; }
-  public void method0() {
-    int mode = 0;
-    int x;
-    switch (mode) {
-      case 1: int y = 1; break;
-      case 2: {x = 1;} // violation, 'should be alone on a line.'
-      case 3: int z = 0; {break;}
-      default: x = 0;
-    }
-    switch (mode) {
-      case 1: x = 1; break;
-      default: x = 0; } // violation, 'should be alone on a line.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -319,8 +264,10 @@ public class Example4 {
   }
   private void bar() {
   }
-  public void testSingleLine() { bar(); }
-  public void violate() { Object b = "b"; }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
   public void method0() {
     int mode = 0;
     int x;
@@ -328,33 +275,36 @@ public class Example4 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
       default: x = 0; }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure the check with policy <code>alone_or_singleline</code> for
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="RightCurly_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check with policy <code>alone</code> for
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
           Switch</a>
-          Statements and Switch Cases:
+          Statements, Switch Cases and Switch Default:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="RightCurly"&gt;
-      &lt;property name="option" value="alone_or_singleline"/&gt;
-      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE"/&gt;
+      &lt;property name="option" value="alone"/&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class UseCase1 {
   public void test() {
     boolean f = false;
     if (f) {
@@ -378,8 +328,71 @@ public class Example5 {
   }
   private void bar() {
   }
-  public void testSingleLine() { bar(); }
-  public void violate() { Object b = "b"; }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
+  public void method0() {
+    int mode = 0;
+    int x;
+    switch (mode) {
+      case 1: int y = 1; break;
+      case 2: {x = 1;} // violation, 'should be alone on a line.'
+      case 3: int z = 0; {break;}
+      default: {x = 0;} // violation, 'should be alone on a line.'
+    }
+    switch (mode) {
+      case 1: x = 1; break;
+      default: x = 0; } // violation, 'should be alone on a line.'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check with policy <code>alone_or_singleline</code> for
+          <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html">
+          Switch</a>
+          Statements, Switch Cases and Switch Default:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RightCurly"&gt;
+      &lt;property name="option" value="alone_or_singleline"/&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH, LITERAL_CASE, LITERAL_DEFAULT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase2 {
+  public void test() {
+    boolean f = false;
+    if (f) {
+      bar();
+    }
+    else {
+      bar();
+    }
+    if (f) {
+      bar();
+    } else {
+      bar();
+    }
+    if (f) { bar(); } int i = 0;
+    try {
+      bar();
+    }
+    catch (Exception e) {
+      bar();
+    }
+  }
+  private void bar() {
+  }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
   public void method0() {
     int mode = 0;
     int x;
@@ -387,7 +400,7 @@ public class Example5 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;
@@ -402,6 +415,10 @@ public class Example5 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
@@ -439,8 +456,12 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="RightCurly_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
+      <subsection name="Fully Qualified Name" id="RightCurly_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="RightCurly_Parent_Module">

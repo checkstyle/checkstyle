@@ -56,6 +56,18 @@ public final class AnnotationUtil {
     }
 
     /**
+     * Checks if the AST is annotated with any annotation.
+     *
+     * @param ast the current node
+     * @return {@code true} if the AST contains at least one annotation
+     * @throws IllegalArgumentException when ast is null
+     */
+    public static boolean containsAnnotation(final DetailAST ast) {
+        final DetailAST holder = getAnnotationHolder(ast);
+        return holder != null && holder.findFirstToken(TokenTypes.ANNOTATION) != null;
+    }
+
+    /**
      * Checks if the AST is annotated with the passed in annotation.
      *
      * <p>
@@ -78,18 +90,6 @@ public final class AnnotationUtil {
     public static boolean containsAnnotation(final DetailAST ast,
         String annotation) {
         return getAnnotation(ast, annotation) != null;
-    }
-
-    /**
-     * Checks if the AST is annotated with any annotation.
-     *
-     * @param ast the current node
-     * @return {@code true} if the AST contains at least one annotation
-     * @throws IllegalArgumentException when ast is null
-     */
-    public static boolean containsAnnotation(final DetailAST ast) {
-        final DetailAST holder = getAnnotationHolder(ast);
-        return holder != null && holder.findFirstToken(TokenTypes.ANNOTATION) != null;
     }
 
     /**
@@ -128,7 +128,7 @@ public final class AnnotationUtil {
      * @param annotationNode The annotation AST.
      * @return The full ident text.
      */
-    private static String getAnnotationFullIdent(DetailAST annotationNode) {
+    public static String getAnnotationFullIdent(DetailAST annotationNode) {
         final DetailAST identNode = annotationNode.findFirstToken(TokenTypes.IDENT);
         final String annotationString;
 

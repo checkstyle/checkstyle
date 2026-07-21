@@ -6,12 +6,13 @@ allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
 allowEmptyCatches = (default)false
+allowEmptySwitchBlockStatements = (default)false
 ignoreEnhancedForColon = (default)true
 tokens = LITERAL_WHEN
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
 public class InputWhitespaceAroundLiteralWhen {

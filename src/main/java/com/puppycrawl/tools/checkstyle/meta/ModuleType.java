@@ -51,4 +51,5 @@ public enum ModuleType {
     public String getLabel() {
         return label;
     }
+
 }

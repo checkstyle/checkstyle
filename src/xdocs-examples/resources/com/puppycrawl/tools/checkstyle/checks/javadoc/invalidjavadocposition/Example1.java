@@ -9,8 +9,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.invalidjavadocposition;
 
 // xdoc section -- start
+// violation 3 lines below 'Javadoc comment is placed in the wrong location'
 @SuppressWarnings("serial")
-// violation below, 'Javadoc comment is placed in the wrong location'
+
 /**
  * This comment looks like Javadoc but it is at an invalid location.
  * Therefore, the text will not get into TestClass.html.

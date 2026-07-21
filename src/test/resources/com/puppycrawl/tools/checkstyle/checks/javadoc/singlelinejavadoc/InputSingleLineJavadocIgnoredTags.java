@@ -11,8 +11,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
 class InputSingleLineJavadocIgnoredTags {
 
-        /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */ // violation
-    void foo() {}
+        /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
+    void foo() {
+         // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 
     /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}
@@ -41,21 +43,29 @@ class InputSingleLineJavadocIgnoredTags {
     /** {@inheritDoc} */
     void foo7() {}
 
-    /** {@inheritDoc}  {@code bar} */ // violation
-    void foo8() {}
+    /** {@inheritDoc}  {@code bar} */
+    void foo8() {
+         // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 
-    /** {@inheritDoc}  {@link #bar} */ // violation
-    void foo9() {}
+    /** {@inheritDoc}  {@link #bar} */
+    void foo9() {
+         // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 
-    /** @customTag */ // violation
+    /** @customTag */ // violation 'Single-line Javadoc comment should be multi-line.'
     void bar() {}
 
     /** @ignoredCustomTag */
     void bar1() {}
 
-    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/ // violation
-    void bar2() {}
+    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/
+    void bar2() {
+        // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 
-    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/ // violation
-    void bar3() {}
+    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/
+    void bar3() {
+         // violation 2 lines above 'Single-line Javadoc comment should be multi-line.'
+    }
 }

@@ -38,13 +38,13 @@ public class Example3 {
   }
 
   public void secondMethod() {
-    // countEmpty property is false,so this line doesn't count
+    // ok, countEmpty property is false,so this line doesn't count
     System.out.println("line 3");
   }
 
   public void thirdMethod() {
 
-    // countEmpty property is false,so this line and the line above don't count
+    // ok, countEmpty property is false,so this line and the line above don't count
     System.out.println("line 4");
   }
 

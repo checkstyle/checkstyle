@@ -293,10 +293,10 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadoc() throws Exception {
         final String[] expected = {
-            "10:3: " + getCheckMessage(MSG_KEY_BLOCK, 13, 2, 0),
-            "16:1: " + getCheckMessage(MSG_KEY_BLOCK, 17, 0, 4),
-            "19:9: " + getCheckMessage(MSG_KEY_BLOCK, 22, 8, 4),
-            "26:11: " + getCheckMessage(MSG_KEY_BLOCK, 27, 10, 8),
+            "11:3: " + getCheckMessage(MSG_KEY_BLOCK, 14, 2, 0),
+            "17:1: " + getCheckMessage(MSG_KEY_BLOCK, 18, 0, 4),
+            "21:9: " + getCheckMessage(MSG_KEY_BLOCK, 24, 8, 4),
+            "28:11: " + getCheckMessage(MSG_KEY_BLOCK, 29, 10, 8),
         };
         final String testInputFile = "InputCommentsIndentationJavadoc.java";
         verifyWithInlineConfigParser(getPath(testInputFile), expected);
@@ -419,4 +419,5 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputCommentsIndentationStartOfMethodCallChainNpe.java"), expected);
     }
+
 }

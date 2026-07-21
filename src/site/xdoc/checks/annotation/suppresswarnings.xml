@@ -165,8 +165,10 @@ class Example1 {
 
   @SuppressWarnings("all")
   void foo2(int param) {}
+
   @SuppressWarnings("unused")
   void foo3(int param) {}
+
   @SuppressWarnings(true?"all":"unused")
   void foo4(int param) {}
 }
@@ -203,30 +205,71 @@ class Example2 {
   // ok below as VARIABLE_DEF is not configured in tokens to check
   @SuppressWarnings("")
   final int num1 = 1;
+
   @SuppressWarnings("all")
   final int num2 = 2;
+
   @SuppressWarnings("unused")
   final int num3 = 3;
-
   // ok below as PARAMETER_DEF is not configured in tokens to check
   void foo1(@SuppressWarnings("unused") int param) {}
-
   // ok below, since we are only checking for '^unchecked$|^unused$'
   @SuppressWarnings("all")
   void foo2(int param) {}
-
   // violation below, 'The warning 'unused' cannot be suppressed at this location'
   @SuppressWarnings("unused")
   void foo3(int param) {}
-
   // violation below, 'The warning 'unused' cannot be suppressed at this location'
   @SuppressWarnings(true?"all":"unused")
   void foo4(int param) {}
 }
-
 // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
 @SuppressWarnings("unchecked")
 class Test2 {}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check so that the &quot;unchecked&quot; and &quot;unused&quot;
+          warnings cannot be suppressed at any location:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressWarnings"&gt;
+      &lt;property name="format"
+          value="^unchecked$|^unused$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// ok below, since we are only checking for '^unchecked$|^unused$'
+@SuppressWarnings("")
+class Example3 {
+  // ok below, since we are only checking for '^unchecked$|^unused$'
+  @SuppressWarnings("")
+  final int num1 = 1;
+  // ok below as default format only checks for a blank or empty string
+  @SuppressWarnings("all")
+  final int num2 = 2;
+  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings("unused")
+  final int num3 = 3;
+  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  void foo1(@SuppressWarnings("unused") int param) {}
+
+  @SuppressWarnings("all")
+  void foo2(int param) {}
+  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings("unused")
+  void foo3(int param) {}
+  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  @SuppressWarnings(true?"all":"unused")
+  void foo4(int param) {}
+}
+// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+@SuppressWarnings("unchecked")
+class Test3 {}
 </code></pre></div>
       </subsection>
 
@@ -254,8 +297,12 @@ class Test2 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="SuppressWarnings_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="SuppressWarnings_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWarnings_Parent_Module">

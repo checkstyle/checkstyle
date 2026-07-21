@@ -25,8 +25,8 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -36,14 +36,11 @@ import javax.xml.transform.TransformerException;
 
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.site.JavadocScraperResultUtil;
 import com.puppycrawl.tools.checkstyle.site.ModuleJavadocParsingUtil;
+import com.puppycrawl.tools.checkstyle.site.PropertyDetails;
 import com.puppycrawl.tools.checkstyle.site.SiteUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGeneratorUtil {
@@ -108,19 +105,17 @@ public final class MetadataGeneratorUtil {
 
         final String className = SiteUtil.getModuleName(file);
         final Set<String> properties = SiteUtil.getPropertiesForDocumentation(clss, instance);
-        final Map<String, DetailNode> propertiesJavadocs = SiteUtil
-                .getPropertiesJavadocs(properties, className, file.toPath());
-        final DetailNode moduleJavadoc = SiteUtil.getModuleJavadoc(className, file.toPath());
-        String description = ModuleJavadocParsingUtil
-            .getModuleDescription(moduleJavadoc);
+        final Map<String, PropertyDetails> scrapedPropertyDetails = SiteUtil
+                .buildPropertyDetails(properties, className, file.toPath(), instance);
+        String description = JavadocScraperResultUtil.getModuleDescription();
 
-        final String notes = ModuleJavadocParsingUtil.getModuleNotes(moduleJavadoc);
+        final String notes = JavadocScraperResultUtil.getModuleNotes();
         if (!notes.isEmpty()) {
             description = description + "\n\n " + notes;
         }
 
         final List<ModulePropertyDetails> propertiesDetails = getPropertiesDetails(
-            properties, propertiesJavadocs, className, instance);
+                scrapedPropertyDetails.values(), className, instance);
 
         return new ModuleDetails(moduleName, fullyQualifiedName, parentModuleString,
             description, moduleType, propertiesDetails, new ArrayList<>(messageKeys));
@@ -149,27 +144,25 @@ public final class MetadataGeneratorUtil {
     /**
      * Get property details for the given property - name, description, type, default value.
      *
-     * @param properties properties of the module.
-     * @param javadocs javadocs of the module.
+     * @param propertiesDetails property details list.
      * @param className the class name of the module.
      * @param instance the instance of the module.
      * @return property details.
      * @throws MacroExecutionException if an error occurs.
      */
     private static List<ModulePropertyDetails> getPropertiesDetails(
-            Set<String> properties, Map<String, DetailNode> javadocs,
+            Collection<PropertyDetails> propertiesDetails,
             String className, Object instance)
             throws MacroExecutionException {
-        final List<ModulePropertyDetails> result = new ArrayList<>(properties.size());
-        for (String property : properties) {
-            final String description = getPropertyDescription(property,
-                    javadocs.get(property));
+        final List<ModulePropertyDetails> result = new ArrayList<>(propertiesDetails.size());
+        for (PropertyDetails details : propertiesDetails) {
+            final String property = details.getName();
+            final String description = details.getDescription();
             final Field propertyField = SiteUtil.getField(instance.getClass(), property);
 
             final String type = SiteUtil.getType(propertyField, property, className, instance);
 
-            final String defaultValue = getPropertyDefaultValue(property, propertyField, instance,
-                    className);
+            final String defaultValue = getPropertyDefaultValue(details);
             final String validationType = getValidationType(property, propertyField);
 
             result.add(new ModulePropertyDetails(property, type, defaultValue,
@@ -181,38 +174,22 @@ public final class MetadataGeneratorUtil {
     /**
      * Get default value for the given property.
      *
-     * @param property property name.
-     * @param field field.
-     * @param instance instance of the module.
-     * @param className class name of the module.
+     * @param details the property details.
      * @return default value.
-     * @throws MacroExecutionException if an error occurs.
      */
-    private static String getPropertyDefaultValue(String property, Field field, Object instance,
-            String className) throws MacroExecutionException {
+    private static String getPropertyDefaultValue(PropertyDetails details) {
         final String defaultValue;
-        if (SiteUtil.TOKENS.equals(property)) {
-            final AbstractCheck check = (AbstractCheck) instance;
-            final List<String> configurableTokens = SiteUtil
-                        .getDifference(check.getDefaultTokens(),
-                                check.getRequiredTokens())
-                        .stream()
-                        .map(TokenUtil::getTokenName)
-                        .toList();
-            defaultValue = String.join(SiteUtil.COMMA, configurableTokens);
-        }
-        else if (SiteUtil.JAVADOC_TOKENS.equals(property)) {
-            final AbstractJavadocCheck check = (AbstractJavadocCheck) instance;
-            final List<String> configurableTokens = SiteUtil
-                    .getDifference(check.getDefaultJavadocTokens(),
-                            check.getRequiredJavadocTokens())
-                    .stream()
-                    .map(JavadocUtil::getTokenName)
-                    .toList();
-            defaultValue = String.join(SiteUtil.COMMA, configurableTokens);
+        if (details.getDefaultValueTokens().isEmpty()) {
+            final String raw = details.getDefaultValue();
+            if ("{}".equals(raw)) {
+                defaultValue = "";
+            }
+            else {
+                defaultValue = raw;
+            }
         }
         else {
-            defaultValue = SiteUtil.getDefaultValue(property, field, instance, className);
+            defaultValue = String.join(SiteUtil.COMMA, details.getDefaultValueTokens());
         }
         return defaultValue;
     }
@@ -230,8 +207,8 @@ public final class MetadataGeneratorUtil {
         }
         catch (TransformerException | ParserConfigurationException example) {
             throw new CheckstyleException(
-                            "Failed to write metadata into XML file for module: "
-                                    + moduleDetails.getName(), example);
+                    "Failed to write metadata into XML file for module: "
+                            + moduleDetails.getName(), example);
         }
     }
 
@@ -255,44 +232,6 @@ public final class MetadataGeneratorUtil {
             validationType = null;
         }
         return validationType;
-    }
-
-    /**
-     * Get property description from property javadoc.
-     *
-     * @param property property name.
-     * @param propertyJavadoc property javadoc.
-     * @return property description.
-     */
-    private static String getPropertyDescription(String property, DetailNode propertyJavadoc) {
-        final String propertyDescription;
-        if (SiteUtil.TOKENS.equals(property)) {
-            propertyDescription = "tokens to check";
-        }
-        else if (SiteUtil.JAVADOC_TOKENS.equals(property)) {
-            propertyDescription = "javadoc tokens to check";
-        }
-        else {
-            final String firstJavadocParagraph = SiteUtil
-                    .getFirstParagraphFromJavadoc(propertyJavadoc);
-            final String setterToString = "Setter to ";
-
-            if (firstJavadocParagraph.contains(setterToString)) {
-                final String unprocessedPropertyDescription = firstJavadocParagraph
-                    .substring(setterToString.length());
-                final String firstLetterCapitalized = unprocessedPropertyDescription
-                        .substring(0, 1)
-                        .toUpperCase(Locale.ROOT);
-
-                propertyDescription = firstLetterCapitalized
-                    + unprocessedPropertyDescription.substring(1);
-            }
-            else {
-                propertyDescription = firstJavadocParagraph;
-            }
-
-        }
-        return propertyDescription;
     }
 
     /**
@@ -322,4 +261,5 @@ public final class MetadataGeneratorUtil {
 
         return validFiles;
     }
+
 }

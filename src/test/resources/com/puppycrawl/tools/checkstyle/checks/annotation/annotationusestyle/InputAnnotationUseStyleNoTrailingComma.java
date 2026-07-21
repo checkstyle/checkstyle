@@ -32,16 +32,24 @@ public class InputAnnotationUseStyleNoTrailingComma
           }
       };
   }
-
-  @Test2(value={"foo"}, more={"bar"}) // 2 violations
-
-  @Pooches2(tokens={},other={}) // 2 violations
+  // 2 violations 3 lines below:
+  // 'Annotation array values must contain trailing comma.'
+  // 'Annotation array values must contain trailing comma.'
+  @Test2(value={"foo"}, more={"bar"})
+  // 2 violations 3 lines below:
+  // 'Annotation array values must contain trailing comma.'
+  // 'Annotation array values must contain trailing comma.'
+  @Pooches2(tokens={},other={})
   enum P {
-
-      @Pooches2(tokens={Pooches2.class},other={1}) // 2 violations
+      // 2 violations 3 lines below:
+      // 'Annotation array values must contain trailing comma.'
+      // 'Annotation array values must contain trailing comma.'
+      @Pooches2(tokens={Pooches2.class},other={1})
       L, // annotation in enum
-
-      @Test2(value={}, more={"unchecked"}) // 2 violations
+      // 2 violations 3 lines below:
+      // 'Annotation array values must contain trailing comma.'
+      // 'Annotation array values must contain trailing comma.'
+      @Test2(value={}, more={"unchecked"})
       Y;
   }
 

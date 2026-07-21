@@ -1,6 +1,6 @@
 version: 1.0
 
-image: jetbrains/qodana-jvm-community:2025.3
+image: jetbrains/qodana-jvm-community:2026.1
 projectJDK: "21"
 
 failureConditions:
@@ -47,3 +47,12 @@ exclude:
       - src/test/java/com/puppycrawl/tools/checkstyle/grammar/javadoc/ParseTreeBuilder.java
 
       - docs/GRAMMAR_UPDATES.md
+
+  # until https://youtrack.jetbrains.com/projects/QD/issues/QD-15203
+  - name: UnnecessaryInheritDoc
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java

@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -107,6 +109,16 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
+    /** Prefix for wildcard extends bound. */
+    private static final String WILDCARD_EXTENDS_PREFIX = "? extends ";
+
+    /** Prefix for wildcard super bound. */
+    private static final String WILDCARD_SUPER_PREFIX = "? super ";
+
+    /** Pattern for a valid Java identifier (parameter name). */
+    private static final Pattern PARAM_NAME_PATTERN =
+            Pattern.compile("[a-zA-Z_$][a-zA-Z0-9_$]*");
+
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
@@ -118,6 +130,13 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * Types declared in a scope can shadow imported types.
      */
     private Frame currentFrame;
+
+    /**
+     * Creates a new {@code UnusedImportsCheck} instance.
+     */
+    public UnusedImportsCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to control whether to process Javadoc comments.
@@ -332,11 +351,43 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
      * @param ast the Javadoc parameter type node
      */
     private void processParameterType(DetailNode ast) {
-        String parameterTypeText = topLevelType(ast.getText());
-        if (parameterTypeText.endsWith("[]")) {
-            parameterTypeText = parameterTypeText.substring(0, parameterTypeText.length() - 2);
+        addReferencedTypesFromType(ast.getText());
+    }
+
+    /**
+     * Registers all type names referenced in a type string.
+     * Handles generic type arguments, wildcard bounds, and array suffixes.
+     *
+     * @param type the type string to process
+     */
+    private void addReferencedTypesFromType(String type) {
+        String currentType = type;
+        if (currentType.startsWith(WILDCARD_EXTENDS_PREFIX)) {
+            currentType = currentType.substring(WILDCARD_EXTENDS_PREFIX.length());
         }
-        currentFrame.addReferencedType(parameterTypeText);
+        else if (currentType.startsWith(WILDCARD_SUPER_PREFIX)) {
+            currentType = currentType.substring(WILDCARD_SUPER_PREFIX.length());
+        }
+        else {
+            currentType = stripTrailingParameterName(currentType);
+        }
+        if (currentType.endsWith("[]")) {
+            currentType = currentType.substring(0, currentType.length() - 2);
+        }
+        String outerType = stripTypeArguments(currentType);
+        outerType = stripTrailingGt(outerType);
+        outerType = topLevelType(outerType);
+        currentFrame.addReferencedType(outerType);
+        final int openIndex = currentType.indexOf('<');
+        if (openIndex != -1) {
+            final int closeIndex = findMatchingCloseAngle(currentType, openIndex);
+            if (closeIndex != -1) {
+                final String typeArgs = currentType.substring(openIndex + 1, closeIndex);
+                for (String arg : splitTypeArguments(typeArgs)) {
+                    addReferencedTypesFromType(arg);
+                }
+            }
+        }
     }
 
     /**
@@ -366,6 +417,107 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
         if (dotIndex != -1) {
             result = type.substring(0, dotIndex);
         }
+        return result;
+    }
+
+    /**
+     * Strips generic type arguments from a type string.
+     *
+     * @param type A type string possibly containing type arguments
+     * @return The type string with type arguments removed
+     */
+    private static String stripTypeArguments(final String type) {
+        final int index = type.indexOf('<');
+        final String result;
+        if (index == -1) {
+            result = type;
+        }
+        else {
+            result = type.substring(0, index);
+        }
+        return result;
+    }
+
+    /**
+     * Strips trailing {@code >} characters from a type string.
+     * This handles tokenization artifacts where the closing angle bracket
+     * of an enclosing generic is attached to the last parameter type.
+     *
+     * @param type A type string possibly ending with {@code >}
+     * @return The type string with trailing {@code >} characters removed
+     */
+    private static String stripTrailingGt(String type) {
+        String result = type;
+        while (result.endsWith(">")) {
+            result = result.substring(0, result.length() - 1);
+        }
+        return result;
+    }
+
+    /**
+     * Strips a trailing parameter name (e.g. &quot;outputTarget&quot; in
+     * &quot;Result outputTarget&quot;) from a type token when the
+     * Javadoc lexer merges the type and parameter name into a
+     * single PARAMETER_TYPE token.
+     *
+     * <p>Only strips if the substring after the last space is a valid
+     * Java identifier, which is true for a parameter name but false
+     * for generic content such as {@code BigDecimal>} in
+     * {@code Class<? extends BigDecimal>}.</p>
+     *
+     * @param type the raw token text
+     * @return the type portion with any trailing parameter name removed
+     */
+    private static String stripTrailingParameterName(String type) {
+        final int lastSpace = type.lastIndexOf(' ');
+        String result = type;
+        if (lastSpace != -1) {
+            final String after = type.substring(lastSpace + 1);
+            if (PARAM_NAME_PATTERN.matcher(after).matches()) {
+                result = type.substring(0, lastSpace);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the matching close angle bracket for the angle bracket at the given index.
+     * Correctly handles nested angle brackets by tracking depth.
+     *
+     * @param str the string to search in
+     * @param openIndex the index of the opening angle bracket
+     * @return the index of the matching close angle bracket, or -1 if not found
+     */
+    private static int findMatchingCloseAngle(String str, int openIndex) {
+        int depth = 0;
+        int result = -1;
+        for (int idx = openIndex; idx < str.length(); idx++) {
+            if (str.charAt(idx) == '<') {
+                depth++;
+            }
+            else if (str.charAt(idx) == '>') {
+                depth--;
+                if (depth == 0) {
+                    result = idx;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Splits a type argument string into individual type argument strings.
+     * Comma handling is deferred to a follow-up issue that absorbs commas into
+     * PARAMETER_TYPE; currently commas are token boundaries so only one type
+     * argument ever appears here.
+     *
+     * @param typeArgs the type argument string (content between angle brackets)
+     * @return the list of individual type argument strings
+     */
+    private static List<String> splitTypeArguments(String typeArgs) {
+        final List<String> result = new ArrayList<>();
+        result.add(typeArgs);
         return result;
     }
 

@@ -113,7 +113,7 @@ class Example1 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -161,7 +161,7 @@ class Example2 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example2.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -209,7 +209,7 @@ class Example3 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -257,7 +257,7 @@ class Example4 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -304,7 +304,7 @@ class Example5 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example5.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second"); // violation, 'Line matches the illegal pattern'
     logger.info("third");  // violation, 'Line matches the illegal pattern'
@@ -355,7 +355,7 @@ class Example6 {
   }
   // violation below, 'public member found'
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -363,8 +363,11 @@ class Example6 {
     logger.info("fifth");
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="RegexpSinglelineJava_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to find all occurrences of
           &quot;private&quot;. We want to ignore comments,
           display &quot;private member found&quot; for each violation
@@ -382,9 +385,9 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example7:</p>
+        <p id="UseCase1-code">UseCase1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase1 {
   // violation below, 'private member found'
   private void testMethod1() {
     int debug = 0;
@@ -406,7 +409,7 @@ class Example7 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -450,11 +453,13 @@ class Example7 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpSinglelineJava_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+  <subsection name="Fully Qualified Name" id="RegexpSinglelineJava_Fully_Qualified_Name">
+      <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck</p>
+      <p>
+        Use this fully qualified class name in configuration when an exact class reference is
+        required.
+      </p>
+  </subsection>
 
       <subsection name="Parent Module" id="RegexpSinglelineJava_Parent_Module">
         <p>

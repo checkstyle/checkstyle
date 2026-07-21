@@ -24,9 +24,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
@@ -96,35 +99,37 @@ public final class JavadocUtil {
      */
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
+        final String[] text = textBlock.getText();
         final List<TagInfo> tags = new ArrayList<>();
         final boolean isBlockTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.BLOCK;
         if (isBlockTags) {
-            tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
+            tags.addAll(BlockTagUtil.extractBlockTags(text));
         }
         final boolean isInlineTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.INLINE;
         if (isInlineTags) {
-            tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
+            tags.addAll(InlineTagUtil.extractInlineTags(text));
         }
 
         final List<JavadocTag> validTags = new ArrayList<>();
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
         for (TagInfo tag : tags) {
-            final int col = tag.getPosition().getColumn();
-
+            final LineColumn position = tag.getPosition();
+            final int col = position.getColumn();
             // Add the starting line of the comment to the line number to get the actual line number
             // in the source.
             // Lines are one-indexed, so need an off-by-one correction.
-            final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
+            final int line = textBlock.getStartLineNo() + position.getLine() - 1;
 
-            if (JavadocTagInfo.isValidName(tag.getName())) {
+            final String tagName = tag.getName();
+            if (JavadocTagInfo.isValidName(tagName)) {
                 validTags.add(
-                    new JavadocTag(line, col, tag.getName(), tag.getValue()));
+                    new JavadocTag(line, col, tagName, tag.getValue()));
             }
             else {
-                invalidTags.add(new InvalidJavadocTag(line, col, tag.getName()));
+                invalidTags.add(new InvalidJavadocTag(line, col, tagName));
             }
         }
 
@@ -185,6 +190,45 @@ public final class JavadocUtil {
     public static String getJavadocCommentContent(DetailAST javadocCommentBegin) {
         final DetailAST commentContent = javadocCommentBegin.getFirstChild();
         return commentContent.getText().substring(1);
+    }
+
+    /**
+     * Returns the Javadoc block comment attached to the given declaration AST node.
+     *
+     * @param ast the declaration AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
+        DetailAST result = null;
+        DetailAST child = ast.getFirstChild();
+        while (result == null && child.getType() != TokenTypes.IDENT) {
+            result = findJavadocComment(child);
+            child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Finds the first Javadoc block comment under the given AST node.
+     *
+     * @param ast the AST node to search
+     * @return the Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    private static DetailAST findJavadocComment(DetailAST ast) {
+        DetailAST result = null;
+        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && isJavadocComment(ast)) {
+            result = ast;
+        }
+        else {
+            DetailAST child = ast.getFirstChild();
+            while (result == null && child != null) {
+                result = findJavadocComment(child);
+                child = child.getNextSibling();
+            }
+        }
+        return result;
     }
 
     /**

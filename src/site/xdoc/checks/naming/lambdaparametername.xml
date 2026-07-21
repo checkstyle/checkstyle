@@ -49,9 +49,18 @@
         <p id="Example1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  Function&lt;String, String&gt; function1 = s -&gt; s.toLowerCase();
+  Function&lt;String, String&gt; function1 = str1 -&gt; str1.toUpperCase().trim();
+
   Function&lt;String, String&gt; function2 =
-          S -&gt; S.toLowerCase(); // violation 'Name 'S' must match pattern'
+          S -&gt; S.trim();
+  // violation above 'Name 'S' must match pattern'
+
+  public boolean myMethod(String sentence) {
+    return Stream.of(sentence.split(" "))
+            .map(word -&gt; word.trim())
+            .anyMatch(Word -&gt; "in".equals(Word));
+    // violation above 'Name 'Word' must match pattern'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -70,9 +79,11 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  Function&lt;String, String&gt; function1 = str -&gt; str.toUpperCase().trim();
-  Function&lt;String, String&gt; function2 = _s -&gt; _s.trim();
-  // violation above 'Name '_s' must match pattern'
+  Function&lt;String, String&gt; function1 = str1 -&gt; str1.toUpperCase().trim();
+  // violation above 'Name 'str1' must match pattern'
+  Function&lt;String, String&gt; function2 =
+          S -&gt; S.trim();
+  // violation above 'Name 'S' must match pattern'
 
   public boolean myMethod(String sentence) {
     return Stream.of(sentence.split(" "))
@@ -89,6 +100,11 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
               Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaParameterName">
@@ -112,8 +128,12 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="LambdaParameterName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="LambdaParameterName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="LambdaParameterName_Parent_Module">

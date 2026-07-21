@@ -98,7 +98,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldNotLogLongLinks() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_KEY, 80, 161),
+            "14: " + getCheckMessage(MSG_KEY, 80, 98),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthLongLink.java"), expected);
@@ -161,4 +161,5 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
         verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
     }
+
 }

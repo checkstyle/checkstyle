@@ -383,11 +383,13 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             });
             dummyRoot.addChild(snippetAttributes);
         }
-        if (ctx.COLON() != null) {
-            dummyRoot.addChild(create((Token) ctx.COLON().getPayload()));
+        final TerminalNode colon = ctx.COLON();
+        if (colon != null) {
+            dummyRoot.addChild(create((Token) colon.getPayload()));
         }
-        if (ctx.snippetBody() != null) {
-            dummyRoot.addChild(visit(ctx.snippetBody()));
+        final JavadocCommentsParser.SnippetBodyContext snippetBody = ctx.snippetBody();
+        if (snippetBody != null) {
+            dummyRoot.addChild(visit(snippetBody));
         }
         return dummyRoot.getFirstChild();
     }
@@ -425,6 +427,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitMemberReference(JavadocCommentsParser.MemberReferenceContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitMethodReferenceWithoutHash(
+            JavadocCommentsParser.MethodReferenceWithoutHashContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
     }
 
@@ -661,11 +669,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             node.setColumnNumber(node.getColumnNumber() + javadocColumnNumber);
         }
 
-        if (isJavadocTag(token.getType())) {
+        final int tokenType = token.getType();
+        if (isJavadocTag(tokenType)) {
             node.setType(JavadocCommentsTokenTypes.TAG_NAME);
         }
-
-        if (token.getType() == JavadocCommentsLexer.WS) {
+        if (tokenType == JavadocCommentsLexer.WS) {
             node.setType(JavadocCommentsTokenTypes.TEXT);
         }
 
@@ -683,8 +691,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     /**
-     * Create a JavadocNodeImpl from a given token and token type. This method
-     * should be used for imaginary nodes only, i.e. 'JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG',
+     * Create a JavadocNodeImpl from a given token and token type. This method should be used for
+     * imaginary nodes only, i.e. {@literal 'JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG'},
      * where the text on the RHS matches the text on the LHS.
      *
      * @param tokenType the token type of this JavadocNodeImpl
@@ -727,6 +735,13 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         private Token startToken;
 
         /**
+         * Creates a new {@code TextAccumulator} instance.
+         */
+        private TextAccumulator() {
+            // no code by default
+        }
+
+        /**
          * Appends a TEXT token's text to the buffer and tracks the first token.
          *
          * @param token the token to accumulate
@@ -753,4 +768,5 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             }
         }
     }
+
 }

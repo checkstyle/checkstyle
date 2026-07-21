@@ -5,12 +5,12 @@ maxPrivate = (default)100
 maxPackage = (default)100
 maxProtected = (default)100
 maxPublic = (default)100
-tokens = (default)CLASS_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, INTERFACE_DEF, ANNOTATION_DEF, RECORD_DEF
-
+tokens = (default)CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,METHOD_DEF, \
+          RECORD_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 public class InputMethodCountRecords {

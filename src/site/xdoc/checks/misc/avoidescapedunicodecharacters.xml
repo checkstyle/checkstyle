@@ -80,14 +80,14 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // ok, perfectly clear even without a comment.
+  // ok, a normal String below
   String unitAbbrev = "μs";
   // violation below, the reader has no idea what this is. 'should be avoided.'
   String unitAbbrev1 = "\u03bcs";
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below, 'Unicode escape(s) usage should be avoided.'
-  String unitAbbrev3 = "\u03bcs"; // it is  μs
+  String unitAbbrev3 = "\u03bcs"; // it is μs
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
@@ -122,12 +122,12 @@ public class Example2 {
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below, 'Unicode escape(s) usage should be avoided.'
-  String unitAbbrev3 = "\u03bcs";
+  String unitAbbrev3 = "\u03bcs"; // it is μs
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // ok, non-printable control character.
+    // ok, all control characters are escaped below
     return '\ufeff' + content;
   }
 }
@@ -156,10 +156,10 @@ public class Example3 {
   String unitAbbrev1 = "\u03bcs";
   // violation below, 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
-  // violation below, 'Unicode escape(s) usage should be avoided.'
-  String unitAbbrev3 = "\u03bcs";
   // ok, because there is trailing comment and allowByTailComment=true
-  String unitAbbrev4 = "\u03bc\u03bcs"; // it is  μs
+  String unitAbbrev3 = "\u03bcs"; // it is μs
+  // violation below, 'Unicode escape(s) usage should be avoided.'
+  String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
     // violation below, 'Unicode escape(s) usage should be avoided.'
@@ -190,7 +190,7 @@ public class Example4 {
   // ok, because below are escape characters and allowIfAllCharacters = true.
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below, 'Unicode escape(s) usage should be avoided.'
-  String unitAbbrev3 = "\u03bcs"; // it is  μs
+  String unitAbbrev3 = "\u03bcs"; // it is μs
   // violation below, not all characters are escaped ('s'). 'should be avoided.'
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
@@ -228,7 +228,7 @@ public class Example5 {
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // ok, non-printable escape character below
+    // ok, all control characters are escaped below
     return '\ufeff' + content;
   }
 }
@@ -244,6 +244,10 @@ public class Example5 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidEscapedUnicodeCharacters">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -263,9 +267,12 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AvoidEscapedUnicodeCharacters_Package">
+      <subsection name="Fully Qualified Name"
+                   id="AvoidEscapedUnicodeCharacters_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

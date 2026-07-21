@@ -33,7 +33,7 @@
       </subsection>
       <subsection name="Examples" id="SuppressionSingleFilter_Examples">
         <p id="Example1-config">
-          To configure a filter to suppress violations of <code>JavadocStyle</code> and
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code> and
           <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
           using <code>SuppressionSingleFilter</code>:
         </p>
@@ -97,6 +97,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter to suppress <code>MagicNumber</code> violations
+          whose message matches <code>100</code> using <code>SuppressionSingleFilter</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionSingleFilter_Example_of_Usage">
@@ -107,8 +123,12 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionSingleFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressionSingleFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
       <subsection name="Parent Module" id="SuppressionSingleFilter_Parent_Module">
         <macro name="parent-module">

@@ -149,9 +149,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariable2Three() throws Exception {
 
-        final String[] excepted = {
-
-        };
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Three.java"), excepted);
     }
@@ -159,9 +157,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariable2Four() throws Exception {
 
-        final String[] excepted = {
-
-        };
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Four.java"), excepted);
     }
@@ -169,9 +165,7 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariable2Five() throws Exception {
 
-        final String[] excepted = {
-
-        };
+        final String[] excepted = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Five.java"), excepted);
     }
@@ -222,8 +216,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testLambda()
-            throws Exception {
+    public void testLambda() throws Exception {
         final String[] expected = {
             "43:16: " + getCheckMessage(MSG_KEY, "result"),
         };
@@ -233,8 +226,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testVariableNameShadowing()
-            throws Exception {
+    public void testVariableNameShadowing() throws Exception {
 
         final String[] expected = {
             "12:28: " + getCheckMessage(MSG_KEY, "text"),
@@ -299,10 +291,18 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testMultiTypeCatch() throws Exception {
+    public void testMultiTypeCatchAdjacentCatches() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableMultiCatch.java"),
+                getPath("InputFinalLocalVariableMultiCatchAdjacentCatches.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultiTypeCatchNested() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableMultiCatchNested.java"),
                 expected);
     }
 
@@ -339,15 +339,33 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void testFinalLocalVariableSwitchExpressions() throws Exception {
+    public void testFinalLocalVariableSwitchExpressionsA() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
             "53:19: " + getCheckMessage(MSG_KEY, "e"),
-            "91:19: " + getCheckMessage(MSG_KEY, "e"),
-            "125:19: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsA.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchExpressionsB() throws Exception {
+        final String[] expected = {
+            "16:19: " + getCheckMessage(MSG_KEY, "e"),
+            "50:19: " + getCheckMessage(MSG_KEY, "e"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsB.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchExpressionsC() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsC.java"),
             expected);
     }
 
@@ -414,7 +432,7 @@ public class FinalLocalVariableCheckTest
             "50:18: " + getCheckMessage(MSG_KEY, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
             expected);
     }
 
@@ -427,7 +445,7 @@ public class FinalLocalVariableCheckTest
             "50:18: " + getCheckMessage(MSG_KEY, "__"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
+                getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
             expected);
     }
 
@@ -444,4 +462,17 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariableInterface.java"),
             expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, "lambdaLocal"),
+            "24:13: " + getCheckMessage(MSG_KEY, "branchLocal"),
+            "31:9: " + getCheckMessage(MSG_KEY, "local"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalLocalVariableCompactSourceFile.java"),
+            expected);
+    }
+
 }

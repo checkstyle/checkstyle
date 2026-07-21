@@ -49,8 +49,8 @@ public class InputMissingJavadocMethodScopeInnerInterfaces
         public String CA = "CONST A";
         String CB = "CONST b";
 
-        public void ma(); // violation
-        void mb(); // violation
+        public void ma(); // violation 'Missing a Javadoc comment.'
+        void mb(); // violation 'Missing a Javadoc comment.'
     }
 
     private

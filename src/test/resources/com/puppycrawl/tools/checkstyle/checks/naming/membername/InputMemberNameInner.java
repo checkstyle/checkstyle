@@ -17,14 +17,14 @@ package com.puppycrawl.tools.checkstyle.checks.naming.membername;
  **/
 class InputMemberNameInner
 {
-    // Ignore - two violations
+
     class InnerInner2
     {
         // Ignore
         public int fData;
     }
 
-    // Ignore - 2 violations
+
     interface InnerInterface2
     {
         // Ignore - should be all upper case

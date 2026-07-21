@@ -13,21 +13,21 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section -- start
+
 /**
  * Some class
+ *
  */
 public class Example3 {
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
-  // violation 3 lines below 'Javadoc tag @since='
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-
+  // violation 3 lines above 'Javadoc tag @since='
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
-
 }
 // xdoc section -- end

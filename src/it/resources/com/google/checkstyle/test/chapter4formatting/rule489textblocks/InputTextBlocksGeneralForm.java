@@ -6,7 +6,8 @@ public class InputTextBlocksGeneralForm {
   /** Some javadoc. */
   public static String textFun() {
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     final String simpleScript = """
         s
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -16,13 +17,15 @@ public class InputTextBlocksGeneralForm {
         this is simple test;
         """;
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     getData("""
         Hello,
         This is a multi-line message.
         """); // violation 'Text-block quotes are not vertically aligned'
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     return """
         this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -74,13 +77,37 @@ public class InputTextBlocksGeneralForm {
         """.charAt(0) + getName();
   }
 
+  /** Some javadoc. */
+  public void method() {
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+    getData("""
+            Hello there
+            """, """
+                 Hii
+                  there
+                 """);
+
+    // violation 7 lines below 'Text-block quotes are not vertically aligned'
+    // violation 6 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 5 lines below 'Each line of text in the text block must be indented'
+    getData(
+            """
+            Good
+              Bad
+              """, """
+              Ok
+              """);
+    // violation above 'Text-block quotes are not vertically aligned'
+  }
+
   /** Somejavadoc. */
   public String getName() {
     return "name";
   }
 
   /** Somejavadoc. */
-  public static void getData(String data) {}
+  public static void getData(String... data) {}
 
   /** Somejavadoc. */
   public static void getData(String data, int length) {}

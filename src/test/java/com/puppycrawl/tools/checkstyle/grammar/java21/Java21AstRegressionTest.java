@@ -42,7 +42,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(
                 getPath(
                         "ExpectedUnnamedVariableBasic.txt"),
-                getPath(
+                getNonCompilablePath(
                         "InputUnnamedVariableBasic.java"));
     }
 
@@ -51,7 +51,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(
                 getPath(
                         "ExpectedUnnamedVariableSwitch.txt"),
-                getPath(
+                getNonCompilablePath(
                         "InputUnnamedVariableSwitch.java"));
     }
 
@@ -65,10 +65,11 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     /**
-     * Unusual test case, but important to prevent regressions. We need to
-     * make sure that we only consume legal escapes in text blocks, and
-     * don't unintentionally parse something that should be an
-     * escape as regular text.
+     * Unusual test case, but important to prevent regressions. This fixture
+     * places two text blocks back-to-back with no operator between them,
+     * which is not a legal expression. We need to make sure the parser
+     * correctly rejects this rather than misinterpreting the second text
+     * block as part of the first.
      *
      * @throws Exception if an error occurs
      */
@@ -88,9 +89,9 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
             .isInstanceOf(IllegalStateException.class);
 
         assertWithMessage("Message of IllegalStateException should contain the parsing failure.")
-                .that(throwable.getCause().getMessage())
-                .contains("13:14: mismatched input '}\\n"
-                        + "            ' expecting TEXT_BLOCK_LITERAL_END");
+            .that(throwable.getCause().getMessage())
+            .contains("12:12: mismatched input '\"\"\"' expecting ';'");
 
     }
+
 }

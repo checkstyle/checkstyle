@@ -48,7 +48,7 @@ public class InputArrayTypeStyleOff
         }
 
         public Test getOldTests()[][]
-        // 2 violations above
+        // 2 violations above:
         // 'Array brackets at illegal position'
         // 'Array brackets at illegal position'
         {
@@ -57,7 +57,7 @@ public class InputArrayTypeStyleOff
 
         public Test[]
             getMoreTests()[][]
-        // 2 violations above
+        // 2 violations above:
         // 'Array brackets at illegal position'
         // 'Array brackets at illegal position'
         {
@@ -69,5 +69,5 @@ public class InputArrayTypeStyleOff
             return null;
         }
     }
-    public static void foo(java.util.Collection < ? extends InputArrayTypeStyle[] > collection) {}
+    public static void foo(java.util.Collection < ? extends java.util.Collection[] > collection) {}
 }

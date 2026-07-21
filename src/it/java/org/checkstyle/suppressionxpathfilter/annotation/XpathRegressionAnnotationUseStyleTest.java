@@ -297,4 +297,5 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

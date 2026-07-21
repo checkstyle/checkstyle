@@ -1,4 +1,4 @@
-/* // violation
+/* // violation 'File does not contain at least 1 matches for pattern '
 RegexpSinglelineJava
 format = This\\stext is not in the file
 message = (default)(null)

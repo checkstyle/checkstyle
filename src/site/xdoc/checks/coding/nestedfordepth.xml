@@ -55,7 +55,6 @@ public class Example1 {
       for(int j=0; j&lt;i; j++) {
       }
     }
-
     // violation 3 lines below 'Nested for depth is 2 (max allowed is 1).'
     for(int i=0; i&lt;10; i++) {
       for(int j=0; j&lt;i; j++) {
@@ -63,7 +62,6 @@ public class Example1 {
         }
       }
     }
-
     // violation 4 lines below 'Nested for depth is 2 (max allowed is 1).'
     // violation 4 lines below 'Nested for depth is 3 (max allowed is 1).'
     for(int i=0; i&lt;10; i++) {
@@ -144,9 +142,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NestedForDepth_Package">
+      <subsection name="Fully Qualified Name" id="NestedForDepth_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

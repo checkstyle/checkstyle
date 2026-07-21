@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = protected
 excludeScope = (default)null
+scope = protected
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -10,7 +11,8 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypeScopeInnerInterfaces2 // violation
+// violation below 'Missing a Javadoc comment.'
+public class InputMissingJavadocTypeScopeInnerInterfaces2
 {
     // inner interfaces with different scopes
 
@@ -32,7 +34,8 @@ public class InputMissingJavadocTypeScopeInnerInterfaces2 // violation
         void mb();
     }
 
-    protected interface ProtectedInnerInterface // violation
+    // violation below 'Missing a Javadoc comment.'
+    protected interface ProtectedInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -41,7 +44,8 @@ public class InputMissingJavadocTypeScopeInnerInterfaces2 // violation
         void mb();
     }
 
-    public interface PublicInnerInterface // violation
+    // violation below 'Missing a Javadoc comment.'
+    public interface PublicInnerInterface
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -68,7 +72,8 @@ public class InputMissingJavadocTypeScopeInnerInterfaces2 // violation
     MyInterface2 {
     }
 
-    protected // violation
+    // violation below 'Missing a Javadoc comment.'
+    protected
     enum
     MyEnum {
     }

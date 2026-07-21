@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -19,7 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  */
 public class InputMissingJavadocTypeScopeInnerClasses2
 {
-    public class InnerPublic // violation
+    // violation below 'Missing a Javadoc comment.'
+    public class InnerPublic
     {
         protected class InnerProtected
         {

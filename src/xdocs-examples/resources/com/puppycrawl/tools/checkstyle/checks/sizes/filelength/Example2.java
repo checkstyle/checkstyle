@@ -5,14 +5,15 @@
   </module>
 </module>
 */
-// violation 7 lines above 'File length is 18 lines (max allowed is 5)'
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 
 // xdoc section -- start
+// violation first line 'File length is 19 lines (max allowed is 5)'
 public class Example2 {
   public void myTest() {
-    // small class with more than 5 lines
-    String test = "Some content"; // there is violation
+    // small class with more than 5 lines less than 2000 lines
+    String test = "Some content";
   }
 }
 // xdoc section -- end

@@ -1,5 +1,6 @@
 /*
 ConstructorsDeclarationGrouping
+orderByIncreasingParameterCount = (default)false
 
 
 */
@@ -41,7 +42,7 @@ public class InputConstructorsDeclarationGroupingInner {
     InputConstructorsDeclarationGroupingInner(long l, double d) {}
     // violation above 'Constructors should be grouped together.*'
 
-    InputConstructorsDeclarationGrouping annoynmous = new InputConstructorsDeclarationGrouping() {
+    InputConstructorsDeclarationGrouping anonymous = new InputConstructorsDeclarationGrouping() {
         int x;
         void test() {}
         void test2() {}

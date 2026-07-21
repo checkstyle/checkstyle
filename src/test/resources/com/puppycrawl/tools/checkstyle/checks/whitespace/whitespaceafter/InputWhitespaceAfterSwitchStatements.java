@@ -4,7 +4,7 @@ tokens = LITERAL_SWITCH, LAMBDA
 
 */
 
-// java21
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 public class InputWhitespaceAfterSwitchStatements {

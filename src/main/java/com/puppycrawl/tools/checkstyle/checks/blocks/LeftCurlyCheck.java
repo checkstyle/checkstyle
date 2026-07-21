@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -69,6 +70,13 @@ public class LeftCurlyCheck
      * Specify the policy on placement of a left curly brace (<code>'{'</code>).
      */
     private LeftCurlyOption option = LeftCurlyOption.EOL;
+
+    /**
+     * Creates a new {@code LeftCurlyCheck} instance.
+     */
+    public LeftCurlyCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
@@ -229,23 +237,25 @@ public class LeftCurlyCheck
      * Skip all {@code TokenTypes.ANNOTATION}s to the first non-annotation.
      *
      * @param ast {@code DetailAST}.
-     * @return {@code DetailAST}.
+     * @return {@code DetailAST} or null if there are no annotations.
      */
     private static DetailAST skipModifierAnnotations(DetailAST ast) {
         DetailAST resultNode = ast;
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         if (modifiers != null) {
-            final DetailAST lastAnnotation = findLastAnnotation(modifiers);
-
-            if (lastAnnotation != null) {
-                if (lastAnnotation.getNextSibling() == null) {
-                    resultNode = modifiers.getNextSibling();
-                }
-                else {
-                    resultNode = lastAnnotation.getNextSibling();
-                }
-            }
+            resultNode = findLastAnnotation(modifiers)
+                    .map(annotation -> {
+                        final DetailAST nextNode;
+                        if (annotation.getNextSibling() == null) {
+                            nextNode = modifiers.getNextSibling();
+                        }
+                        else {
+                            nextNode = annotation.getNextSibling();
+                        }
+                        return nextNode;
+                    })
+                    .orElse(resultNode);
         }
         return resultNode;
     }
@@ -255,15 +265,15 @@ public class LeftCurlyCheck
      * under the given set of modifiers.
      *
      * @param modifiers {@code DetailAST}.
-     * @return {@code DetailAST} or null if there are no annotations.
+     * @return Optional containing the last annotation, if found.
      */
-    private static DetailAST findLastAnnotation(DetailAST modifiers) {
+    private static Optional<DetailAST> findLastAnnotation(DetailAST modifiers) {
         DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
         while (annotation != null && annotation.getNextSibling() != null
                && annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
             annotation = annotation.getNextSibling();
         }
-        return annotation;
+        return Optional.ofNullable(annotation);
     }
 
     /**
@@ -354,4 +364,5 @@ public class LeftCurlyCheck
                 || nextToken.getType() == TokenTypes.RCURLY
                 || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
+
 }

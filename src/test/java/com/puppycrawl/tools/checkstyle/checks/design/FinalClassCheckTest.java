@@ -112,6 +112,27 @@ public class FinalClassCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_KEY, "Bar"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAnonymousNestedResolution() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY, "Inner"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "InputFinalClassCompactSourceFileAnonymousNestedResolution.java"),
+                expected);
+    }
+
+    @Test
     public void testFinalClassConstructorInRecord() throws Exception {
 
         final String[] expected = {
@@ -294,9 +315,9 @@ public class FinalClassCheckTest
             "44:5: " + getCheckMessage(MSG_KEY, "Node"),
             "51:5: " + getCheckMessage(MSG_KEY, "Some1"),
             "55:1: " + getCheckMessage(MSG_KEY, "Some2"),
-            "105:5: " + getCheckMessage(MSG_KEY, "NewCheck"),
-            "108:5: " + getCheckMessage(MSG_KEY, "NewCheck2"),
-            "112:5: " + getCheckMessage(MSG_KEY, "OldCheck"),
+            "106:5: " + getCheckMessage(MSG_KEY, "NewCheck"),
+            "110:5: " + getCheckMessage(MSG_KEY, "NewCheck2"),
+            "115:5: " + getCheckMessage(MSG_KEY, "OldCheck"),
         };
         verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor.java"),
                                      expected);
@@ -326,4 +347,5 @@ public class FinalClassCheckTest
         verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor3.java"),
                                      expected);
     }
+
 }

@@ -30,6 +30,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.pr-number || github.event.issue.number || github.ref }}
@@ -47,6 +48,19 @@ jobs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
+      - name: React to comment
+        if: github.event_name == 'issue_comment'
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            })
+
       - name: Getting PR description
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -80,14 +94,14 @@ jobs:
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
       - name: Download checkstyle for PR
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
           path: .ci-temp/checkstyle
           fetch-depth: 0
 
       - name: Setup local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -105,12 +119,13 @@ jobs:
           mvn -e --no-transfer-progress clean site -Pno-validations \
             -Dmaven.javadoc.skip=false -Djdepend.skip=false
 
-      - name: Setup local maven cache
-        uses: actions/cache/save@v5
+      - name: Upload generated site artifact
+        uses: actions/upload-artifact@v7
         with:
+          name: checkstyle-site-artifact-${{ github.run_id }}
           path: .ci-temp/checkstyle/target/site
-          key: checkstyle-site-cache-${{ github.run_id }}
-
+          retention-days: 1
+          if-no-files-found: error
 
   publish_site:
     needs: [ parse_pr_info, generate_site ]
@@ -119,21 +134,21 @@ jobs:
       message: ${{ steps.out.outputs.message}}
     steps:
       - name: Checkout master branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/checkstyle
 
       - name: Setup local maven cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
-      - name: Setup local maven cache
-        uses: actions/cache/restore@v5
+      - name: Download generated site artifact
+        uses: actions/download-artifact@v8
         with:
+          name: checkstyle-site-artifact-${{ github.run_id }}
           path: .ci-temp/checkstyle/target/site
-          key: checkstyle-site-cache-${{ github.run_id }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
@@ -168,13 +183,14 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout master branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: checkstyle/checkstyle
 
       - name: Get message
         env:
           MSG: ${{needs.publish_site.outputs.message}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
           if [ -z  "$MSG" ]; then

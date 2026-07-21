@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNCLOSED_HTML_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_DUPLICATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_INVALID_INHERIT_DOC;
@@ -30,7 +31,9 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
@@ -116,6 +119,13 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testThrowsNoIdentifier() throws Exception {
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath("InputJavadocMethodThrowsDetectionTwo.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testExtraThrowsOne() throws Exception {
         final String[] expected = {
             "51:56: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
@@ -171,10 +181,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTagsTwo() throws Exception {
         final String[] expected = {
-            "28:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
-            "35: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "44: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "51:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "29:9: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "unused"),
+            "36: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "45: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "52:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
             "60:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
             "66:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
             "66:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "NullPointerException"),
@@ -195,10 +205,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTagsThree() throws Exception {
         final String[] expected = {
-            "66:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
-            "72:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
-            "115: " + getCheckMessage(MSG_RETURN_EXPECTED),
-            "115:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
+            "67:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
+            "73:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
+            "116: " + getCheckMessage(MSG_RETURN_EXPECTED),
+            "116:22: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "aParam"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTags1Three.java"), expected);
@@ -337,8 +347,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "38:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BB>"),
             "41:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
-            "66:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<Z"),
-            "69:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<Z>"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodTypeParamsTags.java"), expected);
@@ -388,6 +396,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "47:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<NPE>"),
             "58:38: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "RuntimeException"),
             "59:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "java.lang.RuntimeException"),
+            "90:20: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "90:6: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<T>"),
+            "90: " + getCheckMessage(MSG_RETURN_EXPECTED),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodGenerics.java"), expected);
@@ -517,9 +528,9 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String msgUnusedTagCustom = "Unused @param tag for 'unused' :)";
         final String msgExpectedTagCustom = "Expected @param tag for 'a' :)";
         final String[] expected = {
-            "21: " + msgReturnExpectedCustom,
-            "25:9: " + msgUnusedTagCustom,
-            "32:22: " + msgExpectedTagCustom,
+            "22: " + msgReturnExpectedCustom,
+            "26:9: " + msgUnusedTagCustom,
+            "33:22: " + msgExpectedTagCustom,
         };
 
         verifyWithInlineConfigParser(
@@ -533,16 +544,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethod1.java"), expected);
-    }
-
-    @Test
-    public void test2() throws Exception {
-        final String[] expected = {
-            "22:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<"),
-            "26:13: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "<X>"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputJavadocMethod2.java"), expected);
     }
 
     @Test
@@ -579,13 +580,13 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocMethodAboveComments() throws Exception {
         final String[] expected = {
-            "22:29: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "30:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "55:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "65:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "75:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "84:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
-            "93:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "23:29: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "31:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "56:30: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "66:32: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "76:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "85:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
+            "94:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "Exception"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodAboveComments.java"), expected);
@@ -611,4 +612,47 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMethodDoNotAllowInlineReturn.java"), expected);
     }
+
+    @Test
+    public void testJavadocMethodBlockComment() throws Exception {
+        final String[] expected = {
+            "29: " + getCheckMessage(MSG_RETURN_EXPECTED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodBlockComment.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodHtml() throws Exception {
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodHtml.java"), expected);
+
+    }
+
+    /**
+     * Verifies that the check fails on unsupported Javadoc tokens.
+     *
+     * <p>This case cannot be reproduced through real Javadoc parsing, so the AST
+     * node is created manually instead of using {@code verifyWithInlineConfigParser}.</p>
+     */
+    @Test
+    public void testImproperJavadocToken() {
+        final JavadocMethodCheck check = new JavadocMethodCheck();
+
+        final JavadocNodeImpl ast = new JavadocNodeImpl();
+        ast.setType(JavadocCommentsTokenTypes.EQUALS);
+        ast.setText("EQUALS");
+
+        final IllegalArgumentException exc = TestUtil.getExpectedThrowable(
+                IllegalArgumentException.class,
+                () -> check.visitJavadocToken(ast));
+
+        assertWithMessage("Message must include token name")
+            .that(exc.getMessage())
+            .contains("EQUALS");
+    }
+
 }

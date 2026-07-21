@@ -171,10 +171,23 @@ class Example1 {
     System.out.println("m-1:Line 5");
   }
 
-  public void testMethod2() {
-    System.out.println("m-2:Line 1");
-    System.out.println("m-2:Line 2");
-    System.out.println("m-2:Line 3");
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -206,10 +219,23 @@ class Example2 {
     System.out.println("m-1:Line 5");
   }
 
-  public void testMethod2() {
-    System.out.println("m-2:Line 1");
-    System.out.println("m-2:Line 2");
-    System.out.println("m-2:Line 3");
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // violation 2 lines below 'NCSS for this method is 5 (max allowed is 4)'
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -230,7 +256,7 @@ class Example2 {
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example3 {
-  // violation above, 'NCSS for this class is 11 (max allowed is 10)'
+  // violation above, 'NCSS for this class is 18 (max allowed is 10)'
   public void testMethod1() {
     System.out.println("m-1:Line 1");
     System.out.println("m-1:Line 2");
@@ -239,10 +265,23 @@ class Example3 {
     System.out.println("m-1:Line 5");
   }
 
-  public void testMethod2() {
-    System.out.println("m-2:Line 1");
-    System.out.println("m-2:Line 2");
-    System.out.println("m-2:Line 3");
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -261,7 +300,7 @@ class Example3 {
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
-// violation above, 'NCSS for this file is 12 (max allowed is 10)'
+// violation above, 'NCSS for this file is 19 (max allowed is 10)'
 class Example4 {
 
   public void testMethod1() {
@@ -272,10 +311,23 @@ class Example4 {
     System.out.println("m-1:Line 5");
   }
 
-  public void testMethod2() {
-    System.out.println("m-2:Line 1");
-    System.out.println("m-2:Line 2");
-    System.out.println("m-2:Line 3");
+  // ok, NCSS for this record is 5 (max allowed is 10)
+  record ValidRecord(int a, int b) {
+    public ValidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+    }
+  }
+
+  // ok, NCSS for this record is 6 (max allowed is 10)
+  record InvalidRecord(int x, int y) {
+    public InvalidRecord {
+      System.out.println("Line 1");
+      System.out.println("Line 2");
+      System.out.println("Line 3");
+      System.out.println("Line 4");
+    }
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -295,8 +347,17 @@ class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
-public class Example5 {
-  // This record has NCSS = 5, which is OK
+class Example5 {
+
+  public void testMethod1() {
+    System.out.println("m-1:Line 1");
+    System.out.println("m-1:Line 2");
+    System.out.println("m-1:Line 3");
+    System.out.println("m-1:Line 4");
+    System.out.println("m-1:Line 5");
+  }
+
+  // ok, NCSS for this record is 5 (max allowed is 5)
   record ValidRecord(int a, int b) {
     public ValidRecord {
       System.out.println("Line 1");
@@ -357,9 +418,11 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavaNCSS_Package">
+      <subsection name="Fully Qualified Name" id="JavaNCSS_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.metrics
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

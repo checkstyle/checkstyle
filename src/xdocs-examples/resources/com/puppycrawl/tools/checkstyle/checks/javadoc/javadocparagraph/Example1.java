@@ -8,7 +8,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 // xdoc section -- start
-// violation 5 lines below '<p> tag should be preceded with an empty line'
+// violation 6 lines below '<p> tag should be preceded with an empty line'
+
 /**
  * No tag
  *
@@ -22,10 +23,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
  *
  * <p><b>p tag before inline tag B, this is ok</b></p>
  */
-// violation 4 lines above 'tag should be placed immediately before the first word'
 
 public class Example1 {
 
+  // violation 7 lines above 'tag should be placed immediately before the first word'
 
   // violation 4 lines below '<p> tag should not precede HTML block-tag '<pre>''
   /**

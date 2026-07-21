@@ -14,16 +14,17 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
+// violation 5 lines below 'Unused @param tag for \'<D123>\'.'
 /**
  * Some explanation.
  * @param <A> A type param
  * @param <B1> Another type param
- * @param <D123> The wrong type param  // violation 'Unused @param tag for '<D123>'.'
+ * @param <D123> The wrong type param
  * @author Nobody
  * @version 1.0
  */
 public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable>
-// violation above 'missing @param <C456> tag.'
+// violation above 'missing @param '<C456>' tag.'
 {
     /**
      * Some explanation.
@@ -53,21 +54,14 @@ public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable>
     {
     }
 
+    // violation 4 lines below 'Unused @param tag for \'<C>\'.'
     /**
      * Example inner class.
      * @param <A> documented parameter
-     * @param <C> extra parameter    // violation 'Unused @param tag for '<C>'.'
+     * @param <C> extra parameter
      */
 
-    public static class InnerClass_1<A,B> // violation 'missing @param <B> tag.'
-    {
-    }
-
-    /**
-     * Some explanation.
-     * @param <Z The wrong type param
-     */
-    public <Z> void unclosedGenericParam()
+    public static class InnerClass_1<A,B> // violation 'missing @param '<B>' tag.'
     {
     }
 }

@@ -358,4 +358,5 @@ public class FileContentsTest {
                 .that(ex.getClass())
                 .isEqualTo(UnsupportedOperationException.class);
     }
+
 }

@@ -20,7 +20,8 @@ class Example2 {
       switch (i) {
         case 1:
           i++;
-        case 2: // violation 'Fall\ through from previous branch of the switch'
+          //ok, /* block */ /* fallthru */ // comment
+        case 2: // ok, ReliefPattern is present in above line.
           i++;
           break;
         case 3:

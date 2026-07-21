@@ -201,6 +201,43 @@ class Example2 {
     a = ~a;
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to forbid whitespace after DOT token:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoWhitespaceAfter"&gt;
+      &lt;property name="tokens" value="DOT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  public void lineBreak(String x) {
+    Integer.
+            parseInt(x);
+    Integer.parseInt(x);
+  }
+
+  public void dotOperator(String s) {
+    Integer.parseInt(s);
+    Integer. parseInt(s); // violation ''.' is followed by whitespace'
+  }
+
+  public void arrayDec() {
+    int[] arr;
+    int [] array;
+  }
+
+  public void bitwiseNot(int a) {
+    a = ~ a;
+    a = ~a;
+  }
+}
 </code></pre></div>
       </subsection>
 
@@ -232,9 +269,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="NoWhitespaceAfter_Package">
+      <subsection name="Fully Qualified Name" id="NoWhitespaceAfter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

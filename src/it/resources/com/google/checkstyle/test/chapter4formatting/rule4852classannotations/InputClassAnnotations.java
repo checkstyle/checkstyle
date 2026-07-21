@@ -25,22 +25,27 @@ public class InputClassAnnotations {
 
   @SomeAnnotation1
   @SomeAnnotation2
-  /** // violation 'Javadoc comment is placed in the wrong location.'
+  /**
    * Inner class 2.
    */
-  class Inner2 {}
+  class Inner2 {} // violation 3 lines above 'Javadoc comment is placed in the wrong location.'
 
+  // 2 violations 6 lines below:
+  //    'Annotation 'SomeAnnotation1' should be alone on line.'
+  //    'Annotation 'SomeAnnotation2' should be alone on line.'
   /**
    * Inner class 3.
    */
   @SomeAnnotation1 @SomeAnnotation2
-  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
   class Inner3 {}
 
+  // 2 violations 3 lines below:
+  //    'Annotation 'SomeAnnotation1' should be alone on line.'
+  //    'Annotation 'SomeAnnotation2' should be alone on line.'
   @SomeAnnotation1 @SomeAnnotation2
-  // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-  /** // violation 'Javadoc comment is placed in the wrong location.'
+  /**
    * Inner class 4.
    */
   class Inner4 {}
+  // violation 4 lines above 'Javadoc comment is placed in the wrong location.'
 }

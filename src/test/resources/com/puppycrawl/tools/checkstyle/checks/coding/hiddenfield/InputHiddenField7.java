@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = true
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -104,7 +104,7 @@ interface NothingHidden7
 {
     public static int notHidden = 0;
 
-    // not a violation
+
     public void noShadow(int notHidden);
 }
 

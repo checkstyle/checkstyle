@@ -200,8 +200,8 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "37:32: this cannot be null.",
             "37:50: this cannot be null.",
-            "38:33: this cannot be null.",
-            "38:51: this cannot be null.",
+            "41:33: this cannot be null.",
+            "41:51: this cannot be null.",
         };
 
         verifyWithInlineConfigParser(
@@ -214,8 +214,8 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "37:32: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
             "37:50: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
-            "38:33: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
-            "38:51: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
+            "41:33: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
+            "41:51: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "NOT_EQUAL"),
         };
 
         verifyWithInlineConfigParser(
@@ -229,10 +229,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "32:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
             "38:32: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
             "38:50: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
-            "39:33: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
-            "39:51: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
-            "41:13: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
-            "41:36: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
+            "42:33: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
+            "42:51: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "NOT_EQUAL"),
+            "47:13: " + getCheckMessage(MSG_KEY_SUM_MIN, 2, 3, "EQUAL"),
+            "47:36: " + getCheckMessage(MSG_KEY_SUM_MIN, 1, 3, "EQUAL"),
         };
 
         verifyWithInlineConfigParser(
@@ -246,10 +246,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             "31:44: custom message",
             "37:32: custom message",
             "37:50: custom message",
-            "38:33: custom message",
-            "38:51: custom message",
-            "40:13: custom message",
-            "40:36: custom message",
+            "41:33: custom message",
+            "41:51: custom message",
+            "46:13: custom message",
+            "46:36: custom message",
         };
 
         verifyWithInlineConfigParser(

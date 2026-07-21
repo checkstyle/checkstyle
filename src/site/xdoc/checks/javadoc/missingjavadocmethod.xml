@@ -398,6 +398,44 @@ public class Example7 {
     System.out.println("line 3");
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check for <code>METHOD_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocMethod"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+  public Example8() {}
+  public void testMethod1() {}   // violation, 'Missing a Javadoc comment'
+  /**
+   * Some description here.
+   */
+  public void testMethod2() {}
+
+  @Override
+  public String toString() {
+    return "Some string";
+  }
+
+  private void testMethod3() {}
+  protected void testMethod4() {}
+  void testMethod5() {}
+
+  public void testMethod6() {    // violation, 'Missing a Javadoc comment'
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
 </code></pre></div>
       </subsection>
 
@@ -433,9 +471,11 @@ public class Example7 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MissingJavadocMethod_Package">
+      <subsection name="Fully Qualified Name" id="MissingJavadocMethod_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

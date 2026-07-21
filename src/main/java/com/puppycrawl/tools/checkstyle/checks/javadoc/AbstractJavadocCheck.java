@@ -97,6 +97,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private boolean violateExecutionOnNonTightHtml;
 
     /**
+     * Creates a new {@code AbstractJavadocCheck} instance.
+     */
+    protected AbstractJavadocCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns the default javadoc token types a check is interested in.
      *
      * @return the default javadoc token types
@@ -310,9 +317,10 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 }
 
                 if (violateExecutionOnNonTightHtml && result.isNonTight()) {
-                    log(result.getFirstNonTightHtmlTag().getLineNumber(),
+                    final DetailNode firstNonTightHtmlTag = result.getFirstNonTightHtmlTag();
+                    log(firstNonTightHtmlTag.getLineNumber(),
                             MSG_KEY_UNCLOSED_HTML_TAG,
-                            result.getFirstNonTightHtmlTag().getText());
+                            firstNonTightHtmlTag.getText());
                 }
             }
             else {
@@ -393,6 +401,19 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     }
 
     /**
+     * Logs a message against a DetailNode.
+     * This is a wrapper method to log violations using a DetailNode
+     * instead of manually specifying line and column numbers.
+     *
+     * @param node the DetailNode that has the violation
+     * @param key the message key from the check messages
+     * @param args the arguments to the message
+     */
+    protected final void log(DetailNode node, String key, Object... args) {
+        log(node.getLineNumber(), node.getColumnNumber(), key, args);
+    }
+
+    /**
      * The file context holder.
      */
     private static final class FileContext {
@@ -408,6 +429,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
          */
         private DetailAST blockCommentAst;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }

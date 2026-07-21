@@ -111,27 +111,24 @@ class Example1 {
   public Example1() {
   }
 
-  @SuppressWarnings("unchecked") public void fun2() {
-  }
+  @SuppressWarnings("unchecked") public void fun2() {}
 
-  public void fun1() {
-  }
+  public void fun1() {}
 
+  // violation below, "should be on the same line with its target."
+  @Nullable
+  String s;
 }
 
-@SuppressWarnings("unchecked") class Test1 extends Example1 {
+@SuppressWarnings("unchecked") class Test1 {
 
-  @Deprecated public Test1() {
-  }
-
-  @Override // violation, "should be on the same line with its target."
-  public void fun1() {
-  }
-
-  @Before // violation, "should be on the same line with its target."
-  @Override public void fun2() {
-  }
-
+  @Deprecated public Test1() {}
+  // violation below, "should be on the same line with its target."
+  @Before
+  public void fun1() {}
+  // violation below, "should be on the same line with its target."
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
   @Before public void fun3() {
@@ -155,26 +152,35 @@ class Example1 {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Deprecated interface Foo {
-
-  void doSomething();
-
-}
-
-class Example2 implements Foo {
+class Example2 {
 
   // violation below, "should be on the same line with its target."
   @SuppressWarnings("deprecation")
   public Example2() {
   }
 
-  @Override
-  public void doSomething() {
-  }
+  @SuppressWarnings("unchecked") public void fun2() {}
+
+  public void fun1() {}
 
   // violation below, "should be on the same line with its target."
   @Nullable
   String s;
+}
+
+@SuppressWarnings("unchecked") class Test2 {
+
+  @Deprecated public Test2() {}
+  // ok below, @Before is not in tokens to check
+  @Before
+  public void fun1() {}
+  // ok below, @Before is not in tokens to check
+  @Before
+  @SuppressWarnings("unchecked") public void fun2() {}
+  // ok below, @SuppressWarnings is not in tokens to check
+  @SuppressWarnings("deprecation")
+  @Before public void fun3() {
+  }
 
 }
 </code></pre></div>
@@ -204,8 +210,12 @@ class Example2 implements Foo {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AnnotationOnSameLine_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="AnnotationOnSameLine_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="AnnotationOnSameLine_Parent_Module">

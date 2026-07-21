@@ -1,5 +1,3 @@
-// Java17
-
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 import java.util.List;

@@ -23,11 +23,16 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install dependencies
-        run: sudo apt install groovy
+      - name: Install Groovy
+        run: |
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
@@ -41,11 +46,16 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install dependencies
-        run: sudo apt install groovy
+      - name: Install Groovy
+        run: |
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - run: .ci/no-exception-test.sh openjdk19-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
@@ -59,11 +69,16 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install dependencies
-        run: sudo apt install groovy
+      - name: Install Groovy
+        run: |
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - run: .ci/no-exception-test.sh openjdk20-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
@@ -77,10 +92,15 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install dependencies
-        run: sudo apt install groovy
+      - name: Install Groovy
+        run: |
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - run: .ci/no-exception-test.sh openjdk25-with-checks-nonjavadoc-error

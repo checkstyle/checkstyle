@@ -7,7 +7,7 @@ tokens = DOT
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace
-.nowhitespacebefore; // violation
+.nowhitespacebefore; // violation ''.' is preceded with whitespace.'
 
 import java.util.function.Supplier;
 

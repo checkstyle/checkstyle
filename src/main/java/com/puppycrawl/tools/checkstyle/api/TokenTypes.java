@@ -84,6 +84,63 @@ public final class TokenTypes {
      * @see #ENUM_DEF
      **/
     public static final int COMPILATION_UNIT = JavaLanguageLexer.COMPILATION_UNIT;
+
+    /**
+     * The root of an AST for a JEP 512 (JDK 25) compact source file. This node
+     * replaces {@link #COMPILATION_UNIT} as the root when the source file declares
+     * any top-level method or field. It represents a {@code CompactCompilationUnit},
+     * which is one of the three mutually exclusive compilation-unit
+     * forms ({@code OrdinaryCompilationUnit}, {@code CompactCompilationUnit},
+     * {@code ModularCompilationUnit}). Import declarations and top-level members
+     * appear as direct children of this node. Compact source files cannot declare
+     * a package.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * import java.util.List;
+     *
+     * int counter = 3;
+     * void main() {}
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * COMPACT_COMPILATION_UNIT -&gt; COMPACT_COMPILATION_UNIT
+     * |--IMPORT -&gt; import
+     * |   |--DOT -&gt; .
+     * |   |   |--DOT -&gt; .
+     * |   |   |   |--IDENT -&gt; java
+     * |   |   |   `--IDENT -&gt; util
+     * |   |   `--IDENT -&gt; List
+     * |   `--SEMI -&gt; ;
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_INT -&gt; int
+     * |   |--IDENT -&gt; counter
+     * |   |--ASSIGN -&gt; =
+     * |   |   `--EXPR -&gt; EXPR
+     * |   |       `--NUM_INT -&gt; 3
+     * |   `--SEMI -&gt; ;
+     * `--METHOD_DEF -&gt; METHOD_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--LITERAL_VOID -&gt; void
+     *     |--IDENT -&gt; main
+     *     |--LPAREN -&gt; (
+     *     |--PARAMETERS -&gt; PARAMETERS
+     *     |--RPAREN -&gt; )
+     *     `--SLIST -&gt; {
+     *         `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://openjdk.org/jeps/512">JEP 512: Compact Source Files
+     *     and Instance Main Methods</a>
+     * @see #COMPILATION_UNIT
+     **/
+    public static final int COMPACT_COMPILATION_UNIT =
+            JavaLanguageLexer.COMPACT_COMPILATION_UNIT;
+
     /**
      * Modifiers for type, method, and field declarations.  The
      * modifiers element is always present even though it may have no
@@ -1866,7 +1923,7 @@ public final class TokenTypes {
      **/
     public static final int IDENT = JavaLanguageLexer.IDENT;
     /**
-     * The <code>&#46;</code> (dot) operator.
+     * The {@code .} (dot) operator.
      *
      * <p>For example:</p>
      * <pre>
@@ -1884,9 +1941,6 @@ public final class TokenTypes {
      * </pre>
      *
      * @see FullIdent
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
-     *      when replaced with Javadoc tag
      **/
     public static final int DOT = JavaLanguageLexer.DOT;
     /**
@@ -3680,7 +3734,7 @@ public final class TokenTypes {
      **/
     public static final int BOR_ASSIGN = JavaLanguageLexer.BOR_ASSIGN;
     /**
-     * The <code>&#63;</code> (conditional) operator.  Technically,
+     * The {@code ?} (conditional) operator.  Technically,
      * the colon is also part of this operator, but it appears as a
      * separate token.
      *
@@ -3715,9 +3769,6 @@ public final class TokenTypes {
      *     Language Specification, &sect;15.25</a>
      * @see #EXPR
      * @see #COLON
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
-     *      when replaced with Javadoc tag
      **/
     public static final int QUESTION = JavaLanguageLexer.QUESTION;
     /**
@@ -3838,7 +3889,7 @@ public final class TokenTypes {
      **/
     public static final int BAND = JavaLanguageLexer.BAND;
     /**
-     * The <code>&#33;=</code> (not equal) operator.
+     * The {@code !=} (not equal) operator.
      *
      * <p>For example:</p>
      * <pre>
@@ -3855,9 +3906,6 @@ public final class TokenTypes {
      * </pre>
      *
      * @see #EXPR
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
-     *      when replaced with Javadoc tag
      **/
     public static final int NOT_EQUAL = JavaLanguageLexer.NOT_EQUAL;
     /**
@@ -4272,7 +4320,7 @@ public final class TokenTypes {
      **/
     public static final int BNOT = JavaLanguageLexer.BNOT;
     /**
-     * The <code>&#33;</code> (logical complement) operator.
+     * The {@code !} (logical complement) operator.
      *
      * <p>For example:</p>
      * <pre>
@@ -4293,9 +4341,6 @@ public final class TokenTypes {
      *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.6">Java
      *     Language Specification, &sect;15.15.6</a>
      * @see #EXPR
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
-     *      when replaced with Javadoc tag
      **/
     public static final int LNOT = JavaLanguageLexer.LNOT;
     /**
@@ -4885,7 +4930,7 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      * for (int value : values) {
-     *     doSmth();
+     *     doSomething();
      * }
      * </pre>
      *
@@ -4906,7 +4951,7 @@ public final class TokenTypes {
      *  `--SLIST -&gt; {
      *      |--EXPR -&gt; EXPR
      *      |   `--METHOD_CALL -&gt; (
-     *      |       |--IDENT -&gt; doSmth
+     *      |       |--IDENT -&gt; doSomething
      *      |       |--ELIST -&gt; ELIST
      *      |       `--RPAREN -&gt; )
      *      |--SEMI -&gt; ;

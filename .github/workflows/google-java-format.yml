@@ -34,7 +34,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout Pull Request Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - uses: robinraju/release-downloader@v1
         with:

@@ -7,6 +7,6 @@
 </module>
 */
 
-// violation 9 lines above
+// violation first line
 // non-compiled syntax: bad file for testing
 public clazz InputTreeWalkerSkipParsingExceptionConfigSeverityDefault {}

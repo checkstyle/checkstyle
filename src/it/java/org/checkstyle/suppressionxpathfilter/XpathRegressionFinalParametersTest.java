@@ -187,4 +187,5 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

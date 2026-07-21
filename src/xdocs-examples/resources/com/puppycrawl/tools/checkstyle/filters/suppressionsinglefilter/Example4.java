@@ -16,5 +16,18 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 public class Example4 {
   // filtered violation below 'Name 'MyVariable' must match pattern'
   private int MyVariable = 5;
+
+  public void exampleMethod(int a, int b) {
+    int value = 100;
+
+    Integer. parseInt("3");
+  }
+
+  public void printExample() {
+    int [] x;
+    System.out.println(
+            "example"
+    );
+  }
 }
 // xdoc section -- end

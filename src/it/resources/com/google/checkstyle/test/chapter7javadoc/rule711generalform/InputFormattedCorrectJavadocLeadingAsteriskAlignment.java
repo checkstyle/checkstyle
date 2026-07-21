@@ -33,10 +33,12 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
    */
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(int a) {}
 
+  // violation below "Comment uses box-like repetitive character pattern."
   /*************************************************
    *** @param str testing.....
    **********************************/
   // False negative for above javadoc, until #18271, #18273
+
   public InputFormattedCorrectJavadocLeadingAsteriskAlignment(String str) {}
 
   /** * */

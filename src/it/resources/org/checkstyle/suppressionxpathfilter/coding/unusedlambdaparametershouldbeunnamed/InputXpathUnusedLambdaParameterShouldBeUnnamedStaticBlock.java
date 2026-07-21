@@ -1,4 +1,4 @@
-// Java21
+
 package org.checkstyle.suppressionxpathfilter.coding.unusedlambdaparametershouldbeunnamed;
 
 import java.util.function.Function;

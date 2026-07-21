@@ -57,39 +57,45 @@ public interface InputClassMemberImpliedModifierOnInterface {
                 RED, GREEN, BLUE;
             }
 
-            enum SimpleInnerEnum {  // violation
+            // violation below 'Implied modifier 'static' should be explicit.'
+            enum SimpleInnerEnum {
                 RED, GREEN, BLUE;
             }
 
             static interface StaticInnerInterface {
             }
 
-            interface SimpleInnerInterface {  // violation
+            // violation below 'Implied modifier 'static' should be explicit.'
+            interface SimpleInnerInterface {
             }
         }
 
-        enum SimpleEnum {  // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        enum SimpleEnum {
             RED, GREEN, BLUE;
 
             static enum StaticInnerEnum {
                 RED, GREEN, BLUE;
             }
 
-            enum SimpleInnerEnum {  // violation
+            // violation below 'Implied modifier 'static' should be explicit.'
+            enum SimpleInnerEnum {
                 RED, GREEN, BLUE;
             }
 
             static interface StaticInnerInterface {
             }
 
-            interface SimpleInnerInterface {  // violation
+            // violation below 'Implied modifier 'static' should be explicit.'
+            interface SimpleInnerInterface {
             }
         }
 
         static interface StaticInterface {
         }
 
-        interface SimpleInterface {  // violation
+        // violation below 'Implied modifier 'static' should be explicit.'
+        interface SimpleInterface {
         }
     }
 }

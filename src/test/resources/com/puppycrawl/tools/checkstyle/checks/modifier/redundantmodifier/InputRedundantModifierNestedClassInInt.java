@@ -1,7 +1,9 @@
 /*
 RedundantModifier
+jdkVersion = (default)22
 tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF, \
-         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE
+         CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE, ANNOTATION_DEF, RECORD_DEF, \
+         PATTERN_VARIABLE_DEF, LITERAL_CATCH, LAMBDA
 
 
 */
@@ -19,11 +21,14 @@ public interface InputRedundantModifierNestedClassInInt {
     class PublicClassInsideInt {
         private interface PrivateNestedInt {
             class ClassInPrivateNestedInt {
-                public ClassInPrivateNestedInt() { } // violation
+                // violation below 'Redundant 'public' modifier.'
+                public ClassInPrivateNestedInt() { }
             }
-            public interface PrivateNestedIntWithPublicModifier { // violation
+            // violation below 'Redundant 'public' modifier.'
+            public interface PrivateNestedIntWithPublicModifier {
                 class ClassInPrivateNestedInt {
-                    public ClassInPrivateNestedInt() { } // violation
+                    // violation below 'Redundant 'public' modifier.'
+                    public ClassInPrivateNestedInt() { }
                 }
             }
         }
@@ -34,7 +39,8 @@ public interface InputRedundantModifierNestedClassInInt {
         }
         protected interface PublicInnerInnerProtectedInterface {
           class PublicInnerClassInNestedProtectedInt {
-           public PublicInnerClassInNestedProtectedInt() { } // violation
+           // violation below 'Redundant 'public' modifier.'
+           public PublicInnerClassInNestedProtectedInt() { }
           }
         }
     }
@@ -42,7 +48,8 @@ public interface InputRedundantModifierNestedClassInInt {
         public PublicNestedClassInInterfaceWithPublicConst() { } // ok in public class
         private class PrivateClassInPublicNestedClass {
             public class PublicInPrivateClass {
-                public PublicInPrivateClass() { } // violation
+                // violation below 'Redundant 'public' modifier.'
+                public PublicInPrivateClass() { }
             }
         }
     }

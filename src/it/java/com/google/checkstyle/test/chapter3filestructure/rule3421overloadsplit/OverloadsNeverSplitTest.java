@@ -39,4 +39,5 @@ public class OverloadsNeverSplitTest extends AbstractGoogleModuleTestSupport {
     public void testOverloadConstructorsRecords() throws Exception {
         verifyWithWholeConfig(getPath("InputOverloadsNeverSplitRecords.java"));
     }
+
 }

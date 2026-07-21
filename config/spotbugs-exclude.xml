@@ -125,13 +125,6 @@
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
   </Match>
   <Match>
-    <!-- false-positive. Bugs reported even though casting is done only
-           after verification using instanceof -->
-    <Class name="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
-    <Method name="parseJavadocAsDetailNode"/>
-    <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
-  </Match>
-  <Match>
     <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/6343 -->
     <Class
     name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck$SequencedProperties"/>
@@ -142,11 +135,6 @@
     <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
     <Method name="getTranslationKeys"/>
     <Bug pattern="REC_CATCH_EXCEPTION"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/issues/8262 -->
-    <Field name="$jacocoData"/>
-    <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
   </Match>
   <Match>
     <!-- Creates too many false positives on classes stored in sets/maps
@@ -186,21 +174,6 @@
     <Bug pattern="OCP_OVERLY_CONCRETE_PARAMETER"/>
   </Match>
   <Match>
-    <!-- Unable to resolve the item. -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-    <Method name="findLastChildWhichContainsSpecifiedToken"/>
-    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
-  </Match>
-  <Match>
-    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/329 -->
-    <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
-      <Class name="com.puppycrawl.tools.checkstyle.TreeWalker"/>
-    </Or>
-    <Method name="getExternalResourceLocations"/>
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"/>
-  </Match>
-  <Match>
     <!-- For recursive code, the size is difficult to determine.
          It is better to use the default allocation size. -->
     <Or>
@@ -226,7 +199,6 @@
       NMCS_NEEDLESS_MEMBER_COLLECTION_SYNCHRONIZATION,
       OPM_OVERLY_PERMISSIVE_METHOD,
       PMB_INSTANCE_BASED_THREAD_LOCAL,
-      SEO_SUBOPTIMAL_EXPRESSION_ORDER,
       STT_STRING_PARSING_A_FIELD,
       WEM_WEAK_EXCEPTION_MESSAGING,
       " />
@@ -289,15 +261,8 @@
   </Match>
 
   <!-- Suppress PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
+  <!-- false positive: NakedReceiverMutator causes unkillable mutations -->
   <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.utils.JavadocUtil" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.DetailNodeTreeStringPrinter" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor" />
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
@@ -306,25 +271,10 @@
     <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor$DetailAstPair" />
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
   </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter" />
-    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
-  </Match>
 
   <!-- Suppress AFBR_ABNORMAL_FINALLY_BLOCK_RETURN -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
+  <!-- false positive: finally blocks contain no return/exit, bytecode analysis artifact -->
+  <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.Main" />
     <Bug pattern="AFBR_ABNORMAL_FINALLY_BLOCK_RETURN" />
@@ -339,7 +289,8 @@
   </Match>
 
   <!-- Suppress CC_CYCLOMATIC_COMPLEXITY -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
+  <!-- false positive: necessary complexity in switch-based visitor pattern -->
+  <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck" />
     <Method name="visitToken" />
@@ -352,20 +303,23 @@
   </Match>
 
   <!-- Suppress PSC_PRESIZE_COLLECTIONS -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck" />
-    <Method name="findTokensInAstByType" />
-    <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
-  </Match>
+  <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.SarifLogger" />
     <Method name="generateRules" />
     <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
   </Match>
+  <!-- false positive: tree traversal with unknown result size -->
+  <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck" />
+    <Method name="findTokensInAstByType" />
+    <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
+  </Match>
 
   <!-- Suppress RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE -->
-  <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->
+  <!-- false positive: implicit null check generated by try-with-resources bytecode -->
+  <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.site.SiteUtil" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
@@ -376,18 +330,6 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
 
-  <!-- until https://github.com/mebigfatguy/fb-contrib/issues/491 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader" />
-    <Field name="ID_TO_RESOURCE_NAME_MAP" />
-    <Bug pattern="DMC_DUBIOUS_MAP_COLLECTION" />
-  </Match>
-  <!-- not documented rule -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.DefaultContext" />
-    <Method name="getAttributeNames" />
-    <Bug pattern="IMC_IMMATURE_CLASS_COLLECTION_RETURN" />
-  </Match>
   <!-- it has xdoc annotation, we need to reconsider it after we finalize our xdoc generation -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck" />
@@ -413,5 +355,16 @@
     <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
     <Field name="xpath" />
     <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
+  </Match>
+  <!-- This is most used class for all integrations lets keep it public to avoid breaking change -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
+    <Method name="finishLocalSetup" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.TreeWalker" />
+    <Method name="setupChild" />
+    <Bug pattern="IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY"/>
   </Match>
 </FindBugsFilter>

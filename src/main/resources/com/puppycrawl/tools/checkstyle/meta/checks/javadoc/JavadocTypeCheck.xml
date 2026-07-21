@@ -29,8 +29,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
-               <description>Control whether to ignore violations when a class has type parameters but
- does not have matching param tags in the Javadoc.</description>
+               <description>Control whether to ignore violations when a class has type parameters but does not have matching param tags in the Javadoc.</description>
             </property>
             <property default-value="false" name="allowUnknownTags" type="boolean">
                <description>Control whether to ignore violations when a Javadoc tag is not recognised.</description>
@@ -38,8 +37,7 @@
             <property default-value="Generated"
                       name="allowedAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations that allow skipping validation at all.
- Only short names are allowed, e.g. &lt;code&gt;Generated&lt;/code&gt;.</description>
+               <description>Specify annotations that allow skipping validation at all. Only short names are allowed, e.g. &lt;code&gt;Generated&lt;/code&gt;.</description>
             </property>
             <property name="authorFormat" type="java.util.regex.Pattern">
                <description>Specify the pattern for &lt;code&gt;@author&lt;/code&gt; tag.</description>
@@ -67,6 +65,7 @@
             <message-key key="javadoc.unusedTag"/>
             <message-key key="javadoc.unusedTagGeneral"/>
             <message-key key="type.missingTag"/>
+            <message-key key="type.missingTagWithQuotes"/>
             <message-key key="type.tagFormat"/>
          </message-keys>
       </check>

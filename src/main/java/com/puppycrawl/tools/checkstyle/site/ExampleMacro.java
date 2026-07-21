@@ -66,6 +66,13 @@ public class ExampleMacro extends AbstractMacro {
     /** The line contents of the last file. */
     private List<String> lastLines = new ArrayList<>();
 
+    /**
+     * Creates a new {@code ExampleMacro} instance.
+     */
+    public ExampleMacro() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final String path = (String) request.getParameter("path");
@@ -249,4 +256,5 @@ public class ExampleMacro extends AbstractMacro {
     private static boolean isXml(String snippet) {
         return XML_PATTERN.matcher(snippet.trim()).matches();
     }
+
 }

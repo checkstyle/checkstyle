@@ -143,6 +143,13 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetTypeParameterNamesFromNonGenericClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtilJavadocTypeNonGenericClass.java"), expected);
+    }
+
+    @Test
     public void testGetTypeParameters() throws Exception {
         final DetailAST parameterizedClassNode = getNodeFromFile(TokenTypes.CLASS_DEF);
         final DetailAST firstTypeParameter =
@@ -391,7 +398,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testJavaDocMethod2() throws Exception {
         final String[] expected = {
-            "20:25: " + getCheckMessage(JavadocMethodCheck.class,
+            "21:25: " + getCheckMessage(JavadocMethodCheck.class,
                   MSG_EXPECTED_TAG, "@param", "i"),
         };
         verifyWithInlineConfigParser(
@@ -447,10 +454,16 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfo() {
-        final boolean result = CheckUtil.isPackageInfo("/");
-
         assertWithMessage("Expected isPackageInfo() to return false for ('/')")
-                .that(result)
+                .that(CheckUtil.isPackageInfo("/"))
+                .isFalse();
+
+        assertWithMessage("Expected isPackageInfo() to return true for package-info.java file")
+                .that(CheckUtil.isPackageInfo("src/main/java/com/example/package-info.java"))
+                .isTrue();
+
+        assertWithMessage("Expected isPackageInfo() to return false for regular Java file")
+                .that(CheckUtil.isPackageInfo("src/main/java/com/example/SomeClass.java"))
                 .isFalse();
     }
 

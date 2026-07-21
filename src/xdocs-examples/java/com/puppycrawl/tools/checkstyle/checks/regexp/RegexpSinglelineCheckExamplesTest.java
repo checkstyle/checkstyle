@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline";
@@ -43,19 +44,19 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
+            "23: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System.exit\\("),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -68,12 +69,12 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "1: File must contain copyright statement",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
@@ -93,6 +94,7 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
         };
 
         verifyWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example6.java"), getPath("Example7.sql"), expected);
+                getPath("Example7.java"), getPath("Example7.sql"), expected);
     }
+
 }

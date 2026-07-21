@@ -79,20 +79,13 @@
 class Example1 {
   public int num1;
   protected int num2;
-  final int num3 = 3;
+  int num3;
   private int num4;
 
-  static int num5;
-  public static final int CONSTANT = 1;
-
-  public int NUM1; // violation 'Name 'NUM1' must match pattern'
-
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
   protected int NUM2; // violation 'Name 'NUM2' must match pattern'
-
-  int NUM3; // violation 'Name 'NUM3' must match pattern'
-
-  private int NUM4; // violation 'Name 'NUM4' must match pattern'
-
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -116,12 +109,15 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  public int num1; // violation 'Name 'num1' must match pattern'
-
+  public int num1;  // violation 'Name 'num1' must match pattern'
   protected int num2;
   int num3;
   private int num4; // violation 'Name 'num4' must match pattern'
 
+  public int NUM1;  // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2;
+  int NUM3;
+  private int NUM4; // violation 'Name 'NUM4' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -141,11 +137,96 @@ class Example2 {
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
   public int NUM1;
   protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check which is applied to
+          public and protected member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPublic" value="false"/&gt;
+      &lt;property name="applyToProtected" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
 
-  int NUM3; // violation 'Name 'NUM3' must match pattern'
+  public int NUM1;
+  protected int NUM2;
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check which is applied to
+          package-private member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
 
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check which is applied to
+          private member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
   private int NUM4;
 }
 </code></pre></div>
@@ -156,6 +237,11 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
@@ -179,8 +265,12 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MemberName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="MemberName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="MemberName_Parent_Module">

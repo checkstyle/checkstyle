@@ -4,6 +4,9 @@ format = ^import
 errorLimit = 2
 duplicateLimit = 1
 illegalPattern = true
+ignoreComments = (default)false
+message = (default)null
+
 
 */
 

@@ -304,6 +304,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * @return attribute node if possible, otherwise the {@code null} value
      */
+    @SuppressWarnings("ReferenceEquality")
     private AttributeNode getAttributeNode() {
         if (attributeNode == ATTRIBUTE_NODE_UNINITIALIZED) {
             attributeNode = createAttributeNode();
@@ -319,4 +320,5 @@ public abstract class AbstractElementNode extends AbstractNode {
     private static UnsupportedOperationException throwUnsupportedOperationException() {
         return new UnsupportedOperationException("Operation is not supported");
     }
+
 }

@@ -8,29 +8,29 @@
 
   <!-- private class used to show violation on it -->
   <suppress id="exampleClassName"
-    files="regexp[\\/]Example4.java"/>
+    files="regexp/Example4.java"/>
   
   <!-- The files have no exampleClassName by design. -->
   <suppress id="exampleClassName"
-    files="outertypefilename[\\/]Example3.java"/>
+    files="outertypefilename/Example3.java"/>
   <suppress id="exampleClassName"
-    files="outertypefilename[\\/]Example4.java"/>
+    files="outertypefilename/Example4.java"/>
   <suppress id="exampleClassName"
-    files="unnecessarysemicoloninenumeration[\\/]Example1.java"/>
+    files="unnecessarysemicoloninenumeration/Example1.java"/>
   <suppress id="exampleClassName"
-    files="unnecessarysemicoloninenumeration[\\/]Example2.java"/>
+    files="unnecessarysemicoloninenumeration/Example2.java"/>
 
   <!-- The file is used so examples can show how overridden methods are treated. -->
   <suppress id="exampleClassName"
-    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+    files="abbreviationaswordinname/SuperClass.java"/>
   <suppress id="exampleFileName"
-    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+    files="abbreviationaswordinname/SuperClass.java"/>
   <suppress id="xdocStartComment"
-    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+    files="abbreviationaswordinname/SuperClass.java"/>
   <suppress id="xdocEndComment"
-    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+    files="abbreviationaswordinname/SuperClass.java"/>
   <suppress id="exampleFileXmlConfigPresence"
-    files="abbreviationaswordinname[\\/]SuperClass.java"/>
+    files="abbreviationaswordinname/SuperClass.java"/>
 
   <!-- non class example files -->
   <suppress id="exampleFileName" files="package-info.java"/>
@@ -38,168 +38,168 @@
 
   <!-- files used to demonstrate violations on naming -->
   <suppress id="exampleFileName"
-            files="beforeexecutionexclusionfilefilter[\\/]test.*"/>
+            files="beforeexecutionexclusionfilefilter/test.*"/>
   <suppress id="exampleClassName"
-            files="beforeexecutionexclusionfilefilter[\\/]test.*"/>
+            files="beforeexecutionexclusionfilefilter/test.*"/>
   <suppress id="xdocStartComment"
-            files="beforeexecutionexclusionfilefilter[\\/]test.*"/>
+            files="beforeexecutionexclusionfilefilter/test.*"/>
   <suppress id="xdocEndComment"
-            files="beforeexecutionexclusionfilefilter[\\/]test.*"/>
+            files="beforeexecutionexclusionfilefilter/test.*"/>
   <suppress id="exampleFileXmlConfigPresence"
-            files="beforeexecutionexclusionfilefilter[\\/]test.*"/>
+            files="beforeexecutionexclusionfilefilter/test.*"/>
 
     <!-- files used to demonstrate violations on xpath single filters -->
   <suppress id="exampleFileName"
-            files="suppressionxpathsinglefilter[\\/]src.*"/>
+            files="suppressionxpathsinglefilter/src.*"/>
   <suppress id="exampleClassName"
-            files="suppressionxpathsinglefilter[\\/]src.*"/>
+            files="suppressionxpathsinglefilter/src.*"/>
   <suppress id="xdocStartComment"
-            files="suppressionxpathsinglefilter[\\/]src.*"/>
+            files="suppressionxpathsinglefilter/src.*"/>
   <suppress id="xdocEndComment"
-            files="suppressionxpathsinglefilter[\\/]src.*"/>
+            files="suppressionxpathsinglefilter/src.*"/>
   <suppress id="exampleFileXmlConfigPresence"
-            files="suppressionxpathsinglefilter[\\/]src.*"/>
+            files="suppressionxpathsinglefilter/src.*"/>
 
   <!-- Check deals with tab characters. -->
   <suppress checks="FileTabCharacter|Indentation"
-    files="filetabcharacter[\\/]Example\d+.java"/>
+    files="filetabcharacter/Example\d+.java"/>
   <!-- Needs more compact view of the file -->
   <suppress checks="Indentation"
-    files="returncount[\\/]Example\d+.java"/>
+    files="returncount/Example\d+.java"/>
 
   <!-- Example deals with line wrapping and check does not take that into account.  -->
   <suppress id="exampleClassName"
-    files="nolinewrap[\\/]Example5.java"/>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/2629 -->
-  <suppress checks="Indent"
-    files="nolinewrap[\\/]Example5.java"/>
+    files="nolinewrap/Example5.java"/>
 
   <!-- multifileregexpheader examples use external XML configs instead of inline -->
   <suppress id="exampleFileXmlConfigPresence"
-    files="multifileregexpheader[\\/]Example[1-4].java"/>
+    files="multifileregexpheader/Example[1-4].java"/>
   <suppress id="xdocStartComment"
-    files="multifileregexpheader[\\/]Example[1-4].java"/>
+    files="multifileregexpheader/Example[1-4].java"/>
   <suppress id="xdocEndComment"
-    files="multifileregexpheader[\\/]Example[1-4].java"/>
+    files="multifileregexpheader/Example[1-4].java"/>
 
   <!-- header examples use external XML configs instead of inline -->
   <suppress id="exampleFileXmlConfigPresence"
-    files="header[\\/]Example[1-4].java"/>
+    files="header/Example[1-4].java"/>
   <suppress id="xdocStartComment"
-    files="header[\\/]Example[1-4].java"/>
+    files="header/Example[1-4].java"/>
   <suppress id="xdocEndComment"
-    files="header[\\/]Example[1-4].java"/>
+    files="header/Example[1-4].java"/>
 
   <!-- regexpheader examples use external XML configs instead of inline -->
   <suppress id="exampleFileXmlConfigPresence"
-    files="regexpheader[\\/]Example[1-4].java"/>
+    files="regexpheader/Example[1-4].java"/>
   <suppress id="xdocStartComment"
-    files="regexpheader[\\/]Example[1-4].java"/>
+    files="regexpheader/Example[1-4].java"/>
   <suppress id="xdocEndComment"
-    files="regexpheader[\\/]Example[1-4].java"/>
+    files="regexpheader/Example[1-4].java"/>
 
   <!-- Check applies to resources-noncompilable files.  -->
-  <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
+  <suppress id="presenceOfCompilationComment" files="resources/.*"/>
 
   <!-- Suppress for files which are part of a non-compilable example fileset -->
   <suppress id="presenceOfCompilationComment"
-            files="beforeexecutionexclusionfilefilter[\\/].*"/>
+            files="beforeexecutionexclusionfilefilter/.*"/>
 
   <!-- Without showing symbol, user can get confused which one we are referring to -->
   <suppress id="discouragedRegexpInViolationMessage"
-    files="operatorwrap[\\/]Example1.java"/>
+    files="operatorwrap/Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
-    files="operatorwrap[\\/]Example2.java"/>
+    files="operatorwrap/Example2.java"/>
   <!-- it prints user regexp -->
   <suppress id="discouragedRegexpInViolationMessage"
-            files="regexponfilename[\\/]Example[24].*"/>
+            files="regexponfilename/Example[24].*"/>
+
+  <!-- Example contains '$' in violation message intentionally -->
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="googlenonconstantfieldname/Example1.java"/>
+
+  <!-- Example is longer than FileLength limit by design -->
+  <suppress checks="FileLength"
+            files="googlenonconstantfieldname/Example1.java"/>
 
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
-    files="avoidstarimport[\\/]Example[1-6].java"/>
+    files="avoidstarimport/Example[1-6].java"/>
 
   <suppress checks="CommentsIndentation"
-    files="singlespaceseparator[\\/]Example2.java"/>
+    files="singlespaceseparator/Example[12].java"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="CommentsIndentation"
-    files="commentsindentation[\\/]Example[1-9].java"/>
+    files="commentsindentation/(Example|UseCase)[1-9].java"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="Indentation"
-    files="indentation[\\/]Example[1-5].java"/>
+    files="indentation/(Example|UseCase)[1-9].java"/>
 
   <!-- To match the behavior with Google style guide -->
   <suppress checks="Indentation"
-    files="textblockgooglestyleformatting[\\/]Example1\.java"/>
+    files="textblockgooglestyleformatting/Example1\.java"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="FileLength"
-    files="cyclomaticcomplexity[\\/]Example\d+.*"/>
+    files="cyclomaticcomplexity/Example\d+.*"/>
 
   <!-- violation required by to show behavior of Check -->
   <suppress checks="FileLength"
-    files="javadocmethod[\\/]Example7.java"/>
-
-  <suppress checks="FileLength"
-    files="descendanttoken[\\/]Example[1-3].java"/>
+    files="javadocmethod/Example7.java"/>
 
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
-    files="illegaltype[\\/]Example\d+.*"/>
-
-  <!-- Example contains important violations that need to be shown -->
-  <suppress checks="FileLength"
-    files="whitespaceafter[\\/]Example1.java"/>
+    files="illegaltype/Example\d+.*"/>
 
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
-    files="javadocparagraph[\\/]Example1.java"/>
+    files="javadocparagraph/Example1.java"/>
   <suppress checks="FileLength"
-    files="javadocparagraph[\\/]Example2.java"/>
+    files="javadocparagraph/Example2.java"/>
 
   <!-- Examples need spacing to be more readable -->
   <suppress checks="FileLength"
-    files="visibilitymodifier[\\/]Example\d+.java"/>
+    files="visibilitymodifier/Example\d+.java"/>
 
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
-    files="newlineatendoffile[\\/]Example\d+.*"/>
+    files="newlineatendoffile/Example\d+.*"/>
 
   <!-- We need to maintain indentation on xml part -->
   <suppress checks="LineLength"
-    files="annotation[\\/]suppresswarningsholder[\\/]Example2.java"/>
+    files="annotation/suppresswarningsholder/Example2.java"/>
 
   <!-- Example must show line length violations and filtered violations -->
   <suppress checks="LineLength"
-    files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
+    files="suppresswithplaintextcommentfilter/UseCase1.java"/>
   <suppress checks="LineLength"
-    files="linelength[\\/]Example\d+.*"/>
+    files="linelength/Example\d+.*"/>
   <!-- it prints user regexp -->
   <suppress checks="LineLength"
-            files="regexponfilename[\\/]Example[2].java"/>
+            files="regexponfilename/Example[2].java"/>
   <!-- we need to show whole user defined message -->
   <suppress checks="LineLength"
-            files="regexponfilename[\\/]Example[14].java"/>
+            files="regexponfilename/Example[14].java"/>
 
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
-  <suppress checks="LineLength" files="classdataabstractioncoupling[\\/]Example11.java"/>
+  <suppress checks="LineLength" files="classdataabstractioncoupling/UseCase6.java"/>
 
   <!-- Example needs to have really long regex format properly shown in config  -->
-  <suppress checks="LineLength" files="illegalidentifiername[\\/]Example[2].java"/>
+  <suppress checks="LineLength" files="illegalidentifiername/Example[2].java"/>
 
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
-    files="packagedeclaration[\\/]Example\d+.*"/>
-
-  <!-- File length suppressed to keep JavadocStyle examples consistent -->
-  <suppress checks="FileLength"
-    files=".*[\\/]javadocstyle[\\/]Example7\.java$"/>
+    files="packagedeclaration/Example\d+.*"/>
 
   <!-- Can't add violations to another lines because of design of the check. -->
   <suppress checks="LineLength"
-            files="lineending[\\/]Example3.java"/>
+            files="lineending/Example3.java"/>
   <suppress checks="LineLength"
-            files="lineending[\\/]Example4.java"/>
+            files="lineending/Example4.java"/>
+  <suppress checks="LineLength"
+            files="overloadmethodsdeclarationorder/Example2.java"/>
+
+  <!-- Exclude canonical names list longer than 85 characters  -->
+  <suppress checks="LineLength"
+            files="annotateddeclarationvisibility/Example3.java"/>
 
 </suppressions>

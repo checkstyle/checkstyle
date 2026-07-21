@@ -7,7 +7,7 @@ accessModifiers = private
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
 import java.awt.Point;
@@ -67,13 +67,15 @@ public class InputRecordComponentNumberPrivateModifierOne {
 
         }
 
-        private record InnerRecordBad(int x, int y, int z, // violation
+        // violation below 'Number of record components is 14'
+        private record InnerRecordBad(int x, int y, int z,
                                       int a, int b, int c,
                                       int d, int e, int f,
                                       int g, int h, int i,
                                       int j, int k){
 
-            private record InnerRecordCeptionBad(int x, int y, int z, // violation
+            // violation below 'Number of record components is 14'
+            private record InnerRecordCeptionBad(int x, int y, int z,
                                                  int a, int b, int c,
                                                  int d, int e, int f,
                                                  int g, int h, int i,

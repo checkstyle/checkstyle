@@ -9,13 +9,16 @@ offset = (default)4
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 public class InputJavadocTagContinuationIndentationDescription {
+    // violation 7 lines below 'Line continuation .* expected level should be 4'
+    // violation 7 lines below 'Line continuation .* expected level should be 4'
+    // violation 7 lines below 'Line continuation .* expected level should be 4'
     /**
      * General Description here.
      *
      * @param s
-     * Description 1. // violation
-     * Description 2. // violation
-     * Description 3. // violation
+     * Description 1.
+     * Description 2.
+     * Description 3.
      *                         Description 4 with extra indentation.
      *
      *
@@ -42,12 +45,15 @@ public class InputJavadocTagContinuationIndentationDescription {
      */
     public void testWithMissingAsterisk(int x) {}
 
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
+    // violation 6 lines below 'Line continuation .* expected level should be 4'
+    // violation 6 lines below 'Line continuation .* expected level should be 4'
     /**
      * @param s
-     *Description with missing space. // violation
+     *Description with missing space.
      * @param s2
-     *****Description with multiple asterisk and missing space // violation
-     ***** Description with multiple asterisk and missing space // violation
+     *****Description with multiple asterisk and missing space
+     ***** Description with multiple asterisk and missing space
      */
     public void testOtherCases(String s, String s2) {}
     
@@ -71,6 +77,6 @@ public class InputJavadocTagContinuationIndentationDescription {
      *  >SAX.</a>     
      */
     public void test() { }
-    // violation 4 lines above
-    // violation 4 lines above
+    // violation 4 lines above 'Line continuation .* expected level should be 4'
+    // violation 4 lines above 'Line continuation .* expected level should be 4'
 }

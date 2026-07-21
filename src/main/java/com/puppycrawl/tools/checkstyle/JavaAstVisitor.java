@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -132,18 +131,38 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitCompilationUnit(JavaLanguageParser.CompilationUnitContext ctx) {
-        final DetailAstImpl compilationUnit;
+        final DetailAstImpl root;
         // 'EOF' token is always present; therefore if we only have one child, we have an empty file
         final boolean isEmptyFile = ctx.children.size() == 1;
         if (isEmptyFile) {
-            compilationUnit = null;
+            root = null;
         }
         else {
-            compilationUnit = createImaginary(TokenTypes.COMPILATION_UNIT);
             // last child is 'EOF', we do not include this token in AST
-            processChildren(compilationUnit, ctx.children.subList(0, ctx.children.size() - 1));
+            final List<ParseTree> children = ctx.children.subList(0, ctx.children.size() - 1);
+
+            final boolean isCompactSourceFile = children.stream()
+                    .anyMatch(JavaAstVisitor::isCompactMemberDeclaration);
+
+            if (isCompactSourceFile) {
+                root = createImaginary(TokenTypes.COMPACT_COMPILATION_UNIT);
+            }
+            else {
+                root = createImaginary(TokenTypes.COMPILATION_UNIT);
+            }
+            processChildren(root, children);
         }
-        return compilationUnit;
+        return root;
+    }
+
+    /**
+     * Checks whether the given parse-tree node is a compact member declaration.
+     *
+     * @param child a parse-tree child of the compilation unit
+     * @return true if the node is a compact member declaration
+     */
+    private static boolean isCompactMemberDeclaration(ParseTree child) {
+        return child instanceof JavaLanguageParser.CompactMemberDeclarationContext;
     }
 
     @Override
@@ -823,7 +842,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl dummyNode = new DetailAstImpl();
         // Since the TYPE AST is built by visitAnnotationMethodOrConstantRest(), we skip it
         // here (child [0])
-        processChildren(dummyNode, Collections.singletonList(ctx.children.get(1)));
+        processChildren(dummyNode, List.of(ctx.children.get(1)));
         // We also append the SEMI token to the first child [size() - 1],
         // until https://github.com/checkstyle/checkstyle/issues/3151
         dummyNode.getFirstChild().addChild(create(ctx.SEMI()));
@@ -2084,7 +2103,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     /**
      * Create a DetailAstImpl from a given token and token type. This method
-     * should be used for imaginary nodes only, i.e. 'OBJBLOCK -&gt; OBJBLOCK',
+     * should be used for imaginary nodes only, i.e. {@literal 'OBJBLOCK -> OBJBLOCK'},
      * where the text on the RHS matches the text on the LHS.
      *
      * @param tokenType the token type of this DetailAstImpl
@@ -2095,20 +2114,6 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         detailAst.setType(tokenType);
         detailAst.setText(TokenUtil.getTokenName(tokenType));
         return detailAst;
-    }
-
-    /**
-     * Create a DetailAstImpl from a given token and token type. This method
-     * should be used for literal nodes only, i.e. 'PACKAGE_DEF -&gt; package'.
-     *
-     * @param tokenType the token type of this DetailAstImpl
-     * @param startToken the first token that appears in this DetailAstImpl.
-     * @return new DetailAstImpl of given type
-     */
-    private DetailAstImpl create(int tokenType, Token startToken) {
-        final DetailAstImpl ast = create(startToken);
-        ast.setType(tokenType);
-        return ast;
     }
 
     /**
@@ -2146,6 +2151,20 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      */
     private DetailAstImpl create(TerminalNode node) {
         return create((Token) node.getPayload());
+    }
+
+    /**
+     * Create a DetailAstImpl from a given token and token type. This method
+     * should be used for literal nodes only, i.e. {@literal 'PACKAGE_DEF -> package'}.
+     *
+     * @param tokenType the token type of this DetailAstImpl
+     * @param startToken the first token that appears in this DetailAstImpl.
+     * @return new DetailAstImpl of given type
+     */
+    private DetailAstImpl create(int tokenType, Token startToken) {
+        final DetailAstImpl ast = create(startToken);
+        ast.setType(tokenType);
+        return ast;
     }
 
     /**
@@ -2235,6 +2254,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         private DetailAstImpl child;
 
         /**
+         * Creates a new {@code DetailAstPair} instance.
+         */
+        private DetailAstPair() {
+            // no code by default
+        }
+
+        /**
          * Moves child reference to the last child.
          */
         private void advanceChildToEnd() {
@@ -2284,4 +2310,5 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             }
         }
     }
+
 }

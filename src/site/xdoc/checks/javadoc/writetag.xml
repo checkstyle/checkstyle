@@ -110,6 +110,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
+ *
  */
 public class Example1 {
 
@@ -143,6 +144,7 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
+ *
  */
 public class Example2 {
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
@@ -179,20 +181,19 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
+ *
  */
 public class Example3 {
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
-  // violation 3 lines below 'Javadoc tag @since='
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-
+  // violation 3 lines above 'Javadoc tag @since='
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
-
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -220,16 +221,16 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Some class
- * @since 1.2
+ *
  */
 public class Example4 {
-  // violation 3 lines below 'Type Javadoc tag @since'
+  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-
+  // violation 3 lines above 'Type Javadoc tag @since'
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
@@ -237,7 +238,8 @@ public class Example4 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure Check to demand <code>@since</code> tag
-          and in the same time print violation with specific severity on each presence of such tag.
+          to be present with digital value on method javadocs also in addition to default tokens,
+          reporting a mismatched tag format as an error severity violation.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -257,12 +259,54 @@ public class Example4 {
         Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some class
+ *
+ */
+public class Example5 {
+  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  /**
+   * some doc
+   * @since
+   */
+  void testMethod1() {}
+  // violation 3 lines above 'Type Javadoc tag @since must match pattern'
+  /** some doc */
+  public void testMethod2() {}
+  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="WriteTag_Use_Cases">
+        <p id="UseCase1-config">
+          To configure Check to demand <code>@since</code> tag
+          and in the same time print violation with specific severity on each presence of such tag.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WriteTag"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+      &lt;property name="tag" value="@since"/&gt;
+      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+      &lt;property name="tagSeverity" value="error"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+        Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation 3 lines below 'Javadoc tag @since=1.2'
 /**
  * Some class
  * @since 1.2
  */
-public class Example5 {
+public class UseCase1 {
   // violation 3 lines below 'Type Javadoc tag @since'
   /**
    * some doc
@@ -311,9 +355,11 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="WriteTag_Package">
+      <subsection name="Fully Qualified Name" id="WriteTag_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -69,19 +69,22 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="NoWhitespaceBefore_Use_Cases">
+        <p id="UseCase1-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nowhitespacebefore/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -91,6 +94,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
@@ -114,9 +121,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="NoWhitespaceBefore_Package">
+      <subsection name="Fully Qualified Name" id="NoWhitespaceBefore_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

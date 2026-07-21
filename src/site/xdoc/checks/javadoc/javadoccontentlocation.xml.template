@@ -78,6 +78,10 @@
               Checkstyle Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
               Google Style</a>
           </li>
@@ -95,9 +99,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocContentLocation_Package">
+      <subsection name="Fully Qualified Name" id="JavadocContentLocation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

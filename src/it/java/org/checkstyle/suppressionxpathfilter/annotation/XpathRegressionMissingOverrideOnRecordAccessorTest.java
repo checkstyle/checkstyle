@@ -130,4 +130,5 @@ public class XpathRegressionMissingOverrideOnRecordAccessorTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

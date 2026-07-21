@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -78,9 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocParagraph
- * </li>
- * <li>
- * JavadocStyle
  * </li>
  * <li>
  * JavadocTagContinuationIndentation
@@ -194,7 +190,8 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * {@code files} -
  * a <a href="../property_types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit
- * event. It is optional.
+ * event. It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} -
@@ -252,6 +249,13 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
     private boolean optional;
 
     /**
+     * Creates a new {@code SuppressionXpathFilter} instance.
+     */
+    public SuppressionXpathFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
      *
      * @param fileName name of the suppressions file.
@@ -305,7 +309,7 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(file);
+        return Set.of(file);
     }
 
     @Override

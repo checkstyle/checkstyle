@@ -44,4 +44,5 @@ public class ExceptionSelfExplanatoryMembersTest extends AbstractGoogleModuleTes
     public void testDefaultRecord2() throws Exception {
         verifyWithWholeConfig(getPath("InputSelfExplanatoryMembersRecord2.java"));
     }
+
 }

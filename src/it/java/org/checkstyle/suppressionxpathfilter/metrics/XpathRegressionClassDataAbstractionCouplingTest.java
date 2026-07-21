@@ -159,4 +159,5 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
         runVerifications(configuration, classPath, expectedViolations,
                 expectedXpathQueries);
     }
+
 }

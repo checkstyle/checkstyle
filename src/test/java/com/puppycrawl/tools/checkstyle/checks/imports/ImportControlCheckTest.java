@@ -116,38 +116,34 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnknown() throws Exception {
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verifyWithInlineConfigParser(
-                    getPath("InputImportControl7.java"), expected);
-            assertWithMessage("Test should fail if exception was not thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String message = getCheckstyleExceptionMessage(exc);
-            final String messageStart = "Unable to find: ";
+    public void testUnknown() {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(
+                            getPath("InputImportControl7.java"), expected);
+                }, "Test should fail if exception was not thrown");
+        final String message = getCheckstyleExceptionMessage(exc);
+        final String messageStart = "Unable to find: ";
 
-            assertWithMessage("Invalid message, should start with: %s", messageStart)
-                    .that(message)
-                    .startsWith(messageStart);
-        }
+        assertWithMessage("Invalid message, should start with: %s", messageStart)
+                .that(message)
+                .startsWith(messageStart);
     }
 
     @Test
-    public void testBroken() throws Exception {
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verifyWithInlineConfigParser(getPath("InputImportControl8.java"), expected);
-            assertWithMessage("Test should fail if exception was not thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String message = getCheckstyleExceptionMessage(exc);
-            final String messageStart = "Unable to load ";
+    public void testBroken() {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(getPath("InputImportControl8.java"), expected);
+                }, "Test should fail if exception was not thrown");
+        final String message = getCheckstyleExceptionMessage(exc);
+        final String messageStart = "Unable to load ";
 
-            assertWithMessage("Invalid message, should start with: %s", messageStart)
-                    .that(message)
-                    .startsWith(messageStart);
-        }
+        assertWithMessage("Invalid message, should start with: %s", messageStart)
+                .that(message)
+                .startsWith(messageStart);
     }
 
     @Test
@@ -313,20 +309,18 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testResourceUnableToLoad() throws Exception {
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verifyWithInlineConfigParser(getPath("InputImportControl18.java"), expected);
-            assertWithMessage("Test should fail if exception was not thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String message = getCheckstyleExceptionMessage(exc);
-            final String messageStart = "Unable to find: ";
+    public void testResourceUnableToLoad() {
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(getPath("InputImportControl18.java"), expected);
+                }, "Test should fail if exception was not thrown");
+        final String message = getCheckstyleExceptionMessage(exc);
+        final String messageStart = "Unable to find: ";
 
-            assertWithMessage("Invalid message, should start with: %s", messageStart)
-                    .that(message)
-                    .startsWith(messageStart);
-        }
+        assertWithMessage("Invalid message, should start with: %s", messageStart)
+                .that(message)
+                .startsWith(messageStart);
     }
 
     @Test
@@ -338,22 +332,20 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUrlInFilePropertyUnableToLoad() throws Exception {
+    public void testUrlInFilePropertyUnableToLoad() {
 
-        try {
-            final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verifyWithInlineConfigParser(
-                    getPath("InputImportControl20.java"), expected);
-            assertWithMessage("Test should fail if exception was not thrown").fail();
-        }
-        catch (CheckstyleException exc) {
-            final String message = getCheckstyleExceptionMessage(exc);
-            final String messageStart = "Unable to load ";
+        final CheckstyleException exc =
+                getExpectedThrowable(CheckstyleException.class, () -> {
+                    final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+                    verifyWithInlineConfigParser(
+                            getPath("InputImportControl20.java"), expected);
+                }, "Test should fail if exception was not thrown");
+        final String message = getCheckstyleExceptionMessage(exc);
+        final String messageStart = "Unable to load ";
 
-            assertWithMessage("Invalid message, should start with: %s", messageStart)
-                    .that(message)
-                    .startsWith(messageStart);
-        }
+        assertWithMessage("Invalid message, should start with: %s", messageStart)
+                .that(message)
+                .startsWith(messageStart);
     }
 
     @Test

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck.MSG_KEY_SINGLE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
@@ -40,12 +41,15 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
+import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
@@ -719,6 +723,33 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
             filterCfg, regexpCheckCfg
         );
+    }
+
+    @Test
+    public void testCheckFormatAnchoredToIndentationCheckFqcn() throws Exception {
+        final DefaultConfiguration filterCfg =
+            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addProperty("checkFormat", "\\.IndentationCheck$");
+        filterCfg.addProperty("offCommentFormat", "CSOFF");
+        filterCfg.addProperty("onCommentFormat", "CSON");
+
+        final DefaultConfiguration twCfg =
+            createModuleConfig(TreeWalker.class);
+        twCfg.addChild(createModuleConfig(IndentationCheck.class));
+        twCfg.addChild(createModuleConfig(CommentsIndentationCheck.class));
+
+        final DefaultConfiguration checkerConfig = createRootConfig(null);
+        checkerConfig.addProperty("fileExtensions", "java");
+        checkerConfig.addChild(filterCfg);
+        checkerConfig.addChild(twCfg);
+
+        final String[] expected = {
+            "5:5: " + getCheckMessage(CommentsIndentationCheck.class, MSG_KEY_SINGLE, 6, 4, 0),
+        };
+
+        verify(checkerConfig,
+            getPath("InputSuppressWithPlainTextCommentFilterIndentationAnchored.java"),
+            expected);
     }
 
     @Test

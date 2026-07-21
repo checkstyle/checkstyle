@@ -11,29 +11,42 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 // xdoc section -- start
 class Example2 {
+  int a = 10, b = 12;
+  boolean x = true, y = false;
+
+  public int square(int a, int b) {
+
+    int square = (a * b);
+
+    return (square);
+  }
+
+  int sumOfSquares = 0;
+  public void sumOfSquares() {
+
+    for (int i = (0); i < 10; i++) {
+
+      int x = (i + 1);
+      sumOfSquares += (square(x,x));
+    }
+  }
 
   void method() {
     int x = 9, y = 8;
     // violation below, 'Unnecessary parentheses around expression'
-    if (x >= 0 ^ (x <= 8 & y <= 11)
-         ^ y >= 8) {
+    if (x >= 0 ^ (x <= 8 & y <= 11) ^ y >= 8) {
       return;
     }
     if (x >= 0 ^ x <= 8 & y <= 11 ^ y >= 8) {
       return;
     }
     // violation below, 'Unnecessary parentheses around expression'
-    if (x >= 0 || (x <= 8 & y <= 11)
-        && y >= 8) {
+    if (x >= 0 || (x <= 8 & y <= 11) && y >= 8) {
       return;
     }
     if (x >= 0 || x <= 8 & y <= 11 && y >= 8) {
       return;
     }
-    if (x >= 0 & (x <= 8 ^ y <= 11) & y >= 8) {
-      return;
-    }
   }
-
 }
 // xdoc section -- end

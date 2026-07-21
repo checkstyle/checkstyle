@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RequireThisCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/requirethis";
@@ -72,17 +73,18 @@ public class RequireThisCheckExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(RequireThisCheck.MSG_VARIABLE, "field2", ""),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

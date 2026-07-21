@@ -101,6 +101,13 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     private String cachedFileAbsolutePath = "";
 
     /**
+     * Creates a new {@code SuppressWithNearbyTextFilter} instance.
+     */
+    public SuppressWithNearbyTextFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify nearby text pattern to trigger filter to begin suppression.
      *
      * @param pattern a {@code Pattern} value.
@@ -114,6 +121,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Setter to specify check name pattern to suppress. Property can also
      * be a RegExp group index at {@code nearbyTextPattern} in
      * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param pattern a {@code String} value.
      * @since 10.10.0
@@ -412,4 +420,5 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
             return match;
         }
     }
+
 }

@@ -168,11 +168,10 @@ public final class BlockCommentPosition {
     public static boolean isOnField(DetailAST blockComment) {
         return isOnPlainClassMember(blockComment)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.VARIABLE_DEF)
-                    && blockComment.getParent().getParent().getParent()
-                        .getType() == TokenTypes.OBJBLOCK
+                    && isTypeMemberContainer(blockComment.getParent().getParent().getParent())
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.VARIABLE_DEF)
-                    && blockComment.getParent().getParent().getParent()
-                        .getParent().getType() == TokenTypes.OBJBLOCK;
+                    && isTypeMemberContainer(
+                        blockComment.getParent().getParent().getParent().getParent());
     }
 
     /**
@@ -294,7 +293,21 @@ public final class BlockCommentPosition {
                     || parent.getType() == TokenTypes.TYPE_PARAMETERS)
                 // previous parent sibling is always TokenTypes.MODIFIERS
                 && !parent.getPreviousSibling().hasChildren()
-                && parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK;
+                && isTypeMemberContainer(parent.getParent().getParent());
+    }
+
+    /**
+     * Checks that the block comment's container is a type body or a compact source file,
+     * i.e. a context where a field or member declaration is valid. In a JEP 512 compact
+     * source file, top-level members are children of a {@code COMPACT_COMPILATION_UNIT}
+     * instead of an {@code OBJBLOCK}.
+     *
+     * @param container the AST expected to contain the member
+     * @return true if container is an OBJBLOCK or a compact compilation unit
+     */
+    private static boolean isTypeMemberContainer(DetailAST container) {
+        return container.getType() == TokenTypes.OBJBLOCK
+                || container.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     /**

@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MissingDeprecatedCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated";
@@ -35,7 +36,7 @@ public class MissingDeprecatedCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -44,10 +45,11 @@ public class MissingDeprecatedCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "32: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "33: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

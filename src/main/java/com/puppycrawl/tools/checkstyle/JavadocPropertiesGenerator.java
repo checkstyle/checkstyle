@@ -342,5 +342,13 @@ public final class JavadocPropertiesGenerator {
          */
         @Parameters(index = "0", description = "The input file.")
         private File inputFile;
+
+        /**
+         * Creates a new {@code CliOptions} instance.
+         */
+        private CliOptions() {
+            // no code by default
+        }
     }
+
 }

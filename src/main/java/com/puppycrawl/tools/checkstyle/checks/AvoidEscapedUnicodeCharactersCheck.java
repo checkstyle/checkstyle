@@ -193,6 +193,13 @@ public class AvoidEscapedUnicodeCharactersCheck
     private boolean allowNonPrintableEscapes;
 
     /**
+     * Creates a new {@code AvoidEscapedUnicodeCharactersCheck} instance.
+     */
+    public AvoidEscapedUnicodeCharactersCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to allow use escapes for non-printable, control characters.
      *
      * @param allow user's value.
@@ -387,4 +394,5 @@ public class AvoidEscapedUnicodeCharactersCheck
         return allowIfAllCharactersEscaped
                 && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
+
 }

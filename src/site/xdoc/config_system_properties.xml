@@ -35,6 +35,34 @@
         is <a href="property_types.html#boolean">boolean</a> and defaults
         to <code>false</code>. Disabled by default due to security concerns.
       </p>
+      <p>
+        When set to <code>false</code> (the default), Checkstyle disables the following
+        three XML parser features to prevent
+        <a href="https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing">
+          XXE (XML External Entity)</a> attacks and unauthorized file-system or network access:
+      </p>
+      <ul>
+        <li>
+          <code>http://apache.org/xml/features/nonvalidating/load-external-dtd</code>
+          &#8211; prevents loading of external DTD files referenced in XML documents.
+        </li>
+        <li>
+          <code>http://xml.org/sax/features/external-general-entities</code>
+          &#8211; prevents expansion of external general entity references
+          (e.g. <code>&amp;myEntity;</code> resolved from an outside source).
+        </li>
+        <li>
+          <code>http://xml.org/sax/features/external-parameter-entities</code>
+          &#8211; prevents expansion of external parameter entity references
+          used inside DTD declarations.
+        </li>
+      </ul>
+      <p>
+        Setting <code>checkstyle.enableExternalDtdLoad</code> to <code>true</code>
+        enables all three features simultaneously. This is required when using the
+        XML <code>ENTITY</code> include pattern shown in the examples below.
+        Only enable this property when the XML files being parsed are fully trusted.
+      </p>
       <subsection name="Examples" id="Enable_External_DTD_Load_Examples">
         <p>
           The following is an example of including the contents of other xml files by using the

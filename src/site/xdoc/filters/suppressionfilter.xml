@@ -26,7 +26,8 @@
         <li>
           <code>files</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
           Pattern</a> matched against the file name associated with an audit event.
-          It is optional.
+          It is optional. If unmatched, all Unix path separators (/)
+          are converted to Windows separators (\) and retried.
         </li>
         <li>
           <code>checks</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
@@ -131,7 +132,7 @@
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="MemberName"/&gt;
     &lt;module name="MagicNumber"/&gt;
     &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
   &lt;/module&gt;
@@ -140,11 +141,11 @@
         <p id="suppressionexample1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
-          reject <code>JavadocStyleCheck</code> violations for
-          line 4 of
+          reject <code>MemberNameCheck</code> violations for
+          line 20 of
           file <code>Example1.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
-          7 and 11 of file <code>Example1.java</code>,
+          22 and 26 of file <code>Example1.java</code>,
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
@@ -156,12 +157,12 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress checks="JavadocStyle"
+  &lt;suppress checks="MemberName"
     files="Example1.java"
     lines="20"/&gt;
   &lt;suppress checks="MagicNumber"
     files="Example1.java"
-    lines="23,27"/&gt;
+    lines="22,26"/&gt;
   &lt;suppress message="Missing a Javadoc comment"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
@@ -169,10 +170,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
 
-  // filtered violation below 'First sentence should end with a period.'
-  /**
-   * This field a is missing period
-   */
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
+
   int a = 10; // filtered violation ''10' is a magic number.'
 
   public void exampleMethod() {
@@ -185,13 +185,20 @@ public class Example1 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionFilter_Use_Cases">
+          <p>
+            The following use cases demonstrate how to suppress certain checks by their module id,
+            how to suppress all checks for hidden files and folders, and how to suppress checks by
+            violation message.
+          </p>
+        <p id="UseCase1-config">
             Suppress certain checks by their module id:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample2.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase1.xml"/&gt;
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
@@ -205,13 +212,13 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample2-raw">
+        <p id="suppressionUseCase1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject <code>EqualsAvoidNullCheck</code> by
           <a href="../config.html#Id">module id</a>
           <code>stringEqual</code> violations for
-          all lines of file <code>Example2.java</code>:
+          all lines of file <code>UseCase1.java</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0"?&gt;
@@ -221,12 +228,12 @@ public class Example1 {
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress id="stringEqual" files="Example2.java"/&gt;
+  &lt;suppress id="stringEqual" files="UseCase1.java"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
 
   // violation below, 'Line is longer than 80 characters'
   String line = "This line is long and exceeds the default limit of 80 characters.";
@@ -245,7 +252,7 @@ public class Example2 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="UseCase2-config">
             Suppress all checks for hidden files and folders:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -253,14 +260,14 @@ public class Example2 {
   &lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample3.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase2.xml"/&gt;
   &lt;/module&gt;
 
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample3-raw">
+        <p id="suppressionUseCase2-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject all checks for hidden files and folders:
@@ -288,13 +295,13 @@ keyB=value2
 keyC=value4
 keyC=value5
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase3-config">
             Suppress checks by violation message:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample4.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase3.xml"/&gt;
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
@@ -305,7 +312,7 @@ keyC=value5
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample4-raw">
+        <p id="suppressionUseCase3-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject violations on variable named
@@ -322,9 +329,9 @@ keyC=value5
   &lt;suppress message="Name 'log' must match pattern"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase3 {
 
   public int log;
   // filtered violation above 'Name 'log' must match pattern'
@@ -348,6 +355,13 @@ class Inner {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
         </code></pre></div>
+        <p>
+          Suppress all checks for Maven-generated code
+          (compact form for 'files' that matches on Windows and Linux):
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        &lt;suppress files=&quot;/target/&quot; checks=&quot;.*&quot;/&gt;
+          </code></pre></div>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>
@@ -399,10 +413,18 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressionFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name" id="SuppressionFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressionFilter </p>
+        <p>
+              This is the fully qualified class name of the module.
+              Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressionFilter_Parent_Module">

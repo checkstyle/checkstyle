@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/interfacetypeparametername";
@@ -36,6 +37,7 @@ public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExample
 
         final String[] expected = {
             "14:29: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[A-Z]$"),
+            "15:28: " + getCheckMessage(MSG_INVALID_PATTERN, "type", "^[A-Z]$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -49,4 +51,5 @@ public class InterfaceTypeParameterNameCheckExamplesTest extends AbstractExample
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

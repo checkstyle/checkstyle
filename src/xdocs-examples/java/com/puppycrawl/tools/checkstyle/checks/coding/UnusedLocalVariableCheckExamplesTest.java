@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unusedlocalvariable";
@@ -43,7 +44,7 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example1.java"), expected);
+                getNonCompilablePath("Example1.java"), expected);
     }
 
     @Test
@@ -59,6 +60,26 @@ public class UnusedLocalVariableCheckExamplesTest extends AbstractExamplesModule
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example2.java"), expected);
+                getNonCompilablePath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "17:31: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "str"),
+            "26:19: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "c"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "19:31: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "str"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("Example4.java"), expected);
+    }
+
 }

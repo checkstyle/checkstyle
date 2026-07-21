@@ -1,8 +1,9 @@
 /*
 MissingJavadocType
-scope = (default)public
 excludeScope = (default)null
+scope = (default)public
 skipAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 
@@ -10,13 +11,16 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public interface InputMissingJavadocTypeInterfaceMemberScopeIsPublic { // violation
+// violation below 'Missing a Javadoc comment.'
+public interface InputMissingJavadocTypeInterfaceMemberScopeIsPublic {
 
-    enum Enum { // violation
+    // violation below 'Missing a Javadoc comment.'
+    enum Enum {
 
     }
 
-    class Class { // violation
+    // violation below 'Missing a Javadoc comment.'
+    class Class {
 
     }
 

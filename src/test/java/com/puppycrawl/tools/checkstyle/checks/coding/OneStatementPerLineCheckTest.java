@@ -189,4 +189,5 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
 }

@@ -71,4 +71,5 @@ public class Java17AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCaseDefault.txt"),
                 getPath("InputAntlr4AstRegressionCaseDefault.java"));
     }
+
 }

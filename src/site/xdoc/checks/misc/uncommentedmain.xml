@@ -20,6 +20,16 @@
           Except for the real program entry points, all <code>main</code> methods
           should be removed or commented out of the sources.
         </p>
+
+        <p>
+          Note: Compact source files
+          (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+          are skipped by design. The whole purpose of compact source files is to serve as
+          standalone single-file programs with a <code>main</code> method as the entry point.
+          Unlike regular classes where leftover <code>main</code> methods may be
+          debugging artifacts, compact sources inherently require a <code>main</code> method
+          to function.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="UncommentedMain_Properties">
@@ -58,28 +68,31 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   // violation below, 'Uncommented main method found'
-  public static void main(String... args){}
+  public static void main(String... args) {
+  }
+
+  class Launch {
+    // public static void main(String[] args) {}
+  }
+
+  class Start {
+    public void main() {
+    }
+  }
+
+  record MyRecord1() {
+    public void main() {
+    }
+  }
+
+  record MyRecord2() {
+    // public void main() {}
+  }
 }
 
 class MainOne {
   // violation below, 'Uncommented main method found'
-  public static void main(String[] args){}
-}
-
-class LaunchOne {
-  //public static void main(String[] args){}
-}
-
-class StartOne {
-  public void main(){}
-}
-
-record MyRecordOne() {
-  public void main(){}
-}
-
-record MyRecordTwo() {
-  //public void main(){}
+  public static void main(String[] args) {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -99,28 +112,31 @@ record MyRecordTwo() {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   // violation below, 'Uncommented main method found'
-  public static void main(String... args){}
+  public static void main(String... args) {
+  }
+
+  class Launch {
+    // public static void main(String[] args) {}
+  }
+
+  class Start {
+    public void main() {
+    }
+  }
+
+  record MyRecord1() {
+    public void main() {
+    }
+  }
+
+  record MyRecord2() {
+    // public void main() {}
+  }
 }
 
 class Main {
-
-  public static void main(String[] args){}
-}
-
-class Launch {
-  //public static void main(String[] args){}
-}
-
-class Start {
-  public void main(){}
-}
-
-record MyRecord1() {
-  public void main(){}
-}
-
-record MyRecord2() {
-  //public void main(){}
+  // ok, excluded by 'excludedClasses'
+  public static void main(String[] args) {}
 }
 </code></pre></div>
       </subsection>
@@ -149,9 +165,11 @@ record MyRecord2() {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UncommentedMain_Package">
+      <subsection name="Fully Qualified Name" id="UncommentedMain_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

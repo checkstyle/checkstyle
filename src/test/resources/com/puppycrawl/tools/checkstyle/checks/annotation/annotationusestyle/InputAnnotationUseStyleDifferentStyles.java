@@ -30,8 +30,8 @@ class Dep {
 @SuppressWarnings({""}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
 enum SON {
 
+    // violation 2 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
     @Deprecated
-    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
     @SomeArraysDiffStyle(pooches={DOGS.LEO},um={""}, duh={"ignore"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array

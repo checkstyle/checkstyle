@@ -278,8 +278,15 @@
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
       <property name="tokens" value="PACKAGE_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
       <property name="tokens" value="ENUM_CONSTANT_DEF"/>
       <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
     </module>
     <module name="AnnotationOnSameLine">
@@ -309,7 +316,7 @@
     <module name="MissingOverrideOnRecordAccessor"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
-      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag|InlineMeSuggester|OverlyComplexBooleanExpression).)*$"/>
+      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag|InlineMeSuggester|OverlyComplexBooleanExpression|ReferenceEquality).)*$"/>
       <message key="suppressed.warning.not.allowed"
            value="The warning ''{0}'' cannot be suppressed at this location.
            Only few javac warnings are allowed to suppress.
@@ -371,6 +378,7 @@
       <property name="tokens" value="RECORD_DEF"/>
       <property name="tokens" value="COMPACT_CTOR_DEF"/>
       <property name="tokens" value="LITERAL_CASE"/>
+      <property name="tokens" value="LITERAL_DEFAULT"/>
       <property name="option" value="alone"/>
     </module>
     <module name="RightCurly">
@@ -409,7 +417,9 @@
     <module name="AvoidDoubleBraceInitialization"/>
     <module name="AvoidInlineConditionals"/>
     <module name="AvoidNoArgumentSuperConstructorCall"/>
-    <module name="ConstructorsDeclarationGrouping"/>
+    <module name="ConstructorsDeclarationGrouping">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
     <module name="CovariantEquals"/>
     <module name="DeclarationOrder"/>
     <module name="DefaultComesLast"/>
@@ -535,19 +545,6 @@
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
     <module name="MatchXpath">
-      <property name="id" value="settersHaveSinceTag"/>
-      <property name="query"
-                value="//CLASS_DEF[./IDENT[ends-with(@text, 'Check') or ends-with(@text, 'Filter')]
-                and not (./MODIFIERS/ABSTRACT)]
-                /OBJBLOCK/METHOD_DEF[./IDENT[starts-with(@text, 'set')]
-                and ./MODIFIERS/LITERAL_PUBLIC
-                and ./TYPE/LITERAL_VOID
-                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
-                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
-      <message key="matchxpath.match"
-               value="All property setters of a module should contain a '@since' tag."/>
-    </module>
-    <module name="MatchXpath">
       <property name="id" value="exampleTestsExtendAbstractExamplesModuleTestSupport"/>
       <property name="query"
                 value="//CLASS_DEF[./IDENT[ends-with(@text, 'ExamplesTest')]
@@ -556,13 +553,7 @@
       <message key="matchxpath.match"
                value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
     </module>
-    <module name="MissingCtor">
-      <!--
-        we will not use that fanatic validation, extra code is not good
-        But this Check will exist as it was created by community demand.
-      -->
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="MissingCtor"/>
     <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
@@ -588,7 +579,9 @@
     </module>
     <module name="NoFinalizer"/>
     <module name="OneStatementPerLine"/>
-    <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="OverloadMethodsDeclarationOrder">
+      <property name="orderByIncreasingParameterCount" value="true"/>
+    </module>
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
     <module name="PatternVariableAssignment"/>
@@ -618,6 +611,7 @@
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
+    <module name="UnnecessaryTypeArgumentsWithRecordPattern"/>
     <module name="UnusedCatchParameterShouldBeUnnamed">
       <!--
         Unnamed catch parameters will not compile on java versions between 9 and 21. As
@@ -633,7 +627,13 @@
       -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="UnusedLocalVariable"/>
+    <module name="UnusedLocalVariable">
+      <property name="jdkVersion" value="${checkstyle.java.version}"/>
+    </module>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/19830 -->
+    <module name="UnusedTryResourceShouldBeUnnamed">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="UseEnhancedSwitch"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed"/>
@@ -748,9 +748,6 @@
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
-    <module name="JavadocStyle">
-      <property name="scope" value="public"/>
-    </module>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
@@ -842,7 +839,7 @@
     </module>
     <module name="TrailingComment"/>
     <module name="UncommentedMain">
-      <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator)$"/>
+      <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator|SearchIndexGenerator)$"/>
     </module>
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
@@ -861,6 +858,7 @@
     <module name="RedundantModifier">
       <property name="jdkVersion" value="${checkstyle.java.version}"/>
     </module>
+    <module name="AnnotatedDeclarationVisibility"/>
 
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">
@@ -879,26 +877,26 @@
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="MemberName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="MethodName"/>
     <module name="MethodTypeParameterName"/>
     <module name="PackageName"/>
     <module name="ParameterName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
       <property name="ignoreOverridden" value="true"/>
     </module>
     <module name="LambdaParameterName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="CatchParameterName">
       <property name="format" value="^[a-z][a-z][a-zA-Z]+$"/>
     </module>
     <module name="StaticVariableName">
-      <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
+      <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="TypeName"/>
     <module name="PatternVariableName"/>
@@ -1002,6 +1000,7 @@
       <property name="tokens" value="BXOR_ASSIGN"/>
       <property name="tokens" value="BOR_ASSIGN"/>
       <property name="tokens" value="BAND_ASSIGN"/>
+      <property name="tokens" value="LAMBDA"/>
       <property name="option" value="eol"/>
     </module>
     <module name="ParenPad"/>
@@ -1022,6 +1021,7 @@
     <module name="SingleSpaceSeparator">
       <property name="validateComments" value="false"/>
     </module>
+    <module name="TypeBodyPadding"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter">
       <property name="tokens"

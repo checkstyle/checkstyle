@@ -33,8 +33,10 @@ public class Example1 {
   }
   private void bar() {
   }
-  public void testSingleLine() { bar(); }
-  public void violate() { Object b = "b"; }
+  public void testSingleLine()
+  { bar(); }
+  public void violate()
+  { Object b = "b"; }
   public void method0() {
     int mode = 0;
     int x;
@@ -42,7 +44,7 @@ public class Example1 {
       case 1: int y = 1; break;
       case 2: {x = 1;}
       case 3: int z = 0; {break;}
-      default: x = 0;
+      default: {x = 0;}
     }
     switch (mode) {
       case 1: x = 1; break;

@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <td><a id="checkPattern"/><a href="#checkPattern">checkPattern</a></td>
-              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
+              <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>. The pattern is matched against the fully qualified class name of the Check.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>10.10.0</td>
@@ -77,8 +77,13 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"/&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
+  &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -87,22 +92,39 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // filtered violation below ''24' is a magic number'
-  int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
-  int daysInWeek = 7; // violation, "'7' is a magic number."
+  // filtered violation below ''42' is a magic number'
+  int a = 42;  // SUPPRESS CHECKSTYLE because I want to
+  int b = 43;  // violation, "'43' is a magic number."
+
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the filter to suppress audit events on any line that contains
-          <code>DO NOT CHECK THIS LINE</code>:
+          To configure the filter to suppress audit events for checks whose
+          name matches the given pattern:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="nearbyTextPattern" value="DO NOT CHECK THIS LINE"/&gt;
+    &lt;property name="checkPattern" value="LineLength"/&gt;
+  &lt;/module&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -111,9 +133,21 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  // filtered violation below ''42' is a magic number'
-  int a = 42; // DO NOT CHECK THIS LINE
-  int b = 43; // violation, "'43' is a magic number."
+  // violation below ''42' is a magic number'
+  int a = 42; // SUPPRESS CHECKSTYLE because I want to
+  int b = 43; // violation ''43' is a magic number'
+
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -128,7 +162,12 @@ public class Example2 {
     &lt;property name="nearbyTextPattern" value=".*"/&gt;
   &lt;/module&gt;
   &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="70"/&gt;
+    &lt;property name="max" value="55"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -137,9 +176,21 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  // ok, because violation message is matching suppress pattern
+  // violation below ''42' is a magic number'
+  int a = 42; // SUPPRESS CHECKSTYLE because I want to
+  int b = 43; // violation ''43' is a magic number'
+
   String a_really_long_variable_name = "A sentence greater than 70 chars";
   // filtered violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // filtered violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // filtered violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -168,33 +219,131 @@ public class Example3 {
 public class Example4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // SUPPRESS CHECKSTYLE because I want to
-  static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22;
+  int b = 43; // violation, "'43' is a magic number."
+
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
   // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure the filter to suppress audit events for the current and next 2 lines:
+          To configure the filter to suppress audit events for the current and next line:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="lineRange" value="2"/&gt;
+    &lt;property name="lineRange" value="1"/&gt;
   &lt;/module&gt;
-  &lt;module name="UniqueProperties"/&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-raw">
+        <p id="Example5-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-key.one=41 # // SUPPRESS CHECKSTYLE because I want to
-# // filtered violation above 'Duplicated property 'key.one' (3 occurrence(s)).'
-key.one=42 # ok as within line range
-key.one=43 # ok as within line range
-key.two=44 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
-key.two=45
+public class Example5 {
+  // filtered violation below ''42' is a magic number'
+  int a = 42;  // SUPPRESS CHECKSTYLE because I want to
+  int b = 43;
+  // filtered violation above "'43' is a magic number."
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
+}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example9-config">
+          To configure the filter to suppress <code>LineLength</code>
+          violations for lines containing a URL:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="checkPattern" value="LineLength"/&gt;
+    &lt;property name="nearbyTextPattern"
+      value="&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;"/&gt;
+  &lt;/module&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example9 {
+  // violation below ''42' is a magic number'
+  int a = 42; // SUPPRESS CHECKSTYLE because I want to
+  int b = 43; // violation ''43' is a magic number'
+
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // filtered violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase1-config">
+          To configure the filter to suppress audit events on any line that contains
+          <code>DO NOT CHECK THIS LINE</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="nearbyTextPattern" value="DO NOT CHECK THIS LINE"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithNearbyTextFilter_Use_Cases">
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+  // filtered violation below ''42' is a magic number'
+  int a = 42; // DO NOT CHECK THIS LINE
+  int b = 43; // violation, "'43' is a magic number."
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
           To configure the filter to suppress audit events for the current and previous line:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -205,7 +354,7 @@ key.two=45
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-raw">
+        <p id="UseCase2-raw">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -215,7 +364,7 @@ key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
 key.two=44
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="UseCase3-config">
           To configure the filter with a more compact <code>nearbyTextPattern</code>
           to accept variable <code>checkPattern</code>:
         </p>
@@ -230,18 +379,18 @@ key.two=44
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example7-code">
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
+public class UseCase3 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
+        <p id="UseCase4-config">
           To configure the filter to accept variable <code>checkPattern</code>
           and <code>lineRange</code>:
         </p>
@@ -257,47 +406,18 @@ public class Example7 {
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase4-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // @cs-: MagicNumber for +3 lines
   int b = 43; // filtered violation ''43' is a magic number'
   int c = 44; // filtered violation ''44' is a magic number'
   int d = 45; // filtered violation ''45' is a magic number'
   int e = 46; // violation "'46' is a magic number."
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
-          To configure the filter to suppress <code>LineLength</code>
-          violations for lines containing a URL:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
-    &lt;property name="checkPattern" value="LineLength"/&gt;
-    &lt;property name="nearbyTextPattern"
-      value="&amp;lt;a href=&amp;quot;[^&amp;quot;]+&amp;quot;&amp;gt;"/&gt;
-  &lt;/module&gt;
-  &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="70"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example9-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
-  /**
-   * Flag description.
-   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
-   * // filtered violation above 'Line is longer ...'
-   */
-  public static final boolean SOME_FLAG = false;
 }
 </code></pre></div>
       </subsection>
@@ -311,10 +431,19 @@ public class Example9 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
             Google Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWithNearbyTextFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithNearbyTextFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter</p>
+        <p>
+              This is the fully qualified class name of the module.
+              Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWithNearbyTextFilter_Parent_Module">

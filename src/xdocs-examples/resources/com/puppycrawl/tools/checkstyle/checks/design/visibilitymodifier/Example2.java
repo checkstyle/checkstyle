@@ -15,7 +15,9 @@ package com.puppycrawl.tools.checkstyle.checks.design.visibilitymodifier;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 // xdoc section -- start
@@ -26,9 +28,8 @@ class Example2 {
 
   protected String field2; // violation, protected not allowed 'must be private'
 
-  // violation below, not final nor matching pattern 'must be private'
   public int field3 = 42;
-
+  // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
@@ -49,12 +50,24 @@ class Example2 {
   public final ImmutableMap<String, Object> objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString;
+  String annotatedString; // ok, annotation not configured
 
-  @Deprecated
+  @Deprecated   // ok, annotation is ignored
   String shortCustomAnnotated;
 
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
+
+  // violation below, 'must be private'
+  public final int someIntValue = 0;
+
+  // violation below, 'must be private'
+  public final ImmutableSet<String> includes = null;
+
+  // violation below, 'must be private'
+  public final BigDecimal value = null;
+
+  // violation below, 'must be private'
+  public final List list = null;
 }
 // xdoc section -- end

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class InnerTypeLastCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/innertypelast";
@@ -34,10 +35,11 @@ public class InnerTypeLastCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:3: " + getCheckMessage(MSG_KEY),
-            "20:3: " + getCheckMessage(MSG_KEY),
+            "15:3: " + getCheckMessage(MSG_KEY),
+            "22:3: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

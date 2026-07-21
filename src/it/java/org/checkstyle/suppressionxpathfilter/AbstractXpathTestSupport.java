@@ -123,8 +123,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         final String uniqueFileName =
                 "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
         final File suppressionsXpathConfigPath = new File(temporaryFolder, uniqueFileName);
-        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath(),
-                StandardCharsets.UTF_8)) {
+        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath())) {
             bw.write("<?xml version=\"1.0\"?>\n");
             bw.write("<!DOCTYPE suppressions PUBLIC\n");
             bw.write("    \"-//Checkstyle//DTD SuppressionXpathFilter ");
@@ -235,4 +234,5 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         private ViolationPosition {
         }
     }
+
 }

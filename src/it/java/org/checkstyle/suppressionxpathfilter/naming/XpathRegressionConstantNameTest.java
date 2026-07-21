@@ -131,4 +131,5 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

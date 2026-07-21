@@ -31,7 +31,7 @@ public class InputRightCurlyTestOptAloneBlocksWithSemi {
     }
     ;
 
-    public @interface TestAnnnotation5 {
+    public @interface TestAnnotation5 {
         String someValue(); }; // violation ''}' at column 29 should be alone on a line'
 
     public @interface TestAnnotation6 {}; // violation ''}' at column 40 should be alone on a line'

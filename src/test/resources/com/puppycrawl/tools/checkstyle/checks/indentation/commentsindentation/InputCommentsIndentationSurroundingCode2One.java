@@ -27,7 +27,7 @@ public class InputCommentsIndentationSurroundingCode2One
         if (true) {
             /* some */
             int k = 0;
-                /* violation */
+                /* bla */
             int b = 10;
                 /* violation
                  * */

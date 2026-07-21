@@ -445,7 +445,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIllegalTypeAbstractClassNameFormat() throws Exception {
         final String[] expected = {
-            "15:20: " + getCheckMessage(MSG_KEY, "Gitter"),
+            "24:20: " + getCheckMessage(MSG_KEY, "Gitter"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTypeAbstractClassNameFormat.java"),
@@ -478,7 +478,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "83:18: " + getCheckMessage(MSG_KEY, "ColoredPoint"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalTypeWithRecordPattern.java"),
+                getNonCompilablePath("InputIllegalTypeWithRecordPattern.java"),
                 expected);
     }
 
@@ -494,4 +494,5 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
                 getPath("InputIllegalTypeInPermitsList.java"),
                 expected);
     }
+
 }

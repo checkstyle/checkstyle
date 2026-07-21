@@ -19,7 +19,7 @@ public class Example4 {
   // ok, because below are escape characters and allowIfAllCharacters = true.
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // violation below, 'Unicode escape(s) usage should be avoided.'
-  String unitAbbrev3 = "\u03bcs"; // it is  μs
+  String unitAbbrev3 = "\u03bcs"; // it is μs
   // violation below, not all characters are escaped ('s'). 'should be avoided.'
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {

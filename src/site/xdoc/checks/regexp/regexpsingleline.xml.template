@@ -36,11 +36,12 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p>
-        This configuration does not match to anything,
-        so we do not provide any code example for it
-        as no violation will ever be reported.
-        </p><hr class="example-separator"/>
+        <p id="Example1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example2-config">
         To configure the check to find occurrences of 'System.exit('
         with some <i>slack</i> of allowing only one occurrence per file:
@@ -55,12 +56,6 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-code">Example with violation:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
@@ -78,21 +73,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
-          An example of how to configure the check to make sure a copyright
-          statement is included in the file:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">Example with violation:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           An example of how to configure the check to make sure sql files contains the term
           'license'.
@@ -102,17 +82,75 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.java"/>
           <param name="type" value="config"/>
         </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example6-raw">Example:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example6.sql"/>
           <param name="type" value="raw"/>
         </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          An example of how to configure the check to make sure sql files contains the term
+          'license'.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example with violation:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
         <p id="Example7-raw">Example with violation:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example7.sql"/>
           <param name="type" value="raw"/>
+        </macro>
+      <hr class="example-separator"/>
+        <p>
+        This configuration does not match to anything,
+        so we do not provide any code example for it
+        as no violation will ever be reported.
+        </p>
+      </subsection>
+
+      <subsection name="Use Cases" id="RegexpSingleline_Use_Cases">
+        <p id="UseCase1-config">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example with violation:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          An example of how to configure the check to make sure a copyright
+          statement is included in the file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">Example with violation:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/UseCase2.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
       <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">
@@ -124,6 +162,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -139,11 +181,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpSingleline_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+      <subsection name="Fully Qualified Name" id="RegexpSingleline_Fully_Qualified_Name">
+         <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck</p>
+         <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+          </p>
+       </subsection>
 
       <subsection name="Parent Module" id="RegexpSingleline_Parent_Module">
         <macro name="parent-module">

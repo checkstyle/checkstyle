@@ -2,6 +2,7 @@
 LocalVariableName
 format = (default)^([a-z][a-zA-Z0-9]*|_)$
 allowOneCharVarInForLoop = (default)false
+tokens = (default)VARIABLE_DEF
 
 
 */
@@ -14,14 +15,14 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
  **/
 class InputLocalVariableNameInnerClass
 {
-    // Ignore - two violations
+
     class InnerInner2
     {
         // Ignore
         public int fData;
     }
 
-    // Ignore - 2 violations
+
     interface InnerInterface2
     {
         // Ignore - should be all upper case

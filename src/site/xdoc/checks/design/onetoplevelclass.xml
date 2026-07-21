@@ -75,6 +75,10 @@ public class Example3 { // ok, only one top-level class
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
             Checkstyle Style</a>
           </li>
@@ -96,9 +100,11 @@ public class Example3 { // ok, only one top-level class
         </p>
       </subsection>
 
-      <subsection name="Package" id="OneTopLevelClass_Package">
+      <subsection name="Fully Qualified Name" id="OneTopLevelClass_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.design
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

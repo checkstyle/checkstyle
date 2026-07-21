@@ -14,16 +14,21 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
 // xdoc section -- start
 class Example2 {
-  double d1 = 3.14;
+  double d = 3.14;
 
-  int n = ( int ) d1;
+  int a = ( int ) d;
 
-  int m = (int ) d1; // violation 'not followed by whitespace'
+  int b = (int ) d; // violation 'not followed by whitespace'
 
+  int c = ( int) d; // violation 'not preceded with whitespace'
+  // violation below ''(' is not followed by whitespace.'
+  int e = (int) d;
+  // violation above '')' is not preceded with whitespace.'
   double d2 = 9.8;
+  // violation below ''(' is not followed by whitespace.'
+  int f = (int) d2;
+  // violation above '')' is not preceded with whitespace.'
+  int g = ( int ) d2;
 
-  int x = (int) d2; // 2 violations
-
-  int y = ( int) d2; // violation 'not preceded with whitespace'
 }
 // xdoc section -- end

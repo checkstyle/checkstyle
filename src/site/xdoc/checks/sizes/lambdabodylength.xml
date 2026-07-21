@@ -58,16 +58,11 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  Runnable r = () -&gt; { // ok, length is 10
-    System.out.println(2); // line 2 of lambda
+  Runnable r = () -&gt; { // ok, length is 5
+    System.out.println(2);
     System.out.println(3);
     System.out.println(4);
-    System.out.println(5);
-    System.out.println(6);
-    System.out.println(7);
-    System.out.println(8);
-    System.out.println(9);
-  }; // line 10
+  };
   // violation below 'Lambda body length is 11 lines (max allowed is 10).'
   Runnable r2 = () -&gt; {
     System.out.println(2); // line 2 of lambda
@@ -117,21 +112,31 @@ class Example2 {
     System.out.println(3);
     System.out.println(4);
   };
-  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  // violation below 'Lambda body length is 11 lines (max allowed is 5).'
   Runnable r2 = () -&gt; {
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
     System.out.println(5);
-  };
-  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+    System.out.println(6);
+    System.out.println(7);
+    System.out.println(8);
+    System.out.println(9);
+    System.out.println(10);
+  }; // line 11
+  // violation below 'Lambda body length is 11 lines (max allowed is 5).'
   Runnable r3 = () -&gt;
-    "someString".concat("1")
+    "someString".concat("1") // line 1 of lambda
                 .concat("2")
                 .concat("3")
                 .concat("4")
                 .concat("5")
-                .concat("6");
+                .concat("6")
+                .concat("7")
+                .concat("8")
+                .concat("9")
+                .concat("10")
+                .concat("11"); // line 11
 }
 </code></pre></div>
       </subsection>
@@ -141,6 +146,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
               Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -160,9 +169,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="LambdaBodyLength_Package">
+      <subsection name="Fully Qualified Name" id="LambdaBodyLength_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.LambdaBodyLengthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

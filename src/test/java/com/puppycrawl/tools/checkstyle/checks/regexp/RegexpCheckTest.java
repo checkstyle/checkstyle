@@ -93,8 +93,8 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredNoDuplicatesFail() throws Exception {
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
             "32: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
+            "37: " + getCheckMessage(MSG_DUPLICATE_REGEXP, "Boolean x = new Boolean"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic5.java"), expected);
@@ -141,7 +141,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyGood()
             throws Exception {
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
+            "75: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Bad line :("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic9.java"), expected);
@@ -151,7 +151,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyBad()
             throws Exception {
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "75: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic10.java"), expected);
@@ -161,7 +161,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     public void testMessagePropertyBad2()
             throws Exception {
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "75: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSemantic11.java"), expected);
@@ -170,7 +170,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseTrue() throws Exception {
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
+            "75: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
@@ -180,7 +180,7 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseFalse() throws Exception {
         final String[] expectedTrue = {
-            "78: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
+            "75: " + getCheckMessage(MSG_ILLEGAL_REGEXP,
                     "(?i)SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
@@ -294,10 +294,10 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         final String file1 = getPath("InputRegexpCheckB2.java");
         final String file2 = getPath("InputRegexpCheckB1.java");
         final List<String> expectedFromFile1 = List.of(
-            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
         );
         final List<String> expectedFromFile2 = List.of(
-            "12: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
+            "15: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "^import")
         );
         verifyWithInlineConfigParser(file1, file2, expectedFromFile1, expectedFromFile2);
     }
@@ -318,4 +318,5 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputRegexpCheckEmptyLine2.java"),
                 expected);
     }
+
 }

@@ -61,6 +61,35 @@
       </subsection>
 
       <subsection name="Examples" id="MatchXpath_Examples">
+        <p id="Example1-config">
+          The following example demonstrates validation of methods order, so that public methods
+          should come before the private ones:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+      &lt;property name="query"
+           value="//METHOD_DEF[.//LITERAL_PRIVATE
+                  and following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]"/&gt;
+      &lt;message key="matchxpath.match"
+           value="Private methods must appear after public methods"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public void method1() { }
+  // violation below 'Private methods must appear after public methods'
+  private void method2() { }
+  public void method3() { }
+  // violation below 'Private methods must appear after public methods'
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+}
+</code></pre></div><hr class="example-separator"/>
         <p>
           Checkstyle provides <a href="https://checkstyle.org/cmdline.html">command line tool</a>
           and <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">GUI
@@ -107,37 +136,11 @@ $ java -jar checkstyle-X.XX-all.jar Main.java -b &quot;//METHOD_DEF[./IDENT[@tex
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 `--OBJBLOCK -&gt; OBJBLOCK [1:18]
 |--METHOD_DEF -&gt; METHOD_DEF [2:4]
-        </code></pre></div><hr class="example-separator"/>
-        <p id="Example1-config">
-          The following example demonstrates validation of methods order, so that public methods
-          should come before the private ones:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MatchXpath"&gt;
-      &lt;property name="query"
-           value="//METHOD_DEF[.//LITERAL_PRIVATE
-                  and following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]"/&gt;
-      &lt;message key="matchxpath.match"
-           value="Private methods must appear after public methods"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
-  public void method1() { }
-  // violation below 'Private methods must appear after public methods'
-  private void method2() { }
-  public void method3() { }
-  // violation below 'Private methods must appear after public methods'
-  private void method4() { }
-  public void method5() { }
-  private void method6() { }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">To violate if there are any parametrized constructors</p>
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MatchXpath_Use_Cases">
+        <p id="UseCase1-config">To violate if there are any parametrized constructors</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -150,17 +153,17 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
   // violation below 'Parameterized constructors are not allowed'
-  public Example2(Object c) { }
+  public UseCase1(Object c) { }
   // violation below 'Parameterized constructors are not allowed'
-  public Example2(int a, HashMap&lt;String, Integer&gt; b) { }
-  public Example2() { }
+  public UseCase1(int a, HashMap&lt;String, Integer&gt; b) { }
+  public UseCase1() { }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">To violate if method name is 'test' or 'foo'</p>
+        <p id="UseCase2-config">To violate if method name is 'test' or 'foo'</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -173,9 +176,9 @@ public class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase2 {
   // violation below 'Method name should not be test or foo'
   public void test() {}
   public void getName() {}
@@ -184,7 +187,7 @@ public class Example3 {
   public void sayHello() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase3-config">
           To violate if new instance creation was done without <b>var</b> type to avoid duplication
           of reference in statement
         </p>
@@ -201,9 +204,9 @@ public class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase3 {
   public void foo() {
     // violation below 'New instances should be created via var keyword'
     Object a = new Object();
@@ -211,7 +214,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase4-config">
           To violate if class has more than <b>1</b> constructor
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -226,10 +229,10 @@ public class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
-  public Example5() { }
+public class UseCase4 {
+  public UseCase4() { }
   // violation below 'Classes with more than 1 constructor are not allowed'
   class Inner {
     public Inner(int a) { }
@@ -237,7 +240,7 @@ public class Example5 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase5-config">
           Reports a violation if an array initialization has more than <b>10</b> elements.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -253,9 +256,9 @@ public class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="UseCase5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class UseCase5 {
   // violation below 'Array initialization should contain at most 10 elements'
   int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
@@ -266,6 +269,10 @@ public class Example6 {
 
       <subsection name="Example of Usage" id="MatchXpath_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+              OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
               Checkstyle Style</a>
@@ -292,9 +299,11 @@ public class Example6 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="MatchXpath_Package">
+      <subsection name="Fully Qualified Name" id="MatchXpath_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

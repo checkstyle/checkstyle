@@ -6,7 +6,8 @@ OneTopLevelClass
 
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-interface InputOneTopLevelClassInterface3inner1 { // violation
+// violation below 'Top-level class Input.* has to reside in its own source file.'
+interface InputOneTopLevelClassInterface3inner1 {
     int foo();
 }
 
@@ -14,6 +15,7 @@ public interface InputOneTopLevelClassInterface3 {
     int foo();
 }
 
-interface InputOneTopLevelClassInterface3inner2 { // violation
+// violation below 'Top-level class Input.* has to reside in its own source file.'
+interface InputOneTopLevelClassInterface3inner2 {
     int foo();
 }

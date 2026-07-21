@@ -117,4 +117,5 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

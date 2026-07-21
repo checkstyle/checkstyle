@@ -102,6 +102,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example5.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          The following configuration skip validation on package-private constant field.
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -114,6 +129,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstantName">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -129,8 +148,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="ConstantName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="ConstantName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="ConstantName_Parent_Module">

@@ -18,7 +18,7 @@ class Example1 {
       switch (i) {
         case 1:
           i++;
-          /* block */ /* fallthru */ // comment
+          //ok, /* block */ /* fallthru */ // comment
         case 2: // ok, ReliefPattern is present in above line.
           i++;
           break;

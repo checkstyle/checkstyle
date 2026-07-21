@@ -14,13 +14,22 @@
  which changes the API and increases the size of the resulting class or JAR file.
  Except for the real program entry points, all &lt;code&gt;main&lt;/code&gt; methods
  should be removed or commented out of the sources.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Note: Compact source files
+ (&lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt;)
+ are skipped by design. The whole purpose of compact source files is to serve as
+ standalone single-file programs with a &lt;code&gt;main&lt;/code&gt; method as the entry point.
+ Unlike regular classes where leftover &lt;code&gt;main&lt;/code&gt; methods may be
+ debugging artifacts, compact sources inherently require a &lt;code&gt;main&lt;/code&gt; method
+ to function.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^$"
                       name="excludedClasses"
                       type="java.util.regex.Pattern">
-               <description>Specify pattern for qualified names of classes which are allowed
- to have a &lt;code&gt;main&lt;/code&gt; method.</description>
+               <description>Specify pattern for qualified names of classes which are allowed to have a &lt;code&gt;main&lt;/code&gt; method.</description>
             </property>
          </properties>
          <message-keys>

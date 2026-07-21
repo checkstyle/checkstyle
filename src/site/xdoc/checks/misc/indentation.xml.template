@@ -81,18 +81,109 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-code">
+        <p id="Example5-config">
+          To configure the check with custom basicOffset (2 spaces instead of default 4):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+          Example of code with basicOffset set to 2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check with custom lineWrappingIndentation
+          (8 spaces instead of default 4):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          Example of code with lineWrappingIndentation set to 8:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check with custom throwsIndent (8 spaces instead of default 4):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Example of code with throwsIndent set to 8.
+          Method 'processValues' has throws on a new line with only 4-space indent,
+          which violates the configured 8-space throwsIndent.
+          Method 'demonstrateSwitch' has throws on a new line with correct 8-space indent:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check with custom arrayInitIndent (2 spaces instead of default 4):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Example of code with arrayInitIndent set to 2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check with custom braceAdjustment (2 spaces instead of default 0):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">
+          Example of code with braceAdjustment set to 2:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="Indentation_Use_Cases">
+        <p id="UseCase1-code">
           But if forceStrictCondition = false, this code is valid:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/indentation/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="Indentation_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+            OpenJDK Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
             Google Style</a>
@@ -115,9 +206,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Indentation_Package">
+      <subsection name="Fully Qualified Name" id="Indentation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.indentation
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

@@ -2,14 +2,14 @@
 ImportOrder
 option = top
 groups = android, androidx, java
-ordered = true
+ordered = (default)true
 separated = (default)false
 separatedStaticGroups = true
 caseSensitive = (default)true
 staticGroups = android, androidx, java
 sortStaticImportsAlphabetically = true
 useContainerOrderingForStatic = (default)false
-tokens = (default)STATIC_IMPORT
+tokens = (default)IMPORT,STATIC_IMPORT
 
 
 */

@@ -7,10 +7,10 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-import java.util.List;
-
 // xdoc section -- start
 class Example1 {
+  int a = 10, b = 12;
+  boolean x = true, y = false;
 
   public int square(int a, int b) {
     // violation below, 'Unnecessary parentheses around assignment right-hand side'
@@ -29,32 +29,22 @@ class Example1 {
     }
   }
 
-  List<String> myList = List.of("a1", "b1", "c1");
-  public void filter() {
-    myList.stream()
-        // violation below, 'Unnecessary parentheses around lambda value'
-        .filter((s) -> s.startsWith("c"))
-            .forEach(System.out::println);
-  }
+  void method() {
+    int x = 9, y = 8;
 
-  int a = 10, b = 12, c = 15;
-  boolean x = true, y = false, z = true;
-  public void test() {
-    // 3 violations below
-    if ((a >= 0 && b <= 9) || (c >= 5 && b <= 5) || (c >= 3 && a <= 7)) {
+    if (x >= 0 ^ (x <= 8 & y <= 11) ^ y >= 8) {
       return;
     }
-    // violation below, 'Unnecessary parentheses around expression'
-    if ((-a) != -27 && b > 5) {
+    if (x >= 0 ^ x <= 8 & y <= 11 ^ y >= 8) {
       return;
     }
-    if (x == (a <= 15)) {
+
+    if (x >= 0 || (x <= 8 & y <= 11) && y >= 8) {
       return;
     }
-    if (x == (y == z)) {
+    if (x >= 0 || x <= 8 & y <= 11 && y >= 8) {
       return;
     }
   }
-
 }
 // xdoc section -- end

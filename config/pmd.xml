@@ -9,8 +9,12 @@
   </description>
 
   <rule ref="category/java/bestpractices.xml">
-    <!-- until https://github.com/pmd/pmd/issues/5514 -->
+    <!-- until https://github.com/checkstyle/checkstyle/issues/20776 -->
     <exclude name="ExhaustiveSwitchHasDefault"/>
+    <!-- Clashes with CommentDefaultAccessModifier. We do not like package and protected
+         visibility, they are HACK in design and illusion of protection of method from outside.
+         Keeping them public is ok. -->
+    <exclude name="JUnitJupiterTestShouldBePackagePrivate"/>
   </rule>
   <rule ref="category/java/bestpractices.xml/UnusedLocalVariable">
     <properties>
@@ -145,7 +149,7 @@
       <property name="interfacePattern" value="[A-Z][a-zA-Z0-9]*" />
       <property name="enumPattern" value="[A-Z][a-zA-Z0-9]*" />
       <property name="annotationPattern" value="[A-Z][a-zA-Z0-9]*" />
-      <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*Util" />
+      <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*" />
       <!-- Definitions and XmlLoader.LoadExternalDtdFeatureProvider aren't utility classes.
            AutomaticBean is part of API, we can not change a name.
            JavadocTokenTypes and TokenTypes aren't utility classes. They are
@@ -283,6 +287,9 @@
     <exclude name="LawOfDemeter"/>
     <!-- We use our ImportControl to control imports in packages and classes. -->
     <exclude name="LoosePackageCoupling"/>
+    <!-- Nested classes are potential candidates to be become top public,
+         so should define what is public from start -->
+    <exclude name="PublicMemberInNonPublicType"/>
   </rule>
   <rule ref="category/java/errorprone.xml/AvoidCatchingGenericException">
     <properties>
@@ -393,7 +400,8 @@
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Checker']
       | //ClassDeclaration[@SimpleName='Main']
-      |  //ClassDeclaration[@SimpleName='ImportOrderCheck']"/>
+      | //ClassDeclaration[@SimpleName='ImportOrderCheck']
+      | //ClassDeclaration[@SimpleName='CliOptions']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
@@ -402,8 +410,11 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
-                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor'
+                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor'
+                    or @SimpleName='RequireThisCheck'
+                    or @SimpleName='UnusedLocalVariableCheck']"/>
+
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -546,7 +557,9 @@
                                             or @Name='setExcludedPackages']
                       | //ClassDeclaration[@SimpleName='UnusedImportsCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
-                                            or @Name='setJavadocTokens']"/>
+                                            or @Name='setJavadocTokens']
+                      | //ClassDeclaration[@SimpleName='JavadocMethodCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>
 </ruleset>

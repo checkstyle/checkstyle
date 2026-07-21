@@ -84,19 +84,17 @@
 class Example1 extends ExternalService1 {
 
   @JsonCreator
-  // violation below, 'More than 7 parameters (found 8)'
   Example1(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
   // violation below, 'More than 7 parameters (found 8)'
   Example1(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
   @Override
-  // violation below, 'More than 7 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
 }
 
 class ExternalService1 {
@@ -125,8 +123,7 @@ class ExternalService1 {
 class Example2 extends ExternalService2 {
 
   @JsonCreator
-  // ok below, constructor is not in tokens to check
-  Example2(int a, int b, int c, int d,
+  Example2(int a, int b, int c, int d, // ok, constructor is not in tokens to check
            int e, int f, int g, int h) {}
 
   // ok below, constructor is not in tokens to check
@@ -134,10 +131,9 @@ class Example2 extends ExternalService2 {
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, less than 10 parameters (found 8)
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // ok above, less than 10 parameters (found 8)
 }
 
 class ExternalService2 {
@@ -148,10 +144,11 @@ class ExternalService2 {
 
 }
 </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           To configure the check to ignore number of parameters for methods with
           <code>@Override</code> or <code>@java.lang.Override annotation</code>.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example3-config">
           Rationale: developer may need to override method with many parameters from
           3-rd party library.
@@ -169,9 +166,8 @@ class ExternalService2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 extends ExternalService3 {
-
+  // violation 2 lines below 'More than 7 parameters (found 8)'
   @JsonCreator
-  // violation below, 'More than 7 parameters (found 8)'
   Example3(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 
@@ -180,10 +176,9 @@ class Example3 extends ExternalService3 {
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, overridden method is ignored
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // ok above, overridden method is ignored
 }
 
 class ExternalService3 {
@@ -212,24 +207,62 @@ class ExternalService3 {
 class Example4 extends ExternalService4 {
 
   @JsonCreator
-  // ok below, constructor annotated with JsonCreator annotation is ignored
   Example4(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
-
+  // ok above, constructor annotated with JsonCreator annotation is ignored
   // violation below, 'More than 7 parameters (found 8)'
   Example4(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
   @Override
-  // violation below, 'More than 7 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // violation 2 lines above 'More than 7 parameters (found 8)'
 }
 
 class ExternalService4 {
 
   // violation below, 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to allow 6 parameters for a method, while ignoring
+          methods with <code>@Override</code> or <code>@java.lang.Override</code> annotation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterNumber"&gt;
+      &lt;property name="max" value="6"/&gt;
+      &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 extends ExternalService5 {
+
+  @JsonCreator
+  Example5(int a, int b, int c, int d,
+           int e, int f, int g, int h) {}
+  // violation 2 lines above 'More than 6 parameters (found 8)'
+  // violation below 'More than 6 parameters (found 8)'
+  Example5(String a, String b, String c, String d,
+           String e, String f, String g, String h) {}
+
+  @Override
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+
+class ExternalService5 {
+
+  // violation below, 'More than 6 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 
@@ -269,9 +302,11 @@ class ExternalService4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="ParameterNumber_Package">
+      <subsection name="Fully Qualified Name" id="ParameterNumber_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -19,8 +19,10 @@ import java.util.Set;
 
 import javax.naming.NamingException;
 
-public class InputClassDataAbstractionCoupling3 { // violation
-    private class InnerClass { // violation
+// violation below, 'Class Data Abstraction Coupling is 2 (max allowed is 0)'
+public class InputClassDataAbstractionCoupling3 {
+    // violation below, 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
+    private class InnerClass {
         public List _list = new ArrayList();
     }
 

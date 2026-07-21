@@ -3,7 +3,7 @@ SuppressWarnings
 format = (default)^\\s*+$
 tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
          ENUM_CONSTANT_DEF, PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, CTOR_DEF, \
-         COMPACT_CTOR_DEF, RECORD_DEF
+         COMPACT_CTOR_DEF, RECORD_DEF, PATTERN_VARIABLE_DEF
 
 
 */
@@ -52,9 +52,9 @@ public class InputSuppressWarningsCompact1
         int cool();
     }
 
+    // violation 2 lines below 'The warning '' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings({})
-    // violation above, 'The warning '' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         @SuppressWarnings({"unused", "ignore"})

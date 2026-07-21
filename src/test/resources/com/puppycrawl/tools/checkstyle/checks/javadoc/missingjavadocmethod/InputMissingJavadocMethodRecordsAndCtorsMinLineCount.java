@@ -11,7 +11,7 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 */
 
-// java17
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 public class InputMissingJavadocMethodRecordsAndCtorsMinLineCount {

@@ -83,6 +83,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
             TokenTypes.LITERAL_THROWS,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 

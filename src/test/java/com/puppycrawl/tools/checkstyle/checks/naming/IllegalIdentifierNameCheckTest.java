@@ -77,10 +77,10 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expected = {
-            "57:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "59:13: " + getCheckMessage(MSG_INVALID_PATTERN, "$amt", format),
-            "74:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield$text", format),
-            "74:74: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "58:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "61:13: " + getCheckMessage(MSG_INVALID_PATTERN, "$amt", format),
+            "76:52: " + getCheckMessage(MSG_INVALID_PATTERN, "yield$text", format),
+            "76:74: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalIdentifierName.java"), expected);
@@ -91,20 +91,20 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$";
 
         final String[] expected = {
-            "21:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "22:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "28:13: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
-            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
-            "45:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "57:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "59:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
-            "61:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "63:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
-            "64:25: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
-            "73:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Transitive", format),
-            "76:37: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
-            "76:56: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
-            "76:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "22:25: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "24:24: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "31:13: " + getCheckMessage(MSG_INVALID_PATTERN, "open", format),
+            "34:21: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "50:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "63:13: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "66:13: " + getCheckMessage(MSG_INVALID_PATTERN, "record", format),
+            "69:16: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "72:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Record", format),
+            "74:25: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "84:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Transitive", format),
+            "87:37: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
+            "87:56: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "87:72: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalIdentifierNameOpenTransitive.java"), expected);
@@ -125,7 +125,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
-            "18:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
+            "19:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
@@ -136,10 +136,10 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expected = {
-            "19:39: " + getCheckMessage(MSG_INVALID_PATTERN, "param$", format),
-            "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "32:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "42:47: " + getCheckMessage(MSG_INVALID_PATTERN, "te$t", format),
+            "20:39: " + getCheckMessage(MSG_INVALID_PATTERN, "param$", format),
+            "22:40: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "35:9: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "46:47: " + getCheckMessage(MSG_INVALID_PATTERN, "te$t", format),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalIdentifierNameLambda.java"), expected);
@@ -151,7 +151,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("InputIllegalIdentifierNameUnnamedVariables.java"), expected);
+                getNonCompilablePath("InputIllegalIdentifierNameUnnamedVariables.java"), expected);
     }
 
     @Test
@@ -159,10 +159,11 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expected = {
-            "16:36: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
-            "23:39: " + getCheckMessage(MSG_INVALID_PATTERN, "permit$", format),
+            "17:36: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "25:39: " + getCheckMessage(MSG_INVALID_PATTERN, "permit$", format),
         };
         verifyWithInlineConfigParser(
-                getPath("InputIllegalIdentifierNameRecordPattern.java"), expected);
+                getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);
     }
+
 }

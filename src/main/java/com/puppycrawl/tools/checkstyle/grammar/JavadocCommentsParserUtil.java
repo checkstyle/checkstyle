@@ -49,4 +49,5 @@ public final class JavadocCommentsParserUtil {
         final SimpleToken lookahead = SimpleToken.from(input.LT(2));
         return unclosedTagNameTokens.contains(lookahead);
     }
+
 }

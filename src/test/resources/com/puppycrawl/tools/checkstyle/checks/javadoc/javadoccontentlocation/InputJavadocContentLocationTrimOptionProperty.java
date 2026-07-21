@@ -9,8 +9,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 
 public interface InputJavadocContentLocationTrimOptionProperty {
 
+    // violation below 'Javadoc content should start from the same line as /\*\*.'
     /**
-     * Text. // violation above 'Javadoc content should start from the same line as /\*\*.'
+     * Text.
      */
     void violation();
 

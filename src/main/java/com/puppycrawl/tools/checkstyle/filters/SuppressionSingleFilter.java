@@ -90,6 +90,13 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
     private String columns;
 
     /**
+     * Creates a new {@code SuppressionSingleFilter} instance.
+     */
+    public SuppressionSingleFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to define the RegExp for matching against the file name associated with an audit
      * event.
      *
@@ -103,6 +110,7 @@ public class SuppressionSingleFilter extends AbstractAutomaticBean implements Fi
     /**
      * Setter to define the RegExp for matching against the name of the check associated with an
      * audit event.
+     * The pattern is matched against the fully qualified class name of the Check.
      *
      * @param checks the name of the check
      * @since 8.23

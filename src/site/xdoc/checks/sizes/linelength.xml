@@ -108,6 +108,15 @@ class Example1 {
     System.out.println("This is a short line.");
     // violation below, 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
+
+    String str1 = """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer than 80 characters'
+
+    String str2 =
+        """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer than 80 characters'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -141,6 +150,15 @@ class Example2 {
     System.out.println("This is a short line.");
 
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
+
+    String str1 = """
+        This is a very really long string that exceeds the limit but no error............
+        """;
+
+    String str2 =
+        """
+        This is a very really long string that exceeds the limit but no error............
+        """;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -175,6 +193,15 @@ class Example3 {
     System.out.println("This is a short line.");
     // violation below, 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
+
+    String str1 = """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer than 80 characters'
+
+    String str2 =
+        """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer than 80 characters'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -209,6 +236,15 @@ class Example4 {
     System.out.println("This is a short line.");
 
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
+
+    String str1 = """
+        This is a very really long string that exceeds the limit but no error............
+        """;
+
+    String str2 =
+        """
+        This is a very really long string that exceeds the limit but no error............
+        """;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -244,6 +280,15 @@ class Example5 {
     System.out.println("This is a short line.");
     // violation below, 'Line is longer than 60 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
+
+    String str1 = """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer'
+
+    String str2 =
+        """
+        This is a very really long string that exceeds the limit but no error............
+        """;  // violation above 'Line is longer'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -270,13 +315,23 @@ class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
-public class Example6 {
-  void testMethod() {
+import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+
+/**
+ * This is a short Javadoc comment.
+ * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
+ */
+class Example6 {
+
+  void testMethod(String str) {
+    str = MSG_KEY;
+    System.out.println("This is a short line.");
+    // violation below, 'Line is longer than 84 characters (found 92).'
+    System.out.println("This line is long and exceeds the default limit of 80 characters.");
     // filtered violation below 'Line length is 90, expected 84'
     String str1 = """
         This is a very really long string that exceeds the limit but no error............
         """; // SUPPRESS CHECKSTYLE LineLength
-
     // filtered violation below 'Line length is 90, expected 84'
     String str2 =
         """
@@ -292,6 +347,10 @@ public class Example6 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
@@ -319,9 +378,11 @@ public class Example6 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="LineLength_Package">
+      <subsection name="Fully Qualified Name" id="LineLength_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.sizes
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

@@ -98,8 +98,6 @@ public class NonEmptyAtclauseDescriptionCheckTest
             "60: " + getCheckMessage(MSG_KEY),
             "75: " + getCheckMessage(MSG_KEY),
             "77: " + getCheckMessage(MSG_KEY),
-            "88: " + getCheckMessage(MSG_KEY),
-            "97: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(getPath("InputNonEmptyAtclauseDescriptionTwo.java"), expected);
     }
@@ -136,4 +134,5 @@ public class NonEmptyAtclauseDescriptionCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputNonEmptyAtclauseDescriptionThree.java"), expected);
     }
+
 }

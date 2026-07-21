@@ -184,6 +184,47 @@ public class Example2 {
   Object transitiveObject = "transitiveObject";
   // ok above, word 'transitive' is not used as an identifier by itself
 }
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          To configure the check to target only a specific token:
+        </p>
+        <p id="Example3-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalIdentifierName"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  Integer var = 4; // violation, 'Name 'var' must match pattern'
+  int record = 15;
+  String yield = "yield";
+
+  String test$stuff = "test"; // violation, 'must match pattern'
+  String when = "today";
+  record Record(Record r){}
+
+  record R(Record record){}
+
+  String yieldString = "yieldString";
+
+  record MyRecord(){}
+
+  Integer variable = 2;
+
+  int open = 4;
+  Object transitive = "transitive";
+
+  int openInt = 4;
+
+  Object transitiveObject = "transitiveObject";
+
+}
 </code></pre></div>
       </subsection>
 
@@ -193,6 +234,10 @@ public class Example2 {
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
               Checkstyle Style
             </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalIdentifierName">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
@@ -212,8 +257,12 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="IllegalIdentifierName_Package">
-        <p>com.puppycrawl.tools.checkstyle.checks.naming</p>
+      <subsection name="Fully Qualified Name" id="IllegalIdentifierName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="IllegalIdentifierName_Parent_Module">

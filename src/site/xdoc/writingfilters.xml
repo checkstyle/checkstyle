@@ -44,6 +44,12 @@
       <div class="wrapper">
         <img src="images/Filter.png" alt="Filter UML diagram" />
       </div>
+
+      <p>
+        Checkstyle also provides the <code>TreeWalkerFilter</code> interface for filters
+        that must live inside the <code>TreeWalker</code> module. See
+        <a href="#Writing_TreeWalkerFilters">Writing TreeWalkerFilters</a> below.
+      </p>
     </section>
 
     <section name="Writing Filters">
@@ -96,6 +102,89 @@ public class FilesFilter
   }
 }
       </code></pre></div>
+    </section>
+
+    <section name="Writing TreeWalkerFilters">
+      <p>
+        A <code>TreeWalkerFilter</code> is like a <code>Filter</code> but must be declared
+        as a child of the <code>TreeWalker</code> module instead of <code>Checker</code>.
+        It receives a <code>TreeWalkerAuditEvent</code> instead of a plain
+        <code>AuditEvent</code>, which additionally provides access to the file&#39;s
+        <code>FileContents</code> (including comments) and the root <code>DetailAST</code>
+        of the parsed syntax tree.
+      </p>
+
+      <p>
+        The <code>TreeWalkerFilter</code> that we demonstrate here suppresses violations
+        on any line that contains a single-line comment matching a configurable pattern.
+        Like the built-in <code>SuppressionCommentFilter</code>, it extends
+        <code>AbstractAutomaticBean</code> so its property can be set from the
+        configuration file.
+      </p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.mycompany.filters;
+
+import java.util.regex.Pattern;
+
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
+import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
+
+public class CommentAnnotationFilter
+    extends AbstractAutomaticBean
+    implements TreeWalkerFilter
+{
+    private Pattern commentPattern = Pattern.compile(&quot;@SuppressMyCheck&quot;);
+
+    public void setCommentPattern(String pattern)
+    {
+        commentPattern = Pattern.compile(pattern);
+    }
+
+    @Override
+    protected void finishLocalSetup() {}
+
+    @Override
+    public boolean accept(TreeWalkerAuditEvent event)
+    {
+        if (event.violation() == null) {
+            return true;
+        }
+        final FileContents contents = event.fileContents();
+        final TextBlock comment =
+            contents.getSingleLineComments().get(event.getLine());
+        return comment == null
+            || !commentPattern.matcher(comment.getText()[0]).find();
+    }
+}
+      </code></pre></div>
+    </section>
+
+    <section name="Using TreeWalkerFilters">
+      <p>
+        To incorporate a <code>TreeWalkerFilter</code>, declare it as a child of the
+        <code>TreeWalker</code> module in the configuration file. For example:
+      </p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;com.mycompany.filters.CommentAnnotationFilter&quot;&gt;
+      &lt;property name=&quot;commentPattern&quot; value=&quot;@SuppressMyCheck&quot;/&gt;
+    &lt;/module&gt;
+    &lt;module name=&quot;ConstantName&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+      </code></pre></div>
+
+      <p>
+        Note that a <code>TreeWalkerFilter</code> only applies to checks that are also
+        children of the <code>TreeWalker</code> module. To filter non-TreeWalker checks,
+        use a regular <code>Filter</code> under <code>Checker</code> instead.
+      </p>
     </section>
 
     <section name="Declare check's external resource locations">

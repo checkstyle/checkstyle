@@ -2,19 +2,27 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SuppressWithNearbyCommentFilter">
-      <property name="commentFormat"
-                value="ALLOW (\w+) ON PREVIOUS LINE"/>
-      <property name="influenceFormat" value="-1"/>
+      <property name="checkCPP" value="false"/>
     </module>
-    <module name="MemberName"/>
+    <module name="NoWhitespaceAfter"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 // xdoc section -- start
 public class Example5 {
-  // filtered violation below 'Name 'D2' must match pattern'
-  private int D2;
-  // ALLOW MemberName ON PREVIOUS LINE
+  // violation below ''int' is followed by whitespace'
+  public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
+
+  public static final int lowerCaseConstant = 1; // CHECKSTYLE IGNORE THIS LINE
+
+  public void testMethod() {
+    try {
+    }
+
+    catch (RuntimeException ex) {
+
+    }
+  }
 }
 // xdoc section -- end

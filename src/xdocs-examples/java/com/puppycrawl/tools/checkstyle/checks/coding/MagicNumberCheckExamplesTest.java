@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/magicnumber";
@@ -33,13 +34,13 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "12:22: " + getCheckMessage(
+            "16:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 6),
-            "14:23: " + getCheckMessage(
+            "18:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 7),
-            "18:13: " + getCheckMessage(
+            "22:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 8),
-            "37:12: " + getCheckMessage(
+            "45:12: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 10),
         };
 
@@ -56,11 +57,11 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14:22: " + getCheckMessage(
+            "14:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 6),
             "20:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 8),
-            "39:12: " + getCheckMessage(
+            "43:12: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 10),
         };
 
@@ -70,17 +71,17 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "14:22: " + getCheckMessage(
+            "14:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 6),
             "16:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 7),
             "20:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 8),
-            "39:12: " + getCheckMessage(
+            "43:12: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 10),
-            "42:25: " + getCheckMessage(
+            "46:25: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 10),
-            "43:29: " + getCheckMessage(
+            "47:29: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 10),
         };
 
@@ -90,7 +91,7 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "15:22: " + getCheckMessage(
+            "15:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 6),
             "17:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 7),
@@ -102,15 +103,15 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
                     MagicNumberCheck.MSG_KEY, 10),
             "30:31: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 20),
-            "34:19: " + getCheckMessage(
+            "32:19: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 3),
-            "34:23: " + getCheckMessage(
+            "32:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 4),
-            "40:19: " + getCheckMessage(
+            "36:19: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 3),
-            "40:23: " + getCheckMessage(
+            "36:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 4),
-            "50:12: " + getCheckMessage(
+            "44:12: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 10),
         };
 
@@ -120,7 +121,7 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "14:22: " + getCheckMessage(
+            "14:13: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 6),
             "16:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 7),
@@ -130,4 +131,33 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 6),
+            "16:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "16:23: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 7),
+            "20:13: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 8),
+            "43:12: " + getCheckMessage(
+                    MagicNumberCheck.MSG_KEY, 10),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
 }

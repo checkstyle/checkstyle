@@ -108,6 +108,23 @@ public final class XpathIteratorUtil {
     }
 
     /**
+     * Creates {@link DetailAstImpl} node.
+     *
+     * @param tokenType token type, see {@link TokenTypes}
+     * @param lineNo line number
+     * @param columnNo column number
+     *
+     * @return {@link DetailAstImpl} object.
+     */
+    private static DetailAstImpl createNode(int tokenType, int lineNo, int columnNo) {
+        final DetailAstImpl result = new DetailAstImpl();
+        result.setType(tokenType);
+        result.setLineNo(lineNo);
+        result.setColumnNo(columnNo);
+        return result;
+    }
+
+    /**
      * Creates {@link DetailAstImpl} node with predefined parent.
      *
      * @param parent parent node
@@ -124,20 +141,4 @@ public final class XpathIteratorUtil {
         return result;
     }
 
-    /**
-     * Creates {@link DetailAstImpl} node.
-     *
-     * @param tokenType token type, see {@link TokenTypes}
-     * @param lineNo line number
-     * @param columnNo column number
-     *
-     * @return {@link DetailAstImpl} object.
-     */
-    private static DetailAstImpl createNode(int tokenType, int lineNo, int columnNo) {
-        final DetailAstImpl result = new DetailAstImpl();
-        result.setType(tokenType);
-        result.setLineNo(lineNo);
-        result.setColumnNo(columnNo);
-        return result;
-    }
 }

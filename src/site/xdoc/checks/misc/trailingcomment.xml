@@ -111,11 +111,16 @@ d = e / f;      /* Some insightful block comment &#42;/
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
+  int a;
+  int b;
+  int c;
+  int d; // violation 'Don't use trailing comments.'
+
   public static void main(String[] args) {
     int x = 10;
 
     if (/* OK */ x &gt; 5) {}
-    int a = 5; // violation
+    int a = 5; // violation 'Don't use trailing comments.'
     doSomething(
             "param1"
     ); // ok, by default such trailing of method/code-block ending is allowed
@@ -145,14 +150,20 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
+  int a; // violation 'Don't use trailing comments.'
+  int b; // violation 'Don't use trailing comments.'
+  int c; // violation 'Don't use trailing comments.'
+  int d; // violation 'Don't use trailing comments.'
+
   public static void main(String[] args) {
-    int x = new Random().nextInt(100);
+    int x = 10;
 
     if (/* OK, this comment does not end the line */ x &gt; 5) {}
-    int a = 5; // violation, line content before comment should match pattern "^\s*$"
+    int a = 5; // violation 'Don't use trailing comments.'
     doSomething(
             "param1"
-    ); // violation, line content before comment should match pattern "^\s*$"
+    ); // violation 'Don't use trailing comments.'
+
   }
 
   private static void doSomething(String param) {
@@ -180,14 +191,31 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  int a; // SUPPRESS CHECKSTYLE
-  int b; // NOPMD
-  int c; // NOSONAR
-  int d; // violation, not suppressed
-}
-</code></pre></div><hr class="example-separator"/>
+  int a;
+  int b;
+  int c;
+  int d; // violation 'Don't use trailing comments.'
 
-        <p id="Example4-config">
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // violation 'Don't use trailing comments.'
+    doSomething(
+            "param1"
+    ); // ok, by default such trailing of method/code-block ending is allowed
+
+  }
+
+  private static void doSomething(String param) {
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="TrailingComment_Use_Cases">
+
+        <p id="UseCase1-config">
           To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
           &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
         </p>
@@ -201,19 +229,19 @@ public class Example3 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example4-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase1 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
   int b; // NOPMD - OK, comment starts with " NOPMD"
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
-  int d; // violation, not suppressed
+  int d; // violation 'Don't use trailing comments.'
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example5-config">
+        <p id="UseCase2-config">
           To configure the check to allow trailing comments that match a specific pattern:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -226,11 +254,11 @@ public class Example4 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example5-code">
+        <p id="UseCase2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class UseCase2 {
   public static void main(String[] args) {
     int x = 10;
 
@@ -241,7 +269,7 @@ public class Example5 {
     ); // FIXME: handle edge cases - ok, matches legalComment pattern
 
     int b = 10; // trailingcomment - ok, matches legalComment pattern
-    int c = 15; // violation, regular comment doesn't match pattern
+    int c = 15; // violation 'Don't use trailing comments.'
   }
 
   private static void doSomething(String param) {
@@ -249,7 +277,7 @@ public class Example5 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example6-config">
+        <p id="UseCase3-config">
           To configure the check to allow trailing multiline comments that match a specific pattern:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -268,19 +296,18 @@ public class Example5 {
 &lt;/module&gt;
 </code></pre></div>
 
-        <p id="Example6-code">
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class UseCase3 {
   int a; /* SUPPRESS CHECKSTYLE */
   int b; /* NOPMD */
   int c; /* NOSONAR */
   int d; /* there is violation because of illegal content */
-  // violation above
+  // violation above 'Don't use trailing comments.'
 }
 </code></pre></div>
-
       </subsection>
 
       <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">
@@ -307,9 +334,11 @@ public class Example6 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="TrailingComment_Package">
+      <subsection name="Fully Qualified Name" id="TrailingComment_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

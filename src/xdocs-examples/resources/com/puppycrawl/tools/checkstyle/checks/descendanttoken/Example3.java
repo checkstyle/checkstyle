@@ -14,66 +14,41 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
 // xdoc section -- start
 class Example3 {
-  void testMethod1() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        System.out.println("hi");
-        break;
-      default:
-        System.out.println("Default");
-        break;
-    }
+  private int field1;
+  private int field2;
 
-    int y = 1;
-    switch (y) {
-      case 1:
-        System.out.println("hi");
-        break;
-    }
-  }
-
-  void testMethod2() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        // Some code
-        break;
-      default:
-        // Some code
-        break;
-    }
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
 
     switch (x) {
       case 1:
-        // Some code
         break;
       case 2:
-        // Some code
-        break;
-      default:
-        // Some code
         break;
     }
-  }
 
-  void testMethod3() {
-    int x = 1;
-    int y = 2;
-    switch (x) {
-      case 1:
-        System.out.println("xyz");
-        break;
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
-    switch (y) { // violation, 'Count of 1 for 'LITERAL_SWITCH' descendant'
-      case 1:
-        switch (y) {
-          case 2:
-            System.out.println("xyz");
-            break;
-        }
-        break;
+    finally {
+      try { }
+      catch (Exception ex) { }
     }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 // xdoc section -- end

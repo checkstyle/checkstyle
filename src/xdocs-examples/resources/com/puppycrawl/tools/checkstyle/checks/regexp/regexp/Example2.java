@@ -7,14 +7,18 @@
   </module>
 </module>
 */
-// violation 9 lines above 'missing in file.'
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
-
 // xdoc section -- start
-/* violation on first line 'Required pattern missing in a file.' */
-/*
- * Some Copyright
- */
-public class Example2 {}
+// (c) MyCompany
+// (c) MyCompany
+// This code is copyrighted.
+public class Example2 {
+  private void foo() {
+    System.out.println("");
+    // System.out.println("debug");
+    // fix me.
+    // fix me.
+  }
+}
 // xdoc section -- end

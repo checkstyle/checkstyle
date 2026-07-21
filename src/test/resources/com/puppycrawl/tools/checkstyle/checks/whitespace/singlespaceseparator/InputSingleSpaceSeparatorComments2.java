@@ -17,6 +17,7 @@ public class InputSingleSpaceSeparatorComments2 {
      */
     void foo() {
         /* Always correct */
-        int  a = 0; // violation
+        // violation below 'Use a single space to separate non-whitespace characters.'
+        int  a = 0;
     }  // Wrong if X is enabled
 }

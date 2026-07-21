@@ -15,10 +15,11 @@ public class InputAnonInnerLengthPartTwo {
 
     private JButton mButton = new JButton();
 
+    // violation 4 lines below 'Anonymous inner class length is 21 lines'
     /**
      anon inner in member variable initialization which is 21 lines long
      */
-    private Runnable mRunnable1 = new Runnable() { // violation
+    private Runnable mRunnable1 = new Runnable() {
         public void run()
         {
             System.identityHashCode("running");

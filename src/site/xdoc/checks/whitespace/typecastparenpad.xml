@@ -53,17 +53,22 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  float f1 = 3.14f;
+  double d = 3.14;
+  // violation below ''(' is followed by whitespace.'
+  int a = ( int ) d;
+  // violation above '')' is preceded with whitespace.'
+  int b = (int ) d;   // violation 'preceded with whitespace'
 
-  int n = ( int ) f1; // 2 violations
+  int c = ( int) d;   // violation 'followed by whitespace'
 
-  double d = 1.234567;
+  int e = (int) d;
 
-  float f2 = (float ) d; // violation 'preceded with whitespace'
+  double d2 = 9.8;
 
-  float f3 = (float) d;
-
-  float f4 = ( float) d; // violation 'followed by whitespace'
+  int f = (int) d2;
+  // violation below ''(' is followed by whitespace.'
+  int g = ( int ) d2;
+  // violation above '')' is preceded with whitespace.'
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -84,17 +89,22 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  double d1 = 3.14;
+  double d = 3.14;
 
-  int n = ( int ) d1;
+  int a = ( int ) d;
 
-  int m = (int ) d1; // violation 'not followed by whitespace'
+  int b = (int ) d; // violation 'not followed by whitespace'
 
+  int c = ( int) d; // violation 'not preceded with whitespace'
+  // violation below ''(' is not followed by whitespace.'
+  int e = (int) d;
+  // violation above '')' is not preceded with whitespace.'
   double d2 = 9.8;
+  // violation below ''(' is not followed by whitespace.'
+  int f = (int) d2;
+  // violation above '')' is not preceded with whitespace.'
+  int g = ( int ) d2;
 
-  int x = (int) d2; // 2 violations
-
-  int y = ( int) d2; // violation 'not preceded with whitespace'
 }
 </code></pre></div>
       </subsection>
@@ -104,6 +114,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypecastParenPad">
@@ -142,9 +156,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="TypecastParenPad_Package">
+      <subsection name="Fully Qualified Name" id="TypecastParenPad_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.whitespace
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

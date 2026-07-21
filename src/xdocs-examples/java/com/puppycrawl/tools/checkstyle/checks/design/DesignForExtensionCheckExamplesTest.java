@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/designforextension";
@@ -34,9 +35,9 @@ public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:3: " + getCheckMessage(MSG_KEY, "Example1", "m1"),
-            "16:3: " + getCheckMessage(MSG_KEY, "Example1", "m2"),
-            "41:3: " + getCheckMessage(MSG_KEY, "Example1", "toString"),
+            "15:3: " + getCheckMessage(MSG_KEY, "Example1", "m1"),
+            "18:3: " + getCheckMessage(MSG_KEY, "Example1", "m2"),
+            "43:3: " + getCheckMessage(MSG_KEY, "Example1", "toString"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,8 +46,8 @@ public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "16:3: " + getCheckMessage(MSG_KEY, "Example2", "m1"),
-            "18:3: " + getCheckMessage(MSG_KEY, "Example2", "m2"),
+            "17:3: " + getCheckMessage(MSG_KEY, "Example2", "m1"),
+            "20:3: " + getCheckMessage(MSG_KEY, "Example2", "m2"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -55,11 +56,11 @@ public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "16:3: " + getCheckMessage(MSG_KEY, "Example3", "m1"),
-            "18:3: " + getCheckMessage(MSG_KEY, "Example3", "m2"),
-            "35:3: " + getCheckMessage(MSG_KEY, "Example3", "m7"),
-            "41:3: " + getCheckMessage(MSG_KEY, "Example3", "m8"),
-            "43:3: " + getCheckMessage(MSG_KEY, "Example3", "toString"),
+            "17:3: " + getCheckMessage(MSG_KEY, "Example3", "m1"),
+            "20:3: " + getCheckMessage(MSG_KEY, "Example3", "m2"),
+            "37:3: " + getCheckMessage(MSG_KEY, "Example3", "m7"),
+            "43:3: " + getCheckMessage(MSG_KEY, "Example3", "m8"),
+            "45:3: " + getCheckMessage(MSG_KEY, "Example3", "toString"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -68,12 +69,13 @@ public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "17:3: " + getCheckMessage(MSG_KEY, "Example4", "m1"),
-            "19:3: " + getCheckMessage(MSG_KEY, "Example4", "m2"),
-            "36:3: " + getCheckMessage(MSG_KEY, "Example4", "m7"),
-            "44:3: " + getCheckMessage(MSG_KEY, "Example4", "toString"),
+            "18:3: " + getCheckMessage(MSG_KEY, "Example4", "m1"),
+            "21:3: " + getCheckMessage(MSG_KEY, "Example4", "m2"),
+            "38:3: " + getCheckMessage(MSG_KEY, "Example4", "m7"),
+            "46:3: " + getCheckMessage(MSG_KEY, "Example4", "toString"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

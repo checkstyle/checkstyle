@@ -64,8 +64,11 @@ public class Example1 {
   int i;
   int x;
   public void test() {
-    i++;   // TODO: do differently in future    // violation
+    // violation below 'matches to-do format'
+    i++;   // TODO: do differently in future
+
     i++;   // todo: do differently in future
+
     i=i/x; // FIXME: handle x = 0 case
     i=i/x; // FIX :  handle x = 0 case
   }
@@ -92,10 +95,72 @@ public class Example2 {
   int i;
   int x;
   public void test() {
-    i++;   // TODO: do differently in future    // violation
-    i++;   // todo: do differently in future    // violation
-    i=i/x; // FIXME: handle x = 0 case          // violation
+    // violation below 'matches to-do format'
+    i++;   // TODO: do differently in future
+    // violation below 'matches to-do format'
+    i++;   // todo: do differently in future
+    // violation below 'matches to-do format'
+    i=i/x; // FIXME: handle x = 0 case
     i=i/x; // FIX :  handle x = 0 case
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="TodoComment_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to detect box comments (Google Java Style Guide &#xa7;4.8.6.1):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TodoComment"&gt;
+      &lt;property name="id" value="BoxComments"/&gt;
+      &lt;property name="format" value="^\s*([*=#])\1{8,}\s*$"/&gt;
+      &lt;message key="todo.match"
+               value="Comment uses box-like repetitive character pattern."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/** // violation 'Comment uses box-like repetitive character pattern'
+ =========================================
+ Box comment with equals
+ =========================================
+ */
+
+public class UseCase1 {
+
+  // violation below 'Comment uses box-like repetitive character pattern'
+  // =========
+  void method1() {
+    int y = 2;
+  }
+
+  // violation below 'Comment uses box-like repetitive character pattern'
+  // *********
+  void method2() {
+    int z = 3;
+  }
+
+  // violation below 'Comment uses box-like repetitive character pattern'
+  // #########
+  void method3() {
+    int a = 4;
+  }
+
+  // normal comment
+  void method4() {
+    int b = 5;
+  }
+
+  // ###### (only 6 chars - below 9-char threshold)
+  void method5() {
+    int c = 6;
   }
 }
 </code></pre></div>
@@ -106,6 +171,10 @@ public class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
@@ -133,9 +202,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="TodoComment_Package">
+      <subsection name="Fully Qualified Name" id="TodoComment_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

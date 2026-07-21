@@ -167,13 +167,15 @@ public String getNameIfPresent() { ... }
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   @Nonnull
-  private boolean field1; // ok
-  @Override public int hashCode() { return 1; } // ok
-  @Nonnull // ok
+  private boolean field1;
+  @Override public int hashCode() { return 1; }
+
+  @Nonnull
   private boolean field2;
-  @Override // ok
+  @Override
   public boolean equals(Object obj) { return true; }
-  @Mock DataLoader loader1; // ok
+  @Mock
+  DataLoader loader1;
   @SuppressWarnings("deprecation") DataLoader loader2;
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
   @SuppressWarnings("deprecation") public int foo() { return 1; }
@@ -202,16 +204,19 @@ class Example1 {
 class Example2 {
   @Nonnull
   private boolean field1;
-  @Override public int hashCode() { return 1; } // ok
+  @Override public int hashCode() { return 1; }
+
   @Nonnull
   private boolean field2;
   @Override
   public boolean equals(Object obj) { return true; }
   @Mock
   DataLoader loader1;
-  @SuppressWarnings("deprecation") DataLoader loader;
-  @SuppressWarnings("deprecation") public int foo() { return 1; } // ok
-  @Nonnull @Mock DataLoader loader2;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
+
+  @Nonnull @Mock DataLoader loader3;
   // ok above as 'allowSamelineMultipleAnnotations' set to true
 }
 </code></pre></div><hr class="example-separator"/>
@@ -234,21 +239,22 @@ class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  // violation below, 'Annotation 'Nonnull' should be alone on line.'
-  @Nonnull private boolean field1;
-  // violation below, 'Annotation 'Override' should be alone on line.'
+  @Nonnull
+  private boolean field1;
   @Override public int hashCode() { return 1; }
+  // violation above, 'Annotation 'Override' should be alone on line'
   @Nonnull
   private boolean field2;
   @Override
   public boolean equals(Object obj) { return true; }
   @Mock
-  DataLoader loader;
-  @SuppressWarnings("deprecation") DataLoader loader1;
+  DataLoader loader1;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation below, 'Annotation 'Nonnull' should be alone on line.'
-  @Nonnull @Mock DataLoader loader2;
-  // violation above, 'Annotation 'Mock' should be alone on line.'
+  // violation below, 'Annotation 'Nonnull' should be alone on line'
+  @Nonnull @Mock DataLoader loader3;
+  // violation above, 'Annotation 'Mock' should be alone on line'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -271,18 +277,55 @@ class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  @NotNull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
+  @Nonnull
+  private boolean field1;
   @Override public int hashCode() { return 1; }
-  @NotNull
+  // ok above, as 'tokens' property set to METHOD_DEF only
+  @Nonnull
   private boolean field2;
   @Override
   public boolean equals(Object obj) { return true; }
   @Mock
   DataLoader loader1;
-  @SuppressWarnings("deprecation") DataLoader loader;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+  // ok above, as 'tokens' property set to METHOD_DEF only
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation above, 'Annotation 'SuppressWarnings' should be alone on line.'
-  @NotNull @Mock DataLoader loader2;
+  // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
+  @Nonnull @Mock DataLoader loader3;
+  // ok above, as 'tokens' property set to METHOD_DEF only
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          Use the following configuration to forbid multiple annotations on the same line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  @Nonnull
+  private boolean field1;
+  @Override public int hashCode() { return 1; }
+
+  @Nonnull
+  private boolean field2;
+  @Override
+  public boolean equals(Object obj) { return true; }
+  @Mock
+  DataLoader loader1;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
+  @Nonnull @Mock DataLoader loader3;
+  // violation above 'Annotation 'Mock' should be alone on line'
 }
 </code></pre></div>
       </subsection>
@@ -320,8 +363,12 @@ class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="AnnotationLocation_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      <subsection name="Fully Qualified Name" id="AnnotationLocation_Fully_Qualified_Name">
+          <p> com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck</p>
+          <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+          </p>
       </subsection>
 
       <subsection name="Parent Module" id="AnnotationLocation_Parent_Module">

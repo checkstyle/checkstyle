@@ -12,7 +12,6 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 // xdoc section -- start
 public class Example3 {
-
   void test() {
     // violation below, 'Redundant 'final' modifier'
     try (final var a = lock()) {
@@ -21,7 +20,6 @@ public class Example3 {
 
     }
   }
-
   // violation below, 'Redundant 'abstract' modifier'
   abstract interface I {
     public abstract void m();
@@ -32,15 +30,13 @@ public class Example3 {
   }
 
   static enum E { // violation, 'Redundant 'static' modifier'
-        A, B, C
+    A, B, C
   }
-
   // ok below, 'strictfp' is not redundant before JDK 17
   public strictfp class Test { }
 
   AutoCloseable lock() {
     return null;
   }
-
 }
 // xdoc section -- end

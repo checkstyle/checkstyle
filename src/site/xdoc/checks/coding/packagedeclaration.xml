@@ -61,7 +61,8 @@
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1{ // violation, 'Missing package declaration'
+package com.nonexistent.packages;
+public class Example1{ // violation above 'Package name is not same as directory'
   String str = "Some Content";
 }
 </code></pre></div><hr class="example-separator"/>
@@ -115,9 +116,11 @@ public class Example2{
         </p>
       </subsection>
 
-      <subsection name="Package" id="PackageDeclaration_Package">
+      <subsection name="Fully Qualified Name" id="PackageDeclaration_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

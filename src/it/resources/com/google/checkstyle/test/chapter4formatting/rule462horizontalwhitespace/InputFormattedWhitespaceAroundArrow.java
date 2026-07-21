@@ -1,5 +1,3 @@
-// Java21
-
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
 import java.awt.event.ActionEvent;

@@ -1,0 +1,4 @@
+* Usage of spec custom block tag.
+* @spec https://docs.oracle.com/javase/specs/jls/se25/html/index.html Java Language Specification
+* @spec jni/index.html Java Native Interface Specification
+* @spec ../api/java.base/module-summary.html Java Base Module Specification

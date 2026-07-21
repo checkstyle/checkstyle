@@ -1,6 +1,6 @@
 // non-compiled with eclipse: s cannot be resolved
+// non-compiled with javac: Compilable with Java21 individually
 package com.puppycrawl.tools.checkstyle.grammar.java14;
-
 import java.util.*;
 import java.util.Arrays;
 import java.util.Locale;
@@ -196,7 +196,7 @@ public class InputJava14InstanceofWithPatternMatching {
 
         do {
             L4: break L4;
-        } while (!(o1 instanceof java.util.logging.Logger log));
+        } while (!(o1 instanceof java.lang.Double log));
     }
 
     static class Pattern_Simple {

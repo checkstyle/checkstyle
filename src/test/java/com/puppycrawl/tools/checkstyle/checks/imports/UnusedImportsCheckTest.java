@@ -146,6 +146,44 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testProcessJavadocWithLinkAndGenericMethodParameters() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndGenericMethodParameters.java"), expected);
+    }
+
+    @Test
+    public void testProcessJavadocWithLinkAndGenericMethodParametersWithInnerTypes()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndGenericMethodParameters2.java"), expected);
+    }
+
+    @Test
+    public void testProcessJavadocWithLinkAndGenericMethodParametersWithInnerTypesOnly()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndGenericMethodParameters3.java"), expected);
+    }
+
+    @Test
+    public void testProcessJavadocWithLinkAndGenericMethodParametersMultipleArgs()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithLinkAndGenericMethodParameters4.java"), expected);
+    }
+
+    @Test
+    public void testSeeTagWithParameterNames() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsWithSeeTagAndParameterNames.java"), expected);
+    }
+
+    @Test
     public void testAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -352,6 +390,18 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStaticMethodRefImportsWithJavadocErrorAndJavadocDisabled() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "11:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
+        };
+        verifyWithInlineConfigParser(
+                getJavadocWithErrorPath(
+                    "InputUnusedImportsFromStaticMethodRefJavadocDisabled.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedImportsJavadocAboveComments() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -386,7 +436,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocSetters() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsJavadocSetters.java"), expected);

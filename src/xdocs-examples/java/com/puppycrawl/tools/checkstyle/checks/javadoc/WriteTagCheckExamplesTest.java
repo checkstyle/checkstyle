@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/writetag";
@@ -39,7 +40,7 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "16: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "18: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -48,9 +49,9 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
-            "24: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", ""),
-            "29: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "21: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "25: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", ""),
+            "30: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -60,8 +61,9 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     public void testExample4() throws Exception {
         final String pattern = "[1-9\\.]";
         final String[] expected = {
-            "26: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "31: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "23: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -71,11 +73,24 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     public void testExample5() throws Exception {
         final String pattern = "[1-9\\.]";
         final String[] expected = {
-            "21: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.2"),
+            "23: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
             "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
             "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String pattern = "[1-9\\.]";
+        final String[] expected = {
+            "21: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.2"),
+            "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
 }

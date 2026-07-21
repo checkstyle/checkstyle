@@ -1,19 +1,20 @@
 /*
 BooleanExpressionComplexity
 max = (default)3
-tokens = (default)LAND, BAND, LOR, BOR, BXOR
+tokens = (default)CTOR_DEF,METHOD_DEF,EXPR,LAND,BAND,LOR,BOR,BXOR,COMPACT_CTOR_DEF
 
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
 public class InputBooleanExpressionComplexityRecordsAndCompactCtors {
 
     record MyRecord1(boolean a, boolean b) {
         private boolean myBool() {
-           return  (a & b) ^ (a || b) | a; // violation
+           return  (a & b) ^ (a || b) | a;
+           // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
         }
     }
 
@@ -21,7 +22,8 @@ public class InputBooleanExpressionComplexityRecordsAndCompactCtors {
 
         // in compact ctor
         public MyRecord2{
-            boolean d = (a & b) ^ (a || b) | a; // violation
+            boolean d = (a & b) ^ (a || b) | a;
+            // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
         }
     }
 
@@ -32,7 +34,8 @@ public class InputBooleanExpressionComplexityRecordsAndCompactCtors {
             this(3);
             boolean b = true;
             boolean a = true;
-            boolean d = (a & b) ^ (a || b) | a; // violation
+            boolean d = (a & b) ^ (a || b) | a;
+            // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
         }
     }
 
@@ -42,7 +45,8 @@ public class InputBooleanExpressionComplexityRecordsAndCompactCtors {
             public MyRecord5{
                 boolean b = false;
                 boolean a = true;
-                boolean d = (a & b) ^ (a || b) | a; // violation
+                boolean d = (a & b) ^ (a || b) | a;
+                // violation above 'Boolean expression complexity is 4 (max allowed is 3).'
             }
         }
     }

@@ -95,21 +95,20 @@
           The check passes without violations in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1{
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Counted, 1
-  Time1 time = new Time1(); // Counted, 2
-  Place1 place = new Place1(); // Counted, 3
-  int value = 10; // int is ignored
+class Example1 {
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, int is ignored
   BufferedReader br;
   File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place1 {}
-class Time1 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check with a threshold of 2:
@@ -130,21 +129,20 @@ class Time1 {}
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2{ // violation 'Class Fan-Out Complexity is 5 (max allowed is 2)'
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Counted, 1
-  Time2 time = new Time2(); // Counted, 2
-  Place2 place = new Place2(); // Counted, 3
-  int value = 10; // int is ignored
-  BufferedReader br; // Counted, 4
-  File file; // Counted, 5
+class Example2 { // violation, 'Class Fan-Out Complexity is 5 (max allowed is 2)'
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, int is ignored
+  BufferedReader br;
+  File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place2 {}
-class Time2 {}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
@@ -155,7 +153,7 @@ class Time2 {}
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ClassFanOutComplexity"&gt;
-      &lt;property name="excludedClasses" value="HashMap, HashSet, Place3"/&gt;
+      &lt;property name="excludedClasses" value="HashMap, HashSet, Place"/&gt;
       &lt;property name="max" value="3"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -168,21 +166,20 @@ class Time2 {}
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3{ // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
-  Set set = new HashSet(); // Set counted 1, HashSet ignored
-  Map map = new HashMap(); // Map counted 2, HashMap ignored
-  Date date = new Date(); // Counted, 3
-  Time3 time = new Time3(); // Counted, 4
-  Place3 place = new Place3(); // Counted, 5
-  int value = 10; // int is ignored
-  BufferedReader br; // Counted, 6
-  File file; // Counted, 7
+class Example3 { // violation 'Class Fan-Out Complexity is 7 (max allowed is 3)'
+  Set set = new HashSet();
+  Map map = new HashMap();
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, int is ignored
+  BufferedReader br;
+  File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var ignored
   }
 }
-class Place3 {}
-class Time3 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check to exclude classes with a regular expression
@@ -205,21 +202,20 @@ class Time3 {}
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Counted, 1
-  Time4 time = new Time4(); // Counted, 2
-  Place4 place = new Place4(); // Counted, 3
-  int value = 10; // int is ignored
-  BufferedReader br; // Ignored
-  File file; // Counted, 4
+class Example4 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, primitive types are ignored
+  BufferedReader br;         // ok, Reader is excluded
+  File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place4 {}
-class Time4 {}
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-config">
@@ -242,22 +238,24 @@ class Time4 {}
           The check passes without violations in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5{
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Counted, 1
-  Time5 time = new Time5(); // Counted, 2
-  Place5 place = new Place5(); // Counted, 3
-  int value = 10; // int is ignored
-  BufferedReader br; // Ignored
-  File file; // Ignored
+class Example5 {
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, primitive types are ignored
+  BufferedReader br;         // ok, BufferedReader is ignored
+  File file;                 // ok, File is ignored
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place5 {}
-class Time5 {}
 </code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ClassFanOutComplexity_Use_Cases">
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -283,8 +281,8 @@ class Time5 {}
           Also note, that <code>excludedPackages</code> will not exclude classes, imported via
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
-        </p><hr class="example-separator"/>
-        <p id="Example6-config">
+        </p>
+        <p id="UseCase1-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
@@ -300,27 +298,26 @@ class Time5 {}
 &lt;/module&gt;
 </code></pre></div>
         <p>
-          Example6:
+          UseCase1:
         </p>
-        <p id="Example6-code">
+        <p id="UseCase1-code">
           And the file is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6{ // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
-  Set set = new HashSet(); // Set, HashSet ignored
-  Map map = new HashMap(); // Map, HashMap ignored
-  Date date = new Date(); // Ignored
-  Time6 time = new Time6(); // Counted, 1
-  Place6 place = new Place6(); // Counted, 2
-  int value = 10; // int is ignored
-  BufferedReader br; // Counted, 3
-  File file; // Counted, 4
+class UseCase1 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+  Set set = new HashSet();   // ok, Set and HashSet are ignored
+  Map map = new HashMap();   // ok, Map and HashMap are ignored
+  Date date = new Date();    // ok, java.util package is ignored
+  Time time = new Time();
+  Place place = new Place();
+  int value = 10;            // ok, primitive types are ignored
+  BufferedReader br;
+  File file;
+
   void method() {
-    var result = "result"; // var is ignored
+    var result = "result";   // ok, var is ignored
   }
 }
-class Place6 {}
-class Time6 {}
 </code></pre></div>
         <p>
           The <code>Set, Map, HashMap, HashSet, Date</code> member will not be counted,
@@ -353,9 +350,11 @@ class Time6 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="ClassFanOutComplexity_Package">
+      <subsection name="Fully Qualified Name" id="ClassFanOutComplexity_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.metrics
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

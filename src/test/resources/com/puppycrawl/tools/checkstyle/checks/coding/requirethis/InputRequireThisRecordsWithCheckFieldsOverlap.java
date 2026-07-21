@@ -1,13 +1,13 @@
 /*
 RequireThis
-checkFields = true
+checkFields = (default)true
 checkMethods = (default)true
 validateOnlyOverlapping = false
 
 
 */
 
-// Java17
+
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
 public record InputRequireThisRecordsWithCheckFieldsOverlap(String a) {

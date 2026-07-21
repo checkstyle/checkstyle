@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck.MSG_ORDER;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,20 +37,27 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception {
-
+    public void testDefaultPart1() throws Exception {
         final String[] expected = {
             "33:5: " + getCheckMessage(MSG_KEY, 21),
             "62:9: " + getCheckMessage(MSG_KEY, 50),
             "67:9: " + getCheckMessage(MSG_KEY, 62),
             "87:5: " + getCheckMessage(MSG_KEY, 83),
-            "132:5: " + getCheckMessage(MSG_KEY, 120),
-            "144:5: " + getCheckMessage(MSG_KEY, 137),
-            "156:9: " + getCheckMessage(MSG_KEY, 149),
-            "159:5: " + getCheckMessage(MSG_KEY, 144),
         };
         verifyWithInlineConfigParser(
-                getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
+            getPath("InputOverloadMethodsDeclarationOrder1.java"), expected);
+    }
+
+    @Test
+    public void testDefaultPart2() throws Exception {
+        final String[] expected = {
+            "53:9: " + getCheckMessage(MSG_KEY, 41),
+            "65:9: " + getCheckMessage(MSG_KEY, 58),
+            "77:13: " + getCheckMessage(MSG_KEY, 70),
+            "80:9: " + getCheckMessage(MSG_KEY, 65),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrder2.java"), expected);
     }
 
     @Test
@@ -75,6 +83,67 @@ public class OverloadMethodsDeclarationOrderCheckTest
                 getPath(
                         "InputOverloadMethodsDeclarationOrderPrivateAndStaticMethods.java"
                 ), expected);
+    }
+
+    @Test
+    public void testOrderByIncreasingArity() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_ORDER),
+            "24:5: " + getCheckMessage(MSG_ORDER),
+            "32:9: " + getCheckMessage(MSG_ORDER),
+            "35:9: " + getCheckMessage(MSG_ORDER),
+            "48:9: " + getCheckMessage(MSG_ORDER),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputOverloadMethodsDeclarationOrderArity.java"), expected);
+    }
+
+    @Test
+    public void testMisc() throws Exception {
+
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY, 11),
+            "19:5: " + getCheckMessage(MSG_ORDER),
+            "33:9: " + getCheckMessage(MSG_KEY, 26),
+            "33:9: " + getCheckMessage(MSG_ORDER),
+            "36:9: " + getCheckMessage(MSG_ORDER),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath(
+                        "InputOverloadMethodsDeclarationOrderMisc.java"
+                ), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileOverloads() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY, 8),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileValid() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactSourceFileValid.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileFirstMethodOverload() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY, 8),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactSourceFileFirstMethodOverload.java"),
+            expected);
     }
 
     @Test

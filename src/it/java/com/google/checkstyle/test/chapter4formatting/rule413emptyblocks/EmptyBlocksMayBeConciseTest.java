@@ -69,4 +69,5 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
     public void testFormattedEmptyCatchEmptyComment() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedEmptyCatchEmptyComment.java"));
     }
+
 }

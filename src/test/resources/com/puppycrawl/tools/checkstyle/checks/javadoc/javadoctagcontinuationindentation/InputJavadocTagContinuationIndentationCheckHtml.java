@@ -77,15 +77,17 @@ public class InputJavadocTagContinuationIndentationCheckHtml {
      */
     static class Test2 {}
 
+    // violation 3 lines below 'Line continuation .* expected level should be 4'
     /**
      * @see
-     * <a href="https://checkstyle.org"> Javadoc </a> // ok until #16656
+     * <a href="https://checkstyle.org"> Javadoc </a>
      */
     static class Test3 {}
 
+   // violation 3 lines below 'Line continuation .* expected level should be 4'
     /**
      * @see
-     *   <a href="https://checkstyle.org"> Javadoc </a> // ok until #16656
+     *   <a href="https://checkstyle.org"> Javadoc </a>
      */
     static class Test4 {}
 

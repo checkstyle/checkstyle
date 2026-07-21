@@ -9,7 +9,7 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="TextBlockGoogleStyleFormatting">
       <p>Since Checkstyle 12.3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="TextBlockGoogleStyleFormatting_Description">
         <div>
           Checks correct format of
           <a href="https://docs.oracle.com/en/java/javase/17/text-blocks/index.html">Java Text Blocks</a>
@@ -26,11 +26,15 @@
         <li>
           Opening and closing quotes are vertically aligned.
         </li>
+        <li>
+          Each line of text in the text block must be indented at
+          least as much as the opening and closing quotes.
+        </li>
         </ol>
           Note: Closing quotes can be followed by additional code on the same line.
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="TextBlockGoogleStyleFormatting_Examples">
         <p id="Example1-config">To configure the check:</p>
           <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -86,7 +90,7 @@ public class Example2 {
   public String testMethod1() {
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     final String simpleScript1Violate = """
-        contents of the text block
+                                         contents of the text block
       """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScript1Correct =
         """
@@ -96,7 +100,7 @@ public class Example2 {
     final String simpleScript2Violate = simpleScript1Violate +
         // violation below 'quotes (""") of text-block must be on the new line'
         simpleScript1Violate + """
-        this is simple script
+                                this is simple script
         """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScript2Correct = simpleScript1Violate +
         simpleScript1Violate +
@@ -107,7 +111,7 @@ public class Example2 {
     getData(
         // violation below 'quotes (""") of text-block must be on the new line'
         1, """
-           this is a multi-line message
+            this is a multi-line message
            """);
     getData(
         1,
@@ -117,7 +121,7 @@ public class Example2 {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
-        this is sample text
+            this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
   }
   public void getData(String text, int num) {}
@@ -204,7 +208,44 @@ public class Example4 {
 
     return
         """
-    this is sample text
+        this is sample text
+      """; // violation 'text-block quotes are not vertically aligned'
+  }
+  public void getData(int num, String text) {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-code">
+            Example: Each line of text in the text block must be indented at
+            least as much as the opening and closing quotes.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+
+  public String testMethod1() {
+    // violation 2 lines below 'Each line of text in the text block must be indented'
+    final String simpleScriptViolate =
+            """
+         s
+            """;
+    final String simpleScriptCorrect =
+            """
+            s
+            """;
+    // violation 3 lines below 'Each line of text in the text block must be indented'
+    getData(
+      1,
+        """
+       this is a multi-line message
+        """);
+    getData(
+      1,
+        """
+        this is a multi-line message
+        """);
+
+    return
+        """
+        this is sample text
       """; // violation 'text-block quotes are not vertically aligned'
   }
   public void getData(int num, String text) {}
@@ -212,7 +253,7 @@ public class Example4 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="TextBlockGoogleStyleFormatting_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TextBlockGoogleStyleFormatting">
@@ -225,7 +266,7 @@ public class Example4 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="TextBlockGoogleStyleFormatting_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.close%22">
@@ -235,6 +276,11 @@ public class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.open%22">
               textblock.format.open
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.indentation%22">
+              textblock.indentation
             </a>
           </li>
           <li>
@@ -250,13 +296,16 @@ public class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Fully Qualified Name"
+                   id="TextBlockGoogleStyleFormatting_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="TextBlockGoogleStyleFormatting_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

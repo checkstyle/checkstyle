@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
 public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/javadoc/";
@@ -72,6 +73,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testSimpleJavadocWithText2() throws Exception {
         verifyJavadocTree(getPath("ExpectedSimpleJavadocWithText2.txt"),
                 getPath("InputSimpleJavadocWithText2.javadoc"));
+    }
+
+    @Test
+    public void testDoubleAtAsText() throws Exception {
+        verifyJavadocTree(getPath("ExpectedDoubleAtAsText.txt"),
+                getPath("InputDoubleAtAsText.javadoc"));
     }
 
     @Test
@@ -135,6 +142,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testSpecTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedSpecTag.txt"),
+                getBlockTagsPath("InputSpecTag.javadoc"));
+    }
+
+    @Test
     public void testCodeInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedCodeInlineTag.txt"),
                 getInlineTagsPath("InputCodeInlineTag.javadoc"));
@@ -165,9 +178,41 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testLinkInlineTagGenericInner() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagGenericInner.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericInner.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagWithArrayInitializerLabel() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagWithArrayInitializerLabel.txt"),
+                getInlineTagsPath("InputLinkInlineTagWithArrayInitializerLabel.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagGenericParameterType() throws Exception {
+        verifyJavadocTree(
+                getInlineTagsPath("ExpectedLinkInlineTagGenericParameterType.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericParameterType.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagGenericParameterTypeWithWhitespace() throws Exception {
+        verifyJavadocTree(
+                getInlineTagsPath("ExpectedLinkInlineTagGenericParameterTypeWithWhitespace.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericParameterTypeWithWhitespace.javadoc"));
+    }
+
+    @Test
     public void testValueAndInheritDocInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedValueAndInheritDocInlineTag.txt"),
                 getInlineTagsPath("InputValueAndInheritDocInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testValueInlineTagWithQuotedFormat() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedValueInlineTagWithQuotedFormat.txt"),
+                getInlineTagsPath("InputValueInlineTagWithQuotedFormat.javadoc"));
     }
 
     @Test
@@ -265,4 +310,23 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlComment.txt"),
                 getHtmlTagsPath("InputHtmlComment.javadoc"));
     }
+
+    @Test
+    public void testReferencesToUriFragments() throws Exception {
+        verifyJavadocTree(getPath("ExpectedReferencesToUriFragments.txt"),
+                getPath("InputReferencesToUriFragments.javadoc"));
+    }
+
+    @Test
+    public void testReferencesToUriFragments2() throws Exception {
+        verifyJavadocTree(getPath("ExpectedReferencesToUriFragments2.txt"),
+                getPath("InputReferencesToUriFragments2.javadoc"));
+    }
+
+    @Test
+    public void testMethodReferencesWithoutHash() throws Exception {
+        verifyJavadocTree(getPath("ExpectedMethodReferencesWithoutHash.txt"),
+                getPath("InputMethodReferencesWithoutHash.javadoc"));
+    }
+
 }

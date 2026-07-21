@@ -200,4 +200,5 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

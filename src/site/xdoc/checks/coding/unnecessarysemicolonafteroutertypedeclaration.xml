@@ -86,19 +86,11 @@ class Example1 {
 
   }; // ok, nested type declarations are ignored
 
-}; // violation 'Unnecessary semicolon'
+};   // violation 'Unnecessary semicolon'
 
-interface B {
+interface ExampleOne {
 
-}; // violation 'Unnecessary semicolon'
-
-enum C {
-
-}; // violation 'Unnecessary semicolon'
-
-@interface D {
-
-}; // violation 'Unnecessary semicolon'
+};   // violation 'Unnecessary semicolon'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
            To configure the check to detect unnecessary semicolon only after top level class
@@ -122,17 +114,9 @@ class Example2 {
 
   }; // ok, nested type declarations are ignored
 
-}; // violation 'Unnecessary semicolon'
+};   // violation 'Unnecessary semicolon'
 
-interface T {
-
-};
-
-enum U {
-
-};
-
-@interface V {
+interface ExampleTwo {
 
 };
 </code></pre></div>
@@ -164,11 +148,15 @@ enum U {
         </p>
       </subsection>
 
-      <subsection name="Package" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
-        </p>
-      </subsection>
+<subsection name="Fully Qualified Name"
+             id="UnnecessarySemicolonAfterOuterTypeDeclaration_Fully_Qualified_Name">
+  <p>com.puppycrawl.tools.checkstyle.checks.coding.
+  UnnecessarySemicolonAfterOuterTypeDeclarationCheck</p>
+  <p>
+    Use this fully qualified class name in configuration when an exact class reference is
+    required.
+  </p>
+</subsection>
 
       <subsection name="Parent Module"
             id="UnnecessarySemicolonAfterOuterTypeDeclaration_Parent_Module">

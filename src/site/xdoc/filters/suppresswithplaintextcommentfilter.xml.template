@@ -140,13 +140,14 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example6.xml"/>
           <param name="type" value="raw"/>
         </macro>
+        <hr class="example-separator"/>
         <p>
           It is possible to specify the ID of checks, which can be used by the
           SuppressWithPlainTextCommentFilter to suppress audit events.
           The following examples show how to suppress audit events in code surrounded
           by <code>CSOFF &lt;ID&gt; (reason)</code> and <code>CSON &lt;ID&gt;</code>,
           where ID is the ID of the check you want to suppress.
-        </p><hr class="example-separator"/>
+        </p>
         <p id="Example7-config">
           Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration -
           the checkFormat, set to '$1', indicates that the ID of the check
@@ -183,7 +184,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example8.sql"/>
           <param name="type" value="raw"/>
         </macro><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="UseCase1-config">
           This check is not limited to comments. It can match any symbols in the given file
           as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression.
           The following example shows how to suppress violations within a text block for the
@@ -193,13 +194,15 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/UseCase1.java"/>
           <param name="type" value="config"/>
-        </macro>
-        <p id="Example9-code">Example:</p>
+        </macro><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithPlainTextCommentFilter_Use_Cases">
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/Example9.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -215,8 +218,13 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="SuppressWithPlainTextCommentFilter_Package">
-        <p> com.puppycrawl.tools.checkstyle.filters </p>
+      <subsection name="Fully Qualified Name"
+                   id="SuppressWithPlainTextCommentFilter_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter</p>
+        <p>
+            This is the fully qualified class name of the module.
+            Use this name in configuration when an exact class reference is required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="SuppressWithPlainTextCommentFilter_Parent_Module">

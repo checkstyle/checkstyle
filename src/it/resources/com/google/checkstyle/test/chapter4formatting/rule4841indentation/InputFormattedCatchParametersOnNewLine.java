@@ -1,5 +1,3 @@
-// Java21
-
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /** Some javadoc. */
@@ -56,7 +54,8 @@ public class InputFormattedCatchParametersOnNewLine {
         s
         """;
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Each line of text in the text block must be indented'
     return ("""
       def newInstance = params.instance;
       def existingInstance = ctx._source;

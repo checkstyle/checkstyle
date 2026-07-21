@@ -111,6 +111,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private boolean validateUnnamedVariables;
 
     /**
+     * Creates a new {@code FinalLocalVariableCheck} instance.
+     */
+    public FinalLocalVariableCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for-loop</a> variable.
@@ -142,6 +149,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.EXPR,
@@ -156,6 +164,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
@@ -171,6 +180,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.SLIST,
             TokenTypes.OBJBLOCK,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
@@ -184,8 +194,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR ->
+            case TokenTypes.COMPACT_COMPILATION_UNIT, TokenTypes.OBJBLOCK,
+                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR ->
                 scopeStack.push(new ScopeData());
 
             case TokenTypes.SLIST -> {
@@ -722,6 +732,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
         /** Whether there is a {@code break} in the scope. */
         private boolean containsBreak;
+
+        /**
+         * Creates a new {@code ScopeData} instance.
+         */
+        private ScopeData() {
+            // no code by default
+        }
 
         /**
          * Searches for final local variable candidate for ast in the scope.

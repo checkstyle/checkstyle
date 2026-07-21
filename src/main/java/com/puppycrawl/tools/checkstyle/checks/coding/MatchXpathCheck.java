@@ -76,6 +76,13 @@ public class MatchXpathCheck extends AbstractCheck {
     private XPathExpression xpathExpression;
 
     /**
+     * Creates a new {@code MatchXpathCheck} instance.
+     */
+    public MatchXpathCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify Xpath query.
      *
      * @param query Xpath query.
@@ -145,4 +152,5 @@ public class MatchXpathCheck extends AbstractCheck {
             throw new IllegalStateException("Evaluation of Xpath query failed: " + query, exc);
         }
     }
+
 }

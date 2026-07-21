@@ -69,6 +69,13 @@ public final class TestUtil {
      */
     private static final int MINIMAL_STACK_SIZE = 147456;
 
+    /**
+     * The stack size used in {@link TestUtil#runWithLimitedXpathResources}.
+     * This value must be large enough for Saxon's XPath engine to initialize, but
+     * small enough to detect stack overflows in deep AST XPath traversal.
+     */
+    private static final int MINIMAL_XPATH_STACK_SIZE = 1_048_576;
+
     private TestUtil() {
     }
 
@@ -227,7 +234,7 @@ public final class TestUtil {
                 }
             }
 
-            if (curNode == toVisit || curNode == root.getParent()) {
+            if (Objects.equals(curNode, toVisit) || Objects.equals(curNode, root.getParent())) {
                 curNode = null;
                 break;
             }
@@ -290,6 +297,25 @@ public final class TestUtil {
                 "LimitedStackSizeThread", MINIMAL_STACK_SIZE);
         thread.start();
         return futureTask.get(10, TimeUnit.SECONDS);
+    }
+
+    /**
+     * Runs a given task with limited stack size suitable for XPath-based checks.
+     * The stack size is larger than
+     * {@link TestUtil#getResultWithLimitedResources} to allow Saxon's XPath engine
+     * to initialize, but still small enough to detect stack overflows in deep AST
+     * XPath traversal.
+     *
+     * @param callable the task to execute
+     * @throws Exception if getting result fails
+     */
+    public static void runWithLimitedXpathResources(Callable<Void> callable)
+            throws Exception {
+        final FutureTask<Void> futureTask = new FutureTask<>(callable);
+        final Thread thread = new Thread(null, futureTask,
+                "LimitedXpathStackSizeThread", MINIMAL_XPATH_STACK_SIZE);
+        thread.start();
+        futureTask.get(10, TimeUnit.SECONDS);
     }
 
     /**
@@ -626,6 +652,18 @@ public final class TestUtil {
     }
 
     /**
+     *  Executes the provided executable and expects it to throw an exception of the specified type.
+     *
+     * @param expectedType the class of the expected exception type.
+     * @param executable the executable to be executed
+     * @return the expected exception thrown by the executable.
+     */
+    public static <T extends Throwable> T getExpectedThrowable(Class<T> expectedType,
+                                                               Executable executable) {
+        return assertThrows(expectedType, executable);
+    }
+
+    /**
      * Executes the provided executable and expects it to throw an exception of the specified type.
      *
      * @param expectedType the class of the expected exception type.
@@ -637,18 +675,6 @@ public final class TestUtil {
                                                                Executable executable,
                                                                String message) {
         return assertThrows(expectedType, executable, message);
-    }
-
-    /**
-     *  Executes the provided executable and expects it to throw an exception of the specified type.
-     *
-     * @param expectedType the class of the expected exception type.
-     * @param executable the executable to be executed
-     * @return the expected exception thrown by the executable.
-     */
-    public static <T extends Throwable> T getExpectedThrowable(Class<T> expectedType,
-                                                               Executable executable) {
-        return assertThrows(expectedType, executable);
     }
 
 }

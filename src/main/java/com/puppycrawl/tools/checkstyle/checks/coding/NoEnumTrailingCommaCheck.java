@@ -61,6 +61,13 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "no.enum.trailing.comma";
 
+    /**
+     * Creates a new {@code NoEnumTrailingCommaCheck} instance.
+     */
+    public NoEnumTrailingCommaCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -85,4 +92,5 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
             .filter(token -> token.getType() == TokenTypes.COMMA)
             .ifPresent(comma -> log(comma, MSG_KEY));
     }
+
 }

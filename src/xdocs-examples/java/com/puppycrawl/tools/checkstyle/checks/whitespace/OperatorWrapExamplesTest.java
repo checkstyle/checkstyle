@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/operatorwrap";
@@ -37,7 +38,7 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
         final String[] expected = {
             "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
             "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
-            "27:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -46,18 +47,30 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "23:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
-            "27:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "+="),
-            "31:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "*="),
-            "33:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-="),
-            "37:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "/="),
-            "39:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "%="),
-            "41:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>="),
-            "43:9: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>>="),
-            "45:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&="),
-            "47:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "<<="),
+            "33:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "37:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "+="),
+            "41:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "*="),
+            "43:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-="),
+            "47:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "/="),
+            "49:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "%="),
+            "51:13: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>="),
+            "53:9: " + getCheckMessage(MSG_LINE_PREVIOUS, ">>>="),
+            "55:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "&="),
+            "57:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "<<="),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
 }

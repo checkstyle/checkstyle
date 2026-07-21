@@ -114,19 +114,18 @@ public void method();
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-
   // violation below 'Javadoc content should start from the next line.'
-  /** This comment causes a violation because it starts from the first line
-   * and spans several lines.
+  /** This is a multi-line Javadoc.
+   * Additional description.
    */
   private int field1;
 
   /**
-   * This comment is OK because it starts from the second line.
+   * This is another multi-line Javadoc.
    */
-  private int field12;
+  private int field2;
 
-  /** This comment is OK because it is on the single-line. */
+  /** This is a single-line Javadoc. */
   private int field3;
 
 }
@@ -150,18 +149,17 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
-  /** This comment is OK because it starts on the first line.
-   * There may be additional text.
+  /** This is a multi-line Javadoc.
+   * Additional description.
    */
   private int field1;
-
-  // violation below, 'Javadoc content should start from the same line.'
+  // violation below 'Javadoc content should start from the same line.'
   /**
-   * This comment causes a violation because it starts on the second line.
+   * This is another multi-line Javadoc.
    */
   private int field2;
 
-  /** This single-line comment also is OK. */
+  /** This is a single-line Javadoc. */
   private int field3;
 
 }
@@ -172,6 +170,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
               Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
@@ -200,9 +202,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocContentLocation_Package">
+      <subsection name="Fully Qualified Name" id="JavadocContentLocation_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

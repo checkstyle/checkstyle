@@ -119,4 +119,5 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

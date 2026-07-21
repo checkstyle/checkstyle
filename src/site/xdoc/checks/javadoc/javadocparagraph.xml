@@ -25,7 +25,8 @@
           Nested paragraph tags are allowed to do that. This check only supports following block-tags:
           &lt;address&gt;,&lt;blockquote&gt;
           ,&lt;div&gt;,&lt;dl&gt;
-          ,&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;,&lt;h6&gt;,&lt;hr&gt;
+          ,&lt;h1&gt;,&lt;h2&gt;,&lt;h3&gt;,&lt;h4&gt;,&lt;h5&gt;,
+          &lt;h6&gt;,&lt;hr&gt;
           ,&lt;ol&gt;,&lt;p&gt;,&lt;pre&gt;
           ,&lt;table&gt;,&lt;ul&gt;.
         </li>
@@ -59,8 +60,7 @@
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
-              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
-     Tight-HTML Rules</a>.</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -83,7 +83,8 @@
         <p id="Example1-code">By default, the check will report a violation if there is
           no empty line before or whitespace after the &lt;p&gt; tag: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 5 lines below '&lt;p&gt; tag should be preceded with an empty line'
+// violation 6 lines below '&lt;p&gt; tag should be preceded with an empty line'
+
 /**
  * No tag
  *
@@ -97,10 +98,10 @@
  *
  * &lt;p&gt;&lt;b&gt;p tag before inline tag B, this is ok&lt;/b&gt;&lt;/p&gt;
  */
-// violation 4 lines above 'tag should be placed immediately before the first word'
 
 public class Example1 {
 
+  // violation 7 lines above 'tag should be placed immediately before the first word'
 
   // violation 4 lines below '&lt;p&gt; tag should not precede HTML block-tag '&lt;pre&gt;''
   /**
@@ -157,7 +158,8 @@ public class Example1 {
           the following example will have violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 5 lines below '&lt;p&gt; tag should be preceded with an empty line'
+// violation 6 lines below '&lt;p&gt; tag should be preceded with an empty line'
+// violation 7 lines below 'tag should be placed immediately before the first word'
 /**
  * No tag
  *
@@ -171,9 +173,9 @@ public class Example1 {
  *
  * &lt;p&gt;&lt;b&gt;p tag before inline tag B, this is ok&lt;/b&gt;&lt;/p&gt;
  */
-// violation 7 lines above 'tag should be placed immediately before the first word'
-// violation 5 lines above 'tag should be placed immediately before the first word'
+
 public class Example2 {
+  // violation 6 lines above 'tag should be placed immediately before the first word'
   // 2 violations 6 lines below:
   //  'tag should be placed immediately before the first word'
   //  '&lt;p&gt; tag should not precede HTML block-tag '&lt;pre&gt;''
@@ -274,9 +276,11 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="JavadocParagraph_Package">
+      <subsection name="Fully Qualified Name" id="JavadocParagraph_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.javadoc
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
         </p>
       </subsection>
 

@@ -25,7 +25,7 @@ class Example3 {
   }
 
   void foo(int field3) {
-
+    // ok below, checkFields is false
     field3 = field3;
   }
 }

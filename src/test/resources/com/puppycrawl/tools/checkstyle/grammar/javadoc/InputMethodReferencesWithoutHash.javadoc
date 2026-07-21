@@ -1,0 +1,10 @@
+* {@link method1() method1}
+* {@link method2(int a) method2}
+* {@linkplain method2(a) method2 again}
+* {@linkplain method3(a, float b, anything_actually, d) method3}
+*
+* @see method1()
+* @see method2(x)
+* @see method2
+* @see method3
+* @see method3(something, b, w, z)

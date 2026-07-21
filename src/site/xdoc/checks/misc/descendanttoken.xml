@@ -125,66 +125,41 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  void testMethod1() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        System.out.println("hi");
-        break;
-      default:
-        System.out.println("Default");
-        break;
-    }
+  private int field1;
+  private int field2;
 
-    int y = 1;
-    switch (y) { // violation, 'Count of 0 for 'LITERAL_SWITCH' descendant'
-      case 1:
-        System.out.println("hi");
-        break;
-    }
-  }
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
 
-  void testMethod2() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        // Some code
-        break;
-      default:
-        // Some code
-        break;
-    }
-
-    switch (x) {
-      case 1:
-        // Some code
-        break;
-      case 2:
-        // Some code
-        break;
-      default:
-        // Some code
-        break;
-    }
-  }
-
-  void testMethod3() {
-    int x = 1;
-    int y = 2;
     switch (x) { // violation, 'Count of 0 for 'LITERAL_SWITCH' descendant'
       case 1:
-        System.out.println("xyz");
+        break;
+      case 2:
         break;
     }
-    switch (y) { // violation, 'Count of 0 for 'LITERAL_SWITCH' descendant'
-      case 1:
-        switch (y) { // violation, 'Count of 0 for 'LITERAL_SWITCH' descendant'
-          case 2:
-            System.out.println("xyz");
-            break;
-        }
-        break;
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -209,66 +184,41 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  void testMethod1() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        System.out.println("hi");
-        break;
-      default:
-        System.out.println("Default");
-        break;
-    }
+  private int field1;
+  private int field2;
 
-    int y = 1;
-    switch (y) {
-      case 1:
-        System.out.println("hi");
-        break;
-    }
-  }
-
-  void testMethod2() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        // Some code
-        break;
-      default:
-        // Some code
-        break;
-    }
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
 
     switch (x) { // violation, 'Count of 2 for 'LITERAL_SWITCH' descendant'
       case 1:
-        // Some code
         break;
       case 2:
-        // Some code
-        break;
-      default:
-        // Some code
         break;
     }
-  }
 
-  void testMethod3() {
-    int x = 1;
-    int y = 2;
-    switch (x) {
-      case 1:
-        System.out.println("xyz");
-        break;
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
-    switch (y) {
-      case 1:
-        switch (y) {
-          case 2:
-            System.out.println("xyz");
-            break;
-        }
-        break;
+    finally {
+      try { }
+      catch (Exception ex) { }
     }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -294,66 +244,41 @@ class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  void testMethod1() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        System.out.println("hi");
-        break;
-      default:
-        System.out.println("Default");
-        break;
-    }
+  private int field1;
+  private int field2;
 
-    int y = 1;
-    switch (y) {
-      case 1:
-        System.out.println("hi");
-        break;
-    }
-  }
-
-  void testMethod2() {
-    int x = 1;
-    switch (x) {
-      case 1:
-        // Some code
-        break;
-      default:
-        // Some code
-        break;
-    }
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
 
     switch (x) {
       case 1:
-        // Some code
         break;
       case 2:
-        // Some code
-        break;
-      default:
-        // Some code
         break;
     }
-  }
 
-  void testMethod3() {
-    int x = 1;
-    int y = 2;
-    switch (x) {
-      case 1:
-        System.out.println("xyz");
-        break;
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
-    switch (y) { // violation, 'Count of 1 for 'LITERAL_SWITCH' descendant'
-      case 1:
-        switch (y) {
-          case 2:
-            System.out.println("xyz");
-            break;
-        }
-        break;
+    finally {
+      try { }
+      catch (Exception ex) { }
     }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -378,73 +303,41 @@ class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  void testMethod1() {
-    for (int i = 0; i != 10; i++) {
-      System.out.println(i);
-    }
-    int k = 0;
-    for (; ; ) { // violation, 'Count of 0 for 'FOR_CONDITION' descendant'
-      System.out.println(k);
-    }
-  }
+  private int field1;
+  private int field2;
 
-  void testMethod2() {
-    int[] array = new int[] {1, 2, 3, 4, 5};
-    for (int i = 0; i != array.length; i++) {
-      System.out.println(i);
-    }
-    int j = 0;
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
 
-    for (; j != array.length;) {
-      System.out.println(j);
-      j++;
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
     }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
 
-        <p id="Example5-config">
-          To configure the check to produce a violation on an initializer in
-          <code>for</code> performs no setup (where a <code>while</code>
-          statement could be used instead):
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="FOR_INIT"/&gt;
-      &lt;property name="limitedTokens" value="EXPR"/&gt;
-      &lt;property name="minimumNumber" value="1"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-  void testMethod1() {
-    for (int i = 0; i != 10; i++) {
-      System.out.println(i);
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
-    int k = 0;
-    for (; ; ) { // violation, 'Count of 0 for 'FOR_INIT' descendant'
-      System.out.println(k);
+    finally {
+      try { }
+      catch (Exception ex) { }
     }
-  }
 
-  void testMethod2() {
-    int[] array = new int[] {1, 2, 3, 4, 5};
-    for (int i = 0; i != array.length; i++) {
-      System.out.println(i);
+    for (;;) { // violation, 'Count of 0 for 'FOR_CONDITION' descendant'
+      break;
     }
-    int j = 0;
-    // violation below, 'Count of 0 for 'FOR_INIT' descendant'
-    for (; j != array.length;) {
-      System.out.println(j);
-      j++;
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
     }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -469,39 +362,41 @@ class Example5 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
-  void testMethod1() {
-    try {}
-    catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
-      System.out.println("xyz");
-      return;
-    }
-    finally {
-      System.out.println("xyz");
-    }
-  }
+  private int field1;
+  private int field2;
 
-  void testMethod2() {
-    try {}
-    catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
-      System.out.println("xyz");
-      return;
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {  // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
     finally {
-      System.out.println("xyz");
+      try { }
+      catch (Exception ex) { }
     }
-    try {}
-    catch (Exception e) {
-      try {}
-      catch (Exception ex) {
-        // handle exception
-      }
+
+    for (;;) {
+      break;
     }
-    finally {
-      try {}
-      catch (Exception e) {
-        // handle exception
-      }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
     }
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -526,205 +421,41 @@ class Example6 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example7 {
-  void testMethod1() {
-    try {}
-    catch (Exception e) {
-      System.out.println("xyz");
-      return;
-    }
-    finally {
-      System.out.println("xyz");
-    }
-  }
+  private int field1;
+  private int field2;
 
-  void testMethod2() {
-    try {}
-    catch (Exception e) {
-      System.out.println("xyz");
-      return;
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
     }
-    finally {
-      System.out.println("xyz");
-    }
-    try {}
+
+    try { }
     catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
-      try {}
-      catch (Exception ex) {
-        // handle exception
-      }
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
     finally { // violation, 'Count of 1 for 'LITERAL_FINALLY' descendant '
-      try {}
-      catch (Exception e) {
-        // handle exception
-      }
+      try { }
+      catch (Exception ex) { }
     }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
 
-        <p id="Example8-config">
-          To configure the check to produce a violation on a method with
-          too many local variables:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="METHOD_DEF"/&gt;
-      &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
-      &lt;property name="maximumDepth" value="2"/&gt;
-      &lt;property name="maximumNumber" value="1"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
-  void testMethod1() {
-    int var1 = 1;
-  }
-  void testMethod2() { // violation 'Count of 2 for 'METHOD_DEF' descendant'
-    int var1 = 1;
-    int var2 = 2;
-  }
-
-  int testMethod3(int x) {
-    if (x == -1) {
-      return -1;
+    for (;;) {
+      break;
     }
-    else if (x == 0) {
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
       return 0;
     }
-    return -1;
-  }
-  int testMethod4(int x) {
-    if (x == -1) {
-      return -1;
-    }
-    else if (x == 0) {
-      return 0;
-    }
-    else {
-      return x;
-    }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example9-config">
-          To configure the check to produce a violation on a method
-          with too many returns:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="METHOD_DEF"/&gt;
-      &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
-      &lt;property name="maximumNumber" value="2"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example9-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
-  void testMethod1() {
-    int var1 = 1;
-  }
-  void testMethod2() {
-    int var1 = 1;
-    int var2 = 2;
-  }
-
-  int testMethod3(int x) { // violation 'Count of 3 for 'METHOD_DEF' descendant'
-    if (x == -1) {
-      return -1;
-    }
-    else if (x == 0) {
-      return 0;
-    }
-    return -1;
-  }
-  int testMethod4(int x) { // violation 'Count of 3 for 'METHOD_DEF' descendant'
-    if (x == -1) {
-      return -1;
-    }
-    else if (x == 0) {
-      return 0;
-    }
-    else {
-      return x;
-    }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example10-config">
-          To configure the check to produce a violation on a method
-          which throws too many exceptions:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
-      &lt;property name="limitedTokens" value="IDENT"/&gt;
-      &lt;property name="maximumNumber" value="1"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example10-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example10 {
-  void testMethod1() throws ArithmeticException {
-      // ...
-  }
-  // violation below, 'Count of 2 for 'LITERAL_THROWS' descendant'
-  void testMethod2() throws ArithmeticException, ArithmeticException {
-      // ...
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example11-config">
-          To configure the check to produce a violation on a method
-          with too many expressions:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="METHOD_DEF"/&gt;
-      &lt;property name="limitedTokens" value="EXPR"/&gt;
-      &lt;property name="maximumNumber" value="2"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example11-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example11 {
-  void testMethod1() {
-    int x = 1;
-    int z = x + 2;
-  }
-  // violation below, 'Count of 3 for 'METHOD_DEF' descendant'
-  void testMethod2() {
-    int x = 1;
-    int y = 2;
-    int z = x + y;
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -751,54 +482,42 @@ class Example11 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example12 {
-  void testMethod1 () {
-    System.out.println("Hello");
-  }
-  void testMethod2() {
-      ; // violation, 'Empty statement is not allowed'
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example13-config">
-          To configure the check to produce a violation on a class or interface
-          with too many fields:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
-      &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
-      &lt;property name="maximumDepth" value="2"/&gt;
-      &lt;property name="maximumNumber" value="1"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example13-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example13 {
-  private int field1;
-
-  // Some code
-}
-// violation below, 'Count of 2 for 'CLASS_DEF' descendant'
-class ExampleTest {
   private int field1;
   private int field2;
 
-  // Some code
-}
-interface Test1 {
-  int FIELD_1 = 1;
-}
-// violation below,'Count of 2 for 'INTERFACE_DEF' descendant'
-interface Test2 {
-  int FIELD_1 = 1;
-  int FIELD_2 = 2;
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ; // violation, 'Empty statement is not allowed'
+    return 2;
+  }
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -824,89 +543,41 @@ interface Test2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example14 {
-  void testMethod1() {
-    // violation below, 'Total count of 2 exceeds maximum count 1'
-    if (this == null) {
-      System.out.println("xyz");
-    }
-    if (this != null) {
-      // violation above, 'Total count of 2 exceeds maximum count 1'
-      System.out.println("xyz");
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
     }
 
-    Object obj = new Object();
-    if (obj == null) {
-      System.out.println("xyz");
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
     }
-    if (obj != null) {
-      System.out.println("xyz");
+    finally {
+      try { }
+      catch (Exception ex) { }
     }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
 
-        <p id="Example15-config">
-          To configure the check to produce a violation on a <code>String</code>
-          literal equality check:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
-      &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
-      &lt;property name="maximumNumber" value="0"/&gt;
-      &lt;property name="maximumDepth" value="1"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example15-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example15 {
-  void testMethod1() {
-    String str = "abc";
-    if (str.equals("abc")) {
-      System.out.println("equal.");
+    for (;;) {
+      break;
     }
-    if (str == "abc") { // violation, 'Count of 1 for 'EQUAL' descendant'
-      System.out.println("equal.");
+    int a = 1;
+    int b = 2; // violation below, 'Total count of 2 exceeds maximum count 1'
+    if (this == null || str == "abc") {
+      return 0;
     }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example16-config">
-          To configure the check to produce a violation on an assert statement
-          that may have side effects:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="DescendantToken"&gt;
-      &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
-      &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
-        POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
-        BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
-        METHOD_CALL"/&gt;
-      &lt;property name="maximumNumber" value="0"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example16-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example16 {
-  void testMethod1() {
-    int a = 5;
-    // violation below, 'Count of 1 for 'LITERAL_ASSERT' descendant'
-    assert a++ == 0 : "is not";
-    System.out.println(a);
-    assert a == 0 : "is not";
+    assert a++ == 0;
+    ;
+    return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -934,22 +605,522 @@ class Example16 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example17 {
-  void testMethod() {
-    int x = 1;
-    switch (x) { // violation, 'Switch must contain at least one default branch.'
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+    // violation below 'Switch must contain at least one default branch.'
+    switch (x) {
       case 1:
-        System.out.println("hi");
+        break;
+      case 2:
         break;
     }
 
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="DescendantToken_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to produce a violation on an initializer in
+          <code>for</code> performs no setup (where a <code>while</code>
+          statement could be used instead):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="FOR_INIT"/&gt;
+      &lt;property name="limitedTokens" value="EXPR"/&gt;
+      &lt;property name="minimumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
     switch (x) {
       case 1:
-        System.out.println("hi");
         break;
-      default:
-        System.out.println("Default");
+      case 2:
         break;
     }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {  // violation, 'Count of 0 for 'FOR_INIT' descendant'
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase2-config">
+          To configure the check to produce a violation on a method with
+          too many local variables:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="maximumDepth" value="2"/&gt;
+      &lt;property name="maximumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase2 {
+  private int field1;
+  private int field2;
+  // violation below 'Count of 2 for 'METHOD_DEF' descendant'
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase3-config">
+          To configure the check to produce a violation on a method
+          with too many returns:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+      &lt;property name="maximumNumber" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase3 {
+  private int field1;
+  private int field2;
+  // violation below 'Count of 3 for 'METHOD_DEF' descendant'
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase4-config">
+          To configure the check to produce a violation on a method
+          which throws too many exceptions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
+      &lt;property name="limitedTokens" value="IDENT"/&gt;
+      &lt;property name="maximumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase4 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+    // violation above, 'Count of 2 for 'LITERAL_THROWS' descendant'
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase5-config">
+          To configure the check to produce a violation on a method
+          with too many expressions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="limitedTokens" value="EXPR"/&gt;
+      &lt;property name="maximumNumber" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase5 {
+  private int field1;
+  private int field2;
+  // violation below, 'Count of 10 for 'METHOD_DEF' descendant'
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase6-config">
+          To configure the check to produce a violation on a class or interface
+          with too many fields:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="CLASS_DEF,INTERFACE_DEF"/&gt;
+      &lt;property name="limitedTokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="maximumDepth" value="2"/&gt;
+      &lt;property name="maximumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase6-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase6 {
+  private int field1; // violation above 'Count of 2 for 'CLASS_DEF' descendant'
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase7-config">
+          To configure the check to produce a violation on a <code>String</code>
+          literal equality check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="EQUAL,NOT_EQUAL"/&gt;
+      &lt;property name="limitedTokens" value="STRING_LITERAL"/&gt;
+      &lt;property name="maximumNumber" value="0"/&gt;
+      &lt;property name="maximumDepth" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase7 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2; // violation below 'Count of 1 for 'EQUAL' descendant'
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase8-config">
+          To configure the check to produce a violation on an assert statement
+          that may have side effects:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_ASSERT"/&gt;
+      &lt;property name="limitedTokens" value="ASSIGN,DEC,INC,POST_DEC,
+        POST_INC,PLUS_ASSIGN,MINUS_ASSIGN,STAR_ASSIGN,DIV_ASSIGN,MOD_ASSIGN,
+        BSR_ASSIGN,SR_ASSIGN,SL_ASSIGN,BAND_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,
+        METHOD_CALL"/&gt;
+      &lt;property name="maximumNumber" value="0"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase8-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase8 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }
+    catch (Exception e) {
+      try { }
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0; // violation, 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    ;
+    return 2;
   }
 }
 </code></pre></div>
@@ -994,9 +1165,11 @@ class Example17 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="DescendantToken_Package">
+      <subsection name="Fully Qualified Name" id="DescendantToken_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

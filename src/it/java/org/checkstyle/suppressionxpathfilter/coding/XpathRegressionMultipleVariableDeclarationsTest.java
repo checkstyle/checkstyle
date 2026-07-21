@@ -170,4 +170,5 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -49,4 +49,5 @@ public class NonRequiredJavadocTest extends AbstractGoogleModuleTestSupport {
     public void testDefaultRecordFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedInvalidJavadocPositionRecord.java"));
     }
+
 }

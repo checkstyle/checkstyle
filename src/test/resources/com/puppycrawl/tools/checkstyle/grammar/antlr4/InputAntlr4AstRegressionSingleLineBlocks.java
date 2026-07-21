@@ -23,7 +23,7 @@ public class InputAntlr4AstRegressionSingleLineBlocks {
     }
     ;
 
-    public @interface TestAnnnotation5 {
+    public @interface TestAnnotation5 {
         String someValue(); }; // violation
 
     public @interface TestAnnotation6 {}; // ok

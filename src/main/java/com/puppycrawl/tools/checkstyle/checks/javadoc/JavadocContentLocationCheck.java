@@ -113,6 +113,13 @@ public class JavadocContentLocationCheck extends AbstractCheck {
      */
     private JavadocContentLocationOption location = JavadocContentLocationOption.SECOND_LINE;
 
+    /**
+     * Creates a new {@code JavadocContentLocationCheck} instance.
+     */
+    public JavadocContentLocationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -186,7 +193,7 @@ public class JavadocContentLocationCheck extends AbstractCheck {
     private static int findIndexOfFirstNonBlankLine(String commentContent) {
         int lineNo = 0;
         boolean noContent = true;
-        for (int i = 0; i < commentContent.length(); ++i) {
+        for (int i = 0; i < commentContent.length(); i++) {
             final char character = commentContent.charAt(i);
             if (character == '\n') {
                 ++lineNo;

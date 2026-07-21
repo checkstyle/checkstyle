@@ -103,4 +103,5 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -60,6 +60,20 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     /** Outer type with mismatched file name. */
     private DetailAST wrongType;
 
+    /**
+     * Indicates whether the file is a compact source file. Its outer type is an
+     * implicit unnamed class that is not declared with a name in the source, so
+     * there is no type name to compare against the file name.
+     */
+    private boolean isCompactSourceFile;
+
+    /**
+     * Creates a new {@code OuterTypeFilenameCheck} instance.
+     */
+    public OuterTypeFilenameCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -87,25 +101,29 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
         seenFirstToken = false;
         hasPublic = false;
         wrongType = null;
+        isCompactSourceFile = rootAST != null
+                && rootAST.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (seenFirstToken) {
-            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
-                    && TokenUtil.isRootNode(ast.getParent())) {
-                hasPublic = true;
+        if (!isCompactSourceFile) {
+            if (seenFirstToken) {
+                final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+                if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                        && TokenUtil.isRootNode(ast.getParent())) {
+                    hasPublic = true;
+                }
             }
-        }
-        else {
-            final String outerTypeName = TokenUtil.getIdent(ast).getText();
+            else {
+                final String outerTypeName = TokenUtil.getIdent(ast).getText();
 
-            if (!fileName.equals(outerTypeName)) {
-                wrongType = ast;
+                if (!fileName.equals(outerTypeName)) {
+                    wrongType = ast;
+                }
             }
+            seenFirstToken = true;
         }
-        seenFirstToken = true;
     }
 
     @Override

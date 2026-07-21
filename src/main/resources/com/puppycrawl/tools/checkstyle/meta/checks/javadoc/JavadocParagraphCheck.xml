@@ -20,7 +20,8 @@
  Nested paragraph tags are allowed to do that. This check only supports following block-tags:
  &amp;lt;address&amp;gt;,&amp;lt;blockquote&amp;gt;
  ,&amp;lt;div&amp;gt;,&amp;lt;dl&amp;gt;
- ,&amp;lt;h1&amp;gt;,&amp;lt;h2&amp;gt;,&amp;lt;h3&amp;gt;,&amp;lt;h4&amp;gt;,&amp;lt;h5&amp;gt;,&amp;lt;h6&amp;gt;,&amp;lt;hr&amp;gt;
+ ,&amp;lt;h1&amp;gt;,&amp;lt;h2&amp;gt;,&amp;lt;h3&amp;gt;,&amp;lt;h4&amp;gt;,&amp;lt;h5&amp;gt;,
+ &amp;lt;h6&amp;gt;,&amp;lt;hr&amp;gt;
  ,&amp;lt;ol&amp;gt;,&amp;lt;p&amp;gt;,&amp;lt;pre&amp;gt;
  ,&amp;lt;table&amp;gt;,&amp;lt;ul&amp;gt;.
  &lt;/li&gt;
@@ -35,16 +36,12 @@
  It also ignores paragraph tags inside block tags.&lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowNewlineParagraph" type="boolean">
-               <description>Control whether the &amp;lt;p&amp;gt; tag should be placed
- immediately before the first word.</description>
+               <description>Control whether the &amp;lt;p&amp;gt; tag should be placed immediately before the first word.</description>
             </property>
             <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
-               <description>Control when to print violations if the Javadoc being examined by this check
- violates the tight html rules defined at
- &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;
-     Tight-HTML Rules&lt;/a&gt;.</description>
+               <description>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
             </property>
          </properties>
          <message-keys>

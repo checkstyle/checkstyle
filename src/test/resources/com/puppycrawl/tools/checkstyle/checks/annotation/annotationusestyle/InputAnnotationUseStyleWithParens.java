@@ -88,7 +88,10 @@ class Example7 {}
 class Example8 {}
 
 class Foo2 {
-   Foo2(@Another String par1, @Another int par2) {} // 2 violations
+   Foo2(@Another String par1, @Another int par2) {}
+   // 2 violations above:
+   // 'Annotation must have closing parenthesis.'
+   // 'Annotation must have closing parenthesis.'
 }
 
 @interface AnnotationWithAnnotationValue2 {

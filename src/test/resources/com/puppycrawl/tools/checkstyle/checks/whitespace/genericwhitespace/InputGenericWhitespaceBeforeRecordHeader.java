@@ -4,7 +4,7 @@ GenericWhitespace
 
 */
 
-// Java21
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 
 import java.lang.annotation.Target;

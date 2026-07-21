@@ -8,7 +8,7 @@
 
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiteralsExtended"
-             files="JavadocStyleCheck\.java|XMLLogger\.java"/>
+             files="XMLLogger\.java"/>
   <suppress checks="MultipleStringLiteralsExtended"
              files=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
 

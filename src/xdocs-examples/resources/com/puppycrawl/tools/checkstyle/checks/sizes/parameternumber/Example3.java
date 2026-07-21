@@ -12,9 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 
 // xdoc section -- start
 class Example3 extends ExternalService3 {
-
+  // violation 2 lines below 'More than 7 parameters (found 8)'
   @JsonCreator
-  // violation below, 'More than 7 parameters (found 8)'
   Example3(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 
@@ -23,10 +22,9 @@ class Example3 extends ExternalService3 {
            String e, String f, String g, String h) {}
 
   @Override
-  // ok below, overridden method is ignored
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
-
+  // ok above, overridden method is ignored
 }
 
 class ExternalService3 {

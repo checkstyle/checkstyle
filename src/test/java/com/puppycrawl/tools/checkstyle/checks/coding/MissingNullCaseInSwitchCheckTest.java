@@ -55,14 +55,14 @@ public class MissingNullCaseInSwitchCheckTest extends
     @Test
     public void testMissingNullCaseInSwitchWithPattern() throws Exception {
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_KEY),
-            "31:9: " + getCheckMessage(MSG_KEY),
-            "51:20: " + getCheckMessage(MSG_KEY),
-            "68:20: " + getCheckMessage(MSG_KEY),
-            "88:17: " + getCheckMessage(MSG_KEY),
+            "13:9: " + getCheckMessage(MSG_KEY),
+            "33:9: " + getCheckMessage(MSG_KEY),
+            "53:20: " + getCheckMessage(MSG_KEY),
+            "70:20: " + getCheckMessage(MSG_KEY),
+            "90:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingNullCaseInSwitchWithPattern.java"),
+                getNonCompilablePath("InputMissingNullCaseInSwitchWithPattern.java"),
             expected);
     }
 
@@ -80,14 +80,14 @@ public class MissingNullCaseInSwitchCheckTest extends
     @Test
     public void testMissingNullCaseInSwitchWithRecordPattern() throws Exception {
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_KEY),
-            "32:9: " + getCheckMessage(MSG_KEY),
-            "52:20: " + getCheckMessage(MSG_KEY),
-            "69:20: " + getCheckMessage(MSG_KEY),
-            "90:17: " + getCheckMessage(MSG_KEY),
+            "13:9: " + getCheckMessage(MSG_KEY),
+            "34:9: " + getCheckMessage(MSG_KEY),
+            "54:20: " + getCheckMessage(MSG_KEY),
+            "71:20: " + getCheckMessage(MSG_KEY),
+            "92:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputMissingNullCaseInSwitchWithRecordPattern.java"),
+                getNonCompilablePath("InputMissingNullCaseInSwitchWithRecordPattern.java"),
             expected);
     }
 
@@ -116,4 +116,5 @@ public class MissingNullCaseInSwitchCheckTest extends
                 getPath("InputMissingNullCaseInSwitchWithPrimitives.java"),
             expected);
     }
+
 }

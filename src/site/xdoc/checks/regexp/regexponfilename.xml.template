@@ -99,6 +99,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename/Example5.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to forbid files that do not start with 'Test' in folders
+          named 'regexponfilename':
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example6:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -122,11 +137,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpOnFilename_Package">
-        <p>
-          com.puppycrawl.tools.checkstyle.checks.regexp
-        </p>
-      </subsection>
+        <subsection name="Fully Qualified Name" id="RegexpOnFilename_Fully_Qualified_Name">
+          <p> com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck</p>
+          <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+          </p>
+        </subsection>
 
       <subsection name="Parent Module" id="RegexpOnFilename_Parent_Module">
         <macro name="parent-module">

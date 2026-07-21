@@ -120,8 +120,35 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/Example6.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+        Config example of ignoreNumbers option:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/Example7.java"/>
+          <param name="type" value="config"/>
         </macro>
-
+        <p id="Example7-code">results in the following violations:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+        Config example of ignoreAnnotation option:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">results in the following violations:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="MagicNumber_Example_of_Usage">
@@ -148,9 +175,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="MagicNumber_Package">
+      <subsection name="Fully Qualified Name" id="MagicNumber_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.coding
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
         </p>
       </subsection>
 

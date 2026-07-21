@@ -20,7 +20,7 @@ public class InputLambda3 {
 
     public static void testVoidLambda(TestOfVoidLambdas test) {
         LOG.info("Method called");
-        test.doSmth();
+        test.doSomething();
     }
 
 
@@ -32,6 +32,6 @@ public class InputLambda3 {
 
     private interface TestOfVoidLambdas {
 
-        public void doSmth();
+        public void doSomething();
     }
 }

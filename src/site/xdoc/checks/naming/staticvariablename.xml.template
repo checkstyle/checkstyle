@@ -43,7 +43,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          An example of how to suppress the check to public and protected types is:
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores is:
         </p>
         <macro name="example">
           <param name="path"
@@ -57,9 +58,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores. Also, suppress the check from being
-          applied to private and package-private types:
+          An example of how to suppress the check to public types is:
         </p>
         <macro name="example">
           <param name="path"
@@ -72,6 +71,43 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check to protected types is:
+        </p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example5-config">An example of how to suppress the check to private types is:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check to package-private types is:
+        </p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Code Example:</p>
+        <macro name="example">
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/staticvariablename/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="StaticVariableName_Example_of_Usage">
@@ -79,6 +115,11 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+StaticVariableName">
@@ -98,8 +139,12 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="StaticVariableName_Package">
-        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      <subsection name="Fully Qualified Name" id="StaticVariableName_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
       </subsection>
 
       <subsection name="Parent Module" id="StaticVariableName_Parent_Module">

@@ -47,8 +47,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="^\s*+$" name="format" type="java.util.regex.Pattern">
-               <description>Specify the RegExp to match against warnings. Any warning
- being suppressed matching this pattern will be flagged.</description>
+               <description>Specify the RegExp to match against warnings. Any warning being suppressed matching this pattern will be flagged.</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF,RECORD_DEF,PATTERN_VARIABLE_DEF"
                       name="tokens"

@@ -184,8 +184,12 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      * @return regular expression pattern given key name
      */
     private static Pattern getKeyPattern(String keyName) {
-        final String keyPatternString = "^" + SPACE_PATTERN.matcher(keyName)
-                .replaceAll(Matcher.quoteReplacement("\\\\ ")) + "[\\s:=].*";
+        final String keyNameWithEscapedSpaces = SPACE_PATTERN.matcher(keyName)
+            .replaceAll(Matcher.quoteReplacement("\\ "));
+
+        final String keyPatternString = "^"
+            + Pattern.quote(keyNameWithEscapedSpaces)
+            + "[\\s=:].*";
         return Pattern.compile(keyPatternString);
     }
 
@@ -206,6 +210,13 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
          * Holding the keys in the same order as in the file.
          */
         private final List<Object> keyList = new ArrayList<>();
+
+        /**
+         * Creates a new {@code SequencedProperties} instance.
+         */
+        private SequencedProperties() {
+            // no code by default
+        }
 
         /**
          * Returns a copy of the keys.
@@ -236,4 +247,5 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
             return null;
         }
     }
+
 }

@@ -46,6 +46,10 @@
             Sun Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UpperEll">
             Checkstyle Style</a>
           </li>
@@ -63,9 +67,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="UpperEll_Package">
+      <subsection name="Fully Qualified Name" id="UpperEll_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

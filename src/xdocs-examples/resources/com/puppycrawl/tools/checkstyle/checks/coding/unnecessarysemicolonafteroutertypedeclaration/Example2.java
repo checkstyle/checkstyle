@@ -16,18 +16,9 @@ class Example2 {
 
   }; // ok, nested type declarations are ignored
 
-}; // violation 'Unnecessary semicolon'
+};   // violation 'Unnecessary semicolon'
 
-interface T {
-
-};
-
-enum U {
-
-};
-
-@interface V {
+interface ExampleTwo {
 
 };
 // xdoc section -- end
-

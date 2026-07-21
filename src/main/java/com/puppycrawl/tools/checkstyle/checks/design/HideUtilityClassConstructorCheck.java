@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import java.util.Collections;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -78,7 +77,14 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
      * with their simple names, this property should contain the annotations with the same
      * simple names.
      */
-    private Set<String> ignoreAnnotatedBy = Collections.emptySet();
+    private Set<String> ignoreAnnotatedBy = Set.of();
+
+    /**
+     * Creates a new {@code HideUtilityClassConstructorCheck} instance.
+     */
+    public HideUtilityClassConstructorCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to ignore classes annotated with the specified annotation(s). Annotation names

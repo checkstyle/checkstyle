@@ -37,7 +37,7 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
           """
           \\u005c
           """;
-      // The following have no escape sequences, should not cause violations
+      // ok,  The following have no escape sequences
       final String r9 =
           """
           \\u000b
@@ -131,7 +131,7 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         """
         \\u005c
         """;
-    // The following have no escape sequences, should not cause violations
+    // ok, The following have no escape sequences
     String r10 =
         """
         \\u000b
@@ -167,15 +167,15 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
         """
         \u000csssdfsd
         """; // violation 2 lines above 'Consider using special escape sequence'
-    final String r4 = // violation below 'Consider using special escape sequence'
+    final String r4 =
         """
         \u0022
-        """; // violation 2 lines above 'Unicode escape(s) usage should be avoided.
-    final String r5 = // violation below 'Consider using special escape sequence'
+        """; // violation 2 lines above 'Consider using special escape sequence'
+    final String r5 =
         """
         \u000csssdfsd
-        """; // violation 2 lines above 'Unicode escape(s) usage should be avoided.
-    // The following have no escape sequences, should not cause violations
+        """; // violation 2 lines above 'Consider using special escape sequence'
+    // ok, The following have no escape sequences
     final String r6 =
         """
         \u000b
@@ -295,7 +295,7 @@ public class InputSpecialEscapeSequencesInTextBlockForUnicodeValues {
               """
               \\u005c
               """;
-          // The following have no escape sequences, should not cause violations
+          // ok, The following have no escape sequences
           String r10 =
               """
               \\u000b

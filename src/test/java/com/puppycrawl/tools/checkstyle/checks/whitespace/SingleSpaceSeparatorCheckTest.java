@@ -61,36 +61,35 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "8:10: " + getCheckMessage(MSG_KEY),
             "8:28: " + getCheckMessage(MSG_KEY),
-            "11:9: " + getCheckMessage(MSG_KEY),
-            "13:19: " + getCheckMessage(MSG_KEY),
-            "13:52: " + getCheckMessage(MSG_KEY),
-            "14:21: " + getCheckMessage(MSG_KEY),
-            "15:12: " + getCheckMessage(MSG_KEY),
-            "15:16: " + getCheckMessage(MSG_KEY),
-            "18:4: " + getCheckMessage(MSG_KEY),
-            "19:6: " + getCheckMessage(MSG_KEY),
-            "20:8: " + getCheckMessage(MSG_KEY),
-            "21:9: " + getCheckMessage(MSG_KEY),
-            "24:14: " + getCheckMessage(MSG_KEY),
-            "24:24: " + getCheckMessage(MSG_KEY),
-            "24:33: " + getCheckMessage(MSG_KEY),
-            "25:16: " + getCheckMessage(MSG_KEY),
-            "25:23: " + getCheckMessage(MSG_KEY),
-            "26:17: " + getCheckMessage(MSG_KEY),
-            "26:24: " + getCheckMessage(MSG_KEY),
-            "27:20: " + getCheckMessage(MSG_KEY),
-            "28:22: " + getCheckMessage(MSG_KEY),
-            "33:22: " + getCheckMessage(MSG_KEY),
-            "33:28: " + getCheckMessage(MSG_KEY),
-            "34:15: " + getCheckMessage(MSG_KEY),
-            "34:24: " + getCheckMessage(MSG_KEY),
-            "34:32: " + getCheckMessage(MSG_KEY),
-            "34:47: " + getCheckMessage(MSG_KEY),
-            "35:17: " + getCheckMessage(MSG_KEY),
-            "35:23: " + getCheckMessage(MSG_KEY),
-            "37:17: " + getCheckMessage(MSG_KEY),
-            "37:34: " + getCheckMessage(MSG_KEY),
-            "38:8: " + getCheckMessage(MSG_KEY),
+            "15:9: " + getCheckMessage(MSG_KEY),
+            "17:19: " + getCheckMessage(MSG_KEY),
+            "17:52: " + getCheckMessage(MSG_KEY),
+            "22:21: " + getCheckMessage(MSG_KEY),
+            "23:12: " + getCheckMessage(MSG_KEY),
+            "23:16: " + getCheckMessage(MSG_KEY),
+            "30:4: " + getCheckMessage(MSG_KEY),
+            "32:6: " + getCheckMessage(MSG_KEY),
+            "34:8: " + getCheckMessage(MSG_KEY),
+            "36:9: " + getCheckMessage(MSG_KEY),
+            "39:14: " + getCheckMessage(MSG_KEY),
+            "39:24: " + getCheckMessage(MSG_KEY),
+            "39:33: " + getCheckMessage(MSG_KEY),
+            "44:16: " + getCheckMessage(MSG_KEY),
+            "44:23: " + getCheckMessage(MSG_KEY),
+            "48:17: " + getCheckMessage(MSG_KEY),
+            "48:24: " + getCheckMessage(MSG_KEY),
+            "53:20: " + getCheckMessage(MSG_KEY),
+            "55:22: " + getCheckMessage(MSG_KEY),
+            "60:22: " + getCheckMessage(MSG_KEY),
+            "60:28: " + getCheckMessage(MSG_KEY),
+            "64:15: " + getCheckMessage(MSG_KEY),
+            "64:24: " + getCheckMessage(MSG_KEY),
+            "64:32: " + getCheckMessage(MSG_KEY),
+            "64:47: " + getCheckMessage(MSG_KEY),
+            "71:17: " + getCheckMessage(MSG_KEY),
+            "73:17: " + getCheckMessage(MSG_KEY),
+            "73:34: " + getCheckMessage(MSG_KEY),
+            "78:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -102,10 +101,10 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "12:11: " + getCheckMessage(MSG_KEY),
             "12:43: " + getCheckMessage(MSG_KEY),
-            "13:14: " + getCheckMessage(MSG_KEY),
-            "20:14: " + getCheckMessage(MSG_KEY),
-            "20:25: " + getCheckMessage(MSG_KEY),
-            "21:8: " + getCheckMessage(MSG_KEY),
+            "16:14: " + getCheckMessage(MSG_KEY),
+            "23:14: " + getCheckMessage(MSG_KEY),
+            "23:25: " + getCheckMessage(MSG_KEY),
+            "28:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -115,7 +114,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSpaceErrorsInChildNodes() throws Exception {
         final String[] expected = {
-            "12:16: " + getCheckMessage(MSG_KEY),
+            "13:16: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -125,7 +124,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMinColumnNo() throws Exception {
         final String[] expected = {
-            "12:4: " + getCheckMessage(MSG_KEY),
+            "13:4: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -135,7 +134,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWhitespaceInStartOfTheLine() throws Exception {
         final String[] expected = {
-            "12:7: " + getCheckMessage(MSG_KEY),
+            "13:7: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -145,7 +144,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSpaceErrorsIfCommentsIgnored() throws Exception {
         final String[] expected = {
-            "20:14: " + getCheckMessage(MSG_KEY),
+            "21:14: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -172,10 +171,10 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
             "36:14: " + getCheckMessage(MSG_KEY),
             "36:25: " + getCheckMessage(MSG_KEY),
             "36:37: " + getCheckMessage(MSG_KEY),
-            "37:43: " + getCheckMessage(MSG_KEY),
-            "37:46: " + getCheckMessage(MSG_KEY),
-            "38:15: " + getCheckMessage(MSG_KEY),
-            "40:16: " + getCheckMessage(MSG_KEY),
+            "41:43: " + getCheckMessage(MSG_KEY),
+            "41:46: " + getCheckMessage(MSG_KEY),
+            "45:15: " + getCheckMessage(MSG_KEY),
+            "47:16: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorWithEmoji.java"), expected);
@@ -186,14 +185,15 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "25:22: " + getCheckMessage(MSG_KEY),
             "25:26: " + getCheckMessage(MSG_KEY),
-            "26:26: " + getCheckMessage(MSG_KEY),
-            "27:13: " + getCheckMessage(MSG_KEY),
-            "34:8: " + getCheckMessage(MSG_KEY),
-            "36:37: " + getCheckMessage(MSG_KEY),
-            "38:46: " + getCheckMessage(MSG_KEY),
-            "40:24: " + getCheckMessage(MSG_KEY),
+            "29:26: " + getCheckMessage(MSG_KEY),
+            "30:13: " + getCheckMessage(MSG_KEY),
+            "37:8: " + getCheckMessage(MSG_KEY),
+            "39:37: " + getCheckMessage(MSG_KEY),
+            "41:46: " + getCheckMessage(MSG_KEY),
+            "43:24: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
             getPath("InputSingleSpaceSeparatorCommentsWithEmoji.java"), expected);
     }
+
 }

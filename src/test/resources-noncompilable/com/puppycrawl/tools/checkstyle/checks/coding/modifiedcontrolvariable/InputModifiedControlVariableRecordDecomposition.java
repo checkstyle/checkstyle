@@ -1,15 +1,15 @@
 /*
 ModifiedControlVariable
 skipEnhancedForLoopVariable = (default)false
-tokens = (default)OBJBLOCK, LITERAL_FOR, FOR_ITERATOR, FOR_EACH_CLAUSE, ASSIGN, \
+tokens = (default)OBJBLOCK, COMPACT_COMPILATION_UNIT, LITERAL_FOR, FOR_ITERATOR, FOR_EACH_CLAUSE, \
+           ASSIGN, \
          PLUS_ASSIGN, MINUS_ASSIGN, STAR_ASSIGN, DIV_ASSIGN, MOD_ASSIGN, SR_ASSIGN, \
          BSR_ASSIGN, SL_ASSIGN, BAND_ASSIGN, BXOR_ASSIGN, BOR_ASSIGN, INC, \
          POST_INC, DEC, POST_DEC
 
-
 */
 
-// non-compiled with javac: compiling on jdk before Java21 (java20)
+// non-compiled with javac: but was compiled on jdk before 21, so we need to continue to support
 package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 
 import java.util.List;

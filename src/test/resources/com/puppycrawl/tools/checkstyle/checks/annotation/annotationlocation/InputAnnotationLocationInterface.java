@@ -14,14 +14,17 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
+// violation 3 lines below '.* incorrect .* level 2, .* should be 0.'
+// violation 3 lines below '.* should be alone on line.'
 @InterfaceAnnotation(value = "foo")
-  @InterfaceAnnotation // violation '.* incorrect .* level 2, .* should be 0.'
-// violation below 'Annotation 'InterfaceAnnotation' should be alone on line.'
+  @InterfaceAnnotation
 @InterfaceAnnotation("bar") interface InputAnnotationLocationInterface {
 
+    // violation 3 lines below '.* incorrect .* level 6, .* should be 4.'
+    // violation 3 lines below '.* should be alone on line.'
     @InterfaceAnnotation(value = "foo")
-      @InterfaceAnnotation // violation '.* incorrect .* level 6, .* should be 4.'
-    @InterfaceAnnotation("bar") void method( // violation '.* should be alone on line.'
+      @InterfaceAnnotation
+    @InterfaceAnnotation("bar") void method(
         int param1,
         @InterfaceAnnotation(value = "foo")
           @InterfaceAnnotation

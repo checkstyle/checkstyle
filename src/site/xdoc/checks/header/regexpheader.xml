@@ -130,7 +130,7 @@ package com.puppycrawl.tools.checkstyle.checks.header.regexpheader;
 public class Example2 {
     // Some code
 }
-// violation 6 lines above 'Missing a header - not enough lines in file.'
+// violation first line 'Missing a header - not enough lines in file.'
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-raw">
           To configure the check to verify that each file starts with the
@@ -220,9 +220,11 @@ public class Example4 { }
         </p>
       </subsection>
 
-      <subsection name="Package" id="RegexpHeader_Package">
+      <subsection name="Fully Qualified Name" id="RegexpHeader_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck</p>
         <p>
-          com.puppycrawl.tools.checkstyle.checks.header
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
         </p>
       </subsection>
 

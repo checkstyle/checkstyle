@@ -11,9 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper;
 
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example1;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example3;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example7;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.UseCase1;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -22,18 +20,34 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// xdoc section -- start
-public class Example5 {
-  Set set = new HashSet(); // Ignored 1
-  Map map = new HashMap(); // Ignored 2
-  Example1 example1 = new Example1(); // Ignore 3
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.CharArrayWriter;
+import java.io.PipedReader;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
-  AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
-  BigInteger bigInteger = new BigInteger("0");
-  Example2 example2 = new Example2();
-  Example3 example3 = new Example3();
-  Example4 example4 = new Example4();
-  Example6 example6 = new Example6();
-  Example7 example7 = new Example7(); // Counted 7
+// xdoc section -- start
+// violation below, "Class Data Abstraction Coupling is 11 (max allowed is 7)."
+public class Example5 {
+  private Set<Object> set = new HashSet<>();         // ok, ignored
+  private Map<Object, Object> map = new HashMap<>(); // ok, ignored
+  private Object object = new Object();              // ok, ignored
+
+  private AtomicInteger atomicInteger = new AtomicInteger();
+  private BigInteger bigInteger = new BigInteger("0");
+  private BigDecimal bigDecimal = new BigDecimal("0");
+  private MathContext mathContext = new MathContext(0);
+
+  private Example1 example1 = new Example1();        // ok, ignored
+  private UseCase1 useCase1 = new UseCase1();
+
+  private ByteArrayInputStream byteArrayInputStream =
+          new ByteArrayInputStream(new byte[1]);
+  private CharArrayWriter charArrayWriter = new CharArrayWriter();
+
+  private PipedReader pipedReader = new PipedReader();
+  private BufferedReader bufferedReader =
+          new BufferedReader(pipedReader);
 }
 // xdoc section -- end

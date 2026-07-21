@@ -343,14 +343,15 @@ public final class TokenUtil {
     }
 
     /**
-     * Determines if given AST is a root node, i.e. if the type
-     * of the token we are checking is {@code COMPILATION_UNIT}.
+     * Determines if given AST is a root node, i.e. if the type of the token
+     * we are checking is {@code COMPILATION_UNIT} or {@code COMPACT_COMPILATION_UNIT}.
      *
      * @param ast AST to check
      * @return true if AST is a root node
      */
     public static boolean isRootNode(DetailAST ast) {
-        return ast.getType() == TokenTypes.COMPILATION_UNIT;
+        return ast.getType() == TokenTypes.COMPILATION_UNIT
+                || ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     /**

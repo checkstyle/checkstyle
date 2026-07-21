@@ -42,6 +42,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   <li>
  *    Opening and closing quotes are vertically aligned.
  *   </li>
+ *   <li>
+ *    Each line of text in the text block must be indented at
+ *    least as much as the opening and closing quotes.
+ *   </li>
  * </ol>
  * Note: Closing quotes can be followed by additional code on the same line.
  *
@@ -64,6 +68,18 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_VERTICALLY_UNALIGNED = "textblock.vertically.unaligned";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_TEXT_BLOCK_CONTENT = "textblock.indentation";
+
+    /**
+     * Creates a new {@code TextBlockGoogleStyleFormattingCheck} instance.
+     */
+    public TextBlockGoogleStyleFormattingCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -96,6 +112,11 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         if (!quotesAreVerticallyAligned(ast, closingQuotes)) {
             log(closingQuotes, MSG_VERTICALLY_UNALIGNED);
         }
+
+        if (!isContentIndentedProperly(ast)) {
+            log(ast.getFirstChild(), MSG_TEXT_BLOCK_CONTENT);
+        }
+
     }
 
     /**
@@ -126,33 +147,20 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @return true if the opening quotes are on the new line.
      */
     private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
-        DetailAST parent = openingQuotes;
-        boolean quotesAreNotPreceded = true;
-        while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
-                || parent.getType() == TokenTypes.EXPR) {
-
-            parent = parent.getParent();
-
+        final DetailAST previousSibling = openingQuotes.getPreviousSibling();
+        boolean quotesAreNotPreceded = previousSibling == null
+                || !TokenUtil.areOnSameLine(openingQuotes, previousSibling);
+        for (DetailAST parent = openingQuotes.getParent(); parent != null;
+             parent = parent.getParent()) {
+            if (!quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
+                    || parent.getType() == TokenTypes.EXPR) {
+                continue;
+            }
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 quotesAreNotPreceded = !quotesArePrecededWithComma(openingQuotes);
             }
-            else if (parent.getType() == TokenTypes.QUESTION
-                    && openingQuotes.getPreviousSibling() != null) {
-                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes,
-                        openingQuotes.getPreviousSibling());
-            }
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
-            }
-
-            if (TokenUtil.isOfType(parent.getType(),
-                    TokenTypes.LITERAL_RETURN,
-                    TokenTypes.VARIABLE_DEF,
-                    TokenTypes.METHOD_DEF,
-                    TokenTypes.CTOR_DEF,
-                    TokenTypes.ENUM_DEF,
-                    TokenTypes.CLASS_DEF)) {
-                break;
             }
         }
         return quotesAreNotPreceded;
@@ -185,4 +193,35 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         }
         return Character.isWhitespace(text.charAt(index));
     }
+
+    /**
+     * Determine if the Text Block content indentation is equal or less than
+     * opening quotes indentation.
+     *
+     * @param openingQuotes openingQuotes
+     * @return true if text-block content is properly indented.
+     */
+    private static boolean isContentIndentedProperly(DetailAST openingQuotes) {
+        final int quoteIndent = openingQuotes.getColumnNo();
+        final DetailAST textAst = openingQuotes.getFirstChild();
+        boolean result = true;
+
+        final String[] lines = textAst.getText().split("\n", -1);
+
+        for (String line : lines) {
+
+            int indentation = 0;
+            while (indentation < line.length()
+                    && Character.isWhitespace(line.charAt(indentation))) {
+                indentation++;
+            }
+
+            if (indentation < quoteIndent && indentation < line.length()) {
+                result = false;
+            }
+        }
+
+        return result;
+    }
+
 }

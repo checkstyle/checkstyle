@@ -4,7 +4,7 @@
     <module name="MemberName"/>
     <module name="ConstantName"/>
     <module name="ParameterNumber">
-      <property name="id" value="ParamNumberId"/>
+      <property name="id" value="ParamListShouldBeShort"/>
     </module>
     <module name="NoWhitespaceAfter"/>
     <module name="SuppressWarningsHolder"/>
@@ -19,21 +19,19 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder
 class Example1 {
   private int K; // violation, 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
-  private int J; // violation suppressed
+  private int J;
 
-  private static final int i = 0; // violation, 'Name 'i' must match pattern'
-  @SuppressWarnings("checkstyle:constantname")
-  private static final int m = 0; // violation suppressed
-
-  @SuppressWarnings("ParamNumberId")
-    public void needsLotsOfParameters1 (int a, // violation suppressed
-     int b, int c, int d, int e, int f, int g, int h) {
-     // ...
-  }
+  @SuppressWarnings("ParamListShouldBeShort")
+    public void needsLotsOfParameters1 (int a,
+     int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
   // violation above, 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
-  private int [] ARRAY; // violation suppressed
+  private int [] ARRAY;
+  // violation 2 lines below 'More than 7 parameters (found 8)'
+  @SuppressWarnings("paramcounter")
+    public void needsLotsOfParameters2 (int a,
+     int b, int c, int d, int e, int f, int g, int h) {}
 }
 // xdoc section -- end
