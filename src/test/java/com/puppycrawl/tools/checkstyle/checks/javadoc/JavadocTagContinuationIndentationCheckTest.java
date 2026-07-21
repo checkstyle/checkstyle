@@ -185,9 +185,9 @@ public class JavadocTagContinuationIndentationCheckTest
     @Test
     public void testJavadocTagContinuationIndentationCheck1() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_KEY, 4),
-            "22: " + getCheckMessage(MSG_KEY, 4),
-            "23: " + getCheckMessage(MSG_KEY, 4),
+            "25: " + getCheckMessage(MSG_KEY, 4),
+            "28: " + getCheckMessage(MSG_KEY, 4),
+            "29: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationCheck1.java"),

@@ -10,6 +10,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
 
 public class InputJavadocTagContinuationIndentationCheck1 {
 
+    /****
+     * Some Javadoc.
+     *@see Something with violation
+     ****/
+    void foo1() {}
+
     // violation 6 lines below 'Line continuation .* expected level should be 4'
     // violation 8 lines below 'Line continuation .* expected level should be 4'
     // violation 8 lines below 'Line continuation .* expected level should be 4'
