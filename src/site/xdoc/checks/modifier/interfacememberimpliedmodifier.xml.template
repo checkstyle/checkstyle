@@ -107,6 +107,88 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types
+          are explicitly specified, but the <code>public</code> modifier on nested types does not
+          need to be.
+        </p>
+        <p id="Example5-config">
+          Configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+          Code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types
+          are explicitly specified, but the <code>static</code> modifier on nested types does not
+          need to be.
+        </p>
+        <p id="Example6-config">
+          Configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          Code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>public</code> modifier on fields does not need to be.
+        </p>
+        <p id="Example7-config">
+          Configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">
+          Code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>static</code> modifier on fields does not need to be.
+        </p>
+        <p id="Example8-config">
+          Configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">
+          Code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/interfacememberimpliedmodifier/Example8.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

@@ -158,7 +158,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/illegaltokentext",
             "checks/descendanttoken",
             "checks/javadoc/javadocblocktaglocation",
-            "checks/modifier/interfacememberimpliedmodifier",
             "checks/regexp/regexp",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
@@ -166,7 +165,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpsinglelinejava",
             "checks/translation",
             "filters/suppressioncommentfilter",
-            "filters/suppressionsinglefilter",
             "filters/suppressionxpathfilter"
     );
 
