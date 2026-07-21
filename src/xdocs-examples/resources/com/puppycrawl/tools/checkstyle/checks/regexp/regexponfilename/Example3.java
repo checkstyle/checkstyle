@@ -10,13 +10,13 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
-/*
 // xdoc section -- start
-.../checkstyle.xml
-.../Test Example1.xml
-.../TestExample2.xml
-.../TestExample3.md  // violation, 'No *.md files other than README.md'
-.../TestExample4.xml
+class Example3 {
+  // ok, checkstyle.xml is not processed
+  // ok, Test Example1.xml is not processed
+  // ok, TestExample2.xml is not processed
+  // violation 'No *.md files other than README.md'
+  // ok, TestExample4.xml is not processed
+  // ok, Example3.java is not processed
+}
 // xdoc section -- end
-*/
-class Example3{}
