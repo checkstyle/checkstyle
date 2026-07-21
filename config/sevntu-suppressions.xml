@@ -10,7 +10,7 @@
   <suppress checks="MultipleStringLiteralsExtended"
              files="XMLLogger\.java"/>
   <suppress checks="MultipleStringLiteralsExtended"
-             files=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
+             files=".*/src/(test|it|xdocs-examples)/"/>
 
   <!-- If we change declaration order, Illegal forward reference will appear.
   See https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/415 -->
@@ -34,7 +34,7 @@
              files="FullIdentTest\.java"/>
 
   <!-- Tone down the checking for test code -->
-  <suppress checks="SingleBreakOrContinue" files="[\\/]XdocsPagesTest\.java"/>
+  <suppress checks="SingleBreakOrContinue" files="/XdocsPagesTest\.java"/>
 
   <!-- MainTest is technically not part of the checkstyle library,
   so static Loggers are okay there. -->
