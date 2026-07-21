@@ -90,4 +90,64 @@ public class InterfaceMemberImpliedModifierCheckExamplesTest
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "18:3: " + getCheckMessage(MSG_KEY, "final"),
+            "18:3: " + getCheckMessage(MSG_KEY, "public"),
+            "18:3: " + getCheckMessage(MSG_KEY, "static"),
+            "26:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "26:3: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "18:3: " + getCheckMessage(MSG_KEY, "final"),
+            "18:3: " + getCheckMessage(MSG_KEY, "public"),
+            "18:3: " + getCheckMessage(MSG_KEY, "static"),
+            "26:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "26:3: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "public"),
+            "34:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "18:3: " + getCheckMessage(MSG_KEY, "final"),
+            "18:3: " + getCheckMessage(MSG_KEY, "static"),
+            "26:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "26:3: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "18:3: " + getCheckMessage(MSG_KEY, "final"),
+            "18:3: " + getCheckMessage(MSG_KEY, "public"),
+            "26:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "26:3: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "34:5: " + getCheckMessage(MSG_KEY, "abstract"),
+            "34:5: " + getCheckMessage(MSG_KEY, "public"),
+        };
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
 }
