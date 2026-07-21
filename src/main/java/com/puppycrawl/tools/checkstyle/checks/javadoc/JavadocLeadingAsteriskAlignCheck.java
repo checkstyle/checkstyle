@@ -120,9 +120,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
     @Override
     public void finishJavadocTree(DetailNode rootAst) {
-        // this method checks the alignment of closing javadoc tag. If the ending line has
-        // a leading asterisk of its own, that asterisk was already handled by
-        // visitJavadocToken and the closing tag's own alignment is ignored.
+        // this method checks the alignment of closing javadoc tag.
         final DetailAST javadocEndToken = getBlockCommentAst().getLastChild();
         final String lastLine = fileLines[javadocEndToken.getLineNo() - 1];
         final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
