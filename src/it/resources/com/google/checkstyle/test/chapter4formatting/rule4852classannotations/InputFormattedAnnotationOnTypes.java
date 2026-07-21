@@ -22,4 +22,8 @@ public final class InputFormattedAnnotationOnTypes {
   /** Somejavadoc data. */
   @Deprecated
   record Point(int x) {}
+
+  /** Somejavadoc data. */
+  @Deprecated
+  @interface Foo2 {}
 }
