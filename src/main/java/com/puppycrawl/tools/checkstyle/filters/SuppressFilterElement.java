@@ -151,10 +151,27 @@ public class SuppressFilterElement
      */
     private boolean isFileNameAndModuleNameMatching(AuditEvent event) {
         return event.getFileName() != null
-                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
+                && (fileRegexp == null || isFileMatch(event.getFileName()))
                 && event.getViolation() != null
                 && (moduleId == null || moduleId.equals(event.getModuleId()))
                 && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
+    }
+
+    /**
+     * Checks if the given file name matches the file regexp.
+     * If there is no match and the OS uses backslashes (Windows),
+     * it converts backslashes to forward slashes and tries again.
+     *
+     * @param fileName the name of the file to check
+     * @return true if the file matches the regexp
+     */
+    private boolean isFileMatch(String fileName) {
+        boolean match = fileRegexp.matcher(fileName).find();
+        if (!match) {
+            final String slashesFileName = fileName.replace('\\', '/');
+            match = fileRegexp.matcher(slashesFileName).find();
+        }
+        return match;
     }
 
     /**
