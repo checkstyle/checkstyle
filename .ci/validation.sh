@@ -1178,7 +1178,7 @@ no-error-trino)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   echo "Cloning Trino sources..."
-  checkout_from https://github.com/trinodb/trino.git
+  checkout_from https://github.com/trinodb/trino.git "f45e24a240b089a6499c9bc1a4193b3fa""ba798ef"
   cd .ci-temp/trino
   echo "Running Checkstyle ${CS_POM_VERSION} on Trino..."
   ./mvnw -e --no-transfer-progress checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
