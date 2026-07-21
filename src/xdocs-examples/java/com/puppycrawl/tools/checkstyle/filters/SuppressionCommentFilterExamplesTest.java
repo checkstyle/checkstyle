@@ -138,6 +138,74 @@ public class SuppressionCommentFilterExamplesTest extends AbstractExamplesModule
     }
 
     @Test
+    public void testExample4() throws Exception {
+        final String[] expectedWithoutFilter = {
+            "17:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR2", "^[a-z][a-zA-Z0-9]*$"),
+            "24:27: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "var3", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "31:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Exception"),
+            "32:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Error"),
+            "37:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR4", "^[a-z][a-zA-Z0-9]*$"),
+            "41:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "varC", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        };
+
+        final String[] expectedWithFilter = {
+            "17:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR1", "^[a-z][a-zA-Z0-9]*$"),
+            "24:27: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "var3", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "31:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Exception"),
+            "32:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Error"),
+            "37:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR4", "^[a-z][a-zA-Z0-9]*$"),
+            "41:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "varC", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expectedWithoutFilter = {
+            "17:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR2", "^[a-z][a-zA-Z0-9]*$"),
+            "24:27: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "var3", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "31:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Exception"),
+            "32:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Error"),
+            "37:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR4", "^[a-z][a-zA-Z0-9]*$"),
+            "41:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "varC", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        };
+
+        final String[] expectedWithFilter = {
+            "17:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR1", "^[a-z][a-zA-Z0-9]*$"),
+            "24:27: " + getCheckMessage(ConstantNameCheck.class,
+                    MSG_INVALID_PATTERN, "var3", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+            "31:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Exception"),
+            "32:5: " + getCheckMessage(IllegalCatchCheck.class, MSG_KEY, "Error"),
+            "37:7: " + getCheckMessage(MemberNameCheck.class,
+                    MSG_INVALID_PATTERN, "VAR4", "^[a-z][a-zA-Z0-9]*$"),
+            "41:27: " + getCheckMessage(ConstantNameCheck.class,
+                        MSG_INVALID_PATTERN, "varC", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expectedWithoutFilter = {
             "20:7: " + getCheckMessage(MemberNameCheck.class,
