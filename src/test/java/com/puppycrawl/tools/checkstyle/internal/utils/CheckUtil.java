@@ -57,6 +57,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class CheckUtil {
 
+    /**
+     * Defines whether a class hierarchy should be scanned deeply for messages.
+     */
+    public enum ScanMode {
+
+        /** Scan the class hierarchy deeply. */
+        DEEP_SCAN,
+        /** Scan only the given class. */
+        NO_DEEP_SCAN
+
+    }
+
     public static final String CRLF = "\r\n";
 
     private CheckUtil() {
@@ -214,12 +226,10 @@ public final class CheckUtil {
      * Gets the check's messages.
      *
      * @param module class to examine.
-     * @param deepScan scan subclasses.
+     * @param scanMode mode defining whether to scan subclasses.
      * @return a set of checkstyle's module message fields.
-     * @noinspection BooleanParameter
-     * @noinspectionreason BooleanParameter - boolean parameter eases testing
      */
-    public static Set<Field> getCheckMessages(Class<?> module, boolean deepScan) {
+    public static Set<Field> getCheckMessages(Class<?> module, ScanMode scanMode) {
         final Set<Field> checkstyleMessages = new HashSet<>();
 
         // get all fields from current class
@@ -234,17 +244,19 @@ public final class CheckUtil {
         // deep scan class through hierarchy
         final Class<?> superModule = module.getSuperclass();
 
-        if (superModule != null && (deepScan || shouldScanDeepClassForMessages(superModule))) {
-            checkstyleMessages.addAll(getCheckMessages(superModule, deepScan));
+        if (superModule != null
+                && (scanMode == ScanMode.DEEP_SCAN
+                    || shouldScanDeepClassForMessages(superModule))) {
+            checkstyleMessages.addAll(getCheckMessages(superModule, scanMode));
         }
 
         // special cases that require additional classes
         if (module == RegexpMultilineCheck.class) {
-            checkstyleMessages.addAll(getCheckMessages(MultilineDetector.class, deepScan));
+            checkstyleMessages.addAll(getCheckMessages(MultilineDetector.class, scanMode));
         }
         else if (module == RegexpSinglelineCheck.class
                 || module == RegexpSinglelineJavaCheck.class) {
-            checkstyleMessages.addAll(getCheckMessages(SinglelineDetector.class, deepScan));
+            checkstyleMessages.addAll(getCheckMessages(SinglelineDetector.class, scanMode));
         }
 
         return checkstyleMessages;
