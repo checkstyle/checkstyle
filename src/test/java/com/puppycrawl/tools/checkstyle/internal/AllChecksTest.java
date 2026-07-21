@@ -187,11 +187,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             .collect(Collectors.toUnmodifiableSet()));
 
         // google
-        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
-                // state of the configuration when test was made until reason found in
-                // https://github.com/checkstyle/checkstyle/issues/20901
-                "ANNOTATION_DEF", "ANNOTATION_FIELD_DEF", "ENUM_CONSTANT_DEF", "PACKAGE_DEF")
-                .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
                 // enum values should be uppercase
                 "ENUM_CONSTANT_DEF").collect(Collectors.toUnmodifiableSet()));
