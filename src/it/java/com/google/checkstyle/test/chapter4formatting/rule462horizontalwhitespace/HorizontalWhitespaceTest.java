@@ -211,6 +211,16 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceTrailingWhitespace() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceTrailingWhitespace.java"));
+    }
+
+    @Test
+    public void testWhitespaceTrailingWhitespaceFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceTrailingWhitespace.java"));
+    }
+
+    @Test
     public void testWhitespaceBeforeLeftCurlyOfEmptyBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
