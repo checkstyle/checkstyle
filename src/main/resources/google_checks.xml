@@ -390,9 +390,10 @@
       <property name="tokens" value="LAMBDA"/>
     </module>
     <module name="AnnotationLocation">
-      <property name="id" value="AnnotationLocationTypeAndPackage"/>
+      <property name="id" value="AnnotationLocationTypeAndPackageAndMembers"/>
       <property name="tokens"
-               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, PACKAGE_DEF"/>
+               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF,
+                PACKAGE_DEF, ENUM_CONSTANT_DEF, ANNOTATION_FIELD_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
     </module>
     <module name="AnnotationLocation">
