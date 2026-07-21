@@ -102,4 +102,24 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(filePath);
     }
 
+    @Test
+    public void testEnumConstantAnnotation() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationOnEnumConstant.java"));
+    }
+
+    @Test
+    public void testEnumConstantAnnotationFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedAnnotationOnEnumConstant.java"));
+    }
+
+    @Test
+    public void testAnnotationFieldAnnotation() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationOnAnnotationField.java"));
+    }
+
+    @Test
+    public void testAnnotationFieldAnnotationFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedAnnotationOnAnnotationField.java"));
+    }
+
 }
