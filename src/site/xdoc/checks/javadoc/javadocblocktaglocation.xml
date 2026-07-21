@@ -82,11 +82,19 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
- * Escaped tag &amp;#64;version (OK)
- * Plain text with {@code @see} (OK)
- * A @custom tag (OK)
- *
- */
+   * Escaped tag &amp;#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  // violation 4 lines above 'The Javadoc block tag '@return' should be placed'
+  // ok, apiNote is not configured
+  // ok, noinspection is not configured
+  int method() {
+    return 1;
+  }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to verify tags from
@@ -100,24 +108,53 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+   * Escaped tag &amp;#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  // ok, return is not configured
+  // violation 4 lines above 'The Javadoc block tag '@apiNote' should be placed'
+  // ok, noinspection is not configured
+  int method() {
+    return 1;
+  }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to verify all default tags and some custom tags in addition:
+          To configure the check to verify all default tags plus a custom
+          <code>noinspection</code> tag:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocBlockTagLocation"&gt;
-      &lt;!-- default tags --&gt;
-      &lt;property name="tags" value="author, deprecated, exception, hidden"/&gt;
-      &lt;property name="tags" value="param, provides, return, see, serial"/&gt;
-      &lt;property name="tags" value="serialData, serialField, since, throws"/&gt;
-      &lt;property name="tags" value="uses, version"/&gt;
-      &lt;!-- additional tags used in the project --&gt;
-      &lt;property name="tags" value="noinspection"/&gt;
+      &lt;property name="tags" value="author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version, noinspection"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+   * Escaped tag &amp;#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  // violation 4 lines above 'The Javadoc block tag '@return' should be placed'
+  // ok, apiNote is not configured
+  // violation 4 lines above 'The Javadoc block tag '@noinspection' should be placed'
+  int method() {
+    return 1;
+  }
 </code></pre></div>
       </subsection>
 

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck.MSG_BLOCK_TAG_LOCATION;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
@@ -33,7 +35,7 @@ public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "17: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -42,7 +44,7 @@ public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-
+            "20: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -51,7 +53,8 @@ public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
+            "19: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "return"),
+            "21: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "noinspection"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
