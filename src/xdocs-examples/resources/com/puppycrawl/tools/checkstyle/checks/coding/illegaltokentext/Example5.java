@@ -11,8 +11,8 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-
 // xdoc section -- start
+
 public class Example5 {
   public void myTest() {
 
