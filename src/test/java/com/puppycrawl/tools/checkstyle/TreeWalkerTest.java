@@ -56,6 +56,7 @@ import org.mockito.internal.util.Checks;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilterSet;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
@@ -74,8 +75,10 @@ import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck;
+import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -482,6 +485,162 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         assertWithMessage("expected tab width")
             .that(tabWidth)
             .isEqualTo(99);
+    }
+
+    @Test
+    public void testSetupChildWithBeforeExecutionExclusionFileFilter() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+        treeWalker.finishLocalSetup();
+
+        final Configuration config = new DefaultConfiguration(
+                BeforeExecutionExclusionFileFilter.class.getName());
+
+        treeWalker.setupChild(config);
+
+        final BeforeExecutionFileFilterSet filterSet =
+                TestUtil.getInternalState(treeWalker, "beforeExecutionFileFilters",
+                        BeforeExecutionFileFilterSet.class);
+        assertWithMessage("before execution file filters should not be empty")
+            .that(filterSet.getBeforeExecutionFileFilters())
+            .isNotEmpty();
+    }
+
+    @Test
+    public void testBeforeExecutionExclusionFileFilterExcludesFile() throws Exception {
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        final DefaultConfiguration emptyStatementConfig =
+                createModuleConfig(EmptyStatementCheck.class);
+        treeWalkerConfig.addChild(emptyStatementConfig);
+        final DefaultConfiguration filterConfig =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+        filterConfig.addProperty("fileNamePattern", "module\\-info\\.java$");
+        treeWalkerConfig.addChild(filterConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        final DefaultConfiguration fileTabConfig =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkerConfig.addChild(fileTabConfig);
+
+        final String uniqueFileName = "module-info.java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        Files.writeString(filePath.toPath(), "module test {;\t}");
+
+        final String[] expected = {
+            "1:15: " + getCheckMessage(FileTabCharacterCheck.class, "file.containsTab"),
+        };
+
+        verify(createChecker(checkerConfig), filePath.getAbsolutePath(), expected);
+    }
+
+    @Test
+    public void testNonMatchingFileStillProcessedByTreeWalker() throws Exception {
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        final DefaultConfiguration emptyStatementConfig =
+                createModuleConfig(EmptyStatementCheck.class);
+        treeWalkerConfig.addChild(emptyStatementConfig);
+        final DefaultConfiguration filterConfig =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+        filterConfig.addProperty("fileNamePattern", "module\\-info\\.java$");
+        treeWalkerConfig.addChild(filterConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        final DefaultConfiguration fileTabConfig =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkerConfig.addChild(fileTabConfig);
+
+        final String uniqueFileName = "RegularClass.java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        Files.writeString(filePath.toPath(),
+                "class RegularClass {\tvoid m() { ; } }");
+
+        final String[] expected = {
+            "1:21: " + getCheckMessage(FileTabCharacterCheck.class, "file.containsTab"),
+            "1:36: " + getCheckMessage(EmptyStatementCheck.class, "empty.statement"),
+        };
+
+        verify(createChecker(checkerConfig), filePath.getAbsolutePath(), expected);
+    }
+
+    @Test
+    public void testMultipleFiltersOnTreeWalker() throws Exception {
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        final DefaultConfiguration emptyStatementConfig =
+                createModuleConfig(EmptyStatementCheck.class);
+        treeWalkerConfig.addChild(emptyStatementConfig);
+        final DefaultConfiguration filterConfig1 =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+        filterConfig1.addProperty("fileNamePattern", "module\\-info\\.java$");
+        treeWalkerConfig.addChild(filterConfig1);
+        final DefaultConfiguration filterConfig2 =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+        filterConfig2.addProperty("fileNamePattern", "package\\-info\\.java$");
+        treeWalkerConfig.addChild(filterConfig2);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        final String uniqueFileName = "package-info.java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        Files.writeString(filePath.toPath(), "package test {;\t}");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(createChecker(checkerConfig), filePath.getAbsolutePath(), expected);
+    }
+
+    @Test
+    public void testNoFiltersConfiguredTreeWalkerWorksNormally() throws Exception {
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        final DefaultConfiguration emptyStatementConfig =
+                createModuleConfig(EmptyStatementCheck.class);
+        treeWalkerConfig.addChild(emptyStatementConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+        final DefaultConfiguration fileTabConfig =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkerConfig.addChild(fileTabConfig);
+
+        final String uniqueFileName = "SomeClass.java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        Files.writeString(filePath.toPath(),
+                "class SomeClass {\tvoid m() { ; } }");
+
+        final String[] expected = {
+            "1:18: " + getCheckMessage(FileTabCharacterCheck.class, "file.containsTab"),
+            "1:36: " + getCheckMessage(EmptyStatementCheck.class, "empty.statement"),
+        };
+
+        verify(createChecker(checkerConfig), filePath.getAbsolutePath(), expected);
+    }
+
+    @Test
+    public void testCheckerLevelFilterExcludesFromEverything() throws Exception {
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        final DefaultConfiguration emptyStatementConfig =
+                createModuleConfig(EmptyStatementCheck.class);
+        treeWalkerConfig.addChild(emptyStatementConfig);
+
+        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
+
+        final DefaultConfiguration filterConfig =
+                createModuleConfig(BeforeExecutionExclusionFileFilter.class);
+        filterConfig.addProperty("fileNamePattern", "module\\-info\\.java$");
+        checkerConfig.addChild(filterConfig);
+
+        final DefaultConfiguration fileTabConfig =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkerConfig.addChild(fileTabConfig);
+
+        final String uniqueFileName = "module-info.java";
+        final File filePath = new File(temporaryFolder, uniqueFileName);
+        Files.writeString(filePath.toPath(), "module test {\t; }");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(createChecker(checkerConfig), filePath.getAbsolutePath(), expected);
     }
 
     @Test
