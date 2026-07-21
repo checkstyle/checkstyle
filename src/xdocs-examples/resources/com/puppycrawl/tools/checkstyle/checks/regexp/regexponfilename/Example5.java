@@ -10,13 +10,13 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
-/*
 // xdoc section -- start
-.../checkstyle.xml    // violation, 'only filenames in camelcase is allowed'
-.../Test Example1.xml // violation, 'only filenames in camelcase is allowed'
-.../TestExample2.xml
-.../TestExample3.md
-.../TestExample4.xml
+class Example5 {
+  // violation 'only filenames in camelcase is allowed'
+  // violation 'only filenames in camelcase is allowed'
+  // ok, TestExample2.xml
+  // ok, TestExample3.md
+  // ok, TestExample4.xml
+  // ok, Example5.java
+}
 // xdoc section -- end
-*/
-class Example5 {}
