@@ -8,13 +8,13 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
-/*
 // xdoc section -- start
-.../checkstyle.xml
-.../Test Example1.xml
-.../TestExample2.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
-.../TestExample3.md
-.../TestExample4.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
+class Example2 {
+  // ok, checkstyle.xml
+  // ok, Test Example1.xml
+  // violation, TestExample2.xml matches the forbidden pattern
+  // ok, TestExample3.md
+  // violation, TestExample4.xml matches the forbidden pattern
+  // ok, Example2.java
+}
 // xdoc section -- end
-*/
-class Example2 {}
