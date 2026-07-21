@@ -82,15 +82,17 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
- * Escaped tag &amp;#64;version (OK)
- * Plain text with {@code @see} (OK)
- * A @custom tag (OK)
- *
- */
+   * Returns the result. @return the result
+   * // violation above 'The Javadoc block tag '@return' should be placed'
+   * Implementation note. @apiNote use this method carefully
+   * // ok, apiNote is not a default tag
+   */
+  int method() {
+    return 1;
+  }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check to verify tags from
-          <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
+          To configure the check to verify JEP 8068562 tags only:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -100,24 +102,42 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+   * Returns the result. @return the result
+   * // ok, return is not configured
+   * Implementation note. @apiNote use this method carefully
+   * // violation above 'The Javadoc block tag '@apiNote' should be placed'
+   */
+  int method() {
+    return 1;
+  }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to verify all default tags and some custom tags in addition:
+          To configure the check to verify both a standard and a custom tag:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocBlockTagLocation"&gt;
-      &lt;!-- default tags --&gt;
-      &lt;property name="tags" value="author, deprecated, exception, hidden"/&gt;
-      &lt;property name="tags" value="param, provides, return, see, serial"/&gt;
-      &lt;property name="tags" value="serialData, serialField, since, throws"/&gt;
-      &lt;property name="tags" value="uses, version"/&gt;
-      &lt;!-- additional tags used in the project --&gt;
-      &lt;property name="tags" value="noinspection"/&gt;
+      &lt;property name="tags" value="return, apiNote"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+   * Returns the result. @return the result
+   * // violation above 'The Javadoc block tag '@return' should be placed'
+   * Implementation note. @apiNote use this method carefully
+   * // violation above 'The Javadoc block tag '@apiNote' should be placed'
+   */
+  int method() {
+    return 1;
+  }
 </code></pre></div>
       </subsection>
 

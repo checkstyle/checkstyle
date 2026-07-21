@@ -43,7 +43,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check to forbid 'xml' files in folders:
+          To configure the <code>fileNamePattern</code> property to forbid matching XML files:
         </p>
         <macro name="example">
           <param name="path"
@@ -57,8 +57,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to forbid 'md' files except 'README.md file' in folders,
-          with custom message:
+          To configure the <code>fileExtensions</code> property to process only Markdown files:
         </p>
         <macro name="example">
           <param name="path"
@@ -72,8 +71,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To configure the check to only allow property and xml files to be located
-          in the resource folder:
+          To configure the <code>match</code> property to report files that do not match
+          the supplied pattern:
         </p>
         <macro name="example">
           <param name="path"
@@ -87,7 +86,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure the check to only allow only camelcase
+          To configure <code>ignoreFileNameExtensions</code> so the pattern is applied
+          without file extensions:
         </p>
         <macro name="example">
           <param name="path"
@@ -101,8 +101,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example6-config">
-          To configure the check to forbid files that do not start with 'Test' in folders
-          named 'regexponfilename':
+          To configure <code>folderPattern</code> so matching is restricted to folders
+          named <code>regexponfilename</code>:
         </p>
         <macro name="example">
           <param name="path"
