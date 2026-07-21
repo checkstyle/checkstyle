@@ -119,7 +119,6 @@ public class XdocsExamplesAstConsistencyTest {
      *
      */
     private static final Set<String> UNPARSEABLE_EXAMPLES = Set.of(
-            "checks/regexp/regexponfilename/Example1",
             "checks/translation/Example1",
             "filters/suppressionxpathsinglefilter/Example14"
     );
@@ -157,11 +156,9 @@ public class XdocsExamplesAstConsistencyTest {
             // until https://github.com/checkstyle/checkstyle/issues/20625
             "checks/coding/illegaltokentext",
             "checks/descendanttoken",
-            "checks/javadoc/javadocblocktaglocation",
             "checks/modifier/interfacememberimpliedmodifier",
             "checks/regexp/regexp",
             "checks/regexp/regexpmultiline",
-            "checks/regexp/regexponfilename",
             "checks/regexp/regexpsingleline",
             "checks/regexp/regexpsinglelinejava",
             "checks/translation",
