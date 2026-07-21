@@ -857,6 +857,7 @@ jobs:
       - name: Set output
         id: out
         run: |
+          echo "Link: ""$(cat .ci-temp/message)"
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
   add_sad_Emoji:
