@@ -57,18 +57,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public final class CheckUtil {
 
-    /**
-     * Defines whether a class hierarchy should be scanned deeply for messages.
-     */
-    private enum ScanMode {
-
-        /** Scan the class hierarchy deeply. */
-        DEEP_SCAN,
-        /** Scan only the given class. */
-        NO_DEEP_SCAN
-
-    }
-
     public static final String CRLF = "\r\n";
 
     private CheckUtil() {
@@ -429,6 +417,18 @@ public final class CheckUtil {
             result = "\n";
         }
         return result;
+    }
+
+    /**
+     * Defines whether a class hierarchy should be scanned deeply for messages.
+     */
+    private enum ScanMode {
+
+        /** Scan the class hierarchy deeply. */
+        DEEP_SCAN,
+        /** Scan only the given class. */
+        NO_DEEP_SCAN
+
     }
 
 }

@@ -1,5 +1,16 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="WriteTag">
+      <property name="tag" value="@author"/>
+      <property name="tagFormat" value="Mohanad"/>
+      <property name="tagSeverity" value="warning"/>
+    </module>
+  </module>
+</module>
 
+*/
+package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 /**
  * Testing tag writing
  * @author Mohanad
