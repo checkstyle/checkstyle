@@ -70,6 +70,17 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "29:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_TRY", "LITERAL_SWITCH"),
+            "31:7: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_TRY", "LITERAL_SWITCH"),
+            "36:7: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_TRY", "LITERAL_SWITCH"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expected = {
             "40:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),

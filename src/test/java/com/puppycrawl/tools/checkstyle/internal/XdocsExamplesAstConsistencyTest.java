@@ -156,7 +156,6 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
             // until https://github.com/checkstyle/checkstyle/issues/20625
             "checks/coding/illegaltokentext",
-            "checks/descendanttoken",
             "checks/javadoc/javadocblocktaglocation",
             "checks/modifier/interfacememberimpliedmodifier",
             "checks/regexp/regexp",
@@ -165,7 +164,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpsingleline",
             "checks/regexp/regexpsinglelinejava",
             "checks/translation",
-            "filters/suppressioncommentfilter",
             "filters/suppressionsinglefilter",
             "filters/suppressionxpathfilter"
     );
