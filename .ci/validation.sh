@@ -613,6 +613,7 @@ release-dry-run)
     ./mvnw -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
     -Darguments='-DskipTests -DskipITs -Djacoco.skip=true -Dpmd.skip=true \
       -Dspotbugs.skip=true -Dxml.skip=true -Dcheckstyle.ant.skip=true \
+      -Dcheckstyle.skipCompileInputResources=true \
       -Dcheckstyle.skip=true -Dgpg.skip=true --no-transfer-progress'
     ./mvnw -e --no-transfer-progress release:clean
   fi
