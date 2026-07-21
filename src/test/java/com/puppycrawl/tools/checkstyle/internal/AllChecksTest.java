@@ -539,7 +539,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleChecksHaveMessage() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
-            final Set<Field> messages = CheckUtil.getCheckMessages(module, false);
+            final Set<Field> messages = CheckUtil.getCheckMessagesWithoutDeepScan(module);
 
             // No messages in just module
             if ("SuppressWarningsHolder".equals(name)) {
@@ -562,7 +562,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
         // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
-            for (Field message : CheckUtil.getCheckMessages(module, true)) {
+            for (Field message : CheckUtil.getCheckMessagesWithDeepScan(module)) {
                 assertWithMessage("%s.%s should be 'public static final'", module.getSimpleName(),
                     message.getName())
                     .that(message.getModifiers())
