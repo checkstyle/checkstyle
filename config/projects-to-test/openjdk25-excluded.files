@@ -3,234 +3,234 @@
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8654-->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]doclet[\\/]testSupplementary[\\/]C.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/jdk/javadoc/doclet/testSupplementary/C.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]hotspot[\\/]jtreg[\\/]runtime[\\/]exceptionMsgs[\\/]methodPrinting[\\/]TestPrintingMethods.java$"/>
+  <property name="fileNamePattern" value="/test/hotspot/jtreg/runtime/exceptionMsgs/methodPrinting/TestPrintingMethods.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8650 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]MethodParameters[\\/]UncommonParamNames.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/MethodParameters/UncommonParamNames.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8655 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]UnicodeAtEOL.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/UnicodeAtEOL.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8656 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]UnicodeCommentDelimiter.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/UnicodeCommentDelimiter.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8654 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]FirstChar2.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/FirstChar2.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]model[\\/]util[\\/]elements[\\/]TestGetDocComment_Line.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/processing/model/util/elements/TestGetDocComment_Line.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/19971 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClass.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/ImplicitClass.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]NestedEnum.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/ImplicitClass/NestedEnum.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]flags[\\/]NoFalseSealedError.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/flags/NoFalseSealedError.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/13987 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]UnnamedClass.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/UnnamedClass.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]Class[\\/]UnnamedClass[\\/]Unnamed.java$"/>
+  <property name="fileNamePattern" value="/test/jdk/java/lang/Class/UnnamedClass/Unnamed.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]SourceLevelErrorPosition.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unnamedclass/SourceLevelErrorPosition.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]model[\\/]element[\\/]Anonymous.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/processing/model/element/Anonymous.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]NestedEnum.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unnamedclass/NestedEnum.java$"/>
 </module>
 
 <!-- Permanent suppression for string templates, see reason at https://github.com/checkstyle/checkstyle/issues/14805#issue-2248064127. -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]StringTemplateTest.java$"/>
+  <property name="fileNamePattern" value="/test/jdk/java/lang/template/StringTemplateTest.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplate.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/StringTemplate.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]micro[\\/]org[\\/]openjdk[\\/]bench[\\/]java[\\/]lang[\\/]StringTemplateFMT.java$"/>
+  <property name="fileNamePattern" value="/test/micro/org/openjdk/bench/java/lang/StringTemplateFMT.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]Basic.java$"/>
+  <property name="fileNamePattern" value="/test/jdk/java/lang/template/Basic.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]FormatterBuilder.java$"/>
+  <property name="fileNamePattern" value="/test/jdk/java/lang/template/FormatterBuilder.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]template[\\/]T8312814.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/template/T8312814.java$"/>
 </module>
 
 <!-- non-compilable -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]TextBlockIllegalEscape.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/TextBlockIllegalEscape.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]UnnamedClassNoMain.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/UnnamedClassNoMain.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]UnnamedClassBad-Filename.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/UnnamedClassBad-Filename.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamed[\\/]UnnamedClassRecovery.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unnamed/UnnamedClassRecovery.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]UnnamedErrors.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/UnnamedErrors.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]UnnamedClassHasPackage.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/UnnamedClassHasPackage.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplateUnclosedString.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/StringTemplateUnclosedString.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplateUnclosedTextBlock.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/StringTemplateUnclosedTextBlock.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplateNoProcessor.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/StringTemplateNoProcessor.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplateRawProcessor.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/StringTemplateRawProcessor.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StringTemplateNotProcessor.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/StringTemplateNotProcessor.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ModuleDeclSbInModuleInfoJava.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/diags/examples/ModuleDeclSbInModuleInfoJava.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]tool[\\/]T4994049[\\/]FileWithTabs.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/jdk/javadoc/tool/T4994049/FileWithTabs.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]tool[\\/]6964914[\\/]Error.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/jdk/javadoc/tool/6964914/Error.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]doclet[\\/]testUnnamedPackage[\\/]src1[\\/]BadSource.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/jdk/javadoc/doclet/testUnnamedPackage/src1/BadSource.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]doclet[\\/]testSourceTab[\\/]SingleTab[\\/]C.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/jdk/javadoc/doclet/testSourceTab/SingleTab/C.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]jdk[\\/]javadoc[\\/]doclet[\\/]testSourceTab[\\/]DoubleTab[\\/]C.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/jdk/javadoc/doclet/testSourceTab/DoubleTab/C.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]enum[\\/]EnumAsIdentifier.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/enum/EnumAsIdentifier.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]enum[\\/]EnumMembersOrder.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/enum/EnumMembersOrder.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]T6882235.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/T6882235.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]6440583[\\/]A.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/6440583/A.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]T4994049[\\/]T4994049.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/T4994049/T4994049.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]T8185983[\\/]RejectTypeArgsOnSelectTest.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/T8185983/RejectTypeArgsOnSelectTest.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]T8286057.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/T8286057.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]rawDiags[\\/]Error.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/rawDiags/Error.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]T8026963[\\/]TypeAnnotationsCrashWithErroneousTreeTest.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/T8026963/TypeAnnotationsCrashWithErroneousTreeTest.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]lambda[\\/]lambdaExpression[\\/]InvalidExpression1.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/lambda/lambdaExpression/InvalidExpression1.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]lambda[\\/]8131742[\\/]T8131742.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/lambda/8131742/T8131742.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]lambda[\\/]funcInterfaces[\\/]LambdaTest1_neg1.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/lambda/funcInterfaces/LambdaTest1_neg1.java$"/>
 </module>
 
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]6994946[\\/]SyntaxErrorTest.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/processing/6994946/SyntaxErrorTest.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]errors[\\/]TestParseErrors[\\/]ParseErrors.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/processing/errors/TestParseErrors/ParseErrors.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]IllegalAnnotation.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/IllegalAnnotation.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ExtendArray.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/ExtendArray.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]TripleQuote.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/TripleQuote.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID4.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/SupplementaryJavaID4.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID3.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/SupplementaryJavaID3.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID2.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/SupplementaryJavaID2.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID5.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/SupplementaryJavaID5.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]NonasciiDigit.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/NonasciiDigit.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID1.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/SupplementaryJavaID1.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]SupplementaryJavaID6.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/unicode/SupplementaryJavaID6.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]DeconstructionPatternErrors.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/DeconstructionPatternErrors.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]ForEachPatternsErrors.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/ForEachPatternsErrors.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]PatternCaseErrorRecovery.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/PatternCaseErrorRecovery.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]Digits.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/Digits.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]typeAnnotations[\\/]failures[\\/]IndexArray.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/annotations/typeAnnotations/failures/IndexArray.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]typeAnnotations[\\/]failures[\\/]target[\\/]IncompleteArray.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/annotations/typeAnnotations/failures/target/IncompleteArray.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]ForEachTestAllAnalyzers.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/ForEachTestAllAnalyzers.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]NoModifiersOnBinding.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/NoModifiersOnBinding.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]SwitchErrors.java$"/>
+  <property name="fileNamePattern" value="/test/langtools/tools/javac/patterns/SwitchErrors.java$"/>
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]annotations[\\/]typeAnnotations[\\/]failures[\\/]target[\\/]DotClass.java$"/>
