@@ -60,7 +60,7 @@ public final class CheckUtil {
     /**
      * Defines whether a class hierarchy should be scanned deeply for messages.
      */
-    public enum ScanMode {
+    private enum ScanMode {
 
         /** Scan the class hierarchy deeply. */
         DEEP_SCAN,
@@ -223,13 +223,33 @@ public final class CheckUtil {
     }
 
     /**
+     * Gets the check's messages without scanning the class hierarchy.
+     *
+     * @param module class to examine.
+     * @return a set of checkstyle's module message fields.
+     */
+    public static Set<Field> getCheckMessagesWithoutDeepScan(Class<?> module) {
+        return getCheckMessages(module, ScanMode.NO_DEEP_SCAN);
+    }
+
+    /**
+     * Gets the check's messages, scanning the class hierarchy deeply.
+     *
+     * @param module class to examine.
+     * @return a set of checkstyle's module message fields.
+     */
+    public static Set<Field> getCheckMessagesWithDeepScan(Class<?> module) {
+        return getCheckMessages(module, ScanMode.DEEP_SCAN);
+    }
+
+    /**
      * Gets the check's messages.
      *
      * @param module class to examine.
      * @param scanMode mode defining whether to scan subclasses.
      * @return a set of checkstyle's module message fields.
      */
-    public static Set<Field> getCheckMessages(Class<?> module, ScanMode scanMode) {
+    private static Set<Field> getCheckMessages(Class<?> module, ScanMode scanMode) {
         final Set<Field> checkstyleMessages = new HashSet<>();
 
         // get all fields from current class

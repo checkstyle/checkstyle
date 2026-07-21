@@ -1689,7 +1689,7 @@ public class XdocsPagesTest {
                                                  Node subSection,
                                                  Object instance) throws Exception {
         final Class<?> clss = instance.getClass();
-        final Set<Field> fields = CheckUtil.getCheckMessages(clss, CheckUtil.ScanMode.DEEP_SCAN);
+        final Set<Field> fields = CheckUtil.getCheckMessagesWithDeepScan(clss);
         final Set<String> list = new TreeSet<>();
 
         for (Field field : fields) {
