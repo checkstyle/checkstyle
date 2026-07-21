@@ -923,7 +923,6 @@ Niederhauser
 nikitasavinov
 nio
 nlow
-NMCS
 NMTOKEN
 noarch
 noarraytrailingcomma
@@ -1096,7 +1095,6 @@ POJO
 Popup
 Postgresql
 prebuilts
-prefs
 PRESIZE
 prettyprint
 printf
@@ -1165,7 +1163,6 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
-Rethrows
 returncount
 returnsreceiver
 returntag
