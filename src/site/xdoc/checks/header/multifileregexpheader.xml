@@ -184,6 +184,10 @@ public class Example4 { }
               Checkstyle Style
             </a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+            Sun Style</a>
+          </li>
         </ul>
       </subsection>
 
