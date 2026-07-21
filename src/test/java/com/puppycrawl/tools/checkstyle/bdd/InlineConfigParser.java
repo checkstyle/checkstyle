@@ -224,6 +224,13 @@ public final class InlineConfigParser {
     private static final Pattern VIOLATION_DEFAULT = Pattern
             .compile(".*//.*violation.*");
 
+    /**
+     *  A pattern matching comments that explicitly state 'no violation' or 'no violations'.
+     *  These should not be treated as violation markers.
+     */
+    private static final Pattern NO_VIOLATION_PATTERN = Pattern
+            .compile(".*//\\s*no\\s+violation(s)?\\b.*", Pattern.CASE_INSENSITIVE);
+
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
@@ -1251,7 +1258,8 @@ public final class InlineConfigParser {
             }
             else if (!isFilteredViolationComment(line)) {
                 final Matcher violationsDefault = VIOLATION_DEFAULT.matcher(line);
-                if (violationsDefault.matches()) {
+                if (violationsDefault.matches()
+                        && !NO_VIOLATION_PATTERN.matcher(line).matches()) {
                     final int violationLineNum = lineNo + 1;
                     checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
                     inputConfigBuilder.addViolation(violationLineNum, null);

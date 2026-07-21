@@ -4,9 +4,9 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
          STRING_LITERAL, LITERAL_NULL, LITERAL_FALSE, LITERAL_TRUE, ASSIGN, \
          BAND_ASSIGN, BOR_ASSIGN, BSR_ASSIGN, BXOR_ASSIGN, DIV_ASSIGN, \
          MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, \
-         LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND, LITERAL_INSTANCEOF, GT, LT, GE, \
+         LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND, LOR, LITERAL_INSTANCEOF, GT, LT, GE, \
          LE, EQUAL, NOT_EQUAL, UNARY_MINUS, UNARY_PLUS, INC, DEC, LNOT, BNOT, \
-         POST_INC, POST_DEC
+         POST_INC, POST_DEC, TYPECAST
 
 
 */
@@ -17,7 +17,8 @@ public class InputUnnecessaryParenthesesCasts1 {
         int y = 44;
         float k = 12f;
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation 2 lines below 'Unnecessary parentheses around expression'
+        // violation below 'Unnecessary parentheses around expression'
         int d = ((int) 100f) + 100 * 2 / ((int) 12.5) + (int) 90f;
         int p = (int) 110f + 10 * 2 / (int) 10f + (int) 32.2;
 
@@ -25,10 +26,12 @@ public class InputUnnecessaryParenthesesCasts1 {
 
         double arg2 = 23.2;
         int i = (int) arg2;
-        i = ((int) arg2); // violation 'Unnecessary parentheses around assignment right-hand side'
+        // violation below 'Unnecessary parentheses around assignment right-hand side'
+        i = ((int) arg2);
         p = (int) arg2;
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation 2 lines below 'Unnecessary parentheses around assignment right-hand side'
+        // violation below 'Unnecessary parentheses around expression'
         x = (2 * 2 /((int) k));
         x = 2 * 2 / (int) k;
 
@@ -41,7 +44,7 @@ public class InputUnnecessaryParenthesesCasts1 {
         boolean finished = true;
         boolean result = false;
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         if(py >= ((int)xy) || (yp ==1 | py >=1)) {
             xy--;
         }
@@ -58,7 +61,7 @@ public class InputUnnecessaryParenthesesCasts1 {
         }
 
         boolean checkone = true;
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         if (!((boolean) checkone)) {
             checkone = false;
         }
@@ -67,7 +70,7 @@ public class InputUnnecessaryParenthesesCasts1 {
         }
 
         double limit = 3.2;
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         for (int j = 0; j >= ((int) limit); j++) {
             yp +=1;
         }
@@ -76,7 +79,7 @@ public class InputUnnecessaryParenthesesCasts1 {
             break;
         }
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         for(int j = 10; !finished && !((boolean) (j > 5)) ; j++){
             break;
         }
@@ -85,30 +88,28 @@ public class InputUnnecessaryParenthesesCasts1 {
             break;
         }
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         long p1 = ((long) ((20 >> 24 ) & 0xFF)) << 24;
         long p2 = (long) ((20 >> 24 ) & 0xFF) << 24;
 
-        //until https://github.com/checkstyle/checkstyle/issues/14872
-        // could be operator precedence issue
+        // violation below 'Unnecessary parentheses around expression'
         float f4 = -((float) 42);
         float f5 = -(float) 90;
 
-        //until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         long shiftedbytwo = ((long)x) << 2;
         long shiftedbythree = (long)y << 3;
 
-        //until https://github.com/checkstyle/checkstyle/issues/14872
-        // could be operator precedence issue
+        // violation below 'Unnecessary parentheses around expression'
         short complement = (short) ~((short) 87777);
         short bcomplement = (short) ~(short) 90122;
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         int numSlices1 = (int) Math.max(Math.ceil(((double) 20) / 10), 1);
         int numSlices2 = (int) Math.max(Math.ceil((double) 20 / 10), 1);
     }
     private long getLong1(int start, int end) {
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         return (((long) start) << 32) | 0xFFFFFFFFL & end;
     }
     private long getLong2(int start, int end) {
