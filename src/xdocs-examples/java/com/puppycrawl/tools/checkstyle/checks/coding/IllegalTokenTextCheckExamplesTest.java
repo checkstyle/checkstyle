@@ -52,6 +52,23 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "1:3: " + getCheckMessage(MSG_KEY, "a href"),
+            "14:3: " + getCheckMessage(MSG_KEY, "a href"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expected = {
             "23:29: " + getCheckMessage(MSG_KEY, '"'),

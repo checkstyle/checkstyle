@@ -31,22 +31,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample0() throws Exception {
-
-        final String[] expectedWithoutFilter = {
-            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
-        };
-
-        final String[] expectedWithFilter = {};
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-                + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example0.java"),
-                expectedWithoutFilter,
-                expectedWithFilter);
-    }
-
-    @Test
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
@@ -58,8 +42,44 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
+                + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+        };
+
+        final String[] expectedWithFilter = {
+            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "40:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+        };
+
+        final String[] expectedWithFilter = {
+            "40:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+                + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
