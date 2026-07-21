@@ -49,21 +49,32 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check to verify tags from
-          <a href="https://openjdk.org/jeps/8068562">JEP 8068562</a> only:
+          To configure the check to verify JEP 8068562 tags only:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.java"/>
+          <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to verify all default tags and some custom tags in addition:
+          To configure the check to verify both a standard and a custom tag:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example3.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

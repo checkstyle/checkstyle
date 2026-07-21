@@ -9,13 +9,13 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
-/*
 // xdoc section -- start
-.../checkstyle.xml
-.../Test Example1.xml
-.../TestExample2.xml
-.../TestExample3.md  // violation, 'Only property and xml files to be located in the resource folder'
-.../TestExample4.xml
+class Example4 {
+  // ok, checkstyle.xml matches an allowed extension
+  // ok, Test Example1.xml matches an allowed extension
+  // ok, TestExample2.xml matches an allowed extension
+  // violation, TestExample3.md does not match an allowed extension
+  // ok, TestExample4.xml matches an allowed extension
+  // violation, Example4.java does not match an allowed extension
+}
 // xdoc section -- end
-*/
-class Example4 {}
