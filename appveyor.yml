@@ -1,4 +1,4 @@
-image: Visual Studio 2019
+image: Visual Studio 2026
 version: '{build}'
 skip_tags: true
 
