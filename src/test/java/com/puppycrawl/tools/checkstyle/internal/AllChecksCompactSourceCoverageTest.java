@@ -198,7 +198,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NoCloneCheck",
         "NoCodeInFileCheck",
         "NoEnumTrailingCommaCheck",
-        "NoFinalizerCheck",
         "NoLineWrapCheck",
         "NoWhitespaceAfterCheck",
         "NoWhitespaceBeforeCaseDefaultColonCheck",
