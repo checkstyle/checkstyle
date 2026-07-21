@@ -81,12 +81,20 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * Escaped tag &amp;#64;version (OK)
- * Plain text with {@code @see} (OK)
- * A @custom tag (OK)
- *
- */
+// violation 7 lines below 'The Javadoc block tag '@return' should be placed'
+  // ok, apiNote is not configured
+  // ok, noinspection is not configured
+  /**
+   * Escaped tag &amp;#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  int method() {
+    return 1;
+  }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to verify tags from
@@ -100,9 +108,27 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// ok, return is not configured
+  // violation 7 lines below 'The Javadoc block tag '@apiNote' should be placed'
+  // ok, noinspection is not configured
+  /**
+   * Escaped tag &amp;#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  int method() {
+    return 1;
+  }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to verify all default tags and some custom tags in addition:
+          To configure the check to verify all default tags plus a custom
+          <code>noinspection</code> tag:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -118,6 +144,23 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 7 lines below 'The Javadoc block tag '@return' should be placed'
+  // ok, apiNote is not configured
+  // violation 7 lines below 'The Javadoc block tag '@noinspection' should be placed'
+  /**
+   * Escaped tag &amp;#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  int method() {
+    return 1;
+  }
 </code></pre></div>
       </subsection>
 

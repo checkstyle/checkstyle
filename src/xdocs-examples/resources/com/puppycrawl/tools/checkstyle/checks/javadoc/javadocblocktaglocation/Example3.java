@@ -16,7 +16,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
-public class Example3 {
-// xdoc section -- start
-// xdoc section -- end
+class Example3 {
+  // xdoc section -- start
+  // violation 7 lines below 'The Javadoc block tag '@return' should be placed'
+  // ok, apiNote is not configured
+  // violation 7 lines below 'The Javadoc block tag '@noinspection' should be placed'
+  /**
+   * Escaped tag &#64;version is plain text.
+   * Plain text with {@code @see} is ignored.
+   * A @custom tag is not configured.
+   * Returns the result. @return the result
+   * Implementation note. @apiNote use this method carefully
+   * Suppression note. @noinspection unused
+   */
+  int method() {
+    return 1;
+  }
+  // xdoc section -- end
 }

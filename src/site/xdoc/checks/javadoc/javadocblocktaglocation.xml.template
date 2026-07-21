@@ -56,14 +56,27 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example2.java"/>
+          <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to verify all default tags and some custom tags in addition:
+          To configure the check to verify all default tags plus a custom
+          <code>noinspection</code> tag:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example3.java"/>
           <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation/Example3.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
