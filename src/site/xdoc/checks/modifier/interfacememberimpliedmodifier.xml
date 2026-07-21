@@ -333,6 +333,190 @@ public interface Example4 {
 
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>public</code> modifier on nested types does not need to be.
+        </p>
+        <p id="Example5-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicNested" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example5 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // violation above 'Implied modifier 'static' should be explicit'
+    // ok, because 'violateImpliedPublicNested' is false
+
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>static</code> modifier on nested types does not need to be.
+        </p>
+        <p id="Example6-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedStaticNested" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example6 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // violation above 'Implied modifier 'public' should be explicit'
+    // ok, because 'violateImpliedStaticNested' is false
+
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>public</code> modifier on fields does not need to be.
+        </p>
+        <p id="Example7-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicField" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example7 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 2 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  // ok, because 'violateImpliedPublicField' is false
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>static</code> modifier on fields does not need to be.
+        </p>
+        <p id="Example8-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedStaticField" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example8 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 2 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  // ok, because 'violateImpliedStaticField' is false
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
 </code></pre></div>
       </subsection>
 
