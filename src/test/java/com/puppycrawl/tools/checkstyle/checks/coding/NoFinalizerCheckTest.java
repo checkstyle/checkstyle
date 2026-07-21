@@ -77,4 +77,14 @@ public class NoFinalizerCheckTest
                 getNonCompilablePath("InputNoFinalizerFallThrough.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoFinalizerCompactSourceFile.java"),
+                expected);
+    }
+
 }
