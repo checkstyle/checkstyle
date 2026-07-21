@@ -1,5 +1,7 @@
 package com.sun.checkstyle.test.chapter7statements.rule71simplestatements;
 
+// violation first line 'Header mismatch'
+
 /**
  * Test input for multiple statements per line.
  */

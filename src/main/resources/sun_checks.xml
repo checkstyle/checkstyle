@@ -95,6 +95,16 @@
   <!--   <property name="fileExtensions" value="java"/> -->
   <!-- </module> -->
 
+  <!-- Checks that a file begins with a c-style comment that lists the  -->
+  <!-- class name, version information, date and copyright notice.     -->
+  <!-- See https://checkstyle.org/checks/header/multifileregexpheader.html -->
+  <module name="MultiFileRegexpHeader">
+    <property name="fileExtensions" value="java"/>
+    <property name="headerFiles"
+              value="${org.checkstyle.sun.header.files}"
+              default="/com/puppycrawl/tools/checkstyle/any.header"/>
+  </module>
+
   <module name="TreeWalker">
 
     <!-- Checks for Javadoc comments.                     -->
