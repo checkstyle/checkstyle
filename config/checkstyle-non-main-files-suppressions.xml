@@ -13,6 +13,10 @@
   <suppress id="lineLength" files="compilable-input-paths.txt"/>
   <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
 
+  <!-- Expected report file for WriteTagCheckTest, contains full paths -->
+  <suppress id="lineLength"
+            files="/writetag/ExpectedWriteTagResetSeverity\.txt"/>
+
   <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
              files="/test/.*/InputNewlineAtEndOfFile.*\.(java|txt)"/>
