@@ -729,6 +729,7 @@
             <minimumTokens>20</minimumTokens>
             <skipEmptyReport>false</skipEmptyReport>
             <failOnViolation>true</failOnViolation>
+            <skipPmdError>false</skipPmdError>
             <printFailingErrors>true</printFailingErrors>
             <includeTests>true</includeTests>
             <rulesets>
