@@ -58,6 +58,21 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to find occurrences of 'COPYRIGHTED'
+          with case insensitivity:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -71,6 +86,21 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to find occurrences of 'COPYRIGHTED'
+          with case insensitivity and allow a maximum of 1 occurrence:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/Example5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example6-config">

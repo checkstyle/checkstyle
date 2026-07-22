@@ -124,9 +124,18 @@ name=Nom
 </code></pre></div>
         <p id="Example1-code">Validation for Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/*
 messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
 messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
 messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
+ButtonLabels.properties
+ButtonLabels_fr.properties
+messages_home.properties
+
+messages_home.translations
+
+*/
+public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check to validate only bundles which base names
@@ -157,8 +166,18 @@ name=Nom
 </code></pre></div>
         <p id="Example2-code">Validation for Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/*
+messages.properties
+messages_fr.properties
+messages_es.properties
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
+messages_home.properties
+
+messages_home.translations
+
+*/
+public class Example2 {}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to check only files which have '.properties' and '.translations'
@@ -190,10 +209,59 @@ ok=OK
 </code></pre></div>
         <p id="Example3-code">Validation for Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/*
+messages.properties
+messages_fr.properties
+messages_es.properties
+ButtonLabels.properties
+ButtonLabels_fr.properties
 messages_home.properties
 // violation above 'Properties file 'messages_home_fr.properties' missing.'
 messages_home.translations
 // violation above 'Properties file 'messages_home_fr.translations' missing.'
+*/
+public class Example3 {}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to validate only bundles which base names
+          match the pattern &quot;^ButtonLabels.*$&quot;:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"&gt;
+    &lt;property name="baseName" value="^ButtonLabels.*$"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-file">Example4 (target folder structure):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ButtonLabels.properties
+ButtonLabels_fr.properties
+        </code></pre></div>
+        <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+hello=Hello
+cancel=Cancel
+</code></pre></div>
+        <p id="ButtonLabels_fr-raw">Contents of ButtonLabels_fr.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+hello=Bonjour
+name=Nom
+</code></pre></div>
+        <p id="Example4-code">Validation for Example4:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/*
+messages.properties
+messages_fr.properties
+messages_es.properties
+ButtonLabels.properties     // violation 'Key 'name' is missing.'
+ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
+messages_home.properties
+
+messages_home.translations
+
+*/
+public class Example4 {}
 </code></pre></div>
       </subsection>
 

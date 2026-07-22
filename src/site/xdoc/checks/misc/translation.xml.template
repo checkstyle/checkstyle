@@ -141,6 +141,38 @@ messages_home.translations
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to validate only bundles which base names
+          match the pattern &quot;^ButtonLabels.*$&quot;:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-file">Example4 (target folder structure):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ButtonLabels.properties
+ButtonLabels_fr.properties
+        </code></pre></div>
+        <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/ButtonLabels.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="ButtonLabels_fr-raw">Contents of ButtonLabels_fr.properties file:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/ButtonLabels_fr.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">Validation for Example4:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
