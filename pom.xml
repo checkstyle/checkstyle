@@ -729,6 +729,8 @@
             <minimumTokens>20</minimumTokens>
             <skipEmptyReport>false</skipEmptyReport>
             <failOnViolation>true</failOnViolation>
+            <!-- fail build on PMD processing errors, e.g. bad XPath in suppressions -->
+            <skipPmdError>false</skipPmdError>
             <printFailingErrors>true</printFailingErrors>
             <includeTests>true</includeTests>
             <rulesets>
