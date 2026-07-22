@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ExpressionOverBlockLambdaCheck"
+             name="ExpressionOverBlockLambda"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that expression lambdas are used instead of single-line block lambdas
+ where possible.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: According to the OpenJDK Java Style Guidelines (and general
+ modern Java conventions), expression lambdas are preferred over single-line
+ block lambdas for readability and conciseness.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ A single-line block lambda is a lambda whose body is a block (&lt;code&gt;{...}&lt;/code&gt;)
+ that fits on a single line and contains only one statement that could be
+ written as an expression lambda.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="expression.over.block.lambda"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
