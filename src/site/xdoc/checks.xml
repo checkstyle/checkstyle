@@ -478,6 +478,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/expressionoverblocklambda.html#ExpressionOverBlockLambda">
+                ExpressionOverBlockLambda
+              </a>
+            </td>
+            <td>
+              Checks that expression lambdas are used instead of single-line block lambdas where
+              possible.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/fallthrough.html#FallThrough">
                 FallThrough
               </a>
