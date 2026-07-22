@@ -404,6 +404,103 @@ class Example7 {
     System.out.println("TEst #5: This is a test string");
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to find calls to print to the console
+          with a custom message:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="System\.(out|err)\.print(ln)?\("/&gt;
+    &lt;property name="message" value="Avoid using System.out/err for printing."/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+  void testMethod1() {
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.print("Example");
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.err.println("Example");
+    System
+            .out.print("Example");
+    System
+            .err.println("Example");
+    System.
+            out.print("Example");
+    System.
+            err.println("Example");
+  }
+
+  void testMethod2() {
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.println("Test #1: this is a test string");
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.println("TeSt #2: This is a test string");
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.println("Value of i: " + i);
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.println("Test #4: This is a test string");
+    // violation below, 'Avoid using System.out/err for printing.'
+    System.out.println("TEst #5: This is a test string");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check to match a maximum of three test strings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
+    &lt;property name="maximum" value="1"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example9 {
+  void testMethod1() {
+
+    System.out.print("Example");
+
+    System.err.println("Example");
+    System
+            .out.print("Example");
+    System
+            .err.println("Example");
+    System.
+            out.print("Example");
+    System.
+            err.println("Example");
+  }
+
+  void testMethod2() {
+
+    System.out.println("Test #1: this is a test string");
+
+    System.out.println("TeSt #2: This is a test string");
+
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+
+    System.out.println("Value of i: " + i);
+    // violation below, 'Line matches the illegal pattern'
+    System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
+  }
+}
 </code></pre></div>
       </subsection>
 
