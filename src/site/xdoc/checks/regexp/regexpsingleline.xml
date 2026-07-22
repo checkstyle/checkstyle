@@ -138,6 +138,37 @@ public class Example2 {
   void doSomething() {}
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to find occurrences of 'COPYRIGHTED'
+          with case insensitivity:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="COPYRIGHTED"/&gt;
+    &lt;property name="ignoreCase" value="true"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * This file is copyrighted under CC.
+ */ // violation above 'Line matches the illegal pattern'
+public class Example3 {
+
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1);
+    }
+  }
+
+  void doSomething() {}
+}
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -158,6 +189,38 @@ public class Example2 {
  * This file is copyrighted under CC.
  */
 public class Example4 {
+
+  void myFunction() {
+    try {
+      doSomething();
+      System.exit(0);
+    } catch (Exception e) {
+      System.exit(1);
+    }
+  }
+
+  void doSomething() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to find occurrences of 'COPYRIGHTED'
+          with case insensitivity and allow a maximum of 1 occurrence:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpSingleline"&gt;
+    &lt;property name="format" value="COPYRIGHTED"/&gt;
+    &lt;property name="maximum" value="1"/&gt;
+    &lt;property name="ignoreCase" value="true"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * This file is copyrighted under CC.
+ */ // violation above 'Line matches the illegal pattern'
+public class Example5 {
 
   void myFunction() {
     try {
