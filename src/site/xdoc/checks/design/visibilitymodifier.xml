@@ -17,6 +17,14 @@
         </div>
 
         <p>
+          ATTENTION: Top-level fields of compact source files
+          (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+          are skipped from validation by this check. Visibility modifiers are redundant
+          for direct members of the implicitly declared class and do not provide the
+          encapsulation this check enforces for ordinary classes.
+        </p>
+
+        <p>
           Public members are not flagged if the name matches the public
           member regular expression (contains <code>"^serialVersionUID$"</code> by
           default).
