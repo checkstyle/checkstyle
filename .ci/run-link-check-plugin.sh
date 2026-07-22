@@ -8,6 +8,7 @@ uname -a
 ./mvnw --version
 curl --fail-with-body -I https://sourceforge.net/projects/checkstyle/
 ./mvnw -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
+   -Dcheckstyle.skipCompileInputResources=true \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 mkdir -p .ci-temp
 
