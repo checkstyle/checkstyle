@@ -445,4 +445,16 @@ public class VisibilityModifierCheckTest
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "25:12: " + getCheckMessage(MSG_KEY, "publicField"),
+            "27:15: " + getCheckMessage(MSG_KEY, "protectedField"),
+            "29:5: " + getCheckMessage(MSG_KEY, "packageField"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputVisibilityModifierCompactSourceFile.java"),
+                expected);
+    }
+
 }
