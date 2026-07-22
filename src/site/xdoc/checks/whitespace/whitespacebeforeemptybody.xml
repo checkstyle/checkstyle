@@ -162,7 +162,7 @@ class Example1 {
     // violation above ''{' is not preceded with whitespace'
   }
 
-  class internal{} // violation ''{' is not preceded with whitespace'
+  class Internal{} // violation ''{' is not preceded with whitespace'
 
 }
 </code></pre></div><hr class="example-separator"/>
@@ -195,7 +195,7 @@ class Example2 {
 
   }
 
-  class internal{} // violation ''{' is not preceded with whitespace'
+  class Internal{} // violation ''{' is not preceded with whitespace'
 
 }
 </code></pre></div>
