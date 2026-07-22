@@ -12,6 +12,14 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Note: Top-level fields of compact source files
+ (&lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt;)
+ are skipped by design. Their access modifiers do not provide the encapsulation
+ that this check enforces for ordinary classes. Validation of redundant modifiers
+ is tracked by &lt;a href="https://github.com/checkstyle/checkstyle/issues/20496"&gt;#20496&lt;/a&gt;.
+ &lt;/p&gt;
+
+ &lt;p&gt;
  Public members are not flagged if the name matches the public
  member regular expression (contains &lt;code&gt;"^serialVersionUID$"&lt;/code&gt; by
  default).
