@@ -449,4 +449,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSummaryJavadocFirstSentenceSpansHtmlTags.java"), expected);
     }
 
+    @Test
+    public void testAsteriskBannerJavadoc() throws Exception {
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "20:9: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "27:9: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocAsteriskBanner.java"), expected);
+    }
+
 }
