@@ -66,7 +66,7 @@ public final class JavadocCommentsTokenTypes {
      *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
      *    |       |--NEWLINE -> \r\n
-     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--LEADING_ASTERISK -> *
      *    |       |--TEXT ->  This is a Javadoc line.
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
@@ -92,7 +92,7 @@ public final class JavadocCommentsTokenTypes {
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
      *    |       |--LEADING_ASTERISK -> *
      *    |       |--NEWLINE -> \r\n
-     *    |       |--LEADING_ASTERISKS ->  ****
+     *    |       |--LEADING_ASTERISKS -> ****
      *    |       |--TEXT ->  This is a Javadoc line.
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
@@ -117,7 +117,7 @@ public final class JavadocCommentsTokenTypes {
      *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
      *    |       |--NEWLINE -> \r\n
-     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--LEADING_ASTERISK -> *
      *    |       |--TEXT ->  This is a Javadoc line.
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
@@ -146,7 +146,7 @@ public final class JavadocCommentsTokenTypes {
      *    |--COMMENT_CONTENT -> *\r\n * This is plain text content.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
      *    |       |--NEWLINE -> \r\n
-     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--LEADING_ASTERISK -> *
      *    |       |--TEXT ->  This is plain text content.
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
@@ -706,7 +706,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
@@ -715,7 +715,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--TEXT ->   code
      * |       `--JAVADOC_INLINE_TAG_END -> }
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
      * |--NEWLINE -> \n
      * |--TEXT -> public class Test {}
@@ -744,7 +744,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
@@ -753,7 +753,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--TEXT ->   code
      * |       `--JAVADOC_INLINE_TAG_END -> }
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
      * |--NEWLINE -> \n
      * |--TEXT -> public class Test {}
@@ -783,7 +783,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
@@ -792,7 +792,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--TEXT ->   code
      * |       `--JAVADOC_INLINE_TAG_END -> }
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
      * |--NEWLINE -> \n
      * |--TEXT -> public class Test {}
@@ -975,7 +975,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->      *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--INHERIT_DOC_INLINE_TAG -> INHERIT_DOC_INLINE_TAG
@@ -998,7 +998,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->      *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->  This method uses
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--SYSTEM_PROPERTY_INLINE_TAG -> SYSTEM_PROPERTY_INLINE_TAG
@@ -1136,7 +1136,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->      *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->  Example showing
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
@@ -1214,7 +1214,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
@@ -1245,7 +1245,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
@@ -1274,7 +1274,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
@@ -1365,7 +1365,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
@@ -1393,7 +1393,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * |   `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
@@ -1741,7 +1741,7 @@ public final class JavadocCommentsTokenTypes {
      * </p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *    `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
@@ -1835,7 +1835,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
@@ -1845,7 +1845,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |   `--TEXT -> config
      * |       `--JAVADOC_INLINE_TAG_END -> }
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
      * |--NEWLINE -> \n
      * `--TEXT -> class Test {}
@@ -1900,7 +1900,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Tree:</b></p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *    `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
@@ -1929,7 +1929,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Tree:</b></p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *    `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
@@ -1954,7 +1954,7 @@ public final class JavadocCommentsTokenTypes {
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *    `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
@@ -1963,7 +1963,7 @@ public final class JavadocCommentsTokenTypes {
      *        `--DESCRIPTION -> DESCRIPTION
      *            |--TEXT ->  lang=java
      *            |--NEWLINE -> \n
-     *            |--LEADING_ASTERISK ->  *
+     *            |--LEADING_ASTERISK -> *
      *            `--TEXT -> System.out.println("hello");
      * }</pre>
      */
@@ -1984,7 +1984,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /&#42;*
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
@@ -1997,7 +1997,7 @@ public final class JavadocCommentsTokenTypes {
      * `--DESCRIPTION -> DESCRIPTION
      * |--TEXT ->  The counter.
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * `--TEXT -> /
      * </pre>
      *
@@ -2067,7 +2067,7 @@ public final class JavadocCommentsTokenTypes {
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK ->      *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--HTML_ELEMENT -> HTML_ELEMENT
      * |   |--HTML_TAG_START -> HTML_TAG_START
@@ -2082,7 +2082,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--TAG_NAME -> p
      * |       `--TAG_CLOSE -> >
      * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->      *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
      * }</pre>
      */
@@ -2487,7 +2487,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \r\n
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--HTML_COMMENT -> HTML_COMMENT
      *     |--HTML_COMMENT_START -> <!--
@@ -2495,7 +2495,7 @@ public final class JavadocCommentsTokenTypes {
      *     |   `--TEXT ->  Hello World!
      *     `--HTML_COMMENT_END -> -->
      * |--NEWLINE -> \r\n
-     * |--LEADING_ASTERISK ->  *
+     * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
      * }</pre>
      *

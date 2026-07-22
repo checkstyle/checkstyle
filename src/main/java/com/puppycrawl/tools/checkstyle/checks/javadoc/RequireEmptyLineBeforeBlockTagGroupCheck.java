@@ -186,7 +186,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * <pre>
      * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
-     * |--LEADING_ASTERISK[4x0] : [ *]
+     * |--LEADING_ASTERISK[4x1] : [*]
      * |--TEXT[4x2] : [ ]
      * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
      * </pre>
@@ -194,7 +194,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * <pre>
      * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
-     * |--LEADING_ASTERISK[4x0] : [ *]
+     * |--LEADING_ASTERISK[4x1] : [*]
      * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
      * </pre>
      * We do not include the variation
