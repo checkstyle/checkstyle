@@ -79,4 +79,14 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
         verifyWithInlineConfigParser(filePath, expected);
     }
 
+    @Test
+    public void testMultipleLeadingAsterisks() throws Exception {
+        final String[] expected = {
+            "20:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
+        };
+
+        final String filePath = getPath("InputJavadocLeadingAsteriskAlignMultipleAsterisks.java");
+        verifyWithInlineConfigParser(filePath, expected);
+    }
+
 }

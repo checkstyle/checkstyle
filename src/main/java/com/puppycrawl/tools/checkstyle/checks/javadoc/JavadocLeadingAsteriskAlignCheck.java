@@ -78,6 +78,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocCommentsTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.LEADING_ASTERISKS,
         };
     }
 
@@ -102,19 +103,11 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         final boolean isJavadocStartingLine = ast.getLineNumber() == javadocStartLineNumber;
 
         if (!isJavadocStartingLine) {
-            final Optional<Integer> leadingAsteriskColumnNumber =
-                                        getAsteriskColumnNumber(ast.getText());
+            final int columnNumberTabsExpanded = getColumnNumberTabsExpanded(ast);
 
-            leadingAsteriskColumnNumber.ifPresent(columnNumber -> {
-                final int columnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
-                        ast.getText(), columnNumber, getTabWidth());
-
-                if (!hasValidAlignment(
-                        expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
-                    log(ast.getLineNumber(), columnNumber - 1, MSG_KEY,
-                            columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
-                }
-            });
+            if (!hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
+                log(ast, MSG_KEY, columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+            }
         }
     }
 
@@ -157,6 +150,19 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
                 .filter(Matcher::find)
                 .map(matcherInstance -> matcherInstance.group(1))
                 .map(groupLength -> groupLength.length() + 1);
+    }
+
+    /**
+     * Returns the tab-expanded, one-based column number of the leading asterisk node.
+     *
+     * @param ast leading asterisk node
+     * @return tab-expanded column number
+     */
+    private int getColumnNumberTabsExpanded(DetailNode ast) {
+        return 1 + CommonUtil.lengthExpandedTabs(
+                fileLines[ast.getLineNumber() - 1],
+                ast.getColumnNumber(),
+                getTabWidth());
     }
 
     /**
