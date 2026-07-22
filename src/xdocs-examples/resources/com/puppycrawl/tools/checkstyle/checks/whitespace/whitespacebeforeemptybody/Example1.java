@@ -24,7 +24,7 @@ class Example1 {
     // violation above ''{' is not preceded with whitespace'
   }
 
-  class internal{} // violation ''{' is not preceded with whitespace'
+  class Internal{} // violation ''{' is not preceded with whitespace'
 
 }
 // xdoc section -- end
