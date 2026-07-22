@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
-public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
+    public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
@@ -42,12 +42,12 @@ public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testOneStatementInput() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputOneStatementPerLine2.java"));
+        verifyWithWholeConfig(getPath("InputOneStatementPerLine2.java"));
     }
 
     @Test
     public void testOneStatementInputFormatted() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputFormattedOneStatementPerLine2.java"));
+        verifyWithWholeConfig(getPath("InputFormattedOneStatementPerLine2.java"));
     }
 
 }
