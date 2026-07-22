@@ -8,5 +8,4 @@ checks_package=com.puppycrawl.tools.checkstyle.checks
 javadoc_package=$checks_package.javadoc
 
 JAVADOC_TOOL_EXCLUDED_PACKAGES=(
-  "$source_root com.puppycrawl.tools.checkstyle.javadocpropertiesgenerator"
 )
