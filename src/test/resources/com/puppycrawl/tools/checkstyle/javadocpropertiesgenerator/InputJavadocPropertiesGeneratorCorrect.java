@@ -18,13 +18,6 @@ public class InputJavadocPropertiesGeneratorCorrect {
     public static final int TYPE_EXTENSION_AND = 3;
 
     /**
-     * A left curly brace (<code>{</code>).
-     *
-     * @noinspection HtmlTagCanBeJavadocTag
-     **/
-    public static final int LCURLY = 4;
-
-    /**
      * '{@literal @}deprecated' literal in {@literal @}deprecated Javadoc tag?
      *
      * <p><b>Example:</b></p>
