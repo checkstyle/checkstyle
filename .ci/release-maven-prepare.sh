@@ -28,7 +28,7 @@ if [[ $(grep "<section name=\"Release $TARGET_VERSION\">" src/site/xdoc/releasen
   exit 1
 fi
 
-SKIP_TEST="-DskipTests -DskipITs"
+SKIP_TEST="-Dcheckstyle.skipCompileInputResources=true -DskipTests -DskipITs"
 SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true -Dgpg.skip"
 
