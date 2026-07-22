@@ -72,6 +72,16 @@
           </tr>
           <tr>
             <td>
+              <a href="moduleimportorder.html#ModuleImportOrder">
+                ModuleImportOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering and placement of module import declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="redundantimport.html#RedundantImport">
                 RedundantImport
               </a>

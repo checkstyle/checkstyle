@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ModuleImportOrderCheck"
+             name="ModuleImportOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the ordering and placement of module import declarations. Features are:
+ &lt;/div&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ position of module imports: ensures that module imports are placed above or below
+ all type and static imports (see
+ &lt;a href="https://checkstyle.org/property_types.html#ModuleImportOrderOption"&gt;
+ ModuleImportOrderOption&lt;/a&gt;)
+ &lt;/li&gt;
+ &lt;li&gt;
+ sorts module imports: ensures that module imports are sorted lexicographically
+ by qualified module name, in
+ &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ adds a separation between module imports and other imports: ensures that the module
+ import block is separated from type and static imports by, at least, one blank
+ line or comment
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ This check only validates module imports. It observes type and static imports to
+ locate the boundary of the module import block, but does not validate their order.
+ Use &lt;code&gt;ImportOrder&lt;/code&gt; alongside this check for those.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="top"
+                      name="option"
+                      type="com.puppycrawl.tools.checkstyle.checks.imports.ModuleImportOrderOption">
+               <description>Specify policy on the position of module imports relative to type and static imports.</description>
+            </property>
+            <property default-value="false" name="separated" type="boolean">
+               <description>Control whether the module import block should be separated from type and static imports by, at least, one blank line or comment.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="module.import.ordering.lex"/>
+            <message-key key="module.import.position"/>
+            <message-key key="module.import.separation"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
