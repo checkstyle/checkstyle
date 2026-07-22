@@ -245,6 +245,13 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_CATCH",
                 "LAMBDA", "LITERAL_WHEN")
                 .collect(Collectors.toUnmodifiableSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceBeforeEmptyBody", Stream.of(
+                // these tokens are already validated by WhitespaceAround, having them
+                // in both checks causes duplicate violations
+                "CTOR_DEF", "COMPACT_CTOR_DEF", "LITERAL_DO", "LITERAL_IF", "LITERAL_ELSE",
+                "LITERAL_TRY", "LITERAL_CATCH", "LITERAL_FINALLY", "LITERAL_SYNCHRONIZED",
+                "LITERAL_SWITCH", "LAMBDA")
+                .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // numerical types should not be included
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG",
