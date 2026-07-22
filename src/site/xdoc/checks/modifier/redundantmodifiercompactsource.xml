@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head><title>RedundantModifierCompactSource</title></head>
+  <body>
+    <section name="RedundantModifierCompactSource">
+      <p>Since Checkstyle 13.9.0</p>
+      <subsection name="Description" id="RedundantModifierCompactSource_Description">
+        <div>
+          Checks for redundant modifiers on methods declared directly in compact source files.
+        </div>
+
+        <p>The check reports <code>final</code> because the class implicitly declared by a compact
+          compilation unit is final. It also reports <code>strictfp</code>, whose floating-point semantics
+          are redundant since Java 17. See <a href="https://openjdk.org/jeps/306">JEP 306</a>.</p>
+
+        <p>Only methods whose immediate parent is a compact compilation unit are checked. Ordinary
+          and nested declarations remain in the scope of {@link RedundantModifierCheck}.</p>
+      </subsection>
+      <subsection name="Examples" id="RedundantModifierCompactSource_Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RedundantModifierCompactSource"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below 'Redundant 'final' modifier on a direct member.'
+final void finalized() {}
+
+// violation below 'Redundant 'strictfp' modifier on a direct member.'
+strictfp double calculate() { return 1.0; }
+
+void main() {}
+</code></pre></div>
+      </subsection>
+      <subsection name="Example of Usage" id="RedundantModifierCompactSource_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifierCompactSource">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Violation Messages" id="RedundantModifierCompactSource_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifierCompactSource%22">
+              redundantModifierCompactSource
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+      <subsection name="Fully Qualified Name"
+                  id="RedundantModifierCompactSource_Fully_Qualified_Name">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCompactSourceCheck
+        </p>
+      </subsection>
+      <subsection name="Parent Module" id="RedundantModifierCompactSource_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
