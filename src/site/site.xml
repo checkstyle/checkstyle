@@ -137,6 +137,8 @@
           <item name="EqualsAvoidNull" href="checks/coding/equalsavoidnull.html"/>
           <item name="EqualsHashCode" href="checks/coding/equalshashcode.html"/>
           <item name="ExplicitInitialization" href="checks/coding/explicitinitialization.html"/>
+          <item name="ExpressionOverBlockLambda"
+                href="checks/coding/expressionoverblocklambda.html"/>
           <item name="FallThrough" href="checks/coding/fallthrough.html"/>
           <item name="FinalLocalVariable" href="checks/coding/finallocalvariable.html"/>
           <item name="HiddenField" href="checks/coding/hiddenfield.html"/>
