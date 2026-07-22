@@ -275,12 +275,12 @@ public class AllCheckSummaries extends AbstractMacro {
                 final String description = JavadocScraperResultUtil.getModuleDescription();
                 if (!description.isEmpty()) {
 
-                    final String[] moduleInfo = determineModuleInfo(path, moduleName);
-                    final String packageName = moduleInfo[1];
+                    final ModuleInfo moduleInfo = determineModuleInfo(path, moduleName);
+                    final String packageName = moduleInfo.packageName();
                     if (packageFilter == null || packageFilter.equals(packageName)) {
                         final String sanitizedDescription = sanitizeAnchorUrls(description);
 
-                        final String simpleName = moduleInfo[0];
+                        final String simpleName = moduleInfo.simpleName();
                         final String summary = sanitizeAndFirstSentence(sanitizedDescription);
                         final String href = resolveHref(xmlHrefMap, packageName, simpleName,
                                 packageFilter);
@@ -300,9 +300,9 @@ public class AllCheckSummaries extends AbstractMacro {
      *
      * @param path the check class file
      * @param moduleName the full module name
-     * @return array with [simpleName, packageName]
+     * @return {@link ModuleInfo} with simpleName and packageName
      */
-    private static String[] determineModuleInfo(Path path, String moduleName) {
+    private static ModuleInfo determineModuleInfo(Path path, String moduleName) {
         String packageName = extractCategoryFromJavaPath(path);
 
         if ("indentation".equals(packageName)) {
@@ -319,7 +319,7 @@ public class AllCheckSummaries extends AbstractMacro {
             simpleName = moduleName.substring(0, moduleName.length() - "Check".length());
         }
 
-        return new String[] {simpleName, packageName};
+        return new ModuleInfo(simpleName, packageName);
     }
 
     /**
@@ -826,6 +826,15 @@ public class AllCheckSummaries extends AbstractMacro {
      * @param summary module summary
      */
     private record CheckInfo(String simpleName, String link, String summary) {
+    }
+
+    /**
+     * Data holder for simple name and package name for a check module.
+     *
+     * @param simpleName check module simple name
+     * @param packageName check module package name
+     */
+    private record ModuleInfo(String simpleName, String packageName) {
     }
 
 }
