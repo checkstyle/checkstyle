@@ -156,7 +156,6 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
             // until https://github.com/checkstyle/checkstyle/issues/20625
             "checks/javadoc/javadocblocktaglocation",
-            "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
             "checks/translation"
     );
