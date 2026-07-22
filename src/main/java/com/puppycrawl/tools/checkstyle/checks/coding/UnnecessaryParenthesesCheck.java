@@ -291,6 +291,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.POST_DEC,
             TokenTypes.INDEX_OP,
             TokenTypes.DOT,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -345,6 +346,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.INDEX_OP,
             TokenTypes.DOT,
             TokenTypes.LITERAL_NEW,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -354,55 +356,153 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    // -@cs[CyclomaticComplexity] All logs should be in visit token.
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
+        boolean shouldReturn = false;
 
-        if (isLambdaSingleParameterSurrounded(ast)) {
+        if (shouldSkipProcessing(parent)) {
+            shouldReturn = true;
+        }
+        else if (isLambdaSingleParameterSurrounded(ast)) {
             log(ast, MSG_LAMBDA);
+            shouldReturn = true;
         }
         else if (ast.getType() == TokenTypes.QUESTION) {
-            getParenthesesChildrenAroundQuestion(ast)
-                .forEach(unnecessaryChild -> log(unnecessaryChild, MSG_EXPR));
+            handleQuestionToken(ast);
+            shouldReturn = true;
         }
-        else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-            final int type = ast.getType();
-            final boolean surrounded = isSurrounded(getSelfOrParentMethodCall(ast));
-            // An identifier surrounded by parentheses.
-            if (surrounded && type == TokenTypes.IDENT) {
-                parentToSkip = ast.getParent();
-                log(ast, MSG_IDENT, ast.getText());
-            }
-            // A literal (numeric or string) surrounded by parentheses.
-            else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
-                parentToSkip = ast.getParent();
-                if (type == TokenTypes.STRING_LITERAL) {
-                    log(ast, MSG_STRING,
-                        chopString(ast.getText()));
-                }
-                else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                    // Strip newline control characters to keep message as single-line, add
-                    // quotes to make string consistent with STRING_LITERAL
-                    final String logString = QUOTE
-                        + NEWLINE.matcher(
-                            ast.getFirstChild().getText()).replaceAll("\\\\n")
-                        + QUOTE;
-                    log(ast, MSG_STRING, chopString(logString));
-                }
-                else {
-                    log(ast, MSG_LITERAL, ast.getText());
-                }
-            }
-            // The rhs of an assignment surrounded by parentheses.
-            else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
-                assignDepth++;
-                final DetailAST last = ast.getLastChild();
-                if (last.getType() == TokenTypes.RPAREN) {
-                    log(ast, MSG_ASSIGN);
-                }
-            }
+
+        if (!shouldReturn) {
+            handleTokenBasedOnType(ast);
         }
+    }
+
+    /**
+     * Determines if processing should be skipped for the given token.
+     *
+     * @param parent the parent of the AST node
+     * @return true if processing should be skipped
+     */
+    private static boolean shouldSkipProcessing(DetailAST parent) {
+        return parent.getType() == TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR;
+    }
+
+    /**
+     * Handles processing for QUESTION token type.
+     *
+     * @param ast the QUESTION token
+     */
+    private void handleQuestionToken(DetailAST ast) {
+        getParenthesesChildrenAroundQuestion(ast)
+            .forEach(unnecessaryChild -> log(unnecessaryChild, MSG_EXPR));
+    }
+
+    /**
+     * Handles token processing based on its type.
+     *
+     * @param ast the AST node to process
+     */
+    private void handleTokenBasedOnType(DetailAST ast) {
+        final int type = ast.getType();
+        final boolean surrounded = isSurrounded(ast);
+
+        if (surrounded && type == TokenTypes.IDENT) {
+            handleIdentifierToken(ast);
+        }
+        else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
+            handleLiteralToken(ast, type);
+        }
+        else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
+            handleAssignmentToken(ast);
+        }
+        else if (surrounded && type == TokenTypes.TYPECAST) {
+            handleTypeCastToken(ast);
+        }
+    }
+
+    /**
+     * Handles identifier tokens.
+     *
+     * @param ast the IDENT token
+     */
+    private void handleIdentifierToken(DetailAST ast) {
+        parentToSkip = ast.getParent();
+        log(ast, MSG_IDENT, ast.getText());
+    }
+
+    /**
+     * Handles literal tokens (numeric, string, text blocks).
+     *
+     * @param ast the literal token
+     * @param type the token type
+     */
+    private void handleLiteralToken(DetailAST ast, int type) {
+        parentToSkip = ast.getParent();
+        if (type == TokenTypes.STRING_LITERAL) {
+            log(ast, MSG_STRING, chopString(ast.getText()));
+        }
+        else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+            final String logString = QUOTE
+                + NEWLINE.matcher(ast.getFirstChild().getText()).replaceAll("\\\\n")
+                + QUOTE;
+            log(ast, MSG_STRING, chopString(logString));
+        }
+        else {
+            log(ast, MSG_LITERAL, ast.getText());
+        }
+    }
+
+    /**
+     * Handles assignment tokens.
+     *
+     * @param ast the assignment token
+     */
+    private void handleAssignmentToken(DetailAST ast) {
+        assignDepth++;
+        final DetailAST last = ast.getLastChild();
+        if (last.getType() == TokenTypes.RPAREN) {
+            log(ast, MSG_ASSIGN);
+        }
+    }
+
+    /**
+     * Handles type cast tokens.
+     *
+     * @param ast the TYPECAST token
+     */
+    private void handleTypeCastToken(DetailAST ast) {
+        if (!isCastInsideAssignmentRhsWrapper(ast)
+                && !isCastReceiverOfMemberAccess(ast)) {
+            log(ast.getPreviousSibling(), MSG_EXPR);
+        }
+    }
+
+    /**
+     * Checks whether a surrounded TYPECAST is the receiver of a member access
+     * or an array index expression, in which case the parentheses are required.
+     *
+     * @param ast the TYPECAST node
+     * @return true if the parentheses around the cast are necessary
+     */
+    private static boolean isCastReceiverOfMemberAccess(DetailAST ast) {
+        final int parentType = ast.getParent().getType();
+        return parentType == TokenTypes.DOT
+                || parentType == TokenTypes.INDEX_OP
+                || parentType == TokenTypes.METHOD_REF;
+    }
+
+    /**
+     * Checks whether a surrounded TYPECAST is directly wrapped by parentheses
+     * already reported by another rule (ASSIGN handling or containing EXPR).
+     *
+     * @param ast the TYPECAST node
+     * @return true if the outer parentheses are already reported elsewhere
+     */
+    private static boolean isCastInsideAssignmentRhsWrapper(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return TokenUtil.isOfType(parent.getType(), ASSIGNMENTS)
+                || parent.getType() == TokenTypes.EXPR;
     }
 
     @Override
@@ -450,7 +550,14 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isSurrounded(DetailAST ast) {
         final DetailAST prev = ast.getPreviousSibling();
-        return prev != null && prev.getType() == TokenTypes.LPAREN;
+        final DetailAST parent = ast.getParent();
+        final boolean isPreviousSiblingLeftParenthesis = prev != null
+                && prev.getType() == TokenTypes.LPAREN;
+        final boolean isMethodCallWithUnnecessaryParenthesis =
+                parent.getType() == TokenTypes.METHOD_CALL
+                && parent.getPreviousSibling() != null
+                && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
+        return isPreviousSiblingLeftParenthesis || isMethodCallWithUnnecessaryParenthesis;
     }
 
     /**
@@ -499,24 +606,24 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean unnecessaryParenAroundOperators(DetailAST ast) {
         final int type = ast.getType();
-        final boolean isConditionalOrRelational = TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
-                        || TokenUtil.isOfType(type, RELATIONAL_OPERATOR);
-        final boolean isBitwise = TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS);
-        final boolean hasUnnecessaryParentheses;
-        if (isConditionalOrRelational) {
-            hasUnnecessaryParentheses = checkConditionalOrRelationalOperator(ast);
+        boolean result = false;
+
+        if (TokenUtil.isOfType(type, CONDITIONAL_OPERATOR)
+                || TokenUtil.isOfType(type, RELATIONAL_OPERATOR)) {
+            result = checkConditionalOrRelationalOperator(ast);
         }
-        else if (isBitwise) {
-            hasUnnecessaryParentheses = checkBitwiseBinaryOperator(ast);
+        else if (TokenUtil.isOfType(type, BITWISE_BINARY_OPERATORS)) {
+            result = checkBitwiseBinaryOperator(ast);
         }
         else if (TokenUtil.isOfType(type, ARRAY_AND_FIELD_ACCESS)) {
-            hasUnnecessaryParentheses = isNotFirstArgOfTernary(getSelfOrParentMethodCall(ast));
+            result = isNotFirstArgOfTernary(getSelfOrParentMethodCall(ast));
         }
-        else {
-            hasUnnecessaryParentheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
-                    && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
+        else if (TokenUtil.isOfType(type, UNARY_AND_POSTFIX)) {
+            result = isBitWiseBinaryOrConditionalOrRelationalOperator(
+                ast.getParent().getType());
         }
-        return hasUnnecessaryParentheses;
+
+        return result;
     }
 
     /**
@@ -541,7 +648,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final int parentType = ast.getParent().getType();
         final boolean isParentEqualityOperator =
                 TokenUtil.isOfType(parentType, TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
-        final boolean result;
+        boolean result;
+
         if (type == TokenTypes.LOR) {
             result = !TokenUtil.isOfType(parentType, TokenTypes.LAND)
                     && !TokenUtil.isOfType(parentType, BITWISE_BINARY_OPERATORS);
@@ -552,8 +660,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         else {
             result = true;
         }
-        return result && !isParentEqualityOperator
-                && isBitWiseBinaryOrConditionalOrRelationalOperator(parentType);
+
+        if (isParentEqualityOperator || !isBitWiseBinaryOrConditionalOrRelationalOperator(
+                parentType)) {
+            result = false;
+        }
+
+        return result;
     }
 
     /**
@@ -565,7 +678,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean checkBitwiseBinaryOperator(DetailAST ast) {
         final int type = ast.getType();
         final int parentType = ast.getParent().getType();
-        final boolean result;
+        boolean result;
+
         if (type == TokenTypes.BOR) {
             result = !TokenUtil.isOfType(parentType, TokenTypes.BAND, TokenTypes.BXOR)
                     && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
@@ -574,11 +688,16 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             result = !TokenUtil.isOfType(parentType, TokenTypes.BAND)
                     && !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
         }
-        // we deal with bitwise AND here.
         else {
+            // we deal with bitwise AND here.
             result = !TokenUtil.isOfType(parentType, RELATIONAL_OPERATOR);
         }
-        return result && isBitWiseBinaryOrConditionalOrRelationalOperator(parentType);
+
+        if (!isBitWiseBinaryOrConditionalOrRelationalOperator(parentType)) {
+            result = false;
+        }
+
+        return result;
     }
 
     /**
