@@ -262,7 +262,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UpperEllCheck",
         "UseEnhancedSwitchCheck",
         "VariableDeclarationUsageDistanceCheck",
-        "VisibilityModifierCheck",
         "WhenShouldBeUsedCheck",
         "WhitespaceAfterCheck",
         "WhitespaceAroundCheck",
