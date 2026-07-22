@@ -38,6 +38,17 @@ public record TreeWalkerAuditEvent(
         DetailAST rootAst) {
 
     /**
+     * Creates a new {@code TreeWalkerAuditEvent} instance.
+     *
+     * @param fileContents contents of the file associated with the event
+     * @param fileName file associated with the event
+     * @param violation the actual violation
+     * @param rootAst root AST element {@link DetailAST} of the file
+     */
+    public TreeWalkerAuditEvent {
+    }
+
+    /**
      * Return the line number on the source file where the event occurred.
      * This may be 0 if there is no relation to a file content.
      *

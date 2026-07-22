@@ -28,17 +28,29 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
  */
 public record InvalidJavadocTag(int line, int col, String name) {
 
-    /** Legacy getter for line (backward compatibility). */
+    /**
+     * Legacy getter for line (backward compatibility).
+     *
+     * @return the line of the invalid tag
+     */
     public int getLine() {
         return line;
     }
 
-    /** Legacy getter for col (backward compatibility). */
+    /**
+     * Legacy getter for col (backward compatibility).
+     *
+     * @return the column of the invalid tag
+     */
     public int getCol() {
         return col;
     }
 
-    /** Legacy getter for name (backward compatibility). */
+    /**
+     * Legacy getter for name (backward compatibility).
+     *
+     * @return the name of the invalid tag
+     */
     public String getName() {
         return name;
     }

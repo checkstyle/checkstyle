@@ -24,6 +24,8 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 public class JavadocTagTest {
@@ -92,6 +94,53 @@ public class JavadocTagTest {
         assertThat(new JavadocTag(0, 0, "value", null).isInlineTag()).isTrue();
         assertThat(new JavadocTag(0, 0, "see", null).isInlineTag()).isFalse();
 
+    }
+
+    @Test
+    public void testInvalidJavadocTagLegacyGetters() {
+        final InvalidJavadocTag tag = new InvalidJavadocTag(1, 2, "test");
+        assertWithMessage("Invalid line number")
+            .that(tag.getLine())
+            .isEqualTo(1);
+        assertWithMessage("Invalid column number")
+            .that(tag.getCol())
+            .isEqualTo(2);
+        assertWithMessage("Invalid tag name")
+            .that(tag.getName())
+            .isEqualTo("test");
+        assertWithMessage("Invalid line number")
+            .that(tag.line())
+            .isEqualTo(1);
+        assertWithMessage("Invalid column number")
+            .that(tag.col())
+            .isEqualTo(2);
+        assertWithMessage("Invalid tag name")
+            .that(tag.name())
+            .isEqualTo("test");
+    }
+
+    @Test
+    public void testTagInfoLegacyGetters() {
+        final LineColumn position = new LineColumn(1, 2);
+        final TagInfo tagInfo = new TagInfo("name", "value", position);
+        assertWithMessage("Invalid name")
+            .that(tagInfo.getName())
+            .isEqualTo("name");
+        assertWithMessage("Invalid value")
+            .that(tagInfo.getValue())
+            .isEqualTo("value");
+        assertWithMessage("Invalid position")
+            .that(tagInfo.getPosition())
+            .isEqualTo(position);
+        assertWithMessage("Invalid name")
+            .that(tagInfo.name())
+            .isEqualTo("name");
+        assertWithMessage("Invalid value")
+            .that(tagInfo.value())
+            .isEqualTo("value");
+        assertWithMessage("Invalid position")
+            .that(tagInfo.position())
+            .isEqualTo(position);
     }
 
 }
