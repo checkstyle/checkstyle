@@ -104,6 +104,21 @@
           <param name="path"
             value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example6.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          An example of how to configure the check to make sure the pattern
+          is treated as illegal without any other property overrides:
+        </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code"> Example7: </p>
+        <macro name="example">
+          <param name="path"
+            value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

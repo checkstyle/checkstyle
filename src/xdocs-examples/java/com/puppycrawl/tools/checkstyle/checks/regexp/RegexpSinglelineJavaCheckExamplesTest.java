@@ -92,6 +92,16 @@ public class RegexpSinglelineJavaCheckExamplesTest extends AbstractExamplesModul
     }
 
     @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "public"),
+            "40: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "public"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expected = {
             "23: " + "private member found",
