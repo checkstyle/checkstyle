@@ -46,11 +46,15 @@ public class InputLambdaExpressionsDosAndDonts {
 
         // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
         Runnable r = () -> { System.out.println("Hello World"); };
-        // violation above, ''{' at column 28 should have line break after.'
+        // 2 violations above:
+        //    'Expression lambdas are preferred over single-line block lambdas.'
+        //    ''{' at column 28 should have line break after.'
 
         // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
         Supplier<String> supp = () -> { return "Hello World"; };
-        // violation above, ''{' at column 39 should have line break after.'
+        // 2 violations above:
+        //    'Expression lambdas are preferred over single-line block lambdas.'
+        //    ''{' at column 39 should have line break after.'
 
         // ok, until https://github.com/checkstyle/checkstyle/issues/20693
         appendFilter(s -> list.contains(s));

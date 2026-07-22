@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ExpressionOverBlockLambda</title>
+  </head>
+  <body>
+    <section name="ExpressionOverBlockLambda">
+      <p>Since Checkstyle 8.46</p>
+      <subsection name="Description" id="ExpressionOverBlockLambda_Description">
+        <div>
+          Checks that expression lambdas are used instead of single-line block
+          lambdas where possible.
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ExpressionOverBlockLambda_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ExpressionOverBlockLambda"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public void foo() {
+    // violation below 'Expression lambdas are preferred over single-line block lambdas.'
+    Runnable a = () -&gt; { System.out.println("hello"); };
+
+    // violation below 'Expression lambdas are preferred over single-line block lambdas.'
+    Function&lt;Integer, Integer&gt; b = x -&gt; { return x + 1; };
+
+    // OK - expression lambda (already correct)
+    Runnable c = () -&gt; System.out.println("hello");
+
+    // OK - multi-line block lambda (can't be collapsed)
+    Runnable d = () -&gt; {
+        System.out.println("hello");
+    };
+
+    // OK - void return (can't become expression lambda)
+    Runnable e = () -&gt; { return; };
+
+    // OK - multi-statement block (can't become expression lambda)
+    Runnable f = () -&gt; { a(); b(); };
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ExpressionOverBlockLambda_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExpressionOverBlockLambda">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExpressionOverBlockLambda">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ExpressionOverBlockLambda_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22expression.over.block.lambda%22">
+              expression.over.block.lambda
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ExpressionOverBlockLambda_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ExpressionOverBlockLambdaCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ExpressionOverBlockLambda_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>
