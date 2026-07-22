@@ -285,6 +285,34 @@ public class Example6 {
     // fix me.
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          An example of how to configure the check to make sure the pattern
+          is treated as illegal without any other property overrides:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Regexp"&gt;
+      &lt;property name="format" value="System\.out\.println"/&gt;
+      &lt;property name="illegalPattern" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code"> Example7: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// (c) MyCompany
+// (c) MyCompany
+// This code is copyrighted.
+public class Example7 {
+  private void foo() {      // violation below 'Line matches the illegal pattern'
+    System.out.println("");
+    // System.out.println("debug");
+    // fix me.
+    // fix me.
+  } // violation 3 lines above 'Line matches the illegal pattern'
+}
 </code></pre></div>
       </subsection>
 
