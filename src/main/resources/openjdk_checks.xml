@@ -106,6 +106,8 @@
 
     <!-- §3.12: Expression lambda body length check based on OpenJDK style guide -->
     <module name="LambdaBodyLength"/>
+    <!-- §3.12: Expression lambdas are preferred over single-line block lambdas -->
+    <module name="ExpressionOverBlockLambda"/>
     <module name="NoLineWrap">
       <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
     </module>
