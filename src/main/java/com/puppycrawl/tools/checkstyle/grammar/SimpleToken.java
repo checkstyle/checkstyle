@@ -34,6 +34,7 @@ import org.antlr.v4.runtime.Token;
  */
 public final class SimpleToken extends CommonToken {
 
+    /** A unique serial version identifier. */
     @Serial
     private static final long serialVersionUID = 1L;
 
