@@ -44,15 +44,15 @@ public class InputLambdaExpressionsDosAndDonts {
 
     public void styleGuideDonts(List<String> list) {
 
-        // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
+        // ok, for block
         Runnable r = () -> { System.out.println("Hello World"); };
         // violation above ''{' at column 28 should have line break after.'
 
-        // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
+        // ok, for block
         Supplier<String> supp = () -> { return "Hello World"; };
         // violation above ''{' at column 39 should have line break after.'
 
-        // ok, until https://github.com/checkstyle/checkstyle/issues/20693
+        // ok, expression lambda
         appendFilter(s -> list.contains(s));
 
         // this can not be determined it is a subjective case
