@@ -217,7 +217,7 @@
     </sevntu-checkstyle-check.checkstyle.version>
     <versions.plugin.version>2.21.0</versions.plugin.version>
     <compiler.plugin.version>3.15.0</compiler.plugin.version>
-    <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
+    <checkstyle.skipCompileInputResources>false</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -2173,6 +2173,16 @@
               <excludes>
                 <exclude>**/Example*</exclude>
                 <exclude>**/Input*</exclude>
+                <!-- input helper classes co-located in Input*/Example* files (or named
+                     UseCase*) that do not match the Input*/Example* naming; compiled since
+                     checkstyle.skipCompileInputResources=false and use forbidden apis by
+                     design as test fixtures -->
+                <exclude>**/UseCase*</exclude>
+                <exclude>**/classdataabstractioncoupling/MyRecord*</exclude>
+                <exclude>**/whitespacearound/foo3*</exclude>
+                <exclude>**/missingoverrideonrecordaccessor/Person*</exclude>
+                <exclude>**/missingoverrideonrecordaccessor/Document*</exclude>
+                <exclude>**/rule61overridealwaysused/Document*</exclude>
                 <!-- usage of system output by design -->
                 <exclude>**/MainTest.class</exclude>
                 <!-- tests need forbidden apis to test the main code fully -->
@@ -2607,6 +2617,7 @@
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
