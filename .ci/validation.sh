@@ -762,8 +762,6 @@ javac25)
 javadoc-tool-validate)
   output_dir=.ci-temp/javadoc
   classpath_file=.ci-temp/javadoc-test-classpath.txt
-  # until https://github.com/checkstyle/checkstyle/issues/20675
-  source ./.ci/javadoc-tool-excluded-packages.sh
   mkdir -p "$output_dir"
 
   ./mvnw -e --no-transfer-progress -q -Djacoco.skip=true -DskipTests clean test-compile
@@ -798,15 +796,6 @@ javadoc-tool-validate)
     local log_file="$output_dir/$output_name.log"
     local root
     local package_name
-    local excluded_packages=()
-
-    for excluded_package in "${JAVADOC_TOOL_EXCLUDED_PACKAGES[@]}"
-    do
-      read -r root package_name _ <<< "$excluded_package"
-      if [[ -n $root && $root != \#* && $root == "$source_root" ]]; then
-        excluded_packages+=(-exclude "$package_name")
-      fi
-    done
 
     echo "Validating Javadoc syntax in $description"
     if ! javadoc -quiet \
@@ -815,7 +804,6 @@ javadoc-tool-validate)
       -classpath "$project_classpath" \
       -Xdoclint:syntax \
       "${custom_tags[@]}" \
-      "${excluded_packages[@]}" \
       -subpackages "$subpackages" \
       -d "$output_dir/$output_name" 2> "$log_file"
     then

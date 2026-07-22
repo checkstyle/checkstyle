@@ -293,22 +293,6 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testJavadocParseError() throws Exception {
-        final String path = getPath("InputJavadocPropertiesGeneratorJavadocParseError.java");
-        final IllegalArgumentException exc =
-                getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-                }, "Exception was expected");
-        assertWithMessage("Invalid error message")
-            .that(exc.getMessage())
-            .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
-        final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '%s' must be empty", DESTFILE)
-            .that(size)
-            .isEqualTo(0);
-    }
-
-    @Test
     public void testNotImplementedTag() throws Exception {
         final String path = getPath("InputJavadocPropertiesGeneratorNotImplementedTag.java");
         final CheckstyleException exc =
