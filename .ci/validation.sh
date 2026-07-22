@@ -586,22 +586,11 @@ checkstyle-and-sevntu)
   ;;
 
 spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
-  CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS="-Xmx4g"
+  # PMD processing errors fail the build itself, see 'skipPmdError' in pom.xml
   ./mvnw -e --no-transfer-progress clean pmd:check
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
-  grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
-  RESULT=$(cat errors.log | wc -l)
-  if [[ $RESULT != 0 ]]; then
-    echo "Errors are detected in target/site/pmd.html."
-    sleep 5s
-  fi
-  cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
-  exit "$RESULT"
-;;
+  ;;
 
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
