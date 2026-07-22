@@ -226,8 +226,22 @@
                     3.1.1 Beginning Comments
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
+                    MultiFileRegexpHeader
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter3fileorganization/rule311beginningcomments">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
