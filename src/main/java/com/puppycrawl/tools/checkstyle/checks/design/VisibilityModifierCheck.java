@@ -45,19 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  *
  * <p>
- * Public members are not flagged if the name matches the public
- * member regular expression (contains {@code "^serialVersionUID$"} by
- * default).
- * </p>
- *
- * <p>
- * Note that Checkstyle 2 used to include {@code "^f[A-Z][a-zA-Z0-9]*$"} in the default pattern
- * to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
- * the default settings. With EJB 2.0 it is no longer necessary to have public access for
- * persistent fields, so the default has been changed.
- * </p>
- *
- * <p>
  * Rationale: Enforce encapsulation.
  * </p>
  *
@@ -114,6 +101,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Star imports are out of scope of this Check. So if one of type imported via
  * star import collides with user specified one by its short name - there
  * won't be Check's violation.
+ * </p>
+ *
+ * <p>
+ * Notes:
+ * Top-level fields of compact source files
+ * (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+ * are skipped by design. Their access modifiers do not provide the encapsulation
+ * that this check enforces for ordinary classes.
+ * Public members are not flagged if the name matches the public
+ * member regular expression (contains {@code "^serialVersionUID$"} by
+ * default).
  * </p>
  *
  * @since 3.0
