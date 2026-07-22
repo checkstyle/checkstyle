@@ -26,7 +26,8 @@
         <li>
           <code>files</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
           Pattern</a> matched against the file name associated with an audit event.
-          It is optional.
+          It is optional. If unmatched, all Unix path separators (/)
+          are converted to Windows separators (\) and retried.
         </li>
         <li>
           <code>checks</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
@@ -354,6 +355,13 @@ class Inner {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
         </code></pre></div>
+        <p>
+          Suppress all checks for Maven-generated code
+          (compact form for 'files' that matches on Windows and Linux):
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        &lt;suppress files=&quot;/target/&quot; checks=&quot;.*&quot;/&gt;
+          </code></pre></div>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>

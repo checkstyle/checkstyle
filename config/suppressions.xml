@@ -11,14 +11,14 @@
   <suppress id="lineLengthXml" files="releasenotes_old_8\-0_8\-34\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_6\-0_7\-8\.xml"/>
   <suppress id="lineLengthXml" files="releasenotes_old_1\-0_5\-9\.xml"/>
-  <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
+  <suppress id="lineLengthXml" files="/meta/"/>
 
   <suppress checks="FileLength"
              files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
   <!-- Until reduce the suppression data blocks -->
   <suppress checks="FileLength"
-            files="[\\/]bdd[\\/]InlineConfigParser\.java"/>
+            files="/bdd/InlineConfigParser\.java"/>
 
   <!-- illegal words are part of Javadoc -->
   <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
@@ -35,7 +35,7 @@
 
   <!-- Tone down the checking for test code -->
   <suppress checks="ExecutableStatementCount|JavaNCSS"
-             files="[\\/]XdocsPagesTest\.java"/>
+             files="/XdocsPagesTest\.java"/>
 
   <!-- The Check generates too many violations, fixing them will make code unmanageable. -->
   <suppress checks="MagicNumber" files="(ParseTreeTablePresentation|MainFrame)\.java"/>
@@ -57,40 +57,40 @@
   <suppress checks="MultipleStringLiterals" files="XMLLogger\.java"/>
 
   <!-- For test cases need larger file length -->
-  <suppress checks="FileLength" files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]MainTest.java" />
+  <suppress checks="FileLength" files="/src/test/java/com/puppycrawl/tools/checkstyle/MainTest.java" />
 
   <!-- There are a lot of setters/getters in the Check.
      A small number of methods is left for Check's logic -->
-  <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
+  <suppress checks="MethodCount" files="/JavadocMethodCheck.java$"/>
   <!-- Apart from a complex logic there is a lot of small methods for a better readability. -->
-  <suppress checks="MethodCount" files="[\\/]CommentsIndentationCheck.java$"/>
+  <suppress checks="MethodCount" files="/CommentsIndentationCheck.java$"/>
   <!-- VisibilityModifierCheck has 7 options which require 7 additional methods (setters) -->
-  <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
+  <suppress checks="MethodCount" files="/VisibilityModifierCheck.java$"/>
   <!-- RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
-  <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
+  <suppress checks="MethodCount" files="/RequireThisCheck.java$"/>
   <!-- public access on private nested class is intentional for future top-level extraction -->
-  <suppress checks="RedundantModifier" files="[\\/]RequireThisCheck\.java$"/>
+  <suppress checks="RedundantModifier" files="/RequireThisCheck\.java$"/>
   <!-- Apart from complex logic, there is a nested class which contains many methods.  -->
-  <suppress checks="MethodCount" files="[\\/]UnusedLocalVariableCheck.java"/>
+  <suppress checks="MethodCount" files="/UnusedLocalVariableCheck.java"/>
   <!-- Utility class is combination of a lot of different methods .  -->
-  <suppress checks="MethodCount" files="[\\/]SiteUtil.java"/>
+  <suppress checks="MethodCount" files="/SiteUtil.java"/>
   <!-- parse method needs catching Exceptions to print context of execution -->
-  <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
+  <suppress checks="IllegalCatch" files="/src/test/.*/InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
-  <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]XpathFileGeneratorAuditListenerTest\.java"/>
+  <suppress checks="IllegalCatch" files="/src/test/.*/XpathFileGeneratorAuditListenerTest\.java"/>
     <!-- Uses non-ascii symbols intentionally for testing IllegalSymbolCheck -->
   <suppress checks="AvoidEscapedUnicodeCharacters"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
+            files="/src/it/java/org/checkstyle/suppressionxpathfilter/coding/XpathRegressionIllegalSymbolTest.java"/>
   <suppress id="checkASCII"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
+            files="/src/it/java/org/checkstyle/suppressionxpathfilter/coding/XpathRegressionIllegalSymbolTest.java"/>
   <suppress checks="IllegalSymbol"
-            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
+            files="/src/it/java/org/checkstyle/suppressionxpathfilter/coding/XpathRegressionIllegalSymbolTest.java"/>
   <suppress checks="AvoidEscapedUnicodeCharacters"
-            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
+            files="/checks/coding/IllegalSymbolCheck(Examples)?Test\.java"/>
   <suppress id="checkASCII"
-            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
+            files="/checks/coding/IllegalSymbolCheck(Examples)?Test\.java"/>
   <suppress checks="IllegalSymbol"
-            files="[\\/]checks[\\/]coding[\\/]IllegalSymbolCheck(Examples)?Test\.java"/>
+            files="/checks/coding/IllegalSymbolCheck(Examples)?Test\.java"/>
 
   <!-- we need that set of converters -->
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
@@ -104,7 +104,7 @@
                     |AbstractCheckTest|InlineConfigParser)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
-  <suppress checks="ClassFanOutComplexity" files="[\\/]Main\.java"/>
+  <suppress checks="ClassFanOutComplexity" files="/Main\.java"/>
   <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="Checker\.java"/>
   <suppress checks="ClassFanOutComplexity" files="AbstractAutomaticBean\.java"/>
@@ -120,22 +120,22 @@
   <!-- HandlerFactory crosses allowed limit for executable statements -->
   <suppress checks="ExecutableStatementCount" files="HandlerFactory\.java"/>
 
-  <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes.xml"/>
-  <suppress id="noSourceforgeNetLinks" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
-  <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
+  <suppress id="noSourceforgeNetLinks" files="/releasenotes.xml"/>
+  <suppress id="noSourceforgeNetLinks" files="/releasenotes_old_8\-0_8\-34\.xml"/>
+  <suppress id="noSourceforgeIoLinks" files="/index.xml.vm"/>
 
   <!-- usage of div class="wrap-content" render even indented content properly -->
   <suppress id="noIndentationConfigExamples"
-            files="[\\/]src[\\/]site[\\/]xdoc[\\/]writingchecks.xml"/>
+            files="/src/site/xdoc/writingchecks.xml"/>
   <suppress id="noIndentationConfigExamples"
-    files="[\\/]src[\\/]site[\\/]xdoc[\\/]beginning_development.xml"/>
+    files="/src/site/xdoc/beginning_development.xml"/>
 
   <!-- Examples are not intended to be formatted -->
-  <suppress id="noConsecutiveLines" files="[\\/]emptylineseparator.xml"/>
-  <suppress id="noConsecutiveLines" files="[\\/]javadocparagraph.xml"/>
-  <suppress id="noConsecutiveLines" files="[\\/]parenpad.xml"/>
-  <suppress id="noConsecutiveLines" files="[\\/]singlespaceseparator.xml"/>
-  <suppress id="noConsecutiveLines" files="[\\/]typebodypadding.xml"/>
+  <suppress id="noConsecutiveLines" files="/emptylineseparator.xml"/>
+  <suppress id="noConsecutiveLines" files="/javadocparagraph.xml"/>
+  <suppress id="noConsecutiveLines" files="/parenpad.xml"/>
+  <suppress id="noConsecutiveLines" files="/singlespaceseparator.xml"/>
+  <suppress id="noConsecutiveLines" files="/typebodypadding.xml"/>
 
   <!-- until #19146 -->
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocTypeCheck.java"/>
@@ -144,54 +144,58 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
-  <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
+  <suppress id="MatchXPathBranchContains" files="/DetailAstImplTest.java"/>
 
   <!-- required by JavaAstVisitor design -->
   <suppress checks="MethodCount"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java"/>
   <suppress checks="FileLength"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java"/>
   <suppress checks="ClassFanOutComplexity"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java"/>
 
   <!-- required by JavadocCommentsAstVisitor design -->
   <suppress checks="MethodCount"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavadocCommentsAstVisitor.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java"/>
   <suppress checks="FileLength"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavadocCommentsAstVisitor.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java"/>
   <suppress checks="ClassFanOutComplexity"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavadocCommentsAstVisitor.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java"/>
+
+  <!-- API docs intentionally show adjacent asterisks as Javadoc content. -->
+  <suppress id="blockCommentStartWithSpace"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]JavadocCommentsTokenTypes.java"/>
 
   <!-- DetailAST API requires large number of methods -->
   <suppress checks="MethodCount"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java"/>
   <!-- the filter is not part of the documentation -->
   <suppress id="settersHaveSinceTag"
-            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]XpathFileGeneratorAstFilter.java"/>
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/XpathFileGeneratorAstFilter.java"/>
 
   <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
        make the lines long. We still validate index.xml and template files.
        until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <suppress id="lineLengthXml"
-            files="[\\/]src[\\/]site[\\/]xdoc[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+            files="/src/site/xdoc/(checks|(file)?filters)/(?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
   <!-- The file is generated -->
   <suppress checks="FileTabCharacter"
-    files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
+    files="src/site/xdoc/checks/whitespace/filetabcharacter\.xml"/>
 
   <!-- Apart from a complex logic there is a lot of small methods for a better readability. -->
   <suppress checks="MethodCount"
-            files="src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
+            files="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java"/>
 
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+            files="/src/test/java/com/puppycrawl/tools/checkstyle/ConfigurationLoaderTest.java"/>
 
   <!-- Remove suppression once all violations are fixed, tracked in #19176 -->
   <suppress checks="MatchXpath"
             id="MatchXpathForbidTryCatchFail"
-            files=".*[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/](?!utils|xpath|checks[\\/]coding|checks[\\/]design|checks[\\/]modifier|checks[\\/]naming|checks[\\/]annotation|checks[\\/]indentation|checks[\\/]metrics|checks[\\/]whitespace|checks[\\/]javadoc|checks[\\/]NewlineAtEndOfFileCheckTest|checks[\\/]SuppressWarningsHolderTest|checks[\\/]UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
+            files=".*/src/test/java/com/puppycrawl/tools/checkstyle/(?!utils|xpath|checks/coding|checks/design|checks/modifier|checks/naming|checks/annotation|checks/indentation|checks/metrics|checks/whitespace|checks/javadoc|checks/NewlineAtEndOfFileCheckTest|checks/SuppressWarningsHolderTest|checks/UncommentedMainCheckTest|CheckerTest|ConfigurationLoaderTest|DetailNodeTreeStringPrinterTest|JavadocPropertiesGeneratorTest|MainTest|PackageNamesLoaderTest|SarifLoggerTest|SuppressionsStringPrinterTest|ThreadModeSettingsTest|TreeWalkerTest).*"/>
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
-  <suppress checks="MissingCtor" files=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*\.java"/>
+  <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
 
 </suppressions>

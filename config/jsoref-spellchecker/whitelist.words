@@ -104,6 +104,7 @@ bdc
 bdd
 beanutils
 beforeexecutionexclusionfilefilter
+beginningcomments
 bestpractices
 bew
 bitbucket
@@ -218,6 +219,7 @@ concat
 config
 configurationloader
 Connell's
+connrefused
 constantname
 constructorsdeclarationgrouping
 CONTACTSERVER
@@ -862,7 +864,6 @@ mockito
 Modello
 modifiedcontrolvariable
 modifierorder
-Mohanad
 Mohnen
 mojohaus
 moks
@@ -923,7 +924,6 @@ Niederhauser
 nikitasavinov
 nio
 nlow
-NMCS
 NMTOKEN
 noarch
 noarraytrailingcomma
@@ -1034,7 +1034,9 @@ packageannotation
 packagecomment
 packagedeclaration
 packagehtml
+packagehtmltemplate
 packageinfo
+packagelevelcomments
 packagename
 packagenamesloader
 packageobjectfactory
@@ -1525,6 +1527,7 @@ wheretobreak
 whitelist
 whitespaceafter
 whitespacearound
+whitespacebeforeemptybody
 wholename
 Wifi
 wiki

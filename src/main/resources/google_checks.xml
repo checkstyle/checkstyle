@@ -52,6 +52,14 @@
     <property name="eachLine" value="true"/>
   </module>
 
+  <module name="RegexpSingleline">
+    <property name="id" value="noTrailingWhitespace"/>
+    <property name="format" value="\s+$"/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Trailing whitespace is not allowed"/>
+  </module>
+
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
@@ -390,9 +398,10 @@
       <property name="tokens" value="LAMBDA"/>
     </module>
     <module name="AnnotationLocation">
-      <property name="id" value="AnnotationLocationTypeAndPackage"/>
+      <property name="id" value="AnnotationLocationTypeAndPackageAndMembers"/>
       <property name="tokens"
-               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, PACKAGE_DEF"/>
+               value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF,
+                PACKAGE_DEF, ENUM_CONSTANT_DEF, ANNOTATION_FIELD_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
     </module>
     <module name="AnnotationLocation">

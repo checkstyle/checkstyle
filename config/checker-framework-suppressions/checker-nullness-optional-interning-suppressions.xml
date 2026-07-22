@@ -2886,7 +2886,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
-    <lineContent>frame = findFrame(frame, name, lookForMethod);</lineContent>
+    <lineContent>frame = findFrame(frame, name, lookMode);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
@@ -2897,7 +2897,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
-    <lineContent>return findFrame(current.peek(), name, lookForMethod);</lineContent>
+    <lineContent>return findFrame(current.peek(), name, lookMode);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
@@ -6079,15 +6079,8 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: tagRegExp, tagFormat, tag</message>
+    <message>the constructor does not initialize fields: tagFormat, tag</message>
     <lineContent>public WriteTagCheck() {</lineContent>
   </checkerFrameworkError>
 

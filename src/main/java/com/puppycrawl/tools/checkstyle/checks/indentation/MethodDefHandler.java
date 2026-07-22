@@ -66,9 +66,16 @@ public class MethodDefHandler extends BlockParentHandler {
         final DetailAST throwsAst = getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
 
         if (throwsAst != null) {
+            final LineWrappingHandler.LineWrappingOptions ignoreFirstLine;
+            if (isOnStartOfLine(throwsAst)) {
+                ignoreFirstLine = LineWrappingHandler.LineWrappingOptions.NONE;
+            }
+            else {
+                ignoreFirstLine = LineWrappingHandler.LineWrappingOptions.IGNORE_FIRST_LINE;
+            }
             checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
                     .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
-                    !isOnStartOfLine(throwsAst));
+                    ignoreFirstLine);
         }
     }
 

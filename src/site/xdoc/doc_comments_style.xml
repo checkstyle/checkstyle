@@ -428,7 +428,14 @@
                     Use in-line links economically
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Guidelines are not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19937">#19937</a>,
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19938">#19938</a>.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -990,7 +997,22 @@
                     Background on the Throws Clause
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle cannot distinguish checked from unchecked exceptions due to its
+                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
+                    validate differences between exceptions declared in method signatures and
+                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
+                    may reveal extra unchecked exceptions declared in signatures, but this
+                    validation cannot fully decide which unchecked exceptions should be documented.
+                    Not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                </td>
                 <td/>
               </tr>
 
@@ -1017,8 +1039,20 @@
                     Template for package.html source file
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocpackage.html#JavadocPackage">
+                    JavadocPackage</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/packagelevelcomments/packagehtmltemplate">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>

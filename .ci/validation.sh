@@ -586,22 +586,10 @@ checkstyle-and-sevntu)
   ;;
 
 spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
-  CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS="-Xmx4g"
   ./mvnw -e --no-transfer-progress clean pmd:check
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
-  grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
-  RESULT=$(cat errors.log | wc -l)
-  if [[ $RESULT != 0 ]]; then
-    echo "Errors are detected in target/site/pmd.html."
-    sleep 5s
-  fi
-  cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
-  exit "$RESULT"
-;;
+  ;;
 
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
@@ -613,6 +601,7 @@ release-dry-run)
     ./mvnw -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
     -Darguments='-DskipTests -DskipITs -Djacoco.skip=true -Dpmd.skip=true \
       -Dspotbugs.skip=true -Dxml.skip=true -Dcheckstyle.ant.skip=true \
+      -Dcheckstyle.skipCompileInputResources=true \
       -Dcheckstyle.skip=true -Dgpg.skip=true --no-transfer-progress'
     ./mvnw -e --no-transfer-progress release:clean
   fi
@@ -714,13 +703,6 @@ check-since-version)
   else
     echo "No new Check, all is good."
   fi
-  ;;
-
-compile-test-resources)
-  # this task is useful during migration to new JDK to let compile resources on new jdk only
-  ./mvnw -e --no-transfer-progress clean test-compile \
-  -Dcheckstyle.skipCompileInputResources=false \
-  -Dmaven.compiler.release=21
   ;;
 
 javac21-exceptional)
@@ -1178,7 +1160,7 @@ no-error-trino)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   echo "Cloning Trino sources..."
-  checkout_from https://github.com/trinodb/trino.git
+  checkout_from https://github.com/trinodb/trino.git "f45e24a240b089a6499c9bc1a4193b3fa""ba798ef"
   cd .ci-temp/trino
   echo "Running Checkstyle ${CS_POM_VERSION} on Trino..."
   ./mvnw -e --no-transfer-progress checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"

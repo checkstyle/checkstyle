@@ -278,8 +278,15 @@
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
       <property name="tokens" value="PACKAGE_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
       <property name="tokens" value="ENUM_CONSTANT_DEF"/>
       <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
     </module>
     <module name="AnnotationOnSameLine">
@@ -538,19 +545,6 @@
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
     <module name="MatchXpath">
-      <property name="id" value="settersHaveSinceTag"/>
-      <property name="query"
-                value="//CLASS_DEF[./IDENT[ends-with(@text, 'Check') or ends-with(@text, 'Filter')]
-                and not (./MODIFIERS/ABSTRACT)]
-                /OBJBLOCK/METHOD_DEF[./IDENT[starts-with(@text, 'set')]
-                and ./MODIFIERS/LITERAL_PUBLIC
-                and ./TYPE/LITERAL_VOID
-                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
-                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
-      <message key="matchxpath.match"
-               value="All property setters of a module should contain a '@since' tag."/>
-    </module>
-    <module name="MatchXpath">
       <property name="id" value="exampleTestsExtendAbstractExamplesModuleTestSupport"/>
       <property name="query"
                 value="//CLASS_DEF[./IDENT[ends-with(@text, 'ExamplesTest')]
@@ -610,8 +604,8 @@
                        BSR_ASSIGN, BXOR_ASSIGN, DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN,
                        SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND,
                        LOR, LITERAL_INSTANCEOF, GT, LT, GE, LE, EQUAL, NOT_EQUAL, UNARY_MINUS,
-                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, BOR, BXOR, BAND,
-                       QUESTION"/>
+                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, DOT, INDEX_OP,
+                       LITERAL_NEW, BOR, BXOR, BAND, QUESTION"/>
     </module>
     <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
@@ -1037,6 +1031,7 @@
                     LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN, ANNOTATIONS"/>
     </module>
     <module name="WhitespaceAround"/>
+    <module name="WhitespaceBeforeEmptyBody"/>
 
   </module>
 

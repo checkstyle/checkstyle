@@ -21,7 +21,9 @@ if "%OPTION%" == "run_checkstyle" (
 )
 
 if "%OPTION%" ==  "verify_without_checkstyle" (
-  call mvnw.cmd -e --no-transfer-progress verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
+  :: Appveyor has old jdk21 there is problem compilation of Inputs
+  call mvnw.cmd -e --no-transfer-progress verify -Dcheckstyle.skipCompileInputResources=true^
+    -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
     || goto :ERROR
   goto :END_CASE
 )

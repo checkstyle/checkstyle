@@ -342,6 +342,65 @@ class Example4 {
 }
 </code></pre></div><hr class="example-separator"/>
 
+        <p id="Example5-config">
+          To configure the check to produce a violation on a try statement
+          without a catch block:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_TRY"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
+      &lt;property name="minimumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }    // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+    catch (Exception e) {
+      try { }  // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }  // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
         <p id="Example6-config">
           To configure the check to produce a violation on a return statement
           from within a catch or finally block:

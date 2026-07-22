@@ -13,256 +13,260 @@
   <suppress id="lineLength" files="compilable-input-paths.txt"/>
   <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
 
+  <!-- Expected report file for WriteTagCheckTest, contains full paths -->
+  <suppress id="lineLength"
+            files="/writetag/ExpectedWriteTagResetSeverity\.txt"/>
+
   <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.(java|txt)"/>
+             files="/test/.*/InputNewlineAtEndOfFile.*\.(java|txt)"/>
 
   <!-- Intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]grammar[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
+             files="/test/.*/grammar/comments/InputFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
+             files="/test/.*/asttreestringprinter/InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
   <suppress checks="NewlineAtEndOfFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
+             files="src/test/resources/.*/InputNoCodeInFile6\.java"/>
   <suppress checks="NewlineAtEndOfFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
+             files="src/test/resources/.*/InputAntlr4AstRegressionCassandraInputWithComments\.java"/>
 
   <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]grammar[\\/]InputEmbeddedNullChar\.java"/>
+             files="/test/.*/grammar/InputEmbeddedNullChar\.java"/>
 
   <!-- Javadoc files should not have new line by design (on purpose). -->
-  <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
+  <suppress checks="NewlineAtEndOfFile" files="/test/.*\.javadoc"/>
 
   <!-- Empty file cannot have any new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
+             files="/test/.*/checks/newlineatendoffile/InputNewlineAtEndOfFileEmptyFile\.txt"/>
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
+             files="/test/.*/grammar/InputRegressionEmptyAst\.txt"/>
 
   <!-- File with CR line separators used for testing -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
+             files="/test/.*/asttreestringprinter/InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]grammar[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
+             files="/test/.*/grammar/InputAstRegressionNewlineCrAtEndOfFile\.java"/>
 
   <!-- File with LF line separators used for testing -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]checks[\\/]blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF\.java"/>
+             files="/test/.*/checks/blocks/emptycatchblock/InputEmptyCatchBlockDefaultLF\.java"/>
 
   <!-- For the testing purposes -->
   <suppress checks="NewlineAtEndOfFile"
-             files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
+             files="/test/.*/checks/uniqueproperties/InputUniquePropertiesWithDuplicates\.properties"/>
 
   <!-- ArchUnit store is automatically updated by ArchUnit which
        does not add new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
-            files="config[\\/]archunit-store[\\/]slices-should-be-free-of-cycles-suppressions"/>
+            files="config/archunit-store/slices-should-be-free-of-cycles-suppressions"/>
 
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>
   <!-- this file cannot be line wraped -->
-  <suppress id="lineLength" files="config[\\/]signatures.txt"/>
-  <suppress id="lineLength" files="config[\\/]signatures-test.txt"/>
-  <suppress id="lineLength" files="config[\\/]sarif-schema-2.1.0.json"/>
+  <suppress id="lineLength" files="config/signatures.txt"/>
+  <suppress id="lineLength" files="config/signatures-test.txt"/>
+  <suppress id="lineLength" files="config/sarif-schema-2.1.0.json"/>
   <!-- test resources are weird by design, no validations in them -->
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]Input.*ColumnLimit\.java"/>
+         files="src/it/resources/.*/Input.*ColumnLimit\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputPackageStatement\.java"/>
+         files="src/it/resources/.*/InputPackageStatement\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputPackageStatementLongName.*\.java"
+         files="src/it/resources/.*/InputPackageStatementLongName.*\.java"
          lines="1"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputNoLineWrapping\.java"/>
+         files="src/it/resources/.*/InputNoLineWrapping\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputWrappingLinesLineLimit\.java"/>
+         files="src/it/resources/.*/InputWrappingLinesLineLimit\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]InputFormattedNoLineWrapping\.java"/>
+         files="src/it/resources/.*/InputFormattedNoLineWrapping\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
+         files="src/test/resources/.*/InputLineLength.*\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>
+         files="src/test/resources/.*/grammar/comments/.*"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
+         files="src/test/resources/.*/asttreestringprinter/InputAstTreeStringPrinterFullOfBlockComments\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
+         files="src/test/resources/.*/abstractjavadoc/InputAbstractJavadocPosition.*\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
+         files="src/test/resources/.*/abstractjavadoc/InputAbstractJavadocLeaveToken.*\.java"/>
   <!-- Indentation inputs align trailing comments and can exceed the line length limit. -->
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]indentation[\\/]indentation[\\/]InputIndentation.*\.java"/>
+         files="src/test/resources/.*/indentation/indentation/InputIndentation.*\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]chapter4formatting[\\/]rule44columnlimit.*\.java"/>
+         files="src/it/resources/.*/chapter4formatting/rule44columnlimit.*\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]it[\\/]resources[\\/].*[\\/]ruleimportstatements[\\/].*\.java"/>
+         files="src/it/resources/.*/ruleimportstatements/.*\.java"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]whitespace[\\/]whitespaceafter[\\/]example1[\\/]package-info\.java"/>
+         files="src/test/resources/.*/checks/whitespace/whitespaceafter/example1/package-info\.java"/>
 
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
+         files="src/test/resources/.*/.*ExpectedXMLLogger.*\.xml"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
+         files="src/test/resources/.*/ant/checkstyleanttask/ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
   <suppress id="lineLength"
-            files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskSarifOutput\.sarif"/>
+            files="src/test/resources/.*/ant/checkstyleanttask/ExpectedCheckstyleAntTaskSarifOutput\.sarif"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
+         files="src/test/resources/.*/checks/translation/Expected.*\.xml"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]sariflogger[\\/].*\.sarif"/>
+         files="src/test/resources/.*/sariflogger/.*\.sarif"/>
 
   <!-- the files in this folder cannot be line wrapped, we can not change expected AST -->
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]javadoc[\\/]inlinetags[\\/]Expected.*\.txt"/>
+         files="src/test/resources/.*/grammar/javadoc/inlinetags/Expected.*\.txt"/>
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]javadoc[\\/]inlinetags[\\/]Input.*\.javadoc"/>
+         files="src/test/resources/.*/grammar/javadoc/inlinetags/Input.*\.javadoc"/>
 
   <!-- property names a too long, nothing we can do -->
   <suppress id="lineLength"
-         files="config[\\/]org.eclipse.jdt.core.prefs"/>
+         files="config/org.eclipse.jdt.core.prefs"/>
   <!-- there is no way to make line wrap in property value -->
   <suppress id="lineLength"
-         files="config[\\/]intellij-idea-inspection-scope.xml"/>
+         files="config/intellij-idea-inspection-scope.xml"/>
 
   <!-- we must use full paths in file pattern property value -->
-  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk17-excluded.files"/>
-  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk19-excluded.files"/>
-  <suppress id="lineLength" files="config[\\/]projects-to-test[\\/]openjdk20-excluded.files"/>
+  <suppress id="lineLength" files="config/projects-to-test/openjdk17-excluded.files"/>
+  <suppress id="lineLength" files="config/projects-to-test/openjdk19-excluded.files"/>
+  <suppress id="lineLength" files="config/projects-to-test/openjdk20-excluded.files"/>
 
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
-  <suppress id="lineLength" files="config[\\/]pitest-suppressions[\\/].*"/>
+  <suppress id="lineLength" files="config/pitest-suppressions/.*"/>
 
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
-  <suppress id="lineLength" files="config[\\/]error-prone-suppressions[\\/].*"/>
+  <suppress id="lineLength" files="config/error-prone-suppressions/.*"/>
 
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
-  <suppress id="lineLength" files="config[\\/]checker-framework-suppressions[\\/].*"/>
+  <suppress id="lineLength" files="config/checker-framework-suppressions/.*"/>
 
   <!-- this file cannot be line wrapped, it contains cdg pitest licence -->
   <suppress id="lineLength" files="cdg-pitest-licence.txt"/>
 
   <!-- files in this directory cannot be line wrapped as they are generated by ArchUnit -->
-  <suppress id="lineLength" files="config[\\/]archunit-store.*"/>
+  <suppress id="lineLength" files="config/archunit-store.*"/>
 
   <!-- We will preserve formatting of archived release notes -->
-  <suppress id="lineLength" files="[\\/]releasenotes_old_8\-0_8\-34\.xml"/>
+  <suppress id="lineLength" files="/releasenotes_old_8\-0_8\-34\.xml"/>
 
   <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
        make the lines long. We still validate index.xml and template files.
        until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <suppress id="lineLength"
-            files="[\\/]src[\\/]site[\\/]xdoc[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+            files="/src/site/xdoc/(checks|(file)?filters)/(?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
+         files="src/it/java/com/.*" />
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]base[\\/].*" />
+         files="src/it/java/org/checkstyle/base/.*" />
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]resources[\\/].*" />
+         files="src/it/resources/.*" />
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]resources-noncompilable[\\/].*" />
+         files="src/it/resources-noncompilable/.*" />
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
+         files="src/it/java/com/.*" />
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]test[\\/].*" />
+         files="src/test/.*" />
   <suppress id="numberOfTestCasesInXpath"
-         files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]AbstractXpathTestSupport.java"/>
+         files="src/it/java/org/checkstyle/suppressionxpathfilter/AbstractXpathTestSupport.java"/>
 
   <!-- Empty files that are used as input for UT -->
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/].*"/>
+             files="src/test/resources/.*/checks/newlineatendoffile/.*"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+             files="src/test/resources/.*/checks/translation/.*"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+             files="src/test/resources-noncompilable/.*/checks/translation/.*"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile\.java"/>
+             files="src/test/resources-noncompilable/.*/packagedeclaration/InputPackageDeclarationEmptyFile\.java"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
+             files="src/test/resources/.*/checkstyleanttask/InputCheckstyleAntTaskEmptyConfig\.xml"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
+             files="src/test/resources/.*/checkstyleanttask/InputCheckstyleAntTaskEmptyConfig\.xml"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
+             files="src/test/resources/.*/regexponfilename/.*"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
+             files="src/test/resources/.*/grammar/InputRegressionEmptyAst\.txt"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile1\.java"/>
+             files="src/test/resources/.*/InputNoCodeInFile1\.java"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineCr\.txt"/>
+             files="src/test/resources/.*/InputLineEndingOneLineCr\.txt"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineCrlf\.txt"/>
+             files="src/test/resources/.*/InputLineEndingOneLineCrlf\.txt"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]defaultlogger[\\/]ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
+             files="src/test/resources/.*/defaultlogger/ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
   <suppress id="noEmptyFile"
-             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingOneLineLf\.txt"/>
+             files="src/test/resources/.*/InputLineEndingOneLineLf\.txt"/>
   <!-- not a curl command but a text replacement -->
-  <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>
+  <suppress id="properCurlCommand" files=".ci/validation\.sh"/>
   <!-- other images that do not support newer curl commands -->
-  <suppress id="properCurlCommand" files=".ci[\\/]sonar-break-build\.sh"/>
+  <suppress id="properCurlCommand" files=".ci/sonar-break-build\.sh"/>
   <!-- a grepped command is crossing the linelength limit -->
-  <suppress id="lineLength" files=".ci[\\/]google-java-format\.sh"/>
+  <suppress id="lineLength" files=".ci/google-java-format\.sh"/>
 
   <!-- We use negative suppression to check workflow files only. -->
-  <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
+  <suppress id="workflowJobStepSpacing" files="^.((?!github/workflows/).)*$" />
 
   <!-- there is no messages in module by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
+         files="src/site/xdoc/checks/annotation/suppresswarningsholder.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filefilters[\\/]beforeexecutionexclusionfilefilter.xml.template"/>
+         files="src/site/xdoc/filefilters/beforeexecutionexclusionfilefilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]severitymatchfilter.xml.template"/>
+         files="src/site/xdoc/filters/severitymatchfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressioncommentfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppressioncommentfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppressionfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionsinglefilter.xml.template"/>
+         files="src/site/xdoc/filters/suppressionsinglefilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppressionxpathfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionxpathsinglefilter.xml.template"/>
+         files="src/site/xdoc/filters/suppressionxpathsinglefilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppresswarningsfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswithnearbycommentfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppresswithnearbycommentfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswithnearbytextfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppresswithnearbytextfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppresswithplaintextcommentfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src/site/xdoc/checks\.xml\.template"/>
 
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]missingoverrideonrecordaccessor.xml.template"/>
+         files="src/site/xdoc/checks/annotation/missingoverrideonrecordaccessor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
+         files="src/site/xdoc/checks/annotation/packageannotation.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unnecessarynullcheckwithinstanceof.xml.template"/>
+         files="src/site/xdoc/checks/coding/unnecessarynullcheckwithinstanceof.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unnecessarytypeargumentswithrecordpattern.xml.template"/>
+         files="src/site/xdoc/checks/coding/unnecessarytypeargumentswithrecordpattern.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]avoiddoublebraceinitialization.xml.template"/>
+         files="src/site/xdoc/checks/coding/avoiddoublebraceinitialization.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]avoidinlineconditionals.xml.template"/>
+         files="src/site/xdoc/checks/coding/avoidinlineconditionals.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]avoidnoargumentsuperconstructorcall.xml.template"/>
+         files="src/site/xdoc/checks/coding/avoidnoargumentsuperconstructorcall.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]constructorsdeclarationgrouping.xml.template"/>
+         files="src/site/xdoc/checks/coding/constructorsdeclarationgrouping.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]covariantequals.xml.template"/>
+         files="src/site/xdoc/checks/coding/covariantequals.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]emptystatement.xml.template"/>
+         files="src/site/xdoc/checks/coding/emptystatement.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]equalshashcode.xml.template"/>
+         files="src/site/xdoc/checks/coding/equalshashcode.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]innerassignment.xml.template"/>
+         files="src/site/xdoc/checks/coding/innerassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]missingctor.xml.template"/>
+         files="src/site/xdoc/checks/coding/missingctor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]missingnullcaseinswitch.xml.template"/>
+         files="src/site/xdoc/checks/coding/missingnullcaseinswitch.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]missingswitchdefault.xml.template"/>
   <suppress id="propertiesMacroMustExist"

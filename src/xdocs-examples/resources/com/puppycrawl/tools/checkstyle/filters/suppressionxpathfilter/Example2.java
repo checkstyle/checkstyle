@@ -17,7 +17,7 @@ import javax.annotation.processing.Generated;
 
 // xdoc section -- start
 
-public class Example0 {
+public class Example2 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
@@ -38,7 +38,7 @@ public class Example0 {
     int WeirdName;
   }
 
-  public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
+  public void sayHelloWorld() { // violation 'Cyclomatic Complexity is 4'
     if (age > 0 && wordCount > 0) {
       System.out.println("Hello");
     }

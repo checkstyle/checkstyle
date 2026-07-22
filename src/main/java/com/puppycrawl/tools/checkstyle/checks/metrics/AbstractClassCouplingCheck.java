@@ -194,6 +194,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                  TokenTypes.ANNOTATION_DEF,
                  TokenTypes.ENUM_DEF,
                  TokenTypes.RECORD_DEF -> visitClassDef(ast);
+            case TokenTypes.COMPACT_COMPILATION_UNIT -> visitCompactCompilationUnit(ast);
             case TokenTypes.EXTENDS_CLAUSE,
                  TokenTypes.IMPLEMENTS_CLAUSE,
                  TokenTypes.TYPE -> visitType(ast);
@@ -206,7 +207,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (TokenUtil.isTypeDeclaration(ast.getType())) {
+        if (TokenUtil.isTypeDeclaration(ast.getType())
+                || ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
             leaveClassDef();
         }
     }
@@ -229,6 +231,16 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     private void visitClassDef(DetailAST classDef) {
         final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
         createNewClassContext(className, classDef);
+    }
+
+    /**
+     * Creates new context for the implicit class declared by a compact
+     * compilation unit (JEP 512).
+     *
+     * @param compactCompilationUnit COMPACT_COMPILATION_UNIT node.
+     */
+    private void visitCompactCompilationUnit(DetailAST compactCompilationUnit) {
+        createNewClassContext("", compactCompilationUnit);
     }
 
     /** Restores previous context. */
