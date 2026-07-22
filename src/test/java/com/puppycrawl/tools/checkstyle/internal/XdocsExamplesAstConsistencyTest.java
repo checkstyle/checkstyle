@@ -158,7 +158,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocblocktaglocation",
             "checks/regexp/regexpmultiline",
             "checks/regexp/regexponfilename",
-            "checks/regexp/regexpsingleline",
             "checks/translation"
     );
 
