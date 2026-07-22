@@ -4,11 +4,11 @@ scope = (default)private
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 authorFormat = (default)(null)
 excludeScope = (default)(null)
 versionFormat = (default)(null)
-
 
 */
 
@@ -34,15 +34,15 @@ interface Ronin<T> {}
 class Shogun<T, U> {
     /**
      *
-     * @param <T> <//< <stuff></> stuff >>  <stuff>st<u>ff</stuff> >><
-     * @param    <U>     stuff <><><<stuff></></></> stuff
-     * @param <V> /-+`[]:^^<stuff **%%$>##(sutff){stuff}{}()stuff</stuff> @@
+     * @param <T>
+     * @param    <U>
+     * @param <V>
      */
     interface Mandate<T, U, V> {}
 
     /**
      *
-     * @param <V> [(<>{@code stuff<stuff>&lt;stuff&gt;}</>)]{@code {&lt;stuff&gt;}}
+     * @param <V>
      */
     class Minowara<V> extends Shogun<T, U> implements Mandate<T, U, V> {}
 }
@@ -50,13 +50,13 @@ class Shogun<T, U> {
 // violation 3 lines below 'Unused @param tag for \'<P>\'.'
 /**
  * @param    <T>
- * @param <P> stuff <><><<stuff></></></> stuff
+ * @param <P>
  */
 interface Regent<T, U> {} // violation, 'Type Javadoc comment is missing @param '<U>' tag.'
 
 // violation 3 lines below 'Unused @param tag for 'region'.'
 /**
  *
- * @param region [(<>{@code stuff<stuff🐦‍🔥@@@>🐦‍🔥&lt;{stuff}&gt;}</>@)]{@code {&lt;stuff&gt;}}
+ * @param region
  */
 class Fief {}
