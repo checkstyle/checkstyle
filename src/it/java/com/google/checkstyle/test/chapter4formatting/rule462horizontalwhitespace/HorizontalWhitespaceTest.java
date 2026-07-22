@@ -230,4 +230,9 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
 
+    @Test
+    public void testSingleSpaceSeparatorForElse() throws Exception {
+        verifyWithWholeConfig(getPath("InputSingleSpaceSeparatorReservedWords.java"));
+    }
+
 }
