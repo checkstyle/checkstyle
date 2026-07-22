@@ -427,6 +427,7 @@
     <module name="EqualsAvoidNull"/>
     <module name="EqualsHashCode"/>
     <module name="ExplicitInitialization"/>
+    <module name="ExpressionOverBlockLambda"/>
     <module name="FallThrough"/>
     <module name="FinalLocalVariable"/>
     <module name="HiddenField">
