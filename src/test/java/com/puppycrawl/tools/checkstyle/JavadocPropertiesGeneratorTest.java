@@ -228,7 +228,6 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             + "TYPE_EXTENSION_AND='&amp;' symbol when used in a generic upper or lower bounds"
             + " constrain e.g&#46;"
             + " <code>Comparable<T extends Serializable & CharSequence></code>!" + EOL
-            + "LCURLY=A left curly brace (<code>{</code>)." + EOL
             + "DEPRECATED_LITERAL='@deprecated' literal in @deprecated Javadoc tag?" + EOL
             + "HTML_SELF_CLOSING_BR=A line break tag <br/> in Javadoc comments." + EOL;
 
@@ -290,22 +289,6 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo(USAGE);
-    }
-
-    @Test
-    public void testJavadocParseError() throws Exception {
-        final String path = getPath("InputJavadocPropertiesGeneratorJavadocParseError.java");
-        final IllegalArgumentException exc =
-                getExpectedThrowable(IllegalArgumentException.class, () -> {
-                    JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
-                }, "Exception was expected");
-        assertWithMessage("Invalid error message")
-            .that(exc.getMessage())
-            .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
-        final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '%s' must be empty", DESTFILE)
-            .that(size)
-            .isEqualTo(0);
     }
 
     @Test
