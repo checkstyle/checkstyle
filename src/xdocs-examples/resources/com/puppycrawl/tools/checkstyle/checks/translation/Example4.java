@@ -2,12 +2,12 @@
 <module name="Checker">
   <module name="Translation">
     <property name="baseName" value="^ButtonLabels.*$"/>
-    <property name="requiredTranslations" value="fr"/>
   </module>
 </module>
 */
 
 package com.puppycrawl.tools.checkstyle.checks.translation;
+
 // xdoc section -- start
 /*
 messages.properties
@@ -20,5 +20,5 @@ messages_home.properties
 messages_home.translations
 
 */
-public class Example2 {}
+public class Example4 {}
 // xdoc section -- end

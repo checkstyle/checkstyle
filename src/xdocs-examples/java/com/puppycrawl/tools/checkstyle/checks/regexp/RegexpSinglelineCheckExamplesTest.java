@@ -60,12 +60,31 @@ public class RegexpSinglelineCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "COPYRIGHTED"),
+            "13: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "COPYRIGHTED"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
     public void testExample4() throws Exception {
         final String[] expected = {
 
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "COPYRIGHTED"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
     @Test
