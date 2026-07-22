@@ -49,6 +49,19 @@
 
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on documents comments style guide -->
+
+    <!-- Format of a Doc Comment -->
+    <module name="InvalidJavadocPosition"/>
+    <module name="JavadocVariable"/>
+    <module name="MissingJavadocMethod">
+      <property name="scope" value="private"/>
+      <property name="allowedAnnotations" value=""/>
+    </module>
+    <module name="MissingJavadocType">
+      <property name="scope" value="private"/>
+      <property name="skipAnnotations" value=""/>
+    </module>
+
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
 
