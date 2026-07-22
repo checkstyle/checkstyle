@@ -62,6 +62,16 @@
               Checks for redundant modifiers.
             </td>
           </tr>
+          <tr>
+            <td>
+              <a href="redundantmodifiercompactsource.html#RedundantModifierCompactSource">
+                RedundantModifierCompactSource
+              </a>
+            </td>
+            <td>
+              Checks for redundant modifiers on methods declared directly in compact source files.
+            </td>
+          </tr>
         </table>
       </div>
     </section>
