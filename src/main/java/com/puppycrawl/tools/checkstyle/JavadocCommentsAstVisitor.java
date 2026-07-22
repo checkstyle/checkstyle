@@ -637,13 +637,32 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     private static boolean isMultipleLeadingAsterisks(Token token) {
         boolean result = false;
 
-        if (token.getType() == JavadocCommentsLexer.LEADING_ASTERISK) {
-            final String tokenText = token.getText();
-            final int firstAsteriskIndex = tokenText.indexOf('*');
-            result = firstAsteriskIndex < tokenText.length() - 1;
+        if (isLeadingAsterisk(token)) {
+            final String leadingAsterisks = getLeadingAsterisksText(token);
+            result = leadingAsterisks.length() > 1;
         }
 
         return result;
+    }
+
+    /**
+     * Checks whether a token is a leading asterisk formatting token.
+     *
+     * @param token the token to check
+     * @return true if the token is a leading asterisk token
+     */
+    private static boolean isLeadingAsterisk(Token token) {
+        return token.getType() == JavadocCommentsLexer.LEADING_ASTERISK;
+    }
+
+    /**
+     * Returns only leading asterisks from the token text, without indentation.
+     *
+     * @param token the token to process
+     * @return token text starting at the first asterisk
+     */
+    private static String getLeadingAsterisksText(Token token) {
+        return token.getText().substring(token.getText().indexOf('*'));
     }
 
     /**
@@ -688,6 +707,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         }
 
         final int tokenType = token.getType();
+        if (isLeadingAsterisk(token)) {
+            final String leadingAsterisks = getLeadingAsterisksText(token);
+            node.setColumnNumber(node.getColumnNumber() + token.getText().indexOf('*'));
+            node.setText(leadingAsterisks);
+        }
         if (isJavadocTag(tokenType)) {
             node.setType(JavadocCommentsTokenTypes.TAG_NAME);
         }
