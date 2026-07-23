@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -208,6 +207,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /** NON_GROUP group name. */
     private static final String NON_GROUP_RULE_GROUP = "NOT_ASSIGNED_TO_ANY_GROUP";
+
+    /** Fullstop separator. **/
+    private static final String FULLSTOP_SEPARATOR = "\\.";
 
     /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
@@ -657,7 +659,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private static int compareImports(String import1, String import2) {
         int result = 0;
-        final String separator = "\\.";
+        final String separator = FULLSTOP_SEPARATOR;
         final String[] import1Tokens = import1.split(separator, -1);
         final String[] import2Tokens = import2.split(separator, -1);
         for (int i = 0; i != import1Tokens.length && i != import2Tokens.length; i++) {
@@ -770,12 +772,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static String getFirstDomainsFromIdent(
             final int firstPackageDomainsCount, final String packageFullPath) {
         final StringBuilder builder = new StringBuilder(256);
-        final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
-        int count = firstPackageDomainsCount;
+        final String[] tokens = packageFullPath.split(FULLSTOP_SEPARATOR);
+        final int limit = Math.min(firstPackageDomainsCount, tokens.length);
 
-        while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken());
-            count--;
+        for (int tokenIndex = 0; tokenIndex < limit; tokenIndex++) {
+            builder.append(tokens[tokenIndex]);
         }
         return builder.toString();
     }
