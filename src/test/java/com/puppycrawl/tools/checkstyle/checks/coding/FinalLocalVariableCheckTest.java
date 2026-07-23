@@ -475,4 +475,15 @@ public class FinalLocalVariableCheckTest
             expected);
     }
 
+
+    @Test
+    public void testPatternVariablesScope() throws Exception {
+        final String[] expected = {
+            "23:35: " + getCheckMessage(MSG_KEY, "r"),
+            "29:33: " + getCheckMessage(MSG_KEY, "r"),
+            "33:34: " + getCheckMessage(MSG_KEY, "r"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariablePatternVariablesScope.java"), expected);
+    }
 }
