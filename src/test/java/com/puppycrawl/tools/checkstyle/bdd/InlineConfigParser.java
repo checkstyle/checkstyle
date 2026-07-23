@@ -105,15 +105,15 @@ public final class InlineConfigParser {
      * </p>
      */
     private static final Pattern VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*violation,?\\s*(?:['\"](.*)['\"])?$");
+            .compile(".*//\\s*violation\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation above". */
     private static final Pattern VIOLATION_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*violation above,?\\s*(?:['\"](.*))?$");
+            .compile(".*//\\s*violation above\\s*(?:['\"](.*))?$");
 
     /** A pattern to find the string: "// violation below". */
     private static final Pattern VIOLATION_BELOW_PATTERN = Pattern
-            .compile(".*//\\s*violation below,?\\s*(?:['\"](.*))?$");
+            .compile(".*//\\s*violation below\\s*(?:['\"](.*))?$");
 
     /** A pattern to find the string: "// violation above, explanation". */
     private static final Pattern VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN = Pattern
@@ -327,6 +327,113 @@ public final class InlineConfigParser {
     );
 
     /**
+     * Input files where violation messages are not yet fully specified with quoted
+     * messages. Temporary suppression until these files are updated with proper
+     * violation messages. Remove entries here as their input files are fixed.
+     * <a href="https://github.com/checkstyle/checkstyle/issues/XXXX">#XXXX</a>
+     */
+    private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
+            "checks/finalparameters/InputFinalParameters9.java",
+            "checks/finalparameters/InputFinalParameters2.java",
+            "checks/finalparameters/InputFinalParameters.java",
+            "checks/finalparameters/InputFinalParameters6.java",
+            "checks/finalparameters/InputFinalParameters10.java",
+            "checks/finalparameters/InputFinalParametersPrimitiveTypes.java",
+            "checks/finalparameters/InputFinalParameters3.java",
+            "checks/finalparameters/InputFinalParametersInterfaceMethod.java",
+            "checks/finalparameters/InputFinalParameters8.java",
+            "checks/finalparameters/InputFinalParametersPatternVariables.java",
+            "checks/finalparameters/InputFinalParametersPrimitiveTypes2.java",
+            "checks/finalparameters/"
+                    + "InputFinalParametersRecordForLoopPatternVariables.java",
+            "checks/coding/declarationorder/Example1.java",
+            "checks/coding/declarationorder/Example2.java",
+            "checks/coding/declarationorder/Example3.java",
+            "checks/coding/equalshashcode/Example1.java",
+            "checks/coding/illegaltype/InputIllegalTypeArrays.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestDefaults.java",
+            "checks/coding/illegaltype/InputIllegalTypeEmptyStringMemberModifiers.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestExtendsImplements.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestFormat.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestGenerics.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestIgnoreMethodNames.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestEnhancedInstanceof.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestLegalAbstractClassNames.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestMemberModifiers.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestPlainAndArraysTypes.java",
+            "checks/coding/illegaltype/"
+                    + "InputIllegalTypeRecordsWithMemberModifiersDefault.java",
+            "checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersFinal.java",
+            "checks/coding/illegaltype/"
+                    + "InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java",
+            "checks/coding/illegaltype/"
+                    + "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java",
+            "checks/coding/illegaltype/InputIllegalTypeSameFileNameFalsePositive.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestSameFileNameGeneral.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestStarImports.java",
+            "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
+            "checks/coding/nestedifdepth/Example1.java",
+            "checks/coding/nestedifdepth/Example2.java",
+            "checks/coding/nestedtrydepth/Example1.java",
+            "checks/coding/nestedtrydepth/Example2.java",
+            "checks/coding/noclone/Example1.java",
+            "checks/coding/simplifybooleanreturn/Example1.java",
+            "checks/coding/superfinalize/InputSuperFinalizeVariations.java",
+            "checks/coding/unusedlocalvariable/Example1.java",
+            "checks/coding/unusedlocalvariable/Example2.java",
+            "checks/coding/unusedlocalvariable/Example4.java",
+            "checks/coding/unusedlocalvariable/InputUnusedLocalVariable3.java",
+            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses4.java",
+            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses5.java",
+            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses6.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariableNestedClasses7.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariableAllowNamedPatternVariables.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariablePatternVariables.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariablePatternVariables2.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariablePatternVariablesAllowUnnamed.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariablePatternVariablesCondition.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariablePatternVariablesCondition2.java",
+            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
+            "checks/imports/avoidstarimport/InputAvoidStarImportExcludes.java",
+            "checks/imports/importorder/Example10.java",
+            "checks/metrics/npathcomplexity/Example1.java",
+            "checks/metrics/npathcomplexity/Example2.java",
+            "checks/naming/recordcomponentname/Example1.java",
+            "checks/naming/recordcomponentname/Example2.java",
+            "checks/naming/recordtypeparametername/Example1.java",
+            "checks/naming/recordtypeparametername/Example2.java",
+            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic8.java",
+            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic5.java",
+            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic2.java",
+            "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport.java",
+            "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport2.java",
+            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic7.java",
+            "checks/regexp/regexpsingleline/Example2.java",
+            "checks/regexp/regexpsingleline/UseCase1.java",
+            "checks/sizes/recordcomponentnumber/Example1.java",
+            "checks/sizes/recordcomponentnumber/Example2.java",
+            "checks/whitespace/separatorwrap/Example1.java",
+            "com/google/checkstyle/test/chapter5naming/rule522classnames/"
+                    + "InputClassNamesWithUnderscore.java",
+            "com/google/checkstyle/test/chapter5naming/rule53camelcase/"
+                    + "InputUnderscoreUsedInNames.java",
+            "com/openjdk/checkstyle/test/chapterformatting/"
+                    + "ruleorderofconstructorsandoverloadedmethods/"
+                    + "InputOrderOfConstructorsAndOverloadedMethodsOne.java",
+            "com/openjdk/checkstyle/test/chapternaming/ruletypevariables/"
+                    + "InputTypeVariablesOne.java",
+            "com/openjdk/checkstyle/test/chapternaming/rulevariables/"
+                    + "InputVariablesInvalid.java"
+    );
+
+    /**
      * Input files where default values for properties are intentionally not specified.
      * This two required for pitest coverage in javadoc and util profiles:
      * checks/javadoc/abstractjavadoc/InputAbstractJavadocTokensPass.java
@@ -452,7 +559,7 @@ public final class InlineConfigParser {
                     + inputFilePath, exc);
         }
         try {
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -535,7 +642,7 @@ public final class InlineConfigParser {
                 new TestInputConfiguration.Builder();
         testInputConfigBuilder.setXmlConfiguration(xmlConfig);
         try {
-            setViolations(testInputConfigBuilder, lines, false);
+            setViolations(testInputConfigBuilder, lines, false, inputFilePath);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
@@ -1062,14 +1169,17 @@ public final class InlineConfigParser {
     }
 
     private static boolean shouldSpecifyViolationMessage(
-            TestInputConfiguration.Builder inputConfigBuilder) {
+            TestInputConfiguration.Builder inputConfigBuilder, String inputFilePath) {
 
         boolean result = false;
 
         final List<ModuleInputConfiguration> moduleLists =
                 inputConfigBuilder.getChildrenModules();
 
-        if (moduleLists.size() == 1) {
+        final boolean isSuppressedFile = SUPPRESSED_VALIDATE_MESSAGE_FILES.stream()
+                .anyMatch(Path.of(inputFilePath)::endsWith);
+
+        if (moduleLists.size() == 1 && !isSuppressedFile) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
             if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
@@ -1083,11 +1193,12 @@ public final class InlineConfigParser {
 
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
                                       List<String> lines,
-                                      boolean useFilteredViolations)
+                                      boolean useFilteredViolations,
+                                      String inputFilePath)
             throws CheckstyleException {
 
         final boolean specifyViolationMessage =
-                shouldSpecifyViolationMessage(inputConfigBuilder);
+                shouldSpecifyViolationMessage(inputConfigBuilder, inputFilePath);
 
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
@@ -1179,6 +1290,7 @@ public final class InlineConfigParser {
         }
         else if (violationWithExplanationMatcher.matches()) {
             final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, null);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
