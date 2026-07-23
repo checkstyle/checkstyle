@@ -772,6 +772,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.modifier.ModifierOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("RedundantModifierCheck",
                 BASE_PACKAGE + ".checks.modifier.RedundantModifierCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RedundantModifierCompactSourceCheck",
+                BASE_PACKAGE + ".checks.modifier.RedundantModifierCompactSourceCheck");
     }
 
     /**

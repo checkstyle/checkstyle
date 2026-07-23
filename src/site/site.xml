@@ -294,6 +294,8 @@
                 href="checks/modifier/interfacememberimpliedmodifier.html"/>
           <item name="ModifierOrder" href="checks/modifier/modifierorder.html"/>
           <item name="RedundantModifier" href="checks/modifier/redundantmodifier.html"/>
+          <item name="RedundantModifierCompactSource"
+                href="checks/modifier/redundantmodifiercompactsource.html"/>
         </item>
 
         <item name="Naming Conventions" href="checks/naming/index.html" collapse="true">

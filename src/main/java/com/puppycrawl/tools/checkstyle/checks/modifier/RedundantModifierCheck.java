@@ -73,6 +73,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * ATTENTION: Top-level members of compact source files are skipped from validation by this check.
+ * Use {@link RedundantModifierCompactSourceCheck} for direct compact-source methods.
  * </p>
  *
  * <p>
