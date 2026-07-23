@@ -64,14 +64,15 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     /** Specifies the column number of starting block of the javadoc comment with tabs expanded. */
     private int expectedColumnNumberTabsExpanded;
 
-    /**
-     * Specifies the column number of the leading asterisk
-     * without tabs expanded.
-     */
-    private int expectedColumnNumberWithoutExpandedTabs;
-
     /** Specifies the lines of the file being processed. */
     private String[] fileLines;
+
+    /**
+     * Creates a new {@code JavadocLeadingAsteriskAlignCheck} instance.
+     */
+    public JavadocLeadingAsteriskAlignCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultJavadocTokens() {
@@ -104,16 +105,16 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
             final Optional<Integer> leadingAsteriskColumnNumber =
                                         getAsteriskColumnNumber(ast.getText());
 
-            leadingAsteriskColumnNumber
-                    .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
-                    .filter(columnNumber -> {
-                        return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                    })
-                    .ifPresent(columnNumber -> {
-                        logViolation(ast.getLineNumber(),
-                                columnNumber,
-                                expectedColumnNumberTabsExpanded);
-                    });
+            leadingAsteriskColumnNumber.ifPresent(columnNumber -> {
+                final int columnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
+                        ast.getText(), columnNumber, getTabWidth());
+
+                if (!hasValidAlignment(
+                        expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
+                    log(ast.getLineNumber(), columnNumber - 1, MSG_KEY,
+                            columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+                }
+            });
         }
     }
 
@@ -125,30 +126,17 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
 
         endingBlockColumnNumber
-                .map(columnNumber -> expandedTabs(lastLine, columnNumber))
-                .filter(columnNumber -> {
-                    return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                })
+                .filter(columnNumber -> columnNumber - 1 == javadocEndToken.getColumnNo())
                 .ifPresent(columnNumber -> {
-                    logViolation(javadocEndToken.getLineNo(),
-                            columnNumber,
-                            expectedColumnNumberTabsExpanded);
-                });
-    }
+                    final int columnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
+                            lastLine, columnNumber, getTabWidth());
 
-    /**
-     * Processes and returns the column number of
-     * leading asterisk with tabs expanded.
-     * Also sets 'expectedColumnNumberWithoutExpandedTabs' if the leading asterisk is present.
-     *
-     * @param line javadoc comment line
-     * @param columnNumber column number of leading asterisk
-     * @return column number of leading asterisk with tabs expanded
-     */
-    private int expandedTabs(String line, int columnNumber) {
-        expectedColumnNumberWithoutExpandedTabs = columnNumber - 1;
-        return CommonUtil.lengthExpandedTabs(
-                    line, columnNumber, getTabWidth());
+                    if (!hasValidAlignment(
+                            expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
+                        log(javadocEndToken, MSG_KEY,
+                                columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+                    }
+                });
     }
 
     /**
@@ -169,24 +157,6 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
                 .filter(Matcher::find)
                 .map(matcherInstance -> matcherInstance.group(1))
                 .map(groupLength -> groupLength.length() + 1);
-    }
-
-    /**
-     * Checks alignment of asterisks and logs violations.
-     *
-     * @param lineNumber line number of current comment line
-     * @param asteriskColNumber column number of leading asterisk
-     * @param expectedColNumber column number of javadoc starting token
-     */
-    private void logViolation(int lineNumber,
-                              int asteriskColNumber,
-                              int expectedColNumber) {
-
-        log(lineNumber,
-            expectedColumnNumberWithoutExpandedTabs,
-            MSG_KEY,
-            asteriskColNumber,
-            expectedColNumber);
     }
 
     /**

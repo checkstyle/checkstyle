@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
-aliasList = (default)
+aliasList = (default)(null)
 
 com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
@@ -9,7 +9,7 @@ allowUnnamedVariables = (default)true
 jdkVersion = (default)22
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 

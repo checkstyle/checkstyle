@@ -58,6 +58,13 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     private boolean orderByIncreasingParameterCount;
 
     /**
+     * Creates a new {@code OverloadMethodsDeclarationOrderCheck} instance.
+     */
+    public OverloadMethodsDeclarationOrderCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether to enforce order by increasing parameter count (arity) or not.
      *
      * @param orderByIncreasingParameterCount true if order by increasing parameter

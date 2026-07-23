@@ -82,6 +82,51 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure a filter to suppress violations for checks matching
+          <code>MemberName</code> using the <code>checkFormat</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure a filter to suppress violations for checks matching
+          <code>MemberName</code> using the <code>checkFormat</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure a filter to suppress violations for checks with a specific ID
+          using the <code>idFormat</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p id="Example6-config">
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressionCommentFilter to skip validations. The following examples show how to skip

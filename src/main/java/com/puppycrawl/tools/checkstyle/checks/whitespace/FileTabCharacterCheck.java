@@ -71,6 +71,13 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
     /** Control whether to report on each line containing a tab, or just the first instance. */
     private boolean eachLine;
 
+    /**
+     * Creates a new {@code FileTabCharacterCheck} instance.
+     */
+    public FileTabCharacterCheck() {
+        // no code by default
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
         int lineNum = 0;

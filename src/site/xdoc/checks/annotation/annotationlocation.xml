@@ -294,6 +294,39 @@ class Example4 {
   @Nonnull @Mock DataLoader loader3;
   // ok above, as 'tokens' property set to METHOD_DEF only
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          Use the following configuration to forbid multiple annotations on the same line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  @Nonnull
+  private boolean field1;
+  @Override public int hashCode() { return 1; }
+
+  @Nonnull
+  private boolean field2;
+  @Override
+  public boolean equals(Object obj) { return true; }
+  @Mock
+  DataLoader loader1;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
+  @Nonnull @Mock DataLoader loader3;
+  // violation above 'Annotation 'Mock' should be alone on line'
+}
 </code></pre></div>
       </subsection>
 

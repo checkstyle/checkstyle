@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleannotations;
 
+// violation first line 'Header mismatch'
+
 public class InputAnnotationsDoAndDonts {
     class Temp {
         public void foo() {

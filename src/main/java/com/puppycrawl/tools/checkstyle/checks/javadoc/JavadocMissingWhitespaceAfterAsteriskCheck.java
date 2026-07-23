@@ -41,6 +41,13 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
      */
     public static final String MSG_KEY = "javadoc.missing.whitespace";
 
+    /**
+     * Creates a new {@code JavadocMissingWhitespaceAfterAsteriskCheck} instance.
+     */
+    public JavadocMissingWhitespaceAfterAsteriskCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
@@ -64,7 +71,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
 
             if (!isLast(lastAsteriskPosition, text)
                     && !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {
-                log(nextNode.getLineNumber(), nextNode.getColumnNumber(), MSG_KEY);
+                log(nextNode, MSG_KEY);
             }
         }
     }

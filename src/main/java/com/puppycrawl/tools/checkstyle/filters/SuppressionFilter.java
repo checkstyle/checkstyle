@@ -48,7 +48,8 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <li>
  * {@code files} - a <a href="https://checkstyle.org/property_types.html#Pattern">
  * Pattern</a> matched against the file name associated with an audit event.
- * It is optional.
+ * It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} - a <a href="https://checkstyle.org/property_types.html#Pattern">
@@ -132,6 +133,13 @@ public class SuppressionFilter
     private boolean optional;
     /** Set of individual suppresses. */
     private FilterSet filters = new FilterSet();
+
+    /**
+     * Creates a new {@code SuppressionFilter} instance.
+     */
+    public SuppressionFilter() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.

@@ -97,6 +97,32 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/legacywithboth/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to only check <code>.properties</code> files
+          for a package documentation file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/extensions/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-structure">
+          Directory structure with only a <code>.properties</code> file and no
+          <code>package-info.java</code>:<br/>
+          Example4.java<br/>
+          example.properties
+        </p>
+        <p id="Example4-code">
+          Since <code>fileExtensions</code> is set to <code>properties</code>,
+          the <code>.java</code> file is ignored, and the <code>.properties</code>
+          file is checked instead - triggering a violation since no
+          <code>package-info.java</code> is present:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/extensions/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -109,6 +135,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocPackage">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulemethodnames;
 
+// violation first line 'Header mismatch'
+
 public class InputMethodNamesDoAndDonts {
     public void expand() {
     }

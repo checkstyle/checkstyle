@@ -118,6 +118,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example6.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to find all occurrences of
+          "public". We want to ignore comments,
+          display "public member found" for each violation
+          and say if less than 1 occurrences.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example7:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsinglelinejava/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

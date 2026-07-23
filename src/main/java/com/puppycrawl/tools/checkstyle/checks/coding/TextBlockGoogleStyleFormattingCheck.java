@@ -74,6 +74,13 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     public static final String MSG_TEXT_BLOCK_CONTENT = "textblock.indentation";
 
+    /**
+     * Creates a new {@code TextBlockGoogleStyleFormattingCheck} instance.
+     */
+    public TextBlockGoogleStyleFormattingCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -140,7 +147,9 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @return true if the opening quotes are on the new line.
      */
     private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
-        boolean quotesAreNotPreceded = true;
+        final DetailAST previousSibling = openingQuotes.getPreviousSibling();
+        boolean quotesAreNotPreceded = previousSibling == null
+                || !TokenUtil.areOnSameLine(openingQuotes, previousSibling);
         for (DetailAST parent = openingQuotes.getParent(); parent != null;
              parent = parent.getParent()) {
             if (!quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
@@ -149,11 +158,6 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
             }
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 quotesAreNotPreceded = !quotesArePrecededWithComma(openingQuotes);
-            }
-            else if (parent.getType() == TokenTypes.QUESTION
-                    && openingQuotes.getPreviousSibling() != null) {
-                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes,
-                        openingQuotes.getPreviousSibling());
             }
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);

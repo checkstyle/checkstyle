@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.filters;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
 public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -34,18 +37,18 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "18:11: '42' is a magic number.",
-            "19:11: '43' is a magic number.",
-            "21: Line is longer than 55 characters (found 74).",
-            "24: Line is longer than 55 characters (found 84).",
-            "28: Line is longer than 55 characters (found 72).",
+            "18:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "19:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "21: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "28: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         final String[] expectedWithFilter = {
-            "19:11: '43' is a magic number.",
-            "21: Line is longer than 55 characters (found 74).",
-            "24: Line is longer than 55 characters (found 84).",
-            "28: Line is longer than 55 characters (found 72).",
+            "19:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "21: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "28: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -53,15 +56,38 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
-    public void testUseCase1() throws Exception {
+    public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "15:11: '42' is a magic number.",
-            "16:11: '43' is a magic number.",
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "27: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "31: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         final String[] expectedWithFilter = {
-            "16:11: '43' is a magic number.",
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "27: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "31: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "15:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "16:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+        };
+
+        final String[] expectedWithFilter = {
+            "16:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
@@ -72,16 +98,16 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "21:11: '42' is a magic number.",
-            "22:11: '43' is a magic number.",
-            "24: Line is longer than 55 characters (found 74).",
-            "27: Line is longer than 55 characters (found 84).",
-            "31: Line is longer than 55 characters (found 72).",
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "27: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "31: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         final String[] expectedWithFilter = {
-            "21:11: '42' is a magic number.",
-            "22:11: '43' is a magic number.",
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
@@ -92,18 +118,18 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample4() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "20:11: '42' is a magic number.",
-            "21:11: '43' is a magic number.",
-            "23: Line is longer than 55 characters (found 74).",
-            "26: Line is longer than 55 characters (found 84).",
-            "30: Line is longer than 55 characters (found 72).",
+            "20:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "23: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "26: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "30: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         final String[] expectedWithFilter = {
-            "21:11: '43' is a magic number.",
-            "23: Line is longer than 55 characters (found 74).",
-            "26: Line is longer than 55 characters (found 84).",
-            "30: Line is longer than 55 characters (found 72).",
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "23: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "26: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "30: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example4.java"),
@@ -114,17 +140,17 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample5() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "21:11: '42' is a magic number.",
-            "22:11: '43' is a magic number.",
-            "24: Line is longer than 55 characters (found 74).",
-            "27: Line is longer than 55 characters (found 84).",
-            "31: Line is longer than 55 characters (found 72).",
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "27: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "31: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         final String[] expectedWithFilter = {
-            "24: Line is longer than 55 characters (found 74).",
-            "27: Line is longer than 55 characters (found 84).",
-            "31: Line is longer than 55 characters (found 72).",
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "27: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "31: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example5.java"),
@@ -135,12 +161,15 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilters = {
-            "2: Duplicated property 'key.one' (2 occurrence(s)).",
-            "4: Duplicated property 'key.two' (2 occurrence(s)).",
+            "2: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "key.one", 2),
+            "4: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "key.two", 2),
         };
 
         final String[] expectedWithFilters = {
-            "4: Duplicated property 'key.two' (2 occurrence(s)).",
+            "4: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "key.two", 2),
         };
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
@@ -154,12 +183,12 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testUseCase3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:11: '42' is a magic number.",
-            "18:11: '43' is a magic number.",
+            "17:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "18:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
         };
 
         final String[] expectedWithFilter = {
-            "18:11: '43' is a magic number.",
+            "18:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
@@ -170,15 +199,15 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testUseCase4() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "18:11: '42' is a magic number.",
-            "19:11: '43' is a magic number.",
-            "20:11: '44' is a magic number.",
-            "21:11: '45' is a magic number.",
-            "22:11: '46' is a magic number.",
+            "18:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "19:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "20:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "44"),
+            "21:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "45"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "46"),
         };
 
         final String[] expectedWithFilter = {
-            "22:11: '46' is a magic number.",
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "46"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase4.java"),
@@ -189,18 +218,18 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testExample9() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "23:11: '42' is a magic number.",
-            "24:11: '43' is a magic number.",
-            "26: Line is longer than 55 characters (found 74).",
-            "29: Line is longer than 55 characters (found 84).",
-            "33: Line is longer than 55 characters (found 72).",
+            "23:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "24:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "26: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "29: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
+            "33: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 72),
         };
 
         final String[] expectedWithFilter = {
-            "23:11: '42' is a magic number.",
-            "24:11: '43' is a magic number.",
-            "26: Line is longer than 55 characters (found 74).",
-            "29: Line is longer than 55 characters (found 84).",
+            "23:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
+            "24:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
+            "26: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 74),
+            "29: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example9.java"),

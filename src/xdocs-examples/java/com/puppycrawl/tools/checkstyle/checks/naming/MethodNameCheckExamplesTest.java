@@ -38,7 +38,7 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         final String[] expected = {
             "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z][a-zA-Z0-9]*$"),
             "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z][a-zA-Z0-9]*$"),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method4", "^[a-z][a-zA-Z0-9]*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Example3", "^[a-z][a-zA-Z0-9]*$"),
             "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z][a-zA-Z0-9]*$"),
         };
 
@@ -50,7 +50,8 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         final String[] expected = {
             "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z](_?[a-zA-Z0-9]+)*$"),
             "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method4", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Example3",
+                    "^[a-z](_?[a-zA-Z0-9]+)*$"),
             "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z](_?[a-zA-Z0-9]+)*$"),
         };
 
@@ -60,10 +61,53 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z][a-zA-Z0-9]*$"),
+            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z][a-zA-Z0-9]*$"),
+            "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z][a-zA-Z0-9]*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Example3", "^[a-z][a-zA-Z0-9]*$"),
+            "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z][a-zA-Z0-9]*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Example3", "^[a-z][a-zA-Z0-9]*$"),
+            "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z][a-zA-Z0-9]*$"),
+            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z][a-zA-Z0-9]*$"),
+            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Example3", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
     @Test
@@ -73,38 +117,6 @@ public class MethodNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
         };
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-            "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
-    }
-
-    @Test
-    public void testExample6() throws Exception {
-        final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method4", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-            "21:8: " + getCheckMessage(MSG_INVALID_PATTERN, "Method5", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
-    }
-
-    @Test
-    public void testExample7() throws Exception {
-        final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-            "19:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Method3", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-            "20:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method4", "^[a-z](_?[a-zA-Z0-9]+)*$"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
 }

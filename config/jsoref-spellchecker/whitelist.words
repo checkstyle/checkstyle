@@ -104,6 +104,7 @@ bdc
 bdd
 beanutils
 beforeexecutionexclusionfilefilter
+beginningcomments
 bestpractices
 bew
 bitbucket
@@ -218,6 +219,7 @@ concat
 config
 configurationloader
 Connell's
+connrefused
 constantname
 constructorsdeclarationgrouping
 CONTACTSERVER
@@ -325,6 +327,7 @@ doclet
 doclint
 doctype
 documentationcomments
+documentingexceptionswiththrowstag
 donotignoreexceptions
 Dorg
 DOTALL
@@ -397,6 +400,7 @@ etsy
 ev
 Evt
 exceptionoverrides
+exceptionstodocument
 executablestatementcount
 Exif
 explicitinitialization
@@ -860,7 +864,6 @@ mockito
 Modello
 modifiedcontrolvariable
 modifierorder
-Mohanad
 Mohnen
 mojohaus
 moks
@@ -921,7 +924,6 @@ Niederhauser
 nikitasavinov
 nio
 nlow
-NMCS
 NMTOKEN
 noarch
 noarraytrailingcomma
@@ -1032,7 +1034,9 @@ packageannotation
 packagecomment
 packagedeclaration
 packagehtml
+packagehtmltemplate
 packageinfo
+packagelevelcomments
 packagename
 packagenamesloader
 packageobjectfactory
@@ -1192,6 +1196,7 @@ rulebraces
 ruleclassinterfaceandenumnames
 ruleclassstructure
 ruleconstants
+rulecopyrightnotice
 ruleformatting
 rulehorizontalwhitespace
 ruleimportstatements
@@ -1426,6 +1431,7 @@ tta
 ttf
 tvf
 tw
+typebodypadding
 typecastparenpad
 typename
 typetools
@@ -1521,6 +1527,7 @@ wheretobreak
 whitelist
 whitespaceafter
 whitespacearound
+whitespacebeforeemptybody
 wholename
 Wifi
 wiki

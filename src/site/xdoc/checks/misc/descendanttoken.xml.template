@@ -99,6 +99,24 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
+        <p id="Example5-config">
+          To configure the check to produce a violation on a try statement
+          without a catch block:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p id="Example6-config">
           To configure the check to produce a violation on a return statement
           from within a catch or finally block:

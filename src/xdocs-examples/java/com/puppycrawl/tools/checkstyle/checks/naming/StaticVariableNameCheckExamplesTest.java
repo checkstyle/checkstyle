@@ -60,12 +60,18 @@ public class StaticVariableNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic1", STATIC_VAR_NAME_PATTERN_2),
+            "20:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic2", STATIC_VAR_NAME_PATTERN_2),
             "21:22: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "ItStatic", STATIC_VAR_NAME_PATTERN_1),
+                    "ItStatic", STATIC_VAR_NAME_PATTERN_2),
+            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static", STATIC_VAR_NAME_PATTERN_2),
             "24:22: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "It_Static1", STATIC_VAR_NAME_PATTERN_1),
+                    "It_Static1", STATIC_VAR_NAME_PATTERN_2),
             "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "It_Static2", STATIC_VAR_NAME_PATTERN_1),
+                    "It_Static2", STATIC_VAR_NAME_PATTERN_2),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -74,15 +80,75 @@ public class StaticVariableNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "ItStatic1", STATIC_VAR_NAME_PATTERN_2),
             "20:24: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "ItStatic2", STATIC_VAR_NAME_PATTERN_2),
-            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
-                    "It_Static", STATIC_VAR_NAME_PATTERN_2),
+                    "ItStatic2", STATIC_VAR_NAME_PATTERN_1),
+            "21:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic", STATIC_VAR_NAME_PATTERN_1),
+            "24:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static1", STATIC_VAR_NAME_PATTERN_1),
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static2", STATIC_VAR_NAME_PATTERN_1),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic1", STATIC_VAR_NAME_PATTERN_1),
+            "21:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic", STATIC_VAR_NAME_PATTERN_1),
+            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "it_static", STATIC_VAR_NAME_PATTERN_1),
+            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static", STATIC_VAR_NAME_PATTERN_1),
+            "24:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static1", STATIC_VAR_NAME_PATTERN_1),
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static2", STATIC_VAR_NAME_PATTERN_1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic1", STATIC_VAR_NAME_PATTERN_1),
+            "20:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic2", STATIC_VAR_NAME_PATTERN_1),
+            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "it_static", STATIC_VAR_NAME_PATTERN_1),
+            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static", STATIC_VAR_NAME_PATTERN_1),
+            "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static2", STATIC_VAR_NAME_PATTERN_1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "19:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic1", STATIC_VAR_NAME_PATTERN_1),
+            "20:24: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic2", STATIC_VAR_NAME_PATTERN_1),
+            "21:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ItStatic", STATIC_VAR_NAME_PATTERN_1),
+            "22:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "it_static", STATIC_VAR_NAME_PATTERN_1),
+            "23:21: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static", STATIC_VAR_NAME_PATTERN_1),
+            "24:22: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "It_Static1", STATIC_VAR_NAME_PATTERN_1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 
 }

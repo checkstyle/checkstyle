@@ -81,6 +81,13 @@ public class PropertiesMacro extends AbstractMacro {
     /** The file of the current module being processed. */
     private static Path currentModulePath = Path.of("");
 
+    /**
+     * Creates a new {@code PropertiesMacro} instance.
+     */
+    public PropertiesMacro() {
+        // no code by default
+    }
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426

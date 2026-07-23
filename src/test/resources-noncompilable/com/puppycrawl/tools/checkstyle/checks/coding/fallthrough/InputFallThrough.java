@@ -7,7 +7,7 @@ reliefPattern = (default)falls?[ -]?thr(u|ough)
 */
 
 // non-compiled with eclipse till https://bugs.eclipse.org/bugs/show_bug.cgi?id=543090
-// Compilable by javac, but noncompilable by eclipse
+// non-compiled with javac: Compilable with Java21 individually
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
 public class InputFallThrough

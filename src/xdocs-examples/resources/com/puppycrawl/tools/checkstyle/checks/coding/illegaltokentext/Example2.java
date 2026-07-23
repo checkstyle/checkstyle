@@ -11,8 +11,8 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-
 // xdoc section -- start
+
 public class Example2 {
   public void myTest() {
     // violation below 'Token text matches the illegal pattern 'a href'.'

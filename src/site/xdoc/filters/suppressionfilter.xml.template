@@ -156,6 +156,13 @@
 &lt;suppress files="[/\\]target[/\\]" checks=".*"/&gt;
         </code></pre></div>
         <p>
+          Suppress all checks for Maven-generated code
+          (compact form for 'files' that matches on Windows and Linux):
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        &lt;suppress files="/target/" checks=".*"/&gt;
+          </code></pre></div>
+        <p>
           Suppress all checks for archives, classes and other binary files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">

@@ -2,16 +2,16 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
+
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: local variable may not have been initialized
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
-
 public class InputFinalLocalVariableCheckSwitchExpressionsA {
     void foo1() throws Exception {
-
         Exception e; // violation, "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();

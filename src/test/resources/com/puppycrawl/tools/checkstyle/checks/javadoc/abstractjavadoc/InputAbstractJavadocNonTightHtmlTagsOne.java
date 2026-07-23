@@ -2,8 +2,8 @@
 com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$NonTightHtmlTagCheck
 violateExecutionOnNonTightHtml = true
 
-*/
 
+*/
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**

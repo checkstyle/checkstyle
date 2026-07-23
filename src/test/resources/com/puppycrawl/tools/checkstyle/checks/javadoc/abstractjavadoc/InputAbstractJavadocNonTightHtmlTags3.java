@@ -3,8 +3,8 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$NonTight
 violateExecutionOnNonTightHtml = true
 reportVisitJavadocToken = true
 
-*/
 
+*/
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocNonTightHtmlTags3 {

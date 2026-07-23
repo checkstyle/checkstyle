@@ -190,7 +190,8 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * {@code files} -
  * a <a href="../property_types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit
- * event. It is optional.
+ * event. It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} -
@@ -246,6 +247,13 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
      * the filter accepts all audit events.
      */
     private boolean optional;
+
+    /**
+     * Creates a new {@code SuppressionXpathFilter} instance.
+     */
+    public SuppressionXpathFilter() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.

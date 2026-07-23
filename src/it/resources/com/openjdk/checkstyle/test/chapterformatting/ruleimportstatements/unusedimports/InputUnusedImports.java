@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.unusedimports;
 
+// violation first line 'Header is missing'
+
 import java.util.HashMap; // violation 'Unused import - java.util.HashMap'
 import java.util.List;
 

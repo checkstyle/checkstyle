@@ -3,11 +3,11 @@ SuppressWarnings
 format = .*
 tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
          ENUM_CONSTANT_DEF, PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, CTOR_DEF, \
-         COMPACT_CTOR_DEF, RECORD_DEF
+         COMPACT_CTOR_DEF, RECORD_DEF, PATTERN_VARIABLE_DEF
 
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: non-compilable annotation, for testing
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;

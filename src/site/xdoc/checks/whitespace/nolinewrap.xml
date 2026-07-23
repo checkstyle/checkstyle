@@ -26,6 +26,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="skipAnnotations"/><a href="#skipAnnotations">skipAnnotations</a></td>
+              <td>Specify whether to skip annotations to be part of target token.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>13.9.0</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -95,13 +102,15 @@ import com.puppycrawl.tools. // violation 'should not be line-wrapped'
 import static java.math.     // violation 'should not be line-wrapped'
   BigInteger.ZERO;
 
-class                        // violation 'should not be line-wrapped'
+class
   Example1 {
 
-  public                     // violation 'should not be line-wrapped'
+  public
     Example1() {}
-  public void                // violation 'should not be line-wrapped'
+  public void
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -137,8 +146,78 @@ class
     Example2() {}
   public void
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for Java 21+ (default values):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoLineWrap"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
+        <p id="Example3-code">
+          Example of line-wrapped statements for Java 21+ (bad case):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below 'should not be line-wrapped'
+package com.puppycrawl.
+  tools.checkstyle.checks.whitespace.nolinewrap;
+
+// violation below 'should not be line-wrapped'
+import java.util.
+  List;
+
+// violation below 'should not be line-wrapped'
+import module
+  java.base;
+
+// violation below 'should not be line-wrapped'
+import static java.math.
+  BigInteger.ZERO;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to force no line-wrapping annotations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoLineWrap"&gt;
+      &lt;property name="tokens" value="IMPORT, STATIC_IMPORT,
+      PACKAGE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
+      &lt;property name="skipAnnotations" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.      // violation 'should not be line-wrapped'
+  tools.checkstyle.checks.whitespace.nolinewrap;
+
+import com.puppycrawl.tools. // violation 'should not be line-wrapped'
+  checkstyle.api.AbstractCheck;
+
+import static java.math.     // violation 'should not be line-wrapped'
+  BigInteger.ZERO;
+
+class                        // violation 'should not be line-wrapped'
+  Example4 {
+
+  public                     // violation 'should not be line-wrapped'
+    Example4() {}
+  public void                // violation 'should not be line-wrapped'
+    doSomething() {}
+  @Deprecated                // violation 'should not be line-wrapped'
+  private void doNothing() {}
+}
+</code></pre></div><hr class="example-separator"/>
       </subsection>
 
       <subsection name="Use Cases" id="NoLineWrap_Use_Cases">

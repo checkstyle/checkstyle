@@ -372,6 +372,23 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testChainedMethodCallRparenIndent() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationChainedMethodCallRparen.java"),
+                expected);
+    }
+
+    @Test
     public void testDifficultAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -875,6 +892,62 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationAnnotationArrayInitGood.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationArrayInitWithTextBlockAfterLeftCurly() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "38:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 26, 68"),
+            "47:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 26, 68"),
+            "49:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "12, 30, 72"),
+            "79:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 12, 68"),
+            "81:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "12, 16, 72"),
+            "89:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "8, 12, 68"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationAnnArrInitTextBlock.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationArrayInitWithTextBlockAfterLeftCurly2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "17:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "21:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "37:13: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 12, 8),
+            "39:5: " + getCheckMessage(MSG_CHILD_ERROR,
+                "annotation array initialization", 4, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationAnnArrInitTextBlock2.java"), expected);
     }
 
     @Test
@@ -3730,8 +3803,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "13:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
-            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "22:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "27:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
         };
 
         verifyWarns(checkConfig,
@@ -3744,13 +3817,48 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "11:10: " + getCheckMessage(MSG_ERROR, "2", 9, 12),
-            "17:8: " + getCheckMessage(MSG_ERROR, "int", 7, 8),
-            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "20:10: " + getCheckMessage(MSG_ERROR, "2", 9, 12),
+            "26:8: " + getCheckMessage(MSG_ERROR, "int", 7, 8),
+            "27:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
         };
 
         verifyWarns(checkConfig,
                 getPath("InputIndentationCheckMethodParenOnNewLine1.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine2.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_ERROR, "method def lparen", 12, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine3.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine4() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine4.java"),
                 expected);
     }
 
@@ -4377,6 +4485,89 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testClassDefWrappedModifiers() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName =
+                getPath("InputIndentationClassDefWrappedModifiers.java");
+        final String[] expected = {
+            "25:3: " + getCheckMessage(MSG_ERROR, "class", 2, 6),
+            "27:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "31:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "40:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
+            "44:3: " + getCheckMessage(MSG_ERROR, "@", 2, 6),
+            "50:3: " + getCheckMessage(MSG_ERROR, "static", 2, 6),
+            "51:3: " + getCheckMessage(MSG_ERROR, "strictfp", 2, 6),
+            "84:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationBeforeClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName = getPath("InputIndentationAnnotationBeforeClass.java");
+        final String[] expected = {
+            "41:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+            "46:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+            "47:2: " + getCheckMessage(MSG_ERROR, "class def modifier", 1, 2),
+            "48:5: " + getCheckMessage(MSG_ERROR, "class def modifier", 4, 2),
+            "49:5: " + getCheckMessage(MSG_ERROR, "class def modifier", 4, 2),
+        };
+        verify(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationBeforeClassOpenJdkCase() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "2");
+        final String fileName = getPath("InputIndentationAnnotBeforeClassOpenJdkCase.java");
+        final String[] expected = {
+            "12:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "13:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "15:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
+            "16:9: " + getCheckMessage(MSG_ERROR, "class def modifier", 8, 4),
+            "18:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "19:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "21:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "22:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "24:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "26:4: " + getCheckMessage(MSG_ERROR, "class def modifier", 3, 4),
+            "28:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "30:7: " + getCheckMessage(MSG_ERROR, "class def modifier", 6, 4),
+            "32:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "33:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 4),
+            "35:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
+            "36:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 4),
+            "38:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
+            "39:4: " + getCheckMessage(MSG_ERROR, "interface def modifier", 3, 4),
+        };
+        verify(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testTryResourcesLparenViolation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("basicOffset", "4");
@@ -4638,6 +4829,22 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "15:16: " + getCheckMessage(MSG_CHILD_ERROR, "case", 15, 16),
         };
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testNewWithTabsIndentation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "51:5: " + getCheckMessage(MSG_ERROR, "new", 4, 16),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTabs.java"), expected);
     }
 
     private static final class IndentAudit implements AuditListener {

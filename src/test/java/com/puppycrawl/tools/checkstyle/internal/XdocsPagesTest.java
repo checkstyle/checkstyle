@@ -244,11 +244,26 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    // Requirement is not yet public.
+    private static final Set<String> IGNORED_GOOGLE_MODULES = Set.of(
+            "RegexpSingleline"
+    );
+
     private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigOpenJdkStyleModules());
 
     private static final Set<String> DOC_COMMENTS_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigDocCommentsStyleModules());
+
+    /**
+     * Example pairs that are intentionally placed in the same separated group, as they
+     * demonstrate the same configuration applied to files of different types.
+     * Each entry has the form {@code templateFileName:previousExamplePrefix:currentExamplePrefix}
+     * and marks that pair as allowed to appear without a separator between them.
+     */
+    private static final Set<String> ALLOWED_EXAMPLES_WITHOUT_SEPARATOR = Set.of(
+        "newlineatendoffile.xml.template:Example4:Example6"
+    );
 
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
@@ -1679,7 +1694,7 @@ public class XdocsPagesTest {
                                                  Node subSection,
                                                  Object instance) throws Exception {
         final Class<?> clss = instance.getClass();
-        final Set<Field> fields = CheckUtil.getCheckMessages(clss, true);
+        final Set<Field> fields = CheckUtil.getCheckMessagesWithDeepScan(clss);
         final Set<String> list = new TreeSet<>();
 
         for (Field field : fields) {
@@ -1837,7 +1852,9 @@ public class XdocsPagesTest {
                 .isTrue();
         assertWithMessage("%s section '%s' should have a google section since it is in it's config",
             fileName, sectionName)
-                .that(hasGoogle || !GOOGLE_MODULES.contains(sectionName))
+                .that(hasGoogle
+                    || !GOOGLE_MODULES.contains(sectionName)
+                    || IGNORED_GOOGLE_MODULES.contains(sectionName))
                 .isTrue();
         assertWithMessage("%s section '%s' should have a sun section since it is in it's config",
             fileName, sectionName)
@@ -1920,7 +1937,11 @@ public class XdocsPagesTest {
             final NodeList sources = getTagSourcesNode(path, "tr");
 
             final Set<String> styleChecks = switch (styleName) {
-                case "google" -> new HashSet<>(GOOGLE_MODULES);
+                case "google" -> {
+                    final Set<String> checks = new HashSet<>(GOOGLE_MODULES);
+                    checks.removeAll(IGNORED_GOOGLE_MODULES);
+                    yield checks;
+                }
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);
@@ -2759,11 +2780,14 @@ public class XdocsPagesTest {
                         final String currentExPrefix = getExamplePrefix(currentId);
                         if (lastExampleIdPrefix != null
                                 && !lastExampleIdPrefix.equals(currentExPrefix)) {
+                            final boolean isSeparated = separatorSeen
+                                    || isSeparatorSuppressed(template, lastExampleIdPrefix,
+                                            currentExPrefix);
                             assertWithMessage(
                                 "Missing <hr class=\"example-separator\"/> "
                                     + "between %s and %s in file: %s",
                                     lastExampleIdPrefix, currentExPrefix, template)
-                                    .that(separatorSeen)
+                                    .that(isSeparated)
                                     .isTrue();
                             separatorSeen = false;
                         }
@@ -2772,6 +2796,22 @@ public class XdocsPagesTest {
                 }
             }
         }
+    }
+
+    /**
+     * Checks whether the given pair of consecutive examples is explicitly allowed to be
+     * grouped together without a separator between them.
+     *
+     * @param template template file the examples belong to
+     * @param previousExamplePrefix prefix of the preceding example
+     * @param currentExamplePrefix prefix of the following example
+     * @return true if the missing separator is intentional
+     */
+    private static boolean isSeparatorSuppressed(Path template, String previousExamplePrefix,
+                                                 String currentExamplePrefix) {
+        final String key = template.getFileName() + ":" + previousExamplePrefix
+                + ":" + currentExamplePrefix;
+        return ALLOWED_EXAMPLES_WITHOUT_SEPARATOR.contains(key);
     }
 
     private static List<Path> collectAllXmlTemplatesUnderSrcSite() throws IOException {

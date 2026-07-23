@@ -52,6 +52,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontal
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundArrow.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputGenericWhitespace.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAfterDoubleSlashes.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceTrailingWhitespace.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputNoWhitespaceBeforeEllipsis.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceInsideArrayInitializer.java
@@ -64,6 +65,8 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentati
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputClassAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputClassAnnotation2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputAnnotationOnTypes.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputAnnotationOnEnumConstant.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputAnnotationOnAnnotationField.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4853methodsandconstructorsannotations/InputMethodsAndConstructorsAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4854fieldannotations/InputFieldAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationCommentIsAtTheEndOfBlock.java
@@ -74,6 +77,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers/
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers/InputModifierOrderSealed.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers/InputModifierOrderNonSealed.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksGeneralForm.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksTernary.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksInAnnotation.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksIndentation.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames/InputClassNames.java
@@ -91,6 +95,7 @@ src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/Inp
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPositionRecord.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundWhen.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputSingleSpaceSeparatorReservedWords.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputLambdaChild.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSwitchOnStartOfTheLine.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputCatchParametersOnNewLine.java

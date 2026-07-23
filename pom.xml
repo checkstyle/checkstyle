@@ -217,11 +217,11 @@
     </sevntu-checkstyle-check.checkstyle.version>
     <versions.plugin.version>2.21.0</versions.plugin.version>
     <compiler.plugin.version>3.15.0</compiler.plugin.version>
-    <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
+    <checkstyle.skipCompileInputResources>false</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.25.7</pitest.plugin.version>
+    <pitest.plugin.version>1.25.8</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -603,6 +603,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.12.0</version>
           <configuration>
+            <detectJavaApiLink>false</detectJavaApiLink>
             <!-- Exclude generated sources. -->
             <excludePackageNames>
               com.puppycrawl.tools.checkstyle.grammar.java:
@@ -612,20 +613,23 @@
             <show>private</show>
             <failOnError>true</failOnError>
             <failOnWarnings>true</failOnWarnings>
-            <doclint>-missing</doclint>
+            <doclint>all</doclint>
             <linksource>true</linksource>
             <tags>
               <tag>
                 <name>noinspection</name>
                 <placement>X</placement>
+                <head>noinspection</head>
               </tag>
               <tag>
                 <name>noinspectionreason</name>
                 <placement>X</placement>
+                <head>noinspectionreason</head>
               </tag>
               <tag>
                 <name>propertySince</name>
                 <placement>X</placement>
+                <head>propertySince</head>
               </tag>
             </tags>
           </configuration>
@@ -725,6 +729,7 @@
             <minimumTokens>20</minimumTokens>
             <skipEmptyReport>false</skipEmptyReport>
             <failOnViolation>true</failOnViolation>
+            <skipPmdError>false</skipPmdError>
             <printFailingErrors>true</printFailingErrors>
             <includeTests>true</includeTests>
             <rulesets>
@@ -1819,6 +1824,14 @@
             <include>com/doccomments/**/*.java</include>
             <include>org/checkstyle/**/*.java</include>
           </includes>
+          <systemPropertyVariables>
+            <header.file.paths.separated.by.coma>
+              ${project.basedir}/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulecopyrightnotice/openjdk-style.header
+            </header.file.paths.separated.by.coma>
+            <org.checkstyle.sun.header.files>
+              ${project.basedir}/src/it/resources/com/sun/checkstyle/test/chapter3fileorganization/rule311beginningcomments/sun-style.header
+            </org.checkstyle.sun.header.files>
+          </systemPropertyVariables>
         </configuration>
         <executions>
           <execution>
@@ -1906,7 +1919,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.5.1</version>
         <configuration>
           <archive>
             <manifest>
@@ -2161,6 +2174,16 @@
               <excludes>
                 <exclude>**/Example*</exclude>
                 <exclude>**/Input*</exclude>
+                <!-- input helper classes co-located in Input*/Example* files (or named
+                     UseCase*) that do not match the Input*/Example* naming; compiled since
+                     checkstyle.skipCompileInputResources=false and use forbidden apis by
+                     design as test fixtures -->
+                <exclude>**/UseCase*</exclude>
+                <exclude>**/classdataabstractioncoupling/MyRecord*</exclude>
+                <exclude>**/whitespacearound/foo3*</exclude>
+                <exclude>**/missingoverrideonrecordaccessor/Person*</exclude>
+                <exclude>**/missingoverrideonrecordaccessor/Document*</exclude>
+                <exclude>**/rule61overridealwaysused/Document*</exclude>
                 <!-- usage of system output by design -->
                 <exclude>**/MainTest.class</exclude>
                 <!-- tests need forbidden apis to test the main code fully -->
@@ -2595,6 +2618,7 @@
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
@@ -4201,6 +4225,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
               </targetTests>
               <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
               <excludedTestClasses>
@@ -4587,6 +4612,9 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
+              </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>99</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>

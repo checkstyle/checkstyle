@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
 
+// violation first line 'Header mismatch'
+
 // violation 4 lines below 'Line is longer than 100 characters (found 103).'
 /**
  * This is a short Javadoc comment.

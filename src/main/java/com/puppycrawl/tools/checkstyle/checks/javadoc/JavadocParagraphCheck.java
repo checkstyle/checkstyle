@@ -115,6 +115,13 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private boolean allowNewlineParagraph = true;
 
     /**
+     * Creates a new {@code JavadocParagraphCheck} instance.
+     */
+    public JavadocParagraphCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control whether the {@literal <p>} tag should be placed
      * immediately before the first word.
      *
@@ -157,7 +164,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         final DetailNode nearestToken = getNearestNode(newline);
         if (nearestToken != null && nearestToken.getType() == JavadocCommentsTokenTypes.TEXT
                 && !CommonUtil.isBlank(nearestToken.getText())) {
-            log(newline.getLineNumber(), newline.getColumnNumber(), MSG_TAG_AFTER);
+            log(newline, MSG_TAG_AFTER);
         }
     }
 
@@ -170,23 +177,22 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         if (!isNestedParagraph(tag) && !isInsideBlockTag(tag)) {
             final DetailNode newLine = getNearestEmptyLine(tag);
             if (isFirstParagraph(tag)) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_REDUNDANT_PARAGRAPH);
+                log(tag, MSG_REDUNDANT_PARAGRAPH);
             }
             else if (newLine == null || tag.getLineNumber() - newLine.getLineNumber() != 1) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_LINE_BEFORE);
+                log(tag, MSG_LINE_BEFORE);
             }
 
             final String blockTagName = findFollowedBlockTagName(tag);
             if (blockTagName != null) {
-                log(tag.getLineNumber(), tag.getColumnNumber(),
-                        MSG_PRECEDED_BLOCK_TAG, blockTagName);
+                log(tag, MSG_PRECEDED_BLOCK_TAG, blockTagName);
             }
 
             if (!allowNewlineParagraph && isImmediatelyFollowedByNewLine(tag)) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
+                log(tag, MSG_MISPLACED_TAG);
             }
             if (isImmediatelyFollowedByText(tag)) {
-                log(tag.getLineNumber(), tag.getColumnNumber(), MSG_MISPLACED_TAG);
+                log(tag, MSG_MISPLACED_TAG);
             }
         }
     }

@@ -1,0 +1,4 @@
+Starting audit...
+[WARN] src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/InputWriteTagResetSeverity.java:16: Javadoc tag @author=Mohanad [WriteTag]
+[ERROR] src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/InputWriteTagResetSeverity.java:17: Type Javadoc tag @author must match pattern 'Mohanad'. [WriteTag]
+Audit done.

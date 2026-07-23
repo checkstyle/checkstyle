@@ -54,6 +54,13 @@ public class SeverityMatchFilter
     private boolean acceptOnMatch = true;
 
     /**
+     * Creates a new {@code SeverityMatchFilter} instance.
+     */
+    public SeverityMatchFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the severity level of this filter.
      *
      * @param severity  The new severity level

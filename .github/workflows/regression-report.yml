@@ -124,6 +124,8 @@ jobs:
 
       - name: Tar workspace artifact
         run: |
+          echo "sleep 30 seconds to let git finish maintenance task on files, avoid conflict on tar"
+          sleep 30s
           tar --exclude='.ci-temp/checkstyle/.git/objects/pack/tmp_pack_*' \
             --exclude="$RUNNER_TEMP/workspace.tar" \
             --warning=no-file-changed \
@@ -855,6 +857,7 @@ jobs:
       - name: Set output
         id: out
         run: |
+          echo "Link: ""$(cat .ci-temp/message)"
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
   add_sad_Emoji:

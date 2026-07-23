@@ -45,6 +45,13 @@ public class UnnecessaryTypeArgumentsWithRecordPatternCheck extends AbstractChec
      */
     public static final String MSG_KEY = "unnecessary.type.arguments.record.pattern";
 
+    /**
+     * Creates a new {@code UnnecessaryTypeArgumentsWithRecordPatternCheck} instance.
+     */
+    public UnnecessaryTypeArgumentsWithRecordPatternCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -94,4 +101,5 @@ public class UnnecessaryTypeArgumentsWithRecordPatternCheck extends AbstractChec
         }
         return violation;
     }
+
 }

@@ -47,6 +47,13 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_MISSING_ASTERISK = "javadoc.missing.asterisk";
 
+    /**
+     * Creates a new {@code JavadocMissingLeadingAsteriskCheck} instance.
+     */
+    public JavadocMissingLeadingAsteriskCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
@@ -93,10 +100,11 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * Checks whether the given node is a leading asterisk.
      *
      * @param detailNode the node to process
-     * @return {@code true} if the node is {@link JavadocCommentsTokenTypes#LEADING_ASTERISK}
+     * @return {@code true} if the node is a leading asterisk
      */
     private static boolean isLeadingAsterisk(DetailNode detailNode) {
-        return detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
+        return detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                || detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISKS;
     }
 
     /**

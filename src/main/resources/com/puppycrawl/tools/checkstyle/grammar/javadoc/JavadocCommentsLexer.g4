@@ -20,7 +20,7 @@
 lexer grammar JavadocCommentsLexer;
 
 channels {
-    LEADING_ASTERISKS, WHITESPACES, NEWLINES
+    LEADING_ASTERISKS_CHANNEL, WHITESPACES, NEWLINES
 }
 
 tokens {
@@ -48,7 +48,8 @@ tokens {
     HIDDEN_BLOCK_TAG, USES_BLOCK_TAG, PROVIDES_BLOCK_TAG, SERIAL_BLOCK_TAG,
     SERIAL_DATA_BLOCK_TAG, SERIAL_FIELD_BLOCK_TAG, CUSTOM_BLOCK_TAG,
     JAVADOC_INLINE_TAG, HTML_COMMENT_START, HTML_COMMENT_END, HTML_COMMENT,
-    HTML_COMMENT_CONTENT
+    HTML_COMMENT_CONTENT, USES, PROVIDES, LITERAL, CUSTOM_NAME, Snippet_ATTRIBUTE,
+    See_TAG_OPEN, TAG_ATTR_NAME, ATTRIBUTE, Link_COMMA, LEADING_ASTERISKS
 }
 
 @lexer::header {
@@ -186,7 +187,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
 
 LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}? -> channel(LEADING_ASTERISKS)
+    : [ \t]* '*'+ {isAfterNewline()}? -> channel(LEADING_ASTERISKS_CHANNEL)
     ;
 
 NEWLINE
@@ -275,7 +276,7 @@ FieldName_NEWLINE
     ;
 
 FieldName_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}? -> channel(LEADING_ASTERISKS),
+    : [ \t]* '*'+ {isAfterNewline()}? -> channel(LEADING_ASTERISKS_CHANNEL),
       type(LEADING_ASTERISK)
     ;
 
@@ -287,14 +288,14 @@ FieldType_WS
     ;
 
 FIELD_TYPE
-    : ([a-zA-Z0-9_$] | '.' | '[' | ']')+ -> mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.' | '[' | ']')+ -> mode(DEFAULT_MODE)
     ;
 
 // --- QUALIFIED_IDENTIFIER ---
 mode QUALIFIED_IDENTIFIER;
 
 DOTTED_IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
     ;
 
 DottedIdentifier_NEWLINE
@@ -306,15 +307,15 @@ DottedIdentifier_WS
     ;
 
 DottedIdentifier_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 // --- EXCEPTION_NAME_MODE ---
 mode EXCEPTION_NAME_MODE;
 
 EXCEPTION_NAME
-    : ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
     ;
 
 ExceptionName_NEWLINE
@@ -326,8 +327,8 @@ ExceptionName_WS
     ;
 
 ExceptionName_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 // --- PARAMETER_NAME_MODE ---
@@ -346,8 +347,8 @@ Param_WS
     ;
 
 Param_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 // --- JAVADOC_INLINE_TAG_MODE ---
@@ -374,8 +375,8 @@ Code_NEWLINE
     ;
 
 Code_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 Code_LBRACE
@@ -426,7 +427,7 @@ SnippetAttribute_JAVADOC_INLINE_TAG_END
     ;
 
 SnippetAttribute_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}? -> channel(LEADING_ASTERISKS),
+    : [ \t]* '*'+ {isAfterNewline()}? -> channel(LEADING_ASTERISKS_CHANNEL),
       type(LEADING_ASTERISK)
     ;
 
@@ -439,8 +440,8 @@ Snippet_NEWLINE
     ;
 
 Snippet_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 Snippet_ATTRIBUTE_VALUE
@@ -483,7 +484,7 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ({inFragmentReference}? ~[ \t\r\n}]+ | ([a-zA-Z0-9_$] | '.')+)
+    : ({inFragmentReference}? ~[ \t\r\n}]+ | (LetterOrDigit | '.')+)
       {
           inFragmentReference = false;
           switchFromReferenceModeOnWhitespace();
@@ -532,8 +533,8 @@ Link_NEWLINE
     ;
 
 Link_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 STRING_LITERAL
@@ -545,8 +546,18 @@ See_TAG_OPEN
       -> skip, mode(DEFAULT_MODE)
     ;
 
-fragment LetterOrDigit: Letter | [0-9];
-fragment Letter: [a-zA-Z$_];
+fragment LetterOrDigit
+    : Letter
+    | [0-9]
+    ;
+fragment Letter
+    // these are the "java letters" below 0x7F
+    : [a-zA-Z$_]
+    // covers all characters above 0x7F which are not a surrogate
+    | ~[\u0000-\u007F\uD800-\uDBFF]
+    // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
+    | [\uD800-\uDBFF] [\uDC00-\uDFFF]
+    ;
 
 // --- LINK_TAG_DESCRIPTION ---
 mode LINK_TAG_DESCRIPTION;
@@ -573,8 +584,8 @@ LinkDescription_RBRACE
     ;
 
 LinkDescription_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 LinkDescription_JAVADOC_INLINE_TAG_END
@@ -601,12 +612,12 @@ ParameterList_NEWLINE
     ;
 
 ParameterList_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 fragment PARAMETER_TYPE_CHAR
-    : [a-zA-Z0-9_$.<>[\]?]
+    : LetterOrDigit | [.<>[\]?]
     ;
 
 PARAMETER_TYPE
@@ -631,7 +642,7 @@ RPAREN
 mode VALUE_MODE;
 
 Value_IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.' | '-')+ -> type(IDENTIFIER)
+    : (LetterOrDigit | '.' | '-')+ -> type(IDENTIFIER)
     ;
 
 FORMAT_SPECIFIER
@@ -658,8 +669,8 @@ Value_NEWLINE
     ;
 
 Value_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 Value_JAVADOC_INLINE_TAG_END
@@ -691,8 +702,8 @@ InlineDescription_NEWLINE
     ;
 
 InlineDescription_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 InlineDescription_JAVADOC_INLINE_TAG_END
@@ -712,8 +723,8 @@ IndexTerm_NEWLINE
     ;
 
 IndexTerm_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 IndexTerm_WS
@@ -749,8 +760,8 @@ Tag_NEWLINE
     ;
 
 Tag_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 TAG_WHITESPACE
@@ -781,8 +792,8 @@ AttrValue_NEWLINE
     ;
 
 AttrValue_LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}?
-      -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK)
+    : [ \t]* '*'+ {isAfterNewline()}?
+      -> channel(LEADING_ASTERISKS_CHANNEL), type(LEADING_ASTERISK)
     ;
 
 ATTRIBUTE_VALUE

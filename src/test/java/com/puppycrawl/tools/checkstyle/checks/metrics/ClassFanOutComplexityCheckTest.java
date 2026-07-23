@@ -146,6 +146,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_THROWS,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
         assertWithMessage("Acceptable tokens should not be null")
             .that(actual)
@@ -298,6 +299,44 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexitySealedClasses.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactClasses() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY, 3, 0),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputClassFanOutComplexityCompact.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactClassesDefaultConfig() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputClassFanOutComplexityCompactDefaultConfig.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactClassesExcludeClassesRegexps() throws Exception {
+        final String[] expected = {
+            "24:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputClassFanOutComplexityCompactExcludeRegexp.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactClassesExcludedPackages() throws Exception {
+        final String[] expected = {
+            "24:1: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputClassFanOutComplexityCompactExcluded.java"),
                 expected);
     }
 

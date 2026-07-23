@@ -102,6 +102,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example5.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          The following configuration skip validation on package-private constant field.
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/constantname/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

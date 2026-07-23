@@ -1008,7 +1008,7 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/whitespace/whitespacearound.html#WhitespaceAround">
                     WhitespaceAround</a>
@@ -1062,6 +1062,15 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
+                  <a href="checks/whitespace/singlespaceseparator.html#SingleSpaceSeparator">
+                    SingleSpaceSeparator</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleSpaceSeparator">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html#NoWhitespaceBeforeCaseDefaultColon">
                     NoWhitespaceBeforeCaseDefaultColon</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
@@ -1077,13 +1086,13 @@
                   config</a>)
                   <br/>
                   <br/>
-                  A single whitespace before the empty block(<code>{}</code>) of a class,
-                  method, interface, static, loops(<code>while</code>,
-                  <code>do</code>, <code>for</code>), and record is not covered.
-                  It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17715">
-                    #17715
-                  </a>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/whitespacebeforeemptybody.html#WhitespaceBeforeEmptyBody">
+                    WhitespaceBeforeEmptyBody</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceBeforeEmptyBody">
+                  config</a>)
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace">

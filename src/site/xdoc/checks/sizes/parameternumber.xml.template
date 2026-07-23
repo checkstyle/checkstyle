@@ -91,6 +91,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to allow 6 parameters for a method, while ignoring
+          methods with <code>@Override</code> or <code>@java.lang.Override</code> annotation:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
         <p>
           Note: Annotation names specified in the <code>ignoreAnnotatedBy</code> property

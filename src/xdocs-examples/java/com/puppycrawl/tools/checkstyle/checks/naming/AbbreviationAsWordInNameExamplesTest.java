@@ -76,6 +76,62 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
     }
 
     @Test
+    public void testExample4() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "24:21: " + getCheckMessage(MSG_KEY, "stringsFOUND", expectedCapitalCount),
+            "31:13: " + getCheckMessage(MSG_KEY, "TOTAL", expectedCapitalCount),
+            "46:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", expectedCapitalCount),
+            "48:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final int expectedCapitalCount = 3;
+
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "46:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", expectedCapitalCount),
+            "48:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "46:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", expectedCapitalCount),
+            "48:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final int expectedCapitalCount = 2;
+
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "28:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
+            "31:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
+            "32:10: " + getCheckMessage(MSG_KEY, "firstURL", expectedCapitalCount),
+            "35:7: " + getCheckMessage(MSG_KEY, "nextXYZ", expectedCapitalCount),
+            "43:8: " + getCheckMessage(MSG_KEY, "OAUth2", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example8.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final int expectedCapitalCount = 2;
 

@@ -133,6 +133,16 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     }
 
     @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "19: Line matches the illegal pattern 'System\\.out\\.println'.",
+            "20: Line matches the illegal pattern 'System\\.out\\.println'.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
     public void testUseCase5() throws Exception {
         final String[] expected = {
             "17: Line matches the illegal pattern 'Trailing whitespace'.",
@@ -169,4 +179,5 @@ public class RegexpCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
         verifyWithInlineConfigParser(getPath("UseCase7.java"), expected);
     }
+
 }

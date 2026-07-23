@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulelambdaexpressions;
 
+// violation first line 'Header mismatch'
+
 import java.util.function.BiFunction;
 import java.util.function.Function;
 

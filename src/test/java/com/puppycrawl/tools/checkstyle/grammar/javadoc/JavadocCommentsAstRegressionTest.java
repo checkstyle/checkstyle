@@ -88,6 +88,24 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testAuthorTagWithLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTagWithLeadingAsterisks.txt"),
+                getBlockTagsPath("InputAuthorTagWithLeadingAsterisks.javadoc"));
+    }
+
+    @Test
+    public void testCommonBlockTagsWithLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedCommonBlockTagsWithLeadingAsterisks.txt"),
+                getBlockTagsPath("InputCommonBlockTagsWithLeadingAsterisks.javadoc"));
+    }
+
+    @Test
+    public void testReferenceBlockTagsWithLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedReferenceBlockTagsWithLeadingAsterisks.txt"),
+                getBlockTagsPath("InputReferenceBlockTagsWithLeadingAsterisks.javadoc"));
+    }
+
+    @Test
     public void testDeprecatedTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedDeprecatedTag.txt"),
                 getBlockTagsPath("InputDeprecatedTag.javadoc"));
@@ -195,6 +213,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(
                 getInlineTagsPath("ExpectedLinkInlineTagGenericParameterTypeWithWhitespace.txt"),
                 getInlineTagsPath("InputLinkInlineTagGenericParameterTypeWithWhitespace.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagUnicode() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagUnicode.txt"),
+                getInlineTagsPath("InputLinkInlineTagUnicode.javadoc"));
     }
 
     @Test

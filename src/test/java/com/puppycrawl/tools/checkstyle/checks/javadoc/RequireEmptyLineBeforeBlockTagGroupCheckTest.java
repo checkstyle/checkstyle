@@ -58,6 +58,17 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
     }
 
     @Test
+    public void testCorrect2() throws Exception {
+        createModuleConfig(
+                RequireEmptyLineBeforeBlockTagGroupCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireEmptyLineBeforeBlockTagGroupCorrect2.java"),
+                expected);
+    }
+
+    @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@since"),
