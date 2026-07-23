@@ -987,6 +987,12 @@
       <property name="tokens" value="METHOD_REF"/>
       <property name="option" value="nl"/>
     </module>
+    <module name="OpenjdkMethodParameterAlignment">
+      <!-- This Check enforces the OpenJDK style guide, our code base groups
+           related parameters on the same line of a vertically aligned
+           parameter list, so output must be ignored. -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="OperatorWrap">
       <property name="tokens" value="ASSIGN"/>
       <property name="tokens" value="DIV_ASSIGN"/>

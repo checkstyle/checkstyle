@@ -117,6 +117,17 @@
           </tr>
           <tr>
             <td>
+              <a href="openjdkmethodparameteralignment.html#OpenjdkMethodParameterAlignment">
+                OpenjdkMethodParameterAlignment
+              </a>
+            </td>
+            <td>
+              Checks that vertically listed parameters of a method declaration are declared one per
+              line.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="operatorwrap.html#OperatorWrap">
                 OperatorWrap
               </a>
