@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.filters;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck;
+import com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWithPlainTextCommentFilterExamplesTest
@@ -38,12 +41,15 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
         final String targetFile = getPath("Example1.properties");
 
         final String[] expectedWithoutFilter = {
-            "2: Duplicated property 'keyB' (2 occurrence(s)).",
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "2: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "6: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         final String[] expectedWithFilter = {
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "6: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
@@ -57,12 +63,15 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
         final String targetFile = getPath("Example2.properties");
 
         final String[] expectedWithoutFilter = {
-            "2: Duplicated property 'keyB' (2 occurrence(s)).",
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "2: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "6: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         final String[] expectedWithFilter = {
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "6: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
@@ -76,14 +85,19 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
         final String targetFile = getPath("Example3.properties");
 
         final String[] expectedWithoutFilter = {
-            "3: Duplicated property 'keyB' (2 occurrence(s)).",
-            "6: Property key 'keyA' is not in the right order with previous property 'keyB'.",
-            "9: Duplicated property 'keyC' (2 occurrence(s)).",
+            "3: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "6: " + getCheckMessage(OrderedPropertiesCheck.class, OrderedPropertiesCheck.MSG_KEY,
+                    "keyA", "keyB"),
+            "9: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         final String[] expectedWithFilter = {
-            "6: Property key 'keyA' is not in the right order with previous property 'keyB'.",
-            "9: Duplicated property 'keyC' (2 occurrence(s)).",
+            "6: " + getCheckMessage(OrderedPropertiesCheck.class, OrderedPropertiesCheck.MSG_KEY,
+                    "keyA", "keyB"),
+            "9: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
@@ -174,7 +188,7 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
         final String targetFile = getPath("Example8.sql");
 
         final String[] expectedWithoutFilter = {
-            "7: Line is longer than 60 characters (found 66).",
+            "7: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 60, 66),
         };
 
         final String[] expectedWithFilter = CommonUtil.EMPTY_STRING_ARRAY;
@@ -188,14 +202,14 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
     public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "23: Line is longer than 100 characters (found 147).",
-            "24: Line is longer than 100 characters (found 133).",
-            "25: Line is longer than 100 characters (found 116).",
-            "32: Line is longer than 100 characters (found 183).",
+            "23: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 147),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 133),
+            "25: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 116),
+            "32: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 183),
         };
 
         final String[] expectedWithFilter = {
-            "32: Line is longer than 100 characters (found 183).",
+            "32: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 183),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),

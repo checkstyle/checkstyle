@@ -19,9 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck;
+import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
+import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
 
 public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -34,11 +45,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -52,11 +65,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "41:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -70,11 +85,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "40:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "40:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -88,16 +105,23 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase4() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "13:1: 'package' should be separated from previous line.",
-            "21:3: 'VARIABLE_DEF' should be separated from previous line.",
-            "22:3: 'METHOD_DEF' should be separated from previous line.",
-            "23:3: 'METHOD_DEF' should be separated from previous line.",
+            "13:1: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "package"),
+            "21:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "22:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "23:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         final String[] expectedWithFilter = {
-            "21:3: 'VARIABLE_DEF' should be separated from previous line.",
-            "22:3: 'METHOD_DEF' should be separated from previous line.",
-            "23:3: 'METHOD_DEF' should be separated from previous line.",
+            "21:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "22:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "23:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -111,22 +135,35 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase5() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "19:23: '{' at column 23 should be on a new line.",
-            "27:36: '{' at column 36 should be on a new line.",
-            "31:27: '{' at column 27 should be on a new line.",
-            "35:28: '{' at column 28 should be on a new line.",
-            "40:31: '{' at column 31 should be on a new line.",
-            "41:35: '{' at column 35 should be on a new line.",
-            "44:23: '{' at column 23 should be on a new line.",
+            "19:23: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
+            "27:36: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 36),
+            "31:27: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 27),
+            "35:28: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 28),
+            "40:31: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 31),
+            "41:35: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 35),
+            "44:23: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
         };
 
         final String[] expectedWithFilter = {
-            "27:36: '{' at column 36 should be on a new line.",
-            "31:27: '{' at column 27 should be on a new line.",
-            "35:28: '{' at column 28 should be on a new line.",
-            "40:31: '{' at column 31 should be on a new line.",
-            "41:35: '{' at column 35 should be on a new line.",
-            "44:23: '{' at column 23 should be on a new line.",
+            "27:36: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 36),
+            "31:27: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 27),
+            "35:28: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 28),
+            "40:31: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 31),
+            "41:35: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 35),
+            "44:23: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -140,13 +177,17 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase6() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "20:3: 'VARIABLE_DEF' should be separated from previous line.",
-            "21:3: 'METHOD_DEF' should be separated from previous line.",
-            "22:3: 'METHOD_DEF' should be separated from previous line.",
+            "20:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "21:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "22:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         final String[] expectedWithFilter = {
-            "20:3: 'VARIABLE_DEF' should be separated from previous line.",
+            "20:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -159,17 +200,26 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testUseCase7() throws Exception {
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expectedWithoutFilter = {
-            "20:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "21:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "48:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "51:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "48:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "51:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "21:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "48:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "51:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "48:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "51:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -182,13 +232,18 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testUseCase8() throws Exception {
 
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+
         final String[] expectedWithoutFilter = {
-            "34:9: Name 'TestVariable' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
-            "35:9: Name 'WeirdName' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
+            "34:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+                    "TestVariable", pattern),
+            "35:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+                    "WeirdName", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "35:9: Name 'WeirdName' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
+            "35:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+                    "WeirdName", pattern),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -201,26 +256,36 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testUseCase9() throws Exception {
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expectedWithoutFilter = {
-            "19:13: '23' is a magic number.",
-            "20:27: '11' is a magic number.",
-            "21:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "31:11: '24' is a magic number.",
-            "49:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "52:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "56:19: '11' is a magic number.",
-            "57:8: Name 'FOO' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "20:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "31:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
+            "49:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "52:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
+            "56:19: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "57:8: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "FOO", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "19:13: '23' is a magic number.",
-            "20:27: '11' is a magic number.",
-            "21:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "31:11: '24' is a magic number.",
-            "49:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "52:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "56:19: '11' is a magic number.",
+            "19:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "20:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "31:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
+            "49:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "52:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
+            "56:19: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -234,16 +299,23 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase10() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "32:5: Reference to instance variable 'age' needs \"this.\".",
-            "41:9: Reference to instance variable 'age' needs \"this.\".",
-            "41:20: Reference to instance variable 'wordCount' needs \"this.\".",
-            "44:14: Reference to instance variable 'age' needs \"this.\".",
+            "32:5: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+            "41:9: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+            "41:20: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "wordCount", ""),
+            "44:14: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
         };
 
         final String[] expectedWithFilter = {
-            "41:9: Reference to instance variable 'age' needs \"this.\".",
-            "41:20: Reference to instance variable 'wordCount' needs \"this.\".",
-            "44:14: Reference to instance variable 'age' needs \"this.\".",
+            "41:9: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+            "41:20: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "wordCount", ""),
+            "44:14: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -257,7 +329,8 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase11() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "23:37: Throwing 'RuntimeException' is not allowed.",
+            "23:37: " + getCheckMessage(IllegalThrowsCheck.class, IllegalThrowsCheck.MSG_KEY,
+                    "RuntimeException"),
         };
 
         final String[] expectedWithFilter = {};
@@ -273,8 +346,10 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase12() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "25:9: 'public' modifier out of order with the JLS suggestions.",
-            "26:14: 'abstract' modifier out of order with the JLS suggestions.",
+            "25:9: " + getCheckMessage(ModifierOrderCheck.class,
+                    ModifierOrderCheck.MSG_MODIFIER_ORDER, "public"),
+            "26:14: " + getCheckMessage(ModifierOrderCheck.class,
+                    ModifierOrderCheck.MSG_MODIFIER_ORDER, "abstract"),
         };
 
         final String[] expectedWithFilter = {};
@@ -289,14 +364,14 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testUseCase13() throws Exception {
         final String[] expectedWithoutFilter = {
-            "18:13: '23' is a magic number.",
-            "19:27: '11' is a magic number.",
-            "30:11: '24' is a magic number.",
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "19:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
         final String[] expectedWithFilter = {
-            "18:13: '23' is a magic number.",
-            "30:11: '24' is a magic number.",
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -310,14 +385,14 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "18:13: '23' is a magic number.",
-            "19:27: '11' is a magic number.",
-            "30:11: '24' is a magic number.",
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "19:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
         final String[] expectedWithFilter = {
-            "18:13: '23' is a magic number.",
-            "30:11: '24' is a magic number.",
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -330,16 +405,24 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testUseCase2() throws Exception {
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expectedWithoutFilter = {
-            "19:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "47:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "50:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "47:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "50:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "19:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -352,17 +435,26 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testUseCase3() throws Exception {
 
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expectedWithoutFilter = {
-            "19:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "47:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "50:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "47:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "50:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "19:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "47:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "47:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"

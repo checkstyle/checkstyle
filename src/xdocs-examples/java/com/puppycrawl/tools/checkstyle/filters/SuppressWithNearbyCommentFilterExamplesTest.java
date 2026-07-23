@@ -19,9 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+import com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck;
 
 public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -36,7 +44,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "13:27: 'int' is followed by whitespace.",
+            "13:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"), expectedWithoutFilter,
@@ -45,12 +54,17 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
     @Test
     public void testExample2() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
         final String[] expectedWithFilter = {
-            "17:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "17:30: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "array", pattern),
         };
         final String[] expectedWithoutFilter = {
-            "17:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "19:27: Name 'lowerCaseConstant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "17:30: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "array", pattern),
+            "19:27: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant", pattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"), expectedWithoutFilter,
@@ -63,7 +77,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "27:5: Catching 'RuntimeException' is not allowed.",
+            "27:5: " + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY,
+                    "RuntimeException"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example3.java"), expectedWithoutFilter,
@@ -76,7 +91,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "15:27: 'int' is followed by whitespace.",
+            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example4.java"), expectedWithoutFilter,
@@ -86,10 +102,12 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     @Test
     public void testExample5() throws Exception {
         final String[] expectedWithFilter = {
-            "15:27: 'int' is followed by whitespace.",
+            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
         final String[] expectedWithoutFilter = {
-            "15:27: 'int' is followed by whitespace.",
+            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example5.java"), expectedWithoutFilter,
@@ -101,7 +119,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
         final String[] expectedWithFilter = {};
 
         final String[] expectedWithoutFilter = {
-            "15:27: 'int' is followed by whitespace.",
+            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example7.java"), expectedWithoutFilter,
@@ -113,7 +132,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
         final String[] expectedWithFilter = {};
 
         final String[] expectedWithoutFilter = {
-            "15:27: 'int' is followed by whitespace.",
+            "15:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example8.java"), expectedWithoutFilter,
@@ -123,10 +143,12 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
     @Test
     public void testExample6() throws Exception {
         final String[] expectedWithFilter = {
-            "19:27: 'int' is followed by whitespace.",
+            "19:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
         final String[] expectedWithoutFilter = {
-            "19:27: 'int' is followed by whitespace.",
+            "19:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example6.java"), expectedWithoutFilter,
@@ -135,15 +157,23 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
     @Test
     public void testUseCase1() throws Exception {
+        final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
         final String[] expectedWithFilter = {
-            "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "26:20: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant5", pattern),
         };
         final String[] expectedWithoutFilter = {
-            "19:20: Name 'lowerCaseConstant1' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "21:20: Name 'lowerCaseConstant2' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "23:20: Name 'lowerCaseConstant3' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "25:20: Name 'lowerCaseConstant4' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "26:20: Name 'lowerCaseConstant5' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "19:20: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant1", pattern),
+            "21:20: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant2", pattern),
+            "23:20: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant3", pattern),
+            "25:20: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant4", pattern),
+            "26:20: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "lowerCaseConstant5", pattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase1.java"), expectedWithoutFilter,
@@ -156,7 +186,8 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "17:15: Name 'D2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "17:15: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "D2", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase2.java"), expectedWithoutFilter,
@@ -169,8 +200,10 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilters = {
-            "19:27: 'int' is followed by whitespace.",
-            "19:30: Name 'array' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "19:27: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+                    NoWhitespaceAfterCheck.MSG_KEY, "int"),
+            "19:30: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "array", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase3.java"), expectedWithoutFilters,
@@ -196,9 +229,10 @@ public class SuppressWithNearbyCommentFilterExamplesTest extends AbstractExample
 
         };
         final String[] expectedWithoutFilter = {
-            "21:1: Class Data Abstraction Coupling is 2 (max allowed is 1) "
-                    + "classes [Example1, Example2].",
-            "24:23: '10022' is a magic number.",
+            "21:1: " + getCheckMessage(ClassDataAbstractionCouplingCheck.class,
+                    ClassDataAbstractionCouplingCheck.MSG_KEY, 2, 1, "[Example1, Example2]"),
+            "24:23: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY,
+                    "10022"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("UseCase5.java"), expectedWithoutFilter,
