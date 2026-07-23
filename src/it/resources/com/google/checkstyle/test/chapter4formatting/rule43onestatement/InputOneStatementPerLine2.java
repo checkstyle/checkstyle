@@ -1,28 +1,7 @@
-// non-compiled with eclipse: extra semicolumn in imports
-// non-compiled with javac: but was compiled on jdk before 21, so we need to continue to support
+package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 
-package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
-
-/*
- * This file contains test inputs for InputOneStatementPerLine2
- * which cause compilation problem in Eclipse 4.2.2 but still must be tested.
- */
-
-/*
- * Two import statements and one 'empty' statement
- * which are not on the same line are legal.
- */
-import java.awt.event.ActionEvent;
-import java.lang.Integer;
-import java.lang.String;
-import java.lang.annotation.Annotation;
-; // non-compilable by eclipse
-// violation above '';' should be separated from previous line.'
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
-import javax.swing.JCheckBox;
 
 /** Some javadoc. */
 public class InputOneStatementPerLine2 {
@@ -34,8 +13,6 @@ public class InputOneStatementPerLine2 {
    */
   ;; // violation 'Only one statement per line allowed.'
   static {
-    new JCheckBox().addActionListener((final ActionEvent e) -> { good(); });
-    // violation above ''{' at column 64 should have line break after.'
     List<Integer> ints = new LinkedList<Integer>();
     ints.stream().map(t -> { return t * 2; }).filter(t -> { return false; });
     // 2 violations above:

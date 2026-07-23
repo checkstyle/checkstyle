@@ -200,6 +200,9 @@
              files="src/test/resources/.*/defaultlogger/ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
   <suppress id="noEmptyFile"
              files="src/test/resources/.*/InputLineEndingOneLineLf\.txt"/>
+  <!-- can be empty until new modern syntax started to be used -->
+  <suppress id="noEmptyFile"
+            files="config/google-java-format/excluded/noncompilable-input-paths\.txt"/>
   <!-- not a curl command but a text replacement -->
   <suppress id="properCurlCommand" files=".ci/validation\.sh"/>
   <!-- other images that do not support newer curl commands -->

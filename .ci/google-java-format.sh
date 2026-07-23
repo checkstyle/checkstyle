@@ -2,6 +2,12 @@
 
 set -e
 
+if [[ -z $1 ]]; then
+  echo "path to google-java-format-x.y.z-all-deps.jar is not set"
+  echo "Usage: $BASH_SOURCE <path to jar>"
+  exit 1
+fi
+
 JAR_PATH="$1"
 
 NONFORMATTED_LIST=(
@@ -76,6 +82,11 @@ echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/
 COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
   | grep -v -x -f config/google-java-format/excluded/compilable-input-paths.txt
   ))
+
+if [ ! -f "$JAR_PATH" ]; then
+    echo "Error: $JAR_PATH does not exist."
+    exit 1
+fi
 
 for INPUT_PATH in "${COMPILABLE_INPUT_PATHS[@]}"; do
   java -jar "$JAR_PATH" --replace "$INPUT_PATH"
