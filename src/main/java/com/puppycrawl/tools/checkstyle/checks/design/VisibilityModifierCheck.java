@@ -323,7 +323,7 @@ public class VisibilityModifierCheck
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.VARIABLE_DEF -> {
-                if (!isAnonymousClassVariable(ast)) {
+                if (isField(ast)) {
                     visitVariableDef(ast);
                 }
             }
@@ -336,13 +336,15 @@ public class VisibilityModifierCheck
     }
 
     /**
-     * Checks if current variable definition is definition of an anonymous class.
+     * Checks if current variable definition is a field.
      *
      * @param variableDef {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}
-     * @return true if current variable definition is definition of an anonymous class.
+     * @return true if current variable definition is a field.
      */
-    private static boolean isAnonymousClassVariable(DetailAST variableDef) {
-        return variableDef.getParent().getType() != TokenTypes.OBJBLOCK;
+    private static boolean isField(DetailAST variableDef) {
+        final int parentType = variableDef.getParent().getType();
+        return parentType == TokenTypes.OBJBLOCK
+                || parentType == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
     /**
