@@ -453,7 +453,6 @@
 <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.FileContext.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getAcceptableJavadocTokens--">apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getAcceptableJavadocTokens--</a>: doesn't exist.
-<a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--">apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getDefaultJavadocTokens--</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getRequiredJavadocTokens--">apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getRequiredJavadocTokens--</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#setJavadocTokens-java.lang.String...-">apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#setJavadocTokens-java.lang.String...-</a>: doesn't exist.
