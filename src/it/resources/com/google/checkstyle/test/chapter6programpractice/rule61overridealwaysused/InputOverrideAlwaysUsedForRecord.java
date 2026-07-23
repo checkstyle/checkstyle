@@ -6,7 +6,7 @@ import java.util.Locale;
 public record InputOverrideAlwaysUsedForRecord(String name, int age) {
 
   /** Some javadoc. */
-  // violation below, 'method must include @java.lang.Override annotation.'
+  // violation below 'method must include @java.lang.Override annotation.'
   public String name() {
     return name.toUpperCase(Locale.ROOT);
   }
@@ -15,7 +15,7 @@ public record InputOverrideAlwaysUsedForRecord(String name, int age) {
 // violation below 'Top-level class Container has to reside in its own source file'
 record Container(String fileName, int port) {
 
-  // violation below, 'method must include @java.lang.Override annotation.'
+  // violation below 'method must include @java.lang.Override annotation.'
   public int port() {
     return port;
   }

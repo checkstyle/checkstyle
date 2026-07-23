@@ -17,15 +17,15 @@ public class Example1 {
 
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
-      // violation above, 'Name 'e123' must match pattern'
+      // violation above 'Name 'e123' must match pattern'
     } catch (NullPointerException ab) {
-      // violation above, 'Name 'ab' must match pattern'
+      // violation above 'Name 'ab' must match pattern'
     } catch (ArrayStoreException abc) {
     } catch (InterruptedException aBC) {
-      // violation above, 'Name 'aBC' must match pattern'
+      // violation above 'Name 'aBC' must match pattern'
     } catch (RuntimeException abC) {
     } catch (Exception EighthException) {
-      // violation above, 'Name 'EighthException' must match pattern'
+      // violation above 'Name 'EighthException' must match pattern'
     } catch (Throwable t) {
 
     }

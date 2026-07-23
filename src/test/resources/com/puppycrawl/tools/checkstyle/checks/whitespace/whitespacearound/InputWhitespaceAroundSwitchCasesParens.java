@@ -112,7 +112,7 @@ public class InputWhitespaceAroundSwitchCasesParens {
             case 6: { { } }
             case 7:  {
 
-            }break; // violation, ''}' is not followed by whitespace.'
+            }break; // violation ''}' is not followed by whitespace.'
         }
     }
 }

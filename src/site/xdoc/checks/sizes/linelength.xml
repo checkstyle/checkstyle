@@ -106,7 +106,7 @@ class Example1 {
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");
-    // violation below, 'Line is longer than 80 characters'
+    // violation below 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
 
     String str1 = """
@@ -179,7 +179,7 @@ class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-// violation below, 'Line is longer than 80 characters'
+// violation below 'Line is longer than 80 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 /**
@@ -191,7 +191,7 @@ class Example3 {
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");
-    // violation below, 'Line is longer than 80 characters'
+    // violation below 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
 
     String str1 = """
@@ -266,7 +266,7 @@ class Example4 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
-// violation above, 'Line is longer than 60 characters'
+// violation above 'Line is longer than 60 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 /**
@@ -278,7 +278,7 @@ class Example5 {
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");
-    // violation below, 'Line is longer than 60 characters'
+    // violation below 'Line is longer than 60 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
 
     String str1 = """
@@ -326,7 +326,7 @@ class Example6 {
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");
-    // violation below, 'Line is longer than 84 characters (found 92).'
+    // violation below 'Line is longer than 84 characters (found 92).'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
     // filtered violation below 'Line length is 90, expected 84'
     String str1 = """

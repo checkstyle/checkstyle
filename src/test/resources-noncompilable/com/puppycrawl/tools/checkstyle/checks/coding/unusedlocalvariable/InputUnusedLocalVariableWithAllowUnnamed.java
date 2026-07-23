@@ -19,8 +19,8 @@ public class InputUnusedLocalVariableWithAllowUnnamed {
         q.add(3);
         q.add(4);
         while (!q.isEmpty()) {
-            var _x = q.poll();  // violation, 'Unused named local variable '_x''
-            var __ = q.poll(); // violation, 'Unused named local variable '__''
+            var _x = q.poll();  // violation 'Unused named local variable '_x''
+            var __ = q.poll(); // violation 'Unused named local variable '__''
             var _ = q.poll();
         }
     }
@@ -34,7 +34,7 @@ public class InputUnusedLocalVariableWithAllowUnnamed {
         for (Integer _ : q) {
             count++;
         }
-        for (Integer __ : q) { // violation, 'Unused named local variable '__''
+        for (Integer __ : q) { // violation 'Unused named local variable '__''
             count++;
         }
         System.out.println(count);
@@ -43,7 +43,7 @@ public class InputUnusedLocalVariableWithAllowUnnamed {
     void m3() {
         for (int i = 0, _ = sideEffect(); i < 10; i++) {
         }
-        // violation below, 'Unused named local variable '__''
+        // violation below 'Unused named local variable '__''
         for (int i = 0, __ = sideEffect(); i < 10; i++) {
         }
     }

@@ -30,7 +30,7 @@ class Example2 {
 
   /**
    * @deprecated
-   * <p> // violation, 'Unclosed HTML tag found: p'
+   * <p> // violation 'Unclosed HTML tag found: p'
   */
   @Deprecated
   public static final int CONST = 12;

@@ -34,7 +34,7 @@ class Example4 {
   @SuppressWarnings("deprecation") DataLoader loader2;
   // ok above, as 'tokens' property set to METHOD_DEF only
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
   @Nonnull @Mock DataLoader loader3;
   // ok above, as 'tokens' property set to METHOD_DEF only
 }

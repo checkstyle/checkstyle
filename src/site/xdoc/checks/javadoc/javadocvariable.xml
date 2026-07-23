@@ -74,22 +74,22 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  private int a; // violation, 'Missing a Javadoc comment'
+  private int a; // violation 'Missing a Javadoc comment'
 
   /**
    * Some description here
    */
   private int b;
-  protected int c; // violation, 'Missing a Javadoc comment'
-  public int d; // violation, 'Missing a Javadoc comment'
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  protected int c; // violation 'Missing a Javadoc comment'
+  public int d; // violation 'Missing a Javadoc comment'
+  /*package*/ int e; // violation 'Missing a Javadoc comment'
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -120,11 +120,11 @@ public class Example2 {
    */
   private int b;
   protected int c;
-  public int d; // violation, 'Missing a Javadoc comment'
+  public int d; // violation 'Missing a Javadoc comment'
   /*package*/ int e;
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   private enum PrivateEnum {
@@ -149,15 +149,15 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  private int a;     // violation, 'Missing a Javadoc comment'
+  private int a;     // violation 'Missing a Javadoc comment'
 
   /**
    * Some description here
    */
   private int b;
-  protected int c;   // violation, 'Missing a Javadoc comment'
-  public int d;      // violation, 'Missing a Javadoc comment'
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  protected int c;   // violation 'Missing a Javadoc comment'
+  public int d;      // violation 'Missing a Javadoc comment'
+  /*package*/ int e; // violation 'Missing a Javadoc comment'
 
   public enum PublicEnum {
     CONSTANT
@@ -189,22 +189,22 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  private int a; // violation, 'Missing a Javadoc comment'
+  private int a; // violation 'Missing a Javadoc comment'
 
   /**
    * Some description here
    */
   private int b;
-  protected int c; // violation, 'Missing a Javadoc comment'
-  public int d; // violation, 'Missing a Javadoc comment'
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  protected int c; // violation 'Missing a Javadoc comment'
+  public int d; // violation 'Missing a Javadoc comment'
+  /*package*/ int e; // violation 'Missing a Javadoc comment'
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 }
 </code></pre></div>
@@ -231,7 +231,7 @@ public class Example4 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase1 {
-  private int a; // violation, 'Missing a Javadoc comment'
+  private int a; // violation 'Missing a Javadoc comment'
 
   /**
    * Some description here
@@ -239,14 +239,14 @@ public class UseCase1 {
   private int b;
   protected int c;
   public int d;
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  /*package*/ int e; // violation 'Missing a Javadoc comment'
 
   public enum PublicEnum {
     CONSTANT
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -270,17 +270,17 @@ public class UseCase1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase2 {
-  public int variablePublic;       // violation, 'Missing a Javadoc comment'
-  protected int variableProtected; // violation, 'Missing a Javadoc comment'
-  int variablePackage;             // violation, 'Missing a Javadoc comment'
-  private int variablePrivate;     // violation, 'Missing a Javadoc comment'
+  public int variablePublic;       // violation 'Missing a Javadoc comment'
+  protected int variableProtected; // violation 'Missing a Javadoc comment'
+  int variablePackage;             // violation 'Missing a Javadoc comment'
+  private int variablePrivate;     // violation 'Missing a Javadoc comment'
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   public void testMethodInnerClass() {

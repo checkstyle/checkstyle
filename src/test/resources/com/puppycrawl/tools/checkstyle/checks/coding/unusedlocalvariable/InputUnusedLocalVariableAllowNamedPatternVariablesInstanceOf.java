@@ -18,7 +18,7 @@ public class InputUnusedLocalVariableAllowNamedPatternVariablesInstanceOf {
     record Some<T>(T value) implements Maybe<T> {}
 
     void method(Object object) {
-        if (object instanceof String s) { // violation, 'Unused local variable'
+        if (object instanceof String s) { // violation 'Unused local variable'
             System.out.println("string");
         }
     }

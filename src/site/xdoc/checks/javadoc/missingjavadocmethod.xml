@@ -144,8 +144,8 @@ public boolean isSomething()
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  public Example1() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  public Example1() {} // violation 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
@@ -160,7 +160,7 @@ public class Example1 {
   protected void testMethod4() {}
   void testMethod5() {}
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  public void testMethod6() { // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
@@ -183,8 +183,8 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  public Example2() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  public Example2() {} // violation 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
@@ -195,11 +195,11 @@ public class Example2 {
     return "Some string";
   }
 
-  private void testMethod3() {} // violation, 'Missing a Javadoc comment'
-  protected void testMethod4() {} // violation, 'Missing a Javadoc comment'
-  void testMethod5() {} // violation, 'Missing a Javadoc comment'
+  private void testMethod3() {} // violation 'Missing a Javadoc comment'
+  protected void testMethod4() {} // violation 'Missing a Javadoc comment'
+  void testMethod5() {} // violation 'Missing a Javadoc comment'
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  public void testMethod6() { // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
@@ -223,8 +223,8 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  public Example3() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  public Example3() {} // violation 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
@@ -235,11 +235,11 @@ public class Example3 {
     return "Some string";
   }
 
-  private void testMethod3() {} // violation, 'Missing a Javadoc comment'
+  private void testMethod3() {} // violation 'Missing a Javadoc comment'
   protected void testMethod4() {}
-  void testMethod5() {} // violation, 'Missing a Javadoc comment'
+  void testMethod5() {} // violation 'Missing a Javadoc comment'
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  public void testMethod6() { // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
@@ -261,7 +261,7 @@ public class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  public Example4() {} // violation, 'Missing a Javadoc comment'
+  public Example4() {} // violation 'Missing a Javadoc comment'
   public void testMethod1() {}
   /**
    * Some description here.
@@ -299,8 +299,8 @@ public class Example4 {
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
-  public Example5() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  public Example5() {} // violation 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
@@ -315,7 +315,7 @@ public class Example5 {
   protected void testMethod4() {}
   void testMethod5() {}
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  public void testMethod6() { // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
@@ -337,8 +337,8 @@ public class Example5 {
         <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example6 {
-  public Example6() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  public Example6() {} // violation 'Missing a Javadoc comment'
+  public void testMethod1() {} // violation 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
@@ -353,7 +353,7 @@ public class Example6 {
   protected void testMethod4() {}
   void testMethod5() {}
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  public void testMethod6() { // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
@@ -392,7 +392,7 @@ public class Example7 {
   protected void testMethod4() {}
   void testMethod5() {}
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  public void testMethod6() { // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
@@ -415,7 +415,7 @@ public class Example7 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example8 {
   public Example8() {}
-  public void testMethod1() {}   // violation, 'Missing a Javadoc comment'
+  public void testMethod1() {}   // violation 'Missing a Javadoc comment'
   /**
    * Some description here.
    */
@@ -430,7 +430,7 @@ public class Example8 {
   protected void testMethod4() {}
   void testMethod5() {}
 
-  public void testMethod6() {    // violation, 'Missing a Javadoc comment'
+  public void testMethod6() {    // violation 'Missing a Javadoc comment'
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");

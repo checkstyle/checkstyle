@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 class Example3 {
 
   private void testMethod1() {
-    int debug = 0; // violation, 'Line matches the illegal pattern'
+    int debug = 0; // violation 'Line matches the illegal pattern'
     System.out.println("");
     System.out.
     println("");

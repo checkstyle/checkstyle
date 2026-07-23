@@ -17,7 +17,7 @@ class Example1 {
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");
-    // violation below, 'Line is longer than 80 characters'
+    // violation below 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
 
     String str1 = """

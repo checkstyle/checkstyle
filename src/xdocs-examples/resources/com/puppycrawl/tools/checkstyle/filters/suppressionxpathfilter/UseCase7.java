@@ -18,7 +18,7 @@ public class UseCase7 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
-  public void DoMATH() {} // violation, "Name 'DoMATH' must match pattern"
+  public void DoMATH() {} // violation "Name 'DoMATH' must match pattern"
 
   public void throwsMethod() throws RuntimeException {}
 
@@ -45,9 +45,9 @@ public class UseCase7 {
   }
 
   @Generated("first")
-  public void Test1() {} // violation, "Name 'Test1' must match pattern"
+  public void Test1() {} // violation "Name 'Test1' must match pattern"
 
   @Generated("second")
-  public void Test2() {} // violation, "Name 'Test2' must match pattern"
+  public void Test2() {} // violation "Name 'Test2' must match pattern"
 }
 // xdoc section -- end

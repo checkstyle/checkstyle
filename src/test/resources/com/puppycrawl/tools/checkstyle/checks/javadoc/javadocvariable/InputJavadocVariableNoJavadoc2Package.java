@@ -10,8 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 class InputJavadocVariableNoJavadoc2Package
 {
-    public int i1; // violation, 'Missing a Javadoc comment'
-    protected int i2; // violation, 'Missing a Javadoc comment'
+    public int i1; // violation 'Missing a Javadoc comment'
+    protected int i2; // violation 'Missing a Javadoc comment'
     int i3;
     private int i4;
 
@@ -21,8 +21,8 @@ class InputJavadocVariableNoJavadoc2Package
     private void foo4() {}
 
     public class PublicInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -33,8 +33,8 @@ class InputJavadocVariableNoJavadoc2Package
     }
 
     protected class ProtectedInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -45,8 +45,8 @@ class InputJavadocVariableNoJavadoc2Package
     }
 
     class PackageInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -57,8 +57,8 @@ class InputJavadocVariableNoJavadoc2Package
     }
 
     private class PrivateInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -79,7 +79,7 @@ class InputJavadocVariableNoJavadoc2Package
     void methodWithTwoStarComment() {}
 
     public enum PublicEnum {
-        CONSTANT // violation, 'Missing a Javadoc comment'
+        CONSTANT // violation 'Missing a Javadoc comment'
     }
 
     private enum PrivateEnum {

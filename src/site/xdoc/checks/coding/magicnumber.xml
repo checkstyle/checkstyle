@@ -187,13 +187,13 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
           results in the following violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example1 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -216,7 +216,7 @@ public class Example1 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;
@@ -303,13 +303,13 @@ public class Example2 {
           results in the following violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example3 {
   private int field = 7;
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -332,7 +332,7 @@ public class Example3 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;
@@ -359,13 +359,13 @@ public class Example3 {
           results in the following violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example4 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -388,11 +388,11 @@ public class Example4 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
-    int value() default 10; // violation, ''10' is a magic number.'
-    int[] value2() default {10}; // violation, ''10' is a magic number.'
+    int value() default 10; // violation ''10' is a magic number.'
+    int[] value2() default {10}; // violation ''10' is a magic number.'
   }
   class TestClass {
     TestClass(int field) {}
@@ -414,36 +414,36 @@ public class Example4 {
 </code></pre></div>
         <p id="Example5-code">results in the following violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6)           // violation, ''6' is a magic number.'
+@Annotation(6)           // violation ''6' is a magic number.'
 public class Example5 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8;           // violation, ''8' is a magic number.'
+    int j = 8;           // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
-    // violation above, ''62' is a magic number.'
+    // violation above ''62' is a magic number.'
     final int a = 3;         // ok as waiver is ASSIGN
     final int[] b = {4, 5};  // ok as waiver is ARRAY_INIT
     final int c = -3;        // ok as waiver is UNARY_MINUS
     final int d = +4;        // ok as waiver is UNARY_PLUS
-    final int e = method3(10, 20); // violation, ''10' is a magic number.'
-    // violation above, ''20' is a magic number.'
-    final int f = 3 * 4;                 // violation, ''3' is a magic number.'
-    // violation above, ''4' is a magic number.'
+    final int e = method3(10, 20); // violation ''10' is a magic number.'
+    // violation above ''20' is a magic number.'
+    final int f = 3 * 4;                 // violation ''3' is a magic number.'
+    // violation above ''4' is a magic number.'
     final int g = 3 / 4;     // ok as waiver is DIV
     final int h = 3 + 4;     // ok as waiver is PLUS
-    final int i = 3 - 4;     // violation, ''3' is a magic number.'
-    // violation above, ''4' is a magic number.'
+    final int i = 3 - 4;     // violation ''3' is a magic number.'
+    // violation above ''4' is a magic number.'
     final int j = (int) 3.4; // ok as waiver is TYPECAST
   }
   private int method3(int a, int b) {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;
@@ -468,13 +468,13 @@ public class Example5 {
 </code></pre></div>
         <p id="Example6-code">results in the following violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example6 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -522,13 +522,13 @@ public class Example6 {
 </code></pre></div>
         <p id="Example7-code">results in the following violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example7 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -578,11 +578,11 @@ public class Example7 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Annotation(6) // ok, ignoreAnnotation is true
 public class Example8 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -605,7 +605,7 @@ public class Example8 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;

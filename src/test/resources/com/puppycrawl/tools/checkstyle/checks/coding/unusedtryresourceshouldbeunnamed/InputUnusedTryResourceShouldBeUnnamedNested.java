@@ -10,7 +10,7 @@ public class InputUnusedTryResourceShouldBeUnnamedNested {
     void testNested() {
       try (AutoCloseable a = lock()){
         System.out.println(a);
-        // violation below, 'Unused try resource 'b' should be unnamed'
+        // violation below 'Unused try resource 'b' should be unnamed'
         try (AutoCloseable b = lock()){}
         catch (Exception e){
             System.out.println(e);
@@ -24,7 +24,7 @@ public class InputUnusedTryResourceShouldBeUnnamedNested {
       try {
         try {
           try {
-            // violation below, 'Unused try resource 'a' should be unnamed'
+            // violation below 'Unused try resource 'a' should be unnamed'
             try (AutoCloseable a = lock()){
             } catch (Exception e){
                 System.out.println(e);
@@ -43,11 +43,11 @@ public class InputUnusedTryResourceShouldBeUnnamedNested {
     void testNested3() {
       try (AutoCloseable a = lock()){
         System.out.println(a);
-        // violation below, 'Unused try resource 'b' should be unnamed'
+        // violation below 'Unused try resource 'b' should be unnamed'
         try (AutoCloseable b = lock()){
           try (AutoCloseable c = lock()){
             System.out.println(c);
-            // violation below, 'Unused try resource 'd' should be unnamed'
+            // violation below 'Unused try resource 'd' should be unnamed'
             try (AutoCloseable d = lock()){}
             catch (Exception e){
                 System.out.println(e);

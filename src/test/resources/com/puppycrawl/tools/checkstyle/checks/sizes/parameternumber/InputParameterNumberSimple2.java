@@ -74,7 +74,7 @@ final class InputParameterNumberSimple2
      * @throws java.lang.Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
-              final int badFormat3) // violation above, 'More than 2 parameters (found 3).'
+              final int badFormat3) // violation above 'More than 2 parameters (found 3).'
         throws java.lang.Exception
     {
         return 0;

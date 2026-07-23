@@ -15,7 +15,7 @@ public class Example1 {
   }
 
   void t1(int x)  {
-    // violation below, 'Switch can be replaced with enhanced switch'
+    // violation below 'Switch can be replaced with enhanced switch'
     switch (x) {
       case 1:
         doSomething("one");

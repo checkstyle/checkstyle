@@ -24,11 +24,11 @@ import java.util.Set;
 class Example12 {
   private int myPrivateField1;
 
-  int field1; // violation, 'must be private'
+  int field1; // violation 'must be private'
 
-  protected String field2; // violation, 'must be private'
+  protected String field2; // violation 'must be private'
 
-  public int field3 = 42; // violation, 'must be private'
+  public int field3 = 42; // violation 'must be private'
 
   public long serialVersionUID = 1L;
 
@@ -50,11 +50,11 @@ class Example12 {
   public final ImmutableMap<String, Object> objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString; // violation, 'must be private'
+  String annotatedString; // violation 'must be private'
 
   @Deprecated
   String shortCustomAnnotated;
-  // violation above, 'must be private'
+  // violation above 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 

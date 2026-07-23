@@ -16,12 +16,12 @@ public class Example1 {
   }
 
   void example() throws Exception {
-    // violation below, 'Unused try resource 'a' should be unnamed'
+    // violation below 'Unused try resource 'a' should be unnamed'
     try (var a = lock()) {
       System.out.println("locked");
     }
 
-    // violation below, 'Unused try resource 'res' should be unnamed'
+    // violation below 'Unused try resource 'res' should be unnamed'
     try (AutoCloseable res = lock()) {
       System.out.println("locked");
     }

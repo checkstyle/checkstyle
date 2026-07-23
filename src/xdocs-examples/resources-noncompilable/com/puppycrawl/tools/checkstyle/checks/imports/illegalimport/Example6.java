@@ -12,10 +12,10 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 // xdoc section -- start
-import module java.base; // violation, 'Illegal import'
+import module java.base; // violation 'Illegal import'
 import module java.xml;
 import module java.sql;
-import module java.logging; // violation, 'Illegal import'
+import module java.logging; // violation 'Illegal import'
 import module java.naming;
 
 public class Example6 {}

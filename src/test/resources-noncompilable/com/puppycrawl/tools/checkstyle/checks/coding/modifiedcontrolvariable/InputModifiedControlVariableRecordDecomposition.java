@@ -34,7 +34,7 @@ public class InputModifiedControlVariableRecordDecomposition {
         for (Point p : points) {
             var x = p.x();
             var y = p.y();
-            p = new Point(1, 2); // violation, 'Control variable 'p' is modified.'
+            p = new Point(1, 2); // violation 'Control variable 'p' is modified.'
         }
 
         // Record decomposition in enhanced for loop with reassigned parameters. Since we

@@ -19,7 +19,7 @@ class Example2 {
       }
     };
     shortAnonClass.run();
-    // violation below, 'Anonymous inner class length is 9 lines (max allowed is 7)'
+    // violation below 'Anonymous inner class length is 9 lines (max allowed is 7)'
     Runnable longAnonClass = new Runnable() {
       @Override
       public void run() {

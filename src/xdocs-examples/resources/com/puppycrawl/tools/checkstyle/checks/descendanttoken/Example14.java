@@ -43,7 +43,7 @@ class Example14 {
       break;
     }
     int a = 1;
-    int b = 2; // violation below, 'Total count of 2 exceeds maximum count 1'
+    int b = 2; // violation below 'Total count of 2 exceeds maximum count 1'
     if (this == null || str == "abc") {
       return 0;
     }

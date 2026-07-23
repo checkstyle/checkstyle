@@ -18,13 +18,13 @@ public class InputFinalLocalVariableValidateUnnamedVariablesFalse {
         final Queue<Integer> q = new PriorityQueue<>();
         q.add(1);
         q.add(2);
-        for (Integer i : q) {  // violation,'Variable 'i' should be declared final'
+        for (Integer i : q) {  // violation 'Variable 'i' should be declared final'
             var _ = q.poll();
-            var __ = q.poll(); // violation,'Variable '__' should be declared final'
+            var __ = q.poll(); // violation 'Variable '__' should be declared final'
         }
         final int _ = sideEffect();
         int _ = sideEffect();
-        int _result = sideEffect(); // violation,'Variable '_result' should be declared final'
+        int _result = sideEffect(); // violation 'Variable '_result' should be declared final'
     }
 
     static
@@ -47,7 +47,7 @@ public class InputFinalLocalVariableValidateUnnamedVariablesFalse {
         for (final int _ : squares) {
 
         }
-        for (int __ : squares) { // violation,'Variable '__' should be declared final'
+        for (int __ : squares) { // violation 'Variable '__' should be declared final'
 
         }
     }

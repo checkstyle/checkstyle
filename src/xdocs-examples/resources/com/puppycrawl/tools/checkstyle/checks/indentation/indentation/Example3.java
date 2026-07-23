@@ -19,7 +19,7 @@ class Example3 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -32,9 +32,9 @@ class Example3 {
         }
     }
     void method3(int a,
-                 int b) {       // violation, 'level 17, expected level should be 8'
+                 int b) {       // violation 'level 17, expected level should be 8'
         if (x
-                && y) {         // violation, 'level 16, expected level should be 12'
+                && y) {         // violation 'level 16, expected level should be 12'
             method3(a, b);
         }
     }
@@ -46,7 +46,7 @@ class Example3 {
 
         cond1=cond2=cond3=cond4=cond5=cond6=false;
         if (cond1
-                || cond2) { // violation, 'level 16, expected level should be 12'
+                || cond2) { // violation 'level 16, expected level should be 12'
             field = field.toUpperCase()
                     .concat(" TASK");
         }

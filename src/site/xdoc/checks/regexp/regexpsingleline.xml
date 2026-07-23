@@ -319,8 +319,8 @@ public class Example7 {
 </code></pre></div>
         <p id="Example7-raw">Example with violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/* // violation, file doesn't contain the term.
- Example sql file.
+/* // violation 'File must contain at least one occurrence of .* term'
+ Example sql file without the required word.
 */
 CREATE DATABASE MyDB;
 </code></pre></div>

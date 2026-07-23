@@ -15,17 +15,17 @@ public class InputPatternVariableAssignmentExtendedScope2 {
     public void testMisc(Object obj) {
         if (obj instanceof String s) {
             {
-                s = "inner"; // violation, "Assignment of pattern variable 's' is not allowed."
+                s = "inner"; // violation "Assignment of pattern variable 's' is not allowed."
             }
-            s = "outer"; // violation, "Assignment of pattern variable 's' is not allowed."
+            s = "outer"; // violation "Assignment of pattern variable 's' is not allowed."
         }
         if (obj instanceof String s)
-            s = "a"; // violation, "Assignment of pattern variable 's' is not allowed."
+            s = "a"; // violation "Assignment of pattern variable 's' is not allowed."
     }
 
     public void testTernary(Object obj) {
         String s2 = (obj instanceof String s)
-            ? (s = "a") // violation, "Assignment of pattern variable 's' is not allowed."
+            ? (s = "a") // violation "Assignment of pattern variable 's' is not allowed."
             : "b";
     }
 
@@ -40,22 +40,22 @@ public class InputPatternVariableAssignmentExtendedScope2 {
         if (!(obj instanceof String s)) {
             return "";
         }
-        return s = "a"; // violation, "Assignment of pattern variable 's' is not allowed."
+        return s = "a"; // violation "Assignment of pattern variable 's' is not allowed."
     }
 
     public void testMultipleExtendedScopeStatements(Object obj) {
         if (!(obj instanceof String s)) {
             return;
         }
-        s = "first"; // violation, "Assignment of pattern variable 's' is not allowed."
-        s = "second"; // violation, "Assignment of pattern variable 's' is not allowed."
+        s = "first"; // violation "Assignment of pattern variable 's' is not allowed."
+        s = "second"; // violation "Assignment of pattern variable 's' is not allowed."
     }
 
     public void testUnbracedElseWhile(Object obj) {
         if (obj == null) { }
         else
             while (obj instanceof String s) {
-                s = "a"; // violation, "Assignment of pattern variable 's' is not allowed."
+                s = "a"; // violation "Assignment of pattern variable 's' is not allowed."
             }
     }
 

@@ -20,7 +20,7 @@ class Example1 {
   /**
    * InvalidMethod's javadoc.
    * @return something
-   */ // violation above, ''@return' should be preceded with an empty line'
+   */ // violation above ''@return' should be preceded with an empty line'
   boolean methodWithInvalidJavadoc() {
     return false;
   }

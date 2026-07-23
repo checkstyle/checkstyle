@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 public class InputMissingNullCaseInSwitchWithPattern2 {
     static void m(Object o) {
-        switch (o) {  // violation, 'Switch using reference types should have a null case.'
+        switch (o) {  // violation 'Switch using reference types should have a null case.'
             case String s when s.length() > 2 -> {
             }
             default -> {
@@ -39,7 +39,7 @@ public class InputMissingNullCaseInSwitchWithPattern2 {
     }
 
     void m3(Object o) {
-        switch (o) {  // violation, 'Switch using reference types should have a null case.'
+        switch (o) {  // violation 'Switch using reference types should have a null case.'
             case String s when s.length() > 4 -> {}
             case String s when s.length() > 6 -> {}
             case String s -> {}

@@ -19,7 +19,7 @@ class Example9 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -53,7 +53,7 @@ class Example9 {
     }
 
     void methodBrace()
-    {                       // violation, 'level 4, expected level should be 6'
-    }                       // violation, 'level 4, expected level should be 6'
+    {                       // violation 'level 4, expected level should be 6'
+    }                       // violation 'level 4, expected level should be 6'
 }
 // xdoc section -- end

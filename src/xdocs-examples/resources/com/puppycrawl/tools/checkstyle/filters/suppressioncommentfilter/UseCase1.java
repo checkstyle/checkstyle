@@ -24,7 +24,7 @@ class UseCase1
   //CSON: MemberName
 
   public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
 
   //CSOFF: ConstantName
   public static final int var4 = 1; // filtered violation 'must match pattern'

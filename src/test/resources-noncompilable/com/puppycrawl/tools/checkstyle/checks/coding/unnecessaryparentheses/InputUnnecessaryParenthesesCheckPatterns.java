@@ -22,14 +22,14 @@ public class InputUnnecessaryParenthesesCheckPatterns {
                 (o instanceof String x) : (!(o instanceof String y));
 
         boolean f =  (o instanceof String x);
-        // violation above, 'Unnecessary parentheses around assignment right-hand side.'
+        // violation above 'Unnecessary parentheses around assignment right-hand side.'
 
         boolean b = (!(o instanceof Rectangle(_, _)));
-        // violation above, 'Unnecessary parentheses around assignment right-hand side.'
+        // violation above 'Unnecessary parentheses around assignment right-hand side.'
         boolean c = !(o instanceof Rectangle(_, _));
 
         if ((!(o instanceof Rectangle(_, _)))) {}
-        // violation above, 'Unnecessary parentheses around expression.'
+        // violation above 'Unnecessary parentheses around expression.'
         if (!(o instanceof Rectangle( _, _))) {}
 
     }

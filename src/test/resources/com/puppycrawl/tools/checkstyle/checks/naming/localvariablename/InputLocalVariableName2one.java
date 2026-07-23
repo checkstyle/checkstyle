@@ -25,7 +25,7 @@ class InputLocalVariableName2one
     public void doSomething()
     {
         //"O" should be named "o"
-        for (Object O : new java.util.ArrayList()) // violation, 'Name 'O' must match pattern*'
+        for (Object O : new java.util.ArrayList()) // violation 'Name 'O' must match pattern*'
         {
 
         }

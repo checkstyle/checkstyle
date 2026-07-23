@@ -22,7 +22,7 @@ public class Example3 {
         if (x < -2) { return -1; }
         return 0;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 2'
+    // violation below 'max allowed for non-void methods/lambdas is 2'
     public int signB(int x) {
         if (x < -2) { return -1; }
         if (x == 0) { return 0; }

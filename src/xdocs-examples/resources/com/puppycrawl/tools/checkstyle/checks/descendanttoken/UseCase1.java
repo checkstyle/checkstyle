@@ -37,7 +37,7 @@ class UseCase1 {
       catch (Exception ex) { }
     }
 
-    for (;;) {  // violation, 'Count of 0 for 'FOR_INIT' descendant'
+    for (;;) {  // violation 'Count of 0 for 'FOR_INIT' descendant'
       break;
     }
     int a = 1;

@@ -26,9 +26,9 @@ public class InputTypeVariablesOne {
 
     record Record1<T>() {}
 
-    record Record2<t>() {} // violation, Name 't' must match pattern'
+    record Record2<t>() {} // violation 'Name 't' must match pattern'
 
-    record Record3<abc>() {} // violation, Name 'abc' must match pattern'
+    record Record3<abc>() {} // violation 'Name 'abc' must match pattern'
 
     record Record4<K1, K2>() {}
 

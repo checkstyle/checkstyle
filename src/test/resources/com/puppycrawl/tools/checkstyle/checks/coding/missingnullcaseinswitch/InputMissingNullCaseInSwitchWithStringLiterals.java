@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 public class InputMissingNullCaseInSwitchWithStringLiterals {
 
     void testSwitchRule(String obj) {
-        switch (obj) {   // violation, 'Switch using reference types should have a null case.'
+        switch (obj) {   // violation 'Switch using reference types should have a null case.'
             default -> {}
             case "mohamed" -> {}
             case "mahfouz" -> {}
@@ -20,7 +20,7 @@ public class InputMissingNullCaseInSwitchWithStringLiterals {
             case "GOT" -> {}
             default -> {}
         }
-        switch (obj) { // violation, 'Switch using reference types should have a null case.'
+        switch (obj) { // violation 'Switch using reference types should have a null case.'
             case 1 + "fa" -> {}
             case ("xxx" + "yyy") -> {}
             default -> {}
@@ -28,7 +28,7 @@ public class InputMissingNullCaseInSwitchWithStringLiterals {
     }
 
     void testSwitchStatments(String obj) {
-        switch (obj) {  // violation, 'Switch using reference types should have a null case.'
+        switch (obj) {  // violation 'Switch using reference types should have a null case.'
             case "af": {}break;
             default: {}
         }
@@ -47,7 +47,7 @@ public class InputMissingNullCaseInSwitchWithStringLiterals {
 
     int testSwitchExpression(String obj, int x) {
         if (x == 1) {
-            // violation below, 'Switch using reference types should have a null case.'
+            // violation below 'Switch using reference types should have a null case.'
             return switch (obj) {
                 default -> 3;
                 case "aa" -> 1;
@@ -64,7 +64,7 @@ public class InputMissingNullCaseInSwitchWithStringLiterals {
     }
     int testSwitchExpression2(String obj, int x) {
         if (x == 1) {
-            // violation below, 'Switch using reference types should have a null case.'
+            // violation below 'Switch using reference types should have a null case.'
             return switch (obj) {
                 case "a": yield 1;
                 case "bb": yield 2;
@@ -85,7 +85,7 @@ public class InputMissingNullCaseInSwitchWithStringLiterals {
             case "ColoredPoint(_,_,_)" -> {}
             case null, default -> {}
         }
-        // violation below, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
         int x = switch (obj) {
             case ("aa" + 11 + 12) -> 1;
             default -> 3;
@@ -94,17 +94,17 @@ public class InputMissingNullCaseInSwitchWithStringLiterals {
             case "PB" -> 2;
             case null, default -> 1;
         };
-        // violation below, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
         int z = switch (obj) {
             case 1 + 2 + 3 + "a" + 5 -> 2;
             default -> 3;
         };
-        // violation below, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
         int w = switch (obj) {
             case 1 + 2 + ("a" + 1) -> 2;
             default -> 3;
         };
-        // violation below, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
         int p = switch (obj) {
             case (1 + 2 + 3 + 4 + (1 + 2+ 3 + ("a" + 4 + 5 + 1) )) -> 2;
             default -> 3;

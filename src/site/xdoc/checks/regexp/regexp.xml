@@ -445,7 +445,7 @@ public class UseCase5 {
 public class UseCase6 {
   private void foo() {
     // fix me.
-    // violation above, 'Line matches the illegal pattern.'
+    // violation above 'Line matches the illegal pattern.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -522,9 +522,9 @@ public class UseCase8 {
 public class UseCase9 {
 
   private void foo() {
-    System.out.println(""); // violation, 'Line matches the illegal pattern'
+    System.out.println(""); // violation 'Line matches the illegal pattern'
     // System.out.println("debug");
-    // fix me. // violation above, 'Line matches the illegal pattern'
+    // fix me. // violation above 'Line matches the illegal pattern'
     // fix me.
   }
 }

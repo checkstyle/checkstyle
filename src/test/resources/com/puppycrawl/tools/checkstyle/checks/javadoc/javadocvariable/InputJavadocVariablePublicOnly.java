@@ -12,12 +12,12 @@ public class InputJavadocVariablePublicOnly // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
-        String CONST = "InnerInterface"; // violation, 'Missing a Javadoc comment'
+        String CONST = "InnerInterface"; // violation 'Missing a Javadoc comment'
         void method(); // ignore - when not relaxed about Javadoc
 
         class InnerInnerClass // ignore - when not relaxed about Javadoc
         {
-            private int mData; // violation, 'Missing a Javadoc comment'
+            private int mData; // violation 'Missing a Javadoc comment'
 
             private InnerInnerClass()
             {
@@ -37,17 +37,17 @@ public class InputJavadocVariablePublicOnly // ignore - need javadoc
 
     private class InnerClass // ignore
     {
-        private int mDiff; // violation, 'Missing a Javadoc comment'
+        private int mDiff; // violation 'Missing a Javadoc comment'
 
         void method() // ignore - when not relaxed about Javadoc
         {
         }
     }
 
-    private int mSize; // violation, 'Missing a Javadoc comment'
-    int mLen; // violation, 'Missing a Javadoc comment'
-    protected int mDeer; // violation, 'Missing a Javadoc comment'
-    public int aFreddo; // violation, 'Missing a Javadoc comment'
+    private int mSize; // violation 'Missing a Javadoc comment'
+    int mLen; // violation 'Missing a Javadoc comment'
+    protected int mDeer; // violation 'Missing a Javadoc comment'
+    public int aFreddo; // violation 'Missing a Javadoc comment'
 
     // ignore - need Javadoc
     private InputJavadocVariablePublicOnly(int aA)

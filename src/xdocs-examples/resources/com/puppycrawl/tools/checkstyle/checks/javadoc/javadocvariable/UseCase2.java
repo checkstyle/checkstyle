@@ -11,17 +11,17 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 // xdoc section -- start
 public class UseCase2 {
-  public int variablePublic;       // violation, 'Missing a Javadoc comment'
-  protected int variableProtected; // violation, 'Missing a Javadoc comment'
-  int variablePackage;             // violation, 'Missing a Javadoc comment'
-  private int variablePrivate;     // violation, 'Missing a Javadoc comment'
+  public int variablePublic;       // violation 'Missing a Javadoc comment'
+  protected int variableProtected; // violation 'Missing a Javadoc comment'
+  int variablePackage;             // violation 'Missing a Javadoc comment'
+  private int variablePrivate;     // violation 'Missing a Javadoc comment'
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   public void testMethodInnerClass() {

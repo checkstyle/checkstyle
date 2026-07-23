@@ -32,14 +32,14 @@ public class InputMagicNumberWithOperatorsWithIgnoreFieldsTrue {
     public static final int BIT11 = 1 > 3 ? 1 : 3;
     public static final int BIT12 = 1 % 3;
 
-    public static int bit0 = 1 << 3; // violation, ''3' is a magic number'
-    public static int bit1 = 1 >> 3; // violation, ''3' is a magic number'
-    public static int bit2 = 1 >>> 3; // violation, ''3' is a magic number'
-    public static int bit3 = 1 | 3; // violation, ''3' is a magic number'
-    public static int bit4 = 1 & 3; // violation, ''3' is a magic number'
-    public static int bit5 = 1 ^ 3; // violation, ''3' is a magic number'
-    public static int bit6 = 1 | 3; // violation, ''3' is a magic number'
-    public static int bit7 = ~3; // violation, ''3' is a magic number'
+    public static int bit0 = 1 << 3; // violation ''3' is a magic number'
+    public static int bit1 = 1 >> 3; // violation ''3' is a magic number'
+    public static int bit2 = 1 >>> 3; // violation ''3' is a magic number'
+    public static int bit3 = 1 | 3; // violation ''3' is a magic number'
+    public static int bit4 = 1 & 3; // violation ''3' is a magic number'
+    public static int bit5 = 1 ^ 3; // violation ''3' is a magic number'
+    public static int bit6 = 1 | 3; // violation ''3' is a magic number'
+    public static int bit7 = ~3; // violation ''3' is a magic number'
 
     void m1() {
         final int BIT0 = 1 << 3; // ok, constant variable
@@ -51,13 +51,13 @@ public class InputMagicNumberWithOperatorsWithIgnoreFieldsTrue {
         final int BIT6 = 1 | 3;
         final int BIT7 = ~3;
 
-        int bit0 = 1 << 3; // violation, ''3' is a magic number'
-        int bit1 = 1 >> 3; // violation, ''3' is a magic number'
-        int bit2 = 1 >>> 3; // violation, ''3' is a magic number'
-        int bit3 = 1 | 3; // violation, ''3' is a magic number'
-        int bit4 = 1 & 3; // violation, ''3' is a magic number'
-        int bit5 = 1 ^ 3; // violation, ''3' is a magic number'
-        int bit6 = 1 | 3; // violation, ''3' is a magic number'
-        int bit7 = ~3; // violation, ''3' is a magic number'
+        int bit0 = 1 << 3; // violation ''3' is a magic number'
+        int bit1 = 1 >> 3; // violation ''3' is a magic number'
+        int bit2 = 1 >>> 3; // violation ''3' is a magic number'
+        int bit3 = 1 | 3; // violation ''3' is a magic number'
+        int bit4 = 1 & 3; // violation ''3' is a magic number'
+        int bit5 = 1 ^ 3; // violation ''3' is a magic number'
+        int bit6 = 1 | 3; // violation ''3' is a magic number'
+        int bit7 = ~3; // violation ''3' is a magic number'
     }
 }

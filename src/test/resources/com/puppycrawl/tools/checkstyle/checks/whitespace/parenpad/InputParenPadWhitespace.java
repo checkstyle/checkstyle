@@ -242,7 +242,7 @@ class SpecialCasesInForLoop
         // bug 895072
 	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
 	int i = 0;
-	for ( ; i < 5; i++ ) { // violation, '')' is preceded with whitespace.'
+	for ( ; i < 5; i++ ) { // violation '')' is preceded with whitespace.'
 	//   ^ whitespace
 	}
         for (int anInt : getSomeInts()) {

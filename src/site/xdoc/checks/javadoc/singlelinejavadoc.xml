@@ -68,7 +68,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  /** @see Math */ // violation 'Javadoc comment should be multi-line'
   public int foo() {
     return 42;
   }
@@ -166,7 +166,7 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  /** @see Math */ // violation 'Javadoc comment should be multi-line'
   public int foo() {
     return 42;
   }
@@ -177,7 +177,7 @@ public class Example3 {
   public int bar() {
     return 42;
   }
-  // violation below, 'Javadoc comment should be multi-line'
+  // violation below 'Javadoc comment should be multi-line'
   /** {@link #equals(Object)} */
   public int baz() {
     return 42;
@@ -215,7 +215,7 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  /** @see Math */ // violation 'Javadoc comment should be multi-line'
   public int foo() {
     return 42;
   }
@@ -234,7 +234,7 @@ public class Example4 {
 
   /**
    * &lt;p&gt;the answer to the ultimate question
-   */ // violation above, 'Unclosed HTML tag found'
+   */ // violation above 'Unclosed HTML tag found'
   public int magic() {
     return 42;
   }

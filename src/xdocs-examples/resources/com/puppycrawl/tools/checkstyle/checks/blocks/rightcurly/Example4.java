@@ -23,10 +23,10 @@ public class Example4 {
     }
     if (f) {
       bar();
-    } else { // violation, 'should be alone on a line.'
+    } else { // violation 'should be alone on a line.'
       bar();
     }
-    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
+    if (f) { bar(); } int i = 0; // violation 'should be alone on a line.'
     try {
       bar();
     }

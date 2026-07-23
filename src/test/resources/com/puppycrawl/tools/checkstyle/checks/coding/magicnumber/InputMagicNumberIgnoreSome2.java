@@ -38,16 +38,16 @@ public class InputMagicNumberIgnoreSome2 {
      */
     private int hexIntMinusOne = 0xffffffff; // violation ''0xffffffff' is a magic number'
     private long hexLongMinusOne = 0xffffffffffffffffL;
-    // violation above, ''0xffffffffffffffffL' is a magic number'
+    // violation above ''0xffffffffffffffffL' is a magic number'
     private long hexIntMinValue = 0x80000000; // violation ''0x80000000' is a magic number'
     private long hexLongMinValue = 0x8000000000000000L;
-    // violation above, ''0x8000000000000000L' is a magic number'
+    // violation above ''0x8000000000000000L' is a magic number'
     private int octalIntMinusOne = 037777777777;  // violation ''037777777777' is a magic number'
     private long octalLongMinusOne = 01777777777777777777777L;
-    // violation above, ''01777777777777777777777L' is a magic number'
+    // violation above ''01777777777777777777777L' is a magic number'
     private long octalIntMinValue = 020000000000;  // violation ''020000000000' is a magic number'
     private long octalLongMinValue = 01000000000000000000000L;
-    // violation above, ''01000000000000000000000L' is a magic number'
+    // violation above ''01000000000000000000000L' is a magic number'
     public static final int TESTINTVAL = (byte) 0x80;
     public static final java.util.List MYLIST = new java.util.ArrayList() {
         public int size() {

@@ -28,13 +28,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-// violation below, 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
 class InputClassDataAbstractionCouplingRecords {
     Date date = new Date(); // Counted, 1
     Time time = new Time(2, 2, 2);
 }
 
-// violation below, 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
 record MyRecord1(boolean a, boolean b) {
 
     private boolean myBool() {
@@ -45,7 +45,7 @@ record MyRecord1(boolean a, boolean b) {
 
 }
 
-// violation below, 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
 record MyRecord2(String myString, boolean a, boolean b) {
 
     // in compact ctor
@@ -55,7 +55,7 @@ record MyRecord2(String myString, boolean a, boolean b) {
     }
 }
 
-record MyRecord3(int x) { // violation, 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
+record MyRecord3(int x) { // violation 'Class Data Abstraction Coupling is 2 (max allowed is 1)'
 
     // in ctor
     MyRecord3() {
@@ -67,7 +67,7 @@ record MyRecord3(int x) { // violation, 'Class Data Abstraction Coupling is 2 (m
 }
 
 record MyRecord4(int y) {
-    // violation below, 'Class Data Abstraction Coupling is 3 (max allowed is 1)'
+    // violation below 'Class Data Abstraction Coupling is 3 (max allowed is 1)'
     private record MyRecord5(int z) {
         static Set<Integer> set = new HashSet<>(); // HashSet ignored
         static Map<String, Integer> map = new HashMap<>(); // HashMap ignored

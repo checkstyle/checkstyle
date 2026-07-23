@@ -18,7 +18,7 @@ public class UseCase2 {
   private int wordCount = 11;
   public void SetSomeVar() {}
   public void DoMATH() {}
-  // violation above, "Name 'DoMATH' must match pattern"
+  // violation above "Name 'DoMATH' must match pattern"
   public void throwsMethod() throws RuntimeException {}
 
   final public void legacyMethod() {

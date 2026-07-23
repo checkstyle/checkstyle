@@ -48,7 +48,7 @@ class Example12 {
       return 0;
     }
     assert a++ == 0;
-    ; // violation, 'Empty statement is not allowed'
+    ; // violation 'Empty statement is not allowed'
     return 2;
   }
 }

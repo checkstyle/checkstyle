@@ -17,11 +17,11 @@ public class Example1 {
   private Pair<String, Integer> pair = null;
 
   public void test() {
-    // violation below, 'Unnecessary type arguments with record pattern.'
+    // violation below 'Unnecessary type arguments with record pattern.'
     if (box instanceof Box<String>(var s)) {}
     if (box instanceof Box(var s)) {}
 
-    // violation below, 'Unnecessary type arguments with record pattern.'
+    // violation below 'Unnecessary type arguments with record pattern.'
     if (pair instanceof Pair<String, Integer>(var a, var b)) {}
     if (pair instanceof Pair(var a, var b)) {}
 
@@ -32,7 +32,7 @@ public class Example1 {
     if (nested instanceof Box(Box(var s))) {}
 
     switch (nested) {
-      // violation below, 'Unnecessary type arguments with record pattern.'
+      // violation below 'Unnecessary type arguments with record pattern.'
       case Box<Box<String>>(Box(var s)) -> {}
       default -> {}
     }

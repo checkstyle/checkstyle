@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class Example1 {
 
   void testString(String obj) {
-    // violation below, 'Switch using reference types should have a null case.'
+    // violation below 'Switch using reference types should have a null case.'
     switch (obj) {
       case "something" : {}
     }
@@ -26,7 +26,7 @@ public class Example1 {
   }
 
   void testPatterns(Object obj) {
-    // violation below, 'Switch using reference types should have a null case.'
+    // violation below 'Switch using reference types should have a null case.'
     switch (obj) {
       case Integer i : {} break;
       default : {}

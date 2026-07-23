@@ -19,7 +19,7 @@ public class UseCase3 {
   public void throwsMethod() throws RuntimeException {
   }
 
-  // violation below, 'Throwing 'RuntimeException' is not allowed.'
+  // violation below 'Throwing 'RuntimeException' is not allowed.'
   public void sampleMethod() throws RuntimeException {
   }
 }

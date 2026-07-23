@@ -23,5 +23,5 @@ public class InputJavadocVariableAboveComment {
      */
     /* package */ int variablePackage;
 
-    public int x;  // violation, 'Missing a Javadoc comment.'
+    public int x;  // violation 'Missing a Javadoc comment.'
 }

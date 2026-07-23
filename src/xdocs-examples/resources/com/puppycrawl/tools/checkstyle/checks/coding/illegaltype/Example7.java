@@ -74,7 +74,7 @@ public class Example7 extends TreeSet {
   // violation below 'Usage of type 'Optional' is not allowed'
   public Optional<String> field2;
   protected String field3;
-  Optional<String> field4; // violation, 'Usage of type 'Optional' is not allowed'
+  Optional<String> field4; // violation 'Usage of type 'Optional' is not allowed'
 
   private void method(List<Foo> list, Boolean value) {}
 

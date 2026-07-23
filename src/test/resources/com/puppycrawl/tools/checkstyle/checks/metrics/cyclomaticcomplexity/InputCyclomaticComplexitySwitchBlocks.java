@@ -11,7 +11,7 @@ tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, LITERAL_WHIL
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexitySwitchBlocks {
-    public void foo2() { // violation, 'Cyclomatic Complexity is 2 (max allowed is 0).'
+    public void foo2() { // violation 'Cyclomatic Complexity is 2 (max allowed is 0).'
         String programmingLanguage = "Java";
         switch (programmingLanguage) {
             case "Java":

@@ -13,7 +13,7 @@ public class Example1 { // ok, first top-level class
   // methods
 }
 
-class ViolationExample1 { // violation, "has to reside in its own source file."
+class ViolationExample1 { // violation "has to reside in its own source file."
   // methods
 }
 // xdoc section -- end

@@ -23,7 +23,7 @@ class InputJavadocVariableInner2
     interface InnerInterface2
     {
 
-        String data = "zxzc"; // violation, 'Missing a Javadoc comment'
+        String data = "zxzc"; // violation 'Missing a Javadoc comment'
 
         // Ignore
         class InnerInterfaceInnerClass

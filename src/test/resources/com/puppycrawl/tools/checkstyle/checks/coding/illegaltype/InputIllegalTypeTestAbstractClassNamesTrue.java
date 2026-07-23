@@ -25,7 +25,7 @@ public class InputIllegalTypeTestAbstractClassNamesTrue {
     }
 
     class MyNonAbstractClass extends AbstractClass {
-        // violation above, 'Usage of type 'AbstractClass' is not allowed'
+        // violation above 'Usage of type 'AbstractClass' is not allowed'
 
         boolean perfect = true;
 
@@ -43,15 +43,15 @@ public class InputIllegalTypeTestAbstractClassNamesTrue {
     }
 
     AbstractClass a = new MyNonAbstractClass();
-    // violation above, 'Usage of type 'AbstractClass' is not allowed'
+    // violation above 'Usage of type 'AbstractClass' is not allowed'
 
     public String getInnerClassInfo(AbstractClass clazz) {
-        // violation above, 'Usage of type 'AbstractClass' is not allowed'
+        // violation above 'Usage of type 'AbstractClass' is not allowed'
         return clazz.getClassInfo();
     }
 
     public AbstractClass newInnerClassInstance() {
-        // violation above, 'Usage of type 'AbstractClass' is not allowed'
+        // violation above 'Usage of type 'AbstractClass' is not allowed'
         return new MyNonAbstractClass();
     }
 }

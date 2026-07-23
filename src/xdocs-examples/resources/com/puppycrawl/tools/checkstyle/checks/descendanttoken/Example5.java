@@ -26,14 +26,14 @@ class Example5 {
         break;
     }
 
-    try { }    // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+    try { }    // violation 'Count of 0 for 'LITERAL_TRY' descendant'
     catch (Exception e) {
-      try { }  // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
       catch (Exception ex) { }
       return -1;
     }
     finally {
-      try { }  // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
       catch (Exception ex) { }
     }
 

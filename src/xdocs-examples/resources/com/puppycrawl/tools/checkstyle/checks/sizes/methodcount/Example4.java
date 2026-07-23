@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 // xdoc section -- start
-class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1)'
+class Example4 { // violation 'Number of private methods is 2 (max allowed is 1)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}

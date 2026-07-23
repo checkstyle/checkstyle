@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
 // xdoc section -- start
-class Example7 { // violation, 'Total number of methods is 6 (max allowed is 2)'
+class Example7 { // violation 'Total number of methods is 6 (max allowed is 2)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}

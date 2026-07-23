@@ -24,7 +24,7 @@ class Example2 {
     try {
       // some code here
     } catch (ArithmeticException e) {
-      // violation above, 'Catching 'ArithmeticException' is not allowed'
+      // violation above 'Catching 'ArithmeticException' is not allowed'
     } catch(Exception e){
 
     }
@@ -35,7 +35,7 @@ class Example2 {
       // some code here
     } catch (NullPointerException e) {
     } catch (OutOfMemoryError e) {
-      // violation above, 'Catching 'OutOfMemoryError' is not allowed'
+      // violation above 'Catching 'OutOfMemoryError' is not allowed'
     }
   }
 
@@ -43,7 +43,7 @@ class Example2 {
     try {
       // some code here
     } catch (ArithmeticException | NullPointerException e) {
-      // violation above, 'Catching 'ArithmeticException' is not allowed'
+      // violation above 'Catching 'ArithmeticException' is not allowed'
     }
   }
 
@@ -51,7 +51,7 @@ class Example2 {
     try {
       // some code here
     } catch (OutOfMemoryError e) {
-      // violation above, 'Catching 'OutOfMemoryError' is not allowed'
+      // violation above 'Catching 'OutOfMemoryError' is not allowed'
     }
   }
 }
