@@ -129,7 +129,7 @@
           The check passes without violations in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 9 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 9 (max allowed is 7)."
 public class Example1 {
   private Set&lt;Object&gt; set = new HashSet&lt;&gt;();         // ok, ignored
   private Map&lt;Object, Object&gt; map = new HashMap&lt;&gt;(); // ok, ignored
@@ -173,7 +173,7 @@ public class Example1 {
           The check passes without violations in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 10 (max allowed is 9)."
+// violation below "Class Data Abstraction Coupling is 10 (max allowed is 9)."
 public class Example3 {
   private Set&lt;Object&gt; set = new HashSet&lt;&gt;();         // ok, ignored
   private Map&lt;Object, Object&gt; map = new HashMap&lt;&gt;(); // ok, ignored
@@ -218,7 +218,7 @@ public class Example3 {
           The check passes without violations in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 11 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 11 (max allowed is 7)."
 public class Example5 {
   private Set&lt;Object&gt; set = new HashSet&lt;&gt;();         // ok, ignored
   private Map&lt;Object, Object&gt; map = new HashMap&lt;&gt;(); // ok, ignored
@@ -263,7 +263,7 @@ public class Example5 {
           The check passes without violations in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class Example7 {
   private Set&lt;Object&gt; set = new HashSet&lt;&gt;();         // ok, ignored
   private Map&lt;Object, Object&gt; map = new HashMap&lt;&gt;(); // ok, ignored
@@ -349,7 +349,7 @@ public class Example9 {
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class UseCase1 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
@@ -382,7 +382,7 @@ public class UseCase1 {
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 3 (max allowed is 2)."
+// violation below "Class Data Abstraction Coupling is 3 (max allowed is 2)."
 public class UseCase2 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
@@ -410,7 +410,7 @@ public class UseCase2 {
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class UseCase3 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
@@ -444,7 +444,7 @@ public class UseCase3 {
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class UseCase4 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default
@@ -495,7 +495,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// violation below, "Class Data Abstraction Coupling is 8 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 class UseCase5 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default

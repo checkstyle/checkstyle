@@ -24,9 +24,9 @@ public class InputInnerAssignment
         //'Inner assignments should be avoided'
         //'Inner assignments should be avoided'
 
-        String s = Integer.toString(b = 2); // violation, 'Inner assignments should be avoided'
+        String s = Integer.toString(b = 2); // violation 'Inner assignments should be avoided'
 
-        Integer i = new Integer(a += 5); // violation, 'Inner assignments should be avoided'
+        Integer i = new Integer(a += 5); // violation 'Inner assignments should be avoided'
 
         c = b++; // common practice, don't flag
                  // even though technically an assignment to b
@@ -73,7 +73,7 @@ public class InputInnerAssignment
         Object t = null;
 
         while (o != null)
-            t = o = o.getParent(); // violation, 'Inner assignments should be avoided'
+            t = o = o.getParent(); // violation 'Inner assignments should be avoided'
     }
 
     @SuppressWarnings(value = "unchecked")

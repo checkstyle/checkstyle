@@ -29,7 +29,7 @@ public class Example3 {
     int sum = var1 + a;
   }
 
-  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  // violation below 'Method firstMethod length is 6 lines (max allowed is 4)'
   public void firstMethod() {
     int index = 0;
     if (index < 5) {

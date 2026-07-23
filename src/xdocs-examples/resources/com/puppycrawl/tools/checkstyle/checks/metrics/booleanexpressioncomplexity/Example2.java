@@ -23,7 +23,7 @@ public class Example2
     // ok above, 1(&) + 1(|) + 1(^) + 1(|) + 1(^) = 5
 
     boolean e = a ^ (a || b) ^ (b || a) & (a | b);
-    // violation above, 'Boolean expression complexity is 6 (max allowed is 5)'
+    // violation above 'Boolean expression complexity is 6 (max allowed is 5)'
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&) + 1(|) = 6
   }
 }

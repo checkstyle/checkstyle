@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // xdoc section -- start
-// violation below, "Class Data Abstraction Coupling is 3 (max allowed is 2)."
+// violation below "Class Data Abstraction Coupling is 3 (max allowed is 2)."
 public class UseCase2 {
   Set set = new HashSet(); // Ignored by default
   Map map = new HashMap(); // Ignored by default

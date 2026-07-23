@@ -41,7 +41,7 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // violation below, 'Avoid using finalizer method'
+  // violation below 'Avoid using finalizer method'
   protected void finalize() throws Throwable {
     try {
       System.out.println("overriding finalize()");

@@ -18,11 +18,11 @@ public class Example2 {
    */
   private int b;
   protected int c;
-  public int d; // violation, 'Missing a Javadoc comment'
+  public int d; // violation 'Missing a Javadoc comment'
   /*package*/ int e;
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment'
   }
 
   private enum PrivateEnum {

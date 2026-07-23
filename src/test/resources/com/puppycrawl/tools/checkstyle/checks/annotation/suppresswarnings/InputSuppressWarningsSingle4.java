@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
 @SuppressWarnings("unchecked")
 public class InputSuppressWarningsSingle4
 {
@@ -36,7 +36,7 @@ public class InputSuppressWarningsSingle4
 
                 @Override
                 @SuppressWarnings("unchecked")
-                // violation above, 'The warning 'unchecked' cannot be suppressed at this location'
+                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -71,7 +71,7 @@ public class InputSuppressWarningsSingle4
         }
     }
 
-    // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+    // violation below 'The warning 'unchecked' cannot be suppressed at this location'
     @SuppressWarnings((false) ? "unchecked" : "")
     class Cond {
 
@@ -80,19 +80,19 @@ public class InputSuppressWarningsSingle4
 
         }
 
-        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked")
         public void aCond1() {
 
         }
 
-        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused")
         public void aCond2() {
 
         }
 
-        // violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location'
         @java.lang.SuppressWarnings((false) ? "unchecked" :
                 ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused")
         public void seriously() {

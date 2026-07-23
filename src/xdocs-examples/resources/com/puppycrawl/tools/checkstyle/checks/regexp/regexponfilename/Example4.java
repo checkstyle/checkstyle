@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
-.../TestExample3.md  // violation, 'Only property and xml files to be located in the resource folder'
+.../TestExample3.md  // violation 'Only property and xml files to be located in the resource folder'
 .../TestExample4.xml
 // xdoc section -- end
 */

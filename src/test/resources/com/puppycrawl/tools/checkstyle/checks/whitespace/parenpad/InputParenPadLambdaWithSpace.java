@@ -23,10 +23,10 @@ class InputParenPadLambdaWithSpace {
         //           '')' is not preceded with whitespace.'
 
         java.util.function.Consumer d = (o ) -> { o.toString(); };
-        // violation above, ''(' is not followed by whitespace.'
+        // violation above ''(' is not followed by whitespace.'
 
         java.util.function.Consumer e = ( o) -> { o.toString(); };
-        // violation above, '')' is not preceded with whitespace.'
+        // violation above '')' is not preceded with whitespace.'
 
         java.util.stream.Stream.of().forEach( (o) -> o.toString() );
         // 2 violations above:

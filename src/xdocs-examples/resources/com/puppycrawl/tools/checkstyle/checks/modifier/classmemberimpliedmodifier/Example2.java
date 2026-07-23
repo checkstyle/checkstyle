@@ -15,7 +15,7 @@ public final class Example2 {
   static interface Address1 {
   }
 
-  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  interface Address2 {  // violation 'Implied modifier 'static' should be explicit'
   }
 
   static enum Age1 {
@@ -27,12 +27,12 @@ public final class Example2 {
   }
 
   public static record GoodRecord() {}
-  // violation below, 'Implied modifier 'static' should be explicit'
+  // violation below 'Implied modifier 'static' should be explicit'
   public record BadRecord() {}
 
   public static record OuterRecord() {
     static record InnerRecord1(){}
-    // violation below, 'Implied modifier 'static' should be explicit'
+    // violation below 'Implied modifier 'static' should be explicit'
     record InnerRecord2(){}
   }
 }

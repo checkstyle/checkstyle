@@ -56,7 +56,7 @@ class InputFinalParameters3
     }
 
     /** non final param method */
-    void method(String s) // violation, 's' should be final
+    void method(String s) // violation 's' should be final
     {
     }
 
@@ -72,13 +72,13 @@ class InputFinalParameters3
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation33 Class<Object> s) // violation, 's' should be final
+    void method(@MyAnnotation33 Class<Object> s) // violation 's' should be final
     {
 
     }
 
     /** mixed */
-    void method(String s, final Integer i) // violation, 's' should be final
+    void method(String s, final Integer i) // violation 's' should be final
     {
     }
 
@@ -93,10 +93,10 @@ class InputFinalParameters3
     {
         Action a = new AbstractAction()
             {
-                public void actionPerformed(ActionEvent e) // violation, 'e' should be final
+                public void actionPerformed(ActionEvent e) // violation 'e' should be final
                 {
                 }
-                void somethingElse(@MyAnnotation33 ActionEvent e) // violation, 'e' should be final
+                void somethingElse(@MyAnnotation33 ActionEvent e) // violation 'e' should be final
                 {
                 }
             };

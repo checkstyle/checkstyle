@@ -37,7 +37,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases {
     }
 
     void testMultiCatchShadowing() throws Exception {
-        // violation below, 'Unused try resource 'e' should be unnamed'
+        // violation below 'Unused try resource 'e' should be unnamed'
         try (AutoCloseable e = lock()) {
         } catch (IOException | RuntimeException e) {
             System.out.println(e.getMessage());
@@ -45,7 +45,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases {
     }
 
     void testMethodNameSameAsResource() throws Exception {
-        // violation below, 'Unused try resource 'lock' should be unnamed'
+        // violation below 'Unused try resource 'lock' should be unnamed'
         try (AutoCloseable lock = lock()) {
         } catch (Exception e) {}
 
@@ -55,7 +55,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases {
     }
 
     void testSequentialTriesSameName() throws Exception {
-        // violation below, 'Unused try resource 'r' should be unnamed'
+        // violation below 'Unused try resource 'r' should be unnamed'
         try (AutoCloseable r = lock()) {
         } catch (Exception e) {}
 
@@ -95,7 +95,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases {
     }
 
     void testResourceNameMatchesRightSideOfDot() throws Exception {
-        // violation below, 'Unused try resource 'close' should be unnamed'
+        // violation below 'Unused try resource 'close' should be unnamed'
         try (AutoCloseable close = lock()) {
             something.close();
         } catch (Exception e) {}

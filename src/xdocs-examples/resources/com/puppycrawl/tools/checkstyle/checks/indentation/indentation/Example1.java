@@ -17,7 +17,7 @@ class Example1 {
         1, 2, 3                 // ok, arrayInitIndent = 4
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()

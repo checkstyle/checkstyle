@@ -4,7 +4,7 @@ package com.openjdk.checkstyle.test.chapterformatting.rulewildcardimports;
 
 import java.util.*;
 
-import static java.lang.Math.*; // violation, 'Only '1' star import is allowed per file.'
+import static java.lang.Math.*; // violation 'Only '1' star import is allowed per file.'
 
 public class InputWildcardImportsInvalid {
 

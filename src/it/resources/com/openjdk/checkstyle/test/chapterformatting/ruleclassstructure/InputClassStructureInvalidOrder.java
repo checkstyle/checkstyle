@@ -11,8 +11,8 @@ public class InputClassStructureInvalidOrder {
     InputClassStructureInvalidOrder() {
     }
 
-    public int c;  // violation, 'Field declaration is in wrong order'
-    static Long s; // violation, 'Field declaration is in wrong order'
+    public int c;  // violation 'Field declaration is in wrong order'
+    static Long s; // violation 'Field declaration is in wrong order'
 
     void foo() {}
 

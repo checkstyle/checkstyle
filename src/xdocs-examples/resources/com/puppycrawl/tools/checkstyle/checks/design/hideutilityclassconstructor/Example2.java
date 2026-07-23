@@ -39,7 +39,7 @@ class Bar2 {
   }
 }
 
-@Deprecated // violation, 'should not have a public or default constructor'
+@Deprecated // violation 'should not have a public or default constructor'
 class UtilityClass2 {
 
   static float f;

@@ -25,11 +25,11 @@ class Example3
   }
   public static void main (String []args) {
     // ok above, because PARAMETER_DEF is not configured in tokens
-    // violation below, 'Variable 'i' should be declared final'
+    // violation below 'Variable 'i' should be declared final'
     for (String i : args) {
       System.out.println(i);
     }
-    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
+    int result=foo(1,2); // violation 'Variable 'result' should be declared final'
   }
 }
 // xdoc section -- end

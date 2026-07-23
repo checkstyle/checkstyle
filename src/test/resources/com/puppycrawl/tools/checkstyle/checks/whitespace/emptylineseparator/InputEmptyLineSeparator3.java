@@ -13,7 +13,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT, CLASS_DEF, 
 
 
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //violation ''package' has more than 1 empty lines before'
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; // violation ''package' has more than 1 empty lines before'
 
 
 

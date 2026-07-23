@@ -33,7 +33,7 @@ public class Example2 {
     switch (i) {
       case 1:
         break;
-      default: // violation, 'Default should be last label in the switch'
+      default: // violation 'Default should be last label in the switch'
         break;
       case 2:
         break;
@@ -42,14 +42,14 @@ public class Example2 {
     switch (i) {
       case 1:
         break;
-      default: // violation, 'Default should be last label in the case group'
+      default: // violation 'Default should be last label in the case group'
       case 2:
         break;
     }
 
     switch (i) {
       case 1: x = 9;
-      default: x = 10; // violation, 'Default should be last label in the switch'
+      default: x = 10; // violation 'Default should be last label in the switch'
       case 2: x = 32;
     }
   }

@@ -16,11 +16,11 @@ public class InputEmptyBlockCaseAndDefaultWithTextOption {
             case Integer i: {
                 System.out.println("Integer");
             }
-            // violation below, 'Empty case block'
+            // violation below 'Empty case block'
             case String _: {
 
             }
-            // violation below, 'Empty default block'
+            // violation below 'Empty default block'
             default: {
             }
         }
@@ -29,11 +29,11 @@ public class InputEmptyBlockCaseAndDefaultWithTextOption {
             case Integer i -> {
                 System.out.println("Integer");
             }
-            // violation below, 'Empty case block'
+            // violation below 'Empty case block'
             case String s -> {
 
             }
-            // violation below, 'Empty default block'
+            // violation below 'Empty default block'
             default -> {
 
             }

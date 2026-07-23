@@ -21,7 +21,7 @@ class Example5 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1; // violation, 'must match pattern'
+  public static final int var3 = 1; // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -38,7 +38,7 @@ class Example5 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 // xdoc section -- end

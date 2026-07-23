@@ -19,14 +19,14 @@ import java.util.logging.Logger;
 
 // xdoc section -- start
 class UseCase1 {
-  // violation below, 'private member found'
+  // violation below 'private member found'
   private void testMethod1() {
     int debug = 0;
     System.out.println("");
     System.out.
     println("");
   }
-  // violation below, 'private member found'
+  // violation below 'private member found'
   private void testMethod2() throws IOException {
     FileReader in = new FileReader("path/to/input");
     int ch = in.read();

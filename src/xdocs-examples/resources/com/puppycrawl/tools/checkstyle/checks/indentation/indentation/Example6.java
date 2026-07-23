@@ -19,7 +19,7 @@ class Example6 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be one of the following: 8, 12'
+  10 // violation 'level 2, expected level should be one of the following: 8, 12'
     };
 
     void method2()

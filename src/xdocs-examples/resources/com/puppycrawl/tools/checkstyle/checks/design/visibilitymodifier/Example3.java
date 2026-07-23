@@ -58,16 +58,16 @@ class Example3 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet<String> includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 // xdoc section -- end

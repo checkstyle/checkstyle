@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 public class InputFinalParametersPrimitiveTypes2
 {
-    void foo(int i) {}  // violation, 'i' should be final
+    void foo(int i) {}  // violation 'i' should be final
     void foo1(int i, String k, float s) {}
     // 3 violations above:
     //    'Parameter i should be final.'
@@ -22,7 +22,7 @@ public class InputFinalParametersPrimitiveTypes2
     //    'Parameter s should be final.'
     //    'Parameter o should be final.'
     //    'Parameter l should be final.'
-    void foo3(int[] array) {} // violation, 'array' should be final
+    void foo3(int[] array) {} // violation 'array' should be final
     void foo4(int i, float x, int[] s) {}
     // 3 violations above:
     //    'Parameter i should be final.'

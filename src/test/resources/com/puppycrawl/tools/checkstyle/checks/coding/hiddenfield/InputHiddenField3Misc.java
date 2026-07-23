@@ -15,12 +15,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 class InputHiddenField3Misc {
     abstract class InputHiddenFieldBug10845123 {
         String x;
-        public abstract void methodA(String x); // violation, ''x' hides a field'
+        public abstract void methodA(String x); // violation ''x' hides a field'
     }
 
     class Bug33709463 {
         private int xAxis;
-        public void setxAxis(int xAxis) { // violation, ''xAxis' hides a field'
+        public void setxAxis(int xAxis) { // violation ''xAxis' hides a field'
             this.xAxis = xAxis;
         }
     }

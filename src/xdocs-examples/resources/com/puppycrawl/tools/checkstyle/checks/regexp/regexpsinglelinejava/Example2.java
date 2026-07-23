@@ -22,7 +22,7 @@ class Example2 {
 
   private void testMethod1() {
     int debug = 0;
-    System.out.println(""); // violation, 'Line matches the illegal pattern'
+    System.out.println(""); // violation 'Line matches the illegal pattern'
     System.out.
     println("");
   }
@@ -44,7 +44,7 @@ class Example2 {
     logger.info("first");
     logger.info("second");
     logger.info("third");
-    System.out.println("fourth"); // violation, 'Line matches the illegal pattern'
+    System.out.println("fourth"); // violation 'Line matches the illegal pattern'
     logger.info("fifth");
   }
 }

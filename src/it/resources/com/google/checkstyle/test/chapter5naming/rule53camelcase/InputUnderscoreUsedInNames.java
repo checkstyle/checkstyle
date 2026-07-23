@@ -22,32 +22,32 @@ public class InputUnderscoreUsedInNames {
   private String gradle851;
 
   class InnerBad {
-    // violation below, ''guava_33_4_7' .* underscores allowed only between adjacent digits.'
+    // violation below ''guava_33_4_7' .* underscores allowed only between adjacent digits.'
     int guava_33_4_7;
     int guava33_4_7;
 
-    // violation below, ''guava33_4_8_' .* underscores allowed only between adjacent digits.'
+    // violation below ''guava33_4_8_' .* underscores allowed only between adjacent digits.'
     int guava33_4_8_;
     int guava33_4_8;
 
-    // violation below, ''jdk_8_90' .* underscores allowed only between adjacent digits.'
+    // violation below ''jdk_8_90' .* underscores allowed only between adjacent digits.'
     int jdk_8_90;
     int jdk8_90;
 
-    // violation below, ''jdk8_91_' .* underscores allowed only between adjacent digits.'
+    // violation below ''jdk8_91_' .* underscores allowed only between adjacent digits.'
     int jdk8_91_;
     int jdk8_91;
 
-    // violation below, ''kotlin_1_9_24' .* underscores allowed only between adjacent digits.'
+    // violation below ''kotlin_1_9_24' .* underscores allowed only between adjacent digits.'
     int kotlin_1_9_24;
     int kotlin1_9_24;
 
-    // violation below, ''kotlin_version1_9_24'.* underscores allowed only between adjacent digits.'
+    // violation below ''kotlin_version1_9_24'.* underscores allowed only between adjacent digits.'
     int kotlin_version1_9_24;
 
     int kotlinVersion1_9_24;
 
-    // violation below, ''kotlin1_9_25_' .* underscores allowed only between adjacent digits.'
+    // violation below ''kotlin1_9_25_' .* underscores allowed only between adjacent digits.'
     int kotlin1_9_25_;
     int kotlin1_9_25;
   }
@@ -70,54 +70,54 @@ public class InputUnderscoreUsedInNames {
 
     void jdk9_0_392() {}
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below 'Method name .* must match pattern'
     void kotlin_lang1_9_2() {}
 
     void kotlinLang1_9_2() {}
 
     void convertToKotlinVersion1_9_24() {}
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below 'Method name .* must match pattern'
     void jdk_method8_90() {}
 
-    void jdk_Method8_90() {} // violation, uppercase letter after _, 'must match pattern'
+    void jdk_Method8_90() {} // violation 'Method name .* must match pattern'
 
     void jdkMethod8_90() {}
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below 'Method name .* must match pattern'
     void guava_version33_4_2() {}
 
-    void guava_Version33_4_2() {} // violation, uppercase letter after _, 'match pattern'
+    void guava_Version33_4_2() {} // violation 'Method name .* must match pattern'
 
     void guavaVersion33_4_2() {}
 
-    void kotlin1_9_24_() {} // violation, _ at the end, 'must match pattern'
+    void kotlin1_9_24_() {} // violation 'Method name .* must match pattern'
 
     void kotlin1_9_24() {}
 
-    void guava_33_4_5_() {} // violation, _ at the end, 'must match pattern'
+    void guava_33_4_5_() {} // violation 'Method name .* must match pattern'
 
     void guava33_4_5() {}
   }
 
   class UnderscoresInNonTestMethods {
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below 'Method name .* must match pattern'
     void testSetCount_zeroToZero_addSupported() {}
 
     void testSetCountZeroToZeroAddSupported() {}
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below 'Method name .* must match pattern'
     void testPutNullValue_supported() {}
 
     void testPutNullValueSupported() {}
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below 'Method name .* must match pattern'
     void testAddAll_nonEmptyList() {}
 
     void testAddAllNonEmptyList() {}
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below 'Method name .* must match pattern'
     void testEntrySet_hashCode_size1() {}
 
     void testEntrySetHashCodeSize1() {}
@@ -135,7 +135,7 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testsetcount_zerotozero_addsupported() {}
 
-    @Test // violation below, uppercase letter after _, 'must match pattern'
+    @Test // violation below 'Method name .* must match pattern'
     void testSetCount_ZeroToZero_AddSupported() {}
 
     @Test
@@ -144,7 +144,7 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testputnullvalue_supported() {}
 
-    @Test // violation below, uppercase letter after _, 'must match pattern'
+    @Test // violation below 'Method name .* must match pattern'
     void testPutNullValue_Supported() {}
 
     @Test
@@ -154,7 +154,7 @@ public class InputUnderscoreUsedInNames {
     void testaddall_nonemptylist() {}
 
     @Test
-    void testAddAll_NonEmptyList() {} // violation, uppercase letter after _, 'pattern'
+    void testAddAll_NonEmptyList() {} // violation 'Method name .* must match pattern'
 
     @Test
     void testEntrySet_hashCode_size1() {}
@@ -163,7 +163,7 @@ public class InputUnderscoreUsedInNames {
     void testentryset_hashcode_size1() {}
 
     @Test
-    void testEntrySet_HashCode_Size1() {} // violation, uppercase letter after _, 'pattern'
+    void testEntrySet_HashCode_Size1() {} // violation 'Method name .* must match pattern'
 
     @Test
     void testCount_3() {}

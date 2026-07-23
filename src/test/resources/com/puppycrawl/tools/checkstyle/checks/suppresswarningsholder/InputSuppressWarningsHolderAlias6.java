@@ -21,7 +21,7 @@ fileExtensions = (default)null
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-// violation above, 'Line is longer than 80 characters'
+// violation above 'Line is longer than 80 characters'
 
 
 public class InputSuppressWarningsHolderAlias6 {
@@ -60,7 +60,7 @@ public class InputSuppressWarningsHolderAlias6 {
         System.out.println("This is a short line.");
 
         System.out.println("This line exceeds the limit of 75 characters.");
-        // violation above, 'Line is longer than 75 characters'
+        // violation above 'Line is longer than 75 characters'
     }
 
     // violation 3 lines below 'Line is longer than 75 characters'

@@ -14,11 +14,11 @@ class Example1 {
   }
   void InvalidExample(){
     String status = "pending";
-    // violation below, 'Literal Strings should be compared using equals(), not '==''
+    // violation below 'Literal Strings should be compared using equals(), not '==''
     if (status == "done") {}
-    // violation below, 'Literal Strings should be compared using equals(), not '!=''
+    // violation below 'Literal Strings should be compared using equals(), not '!=''
     while (status != "done") {}
-    // violation below, 'Literal Strings should be compared using equals(), not '==''
+    // violation below 'Literal Strings should be compared using equals(), not '==''
     boolean flag = (status == "done");
     boolean flag1 = (status.equals("done"));
     String name = "X";

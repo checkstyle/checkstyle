@@ -14,17 +14,17 @@ package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 public class Example3 {
   // ok, a normal String below
   String unitAbbrev = "μs";
-  // violation below, 'Unicode escape(s) usage should be avoided.'
+  // violation below 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev1 = "\u03bcs";
-  // violation below, 'Unicode escape(s) usage should be avoided.'
+  // violation below 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev2 = "\u03bc\u03bc\u03bc";
   // ok, because there is trailing comment and allowByTailComment=true
   String unitAbbrev3 = "\u03bcs"; // it is μs
-  // violation below, 'Unicode escape(s) usage should be avoided.'
+  // violation below 'Unicode escape(s) usage should be avoided.'
   String unitAbbrev4 = "\u03bc\u03bcs";
   public static int content() {
     char content = 'r';
-    // violation below, 'Unicode escape(s) usage should be avoided.'
+    // violation below 'Unicode escape(s) usage should be avoided.'
     return '\ufeff' + content;
   }
 }

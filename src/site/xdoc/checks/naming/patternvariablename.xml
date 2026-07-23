@@ -52,10 +52,10 @@
 class Example1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
-    // violation above, 'Name 'num_1' must match pattern*.'
+    // violation above 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
 
   }
@@ -79,7 +79,7 @@ class Example1 {
 class Example2 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
 
@@ -124,10 +124,10 @@ class Example2 {
 class Example4 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
-    // violation above, 'Name 'num_1' must match pattern*.'
+    // violation above 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
 
   }
@@ -154,12 +154,12 @@ class Example4 {
 class UseCase1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
 
     if (o1 instanceof Integer n) {}
-    // violation above, 'Name 'n' must match pattern*.'
+    // violation above 'Name 'n' must match pattern*.'
   }
 }
 </code></pre></div>

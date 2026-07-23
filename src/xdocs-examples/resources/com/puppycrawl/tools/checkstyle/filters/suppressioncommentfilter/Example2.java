@@ -42,7 +42,7 @@ class Example2 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 // xdoc section -- end

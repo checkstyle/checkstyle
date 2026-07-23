@@ -21,7 +21,7 @@ class Example3 {
   }
 
   void method2(int i) {
-    foo(i); // violation, 'Method call to 'foo' needs "this.".'
+    foo(i); // violation 'Method call to 'foo' needs "this.".'
   }
 
   void foo(int field3) {

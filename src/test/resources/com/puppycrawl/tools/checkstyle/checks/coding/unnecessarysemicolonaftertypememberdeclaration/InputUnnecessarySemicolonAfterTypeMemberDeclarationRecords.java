@@ -11,33 +11,33 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public record InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords() {
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
     static {}
 
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
     static {}
 
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
     public InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords {
     }
 
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
     public InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords(Object o) {
         this();
     }
 
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
     void method() {
     }
 
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
     static int field = 10;
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
     static {
         ; // ok, it is empty statement inside init block

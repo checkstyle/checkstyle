@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // xdoc section -- start
-// violation below, "Class Data Abstraction Coupling is 10 (max allowed is 9)."
+// violation below "Class Data Abstraction Coupling is 10 (max allowed is 9)."
 public class Example3 {
   private Set<Object> set = new HashSet<>();         // ok, ignored
   private Map<Object, Object> map = new HashMap<>(); // ok, ignored

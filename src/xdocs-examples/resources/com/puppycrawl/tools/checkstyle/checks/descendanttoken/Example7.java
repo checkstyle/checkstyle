@@ -26,12 +26,12 @@ class Example7 {
     }
 
     try { }
-    catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+    catch (Exception e) { // violation 'Count of 1 for 'LITERAL_CATCH' descendant'
       try { }
       catch (Exception ex) { }
       return -1;
     }
-    finally { // violation, 'Count of 1 for 'LITERAL_FINALLY' descendant '
+    finally { // violation 'Count of 1 for 'LITERAL_FINALLY' descendant '
       try { }
       catch (Exception ex) { }
     }

@@ -14,7 +14,7 @@ class Example1 {
   }
 }
 class InvalidExample {
-  // violation below, 'Method 'finalize' should call 'super.finalize''
+  // violation below 'Method 'finalize' should call 'super.finalize''
   protected void finalize() throws Throwable {
   }
 }

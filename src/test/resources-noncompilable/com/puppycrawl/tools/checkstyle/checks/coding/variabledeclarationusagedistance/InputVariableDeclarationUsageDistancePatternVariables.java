@@ -32,7 +32,7 @@ public class InputVariableDeclarationUsageDistancePatternVariables {
             System.out.println(a); // ok, 'a' is pattern variable
         }
 
-        int b; // violation, 'Distance between variable 'b'*.'
+        int b; // violation 'Distance between variable 'b'*.'
         System.out.println("line1");
         System.out.println("line2");
         System.out.println("line3");

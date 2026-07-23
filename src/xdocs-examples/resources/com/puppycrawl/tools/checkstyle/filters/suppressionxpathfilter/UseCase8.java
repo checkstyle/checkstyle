@@ -32,7 +32,7 @@ public class UseCase8 {
 
   public void testMethod() {
     int TestVariable; // filtered violation 'Name 'TestVariable' must match pattern'
-    int WeirdName; // violation, "Name 'WeirdName' must match pattern"
+    int WeirdName; // violation "Name 'WeirdName' must match pattern"
   }
 
   public void sayHelloWorld() {

@@ -13,14 +13,14 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 // xdoc section -- start
 class UseCase1
-{ // violation, ''{' at column 1 should be on the previous line.'
+{ // violation ''{' at column 1 should be on the previous line.'
   private interface TestInterface
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 
   private
     class
-    MyClass { // violation, ''{' at column 13 should be on a new line.'
+    MyClass { // violation ''{' at column 13 should be on a new line.'
   }
 
   enum Colors {RED,

@@ -13,7 +13,7 @@ public class Example1 {
     int x = 5;
     boolean foobar = (x == 5);
     String text=null;
-    text = (text == null) ? "" : text; // violation, 'Avoid inline conditionals'
+    text = (text == null) ? "" : text; // violation 'Avoid inline conditionals'
     String b;
     if (str != null && str.length() >= 1) {
       b = str.substring(1);
@@ -21,7 +21,7 @@ public class Example1 {
     else {
       b = null;
     }
-    // violation below, 'Avoid inline conditionals'
+    // violation below 'Avoid inline conditionals'
     b = (str != null && str.length() >= 1) ? str.substring(1) : null;
   }
 }

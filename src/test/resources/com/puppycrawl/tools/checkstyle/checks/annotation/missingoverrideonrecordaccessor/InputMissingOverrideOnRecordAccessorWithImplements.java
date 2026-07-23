@@ -16,7 +16,7 @@ interface Named {
 public record InputMissingOverrideOnRecordAccessorWithImplements(String name) implements Named {
 
     public String name() {
-// violation above, 'Record component accessor method must include @java.lang.Override annotation.'
+// violation above 'Record component accessor method must include @java.lang.Override annotation.'
         return name.toUpperCase();
     }
 

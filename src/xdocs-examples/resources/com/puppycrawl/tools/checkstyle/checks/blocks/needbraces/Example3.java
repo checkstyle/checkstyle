@@ -30,7 +30,7 @@ class Example3 {
         return false;
     for (int i = 0; i < 5; i++) {
       ++count;}
-    do // violation, ''do' construct must use '{}'s.'
+    do // violation ''do' construct must use '{}'s.'
         ++count;
     while (false);
     for (int j = 0; j < 10; j++);
@@ -38,7 +38,7 @@ class Example3 {
     for(int i = 0; i < 10; value.charAt(12));
     // ok above, because single line FOR statement is allowed in config.
     while (counter < 10)
-        // violation above, ''while' construct must use '{}'s.'
+        // violation above ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) < 5);
     // ok above, because single line FOR statement is allowed in config.

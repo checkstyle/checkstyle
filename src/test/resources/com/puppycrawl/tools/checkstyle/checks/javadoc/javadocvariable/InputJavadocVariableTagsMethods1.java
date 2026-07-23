@@ -13,7 +13,7 @@ import java.io.IOException;
 class InputJavadocVariableTagsMethods1
 {
     // Invalid - should be Javadoc
-    private int mMissingJavadoc; // violation, 'Missing a Javadoc comment'
+    private int mMissingJavadoc; // violation 'Missing a Javadoc comment'
 
     // Invalid - should be Javadoc
     void method1()

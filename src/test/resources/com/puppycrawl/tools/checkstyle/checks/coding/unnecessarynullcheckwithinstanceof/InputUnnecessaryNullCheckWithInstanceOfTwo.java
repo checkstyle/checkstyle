@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 public class InputUnnecessaryNullCheckWithInstanceOfTwo {
 
     public void basicIfStatements(Object obj) {
-        if (obj != null && obj instanceof String s) { // violation, 'Unnecessary nullity check'
+        if (obj != null && obj instanceof String s) { // violation 'Unnecessary nullity check'
             String str = (String) obj;
         }
     }

@@ -13,9 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 public class Example6 {
 
   public void foo1() {
-    // violation below, 'variable 'num' declaration and its first usage is 4.'
+    // violation below 'variable 'num' declaration and its first usage is 4.'
     int num;
-    // violation below, 'variable 'PI' declaration and its first usage is 5.'
+    // violation below 'variable 'PI' declaration and its first usage is 5.'
     final double PI;
     System.out.println("Statement 1");
     System.out.println("Statement 2");

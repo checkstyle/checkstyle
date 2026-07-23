@@ -34,8 +34,8 @@ public class InputIllegalTypeTestLegalAbstractClassNames implements InputIllegal
     private class NotAnAbstractClass {}
 
     private java.util.TreeSet table1() { return null; }
-    // violation above, 'Usage of type 'java.util.TreeSet' is not allowed'
-    private TreeSet table2() { return null; } // violation, 'Usage of type TreeSet is not allowed'.
+    // violation above 'Usage of type 'java.util.TreeSet' is not allowed'
+    private TreeSet table2() { return null; } // violation 'Usage of type TreeSet is not allowed'.
     static class SomeStaticClass {
 
     }
@@ -60,9 +60,9 @@ public class InputIllegalTypeTestLegalAbstractClassNames implements InputIllegal
 }
 
 interface InputIllegalTypeSuperTestLegalAbstractClassNames {
-    void foo(HashMap<?, ?> buffer); // violation, 'Usage of type HashMap is not allowed'.
+    void foo(HashMap<?, ?> buffer); // violation 'Usage of type HashMap is not allowed'.
 
-    HashMap<?, ?> foo(); // violation, 'Usage of type HashMap is not allowed'.
+    HashMap<?, ?> foo(); // violation 'Usage of type HashMap is not allowed'.
 
     Object bar();
 }

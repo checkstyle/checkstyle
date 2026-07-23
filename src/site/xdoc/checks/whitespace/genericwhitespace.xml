@@ -71,12 +71,12 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  List &lt;String&gt; l; // violation, "&lt;" followed by whitespace
-  public&lt;T&gt; void foo() {} // violation, "&lt;" not preceded with whitespace
-  List a = new ArrayList&lt;&gt; (); // violation, "&gt;" followed by whitespace
-  Map&lt;Integer, String&gt;m; // violation, "&gt;" not followed by whitespace
-  HashSet&lt;Integer &gt; set; // violation, "&gt;" preceded with whitespace
-  record License&lt;T&gt; () {} // violation, "&gt;" followed by whitespace
+  List &lt;String&gt; l; // violation "&lt;" followed by whitespace
+  public&lt;T&gt; void foo() {} // violation "&lt;" not preceded with whitespace
+  List a = new ArrayList&lt;&gt; (); // violation "&gt;" followed by whitespace
+  Map&lt;Integer, String&gt;m; // violation "&gt;" not followed by whitespace
+  HashSet&lt;Integer &gt; set; // violation "&gt;" preceded with whitespace
+  record License&lt;T&gt; () {} // violation "&gt;" followed by whitespace
 }
 </code></pre></div>
       </subsection>

@@ -40,10 +40,10 @@ class Example5 {
   public void testMethod3(){
     final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
-    logger.info("second"); // violation, 'Line matches the illegal pattern'
-    logger.info("third");  // violation, 'Line matches the illegal pattern'
+    logger.info("second"); // violation 'Line matches the illegal pattern'
+    logger.info("third");  // violation 'Line matches the illegal pattern'
     System.out.println("fourth");
-    logger.info("fifth");  // violation, 'Line matches the illegal pattern'
+    logger.info("fifth");  // violation 'Line matches the illegal pattern'
   }
 }
 // xdoc section -- end

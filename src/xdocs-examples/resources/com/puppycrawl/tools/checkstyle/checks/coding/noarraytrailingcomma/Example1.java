@@ -12,9 +12,9 @@ class Example1 {
   void InvalidExample() {
     String[] foo1 = {
       "FOO",
-      "BAR", // violation, 'Array should not contain trailing comma'
+      "BAR", // violation 'Array should not contain trailing comma'
     };
-    // violation below, 'Array should not contain trailing comma'
+    // violation below 'Array should not contain trailing comma'
     String[] foo2 = { "FOO", "BAR", };
     String[] foo3 = {
       "FOO",

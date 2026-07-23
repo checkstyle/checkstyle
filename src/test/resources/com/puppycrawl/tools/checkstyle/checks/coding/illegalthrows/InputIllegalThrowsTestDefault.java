@@ -15,14 +15,14 @@ public class InputIllegalThrowsTestDefault {
     public void method() throws NullPointerException
     { // no code
     }
-    // violation below, 'Throwing 'RuntimeException' is not allowed'
+    // violation below 'Throwing 'RuntimeException' is not allowed'
     public java.lang.Throwable methodOne() throws RuntimeException
     {
         return null;
     }
-    // violation below, 'Throwing 'java.lang.RuntimeException' is not allowed'
+    // violation below 'Throwing 'java.lang.RuntimeException' is not allowed'
     public void methodTwo() throws java.lang.RuntimeException,
-            java.lang.Error  // violation, 'Throwing 'java.lang.Error' is not allowed'
+            java.lang.Error  // violation 'Throwing 'java.lang.Error' is not allowed'
     {
     }
 

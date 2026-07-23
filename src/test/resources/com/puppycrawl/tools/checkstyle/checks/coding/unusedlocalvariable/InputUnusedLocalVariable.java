@@ -25,14 +25,14 @@ public class InputUnusedLocalVariable {
     };
 
     private void sameName(int unusedParameter) {
-        int sameName = 10; // violation, 'Unused local variable'
-        int b = 12; // violation, 'Unused local variable'
+        int sameName = 10; // violation 'Unused local variable'
+        int b = 12; // violation 'Unused local variable'
         b = 23;
         this.sameName /= 2;
-        int testInLambdas = 0; // violation, 'Unused local variable'
+        int testInLambdas = 0; // violation 'Unused local variable'
         testInLambdas = 12;
-        int coding = 0; // violation, 'Unused local variable'
-        int InputUnusedLocalVariable = 1; // violation, 'Unused local variable'
+        int coding = 0; // violation 'Unused local variable'
+        int InputUnusedLocalVariable = 1; // violation 'Unused local variable'
         com.puppycrawl.tools.checkstyle.checks
                 .coding.unusedlocalvariable
                 .InputUnusedLocalVariable.testInLambdas(a);
@@ -48,11 +48,11 @@ public class InputUnusedLocalVariable {
         int test = 21;
         int isInOuterScope = 32;
         Predicate<Integer> foo = integer -> {
-            int b; // violation, 'Unused local variable'
+            int b; // violation 'Unused local variable'
             int a = integer;
             b = integer;
             boolean ans = a > 12;
-            int c = 21; // violation, 'Unused local variable'
+            int c = 21; // violation 'Unused local variable'
             c = -isInOuterScope;
             return ans;
         };
@@ -63,13 +63,13 @@ public class InputUnusedLocalVariable {
         int[] arr = {1};
         int a = 21;
         arr[0] = a;
-        Class<Integer> b = int.class; // violation, 'Unused local variable'
+        Class<Integer> b = int.class; // violation 'Unused local variable'
         @SuppressWarnings("unused")
-        int c = 41; // violation, 'Unused local variable'
+        int c = 41; // violation 'Unused local variable'
     }
 
     public void testChainedCalls() throws InterruptedException {
-        Obj p; // violation, 'Unused local variable'
+        Obj p; // violation 'Unused local variable'
         Obj q = null;
         p = q.foo().p;
         if (s instanceof String) {
@@ -79,17 +79,17 @@ public class InputUnusedLocalVariable {
         }
         int a = 13, b = 21;
         q.getClass().wait(a, b);
-        int f = 12; // violation, 'Unused local variable'
+        int f = 12; // violation 'Unused local variable'
         Predicate<String> obj = InputUnusedLocalVariable::f;
         obj.test("test");
-        int foo = 12; // violation, 'Unused local variable'
+        int foo = 12; // violation 'Unused local variable'
         foo(q);
     }
 
     class SubClass extends InputUnusedLocalVariable {
 
         void testSuperKeyword() {
-            int a = 12; // violation, 'Unused local variable'
+            int a = 12; // violation 'Unused local variable'
             a = super.a;
         }
     }

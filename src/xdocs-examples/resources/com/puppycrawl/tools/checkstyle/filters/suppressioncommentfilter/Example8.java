@@ -22,7 +22,7 @@ class Example8 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1;  // violation, 'must match pattern'
+  public static final int var3 = 1;  // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception

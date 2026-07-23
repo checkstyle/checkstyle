@@ -15,14 +15,14 @@ public class InputPatternVariableAssignmentCheck3 {
             sessions[integer2] += "x";
         }
         if (object instanceof Integer integer3) {
-            integer3 = 5; // violation, "Assignment of pattern variable 'integer3' is not allowed."
+            integer3 = 5; // violation "Assignment of pattern variable 'integer3' is not allowed."
         }
         if (object instanceof String[] arr) {
             arr[0] = "value";
         }
         if (object instanceof String[] arr2) {
             arr2 = new String[5];
-            // violation above, "Assignment of pattern variable 'arr2' is not allowed."
+            // violation above "Assignment of pattern variable 'arr2' is not allowed."
         }
         if (object instanceof int[] arr3) {
             arr3[0] = 1;
@@ -30,7 +30,7 @@ public class InputPatternVariableAssignmentCheck3 {
         if (object instanceof String s) {
             System.out.println(s);
             System.out.println("test");
-            s = "hello"; // violation, "Assignment of pattern variable 's' is not allowed."
+            s = "hello"; // violation "Assignment of pattern variable 's' is not allowed."
         }
     }
 }

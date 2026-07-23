@@ -15,18 +15,18 @@ import java.util.concurrent.TimeUnit;
 public class InputAvoidEscapedUnicodeCharacters3 {
 
         private String unitAbbrev2 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev3 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev4 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
 
         public Object fooString() {
                 String unitAbbrev = "Î¼s";
                 String unitAbbrev2 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String unitAbbrev3 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String fakeUnicode = "asd\tsasd";
                 String fakeUnicode2 = "\\u23\\u123i\\u";
                 String content = null;
@@ -42,11 +42,11 @@ public class InputAvoidEscapedUnicodeCharacters3 {
 
         public void multiplyString() {
                 String unitAbbrev2 = "asd\u03bcsasd";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s" */
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String allCharactersEscaped = "\u03bc\u03bc";
         }
 
@@ -56,7 +56,7 @@ public class InputAvoidEscapedUnicodeCharacters3 {
                         return "ns";
                 case MICROSECONDS:
                         return "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 case MILLISECONDS:
                         return "ms";
                 case SECONDS:
@@ -101,13 +101,13 @@ public class InputAvoidEscapedUnicodeCharacters3 {
          }
 
         private String unitAbbrev5 = "\u03bcs";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev6 = "\u03bcs";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev7 = "\u03bcs";        /* comment separated by tab */
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev8 = "\u03bcs"; /* comment has 2 lines */
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
 
         void foo() {
                 for (char c = '\u0000'; c < '\uffff'; c++) {
@@ -117,7 +117,7 @@ public class InputAvoidEscapedUnicodeCharacters3 {
                 }
         }
         private String unitAbbrev9 = "\u03bcs"; /* comment */ int i;
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         private String notAUnicodeEscaped1 = "\\u1234";
 
         private String notAUnicodeEscaped2 = "\\\\u1234";
@@ -125,27 +125,27 @@ public class InputAvoidEscapedUnicodeCharacters3 {
         private String onlyEscaped = "\\\u1234";
 
         private String sumilarToEscapedByB = "b\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedCommentedByB = "b\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedByF = "f\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedCommentedByF = "f\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedByR = "r\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedCommentedByR = "r\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedByN = "n\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedCommentedByN = "n\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedByT = "t\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedCommentedByT = "t\u1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String validEscapeWithManyUs = "t\uuuuuuuuu1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
         private String validEscapeWithManyUsCommented = "t\uuuuuuuuu1234";
-        // violation above, 'Unicode escape(s) usage should be avoided.'
+        // violation above 'Unicode escape(s) usage should be avoided.'
 }

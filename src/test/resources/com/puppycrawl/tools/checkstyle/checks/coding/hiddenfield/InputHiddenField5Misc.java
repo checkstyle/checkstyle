@@ -17,7 +17,7 @@ class InputHiddenField5Misc {
     // we should ignore this if user wants (ignoreAbstractMethods is true)
     abstract static class InputHiddenFieldBug10845125 {
         String x;
-        public abstract void methodA(String x); // violation, ''x' hides a field'
+        public abstract void methodA(String x); // violation ''x' hides a field'
     }
 
     static class Bug33709465 {

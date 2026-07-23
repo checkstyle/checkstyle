@@ -20,7 +20,7 @@ public class UseCase1 {
   }
 
   public void testMethod2()
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 }
 // xdoc section -- end

@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
 // xdoc section -- start
 public class Example4 {
-  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  /** @see Math */ // violation 'Javadoc comment should be multi-line'
   public int foo() {
     return 42;
   }
@@ -30,7 +30,7 @@ public class Example4 {
 
   /**
    * <p>the answer to the ultimate question
-   */ // violation above, 'Unclosed HTML tag found'
+   */ // violation above 'Unclosed HTML tag found'
   public int magic() {
     return 42;
   }

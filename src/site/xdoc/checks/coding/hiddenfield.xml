@@ -153,19 +153,19 @@ class Example1 {
   private String field;
   private String testField;
 
-  Example1(String testField) { // violation, 'field' hides a field
+  Example1(String testField) { // violation 'field' hides a field
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
-  void setTestField(String testField) { // violation, ''testField' hides a field'
+  void setTestField(String testField) { // violation ''testField' hides a field'
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -192,7 +192,7 @@ class Example2 {
   Example2(String testField) { // ok, because PARAMETER_DEF not configured
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;
@@ -228,16 +228,16 @@ class Example3 {
   Example3(String testField) { // ok, because it match ignoreFormat
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because it match ignoreFormat
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -263,16 +263,16 @@ class Example4 {
   Example4(String testField) { // ok, because ignoreConstructorParameter is true
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field' field
+    String field = param; // violation ''field' hides a field' field
   }
-  void setTestField(String testField) { // violation, ''testField' hides a field'
+  void setTestField(String testField) { // violation ''testField' hides a field'
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -296,10 +296,10 @@ class Example5 {
   private String field;
   private String testField;
 
-  Example5(String testField) { // violation, ''testField' hides a field'
+  Example5(String testField) { // violation ''testField' hides a field'
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
@@ -308,7 +308,7 @@ class Example5 {
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -334,10 +334,10 @@ class Example6 {
   private String field;
   private String testField;
 
-  Example6(String testField) { // violation, ''testField' hides a field'
+  Example6(String testField) { // violation ''testField' hides a field'
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
@@ -346,7 +346,7 @@ class Example6 {
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -369,15 +369,15 @@ class Example7 {
   private String field;
   private String testField;
 
-  Example7(String testField) { // violation, ''field' hides a field
+  Example7(String testField) { // violation ''field' hides a field
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
-  void setTestField(String testField) { // violation, 'testField' hides a field'
+  void setTestField(String testField) { // violation 'testField' hides a field'
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {

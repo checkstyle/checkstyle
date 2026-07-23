@@ -40,7 +40,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testSimpleOne()
             throws Exception {
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_KEY, 80, 131),
+            "22: " + getCheckMessage(MSG_KEY, 80, 130),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthSimpleOne.java"), expected);
@@ -50,7 +50,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void testSimpleTwo()
             throws Exception {
         final String[] expected = {
-            "88: " + getCheckMessage(MSG_KEY, 80, 133),
+            "88: " + getCheckMessage(MSG_KEY, 80, 132),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthSimpleTwo.java"), expected);
@@ -60,7 +60,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void shouldLogActualLineLengthOne()
             throws Exception {
         final String[] expected = {
-            "23: 80,90",
+            "23: 80,89",
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthSimple1One.java"), expected);
@@ -70,7 +70,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     public void shouldLogActualLineLengthTwo()
             throws Exception {
         final String[] expected = {
-            "89: 80,92",
+            "89: 80,91",
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthSimple1Two.java"), expected);
@@ -79,7 +79,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void shouldNotLogLongImportStatements() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_KEY, 80, 150),
+            "18: " + getCheckMessage(MSG_KEY, 80, 149),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLineLengthLongImportStatements.java"), expected);
@@ -107,8 +107,8 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void countUnicodePointsOnce() throws Exception {
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_KEY, 100, 200),
-            "16: " + getCheckMessage(MSG_KEY, 100, 200),
+            "15: " + getCheckMessage(MSG_KEY, 100, 199),
+            "16: " + getCheckMessage(MSG_KEY, 100, 199),
         };
         verifyWithInlineConfigParser(getPath("InputLineLengthUnicodeChars.java"), expected);
 
@@ -150,7 +150,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_KEY, 75, 288),
+            "11: " + getCheckMessage(MSG_KEY, 75, 287),
         };
 
         final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);

@@ -19,7 +19,7 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
             //                  'Unused lambda parameter 'x' should be unnamed'
             //                  'Unused lambda parameter 'y' should be unnamed'
             Function<String, String> function2 = (z) -> {
-                // violation above, 'Unused lambda parameter 'z' should be unnamed'
+                // violation above 'Unused lambda parameter 'z' should be unnamed'
                 return "a";
             };
             return "a";
@@ -27,7 +27,7 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
 
         function = (_, _) -> {
             Function<String, String> function2 = (z) -> {
-                // violation above, 'Unused lambda parameter 'z' should be unnamed'
+                // violation above 'Unused lambda parameter 'z' should be unnamed'
                 return "a";
             };
             return "a";
@@ -43,7 +43,7 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
 
         function = (x, y) -> {
             Function<String, String> function2 = (z) -> {
-                // violation above, 'Unused lambda parameter 'z' should be unnamed'
+                // violation above 'Unused lambda parameter 'z' should be unnamed'
                 return x;
             };
             int z = 0;
@@ -51,9 +51,9 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
         };
 
         function = (x, y) -> {
-            // violation above, 'Unused lambda parameter 'y' should be unnamed'
+            // violation above 'Unused lambda parameter 'y' should be unnamed'
             BiFunction<String, String, String> function2 = (z, w) -> {
-                // violation above, 'Unused lambda parameter 'z' should be unnamed'
+                // violation above 'Unused lambda parameter 'z' should be unnamed'
                 return x + w;
             };
             int z = 0;
@@ -73,7 +73,7 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
 
         function = (x, y) -> {
             BiFunction<String, String, String> function2 = (z, w) -> {
-                // violation above, 'Unused lambda parameter 'w' should be unnamed'
+                // violation above 'Unused lambda parameter 'w' should be unnamed'
                 return x + y + z;
             };
             String w = "a";
@@ -83,16 +83,16 @@ public class InputUnusedLambdaParameterShouldBeUnnamedNested {
 
     void TypedLambdaParameter() {
         BiFunction<String, String, String> function = (String x, String y) -> {
-            // violation above, 'Unused lambda parameter 'y' should be unnamed'
+            // violation above 'Unused lambda parameter 'y' should be unnamed'
             Function<Integer, String> function2 = (Integer z) -> {
-                // violation above, 'Unused lambda parameter 'z' should be unnamed'
+                // violation above 'Unused lambda parameter 'z' should be unnamed'
                 return "a" + x;
             };
             return "a";
         };
 
         function = (String x, String y) -> {
-            // violation above, 'Unused lambda parameter 'x' should be unnamed'
+            // violation above 'Unused lambda parameter 'x' should be unnamed'
             Function<Integer, String> function2 = (Integer z) -> {
                 return "a" + z;
             };

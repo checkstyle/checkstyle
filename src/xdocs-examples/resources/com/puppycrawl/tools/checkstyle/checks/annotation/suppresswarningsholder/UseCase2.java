@@ -25,7 +25,7 @@ public class UseCase2 {
   @SuppressWarnings("checkstyle:constantname")
   private static final int m = 0;
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters(
           int a, int b, int c, int d,
           int e, int f, int g, int h) {}

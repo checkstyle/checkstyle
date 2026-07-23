@@ -25,8 +25,8 @@ import javax.net.*; // violation, should be in special import group
 
 import org.apache.commons.io.FileUtils; // violation, should be in THIRD PARTY PACKAGE GROUP
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'wrong order'
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, 'wrong order'
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation 'wrong order'
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation 'wrong order'
 // xdoc section -- end
 public class Example10 {
 }

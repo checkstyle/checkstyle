@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 // xdoc section -- start
 class Example1 {
-  // violation below, 'Summary javadoc is missing'
+  // violation below 'Summary javadoc is missing'
   /** */
   public String withoutJavadoc() { return ""; }
 

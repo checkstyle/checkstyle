@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder
 
 // xdoc section -- start
 class Example1 {
-  private int K; // violation, 'Name 'K' must match pattern'
+  private int K; // violation 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
   private int J;
 
@@ -26,7 +26,7 @@ class Example1 {
      int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
-  // violation above, 'Name 'ARR' must match pattern'
+  // violation above 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
   private int [] ARRAY;
   // violation 2 lines below 'More than 7 parameters (found 8)'

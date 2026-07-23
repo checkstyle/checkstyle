@@ -12,28 +12,28 @@ public class InputBracesNeedBracesInvalid {
 
     public boolean test() {
         if (obj.equals(num)) return true;
-        // violation above, ''if' construct must use '{}'s.'
+        // violation above ''if' construct must use '{}'s.'
         if (true) {
             count = 2;
         } else
-            // violation above, ''else' construct must use '{}'s.'
+            // violation above ''else' construct must use '{}'s.'
             return false;
         for (int i = 0; i < 5; i++) {
             ++count;
         }
-        do // violation, ''do' construct must use '{}'s.'
+        do // violation ''do' construct must use '{}'s.'
             ++count;
         while (false);
         for (int j = 0; j < 10; j++);
-        // violation above, ''for' construct must use '{}'s.'
+        // violation above ''for' construct must use '{}'s.'
         for (int i = 0; i < 10; value.charAt(12));
-        // violation above, ''for' construct must use '{}'s.'
+        // violation above ''for' construct must use '{}'s.'
         while (counter < 10)
-            // violation above, ''while' construct must use '{}'s.'
+            // violation above ''while' construct must use '{}'s.'
             ++count;
 
         while (value.charAt(12) < 5);
-        // violation above, ''while' construct must use '{}'s.'
+        // violation above ''while' construct must use '{}'s.'
 
         return true;
     }

@@ -14,7 +14,7 @@ public class InputGenericWhitespaceAfterNew {
     public class Inner<T> { }
 
     Object obj1 = new <String>Object();
-    Object obj2 = new <String> Object(); // violation, ''>' is followed by whitespace.'
+    Object obj2 = new <String> Object(); // violation ''>' is followed by whitespace.'
 
     void method() {
         new <@A Inner>Inner();
@@ -25,7 +25,7 @@ public class InputGenericWhitespaceAfterNew {
         //                    ''>' is followed by whitespace.'
         //                    ''>' is preceded with whitespace.'
 
-        new <@A Inner> @A Inner<@A Inner>(); // violation, ''>' is followed by whitespace.'
+        new <@A Inner> @A Inner<@A Inner>(); // violation ''>' is followed by whitespace.'
     }
 
     void popCan() {

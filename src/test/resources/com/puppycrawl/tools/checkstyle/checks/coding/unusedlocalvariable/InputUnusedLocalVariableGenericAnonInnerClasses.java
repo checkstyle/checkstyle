@@ -12,8 +12,8 @@ import java.util.function.Function;
 public class InputUnusedLocalVariableGenericAnonInnerClasses {
 
     Function<Integer, Integer> obj = a -> {
-        int l = 12; // violation, 'Unused local variable'
-        testClass obj = new testClass() { // violation, 'Unused local variable'
+        int l = 12; // violation 'Unused local variable'
+        testClass obj = new testClass() { // violation 'Unused local variable'
             void method() {
                 l += 1;
             }
@@ -32,8 +32,8 @@ public class InputUnusedLocalVariableGenericAnonInnerClasses {
 
     testClass obj3 = new testClass() {
         void method() {
-            int l = 13; // violation, 'Unused local variable'
-            testClass obj2 = new testClass() { // violation, 'Unused local variable'
+            int l = 13; // violation 'Unused local variable'
+            testClass obj2 = new testClass() { // violation 'Unused local variable'
                 void method() {
                     l += 1;
                 }
@@ -46,7 +46,7 @@ class testClass {
     int l = 12;
 
     void method2() {
-        int s = 12; // violation, 'Unused local variable'
+        int s = 12; // violation 'Unused local variable'
         int j = 13;
         hoo k = () -> {
             Integer.valueOf(j);
@@ -66,9 +66,9 @@ class testClass {
     int s = 2;
 
     void test() {
-        int variable = 1; // violation, 'Unused local variable'
+        int variable = 1; // violation 'Unused local variable'
         int mainVar = 2;
-        int anotherVar = 1; // violation, 'Unused local variable'
+        int anotherVar = 1; // violation 'Unused local variable'
         testingGenerics<Integer>.nested obj
                 = new testingGenerics<Integer>().new nested() {
             void method() {
@@ -77,7 +77,7 @@ class testClass {
         };
         obj.getClass();
 
-        testingGenerics<Integer>.clazz<String>.nested obj2 // violation, 'Unused local variable'
+        testingGenerics<Integer>.clazz<String>.nested obj2 // violation 'Unused local variable'
                 = new testingGenerics<Integer>().new clazz<String>().new nested() {
             void method() {
                 variable += 1;

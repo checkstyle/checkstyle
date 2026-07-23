@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example3 {
-  // violation above, 'NCSS for this class is 18 (max allowed is 10)'
+  // violation above 'NCSS for this class is 18 (max allowed is 10)'
   public void testMethod1() {
     System.out.println("m-1:Line 1");
     System.out.println("m-1:Line 2");

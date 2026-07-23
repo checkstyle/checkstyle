@@ -27,7 +27,7 @@ enum InputHiddenFieldEnum
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0; // violation, ''hidden' hides a field'
+            int hidden = 0; // violation ''hidden' hides a field'
         }
     };
 
@@ -44,13 +44,13 @@ enum InputHiddenFieldEnum
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0; // violation, ''hidden' hides a field'
+        int hidden = 0; // violation ''hidden' hides a field'
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0; // violation, ''hiddenStatic' hides a field'
+        int hiddenStatic = 0; // violation ''hiddenStatic' hides a field'
     }
 }
 
