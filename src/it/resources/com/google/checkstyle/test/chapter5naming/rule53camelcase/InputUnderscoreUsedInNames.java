@@ -127,7 +127,7 @@ public class InputUnderscoreUsedInNames {
     void testCount3() {}
   }
 
-  class UnderscoreInTestMethodNames {
+  static class UnderscoreInTestMethodNames {
 
     @Test
     void testSetCount_zeroToZero_addSupported() {}
