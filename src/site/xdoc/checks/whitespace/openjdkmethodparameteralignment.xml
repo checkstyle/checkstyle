@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OpenjdkMethodParameterAlignment</title>
+  </head>
+  <body>
+    <section name="OpenjdkMethodParameterAlignment">
+      <p>Since Checkstyle 13.9.0</p>
+      <subsection name="Description" id="OpenjdkMethodParameterAlignment_Description">
+        <div>
+          Checks that vertically listed parameters of a method declaration are
+          declared one per line.
+        </div>
+
+        <p>
+          The
+          <a href="https://checkstyle.org/styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-method-declarations">
+          OpenJDK Java Style Guidelines</a> allow a wrapped method declaration to be formatted
+          either by listing the parameters vertically, or by breaking the line and indenting the
+          continuation by eight extra spaces. This check validates the first form only: when the
+          parameters are aligned under the first parameter, every line of the parameter list must
+          hold exactly one parameter.
+        </p>
+
+        <p>
+          The parameters are considered to be listed vertically when the first parameter is on the
+          same line as the opening parenthesis and every parameter that starts a new line begins at
+          the column of the first parameter. Declarations that are not wrapped, and wrapped
+          declarations that use the eight extra spaces form, are ignored by this check.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="OpenjdkMethodParameterAlignment_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                  .
+              </td>
+              <td>13.9.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="OpenjdkMethodParameterAlignment_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OpenjdkMethodParameterAlignment"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  Example1(int a,
+           int b, int c) {} // violation 'Only one parameter is allowed'
+
+  void oneParameterPerLine(int a,
+                           int b,
+                           int c) {}
+
+  void twoOnLastLine(int a,
+                     int b, int c) {} // violation 'Only one parameter is allowed'
+
+  void twoOnFirstLine(int a, int b, // violation 'Only one parameter is allowed'
+                      int c) {}
+
+  void wrappedByEightSpaces(int a, int b,
+          int c) {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for methods only:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OpenjdkMethodParameterAlignment"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+
+  Example2(int a,
+           int b, int c) {}
+
+  void oneParameterPerLine(int a,
+                           int b,
+                           int c) {}
+
+  void twoOnLastLine(int a,
+                     int b, int c) {} // violation 'Only one parameter is allowed'
+
+  void twoOnFirstLine(int a, int b, // violation 'Only one parameter is allowed'
+                      int c) {}
+
+  void wrappedByEightSpaces(int a, int b,
+          int c) {}
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage"
+                  id="OpenjdkMethodParameterAlignment_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkMethodParameterAlignment">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+                  id="OpenjdkMethodParameterAlignment_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.parameter.alignment%22">
+              method.parameter.alignment
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                  id="OpenjdkMethodParameterAlignment_Fully_Qualified_Name">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace.OpenjdkMethodParameterAlignmentCheck
+        </p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="OpenjdkMethodParameterAlignment_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
