@@ -111,6 +111,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private boolean validateUnnamedVariables;
 
     /**
+     * Control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-14.html#jls-14.30.1">
+     * pattern variables</a>.
+     */
+    private boolean validatePatternVariables;
+
+    /**
      * Creates a new {@code FinalLocalVariableCheck} instance.
      */
     public FinalLocalVariableCheck() {
@@ -141,6 +148,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         this.validateUnnamedVariables = validateUnnamedVariables;
     }
 
+    /**
+     * Setter to control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-14.html#jls-14.30.1">
+     * pattern variables</a>.
+     *
+     * @param validatePatternVariables whether to check pattern variables
+     * @since 10.21.0
+     */
+    public final void setValidatePatternVariables(boolean validatePatternVariables) {
+        this.validatePatternVariables = validatePatternVariables;
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -152,6 +171,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.EXPR,
         };
     }
@@ -168,6 +188,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.EXPR,
         };
     }
@@ -185,6 +206,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.EXPR,
         };
     }
@@ -227,6 +249,15 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && shouldCheckEnhancedForLoopVariable(ast)
                         && shouldCheckUnnamedVariable(ast)) {
                     insertVariable(ast);
+                }
+            }
+
+            case TokenTypes.PATTERN_VARIABLE_DEF -> {
+                if (validatePatternVariables
+                        && ast.findFirstToken(TokenTypes.MODIFIERS)
+                            .findFirstToken(TokenTypes.FINAL) == null
+                        && shouldCheckUnnamedVariable(ast)) {
+                    insertPatternVariable(ast);
                 }
             }
 
@@ -517,6 +548,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private void insertVariable(DetailAST variableAst) {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = TokenUtil.getIdent(variableAst);
+        final FinalVariableCandidate previousCandidate = scope.get(astNode.getText());
+        if (previousCandidate != null) {
+            final DetailAST ident = previousCandidate.variableIdent;
+            log(ident, MSG_KEY, ident.getText());
+        }
         final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
         // for-each variables are implicitly assigned
         candidate.assigned = variableAst.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
@@ -524,6 +560,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         if (!isInitialized(variableAst)) {
             scopeStack.peek().uninitializedVariables.add(astNode);
         }
+    }
+
+    /**
+     * Insert a pattern variable at the topmost scope stack.
+     *
+     * @param variableAst the variable to insert.
+     */
+    private void insertPatternVariable(DetailAST variableAst) {
+        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
+        final DetailAST astNode = TokenUtil.getIdent(variableAst);
+        final FinalVariableCandidate previousCandidate = scope.get(astNode.getText());
+        if (previousCandidate != null) {
+            final DetailAST ident = previousCandidate.variableIdent;
+            log(ident, MSG_KEY, ident.getText());
+        }
+        final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
+        candidate.assigned = true;
+        scope.put(astNode.getText(), candidate);
     }
 
     /**
