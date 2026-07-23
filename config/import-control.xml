@@ -74,6 +74,7 @@
 
   <file name="AbstractAutomaticBean">
     <allow class="java.beans.PropertyDescriptor" local-only="true"/>
+    <allow class="com.google.common.base.Splitter"/>
   </file>
 
   <subpackage name="site">
@@ -206,6 +207,7 @@
     </file>
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
+      <allow class="com.google.common.base.Splitter"/>
     </subpackage>
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
@@ -245,6 +247,7 @@
 
   <subpackage name="filters">
     <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+" regex="true"/>
+    <allow class="com.google.common.base.Splitter"/>
 
     <allow pkg="net.sf.saxon"/>
     <allow class="java.lang.ref.WeakReference" local-only="true"/>
