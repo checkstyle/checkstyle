@@ -753,6 +753,9 @@
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
     </module>
+    <module name="PreferJavadocInlineTags">
+      <property name="jdkVersion" value="17"/>
+    </module>
     <module name="JavadocVariable"/>
     <module name="MissingJavadocMethod">
       <property name="scope" value="private"/>
