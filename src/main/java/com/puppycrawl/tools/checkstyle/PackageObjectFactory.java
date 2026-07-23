@@ -448,6 +448,8 @@ public class PackageObjectFactory implements ModuleFactory {
     private static void fillChecksFromAnnotationPackage() {
         NAME_TO_FULL_MODULE_NAME.put("AnnotationLocationCheck",
                 BASE_PACKAGE + ".checks.annotation.AnnotationLocationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("OpenjdkAnnotationLocationCheck",
+                BASE_PACKAGE + ".checks.annotation.OpenjdkAnnotationLocationCheck");
         NAME_TO_FULL_MODULE_NAME.put("AnnotationOnSameLineCheck",
                 BASE_PACKAGE + ".checks.annotation.AnnotationOnSameLineCheck");
         NAME_TO_FULL_MODULE_NAME.put("AnnotationUseStyleCheck",

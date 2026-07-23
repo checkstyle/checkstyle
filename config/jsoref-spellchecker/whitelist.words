@@ -92,6 +92,7 @@ awt
 azurewebsites
 Backquote
 backticks
+badfield
 badpackage
 baeldung
 baratali
@@ -1005,6 +1006,7 @@ oopsla
 OOQ
 opencollective
 openjdk
+openjdkannotationlocation
 openrewrite
 operatorwrap
 opsummary
