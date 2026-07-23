@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = INTERFACE_DEF
-
 
 */
 
