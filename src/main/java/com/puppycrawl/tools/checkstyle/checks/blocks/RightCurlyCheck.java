@@ -160,10 +160,53 @@ public class RightCurlyCheck extends AbstractCheck {
         else if (shouldBeOnSameLine(option, details)) {
             violation = MSG_KEY_LINE_SAME;
         }
+        else if (shouldReportEmptyBlockInMultiBlock(option, details)) {
+            violation = MSG_KEY_LINE_ALONE;
+        }
         else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
         }
         return violation;
+    }
+
+    /**
+     * Checks if an empty block is part of a multi-block statement on a single line.
+     * According to Google Java Style 4.1.3, empty blocks in multi-block statements
+     * (if/else-if/else, try/catch/finally, do/while) should follow K&amp;R rules with
+     * proper line breaks, not the compact {} format.
+     *
+     * @param bracePolicy option for placing the right curly brace
+     * @param details Details for validation
+     * @return true if empty block is in multi-block statement on same line
+     */
+    private static boolean shouldReportEmptyBlockInMultiBlock(RightCurlyOption bracePolicy,
+                                                              Details details) {
+        final boolean isApplicable = bracePolicy == RightCurlyOption.SAME
+                && isEmptyBlock(details.lcurly());
+        final boolean shouldReport;
+
+        if (isApplicable) {
+            final int nextTokenType = details.nextToken().getType();
+            final boolean isMultiBlockContinuation = TokenUtil.isOfType(nextTokenType,
+                    TokenTypes.LITERAL_ELSE, TokenTypes.LITERAL_CATCH,
+                    TokenTypes.LITERAL_FINALLY);
+            shouldReport = isMultiBlockContinuation
+                    && TokenUtil.areOnSameLine(details.lcurly(), details.rcurly());
+        }
+        else {
+            shouldReport = false;
+        }
+        return shouldReport;
+    }
+
+    /**
+     * Checks if a block is empty (contains only the closing brace).
+     *
+     * @param slist the SLIST token representing the block
+     * @return true if the block contains only the closing brace
+     */
+    private static boolean isEmptyBlock(DetailAST slist) {
+        return slist.getChildCount() == 1;
     }
 
     /**
