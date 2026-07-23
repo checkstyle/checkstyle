@@ -291,6 +291,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.POST_DEC,
             TokenTypes.INDEX_OP,
             TokenTypes.DOT,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -345,6 +346,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.INDEX_OP,
             TokenTypes.DOT,
             TokenTypes.LITERAL_NEW,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -377,22 +379,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             // A literal (numeric or string) surrounded by parentheses.
             else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
                 parentToSkip = ast.getParent();
-                if (type == TokenTypes.STRING_LITERAL) {
-                    log(ast, MSG_STRING,
-                        chopString(ast.getText()));
-                }
-                else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                    // Strip newline control characters to keep message as single-line, add
-                    // quotes to make string consistent with STRING_LITERAL
-                    final String logString = QUOTE
-                        + NEWLINE.matcher(
-                            ast.getFirstChild().getText()).replaceAll("\\\\n")
-                        + QUOTE;
-                    log(ast, MSG_STRING, chopString(logString));
-                }
-                else {
-                    log(ast, MSG_LITERAL, ast.getText());
-                }
+                logLiteral(ast, type);
             }
             // The rhs of an assignment surrounded by parentheses.
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
@@ -402,6 +389,56 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                     log(ast, MSG_ASSIGN);
                 }
             }
+            // A type cast surrounded by parentheses.
+            else if (surrounded && type == TokenTypes.TYPECAST) {
+                logUnnecessaryTypeCast(ast);
+            }
+        }
+    }
+
+    /**
+     * Logs the appropriate message for a parenthesized literal.
+     *
+     * @param ast the literal token
+     * @param type the token type
+     */
+    private void logLiteral(DetailAST ast, int type) {
+        if (type == TokenTypes.STRING_LITERAL) {
+            log(ast, MSG_STRING,
+                chopString(ast.getText()));
+        }
+        else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+            // Strip newline control characters to keep message as single-line, add
+            // quotes to make string consistent with STRING_LITERAL
+            final String logString = QUOTE
+                + NEWLINE.matcher(
+                    ast.getFirstChild().getText()).replaceAll("\\\\n")
+                + QUOTE;
+            log(ast, MSG_STRING, chopString(logString));
+        }
+        else {
+            log(ast, MSG_LITERAL, ast.getText());
+        }
+    }
+
+    /**
+     * Logs a warning for a surrounded TYPECAST when the outer parentheses are
+     * not required by member access, method reference, or another rule's report.
+     *
+     * @param ast the TYPECAST node
+     */
+    private void logUnnecessaryTypeCast(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+        final boolean isWrappedByOtherRule =
+                TokenUtil.isOfType(parentType, ASSIGNMENTS)
+                || parentType == TokenTypes.EXPR;
+        final boolean isReceiverOfMemberAccess =
+                parentType == TokenTypes.DOT
+                || parentType == TokenTypes.INDEX_OP
+                || parentType == TokenTypes.METHOD_REF;
+        if (!isWrappedByOtherRule && !isReceiverOfMemberAccess) {
+            log(ast.getPreviousSibling(), MSG_EXPR);
         }
     }
 
