@@ -80,7 +80,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * This regexp is used to convert multiline javadoc to single-line without stars.
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
-            Pattern.compile("\n[ \\t]+(\\*)|^[ \\t]+(\\*)");
+            Pattern.compile("\n[ \\t]*(\\*)|^[ \\t]*(\\*)");
 
     /**
      * This regexp is used to remove html tags, whitespace, and asterisks from a string.
@@ -221,6 +221,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 case JavadocCommentsTokenTypes.HTML_ELEMENT ->
                     isDefinedFirst = isHtmlTagWithoutText(currentAst);
                 case JavadocCommentsTokenTypes.LEADING_ASTERISK,
+                     JavadocCommentsTokenTypes.LEADING_ASTERISKS,
                      JavadocCommentsTokenTypes.NEWLINE -> {
                     // Ignore formatting tokens
                 }
@@ -326,7 +327,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         DetailNode curNode = descriptionNode;
         while (curNode != null) {
             if (curNode.getFirstChild() == null
-                && curNode.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
+                && !isLeadingAsterisk(curNode)) {
                 customTagContent.append(curNode.getText());
             }
 
@@ -339,6 +340,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             curNode = toVisit;
         }
         return customTagContent.toString();
+    }
+
+    /**
+     * Checks whether the given node is a leading asterisk.
+     *
+     * @param node the node to check
+     * @return true if the node is a leading asterisk
+     */
+    private static boolean isLeadingAsterisk(DetailNode node) {
+        return node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                || node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISKS;
     }
 
     /**
