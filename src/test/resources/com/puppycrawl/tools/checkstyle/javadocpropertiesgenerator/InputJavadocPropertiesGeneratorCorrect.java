@@ -20,7 +20,6 @@ public class InputJavadocPropertiesGeneratorCorrect {
     /**
      * A left curly brace (<code>{</code>).
      *
-     * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int LCURLY = 4;
 
