@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.misc.*; // violation, 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example1 {}
 // xdoc section -- end

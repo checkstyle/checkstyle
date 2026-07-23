@@ -44,7 +44,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
-// violation above, 'Package annotations must be in the package-info.java info.'
+// violation above 'Package annotations must be in the package-info.java info.'
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>

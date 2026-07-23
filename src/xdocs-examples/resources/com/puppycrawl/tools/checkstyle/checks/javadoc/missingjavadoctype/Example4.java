@@ -22,9 +22,9 @@ public class Example4 {
   /** Javadoc. */
   public class A {}
 
-  private class B {}   // violation, 'Missing a Javadoc comment'
+  private class B {}   // violation 'Missing a Javadoc comment'
 
-  protected class C {} // violation, 'Missing a Javadoc comment'
+  protected class C {} // violation 'Missing a Javadoc comment'
   /** Javadoc. */
   class D {}
   /** Javadoc. */
@@ -36,7 +36,7 @@ public class Example4 {
   /** Javadoc. */
   private class E {}
 
-  public interface F {} // violation, 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment'
   /** Javadoc. */
   public interface G {}
 }

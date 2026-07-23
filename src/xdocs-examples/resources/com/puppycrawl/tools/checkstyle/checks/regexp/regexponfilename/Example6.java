@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
 /*
 // xdoc section -- start
 .../TestExample2.xml
-.../Example1.java // violation, 'File match folder pattern'
+.../Example1.java // violation 'File match folder pattern'
 // xdoc section -- end
 */
 class Example6 {}

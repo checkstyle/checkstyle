@@ -29,7 +29,7 @@ public class InputHiddenFieldLambdas {
     Integer value = new Integer(1);
     {
         numbers.forEach((Integer value) -> String.valueOf(value));
-        // violation above, ''value' hides a field'
+        // violation above ''value' hides a field'
     }
 
     /**
@@ -62,7 +62,7 @@ public class InputHiddenFieldLambdas {
     static String languageCode = new String();
     {
         languageCodes.forEach(languageCode -> String.valueOf(languageCode));
-        // violation above, ''languageCode' hides a field'
+        // violation above ''languageCode' hides a field'
     }
 
     /**
@@ -71,7 +71,7 @@ public class InputHiddenFieldLambdas {
      */
     int number = 1;
     Optional<Object> foo1(int i) {
-        return Optional.of(5).map(number -> { // violation, ''number' hides a field'
+        return Optional.of(5).map(number -> { // violation ''number' hides a field'
             if (number == 1) return true;
             else if (number == 2) return true;
             else return false;
@@ -84,7 +84,7 @@ public class InputHiddenFieldLambdas {
      */
     static long id = 1;
     Optional<Object> foo2(int i) {
-        return Optional.of(5).map(id -> { // violation, ''id' hides a field'
+        return Optional.of(5).map(id -> { // violation ''id' hides a field'
             if (id == 1) return true;
             else if (id == 2) return true;
             else return false;
@@ -113,7 +113,7 @@ public class InputHiddenFieldLambdas {
     private void foo4() {
         List<String> acceptableNotes = Arrays.asList("C", "D", "E", "F", "G", "A", "B");
         acceptableNotes.forEach(note -> String.valueOf(note));
-        // violation above, ''note' hides a field'
+        // violation above ''note' hides a field'
     }
 
     /**
@@ -153,7 +153,7 @@ public class InputHiddenFieldLambdas {
     Double doubleValue = 8.5;
     {
         Function <Integer, Double> a =(Integer integerValue, Double doubleValue) -> {
-        // violation above, ''doubleValue' hides a field'
+        // violation above ''doubleValue' hides a field'
             return  integerValue + doubleValue;
         };
         String.valueOf(a.apply(2, 2.2));
@@ -185,7 +185,7 @@ public class InputHiddenFieldLambdas {
     Integer first = 1;
     {
         Function<Integer, Character> turnToZ = (first, second) -> 'z';
-        // violation above, ''first' hides a field'
+        // violation above ''first' hides a field'
     }
 
     @FunctionalInterface
@@ -212,7 +212,7 @@ public class InputHiddenFieldLambdas {
     {
         simpleNumbers.forEach(digit -> {
             FunctionWithOneParameter<Double> strangeAdder = (mPi -> mPi+= digit);
-            // violation above, ''mPi' hides a field'
+            // violation above ''mPi' hides a field'
         });
     }
 
@@ -244,7 +244,7 @@ public class InputHiddenFieldLambdas {
      */
     Object someObject = new Object();
     FunctionWithOneParameter objectToString = (Object someObject) -> {
-    // violation above, ''someObject' hides a field'
+    // violation above ''someObject' hides a field'
         return someObject.toString();
     };
 
@@ -253,7 +253,7 @@ public class InputHiddenFieldLambdas {
      * hides other field
      */
     FunctionWithOneParameter otherObjectToString = someObject -> {
-    // violation above, ''someObject' hides a field'
+    // violation above ''someObject' hides a field'
         return someObject.toString();
     };
 

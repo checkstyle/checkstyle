@@ -30,16 +30,16 @@ class InputFinalParameters9
         try {
             String.CASE_INSENSITIVE_ORDER.equals("");
         }
-        catch (NullPointerException npe) { // violation, 'npe' should be fina;
+        catch (NullPointerException npe) { // violation 'npe' should be fina;
             npe.getMessage();
         }
         catch (@MyAnnotation33 final ClassCastException e) {
             e.getMessage();
         }
-        catch (RuntimeException e) { // violation, 'e' should be final
+        catch (RuntimeException e) { // violation 'e' should be final
             e.getMessage();
         }
-        catch (@MyAnnotation33 NoClassDefFoundError e) { // violation, 'e' should be final
+        catch (@MyAnnotation33 NoClassDefFoundError e) { // violation 'e' should be final
             e.getMessage();
         }
     }

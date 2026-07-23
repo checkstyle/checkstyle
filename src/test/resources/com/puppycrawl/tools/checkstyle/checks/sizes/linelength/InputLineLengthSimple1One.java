@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
  **/
 final class InputLineLengthSimple1One
 {
-    // Long line --------------------------------------------------- // violation, '80,90'
+    // Long line --------------------------------------------------- // violation '80,89'
     // Contains a tab ->	<-
     // Contains trailing whitespace ->
 

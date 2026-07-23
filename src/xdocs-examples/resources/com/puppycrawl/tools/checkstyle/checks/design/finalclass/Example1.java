@@ -16,7 +16,7 @@ public class Example1 { // ok, since it has a public constructor
     }
   }
 
-  class B { // violation, 'Class B should be declared as final.'
+  class B { // violation 'Class B should be declared as final.'
     private B() {
     }
   }
@@ -47,7 +47,7 @@ public class Example1 { // ok, since it has a public constructor
 
   class Class1 {
 
-    private class Class2 { // violation, 'Class Class2 should be declared as final'
+    private class Class2 { // violation 'Class Class2 should be declared as final'
     }
 
     public class Class3 {

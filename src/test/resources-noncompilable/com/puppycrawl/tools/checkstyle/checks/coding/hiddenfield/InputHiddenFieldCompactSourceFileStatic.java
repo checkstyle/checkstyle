@@ -14,7 +14,7 @@ tokens = VARIABLE_DEF, PARAMETER_DEF
 
 static String name = "default";
 
-void process(String name) { // violation, ''name' hides a field'
+void process(String name) { // violation ''name' hides a field'
     System.out.println(name);
 }
 

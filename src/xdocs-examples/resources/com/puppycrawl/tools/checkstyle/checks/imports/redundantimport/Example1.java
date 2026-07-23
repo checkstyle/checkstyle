@@ -12,9 +12,9 @@ package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 import static com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1.*; // ok, static import
 import static java.lang.Integer.MAX_VALUE; // ok, static import
 
-// violation below, 'Redundant import from the same package'
+// violation below 'Redundant import from the same package'
 import com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1;
-import java.lang.String; // violation, "Redundant import from the java.lang package"
+import java.lang.String; // violation "Redundant import from the java.lang package"
 import java.util.Scanner;
 import java.util.Scanner; // violation 'Duplicate import to line 18 - java.util.Scanner'
 

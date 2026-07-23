@@ -23,24 +23,24 @@ public class UseCase5 {
   public void DoMATH() {}
 
   public void throwsMethod() throws RuntimeException {}
-  // violation below, "'{' at column 36 should be on a new line."
+  // violation below "'{' at column 36 should be on a new line."
   final public void legacyMethod() {
     strictfp abstract class Legacy {}
   }
-  // violation below, "'{' at column 27 should be on a new line."
+  // violation below "'{' at column 27 should be on a new line."
   public void changeAge() {
     age = 24;
   }
-  // violation below, "'{' at column 28 should be on a new line."
+  // violation below "'{' at column 28 should be on a new line."
   public void testMethod() {
     int TestVariable;
     int WeirdName;
   }
-  // violation below, "'{' at column 31 should be on a new line."
-  public void sayHelloWorld() {// violation below, 'should be on a new line."
+  // violation below "'{' at column 31 should be on a new line."
+  public void sayHelloWorld() {// violation below 'should be on a new line."
     if (age > 0 && wordCount > 0) {
       System.out.println("Hello");
-    } // violation below, "'{' at column 23 should be on a new line."
+    } // violation below "'{' at column 23 should be on a new line."
     else if (age < 0) {
       System.out.println("World");
     }

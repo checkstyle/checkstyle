@@ -11,7 +11,7 @@ period = (default).
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 public class InputSummaryJavadocForbiddenFragmentsTabFormatted {
-	// violation below, 'Forbidden summary fragment'
+	// violation below 'Forbidden summary fragment'
 	/**
 	 * adds an element to the list.
 	 *

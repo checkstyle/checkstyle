@@ -15,7 +15,7 @@ public class InputMethodParamPadCheckRecordPattern {
 
     void test(Object obj) {
 
-        // violation below, ''(' is preceded with whitespace'
+        // violation below ''(' is preceded with whitespace'
         if (obj instanceof ColoredPoint (Point p, String s)) {
         }
 
@@ -32,7 +32,7 @@ public class InputMethodParamPadCheckRecordPattern {
             // 2 violations above:
             //              ''(' is preceded with whitespace'
             //              ''(' is preceded with whitespace'
-            // violation below, ''(' is preceded with whitespace'
+            // violation below ''(' is preceded with whitespace'
             case ColoredPoint (Point p, String s) -> {}
             case Point(int x, int y) -> {}
             default -> {}

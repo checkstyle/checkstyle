@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedtryresourceshouldbeu
 
 public class InputUnusedTryResourceShouldBeUnnamed {
     void test() {
-      // violation below, 'Unused try resource 'a' should be unnamed'
+      // violation below 'Unused try resource 'a' should be unnamed'
       try (AutoCloseable a = lock()) {}
       catch (Exception e) {}
 
@@ -21,7 +21,7 @@ public class InputUnusedTryResourceShouldBeUnnamed {
           System.out.println(e.getMessage());
       }
 
-      // violation below, 'Unused try resource 'e' should be unnamed'
+      // violation below 'Unused try resource 'e' should be unnamed'
       try (AutoCloseable e = lock()) {}
       catch (Exception e){
           System.out.println(e.getMessage());
@@ -52,7 +52,7 @@ public class InputUnusedTryResourceShouldBeUnnamed {
         try {}
         catch (Exception e){}
 
-        // violation below, 'Unused try resource 'autoCloseable2' should be unnamed'
+        // violation below 'Unused try resource 'autoCloseable2' should be unnamed'
         try (AutoCloseable autoCloseable2 = lock()){}
         catch (Exception e){}
 

@@ -120,7 +120,7 @@ public class Example1 {
         if (x &lt; -2) { return -1; }
         return 0;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 3'
+    // violation below 'max allowed for non-void methods/lambdas is 3'
     public int signB(int x) {
         if (x &lt; -2) { return -1; }
         if (x == 0) { return 0; }
@@ -159,14 +159,14 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
     public Example2() {}
-    // violation below, 'max allowed for void methods/constructors/lambdas is 0'
+    // violation below 'max allowed for void methods/constructors/lambdas is 0'
     public Example2(int i) { return; }
 
     public int signA(int x) {
         if (x &lt; -2) { return -1; }
         return 0;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 2'
+    // violation below 'max allowed for non-void methods/lambdas is 2'
     public int signB(int x) {
         if (x &lt; -2) { return -1; }
         if (x == 0) { return 0; }
@@ -182,7 +182,7 @@ public class Example2 {
     final Predicate&lt;Integer&gt; lambdaB = i -&gt; { return i &gt; 5; };
 
     public void methodA(int x) {}
-    // violation below, 'max allowed for void methods/constructors/lambdas is 0'
+    // violation below 'max allowed for void methods/constructors/lambdas is 0'
     public void methodB(int x) { return; }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -214,7 +214,7 @@ public class Example3 {
         if (x &lt; -2) { return -1; }
         return 0;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 2'
+    // violation below 'max allowed for non-void methods/lambdas is 2'
     public int signB(int x) {
         if (x &lt; -2) { return -1; }
         if (x == 0) { return 0; }
@@ -261,7 +261,7 @@ public class Example4 {
         if (x &lt; -2) { return -1; }
         return 0;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 3'
+    // violation below 'max allowed for non-void methods/lambdas is 3'
     public int signB(int x) {
         if (x &lt; -2) { return -1; }
         if (x == 0) { return 0; }
@@ -310,21 +310,21 @@ public class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
     public Example5() {}
-    // violation below, 'max allowed for void methods/constructors/lambdas is 0'
+    // violation below 'max allowed for void methods/constructors/lambdas is 0'
     public Example5(int i) { return; }
 
     public int signA(int x) {
         if (x &lt; -2) { return -1; }
         return 0;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 2'
+    // violation below 'max allowed for non-void methods/lambdas is 2'
     public int signB(int x) {
         if (x &lt; -2) { return -1; }
         if (x == 0) { return 0; }
         if (x &gt; 2) { return 2; }
         return 1;
     }
-    // violation below, 'max allowed for non-void methods/lambdas is 1'
+    // violation below 'max allowed for non-void methods/lambdas is 1'
     final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
         if (i &gt; 5) { return true; }
         return false;

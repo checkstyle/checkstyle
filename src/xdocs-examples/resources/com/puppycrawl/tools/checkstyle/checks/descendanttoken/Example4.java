@@ -37,7 +37,7 @@ class Example4 {
       catch (Exception ex) { }
     }
 
-    for (;;) { // violation, 'Count of 0 for 'FOR_CONDITION' descendant'
+    for (;;) { // violation 'Count of 0 for 'FOR_CONDITION' descendant'
       break;
     }
     int a = 1;

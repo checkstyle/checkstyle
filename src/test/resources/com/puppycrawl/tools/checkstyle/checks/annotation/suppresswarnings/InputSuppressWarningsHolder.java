@@ -27,14 +27,14 @@ com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.InputSuppress
     @SuppressWarnings(value =
 com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.InputSuppressWarningsHolder.UN_U)
     int f;
-    // violation below, 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings((1 != 1) ? "" : "UN_U")
     int g;
     @SuppressWarnings("un" + "used")
     int h;
     @SuppressWarnings((String) "UN_U")
     int i;
-    // violation below, 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings({})
     int j;
     @SuppressWarnings({UN_U})
@@ -42,7 +42,7 @@ com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.InputSuppress
 }
 
 class CustomSuppressWarnings {
-    // violation below, 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings
     private @interface SuppressWarnings {
     }

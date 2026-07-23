@@ -35,10 +35,10 @@ class Example8 {
 
   public static final int field4 = 42;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int field5 = 42;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final java.lang.String notes = null;
 
   // violation below, HashSet is mutable 'must be private'
@@ -59,16 +59,16 @@ class Example8 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
   // violation above, annotation not configured 'must be private'
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet<String> includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 // xdoc section -- end

@@ -33,7 +33,7 @@ public class InputAnnotationOnSameLinePatternVariables {
 
        @Deprecated int _ = 0;
 
-       // violation below, 'Annotation 'Deprecated' should be on the same line with its target.'
+       // violation below 'Annotation 'Deprecated' should be on the same line with its target.'
        @Deprecated
        int _ = 0;
     }

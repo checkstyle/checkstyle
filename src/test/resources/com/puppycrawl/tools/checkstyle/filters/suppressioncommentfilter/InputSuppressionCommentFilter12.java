@@ -26,6 +26,6 @@ package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
 class InputSuppressionCommentFilter12 {
 
     // SUPPRESS NAME low$price
-    private int low$price; // violation, 'Name 'low\$price' must match pattern'
+    private int low$price; // violation 'Name 'low\$price' must match pattern'
 
 }

@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 class UseCase5 {
   private int field1;
   private int field2;
-  // violation below, 'Count of 10 for 'METHOD_DEF' descendant'
+  // violation below 'Count of 10 for 'METHOD_DEF' descendant'
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 

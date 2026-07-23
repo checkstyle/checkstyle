@@ -38,7 +38,7 @@ class Example6 {
     FileWriter out = new FileWriter("path/to/output");
     out.write("something");
   }
-  // violation below, 'public member found'
+  // violation below 'public member found'
   public void testMethod3(){
     final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");

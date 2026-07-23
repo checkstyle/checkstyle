@@ -16,19 +16,19 @@ class InputHiddenField2Misc {
 
     abstract class InputHiddenFieldBug10845122 {
         String x;
-        public abstract void methodA(String x); // violation, ''x' hides a field'
+        public abstract void methodA(String x); // violation ''x' hides a field'
     }
 
     class Bug33709462 {
         private int xAxis;
-        public void setxAxis(int xAxis) { // violation, ''xAxis' hides a field'
+        public void setxAxis(int xAxis) { // violation ''xAxis' hides a field'
             this.xAxis = xAxis;
         }
     }
 
     class OneLetterField2 {
         int i;
-        void setI(int i) { // violation, ''i' hides a field'
+        void setI(int i) { // violation ''i' hides a field'
             this.i = i;
         }
         enum Inner {}

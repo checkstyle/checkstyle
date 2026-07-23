@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 public class InputCyclomaticComplexityRecords2 {
 
     record MyRecord2(boolean t, boolean f) {
-        public MyRecord2 { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
+        public MyRecord2 { // violation 'Cyclomatic Complexity is 11 (max allowed is 0).'
             int a = 1;
             int b = 1;
             int c = 1;
@@ -46,7 +46,7 @@ public class InputCyclomaticComplexityRecords2 {
     }
 
     record MyRecord4(boolean a, boolean b) {
-        public Record foo() { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
+        public Record foo() { // violation 'Cyclomatic Complexity is 11 (max allowed is 0).'
             int a = 1;
             int b = 1;
             int c = 1;

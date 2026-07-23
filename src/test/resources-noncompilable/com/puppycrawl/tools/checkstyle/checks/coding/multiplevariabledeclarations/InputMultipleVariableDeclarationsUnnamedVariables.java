@@ -8,13 +8,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding.multiplevariabledeclaratio
 
 public class InputMultipleVariableDeclarationsUnnamedVariables {
     void test() {
-        // violation below, 'Each variable declaration must be in its own statement'
+        // violation below 'Each variable declaration must be in its own statement'
         int _ = sideEffect(), _ = sideEffect();
-        // violation below, 'Each variable declaration must be in its own statement'
+        // violation below 'Each variable declaration must be in its own statement'
         int _ = sideEffect(), a = sideEffect();
-        // violation below, 'Only one variable definition per line allowed'
+        // violation below 'Only one variable definition per line allowed'
         int _ = sideEffect(); int _ = sideEffect();
-        // violation below, 'Only one variable definition per line allowed'
+        // violation below 'Only one variable definition per line allowed'
         int _ = sideEffect(); int b = sideEffect();
     }
 

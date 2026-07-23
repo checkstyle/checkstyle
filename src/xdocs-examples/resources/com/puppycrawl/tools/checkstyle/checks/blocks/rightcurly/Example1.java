@@ -14,7 +14,7 @@ public class Example1 {
     boolean f = false;
     if (f) {
       bar();
-    } // violation, 'should be on the same line'
+    } // violation 'should be on the same line'
     else {
       bar();
     }
@@ -23,10 +23,10 @@ public class Example1 {
     } else {
       bar();
     }
-    if (f) { bar(); } int i = 0; // violation, 'should be alone on a line.'
+    if (f) { bar(); } int i = 0; // violation 'should be alone on a line.'
     try {
       bar();
-    } // violation, 'should be on the same line'
+    } // violation 'should be on the same line'
     catch (Exception e) {
       bar();
     }

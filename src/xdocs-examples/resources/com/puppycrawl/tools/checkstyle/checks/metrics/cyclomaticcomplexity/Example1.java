@@ -28,7 +28,7 @@ class Example1 {
       } while (a==d);
     }
   }
-  // violation below, 'Cyclomatic Complexity is 13 (max allowed is 10)'
+  // violation below 'Cyclomatic Complexity is 13 (max allowed is 10)'
   public void testMethod2() {
     if (a == b) {
       fun1();

@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.useenhancedswitch;
 
 public class InputUseEnhancedSwitchSwitchExpressionsValidFallThrough {
     void testValidFallThrough(int x) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         String y = switch (x) {
             case 1:
             case 2:
@@ -18,7 +18,7 @@ public class InputUseEnhancedSwitchSwitchExpressionsValidFallThrough {
                 yield "Other";
         };
 
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         String yy = switch (x) {
             case 1, 2:
                 yield "One or Two";

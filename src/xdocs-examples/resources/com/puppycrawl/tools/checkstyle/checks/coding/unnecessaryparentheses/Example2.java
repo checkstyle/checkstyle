@@ -33,14 +33,14 @@ class Example2 {
 
   void method() {
     int x = 9, y = 8;
-    // violation below, 'Unnecessary parentheses around expression'
+    // violation below 'Unnecessary parentheses around expression'
     if (x >= 0 ^ (x <= 8 & y <= 11) ^ y >= 8) {
       return;
     }
     if (x >= 0 ^ x <= 8 & y <= 11 ^ y >= 8) {
       return;
     }
-    // violation below, 'Unnecessary parentheses around expression'
+    // violation below 'Unnecessary parentheses around expression'
     if (x >= 0 || (x <= 8 & y <= 11) && y >= 8) {
       return;
     }

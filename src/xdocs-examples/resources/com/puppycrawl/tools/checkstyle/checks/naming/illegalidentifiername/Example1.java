@@ -14,11 +14,11 @@ package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 // xdoc section -- start
 public class Example1 {
-  Integer var = 4; // violation, 'Name 'var' must match pattern'
+  Integer var = 4; // violation 'Name 'var' must match pattern'
   int record = 15;
   String yield = "yield";
 
-  String test$stuff = "test"; // violation, 'must match pattern'
+  String test$stuff = "test"; // violation 'must match pattern'
   String when = "today";
   record Record(Record r){}
 

@@ -77,9 +77,9 @@ public class IllegalTokenCheckTest
             "15:3: " + getCheckMessage(MSG_KEY,
                         "*\\n * Test for illegal tokens\\n "),
             "43:29: " + getCheckMessage(MSG_KEY,
-                        " some comment href // violation, 'is not allowed'\\n"),
+                        " some comment href // violation 'is not allowed'\\n"),
             "47:28: " + getCheckMessage(MSG_KEY,
-                        " some a href // violation, 'is not allowed'\\n"),
+                        " some a href // violation 'is not allowed'\\n"),
         };
         verifyWithInlineConfigParser(path, expected);
     }

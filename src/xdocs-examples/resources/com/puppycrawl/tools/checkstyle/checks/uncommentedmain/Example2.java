@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 // xdoc section -- start
 class Example2 {
-  // violation below, 'Uncommented main method found'
+  // violation below 'Uncommented main method found'
   public static void main(String... args) {
   }
 

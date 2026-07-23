@@ -24,7 +24,7 @@ public class UseCase1 {
   }
 
   public void case2(long timeNow, int hh, int min){
-    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
+    // violation below 'variable 'minutes' declaration and its first usage is 6.'
     int minutes = min + 5000;
     Calendar cal = Calendar.getInstance();
     cal.setTimeInMillis(timeNow);

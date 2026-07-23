@@ -331,7 +331,7 @@ public class UseCase1 {
   }
 
   public void testMethod2()
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -364,7 +364,7 @@ public class UseCase2 {
     age = 24;
   }
   public void changeNumber(int number) {
-    // violation below, 'Reference to instance variable 'number' needs "this.".'
+    // violation below 'Reference to instance variable 'number' needs "this.".'
     number = number;
   }
 }
@@ -396,7 +396,7 @@ public class UseCase3 {
   public void throwsMethod() throws RuntimeException {
   }
 
-  // violation below, 'Throwing 'RuntimeException' is not allowed.'
+  // violation below 'Throwing 'RuntimeException' is not allowed.'
   public void sampleMethod() throws RuntimeException {
   }
 }
@@ -434,9 +434,9 @@ public class UseCase4 {
     final int num = 10;
   }
 
-  // violation below, 'Name 'TestMethod2' must match pattern'
+  // violation below 'Name 'TestMethod2' must match pattern'
   public void TestMethod2() {
-    // violation below, 'Name 'num' must match pattern'
+    // violation below 'Name 'num' must match pattern'
     final int num = 10;
   }
 }
@@ -488,10 +488,10 @@ abstract class UseCase6 {
   // filtered violation above 'Name 'MyMethod' must match pattern'
 }
 
-// violation below, 'Name 'AnotherClass' must match pattern'
+// violation below 'Name 'AnotherClass' must match pattern'
 abstract class AnotherClass {
   public void MyMethod() {}
-  // violation above, 'Name 'MyMethod' must match pattern'
+  // violation above 'Name 'MyMethod' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="UseCase7-config">
@@ -516,7 +516,7 @@ class UseCase7 {
   public void MyMethod1() {}
   // filtered violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
-  // violation below, 'Name 'MyMethod3' must match pattern'
+  // violation below 'Name 'MyMethod3' must match pattern'
   public void MyMethod3() {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -545,7 +545,7 @@ public class UseCase8 {
   public void testMethod() {
     // filtered violation below 'Name 'testVariable1' must match pattern'
     final int testVariable1 = 10;
-    // violation below, 'Name 'testVariable2' must match pattern'
+    // violation below 'Name 'testVariable2' must match pattern'
     final int testVariable2 = 10;
   }
 }

@@ -88,7 +88,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.misc.*; // violation, 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
@@ -113,9 +113,9 @@ public class Example1 {}
           <li><b>java.sql.Connection</b> is inside java.sql package</li>
         </ul>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.io.*; // violation, 'Illegal import'
+import java.io.*; // violation 'Illegal import'
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
@@ -148,12 +148,12 @@ public class Example2 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
-import java.util.Date; // violation, 'Illegal import'
-import sun.misc.*; // violation, 'Illegal import'
+import java.util.Date; // violation 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example3 {}
 </code></pre></div><hr class="example-separator"/>
@@ -187,10 +187,10 @@ public class Example3 {}
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
-import java.util.List; // violation, 'Illegal import'
-import java.util.Enumeration; // violation, 'Illegal import'
-import java.util.Arrays; // violation, 'Illegal import'
-import java.util.Date; // violation, 'Illegal import'
+import java.util.List; // violation 'Illegal import'
+import java.util.Enumeration; // violation 'Illegal import'
+import java.util.Arrays; // violation 'Illegal import'
+import java.util.Date; // violation 'Illegal import'
 import sun.misc.*;
 
 public class Example4 {}
@@ -222,12 +222,12 @@ public class Example4 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
-import java.util.List; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
+import java.util.List; // violation 'Illegal import'
 import java.util.Enumeration;
-import java.util.Arrays; // violation, 'Illegal import'
+import java.util.Arrays; // violation 'Illegal import'
 import java.util.Date;
-import sun.misc.*; // violation, 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example5 {}
 </code></pre></div>
@@ -253,10 +253,10 @@ public class Example5 {}
             </ul>
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import module java.base; // violation, 'Illegal import'
+import module java.base; // violation 'Illegal import'
 import module java.xml;
 import module java.sql;
-import module java.logging; // violation, 'Illegal import'
+import module java.logging; // violation 'Illegal import'
 import module java.naming;
 
 public class Example6 {}

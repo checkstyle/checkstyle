@@ -16,8 +16,8 @@ import javax.annotation.processing.Generated;
 // xdoc section -- start
 
 public class UseCase9 {
-  int age = 23; // violation, "'23' is a magic number."
-  private int wordCount = 11; // violation, "'11' is a magic number."
+  int age = 23; // violation "'23' is a magic number."
+  private int wordCount = 11; // violation "'11' is a magic number."
   public void SetSomeVar() {}  // violation "Name 'SetSomeVar' must match pattern"
   public void DoMATH() {}  // filtered violation "Name 'DoMATH' must match pattern"
 
@@ -28,7 +28,7 @@ public class UseCase9 {
   }
 
   public void changeAge() {
-    age = 24; // violation, "'24' is a magic number."
+    age = 24; // violation "'24' is a magic number."
   }
 
   public void testMethod() {
@@ -46,13 +46,13 @@ public class UseCase9 {
   }
 
   @Generated("first")
-  public void Test1() {} // violation, "Name 'Test1' must match pattern"
+  public void Test1() {} // violation "Name 'Test1' must match pattern"
 
   @Generated("second")
-  public void Test2() {} // violation, "Name 'Test2' must match pattern"
+  public void Test2() {} // violation "Name 'Test2' must match pattern"
 }
 // xdoc section -- end
 class Main {
-  int someField = 11; // violation, "'11' is a magic number."
+  int someField = 11; // violation "'11' is a magic number."
   void FOO() {} // filtered violation "Name 'FOO' must match pattern"
 }

@@ -18,7 +18,7 @@ class InputHiddenField4Misc {
     abstract static class InputHiddenFieldBug10845124 {
         String x;
 
-        public abstract void methodA(String x); // violation, ''x' hides a field'
+        public abstract void methodA(String x); // violation ''x' hides a field'
     }
 
     static class Bug33709464 {
@@ -41,7 +41,7 @@ class InputHiddenField4Misc {
          * if setterCanReturnItsClass == true then
          *     success as it is then considered to be a setter
          */
-        public PropertySetter34 setProp(int prop) // violation, ''prop' hides a field'
+        public PropertySetter34 setProp(int prop) // violation ''prop' hides a field'
         {
             this.prop = prop;
             return this;
@@ -66,7 +66,7 @@ class InputHiddenField4Misc {
          * if setterCanReturnItsClass == true then
          *     success as it is then considered to be a setter
          */
-        public PropertySetter44 setProp2(int prop2) // violation, ''prop2' hides a field'
+        public PropertySetter44 setProp2(int prop2) // violation ''prop2' hides a field'
         {
             this.prop2 = prop2;
             return this;

@@ -18,7 +18,7 @@ class InputHiddenFieldBasic
 
     public InputHiddenFieldBasic()
     {
-        int hidden = 0;  // violation, ''hidden' hides a field'
+        int hidden = 0;  // violation ''hidden' hides a field'
     }
 
     public InputHiddenFieldBasic(int hidden) //parameter shadows field
@@ -27,13 +27,13 @@ class InputHiddenFieldBasic
 
     public void shadow()
     {
-        int hidden = 0; //shadows field // violation, ''hidden' hides a field'
+        int hidden = 0; //shadows field // violation ''hidden' hides a field'
     }
 
     public void shadowFor()
     {
         for (int hidden = 0; hidden < 1; hidden++) { //shadows field
-        // violation above, ''hidden' hides a field'
+        // violation above ''hidden' hides a field'
         }
     }
 
@@ -47,7 +47,7 @@ class InputHiddenFieldBasic
 
         public Inner()
         {
-            int innerHidden = 0; //shadows field // violation, ''innerHidden' hides a field'
+            int innerHidden = 0; //shadows field // violation ''innerHidden' hides a field'
         }
 
         public Inner(int innerHidden) //shadows field
@@ -56,17 +56,17 @@ class InputHiddenFieldBasic
 
         private void innerShadow()
         {
-            int innerHidden = 0; //shadows inner field // violation, ''innerHidden' hides a field'
-            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
+            int innerHidden = 0; //shadows inner field // violation ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation ''hidden' hides a field'
         }
 
         private void innerShadowFor()
         {
             for (int innerHidden = 0; innerHidden < 1; innerHidden++) {
-            // violation above, ''innerHidden' hides a field'
+            // violation above ''innerHidden' hides a field'
             }
             //shadows outer field
-            for (int hidden = 0; hidden < 1; hidden++) { // violation, ''hidden' hides a field'
+            for (int hidden = 0; hidden < 1; hidden++) { // violation ''hidden' hides a field'
             }
         }
 
@@ -78,12 +78,12 @@ class InputHiddenFieldBasic
         }
 
         {
-            int innerHidden = 0;//shadows inner field // violation, ''innerHidden' hides a field'
-            int hidden = 0; //shadows outer field // violation, ''hidden' hides a field'
+            int innerHidden = 0;//shadows inner field // violation ''innerHidden' hides a field'
+            int hidden = 0; //shadows outer field // violation ''hidden' hides a field'
         }
     }
 
     {
-        int hidden = 0;//shadows field // violation, ''hidden' hides a field'
+        int hidden = 0;//shadows field // violation ''hidden' hides a field'
     }
 }

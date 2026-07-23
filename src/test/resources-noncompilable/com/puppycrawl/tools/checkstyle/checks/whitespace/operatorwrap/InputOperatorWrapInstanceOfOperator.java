@@ -13,13 +13,13 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
 public class InputOperatorWrapInstanceOfOperator {
     void test(Object o) {
-        // violation below, ''instanceof' should be on a new line.'
+        // violation below ''instanceof' should be on a new line.'
         if (o instanceof
                 Integer) {}
 
         if (o instanceof Integer) {}
 
-        // violation below, ''instanceof' should be on a new line.'
+        // violation below ''instanceof' should be on a new line.'
         if (o instanceof
                 Integer i) {}
 
@@ -31,11 +31,11 @@ public class InputOperatorWrapInstanceOfOperator {
     }
 
     void test2(Object o) {
-        // violation below, ''instanceof' should be on a new line.'
+        // violation below ''instanceof' should be on a new line.'
         boolean a = o instanceof
                 Integer;
         boolean b = o instanceof Integer;
-        // violation below, ''instanceof' should be on a new line.'
+        // violation below ''instanceof' should be on a new line.'
         boolean c = o instanceof
                 Integer i;
         boolean d = o instanceof Integer i;
@@ -45,7 +45,7 @@ public class InputOperatorWrapInstanceOfOperator {
 
     void test3(Object o) {
        switch (o) {
-           // violation below, ''instanceof' should be on a new line.'
+           // violation below ''instanceof' should be on a new line.'
            case Number n when n instanceof
                    Integer: { } break;
            default: { }
@@ -55,7 +55,7 @@ public class InputOperatorWrapInstanceOfOperator {
            default: { }
        }
        switch (o) {
-           // violation below, ''instanceof' should be on a new line.'
+           // violation below ''instanceof' should be on a new line.'
            case Number i when i instanceof
                    Integer _ : { } break;
            default: { }
@@ -68,7 +68,7 @@ public class InputOperatorWrapInstanceOfOperator {
     }
 
     void test4(Object o) {
-        // violation below, ''instanceof' should be on a new line.'
+        // violation below ''instanceof' should be on a new line.'
         if (o instanceof
                 Point(int x, int y)) {}
 
@@ -78,7 +78,7 @@ public class InputOperatorWrapInstanceOfOperator {
                 instanceof Point(int x, int y)) {}
 
         switch (o) {
-            // violation below, ''instanceof' should be on a new line.'
+            // violation below ''instanceof' should be on a new line.'
             case Object obj when obj instanceof
                     Point(int _, int _): {} break;
             default: {}

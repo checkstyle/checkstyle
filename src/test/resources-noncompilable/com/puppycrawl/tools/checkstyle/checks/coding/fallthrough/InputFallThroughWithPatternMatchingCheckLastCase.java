@@ -15,7 +15,7 @@ public class InputFallThroughWithPatternMatchingCheckLastCase {
         switch (o) {
             case Integer i when i > 0:
                 System.out.println("Positive integer");
-            // violation below, 'Fall\ through from previous branch of the switch'
+            // violation below 'Fall\ through from previous branch of the switch'
             case String _ when o.toString().isEmpty():
                 System.out.println("empty string");
             default:
@@ -29,7 +29,7 @@ public class InputFallThroughWithPatternMatchingCheckLastCase {
             case Integer i when i > 0: {
                 System.out.println("Positive integer");
             }
-            // violation below, 'Fall\ through from previous branch of the switch'
+            // violation below 'Fall\ through from previous branch of the switch'
             case String _ when o.toString().isEmpty(): {
                 System.out.println("empty string");
             }
@@ -44,7 +44,7 @@ public class InputFallThroughWithPatternMatchingCheckLastCase {
         int x = switch (o) {
             case Integer i when i > 0:
                 System.out.println("Positive integer");
-            // violation below, 'Fall\ through from previous branch of the switch'
+            // violation below 'Fall\ through from previous branch of the switch'
             case String _ when o.toString().isEmpty():
                 yield 2;
             default:

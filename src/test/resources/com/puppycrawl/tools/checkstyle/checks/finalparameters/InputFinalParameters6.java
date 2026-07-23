@@ -15,13 +15,13 @@ package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 class InputFinalParameters6
 {
     /** methods with complicated types of the parameters. */
-    void methodA(java.lang.String aParam) { // violation, 'aParam' should be final
+    void methodA(java.lang.String aParam) { // violation 'aParam' should be final
     }
 
-    void methodB(String[] args) { // violation, 'args' should be final
+    void methodB(String[] args) { // violation 'args' should be final
     }
 
-    void methodC(java.lang.String[] args) { // violation, 'args' should be final
+    void methodC(java.lang.String[] args) { // violation 'args' should be final
     }
 
     /** some catch blocks */

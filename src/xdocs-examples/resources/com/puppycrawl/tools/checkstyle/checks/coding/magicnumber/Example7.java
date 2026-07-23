@@ -11,13 +11,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 // xdoc section -- start
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example7 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);

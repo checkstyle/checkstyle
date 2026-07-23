@@ -44,9 +44,9 @@ public class InputWhitespaceAfterBad {
 
   /** Some javadoc. */
   public void check3(int...a) { // violation ''...' is not followed by whitespace.'
-    // violation below, ''->' is not followed by whitespace.'
+    // violation below ''->' is not followed by whitespace.'
     Runnable r2 = () ->String.valueOf("Hello world two!");
-    // violation below, ''switch' is not followed by whitespace.'
+    // violation below ''switch' is not followed by whitespace.'
     switch(a[0]) {
       default:
         break;
@@ -55,7 +55,7 @@ public class InputWhitespaceAfterBad {
 
   /** Some javadoc. */
   public void check4() throws java.io.IOException {
-    // violation below, ''try' is not followed by whitespace.'
+    // violation below ''try' is not followed by whitespace.'
     try(java.io.InputStream ignored = System.in;) {}
   }
 

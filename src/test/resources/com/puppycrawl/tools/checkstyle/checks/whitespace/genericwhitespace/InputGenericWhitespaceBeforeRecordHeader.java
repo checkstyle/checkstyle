@@ -14,7 +14,7 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 
 public class InputGenericWhitespaceBeforeRecordHeader {
     record License<T>() {}
-    record Person<T> () {} // violation, ''>' is followed by whitespace.'
+    record Person<T> () {} // violation ''>' is followed by whitespace.'
     record Session < T > (T a) {}
     // 4 violations above:
     //                    ''<' is followed by whitespace.'
@@ -33,7 +33,7 @@ public class InputGenericWhitespaceBeforeRecordHeader {
                 //                    ''<' is preceded with whitespace.'
                 //                    ''>' is followed by an illegal character.'
 
-                record Achievements<T> () {} // violation, ''>' is followed by whitespace.'
+                record Achievements<T> () {} // violation ''>' is followed by whitespace.'
             }
         }
     }
@@ -65,7 +65,7 @@ public class InputGenericWhitespaceBeforeRecordHeader {
             //                    ''>' is followed by whitespace.'
 
             InnerClass.innerMethod(new Session<?> []{}, true);
-            // violation above, ''>' is followed by whitespace.'
+            // violation above ''>' is followed by whitespace.'
         }
 
         return switch (ssn) {

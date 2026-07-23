@@ -79,17 +79,17 @@ class SingleLine {}
 
 /**
 
- */ // violation above, 'Javadoc line should start with leading asterisk'
+ */ // violation above 'Javadoc line should start with leading asterisk'
 class BlankLine {}
 
 /** Wrapped
     single-line comment */
-// violation above, 'Javadoc line should start with leading asterisk'
+// violation above 'Javadoc line should start with leading asterisk'
 class Wrapped {}
 
 /**
   * &lt;pre&gt;
-    int value; // violation, 'Javadoc line should start with leading asterisk'
+    int value; // violation 'Javadoc line should start with leading asterisk'
   * &lt;/pre&gt;
   */
 class Example1 {}

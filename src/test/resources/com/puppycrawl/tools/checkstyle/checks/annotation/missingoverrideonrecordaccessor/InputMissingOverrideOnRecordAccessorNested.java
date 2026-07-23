@@ -18,7 +18,7 @@ public record InputMissingOverrideOnRecordAccessorNested(String outer) {
     public record Inner(String inner) {
 
         public String inner() {
-// violation above, 'Record component accessor method must include @java.lang.Override annotation.'
+// violation above 'Record component accessor method must include @java.lang.Override annotation.'
             return inner.toLowerCase();
         }
     }

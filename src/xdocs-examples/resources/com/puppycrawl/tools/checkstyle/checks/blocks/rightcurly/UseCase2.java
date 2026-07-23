@@ -51,7 +51,7 @@ public class UseCase2 {
     }
     switch (mode) {
       case 1: x = 1; break;
-      default: x = 0; } // violation, 'should be alone on a line.'
+      default: x = 0; } // violation 'should be alone on a line.'
   }
 }
 // xdoc section -- end

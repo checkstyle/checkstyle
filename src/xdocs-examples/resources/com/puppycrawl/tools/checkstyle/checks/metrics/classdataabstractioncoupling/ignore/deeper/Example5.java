@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 // xdoc section -- start
-// violation below, "Class Data Abstraction Coupling is 11 (max allowed is 7)."
+// violation below "Class Data Abstraction Coupling is 11 (max allowed is 7)."
 public class Example5 {
   private Set<Object> set = new HashSet<>();         // ok, ignored
   private Map<Object, Object> map = new HashMap<>(); // ok, ignored

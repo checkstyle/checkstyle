@@ -19,7 +19,7 @@ class UseCase7 {
   public void MyMethod1() {}
   // filtered violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
-  // violation below, 'Name 'MyMethod3' must match pattern'
+  // violation below 'Name 'MyMethod3' must match pattern'
   public void MyMethod3() {}
 }
 // xdoc section -- end

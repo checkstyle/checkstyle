@@ -12,14 +12,14 @@ import java.io.IOException;
 
 enum InputJavadocVariableTagsEnum
 {
-    CONSTANT_A, // violation, 'Missing a Javadoc comment
+    CONSTANT_A, // violation 'Missing a Javadoc comment
 
     /**
      *
      */
     CONSTANT_B,
 
-    CONSTANT_C // violation, 'Missing a Javadoc comment'
+    CONSTANT_C // violation 'Missing a Javadoc comment'
     {
         /**
          *
@@ -38,7 +38,7 @@ enum InputJavadocVariableTagsEnum
 @interface InputJavadocVariableTagsAnnotation
 {
     String someField();
-    int A_CONSTANT = 0; // violation, 'Missing a Javadoc comment'
+    int A_CONSTANT = 0; // violation 'Missing a Javadoc comment'
     /** Some javadoc. */
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */

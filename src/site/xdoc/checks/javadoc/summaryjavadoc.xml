@@ -76,7 +76,7 @@
         <p id="Example1-code"> Example1: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  // violation below, 'Summary javadoc is missing'
+  // violation below 'Summary javadoc is missing'
   /** */
   public String withoutJavadoc() { return ""; }
 
@@ -125,7 +125,7 @@ class Example1 {
         <p id="Example2-code"> Example2: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  // violation below, 'Summary javadoc is missing'
+  // violation below 'Summary javadoc is missing'
   /** */
   public String withoutJavadoc() { return ""; }
 
@@ -172,7 +172,7 @@ class Example2 {
         <p id="Example3-code"> Example3: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  // violation below, 'Summary javadoc is missing'
+  // violation below 'Summary javadoc is missing'
   /** */
   public String withoutJavadoc() { return ""; }
 

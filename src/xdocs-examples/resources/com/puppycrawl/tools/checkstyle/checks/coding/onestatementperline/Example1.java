@@ -19,8 +19,8 @@ import java.io.BufferedReader; import java.io.EOFException;
 
 public class Example1 {
   public void method1() {
-    int var1; int var2; // violation, 'Only one statement per line allowed.'
-    var1 = 1; var2 = 2; // violation, 'Only one statement per line allowed.'
+    int var1; int var2; // violation 'Only one statement per line allowed.'
+    var1 = 1; var2 = 2; // violation 'Only one statement per line allowed.'
   }
 
   public void method2() {
@@ -28,9 +28,9 @@ public class Example1 {
     // violation below 'Only one statement per line allowed.'
     Object obj1 = new Object(); Object obj2 = new Object();
     int var1 = 1
-    ; var2 = 2; // violation, 'Only one statement per line allowed.'
+    ; var2 = 2; // violation 'Only one statement per line allowed.'
     int o = 1, p = 2
-    , r = 5; int t; // violation, 'Only one statement per line allowed.'
+    , r = 5; int t; // violation 'Only one statement per line allowed.'
   }
 
   public void method3() throws IOException {

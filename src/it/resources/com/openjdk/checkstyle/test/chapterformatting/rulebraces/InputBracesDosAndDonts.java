@@ -35,7 +35,7 @@ public class InputBracesDosAndDonts {
 
         try {
             method1();
-        } // violation, 'should be on the same line'
+        } // violation 'should be on the same line'
         catch (Exception e) {
 
         }

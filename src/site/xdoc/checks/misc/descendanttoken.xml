@@ -131,7 +131,7 @@ class Example1 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation, 'Count of 0 for 'LITERAL_SWITCH' descendant'
+    switch (x) { // violation 'Count of 0 for 'LITERAL_SWITCH' descendant'
       case 1:
         break;
       case 2:
@@ -190,7 +190,7 @@ class Example2 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation, 'Count of 2 for 'LITERAL_SWITCH' descendant'
+    switch (x) { // violation 'Count of 2 for 'LITERAL_SWITCH' descendant'
       case 1:
         break;
       case 2:
@@ -327,7 +327,7 @@ class Example4 {
       catch (Exception ex) { }
     }
 
-    for (;;) { // violation, 'Count of 0 for 'FOR_CONDITION' descendant'
+    for (;;) { // violation 'Count of 0 for 'FOR_CONDITION' descendant'
       break;
     }
     int a = 1;
@@ -375,14 +375,14 @@ class Example5 {
         break;
     }
 
-    try { }    // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+    try { }    // violation 'Count of 0 for 'LITERAL_TRY' descendant'
     catch (Exception e) {
-      try { }  // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
       catch (Exception ex) { }
       return -1;
     }
     finally {
-      try { }  // violation, 'Count of 0 for 'LITERAL_TRY' descendant'
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
       catch (Exception ex) { }
     }
 
@@ -435,7 +435,7 @@ class Example6 {
     }
 
     try { }
-    catch (Exception e) {  // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+    catch (Exception e) {  // violation 'Count of 1 for 'LITERAL_CATCH' descendant'
       try { }
       catch (Exception ex) { }
       return -1;
@@ -494,12 +494,12 @@ class Example7 {
     }
 
     try { }
-    catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+    catch (Exception e) { // violation 'Count of 1 for 'LITERAL_CATCH' descendant'
       try { }
       catch (Exception ex) { }
       return -1;
     }
-    finally { // violation, 'Count of 1 for 'LITERAL_FINALLY' descendant '
+    finally { // violation 'Count of 1 for 'LITERAL_FINALLY' descendant '
       try { }
       catch (Exception ex) { }
     }
@@ -574,7 +574,7 @@ class Example12 {
       return 0;
     }
     assert a++ == 0;
-    ; // violation, 'Empty statement is not allowed'
+    ; // violation 'Empty statement is not allowed'
     return 2;
   }
 }
@@ -630,7 +630,7 @@ class Example14 {
       break;
     }
     int a = 1;
-    int b = 2; // violation below, 'Total count of 2 exceeds maximum count 1'
+    int b = 2; // violation below 'Total count of 2 exceeds maximum count 1'
     if (this == null || str == "abc") {
       return 0;
     }
@@ -750,7 +750,7 @@ class UseCase1 {
       catch (Exception ex) { }
     }
 
-    for (;;) {  // violation, 'Count of 0 for 'FOR_INIT' descendant'
+    for (;;) {  // violation 'Count of 0 for 'FOR_INIT' descendant'
       break;
     }
     int a = 1;
@@ -909,7 +909,7 @@ class UseCase4 {
 
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
-    // violation above, 'Count of 2 for 'LITERAL_THROWS' descendant'
+    // violation above 'Count of 2 for 'LITERAL_THROWS' descendant'
     switch (x) {
       case 1:
         break;
@@ -965,7 +965,7 @@ class UseCase4 {
 class UseCase5 {
   private int field1;
   private int field2;
-  // violation below, 'Count of 10 for 'METHOD_DEF' descendant'
+  // violation below 'Count of 10 for 'METHOD_DEF' descendant'
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
@@ -1177,7 +1177,7 @@ class UseCase8 {
     if (this == null || str == "abc") {
       return 0;
     }
-    assert a++ == 0; // violation, 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    assert a++ == 0; // violation 'Count of 1 for 'LITERAL_ASSERT' descendant'
     ;
     return 2;
   }

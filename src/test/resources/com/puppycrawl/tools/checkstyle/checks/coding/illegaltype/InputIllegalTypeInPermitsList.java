@@ -18,19 +18,19 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 class D { }
 
-// violation below, 'Usage of type 'D' is not allowed.'
+// violation below 'Usage of type 'D' is not allowed.'
 public class InputIllegalTypeInPermitsList extends D {
 
     sealed class D permits B, E { } // ok, We don't ban the instantiation of illegal types
 
-    // violation below, 'Usage of type 'D' is not allowed.'
+    // violation below 'Usage of type 'D' is not allowed.'
     sealed class E extends D permits C { }
 
     sealed class C extends E permits A { }
 
-    // violation below, 'Usage of type 'C' is not allowed.'
+    // violation below 'Usage of type 'C' is not allowed.'
     final class A extends C { }
 
-    // violation below, 'Usage of type 'D' is not allowed.'
+    // violation below 'Usage of type 'D' is not allowed.'
     final class B extends D { }
 }

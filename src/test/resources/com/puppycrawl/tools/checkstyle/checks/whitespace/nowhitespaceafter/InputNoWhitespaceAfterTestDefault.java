@@ -7,8 +7,8 @@ tokens = (default)ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT,
 
 */
 
-package com . puppycrawl // violation, ''.' is followed by whitespace'
-    .tools. // violation, ''.' is followed by whitespace'
+package com . puppycrawl // violation ''.' is followed by whitespace'
+    .tools. // violation ''.' is followed by whitespace'
     checkstyle.checks.whitespace.nowhitespaceafter;
 
 class InputNoWhitespaceAfterTestDefault
@@ -115,8 +115,8 @@ class InputNoWhitespaceAfterTestDefault
     private void boolTest()
     {
         boolean a = true;
-        boolean x = ! a; // violation, ''!' is followed by whitespace.'
-        int z = ~1 + ~ 2; // violation, ''~' is followed by whitespace.'
+        boolean x = ! a; // violation ''!' is followed by whitespace.'
+        int z = ~1 + ~ 2; // violation ''~' is followed by whitespace.'
     }
 
     /** division test **/
@@ -133,14 +133,14 @@ class InputNoWhitespaceAfterTestDefault
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest() // violation, ''.' is followed by whitespace.'
+    private java .lang.  String dotTest() // violation ''.' is followed by whitespace.'
     {
         Object o = new Object();
-        o. // violation, ''.' is followed by whitespace.'
+        o. // violation ''.' is followed by whitespace.'
             toString();
         o
             .toString();
-        o . toString(); // violation, ''.' is followed by whitespace.'
+        o . toString(); // violation ''.' is followed by whitespace.'
         return o.toString();
     }
 
@@ -268,7 +268,7 @@ class SpecialCasesInForLoop
                 }
             }};
         runs[0]
-. // violation, ''.' is followed by whitespace.'
+. // violation ''.' is followed by whitespace.'
  run()
 ;
     }
@@ -293,14 +293,14 @@ class SpecialCasesInForLoop
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
-    @ interface BAD{} // violation, ''@' is followed by whitespace.'
-    @   interface BAD2{} // violation, ''@' is followed by whitespace.'
-    @ // violation, ''@' is followed by whitespace.'
+    @ interface BAD{} // violation ''@' is followed by whitespace.'
+    @   interface BAD2{} // violation ''@' is followed by whitespace.'
+    @ // violation ''@' is followed by whitespace.'
     interface BAD3{}
     @interface Ok{}
 
     static {
-        int[]err = new int [50]; // violation, ''int' is followed by whitespace.'
+        int[]err = new int [50]; // violation ''int' is followed by whitespace.'
     }
 
     Object foo() {
@@ -312,5 +312,5 @@ class SpecialCasesInForLoop
         variable;
 
     int someStuff8
-    []; // violation, ''someStuff8' is followed by whitespace.'
+    []; // violation ''someStuff8' is followed by whitespace.'
 }

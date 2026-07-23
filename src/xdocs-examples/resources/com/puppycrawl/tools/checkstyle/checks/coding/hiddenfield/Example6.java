@@ -16,10 +16,10 @@ class Example6 {
   private String field;
   private String testField;
 
-  Example6(String testField) { // violation, ''testField' hides a field'
+  Example6(String testField) { // violation ''testField' hides a field'
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
@@ -28,7 +28,7 @@ class Example6 {
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 // xdoc section -- end
