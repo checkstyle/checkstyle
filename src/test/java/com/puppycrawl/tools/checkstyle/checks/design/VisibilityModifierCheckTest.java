@@ -445,4 +445,12 @@ public class VisibilityModifierCheckTest
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputVisibilityModifierCompactSourceFile.java"),
+                expected);
+    }
+
 }
