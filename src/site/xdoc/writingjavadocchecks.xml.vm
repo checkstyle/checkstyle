@@ -171,7 +171,7 @@ public class MyClass {
       </p>
       <ul>
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getDefaultJavadocTokens()">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getDefaultJavadocTokens()">
               getDefaultJavadocTokens()</a> - return int array of
           javadoc token types your Check is going to process.
           The array should contain int constants from
@@ -187,10 +187,10 @@ public class MyClass {
               DetailAST</a> token type.)
         </li>
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)">
           visitJavadocToken(DetailNode)</a> - it's a place you should put tree nodes processing.
           The argument is Javadoc tree node of type you described before in
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getDefaultJavadocTokens()">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getDefaultJavadocTokens()">
               getDefaultJavadocTokens()</a> method.
         </li>
       </ul>
@@ -348,7 +348,7 @@ JAVADOC_CONTENT -> JAVADOC_CONTENT [0:0]
           definition AST you should access the
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree
           from a javadoc Check. For this purpose use the
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getBlockCommentAst()">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getBlockCommentAst()">
               getBlockCommentAst()</a>
           method that returns a
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> node.
@@ -392,7 +392,7 @@ class MyCheck extends AbstractJavadocCheck {
           If your Check needs to perform a correlated traversal of both the Java code
           and its Javadoc (for example, to process specific Java tokens rather than
           just Javadoc tokens), you can override the
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)">
             visitToken(DetailAST)</a> method.
         </p>
         <p>
@@ -409,7 +409,7 @@ class MyCheck extends AbstractJavadocCheck {
           <code>CLASS_DEF</code>),
           access the Java AST node, and still trigger
           Javadoc parsing by manually calling
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)">
               <code>super.visitToken(blockCommentNode)</code></a>.
         </p>
         <p>
@@ -856,34 +856,34 @@ Checkstyle ends with 6 errors.
         There are four methods in the AbstractJavadocCheck class to control the processed
         <a href="apidocs/index.html">JavadocCommentsTokenTypes</a> -
         one setter
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;setJavadocTokens(java.lang.String...)">
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#setJavadocTokens(java.lang.String...)">
         setJavadocTokens()</a>, which is used to define a custom set (which is different
         from the default one) of the processed JavadocCommentsTokenTypes via config file and
         three getters, which have to be overridden:
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getDefaultJavadocTokens()">
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getDefaultJavadocTokens()">
         getDefaultJavadocTokens()</a>,
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getAcceptableJavadocTokens()">
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getAcceptableJavadocTokens()">
         getAcceptableJavadocTokens()</a>,
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getRequiredJavadocTokens()">
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getRequiredJavadocTokens()">
         getRequiredJavadocTokens()</a>.
       </p>
 
       <ul>
 
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;setJavadocTokens(java.lang.String...)">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#setJavadocTokens(java.lang.String...)">
           setJavadocTokens()</a> - method then define actual set of tokens to run on.
         </li>
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getDefaultJavadocTokens()">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getDefaultJavadocTokens()">
           getDefaultJavadocTokens()</a> - returns a set of
           JavadocCommentsTokenTypes which are processed in
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#visitJavadocToken(com.puppycrawl.tools.checkstyle.api.DetailNode)">
           visitJavadocToken()</a> method by default.
         </li>
 
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getRequiredJavadocTokens()">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getRequiredJavadocTokens()">
           getRequiredJavadocTokens()</a> - returns a set of JavadocCommentsTokenTypes which Check
           must be subscribed to for a valid execution. If the user wants to specify a custom set of
           JavadocCommentsTokenTypes then this set must contain all the JavadocCommentsTokenTypes
@@ -891,7 +891,7 @@ Checkstyle ends with 6 errors.
         </li>
 
         <li>
-          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html&#35;getAcceptableJavadocTokens()">
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html\#getAcceptableJavadocTokens()">
           getAcceptableJavadocTokens()</a> - returns a set, which contains all the
           JavadocCommentsTokenTypes that can be processed by the check. Both DefaultJavadocTokens
           and RequiredJavadocTokens and any custom set of JavadocCommentsTokenTypes are subsets of

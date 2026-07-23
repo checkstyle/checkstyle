@@ -316,6 +316,7 @@ public class InputOneStatementPerLine {
   public void foo5() {
     // a "forever" loop.
     for (;;){} // legal
+    // violation above ''{' is not preceded with whitespace'
   }
 
   /** Some javadoc. */

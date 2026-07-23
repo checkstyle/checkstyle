@@ -196,12 +196,18 @@
                                  | //SLIST[count(./*)=1][parent::LITERAL_CATCH and
                                  not(parent::LITERAL_CATCH/following-sibling::*)]"/>
     </module>
+    <module name="WhitespaceBeforeEmptyBody">
+      <property name="tokens"
+                value="CLASS_DEF, INTERFACE_DEF, RECORD_DEF, ENUM_DEF, ANNOTATION_DEF,
+                METHOD_DEF, LITERAL_WHILE, LITERAL_FOR, STATIC_INIT, LITERAL_NEW"/>
+    </module>
     <module name="RegexpSinglelineJava">
       <property name="format" value="\{[ ]+\}"/>
       <property name="message" value="Empty blocks should have no spaces. Empty blocks
                                    may only be represented as '{}' when not part of a
                                    multi-block statement (4.1.3)"/>
     </module>
+    <module name="SingleSpaceSeparator"/>
     <module name="OneStatementPerLine"/>
     <module name="MultipleVariableDeclarations"/>
     <module name="ArrayTypeStyle"/>
