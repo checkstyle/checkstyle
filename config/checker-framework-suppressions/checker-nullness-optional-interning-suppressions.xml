@@ -46,6 +46,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter fileText of AuditEvent constructor.</message>
+    <lineContent>final AuditEvent event = new AuditEvent(this, stripped, element, eventFileText);</lineContent>
+    <details>
+      found   : @Initialized @Nullable FileText
+      required: @Initialized @NonNull FileText
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleId of Violation constructor.</message>
     <lineContent>new String[] {ioe.getMessage()}, null, getClass(), null));</lineContent>
     <details>
@@ -68,7 +79,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, fileExtensions, cacheFile</message>
+    <message>the constructor does not initialize fields: basedir, moduleFactory, moduleClassLoader, childContext, fileExtensions, fileText, cacheFile</message>
     <lineContent>public Checker() {</lineContent>
   </checkerFrameworkError>
 
@@ -1107,6 +1118,17 @@
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/AuditEvent.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter fileText of AuditEvent constructor.</message>
+    <lineContent>this(src, fileName, violation, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull FileText
     </details>
   </checkerFrameworkError>
 
