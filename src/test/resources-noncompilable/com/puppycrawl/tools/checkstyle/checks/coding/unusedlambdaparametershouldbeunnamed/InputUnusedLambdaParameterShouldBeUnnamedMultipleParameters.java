@@ -22,10 +22,10 @@ public class InputUnusedLambdaParameterShouldBeUnnamedMultipleParameters {
             return "x" + "y";
         };
 
-        // violation below, 'Unused lambda parameter 'y' should be unnamed'
+        // violation below 'Unused lambda parameter 'y' should be unnamed'
         function = (x, y) -> x + "y";
 
-        // violation below, 'Unused lambda parameter 'x' should be unnamed'
+        // violation below 'Unused lambda parameter 'x' should be unnamed'
         function = (x, y) -> {
             return this.x + y;
         };
@@ -35,7 +35,7 @@ public class InputUnusedLambdaParameterShouldBeUnnamedMultipleParameters {
         //                  'Unused lambda parameter 'x' should be unnamed'
         //                  'Unused lambda parameter 'y' should be unnamed'
 
-        // violation below, 'Unused lambda parameter 'X' should be unnamed'
+        // violation below 'Unused lambda parameter 'X' should be unnamed'
         function = (X, Y) -> {
             X x = new X();
             return x.s() + Y;
@@ -49,7 +49,7 @@ public class InputUnusedLambdaParameterShouldBeUnnamedMultipleParameters {
             return x("x") + y("y");
         };
 
-        // violation below, 'Unused lambda parameter 'X' should be unnamed'
+        // violation below 'Unused lambda parameter 'X' should be unnamed'
         function = (X, Y) -> {
             Object a = new X();
             return a.toString() + Y.toString();
@@ -79,14 +79,14 @@ public class InputUnusedLambdaParameterShouldBeUnnamedMultipleParameters {
             return "x" + "y";
         };
 
-        // violation below, 'Unused lambda parameter 'x' should be unnamed'
+        // violation below 'Unused lambda parameter 'x' should be unnamed'
         function = (x, _) -> "x" + "y";
 
         function = (_, y) -> {
             return this.x + this.y + y;
         };
 
-        // violation below, 'Unused lambda parameter 'y' should be unnamed'
+        // violation below 'Unused lambda parameter 'y' should be unnamed'
         function = (_, y) -> {
             return this.x + this.y;
         };

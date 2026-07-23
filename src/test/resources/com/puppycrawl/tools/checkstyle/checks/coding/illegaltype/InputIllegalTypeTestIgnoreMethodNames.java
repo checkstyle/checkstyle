@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSuper {
-    private AbstractClass a = null; // violation, 'Usage of type AbstractClass is not allowed'.
+    private AbstractClass a = null; // violation 'Usage of type AbstractClass is not allowed'.
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
@@ -34,7 +34,7 @@ public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSu
     private class NotAnAbstractClass {}
 
     private java.util.TreeSet table1() { return null; }
-    // violation above, 'Usage of type 'java.util.TreeSet' is not allowed'
+    // violation above 'Usage of type 'java.util.TreeSet' is not allowed'
     private TreeSet table2() { return null; }
     static class SomeStaticClass {
 
@@ -44,7 +44,7 @@ public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSu
     private void table2(Integer i) {}
 
     private void getInitialContext(java.util.TreeSet v) {}
-    // violation above, 'Usage of type 'java.util.TreeSet' is not allowed'
+    // violation above 'Usage of type 'java.util.TreeSet' is not allowed'
 
     @Override
     public void foo(HashMap<?, ?> buffer) {} // ignore
@@ -61,9 +61,9 @@ public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSu
 }
 
 interface InputIllegalTypeSuperTestIgnoreMethodNames {
-    void foo(HashMap<?, ?> buffer); // violation, 'Usage of type HashMap is not allowed'.
+    void foo(HashMap<?, ?> buffer); // violation 'Usage of type HashMap is not allowed'.
 
-    HashMap<?, ?> foo(); // violation, 'Usage of type HashMap is not allowed'.
+    HashMap<?, ?> foo(); // violation 'Usage of type HashMap is not allowed'.
 
     Object bar();
 }

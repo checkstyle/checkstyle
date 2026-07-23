@@ -17,8 +17,8 @@ public class InputLocalVariableNameUnnamedVariables {
 
     public void testLocalVariables() {
         Queue<Integer> q = new PriorityQueue<>();
-        int __ = 0;   // violation, 'Name '__' must match pattern*'
-        int _result = 0; // violation, 'Name '_result' must match pattern*'
+        int __ = 0;   // violation 'Name '__' must match pattern*'
+        int _result = 0; // violation 'Name '_result' must match pattern*'
         q.add(1);
         q.add(2);
         for (Integer element : q) {
@@ -34,7 +34,7 @@ public class InputLocalVariableNameUnnamedVariables {
             var x1 = q.poll();
             var x2 = q.poll();
         }
-        for (Integer __ : q) {  // violation, 'Name '__' must match pattern*'
+        for (Integer __ : q) {  // violation 'Name '__' must match pattern*'
             var x1 = q.poll();
             var x2 = q.poll();
         }

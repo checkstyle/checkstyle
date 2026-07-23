@@ -112,7 +112,7 @@
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml
-.../Test Example1.xml // violation, 'File match folder pattern '' and file pattern '\s'.'
+.../Test Example1.xml // violation 'File match folder pattern '' and file pattern '\s'.'
 .../TestExample2.xml
 .../TestExample3.md
 .../TestExample4.xml
@@ -133,9 +133,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../checkstyle.xml
 .../Test Example1.xml
-.../TestExample2.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
+.../TestExample2.xml // violation 'xml files should not match '^TestExample\d+\.xml$''
 .../TestExample3.md
-.../TestExample4.xml // violation, 'xml files should not match '^TestExample\d+\.xml$''
+.../TestExample4.xml // violation 'xml files should not match '^TestExample\d+\.xml$''
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to forbid 'md' files except 'README.md file' in folders,
@@ -157,7 +157,7 @@
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
-.../TestExample3.md  // violation, 'No *.md files other than README.md'
+.../TestExample3.md  // violation 'No *.md files other than README.md'
 .../TestExample4.xml
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -179,7 +179,7 @@
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
-.../TestExample3.md  // violation, 'Only property and xml files to be located in the resource folder'
+.../TestExample3.md  // violation 'Only property and xml files to be located in the resource folder'
 .../TestExample4.xml
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -198,8 +198,8 @@
 </code></pre></div>
         <p id="Example5-code">Example5:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-.../checkstyle.xml    // violation, 'only filenames in camelcase is allowed'
-.../Test Example1.xml // violation, 'only filenames in camelcase is allowed'
+.../checkstyle.xml    // violation 'only filenames in camelcase is allowed'
+.../Test Example1.xml // violation 'only filenames in camelcase is allowed'
 .../TestExample2.xml
 .../TestExample3.md
 .../TestExample4.xml
@@ -220,7 +220,7 @@
         <p id="Example6-code">Example6:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../TestExample2.xml
-.../Example1.java // violation, 'File match folder pattern'
+.../Example1.java // violation 'File match folder pattern'
 </code></pre></div>
       </subsection>
 

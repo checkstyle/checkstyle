@@ -12,8 +12,8 @@ class InputJavadocVariableNoJavadoc3Package
 {
     public int i1;
     protected int i2;
-    int i3; // violation, 'Missing a Javadoc comment'
-    private int i4; // violation, 'Missing a Javadoc comment'
+    int i3; // violation 'Missing a Javadoc comment'
+    private int i4; // violation 'Missing a Javadoc comment'
 
     public void foo1() {}
     protected void foo2() {}
@@ -23,8 +23,8 @@ class InputJavadocVariableNoJavadoc3Package
     public class PublicInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -35,8 +35,8 @@ class InputJavadocVariableNoJavadoc3Package
     protected class ProtectedInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -47,8 +47,8 @@ class InputJavadocVariableNoJavadoc3Package
     class PackageInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -59,8 +59,8 @@ class InputJavadocVariableNoJavadoc3Package
     private class PrivateInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -70,7 +70,7 @@ class InputJavadocVariableNoJavadoc3Package
 
     class IgnoredName {
         // ignore by name
-        private int logger; // violation, 'Missing a Javadoc comment'
+        private int logger; // violation 'Missing a Javadoc comment'
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }

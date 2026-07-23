@@ -23,13 +23,13 @@ public class InputGoogleNonConstantFieldNameMixedModifiers {
     protected final int protectedFinal = 4;
 
     final int Final_Instance = 1;
-    // violation above, ''Final_Instance' .* underscores allowed only between adjacent digits.'
+    // violation above ''Final_Instance' .* underscores allowed only between adjacent digits.'
 
     public final int Public_Final = 2;
-    // violation above, ''Public_Final' .* underscores allowed only between adjacent digits.'
+    // violation above ''Public_Final' .* underscores allowed only between adjacent digits.'
 
     private final int mPrivateFinal = 3;
-    // violation above, ''mPrivateFinal' .* avoid single lowercase letter followed by uppercase'
+    // violation above ''mPrivateFinal' .* avoid single lowercase letter followed by uppercase'
 
     protected final int f = 4;
     // violation above 'Non-constant field name 'f' must start lowercase, be at least 2 chars'
@@ -40,13 +40,13 @@ public class InputGoogleNonConstantFieldNameMixedModifiers {
     protected int protectedInstance;
 
     int Instance_Bad;
-    // violation above, ''Instance_Bad' .* underscores allowed only between adjacent digits.'
+    // violation above ''Instance_Bad' .* underscores allowed only between adjacent digits.'
 
     public int Public_Bad;
-    // violation above, ''Public_Bad' .* underscores allowed only between adjacent digits.'
+    // violation above ''Public_Bad' .* underscores allowed only between adjacent digits.'
 
     private int mField;
-    // violation above, ''mField' .* avoid single lowercase letter followed by uppercase'
+    // violation above ''mField' .* avoid single lowercase letter followed by uppercase'
 
     protected int a;
     // violation above 'Non-constant field name 'a' must start lowercase, be at least 2 chars'

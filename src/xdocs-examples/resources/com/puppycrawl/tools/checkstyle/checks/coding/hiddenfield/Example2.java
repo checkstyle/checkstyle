@@ -18,7 +18,7 @@ class Example2 {
   Example2(String testField) { // ok, because PARAMETER_DEF not configured
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;

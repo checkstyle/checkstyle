@@ -205,7 +205,7 @@ class Example2 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
@@ -241,7 +241,7 @@ class Example3 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1; // violation, 'must match pattern'
+  public static final int var3 = 1; // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -258,7 +258,7 @@ class Example3 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
@@ -289,7 +289,7 @@ class Example4 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1; // violation, 'must match pattern'
+  public static final int var3 = 1; // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -306,7 +306,7 @@ class Example4 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
@@ -337,7 +337,7 @@ class Example5 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1; // violation, 'must match pattern'
+  public static final int var3 = 1; // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -354,7 +354,7 @@ class Example5 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
@@ -387,7 +387,7 @@ class Example7 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1; // violation, 'must match pattern'
+  public static final int var3 = 1; // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -404,7 +404,7 @@ class Example7 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1; // violation, 'must match pattern'
+  public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
@@ -448,7 +448,7 @@ class Example6 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1; // violation, 'must match pattern'
+  public static final int var3 = 1; // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -465,7 +465,7 @@ class Example6 {
   //CSON MemberID
 
   /*CHECKSTYLE:OFF*/
-  public static final int varC = 1;  // violation, 'must match pattern'
+  public static final int varC = 1;  // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
 </code></pre></div><hr class="example-separator"/>
@@ -496,7 +496,7 @@ class Example8 {
   //CHECKSTYLE:ON
 
   //stop constant check
-  public static final int var3 = 1;  // violation, 'must match pattern'
+  public static final int var3 = 1;  // violation 'must match pattern'
   //resume constant check
 
   //ILLEGAL OFF: Exception
@@ -549,7 +549,7 @@ class UseCase1
   //CSON: MemberName
 
   public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
 
   //CSOFF: ConstantName
   public static final int var4 = 1; // filtered violation 'must match pattern'
@@ -602,11 +602,11 @@ class UseCase2
   //CHECKSTYLE_ON: ALMOST_ALL
 
   public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
 
   //CHECKSTYLE_OFF: ALMOST_ALL
   public static final int var4 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
   //CHECKSTYLE_ON: ALMOST_ALL
 
   public void method1()
@@ -654,7 +654,7 @@ class UseCase3
   //cson MemberName
 
   public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
 
   //csoff ConstantName
   //csoff IllegalCatch

@@ -67,7 +67,7 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  // violation below, 'Uncommented main method found'
+  // violation below 'Uncommented main method found'
   public static void main(String... args) {
   }
 
@@ -91,7 +91,7 @@ class Example1 {
 }
 
 class MainOne {
-  // violation below, 'Uncommented main method found'
+  // violation below 'Uncommented main method found'
   public static void main(String[] args) {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -111,7 +111,7 @@ class MainOne {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  // violation below, 'Uncommented main method found'
+  // violation below 'Uncommented main method found'
   public static void main(String... args) {
   }
 

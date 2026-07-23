@@ -21,23 +21,23 @@ import java.util.*;
 public abstract class InputIllegalTypeTestExtendsImplements {
 
     public abstract class Bar
-        extends Hashtable // violation, 'Usage of type Hashtable is not allowed'.
-            <Boolean,// violation, 'Usage of type Boolean is not allowed'.
+        extends Hashtable // violation 'Usage of type Hashtable is not allowed'.
+            <Boolean,// violation 'Usage of type Boolean is not allowed'.
                 Bar> {
     }
 
     public abstract class Foo<
-            T extends Boolean> // violation, 'Usage of type Boolean is not allowed'.
+            T extends Boolean> // violation 'Usage of type Boolean is not allowed'.
         implements Cloneable,
-            Serializable, // violation, 'Usage of type Serializable is not allowed'.
+            Serializable, // violation 'Usage of type Serializable is not allowed'.
             Comparator,
-            Comparable<Foo< // violation, 'Usage of type Foo is not allowed'.
-                ? extends Boolean>> { // violation, 'Usage of type Boolean is not allowed'.
+            Comparable<Foo< // violation 'Usage of type Foo is not allowed'.
+                ? extends Boolean>> { // violation 'Usage of type Boolean is not allowed'.
     }
 
-    public interface Interface<Foo> // violation, 'Usage of type Foo is not allowed'.
-        extends Comparable<Boolean>, // violation, 'Usage of type Boolean is not allowed'.
-            Serializable { // violation, 'Usage of type Serializable is not allowed'.
+    public interface Interface<Foo> // violation 'Usage of type Foo is not allowed'.
+        extends Comparable<Boolean>, // violation 'Usage of type Boolean is not allowed'.
+            Serializable { // violation 'Usage of type Serializable is not allowed'.
     }
 
     abstract class NonPublicBar

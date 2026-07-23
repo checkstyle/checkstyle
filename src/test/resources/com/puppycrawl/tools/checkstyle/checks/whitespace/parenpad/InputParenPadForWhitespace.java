@@ -21,10 +21,10 @@ class InputParenPadForWhitespace
         for (int i = 0; i < 1;i++) {
         }
 
-        for (int i = 0; i < 1;i++ ) { // violation, '')' is preceded with whitespace.'
+        for (int i = 0; i < 1;i++ ) { // violation '')' is preceded with whitespace.'
         }
 
-        for (int i = 0; i < 1; i++ ) { // violation, '')' is preceded with whitespace.'
+        for (int i = 0; i < 1; i++ ) { // violation '')' is preceded with whitespace.'
         }
 
         for (int i = 0; i < 1;) {
@@ -50,15 +50,15 @@ class InputParenPadForWhitespace
             //           '')' is preceded with whitespace.'
         }
 
-        for ( int i = 0; i < 1; ) { // violation, ''(' is followed by whitespace.'
+        for ( int i = 0; i < 1; ) { // violation ''(' is followed by whitespace.'
             i++;
         }
 
         int i = 0;
-        for ( ; i < 1; i++ ) { // violation, '')' is preceded with whitespace.'
+        for ( ; i < 1; i++ ) { // violation '')' is preceded with whitespace.'
         }
 
-        for (; i < 2; i++ ) { // violation, '')' is preceded with whitespace.'
+        for (; i < 2; i++ ) { // violation '')' is preceded with whitespace.'
         }
 
         for (

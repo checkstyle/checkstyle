@@ -19,21 +19,21 @@ class InputHiddenField3Static
 
     public static void staticMethod()
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     public void method()
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     static
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 }
 
@@ -60,7 +60,7 @@ class StaticMethods3
         void useX(int x) {
             x++;
         }
-        void useY(int y) { // violation, ''y' hides a field'
+        void useY(int y) { // violation ''y' hides a field'
             y++;
         }
     }

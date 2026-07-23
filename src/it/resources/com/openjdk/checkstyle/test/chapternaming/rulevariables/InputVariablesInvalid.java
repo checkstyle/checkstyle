@@ -6,12 +6,12 @@ import java.util.stream.Stream;
 
 public class InputVariablesInvalid {
 
-    static int ItStatic1 = 2; // violation, 'must match pattern'
-    protected static int ItStatic2 = 2; // violation, 'must match pattern'
-    private static int ItStatic = 2; // violation, 'must match pattern'
-    static int it_static = 2; // violation, 'must match pattern'
-    static int It_Static = 2; // violation, 'must match pattern'
-    private static int It_Static1 = 2; // violation, 'must match pattern'
+    static int ItStatic1 = 2; // violation 'must match pattern'
+    protected static int ItStatic2 = 2; // violation 'must match pattern'
+    private static int ItStatic = 2; // violation 'must match pattern'
+    static int it_static = 2; // violation 'must match pattern'
+    static int It_Static = 2; // violation 'must match pattern'
+    private static int It_Static1 = 2; // violation 'must match pattern'
 
     public int NUM1; // violation 'Name 'NUM1' must match pattern'
     protected int NUM2; // violation 'Name 'NUM2' must match pattern'
@@ -42,12 +42,12 @@ public class InputVariablesInvalid {
 
     void foo(Object o1) {
         if (o1 instanceof String STRING) { }
-        // violation above, 'Name 'STRING' must match pattern*.'
+        // violation above 'Name 'STRING' must match pattern*.'
         if (o1 instanceof Integer num) { }
         if (o1 instanceof Integer num_1) { }
-        // violation above, 'Name 'num_1' must match pattern*.'
+        // violation above 'Name 'num_1' must match pattern*.'
     }
 
-    record Rec2(String Values) {} // violation, Name must match '^[a-z][a-zA-Z0-9]*$'
-
+    record Rec2(String Values) {}
+    // violation above 'Name 'Values' must match pattern*.'
 }

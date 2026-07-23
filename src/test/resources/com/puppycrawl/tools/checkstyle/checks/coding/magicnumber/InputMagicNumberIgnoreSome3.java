@@ -76,7 +76,7 @@ class TestMethodCallIgnoreSome3 {
 class BinarySome3 {
     int intValue = 0b101; // violation ''0b101' is a magic number'
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L;
-    // violation above, ''0b1010000101000101101000010100010110100001010001011010000101000101L'
+    // violation above ''0b1010000101000101101000010100010110100001010001011010000101000101L'
     // is a magic number'
 }
 @interface AnnotationWithDefaultValueIgnoreSome3 {

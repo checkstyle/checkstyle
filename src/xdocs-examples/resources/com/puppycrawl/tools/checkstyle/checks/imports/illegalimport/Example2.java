@@ -12,9 +12,9 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 // xdoc section -- start
-import java.io.*; // violation, 'Illegal import'
+import java.io.*; // violation 'Illegal import'
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;

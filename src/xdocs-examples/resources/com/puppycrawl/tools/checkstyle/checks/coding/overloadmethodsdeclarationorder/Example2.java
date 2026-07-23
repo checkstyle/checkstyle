@@ -15,9 +15,9 @@ class Example2 {
   void same(String s, int i, int k) {}
   // comments between overloaded methods are allowed.
   void same(String s) {}
-  // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
+  // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   void same(int i, String s) {}
-  // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
+  // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   void notSame() {}
   interface notSame{}
 
@@ -39,7 +39,7 @@ class Example2 {
     // violation 2 lines below """All overloaded methods should be placed next
     //  to each other. Previous overloaded method located at line '35'."""
     public void example(String s) {}
-    // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
+    // violation above 'Overloaded methods should be ordered by increasing parameter count.'
   }
 }
 // xdoc section -- end

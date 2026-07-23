@@ -20,7 +20,7 @@ class Example2 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation, 'Count of 2 for 'LITERAL_SWITCH' descendant'
+    switch (x) { // violation 'Count of 2 for 'LITERAL_SWITCH' descendant'
       case 1:
         break;
       case 2:

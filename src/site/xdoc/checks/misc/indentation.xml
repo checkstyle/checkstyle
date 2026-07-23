@@ -138,7 +138,7 @@ class Example1 {
         1, 2, 3                 // ok, arrayInitIndent = 4
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -203,16 +203,16 @@ class Example2 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
         throws Exception {
         switch (a) {
-            case 1:             // violation, 'level 12, expected level should be 8'
-                break;          // violation, 'level 16, expected level should be 12'
-            case 2:             // violation, 'level 12, expected level should be 8'
-                break;          // violation, 'level 16, expected level should be 12'
+            case 1:             // violation 'level 12, expected level should be 8'
+                break;          // violation 'level 16, expected level should be 12'
+            case 2:             // violation 'level 12, expected level should be 8'
+                break;          // violation 'level 16, expected level should be 12'
         }
     }
     void method3(int a,
@@ -266,7 +266,7 @@ class Example3 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -279,9 +279,9 @@ class Example3 {
         }
     }
     void method3(int a,
-                 int b) {       // violation, 'level 17, expected level should be 8'
+                 int b) {       // violation 'level 17, expected level should be 8'
         if (x
-                &amp;&amp; y) {         // violation, 'level 16, expected level should be 12'
+                &amp;&amp; y) {         // violation 'level 16, expected level should be 12'
             method3(a, b);
         }
     }
@@ -293,7 +293,7 @@ class Example3 {
 
         cond1=cond2=cond3=cond4=cond5=cond6=false;
         if (cond1
-                || cond2) { // violation, 'level 16, expected level should be 12'
+                || cond2) { // violation 'level 16, expected level should be 12'
             field = field.toUpperCase()
                     .concat(" TASK");
         }
@@ -321,32 +321,32 @@ class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
-    int a;             // violation, 'level 4, expected level should be 2'
-    boolean x, y;      // violation, 'level 4, expected level should be 2'
-    String field = "example"; // violation, 'level 4, expected level should be 2'
-    int[] values = {   // violation, 'level 4, expected level should be 2'
+    int a;             // violation 'level 4, expected level should be 2'
+    boolean x, y;      // violation 'level 4, expected level should be 2'
+    String field = "example"; // violation 'level 4, expected level should be 2'
+    int[] values = {   // violation 'level 4, expected level should be 2'
         1, 2, 3
     };
-    int[] values2 = {  // violation, 'level 4, expected level should be 2'
-  10 // violation,'level 2, expected level should be one of the following: 8, 23, 24'
+    int[] values2 = {  // violation 'level 4, expected level should be 2'
+  10 // violation 'level 2, expected level should be one of the following: 8, 23, 24'
     };
 
-    void method2()     // violation, 'level 4, expected level should be 2'
+    void method2()     // violation 'level 4, expected level should be 2'
         throws Exception {
-        switch (a) {   // violation, 'level 8, expected level should be 4'
-            case 1:    // violation, 'level 12, expected level should be 8'
-                break; // violation, 'level 16, expected level should be 10'
-            case 2:    // violation, 'level 12, expected level should be 8'
-                break; // violation, 'level 16, expected level should be 10'
-        }              // violation, 'level 8, expected level should be 4'
-    }                  // violation, 'level 4, expected level should be 2'
-    void method3(int a,  // violation, 'level 4, expected level should be 2'
+        switch (a) {   // violation 'level 8, expected level should be 4'
+            case 1:    // violation 'level 12, expected level should be 8'
+                break; // violation 'level 16, expected level should be 10'
+            case 2:    // violation 'level 12, expected level should be 8'
+                break; // violation 'level 16, expected level should be 10'
+        }              // violation 'level 8, expected level should be 4'
+    }                  // violation 'level 4, expected level should be 2'
+    void method3(int a,  // violation 'level 4, expected level should be 2'
                  int b) {
-        if (x            // violation, 'level 8, expected level should be 4'
+        if (x            // violation 'level 8, expected level should be 4'
                 &amp;&amp; y) {
-            method3(a, b); // violation, 'level 12, expected level should be 6'
-        }                  // violation, 'level 8, expected level should be 4'
-    }                      // violation, 'level 4, expected level should be 2'
+            method3(a, b); // violation 'level 12, expected level should be 6'
+        }                  // violation 'level 8, expected level should be 4'
+    }                      // violation 'level 4, expected level should be 2'
                            // violation below 'level 4, expected level should be 2'
     void handleValue(String aFooString,
                      int aFooInt) {
@@ -354,16 +354,16 @@ class Example5 {
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
         // violation below 'level 8, expected level should be 4'
         cond1=cond2=cond3=cond4=cond5=cond6=false;
-        if (cond1        // violation, 'level 8, expected level should be 4'
+        if (cond1        // violation 'level 8, expected level should be 4'
                 || cond2) { // violation below 'level 12, expected level should be 6'
             field = field.toUpperCase()
                     .concat(" TASK");
-        }                // violation, 'level 8, expected level should be 4'
-    }                    // violation, 'level 4, expected level should be 2'
+        }                // violation 'level 8, expected level should be 4'
+    }                    // violation 'level 4, expected level should be 2'
 
-    void methodBrace()   // violation, 'level 4, expected level should be 2'
-    {                    // violation, 'level 4, expected level should be 2'
-    }                    // violation, 'level 4, expected level should be 2'
+    void methodBrace()   // violation 'level 4, expected level should be 2'
+    {                    // violation 'level 4, expected level should be 2'
+    }                    // violation 'level 4, expected level should be 2'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -391,7 +391,7 @@ class Example6 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be one of the following: 8, 12'
+  10 // violation 'level 2, expected level should be one of the following: 8, 12'
     };
 
     void method2()
@@ -456,11 +456,11 @@ class Example7 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
-        throws Exception {   // violation, 'level 8, expected level should be 12'
+        throws Exception {   // violation 'level 8, expected level should be 12'
         switch (a) {
             case 1:
                 break;
@@ -518,7 +518,7 @@ class Example8 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be one of'
+  10 // violation 'level 2, expected level should be one of'
     };
 
     void method2()
@@ -580,7 +580,7 @@ class Example9 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -614,8 +614,8 @@ class Example9 {
     }
 
     void methodBrace()
-    {                       // violation, 'level 4, expected level should be 6'
-    }                       // violation, 'level 4, expected level should be 6'
+    {                       // violation 'level 4, expected level should be 6'
+    }                       // violation 'level 4, expected level should be 6'
 }
 </code></pre></div>
       </subsection>
@@ -626,11 +626,11 @@ class Example9 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class UseCase1 {
-      int a;               // violation, 'level 6, expected level should be 4'
+      int a;               // violation 'level 6, expected level should be 4'
 
     void method() {
         int b = 0;
-          int c = 1;       // violation, 'level 10, expected level should be 8'
+          int c = 1;       // violation 'level 10, expected level should be 8'
     }
 }
 </code></pre></div>

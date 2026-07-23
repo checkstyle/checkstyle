@@ -21,7 +21,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
     }
 
     public void patternVariableNegatedNestedRecordOneUnused(Object o) {
-        if (!(o instanceof Rectangle(ColoredPoint ul, ColoredPoint lr))) { // violation, 'lr'
+        if (!(o instanceof Rectangle(ColoredPoint ul, ColoredPoint lr))) { // violation 'lr'
             System.out.println("not a rectangle");
         } else {
             System.out.println(ul);
@@ -77,7 +77,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
    void namedloops() {
         int[] orderIDs = {34, 45, 23, 27, 15};
         int total = 0;
-        for (int id : orderIDs) { // violation, 'Unused local variable'
+        for (int id : orderIDs) { // violation 'Unused local variable'
             total++;
         }
         System.out.println("Total: " + total);

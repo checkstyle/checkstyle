@@ -17,10 +17,10 @@ import java.util.List;
 class UseCase1 {
   void myMethod () {
     for(int i = 1; i < 10; i++) {}
-    for(int K = 1; K < 10; K++) {} // violation, 'Name 'K' must match pattern*'
+    for(int K = 1; K < 10; K++) {} // violation 'Name 'K' must match pattern*'
     List list = new ArrayList();
     for (Object o : list) {}
-    for (Object O : list) {} // violation, 'Name 'O' must match pattern*'
+    for (Object O : list) {} // violation 'Name 'O' must match pattern*'
   }
 }
 // xdoc section -- end

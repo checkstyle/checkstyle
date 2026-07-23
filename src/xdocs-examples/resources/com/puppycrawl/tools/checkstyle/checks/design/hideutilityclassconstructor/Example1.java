@@ -9,7 +9,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
 // xdoc section -- start
-// violation below, 'should not have a public or default constructor'
+// violation below 'should not have a public or default constructor'
 @java.lang.Deprecated
 class Example1 {
 
@@ -36,12 +36,12 @@ class Bar {
   }
 }
 
-@Deprecated // violation, 'should not have a public or default constructor'
+@Deprecated // violation 'should not have a public or default constructor'
 class UtilityClass {
 
   static float f;
 }
-// violation below, 'should not have a public or default constructor'
+// violation below 'should not have a public or default constructor'
 @SpringBootApplication
 class Application1 {
 

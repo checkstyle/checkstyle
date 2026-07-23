@@ -24,11 +24,11 @@ class UseCase2
   //CHECKSTYLE_ON: ALMOST_ALL
 
   public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
 
   //CHECKSTYLE_OFF: ALMOST_ALL
   public static final int var4 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
   //CHECKSTYLE_ON: ALMOST_ALL
 
   public void method1()

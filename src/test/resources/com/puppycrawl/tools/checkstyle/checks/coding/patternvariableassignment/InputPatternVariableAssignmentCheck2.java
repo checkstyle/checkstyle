@@ -53,7 +53,7 @@ public class InputPatternVariableAssignmentCheck2 {
                 if (parent.angle instanceof Angle internal) {}
 
                 parent = null;
-                // violation above, "Assignment of pattern variable 'parent' is not allowed."
+                // violation above "Assignment of pattern variable 'parent' is not allowed."
             }
         }
     }
@@ -88,7 +88,7 @@ public class InputPatternVariableAssignmentCheck2 {
                  getObj().string = string;
                  {
                      string = "string";
-                     // violation above, "Assignment of pattern variable 'string' is not allowed."
+                     // violation above "Assignment of pattern variable 'string' is not allowed."
                  }
              }
          }

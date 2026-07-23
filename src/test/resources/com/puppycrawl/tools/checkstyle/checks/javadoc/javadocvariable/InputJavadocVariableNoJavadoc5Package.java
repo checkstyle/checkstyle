@@ -10,10 +10,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 class InputJavadocVariableNoJavadoc5Package
 {
-    public int i1; // violation, 'Missing a Javadoc comment'
-    protected int i2; // violation, 'Missing a Javadoc comment'
-    int i3; // violation, 'Missing a Javadoc comment'
-    private int i4; // violation, 'Missing a Javadoc comment'
+    public int i1; // violation 'Missing a Javadoc comment'
+    protected int i2; // violation 'Missing a Javadoc comment'
+    int i3; // violation 'Missing a Javadoc comment'
+    private int i4; // violation 'Missing a Javadoc comment'
 
     public void foo1() {}
     protected void foo2() {}
@@ -21,10 +21,10 @@ class InputJavadocVariableNoJavadoc5Package
     private void foo4() {}
 
     public class PublicInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -33,10 +33,10 @@ class InputJavadocVariableNoJavadoc5Package
     }
 
     protected class ProtectedInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -45,10 +45,10 @@ class InputJavadocVariableNoJavadoc5Package
     }
 
     class PackageInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -57,10 +57,10 @@ class InputJavadocVariableNoJavadoc5Package
     }
 
     private class PrivateInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -70,7 +70,7 @@ class InputJavadocVariableNoJavadoc5Package
 
     class IgnoredName {
         // ignore by name
-        private int logger; // violation, 'Missing a Javadoc comment'
+        private int logger; // violation 'Missing a Javadoc comment'
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }

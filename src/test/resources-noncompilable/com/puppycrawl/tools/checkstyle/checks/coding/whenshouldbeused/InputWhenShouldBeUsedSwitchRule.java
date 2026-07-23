@@ -10,12 +10,12 @@ public class InputWhenShouldBeUsedSwitchRule {
 
     void test(Object j, int x) {
         switch (j) {
-            case String s -> { // violation, ''when' expression should be used*.'
+            case String s -> { // violation ''when' expression should be used*.'
                 if (s.isEmpty()) {
                     System.out.println("empty String");
                 }
             }
-            case Integer i -> { // violation, ''when' expression should be used*.'
+            case Integer i -> { // violation ''when' expression should be used*.'
                 if (x == 0) System.out.println("Integer");
             }
             default -> {}
@@ -80,7 +80,7 @@ public class InputWhenShouldBeUsedSwitchRule {
         }
         switch (j) {
             case Integer _, String _ -> {
-                // violation above, ''when' expression should be used*.'
+                // violation above ''when' expression should be used*.'
                 if (x == 0) {
                     System.out.println("Integer, String");
                 }
@@ -93,7 +93,7 @@ public class InputWhenShouldBeUsedSwitchRule {
             default -> {}
         }
         switch (j) {
-            case Point(int a,_) ->  { // violation, ''when' expression should be used*.'
+            case Point(int a,_) ->  { // violation ''when' expression should be used*.'
                 if (a == 0) {}
             }
             default -> {}
@@ -101,7 +101,7 @@ public class InputWhenShouldBeUsedSwitchRule {
     }
     void testGuardedCases(Object obj, int x) {
         switch (obj) {
-            // violation below, ''when' expression should be used*.'
+            // violation below ''when' expression should be used*.'
             case Integer i when i == 0 -> {
                 if (x == 0) System.out.println("Integer");
             }

@@ -18,20 +18,20 @@ class InputJavadocVariableInner
     class InnerInner2
     {
         // Ignore
-        public int fData; // violation, 'Missing a Javadoc comment'
+        public int fData; // violation 'Missing a Javadoc comment'
     }
 
 
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc"; // violation, 'Missing a Javadoc comment'
+        String data = "zxzc"; // violation 'Missing a Javadoc comment'
 
         // Ignore
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData; // violation, 'Missing a Javadoc comment'
+            public int rData; // violation 'Missing a Javadoc comment'
 
             /** needs to be made private unless allowProtected. */
             protected int protectedVariable;

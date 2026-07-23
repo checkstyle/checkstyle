@@ -28,22 +28,22 @@ public class InputMethodParamPadCheckRecordPattern2 {
         switch (obj) {
             case ColoredPoint (Point  ( int x, int y), String s) -> {}
             case ColoredPoint (Point p, String s) -> {}
-            case Point(int x, int y) -> {} // violation, ''(' is not preceded with whitespace'
+            case Point(int x, int y) -> {} // violation ''(' is not preceded with whitespace'
             default -> {}
         }
 
         boolean b = obj instanceof ColoredPoint
-                (Point p, String s); // violation, ''(' should be on the previous line'
+                (Point p, String s); // violation ''(' should be on the previous line'
 
         boolean c = obj instanceof ColoredPoint
-                (Point // violation, ''(' should be on the previous line'
-                         (int x, int y), // violation, ''(' should be on the previous line'
+                (Point // violation ''(' should be on the previous line'
+                         (int x, int y), // violation ''(' should be on the previous line'
                  String s);
 
         boolean cc = obj instanceof ColoredPoint
-                ( // violation, ''(' should be on the previous line'
+                ( // violation ''(' should be on the previous line'
                     Point
-                     ( // violation, ''(' should be on the previous line'
+                     ( // violation ''(' should be on the previous line'
                          int x, int y),
                  String s);
 

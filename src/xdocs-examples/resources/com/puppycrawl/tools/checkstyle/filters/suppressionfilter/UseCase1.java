@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
 // xdoc section -- start
 public class UseCase1 {
 
-  // violation below, 'Line is longer than 80 characters'
+  // violation below 'Line is longer than 80 characters'
   String line = "This line is long and exceeds the default limit of 80 characters.";
 
   public void foo() {

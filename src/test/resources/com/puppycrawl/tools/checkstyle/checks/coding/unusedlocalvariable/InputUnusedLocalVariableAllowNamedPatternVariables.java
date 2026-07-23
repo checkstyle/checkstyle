@@ -18,15 +18,15 @@ public class InputUnusedLocalVariableAllowNamedPatternVariables {
 
     String whatClass(Object object) {
         return switch (object) {
-            case String ignored -> "A String"; // violation, 'Unused local variable'
-            case Integer ignored2 -> "An Integer"; // violation, 'Unused local variable'
+            case String ignored -> "A String"; // violation 'Unused local variable'
+            case Integer ignored2 -> "An Integer"; // violation 'Unused local variable'
             default -> "Something Else";
         };
     }
 
     void method(Object object) {
-        int x = 10; // violation, 'Unused local variable'
-        if (object instanceof String ignored) { // violation, 'Unused local variable'
+        int x = 10; // violation 'Unused local variable'
+        if (object instanceof String ignored) { // violation 'Unused local variable'
             System.out.println("string");
         }
     }
@@ -38,7 +38,7 @@ public class InputUnusedLocalVariableAllowNamedPatternVariables {
         };
     }
 
-    String nameWithoutIgnored(Customer customer) { // violation below, 'Unused local variable'
+    String nameWithoutIgnored(Customer customer) { // violation below 'Unused local variable'
         if (customer instanceof Person(String name, int ignoredAge)) {
             return name;
         } else if (customer instanceof Company(String companyName)) {
@@ -55,7 +55,7 @@ public class InputUnusedLocalVariableAllowNamedPatternVariables {
     }
 
     boolean isNested(Maybe<?> maybe) {
-        if (maybe instanceof Some(Some<?> inner)) { // violation, 'Unused local variable'
+        if (maybe instanceof Some(Some<?> inner)) { // violation 'Unused local variable'
             return true;
         }
         return false;

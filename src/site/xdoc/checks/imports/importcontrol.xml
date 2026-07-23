@@ -147,13 +147,13 @@
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.awt.Image;     // violation, 'Disallowed import - java.awt.Image'
+import java.awt.Image;     // violation 'Disallowed import - java.awt.Image'
 import java.lang.ref.SoftReference;
 // violation above 'Disallowed import - java.lang.ref.SoftReference'
-import java.io.File;       // violation, 'Disallowed import - java.io.File'
+import java.io.File;       // violation 'Disallowed import - java.io.File'
 import java.io.FileReader;
-import java.util.Date;     // violation, 'Disallowed import - java.util.Date'
-import java.util.List;     // violation, 'Disallowed import - java.util.List'
+import java.util.Date;     // violation 'Disallowed import - java.util.Date'
+import java.util.List;     // violation 'Disallowed import - java.util.List'
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
@@ -254,13 +254,13 @@ public class Example2 {}
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.awt.Image;     // violation, 'Disallowed import - java.awt.Image'
+import java.awt.Image;     // violation 'Disallowed import - java.awt.Image'
 import java.lang.ref.SoftReference; // ok, specifically allowed by regex expression
 
-import java.io.File;       // violation, 'Disallowed import - java.io.File'
-import java.io.FileReader; // violation, 'Disallowed import - java.io.FileReader'
-import java.util.Date;     // violation, 'Disallowed import - java.util.Date'
-import java.util.List;     // violation, 'Disallowed import - java.util.List'
+import java.io.File;       // violation 'Disallowed import - java.io.File'
+import java.io.FileReader; // violation 'Disallowed import - java.io.FileReader'
+import java.util.Date;     // violation 'Disallowed import - java.util.Date'
+import java.util.List;     // violation 'Disallowed import - java.util.List'
 
 public class Example3 {}
 </code></pre></div><hr class="example-separator"/>
@@ -297,8 +297,8 @@ public class Example3 {}
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import module java.base;
-import module java.logging; // violation, 'Disallowed import - java.logging'
-import module java.sql;     // violation, 'Disallowed import - java.sql'
+import module java.logging; // violation 'Disallowed import - java.logging'
+import module java.sql;     // violation 'Disallowed import - java.sql'
 
 public class Example13 {}
 </code></pre></div><hr class="example-separator"/>
@@ -334,8 +334,8 @@ public class Example13 {}
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import module java.base;
-import module java.sql;     // violation, 'Disallowed import - java.sql'
-import module java.xml;     // violation, 'Disallowed import - java.xml'
+import module java.sql;     // violation 'Disallowed import - java.sql'
+import module java.xml;     // violation 'Disallowed import - java.xml'
 
 public class Example14 {}
 </code></pre></div><hr class="example-separator"/>
@@ -458,10 +458,10 @@ public class Example14 {}
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.newdomain.dao;
 
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
-// violation above, 'Disallowed import'
+// violation above 'Disallowed import'
 import java.io.File;
 import java.util.Scanner;
-import javax.swing.ActionMap; // violation, 'Disallowed import - javax.swing'
+import javax.swing.ActionMap; // violation 'Disallowed import - javax.swing'
 
 public class UseCase1 {}
 </code></pre></div><hr class="example-separator"/>
@@ -527,8 +527,8 @@ public class UseCase1 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
-import java.awt.Image; // violation, 'Disallowed import - java.awt.Image'
-import java.io.File; // violation, 'Disallowed import - java.io.File'
+import java.awt.Image; // violation 'Disallowed import - java.awt.Image'
+import java.io.File; // violation 'Disallowed import - java.io.File'
 import java.io.FileReader;
 import java.util.Date;
 import java.util.List;
@@ -578,14 +578,14 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports
 
 import javax.swing.Action;
 
-import java.awt.Image;    // violation, 'Disallowed import - java.awt.Image'
-import java.util.Date;    // violation, 'Disallowed import - java.util.Date'
-import java.util.List;    // violation, 'Disallowed import - java.util.List'
+import java.awt.Image;    // violation 'Disallowed import - java.awt.Image'
+import java.util.Date;    // violation 'Disallowed import - java.util.Date'
+import java.util.List;    // violation 'Disallowed import - java.util.List'
 // violation below 'Disallowed import - java.util.stream.Collectors'
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 // violation above 'Disallowed import - java.util.stream.Stream'
-import sun.misc.Signal;             // violation, 'Disallowed import - sun.misc.Signal'
+import sun.misc.Signal;             // violation 'Disallowed import - sun.misc.Signal'
 
 public class UseCase3 {}
 </code></pre></div><hr class="example-separator"/>
@@ -638,14 +638,14 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports
 
 import javax.swing.Action;
 
-import java.awt.Image;    // violation, 'Disallowed import - java.awt.Image'
-import java.util.Date;    // violation, 'Disallowed import - java.util.Date'
-import java.util.List;    // violation, 'Disallowed import - java.util.List'
+import java.awt.Image;    // violation 'Disallowed import - java.awt.Image'
+import java.util.Date;    // violation 'Disallowed import - java.util.Date'
+import java.util.List;    // violation 'Disallowed import - java.util.List'
 // violation below 'Disallowed import - java.util.stream.Collectors'
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 // violation above 'Disallowed import - java.util.stream.Stream'
-import sun.misc.Signal;             // violation, 'Disallowed import - sun.misc.Signal'
+import sun.misc.Signal;             // violation 'Disallowed import - sun.misc.Signal'
 
 public class UseCase4 {}
 </code></pre></div><hr class="example-separator"/>
@@ -693,7 +693,7 @@ public class UseCase4 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.gui;
 
-import java.sql.Blob; // violation, 'Disallowed import - java.sql.Blob'
+import java.sql.Blob; // violation 'Disallowed import - java.sql.Blob'
 import java.io.File;
 
 import javax.swing.Renderer; // ok, does not match a file name for disallow rule.
@@ -745,16 +745,16 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
 // violation below 'Disallowed import - com.google.common.io.Files'
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
-// violation above, 'Disallowed import'
+// violation above 'Disallowed import'
 
 import java.lang.ref.ReferenceQueue;
-// violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
+// violation above 'Disallowed import - java.lang.ref.ReferenceQueue'
 import java.lang.ref.SoftReference;
 // violation above 'Disallowed import - java.lang.ref.SoftReference'
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-// violation above, 'Disallowed import - java.util.Map'
+// violation above 'Disallowed import - java.util.Map'
 
 public class UseCase6 {}
 </code></pre></div><hr class="example-separator"/>
@@ -799,16 +799,16 @@ public class UseCase6 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
 
-import javax.swing.Action; // violation, 'Disallowed import - javax.swing.Action'
+import javax.swing.Action; // violation 'Disallowed import - javax.swing.Action'
 
-import java.awt.Image;     // violation, 'Disallowed import - java.awt.Image'
-import java.util.Date;     // violation, 'Disallowed import - java.util.Date'
-import java.util.List;     // violation, 'Disallowed import - java.util.List'
+import java.awt.Image;     // violation 'Disallowed import - java.awt.Image'
+import java.util.Date;     // violation 'Disallowed import - java.util.Date'
+import java.util.List;     // violation 'Disallowed import - java.util.List'
 // violation below 'Disallowed import - java.util.stream.Collectors'
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 // violation above 'Disallowed import - java.util.stream.Stream'
-import sun.misc.Signal;    // violation, 'Disallowed import - sun.misc.Signal'
+import sun.misc.Signal;    // violation 'Disallowed import - sun.misc.Signal'
 
 public class UseCase7 {}
 </code></pre></div><hr class="example-separator"/>
@@ -852,13 +852,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports
 import javax.swing.Action;
 
 import java.awt.Image;
-import java.util.Date;    // violation, 'Disallowed import - java.util.Date'
-import java.util.List;    // violation, 'Disallowed import - java.util.List'
+import java.util.Date;    // violation 'Disallowed import - java.util.Date'
+import java.util.List;    // violation 'Disallowed import - java.util.List'
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import sun.misc.Signal;   // violation, 'Disallowed import - sun.misc.Signal'
+import sun.misc.Signal;   // violation 'Disallowed import - sun.misc.Signal'
 
 public class UseCase8 {}
 </code></pre></div><hr class="example-separator"/>
@@ -896,10 +896,10 @@ public class UseCase8 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
-import java.awt.Image;     // violation, 'Disallowed import - java.awt.Image'
-import java.io.File;       // violation, 'Disallowed import - java.io.File'
-import java.io.FileReader; // violation, 'Disallowed import - java.io.FileReader'
-import java.util.Date;     // violation, 'Disallowed import - java.util.Date'
+import java.awt.Image;     // violation 'Disallowed import - java.awt.Image'
+import java.io.File;       // violation 'Disallowed import - java.io.File'
+import java.io.FileReader; // violation 'Disallowed import - java.io.FileReader'
+import java.util.Date;     // violation 'Disallowed import - java.util.Date'
 import java.util.List;
 
 public class UseCase9 {}

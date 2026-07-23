@@ -29,6 +29,6 @@ class UseCase1 {
   @MyClass.Annotation
   private class Class2 { }
 
-  private class Class3 { } // violation, 'Missing a Javadoc comment'
+  private class Class3 { } // violation 'Missing a Javadoc comment'
 }
 // xdoc section -- end

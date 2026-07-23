@@ -16,7 +16,7 @@ public class Example1 {
 
     try {
       int x = 1 / 0;
-      // violation below, 'Unused catch parameter 'exception' should be unnamed'
+      // violation below 'Unused catch parameter 'exception' should be unnamed'
     } catch (Exception exception) {
       System.out.println("infinity");
     }

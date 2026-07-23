@@ -20,7 +20,7 @@ class Example2
 
   private
     class
-    MyClass { // violation, ''{' at column 13 should be on a new line.'
+    MyClass { // violation ''{' at column 13 should be on a new line.'
   }
 
   enum Colors {RED,

@@ -14,7 +14,7 @@ public class InputSeparatorWrapWithEmoji {
         /*🎄 with text */    ] {"aab🎄", "a🎄a👍ba"}; // violation above ''\[' should be on a new line'
 
     /* emoji👍array */ protected String[] s2 = new String[
-        ] {"🥳", "😠", "😨"}; // violation above''\[' should be on a new line'
+        ] {"🥳", "😠", "😨"}; // violation above ''\[' should be on a new line'
 
     /*👆🏻 👇🏻*/ public void test1(String...
                         parameters) { // violation above ''...' should be on a new line'

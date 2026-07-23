@@ -14,7 +14,7 @@ public class Example1 {
      * it is Ok
      */
     boolean bool = true;
-      // violation below, 'Block comment has incorrect indentation level 6'
+      // violation below 'Block comment has incorrect indentation level 6'
       /*
        * It is not okay
        */

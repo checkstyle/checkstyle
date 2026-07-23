@@ -13,7 +13,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions2 {
 
     void foo1() throws Exception {
 
-        Exception e; // violation, "Variable 'e' should be declared final"
+        Exception e; // violation "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();
@@ -33,7 +33,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions2 {
     }
 
     void foo2() {
-        int x = 0; // violation, "Variable 'x' should be declared final"
+        int x = 0; // violation "Variable 'x' should be declared final"
         final int a = (int) Math.random();
 
         switch (a) {

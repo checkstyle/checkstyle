@@ -10,10 +10,10 @@ public class InputOrderOfConstructorsAndOverloadedMethodsTwo {
     // comments between overloaded methods are allowed.
 
     void same(String s) {}
-    // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
+    // violation above 'Overloaded methods should be ordered by increasing parameter count.'
 
     void same(int i, String s) {}
-    // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
+    // violation above 'Overloaded methods should be ordered by increasing parameter count.'
 
     void notSame() {}
 
@@ -40,6 +40,6 @@ public class InputOrderOfConstructorsAndOverloadedMethodsTwo {
         // violation 2 lines below """All overloaded methods should be placed next
         //  to each other. Previous overloaded method located at line '36'."""
         public void example(String s) {}
-        // violation above, 'Overloaded methods should be ordered by increasing parameter count.'
+        // violation above 'Overloaded methods should be ordered by increasing parameter count.'
     }
 }

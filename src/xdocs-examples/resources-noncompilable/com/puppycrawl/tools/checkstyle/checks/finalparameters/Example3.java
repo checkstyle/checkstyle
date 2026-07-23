@@ -17,7 +17,7 @@ public class Example3 {
   public Example3(final int m, int n) { }
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
-  public static void main(String[] args) { } // violation, 'args should be final'
+  public static void main(String[] args) { } // violation 'args should be final'
 
   void testCatchParameters() {
     try { } catch (Exception e) { }

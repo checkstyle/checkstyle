@@ -40,11 +40,11 @@ public class InputIllegalTokensCheckCommentsContent
     public void methodWithLabels() {
         label:
         {
-            anotherLabel: // some comment href // violation, 'is not allowed'
+            anotherLabel: // some comment href // violation 'is not allowed'
             do {
                 continue anotherLabel;
             } while (false);
-            break label; // some a href // violation, 'is not allowed'
+            break label; // some a href // violation 'is not allowed'
         }
     }
 }

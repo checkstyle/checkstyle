@@ -69,7 +69,7 @@ public class InputIllegalLineBreakAroundLambda {
           "Please try again after some time. Downtime.";
       case ErrorInProcessingTryAgain
           ->  "Please try again after some time. you made a mistake or there is something wrong.";
-      // violation above, ''->' should be on the previous line.'
+      // violation above ''->' should be on the previous line.'
       // violation 2 lines above 'Use a single space to separate non-whitespace characters'
       default ->
           throw new IllegalArgumentException("");

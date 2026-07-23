@@ -20,7 +20,7 @@ public class Example2 {
 
   /** */
   public int m1(int p1) throws IOException {
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
 
     // ok, allowMissingParamTags is true
     throw new IOException();
@@ -41,7 +41,7 @@ public class Example2 {
    * {@return the foo}
    */
   public int getFoo() {
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
     return 0;
   }
 }

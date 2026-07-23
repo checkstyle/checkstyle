@@ -13,7 +13,7 @@ class Example1 {
     try {
       // some code here
     } catch (Exception e) {
-      // violation above, 'Catching 'Exception' is not allowed'
+      // violation above 'Catching 'Exception' is not allowed'
     }
   }
 
@@ -23,7 +23,7 @@ class Example1 {
     } catch (ArithmeticException e) {
 
     } catch (Exception e) {
-      // violation above, 'Catching 'Exception' is not allowed'
+      // violation above 'Catching 'Exception' is not allowed'
     }
   }
 

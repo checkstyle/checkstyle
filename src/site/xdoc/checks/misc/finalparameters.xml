@@ -96,10 +96,10 @@
 public class Example1 {
   public Example1() { }
   public Example1(final int m) { }
-  public Example1(final int m, int n) { } // violation, 'n should be final'
+  public Example1(final int m, int n) { } // violation 'n should be final'
   public void methodOne(final int x) { }
-  public void methodTwo(int x) { } // violation, 'x should be final'
-  public static void main(String[] args) { } // violation, 'args should be final'
+  public void methodTwo(int x) { } // violation 'x should be final'
+  public static void main(String[] args) { } // violation 'args should be final'
 
   void testCatchParameters() {
     try { } catch (Exception e) { }
@@ -133,7 +133,7 @@ public class Example1 {
 public class Example2 {
   public Example2() { }
   public Example2(final int m) { }
-  public Example2(final int m, int n) { } // violation, 'n should be final'
+  public Example2(final int m, int n) { } // violation 'n should be final'
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
   public static void main(String[] args) { }
@@ -174,7 +174,7 @@ public class Example3 {
   public Example3(final int m, int n) { }
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
-  public static void main(String[] args) { } // violation, 'args should be final'
+  public static void main(String[] args) { } // violation 'args should be final'
 
   void testCatchParameters() {
     try { } catch (Exception e) { }
@@ -215,13 +215,13 @@ public class Example4 {
   public static void main(String[] args) { }
 
   void testCatchParameters() {
-    try { } catch (Exception e) { } // violation, 'e should be final'
+    try { } catch (Exception e) { } // violation 'e should be final'
     try { } catch (Exception _) { } // ok, unnamed catch parameter
     try { } catch (final Exception _) { }
   }
 
   void testForEachParameters() {
-    for (int number: new int[] {1, 2, 3}) { } // violation, 'number should be final'
+    for (int number: new int[] {1, 2, 3}) { } // violation 'number should be final'
     for (int _: new int[] {1, 2, 3}) { }
   }
 }

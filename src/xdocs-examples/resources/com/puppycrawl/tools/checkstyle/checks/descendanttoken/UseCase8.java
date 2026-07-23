@@ -47,7 +47,7 @@ class UseCase8 {
     if (this == null || str == "abc") {
       return 0;
     }
-    assert a++ == 0; // violation, 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    assert a++ == 0; // violation 'Count of 1 for 'LITERAL_ASSERT' descendant'
     ;
     return 2;
   }

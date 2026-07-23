@@ -18,16 +18,16 @@ class Example3 {
   Example3(String testField) { // ok, because it match ignoreFormat
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because it match ignoreFormat
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 // xdoc section -- end

@@ -12,7 +12,7 @@ tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_U
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 public class InputFinalLocalVariableCheckSwitchExpressionsA {
     void foo1() throws Exception {
-        Exception e; // violation, "Variable 'e' should be declared final"
+        Exception e; // violation "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();
@@ -50,7 +50,7 @@ public class InputFinalLocalVariableCheckSwitchExpressionsA {
 
     void foo2() throws Exception {
 
-        Exception e; // violation, "Variable 'e' should be declared final"
+        Exception e; // violation "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();

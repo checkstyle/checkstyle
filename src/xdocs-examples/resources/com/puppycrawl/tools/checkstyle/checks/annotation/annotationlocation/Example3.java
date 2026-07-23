@@ -23,7 +23,7 @@ class Example3 {
   @Nonnull
   private boolean field1;
   @Override public int hashCode() { return 1; }
-  // violation above, 'Annotation 'Override' should be alone on line'
+  // violation above 'Annotation 'Override' should be alone on line'
   @Nonnull
   private boolean field2;
   @Override
@@ -33,8 +33,8 @@ class Example3 {
   @SuppressWarnings("deprecation") DataLoader loader2;
 
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation below, 'Annotation 'Nonnull' should be alone on line'
+  // violation below 'Annotation 'Nonnull' should be alone on line'
   @Nonnull @Mock DataLoader loader3;
-  // violation above, 'Annotation 'Mock' should be alone on line'
+  // violation above 'Annotation 'Mock' should be alone on line'
 }
 // xdoc section -- end

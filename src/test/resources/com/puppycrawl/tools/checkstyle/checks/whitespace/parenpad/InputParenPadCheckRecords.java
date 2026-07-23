@@ -28,22 +28,22 @@ public class InputParenPadCheckRecords {
         //           '')' is preceded with whitespace.'
 
         public MyRecord1{
-            bar( 1);  // violation, ''(' is followed by whitespace.'
+            bar( 1);  // violation ''(' is followed by whitespace.'
         }
 
         static int n;
 
         public void fun() {
-            bar( 1);  // violation, ''(' is followed by whitespace.'
+            bar( 1);  // violation ''(' is followed by whitespace.'
         }
 
-        public void bar(int k ) {  // violation, '')' is preceded with whitespace.'
+        public void bar(int k ) {  // violation '')' is preceded with whitespace.'
             while (k > 0) {
             }
         }
 
         public void fun2() {
-            switch( n) {  // violation, ''(' is followed by whitespace.'
+            switch( n) {  // violation ''(' is followed by whitespace.'
                 case 2:
                     bar(n);
                 default:
@@ -54,12 +54,12 @@ public class InputParenPadCheckRecords {
     }
 
     //record components
-    record MyRecord2( String s){} // violation, ''(' is followed by whitespace.'
+    record MyRecord2( String s){} // violation ''(' is followed by whitespace.'
     record MyRecord4( String s, String ...varargs ){}
         // 2 violations above:
         //           ''(' is followed by whitespace.'
         //           '')' is preceded with whitespace.'
-    record MyRecord6( String[] strArr){} // violation, ''(' is followed by whitespace.'
+    record MyRecord6( String[] strArr){} // violation ''(' is followed by whitespace.'
     record MyRecord7(HashMap<String, Node> hashMap ){}
-    // violation above, '')' is preceded with whitespace.'
+    // violation above '')' is preceded with whitespace.'
 }

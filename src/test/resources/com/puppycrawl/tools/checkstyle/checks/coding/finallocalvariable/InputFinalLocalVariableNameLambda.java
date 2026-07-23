@@ -40,7 +40,7 @@ interface Operation {
     public Object apply();
 
     public static final Operation OPERATION = () -> {
-        Object result; // violation, "Variable 'result' should be declared final"
+        Object result; // violation "Variable 'result' should be declared final"
         result = null;
         return result;
     };

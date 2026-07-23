@@ -189,7 +189,7 @@ class Example1 {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
+class Example2 { // violation 'Total number of methods is 6 (max allowed is 5)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}
@@ -226,7 +226,7 @@ class Example2 { // violation, 'Total number of methods is 6 (max allowed is 5)'
 </code></pre></div>
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)'
+class Example3 { // violation 'Number of public methods is 3 (max allowed is 2)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}
@@ -261,7 +261,7 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1)'
+class Example4 { // violation 'Number of private methods is 2 (max allowed is 1)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}
@@ -296,7 +296,7 @@ class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 { // violation, 'Number of package methods is 1 (max allowed is 0)'
+class Example5 { // violation 'Number of package methods is 1 (max allowed is 0)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}
@@ -367,7 +367,7 @@ class Example6 { // ok, there are no protected methods in this class
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 { // violation, 'Total number of methods is 6 (max allowed is 2)'
+class Example7 { // violation 'Total number of methods is 6 (max allowed is 2)'
 
   public void outerMethod1(int i) {}
   public void outerMethod2() {}

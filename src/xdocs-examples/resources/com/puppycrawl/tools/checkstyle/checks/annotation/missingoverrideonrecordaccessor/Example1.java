@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverrideonrecor
 // xdoc section -- start
 record Person(String name, int age) {
 
-  // violation below, 'method must include @java.lang.Override annotation.'
+  // violation below 'method must include @java.lang.Override annotation.'
   public String name() {
     return name.toUpperCase();
   }

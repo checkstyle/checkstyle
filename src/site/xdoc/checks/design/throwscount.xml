@@ -83,7 +83,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
@@ -126,14 +126,14 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  // violation below, 'Throws count is 5 (max allowed is 2)'
+  // violation below 'Throws count is 5 (max allowed is 2)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
                                 IllegalStateException,
                                 NullPointerException {
   }
-  // violation below, 'Throws count is 3 (max allowed is 2)'
+  // violation below 'Throws count is 3 (max allowed is 2)'
   public void myFunc() throws ArithmeticException,
                                 NumberFormatException,
                                 NullPointerException {
@@ -168,7 +168,7 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
@@ -180,7 +180,7 @@ public class Example3 {
                                 NumberFormatException,
                                 NullPointerException {
   }
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   private void privateFunc() throws CloneNotSupportedException,
                                 ClassNotFoundException,
                                 IllegalAccessException,

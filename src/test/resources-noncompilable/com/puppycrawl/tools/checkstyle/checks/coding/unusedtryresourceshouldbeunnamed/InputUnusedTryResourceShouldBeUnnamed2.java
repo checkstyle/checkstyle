@@ -9,7 +9,7 @@ import java.io.FileReader;
 
 public class InputUnusedTryResourceShouldBeUnnamed2 {
     void test1() {
-      // violation below, 'Unused try resource 'a' should be unnamed'
+      // violation below 'Unused try resource 'a' should be unnamed'
       try (FileReader a = new FileReader("someFile.txt")) {
 
       } catch (Exception e) {
@@ -82,7 +82,7 @@ public class InputUnusedTryResourceShouldBeUnnamed2 {
     }
 
     void  test5() {
-      // violation below, 'Unused try resource 'a' should be unnamed'
+      // violation below 'Unused try resource 'a' should be unnamed'
       try (AutoCloseable a = new AutoCloseable() {
             public void close() {
                 System.out.println("closed");
