@@ -78,20 +78,11 @@
   <suppress id="noViolationCommentsInJavadoc"
             files="/chapter7javadoc/rule711generalform/InputFormattedCorrectJavadocLeadingAsteriskAlignment.java"/>
   <suppress id="noViolationCommentsInJavadoc"
-            files="/chapter7javadoc/rule713atclauses/InputIncorrectAtClauseOrderCheck1.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="/chapter7javadoc/rule713atclauses/InputIncorrectAtClauseOrderCheck2.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="/chapter7javadoc/rule713atclauses/InputIncorrectAtClauseOrderCheck3.java"/>
-  <suppress id="noViolationCommentsInJavadoc"
-            files="/chapter7javadoc/rule713atclauses/InputIncorrectAtClauseOrderCheckOnRecordAndCompactCtor.java"/>
+            files="/chapter7javadoc/rule713atclauses/InputIncorrectAtClauseOrderCheck2OnRecordAndCompactCtor.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="/chapter7javadoc/rule713atclauses/InputJavaDocTagContinuationIndentation.java"/>
   <suppress id="noViolationCommentsInJavadoc"
             files="/checks/metrics/classfanoutcomplexity/InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"/>
-
-
-
   <suppress id="noViolationCommentsInJavadoc"
             files="/checks/javadoc/summaryjavadoc/InputSummaryJavadocInlineReturn.java"/>
   <suppress id="noViolationCommentsInJavadoc"
