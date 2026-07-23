@@ -27,19 +27,19 @@ public class InputSuppressWarningsHolderNonConstant {
     @SuppressWarnings(value =
      com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.CustomSuppressWarnings.UN_U)
     int f;
-    // violation below, 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings((1 != 1) ? "" : "UN_U")
     int g;
     @SuppressWarnings("un" + "used")
     int h;
     @SuppressWarnings((String) "UN_U")
     int i;
-    // violation below, 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings({})
     int j;
     @SuppressWarnings({UN_U})
     int k;
-    // violation below, 'The warning '' cannot be suppressed at this location'
+    // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings({"UN_U", true ? "UN_U" : ""})
     int l;
 }
@@ -47,7 +47,7 @@ public class InputSuppressWarningsHolderNonConstant {
 class CustomSuppressWarnings {
     static final String UN_U = "UN_U";
     @SuppressWarnings
-    // violation above, 'The warning '' cannot be suppressed at this location'
+    // violation above 'The warning '' cannot be suppressed at this location'
     private @interface SuppressWarnings {
     }
 }

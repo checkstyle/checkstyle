@@ -22,17 +22,17 @@ public final class Example3 {
     CHILD, ADULT
   }
 
-  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+  enum Age2 {  // violation 'Implied modifier 'static' should be explicit'
     CHILD, ADULT
   }
 
   public static record GoodRecord() {}
-  // violation below, 'Implied modifier 'static' should be explicit'
+  // violation below 'Implied modifier 'static' should be explicit'
   public record BadRecord() {}
 
   public static record OuterRecord() {
     static record InnerRecord1(){}
-    // violation below, 'Implied modifier 'static' should be explicit'
+    // violation below 'Implied modifier 'static' should be explicit'
     record InnerRecord2(){}
   }
 }

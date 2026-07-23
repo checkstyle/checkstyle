@@ -20,7 +20,7 @@ class ExampleDefaultCtor {
     s = "foobar";
   }
 }
-class InvalidExample { // violation, 'Class should define a constructor'
+class InvalidExample { // violation 'Class should define a constructor'
   public void test() {}
 }
 abstract class AbstractExample {

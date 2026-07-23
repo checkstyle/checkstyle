@@ -12,8 +12,8 @@ public class InputJavadocVariableNoJavadoc3Public
 {
     public int i1;
     protected int i2;
-    int i3; // violation, 'Missing a Javadoc comment'
-    private int i4;// violation, 'Missing a Javadoc comment'
+    int i3; // violation 'Missing a Javadoc comment'
+    private int i4;// violation 'Missing a Javadoc comment'
 
     public void foo1() {}
     protected void foo2() {}
@@ -23,8 +23,8 @@ public class InputJavadocVariableNoJavadoc3Public
     protected class ProtectedInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4;// violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4;// violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -35,8 +35,8 @@ public class InputJavadocVariableNoJavadoc3Public
     class PackageInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}
@@ -47,8 +47,8 @@ public class InputJavadocVariableNoJavadoc3Public
     private class PrivateInner {
         public int i1;
         protected int i2;
-        int i3; // violation, 'Missing a Javadoc comment'
-        private int i4; // violation, 'Missing a Javadoc comment'
+        int i3; // violation 'Missing a Javadoc comment'
+        private int i4; // violation 'Missing a Javadoc comment'
 
         public void foo1() {}
         protected void foo2() {}

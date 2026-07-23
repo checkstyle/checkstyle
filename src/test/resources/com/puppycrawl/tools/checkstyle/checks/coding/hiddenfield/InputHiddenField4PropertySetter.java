@@ -24,13 +24,13 @@ class InputHiddenField4PropertySetter
     }
 
     /** violation - incorrect method name */
-    public void setprop(int prop) // violation, ''prop' hides a field'
+    public void setprop(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - more than one parameter */
-    public void setProp(int prop, int extra) // violation, ''prop' hides a field'
+    public void setProp(int prop, int extra) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
@@ -42,7 +42,7 @@ class PropertySetter24
     private int prop;
 
     /** violation - not a void method */
-    public int setProp(int prop) // violation, ''prop' hides a field'
+    public int setProp(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
         return 0;
@@ -61,7 +61,7 @@ class PropertySetter34
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter34 setProp(int prop) // violation, ''prop' hides a field'
+    public PropertySetter34 setProp(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
         return this;
@@ -86,7 +86,7 @@ enum PropertySetter44 {
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter44 setProp2(int prop2) // violation, ''prop2' hides a field'
+    public PropertySetter44 setProp2(int prop2) // violation ''prop2' hides a field'
     {
         this.prop2 = prop2;
         return this;

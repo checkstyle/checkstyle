@@ -11,14 +11,14 @@ public class InputUnusedLocalVariableAnonInnerClasses3 {
 
     static class m {
         void method() {
-            int a = 12; // violation, 'Unused local variable'
+            int a = 12; // violation 'Unused local variable'
         }
     }
 
     static class myClass {
         static void method() {
             int a = 12;
-            m obj = new m() { // violation, 'Unused local variable'
+            m obj = new m() { // violation 'Unused local variable'
                 @Override
                 void method() {
                     Integer.valueOf(a);
@@ -30,7 +30,7 @@ public class InputUnusedLocalVariableAnonInnerClasses3 {
     static class j {
         static void method() {
             int a = 1000;
-            int s = 13; // violation, 'Unused local variable'
+            int s = 13; // violation 'Unused local variable'
             int q = 14;
             m obj = new m() {
                 @Override

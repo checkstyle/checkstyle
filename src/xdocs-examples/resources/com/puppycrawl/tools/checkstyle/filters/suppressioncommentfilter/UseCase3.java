@@ -23,7 +23,7 @@ class UseCase3
   //cson MemberName
 
   public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  // violation above 'must match pattern'
 
   //csoff ConstantName
   //csoff IllegalCatch

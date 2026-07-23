@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 // violation below 'Extra separation in import group before 'java.io.File'
-import java.io.File; //violation 'Wrong lexicographical order for 'java.io.File' import. Should be before 'javax.swing.JTable'.'
+import java.io.File; // violation 'Wrong lexicographical order for 'java.io.File' import. Should be before 'javax.swing.JTable'.'
 import static java.io.File.createTempFile; // violation 'Import 'java.io.File.createTempFile' violates the configured relative order between static and non-static imports.'
 import java.io.IOException;
 import java.io.InputStream;

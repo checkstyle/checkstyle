@@ -30,7 +30,7 @@ class Example5 extends ExternalService5 {
 
 class ExternalService5 {
 
-  // violation below, 'More than 6 parameters (found 8)'
+  // violation below 'More than 6 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 

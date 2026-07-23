@@ -19,11 +19,11 @@ class Example7 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
-        throws Exception {   // violation, 'level 8, expected level should be 12'
+        throws Exception {   // violation 'level 8, expected level should be 12'
         switch (a) {
             case 1:
                 break;

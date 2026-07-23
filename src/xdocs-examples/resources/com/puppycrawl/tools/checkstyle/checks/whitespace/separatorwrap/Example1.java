@@ -24,9 +24,9 @@ class Example1 {
   }
 
   void bar(int p
-          , int q) { // violation, ',' should be on the previous line
+          , int q) { // violation ',' should be on the previous line
     if (s
-            .isEmpty()) { // violation, '.' should be on the previous line
+            .isEmpty()) { // violation '.' should be on the previous line
     }
   }
 }

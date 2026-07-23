@@ -14,43 +14,43 @@ public class InputUnusedLambdaParameterShouldBeUnnamedSingleLambdaParameter {
 
     void testUnused() {
         List<String> list = List.of("a", "b", "c");
-        // violation below, 'Unused lambda parameter 'character' should be unnamed'
+        // violation below 'Unused lambda parameter 'character' should be unnamed'
         List<String> Xs = list.stream().map(character -> {
             return "x";
         }).toList();
 
-        // violation below, 'Unused lambda parameter 'character' should be unnamed'
+        // violation below 'Unused lambda parameter 'character' should be unnamed'
         Xs = list.stream().map(character -> "x" ).toList();
 
-        // violation below, 'Unused lambda parameter 'character' should be unnamed'
+        // violation below 'Unused lambda parameter 'character' should be unnamed'
         Xs = list.stream().map(character -> {
             return this.character;
         }).toList();
 
-        // violation below, 'Unused lambda parameter 'character' should be unnamed'
+        // violation below 'Unused lambda parameter 'character' should be unnamed'
         Xs = list.stream().map(character -> this.character).toList();
 
-        // violation below, 'Unused lambda parameter 'Character' should be unnamed'
+        // violation below 'Unused lambda parameter 'Character' should be unnamed'
         Xs = list.stream().map(Character -> {
             Character c = 'x';
             return c.toString();
         }).toList();
 
-        // violation below, 'Unused lambda parameter 'character' should be unnamed'
+        // violation below 'Unused lambda parameter 'character' should be unnamed'
         Xs = list.stream().map(character -> {
             return character("x");
         }).toList();
 
-        // violation below, 'Unused lambda parameter 'C' should be unnamed'
+        // violation below 'Unused lambda parameter 'C' should be unnamed'
         Xs = list.stream().map(C -> {
             Object a = new C();
             return "x";
         }).toList();
 
-        // violation below, 'Unused lambda parameter 's' should be unnamed'
+        // violation below 'Unused lambda parameter 's' should be unnamed'
         Function<String, String> function = s -> "x";
 
-        // violation below, 'Unused lambda parameter 'C' should be unnamed'
+        // violation below 'Unused lambda parameter 'C' should be unnamed'
         Xs = list.stream().map(C -> {
             C = "a";
             return "x";

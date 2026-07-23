@@ -38,11 +38,11 @@ public class InputSuppressWarningsHolder2 {
 
     void test1() {
         @SuppressWarnings(InputSuppressWarningsHolder2.localVariableNameCheck)
-        int a;// violation, 'Unused local variable 'a''
+        int a;// violation 'Unused local variable 'a''
     }
 
     void test4() {
         @SuppressWarnings(localVariableNameCheck)
-        int a;// violation, 'Unused local variable 'a''
+        int a;// violation 'Unused local variable 'a''
     }
 }

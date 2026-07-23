@@ -56,18 +56,18 @@ public class InputParenPadLeftRightAndNoSpace1
             // 2 violations above:
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
-            this( 0); // violation, ''(' is followed by whitespace.'
+            this( 0); // violation ''(' is followed by whitespace.'
         }
 
-        ParenPadSpaceLeft( int i) { // violation, ''(' is followed by whitespace.'
+        ParenPadSpaceLeft( int i) { // violation ''(' is followed by whitespace.'
             super( );
             // 2 violations above:
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
         }
 
-        @SuppressWarnings( "") // violation, ''(' is followed by whitespace.'
-        void method( boolean status) { // violation, ''(' is followed by whitespace.'
+        @SuppressWarnings( "") // violation ''(' is followed by whitespace.'
+        void method( boolean status) { // violation ''(' is followed by whitespace.'
             try ( Writer writer = new StringWriter( )) {
             // 3 violations above:
             //           ''(' is followed by whitespace.'
@@ -75,19 +75,19 @@ public class InputParenPadLeftRightAndNoSpace1
             //           '')' is preceded with whitespace.'
                 do {
                     writer.append("a");
-                } while ( status); // violation, ''(' is followed by whitespace.'
-            } catch ( IOException e) { // violation, ''(' is followed by whitespace.'
-                while ( status) { // violation, ''(' is followed by whitespace.'
+                } while ( status); // violation ''(' is followed by whitespace.'
+            } catch ( IOException e) { // violation ''(' is followed by whitespace.'
+                while ( status) { // violation ''(' is followed by whitespace.'
                     for ( int i = 0; i < ( long) ( 2 * ( 4 / 2)); i++) {
             // 3 violations above:
             //           ''(' is followed by whitespace.'
             //           ''(' is followed by whitespace.'
             //           ''(' is followed by whitespace.'
-                        if ( i > 2) { // violation, ''(' is followed by whitespace.'
-                            synchronized ( this) { // violation, ''(' is followed by whitespace.'
-                                switch ( i) { // violation, ''(' is followed by whitespace.'
+                        if ( i > 2) { // violation ''(' is followed by whitespace.'
+                            synchronized ( this) { // violation ''(' is followed by whitespace.'
+                                switch ( i) { // violation ''(' is followed by whitespace.'
                                     case 3:
-                                    case ( 4): // violation, ''(' is followed by whitespace.'
+                                    case ( 4): // violation ''(' is followed by whitespace.'
                                     case 5:
                                         break;
                                 }
@@ -104,38 +104,38 @@ public class InputParenPadLeftRightAndNoSpace1
             // 2 violations above:
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
-            this(0 ); // violation, '')' is preceded with whitespace.'
+            this(0 ); // violation '')' is preceded with whitespace.'
         }
 
-        ParenPadSpaceRight(int i ) { // violation, '')' is preceded with whitespace.'
+        ParenPadSpaceRight(int i ) { // violation '')' is preceded with whitespace.'
             super( );
             // 2 violations above:
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
         }
 
-        @SuppressWarnings("" ) // violation, '')' is preceded with whitespace.'
-        void method(boolean status ) { // violation, '')' is preceded with whitespace.'
+        @SuppressWarnings("" ) // violation '')' is preceded with whitespace.'
+        void method(boolean status ) { // violation '')' is preceded with whitespace.'
             try (Writer writer = new StringWriter( ) ) {
             // 3 violations above:
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
             //           '')' is preceded with whitespace.'
                 do {
-                    writer.append("a" ); // violation, '')' is preceded with whitespace.'
-                } while (status ); // violation, '')' is preceded with whitespace.'
-            } catch (IOException e ) { // violation, '')' is preceded with whitespace.'
-                while (status ) { // violation, '')' is preceded with whitespace.'
+                    writer.append("a" ); // violation '')' is preceded with whitespace.'
+                } while (status ); // violation '')' is preceded with whitespace.'
+            } catch (IOException e ) { // violation '')' is preceded with whitespace.'
+                while (status ) { // violation '')' is preceded with whitespace.'
                     for (int i = 0; i < (long ) (2 * (4 / 2 ) ); i++ ) {
             // 3 violations above:
             //           '')' is preceded with whitespace.'
             //           '')' is preceded with whitespace.'
             //           '')' is preceded with whitespace.'
-                        if (i > 2 ) { // violation, '')' is preceded with whitespace.'
-                            synchronized (this ) { // violation, '')' is preceded with whitespace.'
-                                switch (i ) { // violation, '')' is preceded with whitespace.'
+                        if (i > 2 ) { // violation '')' is preceded with whitespace.'
+                            synchronized (this ) { // violation '')' is preceded with whitespace.'
+                                switch (i ) { // violation '')' is preceded with whitespace.'
                                     case 3:
-                                    case (4 ): // violation, '')' is preceded with whitespace.'
+                                    case (4 ): // violation '')' is preceded with whitespace.'
                                     case 5:
                                         break;
                                 }
@@ -148,7 +148,7 @@ public class InputParenPadLeftRightAndNoSpace1
     }
 
     String foo() {
-        return ( (Object // violation, ''(' is followed by whitespace.'
+        return ( (Object // violation ''(' is followed by whitespace.'
                 ) bar( ( 1 > 2 ) ?
             // 3 violations above:
             //           ''(' is followed by whitespace.'
@@ -222,8 +222,8 @@ enum MyEnum1 {
         Object a = 5;
         Object b = "string";
         int w = Integer.parseInt((String)a);
-        int x = Integer.parseInt( (String)a); // violation, ''(' is followed by whitespace.'
-        double y = Double.parseDouble((String)a ); // violation, '')' is preceded with whitespace.'
+        int x = Integer.parseInt( (String)a); // violation ''(' is followed by whitespace.'
+        double y = Double.parseDouble((String)a ); // violation '')' is preceded with whitespace.'
         float z = Float.parseFloat( (String)a );
             // 2 violations above:
             //           ''(' is followed by whitespace.'
@@ -251,7 +251,7 @@ enum MyEnum1 {
             //           '')' is preceded with whitespace.'
     }
 
-    private void launch(Integer number ) { // violation, '')' is preceded with whitespace.'
+    private void launch(Integer number ) { // violation '')' is preceded with whitespace.'
         String myInt = ( number.toString() + '\0' );
             // 2 violations above:
             //           ''(' is followed by whitespace.'
@@ -261,8 +261,8 @@ enum MyEnum1 {
             result = true;
     }
 
-    private static String getterName( Exception t) { // violation, ''(' is followed by whitespace.'
-        if (t instanceof ClassNotFoundException ) { // violation, '')' is preceded with whitespace.'
+    private static String getterName( Exception t) { // violation ''(' is followed by whitespace.'
+        if (t instanceof ClassNotFoundException ) { // violation '')' is preceded with whitespace.'
             return ( (ClassNotFoundException) t ).getMessage();
             // 2 violations above:
             //           ''(' is followed by whitespace.'
@@ -308,8 +308,8 @@ enum MyEnum1 {
             // 2 violations above:
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
-        arrlist.add( 20); // violation, ''(' is followed by whitespace.'
-        arrlist.add(15 ); // violation, '')' is preceded with whitespace.'
+        arrlist.add( 20); // violation ''(' is followed by whitespace.'
+        arrlist.add(15 ); // violation '')' is preceded with whitespace.'
         arrlist.add( 30 );
             // 2 violations above:
             //           ''(' is followed by whitespace.'
@@ -334,7 +334,7 @@ enum MyEnum1 {
             //           '')' is preceded with whitespace.'
             //           '')' is preceded with whitespace.'
         org.junit.Assert.assertThat( "Help! Integers don't work",
-            // violation above, ''(' is followed by whitespace.'
+            // violation above ''(' is followed by whitespace.'
                 0, org.hamcrest.CoreMatchers.is( 1 ) );
             // 3 violations above:
             //           ''(' is followed by whitespace.'
@@ -349,6 +349,6 @@ enum MyEnum21 {
             //           ''(' is followed by whitespace.'
             //           '')' is preceded with whitespace.'
         int i = (int) (2 * (4 / 2
-)                   ); // violation, '')' is preceded with whitespace.'
+)                   ); // violation '')' is preceded with whitespace.'
     };
 }

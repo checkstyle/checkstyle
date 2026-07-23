@@ -16,7 +16,7 @@ public class Example6 {
 
   /** */
   Example6(int x) {}
-  // violation above, 'Expected @param tag for 'x''
+  // violation above 'Expected @param tag for 'x''
   /** */
   public int m1(int p1) throws IOException {
 

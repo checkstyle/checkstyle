@@ -25,7 +25,7 @@ public class UseCase2 {
     age = 24;
   }
   public void changeNumber(int number) {
-    // violation below, 'Reference to instance variable 'number' needs "this.".'
+    // violation below 'Reference to instance variable 'number' needs "this.".'
     number = number;
   }
 }

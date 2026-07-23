@@ -15,14 +15,14 @@ public final class Example4 {
   static interface Address1 {
   }
 
-  interface Address2 {  // violation, 'Implied modifier 'static' should be explicit'
+  interface Address2 {  // violation 'Implied modifier 'static' should be explicit'
   }
 
   static enum Age1 {
     CHILD, ADULT
   }
 
-  enum Age2 {  // violation, 'Implied modifier 'static' should be explicit'
+  enum Age2 {  // violation 'Implied modifier 'static' should be explicit'
     CHILD, ADULT
   }
 

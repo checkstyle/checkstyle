@@ -15,11 +15,11 @@ import java.lang.annotation.Target;
 import java.util.List;
 
 public class InputAnnotationOnSameLineOne {
-    // violation below, "Annotation 'Ann' should be on the same line with its target."
+    // violation below "Annotation 'Ann' should be on the same line with its target."
     @Ann public
     @Ann2 class E {}
 
-    // violation below, "Annotation 'Ann' should be on the same line with its target."
+    // violation below "Annotation 'Ann' should be on the same line with its target."
     @Ann private
     @Ann2 class A {}
     public void wildcardCase() {
@@ -32,7 +32,7 @@ public class InputAnnotationOnSameLineOne {
     }
 
     public void wildcardCase1() {
-        // violation below, 'Annotation 'Ann' should be on the same line with its target.'
+        // violation below 'Annotation 'Ann' should be on the same line with its target.'
         List<@Ann
                 ?> list;
     }

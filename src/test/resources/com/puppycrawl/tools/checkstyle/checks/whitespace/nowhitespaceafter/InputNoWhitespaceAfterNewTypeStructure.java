@@ -50,28 +50,28 @@ public class InputNoWhitespaceAfterNewTypeStructure {
 
     void badMethod() {
         Slot slot = new Slot();
-        slot.ci [5] = 10; // violation, ''ci' is followed by whitespace.'
-        slot.ci = new int [6]; // violation, ''int' is followed by whitespace.'
-        double [] cZ = {1.1, 1.2}; // violation, ''double' is followed by whitespace.'
+        slot.ci [5] = 10; // violation ''ci' is followed by whitespace.'
+        slot.ci = new int [6]; // violation ''int' is followed by whitespace.'
+        double [] cZ = {1.1, 1.2}; // violation ''double' is followed by whitespace.'
         final double   dnZ = slot.sin2Phi               * cZ [1];
-        // violation above, ''cZ' is followed by whitespace.'
+        // violation above ''cZ' is followed by whitespace.'
 
         final Ef ef = new Ef();
         final Transformer transformer =
             ef.forward ? ef.transformers [ef.transformers.length - 1]
-        //violation above, ''transformers' is followed by whitespace.'
-                    : ef.transformers [0]; // violation, ''transformers' is followed by whitespace.'
+        // violation above ''transformers' is followed by whitespace.'
+                    : ef.transformers [0]; // violation ''transformers' is followed by whitespace.'
 
         int[][
                 ]
                  a
-                  [] // violation, ''a' is followed by whitespace.'
-                        [] ; // violation, '']' is followed by whitespace.'
+                  [] // violation ''a' is followed by whitespace.'
+                        [] ; // violation '']' is followed by whitespace.'
                 int[][
                  ]
                  b
-                 [] // violation, '']' is followed by whitespace.'
-                        [] ; // violation, '']' is followed by whitespace.'
+                 [] // violation '']' is followed by whitespace.'
+                        [] ; // violation '']' is followed by whitespace.'
     }
 
     void varargLong(@I String @L [] @K [] @J ... vararg2) { }
@@ -89,10 +89,10 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     void method3(int x) {
         KeyManager[] kmaw = null;
          if (x == 1) {
-             kmaw = (javax.net.ssl.KeyManager[]) // violation, '')' is followed by whitespace.'
+             kmaw = (javax.net.ssl.KeyManager[]) // violation '')' is followed by whitespace.'
                        SSLSecurity.truncateArray(kmaw,
                            new javax.net.ssl.KeyManager [3]);
-             // violation above, ''KeyManager' is followed by whitespace.'
+             // violation above ''KeyManager' is followed by whitespace.'
          }
     }
 
@@ -125,12 +125,12 @@ public class InputNoWhitespaceAfterNewTypeStructure {
         int[] xorData;
 
         IntData(Object srcPixel, Object xorPixel) {
-            this.xorData = (int[]) srcPixel; // violation, '')' is followed by whitespace.'
-            this.xorData = (int[]) xorPixel; // violation, '')' is followed by whitespace.'
+            this.xorData = (int[]) srcPixel; // violation '')' is followed by whitespace.'
+            this.xorData = (int[]) xorPixel; // violation '')' is followed by whitespace.'
         }
 
         protected void xorPixel(Object pixData) {
-            int[] dstData = (int[]) pixData; // violation, '')' is followed by whitespace.'
+            int[] dstData = (int[]) pixData; // violation '')' is followed by whitespace.'
             for (int i = 0; i < dstData.length; i++) {
                 dstData[i] ^= xorData[i];
             }
@@ -150,7 +150,7 @@ public class InputNoWhitespaceAfterNewTypeStructure {
 
     }
     protected TreeSet<byte []> sortedPrefixes = createTreeSet();
-    // violation above, ''byte' is followed by whitespace.'
+    // violation above ''byte' is followed by whitespace.'
 
     TreeSet<byte[]> createTreeSet() {
         return null;
@@ -218,19 +218,19 @@ public class InputNoWhitespaceAfterNewTypeStructure {
     int[][
     ]
      w
-     [] // violation, '']' is followed by whitespace.'
-            [] ; // violation, '']' is followed by whitespace.'
+     [] // violation '']' is followed by whitespace.'
+            [] ; // violation '']' is followed by whitespace.'
     int[][
      ]
      z
-    [] // violation, '']' is followed by whitespace.'
-            [] ; // violation, '']' is followed by whitespace.'
+    [] // violation '']' is followed by whitespace.'
+            [] ; // violation '']' is followed by whitespace.'
 
     static class P {
         private int x;
 
         public void set3(P p) {
-              synchronized (this) { // violation, ''synchronized' is followed by whitespace.'
+              synchronized (this) { // violation ''synchronized' is followed by whitespace.'
                   p.x = get()[0];
               }
           }

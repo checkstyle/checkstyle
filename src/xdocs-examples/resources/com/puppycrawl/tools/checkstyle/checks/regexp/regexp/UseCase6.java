@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 public class UseCase6 {
   private void foo() {
     // fix me.
-    // violation above, 'Line matches the illegal pattern.'
+    // violation above 'Line matches the illegal pattern.'
   }
 }
 // xdoc section -- end

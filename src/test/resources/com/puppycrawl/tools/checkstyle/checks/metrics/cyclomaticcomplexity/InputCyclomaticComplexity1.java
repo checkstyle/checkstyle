@@ -12,12 +12,12 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexity1 {
     // NP = 2
-    public void foo() { // violation, 'Cyclomatic Complexity is 2 (max allowed is 0).'
+    public void foo() { // violation 'Cyclomatic Complexity is 2 (max allowed is 0).'
         //NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
         while (true) {
             Runnable runnable = new Runnable() {
                // NP = 2
-                public void run() { // violation, 'Cyclomatic Complexity is 2 (max allowed is 0).'
+                public void run() { // violation 'Cyclomatic Complexity is 2 (max allowed is 0).'
                     // NP(while-statement) = (while-range=1) + (expr=0) + 1 = 2
                     while (true) {
                     }
@@ -29,7 +29,7 @@ public class InputCyclomaticComplexity1 {
     }
 
     // NP = 10
-    public void bar() { // violation, 'Cyclomatic Complexity is 6 (max allowed is 0).'
+    public void bar() { // violation 'Cyclomatic Complexity is 6 (max allowed is 0).'
         // NP = (if-range=3*3) + (expr=0) + 1 = 10
         if (System.currentTimeMillis() == 0) {
             //NP = (if-range=1) + 1 + (expr=1) = 3
@@ -42,7 +42,7 @@ public class InputCyclomaticComplexity1 {
     }
 
     // NP = 3
-    public void simpleElseIf() { // violation, 'Cyclomatic Complexity is 3 (max allowed is 0).'
+    public void simpleElseIf() { // violation 'Cyclomatic Complexity is 3 (max allowed is 0).'
         // NP = (if-range=1) + (else-range=2) + 0 = 3
         if (System.currentTimeMillis() == 0) {
         // NP(else-range) = (if-range=1) + (else-range=1) + (expr=0) = 2
@@ -52,7 +52,7 @@ public class InputCyclomaticComplexity1 {
     }
 
     // NP = 7
-    public void stupidElseIf() { // violation, 'Cyclomatic Complexity is 5 (max allowed is 0).'
+    public void stupidElseIf() { // violation 'Cyclomatic Complexity is 5 (max allowed is 0).'
         // NP = (if-range=1) + (else-range=3*2) + (expr=0) = 7
         if (System.currentTimeMillis() == 0) {
         } else {

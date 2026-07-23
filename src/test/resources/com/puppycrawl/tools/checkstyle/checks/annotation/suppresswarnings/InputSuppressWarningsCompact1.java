@@ -15,11 +15,11 @@ import java.lang.annotation.Documented;
 @SuppressWarnings({"unchecked", "unused"})
 public class InputSuppressWarningsCompact1
 {
-    // violation below, 'The warning '   ' cannot be suppressed at this location'
+    // violation below 'The warning '   ' cannot be suppressed at this location'
     @SuppressWarnings({"   "})
     class Empty {
 
-        // violation below, 'The warning '' cannot be suppressed at this location'
+        // violation below 'The warning '' cannot be suppressed at this location'
         @SuppressWarnings({"unchecked", ""})
         public Empty() {
 
@@ -63,7 +63,7 @@ public class InputSuppressWarningsCompact1
 
     public class Junk {
 
-        // violation below, 'The warning '' cannot be suppressed at this location'
+        // violation below 'The warning '' cannot be suppressed at this location'
         @SuppressWarnings({})
         int a = 1;
 

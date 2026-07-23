@@ -17,11 +17,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 public class InputIllegalTypeArrays {
 
-    public Boolean[] array; // violation, 'Usage of type Boolean[] is not allowed'.
+    public Boolean[] array; // violation 'Usage of type Boolean[] is not allowed'.
 
-    public Boolean[][] matrix; // violation, 'Usage of type Boolean[][] is not allowed'.
+    public Boolean[][] matrix; // violation 'Usage of type Boolean[][] is not allowed'.
 
-    public Boolean[] getArray() { // violation, 'Usage of type Boolean[] is not allowed'.
+    public Boolean[] getArray() { // violation 'Usage of type Boolean[] is not allowed'.
         Boolean[] value = array != null ? array : new Boolean[0];
         // violation above 'Usage of type 'Boolean\[\]' is not allowed'
 

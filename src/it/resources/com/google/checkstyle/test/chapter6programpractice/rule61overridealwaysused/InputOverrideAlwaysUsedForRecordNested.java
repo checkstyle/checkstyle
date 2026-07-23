@@ -14,7 +14,7 @@ public record InputOverrideAlwaysUsedForRecordNested(String outer) {
   public record Inner(String inner) {
 
     /** Some javadoc. */
-    // violation below, 'method must include @java.lang.Override annotation.'
+    // violation below 'method must include @java.lang.Override annotation.'
     public String inner() {
       return inner.toLowerCase(Locale.ROOT);
     }

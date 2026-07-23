@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.throwscount;
 
 // xdoc section -- start
 public class Example1 {
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,

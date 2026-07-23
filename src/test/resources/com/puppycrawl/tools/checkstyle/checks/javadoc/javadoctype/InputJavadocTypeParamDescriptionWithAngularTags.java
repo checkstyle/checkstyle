@@ -52,7 +52,7 @@ class Shogun<T, U> {
  * @param    <T>
  * @param <P> stuff <><><<stuff></></></> stuff
  */
-interface Regent<T, U> {} // violation, 'Type Javadoc comment is missing @param '<U>' tag.'
+interface Regent<T, U> {} // violation 'Type Javadoc comment is missing @param '<U>' tag.'
 
 // violation 3 lines below 'Unused @param tag for 'region'.'
 /**

@@ -519,7 +519,7 @@ public class Example8 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated("tool") // violation, 'Type Javadoc comment is missing @param '&lt;T&gt;' tag'
+  @Generated("tool") // violation 'Type Javadoc comment is missing @param '&lt;T&gt;' tag'
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>

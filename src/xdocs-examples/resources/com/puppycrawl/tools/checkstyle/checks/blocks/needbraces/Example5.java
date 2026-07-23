@@ -37,7 +37,7 @@ class Example5 {
     for(int i = 0; i < 10; value.charAt(12));
     // ok above, because FOR is not a target of validation
     while (counter < 10)
-        // violation above, ''while' construct must use '{}'s.'
+        // violation above ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) < 5);
     // ok above, because WHILE is not a target of validation

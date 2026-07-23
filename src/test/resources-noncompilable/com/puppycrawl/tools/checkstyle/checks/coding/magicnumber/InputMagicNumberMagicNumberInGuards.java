@@ -31,9 +31,9 @@ public class InputMagicNumberMagicNumberInGuards {
             //                  ''3' is a magic number.'
             //                   ''6' is a magic number.'
             case Point(_, _, double z) when z > (10.88) -> {}
-            // violation above, ''10.88' is a magic number'
+            // violation above ''10.88' is a magic number'
             case String s when s.length() != 6 -> {}
-            // violation above, ''6' is a magic number'
+            // violation above ''6' is a magic number'
             default -> {}
         }
 
@@ -43,7 +43,7 @@ public class InputMagicNumberMagicNumberInGuards {
             //                  ''0.5' is a magic number.'
            //                   ''5' is a magic number.'
             case String s -> {
-                yield 6; // violation, ''6' is a magic number'
+                yield 6; // violation ''6' is a magic number'
             }
             default -> 0;
         };

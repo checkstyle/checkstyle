@@ -266,16 +266,16 @@ class Example2 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -330,16 +330,16 @@ class Example3 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -394,16 +394,16 @@ class Example4 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -573,10 +573,10 @@ class Example8 {
 
   public static final int field4 = 42;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int field5 = 42;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final java.lang.String notes = null;
 
   // violation below, HashSet is mutable 'must be private'
@@ -597,16 +597,16 @@ class Example8 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
   // violation above, annotation not configured 'must be private'
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -629,11 +629,11 @@ class Example8 {
 class Example12 {
   private int myPrivateField1;
 
-  int field1; // violation, 'must be private'
+  int field1; // violation 'must be private'
 
-  protected String field2; // violation, 'must be private'
+  protected String field2; // violation 'must be private'
 
-  public int field3 = 42; // violation, 'must be private'
+  public int field3 = 42; // violation 'must be private'
 
   public long serialVersionUID = 1L;
 
@@ -655,11 +655,11 @@ class Example12 {
   public final ImmutableMap&lt;String, Object&gt; objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString; // violation, 'must be private'
+  String annotatedString; // violation 'must be private'
 
   @Deprecated
   String shortCustomAnnotated;
-  // violation above, 'must be private'
+  // violation above 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 

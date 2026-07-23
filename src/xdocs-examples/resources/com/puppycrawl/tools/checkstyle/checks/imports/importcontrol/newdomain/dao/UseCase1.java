@@ -12,10 +12,10 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.newdomain.dao;
 
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
-// violation above, 'Disallowed import'
+// violation above 'Disallowed import'
 import java.io.File;
 import java.util.Scanner;
-import javax.swing.ActionMap; // violation, 'Disallowed import - javax.swing'
+import javax.swing.ActionMap; // violation 'Disallowed import - javax.swing'
 
 public class UseCase1 {}
 // xdoc section -- end

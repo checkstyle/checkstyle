@@ -193,10 +193,10 @@ class InputParenPadWhitespace2
             //           ''(' is not followed by whitespace.'
             //           '')' is not preceded with whitespace.'
     {
-        donBradman(new Runnable() { // violation,''(' is not followed by whitespace.'
+        donBradman(new Runnable() { // violation ''(' is not followed by whitespace.'
             public void run() {
             }
-        }); // violation,'')' is not preceded with whitespace.'
+        }); // violation '')' is not preceded with whitespace.'
 
         final Runnable r = new Runnable() {
             public void run() {
@@ -259,7 +259,7 @@ class SpecialCasesInForLoop2
     void forIterator()
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
-        for (int i = 0; i++ < 5;) { // violation,''(' is not followed by whitespace.'
+        for (int i = 0; i++ < 5;) { // violation ''(' is not followed by whitespace.'
         //                  ^ no whitespace
     }
 

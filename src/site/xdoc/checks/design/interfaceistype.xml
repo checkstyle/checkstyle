@@ -63,7 +63,7 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  // violation below, 'interfaces should describe a type and hence have methods.'
+  // violation below 'interfaces should describe a type and hence have methods.'
   interface Test1 {
     int a = 3;
   }
@@ -94,12 +94,12 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  // violation below, 'interfaces should describe a type and hence have methods.'
+  // violation below 'interfaces should describe a type and hence have methods.'
   interface Test1 {
     int a = 3;
   }
 
-  // violation below, 'interfaces should describe a type and hence have methods.'
+  // violation below 'interfaces should describe a type and hence have methods.'
   interface Test2 {
 
   }

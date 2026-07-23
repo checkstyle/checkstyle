@@ -13,7 +13,7 @@ public class InputOrderOfConstructorsAndOverloadedMethodsOne {
     InputOrderOfConstructorsAndOverloadedMethodsOne(int x) {}
     // violation above 'Constructors should be ordered by increasing parameter count.'
 
-    int a = 0; // violation, Field declaration is in wrong order
+    int a = 0; // violation 'Field declaration is in wrong order'
 
     // violation 2 lines below """Constructors should be grouped together.
     // The last grouped constructor is declared at line '13'."""

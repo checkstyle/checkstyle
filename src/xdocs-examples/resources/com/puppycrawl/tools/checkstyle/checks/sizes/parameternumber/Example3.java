@@ -17,7 +17,7 @@ class Example3 extends ExternalService3 {
   Example3(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   Example3(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
@@ -29,7 +29,7 @@ class Example3 extends ExternalService3 {
 
 class ExternalService3 {
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 

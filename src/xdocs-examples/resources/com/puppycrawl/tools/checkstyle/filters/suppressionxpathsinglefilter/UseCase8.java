@@ -21,7 +21,7 @@ public class UseCase8 {
   public void testMethod() {
     // filtered violation below 'Name 'testVariable1' must match pattern'
     final int testVariable1 = 10;
-    // violation below, 'Name 'testVariable2' must match pattern'
+    // violation below 'Name 'testVariable2' must match pattern'
     final int testVariable2 = 10;
   }
 }

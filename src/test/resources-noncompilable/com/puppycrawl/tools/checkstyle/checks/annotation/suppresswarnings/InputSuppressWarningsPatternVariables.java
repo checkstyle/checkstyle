@@ -14,16 +14,16 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 public class InputSuppressWarningsPatternVariables {
 
     void test(Object o) {
-        // violation below, 'The warning '' cannot be suppressed at this location.'
+        // violation below 'The warning '' cannot be suppressed at this location.'
         if (o instanceof ColoredPoint(@SuppressWarnings("")int x, int y, int z)) { }
 
-        // violation below, 'The warning 'unused' cannot be suppressed at this location.'
+        // violation below 'The warning 'unused' cannot be suppressed at this location.'
         if (o instanceof ColoredPoint(_, _,@SuppressWarnings("unused") int _)) { }
 
-        // violation below, 'The warning 'unchecked' cannot be suppressed at this location.'
+        // violation below 'The warning 'unchecked' cannot be suppressed at this location.'
         if (o instanceof @SuppressWarnings("unchecked") ColoredPoint _) { }
 
-        // violation below, 'The warning '' cannot be suppressed at this location.'
+        // violation below 'The warning '' cannot be suppressed at this location.'
         @SuppressWarnings("")
         int _ = sideEffect();
 

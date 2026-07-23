@@ -45,13 +45,13 @@ public class UseCase1 {
     int x;
     switch (mode) {
       case 1: int y = 1; break;
-      case 2: {x = 1;} // violation, 'should be alone on a line.'
+      case 2: {x = 1;} // violation 'should be alone on a line.'
       case 3: int z = 0; {break;}
-      default: {x = 0;} // violation, 'should be alone on a line.'
+      default: {x = 0;} // violation 'should be alone on a line.'
     }
     switch (mode) {
       case 1: x = 1; break;
-      default: x = 0; } // violation, 'should be alone on a line.'
+      default: x = 0; } // violation 'should be alone on a line.'
   }
 }
 // xdoc section -- end

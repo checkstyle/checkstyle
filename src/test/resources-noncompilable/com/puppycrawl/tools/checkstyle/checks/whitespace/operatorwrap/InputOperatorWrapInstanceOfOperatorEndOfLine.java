@@ -24,7 +24,7 @@ public class InputOperatorWrapInstanceOfOperatorEndOfLine {
         if (o instanceof Integer i) {}
 
         if (o
-                // violation below, ''instanceof' should be on the previous line.'
+                // violation below ''instanceof' should be on the previous line.'
                 instanceof Integer) {
         }
     }
@@ -39,7 +39,7 @@ public class InputOperatorWrapInstanceOfOperatorEndOfLine {
                 Integer i;
         boolean d = o instanceof Integer i;
         boolean e = o
-                // violation below, ''instanceof' should be on the previous line.'
+                // violation below ''instanceof' should be on the previous line.'
                 instanceof Integer i;
     }
 
@@ -61,7 +61,7 @@ public class InputOperatorWrapInstanceOfOperatorEndOfLine {
        }
         switch (o) {
            case Number n when n
-                  // violation below, ''instanceof' should be on the previous line.'
+                  // violation below ''instanceof' should be on the previous line.'
                    instanceof Integer: { } break;
            default: { }
        }
@@ -74,7 +74,7 @@ public class InputOperatorWrapInstanceOfOperatorEndOfLine {
         if (o instanceof Point(int x, int y)) {}
 
         if (o
-                // violation below, ''instanceof' should be on the previous line.'
+                // violation below ''instanceof' should be on the previous line.'
                 instanceof Point(int x, int y)) {}
 
         switch (o) {
@@ -84,7 +84,7 @@ public class InputOperatorWrapInstanceOfOperatorEndOfLine {
         }
         switch (o) {
             case Object obj when obj
-                   // violation below, ''instanceof' should be on the previous line.'
+                   // violation below ''instanceof' should be on the previous line.'
                     instanceof Point(int _, int _): {} break;
             default: {}
         }

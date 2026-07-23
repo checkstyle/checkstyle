@@ -20,9 +20,9 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 public class UseCase9 {
 
   private void foo() {
-    System.out.println(""); // violation, 'Line matches the illegal pattern'
+    System.out.println(""); // violation 'Line matches the illegal pattern'
     // System.out.println("debug");
-    // fix me. // violation above, 'Line matches the illegal pattern'
+    // fix me. // violation above 'Line matches the illegal pattern'
     // fix me.
   }
 }

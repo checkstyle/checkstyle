@@ -18,7 +18,7 @@ class UseCase4 {
 
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
-    // violation above, 'Count of 2 for 'LITERAL_THROWS' descendant'
+    // violation above 'Count of 2 for 'LITERAL_THROWS' descendant'
     switch (x) {
       case 1:
         break;

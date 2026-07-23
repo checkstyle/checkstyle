@@ -166,9 +166,9 @@
         <p id="Example1-code">Example: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1
-{ // violation, ''{' at column 1 should be on the previous line.'
+{ // violation ''{' at column 1 should be on the previous line.'
   private interface TestInterface
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 
   private
@@ -206,7 +206,7 @@ class Example2
 
   private
     class
-    MyClass { // violation, ''{' at column 13 should be on a new line.'
+    MyClass { // violation ''{' at column 13 should be on a new line.'
   }
 
   enum Colors {RED,
@@ -238,7 +238,7 @@ class Example3
 
   private
     class
-    MyClass { // violation, ''{' at column 13 should be on a new line.'
+    MyClass { // violation ''{' at column 13 should be on a new line.'
   }
   // violation below ''{' at column 15 should be on a new line.'
   enum Colors {RED,
@@ -262,9 +262,9 @@ class Example3
         <p id="Example4-code">Example: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4
-{ // violation, ''{' at column 1 should be on the previous line.'
+{ // violation ''{' at column 1 should be on the previous line.'
   private interface TestInterface
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 
   private
@@ -272,7 +272,7 @@ class Example4
     MyClass {
   }
 
-  enum Colors {RED, // violation, ''{' at column 15 should have line break after.'
+  enum Colors {RED, // violation ''{' at column 15 should have line break after.'
     BLUE,
     GREEN;
   }
@@ -298,14 +298,14 @@ class Example4
         <p id="UseCase1-code">Example: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class UseCase1
-{ // violation, ''{' at column 1 should be on the previous line.'
+{ // violation ''{' at column 1 should be on the previous line.'
   private interface TestInterface
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 
   private
     class
-    MyClass { // violation, ''{' at column 13 should be on a new line.'
+    MyClass { // violation ''{' at column 13 should be on a new line.'
   }
 
   enum Colors {RED,

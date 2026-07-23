@@ -28,7 +28,7 @@ public class UseCase1 {
   // filtered violation 4 lines above 'Line is longer than 100 characters (found 133).'
   // filtered violation 4 lines above 'Line is longer than 100 characters (found 116).'
 
-  // violation below, 'Line is longer than 100 characters (found 183).'
+  // violation below 'Line is longer than 100 characters (found 183).'
   static final String SINGLE_LINE_SAMPLE = "locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude";
 }
 // xdoc section -- end

@@ -16,7 +16,7 @@ public class Example3 {
   /** Javadoc. */
   public class A {}
 
-  private class B {} // violation, 'Missing a Javadoc comment'
+  private class B {} // violation 'Missing a Javadoc comment'
 
   protected class C {}
   /** Javadoc. */

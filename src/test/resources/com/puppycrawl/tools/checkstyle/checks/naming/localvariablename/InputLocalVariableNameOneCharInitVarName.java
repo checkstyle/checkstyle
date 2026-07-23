@@ -17,18 +17,18 @@ class InputLocalVariableNameOneCharInitVarName
         public void fooMethod()
         {
                 for(int i = 1; i <10; i++) {
-                        int j = 1; // violation, 'Name 'j' must match pattern*'
+                        int j = 1; // violation 'Name 'j' must match pattern*'
                 }
         for(int K = 1; K < 10; K++) {
-            int A = 1; // violation, 'Name 'A' must match pattern*'
+            int A = 1; // violation 'Name 'A' must match pattern*'
         }
-                int i = 0; // violation, 'Name 'i' must match pattern*'
+                int i = 0; // violation 'Name 'i' must match pattern*'
 
         for(int index = 1; index < 10; index++) {
                         //come code
                 }
 
-        for(int Index = 1; Index < 10; Index++) { // violation, 'Name 'Index' must match pattern*'
+        for(int Index = 1; Index < 10; Index++) { // violation 'Name 'Index' must match pattern*'
                         //come code
                 }
 
@@ -45,10 +45,10 @@ class InputLocalVariableNameOneCharInitVarName
                 Map<String, String> map = new HashMap<String, String>();
 
                 for (Map.Entry<String, String> e : map.entrySet()) {
-                        String a = ""; // violation, 'Name 'a' must match pattern*'
+                        String a = ""; // violation 'Name 'a' must match pattern*'
                 }
                 for (Map.Entry<String, String> E : map.entrySet()) {
-                        String B = ""; // violation, 'Name 'B' must match pattern*'
+                        String B = ""; // violation 'Name 'B' must match pattern*'
                 }
         }
 }

@@ -29,7 +29,7 @@ class Example5 {
     }
   }
 
-  // violation below, 'NCSS for this record is 6 (max allowed is 5)'
+  // violation below 'NCSS for this record is 6 (max allowed is 5)'
   record InvalidRecord(int x, int y) {
     public InvalidRecord {
       System.out.println("Line 1");

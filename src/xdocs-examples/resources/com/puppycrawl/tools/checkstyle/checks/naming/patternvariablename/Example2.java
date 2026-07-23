@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 class Example2 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
 

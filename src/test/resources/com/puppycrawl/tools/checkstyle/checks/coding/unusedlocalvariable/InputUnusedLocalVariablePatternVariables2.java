@@ -11,7 +11,7 @@ public class InputUnusedLocalVariablePatternVariables2 {
 
     void unusedGuardedPattern(Object obj) {
         switch (obj) {
-            case Integer i when 1 > 0 -> System.out.println("positive"); // violation, 'i'
+            case Integer i when 1 > 0 -> System.out.println("positive"); // violation 'i'
             default                   -> System.out.println("other");
         }
     }

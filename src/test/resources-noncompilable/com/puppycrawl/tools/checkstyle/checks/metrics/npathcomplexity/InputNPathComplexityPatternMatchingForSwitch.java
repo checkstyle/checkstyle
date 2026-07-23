@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
 public class InputNPathComplexityPatternMatchingForSwitch {
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below 'NPath Complexity is 3 (max allowed is 1)'
     void testPatternWithRule(Object o) {
         switch (o) {
             case Integer _ -> {}
@@ -19,7 +19,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below 'NPath Complexity is 3 (max allowed is 1)'
     void testPatternWithStatement(Object o) {
         switch (o) {
             case Integer _: {}
@@ -28,7 +28,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below 'NPath Complexity is 3 (max allowed is 1)'
     void testRecordPatternWithRule(Object o) {
         switch (o) {
             case A(int x) -> {}
@@ -37,7 +37,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below 'NPath Complexity is 3 (max allowed is 1)'
     void testRecordPatternWithStatement(Object o) {
         switch (o) {
             case A(int x) : {} break;
@@ -46,7 +46,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 5 (max allowed is 1)'
+    // violation below 'NPath Complexity is 5 (max allowed is 1)'
     void testGuardsInRule(Object o) {
         switch (o) {
             case Integer i when i > 0 -> {}
@@ -55,7 +55,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 5 (max allowed is 1)'
+    // violation below 'NPath Complexity is 5 (max allowed is 1)'
     void testGuardsInStatement(Object o) {
         switch (o) {
             case Integer i when i > 0 : {} break;
@@ -64,7 +64,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 4 (max allowed is 1)'
+    // violation below 'NPath Complexity is 4 (max allowed is 1)'
     void testMultiCaseLabelWithRule(Object o) {
         switch (o) {
             case Integer _, String _ , Double _ -> {}
@@ -72,7 +72,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 4 (max allowed is 1)'
+    // violation below 'NPath Complexity is 4 (max allowed is 1)'
     void testMultiCaseLabelWithStatement(Object o) {
         switch (o) {
             case Integer _ :
@@ -82,7 +82,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below 'NPath Complexity is 3 (max allowed is 1)'
     void testExprInRule(int x) {
         switch (x) {
             case 1 -> {}
@@ -91,7 +91,7 @@ public class InputNPathComplexityPatternMatchingForSwitch {
         }
     }
 
-    // violation below, 'NPath Complexity is 3 (max allowed is 1)'
+    // violation below 'NPath Complexity is 3 (max allowed is 1)'
     void testExprInStatement(int x) {
         switch (x) {
             case 1 : {}

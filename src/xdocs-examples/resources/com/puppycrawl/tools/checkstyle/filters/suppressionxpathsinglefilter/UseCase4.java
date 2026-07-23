@@ -26,9 +26,9 @@ public class UseCase4 {
     final int num = 10;
   }
 
-  // violation below, 'Name 'TestMethod2' must match pattern'
+  // violation below 'Name 'TestMethod2' must match pattern'
   public void TestMethod2() {
-    // violation below, 'Name 'num' must match pattern'
+    // violation below 'Name 'num' must match pattern'
     final int num = 10;
   }
 }

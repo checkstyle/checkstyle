@@ -12,14 +12,14 @@ package com.puppycrawl.tools.checkstyle.checks.design.throwscount;
 
 // xdoc section -- start
 public class Example2 {
-  // violation below, 'Throws count is 5 (max allowed is 2)'
+  // violation below 'Throws count is 5 (max allowed is 2)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
                                 IllegalStateException,
                                 NullPointerException {
   }
-  // violation below, 'Throws count is 3 (max allowed is 2)'
+  // violation below 'Throws count is 3 (max allowed is 2)'
   public void myFunc() throws ArithmeticException,
                                 NumberFormatException,
                                 NullPointerException {

@@ -14,9 +14,9 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 class UseCase2 {
   void MyMethod() {
     int goodName = 0;
-    int i = 1; // violation, 'Name 'i' must match pattern*'
+    int i = 1; // violation 'Name 'i' must match pattern*'
     for (int var = 1; var < 10; var++) {
-      int j = 1; // violation, 'Name 'j' must match pattern*'
+      int j = 1; // violation 'Name 'j' must match pattern*'
     }
   }
 }

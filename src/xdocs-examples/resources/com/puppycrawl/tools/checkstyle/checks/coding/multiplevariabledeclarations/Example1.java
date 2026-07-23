@@ -14,12 +14,12 @@ public class Example1 {
     int high = 0;
 
     int lower, higher;
-    // violation above, 'Each variable declaration must be in its own statement'
+    // violation above 'Each variable declaration must be in its own statement'
 
-    int value, // violation, 'Each variable declaration must be in its own statement'
+    int value, // violation 'Each variable declaration must be in its own statement'
         index;
     int place = mid, number = high;
-    // violation above, 'Each variable declaration must be in its own statement'
+    // violation above 'Each variable declaration must be in its own statement'
   }
 }
 // xdoc section -- end

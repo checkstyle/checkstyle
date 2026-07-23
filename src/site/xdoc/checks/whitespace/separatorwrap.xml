@@ -99,9 +99,9 @@ class Example1 {
   }
 
   void bar(int p
-          , int q) { // violation, ',' should be on the previous line
+          , int q) { // violation ',' should be on the previous line
     if (s
-            .isEmpty()) { // violation, '.' should be on the previous line
+            .isEmpty()) { // violation '.' should be on the previous line
     }
   }
 }
@@ -129,10 +129,10 @@ class Example2 {
   String s;
 
   int a,
-          b;         // violation above, ',' should be on a new line
+          b;         // violation above ',' should be on a new line
 
   void foo(int x,
-           int y) {  // violation above, ',' should be on a new line
+           int y) {  // violation above ',' should be on a new line
   }
 
   void bar(int p
@@ -167,10 +167,10 @@ class Example3 {
   String s;
 
   int a,
-          b; // violation above, ',' should be on a new line
+          b; // violation above ',' should be on a new line
 
   void foo(int x,
-           int y) { // violation above, ',' should be on a new line
+           int y) { // violation above ',' should be on a new line
   }
 
   void bar(int p

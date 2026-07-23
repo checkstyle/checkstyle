@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
 // xdoc section -- start
 public class Example3 {
-  /** @see Math */ // violation, 'Javadoc comment should be multi-line'
+  /** @see Math */ // violation 'Javadoc comment should be multi-line'
   public int foo() {
     return 42;
   }
@@ -22,7 +22,7 @@ public class Example3 {
   public int bar() {
     return 42;
   }
-  // violation below, 'Javadoc comment should be multi-line'
+  // violation below 'Javadoc comment should be multi-line'
   /** {@link #equals(Object)} */
   public int baz() {
     return 42;

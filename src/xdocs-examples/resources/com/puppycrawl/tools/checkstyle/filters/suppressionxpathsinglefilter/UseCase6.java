@@ -23,9 +23,9 @@ abstract class UseCase6 {
   // filtered violation above 'Name 'MyMethod' must match pattern'
 }
 
-// violation below, 'Name 'AnotherClass' must match pattern'
+// violation below 'Name 'AnotherClass' must match pattern'
 abstract class AnotherClass {
   public void MyMethod() {}
-  // violation above, 'Name 'MyMethod' must match pattern'
+  // violation above 'Name 'MyMethod' must match pattern'
 }
 // xdoc section -- end

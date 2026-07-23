@@ -9,7 +9,7 @@
 */
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
-// violation above, 'NCSS for this file is 19 (max allowed is 10)'
+// violation above 'NCSS for this file is 19 (max allowed is 10)'
 class Example4 {
 
   public void testMethod1() {

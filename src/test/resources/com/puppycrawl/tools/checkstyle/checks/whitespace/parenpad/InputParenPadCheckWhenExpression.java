@@ -19,13 +19,13 @@ import org.w3c.dom.Node;
 public class InputParenPadCheckWhenExpression {
     void test(Object o) {
         if (o instanceof String a && ( a.length() == 9)) { }
-        // violation above, ''(' is followed by whitespace'
+        // violation above ''(' is followed by whitespace'
 
         switch (o) {
             case Integer i when ( i == 2) -> {}
-            // violation above, ''(' is followed by whitespace'
+            // violation above ''(' is followed by whitespace'
             case Integer i when (i == 2 ) -> {}
-            // violation above, '')' is preceded with whitespace'
+            // violation above '')' is preceded with whitespace'
             case Point(int x, int y) when ( x == 1 ) -> {}
             // 2 violations above:
             //                   ''(' is followed by whitespace'
