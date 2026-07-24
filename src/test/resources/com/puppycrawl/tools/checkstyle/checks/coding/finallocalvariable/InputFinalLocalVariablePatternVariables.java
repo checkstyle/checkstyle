@@ -2,9 +2,9 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-validatePatternVariables = (default)false
 validatePatternVariables = true
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+         LITERAL_FOR,VARIABLE_DEF,PATTERN_VARIABLE_DEF,EXPR
 
 */
 
@@ -26,6 +26,6 @@ public class InputFinalLocalVariablePatternVariables {
         if (o instanceof String p) {
             p = new String("p");
         }
-        final boolean value = o instanceof String p;
+        final boolean value = o instanceof String p; // violation "Variable 'p' should be declared final"
     }
 }

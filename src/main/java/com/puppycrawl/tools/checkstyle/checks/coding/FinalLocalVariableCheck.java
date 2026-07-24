@@ -548,11 +548,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private void insertVariable(DetailAST variableAst) {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = TokenUtil.getIdent(variableAst);
-        final FinalVariableCandidate previousCandidate = scope.get(astNode.getText());
-        if (previousCandidate != null) {
-            final DetailAST ident = previousCandidate.variableIdent;
-            log(ident, MSG_KEY, ident.getText());
-        }
         final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
         // for-each variables are implicitly assigned
         candidate.assigned = variableAst.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;

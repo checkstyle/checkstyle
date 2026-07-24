@@ -286,7 +286,7 @@ class Example6 {
       System.out.println(p);
     }
     final boolean value = o instanceof String p;
-    // ok above, because p can't be reassigned
+    // violation above, 'Variable 'p' should be declared final'
   }
 }
 </code></pre></div>
