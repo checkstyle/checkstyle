@@ -23,7 +23,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.StringTokenizer;
 
 /**
  * <div>
@@ -47,19 +46,21 @@ final class CsvFilterElement implements IntFilterElement {
      *     contain a parsable integer.
      */
     /* package */ CsvFilterElement(String pattern) {
-        final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
-        while (tokenizer.hasMoreTokens()) {
-            final String token = tokenizer.nextToken().trim();
-            final int index = token.indexOf('-');
+        for (String token : pattern.split(",")) {
+            final String trimmedToken = token.trim();
+            if (trimmedToken.isEmpty()) {
+                continue;
+            }
+            final int index = trimmedToken.indexOf('-');
             if (index == -1) {
-                final int matchValue = Integer.parseInt(token);
+                final int matchValue = Integer.parseInt(trimmedToken);
                 addFilter(new IntMatchFilterElement(matchValue));
             }
             else {
                 final int lowerBound =
-                    Integer.parseInt(token.substring(0, index));
+                    Integer.parseInt(trimmedToken.substring(0, index));
                 final int upperBound =
-                    Integer.parseInt(token.substring(index + 1));
+                    Integer.parseInt(trimmedToken.substring(index + 1));
                 addFilter(new IntRangeFilterElement(lowerBound, upperBound));
             }
         }
