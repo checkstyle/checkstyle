@@ -144,7 +144,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to control the minimal amount of lines in method to allow no documentation.
+     * Setter to control the minimal amount of lines in methods to allow no documentation.
      *
      * @param value user's value.
      * @since 8.21
