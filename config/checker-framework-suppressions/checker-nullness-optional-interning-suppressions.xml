@@ -8159,6 +8159,34 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexEntry.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>escape = JSON_ESCAPES[ch];</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexEntry.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference body</message>
+    <lineContent>final NodeList sections = body.getElementsByTagName(SECTION);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference body</message>
+    <lineContent>final NodeList paragraphs = body.getElementsByTagName(P_TAG);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SearchIndexGenerator.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Map.containsKey.</message>
