@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.grammar.CommentListener;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * Represents the contents of a file.
@@ -211,7 +212,15 @@ public final class FileContents implements CommentListener {
      *
      * @param lineNoBefore the line number to check before
      * @return the Javadoc comment, or {@code null} if none
+     * @deprecated this method supports legacy checks that inspect Javadoc comments from
+     *             {@code FileContents}; use
+     *             {@link JavadocUtil#getAttachedJavadocComment(DetailAST)} with AST-based
+     *             Javadoc processing instead.
+     * @noinspection DeprecatedIsStillUsed
+     * @noinspectionreason DeprecatedIsStillUsed - Method used in unit testing to verify
+     *             legacy API behavior.
      **/
+    @Deprecated(since = "13.9")
     public TextBlock getJavadocBefore(int lineNoBefore) {
         // Lines start at 1 to the callers perspective, so need to take off 2
         int lineNo = lineNoBefore - 2;

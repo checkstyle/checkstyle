@@ -60,15 +60,6 @@ public class JavadocTag {
     }
 
     /**
-     * Gets tag name.
-     *
-     * @return the tag string
-     */
-    public String getTagName() {
-        return tagInfo.getName();
-    }
-
-    /**
      * Returns first argument.
      *
      * @return the first argument. null if not set.
