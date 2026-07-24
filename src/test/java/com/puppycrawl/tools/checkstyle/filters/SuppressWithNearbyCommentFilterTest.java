@@ -352,6 +352,18 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
+    public void testUnmatchedInfluenceGroupDoesNotSuppress() throws Exception {
+        final String[] expected = {
+            "25:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "InvalidName", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterUnmatchedInfluenceGroup.java"),
+            expected, expected);
+    }
+
+    @Test
     public void testEqualsAndHashCodeOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
