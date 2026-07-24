@@ -314,6 +314,7 @@
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
     <module name="MissingOverrideOnRecordAccessor"/>
+    <module name="OpenjdkAnnotationLocation"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
       <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag|InlineMeSuggester|OverlyComplexBooleanExpression|ReferenceEquality).)*$"/>
