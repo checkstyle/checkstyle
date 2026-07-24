@@ -18,7 +18,7 @@
 
   <module name="RegexpOnFilename">
     <property name="id" value="executablesLocation"/>
-    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
+    <property name="folderPattern" value="/.ci(/|$)"/>
     <property name="fileNamePattern" value="\.(bat|cmd|groovy|sh|md)$"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
@@ -26,7 +26,7 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="kebabCaseFileNamingInGithubWorkflowsFolder"/>
-    <property name="folderPattern" value="[\\/].github[\\/]workflows([\\/]|$)"/>
+    <property name="folderPattern" value="/.github/workflows(/|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions" value="sh, groovy, cmd, bat, yml"/>
@@ -35,7 +35,7 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="kebabCaseFileNamingInCiFolder"/>
-    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
+    <property name="folderPattern" value="/.ci(/|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions" value="sh, cmd, bat, groovy"/>
@@ -44,7 +44,7 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="kebabCaseFileNamingInConfigFolder"/>
-    <property name="folderPattern" value="[\\/]config([\\/]|$)"/>
+    <property name="folderPattern" value="/config(/|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9\.]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions"
