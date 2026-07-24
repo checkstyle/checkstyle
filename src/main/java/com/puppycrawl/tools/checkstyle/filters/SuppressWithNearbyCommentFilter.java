@@ -80,6 +80,9 @@ public class SuppressWithNearbyCommentFilter
     /** Default regex for lines that should be suppressed. */
     private static final String DEFAULT_INFLUENCE_FORMAT = "0";
 
+    /** Regexp for an unresolved group reference. */
+    private static final Pattern UNRESOLVED_GROUP_REFERENCE_PATTERN = Pattern.compile("\\$\\d+");
+
     /** Tagged comments. */
     private final List<Tag> tags = new ArrayList<>();
 
@@ -293,8 +296,12 @@ public class SuppressWithNearbyCommentFilter
      * @param line the line number of the tag.
      */
     private void addTag(String text, int line) {
-        final Tag tag = new Tag(text, line, this);
-        tags.add(tag);
+        final String influence = CommonUtil.fillTemplateWithStringsByRegexp(
+                influenceFormat, text, commentFormat);
+        if (!UNRESOLVED_GROUP_REFERENCE_PATTERN.matcher(influence).find()) {
+            final Tag tag = new Tag(text, line, influence, this);
+            tags.add(tag);
+        }
     }
 
     /**
@@ -325,10 +332,12 @@ public class SuppressWithNearbyCommentFilter
          *
          * @param text the text of the suppression.
          * @param line the line number.
+         * @param influence expanded influence format.
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
-        private Tag(String text, int line, SuppressWithNearbyCommentFilter filter) {
+        private Tag(String text, int line, String influence,
+                    SuppressWithNearbyCommentFilter filter) {
             this.text = text;
 
             // Expand regexp for check and message
@@ -354,17 +363,16 @@ public class SuppressWithNearbyCommentFilter
                             filter.idFormat, text, filter.commentFormat);
                     tagIdRegexp = Pattern.compile(format);
                 }
-                format = CommonUtil.fillTemplateWithStringsByRegexp(
-                        filter.influenceFormat, text, filter.commentFormat);
+                format = influence;
+                final int influenceValue =
+                        parseInfluence(format, filter.influenceFormat, text);
 
-                final int influence = parseInfluence(format, filter.influenceFormat, text);
-
-                if (influence >= 1) {
+                if (influenceValue >= 1) {
                     firstLine = line;
-                    lastLine = line + influence;
+                    lastLine = line + influenceValue;
                 }
                 else {
-                    firstLine = line + influence;
+                    firstLine = line + influenceValue;
                     lastLine = line;
                 }
             }
