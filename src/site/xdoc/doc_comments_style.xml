@@ -1206,6 +1206,106 @@
           </table>
         </div>
       </subsection>
+      <subsection name="Severity Level" id="Documentation_Comments_Severity_Level">
+        <p>
+          To adjust the default severity level for violations using Checkstyle's
+          Documentation Comments style configuration, set the following system property:
+        </p>
+        <p>
+          <code>org.checkstyle.doc.comments.severity</code>
+        </p>
+        <p>
+          For detailed guidance on severity levels, refer to the
+          <a href="./property_types.html#SeverityLevel">Severity Level</a>.
+          To configure this property, see the instructions for the
+          <a href="./cmdline.html#Command_line_usage">CLI's <code>-p</code> option</a> , or use the
+          <a href="./anttask.html#Parameters"><code>properties</code> parameter in Ant</a>,
+          or set the Java system property before running Checkstyle.
+        </p>
+      </subsection>
+      <subsection name="Suppressions" id="Documentation_Comments_Suppressions">
+        <p>
+          It is possible to suppress some violations by embedded filters
+          <a href="filters/suppressionfilter.html#SuppressionFilter">
+            SuppressionFilter</a>,
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">
+            SuppressionXpathFilter</a>,
+          <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>,
+          <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">
+            SuppressionCommentFilter</a>,
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">
+            SuppressWarningsFilter</a>
+          and
+          <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+            SuppressWithNearbyTextFilter</a>.
+        </p>
+        <p>
+          Location of config file for
+          <a href="filters/suppressionfilter.html#SuppressionFilter">SuppressionFilter</a> can
+          be defined by system property <i>org.checkstyle.doc.comments.suppressionfilter.config</i>
+          (default value is <i>checkstyle-suppressions.xml</i>).
+        </p>
+        <p>
+          Location of config file for
+          <a href="filters/suppressionxpathfilter.html#SuppressionXpathFilter">SuppressionXpathFilter</a>
+          can be defined by system property
+          <i>org.checkstyle.doc.comments.suppressionxpathfilter.config</i> (default value is
+          <i>checkstyle-xpath-suppressions.xml</i>).
+        </p>
+        <p>
+          To suppress a check in the next line of code using
+          <a href="filters/suppresswithnearbycommentfilter.html#SuppressWithNearbyCommentFilter">
+            SuppressWithNearbyCommentFilter</a>precede the line of code with
+          <i>// CHECKSTYLE.SUPPRESS: NameOfTheCheck</i> (replace <i>NameOfTheCheck</i> with
+          the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check on a block of code using
+          <a href="filters/suppressioncommentfilter.html#SuppressionCommentFilter">SuppressionCommentFilter</a>
+          add <i>// CHECKSTYLE.OFF: NameOfTheCheck</i> before the beginning of the code block and
+          <i>// CHECKSTYLE.ON: NameOfTheCheck</i> after the end of the code block (replace
+          <i>NameOfTheCheck</i> with the actual check to be suppressed).
+        </p>
+        <p>
+          To suppress a check using
+          <a href="filters/suppresswarningsfilter.html#SuppressWarningsFilter">SuppressWarningsFilter</a>
+          use Java's<i>@SuppressWarnings({"checkstyle:name_of_the_check", ...})</i> annotation.
+          Each value passed in the array parameter must meet the format
+          <i>checkstyle:name_of_the_check</i> where the <i>checkstyle:</i> is optional and
+          <i>name_of_the_check</i> is the actual name of check to be suppressed in lowercase
+          format.
+        </p>
+        <p>
+          To suppress a check for few lines below or above, use
+          <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
+            SuppressWithNearbyTextFilter
+          </a>
+          suppression, use
+          <code>// CHECKSTYLE.SUPPRESS: NameOfCheck for ([+-]\d+) lines</code> comment.
+          ( replace NameOfCheck with the check you want to suppress.
+          For suppressing a check few lines below,
+          replace <i>([+-]\d+)</i> with <i>+NumberOfLines</i> where <i>NumberOfLines</i>
+          is number of the lines below from the comment's line number,
+          for suppressing a check few lines above, use &quot;-&quot; instead of &quot;+&quot;. )
+        </p>
+        <p>
+          For more details please review exact configuration of Filters in
+          doc_comments_checks.xml:
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+                    SuppressionFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+                    SuppressionXpathFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
+                    SuppressWithNearbyCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+                    SuppressionCommentFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+                    SuppressWarningsFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+                    SuppressWithNearbyTextFilter</a>
+        </p>
+      </subsection>
 
     </section>
   </body>
