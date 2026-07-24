@@ -89,4 +89,16 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
         verifyWithInlineConfigParser(filePath, expected);
     }
 
+    @Test
+    public void testLeadingAsteriskOnOpeningLine() throws Exception {
+        final String[] expected = {
+            "18:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 6, 11),
+            "19:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 6, 11),
+            "20:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 6, 11),
+        };
+
+        final String filePath = getPath("InputJavadocLeadingAsteriskAlignOpeningLine.java");
+        verifyWithInlineConfigParser(filePath, expected);
+    }
+
 }
