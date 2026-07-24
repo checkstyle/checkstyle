@@ -723,3 +723,35 @@ html {
         padding: 12px 10px 12px 12px;
     }
 }
+
+.cs-search-filters {
+    margin: 8px 15px 0 15px;
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: #666;
+}
+
+.cs-search-filter-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.cs-search-filter-cb {
+    margin: 0 4px 0 0;
+    cursor: pointer;
+}
+
+.cs-search-since-badge {
+    font-size: 10px;
+    font-weight: 500;
+    color: #0277bd;
+    background: #e1f5fe;
+    border: 1px solid #b3e5fc;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin-left: 6px;
+    white-space: nowrap;
+}
