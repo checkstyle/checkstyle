@@ -303,6 +303,116 @@ public class FileContentsTest {
     }
 
     @Test
+    public void testGetJavadocBeforeSkipsIndentedBlockComment() {
+        final List<String> lines = Arrays.asList(
+                "final class Holder {",
+                "  /** Javadoc. */",
+                "  /* Block.",
+                "   */   ",
+                "  void method() {}",
+                "}");
+        final FileContents fileContents = createFileContents(lines);
+        reportBlockComment(fileContents, lines, 2, 2);
+        reportBlockComment(fileContents, lines, 3, 4);
+
+        assertWithMessage("Should skip full-line block comment before declaration")
+                .that(fileContents.getJavadocBefore(5).toString())
+                .isEqualTo(new Comment(new String[] {"/** Javadoc. */"}, 2, 2, 16)
+                        .toString());
+    }
+
+    @Test
+    public void testGetJavadocBeforeSkipsBlockCommentButNotCodeBeforeIt() {
+        final List<String> lines = Arrays.asList(
+                "final class Holder {",
+                "  /** Javadoc. */",
+                "  int field;",
+                "  /* Block. */",
+                "  void method() {}",
+                "}");
+        final FileContents fileContents = createFileContents(lines);
+        reportBlockComment(fileContents, lines, 2, 2);
+        reportBlockComment(fileContents, lines, 4, 4);
+
+        assertWithMessage("Should stop searching on code before block comment")
+                .that(fileContents.getJavadocBefore(5))
+                .isNull();
+    }
+
+    @Test
+    public void testGetJavadocBeforeDoesNotSkipCodeAfterBlockComment() {
+        final List<String> lines = Arrays.asList(
+                "final class Holder {",
+                "  /** Javadoc. */",
+                "  /* Block. */",
+                "  int field;",
+                "  void method() {}",
+                "}");
+        final FileContents fileContents = createFileContents(lines);
+        reportBlockComment(fileContents, lines, 2, 2);
+        reportBlockComment(fileContents, lines, 3, 3);
+
+        assertWithMessage("Should stop searching on code after block comment")
+                .that(fileContents.getJavadocBefore(5))
+                .isNull();
+    }
+
+    @Test
+    public void testGetJavadocBeforeDoesNotSkipBlockCommentWithCodeBeforeIt() {
+        final List<String> lines = Arrays.asList(
+                "final class Holder {",
+                "  /** Javadoc. */",
+                "  int field; /* Block.",
+                "   */",
+                "  void method() {}",
+                "}");
+        final FileContents fileContents = createFileContents(lines);
+        reportBlockComment(fileContents, lines, 2, 2);
+        reportBlockComment(fileContents, lines, 3, 4);
+
+        assertWithMessage("Should stop searching on block comment with code before it")
+                .that(fileContents.getJavadocBefore(5))
+                .isNull();
+    }
+
+    @Test
+    public void testGetJavadocBeforeDoesNotSkipBlockCommentWithCodeAfterIt() {
+        final List<String> lines = Arrays.asList(
+                "final class Holder {",
+                "  /** Javadoc. */",
+                "  /* Block.",
+                "   */ int field;",
+                "  void method() {}",
+                "}");
+        final FileContents fileContents = createFileContents(lines);
+        reportBlockComment(fileContents, lines, 2, 2);
+        reportBlockComment(fileContents, lines, 3, 4);
+
+        assertWithMessage("Should stop searching on block comment with code after it")
+                .that(fileContents.getJavadocBefore(5))
+                .isNull();
+    }
+
+    @Test
+    public void testGetJavadocBeforeDoesNotTreatJavadocAsBlockComment() {
+        final List<String> lines = Arrays.asList(
+                "final class Holder {",
+                "  int field;",
+                "  /** Javadoc. */",
+                "  /* Block. */",
+                "  void method() {}",
+                "}");
+        final FileContents fileContents = createFileContents(lines);
+        reportBlockComment(fileContents, lines, 3, 3);
+        reportBlockComment(fileContents, lines, 4, 4);
+
+        assertWithMessage("Should stop searching at the closest Javadoc comment")
+                .that(fileContents.getJavadocBefore(5).toString())
+                .isEqualTo(new Comment(new String[] {"/** Javadoc. */"}, 2, 3, 16)
+                        .toString());
+    }
+
+    @Test
     public void testExtractBlockComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("   ", "    ", "  /* test   ",
@@ -357,6 +467,17 @@ public class FileContentsTest {
         assertWithMessage("Exception message not expected")
                 .that(ex.getClass())
                 .isEqualTo(UnsupportedOperationException.class);
+    }
+
+    private static FileContents createFileContents(List<String> lines) {
+        return new FileContents(new FileText(new File("filename"), lines));
+    }
+
+    private static void reportBlockComment(FileContents fileContents, List<String> lines,
+            int startLineNo, int endLineNo) {
+        final int startColNo = lines.get(startLineNo - 1).indexOf("/*");
+        final int endColNo = lines.get(endLineNo - 1).indexOf("*/") + 1;
+        fileContents.reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
     }
 
 }
