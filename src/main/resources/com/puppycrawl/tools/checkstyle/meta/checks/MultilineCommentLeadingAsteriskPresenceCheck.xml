@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.MultilineCommentLeadingAsteriskPresenceCheck"
+             name="MultilineCommentLeadingAsteriskPresence"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks if the
+ &lt;a href="https://www.oracle.com/java/technologies/javase/codeconventions-comments.html"&gt;
+ multi-line comments&lt;/a&gt; have leading asterisks on each line.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Every line in multi-line comment should have leading asterisk including blank line.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="multiline.comment.missing.asterisk"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
