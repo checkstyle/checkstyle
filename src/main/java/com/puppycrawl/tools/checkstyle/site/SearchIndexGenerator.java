@@ -43,6 +43,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -130,6 +131,39 @@ public final class SearchIndexGenerator {
     /** String literal for Property document type. */
     private static final String PROPERTY_TYPE = "Property";
 
+    /** String literal for Check document type. */
+    private static final String CHECK_TYPE = "Check";
+
+    /** String literal for Filter document type. */
+    private static final String FILTER_TYPE = "Filter";
+
+    /** String literal for File Filter document type. */
+    private static final String FILE_FILTER_TYPE = "File Filter";
+
+    /** String literal for p tag. */
+    private static final String P_TAG = "p";
+
+    /** String literal for Since Checkstyle prefix. */
+    private static final String SINCE_CHECKSTYLE = "Since Checkstyle ";
+
+    /** Weight for Check entries. */
+    private static final int WEIGHT_CHECK = 100;
+
+    /** Weight for Filter and File Filter entries. */
+    private static final int WEIGHT_FILTER = 90;
+
+    /** Weight for General entries. */
+    private static final int WEIGHT_GENERAL = 80;
+
+    /** Weight for Property entries. */
+    private static final int WEIGHT_PROPERTY = 70;
+
+    /** Weight for Example entries. */
+    private static final int WEIGHT_EXAMPLE = 60;
+
+    /** Weight for default entries. */
+    private static final int WEIGHT_DEFAULT = 50;
+
     /** String literal for subsection element. */
     private static final String SUBSECTION = "subsection";
 
@@ -201,6 +235,12 @@ public final class SearchIndexGenerator {
 
     /** Magic number for maximum description length. */
     private static final int MAX_DESCRIPTION_LENGTH = 150;
+
+    /** Expected number of columns in a property table. */
+    private static final int EXPECTED_PROPERTY_COLUMNS = 5;
+
+    /** Column index for the since version in a property table. */
+    private static final int PROPERTY_SINCE_COLUMN_INDEX = 4;
 
     /** Whitespace pattern. */
     private static final Pattern WHITESPACE = Pattern.compile("\\s+");
@@ -355,13 +395,13 @@ public final class SearchIndexGenerator {
         final Path filtersPath = xdocsPath.resolve(FILTERS_DIR);
         if (Files.exists(filtersPath)) {
             processDirectory(filtersPath.toFile(), xdocsDir,
-                    "Filters", "Filter");
+                    "Filters", FILTER_TYPE);
         }
 
         final Path fileFiltersPath = xdocsPath.resolve(FILEFILTERS_DIR);
         if (Files.exists(fileFiltersPath)) {
             processDirectory(fileFiltersPath.toFile(), xdocsDir,
-                    "File Filters", "File Filter");
+                    "File Filters", FILE_FILTER_TYPE);
         }
 
         processGeneralPages(xdocsDir);
@@ -401,7 +441,7 @@ public final class SearchIndexGenerator {
                                 + dirName + "' in CHECKS_CATEGORY_DISPLAY_NAMES. "
                                 + "Please add one.");
             }
-            processDirectory(categoryDir, xdocsDir, category, "Check");
+            processDirectory(categoryDir, xdocsDir, category, CHECK_TYPE);
         }
     }
 
@@ -541,8 +581,11 @@ public final class SearchIndexGenerator {
         final String title = extractTitle(doc, xmlFile, sections);
         final String description = extractAggregateDescription(sections);
         final String keywords = extractAggregateKeywords(title, sections);
+        final String since = extractSince(body);
+        final int weight = getWeightForType(type);
 
-        return new SearchIndexEntry(title, baseUrl, category, type, description, keywords);
+        return new SearchIndexEntry(title, baseUrl, category, type,
+                description, keywords, since, weight);
     }
 
     /**
@@ -570,6 +613,8 @@ public final class SearchIndexGenerator {
         final String pageUrl = resolvePageUrl(xmlFile, xmlFile.getParentFile());
         final String pageTitle = derivePageTitle(doc, xmlFile);
 
+        final int generalWeight = getWeightForType(GENERAL);
+
         if (sections.getLength() == 0) {
             final String fullText = WHITESPACE.matcher(body.getTextContent())
                     .replaceAll(SPACE).trim();
@@ -577,7 +622,8 @@ public final class SearchIndexGenerator {
             final String keywords = extractKeywordsFromText(
                     pageTitle + SPACE + fullText);
             results.add(new SearchIndexEntry(
-                    pageTitle, pageUrl, GENERAL, GENERAL, description, keywords));
+                    pageTitle, pageUrl, GENERAL, GENERAL, description, keywords,
+                    "", generalWeight));
         }
         else {
             for (int index = 0; index < sections.getLength(); index++) {
@@ -597,7 +643,8 @@ public final class SearchIndexGenerator {
                                 pageTitle + SPACE + sectionName + SPACE + sectionText);
 
                         results.add(new SearchIndexEntry(
-                                entryTitle, url, GENERAL, GENERAL, description, keywords));
+                                entryTitle, url, GENERAL, GENERAL, description, keywords,
+                                "", generalWeight));
                     }
                 }
             }
@@ -648,7 +695,7 @@ public final class SearchIndexGenerator {
                 continue;
             }
 
-            final NodeList paragraphs = examplesSubsection.getElementsByTagName("p");
+            final NodeList paragraphs = examplesSubsection.getElementsByTagName(P_TAG);
 
             for (int paragraphIndex = 0; paragraphIndex < paragraphs.getLength();
                  paragraphIndex++) {
@@ -709,7 +756,7 @@ public final class SearchIndexGenerator {
 
             result = new SearchIndexEntry(
                     title, url, category, EXAMPLE_TYPE,
-                    description, keywords);
+                    description, keywords, "", getWeightForType(EXAMPLE_TYPE));
         }
 
         return result;
@@ -803,9 +850,15 @@ public final class SearchIndexGenerator {
             final String keywords = extractKeywordsFromText(
                     checkName + SPACE + propName + SPACE + propDesc);
 
+            String since = "";
+            if (cells.getLength() >= EXPECTED_PROPERTY_COLUMNS) {
+                since = WHITESPACE.matcher(cells.item(PROPERTY_SINCE_COLUMN_INDEX).getTextContent())
+                        .replaceAll(SPACE).trim();
+            }
+
             propertyEntries.add(new SearchIndexEntry(
                     title, url, category, PROPERTY_TYPE,
-                    description, keywords));
+                    description, keywords, since, getWeightForType(PROPERTY_TYPE)));
         }
     }
 
@@ -1191,4 +1244,57 @@ public final class SearchIndexGenerator {
         return result;
     }
 
+    /**
+     * Extracts the "since" version from the document body, if present.
+     *
+     * @param body the body element to search
+     * @return the version string (e.g. "5.0"), or empty string if not found
+     */
+    private static String extractSince(Element body) {
+        String since = "";
+        final NodeList paragraphs = body.getElementsByTagName(P_TAG);
+        for (int index = 0; index < paragraphs.getLength(); index++) {
+            final Node node = paragraphs.item(index);
+            if (node != null) {
+                final String textContent = node.getTextContent();
+                if (textContent != null) {
+                    final String text = textContent.trim();
+                    if (text.startsWith(SINCE_CHECKSTYLE)) {
+                        since = text.substring(SINCE_CHECKSTYLE.length()).trim();
+                        break;
+                    }
+                }
+            }
+        }
+        return since;
+    }
+
+    /**
+     * Returns a ranking weight based on the document type, prioritizing Checks.
+     *
+     * @param type the document type
+     * @return an integer weight (higher is more important)
+     */
+    private static int getWeightForType(String type) {
+        final int weight;
+        if (CHECK_TYPE.equals(type)) {
+            weight = WEIGHT_CHECK;
+        }
+        else if (FILTER_TYPE.equals(type) || FILE_FILTER_TYPE.equals(type)) {
+            weight = WEIGHT_FILTER;
+        }
+        else if (GENERAL.equals(type)) {
+            weight = WEIGHT_GENERAL;
+        }
+        else if (PROPERTY_TYPE.equals(type)) {
+            weight = WEIGHT_PROPERTY;
+        }
+        else if (EXAMPLE_TYPE.equals(type)) {
+            weight = WEIGHT_EXAMPLE;
+        }
+        else {
+            weight = WEIGHT_DEFAULT;
+        }
+        return weight;
+    }
 }
