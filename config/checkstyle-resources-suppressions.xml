@@ -289,12 +289,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/InputAvoidEscapedUnicodeCharacters3\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/InputParameterNumberSimple4\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/InputParameterNumberSimple2\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/sizes/parameternumber/InputParameterNumberSimple3\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/InputFileLength2\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/sizes/filelength/InputFileLength\.java"/>
