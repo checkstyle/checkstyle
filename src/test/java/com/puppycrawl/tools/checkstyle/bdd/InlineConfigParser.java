@@ -330,7 +330,7 @@ public final class InlineConfigParser {
      * Input files where violation messages are not yet fully specified with quoted
      * messages. Temporary suppression until these files are updated with proper
      * violation messages. Remove entries here as their input files are fixed.
-     * <a href="https://github.com/checkstyle/checkstyle/issues/XXXX">#XXXX</a>
+     * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
             "checks/finalparameters/InputFinalParameters9.java",
