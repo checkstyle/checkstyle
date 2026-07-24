@@ -208,7 +208,10 @@
                                    multi-block statement (4.1.3)"/>
     </module>
     <module name="SingleSpaceSeparator"/>
-    <module name="OneStatementPerLine"/>
+    <module name="OneStatementPerLine">
+      <property name="tokens"
+                value="SEMI, FOR_INIT, FOR_ITERATOR, LAMBDA, EMPTY_STAT, OBJBLOCK, METHOD_CALL"/>
+    </module>
     <module name="MultipleVariableDeclarations"/>
     <module name="ArrayTypeStyle"/>
     <module name="JavadocLeadingAsteriskAlign"/>
