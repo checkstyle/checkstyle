@@ -3820,6 +3820,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoEnumTrailingCommaCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.StringLiteralEqualityCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck*</param>
@@ -3850,6 +3851,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheckTest*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoArrayTrailingCommaCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheckTest</param>
