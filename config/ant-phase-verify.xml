@@ -82,6 +82,7 @@
           <exclude name=".teamcity/**/*"/>
           <exclude name="src/main/**/*"/>
           <exclude name="src/test/java/**/*"/>
+          <exclude name="src/test/resources/**/*"/>
           <exclude name="src/xdocs-examples/**/*"/>
           <exclude name="src/site/resources/images/**/*"/>
           <!-- styleguides are copied/cached from origin place we should not change them  -->
@@ -166,7 +167,8 @@
       <path>
         <fileset dir="src"
             includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*,
-                test/resources-with-javadoc-error/**/*">
+                test/resources-with-javadoc-error/**/*"
+            excludes="**/configurationloader/**/*">
           <!-- bad syntax, permanent exclude -->
           <exclude name="**/InputAstTreeStringPrinter.java" />
           <exclude name="**/InputSuppressionsStringPrinter.java"/>
