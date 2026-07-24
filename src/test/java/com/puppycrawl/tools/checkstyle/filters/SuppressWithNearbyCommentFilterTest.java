@@ -352,6 +352,33 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
+    public void testUnmatchedInfluenceGroup() {
+        final String[] violationAndSuppressedMessages = {
+            "33:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "InvalidIfName", "^[a-z][a-zA-Z0-9]*$"),
+            "34:16: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "InvalidElseName", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithNearbyCommentFilterUnmatchedInfluenceGroup.java"),
+                        violationAndSuppressedMessages
+                    );
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("unable to parse influence from "
+                    + "'-@csl[MoveVariableInside(If|Else)](5) my comment text' using $3");
+    }
+
+    @Test
     public void testEqualsAndHashCodeOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
