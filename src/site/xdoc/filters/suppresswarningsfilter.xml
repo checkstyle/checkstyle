@@ -138,6 +138,10 @@ public class Example2 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
       <subsection name="Fully Qualified Name" id="SuppressWarningsFilter_Fully_Qualified_Name">
