@@ -38,7 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 
@@ -140,9 +139,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             .hasSize(2);
 
         final JavadocTag seeTag = tags.getFirst();
-        assertWithMessage("Invalid tag name")
-            .that(seeTag.getTagName())
-            .isEqualTo(JavadocTagInfo.SEE.getName());
+        assertWithMessage("Invalid first argument")
+            .that(seeTag.getFirstArg())
+            .isEqualTo("elsewhere");
         assertWithMessage("Invalid line number")
             .that(seeTag.getLineNo())
             .isEqualTo(1);
@@ -151,9 +150,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             .isEqualTo(4);
 
         final JavadocTag linkTag = tags.get(1);
-        assertWithMessage("Invalid tag name")
-            .that(linkTag.getTagName())
-            .isEqualTo(JavadocTagInfo.LINK.getName());
+        assertWithMessage("Invalid first argument")
+            .that(linkTag.getFirstArg())
+            .isEqualTo("Name value");
         assertWithMessage("Invalid line number")
             .that(linkTag.getLineNo())
             .isEqualTo(2);
@@ -396,9 +395,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("%s first arg", message)
             .that(actual.getFirstArg())
             .isEqualTo(expected.getFirstArg());
-        assertWithMessage("%s tag name", message)
-            .that(actual.getTagName())
-            .isEqualTo(expected.getTagName());
+        assertWithMessage("%s string", message)
+            .that(actual.toString())
+            .isEqualTo(expected.toString());
     }
 
     @Test
