@@ -333,17 +333,7 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
-            "checks/finalparameters/InputFinalParameters9.java",
-            "checks/finalparameters/InputFinalParameters2.java",
-            "checks/finalparameters/InputFinalParameters.java",
-            "checks/finalparameters/InputFinalParameters6.java",
-            "checks/finalparameters/InputFinalParameters10.java",
-            "checks/finalparameters/InputFinalParametersPrimitiveTypes.java",
-            "checks/finalparameters/InputFinalParameters3.java",
-            "checks/finalparameters/InputFinalParametersInterfaceMethod.java",
-            "checks/finalparameters/InputFinalParameters8.java",
-            "checks/finalparameters/InputFinalParametersPatternVariables.java",
-            "checks/finalparameters/InputFinalParametersPrimitiveTypes2.java",
+
             "checks/finalparameters/"
                     + "InputFinalParametersRecordForLoopPatternVariables.java",
             "checks/coding/declarationorder/Example1.java",
