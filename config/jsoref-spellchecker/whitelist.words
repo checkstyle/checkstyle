@@ -1142,6 +1142,7 @@ recordcomponentnumber
 recordtypeparametername
 redundantimport
 redundantmodifier
+redundantmodifiercompactsource
 refactor
 refactoring
 refaster

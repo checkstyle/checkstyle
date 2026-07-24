@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCompactSourceCheck"
+             name="RedundantModifierCompactSource"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for redundant modifiers on methods declared directly in compact source files.
+ &lt;/div&gt;
+
+ &lt;p&gt;The check reports &lt;code&gt;final&lt;/code&gt; because the class implicitly declared by a compact
+ compilation unit is final. It also reports &lt;code&gt;strictfp&lt;/code&gt;, whose floating-point semantics
+ are redundant since Java 17. See &lt;a href="https://openjdk.org/jeps/306"&gt;JEP 306&lt;/a&gt;.&lt;/p&gt;
+
+ &lt;p&gt;Only methods whose immediate parent is a compact compilation unit are checked. Ordinary
+ and nested declarations remain in the scope of {@link RedundantModifierCheck}.&lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="redundantModifierCompactSource"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
