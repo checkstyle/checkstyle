@@ -179,6 +179,10 @@
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
             OpenJDK Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
       <subsection name="Fully Qualified Name" id="SuppressionCommentFilter_Fully_Qualified_Name">
