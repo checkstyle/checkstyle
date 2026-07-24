@@ -81,12 +81,27 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * Escaped tag &amp;#64;version (OK)
- * Plain text with {@code @see} (OK)
- * A @custom tag (OK)
- *
- */
+class Example1 {
+  /**
+   * Escaped tag &amp;#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+  // violation 3 lines above 'block tag '@version' should be placed at the beginning'
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to verify tags from
@@ -100,6 +115,30 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  /**
+   * Escaped tag &amp;#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check to verify all default tags and some custom tags in addition:
@@ -118,6 +157,30 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  /**
+   * Escaped tag &amp;#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+  // violation 3 lines above 'block tag '@version' should be placed at the beginning'
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+  // violation 3 lines above 'should be placed at the beginning'
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
+}
 </code></pre></div>
       </subsection>
 
