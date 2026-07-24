@@ -2141,6 +2141,8 @@
                 <exclude>**/RegexpCheck.class</exclude>
                 <!-- no code in file, no AST to log -->
                 <exclude>**/NoCodeInFileCheck.class</exclude>
+                <!-- violations are at lines in side comment, not an AST -->
+                <exclude>**/MultilineCommentLeadingAsteriskPresenceCheck.class</exclude>
                 <!-- until https://github.com/checkstyle/checkstyle/issues/5770 -->
                 <exclude>**/AbstractJavadocCheck.class</exclude>
                 <exclude>**/AtclauseOrderCheck.class</exclude>
@@ -3428,6 +3430,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineEndingOption*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.MultilineCommentLeadingAsteriskPresenceCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck*</param>
@@ -3450,6 +3453,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineEndingCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.MultilineCommentLeadingAsteriskPresenceCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheckTest</param>
