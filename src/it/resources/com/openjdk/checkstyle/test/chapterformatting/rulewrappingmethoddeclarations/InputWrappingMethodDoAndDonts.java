@@ -37,7 +37,7 @@ public class InputWrappingMethodDoAndDonts {
 
     class Donts {
 
-        // Not covered until https://github.com/checkstyle/checkstyle/issues/20638
+        // parameter alignment is not covered by openjdk_checks.xml yet
         public void someMethod(String aString,
                        List<Integer> aList,
                        Map<String, String> aMap,

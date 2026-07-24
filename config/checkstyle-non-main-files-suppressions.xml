@@ -271,155 +271,155 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/missingnullcaseinswitch.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]missingswitchdefault.xml.template"/>
+         files="src/site/xdoc/checks/coding/missingswitchdefault.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]multiplevariabledeclarations.xml.template"/>
+         files="src/site/xdoc/checks/coding/multiplevariabledeclarations.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]noarraytrailingcomma.xml.template"/>
+         files="src/site/xdoc/checks/coding/noarraytrailingcomma.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]noclone.xml.template"/>
+         files="src/site/xdoc/checks/coding/noclone.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]noenumtrailingcomma.xml.template"/>
+         files="src/site/xdoc/checks/coding/noenumtrailingcomma.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]nofinalizer.xml.template"/>
+         files="src/site/xdoc/checks/coding/nofinalizer.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]overloadmethodsdeclarationorder.xml.template"/>
+         files="src/site/xdoc/checks/coding/overloadmethodsdeclarationorder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]parameterassignment.xml.template"/>
+         files="src/site/xdoc/checks/coding/parameterassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]simplifybooleanexpression.xml.template"/>
+         files="src/site/xdoc/checks/coding/simplifybooleanexpression.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]simplifybooleanreturn.xml.template"/>
+         files="src/site/xdoc/checks/coding/simplifybooleanreturn.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]stringliteralequality.xml.template"/>
+         files="src/site/xdoc/checks/coding/stringliteralequality.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]superclone.xml.template"/>
+         files="src/site/xdoc/checks/coding/superclone.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]superfinalize.xml.template"/>
+         files="src/site/xdoc/checks/coding/superfinalize.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unnecessarysemicoloninenumeration.xml.template"/>
+         files="src/site/xdoc/checks/coding/unnecessarysemicoloninenumeration.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unusedcatchparametershouldbeunnamed.xml.template"/>
+         files="src/site/xdoc/checks/coding/unusedcatchparametershouldbeunnamed.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unusedlambdaparametershouldbeunnamed.xml.template"/>
+         files="src/site/xdoc/checks/coding/unusedlambdaparametershouldbeunnamed.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unusedlocalvariable.xml.template"/>
+         files="src/site/xdoc/checks/coding/unusedlocalvariable.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unusedtryresourceshouldbeunnamed.xml.template"/>
+         files="src/site/xdoc/checks/coding/unusedtryresourceshouldbeunnamed.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]finalclass.xml.template"/>
+         files="src/site/xdoc/checks/design/finalclass.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]hideutilityclassconstructor.xml.template"/>
+         files="src/site/xdoc/checks/design/hideutilityclassconstructor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]innertypelast.xml.template"/>
+         files="src/site/xdoc/checks/design/innertypelast.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]onetoplevelclass.xml.template"/>
+         files="src/site/xdoc/checks/design/onetoplevelclass.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]design[\\/]sealedshouldhavepermitslist.xml.template"/>
+         files="src/site/xdoc/checks/design/sealedshouldhavepermitslist.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]redundantimport.xml.template"/>
+         files="src/site/xdoc/checks/imports/redundantimport.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]javadoc[\\/]invalidjavadocposition.xml.template"/>
+         files="src/site/xdoc/checks/javadoc/invalidjavadocposition.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]javadoc[\\/]missingjavadocpackage.xml.template"/>
+         files="src/site/xdoc/checks/javadoc/missingjavadocpackage.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]nocodeinfile.xml.template"/>
+         files="src/site/xdoc/checks/misc/nocodeinfile.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]outertypefilename.xml.template"/>
+         files="src/site/xdoc/checks/misc/outertypefilename.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]upperell.xml.template"/>
+         files="src/site/xdoc/checks/misc/upperell.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]modifier[\\/]modifierorder.xml.template"/>
+         files="src/site/xdoc/checks/modifier/modifierorder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]genericwhitespace.xml.template"/>
+         files="src/site/xdoc/checks/whitespace/genericwhitespace.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]nowhitespacebeforecasedefaultcolon.xml.template"/>
+         files="src/site/xdoc/checks/whitespace/nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
+         files="src/site/xdoc/filters/suppresswarningsfilter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]whenshouldbeused.xml.template"/>
+         files="src/site/xdoc/checks/coding/whenshouldbeused.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]patternvariableassignment.xml.template"/>
+         files="src/site/xdoc/checks/coding/patternvariableassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]hexliteralcase.xml.template"/>
+            files="src/site/xdoc/checks/misc/hexliteralcase.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]numericalprefixesinfixessuffixescharactercase.xml.template"/>
+            files="src/site/xdoc/checks/misc/numericalprefixesinfixessuffixescharactercase.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src/site/xdoc/checks\.xml\.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting.xml.template"/>
+            files="src/site/xdoc/checks/coding/textblockgooglestyleformatting.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]naming[\\/]googlenonconstantfieldname.xml.template"/>
+            files="src/site/xdoc/checks/naming/googlenonconstantfieldname.xml.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]useenhancedswitch.xml.template"/>
+            files="src/site/xdoc/checks/coding/useenhancedswitch.xml.template"/>
 
   <!-- Index templates don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="sinceMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/[a-z]+/index\.xml\.template"/>
   <!-- Root checks template doesn't need since macro by design -->
   <suppress id="sinceMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src/site/xdoc/checks\.xml\.template"/>
   <!-- Category overview pages don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+            files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
   <!-- Index templates don't need description macro by design -->
   <suppress id="descriptionMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="descriptionMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/[a-z]+/index\.xml\.template"/>
   <!-- Root checks template doesn't need description macro by design -->
   <suppress id="descriptionMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src/site/xdoc/checks\.xml\.template"/>
   <!-- Category overview pages don't need description macro by design -->
   <suppress id="descriptionMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+            files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
   <!-- Index templates don't need example macro by design -->
   <suppress id="exampleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="exampleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/[a-z]+/index\.xml\.template"/>
   <!-- Root checks template doesn't need example macro by design -->
   <suppress id="exampleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src/site/xdoc/checks\.xml\.template"/>
   <!-- Category overview pages don't need example macro by design -->
   <suppress id="exampleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+            files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
   <!-- Index templates don't need parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="parentModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/[a-z]+/index\.xml\.template"/>
   <!-- Root checks template doesn't need parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src/site/xdoc/checks\.xml\.template"/>
   <!-- Category overview pages don't need parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+            files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
   <!-- Index templates don't need properties macro by design -->
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/[a-z]+/index\.xml\.template"/>
   <!-- Category overview pages don't need properties macro by design -->
   <suppress id="propertiesMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+            files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
   <!-- Index templates don't need violation messages macro by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/index\.xml\.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+            files="src/site/xdoc/checks/[a-z]+/index\.xml\.template"/>
   <!-- Category overview pages don't need violation messages macro by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+            files="src/site/xdoc/checks/[a-z]+\.xml"/>
 
   <!-- If files names are wrapped then they through error at time of report generation -->
-  <suppress id="lineLength" files="config[\\/]list-of-projects.yml"/>
+  <suppress id="lineLength" files="config/list-of-projects.yml"/>
 
 </suppressions>

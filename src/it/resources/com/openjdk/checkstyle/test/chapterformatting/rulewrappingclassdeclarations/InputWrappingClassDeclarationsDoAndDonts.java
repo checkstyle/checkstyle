@@ -20,7 +20,7 @@ public class InputWrappingClassDeclarationsDoAndDonts {
                                                         List<R>> {
     }
 
-    // Not covered until https://github.com/checkstyle/checkstyle/issues/20595
+    // violation below 'Only one parameter is allowed per line in a vertical list.'
     abstract class MyGenericClassOne<T> implements Comparable<T>,
             Predicate<T> {
     }
