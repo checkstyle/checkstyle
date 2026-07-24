@@ -80,6 +80,9 @@ public class SuppressWithNearbyCommentFilter
     /** Default regex for lines that should be suppressed. */
     private static final String DEFAULT_INFLUENCE_FORMAT = "0";
 
+    /** Regexp for an unresolved group reference. */
+    private static final Pattern UNRESOLVED_GROUP_REFERENCE_PATTERN = Pattern.compile("\\$\\d+");
+
     /** Tagged comments. */
     private final List<Tag> tags = new ArrayList<>();
 
@@ -293,8 +296,12 @@ public class SuppressWithNearbyCommentFilter
      * @param line the line number of the tag.
      */
     private void addTag(String text, int line) {
-        final Tag tag = new Tag(text, line, this);
-        tags.add(tag);
+        final String influence = CommonUtil.fillTemplateWithStringsByRegexp(
+                influenceFormat, text, commentFormat);
+        if (!UNRESOLVED_GROUP_REFERENCE_PATTERN.matcher(influence).find()) {
+            final Tag tag = new Tag(text, line, this);
+            tags.add(tag);
+        }
     }
 
     /**
