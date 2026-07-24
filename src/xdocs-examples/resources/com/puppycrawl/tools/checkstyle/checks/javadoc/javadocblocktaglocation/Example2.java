@@ -8,12 +8,28 @@
 </module>
 */
 
-
-
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
-class Example2 {
 // xdoc section -- start
-// xdoc section -- end
+class Example2 {
+  /**
+   * Escaped tag &#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
 }
+// xdoc section -- end
