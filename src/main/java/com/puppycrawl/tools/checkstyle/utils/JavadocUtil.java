@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
@@ -124,11 +123,10 @@ public final class JavadocUtil {
             final int line = textBlock.getStartLineNo() + position.getLine() - 1;
 
             final String tagName = tag.getName();
-            if (JavadocTagInfo.isValidName(tagName)) {
-                validTags.add(
-                    new JavadocTag(line, col, tagName, tag.getValue()));
+            try {
+                validTags.add(new JavadocTag(line, col, tagName, tag.getValue()));
             }
-            else {
+            catch (IllegalArgumentException ignored) {
                 invalidTags.add(new InvalidJavadocTag(line, col, tagName));
             }
         }
