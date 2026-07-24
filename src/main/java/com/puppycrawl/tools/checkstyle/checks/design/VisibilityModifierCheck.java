@@ -45,6 +45,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  *
  * <p>
+ * Note: Top-level fields of compact source files
+ * (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+ * are skipped by design. Their access modifiers do not provide the encapsulation
+ * that this check enforces for ordinary classes. Validation of redundant modifiers
+ * is tracked by <a href="https://github.com/checkstyle/checkstyle/issues/20496">#20496</a>.
+ * </p>
+ *
+ * <p>
  * Public members are not flagged if the name matches the public
  * member regular expression (contains {@code "^serialVersionUID$"} by
  * default).
