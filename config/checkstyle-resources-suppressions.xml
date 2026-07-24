@@ -93,6 +93,10 @@
     files="rulepackagenames/InputPackageBadName3\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="rulepackagenames/InputPackageNameBad\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="rule312packageandimportstatements/InputBadPackageName2\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="rule312packageandimportstatements/InputPackageNameBad\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
