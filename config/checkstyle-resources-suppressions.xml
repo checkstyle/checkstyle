@@ -131,6 +131,8 @@
             files="/javadocparagraph/InputJavadocParagraphCheck1\.java"/>
   <suppress id="noTrailingWhitespace"
             files="/javadocparagraph/InputJavadocParagraphIncorrect4\.java"/>
+  <suppress id="noTrailingWhitespace"
+            files="[\\/]whitespace[\\/]arraybracketwhitespace[\\/]InputArrayBracketWhitespaceExceptions\.java"/>
 
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace"

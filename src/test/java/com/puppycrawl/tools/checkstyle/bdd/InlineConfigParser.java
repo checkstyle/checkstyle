@@ -419,6 +419,7 @@ public final class InlineConfigParser {
             "checks/regexp/regexpsingleline/UseCase1.java",
             "checks/sizes/recordcomponentnumber/Example1.java",
             "checks/sizes/recordcomponentnumber/Example2.java",
+            "checks/whitespace/arraybracketwhitespace/Example1.java",
             "checks/whitespace/separatorwrap/Example1.java",
             "com/google/checkstyle/test/chapter5naming/rule522classnames/"
                     + "InputClassNamesWithUnderscore.java",
