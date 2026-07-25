@@ -816,12 +816,13 @@ fragment ATTCHAR
 fragment HEXCHARS: '#' [0-9a-fA-F]+;
 fragment DECCHARS: [0-9]+ '%'?;
 
+// A quoted attribute value ends at the matching quote; '<' is legal inside
 fragment DOUBLE_QUOTE_STRING
-    : '"' ~[<"]* '"'
+    : '"' ~["]* '"'
     ;
 
 fragment SINGLE_QUOTE_STRING
-    : '\'' ~[<']* '\''
+    : '\'' ~[']* '\''
     ;
 
 fragment UNQUOTED_STRING
