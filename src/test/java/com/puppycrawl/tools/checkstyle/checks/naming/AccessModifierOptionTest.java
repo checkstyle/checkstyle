@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +56,38 @@ public class AccessModifierOptionTest {
         assertWithMessage("Case mismatch.")
                 .that(AccessModifierOption.PRIVATE.toString())
                 .isEqualTo("private");
+    }
+
+    @Test
+    public void testGetInstance() {
+        assertWithMessage("Invalid instance returned")
+                .that(AccessModifierOption.getInstance("public"))
+                .isEqualTo(AccessModifierOption.PUBLIC);
+        assertWithMessage("Invalid instance returned")
+                .that(AccessModifierOption.getInstance(" PUBLIC "))
+                .isEqualTo(AccessModifierOption.PUBLIC);
+        assertWithMessage("Invalid instance returned")
+                .that(AccessModifierOption.getInstance("private"))
+                .isEqualTo(AccessModifierOption.PRIVATE);
+        assertWithMessage("Invalid instance returned")
+                .that(AccessModifierOption.getInstance("package"))
+                .isEqualTo(AccessModifierOption.PACKAGE);
+        assertWithMessage("Invalid instance returned")
+                .that(AccessModifierOption.getInstance("protected"))
+                .isEqualTo(AccessModifierOption.PROTECTED);
+    }
+
+    @Test
+    public void testGetInstanceInvalid() {
+        final IllegalArgumentException expected =
+            getExpectedThrowable(IllegalArgumentException.class, () -> {
+                AccessModifierOption.getInstance("invalid");
+            });
+
+        assertWithMessage("Invalid exception message")
+                .that(expected.getMessage())
+                .isEqualTo("No enum constant com.puppycrawl.tools.checkstyle.checks.naming."
+                        + "AccessModifierOption.INVALID");
     }
 
 }

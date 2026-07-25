@@ -25,7 +25,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
@@ -46,6 +45,7 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configurable;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -80,7 +80,7 @@ public abstract class AbstractAutomaticBean
 
     }
 
-    /** Comma separator for StringTokenizer. */
+    /** Comma separator. */
     private static final String COMMA_SEPARATOR = ",";
 
     /** The configuration of this bean. */
@@ -362,13 +362,13 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            final StringTokenizer tokenizer = new StringTokenizer(
-                    value.toString(), COMMA_SEPARATOR);
             final List<Pattern> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
-                result.add(CommonUtil.createPattern(token.trim()));
+            for (String token : Splitter.on(COMMA_SEPARATOR)
+                    .trimResults()
+                    .omitEmptyStrings()
+                    .split(value.toString())) {
+                result.add(CommonUtil.createPattern(token));
             }
 
             return result.toArray(new Pattern[0]);
@@ -455,13 +455,13 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
             final List<String> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
-                result.add(token.trim());
+            for (String token : Splitter.on(COMMA_SEPARATOR)
+                    .trimResults()
+                    .omitEmptyStrings()
+                    .split(value.toString())) {
+                result.add(token);
             }
 
             return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);
@@ -490,13 +490,12 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            // Converts to a String and trims it for the tokenizer.
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
             final List<AccessModifierOption> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : Splitter.on(COMMA_SEPARATOR)
+                    .trimResults()
+                    .omitEmptyStrings()
+                    .split(value.toString())) {
                 result.add(AccessModifierOption.getInstance(token));
             }
 
