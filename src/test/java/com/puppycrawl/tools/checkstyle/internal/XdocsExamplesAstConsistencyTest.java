@@ -65,40 +65,21 @@ import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Ensures xdocs Java examples for the same check differ only by comments, and that
- * the number of AST-consistent examples matches the number of documented properties.
+ * Ensures xdocs Java examples for a check differ only by comments, and that
+ * example count matches documented property count.
  *
- * <p>This test validates that examples with the same code structure maintain
- * consistency. Examples are grouped explicitly - either all examples must match,
- * or specific examples can be marked as independent.
+ * <p>Compares only code between xdoc section markers, including line numbers.
+ * {@code ok}/{@code violation}/{@code xdoc section} comments are excluded;
+ * block-comment markers are forbidden (use {@code //}), enforced by
+ * {@link #testNoBlockCommentMarkers()}.
  *
- * <p>Only code between {@code // xdoc section -- start} and
- * {@code // xdoc section -- end} markers is compared. Helper code outside
- * these markers (like interface definitions) can differ between examples.
+ * <p>Examples may live in subdirectories without becoming separate modules
+ * (see {@link #isModuleDirectory(Path)}).
  *
- * <p>Line numbers within the extracted xdoc section are also compared, ensuring
- * that structurally identical statements appear on the same relative lines across
- * examples. Because {@code parseContent} re-parses only the extracted section
- * (starting at line 1), line numbers are always section-relative and are safe
- * to compare directly between examples.
- *
- * <p>Single-line comments starting with {@code ok}, {@code violation}, or
- * {@code xdoc section} are excluded from comparison as they are documentation
- * markers. All other single-line comments, as well as Javadoc and block comments,
- * are included in the structural comparison.
- *
- * <p>Block comments used as {@code ok} or {@code violation} markers
- * (e.g. {@code /* ok, allowMissingReturnTag is true *}{@code /}) are forbidden;
- * use single-line {@code //} comments instead. The
- * {@link #testNoBlockCommentMarkers()} test enforces this.
- *
- * <p>Modules may organize their examples into subdirectories (e.g.
- * {@code classdataabstractioncoupling/ignore/deeper}) to group related
- * use-cases. Example discovery for a module directory walks recursively
- * into its own subtree so such examples are still counted as belonging to
- * that module, while those subdirectories themselves are never treated as
- * separate modules (see {@link #isModuleDirectory(Path)}).
- *
+ * <p>Filename/multi-file checks (e.g. {@code RegexpOnFilename}, {@code Translation})
+ * document examples as non-Java pseudo-paths; when none of a directory's examples
+ * parse, {@link #checkExampleCount} falls back to
+ * {@link #checkPropertyCoverageFallback} instead of AST comparison.
  */
 public class XdocsExamplesAstConsistencyTest {
 
@@ -147,17 +128,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final ConcurrentMap<String, String> MODULE_SIMPLE_NAME_CACHE =
         buildModuleSimpleNameIndex();
-
-    /**
-     * Modules where the example-count-matches-property-count validation should be skipped,
-     * e.g. because the directory intentionally demonstrates use-cases rather than a strict
-     * one-example-per-property mapping.
-     */
-    private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
-            // until https://github.com/checkstyle/checkstyle/issues/20625
-            "checks/regexp/regexponfilename",
-            "checks/translation"
-    );
 
     /**
      * Examples that have independent code structure and should not be compared.
@@ -312,6 +282,10 @@ public class XdocsExamplesAstConsistencyTest {
      * examples by actual structural AST equality, so a directory that merely
      * has the "right number" of files but where one of them is structurally
      * different will correctly fail.
+     *
+     * <p>For modules whose examples are all pseudo-path/non-Java documentation
+     * (see class-level Javadoc), this falls back to a property-coverage check
+     * instead of AST grouping, via {@link #checkPropertyCoverageFallback}.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -747,8 +721,6 @@ public class XdocsExamplesAstConsistencyTest {
             violations.stream()
                 .sorted()
                 .forEach(violation -> builder.append(violation).append("\n\n"));
-
-            builder.append("If intentional, add to EXAMPLE_COUNT_SUPPRESSED_MODULES.\n");
         }
         return builder.toString();
     }
@@ -758,25 +730,25 @@ public class XdocsExamplesAstConsistencyTest {
      * documented properties, and compares that against the size of the *actual*
      * AST-matching example group (not just the raw file count).
      *
+     * <p>If none of the module's examples parse as valid Java (e.g. modules like
+     * {@code RegexpOnFilename} or {@code Translation} that document filename or
+     * multi-file consistency rules via a pseudo-path comment rather than real
+     * Java), AST-group comparison is meaningless, so this falls back to
+     * {@link #checkPropertyCoverageFallback} instead.
+     *
      * @param dir the directory to check
      * @param examples the list of pre-fetched example files
      * @return a violation message, or null if consistent / not applicable
      * @throws IOException if an I/O error occurs
      */
     private static String checkExampleCount(Path dir, List<Path> examples) throws IOException {
-        final String relativePath = getRelativePath(dir);
         String result = null;
 
-        if (!EXAMPLE_COUNT_SUPPRESSED_MODULES.contains(relativePath)
-            && !isModuleWithNoProperties(examples)) {
-
+        if (!isModuleWithNoProperties(examples)) {
+          final String relativePath = getRelativePath(dir);
             final List<Path> regularExamples = examples.stream()
                 .filter(example -> {
                     return !isExampleIndependent(
-                        relativePath, example.getFileName().toString());
-                })
-                .filter(example -> {
-                    return !isExampleUnparseable(
                         relativePath, example.getFileName().toString());
                 })
                 .toList();
@@ -784,19 +756,114 @@ public class XdocsExamplesAstConsistencyTest {
             final int propertyCount = resolvePropertyCount(dir);
 
             if (propertyCount >= 0 && regularExamples.size() > 1) {
-                final int largestAstGroupSize = findLargestAstMatchingGroupSize(regularExamples);
-                final int expected = propertyCount + 1;
+                final List<Path> parseableExamples = new ArrayList<>();
+                for (Path example : regularExamples) {
+                    if (isActuallyParseable(example)) {
+                        parseableExamples.add(example);
+                    }
+                }
 
-                // only flag when there are too few matching examples.
-                if (largestAstGroupSize < expected) {
-                    result = "Directory: " + relativePath
-                        + "\nProperties: " + propertyCount
-                        + "\nExpected AST-matching examples (at least): " + expected
-                        + "\nActual largest AST-matching group: " + largestAstGroupSize
-                        + " (of " + regularExamples.size() + " total example files)";
+                if (parseableExamples.isEmpty()) {
+                    result = checkPropertyCoverageFallback(dir, relativePath,
+                            regularExamples, propertyCount);
+                }
+                else {
+                    final int largestAstGroupSize =
+                            findLargestAstMatchingGroupSize(parseableExamples);
+                    final int expected = propertyCount + 1;
+
+                    // only flag when there are too few matching examples.
+                    if (largestAstGroupSize < expected) {
+                        result = "Directory: " + relativePath
+                                + "\nProperties: " + propertyCount
+                                + "\nExpected AST-matching examples (at least): " + expected
+                                + "\nActual largest AST-matching group: " + largestAstGroupSize
+                                + " (of " + parseableExamples.size() + " total example files)";
+                    }
                 }
             }
         }
+        return result;
+    }
+
+    /**
+     * Checks whether an example's xdoc section actually parses as valid Java.
+     * Unlike {@link #isExampleUnparseable}, which only checks a fixed whitelist
+     * (used to tolerate isolated unparseable files elsewhere), this attempts a
+     * real parse - used specifically to detect modules like RegexpOnFilename or
+     * Translation where every single example is a pseudo-path listing embedded
+     * in a comment rather than real Java, so the module as a whole should route
+     * to {@link #checkPropertyCoverageFallback} instead of AST-group comparison.
+     *
+     * @param example the example file path
+     * @return true if the xdoc section parses successfully as Java
+     * @throws IOException if an I/O error occurs
+     */
+    private static boolean isActuallyParseable(Path example) throws IOException {
+        final String xdocSection = extractXdocSection(example);
+        boolean result;
+        try {
+            result = parseContent(xdocSection) != null;
+        }
+        catch (CheckstyleException exception) {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Fallback validation for modules whose examples are entirely in the "hacky"
+     * pseudo-path documentation format (no example parses as comparable Java) -
+     * e.g. filename or multi-file consistency checks like RegexpOnFilename and
+     * Translation, which have no per-file AST to demonstrate in the first place.
+     * Since AST-group comparison can't apply, this instead requires that every
+     * documented property is actually configured by at least one example's
+     * embedded XML config block - mirroring {@link #checkPropertyCoverage} but
+     * scoped to this one directory's already-fetched example list.
+     *
+     * @param dir the directory being checked
+     * @param relativePath the directory's relative path, for messaging
+     * @param examples the regular (non-suppressed) examples in this directory
+     * @param propertyCount the documented property count, for context in the message
+     * @return a violation message, or null if every property is covered
+     * @throws IOException if an I/O error occurs
+     */
+    private static String checkPropertyCoverageFallback(Path dir, String relativePath,
+                    List<Path> examples, int propertyCount) throws IOException {
+        String result = null;
+
+        final Set<String> documentedProperties = resolveDocumentedPropertyNames(dir);
+        if (!documentedProperties.isEmpty()) {
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+            final String xmlModuleName = stripCheckSuffix(moduleName);
+
+            final Set<String> configuredProperties = new HashSet<>();
+            for (Path example : examples) {
+                configuredProperties.addAll(
+                        extractConfiguredPropertyNames(example, xmlModuleName));
+            }
+
+            final Set<String> uncoveredProperties = new HashSet<>(documentedProperties);
+            uncoveredProperties.removeAll(configuredProperties);
+            uncoveredProperties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
+
+            if (uncoveredProperties.isEmpty()) {
+                final int expected = propertyCount + 1;
+                if (examples.size() < expected) {
+                    result = "Directory: " + relativePath
+                            + "\nProperties: " + propertyCount
+                            + "\nExpected examples (at least, including a baseline): " + expected
+                            + "\nActual example count: " + examples.size();
+                }
+            }
+            else {
+                result = "Directory: " + relativePath
+                        + "\nProperties: " + propertyCount
+                        + "\nProperties with no covering example (pseudo-path format): "
+                        + uncoveredProperties;
+            }
+        }
+
         return result;
     }
 
