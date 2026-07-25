@@ -194,6 +194,29 @@ messages_home.properties
 // violation above 'Properties file 'messages_home_fr.properties' missing.'
 messages_home.translations
 // violation above 'Properties file 'messages_home_fr.translations' missing.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with default settings (only the existence of the
+          default translation file is checked):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-file">Example4 (target folder structure, missing default translation file):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        messages_de.properties
+        </code></pre></div>
+        <p id="messages_de-raw">Contents of messages_de.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+hello=Hallo
+</code></pre></div>
+        <p id="Example4-code">Validation for Example4:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages_de.properties
+// violation above 'Properties file 'messages.properties' missing.'
 </code></pre></div>
       </subsection>
 
