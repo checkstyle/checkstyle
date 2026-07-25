@@ -390,4 +390,26 @@ public class TokenUtilTest {
                 .isFalse();
     }
 
+    @Test
+    public void testAsBitSet() {
+        final java.util.BitSet expected = new java.util.BitSet();
+        expected.set(TokenTypes.LITERAL_TRUE);
+        expected.set(TokenTypes.LITERAL_FALSE);
+
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.asBitSet(TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE))
+                .isEqualTo(expected);
+
+        assertWithMessage("Result is not expected")
+                .that(TokenUtil.asBitSet("LITERAL_TRUE", "  ", "LITERAL_FALSE", ""))
+                .isEqualTo(expected);
+    }
+
+    @Test
+    public void testAsBitSetInvalid() {
+        getExpectedThrowable(IllegalArgumentException.class, () -> {
+            TokenUtil.asBitSet("UNKNOWN_TOKEN");
+        });
+    }
+
 }
