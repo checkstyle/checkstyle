@@ -1620,6 +1620,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/redundantthis.html#RedundantThis">
+                RedundantThis
+              </a>
+            </td>
+            <td>
+              Checks that references to instance variables and methods of the present object
+              explicitly avoid unnecessary use of "this", unless required to resolve ambiguity with
+              a shadowed field.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/regexp/regexp.html#Regexp">
                 Regexp
               </a>

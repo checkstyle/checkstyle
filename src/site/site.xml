@@ -171,6 +171,7 @@
           <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
           <item name="PatternVariableAssignment"
                 href="checks/coding/patternvariableassignment.html"/>
+          <item name="RedundantThis" href="checks/coding/redundantthis.html"/>
           <item name="RequireThis" href="checks/coding/requirethis.html"/>
           <item name="ReturnCount" href="checks/coding/returncount.html"/>
           <item name="SimplifyBooleanExpression"
