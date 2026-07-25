@@ -1,3 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>insertPatternVariable</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable assigned</description>
+    <lineContent>candidate.assigned = true;</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>updateUninitializedVariables</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (scopeUninitializedVariableData != null) {</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (validatePatternVariables</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck$ScopeData</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/util/ArrayDeque::&lt;init&gt;</description>
+    <lineContent>private Deque&lt;DetailAST&gt; prevScopeUninitializedVariables = new ArrayDeque&lt;&gt;();</lineContent>
+  </mutation>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck$ScopeData</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable prevScopeUninitializedVariables</description>
+    <lineContent>private Deque&lt;DetailAST&gt; prevScopeUninitializedVariables = new ArrayDeque&lt;&gt;();</lineContent>
+  </mutation>
 </suppressedMutations>
