@@ -5,6 +5,7 @@ package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.return
  */
 public class InputCorrectReturnTag {
 
+    /** Stored value. */
     private int storedValue;
 
     /**

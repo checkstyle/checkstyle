@@ -5,6 +5,7 @@ package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.requir
  */
 public class InputRequiredTags {
 
+    /** Stored name. */
     private final String name;
 
     /**
