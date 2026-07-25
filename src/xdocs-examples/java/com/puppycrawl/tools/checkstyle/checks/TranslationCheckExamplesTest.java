@@ -113,4 +113,18 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
         verify(createChecker(parsedConfig), propertyFiles, getPath(""), expectedMessages);
     }
 
+    @Test
+    public void testExample4() throws Exception {
+        final File[] propertyFiles = {
+            new File(getPath("Example1/messages.properties")),
+        };
+        final Map<String, List<String>> expected = new HashMap<>();
+        final String configFile = getPath("Example4.java");
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(configFile);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        verify(createChecker(parsedConfig), propertyFiles, expected);
+    }
+
 }
