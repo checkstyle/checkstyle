@@ -232,10 +232,12 @@ HtmlComment_NEWLINE
     ;
 
 HtmlComment_TEXT
-    : (   ~[\r\n-]
-        | '-' ~[\r\n-]
-        | '-' '-' ~[\r\n>]
-      )+ -> type(TEXT)
+    : ( ~[\r\n-] | DASH_IN_COMMENT )+ -> type(TEXT)
+    ;
+
+// A dash is comment content unless it starts the '-->' terminator.
+fragment DASH_IN_COMMENT
+    : '-' { _input.LA(1) != '-' || _input.LA(2) != '>' }?
     ;
 
 // --- BLOCK_TAG ---
