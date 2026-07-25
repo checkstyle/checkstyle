@@ -881,6 +881,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -1094,7 +1095,6 @@ POJO
 Popup
 Postgresql
 prebuilts
-prefs
 PRESIZE
 prettyprint
 printf
@@ -1163,7 +1163,6 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
-Rethrows
 returncount
 returnsreceiver
 returntag
@@ -1619,3 +1618,5 @@ Zbbh
 zf
 zh
 ZSH
+prefs
+Rethrows
