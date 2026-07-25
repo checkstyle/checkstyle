@@ -136,6 +136,7 @@
     </module>
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
+    <module name="OpenjdkMethodParameterAlignment"/>
     <module name="MatchXpath">
       <property name="id" value="singleLineCommentStartWithSpace"/>
       <property name="query"
