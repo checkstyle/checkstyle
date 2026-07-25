@@ -924,6 +924,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck");
         NAME_TO_FULL_MODULE_NAME.put("LineEndingCheck",
                 BASE_PACKAGE + ".checks.LineEndingCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MultilineCommentLeadingAsteriskPresenceCheck",
+                BASE_PACKAGE + ".checks.MultilineCommentLeadingAsteriskPresenceCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoCodeInFileCheck",
                 BASE_PACKAGE + ".checks.NoCodeInFileCheck");
         NAME_TO_FULL_MODULE_NAME.put("OuterTypeFilenameCheck",

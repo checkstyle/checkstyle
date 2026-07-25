@@ -833,6 +833,14 @@
       <property name="caseIndent" value="4"/>
       <property name="throwsIndent" value="8"/>
     </module>
+    <module name="MultilineCommentLeadingAsteriskPresence">
+      <!--
+        check is Google style specific created to cover
+        https://google.github.io/styleguide/javaguide.html#s4.8.6-comments
+        For multi-line /* ... */ comments, subsequent lines must start with *
+       -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="OuterTypeFilename"/>
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />
