@@ -41,22 +41,22 @@ public class FinalLocalVariableCheckTest
     public void testInputFinalLocalVariableOne() throws Exception {
 
         final String[] expected = {
-            "17:13: " + getCheckMessage(MSG_KEY, "i"),
-            "17:16: " + getCheckMessage(MSG_KEY, "j"),
-            "19:18: " + getCheckMessage(MSG_KEY, "runnable"),
-            "29:13: " + getCheckMessage(MSG_KEY, "i"),
-            "33:13: " + getCheckMessage(MSG_KEY, "z"),
-            "35:16: " + getCheckMessage(MSG_KEY, "obj"),
-            "39:16: " + getCheckMessage(MSG_KEY, "x"),
-            "45:18: " + getCheckMessage(MSG_KEY, "runnable"),
-            "49:21: " + getCheckMessage(MSG_KEY, "q"),
-            "65:13: " + getCheckMessage(MSG_KEY, "i"),
-            "69:13: " + getCheckMessage(MSG_KEY, "z"),
-            "71:16: " + getCheckMessage(MSG_KEY, "obj"),
-            "75:16: " + getCheckMessage(MSG_KEY, "x"),
-            "83:21: " + getCheckMessage(MSG_KEY, "w"),
-            "85:26: " + getCheckMessage(MSG_KEY, "runnable"),
-        };
+            "18:13: " + getCheckMessage(MSG_KEY, "i"),
+            "18:16: " + getCheckMessage(MSG_KEY, "j"),
+            "20:18: " + getCheckMessage(MSG_KEY, "runnable"),
+            "30:13: " + getCheckMessage(MSG_KEY, "i"),
+            "34:13: " + getCheckMessage(MSG_KEY, "z"),
+            "36:16: " + getCheckMessage(MSG_KEY, "obj"),
+            "40:16: " + getCheckMessage(MSG_KEY, "x"),
+            "46:18: " + getCheckMessage(MSG_KEY, "runnable"),
+            "50:21: " + getCheckMessage(MSG_KEY, "q"),
+            "66:13: " + getCheckMessage(MSG_KEY, "i"),
+            "70:13: " + getCheckMessage(MSG_KEY, "z"),
+            "72:16: " + getCheckMessage(MSG_KEY, "obj"),
+            "76:16: " + getCheckMessage(MSG_KEY, "x"),
+            "84:21: " + getCheckMessage(MSG_KEY, "w"),
+            "86:26: " + getCheckMessage(MSG_KEY, "runnable"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableOne.java"), expected);
     }
@@ -64,10 +64,10 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariableTwo() throws Exception {
         final String[] expected = {
-            "24:17: " + getCheckMessage(MSG_KEY, "weird"),
-            "25:17: " + getCheckMessage(MSG_KEY, "j"),
-            "26:17: " + getCheckMessage(MSG_KEY, "k"),
-        };
+            "25:17: " + getCheckMessage(MSG_KEY, "weird"),
+            "26:17: " + getCheckMessage(MSG_KEY, "j"),
+            "27:17: " + getCheckMessage(MSG_KEY, "k"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableTwo.java"), expected);
     }
@@ -75,17 +75,17 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariableThree() throws Exception {
         final String[] expected = {
-            "14:17: " + getCheckMessage(MSG_KEY, "x"),
-            "20:21: " + getCheckMessage(MSG_KEY, "x"),
-            "41:21: " + getCheckMessage(MSG_KEY, "n"),
-            "47:17: " + getCheckMessage(MSG_KEY, "q"),
-            "48:17: " + getCheckMessage(MSG_KEY, "w"),
-            "57:25: " + getCheckMessage(MSG_KEY, "w"),
-            "58:25: " + getCheckMessage(MSG_KEY, "e"),
-            "79:21: " + getCheckMessage(MSG_KEY, "n"),
-            "92:21: " + getCheckMessage(MSG_KEY, "t"),
-            "102:25: " + getCheckMessage(MSG_KEY, "foo"),
-        };
+            "15:17: " + getCheckMessage(MSG_KEY, "x"),
+            "21:21: " + getCheckMessage(MSG_KEY, "x"),
+            "42:21: " + getCheckMessage(MSG_KEY, "n"),
+            "48:17: " + getCheckMessage(MSG_KEY, "q"),
+            "49:17: " + getCheckMessage(MSG_KEY, "w"),
+            "58:25: " + getCheckMessage(MSG_KEY, "w"),
+            "59:25: " + getCheckMessage(MSG_KEY, "e"),
+            "80:21: " + getCheckMessage(MSG_KEY, "n"),
+            "93:21: " + getCheckMessage(MSG_KEY, "t"),
+            "103:25: " + getCheckMessage(MSG_KEY, "foo"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableThree.java"), expected);
     }
@@ -93,12 +93,12 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testInputFinalLocalVariableFour() throws Exception {
         final String[] expected = {
-            "16:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "28:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "72:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "85:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "89:25: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-        };
+            "17:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "29:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "73:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "86:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "90:25: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableFour.java"), expected);
     }
@@ -106,12 +106,12 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testFinalLocalVariableFive() throws Exception {
         final String[] expected = {
-            "15:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "26:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "58:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "62:25: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
-            "83:41: " + getCheckMessage(MSG_KEY, "table"),
-        };
+            "16:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "27:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "59:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "63:25: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
+            "84:41: " + getCheckMessage(MSG_KEY, "table"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableFive.java"), expected);
     }
@@ -119,8 +119,8 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testRecordsInput() throws Exception {
         final String[] expected = {
-            "20:17: " + getCheckMessage(MSG_KEY, "b"),
-        };
+            "21:17: " + getCheckMessage(MSG_KEY, "b"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableCheckRecords.java"), expected);
     }
@@ -129,8 +129,8 @@ public class FinalLocalVariableCheckTest
     public void testInputFinalLocalVariable2One() throws Exception {
 
         final String[] expected = {
-            "53:28: " + getCheckMessage(MSG_KEY, "aArg"),
-        };
+            "54:28: " + getCheckMessage(MSG_KEY, "aArg"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2One.java"), expected);
     }
@@ -139,8 +139,8 @@ public class FinalLocalVariableCheckTest
     public void testInputFinalLocalVariable2Two() throws Exception {
 
         final String[] excepted = {
-            "78:36: " + getCheckMessage(MSG_KEY, "_o"),
-            "83:37: " + getCheckMessage(MSG_KEY, "_o1"),
+            "79:36: " + getCheckMessage(MSG_KEY, "_o"),
+            "84:37: " + getCheckMessage(MSG_KEY, "_o1"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariable2Two.java"), excepted);
@@ -189,14 +189,14 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testEnhancedForLoopVariableTrue() throws Exception {
         final String[] expected = {
-            "16:20: " + getCheckMessage(MSG_KEY, "a"),
-            "23:13: " + getCheckMessage(MSG_KEY, "x"),
-            "29:66: " + getCheckMessage(MSG_KEY, "snippets"),
-            "31:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
-            "33:21: " + getCheckMessage(MSG_KEY, "snippet"),
-            "48:20: " + getCheckMessage(MSG_KEY, "a"),
-            "51:16: " + getCheckMessage(MSG_KEY, "a"),
-        };
+            "17:20: " + getCheckMessage(MSG_KEY, "a"),
+            "24:13: " + getCheckMessage(MSG_KEY, "x"),
+            "30:66: " + getCheckMessage(MSG_KEY, "snippets"),
+            "32:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
+            "34:21: " + getCheckMessage(MSG_KEY, "snippet"),
+            "49:20: " + getCheckMessage(MSG_KEY, "a"),
+            "52:16: " + getCheckMessage(MSG_KEY, "a"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableEnhancedForLoopVariable.java"),
             expected);
@@ -205,11 +205,11 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testEnhancedForLoopVariableFalse() throws Exception {
         final String[] expected = {
-            "23:13: " + getCheckMessage(MSG_KEY, "x"),
-            "29:66: " + getCheckMessage(MSG_KEY, "snippets"),
-            "31:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
-            "50:16: " + getCheckMessage(MSG_KEY, "a"),
-        };
+            "24:13: " + getCheckMessage(MSG_KEY, "x"),
+            "30:66: " + getCheckMessage(MSG_KEY, "snippets"),
+            "32:32: " + getCheckMessage(MSG_KEY, "filteredSnippets"),
+            "51:16: " + getCheckMessage(MSG_KEY, "a"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableEnhancedForLoopVariable2.java"),
             expected);
@@ -218,8 +218,8 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testLambda() throws Exception {
         final String[] expected = {
-            "43:16: " + getCheckMessage(MSG_KEY, "result"),
-        };
+            "44:16: " + getCheckMessage(MSG_KEY, "result"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableNameLambda.java"),
             expected);
@@ -229,9 +229,9 @@ public class FinalLocalVariableCheckTest
     public void testVariableNameShadowing() throws Exception {
 
         final String[] expected = {
-            "12:28: " + getCheckMessage(MSG_KEY, "text"),
-            "25:13: " + getCheckMessage(MSG_KEY, "x"),
-        };
+            "13:28: " + getCheckMessage(MSG_KEY, "text"),
+            "26:13: " + getCheckMessage(MSG_KEY, "x"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableNameShadowing.java"), expected);
     }
@@ -251,13 +251,13 @@ public class FinalLocalVariableCheckTest
     public void testVariableWhichIsAssignedMultipleTimes() throws Exception {
 
         final String[] expected = {
-            "57:13: " + getCheckMessage(MSG_KEY, "i"),
-            "130:16: " + getCheckMessage(MSG_KEY, "path"),
-            "135:20: " + getCheckMessage(MSG_KEY, "relativePath"),
-            "211:17: " + getCheckMessage(MSG_KEY, "kind"),
-            "216:24: " + getCheckMessage(MSG_KEY, "m"),
-            "418:17: " + getCheckMessage(MSG_KEY, "increment"),
-        };
+            "58:13: " + getCheckMessage(MSG_KEY, "i"),
+            "131:16: " + getCheckMessage(MSG_KEY, "path"),
+            "136:20: " + getCheckMessage(MSG_KEY, "relativePath"),
+            "212:17: " + getCheckMessage(MSG_KEY, "kind"),
+            "217:24: " + getCheckMessage(MSG_KEY, "m"),
+            "419:17: " + getCheckMessage(MSG_KEY, "increment"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableAssignedMultipleTimes.java"), expected);
     }
@@ -265,8 +265,8 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testVariableIsAssignedInsideAndOutsideSwitchBlock() throws Exception {
         final String[] expected = {
-            "39:13: " + getCheckMessage(MSG_KEY, "b"),
-        };
+            "40:13: " + getCheckMessage(MSG_KEY, "b"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java"),
             expected);
@@ -275,9 +275,9 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testFinalLocalVariableFalsePositives() throws Exception {
         final String[] expected = {
-            "352:16: " + getCheckMessage(MSG_KEY, "c2"),
-            "2195:16: " + getCheckMessage(MSG_KEY, "b"),
-        };
+            "353:16: " + getCheckMessage(MSG_KEY, "c2"),
+            "2196:16: " + getCheckMessage(MSG_KEY, "b"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableFalsePositives.java"), expected);
     }
@@ -316,8 +316,8 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testBreakOrReturn() throws Exception {
         final String[] expected = {
-            "15:19: " + getCheckMessage(MSG_KEY, "e"),
-        };
+            "16:19: " + getCheckMessage(MSG_KEY, "e"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableBreak.java"), expected);
     }
@@ -325,8 +325,8 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testAnonymousClass() throws Exception {
         final String[] expected = {
-            "14:16: " + getCheckMessage(MSG_KEY, "testSupport"),
-        };
+            "15:16: " + getCheckMessage(MSG_KEY, "testSupport"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableAnonymousClass.java"), expected);
     }
@@ -341,9 +341,9 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testFinalLocalVariableSwitchExpressionsA() throws Exception {
         final String[] expected = {
-            "15:19: " + getCheckMessage(MSG_KEY, "e"),
-            "53:19: " + getCheckMessage(MSG_KEY, "e"),
-        };
+            "16:19: " + getCheckMessage(MSG_KEY, "e"),
+            "54:19: " + getCheckMessage(MSG_KEY, "e"),
+        };;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsA.java"),
             expected);
@@ -352,9 +352,9 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testFinalLocalVariableSwitchExpressionsB() throws Exception {
         final String[] expected = {
-            "16:19: " + getCheckMessage(MSG_KEY, "e"),
-            "50:19: " + getCheckMessage(MSG_KEY, "e"),
-        };
+            "17:19: " + getCheckMessage(MSG_KEY, "e"),
+            "51:19: " + getCheckMessage(MSG_KEY, "e"),
+        };;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressionsB.java"),
             expected);
@@ -372,12 +372,12 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testFinalLocalVariableSwitchAssignment() throws Exception {
         final String[] expected = {
-            "21:13: " + getCheckMessage(MSG_KEY, "a"),
-            "44:13: " + getCheckMessage(MSG_KEY, "b"),
-            "46:21: " + getCheckMessage(MSG_KEY, "x"),
-            "72:16: " + getCheckMessage(MSG_KEY, "res"),
-            "92:16: " + getCheckMessage(MSG_KEY, "res"),
-        };
+            "22:13: " + getCheckMessage(MSG_KEY, "a"),
+            "45:13: " + getCheckMessage(MSG_KEY, "b"),
+            "47:21: " + getCheckMessage(MSG_KEY, "x"),
+            "73:16: " + getCheckMessage(MSG_KEY, "res"),
+            "93:16: " + getCheckMessage(MSG_KEY, "res"),
+        };;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableCheckSwitchAssignment.java"),
             expected);
@@ -394,12 +394,12 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testConstructor() throws Exception {
         final String[] expected = {
-            "14:44: " + getCheckMessage(MSG_KEY, "a"),
-            "18:44: " + getCheckMessage(MSG_KEY, "a"),
-            "19:43: " + getCheckMessage(MSG_KEY, "b"),
-            "22:47: " + getCheckMessage(MSG_KEY, "str"),
-            "35:21: " + getCheckMessage(MSG_KEY, "str"),
-        };
+            "15:44: " + getCheckMessage(MSG_KEY, "a"),
+            "19:44: " + getCheckMessage(MSG_KEY, "a"),
+            "20:43: " + getCheckMessage(MSG_KEY, "b"),
+            "23:47: " + getCheckMessage(MSG_KEY, "str"),
+            "36:21: " + getCheckMessage(MSG_KEY, "str"),
+        };;
         verifyWithInlineConfigParser(
             getPath("InputFinalLocalVariableConstructor.java"),
             expected);
@@ -408,12 +408,12 @@ public class FinalLocalVariableCheckTest
     @Test
     public void test() throws Exception {
         final String[] expected = {
-            "22:17: " + getCheckMessage(MSG_KEY, "start"),
-            "24:17: " + getCheckMessage(MSG_KEY, "end"),
-            "42:38: " + getCheckMessage(MSG_KEY, "list"),
-            "45:38: " + getCheckMessage(MSG_KEY, "forEach"),
-            "47:38: " + getCheckMessage(MSG_KEY, "body"),
-        };
+            "23:17: " + getCheckMessage(MSG_KEY, "start"),
+            "25:17: " + getCheckMessage(MSG_KEY, "end"),
+            "43:38: " + getCheckMessage(MSG_KEY, "list"),
+            "46:38: " + getCheckMessage(MSG_KEY, "forEach"),
+            "48:38: " + getCheckMessage(MSG_KEY, "body"),
+        };;
         verifyWithInlineConfigParser(
             getPath("InputFinalLocalVariable3.java"),
             expected);
@@ -422,15 +422,15 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testValidateUnnamedVariablesTrue() throws Exception {
         final String[] expected = {
-            "21:22: " + getCheckMessage(MSG_KEY, "i"),
-            "22:17: " + getCheckMessage(MSG_KEY, "_"),
-            "23:17: " + getCheckMessage(MSG_KEY, "__"),
-            "26:13: " + getCheckMessage(MSG_KEY, "_"),
-            "27:13: " + getCheckMessage(MSG_KEY, "_result"),
-            "32:18: " + getCheckMessage(MSG_KEY, "_"),
-            "44:18: " + getCheckMessage(MSG_KEY, "_"),
-            "50:18: " + getCheckMessage(MSG_KEY, "__"),
-        };
+            "22:22: " + getCheckMessage(MSG_KEY, "i"),
+            "23:17: " + getCheckMessage(MSG_KEY, "_"),
+            "24:17: " + getCheckMessage(MSG_KEY, "__"),
+            "27:13: " + getCheckMessage(MSG_KEY, "_"),
+            "28:13: " + getCheckMessage(MSG_KEY, "_result"),
+            "33:18: " + getCheckMessage(MSG_KEY, "_"),
+            "45:18: " + getCheckMessage(MSG_KEY, "_"),
+            "51:18: " + getCheckMessage(MSG_KEY, "__"),
+        };;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesTrue.java"),
             expected);
@@ -439,11 +439,11 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testValidateUnnamedVariablesFalse() throws Exception {
         final String[] expected = {
-            "21:22: " + getCheckMessage(MSG_KEY, "i"),
-            "23:17: " + getCheckMessage(MSG_KEY, "__"),
-            "27:13: " + getCheckMessage(MSG_KEY, "_result"),
-            "50:18: " + getCheckMessage(MSG_KEY, "__"),
-        };
+            "22:22: " + getCheckMessage(MSG_KEY, "i"),
+            "24:17: " + getCheckMessage(MSG_KEY, "__"),
+            "28:13: " + getCheckMessage(MSG_KEY, "_result"),
+            "51:18: " + getCheckMessage(MSG_KEY, "__"),
+        };;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableValidateUnnamedVariablesFalse.java"),
             expected);
@@ -452,12 +452,12 @@ public class FinalLocalVariableCheckTest
     @Test
     public void test1() throws Exception {
         final String[] expected = {
-            "13:34: " + getCheckMessage(MSG_KEY, "param"),
-            "14:20: " + getCheckMessage(MSG_KEY, "local"),
-            "20:32: " + getCheckMessage(MSG_KEY, "aParam"),
-            "23:40: " + getCheckMessage(MSG_KEY, "num"),
-            "28:42: " + getCheckMessage(MSG_KEY, "e"),
-        };
+            "14:34: " + getCheckMessage(MSG_KEY, "param"),
+            "15:20: " + getCheckMessage(MSG_KEY, "local"),
+            "21:32: " + getCheckMessage(MSG_KEY, "aParam"),
+            "24:40: " + getCheckMessage(MSG_KEY, "num"),
+            "29:42: " + getCheckMessage(MSG_KEY, "e"),
+        };;
         verifyWithInlineConfigParser(
             getPath("InputFinalLocalVariableInterface.java"),
             expected);
@@ -466,10 +466,10 @@ public class FinalLocalVariableCheckTest
     @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
-            "18:9: " + getCheckMessage(MSG_KEY, "lambdaLocal"),
-            "24:13: " + getCheckMessage(MSG_KEY, "branchLocal"),
-            "31:9: " + getCheckMessage(MSG_KEY, "local"),
-        };
+            "19:9: " + getCheckMessage(MSG_KEY, "lambdaLocal"),
+            "25:13: " + getCheckMessage(MSG_KEY, "branchLocal"),
+            "32:9: " + getCheckMessage(MSG_KEY, "local"),
+        };;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalLocalVariableCompactSourceFile.java"),
             expected);
