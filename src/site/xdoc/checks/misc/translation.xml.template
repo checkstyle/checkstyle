@@ -141,6 +141,31 @@ messages_home.translations
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example3.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with default settings (only the existence of the
+          default translation file is checked):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-file">Example4 (target folder structure):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        messages.properties
+        </code></pre></div>
+        <p id="messages-raw">Contents of messages.properties file:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example1/messages.properties"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">Validation for Example4:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/translation/Example4.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
