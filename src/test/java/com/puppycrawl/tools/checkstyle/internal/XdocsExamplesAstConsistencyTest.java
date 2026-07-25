@@ -119,7 +119,6 @@ public class XdocsExamplesAstConsistencyTest {
      *
      */
     private static final Set<String> UNPARSEABLE_EXAMPLES = Set.of(
-            "checks/regexp/regexponfilename/Example1",
             "checks/translation/Example1",
             "filters/suppressionxpathsinglefilter/Example14"
     );
@@ -155,7 +154,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
             // until https://github.com/checkstyle/checkstyle/issues/20625
-            "checks/regexp/regexponfilename",
             "checks/translation"
     );
 

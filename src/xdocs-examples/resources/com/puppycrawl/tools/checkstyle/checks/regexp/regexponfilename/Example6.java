@@ -8,10 +8,14 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
-/*
 // xdoc section -- start
+/*
+.../checkstyle.xml
+.../Test Example1.xml
 .../TestExample2.xml
+.../TestExample3.md
+.../TestExample4.xml
 .../Example1.java // violation 'File match folder pattern'
-// xdoc section -- end
 */
 class Example6 {}
+// xdoc section -- end
