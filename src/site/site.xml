@@ -354,6 +354,8 @@
           <item name="NoWhitespaceBefore" href="checks/whitespace/nowhitespacebefore.html"/>
           <item name="NoWhitespaceBeforeCaseDefaultColon"
                 href="checks/whitespace/nowhitespacebeforecasedefaultcolon.html"/>
+          <item name="OpenjdkMethodParameterAlignment"
+                href="checks/whitespace/openjdkmethodparameteralignment.html"/>
           <item name="OperatorWrap" href="checks/whitespace/operatorwrap.html"/>
           <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
           <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>
