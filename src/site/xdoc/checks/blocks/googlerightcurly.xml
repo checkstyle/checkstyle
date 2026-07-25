@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>GoogleRightCurly</title>
+  </head>
+  <body>
+    <section name="GoogleRightCurly">
+      <p>Since Checkstyle 13.9.0</p>
+      <subsection name="Description" id="GoogleRightCurly_Description">
+        <div>
+          Checks the placement of right curly braces (<code>'}'</code>) for code blocks, following
+          the <a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces">
+          Google Java Style Guide </a>.
+        <p>
+          For nonempty blocks the right curly brace must begin its own line,
+          unless it is followed by <code>else</code>, <code>catch</code>, <code>finally</code>, or a comma,
+          in which case no line break follows it.
+        </p>
+        <p>
+          For empty blocks, either K&amp;R style or the concise <code>{}</code> form is
+          allowed, except within a multi-block statement (<code>if/else</code>, <code>try/catch/finally</code>).
+        </p>
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="GoogleRightCurly_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                    LITERAL_IF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                    LITERAL_ELSE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                    LITERAL_TRY</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                    LITERAL_CATCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                    LITERAL_FINALLY</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                    LITERAL_DO</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                    LITERAL_FOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                    LITERAL_WHILE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                    LITERAL_SWITCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                    LITERAL_CASE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                    LITERAL_DEFAULT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                    STATIC_INIT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                    INSTANCE_INIT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+                    LITERAL_SYNCHRONIZED</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+                    OBJBLOCK</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                    LITERAL_IF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+                    LITERAL_ELSE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
+                    LITERAL_TRY</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                    LITERAL_CATCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
+                    LITERAL_FINALLY</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                    LITERAL_DO</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                    LITERAL_FOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                    LITERAL_WHILE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                    LITERAL_SWITCH</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                    LITERAL_CASE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DEFAULT">
+                    LITERAL_DEFAULT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                    STATIC_INIT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                    INSTANCE_INIT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
+                    LITERAL_SYNCHRONIZED</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+                    OBJBLOCK</a>
+                  .
+              </td>
+              <td>13.9.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="GoogleRightCurly_Examples">
+        <p id="Example1-config"> To configure the check: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="GoogleRightCurly"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  static {
+    a = 0;
+  } static int a = 1;
+  // violation above 'should be alone on a line'
+  void method() {
+    if (a == 0) {
+      bar(1, 2, 3);
+    } // violation 'should be on the same line'
+    else {
+      bar(1, 2, 3);
+    }
+
+    try {
+      bar(-1, -2);
+    } // violation 'should be on the same line'
+    catch(Exception e) {
+      bar(0);
+    }
+    for (int i = 0; i &lt; a; i++) {
+      bar(i);} // violation 'should be alone on a line'
+    do {
+      bar(a);
+      a--;
+    } // violation 'should be on the same line'
+    while (a &gt; 0);
+  }
+
+  void method2() {
+    switch (a) {
+      case 1: int y = 1; break;
+      case 2: {bar(-1);} // violation 'should be alone on a line'
+      case 3: {break;}   // violation 'should be alone on a line'
+      default: {
+        bar(-2);
+      }
+    }
+    // violation below 'should have line break'
+    if (a == 0) {bar(a);} else {
+      bar(a--);
+    }
+  }
+
+  void bar(int... n)  {int[] k = n;}
+  // violation above 'should be alone on a line'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for tokens
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+          LITERAL_IF</a> ans
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
+          LITERAL_ELSE</a>
+          tokens:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="GoogleRightCurly"&gt;
+      &lt;property name="tokens" value="LITERAL_IF, LITERAL_ELSE"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  static {
+    a = 0;
+  } static int a = 1;
+
+  void method() {
+    if (a == 0) {
+      bar(1, 2, 3);
+    } // violation 'should be on the same line'
+    else {
+      bar(1, 2, 3);
+    }
+
+    try {
+      bar(-1, -2);
+    }
+    catch(Exception e) {
+      bar(0);
+    }
+    for (int i = 0; i &lt; a; i++) {
+      bar(i);}
+    do {
+      bar(a);
+      a--;
+    }
+    while (a &gt; 0);
+  }
+
+  void method2() {
+    switch (a) {
+      case 1: int y = 1; break;
+      case 2: {bar(-1);}
+      case 3: {break;}
+      default: {
+        bar(-2);
+      }
+    }
+    // violation below 'should have line break'
+    if (a == 0) {bar(a);} else {
+      bar(a--);
+    }
+  }
+
+  void bar(int... n)  {int[] k = n;}
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="GoogleRightCurly_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+GoogleRightCurly">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="GoogleRightCurly_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
+              line.alone
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.break.before%22">
+              line.break.before
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.same%22">
+              line.same
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="GoogleRightCurly_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.blocks.GoogleRightCurlyCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="GoogleRightCurly_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
