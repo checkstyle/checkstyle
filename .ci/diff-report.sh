@@ -149,6 +149,17 @@ parse-pr-description-text)
   ./.ci/append-to-github-output.sh "report_label" "$REPORT_LABEL"
   ;;
 
+# Adds upstream and forked remotes, then fetches both.
+set-upstream)
+  MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+  git remote add upstream "$MAIN_REPO_GIT_URL"
+  git fetch upstream
+
+  FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+  git remote add forked "$FORK_REPO_GIT_URL"
+  git fetch forked
+  ;;
+
 process-local-repo-config-files)
   # Some properties and modules are explicitly added in the config files to prevent parser failures
   mkdir -p .ci-temp
