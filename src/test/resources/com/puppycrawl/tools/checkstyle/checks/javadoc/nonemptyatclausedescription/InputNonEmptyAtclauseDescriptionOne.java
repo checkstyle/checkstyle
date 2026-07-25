@@ -118,7 +118,8 @@ class InputNonEmptyAtclauseDescriptionOne
          * Some javadoc
          * @param a Some javadoc
          * @since
-         */ // violation 2 lines above 'At-clause should have a non-empty description'
+         */
+        // violation 2 lines above 'At-clause should have a non-empty description'
         public void foo5(String a)
         {
 
