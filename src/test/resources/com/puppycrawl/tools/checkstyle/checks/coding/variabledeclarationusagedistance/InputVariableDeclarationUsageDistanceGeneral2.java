@@ -55,8 +55,12 @@ public class InputVariableDeclarationUsageDistanceGeneral2 {
     }
 
     void method() throws Exception {
+        String b = "x"; // violation 'Distance .* is 3.'
+        System.out.println();
         String a = "";
+        System.out.println();
         try (AutoCloseable i = new java.io.StringReader(a)) {
+            b.length();
         }
         finally {
             a.equals("");
