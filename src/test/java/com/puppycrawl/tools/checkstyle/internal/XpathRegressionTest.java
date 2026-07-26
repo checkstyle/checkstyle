@@ -62,6 +62,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "IllegalBlockTag",
                     "JavadocBlockTagLocation",
                     "JavadocLeadingAsteriskAlign",
+                    "JavadocLinkFirstOccurrence",
                     "JavadocLinkWellKnownApi",
                     "JavadocMethod",
                     "JavadocMissingLeadingAsterisk",
