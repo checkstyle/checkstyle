@@ -11,6 +11,7 @@ src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule333orderin
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputNonemptyBlocksLeftRightCurly.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputLeftCurlyAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputLeftCurlyMethod.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputLeftCurlyTypesAndAnonymousClass.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputRightCurly.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputRightCurlyOther.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputRightCurlySwitchCase.java
