@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -211,6 +210,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
+
+    /** Domain Separator. */
+    private static final String DOMAIN_SEPARATOR = "\\.";
 
     /** Specify ordered list of import groups. */
     private final List<String> customImportOrderRules = new ArrayList<>();
@@ -657,7 +659,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private static int compareImports(String import1, String import2) {
         int result = 0;
-        final String separator = "\\.";
+        final String separator = DOMAIN_SEPARATOR;
         final String[] import1Tokens = import1.split(separator, -1);
         final String[] import2Tokens = import2.split(separator, -1);
         for (int i = 0; i != import1Tokens.length && i != import2Tokens.length; i++) {
@@ -770,12 +772,17 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static String getFirstDomainsFromIdent(
             final int firstPackageDomainsCount, final String packageFullPath) {
         final StringBuilder builder = new StringBuilder(256);
-        final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
+        final String[] tokens = packageFullPath.split(DOMAIN_SEPARATOR, -1);
         int count = firstPackageDomainsCount;
 
-        while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken());
-            count--;
+        for (String token : tokens) {
+            if (count <= 0) {
+                break;
+            }
+            else {
+                builder.append(token);
+                count--;
+            }
         }
         return builder.toString();
     }

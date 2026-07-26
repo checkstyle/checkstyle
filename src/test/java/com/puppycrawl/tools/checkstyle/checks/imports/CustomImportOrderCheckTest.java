@@ -782,4 +782,18 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testGetFirstDomainsFromIdentWithEmptyDomain() throws Exception {
+        final String result = TestUtil.invokeStaticMethod(
+                CustomImportOrderCheck.class,
+                "getFirstDomainsFromIdent",
+                String.class,
+                0,
+                "com.puppycrawl.tools");
+
+        assertWithMessage("Should return an empty string when requesting 0 domains")
+                .that(result)
+                .isEmpty();
+    }
+
 }
