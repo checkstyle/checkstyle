@@ -30,7 +30,8 @@
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p id="Example1-config">
           To configure the default check that will check <code>@param</code>,
-          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
+          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>,
+          <code>@since</code>:
         </p>
         <macro name="example">
           <param name="path"

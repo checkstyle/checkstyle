@@ -55,6 +55,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
             JavadocCommentsTokenTypes.THROWS_BLOCK_TAG,
             JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG,
             JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SINCE_BLOCK_TAG,
         };
     }
 
