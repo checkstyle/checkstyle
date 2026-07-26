@@ -36,11 +36,12 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
-/**
- * Used for parsing Javadoc comment as DetailNode tree.
- *
- */
-public class JavadocDetailNodeParser {
+    /**
+     * Used for parsing Javadoc comment as DetailNode tree.
+     *
+     * @see <a href="https://checkstyle.org/this-page-does-not-exist-test123.html">test broken link</a>
+     */
+    public class JavadocDetailNodeParser {
 
     /**
      * Parse error while rule recognition.
@@ -246,7 +247,7 @@ public class JavadocDetailNodeParser {
          * Stores the first non-tight HTML tag encountered while parsing javadoc.
          *
          * @see <a
-         *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     href="https://checkstyle.org/writingjavadocchecks-invalid.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
         private DetailNode firstNonTightHtmlTag;
