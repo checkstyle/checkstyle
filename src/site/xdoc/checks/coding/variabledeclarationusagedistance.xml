@@ -109,7 +109,7 @@ public class Example1 {
           declaration of this variable and its usage.
         </p>
         <hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example2-config">
             To configure the check to set allowed distance:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -121,9 +121,9 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class Example2 {
 
   public void foo1() {
 
@@ -151,7 +151,7 @@ public class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example3-config">
             To configure the check to ignore certain variables:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -166,9 +166,9 @@ public class Example3 {
         <p>
             This configuration ignores variables named &quot;num&quot;.
         </p>
-        <p id="Example4-code">Example:</p>
+        <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class Example3 {
 
   public void foo1() {
 
@@ -196,7 +196,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
             To configure the check to force validation between scopes:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -208,9 +208,9 @@ public class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class Example4 {
 
   public void foo1() {
     // violation below 'variable 'num' declaration and its first usage is 4.'
@@ -238,7 +238,7 @@ public class Example5 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example5-config">
             To configure the check to check final variables:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -250,9 +250,9 @@ public class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class Example5 {
 
   public void foo1() {
     // violation below 'variable 'num' declaration and its first usage is 4.'

@@ -73,7 +73,7 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String pattern = "^[a-z][_a-zA-Z0-9]+$";
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_INVALID_PATTERN, "g", pattern),
@@ -84,7 +84,7 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
             "41:14: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test

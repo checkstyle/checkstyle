@@ -102,7 +102,7 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> UNPARSEABLE_EXAMPLES = Set.of(
             "checks/regexp/regexponfilename/Example1",
             "checks/translation/Example1",
-            "filters/suppressionxpathsinglefilter/Example14"
+            "filters/suppressionxpathsinglefilter/Example7"
     );
 
     /**

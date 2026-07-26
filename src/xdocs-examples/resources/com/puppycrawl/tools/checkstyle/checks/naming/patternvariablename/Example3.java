@@ -32,7 +32,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
 // xdoc section -- start
-class Example4 {
+class Example3 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
     // violation above 'Name 'STRING' must match pattern*.'

@@ -270,7 +270,7 @@ public class Example6 {
   private int field = 177; // filtered violation ''177' is a magic number.'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example14-config">
+        <p id="Example7-config">
           The following example is an example of what checks would be suppressed
           while building Spring projects with checkstyle plugin.
           Please find more information at:
@@ -298,7 +298,7 @@ public class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example14-code">Code Example:</p>
+        <p id="Example7-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'

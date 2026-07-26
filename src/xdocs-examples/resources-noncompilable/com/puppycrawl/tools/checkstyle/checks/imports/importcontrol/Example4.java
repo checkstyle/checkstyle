@@ -16,5 +16,5 @@ import module java.base;
 import module java.logging; // violation 'Disallowed import - java.logging'
 import module java.sql;     // violation 'Disallowed import - java.sql'
 
-public class Example13 {}
+public class Example4 {}
 // xdoc section -- end

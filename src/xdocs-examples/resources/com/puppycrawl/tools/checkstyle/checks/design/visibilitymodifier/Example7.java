@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 // xdoc section -- start
-class Example12 {
+class Example7 {
   private int myPrivateField1;
 
   int field1; // violation 'must be private'

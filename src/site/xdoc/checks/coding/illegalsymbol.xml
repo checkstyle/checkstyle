@@ -137,7 +137,7 @@ public class Example2 {
   String value2 = "Hello 😀";
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example3-config">
           To configure the check for ASCII-only mode:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -150,11 +150,11 @@ public class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="Example3-code">
             Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class Example3 {
   // ok, 😀 comment in emoji
 
   int value1 = 1;

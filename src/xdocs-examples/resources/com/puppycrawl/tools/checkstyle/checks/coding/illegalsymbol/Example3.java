@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 
 // xdoc section -- start
-public class Example4 {
+public class Example3 {
   // ok, 😀 comment in emoji
 
   int value1 = 1;
