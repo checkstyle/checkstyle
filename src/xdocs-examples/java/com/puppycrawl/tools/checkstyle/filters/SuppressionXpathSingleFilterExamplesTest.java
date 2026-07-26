@@ -298,7 +298,7 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
-    public void testExample14() throws Exception {
+    public void testExample7() throws Exception {
         final Map<String, List<String>> expected = new HashMap<>();
         final List<String> messages =
                 List.of("3:14: " + getCheckMessage(AbstractNameCheck.class,
@@ -308,7 +308,7 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
 
         final Path path = Paths.get("src/xdocs-examples/resources/" + getPackageLocation() + "/");
 
-        final String fileWithConfig = getPath("Example14.java");
+        final String fileWithConfig = getPath("Example7.java");
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(fileWithConfig);
         final DefaultConfiguration parsedConfig =

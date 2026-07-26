@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 // xdoc section -- start
-class Example5 {
+class Example4 {
   void method0(int v) {}
   void method1(int v1) {}
   void method2(int V2) {}

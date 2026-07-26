@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Indentation">
-      <property name="lineWrappingIndentation" value="8"/>
+      <property name="throwsIndent" value="8"/>
     </module>
   </module>
 </module>
@@ -19,11 +19,11 @@ class Example6 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation 'level 2, expected level should be one of the following: 8, 12'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
-        throws Exception {
+        throws Exception {   // violation 'level 8, expected level should be 12'
         switch (a) {
             case 1:
                 break;
@@ -32,7 +32,7 @@ class Example6 {
         }
     }
     void method3(int a,
-                 int b) {   // ok, lineWrappingIndentation = 8
+                 int b) {
         if (x
                 && y) {
             method3(a, b);

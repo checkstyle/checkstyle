@@ -72,20 +72,20 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one
           character long:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Code Example:</p>
+        <p id="Example4-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/parametername/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

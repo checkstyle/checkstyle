@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 // xdoc section -- start
 // violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
-public class Example7 {
+public class Example4 {
   private Set<Object> set = new HashSet<>();         // ok, ignored
   private Map<Object, Object> map = new HashMap<>(); // ok, ignored
   private Object object = new Object();              // ok, ignored

@@ -77,12 +77,12 @@ public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testExample4() throws Exception {
         final String[] expected = {
             "39:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test

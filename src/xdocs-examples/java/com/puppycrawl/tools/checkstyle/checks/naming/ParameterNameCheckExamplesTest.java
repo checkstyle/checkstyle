@@ -74,7 +74,7 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testExample4() throws Exception {
         final String[] expected = {
             "26:20: Parameter name 'V2' must match pattern "
                 + "'^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'",
@@ -82,7 +82,7 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "'^[a-z][a-z0-9][a-zA-Z0-9]*$'",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
 }

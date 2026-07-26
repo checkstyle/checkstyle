@@ -63,12 +63,12 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "29:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
         };
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test

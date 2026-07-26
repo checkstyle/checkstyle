@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Indentation">
-      <property name="arrayInitIndent" value="2"/>
+      <property name="braceAdjustment" value="2"/>
     </module>
   </module>
 </module>
@@ -19,13 +19,13 @@ class Example8 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation 'level 2, expected level should be one of'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
         throws Exception {
         switch (a) {
-            case 1:
+            case 1:            // ok, caseIndent = 4
                 break;
             case 2:
                 break;
@@ -53,7 +53,7 @@ class Example8 {
     }
 
     void methodBrace()
-    {
-    }
+    {                       // violation 'level 4, expected level should be 6'
+    }                       // violation 'level 4, expected level should be 6'
 }
 // xdoc section -- end

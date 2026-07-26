@@ -8,9 +8,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example7;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example4;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example3;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase2;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.Example5;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase3;
 
 import java.math.BigInteger;
@@ -29,10 +29,10 @@ public class UseCase1 {
   AtomicInteger atomicInteger = new AtomicInteger(); // Counted 1
   BigInteger bigInteger = new BigInteger("0");
   Example1 example1 = new Example1();
-  Example3 example3 = new Example3();
+  Example2 example2 = new Example2();
   UseCase2 useCase2 = new UseCase2();
-  Example5 example5 = new Example5();
+  Example3 example3 = new Example3();
   UseCase3 useCase3 = new UseCase3();
-  Example7 example7 = new Example7(); // Counted 8
+  Example4 example4 = new Example4(); // Counted 8
 }
 // xdoc section -- end
