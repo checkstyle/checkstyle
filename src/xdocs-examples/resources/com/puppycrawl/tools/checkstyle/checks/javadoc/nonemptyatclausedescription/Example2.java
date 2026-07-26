@@ -20,12 +20,14 @@ class Example2 {
    * @deprecated
    * @throws Exception
    * @return
+   * @since
    */
   public void testMethod(){
-    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
     // @deprecated ignored as not mentioned in javadocTokens
-    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
     // @return ignored as not mentioned in javadocTokens
+    // @since ignored as not mentioned in javadocTokens
   }
 }
 // xdoc section -- end

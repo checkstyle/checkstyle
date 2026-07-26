@@ -87,6 +87,15 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
+    public void testCheckSince() throws Exception {
+        final String[] expected = {
+            "27: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNonEmptyAtclauseDescriptionSince.java"), expected);
+    }
+
+    @Test
     public void testCheckTwo() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY),
