@@ -115,13 +115,13 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example13-config">
+        <p id="Example4-config">
           To configure the check using an import control file called
           "${config.folder}/import-control13.xml" for module imports (Java 25+):
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example13.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="import-control13-raw">
@@ -132,21 +132,21 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control13.xml"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="Example13-code">
+        <p id="Example4-code">
           Results:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example13.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example14-config">
+        <p id="Example5-config">
           To configure the check using an import control file with regex for module imports:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example14.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="import-control14-raw">
@@ -157,12 +157,12 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control14.xml"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="Example14-code">
+        <p id="Example5-code">
           Results:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example14.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 

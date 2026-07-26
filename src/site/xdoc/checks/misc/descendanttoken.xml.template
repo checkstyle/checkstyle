@@ -153,56 +153,56 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example12-config">
+        <p id="Example8-config">
           To configure the check to produce a violation on an empty statement:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example12-code">
+        <p id="Example8-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example8.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example14-config">
+        <p id="Example9-config">
           To configure the check to produce a violation on
           comparing <code>this</code> with <code>null</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example14-code">
+        <p id="Example9-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example9.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example17-config">
+        <p id="Example10-config">
           To configure the check to produce a violation with a custom message
           when the minimum count of descendants is not reached:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example17.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example17-code">
+        <p id="Example10-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example17.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.java"/>
           <param name="type" value="code"/>
 
         </macro>

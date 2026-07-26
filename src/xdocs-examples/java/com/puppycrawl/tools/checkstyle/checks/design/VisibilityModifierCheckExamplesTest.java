@@ -250,7 +250,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
     }
 
     @Test
-    public void testExample12() throws Exception {
+    public void testExample7() throws Exception {
         final String[] expected = {
             "27:7: " + getCheckMessage(MSG_KEY, "field1"),
             "29:20: " + getCheckMessage(MSG_KEY, "field2"),
@@ -259,7 +259,7 @@ public class VisibilityModifierCheckExamplesTest extends AbstractExamplesModuleT
             "56:10: " + getCheckMessage(MSG_KEY, "shortCustomAnnotated"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example12.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
 }

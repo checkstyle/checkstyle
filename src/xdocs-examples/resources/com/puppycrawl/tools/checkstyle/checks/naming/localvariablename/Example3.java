@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // xdoc section -- start
-class Example4 {
+class Example3 {
   void MyMethod() {
     int good = 1;
     int g = 0; // violation 'Name 'g' must match pattern*'

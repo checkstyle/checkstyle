@@ -145,12 +145,12 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample12() throws Exception {
+    public void testExample8() throws Exception {
         final String[] expected = {
             "51:5: " + "Empty statement is not allowed.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example12.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
@@ -163,12 +163,12 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample14() throws Exception {
+    public void testExample9() throws Exception {
         final String[] expected = {
             "47:14: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example14.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
     @Test
@@ -190,12 +190,12 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample17() throws Exception {
+    public void testExample10() throws Exception {
         final String[] expected = {
             "24:5: Switch must contain at least one default branch.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example17.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example10.java"), expected);
     }
 
 }
