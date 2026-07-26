@@ -25,7 +25,7 @@ class InputFinalParameters
     }
 
     /** non final param constructor */
-    InputFinalParameters(String s) // violation 's' should be final
+    InputFinalParameters(String s) // violation 'Parameter s should be final.'
     {
     }
 
@@ -40,12 +40,12 @@ class InputFinalParameters
     }
 
     /** non-final param constructor with annotation*/
-    InputFinalParameters(@MyAnnotation33 Boolean i) // violation 'i' should be final
+    InputFinalParameters(@MyAnnotation33 Boolean i) // violation 'Parameter i should be final.'
     {
     }
 
     /** mixed */
-    InputFinalParameters(String s, final Integer i) // violation 's' should be final
+    InputFinalParameters(String s, final Integer i) // violation 'Parameter s should be final.'
     {
     }
 
@@ -55,7 +55,7 @@ class InputFinalParameters
     }
 
     /** non final param method */
-    void method(String s) // violation 's' should be final
+    void method(String s) // violation 'Parameter s should be final.'
     {
     }
 
@@ -71,13 +71,13 @@ class InputFinalParameters
     }
 
     /** non-final param method with annotation **/
-    void method(@MyAnnotation33 Class<Object> s) // violation 's' should be final
+    void method(@MyAnnotation33 Class<Object> s) // violation 'Parameter s should be final.'
     {
 
     }
 
     /** mixed */
-    void method(String s, final Integer i) // violation 's' should be final
+    void method(String s, final Integer i) // violation 'Parameter s should be final.'
     {
     }
 
@@ -92,10 +92,10 @@ class InputFinalParameters
     {
         Action a = new AbstractAction()
             {
-                public void actionPerformed(ActionEvent e) // violation 'e' should be final
+                public void actionPerformed(ActionEvent e) // violation 'Parameter e should be final.'
                 {
                 }
-                void somethingElse(@MyAnnotation33 ActionEvent e) // violation 'e' should be final
+                void somethingElse(@MyAnnotation33 ActionEvent e) // violation 'Parameter e should be final.'
                 {
                 }
             };
