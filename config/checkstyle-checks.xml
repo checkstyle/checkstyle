@@ -665,6 +665,11 @@
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="JavadocVariable"/>
     </module>
+    <!-- TODO: remove suppression when all existing JavadocLinkFirstOccurrence
+         violations are fixed, see https://github.com/checkstyle/checkstyle/pull/XXXX -->
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="JavadocLinkFirstOccurrence"/>
+    </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="JavadocType"/>
@@ -745,8 +750,9 @@
     <module name="JavadocMethod">
       <property name="validateThrows" value="true"/>
     </module>
-    <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocLeadingAsteriskAlign"/>
+    <module name="JavadocLinkFirstOccurrence"/>
+    <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocTagContinuationIndentation"/>
