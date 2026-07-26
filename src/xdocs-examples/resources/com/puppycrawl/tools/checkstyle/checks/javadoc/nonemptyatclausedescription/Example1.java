@@ -18,12 +18,14 @@ class Example1 {
    * @deprecated
    * @throws Exception
    * @return
+   * @since
    */
   public void testMethod(){
-    // violation 6 lines above 'At-clause should have a non-empty description'
-    // violation 6 lines above 'At-clause should have a non-empty description'
-    // violation 6 lines above 'At-clause should have a non-empty description'
-    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
   }
 }
 // xdoc section -- end
