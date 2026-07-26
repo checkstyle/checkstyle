@@ -61,7 +61,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                  "InputOuterTypeFilenameEmpty.java",
                  "InputOneTopLevelClassEmpty.java",
                  "InputMethodCountEmpty.java",
-                 "InputDeclarationOrderEmpty.java"
+                 "InputDeclarationOrderEmpty.java",
+                 "InputJavadocLinkFirstOccurrenceEmptyFile.java"
         );
 
     @TempDir
