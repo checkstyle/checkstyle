@@ -208,7 +208,7 @@ workflows:
       - validate-with-maven-script:
           name: linkcheck-plugin
           image-name: cimg/openjdk:21.0.6
-          command: ./.ci/run-link-check-plugin.sh --skip-external
+          command: ./.ci/run-link-check-plugin.sh
       - validate-with-maven-script:
           name: no-exception-samples-gradle
           image-name: cimg/openjdk:21.0.6
