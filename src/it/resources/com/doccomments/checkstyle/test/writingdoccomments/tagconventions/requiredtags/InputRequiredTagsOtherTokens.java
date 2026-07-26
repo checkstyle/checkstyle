@@ -5,6 +5,9 @@ package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.requir
  */
 public class InputRequiredTagsOtherTokens {
 
+    /**
+     * Creates a sample instance.
+     */
     public InputRequiredTagsOtherTokens() {
     }
 

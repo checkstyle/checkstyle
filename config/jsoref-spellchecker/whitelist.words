@@ -475,6 +475,7 @@ Fnaming
 Fopenjdk
 forbiddenapis
 Foreach
+formatofdoccomment
 Fpuppycrawl
 fq
 Fqcn
@@ -881,7 +882,6 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
-mutationtest
 MVC
 mvn
 mvnrepository
@@ -1004,6 +1004,7 @@ oopsla
 OOQ
 opencollective
 openjdk
+openjdkannotationlocation
 openrewrite
 operatorwrap
 opsummary
@@ -1053,6 +1054,7 @@ Parcelable
 parenpad
 PARM
 parrt
+parseable
 parsetreetablepresentation
 Passembly
 passphrase

@@ -90,8 +90,8 @@ public class ParameterNumberCheckTest
     public void testNum()
             throws Exception {
         final String[] expected = {
-            "76:9: " + getCheckMessage(MSG_KEY, 2, 3),
-            "199:10: " + getCheckMessage(MSG_KEY, 2, 9),
+            "22:9: " + getCheckMessage(MSG_KEY, 2, 3),
+            "32:10: " + getCheckMessage(MSG_KEY, 2, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple2.java"), expected);
@@ -109,7 +109,7 @@ public class ParameterNumberCheckTest
     public void shouldLogActualParameterNumber()
             throws Exception {
         final String[] expected = {
-            "199:10: " + getCheckMessage(MSG_KEY, 7, 9),
+            "32:10: " + getCheckMessage(MSG_KEY, 7, 9),
         };
         verifyWithInlineConfigParser(
                 getPath("InputParameterNumberSimple4.java"), expected);
