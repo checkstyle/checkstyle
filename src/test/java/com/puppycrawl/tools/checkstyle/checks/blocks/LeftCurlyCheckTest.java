@@ -365,6 +365,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreEnumsOptionTrue() throws Exception {
         final String[] expectedWhileTrue = {
             "21:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
+            "33:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyIgnoreEnumsOptTrue.java"), expectedWhileTrue);
@@ -375,6 +376,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expectedWhileFalse = {
             "17:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
             "21:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
+            "33:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyIgnoreEnumsOptFalse.java"), expectedWhileFalse);
@@ -663,6 +665,29 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlySwitchMutation.java"), expected);
+    }
+
+    @Test
+    public void testTypesDefault() throws Exception {
+        final String[] expected = {
+            "19:22: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 22),
+            "23:30: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 30),
+            "27:26: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 26),
+            "31:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 21),
+            "36:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestTypesEol.java"), expected);
+    }
+
+    @Test
+    public void testAnonymousClassEol() throws Exception {
+        final String[] expected = {
+            "19:38: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 38),
+            "27:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyAnonymousClassEol.java"), expected);
     }
 
 }
