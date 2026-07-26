@@ -66,13 +66,13 @@ public class IllegalSymbolCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_KEY, "😀"),
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example4.java"), expected);
+                getPath("Example3.java"), expected);
     }
 
     @Test

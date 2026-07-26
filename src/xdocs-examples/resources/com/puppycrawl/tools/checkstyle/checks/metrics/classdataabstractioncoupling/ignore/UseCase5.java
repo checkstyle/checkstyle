@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupl
 
 // xdoc section -- start
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.UseCase1;
-import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example3;
+import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase2;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase3;
 
@@ -39,7 +39,7 @@ class UseCase5 {
   BigDecimal bigDecimal = new BigDecimal("0");
   MathContext mathContext = new MathContext(0);
   UseCase1 example3 = new UseCase1();
-  Example3 example4 = new Example3();
+  Example2 example4 = new Example2();
   UseCase2 example5 = new UseCase2();
   UseCase3 useCase3 = new UseCase3(); // Counted 8
 

@@ -519,7 +519,7 @@ class Example7 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example12-config">
+        <p id="Example8-config">
           To configure the check to produce a violation on an empty statement:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -536,11 +536,11 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example12-code">
+        <p id="Example8-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example12 {
+class Example8 {
   private int field1;
   private int field2;
 
@@ -580,7 +580,7 @@ class Example12 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example14-config">
+        <p id="Example9-config">
           To configure the check to produce a violation on
           comparing <code>this</code> with <code>null</code>:
         </p>
@@ -597,11 +597,11 @@ class Example12 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example14-code">
+        <p id="Example9-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example14 {
+class Example9 {
   private int field1;
   private int field2;
 
@@ -641,7 +641,7 @@ class Example14 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example17-config">
+        <p id="Example10-config">
           To configure the check to produce a violation with a custom message
           when the minimum count of descendants is not reached:
         </p>
@@ -659,11 +659,11 @@ class Example14 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example17-code">
+        <p id="Example10-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example17 {
+class Example10 {
   private int field1;
   private int field2;
 

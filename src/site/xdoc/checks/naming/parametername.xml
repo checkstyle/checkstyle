@@ -136,7 +136,7 @@ class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
           The following configuration checks that the parameters always start with two
           lowercase characters and, in addition, that public method parameters cannot be one
           character long:
@@ -159,9 +159,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Code Example:</p>
+        <p id="Example4-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class Example4 {
   void method0(int v) {}
   void method1(int v1) {}
   void method2(int V2) {}

@@ -287,7 +287,7 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example13.java"), expected);
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example4.java"), expected);
     }
 
     @Test
@@ -301,7 +301,7 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example14.java"), expected);
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example5.java"), expected);
     }
 
 }

@@ -57,7 +57,7 @@
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example2.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example3-config">
           To configure the check with policy <code>alone_or_singleline</code> for <code> if</code>
           and
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -66,13 +66,13 @@
         </p>
         <macro name="example">
              <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example4.java"/>
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example3.java"/>
              <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="Example3-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example4.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly/Example3.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>

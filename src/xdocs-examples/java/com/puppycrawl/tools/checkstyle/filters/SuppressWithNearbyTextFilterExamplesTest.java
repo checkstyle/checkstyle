@@ -215,7 +215,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testExample6() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "23:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
@@ -232,7 +232,7 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
             "29: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 55, 84),
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 

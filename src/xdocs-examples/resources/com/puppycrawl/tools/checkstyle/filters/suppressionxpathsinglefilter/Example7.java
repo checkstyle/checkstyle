@@ -23,7 +23,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-public class Example14 {}
+public class Example7 {}
 
 /*
 // xdoc section -- start
