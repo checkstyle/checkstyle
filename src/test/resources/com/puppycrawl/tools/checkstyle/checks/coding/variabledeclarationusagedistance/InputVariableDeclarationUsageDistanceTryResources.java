@@ -16,12 +16,12 @@ import java.util.*;
 
 public class InputVariableDeclarationUsageDistanceTryResources {
     public int methodTry() {
-        String a = ""; // violation 'Distance .* is 2.'
+        String a = "";
         String b = "abc"; // violation 'Distance .* is 2.'
         System.out.println();
-        try (AutoCloseable j = new java.io.StringReader(b);
+        try (AutoCloseable j = new java.io.StringReader("");
              final AutoCloseable i = new java.io.StringReader(a);
-             final AutoCloseable k = new java.io.StringReader(b);) {
+             final AutoCloseable k = new java.io.StringReader("");) {
             b.replace(a.charAt(0), 'b');
             String c = b.toString();
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class InputVariableDeclarationUsageDistanceTryResources {
         String b = "";
         FileReader fr = new FileReader(b);
         BufferedReader br = new BufferedReader(fr);
-        try {
+        try (AutoCloseable j = new java.io.StringReader("");){
             return br.readLine();
         } finally {
             br.close();
