@@ -868,6 +868,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadoclinkfirstoccurrence.html#JavadocLinkFirstOccurrence">
+                JavadocLinkFirstOccurrence
+              </a>
+            </td>
+            <td>
+              Checks that in Javadoc comments, each API name is linked with <code>{@link}</code> or
+              <code>{@linkplain}</code> only on its first occurrence.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
                 JavadocMethod
               </a>
