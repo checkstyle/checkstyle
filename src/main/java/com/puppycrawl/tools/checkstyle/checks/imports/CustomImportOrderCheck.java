@@ -22,10 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -770,12 +770,12 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static String getFirstDomainsFromIdent(
             final int firstPackageDomainsCount, final String packageFullPath) {
         final StringBuilder builder = new StringBuilder(256);
-        final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
-        int count = firstPackageDomainsCount;
+        final List<String> tokens = Splitter.on('.')
+                .splitToList(packageFullPath);
+        final int limit = Math.min(firstPackageDomainsCount, tokens.size());
 
-        while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken());
-            count--;
+        for (int tokenIndex = 0; tokenIndex < limit; tokenIndex++) {
+            builder.append(tokens.get(tokenIndex));
         }
         return builder.toString();
     }
