@@ -45,6 +45,8 @@
                     EXCEPTION_BLOCK_TAG</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG">
                     DEPRECATED_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#SINCE_BLOCK_TAG">
+                    SINCE_BLOCK_TAG</a>
                   .
               </td>
               <td>
@@ -58,6 +60,8 @@
                     EXCEPTION_BLOCK_TAG</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG">
                     DEPRECATED_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#SINCE_BLOCK_TAG">
+                    SINCE_BLOCK_TAG</a>
                   .
               </td>
               <td>7.3</td>
@@ -69,7 +73,8 @@
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p id="Example1-config">
           To configure the default check that will check <code>@param</code>,
-          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
+          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>,
+          <code>@since</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -92,12 +97,14 @@ class Example1 {
    * @deprecated
    * @throws Exception
    * @return
+   * @since
    */
   public void testMethod(){
-    // violation 6 lines above 'At-clause should have a non-empty description'
-    // violation 6 lines above 'At-clause should have a non-empty description'
-    // violation 6 lines above 'At-clause should have a non-empty description'
-    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -128,12 +135,14 @@ class Example2 {
    * @deprecated
    * @throws Exception
    * @return
+   * @since
    */
   public void testMethod(){
-    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
     // @deprecated ignored as not mentioned in javadocTokens
-    // violation 6 lines above 'At-clause should have a non-empty description'
+    // violation 7 lines above 'At-clause should have a non-empty description'
     // @return ignored as not mentioned in javadocTokens
+    // @since ignored as not mentioned in javadocTokens
   }
 }
 </code></pre></div>
