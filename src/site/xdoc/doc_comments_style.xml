@@ -581,7 +581,13 @@
                     Avoid Latin
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Guideline is not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/20987">#20987</a>.
+                </td>
                 <td/>
               </tr>
 
