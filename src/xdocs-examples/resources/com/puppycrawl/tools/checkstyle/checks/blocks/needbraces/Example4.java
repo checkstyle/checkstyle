@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
 // xdoc section -- start
-class Example5 {
+class Example4 {
   String obj = new String();
   String value = new String();
   int counter = 1;

@@ -2,19 +2,19 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DescendantToken">
-      <property name="tokens" value="EQUAL,NOT_EQUAL"/>
-      <property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/>
-      <property name="maximumNumber" value="1"/>
-      <property name="maximumDepth" value="1"/>
-      <property name="sumTokenCounts" value="true"/>
+      <property name="tokens" value="EMPTY_STAT"/>
+      <property name="limitedTokens" value="EMPTY_STAT"/>
+      <property name="maximumNumber" value="0"/>
+      <property name="maximumDepth" value="0"/>
+      <property name="maximumMessage"
+        value="Empty statement is not allowed."/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
-
 // xdoc section -- start
-class Example14 {
+class Example8 {
   private int field1;
   private int field2;
 
@@ -43,12 +43,12 @@ class Example14 {
       break;
     }
     int a = 1;
-    int b = 2; // violation below 'Total count of 2 exceeds maximum count 1'
+    int b = 2;
     if (this == null || str == "abc") {
       return 0;
     }
     assert a++ == 0;
-    ;
+    ; // violation 'Empty statement is not allowed'
     return 2;
   }
 }

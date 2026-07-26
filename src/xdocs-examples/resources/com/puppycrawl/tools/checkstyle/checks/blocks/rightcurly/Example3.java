@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
-public class Example4 {
+public class Example3 {
   public void test() {
     boolean f = false;
     if (f) {

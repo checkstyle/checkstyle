@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Indentation">
-      <property name="throwsIndent" value="8"/>
+      <property name="arrayInitIndent" value="2"/>
     </module>
   </module>
 </module>
@@ -19,11 +19,11 @@ class Example7 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be one of'
     };
 
     void method2()
-        throws Exception {   // violation 'level 8, expected level should be 12'
+        throws Exception {
         switch (a) {
             case 1:
                 break;

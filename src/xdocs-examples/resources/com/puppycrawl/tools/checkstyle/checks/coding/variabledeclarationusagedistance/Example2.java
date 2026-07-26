@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="VariableDeclarationUsageDistance">
-      <property name="ignoreFinal" value="false"/>
+      <property name="allowedDistance" value="4"/>
     </module>
   </module>
 </module>
@@ -10,13 +10,13 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
 // xdoc section -- start
-public class Example6 {
+public class Example2 {
 
   public void foo1() {
-    // violation below 'variable 'num' declaration and its first usage is 4.'
-    int num;
-    // violation below 'variable 'PI' declaration and its first usage is 5.'
-    final double PI;
+
+    int num;        // ok, distance = 4
+
+    final double PI;   // ok, final variables not checked
     System.out.println("Statement 1");
     System.out.println("Statement 2");
     System.out.println("Statement 3");

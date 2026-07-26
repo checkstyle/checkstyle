@@ -123,7 +123,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example14-config">
+        <p id="Example7-config">
           The following example is an example of what checks would be suppressed
           while building Spring projects with checkstyle plugin.
           Please find more information at:
@@ -131,13 +131,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example14.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example7.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example14-code">Code Example:</p>
+        <p id="Example7-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example14.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example7.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         </subsection>

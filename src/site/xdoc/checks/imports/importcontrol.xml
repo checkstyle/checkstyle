@@ -265,7 +265,7 @@ import java.util.List;     // violation 'Disallowed import - java.util.List'
 public class Example3 {}
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example13-config">
+        <p id="Example4-config">
           To configure the check using an import control file called
           &quot;${config.folder}/import-control13.xml&quot; for module imports (Java 25+):
         </p>
@@ -292,7 +292,7 @@ public class Example3 {}
   &lt;disallow module="java.sql"/&gt;
 &lt;/import-control&gt;
 </code></pre></div>
-        <p id="Example13-code">
+        <p id="Example4-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -303,7 +303,7 @@ import module java.sql;     // violation 'Disallowed import - java.sql'
 public class Example13 {}
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example14-config">
+        <p id="Example5-config">
           To configure the check using an import control file with regex for module imports:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -329,7 +329,7 @@ public class Example13 {}
   &lt;disallow module="java\..*" regex="true"/&gt;
 &lt;/import-control&gt;
 </code></pre></div>
-        <p id="Example14-code">
+        <p id="Example5-code">
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">

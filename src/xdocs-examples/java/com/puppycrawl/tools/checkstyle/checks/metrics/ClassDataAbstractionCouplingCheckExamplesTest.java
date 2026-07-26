@@ -62,9 +62,9 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
             "AtomicInteger",
             "BigInteger",
             "Example1",
+            "Example2",
             "Example3",
-            "Example5",
-            "Example7",
+            "Example4",
             "UseCase2",
             "UseCase3"
         ).toString();
@@ -77,7 +77,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testExample2() throws Exception {
         final String expectedClasses = List.of(
             "AtomicInteger",
             "BigDecimal",
@@ -95,7 +95,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
             "28:1: " + getCheckMessage(MSG_KEY, 10, 9, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testExample3() throws Exception {
         final String expectedClasses = List.of(
             "AtomicInteger",
             "BigDecimal",
@@ -127,7 +127,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
             "32:1: " + getCheckMessage(MSG_KEY, 11, 7, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("ignore/deeper/Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/deeper/Example3.java"), expected);
     }
 
     @Test
@@ -135,9 +135,9 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
         final String expectedClasses = List.of(
             "AtomicInteger",
             "BigInteger",
+            "Example2",
             "Example3",
-            "Example5",
-            "Example7",
+            "Example4",
             "UseCase1",
             "UseCase2",
             "UseCase4"
@@ -151,7 +151,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testExample4() throws Exception {
         final String expectedClasses = List.of(
             "AtomicInteger",
             "BigDecimal",
@@ -167,7 +167,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
             "31:1: " + getCheckMessage(MSG_KEY, 8, 7, expectedClasses),
         };
 
-        verifyWithInlineConfigParser(getPath("ignore/Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/Example4.java"), expected);
     }
 
     @Test
@@ -191,10 +191,10 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testExample5() throws Exception {
         final String[] expected = {};
 
-        verifyWithInlineConfigParser(getPath("ignore/Example9.java"), expected);
+        verifyWithInlineConfigParser(getPath("ignore/Example5.java"), expected);
     }
 
     @Test
@@ -203,7 +203,7 @@ public class ClassDataAbstractionCouplingCheckExamplesTest
                 "AtomicInteger",
                 "BigDecimal",
                 "BigInteger",
-                "Example3",
+                "Example2",
                 "MathContext",
                 "UseCase1",
                 "UseCase2",

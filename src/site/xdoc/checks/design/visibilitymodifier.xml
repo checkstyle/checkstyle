@@ -609,7 +609,7 @@ class Example8 {
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example12-config">
+        <p id="Example7-config">
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -621,11 +621,11 @@ class Example8 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example12-code">
+        <p id="Example7-code">
           Code example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example12 {
+class Example7 {
   private int myPrivateField1;
 
   int field1; // violation 'must be private'
