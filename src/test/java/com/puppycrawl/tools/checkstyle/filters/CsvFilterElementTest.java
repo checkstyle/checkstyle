@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
@@ -137,6 +138,37 @@ public class CsvFilterElementTest {
         assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
+    }
+
+    @Test
+    public void testEmptyTokens() {
+        final IntFilterElement filter = new CsvFilterElement("0,,2");
+        assertWithMessage("less than")
+                .that(filter.accept(-1))
+                .isFalse();
+        assertWithMessage("equal 0")
+                .that(filter.accept(0))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(1))
+                .isFalse();
+        assertWithMessage("equal 2")
+                .that(filter.accept(2))
+                .isTrue();
+        assertWithMessage("greater than")
+                .that(filter.accept(3))
+                .isFalse();
+    }
+
+    @Test
+    public void testBlankToken() {
+        final NumberFormatException ex = getExpectedThrowable(
+                NumberFormatException.class,
+                () -> new CsvFilterElement("1, ,2"));
+
+        assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("For input string: \"\"");
     }
 
 }
