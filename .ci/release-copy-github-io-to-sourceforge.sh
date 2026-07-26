@@ -16,7 +16,7 @@ fi
 checkForVariable "SF_USER"
 
 SSH_KEY="~/.ssh/private_sourceforge_key"
-REMOTE_HOST="web.sourceforge.net"
+REMOTE_HOST="frs.sourceforge.net"
 REMOTE_PATH="/home/project-web/checkstyle"
 
 echo "Creating .ci-temp if it does not exist"
@@ -101,6 +101,8 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
 
 # Move the filtered structural archive components to our actual version structure
 mv htdocs-version/htdocs-$PREV_RELEASE htdocs/version/$PREV_RELEASE
+
+exit 0;
 
 echo "Step 3: Syncing changes back to SourceForge using rsync"
 # --delete ensures files removed locally (like /dtds) are also removed remotely
