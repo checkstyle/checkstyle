@@ -1,7 +1,7 @@
 /*
 UnusedPrivateField
 ignoreAnnotationCanonicalNames = InputUnusedPrivateFieldAnnotationCanonicalNameUsage.Inject
-ignoredFieldNames = (default)serialVersionUID
+ignoredFieldPattern = (default)serialVersionUID
 
 */
 

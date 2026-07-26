@@ -16,9 +16,9 @@
                <description>Specify annotations canonical names which ignore variables in consideration.</description>
             </property>
             <property default-value="serialVersionUID"
-                      name="ignoredFieldNames"
-                      type="java.lang.String[]">
-               <description>Specify field names to ignore, even if they otherwise satisfy this check's detection of an unused private field. Note this replaces the default value entirely — to keep &lt;code&gt;serialVersionUID&lt;/code&gt; ignored alongside your own names, include it explicitly.</description>
+                      name="ignoredFieldPattern"
+                      type="java.util.regex.Pattern">
+               <description>Specify a regular expression pattern for field names to ignore, even if they otherwise satisfy this check's detection of an unused private field. Note this replaces the default value entirely — to keep &lt;code&gt;serialVersionUID&lt;/code&gt; ignored alongside your own pattern, include it explicitly, e.g. &lt;code&gt;^(serialVersionUID|LOG|LOGGER)$&lt;/code&gt;.</description>
             </property>
          </properties>
          <message-keys>

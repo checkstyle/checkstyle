@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -95,12 +96,13 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     private Set<String> ignoreAnnotationCanonicalNames = new HashSet<>(Set.of("java.io.Serial"));
 
     /**
-     * Specify field names to ignore, even if they otherwise satisfy this check's
-     * detection of an unused private field. Useful for long-standing conventions
-     * the compiler or runtime relies on by name alone, such as
-     * {@code serialVersionUID}, without requiring an annotation.
+     * Specify a regular expression pattern for field names to ignore, even if they
+     * otherwise satisfy this check's detection of an unused private field. Useful for
+     * long-standing conventions the compiler or runtime relies on by name alone, such
+     * as {@code serialVersionUID}, without requiring an annotation. Matched against
+     * the full field name.
      */
-    private Set<String> ignoredFieldNames = new HashSet<>(Set.of("serialVersionUID"));
+    private Pattern ignoredFieldPattern = Pattern.compile("serialVersionUID");
 
     /**
      * Set of ignore annotations short names.
@@ -126,16 +128,17 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify field names to ignore, even if they otherwise satisfy this
-     * check's detection of an unused private field. Note this replaces the default
-     * value entirely — to keep {@code serialVersionUID} ignored alongside your own
-     * names, include it explicitly.
+     * Setter to specify a regular expression pattern for field names to ignore, even
+     * if they otherwise satisfy this check's detection of an unused private field.
+     * Note this replaces the default value entirely — to keep {@code serialVersionUID}
+     * ignored alongside your own pattern, include it explicitly, e.g.
+     * {@code ^(serialVersionUID|LOG|LOGGER)$}.
      *
-     * @param fieldNames array of field names to ignore.
+     * @param pattern regular expression pattern for field names to ignore.
      * @since 13.9.0
      */
-    public void setIgnoredFieldNames(String... fieldNames) {
-        ignoredFieldNames = Set.of(fieldNames);
+    public void setIgnoredFieldPattern(Pattern pattern) {
+        ignoredFieldPattern = pattern;
     }
 
     @Override
@@ -248,7 +251,8 @@ public class UnusedPrivateFieldCheck extends AbstractCheck {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             final boolean isPrivateField = isPrivate(modifiers);
             final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-            final boolean isIgnoredName = ignoredFieldNames.contains(ident.getText());
+            final boolean isIgnoredName =
+                    ignoredFieldPattern.matcher(ident.getText()).matches();
             final boolean isIgnored = isIgnoredName || hasIgnoredAnnotation(ast);
             if (isPrivateField && !isIgnored) {
                 privateFields.peek().put(ident.getText(), ident);

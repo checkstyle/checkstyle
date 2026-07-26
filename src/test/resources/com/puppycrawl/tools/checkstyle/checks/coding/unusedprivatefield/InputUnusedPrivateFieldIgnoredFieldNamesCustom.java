@@ -1,7 +1,7 @@
 /*
 UnusedPrivateField
 ignoreAnnotationCanonicalNames = (default)java.io.Serial
-ignoredFieldNames = serialVersionUID, LOG
+ignoredFieldPattern = serialVersionUID|LOG
 
 */
 

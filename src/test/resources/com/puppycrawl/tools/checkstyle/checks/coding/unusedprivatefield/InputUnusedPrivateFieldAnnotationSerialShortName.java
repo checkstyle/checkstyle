@@ -1,7 +1,7 @@
 /*
 UnusedPrivateField
 ignoreAnnotationCanonicalNames = Serial
-ignoredFieldNames = (default)serialVersionUID
+ignoredFieldPattern = (default)serialVersionUID
 
 */
 

@@ -1,7 +1,7 @@
 /*
 UnusedPrivateField
 ignoreAnnotationCanonicalNames = InputUnusedPrivateFieldAnnotationLombok.Getter
-ignoredFieldNames = (default)serialVersionUID
+ignoredFieldPattern = (default)serialVersionUID
 
 */
 

@@ -14,6 +14,9 @@ import java.io.Serial;
 
 public class Example1 {
 
+  @SuppressWarnings("unused")
+  private String _id; // violation 'Unused private field'
+
   @interface Getter {}
 
   private int unused; // violation 'Unused private field'

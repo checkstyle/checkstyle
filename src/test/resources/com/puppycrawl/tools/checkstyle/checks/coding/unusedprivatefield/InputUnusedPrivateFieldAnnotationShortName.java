@@ -1,7 +1,7 @@
 /*
 UnusedPrivateField
 ignoreAnnotationCanonicalNames=InputUnusedPrivateFieldAnnotationShortName.MockBean
-ignoredFieldNames = (default)serialVersionUID
+ignoredFieldPattern = (default)serialVersionUID
 
 */
 

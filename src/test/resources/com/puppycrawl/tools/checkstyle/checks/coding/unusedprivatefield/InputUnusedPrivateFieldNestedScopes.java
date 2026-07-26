@@ -1,7 +1,7 @@
 /*
 UnusedPrivateField
 ignoreAnnotationCanonicalNames = (default)java.io.Serial
-ignoredFieldNames = (default)serialVersionUID
+ignoredFieldPattern = (default)serialVersionUID
 
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedprivatefield;

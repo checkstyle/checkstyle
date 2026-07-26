@@ -34,9 +34,9 @@
               <td>13.9.0</td>
             </tr>
             <tr>
-              <td><a id="ignoredFieldNames"/><a href="#ignoredFieldNames">ignoredFieldNames</a></td>
-              <td>Specify field names to ignore, even if they otherwise satisfy this check's detection of an unused private field. Note this replaces the default value entirely — to keep <code>serialVersionUID</code> ignored alongside your own names, include it explicitly.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a id="ignoredFieldPattern"/><a href="#ignoredFieldPattern">ignoredFieldPattern</a></td>
+              <td>Specify a regular expression pattern for field names to ignore, even if they otherwise satisfy this check's detection of an unused private field. Note this replaces the default value entirely — to keep <code>serialVersionUID</code> ignored alongside your own pattern, include it explicitly, e.g. <code>^(serialVersionUID|LOG|LOGGER)$</code>.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>serialVersionUID</code></td>
               <td>13.9.0</td>
             </tr>
@@ -62,6 +62,9 @@
 import java.io.Serial;
 
 public class Example1 {
+
+  @SuppressWarnings("unused")
+  private String _id; // violation 'Unused private field'
 
   @interface Getter {}
 
@@ -93,7 +96,8 @@ public class Example1 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnusedPrivateField"&gt;
-    &lt;property name="ignoreAnnotationCanonicalNames" value="Getter,Serial"/&gt;
+      &lt;property name="ignoreAnnotationCanonicalNames"
+                value="Getter,Serial,SuppressWarnings"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -105,6 +109,9 @@ public class Example1 {
 import java.io.Serial;
 
 public class Example2 {
+
+  @SuppressWarnings("unused")
+  private String _id;
 
   @interface Getter {}
 
@@ -136,7 +143,7 @@ public class Example2 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="UnusedPrivateField"&gt;
-    &lt;property name="ignoredFieldNames" value="serialVersionUID,getter"/&gt;
+      &lt;property name="ignoredFieldPattern" value="serialVersionUID|getter|_id"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -148,6 +155,9 @@ public class Example2 {
 import java.io.Serial;
 
 public class Example3 {
+
+  @SuppressWarnings("unused")
+  private String _id;
 
   @interface Getter {}
 

@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="UnusedPrivateField">
-    <property name="ignoredFieldNames" value="serialVersionUID,getter"/>
+      <property name="ignoredFieldPattern" value="serialVersionUID|getter|_id"/>
     </module>
   </module>
 </module>
@@ -14,6 +14,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedprivatefield;
 import java.io.Serial;
 
 public class Example3 {
+
+  @SuppressWarnings("unused")
+  private String _id;
 
   @interface Getter {}
 

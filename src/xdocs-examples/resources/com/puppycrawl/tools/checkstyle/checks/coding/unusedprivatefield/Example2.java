@@ -2,7 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="UnusedPrivateField">
-    <property name="ignoreAnnotationCanonicalNames" value="Getter,Serial"/>
+      <property name="ignoreAnnotationCanonicalNames"
+                value="Getter,Serial,SuppressWarnings"/>
     </module>
   </module>
 </module>
@@ -14,6 +15,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedprivatefield;
 import java.io.Serial;
 
 public class Example2 {
+
+  @SuppressWarnings("unused")
+  private String _id;
 
   @interface Getter {}
 

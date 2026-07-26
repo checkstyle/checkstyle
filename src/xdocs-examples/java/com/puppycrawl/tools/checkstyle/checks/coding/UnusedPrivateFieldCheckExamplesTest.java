@@ -36,9 +36,10 @@ public class UnusedPrivateFieldCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
-            "27:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "getter"),
-            "33:28: " + getCheckMessage(MSG_PRIVATE_FIELD, "CONSTANT"),
+            "18:18: " + getCheckMessage(MSG_PRIVATE_FIELD, "_id"),
+            "22:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+            "30:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "getter"),
+            "36:28: " + getCheckMessage(MSG_PRIVATE_FIELD, "CONSTANT"),
 
         };
 
@@ -49,8 +50,8 @@ public class UnusedPrivateFieldCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
-            "34:28: " + getCheckMessage(MSG_PRIVATE_FIELD, "CONSTANT"),
+            "24:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+            "38:28: " + getCheckMessage(MSG_PRIVATE_FIELD, "CONSTANT"),
         };
 
         verifyWithInlineConfigParser(
@@ -60,8 +61,8 @@ public class UnusedPrivateFieldCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "20:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
-            "34:28: " + getCheckMessage(MSG_PRIVATE_FIELD, "CONSTANT"),
+            "23:15: " + getCheckMessage(MSG_PRIVATE_FIELD, "unused"),
+            "37:28: " + getCheckMessage(MSG_PRIVATE_FIELD, "CONSTANT"),
         };
 
         verifyWithInlineConfigParser(
