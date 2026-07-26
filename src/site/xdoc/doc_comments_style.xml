@@ -1160,7 +1160,17 @@
                     Naming of doc images in source tree
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Not implemented. Sequential numeric image names are not recommended
+                    because they create unnecessary renaming and reference updates
+                    when images are inserted before existing ones.
+                    If somebody needs this, please create a new issue to discuss reasons.
+                </td>
                 <td/>
               </tr>
 
