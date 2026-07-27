@@ -1,3 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>determineFlowScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (isIf &amp;&amp; inverted) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>determineFlowScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean isIf = stmt.getType() == TokenTypes.LITERAL_IF;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>determineFlowScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (elseBranch != null &amp;&amp; isDescendant(elseBranch, usage)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>determineFlowScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isIf) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>inFlowScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (conditionExpr.getType() == TokenTypes.LNOT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>insertVariable</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (previousDef.getType() == TokenTypes.PATTERN_VARIABLE_DEF</lineContent>
+  </mutation>
 </suppressedMutations>
