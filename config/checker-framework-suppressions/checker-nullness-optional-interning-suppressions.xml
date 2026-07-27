@@ -2179,6 +2179,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.MODIFIERS)</message>
+    <lineContent>&amp;&amp; ast.findFirstToken(TokenTypes.MODIFIERS)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference candidate</message>
     <lineContent>shouldRemove = candidate.alreadyAssigned;</lineContent>
   </checkerFrameworkError>
@@ -2216,6 +2223,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference scopeStack.peek()</message>
     <lineContent>containsBreak = scopeStack.peek().containsBreak;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference scopeStack.peek()</message>
+    <lineContent>final Map&lt;String, FinalVariableCandidate&gt; scope = scopeStack.peek().scope;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
