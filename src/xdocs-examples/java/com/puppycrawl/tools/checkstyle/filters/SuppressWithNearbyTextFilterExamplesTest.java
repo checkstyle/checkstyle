@@ -161,22 +161,19 @@ public class SuppressWithNearbyTextFilterExamplesTest extends AbstractExamplesMo
     public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilters = {
-            "2: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+            "10: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
                     "key.one", 2),
-            "4: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+            "12: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
                     "key.two", 2),
         };
 
         final String[] expectedWithFilters = {
-            "4: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+            "12: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
                     "key.two", 2),
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("UseCase2.java"),
-                getPath("UseCase2.properties"),
-                expectedWithoutFilters,
-                expectedWithFilters);
+        verifyFilterWithInlineConfigParser(getPath("UseCase2.properties"),
+                expectedWithoutFilters, expectedWithFilters);
     }
 
     @Test
