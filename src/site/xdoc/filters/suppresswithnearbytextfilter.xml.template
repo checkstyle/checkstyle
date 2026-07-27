@@ -157,16 +157,16 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase2.properties"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="UseCase2-raw">
+        <p id="UseCase2-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswithnearbytextfilter/UseCase2.properties"/>
-          <param name="type" value="raw"/>
+          <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="UseCase3-config">
           To configure the filter with a more compact <code>nearbyTextPattern</code>

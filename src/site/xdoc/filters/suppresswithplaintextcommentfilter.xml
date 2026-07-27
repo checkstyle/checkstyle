@@ -102,16 +102,15 @@
           <code>// CHECKSTYLE:ON</code> (the default comments).
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="properties"/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+&lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="UniqueProperties"/&gt;
   &lt;module name="SuppressWithPlainTextCommentFilter"/&gt;
 
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-raw">Example:</p>
+        <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # // CHECKSTYLE:OFF
 keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
@@ -127,9 +126,8 @@ keyC=value5
           containing <code>RESUME CHECK</code>.
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="properties"/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+&lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="UniqueProperties"/&gt;
 
@@ -140,7 +138,7 @@ keyC=value5
 
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-raw">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # STOP CHECK
 keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
@@ -157,9 +155,8 @@ keyC=value5
           Checker is configured to check only properties files using both UniqueProperties check
           and OrderedProperties check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="properties"/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+&lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;
@@ -172,7 +169,7 @@ keyC=value5
 
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-raw">Example:</p>
+        <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 # STOP UNIQUE CHECK
 # (OrderedProperties check is still enabled)
@@ -210,7 +207,7 @@ keyC=value5
 
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-raw">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
@@ -257,7 +254,7 @@ keyC=value5
 
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-raw">Example:</p>
+        <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
@@ -312,7 +309,7 @@ keyC=value5
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-raw">Example:</p>
+        <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
@@ -375,7 +372,7 @@ keyC=value5
 
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-raw">Example:</p>
+        <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;project&gt;
   &lt;p&gt;Examples:&lt;/p&gt;
@@ -404,25 +401,25 @@ keyC=value5
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="sql"/&gt;
-
   &lt;module name="RegexpSingleline"&gt;
-    &lt;property name="format" value="^.*JOIN\s.+\s(ON|USING)$"/&gt;
-    &lt;property name="message" value="Don't use JOIN, use sub-select instead."/&gt;
+    &lt;property name="format"
+     value="^.*JOIN\s.+\s(ON|USING)$"/&gt;
+    &lt;property name="message"
+     value="Don't use JOIN, use sub-select instead."/&gt;
   &lt;/module&gt;
-
   &lt;module name="LineLength"&gt;
     &lt;property name="max" value="60"/&gt;
   &lt;/module&gt;
-
   &lt;module name="SuppressWithPlainTextCommentFilter"&gt;
-    &lt;property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/&gt;
-    &lt;property name="onCommentFormat" value="CSON\: ([\w\|]+)"/&gt;
+    &lt;property name="offCommentFormat"
+     value="CSOFF\: ([\w\|]+)"/&gt;
+    &lt;property name="onCommentFormat"
+     value="CSON\: ([\w\|]+)"/&gt;
     &lt;property name="checkFormat" value="$1"/&gt;
   &lt;/module&gt;
-
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example8-raw">Example:</p>
+        <p id="Example8-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 -- CSOFF: RegexpSinglelineCheck
 -- CSOFF: LineLengthCheck
