@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
@@ -56,7 +58,6 @@ public class ArchUnitSuperClassTest {
         "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
-        "com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.ClassTypeParameterNameCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
@@ -107,8 +108,8 @@ public class ArchUnitSuperClassTest {
                 }
             });
 
-        final ArchCondition<JavaClass> beSuppressedClass = new SuppressionArchCondition<>(
-            SUPPRESSED_CLASSES, "be suppressed");
+        final SuppressionArchCondition<JavaClass> beSuppressedClass =
+                new SuppressionArchCondition<>(SUPPRESSED_CLASSES, "be suppressed");
 
         final ArchRule checksShouldHaveAllowedAbstractClassAsSuper = classes()
             .should(beDirectSubclassOf(AbstractCheck.class)
@@ -117,6 +118,10 @@ public class ArchUnitSuperClassTest {
             .orShould(beSuppressedClass);
 
         checksShouldHaveAllowedAbstractClassAsSuper.check(checksPackage);
+
+        assertWithMessage("Outdated suppressions (can be removed)")
+                .that(beSuppressedClass.suppressions)
+                .containsExactlyElementsIn(beSuppressedClass.usedSuppressions);
     }
 
     /**
@@ -155,15 +160,21 @@ public class ArchUnitSuperClassTest {
         extends ArchCondition<T> {
 
         private final Set<String> suppressions;
+        private final Set<String> usedSuppressions;
 
         private SuppressionArchCondition(Set<String> suppressions, String description) {
             super(description);
             this.suppressions = suppressions;
+            usedSuppressions = new HashSet<>();
         }
 
         @Override
         public void check(HasName.AndFullName item, ConditionEvents events) {
-            if (!suppressions.contains(item.getFullName())) {
+            final String fullName = item.getFullName();
+            if (suppressions.contains(fullName)) {
+                usedSuppressions.add(fullName);
+            }
+            else {
                 final String message = String.format(
                     Locale.ROOT, "should %s or resolved.", getDescription());
                 events.add(SimpleConditionEvent.violated(item, message));
