@@ -354,7 +354,7 @@ public class UseCase1 {
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="UseCase2-raw">
+        <p id="UseCase2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
