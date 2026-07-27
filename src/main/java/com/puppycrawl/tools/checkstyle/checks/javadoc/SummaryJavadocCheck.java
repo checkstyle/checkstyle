@@ -310,8 +310,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String returnVisible = getVisibleContent(inlineReturn);
         if (returnVisible.isEmpty()) {
             log(inlineReturnTag, MSG_SUMMARY_JAVADOC_MISSING);
-        }
-        else if (containsForbiddenFragment(inlineReturn)) {
+        } // Javadoc renders {@return ...} content as "Returns ... in  the summary"
+        else if (containsForbiddenFragment("Returns " + inlineReturn)) {
             log(inlineReturnTag, MSG_SUMMARY_JAVADOC);
         }
     }
