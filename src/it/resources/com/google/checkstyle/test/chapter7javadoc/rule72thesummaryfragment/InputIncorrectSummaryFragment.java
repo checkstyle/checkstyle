@@ -69,6 +69,11 @@ class InputIncorrectSummaryFragment {
     // violation below 'Forbidden summary fragment.'
     /** adds an element to the list. */
     void add(String element) {}
+
+    /** {@return the customer ID} */
+    int customerId() {
+      return 0;
+    }
   }
 
   // violation below 'Forbidden summary fragment.'
