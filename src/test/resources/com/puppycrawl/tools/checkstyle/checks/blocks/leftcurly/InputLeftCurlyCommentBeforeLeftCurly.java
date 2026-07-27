@@ -21,10 +21,12 @@ import java.util.regex.Pattern;
 public class InputLeftCurlyCommentBeforeLeftCurly {
 
     void method1 ()
-    /* violation not reported */ { } // ok until #11410
+    /* violation reported */ { }
+    // violation above ''{' at column 30 should be on the previous line'
 
+    // violation 2 lines below ''{' at column 24 should be on the previous line'
     InputLeftCurlyCommentBeforeLeftCurly()
-    /* I am comment */ { // ok until #11410
+    /* I am comment */ {
         System.out.println("Hello CheckStyle");
     }
 
@@ -37,14 +39,14 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
         try {
             throw new IOException();
         } catch (IOException | NullPointerException | ArithmeticException ex)
-         /* warn */ { // ok until #11410
-        }
+         /* warn */ {
+        } // violation above ''{' at column 21 should be on the previous line'
     }
 
+    // violation 2 lines below ''{' at column 36 should be on the previous line'
     public void multipleBlock()
-    /*CheckStyle*/ /* Checkstyle*/ { // ok until #11410
+    /*CheckStyle*/ /* Checkstyle*/ {
     }
-
     private class Node {
         int value;
         Node next;
@@ -53,9 +55,9 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
             /**** comment **********/ Node(int value) /*comment*/ {
             this.value=value;
         }
-
+        // violation 2 lines below ''{' at column 36 should be on the previous line'
         public Node(int value, Node next)
-        /*********** comment ****/ { // ok until #11410
+        /*********** comment ****/ {
             this.value = value;
             this.next = next;
         }
@@ -70,8 +72,8 @@ public class InputLeftCurlyCommentBeforeLeftCurly {
 }
 
 class checks implements check
-        /* CheckStyle */ { // ok until #11410
-
+        /* CheckStyle */ {
+   // violation above ''{' at column 26 should be on the previous line'
     public static Set<String> processJavadocTag() {
         final Set<String> references = new HashSet<>();
         final String identifier = references.toString();
@@ -84,12 +86,13 @@ class checks implements check
 
     class C {
         void method1 ()
-            /* 😂🥳 */ { } // ok until #11410
+            /* 😂🥳 */ { }
+        // violation above ''{' at column 22 should be on the previous line'
 
         void method2 ()
-        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { } // ok until #11410
+        /* 🥳🥳🥳🥳 */ /* 🥳🥳🥳🥳🥳 */ { }
         }
-
+    // violation 2 lines above ''{' at column 32 should be on the previous line'
     private void method() {
         String b = "🧐🧐🧐ccvb";
         if (b.equals("🧐🧐")) {
@@ -97,7 +100,6 @@ class checks implements check
         }
         if (b.equals("s🧐d🧐a")) {
         }
-
         while (b == "😂🥳") { /* ok */ }
     }
 }

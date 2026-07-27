@@ -296,7 +296,7 @@ public class LeftCurlyCheck
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(brace, braceLine);
+                validateEol(brace);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
@@ -308,10 +308,9 @@ public class LeftCurlyCheck
      * Validate EOL case.
      *
      * @param brace brace AST
-     * @param braceLine line content
      */
-    private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+    private void validateEol(DetailAST brace) {
+        if (!isOnLineWithBlockPreviousToken(brace)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(brace)) {
@@ -363,6 +362,41 @@ public class LeftCurlyCheck
         return nextToken == null
                 || nextToken.getType() == TokenTypes.RCURLY
                 || !TokenUtil.areOnSameLine(leftCurly, nextToken);
+    }
+
+    /**
+     * Checks if the given brace is with a token of a block.
+     *
+     * @param brace the brace token to check
+     * @return true if the brace is on the same line as its previous token
+     */
+    private static boolean isOnLineWithBlockPreviousToken(DetailAST brace) {
+        DetailAST parent = brace;
+        while (parent.getLineNo() == brace.getLineNo()
+                && parent.getColumnNo() == brace.getColumnNo()) {
+            parent = parent.getParent();
+        }
+
+        boolean onSameLine = TokenUtil.areOnSameLine(parent, brace);
+        boolean isOpeningBrace = false;
+
+        for (DetailAST child = parent.getFirstChild();
+                 child != null; child = child.getNextSibling()) {
+            if (!isOpeningBrace) {
+                isOpeningBrace = child.getType() == TokenTypes.LCURLY
+                        || child.getType() == TokenTypes.SLIST
+                        || child.getType() == TokenTypes.OBJBLOCK;
+            }
+            DetailAST nestedChild = child;
+            while (nestedChild.hasChildren()) {
+                nestedChild = nestedChild.getLastChild();
+            }
+            if (!onSameLine && !isOpeningBrace) {
+                onSameLine = TokenUtil.areOnSameLine(nestedChild, brace);
+            }
+        }
+
+        return onSameLine;
     }
 
 }
