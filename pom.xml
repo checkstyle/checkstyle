@@ -3379,6 +3379,7 @@
       <id>pitest-misc</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -3499,6 +3500,7 @@
       <id>pitest-annotation</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -3563,6 +3565,7 @@
       <id>pitest-blocks</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -3627,6 +3630,7 @@
       <id>pitest-coding-1</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -3756,6 +3760,7 @@
       <id>pitest-coding-2</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -3889,6 +3894,7 @@
       <id>pitest-coding-require-this-check</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -3950,6 +3956,7 @@
       <id>pitest-design</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4011,6 +4018,7 @@
       <id>pitest-header</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4072,6 +4080,7 @@
       <id>pitest-imports</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4134,6 +4143,7 @@
       <id>pitest-indentation</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4183,6 +4193,7 @@
       <id>pitest-javadoc</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4257,6 +4268,7 @@
       <id>pitest-metrics</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4318,6 +4330,7 @@
       <id>pitest-modifier</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4382,6 +4395,7 @@
       <id>pitest-naming</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4446,6 +4460,7 @@
       <id>pitest-regexp</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4507,6 +4522,7 @@
       <id>pitest-sizes</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4568,6 +4584,7 @@
       <id>pitest-whitespace</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4633,6 +4650,7 @@
       <id>pitest-ant</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4698,6 +4716,7 @@
       <id>pitest-packagenamesloader</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4756,6 +4775,7 @@
       <id>pitest-common</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4903,6 +4923,7 @@
       <id>pitest-common-2</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -4991,6 +5012,7 @@
       <id>pitest-main</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5054,6 +5076,7 @@
       <id>pitest-tree-walker</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5172,6 +5195,7 @@
       <id>pitest-api</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5260,6 +5284,7 @@
       <id>pitest-filters</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5330,6 +5355,7 @@
       <id>pitest-utils</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5510,6 +5536,7 @@
       <id>pitest-gui</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5580,6 +5607,7 @@
       <id>pitest-xpath</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
@@ -5652,6 +5680,7 @@
       <id>pitest-java-ast-visitor</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
+        <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
       </properties>
       <build>
         <plugins>
