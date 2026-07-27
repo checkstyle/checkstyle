@@ -42,7 +42,9 @@ cd sf_workspace
 
 echo "Step 1: Downloading current production assets and index.html using rsync"
 # We use rsync to pull down the existing site structure from the server
-rsync -e "ssh -i $SSH_KEY" -az "$SF_USER"@$REMOTE_HOST:$REMOTE_PATH/htdocs ./htdocs_old
+rsync -e "ssh -i $SSH_KEY" -az "$SF_USER"@$REMOTE_HOST:$REMOTE_PATH/htdocs .
+
+mv htdocs htdocs_old
 
 echo "Extracting previous release version locally"
 PREVIOUS_RELEASE_VERSION_SPAN=$(grep "projectVersion" htdocs_old/index.html || true)
@@ -101,8 +103,6 @@ tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
 
 # Move the filtered structural archive components to our actual version structure
 mv htdocs-version/htdocs-$PREV_RELEASE htdocs/version/$PREV_RELEASE
-
-exit 0;
 
 echo "Step 3: Syncing changes back to SourceForge using rsync"
 # --delete ensures files removed locally (like /dtds) are also removed remotely
