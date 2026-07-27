@@ -483,7 +483,14 @@
                     Omit parentheses for the general form of methods and constructors
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it is not type-aware
+                    and cannot know whether a referenced method or constructor belongs to another
+                    class.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -495,7 +502,7 @@
                     OK to use phrases instead of complete sentences
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
               <tr>
@@ -507,7 +514,13 @@
                     Use 3rd person descriptive
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis to determine whether wording is in third person.
+                </td>
                 <td/>
               </tr>
               <tr>
