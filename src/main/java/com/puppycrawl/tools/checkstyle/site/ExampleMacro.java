@@ -36,23 +36,19 @@ import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.sink.Sink;
 import org.codehaus.plexus.component.annotations.Component;
 
+import com.puppycrawl.tools.checkstyle.utils.InlineConfigUtils;
+
 /**
  * A macro that inserts a snippet of code or configuration from a file.
  */
 @Component(role = Macro.class, hint = "example")
 public class ExampleMacro extends AbstractMacro {
 
-    /** Starting delimiter for config snippets. */
-    private static final String XML_CONFIG_START = "/*xml";
-
-    /** Ending delimiter for config snippets. */
-    private static final String XML_CONFIG_END = "*/";
-
     /** Starting delimiter for code snippets. */
-    private static final String CODE_SNIPPET_START = "// xdoc section -- start";
+    private static final String CODE_SNIPPET_START = "xdoc section -- start";
 
     /** Ending delimiter for code snippets. */
-    private static final String CODE_SNIPPET_END = "// xdoc section -- end";
+    private static final String CODE_SNIPPET_END = "xdoc section -- end";
 
     /** The pattern of xml code blocks. */
     private static final Pattern XML_PATTERN = Pattern.compile(
@@ -66,11 +62,9 @@ public class ExampleMacro extends AbstractMacro {
     /** The line contents of the last file. */
     private List<String> lastLines = new ArrayList<>();
 
-    /**
-     * Creates a new {@code ExampleMacro} instance.
-     */
+    /** Default constructor. */
     public ExampleMacro() {
-        // no code by default
+        // Default constructor
     }
 
     @Override
@@ -86,7 +80,7 @@ public class ExampleMacro extends AbstractMacro {
         }
 
         if ("config".equals(type)) {
-            final String config = getConfigSnippet(lines);
+            final String config = getConfigSnippet(lines, path);
 
             if (config.isBlank()) {
                 final String message = String.format(Locale.ROOT,
@@ -144,30 +138,65 @@ public class ExampleMacro extends AbstractMacro {
     }
 
     /**
-     * Extract a configuration snippet from the given lines. Config delimiters use the whole
-     * line for themselves and have no indentation. We use equals() instead of contains()
-     * to be more strict because some examples contain those delimiters. If the delimiters
-     * are not found, returns the entire file content.
+     * Extracts the configuration snippet from the given lines.
      *
-     * @param lines the lines to extract the snippet from.
+     * @param lines the lines to extract the config from.
+     * @param path the file path, used for error messages.
      * @return the configuration snippet.
+     * @throws MacroExecutionException if the config block is invalid.
      */
-    private static String getConfigSnippet(Collection<String> lines) {
-        final String snippet = lines.stream()
-                .dropWhile(line -> !XML_CONFIG_START.equals(line))
-                .skip(1)
-                .takeWhile(line -> !XML_CONFIG_END.equals(line))
-                .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
+    private static String getConfigSnippet(Collection<String> lines, String path)
+            throws MacroExecutionException {
+        final List<String> linesList = new ArrayList<>(lines);
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(linesList, path);
 
-        // If no snippet was found (markers not present), return the entire file content
+        if (matched == null) {
+            final String message = String.format(Locale.ROOT,
+                    "No valid config block found in %s. Expected the first line to be %s.",
+                    path, InlineConfigUtils.describeExpectedDelimiters(path)
+            );
+            throw new MacroExecutionException(message);
+        }
+
+        final String endDelimiter = matched.end();
+        final int endIndex = indexOfStartingWith(linesList, endDelimiter);
+        if (endIndex <= 0) {
+            final String message = String.format(Locale.ROOT,
+                    "Config start delimiter found in %s but no matching end delimiter \"%s\".",
+                    path, endDelimiter
+            );
+            throw new MacroExecutionException(message);
+        }
+
+        final List<String> configLines = linesList.subList(1, endIndex);
         final String result;
-        if (snippet.isBlank()) {
-            result = String.join(ModuleJavadocParsingUtil.NEWLINE, lines);
+        if (InlineConfigUtils.PROPERTIES_CONFIG_END.equals(matched.end())) {
+            result = String.join(ModuleJavadocParsingUtil.NEWLINE,
+                    InlineConfigUtils.stripPropertiesCommentPrefix(configLines));
         }
         else {
-            result = snippet;
+            result = String.join(ModuleJavadocParsingUtil.NEWLINE, configLines);
         }
 
+        return result;
+    }
+
+    /**
+     * Finds the index of the first line that starts with the given prefix.
+     *
+     * @param lines the lines to search.
+     * @param prefix the prefix to search for.
+     * @return the index of the first matching line, or -1 if not found.
+     */
+    private static int indexOfStartingWith(List<String> lines, String prefix) {
+        int result = -1;
+        for (int index = 0; index < lines.size(); index++) {
+            if (lines.get(index).startsWith(prefix)) {
+                result = index;
+                break;
+            }
+        }
         return result;
     }
 
@@ -181,9 +210,9 @@ public class ExampleMacro extends AbstractMacro {
      */
     private static String getCodeSnippet(Collection<String> lines) {
         final String snippet = lines.stream()
-                .dropWhile(line -> !line.contains(CODE_SNIPPET_START))
+                .dropWhile(line -> !hasCodeSnippetStart(line))
                 .skip(1)
-                .takeWhile(line -> !line.contains(CODE_SNIPPET_END))
+                .takeWhile(line -> !hasCodeSnippetEnd(line))
                 .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
 
         // If no snippet was found (markers not present), return the file content
@@ -191,7 +220,7 @@ public class ExampleMacro extends AbstractMacro {
         final String result;
         if (snippet.isBlank()) {
             final List<String> linesList = new ArrayList<>(lines);
-            final int configEndIndex = linesList.indexOf(XML_CONFIG_END);
+            final int configEndIndex = linesList.indexOf(InlineConfigUtils.JAVA_CONFIG_END);
             if (configEndIndex >= 0) {
                 // XML config block is present, return content after it
                 result = String.join(ModuleJavadocParsingUtil.NEWLINE,
@@ -209,6 +238,30 @@ public class ExampleMacro extends AbstractMacro {
         }
 
         return result;
+    }
+
+    /**
+     * Checks if the line contains a code snippet start delimiter.
+     * Handles different comment formats for different file types.
+     *
+     * @param line the line to check.
+     * @return true if the line contains a start delimiter.
+     */
+    private static boolean hasCodeSnippetStart(String line) {
+        return line.contains(CODE_SNIPPET_START)
+                || line.contains("<!--xdoc section &#45;&#45; start-->");
+    }
+
+    /**
+     * Checks if the line contains a code snippet end delimiter.
+     * Handles different comment formats for different file types.
+     *
+     * @param line the line to check.
+     * @return true if the line contains an end delimiter.
+     */
+    private static boolean hasCodeSnippetEnd(String line) {
+        return line.contains(CODE_SNIPPET_END)
+                || line.contains("<!--xdoc section &#45;&#45; end-->");
     }
 
     /**
