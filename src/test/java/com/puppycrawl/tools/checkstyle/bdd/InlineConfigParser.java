@@ -379,7 +379,6 @@ public final class InlineConfigParser {
             "checks/coding/noclone/Example1.java",
             "checks/coding/simplifybooleanreturn/Example1.java",
             "checks/coding/superfinalize/InputSuperFinalizeVariations.java",
-            "checks/coding/unusedlocalvariable/Example1.java",
             "checks/coding/unusedlocalvariable/Example2.java",
             "checks/coding/unusedlocalvariable/Example4.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariable3.java",
