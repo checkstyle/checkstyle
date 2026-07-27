@@ -113,7 +113,7 @@
                     Writing API Specifications
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
 
@@ -127,7 +127,7 @@
                       by the documentation comments in the source code
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
 
@@ -141,7 +141,7 @@
                       between callers and implementations
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
 
@@ -154,7 +154,7 @@
                     Java API Specification assertions need to be implementation-independent
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
 
@@ -168,7 +168,7 @@
                       sufficient to enable Software Quality Assurance
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
 
