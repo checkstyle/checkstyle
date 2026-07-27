@@ -537,26 +537,19 @@ public class FinalLocalVariableCheckTest
             "181:17: " + getCheckMessage(MSG_KEY, "b"),
             "182:25: " + getCheckMessage(MSG_KEY, "s5"),
             "185:16: " + getCheckMessage(MSG_KEY, "s5"),
+            "257:37: " + getCheckMessage(MSG_KEY, "s9"),
+            "266:44: " + getCheckMessage(MSG_KEY, "s10"),
+            "268:16: " + getCheckMessage(MSG_KEY, "s10"),
+            "272:35: " + getCheckMessage(MSG_KEY, "s18"),
+            "282:24: " + getCheckMessage(MSG_KEY, "s14"),
+            "290:38: " + getCheckMessage(MSG_KEY, "s21"),
+            "297:37: " + getCheckMessage(MSG_KEY, "s22"),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariablePatternVariablesScope.java"), expected);
     }
 
-    @Test
-    public void testPatternVariablesScopeNonCompilable() throws Exception {
-        final String[] expected = {
-            "23:37: " + getCheckMessage(MSG_KEY, "s9"),
-            "32:44: " + getCheckMessage(MSG_KEY, "s10"),
-            "37:35: " + getCheckMessage(MSG_KEY, "s18"),
-            "53:38: " + getCheckMessage(MSG_KEY, "s21"),
-            "59:37: " + getCheckMessage(MSG_KEY, "s22"),
-        };
 
-        verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                        "InputFinalLocalVariablePatternVariablesScopeNonCompilable.java"),
-                expected);
-    }
 
 }

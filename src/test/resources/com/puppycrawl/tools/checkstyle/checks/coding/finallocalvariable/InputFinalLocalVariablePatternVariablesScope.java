@@ -244,4 +244,60 @@ public class InputFinalLocalVariablePatternVariablesScope {
             s19 = "1";
         }
     }
+
+    public void test9(Object obj) {
+        if (obj instanceof String s6) {
+            s6 = "3";
+        }
+        String s6 = "1";
+        s6 = "2";
+    }
+
+    public void test11(Object obj) {
+        if (!(obj instanceof String s9)) { // violation
+            String s9 = "1";
+            s9 = "2";
+        } else {
+            System.out.println(s9);
+        }
+    }
+
+    public void test12() {
+        if (new Object() instanceof String s10) { // violation
+        }
+        String s10 = "1"; // violation
+    }
+
+    public void test16_2(Object obj) {
+        if (obj instanceof String s18) { // violation
+            return;
+        }
+        String s18 = "1";
+        s18 = "2";
+    }
+
+    public void test14(Object obj) {
+        switch (obj instanceof String s14 ? 1 : 2) {
+            case 1 -> {
+                String s14 = "1"; // violation
+                s14 = "2";
+            }
+            default -> {}
+        }
+    }
+
+    public void test18(Object obj) {
+        while (obj instanceof String s21) { // violation
+        }
+        String s21 = "1";
+        s21 = "2";
+    }
+
+    public void test19(Object obj) {
+        if (!(obj instanceof String s22)) { // violation
+            System.out.println("not string");
+        }
+        String s22 = "1";
+        s22 = "2";
+    }
 }
