@@ -706,7 +706,16 @@
                     @version
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Not implemented. The @version SCCS convention is outdated because it was
+                    designed for SCCS, before modern version control systems such as Git and SVN
+                    became common.
+                </td>
                 <td/>
               </tr>
 
