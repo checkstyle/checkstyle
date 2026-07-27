@@ -68,21 +68,6 @@ public class ArchUnitTest {
             + "com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools"
             + ".checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang"
             + ".String;)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions"
-            + "([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.startsWithChar(java.lang.String, char)>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$PatternConverter"
-            + ".convert(java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools"
-            + ".checkstyle.utils.CommonUtil.createPattern(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$RelaxedStringArray"
-            + "Converter.convert(java.lang.Class, java.lang.Object)> gets field <com.puppycrawl"
-            + ".tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$UriConverter.convert("
-            + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
-            + ".utils.CommonUtil.getUriByFilename(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$UriConverter.convert("
-            + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
-            + ".utils.CommonUtil.isBlank(java.lang.String)>",
         "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
             + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
     );
@@ -142,6 +127,19 @@ public class ArchUnitTest {
             .resideInAnyPackage(utilPackages);
 
         final EvaluationResult result = classShouldNotDependOnUtilPackages.evaluate(apiPackage);
+
+        final List<String> allDescriptions = result.getFailureReport().getDetails();
+        final List<String> outdatedSuppressions = API_PACKAGE_SUPPRESSION_DETAILS.stream()
+                .filter(suppression -> {
+                    return allDescriptions.stream()
+                            .noneMatch(description -> description.startsWith(suppression));
+                })
+                .toList();
+
+        assertWithMessage("Outdated suppressions (can be removed)")
+                .that(outdatedSuppressions)
+                .isEmpty();
+
         final EvaluationResult filtered = result.filterDescriptionsMatching(description -> {
             return API_PACKAGE_SUPPRESSION_DETAILS.stream()
                 .noneMatch(description::startsWith);
