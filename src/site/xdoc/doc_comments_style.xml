@@ -451,7 +451,14 @@
                     Use &lt;code&gt; style for keywords and names
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it does not have an
+                    English language model to distinguish Java keywords and names used as code
+                    references from regular prose.
+                </td>
                 <td/>
               </tr>
 
