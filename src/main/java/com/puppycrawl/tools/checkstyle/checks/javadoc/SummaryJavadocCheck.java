@@ -311,7 +311,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         if (returnVisible.isEmpty()) {
             log(inlineReturnTag, MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (containsForbiddenFragment(inlineReturn)) {
+        else if (containsForbiddenFragment(prependJavadocToolWord(inlineReturn))) {
             log(inlineReturnTag, MSG_SUMMARY_JAVADOC);
         }
     }
@@ -374,6 +374,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
                 .matcher(firstSentence).replaceAll(" ");
         return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Prepends the word "Returns" to the given inline {@code {@return}} tag content,
+     * since Javadoc renders {@code {@return ...}} as "Returns ..." in the method summary.
+     *
+     * @param inlineReturn String consisting of the content of inline {@code {@return}} tag
+     * @return the inline return content prefixed with "Returns "
+     */
+    private static String prependJavadocToolWord(String inlineReturn) {
+        return "Returns " + inlineReturn;
     }
 
     /**
