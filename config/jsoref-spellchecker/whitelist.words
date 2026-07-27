@@ -1094,7 +1094,6 @@ POJO
 Popup
 Postgresql
 prebuilts
-prefs
 PRESIZE
 prettyprint
 printf
@@ -1163,7 +1162,6 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
-Rethrows
 returncount
 returnsreceiver
 returntag
