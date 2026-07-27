@@ -545,7 +545,7 @@
                       object created from the current class
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
               <tr>
@@ -557,7 +557,7 @@
                     Add description beyond the API name
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
               <tr>
@@ -569,7 +569,7 @@
                     Be clear when using the term "field"
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
               <tr>
