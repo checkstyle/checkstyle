@@ -111,6 +111,13 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private boolean validateUnnamedVariables;
 
     /**
+     * Control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-14.html#jls-14.30.1">
+     * pattern variables</a>.
+     */
+    private boolean validatePatternVariables;
+
+    /**
      * Creates a new {@code FinalLocalVariableCheck} instance.
      */
     public FinalLocalVariableCheck() {
@@ -141,6 +148,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         this.validateUnnamedVariables = validateUnnamedVariables;
     }
 
+    /**
+     * Setter to control whether to check
+     * <a href="https://docs.oracle.com/javase/specs/jls/se16/html/jls-14.html#jls-14.30.1">
+     * pattern variables</a>.
+     *
+     * @param validatePatternVariables whether to check pattern variables
+     * @since 13.9.0
+     */
+    public final void setValidatePatternVariables(boolean validatePatternVariables) {
+        this.validatePatternVariables = validatePatternVariables;
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
@@ -152,6 +171,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.COMPACT_COMPILATION_UNIT,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.EXPR,
         };
     }
@@ -168,6 +188,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.EXPR,
         };
     }
@@ -185,6 +206,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.EXPR,
         };
     }
@@ -209,10 +231,11 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
 
             case TokenTypes.PARAMETER_DEF -> {
-                if (!isInLambda(ast)
+                final DetailAST grandParent = ast.getParent().getParent();
+                if (grandParent.getType() != TokenTypes.LAMBDA
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
-                        && !isInMethodWithoutBody(ast)
+                        && grandParent.findFirstToken(TokenTypes.SLIST) != null
                         && !isMultipleTypeCatch(ast)
                         && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);
@@ -223,8 +246,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
-                        && !isVariableInForInit(ast)
+                        && ast.getParent().getType() != TokenTypes.FOR_INIT
                         && shouldCheckEnhancedForLoopVariable(ast)
+                        && shouldCheckUnnamedVariable(ast)) {
+                    insertVariable(ast);
+                }
+            }
+
+            case TokenTypes.PATTERN_VARIABLE_DEF -> {
+                if (validatePatternVariables
+                        && ast.findFirstToken(TokenTypes.MODIFIERS)
+                            .findFirstToken(TokenTypes.FINAL) == null
                         && shouldCheckUnnamedVariable(ast)) {
                     insertVariable(ast);
                 }
@@ -232,7 +264,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
             case TokenTypes.IDENT -> {
                 final int parentType = ast.getParent().getType();
-                if (isAssignOperator(parentType) && isFirstChild(ast)) {
+                if (ASSIGN_OPERATOR_TYPES.get(parentType) && ast.getPreviousSibling() == null) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
                         determineAssignmentConditions(ast, candidate.orElseThrow());
@@ -410,11 +442,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 for (ScopeData scopeData : scopeStack) {
                     final FinalVariableCandidate candidate =
                         scopeData.scope.get(variable.getText());
-                    DetailAST storedVariable = null;
-                    if (candidate != null) {
-                        storedVariable = candidate.variableIdent;
-                    }
-                    if (storedVariable != null
+                    if (candidate != null
                             && isSameVariables(assignedVariable, variable)) {
                         scopeData.uninitializedVariables.push(variable);
                         shouldRemove = true;
@@ -499,17 +527,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Insert a parameter at the topmost scope stack.
-     *
-     * @param ast parameter definition AST, but not receiver parameter.
-     */
-    private void insertParameter(DetailAST ast) {
-        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
-        final DetailAST astNode = TokenUtil.getIdent(ast);
-        scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
-    }
-
-    /**
      * Insert a variable at the topmost scope stack.
      *
      * @param variableAst the variable to insert.
@@ -518,12 +535,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
         final DetailAST astNode = TokenUtil.getIdent(variableAst);
         final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);
-        // for-each variables are implicitly assigned
-        candidate.assigned = variableAst.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
-        scope.put(astNode.getText(), candidate);
-        if (!isInitialized(variableAst)) {
-            scopeStack.peek().uninitializedVariables.add(astNode);
+
+        final FinalVariableCandidate previousCandidate = scope.get(astNode.getText());
+        if (previousCandidate != null) {
+            final DetailAST previousDef = previousCandidate.variableIdent.getParent();
+            if (previousDef.getType() == TokenTypes.PATTERN_VARIABLE_DEF
+                    && !inFlowScope(previousDef, variableAst)) {
+                log(previousCandidate.variableIdent, MSG_KEY,
+                        previousCandidate.variableIdent.getText());
+            }
         }
+
+        if (variableAst.getType() != TokenTypes.PATTERN_VARIABLE_DEF) {
+            candidate.assigned = variableAst.getParent().getType() == TokenTypes.FOR_EACH_CLAUSE;
+            if (!isInitialized(variableAst)) {
+                scopeStack.peek().uninitializedVariables.add(astNode);
+            }
+        }
+        scope.put(astNode.getText(), candidate);
     }
 
     /**
@@ -537,13 +566,14 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Whether the ast is the first child of its parent.
+     * Insert a parameter at the topmost scope stack.
      *
-     * @param ast the ast to check.
-     * @return true if the ast is the first child of its parent.
+     * @param parameterAst parameter definition node.
      */
-    private static boolean isFirstChild(DetailAST ast) {
-        return ast.getPreviousSibling() == null;
+    private void insertParameter(DetailAST parameterAst) {
+        final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
+        final DetailAST astNode = TokenUtil.getIdent(parameterAst);
+        scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
     }
 
     /**
@@ -620,59 +650,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static DetailAST getParentLoop(DetailAST ast) {
         DetailAST parentLoop = ast;
         while (parentLoop != null
-            && !isLoopAst(parentLoop.getType())) {
+            && !LOOP_TYPES.get(parentLoop.getType())) {
             parentLoop = parentLoop.getParent();
         }
         return parentLoop;
-    }
-
-    /**
-     * Is Arithmetic operator.
-     *
-     * @param parentType token AST
-     * @return true is token type is in arithmetic operator
-     */
-    private static boolean isAssignOperator(int parentType) {
-        return ASSIGN_OPERATOR_TYPES.get(parentType);
-    }
-
-    /**
-     * Checks if current variable is defined in
-     *  {@link TokenTypes#FOR_INIT for-loop init}, e.g.:
-     *
-     * <p>
-     * {@code
-     * for (int i = 0, j = 0; i < j; i++) { . . . }
-     * }
-     * </p>
-     * {@code i, j} are defined in {@link TokenTypes#FOR_INIT for-loop init}
-     *
-     * @param variableDef variable definition node.
-     * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
-     */
-    private static boolean isVariableInForInit(DetailAST variableDef) {
-        return variableDef.getParent().getType() == TokenTypes.FOR_INIT;
-    }
-
-    /**
-     * Checks if a parameter is within a method that has no implementation body.
-     *
-     * @param parameterDefAst the AST node representing the parameter definition
-     * @return true if the parameter is in a method without a body
-     */
-    private static boolean isInMethodWithoutBody(DetailAST parameterDefAst) {
-        final DetailAST methodDefAst = parameterDefAst.getParent().getParent();
-        return methodDefAst.findFirstToken(TokenTypes.SLIST) == null;
-    }
-
-    /**
-     * Check if current param is lambda's param.
-     *
-     * @param paramDef {@link TokenTypes#PARAMETER_DEF parameter def}.
-     * @return true if current param is lambda's param.
-     */
-    private static boolean isInLambda(DetailAST paramDef) {
-        return paramDef.getParent().getParent().getType() == TokenTypes.LAMBDA;
     }
 
     /**
@@ -699,21 +680,108 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if both the variables are same, otherwise false
      */
     private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
-        final DetailAST classOrMethodOfAst1 =
-            findFirstUpperNamedBlock(ast1);
-        final DetailAST classOrMethodOfAst2 =
-            findFirstUpperNamedBlock(ast2);
-        return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
+        return ast1.getText().equals(ast2.getText())
+                && findFirstUpperNamedBlock(ast1) == findFirstUpperNamedBlock(ast2)
+                && (ast1.getParent().getType() != TokenTypes.PATTERN_VARIABLE_DEF
+                        || inFlowScope(ast1.getParent(), ast2));
     }
 
     /**
-     * Checks whether the ast is a loop.
+     * Checks if the usage of a pattern variable is inside its flow scope.
      *
-     * @param ast the ast to check.
-     * @return true if the ast is a loop.
+     * @param patternDef pattern variable definition
+     * @param usage usage of the pattern variable
+     * @return true if the usage is inside the flow scope
      */
-    private static boolean isLoopAst(int ast) {
-        return LOOP_TYPES.get(ast);
+    private static boolean inFlowScope(DetailAST patternDef, DetailAST usage) {
+        DetailAST conditionExpr = patternDef;
+        boolean inverted = false;
+        while (conditionExpr != null && conditionExpr.getType() != TokenTypes.EXPR) {
+            if (conditionExpr.getType() == TokenTypes.LNOT) {
+                inverted = !inverted;
+            }
+            conditionExpr = conditionExpr.getParent();
+        }
+        final boolean inScope;
+        if (conditionExpr != null) {
+            final DetailAST stmt = conditionExpr.getParent();
+            inScope = determineFlowScope(stmt, conditionExpr, usage, inverted);
+        }
+        else {
+            inScope = true;
+        }
+        return inScope;
+    }
+
+    /**
+     * Determines if the usage is in the flow scope of the pattern variable.
+     *
+     * @param stmt the statement containing the pattern variable
+     * @param conditionExpr the expression containing the pattern variable
+     * @param usage the usage of the pattern variable
+     * @param inverted whether the condition is inverted
+     * @return true if the usage is in the flow scope
+     */
+
+    private static boolean determineFlowScope(DetailAST stmt, DetailAST conditionExpr,
+                                              DetailAST usage, boolean inverted) {
+        final boolean isIf = stmt.getType() == TokenTypes.LITERAL_IF;
+        final boolean inScope;
+        if (isDescendant(stmt, usage)) {
+            if (isIf) {
+                final DetailAST elseBranch = stmt.findFirstToken(TokenTypes.LITERAL_ELSE);
+                inScope = (elseBranch != null && isDescendant(elseBranch, usage)) == inverted;
+            }
+            else {
+                inScope = true;
+            }
+        }
+        else if (isIf && inverted) {
+            inScope = isAbruptCompletionIf(conditionExpr);
+        }
+        else {
+            inScope = false;
+        }
+        return inScope;
+    }
+
+    /**
+     * Checks if the if-statement containing the condition completes abruptly.
+     *
+     * @param conditionExpr the condition expression
+     * @return true if it completes abruptly
+     */
+    private static boolean isAbruptCompletionIf(DetailAST conditionExpr) {
+        DetailAST last = conditionExpr.getParent().findFirstToken(TokenTypes.RPAREN)
+                .getNextSibling();
+        if (last.getType() == TokenTypes.SLIST) {
+            last = last.getLastChild().getPreviousSibling();
+        }
+        final int type = last.getType();
+        return type == TokenTypes.LITERAL_RETURN
+            || type == TokenTypes.LITERAL_THROW
+            || type == TokenTypes.LITERAL_BREAK
+            || type == TokenTypes.LITERAL_CONTINUE;
+    }
+
+    /**
+     * Checks if a node is a descendant of a parent node.
+     *
+     * @param parent parent node
+     * @param node node to check
+     * @return true if the node is a descendant of the parent
+     */
+    private static boolean isDescendant(DetailAST parent, DetailAST node) {
+        boolean descendant = false;
+        DetailAST current = node;
+        while (current != null) {
+            if (current == parent) {
+                descendant = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return descendant;
     }
 
     /**

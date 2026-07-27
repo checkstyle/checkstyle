@@ -7,6 +7,8 @@
 <suppressions>
   <!-- Check applies to resources-noncompilable files.  -->
   <suppress id="presenceOfCompilationComment" files="resources/.*"/>
+  <suppress id="presenceOfCompilationComment"
+            files=".*InputFinalLocalVariablePatternVariablesScopeNonCompilable\.java"/>
 
   <suppress id="presenceOfCompilationComment"
             files=".*EmptyFile.java"/>

@@ -84,8 +84,8 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
         // If identAst is null, we have a 'LITERAL_NEW' expression, i.e. 'new int[2][2]'
         if (identAst != null) {
             final boolean isMethod = typeAST.getParent().getType() == TokenTypes.METHOD_DEF;
-            final boolean isJavaStyle = identAst.getLineNo() > ast.getLineNo()
-                || identAst.getColumnNo() - ast.getColumnNo() > -1;
+            final boolean isJavaStyle = identAst.getColumnNo() - ast.getColumnNo() > -1
+                || identAst.getLineNo() > ast.getLineNo();
 
             // force all methods to be Java style (see note in top Javadoc)
             final boolean isMethodViolation = isMethod && !isJavaStyle;
