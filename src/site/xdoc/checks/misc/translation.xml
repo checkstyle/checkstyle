@@ -108,17 +108,17 @@ messages_fr.properties
 messages_es.properties
         </code></pre></div>
         <p id="messages-raw">Contents of messages.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 hello=Hello
 cancel=Cancel
 </code></pre></div>
         <p id="messages_es-raw">Contents of messages_es.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 greeting=Saludo
 age=Edad
 </code></pre></div>
         <p id="messages_fr-raw">Contents of messages_fr.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 greeting=Bonjour
 name=Nom
 </code></pre></div>
@@ -146,12 +146,12 @@ ButtonLabels.properties
 ButtonLabels_fr.properties
         </code></pre></div>
         <p id="ButtonLabels-raw">Contents of ButtonLabels.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 hello=Hello
 cancel=Cancel
 </code></pre></div>
         <p id="ButtonLabels_fr-raw">Contents of ButtonLabels_fr.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 hello=Bonjour
 name=Nom
 </code></pre></div>
@@ -179,7 +179,7 @@ messages_home.properties
 messages_home.translations
         </code></pre></div>
         <p id="messages_home-raw">Contents of messages_home.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 hello=Hello
 cancel=Cancel
 </code></pre></div>
@@ -210,7 +210,7 @@ messages_home.translations
         messages_de.properties
         </code></pre></div>
         <p id="messages_de-raw">Contents of messages_de.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 hello=Hallo
 </code></pre></div>
         <p id="Example4-code">Validation for Example4:</p>
