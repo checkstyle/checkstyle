@@ -686,12 +686,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             final DetailAST classOrMethodOfAst2 = findFirstUpperNamedBlock(ast2);
             if (classOrMethodOfAst1 == classOrMethodOfAst2) {
                 final DetailAST defNode = ast1.getParent();
-                if (defNode.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
-                    isSame = inFlowScope(defNode, ast2);
-                }
-                else {
-                    isSame = true;
-                }
+                isSame = defNode.getType() != TokenTypes.PATTERN_VARIABLE_DEF
+                        || inFlowScope(defNode, ast2);
             }
         }
         return isSame;
@@ -705,7 +701,6 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if the usage is inside the flow scope
      */
     private static boolean inFlowScope(DetailAST patternDef, DetailAST usage) {
-        boolean inScope = true;
         DetailAST conditionExpr = patternDef;
         boolean inverted = false;
         while (conditionExpr != null && conditionExpr.getType() != TokenTypes.EXPR) {
@@ -716,9 +711,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         }
         if (conditionExpr != null) {
             final DetailAST stmt = conditionExpr.getParent();
-            inScope = determineFlowScope(stmt, conditionExpr, usage, inverted);
+            return determineFlowScope(stmt, conditionExpr, usage, inverted);
         }
-        return inScope;
+        return true;
     }
 
     /**
@@ -733,26 +728,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
 
     private static boolean determineFlowScope(DetailAST stmt, DetailAST conditionExpr,
                                               DetailAST usage, boolean inverted) {
-        boolean inScope = false;
         final boolean isIf = stmt.getType() == TokenTypes.LITERAL_IF;
         if (isDescendant(stmt, usage)) {
             if (isIf) {
                 final DetailAST elseBranch = stmt.findFirstToken(TokenTypes.LITERAL_ELSE);
-                if (elseBranch != null && isDescendant(elseBranch, usage)) {
-                    inScope = inverted;
-                }
-                else {
-                    inScope = !inverted;
-                }
+                return (elseBranch != null && isDescendant(elseBranch, usage)) == inverted;
             }
-            else {
-                inScope = true;
-            }
+            return true;
         }
-        else if (isIf && inverted) {
-            inScope = isAbruptCompletionIf(conditionExpr);
+        if (isIf && inverted) {
+            return isAbruptCompletionIf(conditionExpr);
         }
-        return inScope;
+        return false;
     }
 
     /**
