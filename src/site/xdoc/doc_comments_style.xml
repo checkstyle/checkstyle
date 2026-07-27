@@ -545,7 +545,13 @@
                       object created from the current class
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -557,7 +563,14 @@
                     Add description beyond the API name
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis to decide whether an API description adds meaningful
+                    information beyond the API name.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -569,7 +582,14 @@
                     Be clear when using the term "field"
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis to distinguish the intended meaning of the term
+                    <code>field</code>.
+                </td>
                 <td/>
               </tr>
               <tr>
