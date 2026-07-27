@@ -25,7 +25,6 @@ alundblad
 amazonaws
 amd
 androidx
-annotateddeclarationvisibility
 annotationlocation
 annotationonsameline
 annotationusestyle
@@ -102,9 +101,9 @@ baz
 bc
 bdc
 bdd
+bdo
 beanutils
 beforeexecutionexclusionfilefilter
-beginningcomments
 bestpractices
 bew
 bitbucket
@@ -206,7 +205,7 @@ codenarc
 codeql
 codeselectorpresentation
 codestyle
-COLGROUP
+colgroup
 columnlimit
 Combobox
 commentsindentation
@@ -219,10 +218,8 @@ concat
 config
 configurationloader
 Connell's
-connrefused
 constantname
 constructorsdeclarationgrouping
-CONTACTSERVER
 Contextualizable
 contextualization
 contextualized
@@ -298,12 +295,11 @@ detailast
 detailnodetreestringprinter
 devops
 Dexec
-Dexpression
 dfa
 DFFF
 Dfile
+dfn
 Dforbiddenapis
-Dforce
 Dgpg
 Dhttp
 Diachenko
@@ -327,7 +323,6 @@ doclet
 doclint
 doctype
 documentationcomments
-documentingexceptionswiththrowstag
 donotignoreexceptions
 Dorg
 DOTALL
@@ -400,7 +395,6 @@ etsy
 ev
 Evt
 exceptionoverrides
-exceptionstodocument
 executablestatementcount
 Exif
 explicitinitialization
@@ -419,7 +413,7 @@ Fcheckstyle
 fchurn
 Fcoding
 Fcom
-Fd
+fd
 FDCF
 Fdesign
 FDF
@@ -439,6 +433,7 @@ Fgoogle
 Fheader
 fht
 fieldannotations
+fieldset
 filebasic
 filechooser
 filefilter
@@ -543,7 +538,7 @@ gz
 hadoop
 hamcrest
 Haml
-Hardcoded
+hardcoded
 hashcode
 hashtable
 HASHTAG
@@ -564,6 +559,7 @@ horizontalwhitespace
 Hostname
 href
 htaccess
+htag
 htdocs
 html
 HTMLJS
@@ -578,7 +574,6 @@ iae
 IAOM
 ico
 icu
-Identation
 identifiernames
 Idref
 idx
@@ -628,6 +623,8 @@ interfaceistype
 interfacememberimpliedmodifier
 interfacetypeparametername
 interp
+invalidformat
+invalidinherit
 invalidjavadocposition
 ioe
 ioffset
@@ -661,6 +658,7 @@ javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
 javadocpropertiesgenerator
+javadocstyle
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
@@ -682,6 +680,7 @@ Jax
 jb
 JBoss
 JButton
+JCheck
 JCombo
 JComponent
 jcp
@@ -752,6 +751,7 @@ jxr
 kailasam
 Kansara
 kazgroup
+kbd
 kclee
 KDoc
 keyname
@@ -848,6 +848,7 @@ missingjavadoctype
 missingnullcaseinswitch
 missingoverride
 missingoverrideonrecordaccessor
+missingperiod
 missingswitchdefault
 missingtag
 mixin
@@ -863,6 +864,7 @@ mockito
 Modello
 modifiedcontrolvariable
 modifierorder
+Mohanad
 Mohnen
 mojohaus
 moks
@@ -881,6 +883,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -922,6 +925,7 @@ Niederhauser
 nikitasavinov
 nio
 nlow
+NMCS
 NMTOKEN
 noarch
 noarraytrailingcomma
@@ -1032,9 +1036,7 @@ packageannotation
 packagecomment
 packagedeclaration
 packagehtml
-packagehtmltemplate
 packageinfo
-packagelevelcomments
 packagename
 packagenamesloader
 packageobjectfactory
@@ -1079,6 +1081,7 @@ pipefail
 PIPESTATUS
 pitest
 pkgextra
+pkginfo
 pkx
 PLHM
 plugin
@@ -1166,7 +1169,6 @@ Rethrown
 Rethrows
 returncount
 returnsreceiver
-returntag
 reviewdog
 revwalk
 rfc
@@ -1189,12 +1191,10 @@ Rsa
 RSPEC
 Rtl
 ru
-ruleannotations
 rulebraces
 ruleclassinterfaceandenumnames
 ruleclassstructure
 ruleconstants
-rulecopyrightnotice
 ruleformatting
 rulehorizontalwhitespace
 ruleimportstatements
@@ -1205,7 +1205,6 @@ rulelambdaexpressions
 ruleliterals
 rulemethodnames
 rulemodifiers
-rulenaming
 ruleorderofconstructorsandoverloadedmethods
 rulepackagedeclaration
 rulepackagenames
@@ -1220,10 +1219,8 @@ rulevariabledeclarations
 rulevariables
 ruleverticalwhitespace
 rulewildcardimports
-rulewrappingclassdeclarations
 rulewrappingexpressions
 rulewrappinglines
-rulewrappingmethoddeclarations
 Ruslan
 rw
 rx
@@ -1232,9 +1229,6 @@ Saludo
 Sameline
 sariflogger
 sarifweb
-savemaster
-savepull
-saverefs
 Savinov
 saxonica
 sbe
@@ -1242,7 +1236,6 @@ sbt
 scache
 Schneeberger
 scm
-scopeutil
 scp
 screenshot
 Scss
@@ -1385,7 +1378,7 @@ textblock
 textblockgooglestyleformatting
 tfij
 Tfo
-TFOOT
+tfoot
 Thauvin
 thead
 thesummaryfragment
@@ -1394,7 +1387,6 @@ thomasjensen
 thr
 throwable
 throwscount
-throwstag
 Thymeleaf
 tidelift
 timeline
@@ -1429,7 +1421,6 @@ tta
 ttf
 tvf
 tw
-typebodypadding
 typecastparenpad
 typename
 typetools
@@ -1459,7 +1450,6 @@ unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
-unnecessarytypeargumentswithrecordpattern
 unparseable
 Unproxyable
 unrecognised
@@ -1525,7 +1515,6 @@ wheretobreak
 whitelist
 whitespaceafter
 whitespacearound
-whitespacebeforeemptybody
 wholename
 Wifi
 wiki
