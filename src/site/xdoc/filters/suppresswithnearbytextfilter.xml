@@ -347,14 +347,13 @@ public class UseCase1 {
           To configure the filter to suppress audit events for the current and previous line:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+&lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="lineRange" value="-1"/&gt;
   &lt;/module&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="UseCase2-raw">
+        <p id="UseCase2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
