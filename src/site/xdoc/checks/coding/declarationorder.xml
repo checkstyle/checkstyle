@@ -98,7 +98,7 @@ public class Example1 {
 
   public int a;
   protected int b;
-  public int c;            // violation, variable access definition in wrong order
+  public int c;         // violation 'Variable access definition in wrong order.'
 
   Example1() {
     this.a = 0;
@@ -108,11 +108,11 @@ public class Example1 {
     // This method does nothing
   }
 
-  Example1(int a) {            // violation, constructor definition in wrong order
+  Example1(int a) {     // violation 'Constructor definition in wrong order.'
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -133,7 +133,7 @@ public class Example2 {
 
   public int a;
   protected int b;
-  public int c;            // violation, variable access definition in wrong order
+  public int c;         // violation 'Variable access definition in wrong order.'
 
   Example2() {
     this.a = 0;
@@ -143,11 +143,11 @@ public class Example2 {
     // This method does nothing
   }
 
-  Example2(int a) {            // ok, validation of constructors ignored
+  Example2(int a) {     // ok, validation of constructors ignored
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -168,7 +168,7 @@ public class Example3 {
 
   public int a;
   protected int b;
-  public int c;            // ok, access modifiers not considered while validating
+  public int c;         // ok, access modifiers not considered while validating
 
   Example3() {
     this.a = 0;
@@ -178,11 +178,11 @@ public class Example3 {
     // This method does nothing
   }
 
-  Example3(int a) {            // violation, constructor definition in wrong order
+  Example3(int a) {     // violation 'Constructor definition in wrong order.'
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 </code></pre></div>
       </subsection>

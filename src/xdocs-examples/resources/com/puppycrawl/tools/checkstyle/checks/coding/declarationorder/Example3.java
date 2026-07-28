@@ -15,7 +15,7 @@ public class Example3 {
 
   public int a;
   protected int b;
-  public int c;            // ok, access modifiers not considered while validating
+  public int c;         // ok, access modifiers not considered while validating
 
   Example3() {
     this.a = 0;
@@ -25,10 +25,10 @@ public class Example3 {
     // This method does nothing
   }
 
-  Example3(int a) {            // violation, constructor definition in wrong order
+  Example3(int a) {     // violation 'Constructor definition in wrong order.'
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 // xdoc section -- end
