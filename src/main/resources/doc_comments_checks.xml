@@ -42,6 +42,12 @@
 
   <!-- Add documentation comments checks here based on the style guide -->
 
+  <!-- Format of a Doc Comment: Notes -->
+  <module name="LineLength">
+    <property name="max" value="80"/>
+    <property name="ignorePattern" value="^(?!\s*\*).*$"/>
+  </module>
+
   <!-- Package-Level Comments -->
   <module name="JavadocPackage">
     <property name="allowLegacy" value="true"/>
@@ -61,6 +67,10 @@
       <property name="scope" value="private"/>
       <property name="skipAnnotations" value=""/>
     </module>
+    <module name="CommentsIndentation"/>
+    <module name="JavadocLeadingAsteriskAlign"/>
+    <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+    <module name="JavadocTagContinuationIndentation"/>
 
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
