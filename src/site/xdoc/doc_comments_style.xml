@@ -323,8 +323,62 @@
                     Notes
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                    CommentsIndentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
+                    JavadocLeadingAsteriskAlign</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLeadingAsteriskAlign">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
+                    RequireEmptyLineBeforeBlockTagGroup</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
+                    JavadocTagContinuationIndentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">
+                    LineLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that end-comment delimiter should contain only one asterisk is not
+                    covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20982">#20982</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/formatofdoccomment/notes">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>
