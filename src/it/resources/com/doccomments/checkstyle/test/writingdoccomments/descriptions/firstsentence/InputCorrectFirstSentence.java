@@ -56,8 +56,8 @@ class InputCorrectFirstSentence {
     void foo4() throws Exception {}
 
     /**
-     * JAXB Provider Use Only: Provides partial default implementations for some javax.xml.bind
-     * interfaces.
+     * JAXB Provider Use Only: Provides partial default implementations for some
+     * javax.xml.bind interfaces.
      */
     void foo5() {}
 
