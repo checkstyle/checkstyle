@@ -258,11 +258,9 @@ public class UseCase1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;property name="fileExtensions" value="properties"/&gt;
-
   &lt;module name="SuppressionFilter"&gt;
     &lt;property name="file" value="suppressionUseCase2.xml"/&gt;
   &lt;/module&gt;
-
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
@@ -283,11 +281,7 @@ public class UseCase1 {
   &lt;suppress files="[/\\]\..+" checks=".*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="hidden-raw">
-          Below Example is suppressed because
-          <code>hidden.properties</code> file inside
-          the <code>.hidden</code> folder:
-        </p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
 keyB=value2
