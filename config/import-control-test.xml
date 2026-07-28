@@ -83,6 +83,11 @@
       <allow class="java.lang.reflect.Constructor" />
     </file>
 
+    <file name="InlineConfigUtilsTest">
+      <!-- Uses reflection to test that the constructor is private. -->
+      <allow class="java.lang.reflect.Modifier" />
+    </file>
+
     <file name="TokenUtilTest">
       <!-- TokenUtil's API uses Fields,  so the test needs it too -->
       <allow class="java.lang.reflect.Field" />
