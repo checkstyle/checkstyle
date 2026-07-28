@@ -76,4 +76,6 @@ public class InputBracesLeftCurlyValid {
             System.out.println("hello");
         } while (i > 0);
     }
+
+    public boolean method4() { return true; }
 }
