@@ -498,6 +498,13 @@
     <module name="CommentsIndentation">
       <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
     </module>
+    <module name="MultilineCommentLeadingAsteriskPresence"/>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="MultilineCommentLeadingAsteriskPresence"/>
+      <property name="query"
+                value="//BLOCK_COMMENT_BEGIN[preceding-sibling::RPAREN
+                and following-sibling::SEMI]"/>
+    </module>
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.google.suppressionxpathfilter.config}"
