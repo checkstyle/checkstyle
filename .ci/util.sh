@@ -69,3 +69,33 @@ function checkout_from {
   fi
   cd ../
 }
+
+function checkout_from_upstream {
+  CLONE_URL=$1
+  TARGET_SHA=$2
+  PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
+  mkdir -p .ci-temp
+  cd .ci-temp
+  if [ -d "$PROJECT" ]; then
+    if [ -n "$TARGET_SHA" ]; then
+      cd "$PROJECT"
+      git checkout "$TARGET_SHA"
+      cd ../
+    else
+      echo "Target project $PROJECT is already cloned, latest changes will be fetched and reset to upstream"
+      cd "$PROJECT"
+      git fetch
+      git reset --hard @{u}
+      git clean -f -d
+      cd ../
+    fi
+  elif [ -n "$TARGET_SHA" ]; then
+    git clone "$CLONE_URL"
+    cd "$PROJECT"
+    git checkout "$TARGET_SHA"
+    cd ../
+  else
+    git clone "$CLONE_URL"
+  fi
+  cd ../
+}
