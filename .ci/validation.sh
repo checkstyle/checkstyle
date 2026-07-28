@@ -1022,6 +1022,19 @@ no-error-sevntu-checks)
   removeFolderWithProtectedFiles sevntu.checkstyle
   ;;
 
+no-error-checkstyle-openrewrite-recipes)
+  set -e
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo CS_version: "${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  checkout_from https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd .ci-temp/checkstyle-openrewrite-recipes
+  mvn -e --no-transfer-progress verify -Dcheckstyle.version="${CS_POM_VERSION}"
+  cd ../../
+  removeFolderWithProtectedFiles checkstyle-openrewrite-recipes
+  ;;
+
 no-error-contribution)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
