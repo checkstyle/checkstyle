@@ -650,7 +650,7 @@
           </li>
           <li>
             unexpected output to logs from XdocsExamplesAstConsistencyTest.
-            Author: smita.prajapati082@gmail.com
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20653">#20653</a>
           </li>
         </ul>
@@ -789,17 +789,17 @@
           </li>
           <li>
             unexpected output to logs from XdocsExamplesAstConsistencyTest.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20653">#20653</a>
           </li>
           <li>
             Unexpected output in maven build from SearchIndexGenerator.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20654">#20654</a>
           </li>
           <li>
             Use cases examples should not be named as Examples.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/19933">#19933</a>
           </li>
           <li>
@@ -809,7 +809,7 @@
           </li>
           <li>
             Validation of amount of Example that should be same by AST.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20585">#20585</a>
           </li>
           <li>
@@ -871,7 +871,7 @@
           </li>
           <li>
             Broken links in Checkstyle searchbar.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20601">#20601</a>
           </li>
           <li>
@@ -892,12 +892,12 @@
           </li>
           <li>
             Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
           </li>
           <li>
             Address review feedback on SearchIndexGenerator.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20480">#20480</a>
           </li>
           <li>
@@ -1103,22 +1103,22 @@
           </li>
           <li>
             Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
           </li>
           <li>
             Use violation message pattern &#39;first line&#39;.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20356">#20356</a>
           </li>
           <li>
             Xdocs examples should reject violation comments between annotations and declarations.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20382">#20382</a>
           </li>
           <li>
             Add client-side search functionality to Checkstyle documentation website.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/19507">#19507</a>
           </li>
           <li>
@@ -1139,7 +1139,7 @@
           <li>
             Add &#39;first line&#39; and &#39;last line&#39; violation hint patterns to
             InlineConfigParser.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20340">#20340</a>
           </li>
           <li>
@@ -1296,18 +1296,18 @@
           </li>
           <li>
             Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
           </li>
           <li>
             Document unsupported/missing ParenPad cases under Use Cases section.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/19994">#19994</a>
           </li>
           <li>
             XdocsExamplesAstConsistencyTest: false AST mismatch for superclass name in extends
             clause of ExampleN classes.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20327">#20327</a>
           </li>
           <li>
@@ -1328,7 +1328,7 @@
           <li>
             XdocsExamplesAstConsistencyTest`: false positive &quot;Comments mismatch&quot; in
             `extractComments`.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20307">#20307</a>
           </li>
           <li>
@@ -1340,12 +1340,12 @@
           <li>
             `XdocsExamplesAstConsistencyTest` currently misses three classes of inconsistency
             between xdoc example files that share the same check configuration.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20284">#20284</a>
           </li>
           <li>
             Example 2 in regexp page should have config.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/20286">#20286</a>
           </li>
           <li>
@@ -1412,7 +1412,7 @@
         <ul>
           <li>
             Google style: Disallow comments enclosed in boxes.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17697">#17697</a>
           </li>
           <li>
@@ -1513,7 +1513,7 @@
           </li>
           <li>
             Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
-            Author: smita_1078, dependabot[bot]
+            Author: smita1078, dependabot[bot]
             <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
           </li>
           <li>
@@ -1523,7 +1523,7 @@
           </li>
           <li>
             `Regexp` check for unnecessary `// ok` comments is configured under `TreeWalker`.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/19993">#19993</a>
           </li>
           <li>
@@ -1596,7 +1596,7 @@
           </li>
           <li>
             Improve design of PropertiesMacros.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/13673">#13673</a>
           </li>
           <li>
@@ -1700,7 +1700,7 @@
           </li>
           <li>
             Find a way to make example message be fully  shown without usage of regexp.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/13740">#13740</a>
           </li>
           <li>
@@ -1921,7 +1921,7 @@
           </li>
           <li>
             New Check: IllegalSymbol to forbit emoj in code.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18065">#18065</a>
           </li>
         </ul>
@@ -2429,7 +2429,7 @@
           </li>
           <li>
             Fix SpotBugs UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR warning in IndentationCheck.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18843">#18843</a>
           </li>
           <li>
@@ -2788,12 +2788,12 @@
           </li>
           <li>
             Cirrus should be used wisely to avoid credit limits.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17656">#17656</a>
           </li>
           <li>
             XdocsExamplesAstConsistencyTest should validate literal values match between examples.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18517">#18517</a>
           </li>
           <li>
@@ -2840,7 +2840,7 @@
           </li>
           <li>
             Convert eligible classes to records.
-            Author: smita_1078, Roman Ivanov
+            Author: smita1078, Roman Ivanov
             <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
           </li>
           <li>
@@ -2966,7 +2966,7 @@
           </li>
           <li>
             Examples Validation: content is same in all for single Check.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17177">#17177</a>
           </li>
           <li>
@@ -2986,7 +2986,7 @@
           </li>
           <li>
             cleanup spotbugs suppression after next fb-contrib release.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17720">#17720</a>
           </li>
           <li>
@@ -3062,7 +3062,7 @@
           </li>
           <li>
             resolve PMD warning during execution.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/18070">#18070</a>
           </li>
           <li>
@@ -3142,7 +3142,7 @@
           <li>
             Website Generation doesn&#39;t automatically reflect new changes to checks.xml and
             checks/&lt;type&gt;/index.xml.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17691">#17691</a>
           </li>
           <li>
@@ -3290,7 +3290,7 @@
           <li>
             Website Generation doesn&#39;t automatically reflect new changes to checks.xml and
             checks/&lt;type&gt;/index.xml.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17691">#17691</a>
           </li>
           <li>
@@ -3384,7 +3384,7 @@
           <li>
             Website Generation doesn&#39;t automatically reflect new changes to checks.xml and
             checks/&lt;type&gt;/index.xml.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17691">#17691</a>
           </li>
           <li>
@@ -4107,7 +4107,7 @@
           </li>
           <li>
             Validate that all properties are used in examples.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17175">#17175</a>
           </li>
           <li>
@@ -4206,7 +4206,7 @@
           </li>
           <li>
             wesite: not wrappable property now it is causing horizontal scrolling.
-            Author: smita_1078
+            Author: smita1078
             <a href="https://github.com/checkstyle/checkstyle/issues/17276">#17276</a>
           </li>
           <li>
