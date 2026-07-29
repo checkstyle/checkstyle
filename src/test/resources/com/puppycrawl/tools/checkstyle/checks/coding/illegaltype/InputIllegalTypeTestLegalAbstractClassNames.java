@@ -25,7 +25,7 @@ public class InputIllegalTypeTestLegalAbstractClassNames implements InputIllegal
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
             c = null;
-    // violation 2 lines above 'is not allowed'
+    // violation 2 lines above 'Usage of type 'java.util.TreeSet' is not allowed'
 
     private java.util.List d = null;
 

@@ -333,66 +333,31 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
-            "checks/finalparameters/InputFinalParameters.java",
-            "checks/finalparameters/InputFinalParameters3.java",
-            "checks/finalparameters/InputFinalParametersPatternVariables.java",
-             "checks/finalparameters/"
-                     + "InputFinalParametersRecordForLoopPatternVariables.java",
+            "checks/finalparameters/"
+                    + "InputFinalParametersRecordForLoopPatternVariables.java",
             "checks/coding/declarationorder/Example1.java",
             "checks/coding/declarationorder/Example2.java",
             "checks/coding/declarationorder/Example3.java",
             "checks/coding/equalshashcode/Example1.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestDefaults.java",
-            "checks/coding/illegaltype/InputIllegalTypeEmptyStringMemberModifiers.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestExtendsImplements.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestFormat.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestGenerics.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestIgnoreMethodNames.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestEnhancedInstanceof.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestLegalAbstractClassNames.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestMemberModifiers.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestPlainAndArraysTypes.java",
-            "checks/coding/illegaltype/"
-                    + "InputIllegalTypeRecordsWithMemberModifiersDefault.java",
-            "checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersFinal.java",
-            "checks/coding/illegaltype/"
-                    + "InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java",
-            "checks/coding/illegaltype/"
-                    + "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java",
-            "checks/coding/illegaltype/InputIllegalTypeSameFileNameFalsePositive.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestSameFileNameGeneral.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestStarImports.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
             "checks/coding/nestedifdepth/Example1.java",
             "checks/coding/nestedifdepth/Example2.java",
             "checks/coding/nestedtrydepth/Example1.java",
             "checks/coding/nestedtrydepth/Example2.java",
             "checks/coding/noclone/Example1.java",
             "checks/coding/simplifybooleanreturn/Example1.java",
-            "checks/coding/superfinalize/InputSuperFinalizeVariations.java",
             "checks/coding/unusedlocalvariable/Example1.java",
             "checks/coding/unusedlocalvariable/Example2.java",
             "checks/coding/unusedlocalvariable/Example4.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariable3.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses4.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses5.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses6.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariableNestedClasses7.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariableAllowNamedPatternVariables.java",
             "checks/coding/unusedlocalvariable/"
                     + "InputUnusedLocalVariablePatternVariables.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariablePatternVariables2.java",
             "checks/coding/unusedlocalvariable/"
                     + "InputUnusedLocalVariablePatternVariablesAllowUnnamed.java",
             "checks/coding/unusedlocalvariable/"
                     + "InputUnusedLocalVariablePatternVariablesCondition.java",
             "checks/coding/unusedlocalvariable/"
                     + "InputUnusedLocalVariablePatternVariablesCondition2.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
-            "checks/imports/avoidstarimport/InputAvoidStarImportExcludes.java",
+            "checks/coding/unusedlocalvariable/"
+                    + "InputUnusedLocalVariableUnnamedTryCatch.java",
             "checks/imports/importorder/Example10.java",
             "checks/metrics/npathcomplexity/Example1.java",
             "checks/metrics/npathcomplexity/Example2.java",
@@ -400,12 +365,6 @@ public final class InlineConfigParser {
             "checks/naming/recordcomponentname/Example2.java",
             "checks/naming/recordtypeparametername/Example1.java",
             "checks/naming/recordtypeparametername/Example2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic8.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic5.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic7.java",
             "checks/regexp/regexpsingleline/Example2.java",
             "checks/regexp/regexpsingleline/UseCase1.java",
             "checks/sizes/recordcomponentnumber/Example1.java",

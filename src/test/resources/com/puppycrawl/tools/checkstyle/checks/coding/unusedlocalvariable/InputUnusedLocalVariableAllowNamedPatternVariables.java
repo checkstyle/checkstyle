@@ -32,8 +32,8 @@ public class InputUnusedLocalVariableAllowNamedPatternVariables {
     }
 
     String withrecord(Object object) {
-        return switch (object) { // violation below, unused local variable 'y'
-            case Ignored(int y, int z) -> "record switch"; // violation, unused local variable 'z'
+        return switch (object) { // violation below 'Unused local variable'
+            case Ignored(int y, int z) -> "record switch"; // violation 'Unused local variable'
             default -> "other";
         };
     }
