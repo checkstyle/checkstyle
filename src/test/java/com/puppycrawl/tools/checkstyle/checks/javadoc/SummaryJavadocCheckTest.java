@@ -461,4 +461,11 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSummaryJavadocAsteriskBanner.java"), expected);
     }
 
+    @Test
+    public void testInlineReturn3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineReturn3.java"), expected);
+    }
+
 }
