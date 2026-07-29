@@ -160,6 +160,16 @@ set-upstream)
   git fetch forked
   ;;
 
+prepare-environment)
+  mv .ci-temp/projects.properties ./.ci-temp/contribution/checkstyle-tester/
+  mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
+  curl --fail-with-body -s "https://get.sdkman.io" | bash
+  # shellcheck disable=SC1091
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install groovy
+  echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+  ;;
+
 process-local-repo-config-files)
   # Some properties and modules are explicitly added in the config files to prevent parser failures
   mkdir -p .ci-temp
