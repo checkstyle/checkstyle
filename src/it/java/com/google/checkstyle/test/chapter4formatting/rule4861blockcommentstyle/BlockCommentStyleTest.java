@@ -76,4 +76,9 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputBoxComments.java"));
     }
 
+    @Test
+    public void testMultilineCommentLeadingAsterisk() throws Exception {
+        verifyWithWholeConfig(getPath("InputMultilineCommentLeadingAsterisk.java"));
+    }
+
 }
