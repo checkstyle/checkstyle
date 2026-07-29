@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedOutputStream;
 
-public class InputOneStatementPerLineTest {
+public class InputOneStatementPerLine2 {
     void testNestedInLambda() {
         Runnable r = () -> {
             try (OutputStream s1 = new PipedOutputStream()) {
