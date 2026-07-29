@@ -42,8 +42,8 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "58:17: " + getCheckMessage(MSG_KEY, "s"),
             "74:17: " + getCheckMessage(MSG_KEY, "s"),
             "80:17: " + getCheckMessage(MSG_KEY, "s"),
-            "95:45: " + getCheckMessage(MSG_KEY, "e"),
-            "98:36: " + getCheckMessage(MSG_KEY, "e"),
+            "96:45: " + getCheckMessage(MSG_KEY, "e"),
+            "100:36: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters.java"), expected);
