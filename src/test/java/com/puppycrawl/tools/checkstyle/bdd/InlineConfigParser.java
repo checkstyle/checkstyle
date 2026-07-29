@@ -338,9 +338,6 @@ public final class InlineConfigParser {
             "checks/finalparameters/InputFinalParametersPatternVariables.java",
              "checks/finalparameters/"
                      + "InputFinalParametersRecordForLoopPatternVariables.java",
-            "checks/coding/declarationorder/Example1.java",
-            "checks/coding/declarationorder/Example2.java",
-            "checks/coding/declarationorder/Example3.java",
             "checks/coding/equalshashcode/Example1.java",
             "checks/coding/illegaltype/InputIllegalTypeTestDefaults.java",
             "checks/coding/illegaltype/InputIllegalTypeEmptyStringMemberModifiers.java",
