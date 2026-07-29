@@ -1,4 +1,4 @@
-/* // violation, Empty (null) pattern.
+/* // violation 'Empty (null) pattern.'
 RegexpMultiline
 format =
 message = (default)(null)
