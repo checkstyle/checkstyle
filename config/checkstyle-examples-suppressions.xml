@@ -107,6 +107,8 @@
     files="operatorwrap/Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap/Example2.java"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="arraybracketwhitespace/Example1.java"/>
   <!-- it prints user regexp -->
   <suppress id="discouragedRegexpInViolationMessage"
             files="regexponfilename/Example[24].*"/>
