@@ -31,8 +31,18 @@ public class AnnotationsTest extends AbstractOpenJdkModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationsOne() throws Exception {
+    public void testAnnotationsDoAndDonts() throws Exception {
         verifyWithWholeConfig(getPath("InputAnnotationsDoAndDonts.java"));
+    }
+
+    @Test
+    public void testAnnotationsValid() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationsValid.java"));
+    }
+
+    @Test
+    public void testAnnotationsInvalid() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationsInvalid.java"));
     }
 
 }

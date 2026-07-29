@@ -35,8 +35,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations">
  * OpenJDK Style</a>.
  * Declaration annotations must either reside entirely on a single line or
- * have each annotation placed on its own separate line. Annotations should
- * not share a line with the target declaration, except for single-line methods and fields.
+ * have each annotation placed on its own separate line. Annotations may share
+ * a line with the target declaration only when all annotations and the complete
+ * target declaration are on that same line.
  * </div>
  *
  * <p>
@@ -100,31 +101,19 @@ public class OpenjdkAnnotationLocationCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!isLocalVariable(ast)) {
-            final DetailAST annotationParentNode = getAnnotationsNode(ast);
-            final DetailAST startOfTargetNode = getStartingAst(annotationParentNode);
-            final List<DetailAST> annotationList = getAnnotations(annotationParentNode);
+        final DetailAST annotationParentNode = getAnnotationsNode(ast);
+        final DetailAST startOfTargetNode = getStartingAst(annotationParentNode);
+        final List<DetailAST> annotationList = getAnnotations(annotationParentNode);
 
-            if (!areAllOnSameLine(annotationList) && !areAllOnSeparateLines(annotationList)) {
-                log(startOfTargetNode, MSG_KEY_ANNOTATION_ALONE_OR_SAME, getTargetName(ast));
-            }
-            if (isAnyOnTargetLine(annotationList, startOfTargetNode)
-                    && !isSingleLineMethodOrField(ast)) {
-                log(startOfTargetNode, MSG_KEY_ANNOTATION_ON_TARGET_LINE, getTargetName(ast));
-            }
+        final boolean areAnnotationsOnSameLine = areAllOnSameLine(annotationList);
+        if (!areAnnotationsOnSameLine && !areAllOnSeparateLines(annotationList)) {
+            log(startOfTargetNode, MSG_KEY_ANNOTATION_ALONE_OR_SAME, getTargetName(ast));
         }
-    }
-
-    /**
-     * Checks whether the variable is local or not.
-     *
-     * @param ast variable.
-     * @return true if local variable.
-     */
-    private static boolean isLocalVariable(DetailAST ast) {
-        return ast.getType() == TokenTypes.VARIABLE_DEF
-                && ast.getParent().getType() != TokenTypes.OBJBLOCK
-                && ast.getParent().getType() != TokenTypes.COMPACT_COMPILATION_UNIT;
+        if (isAnyOnTargetLine(annotationList, startOfTargetNode)
+                && !(areAnnotationsOnSameLine
+                        && isSingleLineTarget(startOfTargetNode, ast))) {
+            log(startOfTargetNode, MSG_KEY_ANNOTATION_ON_TARGET_LINE, getTargetName(ast));
+        }
     }
 
     /**
@@ -226,27 +215,19 @@ public class OpenjdkAnnotationLocationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a method or field is single line or not.
+     * Checks whether a target is single line or not.
      *
-     * @param targetNode ast of target node
-     * @return true if the method or field is single line.
+     * @param startOfTargetNode first node of the target after annotations.
+     * @param targetNode ast of target node.
+     * @return true if the target is single line.
      */
-    private static boolean isSingleLineMethodOrField(DetailAST targetNode) {
-        boolean result = false;
-        if (targetNode.getType() == TokenTypes.METHOD_DEF
-                || targetNode.getType() == TokenTypes.ANNOTATION_FIELD_DEF
-                || targetNode.getType() == TokenTypes.VARIABLE_DEF) {
-            final DetailAST lastToken = targetNode.getLastChild();
-            if (lastToken.getType() == TokenTypes.SLIST) {
-                final DetailAST rightCurly = lastToken.getLastChild();
-                result = TokenUtil.areOnSameLine(targetNode, rightCurly);
-            }
-            else {
-                result = TokenUtil.areOnSameLine(targetNode, lastToken);
-            }
+    private static boolean isSingleLineTarget(DetailAST startOfTargetNode,
+            DetailAST targetNode) {
+        DetailAST lastToken = targetNode;
+        while (lastToken.hasChildren()) {
+            lastToken = lastToken.getLastChild();
         }
-
-        return result;
+        return TokenUtil.areOnSameLine(startOfTargetNode, lastToken);
     }
 
     /**
