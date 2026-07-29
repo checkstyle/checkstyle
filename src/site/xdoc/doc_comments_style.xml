@@ -986,8 +986,20 @@
                     Custom Tags and Annotations
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/annotation/missingdeprecated.html#MissingDeprecated">
+                    MissingDeprecated</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/customtagsandannotations">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <!-- DEFAULT CONSTRUCTORS -->
