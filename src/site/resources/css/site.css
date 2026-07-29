@@ -685,6 +685,18 @@ html {
     letter-spacing: 0.02em;
 }
 
+.cs-search-since-badge {
+    font-size: 10px;
+    font-weight: 500;
+    color: #0277bd;
+    background: #e1f5fe;
+    border: 1px solid #b3e5fc;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin-left: 6px;
+    white-space: nowrap;
+}
+
 .cs-search-result-desc {
     font-size: 11.5px;
     color: #888;
