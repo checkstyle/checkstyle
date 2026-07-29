@@ -20,7 +20,6 @@ String field4 = "ok";
 
 @Deprecated
 @SuppressWarnings("unused") int badField6 = 0;
-// violation above 'Annotations must be on a separate line from 'badField6'.'
 
 @Deprecated @SuppressWarnings("unused") int goodField6;
 

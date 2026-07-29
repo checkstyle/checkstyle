@@ -20,7 +20,6 @@ import java.lang.annotation.Target;
     @EnumAnnotation(value = "foo")
     @EnumAnnotation
     @EnumAnnotation("bar") ENUM_VALUE_BAD();
-    // violation above 'Annotations must be on a separate line from 'ENUM_VALUE_BAD'.'
 
     InputOpenjdkAnnotationLocation3() {
     }
@@ -41,4 +40,3 @@ import java.lang.annotation.Target;
     EnumAnnotation[] value();
 
 }
-

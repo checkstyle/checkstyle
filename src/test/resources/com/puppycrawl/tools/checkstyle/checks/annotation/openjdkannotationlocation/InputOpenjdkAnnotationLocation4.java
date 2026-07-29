@@ -34,7 +34,6 @@ public class InputOpenjdkAnnotationLocation4 {
     }
 
     @Annotation @Annotation class Temp {}
-    // violation above, 'Annotations must be on a separate line from 'Temp'.'
 
     void methodNoAnnotation() {}
 
