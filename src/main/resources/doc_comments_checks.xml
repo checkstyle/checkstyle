@@ -74,8 +74,9 @@
 
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
+    <module name="NonEmptyAtclauseDescription"/>
 
-    <!-- Required Tags --> <!-- @return --> <!-- @throws -->
+    <!-- Required Tags --> <!-- @param --> <!-- @return --> <!-- @throws -->
     <module name="JavadocMethod">
       <property name="allowedAnnotations" value=""/>
       <property name="allowInlineReturn" value="true"/>
