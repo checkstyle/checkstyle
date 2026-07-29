@@ -76,6 +76,11 @@ class TestClassBad {
     }
 
     @MyAnnotation15(value = "") public void method7() {};
+
+    void methodWithLocalVariable() {
+        @MyAnnotation11 int
+                localVariable;
+    }
 }
 
 @interface MyAnnotation11 {
