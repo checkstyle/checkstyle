@@ -41,4 +41,3 @@ import java.lang.annotation.Target;
     EnumAnnotation[] value();
 
 }
-

@@ -34,13 +34,13 @@ public class InputOpenjdkAnnotationLocation4 {
     }
 
     @Annotation @Annotation class Temp {}
-    // violation above, 'Annotations must be on a separate line from 'Temp'.'
 
     void methodNoAnnotation() {}
 
     void parameterlessSamelineInForEach() {
         @Annotation
         @Annotation int temp1;
+        // violation above 'Annotations must be on a separate line from 'temp1'.'
         for (@Annotation Object o : new Object[0]) break;
         for (@Annotation @Annotation Object o : new Object[0]) break;
         for (@Annotation Object o;;) break;

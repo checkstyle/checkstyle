@@ -76,6 +76,14 @@ class TestClassBad {
     }
 
     @MyAnnotation15(value = "") public void method7() {};
+
+    void methodWithLocalVariables() {
+        @MyAnnotation11 int singleLineLocalVariable;
+
+        // violation below 'Annotations must be on a separate line from 'multilineLocalVariable'.'
+        @MyAnnotation11 int
+                multilineLocalVariable;
+    }
 }
 
 @interface MyAnnotation11 {
