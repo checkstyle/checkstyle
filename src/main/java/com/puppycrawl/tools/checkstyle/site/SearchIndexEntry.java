@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents a single entry in the client-side search index.
  *
@@ -28,9 +30,12 @@ package com.puppycrawl.tools.checkstyle.site;
  * @param type document type
  * @param description short description
  * @param keywords comma-separated keywords
+ * @param since the version this module/property was introduced (can be empty)
+ * @param weight ranking weight for search results
  */
 public record SearchIndexEntry(String title, String url, String category,
-                            String type, String description, String keywords) {
+                            String type, String description, String keywords,
+                            String since, int weight) {
 
     /** String literal for comma. */
     private static final String COMMA = ",";
@@ -62,6 +67,8 @@ public record SearchIndexEntry(String title, String url, String category,
             + "\"category\":" + jsonString(category) + COMMA
             + "\"type\":" + jsonString(type) + COMMA
             + "\"description\":" + jsonString(description) + COMMA
+            + "\"since\":" + jsonString(since) + COMMA
+            + "\"weight\":" + weight + COMMA
             + "\"keywords\":" + jsonString(keywords)
             + "}";
     }
@@ -72,7 +79,7 @@ public record SearchIndexEntry(String title, String url, String category,
      * @param value the raw string to encode
      * @return JSON-safe quoted string, or {@code ""} if value is null
      */
-    private static String jsonString(String value) {
+    private static String jsonString(@Nullable String value) {
         String result = "\"\"";
         if (value != null) {
             final int length = value.length();
