@@ -36,7 +36,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * OpenJDK Style</a>.
  * Declaration annotations must either reside entirely on a single line or
  * have each annotation placed on its own separate line. Annotations should
- * not share a line with the target declaration, except for single-line methods and fields.
+ * not share a line with the target declaration, except for single-line methods, fields,
+ * classes, annotation definitions, and constructors.
  * </div>
  *
  * <p>
@@ -108,7 +109,7 @@ public class OpenjdkAnnotationLocationCheck extends AbstractCheck {
                 log(startOfTargetNode, MSG_KEY_ANNOTATION_ALONE_OR_SAME, getTargetName(ast));
             }
             if (isAnyOnTargetLine(annotationList, startOfTargetNode)
-                    && !isSingleLineMethodOrField(ast)) {
+                    && !isSingleLineTarget(startOfTargetNode, ast)) {
                 log(startOfTargetNode, MSG_KEY_ANNOTATION_ON_TARGET_LINE, getTargetName(ast));
             }
         }
@@ -225,24 +226,27 @@ public class OpenjdkAnnotationLocationCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a method or field is single line or not.
+     * Checks whether a target that permits same-line annotations is single line or not.
      *
-     * @param targetNode ast of target node
-     * @return true if the method or field is single line.
+     * @param startOfTargetNode first node of the target after annotations.
+     * @param targetNode ast of target node.
+     * @return true if the target is single line.
      */
-    private static boolean isSingleLineMethodOrField(DetailAST targetNode) {
+    private static boolean isSingleLineTarget(DetailAST startOfTargetNode,
+            DetailAST targetNode) {
         boolean result = false;
-        if (targetNode.getType() == TokenTypes.METHOD_DEF
-                || targetNode.getType() == TokenTypes.ANNOTATION_FIELD_DEF
-                || targetNode.getType() == TokenTypes.VARIABLE_DEF) {
-            final DetailAST lastToken = targetNode.getLastChild();
-            if (lastToken.getType() == TokenTypes.SLIST) {
-                final DetailAST rightCurly = lastToken.getLastChild();
-                result = TokenUtil.areOnSameLine(targetNode, rightCurly);
+        if (TokenUtil.isOfType(targetNode,
+                TokenTypes.METHOD_DEF,
+                TokenTypes.ANNOTATION_FIELD_DEF,
+                TokenTypes.VARIABLE_DEF,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.CTOR_DEF)) {
+            DetailAST lastToken = targetNode;
+            while (lastToken.hasChildren()) {
+                lastToken = lastToken.getLastChild();
             }
-            else {
-                result = TokenUtil.areOnSameLine(targetNode, lastToken);
-            }
+            result = TokenUtil.areOnSameLine(startOfTargetNode, lastToken);
         }
 
         return result;

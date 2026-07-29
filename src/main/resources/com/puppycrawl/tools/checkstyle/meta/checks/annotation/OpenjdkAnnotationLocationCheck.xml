@@ -10,7 +10,8 @@
  OpenJDK Style&lt;/a&gt;.
  Declaration annotations must either reside entirely on a single line or
  have each annotation placed on its own separate line. Annotations should
- not share a line with the target declaration, except for single-line methods and fields.
+ not share a line with the target declaration, except for single-line methods, fields,
+ classes, annotation definitions, and constructors.
  &lt;/div&gt;
 
  &lt;p&gt;

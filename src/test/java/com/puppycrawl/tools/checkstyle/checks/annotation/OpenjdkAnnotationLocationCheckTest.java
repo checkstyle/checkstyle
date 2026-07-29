@@ -77,9 +77,7 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
                     "InputOpenjdkAnnotationLocation"),
             "16:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME,
                     "InputOpenjdkAnnotationLocation"),
-            "22:25: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "valueBad"),
-            "42:25: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "valueBadTwo"),
-            "42:25: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "valueBadTwo"),
+            "41:25: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "valueBadTwo"),
         };
 
         verifyWithInlineConfigParser(
@@ -91,10 +89,9 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "method4"),
             "44:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "TestClassBad"),
-            "49:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "a"),
             "49:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "a"),
-            "65:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "e"),
-            "69:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+            "64:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "e"),
+            "68:21: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
                     "methodNotSingleLineBad"),
         };
 
@@ -121,7 +118,6 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "method"),
             "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "badMethod"),
-            "36:29: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "Temp"),
         };
 
         verifyWithInlineConfigParser(
@@ -131,9 +127,8 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
     @Test
     public void testAnnotationCompact() throws Exception {
         final String[] expected = {
-            "22:29: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "badField6"),
-            "32:13: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "badField7"),
-            "53:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "helperMethodThree"),
+            "31:13: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "badField7"),
+            "52:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "helperMethodThree"),
         };
 
         verifyWithInlineConfigParser(
@@ -150,6 +145,19 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
 
         verifyWithInlineConfigParser(
                 getPath("InputOpenjdkAnnotationLocation5.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineTypesAndConstructor() throws Exception {
+        final String[] expected = {
+            "18:46: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "MultilineC"),
+            "25:48: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "MultilineRat"),
+            "37:38: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "GenericMethods2"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOpenjdkAnnotationLocation6.java"), expected);
     }
 
     @Test
