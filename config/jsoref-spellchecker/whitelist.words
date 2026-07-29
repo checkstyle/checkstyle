@@ -630,6 +630,8 @@ interfacememberimpliedmodifier
 interfacetypeparametername
 interp
 invalidjavadocposition
+invalidpackagebeforemodule
+invalidtypeaftermodule
 ioe
 ioffset
 IPonr
