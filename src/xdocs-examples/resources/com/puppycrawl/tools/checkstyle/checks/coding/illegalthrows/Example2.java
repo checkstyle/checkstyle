@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   void f1() throws RuntimeException {}
@@ -24,4 +24,4 @@ public class Example2 {
     return str;
   }
 }
-// xdoc section -- end
+// xdoc section - end

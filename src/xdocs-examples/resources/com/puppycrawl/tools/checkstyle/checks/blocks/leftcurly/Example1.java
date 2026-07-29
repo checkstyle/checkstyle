@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1
 { // violation ''{' at column 1 should be on the previous line.'
   private interface TestInterface
@@ -25,4 +25,4 @@ class Example1
     GREEN;
   }
 }
-// xdoc section -- end
+// xdoc section - end

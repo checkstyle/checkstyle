@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
 // violation below 'Disallowed import - com.google.common.io.Files'
 import com.google.common.io.Files;
@@ -25,4 +25,4 @@ import java.util.Map;
 // violation above 'Disallowed import - java.util.Map'
 
 public class UseCase6 {}
-// xdoc section -- end
+// xdoc section - end

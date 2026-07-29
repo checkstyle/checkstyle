@@ -9,7 +9,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
 
   // ok, default max is 150 lines
@@ -53,4 +53,4 @@ public class Example4 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

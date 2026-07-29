@@ -8,7 +8,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-// xdoc section -- start
+// xdoc section - start
 class Example9 {
   void testMethod1() {
 
@@ -41,4 +41,4 @@ class Example9 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-// xdoc section -- end
+// xdoc section - end

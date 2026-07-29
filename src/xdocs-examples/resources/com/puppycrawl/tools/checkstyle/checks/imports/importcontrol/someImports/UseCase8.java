@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
 
 import javax.swing.Action;
@@ -23,4 +23,4 @@ import java.util.stream.Stream;
 import sun.misc.Signal;   // violation 'Disallowed import - sun.misc.Signal'
 
 public class UseCase8 {}
-// xdoc section -- end
+// xdoc section - end

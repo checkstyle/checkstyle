@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3
 {
   public static void main(String ... args)
@@ -27,4 +27,4 @@ public class Example3
     // 1(^) + 1(||) + 1(^) + 1(||) = 4, & and | are ignored here
   }
 }
-// xdoc section -- end
+// xdoc section - end

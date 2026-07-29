@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
-// xdoc section -- start
+// xdoc section - start
 // violation 6 lines below '<p> tag should be preceded with an empty line'
 // violation 7 lines below 'tag should be placed immediately before the first word'
 /**
@@ -67,4 +67,4 @@ public class Example2 {
    */
   void foo3() {}
 }
-// xdoc section -- end
+// xdoc section - end

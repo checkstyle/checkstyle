@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   private int a;
 
@@ -29,4 +29,4 @@ public class Example2 {
     CONSTANT
   }
 }
-// xdoc section -- end
+// xdoc section - end

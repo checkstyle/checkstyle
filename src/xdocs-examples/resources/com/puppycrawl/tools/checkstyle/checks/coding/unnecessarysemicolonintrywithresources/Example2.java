@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PipedReader;
 import java.io.Reader;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   void method() throws IOException {
     try (Reader r1 = new PipedReader();) {} // violation 'Unnecessary semicolon'
@@ -26,4 +26,4 @@ class Example2 {
     ) {}
   }
 }
-// xdoc section -- end
+// xdoc section - end

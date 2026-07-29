@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.noenumtrailingcomma;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   enum Foo1 {
     FOO,
@@ -38,4 +38,4 @@ class Example1 {
   enum Foo9 { FOO, BAR; }
   enum Foo10 { FOO, BAR }
 }
-// xdoc section -- end
+// xdoc section - end

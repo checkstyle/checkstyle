@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
 
   public int a;
@@ -31,4 +31,4 @@ public class Example3 {
 
   private String name;  // violation 'Instance variable definition in wrong order.'
 }
-// xdoc section -- end
+// xdoc section - end

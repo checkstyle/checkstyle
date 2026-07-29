@@ -14,7 +14,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
 public class Example1 {
@@ -26,4 +26,4 @@ public class Example1 {
   public void MyMethodA() {}
   private int field = 177;
 }
-// xdoc section -- end
+// xdoc section - end

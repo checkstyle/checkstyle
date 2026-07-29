@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 extends ExternalService4 {
 
   @JsonCreator
@@ -34,4 +34,4 @@ class ExternalService4 {
                           String e, String f, String g, String h) {}
 
 }
-// xdoc section -- end
+// xdoc section - end

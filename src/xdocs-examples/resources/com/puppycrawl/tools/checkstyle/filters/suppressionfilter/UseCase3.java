@@ -14,7 +14,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
-// xdoc section -- start
+// xdoc section - start
 public class UseCase3 {
 
   public int log;
@@ -32,4 +32,4 @@ class Inner {
   public static final String line = "This is a line";
   // violation above 'Name 'line' must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'File length is 19 lines (max allowed is 5)'
 public class Example2 {
   public void myTest() {
@@ -16,4 +16,4 @@ public class Example2 {
     String test = "Some content";
   }
 }
-// xdoc section -- end
+// xdoc section - end

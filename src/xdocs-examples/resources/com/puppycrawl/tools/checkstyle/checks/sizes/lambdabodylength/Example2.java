@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   Runnable r = () -> { // ok, length is 5
     System.out.println(2);
@@ -45,4 +45,4 @@ class Example2 {
                 .concat("10")
                 .concat("11"); // line 11
 }
-// xdoc section -- end
+// xdoc section - end

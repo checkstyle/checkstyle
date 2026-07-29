@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   void foo() throws IOException {
     int a, b;
@@ -54,4 +54,4 @@ public class Example1 {
     return val = true; // violation 'Inner assignments should be avoided'
   }
 }
-// xdoc section -- end
+// xdoc section - end

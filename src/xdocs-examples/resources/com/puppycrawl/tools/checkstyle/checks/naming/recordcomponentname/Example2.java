@@ -10,7 +10,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   record Rec1(int other) {}
 
@@ -18,4 +18,4 @@ class Example2 {
 
   record Rec3(double myNumber) {} // violation, Name must match '^[a-z]+$'
 }
-// xdoc section -- end
+// xdoc section - end

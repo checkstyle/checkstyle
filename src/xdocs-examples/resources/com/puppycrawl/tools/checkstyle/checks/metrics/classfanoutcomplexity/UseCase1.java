@@ -20,7 +20,7 @@ import java.util.Date;
 
 // Fan-out count: Time, Place, BufferedReader, File
 // Total = 4
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
   Set set = new HashSet();   // ok, Set and HashSet are ignored
   Map map = new HashMap();   // ok, Map and HashMap are ignored
@@ -35,4 +35,4 @@ class UseCase1 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
     var result = "result";   // ok, var is ignored
   }
 }
-// xdoc section -- end
+// xdoc section - end

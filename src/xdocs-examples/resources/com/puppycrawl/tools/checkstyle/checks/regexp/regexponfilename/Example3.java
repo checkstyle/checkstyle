@@ -11,12 +11,12 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
 /*
-// xdoc section -- start
+// xdoc section - start
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
 .../TestExample3.md  // violation 'No *.md files other than README.md'
 .../TestExample4.xml
-// xdoc section -- end
+// xdoc section - end
 */
 class Example3{}

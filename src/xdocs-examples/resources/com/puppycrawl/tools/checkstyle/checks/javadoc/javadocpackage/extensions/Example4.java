@@ -6,7 +6,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.extensions;
-// xdoc section -- start
+// xdoc section - start
 
 public class Example4 { } // ok, .java file is not checked
-// xdoc section -- end
+// xdoc section - end

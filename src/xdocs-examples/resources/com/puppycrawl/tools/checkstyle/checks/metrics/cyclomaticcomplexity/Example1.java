@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   int a, b, c, d, e, n;
 
@@ -64,4 +64,4 @@ class Example1 {
   }
   private void fun1() {}
 }
-// xdoc section -- end
+// xdoc section - end

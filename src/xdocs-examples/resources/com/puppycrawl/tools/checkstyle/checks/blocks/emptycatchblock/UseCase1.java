@@ -9,7 +9,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
   private void exampleMethod1() {
     try {
@@ -56,4 +56,4 @@ public class UseCase1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

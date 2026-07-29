@@ -12,7 +12,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
-// xdoc section -- start
+// xdoc section - start
 public class UseCase4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // @cs-: MagicNumber for +3 lines
@@ -21,4 +21,4 @@ public class UseCase4 {
   int d = 45; // filtered violation ''45' is a magic number'
   int e = 46; // violation "'46' is a magic number."
 }
-// xdoc section -- end
+// xdoc section - end

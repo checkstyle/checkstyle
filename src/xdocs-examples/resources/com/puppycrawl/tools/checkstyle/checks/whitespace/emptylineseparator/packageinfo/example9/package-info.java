@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -16,4 +16,4 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
 
 // import is present so PACKAGE_DEF is not the last token
 import java.lang.System;
-// xdoc section -- end
+// xdoc section - end

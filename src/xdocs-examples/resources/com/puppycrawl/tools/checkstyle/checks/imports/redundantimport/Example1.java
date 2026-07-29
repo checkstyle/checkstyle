@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.redundantimport;
 
-// xdoc section -- start
+// xdoc section - start
 import static com.puppycrawl.tools.checkstyle.checks.imports.redundantimport.Example1.*; // ok, static import
 import static java.lang.Integer.MAX_VALUE; // ok, static import
 
@@ -19,5 +19,5 @@ import java.util.Scanner;
 import java.util.Scanner; // violation 'Duplicate import to line 18 - java.util.Scanner'
 
 public class Example1{ }
-// xdoc section -- end
+// xdoc section - end
 

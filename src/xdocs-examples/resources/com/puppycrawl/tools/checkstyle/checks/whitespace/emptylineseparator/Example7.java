@@ -10,7 +10,7 @@
 
 
 */
-// xdoc section -- start
+// xdoc section - start
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -33,4 +33,4 @@ class Example7 { // violation above ''import' should be separated from previous 
     int var5 = 5;
   }
 }
-// xdoc section -- end
+// xdoc section - end

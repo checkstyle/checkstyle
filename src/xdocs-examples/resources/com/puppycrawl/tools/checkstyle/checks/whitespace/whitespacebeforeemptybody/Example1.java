@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacebeforeemptybody;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
 
   void method(){}  // violation ''{' is not preceded with whitespace'
@@ -27,4 +27,4 @@ class Example1 {
   class Internal{} // violation ''{' is not preceded with whitespace'
 
 }
-// xdoc section -- end
+// xdoc section - end

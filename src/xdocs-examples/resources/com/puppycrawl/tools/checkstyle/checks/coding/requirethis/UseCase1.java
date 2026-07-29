@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   int field1,field2;
 
@@ -23,4 +23,4 @@ class UseCase1 {
     field2 *= field1;
   }
 }
-// xdoc section -- end
+// xdoc section - end

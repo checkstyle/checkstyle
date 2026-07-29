@@ -16,7 +16,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase2 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
@@ -25,4 +25,4 @@ class UseCase2 {
   // violation below 'no more than '1' consecutive capital letters'
   static final int MAX_ALLOWED = 4;
 }
-// xdoc section -- end
+// xdoc section - end

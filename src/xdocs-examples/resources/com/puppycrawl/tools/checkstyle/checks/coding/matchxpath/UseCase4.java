@@ -12,7 +12,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase4 {
   public UseCase4() { }
   // violation below 'Classes with more than 1 constructor are not allowed'
@@ -21,4 +21,4 @@ public class UseCase4 {
     public Inner() { }
   }
 }
-// xdoc section -- end
+// xdoc section - end

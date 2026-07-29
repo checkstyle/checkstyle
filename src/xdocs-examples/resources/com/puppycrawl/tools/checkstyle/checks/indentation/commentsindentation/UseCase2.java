@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   public void foo1() {
     // comment
@@ -21,4 +21,4 @@ public class UseCase2 {
  // It is not okay
   }
 }
-// xdoc section -- end
+// xdoc section - end

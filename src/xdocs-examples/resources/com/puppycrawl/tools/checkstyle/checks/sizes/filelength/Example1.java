@@ -6,7 +6,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example1 {
   public void myTest() {
@@ -14,4 +14,4 @@ public class Example1 {
     String test = "Some content";
   }
 }
-// xdoc section -- end
+// xdoc section - end

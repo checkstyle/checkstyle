@@ -8,7 +8,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 // violation 6 lines above 'Line matches the illegal pattern'
-// xdoc section -- start
+// xdoc section - start
 /**
  * This file is copyrighted under CC.
  */ // violation above 'Line matches the illegal pattern'
@@ -25,4 +25,4 @@ public class Example3 {
 
   void doSomething() {}
 }
-// xdoc section -- end
+// xdoc section - end

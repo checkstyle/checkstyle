@@ -25,7 +25,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase4 {
   @Ignore // @cs-: ignore (test has not been implemented yet)
   @Test
@@ -36,4 +36,4 @@ public class UseCase4 {
     System.out.println("Debug info."); // @cs-: systemout (should not fail)
   }
 }
-// xdoc section -- end
+// xdoc section - end

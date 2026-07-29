@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typebodypadding;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below 'Blank line required after the opening brace of type definition.'
 class Example4 {
   int x;
@@ -56,4 +56,4 @@ class LocalParent4 {
 enum MyEnum4 {
   VALUE;
 }
-// xdoc section -- end
+// xdoc section - end

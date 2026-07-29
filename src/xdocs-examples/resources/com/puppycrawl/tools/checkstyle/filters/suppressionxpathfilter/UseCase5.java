@@ -14,7 +14,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 import javax.annotation.processing.Generated;
 
-// xdoc section -- start
+// xdoc section - start
 // filtered violation below "'{' at column 23 should be on a new line."
 public class UseCase5 {
   int age = 23;
@@ -52,4 +52,4 @@ public class UseCase5 {
   @Generated("second")
   public void Test2() {}
 }
-// xdoc section -- end
+// xdoc section - end

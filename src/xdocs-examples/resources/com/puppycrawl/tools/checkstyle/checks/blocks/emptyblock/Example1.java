@@ -9,7 +9,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   private void emptyLoop() {
     for (int i = 0; i < 10; i++) { // violation 'Must have at least one statement'
@@ -50,4 +50,4 @@ public class Example1 {
 
   void someMethod() { }
 }
-// xdoc section -- end
+// xdoc section - end

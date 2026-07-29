@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example7 {
   public Example7() {}
   public void testMethod1() {}
@@ -33,4 +33,4 @@ public class Example7 {
     System.out.println("line 3");
   }
 }
-// xdoc section -- end
+// xdoc section - end

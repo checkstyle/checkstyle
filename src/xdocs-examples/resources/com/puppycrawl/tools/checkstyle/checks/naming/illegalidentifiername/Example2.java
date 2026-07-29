@@ -12,7 +12,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   Integer var = 4; // violation 'Name 'var' must match pattern'
   int record = 15; // violation 'Name 'record' must match pattern'
@@ -38,4 +38,4 @@ public class Example2 {
   Object transitiveObject = "transitiveObject";
   // ok above, word 'transitive' is not used as an identifier by itself
 }
-// xdoc section -- end
+// xdoc section - end

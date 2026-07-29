@@ -7,9 +7,9 @@
 package com.puppycrawl.tools.checkstyle.checks.translation;
 
 /*
-// xdoc section -- start
+// xdoc section - start
 messages_de.properties
 // violation above 'Properties file 'messages.properties' missing.'
-// xdoc section -- end
+// xdoc section - end
 */
 public class Example4 {}

@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
   abstract class AbstractFirst {} // violation 'must match pattern'
   abstract class Second {} // violation 'must match pattern'
@@ -22,4 +22,4 @@ class Example4 {
   // violation below 'must be declared as 'abstract''
   class GeneratorSixth {}
 }
-// xdoc section -- end
+// xdoc section - end

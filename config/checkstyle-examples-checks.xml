@@ -47,17 +47,17 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="xdocStartComment"/>
-    <property name="format" value="^\s*// xdoc section \-\- start$"/>
+    <property name="format" value="^\s*// xdoc section \- start$"/>
     <property name="message"
-              value="Missing comment '// xdoc section -- start'. Should be alone on a line"/>
+              value="Missing comment '// xdoc section - start'. Should be alone on a line"/>
     <property name="minimum" value="1"/>
     <property name="maximum" value="1"/>
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="xdocEndComment"/>
-    <property name="format" value="^\s*// xdoc section \-\- end$"/>
+    <property name="format" value="^\s*// xdoc section \- end$"/>
     <property name="message"
-              value="Missing comment '// xdoc section -- end'. Should be alone on a line"/>
+              value="Missing comment '// xdoc section - end'. Should be alone on a line"/>
     <property name="minimum" value="1"/>
     <property name="maximum" value="1"/>
   </module>

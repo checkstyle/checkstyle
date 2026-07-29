@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 import java.util.HashSet;
 import java.util.Set;
 
-// xdoc section -- start
+// xdoc section - start
 class Example8 extends SuperClass { // ok, camel case
   int CURRENT_COUNTER;  // violation 'no more than '2' consecutive capital letters'
 
@@ -49,4 +49,4 @@ class Example8 extends SuperClass { // ok, camel case
 
   static void incrementGLOBAL() {}  // ok, GLOBAL is allowed
 }
-// xdoc section -- end
+// xdoc section - end

@@ -9,7 +9,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedcatchparametershouldbeunnamed;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   void test() {
@@ -37,4 +37,4 @@ public class Example1 {
 
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -15,7 +15,7 @@ import org.junit.Before;
 
 import javax.annotation.Nullable;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 
   // violation below "should be on the same line with its target."
@@ -47,4 +47,4 @@ class Example2 {
   }
 
 }
-// xdoc section -- end
+// xdoc section - end

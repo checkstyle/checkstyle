@@ -13,7 +13,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
   public void testMethod1()
   { // filtered violation ''{' at column 3 should be on the previous line.'
@@ -23,4 +23,4 @@ public class UseCase1 {
   { // violation ''{' at column 3 should be on the previous line.'
   }
 }
-// xdoc section -- end
+// xdoc section - end

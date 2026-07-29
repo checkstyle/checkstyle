@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-// xdoc section -- start
+// xdoc section - start
 class Test1 {
   private String s;
   class InnerTest1 {}
@@ -27,4 +27,4 @@ class Example1 {
   public void test() {}
   class InnerTest1 {}
 }
-// xdoc section -- end
+// xdoc section - end

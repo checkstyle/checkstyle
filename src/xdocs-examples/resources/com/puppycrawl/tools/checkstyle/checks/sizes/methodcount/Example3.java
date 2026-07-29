@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 { // violation 'Number of public methods is 3 (max allowed is 2)'
 
   public void outerMethod1(int i) {}
@@ -31,4 +31,4 @@ class Example3 { // violation 'Number of public methods is 3 (max allowed is 2)'
     public void innerMethod2() {} // NOT counted towards Example
   }
 }
-// xdoc section -- end
+// xdoc section - end

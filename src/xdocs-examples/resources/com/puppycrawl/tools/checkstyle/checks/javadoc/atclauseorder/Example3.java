@@ -14,7 +14,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
-// xdoc section -- start
+// xdoc section - start
 
 /**
 * Some javadoc.
@@ -56,4 +56,4 @@ public class Example3 {
   }
 
 }
-// xdoc section -- end
+// xdoc section - end

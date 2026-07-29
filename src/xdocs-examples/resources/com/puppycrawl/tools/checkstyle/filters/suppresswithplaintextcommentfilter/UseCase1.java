@@ -16,7 +16,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
 
   static final String LOCATION_CSV_SAMPLE = """
@@ -31,4 +31,4 @@ public class UseCase1 {
   // violation below 'Line is longer than 100 characters (found 183).'
   static final String SINGLE_LINE_SAMPLE = "locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude";
 }
-// xdoc section -- end
+// xdoc section - end

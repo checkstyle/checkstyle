@@ -18,7 +18,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase4 {
   // filtered violation below 'Name 'TestMethod1' must match pattern'
   public void TestMethod1() {
@@ -32,4 +32,4 @@ public class UseCase4 {
     final int num = 10;
   }
 }
-// xdoc section -- end
+// xdoc section - end

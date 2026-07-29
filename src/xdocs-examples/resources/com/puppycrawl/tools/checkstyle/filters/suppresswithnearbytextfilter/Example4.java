@@ -14,7 +14,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // SUPPRESS CHECKSTYLE because I want to
@@ -32,4 +32,4 @@ public class Example4 {
    */
   public static final boolean SOME_FLAG = false;
 }
-// xdoc section -- end
+// xdoc section - end

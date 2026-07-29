@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   public void method() {
@@ -54,4 +54,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

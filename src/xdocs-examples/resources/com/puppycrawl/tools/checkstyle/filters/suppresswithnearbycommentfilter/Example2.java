@@ -11,7 +11,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   // violation below 'must match pattern'
   public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
@@ -27,4 +27,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -16,7 +16,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
+// xdoc section - start
 // filtered violation below 'Name 'UseCase6' must match pattern'
 abstract class UseCase6 {
   public void MyMethod() {}
@@ -28,4 +28,4 @@ abstract class AnotherClass {
   public void MyMethod() {}
   // violation above 'Name 'MyMethod' must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

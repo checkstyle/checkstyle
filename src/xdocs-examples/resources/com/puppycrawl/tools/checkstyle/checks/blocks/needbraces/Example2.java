@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   String obj = new String();
   String value = new String();
@@ -47,4 +47,4 @@ class Example2 {
     return true;
   }
 }
-// xdoc section -- end
+// xdoc section - end

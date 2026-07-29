@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-// xdoc section -- start
+// xdoc section - start
 @SuppressWarnings("unchecked") // ok as element style set to 'ignore'
 @Deprecated // ok as 'closingParens' is set to 'ignore'
 // violation below 'Annotation array values must contain trailing comma'
@@ -28,4 +28,4 @@ public class Example4 {
 class TestStyle4 {
 
 }
-// xdoc section -- end
+// xdoc section - end

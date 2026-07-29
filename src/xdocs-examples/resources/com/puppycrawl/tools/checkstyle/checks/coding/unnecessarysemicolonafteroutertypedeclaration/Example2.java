@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonafteroutertypedeclaration;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   class Nested {
 
@@ -21,4 +21,4 @@ class Example2 {
 interface ExampleTwo {
 
 };
-// xdoc section -- end
+// xdoc section - end

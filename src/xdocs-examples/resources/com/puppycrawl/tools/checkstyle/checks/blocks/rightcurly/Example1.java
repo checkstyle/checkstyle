@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public void test() {
     boolean f = false;
@@ -51,4 +51,4 @@ public class Example1 {
       default: x = 0; }
   }
 }
-// xdoc section -- end
+// xdoc section - end

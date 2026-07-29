@@ -49,10 +49,10 @@ public class ExampleMacro extends AbstractMacro {
     private static final String XML_CONFIG_END = "*/";
 
     /** Starting delimiter for code snippets. */
-    private static final String CODE_SNIPPET_START = "// xdoc section -- start";
+    private static final String CODE_SNIPPET_START = "// xdoc section - start";
 
     /** Ending delimiter for code snippets. */
-    private static final String CODE_SNIPPET_END = "// xdoc section -- end";
+    private static final String CODE_SNIPPET_END = "// xdoc section - end";
 
     /** The pattern of xml code blocks. */
     private static final Pattern XML_PATTERN = Pattern.compile(

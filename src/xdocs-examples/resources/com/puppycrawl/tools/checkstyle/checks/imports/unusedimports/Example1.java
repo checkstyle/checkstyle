@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-// xdoc section -- start
+// xdoc section - start
 // limitation as it match field name in code
 import java.awt.Component;
 
@@ -36,4 +36,4 @@ class Example1{
   int[] array = copyOf(arr , 1);
   Function <String, Integer> stringToInteger = Integer::parseInt;
 }
-// xdoc section -- end
+// xdoc section - end

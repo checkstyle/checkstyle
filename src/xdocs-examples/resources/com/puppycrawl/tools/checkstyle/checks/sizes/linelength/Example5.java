@@ -7,7 +7,7 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 // violation above 'Line is longer than 60 characters'
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -34,4 +34,4 @@ class Example5 {
         """;  // violation above 'Line is longer'
   }
 }
-// xdoc section -- end
+// xdoc section - end

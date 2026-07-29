@@ -10,7 +10,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-// xdoc section -- start
+// xdoc section - start
 
 public class Example1 {
   public void myTest() {
@@ -29,4 +29,4 @@ public class Example1 {
     long num6 = 010L;
   }
 }
-// xdoc section -- end
+// xdoc section - end

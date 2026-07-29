@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
   String a = "StringContents"; // violation "StringContents" occurs twice
   String a1 = "unchecked"; // // violation "unchecked" occurs twice
@@ -22,4 +22,4 @@ public class Example4 {
     String a5 = ", " + ", " + ", "; // violation ", " occurs three times
   }
 }
-// xdoc section -- end
+// xdoc section - end

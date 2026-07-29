@@ -12,7 +12,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
-// xdoc section -- start
+// xdoc section - start
 import java.util.Arrays;
 
 class UseCase1 {
@@ -26,4 +26,4 @@ class UseCase1 {
       ::compareTo); // ok, because it is on a new line
   }
 }
-// xdoc section -- end
+// xdoc section - end

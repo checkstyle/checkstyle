@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.multilinecommentleadingasteriskpresence;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   /*
@@ -30,4 +30,4 @@ public class Example1 {
   void method() {}
 
 }
-// xdoc section -- end
+// xdoc section - end

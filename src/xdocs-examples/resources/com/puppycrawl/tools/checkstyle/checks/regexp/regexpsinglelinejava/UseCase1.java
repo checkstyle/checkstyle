@@ -17,7 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   // violation below 'private member found'
   private void testMethod1() {
@@ -48,4 +48,4 @@ class UseCase1 {
     logger.info("fifth");
   }
 }
-// xdoc section -- end
+// xdoc section - end

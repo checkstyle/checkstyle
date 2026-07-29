@@ -14,7 +14,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-// xdoc section -- start
+// xdoc section - start
 
 /**
  * Some class
@@ -32,4 +32,4 @@ public class Example5 {
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
 }
-// xdoc section -- end
+// xdoc section - end

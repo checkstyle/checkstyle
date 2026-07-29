@@ -7,7 +7,7 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example5 {
@@ -39,4 +39,4 @@ class Example5 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

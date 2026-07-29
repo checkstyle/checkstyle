@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   private void exampleMethod1() {
     try {
@@ -42,4 +42,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

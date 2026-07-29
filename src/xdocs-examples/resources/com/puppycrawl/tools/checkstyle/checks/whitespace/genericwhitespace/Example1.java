@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 
 import java.util.*;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   List<String> l;
   public <T> void foo() {}
@@ -19,4 +19,4 @@ class Example1 {
   HashSet<Integer> set;
   record License<T>() {}
 }
-// xdoc section -- end
+// xdoc section - end

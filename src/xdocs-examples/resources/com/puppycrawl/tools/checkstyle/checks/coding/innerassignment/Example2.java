@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   public void test1(int mode) {
     int x = 0;
@@ -44,4 +44,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

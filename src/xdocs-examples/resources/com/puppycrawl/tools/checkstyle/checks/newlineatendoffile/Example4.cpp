@@ -6,8 +6,8 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 int main() { // ⤶
     return 0;// ⤶
 } // violation first line 'File does not end with a newline.'
-// xdoc section -- end
+// xdoc section - end

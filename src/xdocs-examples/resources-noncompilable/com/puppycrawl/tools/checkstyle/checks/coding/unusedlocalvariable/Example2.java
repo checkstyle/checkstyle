@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 import java.io.*;
 import java.util.function.Predicate;
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   {
     int k = 12; // violation, assign and update but never use 'k'
@@ -57,4 +57,4 @@ public class Example2 {
     obj.test("Test");
   }
 }
-// xdoc section -- end
+// xdoc section - end

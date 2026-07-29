@@ -10,7 +10,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
-// xdoc section -- start
+// xdoc section - start
 // (c) MyCompany
 // (c) MyCompany
 // This code is copyrighted.
@@ -22,4 +22,4 @@ public class Example3 { // violation 2 lines above 'Found duplicate pattern'
     // fix me.
   }
 }
-// xdoc section -- end
+// xdoc section - end

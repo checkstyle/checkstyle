@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   class Boolean {
     boolean a;
@@ -28,4 +28,4 @@ class Example1 {
     Integer f = Integer.valueOf(b);
   }
 }
-// xdoc section -- end
+// xdoc section - end

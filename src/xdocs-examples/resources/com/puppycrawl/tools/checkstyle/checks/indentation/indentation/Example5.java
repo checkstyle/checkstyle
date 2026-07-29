@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
     int a;
     boolean x, y;
@@ -56,4 +56,4 @@ class Example5 {
     {
     }
 }
-// xdoc section -- end
+// xdoc section - end

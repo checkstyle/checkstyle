@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.nonemptyatclausedescription;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 
   /**
@@ -30,4 +30,4 @@ class Example2 {
     // @since ignored as not mentioned in javadocTokens
   }
 }
-// xdoc section -- end
+// xdoc section - end

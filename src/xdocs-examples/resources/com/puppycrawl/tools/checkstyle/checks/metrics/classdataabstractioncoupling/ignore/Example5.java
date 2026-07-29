@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example5 {
   private Set<Object> set = new HashSet<>();         // ok, ignored
@@ -49,4 +49,4 @@ public class Example5 {
   private BufferedReader bufferedReader =
       new BufferedReader(pipedReader); // ok, ignored
 }
-// xdoc section -- end
+// xdoc section - end

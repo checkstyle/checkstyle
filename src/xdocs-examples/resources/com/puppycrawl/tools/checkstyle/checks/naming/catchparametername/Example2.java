@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   public void myTest() {
     try {
@@ -33,4 +33,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanreturn;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
 
   boolean cond;
@@ -46,4 +46,4 @@ class Example1 {
     return cond ? a: b;
   }
 }
-// xdoc section -- end
+// xdoc section - end

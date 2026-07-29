@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below "Class Data Abstraction Coupling is 10 (max allowed is 9)."
 public class Example2 {
   private Set<Object> set = new HashSet<>();         // ok, ignored
@@ -46,4 +46,4 @@ public class Example2 {
   private BufferedReader bufferedReader =
           new BufferedReader(pipedReader);
 }
-// xdoc section -- end
+// xdoc section - end

@@ -5,9 +5,9 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 /**
  * Provides API classes
  */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.javadoc;
-// xdoc section -- end
+// xdoc section - end

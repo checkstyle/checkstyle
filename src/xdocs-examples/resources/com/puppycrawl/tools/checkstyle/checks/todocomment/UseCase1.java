@@ -13,7 +13,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
-// xdoc section -- start
+// xdoc section - start
 /** // violation 'Comment uses box-like repetitive character pattern'
  =========================================
  Box comment with equals
@@ -50,4 +50,4 @@ public class UseCase1 {
     int c = 6;
   }
 }
-// xdoc section -- end
+// xdoc section - end

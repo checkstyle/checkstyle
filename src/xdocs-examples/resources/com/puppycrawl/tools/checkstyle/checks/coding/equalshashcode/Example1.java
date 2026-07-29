@@ -6,7 +6,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   public int hashCode() { // violation, no valid 'equals'
     return 0;
@@ -49,4 +49,4 @@ class ExampleNoValidEquals {
   }
   public static boolean equals(Object o, Object o2) { return false; }
 }
-// xdoc section -- end
+// xdoc section - end

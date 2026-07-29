@@ -12,8 +12,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
+// xdoc section - start
 // Copyright (C) 2004 MyCompany
 // All rights reserved
 public class UseCase7 {}
-// xdoc section -- end
+// xdoc section - end

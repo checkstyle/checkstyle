@@ -13,7 +13,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.separator;
@@ -27,6 +27,6 @@ import org.apache.commons.io.FileUtils; // violation, should be in THIRD PARTY P
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation 'wrong order'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation 'wrong order'
-// xdoc section -- end
+// xdoc section - end
 public class Example10 {
 }

@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   void example() {
     Lists .charactersOf("foo") // violation ''.' is preceded with whitespace'
@@ -27,4 +27,4 @@ class UseCase1 {
          .forEachRemaining(System.out::print);
   }
 }
-// xdoc section -- end
+// xdoc section - end
