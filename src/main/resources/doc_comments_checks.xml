@@ -74,6 +74,7 @@
 
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
+    <module name="MissingDeprecated"/>
 
     <!-- Required Tags --> <!-- @return --> <!-- @throws -->
     <module name="JavadocMethod">
