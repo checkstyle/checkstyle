@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
 
   Example3() {
@@ -24,4 +24,4 @@ class Example3 {
     int sum = a + b;
   }
 }
-// xdoc section -- end
+// xdoc section - end

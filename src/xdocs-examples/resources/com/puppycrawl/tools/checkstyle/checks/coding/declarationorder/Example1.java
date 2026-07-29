@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   public int a;
@@ -29,4 +29,4 @@ public class Example1 {
 
   private String name;     // violation, instance variable declaration in wrong order
 }
-// xdoc section -- end
+// xdoc section - end

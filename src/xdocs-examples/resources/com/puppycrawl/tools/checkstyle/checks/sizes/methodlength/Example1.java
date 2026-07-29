@@ -11,7 +11,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   // violation below 'Method Example1 length is 5 lines (max allowed is 4)'
@@ -55,4 +55,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

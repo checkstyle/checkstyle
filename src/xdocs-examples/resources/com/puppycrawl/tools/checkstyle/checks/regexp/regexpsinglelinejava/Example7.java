@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 // violation 12 lines above 'Line matches the illegal pattern'
-// xdoc section -- start
+// xdoc section - start
 class Example7 {
 
   private void testMethod1() {
@@ -46,4 +46,4 @@ class Example7 {
     logger.info("fifth");
   }
 }
-// xdoc section -- end
+// xdoc section - end

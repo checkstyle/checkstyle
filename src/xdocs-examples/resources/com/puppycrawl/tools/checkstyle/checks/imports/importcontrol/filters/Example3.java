@@ -9,7 +9,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
-// xdoc section -- start
+// xdoc section - start
 import java.awt.Image;     // violation 'Disallowed import - java.awt.Image'
 import java.lang.ref.SoftReference; // ok, specifically allowed by regex expression
 
@@ -19,4 +19,4 @@ import java.util.Date;     // violation 'Disallowed import - java.util.Date'
 import java.util.List;     // violation 'Disallowed import - java.util.List'
 
 public class Example3 {}
-// xdoc section -- end
+// xdoc section - end

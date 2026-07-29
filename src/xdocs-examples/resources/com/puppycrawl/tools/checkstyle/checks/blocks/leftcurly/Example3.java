@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3
 {
   private interface TestInterface
@@ -27,4 +27,4 @@ class Example3
     GREEN;
   }
 }
-// xdoc section -- end
+// xdoc section - end

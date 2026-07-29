@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.arraytrailingcomma;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   int[] numbers = {1, 2, 3}; // violation 'Array should contain trailing comma.'
   boolean[] bools = {
@@ -44,7 +44,7 @@ public class Example2 {
     2
   ,};
 }
-// xdoc section -- end
+// xdoc section - end
 
 
 

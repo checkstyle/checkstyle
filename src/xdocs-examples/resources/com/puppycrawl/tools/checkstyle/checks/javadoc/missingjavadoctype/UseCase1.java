@@ -19,7 +19,7 @@ class MyClass {
     @interface Annotation { }
 }
 
-// xdoc section -- start
+// xdoc section - start
 /** Documented. */
 class UseCase1 {
   /** Javadoc.*/
@@ -31,4 +31,4 @@ class UseCase1 {
 
   private class Class3 { } // violation 'Missing a Javadoc comment'
 }
-// xdoc section -- end
+// xdoc section - end

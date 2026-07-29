@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   public void foo1() {
@@ -37,4 +37,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

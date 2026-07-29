@@ -12,10 +12,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase5 {
   private void foo() { 
     // violation above 'Trailing whitespace'
   }
 }
-// xdoc section -- end
+// xdoc section - end

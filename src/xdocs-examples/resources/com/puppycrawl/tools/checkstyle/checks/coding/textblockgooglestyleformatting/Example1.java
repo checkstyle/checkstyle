@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformatting;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   public String testMethod1() {
@@ -45,4 +45,4 @@ public class Example1 {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -90,8 +90,8 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Path XDOCS_NONCOMPILABLE_ROOT = Path.of(
             "src/xdocs-examples/resources-noncompilable/com/puppycrawl/tools/checkstyle"
     );
-    private static final String XDOC_START_MARKER = "// xdoc section -- start";
-    private static final String XDOC_END_MARKER = "// xdoc section -- end";
+    private static final String XDOC_START_MARKER = "// xdoc section - start";
+    private static final String XDOC_END_MARKER = "// xdoc section - end";
     private static final Pattern BLOCK_COMMENT_PATTERN = Pattern.compile("(?s)/\\*.*?\\*/");
 
     /**

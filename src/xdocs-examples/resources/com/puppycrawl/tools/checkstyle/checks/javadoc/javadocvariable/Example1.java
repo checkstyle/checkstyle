@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   private int a; // violation 'Missing a Javadoc comment'
 
@@ -27,4 +27,4 @@ public class Example1 {
     CONSTANT // violation 'Missing a Javadoc comment'
   }
 }
-// xdoc section -- end
+// xdoc section - end

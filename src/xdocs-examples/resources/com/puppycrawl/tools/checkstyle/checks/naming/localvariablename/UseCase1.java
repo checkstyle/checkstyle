@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 import java.util.ArrayList;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   void myMethod () {
     for(int i = 1; i < 10; i++) {}
@@ -23,6 +23,6 @@ class UseCase1 {
     for (Object O : list) {} // violation 'Name 'O' must match pattern*'
   }
 }
-// xdoc section -- end
+// xdoc section - end
 
 

@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 
 import java.io.InputStream;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   int a = 0; int b = 1;
   int c = 2;int d = 3; // violation 'not followed by whitespace'
@@ -48,4 +48,4 @@ class Example2 {
     };
   }
 }
-// xdoc section -- end
+// xdoc section - end

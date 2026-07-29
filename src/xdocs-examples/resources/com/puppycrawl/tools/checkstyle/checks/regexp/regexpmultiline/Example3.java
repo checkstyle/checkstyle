@@ -8,7 +8,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   void testMethod1() {
     // violation below 'Line matches the illegal pattern'
@@ -41,4 +41,4 @@ class Example3 {
     System.out.println("TEst #5: This is a test string");
   }
 }
-// xdoc section -- end
+// xdoc section - end

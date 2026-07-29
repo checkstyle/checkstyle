@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
   void method0(int v) {}
   void method1(int v1) {}
@@ -29,4 +29,4 @@ class Example4 {
     return true;         // violation above "Parameter name 'V3' must match pattern"
   }
 }
-// xdoc section -- end
+// xdoc section - end

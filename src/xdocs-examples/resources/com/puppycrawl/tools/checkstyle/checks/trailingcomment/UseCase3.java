@@ -16,7 +16,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase3 {
   int a; /* SUPPRESS CHECKSTYLE */
   int b; /* NOPMD */
@@ -24,4 +24,4 @@ public class UseCase3 {
   int d; /* there is violation because of illegal content */
   // violation above 'Don't use trailing comments.'
 }
-// xdoc section -- end
+// xdoc section - end

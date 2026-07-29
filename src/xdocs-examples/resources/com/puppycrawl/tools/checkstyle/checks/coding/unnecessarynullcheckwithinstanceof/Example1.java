@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 import java.util.ArrayList;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   public void methodWithUnnecessaryNullCheck1(Object obj) {
@@ -54,4 +54,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

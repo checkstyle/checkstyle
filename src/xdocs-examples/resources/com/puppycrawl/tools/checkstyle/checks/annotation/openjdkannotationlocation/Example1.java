@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   @Nonnull @Deprecated
   public void foo1() {
@@ -52,4 +52,4 @@ class Example1 {
   }
 
 }
-// xdoc section -- end
+// xdoc section - end

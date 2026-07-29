@@ -11,11 +11,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   // 🌟 Star // violation 'Illegal symbol detected: '🌟''
 
   int value1 = 1;
   String value2 = "Hello 😀";
 }
-// xdoc section -- end
+// xdoc section - end

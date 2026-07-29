@@ -11,11 +11,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase6 {
   private void foo() {
     // fix me.
     // violation above 'Line matches the illegal pattern.'
   }
 }
-// xdoc section -- end
+// xdoc section - end

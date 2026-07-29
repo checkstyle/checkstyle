@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 { // ok, first top-level class
   // methods
 }
@@ -16,4 +16,4 @@ public class Example1 { // ok, first top-level class
 class ViolationExample1 { // violation "has to reside in its own source file."
   // methods
 }
-// xdoc section -- end
+// xdoc section - end

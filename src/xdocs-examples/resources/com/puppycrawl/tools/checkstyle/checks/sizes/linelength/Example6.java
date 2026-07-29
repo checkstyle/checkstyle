@@ -11,7 +11,7 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -38,4 +38,4 @@ class Example6 {
         """;// SUPPRESS CHECKSTYLE LineLength
   }
 }
-// xdoc section -- end
+// xdoc section - end

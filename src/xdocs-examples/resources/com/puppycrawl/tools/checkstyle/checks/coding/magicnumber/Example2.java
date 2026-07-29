@@ -13,7 +13,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-// xdoc section -- start
+// xdoc section - start
 @Annotation(6)
 public class Example2 {
   private int field = 7;
@@ -53,4 +53,4 @@ public class Example2 {
     TestClass(int field) {}
   }
 }
-// xdoc section -- end
+// xdoc section - end

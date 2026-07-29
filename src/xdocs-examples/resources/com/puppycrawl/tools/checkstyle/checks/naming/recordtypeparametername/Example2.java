@@ -10,7 +10,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.recordtypeparametername;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   record Record1<T>() {}
 
@@ -18,4 +18,4 @@ class Example2 {
 
   record Record3<abc>() {} // violation, Name "abc" must match pattern '^[A-Z]$'
 }
-// xdoc section -- end
+// xdoc section - end

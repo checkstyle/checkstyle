@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   native void InvalidExample(); // violation 'Using 'native' is not allowed'
 
@@ -22,4 +22,4 @@ class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

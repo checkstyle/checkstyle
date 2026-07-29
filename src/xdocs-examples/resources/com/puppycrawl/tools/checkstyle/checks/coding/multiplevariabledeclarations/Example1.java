@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.multiplevariabledeclarations;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public void myTest() {
     int mid = 0;
@@ -22,4 +22,4 @@ public class Example1 {
     // violation above 'Each variable declaration must be in its own statement'
   }
 }
-// xdoc section -- end
+// xdoc section - end

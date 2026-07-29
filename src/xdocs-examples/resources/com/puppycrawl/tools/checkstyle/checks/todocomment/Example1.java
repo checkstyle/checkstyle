@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   int i;
   int x;
@@ -21,4 +21,4 @@ public class Example1 {
     i=i/x; // FIX :  handle x = 0 case
   }
 }
-// xdoc section -- end
+// xdoc section - end

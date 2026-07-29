@@ -8,8 +8,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 { // ok, only one top-level class
   // methods
 }
-// xdoc section -- end
+// xdoc section - end

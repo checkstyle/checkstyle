@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   double d = 3.14;
 
@@ -31,4 +31,4 @@ class Example2 {
   int g = ( int ) d2;
 
 }
-// xdoc section -- end
+// xdoc section - end

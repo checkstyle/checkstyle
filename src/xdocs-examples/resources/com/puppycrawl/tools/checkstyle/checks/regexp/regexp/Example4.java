@@ -12,7 +12,7 @@
 
 // violation 6 lines above 'Avoid using System...'
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
-// xdoc section -- start
+// xdoc section - start
 // (c) MyCompany
 // (c) MyCompany
 // This code is copyrighted.
@@ -24,4 +24,4 @@ public class Example4 {
     // fix me.
   } // violation 3 lines above 'Avoid using System.out...'
 }
-// xdoc section -- end
+// xdoc section - end

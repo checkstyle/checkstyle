@@ -9,7 +9,7 @@
 
 
 */
-// xdoc section -- start
+// xdoc section - start
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -32,4 +32,4 @@ class Example3 {
     int var5 = 5;
   }
 }
-// xdoc section -- end
+// xdoc section - end

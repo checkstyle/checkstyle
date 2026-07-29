@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 
   /** This is a multi-line Javadoc.
@@ -27,4 +27,4 @@ class Example2 {
   private int field3;
 
 }
-// xdoc section -- end
+// xdoc section - end

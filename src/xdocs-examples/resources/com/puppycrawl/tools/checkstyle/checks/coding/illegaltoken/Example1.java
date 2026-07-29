@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   native void InvalidExample();
 
@@ -20,4 +20,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

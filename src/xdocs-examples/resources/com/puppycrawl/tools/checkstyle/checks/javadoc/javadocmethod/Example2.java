@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.io.IOException;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   /** */
@@ -45,4 +45,4 @@ public class Example2 {
     return 0;
   }
 }
-// xdoc section -- end
+// xdoc section - end

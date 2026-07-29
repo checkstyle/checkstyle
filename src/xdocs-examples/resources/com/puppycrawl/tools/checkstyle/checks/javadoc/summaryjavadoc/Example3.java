@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   // violation below 'Summary javadoc is missing'
   /** */
@@ -42,4 +42,4 @@ class Example3 {
   void withoutDotPeriod() {}
 
 }
-// xdoc section -- end
+// xdoc section - end

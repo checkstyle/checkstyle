@@ -14,7 +14,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-// xdoc section -- start
+// xdoc section - start
 import static java.lang.System.out;
 import static java.lang.Math.PI; // violation 'Wrong lexicographical order for 'java.lang.Math.PI' import. Should be before 'java.lang.System.out'.'
 import java.io.IOException;
@@ -27,6 +27,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager; // violation 'Extra separation in import group before 'javax.net.ssl.X509TrustManager''
 
 import org.w3c.dom.Document;
-// xdoc section -- end
+// xdoc section - end
 
 public class Example2 { }

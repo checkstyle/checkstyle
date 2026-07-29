@@ -18,7 +18,7 @@ interface DataLoader {
 }
 
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   @Nonnull
   private boolean field1;
@@ -37,4 +37,4 @@ class Example1 {
   @Nonnull @Mock DataLoader loader3;
   // violation above 'Annotation 'Mock' should be alone on line'
 }
-// xdoc section -- end
+// xdoc section - end

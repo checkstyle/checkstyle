@@ -6,7 +6,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformatting;
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   public String testMethod1() {
     final String simpleScript1Violate =
@@ -54,4 +54,4 @@ public class Example3 {
   public void getData(String text, int num) {}
   public void getData(String text) {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 
 import java.util.function.Predicate;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example5 {
     public Example5() {}
     // violation below 'max allowed for void methods/constructors/lambdas is 0'
@@ -49,4 +49,4 @@ public class Example5 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-// xdoc section -- end
+// xdoc section - end

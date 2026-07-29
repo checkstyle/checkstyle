@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.      // violation 'should not be line-wrapped'
   tools.checkstyle.checks.whitespace.nolinewrap;
 
@@ -26,4 +26,4 @@ class
   @Deprecated
   private void doNothing() {}
 }
-// xdoc section -- end
+// xdoc section - end

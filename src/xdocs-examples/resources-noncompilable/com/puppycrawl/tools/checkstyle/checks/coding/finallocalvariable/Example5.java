@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5
 {
   static int foo(int x, int y) {
@@ -32,4 +32,4 @@ class Example5
     int result=foo(1,2); // violation 'Variable 'result' should be declared final'
   }
 }
-// xdoc section -- end
+// xdoc section - end

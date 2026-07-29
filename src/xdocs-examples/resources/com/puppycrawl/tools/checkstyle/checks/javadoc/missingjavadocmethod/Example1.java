@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public Example1() {} // violation 'Missing a Javadoc comment'
   public void testMethod1() {} // violation 'Missing a Javadoc comment'
@@ -31,4 +31,4 @@ public class Example1 {
     System.out.println("line 3");
   }
 }
-// xdoc section -- end
+// xdoc section - end

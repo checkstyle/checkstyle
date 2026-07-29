@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.parameternumber;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 extends ExternalService3 {
   // violation 2 lines below 'More than 7 parameters (found 8)'
   @JsonCreator
@@ -34,4 +34,4 @@ class ExternalService3 {
                           String e, String f, String g, String h) {}
 
 }
-// xdoc section -- end
+// xdoc section - end

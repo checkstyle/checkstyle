@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.annotateddeclarationvisibility;
 
-// xdoc section -- start
+// xdoc section - start
 import com.google.common.annotations.VisibleForTesting;
 
 public class Example1 {
@@ -53,4 +53,4 @@ public class Example1 {
   public Example1() {}
 
 }
-// xdoc section -- end
+// xdoc section - end

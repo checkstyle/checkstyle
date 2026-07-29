@@ -10,7 +10,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'Token text matches the illegal pattern 'a href''
 public class Example3 { // violation above 'Token text matches the illegal pattern'
   public void myTest() {
@@ -29,4 +29,4 @@ public class Example3 { // violation above 'Token text matches the illegal patte
     long num6 = 010L;
   }
 }
-// xdoc section -- end
+// xdoc section - end

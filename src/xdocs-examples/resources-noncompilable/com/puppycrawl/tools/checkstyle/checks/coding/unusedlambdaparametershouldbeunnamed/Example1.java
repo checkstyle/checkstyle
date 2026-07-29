@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedlambdaparametershoul
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   int x;
@@ -28,4 +28,4 @@ public class Example1 {
     BiFunction<Integer, Integer, Integer> bf1 = (x, y) -> x + this.x;
   }
 }
-// xdoc section -- end
+// xdoc section - end

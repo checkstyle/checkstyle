@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 
-// xdoc section -- start
+// xdoc section - start
 /**
  * This file is copyrighted under CC.
  */
@@ -27,4 +27,4 @@ public class Example4 {
 
   void doSomething() {}
 }
-// xdoc section -- end
+// xdoc section - end

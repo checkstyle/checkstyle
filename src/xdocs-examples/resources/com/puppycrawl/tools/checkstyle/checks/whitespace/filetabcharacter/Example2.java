@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 	int a; // violation 'contains a tab character'
 
@@ -18,4 +18,4 @@ class Example2 {
     a = arg; // ok, indented using spaces
   }
 }
-// xdoc section -- end
+// xdoc section - end

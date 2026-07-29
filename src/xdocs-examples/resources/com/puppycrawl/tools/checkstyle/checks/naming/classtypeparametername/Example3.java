@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.classtypeparametername;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   class MyClass1<T> {}
   class MyClass2<t> {}        // violation 'Name 't' must match pattern'
@@ -18,4 +18,4 @@ class Example3 {
   class MyClass4<LISTENER> {} // violation 'Name 'LISTENER' must match pattern'
   class MyClass5<RequestT> {}
 }
-// xdoc section -- end
+// xdoc section - end

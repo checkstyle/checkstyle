@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-// xdoc section -- start
+// xdoc section - start
 
 /**
  * Some class
@@ -27,4 +27,4 @@ public class Example2 {
   public void testMethod2() {}
 
 }
-// xdoc section -- end
+// xdoc section - end

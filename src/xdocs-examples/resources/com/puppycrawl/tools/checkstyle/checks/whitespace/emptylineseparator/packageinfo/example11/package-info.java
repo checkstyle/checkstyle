@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -16,4 +16,4 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
 // violation above ''package' should be separated from previous line'
 
 import java.lang.System;
-// xdoc section -- end
+// xdoc section - end

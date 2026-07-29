@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   void test() {
     // violation below 'Redundant 'final' modifier'
@@ -39,4 +39,4 @@ public class Example3 {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

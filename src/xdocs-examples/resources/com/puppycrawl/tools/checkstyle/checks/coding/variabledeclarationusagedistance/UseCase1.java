@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 
 import java.util.Calendar;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
 
   public void case1(long timeNow, int hh, int min) {
@@ -35,4 +35,4 @@ public class UseCase1 {
     cal.set(Calendar.MINUTE, minutes);
   }
 }
-// xdoc section -- end
+// xdoc section - end

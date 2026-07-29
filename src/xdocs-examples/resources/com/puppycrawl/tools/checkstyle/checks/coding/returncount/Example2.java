@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 
 import java.util.function.Predicate;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
     public Example2() {}
     // violation below 'max allowed for void methods/constructors/lambdas is 0'
@@ -40,4 +40,4 @@ public class Example2 {
     // violation below 'max allowed for void methods/constructors/lambdas is 0'
     public void methodB(int x) { return; }
 }
-// xdoc section -- end
+// xdoc section - end

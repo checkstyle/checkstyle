@@ -8,7 +8,7 @@
 */
 // non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   sealed abstract static class Shape permits Circle, Rect {}
   static final class Circle extends Shape {}
@@ -29,4 +29,4 @@ public class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

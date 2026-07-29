@@ -5,6 +5,6 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacywithboth;
-// xdoc section -- end
+// xdoc section - end

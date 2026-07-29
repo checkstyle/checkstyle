@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 { // ok, since it has a public constructor
 
   final class A {
@@ -55,4 +55,4 @@ public class Example1 { // ok, since it has a public constructor
 
   }
 }
-// xdoc section -- end
+// xdoc section - end

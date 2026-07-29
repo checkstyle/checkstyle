@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase3 {
   void testMethod(String a) {
     switch(a) {
@@ -33,4 +33,4 @@ public class UseCase3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

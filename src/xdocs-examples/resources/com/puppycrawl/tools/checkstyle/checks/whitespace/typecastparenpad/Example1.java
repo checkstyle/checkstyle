@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   double d = 3.14;
   // violation below ''(' is followed by whitespace.'
@@ -29,4 +29,4 @@ class Example1 {
   int g = ( int ) d2;
   // violation above '')' is preceded with whitespace.'
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   // ok, a normal String below
   String unitAbbrev = "μs";
@@ -26,4 +26,4 @@ public class Example1 {
     return '\ufeff' + content;
   }
 }
-// xdoc section -- end
+// xdoc section - end

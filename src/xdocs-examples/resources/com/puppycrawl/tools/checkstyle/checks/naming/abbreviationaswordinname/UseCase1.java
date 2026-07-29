@@ -15,7 +15,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abbreviationaswordinname;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 { // ok, ignore checking the class name
   int firstNum; // ok, abbreviation "N" is of allowed length 1
   int secondNUm;
@@ -27,4 +27,4 @@ class UseCase1 { // ok, ignore checking the class name
   final int TOTAL = 5; // ok, final is ignored
   static final int LIMIT = 10; // ok, static final is ignored
 }
-// xdoc section -- end
+// xdoc section - end

@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
   int value() default 10;
 }
 
-// xdoc section -- start
+// xdoc section - start
 @Annotation(6) // violation ''6' is a magic number.'
 public class Example1 {
   private int field = 7; // violation ''7' is a magic number.'
@@ -52,4 +52,4 @@ public class Example1 {
     TestClass(int field) {}
   }
 }
-// xdoc section -- end
+// xdoc section - end

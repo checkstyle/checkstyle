@@ -9,7 +9,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
-// xdoc section -- start
+// xdoc section - start
 import java.awt.Image;
 import java.lang.ref.SoftReference;
 
@@ -19,4 +19,4 @@ import java.util.Date;
 import java.util.List;
 
 public class Example2 {}
-// xdoc section -- end
+// xdoc section - end

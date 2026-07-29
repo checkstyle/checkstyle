@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase2 {
   String prefix;
 
@@ -18,4 +18,4 @@ class UseCase2 {
     return prefix;
   }
 }
-// xdoc section -- end
+// xdoc section - end

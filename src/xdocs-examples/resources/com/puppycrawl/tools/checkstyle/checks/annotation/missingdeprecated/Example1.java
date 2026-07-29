@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   @Deprecated
   public static final int MY_CONST = 13;
@@ -33,4 +33,4 @@ class Example1 {
   @Deprecated
   public static final int CONST = 12;
 }
-// xdoc section -- end
+// xdoc section - end

@@ -9,11 +9,11 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
   // café // violation 'Illegal symbol detected: 'é''
 
   int value1 = 1;
   String value2 = "Hello 😀";
 }
-// xdoc section -- end
+// xdoc section - end

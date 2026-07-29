@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 import java.util.ArrayList;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   void MyMethod() {
     int good = 1;
@@ -41,4 +41,4 @@ class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

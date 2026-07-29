@@ -11,7 +11,7 @@
 // non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
   public Example4() { }
   public Example4(final int m) { }
@@ -31,4 +31,4 @@ public class Example4 {
     for (int _: new int[] {1, 2, 3}) { }
   }
 }
-// xdoc section -- end
+// xdoc section - end

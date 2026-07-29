@@ -12,7 +12,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase6 {
   private int field1; // violation above 'Count of 2 for 'CLASS_DEF' descendant'
   private int field2;
@@ -51,4 +51,4 @@ class UseCase6 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.stringliteralequality;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   String getName(){
     return "Y";
@@ -26,4 +26,4 @@ class Example1 {
     // ok, limitation that check cannot tell runtime type returned from method call
   }
 }
-// xdoc section -- end
+// xdoc section - end

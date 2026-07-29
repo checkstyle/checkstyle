@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2
 {
   private interface TestInterface
@@ -28,4 +28,4 @@ class Example2
     GREEN;
   }
 }
-// xdoc section -- end
+// xdoc section - end

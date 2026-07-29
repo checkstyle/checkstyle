@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase4 {
   void testMethod() {
     // violation 2 lines below 'Comment has incorrect indentation level 4'
@@ -22,4 +22,4 @@ public class UseCase4 {
 
   }
 }
-// xdoc section -- end
+// xdoc section - end

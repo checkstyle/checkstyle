@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmo
 
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 public interface Example1 {
 
   public static final String UNKNOWN = "Unknown";
@@ -35,4 +35,4 @@ public interface Example1 {
     //    'Implied modifier 'public' should be explicit'
   }
 }
-// xdoc section -- end
+// xdoc section - end

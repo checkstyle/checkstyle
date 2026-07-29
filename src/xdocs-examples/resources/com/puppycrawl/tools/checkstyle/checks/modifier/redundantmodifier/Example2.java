@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   void test() {
 
@@ -39,4 +39,4 @@ public class Example2 {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

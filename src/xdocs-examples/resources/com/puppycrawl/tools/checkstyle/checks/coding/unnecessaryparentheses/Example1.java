@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   int a = 10, b = 12;
   boolean x = true, y = false;
@@ -47,4 +47,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

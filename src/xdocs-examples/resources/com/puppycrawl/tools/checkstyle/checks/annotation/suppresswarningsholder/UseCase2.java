@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
 
   private int K;
@@ -46,4 +46,4 @@ public class UseCase2 {
   @SuppressWarnings("all")
   private int [] ARRAY;
 }
-// xdoc section -- end
+// xdoc section - end

@@ -10,7 +10,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   // violation below 'Uncommented main method found'
   public static void main(String... args) {
@@ -39,4 +39,4 @@ class Main {
   // ok, excluded by 'excludedClasses'
   public static void main(String[] args) {}
 }
-// xdoc section -- end
+// xdoc section - end

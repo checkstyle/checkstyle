@@ -6,7 +6,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   interface Empty {}
   // 2 violations above:
@@ -54,4 +54,4 @@ class Example1 {
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
 }
-// xdoc section -- end
+// xdoc section - end

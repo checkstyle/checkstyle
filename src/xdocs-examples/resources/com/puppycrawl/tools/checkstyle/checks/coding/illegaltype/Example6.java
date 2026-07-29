@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.function.Consumer;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example6 extends TreeSet {
 
@@ -80,5 +80,5 @@ public class Example6 extends TreeSet {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end
 
