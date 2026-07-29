@@ -5,15 +5,16 @@ on:
     branches:
       - master
   pull_request:
+    types: [ opened, synchronize, reopened, closed ]
     branches: '*'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   test:
-    if: github.repository == 'checkstyle/checkstyle'
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     strategy:
       matrix:
         profile:
