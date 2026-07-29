@@ -1,0 +1,4 @@
+Temporary post-merge validation for issue #21006.
+
+This file exists only to create a pull request with active workflow runs.
+The pull request will be closed without merging.
