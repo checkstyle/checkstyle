@@ -31,14 +31,14 @@ public class InputSuperFinalizeVariations
 
 class NoSuperFinalize
 {
-    public void finalize() // violation, Method 'finalize' should call 'super.finalize'
+    public void finalize() // violation 'Method 'finalize' should call 'super.finalize''
     {
     }
 }
 
 class InputInnerFinalize
 {
-    public void finalize() // violation, Method 'finalize' should call 'super.finalize'
+    public void finalize() // violation 'Method 'finalize' should call 'super.finalize''
     {
         class Inner
         {
@@ -79,7 +79,7 @@ class FinalizeWithArgs {
 }
 
 class OverrideClass extends FinalizeWithArgs {
-    // violation 2 lines below "Method 'finalize' should call 'super.finalize'"
+    // violation 2 lines below 'Method 'finalize' should call 'super.finalize''
     @Override
     protected void finalize() throws Throwable {
         super.finalize(new Object());
