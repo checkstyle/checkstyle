@@ -593,7 +593,13 @@
                     Method descriptions begin with a verb phrase
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -606,7 +612,13 @@
                       the subject and simply state the object
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis.
+                </td>
                 <td/>
               </tr>
               <tr>
