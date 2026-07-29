@@ -76,7 +76,7 @@ class InputRegexpMultilineSemantic2
             // can never happen, empty compound statement is another workaround
         }
         catch (UnsupportedOperationException handledException) {
-            System.out.println(handledException.getMessage()); // violation, Bad line :(
+            System.out.println(handledException.getMessage()); // violation 'Bad line :('
         }
         catch (SecurityException ex) { /* hello */ }
         catch (StringIndexOutOfBoundsException ex) {}
