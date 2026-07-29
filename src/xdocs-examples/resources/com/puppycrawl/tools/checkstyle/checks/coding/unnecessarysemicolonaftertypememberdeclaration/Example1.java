@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   ; // violation 'Unnecessary semicolon'
   {}; // violation 'Unnecessary semicolon'
@@ -29,4 +29,4 @@ class Example1 {
     if (true) ; // ok, it is empty statement
   }
 }
-// xdoc section -- end
+// xdoc section - end

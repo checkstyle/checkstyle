@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-// xdoc section -- start
+// xdoc section - start
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example4;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.Example5;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.UseCase4;
@@ -39,4 +39,4 @@ class UseCase6 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

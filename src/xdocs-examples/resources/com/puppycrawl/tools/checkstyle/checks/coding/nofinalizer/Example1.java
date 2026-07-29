@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   // violation below 'Avoid using finalizer method'
   protected void finalize() throws Throwable {
@@ -20,5 +20,5 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end
 

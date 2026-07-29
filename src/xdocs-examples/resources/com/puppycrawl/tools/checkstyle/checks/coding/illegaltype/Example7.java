@@ -28,7 +28,7 @@ import java.util.AbstractSet;
 import java.util.AbstractList;
 import java.util.function.Consumer;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example7 extends TreeSet {
 
@@ -96,4 +96,4 @@ public class Example7 extends TreeSet {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

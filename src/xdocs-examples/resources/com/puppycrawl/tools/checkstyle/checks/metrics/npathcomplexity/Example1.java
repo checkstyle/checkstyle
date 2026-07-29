@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 public abstract class Example1 {
   int b = 0;
   public void foo() {
@@ -53,4 +53,4 @@ public abstract class Example1 {
   public abstract String baz();
   public abstract void print(String str);
 }
-// xdoc section -- end
+// xdoc section - end

@@ -9,7 +9,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example6 {
   // filtered violation below ''5' is a magic number'
   private int MyVariable = 5;
@@ -27,4 +27,4 @@ public class Example6 {
     );
   }
 }
-// xdoc section -- end
+// xdoc section - end

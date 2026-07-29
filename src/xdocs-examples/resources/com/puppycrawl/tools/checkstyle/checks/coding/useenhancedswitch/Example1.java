@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.useenhancedswitch;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   void doSomething(String param) {
     // method implementation
@@ -46,4 +46,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

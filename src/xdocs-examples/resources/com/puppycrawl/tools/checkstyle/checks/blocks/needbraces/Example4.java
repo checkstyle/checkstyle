@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
   String obj = new String();
   String value = new String();
@@ -51,4 +51,4 @@ class Example4 {
 
 
 
-// xdoc section -- end
+// xdoc section - end

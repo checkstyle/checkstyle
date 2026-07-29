@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   class Boolean {
     boolean a;
@@ -31,4 +31,4 @@ class UseCase1 {
     Integer f = Integer.valueOf(b);
   }
 }
-// xdoc section -- end
+// xdoc section - end

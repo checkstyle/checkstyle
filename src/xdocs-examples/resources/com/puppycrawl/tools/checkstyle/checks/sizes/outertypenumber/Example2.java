@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 
 public class Example2 {
@@ -19,4 +19,4 @@ public class Example2 {
 class ExampleTwo {
   void exampleMethod() {}
 }
-// xdoc section -- end
+// xdoc section - end

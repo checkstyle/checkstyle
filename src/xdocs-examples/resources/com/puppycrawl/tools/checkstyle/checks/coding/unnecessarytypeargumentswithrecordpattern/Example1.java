@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarytypeargumentswi
 record Box<T>(T t) {}
 record Pair<A, B>(A a, B b) {}
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   private Box<String> box = null;
   private Box<Box<String>> nested = null;
@@ -42,4 +42,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

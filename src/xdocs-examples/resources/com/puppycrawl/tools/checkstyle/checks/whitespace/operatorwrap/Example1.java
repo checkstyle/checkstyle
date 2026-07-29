@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void example() {
     String s = "Hello" + // violation ''\+' should be on a new line'
@@ -51,4 +51,4 @@ class Example1 {
             <<= 1;
   }
 }
-// xdoc section -- end
+// xdoc section - end

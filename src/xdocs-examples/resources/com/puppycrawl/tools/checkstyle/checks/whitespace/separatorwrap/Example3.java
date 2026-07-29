@@ -12,7 +12,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
-// xdoc section -- start
+// xdoc section - start
 import java.io.
         IOException;
 
@@ -33,4 +33,4 @@ class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

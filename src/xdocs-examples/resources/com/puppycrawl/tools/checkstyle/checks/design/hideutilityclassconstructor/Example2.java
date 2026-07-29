@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-// xdoc section -- start
+// xdoc section - start
 // ok below, skipped by annotation
 @java.lang.Deprecated
 class Example2 {
@@ -51,4 +51,4 @@ class Application2 {
   public static void main(String[] args) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

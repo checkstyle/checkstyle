@@ -10,11 +10,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
   int b; // NOPMD - OK, comment starts with " NOPMD"
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
   int d; // violation 'Don't use trailing comments.'
 }
-// xdoc section -- end
+// xdoc section - end

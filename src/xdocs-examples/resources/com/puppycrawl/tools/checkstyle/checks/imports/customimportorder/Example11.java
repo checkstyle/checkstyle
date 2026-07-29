@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.separator;
@@ -17,6 +17,6 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 
 import org.apache.commons.io.FileUtils; // violation 'Extra separation'
-// xdoc section -- end
+// xdoc section - end
 public class Example11 {
 }

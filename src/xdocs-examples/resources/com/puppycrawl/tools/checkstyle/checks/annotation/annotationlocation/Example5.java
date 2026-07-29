@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 import javax.annotation.Nonnull;
 import org.mockito.Mock;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   @Nonnull
   private boolean field1;
@@ -32,4 +32,4 @@ class Example5 {
   @Nonnull @Mock DataLoader loader3;
   // violation above 'Annotation 'Mock' should be alone on line'
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   // violation below 'Javadoc content should start from the next line.'
   /** This is a multi-line Javadoc.
@@ -25,4 +25,4 @@ class Example1 {
   private int field3;
 
 }
-// xdoc section -- end
+// xdoc section - end

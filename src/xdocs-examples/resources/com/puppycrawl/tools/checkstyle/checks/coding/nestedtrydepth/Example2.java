@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedtrydepth;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   void testMethod() {
     try {
@@ -36,4 +36,4 @@ public class Example2 {
     } catch (Exception e) {}
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-// xdoc section -- start
+// xdoc section - start
 @SuppressWarnings("unchecked") // violation 'Annotation style must be 'EXPANDED''
 @Deprecated // ok as closingParens property set to never
 // violation below 'Annotation style must be 'EXPANDED''
@@ -28,4 +28,4 @@ public class Example2 {
 class TestStyle2 {
 
 }
-// xdoc section -- end
+// xdoc section - end

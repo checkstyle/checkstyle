@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-// xdoc section -- start
+// xdoc section - start
 @SuppressWarnings("unchecked") // ok as element style set to compact
 @Deprecated // violation 'Annotation must have closing parenthesis'
 
@@ -28,4 +28,4 @@ public class Example3 {
 class TestStyle3 {
 
 }
-// xdoc section -- end
+// xdoc section - end

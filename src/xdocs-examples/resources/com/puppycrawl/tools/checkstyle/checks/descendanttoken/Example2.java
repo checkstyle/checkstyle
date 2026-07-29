@@ -12,7 +12,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   private int field1;
   private int field2;
@@ -51,4 +51,4 @@ class Example2 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

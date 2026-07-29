@@ -13,7 +13,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
 
   // ok, CTOR_DEF is not in configured tokens
@@ -57,4 +57,4 @@ public class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

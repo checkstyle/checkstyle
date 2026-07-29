@@ -9,7 +9,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-// xdoc section -- start
+// xdoc section - start
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
@@ -20,4 +20,4 @@ import java.util.Date;
 import sun.misc.*; // violation 'Illegal import'
 
 public class Example1 {}
-// xdoc section -- end
+// xdoc section - end

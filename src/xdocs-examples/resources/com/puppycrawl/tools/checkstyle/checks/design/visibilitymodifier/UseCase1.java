@@ -21,7 +21,7 @@ import com.google.common.collect.ImmutableSet;
 import java.util.HashSet;
 import java.util.Set;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   private int myPrivateField1;
   int field1; // violation, must have visibility modifier 'must be private'
@@ -57,4 +57,4 @@ class UseCase1 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-// xdoc section -- end
+// xdoc section - end

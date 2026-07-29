@@ -13,7 +13,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 // violation 9 lines above 'use SLF4J instead.'
 public class Example2 {
@@ -36,4 +36,4 @@ public class Example2 {
     System.out.println("Some info."); // violation 'use SLF4J instead.'
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.io.IOException;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   int x;
   public Example3( int n) {} // violation '')' is not preceded with whitespace'
@@ -52,4 +52,4 @@ class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

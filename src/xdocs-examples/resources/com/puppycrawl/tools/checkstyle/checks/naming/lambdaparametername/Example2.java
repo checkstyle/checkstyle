@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.lambdaparametername;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   Function<String, String> function1 = str1 -> str1.toUpperCase().trim();
   // violation above 'Name 'str1' must match pattern'
@@ -28,4 +28,4 @@ class Example2 {
     // violation above 'Name 'Word' must match pattern'
   }
 }
-// xdoc section -- end
+// xdoc section - end

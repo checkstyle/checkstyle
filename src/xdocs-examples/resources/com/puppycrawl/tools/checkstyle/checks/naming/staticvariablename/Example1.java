@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.staticvariablename;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   public static int goodStatic = 2;
   private static int badStatic = 2;
@@ -24,4 +24,4 @@ class Example1 {
   private static int It_Static1 = 2;  // violation 'must match pattern'
   static int It_Static2 = 2;          // violation 'must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

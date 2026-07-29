@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.hexliteralcase;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   byte b1  = 0x1b;          // violation  'Should use uppercase hexadecimal letters.'
   byte b2  = 0x1B;
@@ -50,4 +50,4 @@ class Example1 {
   float r2 = -0x1.FFCP+15f;
 
 }
-// xdoc section -- end
+// xdoc section - end

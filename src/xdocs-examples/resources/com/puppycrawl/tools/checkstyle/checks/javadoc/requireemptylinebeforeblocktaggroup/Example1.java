@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.requireemptylinebeforeblocktaggroup;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   /**
    * ValidMethod's javadoc.
@@ -25,4 +25,4 @@ class Example1 {
     return false;
   }
 }
-// xdoc section -- end
+// xdoc section - end

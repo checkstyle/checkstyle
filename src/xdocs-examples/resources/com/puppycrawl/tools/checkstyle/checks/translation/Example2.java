@@ -10,9 +10,9 @@
 package com.puppycrawl.tools.checkstyle.checks.translation;
 
 /*
-// xdoc section -- start
+// xdoc section - start
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
-// xdoc section -- end
+// xdoc section - end
 */
 public class Example2 {}

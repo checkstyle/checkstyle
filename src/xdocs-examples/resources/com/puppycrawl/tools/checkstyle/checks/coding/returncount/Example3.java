@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.returncount;
 
 import java.util.function.Predicate;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
     public Example3() {}
     // ok below, because default void restriction is 1
@@ -41,4 +41,4 @@ public class Example3 {
     // ok below, because default void restriction is 1
     public void methodB(int x) { return; }
 }
-// xdoc section -- end
+// xdoc section - end

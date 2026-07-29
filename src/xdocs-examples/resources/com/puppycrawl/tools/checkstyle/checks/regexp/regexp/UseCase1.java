@@ -10,10 +10,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'missing in file.'
 /*
  * Some Copyright
  */
 public class UseCase1 {}
-// xdoc section -- end
+// xdoc section - end

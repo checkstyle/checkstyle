@@ -27,7 +27,7 @@ import java.io.PipedReader;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below "Class Data Abstraction Coupling is 11 (max allowed is 7)."
 public class Example3 {
   private Set<Object> set = new HashSet<>();         // ok, ignored
@@ -50,4 +50,4 @@ public class Example3 {
   private BufferedReader bufferedReader =
           new BufferedReader(pipedReader);
 }
-// xdoc section -- end
+// xdoc section - end

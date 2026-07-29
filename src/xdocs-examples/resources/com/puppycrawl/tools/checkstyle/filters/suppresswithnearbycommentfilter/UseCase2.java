@@ -11,10 +11,10 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   // filtered violation below 'Name 'D2' must match pattern'
   private int D2;
   // ALLOW MemberName ON PREVIOUS LINE
 }
-// xdoc section -- end
+// xdoc section - end

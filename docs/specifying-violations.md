@@ -90,21 +90,21 @@ placed at any visible line within the snippet.
 **Example using `violation first line`:**
 
 ```java
-// xdoc section -- start
+// xdoc section - start
 public class Example2 { // ⤶
 // ⤶
 } // violation first line 'File does not end with a newline.'
-// xdoc section -- end
+// xdoc section - end
 ```
 
 **Example using `violation last line`:**
 
 ```java
-// xdoc section -- start
+// xdoc section - start
 public class Example3 { // ⤶
 // ⤶
 } // violation last line 'File ends with extra blank lines.'
-// xdoc section -- end
+// xdoc section - end
 ```
 
 ## Violation Message Content and Format

@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 import javax.annotation.processing.Generated;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class UseCase13 {
   int age = 23;  // violation "'23' is a magic number."
@@ -50,4 +50,4 @@ public class UseCase13 {
   @Generated("second")
   public void Test2() {}
 }
-// xdoc section -- end
+// xdoc section - end

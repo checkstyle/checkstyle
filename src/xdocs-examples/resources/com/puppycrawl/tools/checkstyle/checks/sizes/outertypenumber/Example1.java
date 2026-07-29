@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
 // violation above 'Outer types defined is 2 (max allowed is 1)'
 public class Example1 {
@@ -17,4 +17,4 @@ public class Example1 {
 class ExampleOne {
   void exampleMethod() {}
 }
-// xdoc section -- end
+// xdoc section - end

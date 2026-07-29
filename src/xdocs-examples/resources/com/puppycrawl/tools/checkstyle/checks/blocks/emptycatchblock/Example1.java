@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   private void exampleMethod1() {
     try {
@@ -40,4 +40,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.noarraytrailingcomma;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void InvalidExample() {
     String[] foo1 = {
@@ -23,4 +23,4 @@ class Example1 {
     String[] foo4 = { "FOO", "BAR" };
   }
 }
-// xdoc section -- end
+// xdoc section - end

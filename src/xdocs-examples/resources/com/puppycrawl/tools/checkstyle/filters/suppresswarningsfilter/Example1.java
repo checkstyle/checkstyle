@@ -8,7 +8,7 @@
   <module name="SuppressWarningsFilter" />
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 
 public class Example1 {
@@ -31,4 +31,4 @@ public class Example1 {
     System.out.println("Some info.");
   }
 }
-// xdoc section -- end
+// xdoc section - end

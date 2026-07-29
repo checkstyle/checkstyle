@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
 
   void method() {
@@ -21,4 +21,4 @@ class UseCase1 {
   }
 
 }
-// xdoc section -- end
+// xdoc section - end

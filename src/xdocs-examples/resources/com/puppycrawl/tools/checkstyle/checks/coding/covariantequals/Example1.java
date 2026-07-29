@@ -8,7 +8,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public boolean equals(Example1 same) {  // violation 'covariant equals'
     return false;
@@ -20,4 +20,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

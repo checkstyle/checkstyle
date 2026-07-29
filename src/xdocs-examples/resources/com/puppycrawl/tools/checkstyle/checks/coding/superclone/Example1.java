@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.superclone;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   public Object clone() throws CloneNotSupportedException {
     return super.clone();
@@ -32,4 +32,4 @@ class SuperCloneC {
     return (SuperCloneC) super.clone();
   }
 }
-// xdoc section -- end
+// xdoc section - end

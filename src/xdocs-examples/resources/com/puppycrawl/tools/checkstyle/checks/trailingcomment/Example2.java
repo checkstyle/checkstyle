@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   int a; // violation 'Don't use trailing comments.'
   int b; // violation 'Don't use trailing comments.'
@@ -31,4 +31,4 @@ public class Example2 {
   private static void doSomething(String param) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

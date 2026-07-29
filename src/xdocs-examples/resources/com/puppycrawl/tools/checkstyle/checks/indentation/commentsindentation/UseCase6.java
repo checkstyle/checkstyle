@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase6 {
   public void foo42() {
     int a = 5;
@@ -25,4 +25,4 @@ public class UseCase6 {
     } catch (Exception e) {  }
   }
 }
-// xdoc section -- end
+// xdoc section - end

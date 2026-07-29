@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void exampleMethod1() {
     try {
@@ -52,4 +52,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

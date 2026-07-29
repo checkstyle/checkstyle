@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
-// xdoc section -- start
+// xdoc section - start
   /**
    * <a> 'a' tag is not closed
    */
@@ -54,4 +54,4 @@ class Example1 {
    */
   public void testIndentationEclipse(String input) {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.nonemptyatclausedescription;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
 
   /**
@@ -28,4 +28,4 @@ class Example1 {
     // violation 7 lines above 'At-clause should have a non-empty description'
   }
 }
-// xdoc section -- end
+// xdoc section - end

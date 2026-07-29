@@ -12,7 +12,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
   // CHECKSTYLE IGNORE ConstantNameCheck FOR NEXT 8 LINES
   // filtered violation below 'must match pattern'
@@ -25,4 +25,4 @@ public class UseCase1 {
   static final int lowerCaseConstant4 = 4;
   static final int lowerCaseConstant5 = 5; // violation 'must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

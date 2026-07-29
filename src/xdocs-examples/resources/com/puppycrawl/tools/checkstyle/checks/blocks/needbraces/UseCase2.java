@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 import java.util.EnumSet;
 import java.util.concurrent.CompletableFuture;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase2 {
   enum HttpMethod {GET, OPTIONS}
   Object result = new Object();
@@ -45,4 +45,4 @@ class CustomCompletableFuture<T> {
   public void addCustomCallback(java.util.function.Supplier<Object> successLambda,
           java.util.function.Consumer<Throwable> failureLambda) {}
 }
-// xdoc section -- end
+// xdoc section - end

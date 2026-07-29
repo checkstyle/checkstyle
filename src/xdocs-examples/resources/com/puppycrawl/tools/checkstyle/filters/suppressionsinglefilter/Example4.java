@@ -12,7 +12,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
   // filtered violation below 'Name 'MyVariable' must match pattern'
   private int MyVariable = 5;
@@ -30,4 +30,4 @@ public class Example4 {
     );
   }
 }
-// xdoc section -- end
+// xdoc section - end

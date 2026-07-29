@@ -6,7 +6,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.legacywithboth;
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'Legacy package.html file should be removed'
 public class Example3 { }
-// xdoc section -- end
+// xdoc section - end

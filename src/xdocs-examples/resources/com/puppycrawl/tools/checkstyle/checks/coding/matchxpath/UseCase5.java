@@ -13,11 +13,11 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase5 {
   // violation below 'Array initialization should contain at most 10 elements'
   int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
   int[] small = {1, 2, 3};
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonafteroutertypedeclaration;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   class Nested {
 
@@ -19,4 +19,4 @@ class Example1 {
 interface ExampleOne {
 
 };   // violation 'Unnecessary semicolon'
-// xdoc section -- end
+// xdoc section - end

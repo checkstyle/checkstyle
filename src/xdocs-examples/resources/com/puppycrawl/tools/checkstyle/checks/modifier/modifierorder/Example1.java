@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public static final int MAX_VALUE = 100;
 
@@ -17,4 +17,4 @@ public class Example1 {
   // violation below 'annotation modifier does not precede non-annotation modifiers'
   public @Deprecated class Example {}
 }
-// xdoc section -- end
+// xdoc section - end

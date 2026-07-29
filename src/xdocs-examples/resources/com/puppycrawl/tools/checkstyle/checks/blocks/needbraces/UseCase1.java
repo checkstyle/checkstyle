@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   String obj = new String();
   String value = new String();
@@ -48,4 +48,4 @@ class UseCase1 {
     return true;
   }
 }
-// xdoc section -- end
+// xdoc section - end

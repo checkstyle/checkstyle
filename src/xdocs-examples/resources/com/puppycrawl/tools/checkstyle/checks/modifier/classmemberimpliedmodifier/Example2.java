@@ -10,7 +10,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
-// xdoc section -- start
+// xdoc section - start
 public final class Example2 {
   static interface Address1 {
   }
@@ -36,4 +36,4 @@ public final class Example2 {
     record InnerRecord2(){}
   }
 }
-// xdoc section -- end
+// xdoc section - end

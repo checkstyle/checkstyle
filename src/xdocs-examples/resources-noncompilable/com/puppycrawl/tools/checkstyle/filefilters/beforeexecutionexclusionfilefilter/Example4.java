@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.filefilters.beforeexecutionexclusionfile
 public class Example4 {}
 
 /*
-// xdoc section -- start
+// xdoc section - start
 .../Example1.java
 .../Example2.java
 .../Example3.java
@@ -30,5 +30,5 @@ public class Example4 {}
 .../test/generated_StubBankRemote.java // ok, 'test' folder is not audited
 .../test/MockPaymentRemote.java
 .../module-info.java // ok, the file is not audited
-// xdoc section -- end
+// xdoc section - end
 */

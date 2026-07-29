@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   public void test() {
     boolean f = false;
@@ -54,4 +54,4 @@ public class UseCase2 {
       default: x = 0; } // violation 'should be alone on a line.'
   }
 }
-// xdoc section -- end
+// xdoc section - end

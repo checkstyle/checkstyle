@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
 // (c) MyCompany
 
-// xdoc section -- start
+// xdoc section - start
 // This code is copyrighted.
 public class UseCase8 {
 
@@ -27,4 +27,4 @@ public class UseCase8 {
     // fix me.
   }
 }
-// xdoc section -- end
+// xdoc section - end

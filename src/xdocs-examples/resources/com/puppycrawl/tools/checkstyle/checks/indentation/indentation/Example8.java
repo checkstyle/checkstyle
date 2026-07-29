@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example8 {
     int a;
     boolean x, y;
@@ -56,4 +56,4 @@ class Example8 {
     {                       // violation 'level 4, expected level should be 6'
     }                       // violation 'level 4, expected level should be 6'
 }
-// xdoc section -- end
+// xdoc section - end

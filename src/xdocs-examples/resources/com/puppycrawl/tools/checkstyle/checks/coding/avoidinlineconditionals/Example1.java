@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.avoidinlineconditionals;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public void InvalidExample( String str) {
     int x = 5;
@@ -25,4 +25,4 @@ public class Example1 {
     b = (str != null && str.length() >= 1) ? str.substring(1) : null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

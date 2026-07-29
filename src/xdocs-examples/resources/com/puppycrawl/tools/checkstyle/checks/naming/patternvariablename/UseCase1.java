@@ -11,7 +11,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
@@ -23,4 +23,4 @@ class UseCase1 {
     // violation above 'Name 'n' must match pattern*.'
   }
 }
-// xdoc section -- end
+// xdoc section - end

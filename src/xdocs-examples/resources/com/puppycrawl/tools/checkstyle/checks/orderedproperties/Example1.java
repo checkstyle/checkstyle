@@ -6,5 +6,5 @@
 package com.puppycrawl.tools.checkstyle.checks.orderedproperties;
 
 public class Example1 { }
-// xdoc section -- start
-// xdoc section -- end
+// xdoc section - start
+// xdoc section - end

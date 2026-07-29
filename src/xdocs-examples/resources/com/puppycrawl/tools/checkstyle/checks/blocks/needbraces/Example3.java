@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   String obj = new String();
   String value = new String();
@@ -49,4 +49,4 @@ class Example3 {
     return true;
   }
 }
-// xdoc section -- end
+// xdoc section - end

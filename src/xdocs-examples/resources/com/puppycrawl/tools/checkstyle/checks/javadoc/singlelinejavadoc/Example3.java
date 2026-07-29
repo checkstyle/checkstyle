@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   /** @see Math */ // violation 'Javadoc comment should be multi-line'
   public int foo() {
@@ -42,4 +42,4 @@ public class Example3 {
     return 42;
   }
 }
-// xdoc section -- end
+// xdoc section - end

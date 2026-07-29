@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.mutableexception;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 extends Exception {
   private int code; // ok, class name doesn't match with given pattern
 
@@ -44,4 +44,4 @@ class SecondBadException extends java.lang.Exception {
     this.code = code;
   }
 }
-// xdoc section -- end
+// xdoc section - end

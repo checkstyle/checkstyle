@@ -12,12 +12,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-// xdoc section -- start
+// xdoc section - start
 import static java.lang.Math.PI;
 import static java.io.File.createTempFile;
 import static javax.swing.WindowConstants.*;// violation, should be separated from previous imports
 
 import java.net.URL;
-// xdoc section -- end
+// xdoc section - end
 
 public class Example10 { }

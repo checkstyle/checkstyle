@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   public Example3() {     // violation ''(' is not preceded with whitespace'
     super();              // violation ''(' is not preceded with whitespace'
@@ -25,4 +25,4 @@ class Example3 {
   public void methodWithVeryLongName
   () {} // violation ''(' should be on the previous line.'
 }
-// xdoc section -- end
+// xdoc section - end

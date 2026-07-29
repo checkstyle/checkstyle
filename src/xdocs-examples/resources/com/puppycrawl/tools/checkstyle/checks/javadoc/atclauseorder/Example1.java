@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
 
-// xdoc section -- start
+// xdoc section - start
 
 /**
 * Some javadoc.
@@ -52,4 +52,4 @@ public class Example1 {
   }
   // violation 5 lines above 'Block tags have to appear in the order'
 }
-// xdoc section -- end
+// xdoc section - end

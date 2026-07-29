@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
-// xdoc section -- start
+// xdoc section - start
 class Example7 {
 
   private String field;
@@ -30,4 +30,4 @@ class Example7 {
     abstract int method(String field); // ok, because ignoreAbstractMethods is true
   }
 }
-// xdoc section -- end
+// xdoc section - end
