@@ -19,6 +19,7 @@ public class InputIncorrectReturnTag {
         return 1;
     }
 
+    // violation 5 lines below 'At-clause should have a non-empty description.'
     // violation 6 lines below '@return tag should be present and have description.'
     /**
      * Returns a value with an empty description.
