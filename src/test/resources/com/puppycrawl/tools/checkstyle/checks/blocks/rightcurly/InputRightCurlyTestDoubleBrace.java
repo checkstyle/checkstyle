@@ -11,4 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 class InputRightCurlyTestDoubleBrace {{
 
-}} // 2 violations
+}}
+// 2 violations above:
+// ''}' at column 1 should be alone on a line.'
+// ''}' at column 2 should be alone on a line.'
