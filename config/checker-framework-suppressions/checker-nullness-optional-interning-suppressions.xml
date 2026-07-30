@@ -8960,6 +8960,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/InlineConfigUtils.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter end of MatchedDelimiter constructor.</message>
+    <lineContent>result = new MatchedDelimiter(null, true);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/InlineConfigUtils.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable MatchedDelimiter
+      method return type: @Initialized @NonNull MatchedDelimiter
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
