@@ -11,9 +11,9 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   // café // violation 'Only ASCII characters are allowed.'
   int value = 1;
 }
-// xdoc section -- end
+// xdoc section - end

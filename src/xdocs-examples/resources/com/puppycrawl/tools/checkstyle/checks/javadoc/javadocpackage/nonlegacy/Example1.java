@@ -4,7 +4,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.nonlegacy;
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'Missing package-info.java file'
 public class Example1 { }
-// xdoc section -- end
+// xdoc section - end

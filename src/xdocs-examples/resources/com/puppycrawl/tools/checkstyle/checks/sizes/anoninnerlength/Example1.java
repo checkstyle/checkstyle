@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.sizes.anoninnerlength;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void testMethod() {
     Runnable shortAnonClass = new Runnable() {
@@ -30,4 +30,4 @@ class Example1 {
     longAnonClass.run();
   }
 }
-// xdoc section -- end
+// xdoc section - end

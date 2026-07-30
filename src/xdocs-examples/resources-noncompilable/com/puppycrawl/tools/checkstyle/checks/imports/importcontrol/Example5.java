@@ -11,10 +11,10 @@
 // non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
-// xdoc section -- start
+// xdoc section - start
 import module java.base;
 import module java.sql;     // violation 'Disallowed import - java.sql'
 import module java.xml;     // violation 'Disallowed import - java.xml'
 
 public class Example5 {}
-// xdoc section -- end
+// xdoc section - end

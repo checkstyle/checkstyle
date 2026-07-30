@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
-// xdoc section -- start
+// xdoc section - start
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedOutputStream;
@@ -45,4 +45,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

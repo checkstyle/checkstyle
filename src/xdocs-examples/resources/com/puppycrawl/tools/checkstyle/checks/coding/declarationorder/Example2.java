@@ -10,12 +10,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   public int a;
   protected int b;
-  public int c;            // violation, variable access definition in wrong order
+  public int c;         // violation 'Variable access definition in wrong order.'
 
   Example2() {
     this.a = 0;
@@ -25,10 +25,10 @@ public class Example2 {
     // This method does nothing
   }
 
-  Example2(int a) {            // ok, validation of constructors ignored
+  Example2(int a) {     // ok, validation of constructors ignored
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
-// xdoc section -- end
+// xdoc section - end

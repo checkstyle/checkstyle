@@ -323,8 +323,62 @@
                     Notes
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/commentsindentation.html#CommentsIndentation">
+                    CommentsIndentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
+                    JavadocLeadingAsteriskAlign</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLeadingAsteriskAlign">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/requireemptylinebeforeblocktaggroup.html#RequireEmptyLineBeforeBlockTagGroup">
+                    RequireEmptyLineBeforeBlockTagGroup</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
+                    JavadocTagContinuationIndentation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">
+                    LineLength</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that end-comment delimiter should contain only one asterisk is not
+                    covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20982">#20982</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/formatofdoccomment/notes">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>
@@ -451,7 +505,14 @@
                     Use &lt;code&gt; style for keywords and names
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it does not have an
+                    English language model to distinguish Java keywords and names used as code
+                    references from regular prose.
+                </td>
                 <td/>
               </tr>
 
@@ -483,7 +544,14 @@
                     Omit parentheses for the general form of methods and constructors
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it is not type-aware
+                    and cannot know whether a referenced method or constructor belongs to another
+                    class.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -495,7 +563,7 @@
                     OK to use phrases instead of complete sentences
                   </a>
                 </td>
-                <td>???</td>
+                <td>--</td>
                 <td/>
               </tr>
               <tr>
@@ -507,7 +575,13 @@
                     Use 3rd person descriptive
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis to determine whether wording is in third person.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -519,7 +593,13 @@
                     Method descriptions begin with a verb phrase
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -532,7 +612,13 @@
                       the subject and simply state the object
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -545,7 +631,13 @@
                       object created from the current class
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -557,7 +649,14 @@
                     Add description beyond the API name
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis to decide whether an API description adds meaningful
+                    information beyond the API name.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -569,7 +668,14 @@
                     Be clear when using the term "field"
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  Checkstyle cannot reliably cover this requirement because it requires natural
+                    language analysis to distinguish the intended meaning of the term
+                    <code>field</code>.
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -642,7 +748,43 @@
                     Ordering Multiple Tags
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that multiple <code>@param</code> tags should be listed in
+                    argument-declaration order is not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/8990">#8990</a>.
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that multiple <code>@throws</code> tags should be listed
+                    alphabetically by exception name is not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/19698">#19698</a>.
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that multiple <code>@see</code> tags should be ordered by Javadoc
+                    search order is not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/19949">#19949</a>.
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that multiple <code>@author</code> tags should be listed in
+                    chronological order cannot be covered because Checkstyle only sees the latest
+                    file content and does not have Git history or other historical class context.
+                </td>
                 <td/>
               </tr>
 
@@ -728,8 +870,38 @@
                     @param
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/nonemptyatclausedescription.html#NonEmptyAtclauseDescription">
+                    NonEmptyAtclauseDescription</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadocmethod.html#JavadocMethod">
+                    JavadocMethod</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Guideline that dashes or other punctuation should not be inserted before the
+                    description, as the Javadoc tool inserts one dash, is not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/19948">#19948</a>.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/paramtag">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>
@@ -892,8 +1064,20 @@
                     Custom Tags and Annotations
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/annotation/missingdeprecated.html#MissingDeprecated">
+                    MissingDeprecated</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/customtagsandannotations">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <!-- DEFAULT CONSTRUCTORS -->
@@ -1022,7 +1206,22 @@
                     Documenting Unchecked Exceptions
                   </a>
                 </td>
-                <td>???</td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle cannot distinguish checked from unchecked exceptions due to its
+                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
+                    validate differences between exceptions declared in method signatures and
+                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
+                    may reveal extra unchecked exceptions declared in signatures, but this
+                    validation cannot fully decide which unchecked exceptions should be documented.
+                    Not covered until:
+                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                </td>
                 <td/>
               </tr>
 

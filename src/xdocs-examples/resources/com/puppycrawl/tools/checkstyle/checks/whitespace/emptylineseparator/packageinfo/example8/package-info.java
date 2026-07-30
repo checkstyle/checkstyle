@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -16,4 +16,4 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example8;
 
 import java.lang.Deprecated;
-// xdoc section -- end
+// xdoc section - end

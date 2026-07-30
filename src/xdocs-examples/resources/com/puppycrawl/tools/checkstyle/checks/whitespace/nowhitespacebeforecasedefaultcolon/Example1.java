@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecase
 
 import java.time.DayOfWeek;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void example() {
     switch(1) {
@@ -43,4 +43,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

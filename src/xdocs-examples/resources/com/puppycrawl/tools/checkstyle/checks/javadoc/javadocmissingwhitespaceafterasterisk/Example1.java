@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingwhitespaceafterasterisk;
 
-// xdoc section -- start
+// xdoc section - start
 /** This is valid single-line Javadoc. */
 class Example1 {
   /**
@@ -27,4 +27,4 @@ class Example1 {
   void validSingleLineJavaDocMethod() {
   }
 }
-// xdoc section -- end
+// xdoc section - end

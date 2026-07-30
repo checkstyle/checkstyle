@@ -9,7 +9,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
-// xdoc section -- start
+// xdoc section - start
 import java.io.
         IOException; // ok, '.' is on the previous line
 
@@ -30,4 +30,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

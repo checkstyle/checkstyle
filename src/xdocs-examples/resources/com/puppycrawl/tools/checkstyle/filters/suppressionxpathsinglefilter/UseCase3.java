@@ -13,7 +13,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase3 {
   // filtered violation below 'Throwing 'RuntimeException' is not allowed.'
   public void throwsMethod() throws RuntimeException {
@@ -23,4 +23,4 @@ public class UseCase3 {
   public void sampleMethod() throws RuntimeException {
   }
 }
-// xdoc section -- end
+// xdoc section - end

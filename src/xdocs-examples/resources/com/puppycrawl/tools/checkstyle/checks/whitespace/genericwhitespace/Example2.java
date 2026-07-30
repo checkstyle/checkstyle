@@ -10,7 +10,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.genericwhitespace;
 
 import java.util.*;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   List <String> l; // violation "<" followed by whitespace
   public<T> void foo() {} // violation "<" not preceded with whitespace
@@ -19,4 +19,4 @@ class Example2 {
   HashSet<Integer > set; // violation ">" preceded with whitespace
   record License<T> () {} // violation ">" followed by whitespace
 }
-// xdoc section -- end
+// xdoc section - end

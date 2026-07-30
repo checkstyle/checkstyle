@@ -12,10 +12,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
 
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'Required pattern 'Copyright' missing in file.'
 /*
  * violation on first line 'Required pattern 'Copyright' missing in file.'
 */
 public class UseCase4 {}
-// xdoc section -- end
+// xdoc section - end

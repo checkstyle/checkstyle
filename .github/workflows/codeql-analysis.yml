@@ -4,6 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
+    types: [ opened, synchronize, reopened, closed ]
     # The branches below must be a subset of the branches above
     branches: [ master ]
   schedule:
@@ -15,12 +16,12 @@ permissions:
   security-events: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   analyze:
-    if: github.repository == 'checkstyle/checkstyle'
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     name: Analyze
     runs-on: ubuntu-latest
 

@@ -15,7 +15,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 import javax.annotation.processing.Generated;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example1 {
   int age = 23;
@@ -53,4 +53,4 @@ public class Example1 {
   @Generated("second")
   public void Test2() {}
 }
-// xdoc section -- end
+// xdoc section - end

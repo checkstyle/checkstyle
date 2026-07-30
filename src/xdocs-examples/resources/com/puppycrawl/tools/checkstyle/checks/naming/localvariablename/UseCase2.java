@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.localvariablename;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase2 {
   void MyMethod() {
     int goodName = 0;
@@ -20,7 +20,7 @@ class UseCase2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end
 
 
 

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.invalidjavadocposition;
 
-// xdoc section -- start
+// xdoc section - start
 // violation 3 lines below 'Javadoc comment is placed in the wrong location'
 @SuppressWarnings("serial")
 
@@ -19,4 +19,4 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.invalidjavadocposition;
  */
 public class Example1 {
 }
-// xdoc section -- end
+// xdoc section - end

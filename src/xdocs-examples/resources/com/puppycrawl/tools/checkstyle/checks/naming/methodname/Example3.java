@@ -14,7 +14,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   public void method1() {}
   protected void Method2() {}
@@ -22,4 +22,4 @@ class Example3 {
   public void Example3() {}
   void Method5() {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.googlenonconstantfieldname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
 
   static final int STATIC_FINAL = 0;
@@ -74,4 +74,4 @@ class Example1 {
   //  contain only letters, digits or underscores,
   //  with underscores allowed only between adjacent digits."""
 }
-// xdoc section -- end
+// xdoc section - end

@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   int a;
   int b;
@@ -31,4 +31,4 @@ public class Example3 {
   private static void doSomething(String param) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

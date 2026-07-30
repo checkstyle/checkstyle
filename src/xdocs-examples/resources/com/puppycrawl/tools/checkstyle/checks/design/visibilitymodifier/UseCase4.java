@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableSet;
 import java.math.BigDecimal;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase4 {
   public final int someIntValue = 0; // violation 'must be private'
 
@@ -29,4 +29,4 @@ class UseCase4 {
 
   public final List list = null; // violation 'must be private'
 }
-// xdoc section -- end
+// xdoc section - end

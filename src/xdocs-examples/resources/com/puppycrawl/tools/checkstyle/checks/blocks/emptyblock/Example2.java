@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   private void emptyLoop() {
     for (int i = 0; i < 10; i++) {
@@ -53,4 +53,4 @@ public class Example2 {
 
   void someMethod() { }
 }
-// xdoc section -- end
+// xdoc section - end

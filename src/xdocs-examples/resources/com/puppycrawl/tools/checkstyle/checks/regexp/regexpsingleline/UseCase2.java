@@ -12,7 +12,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
-// xdoc section -- start
+// xdoc section - start
 /**
  * MyClass as a configuration example.
  */
@@ -29,5 +29,5 @@ public class UseCase2 {
 
   void doSomething() {}
 }
-// xdoc section -- end
+// xdoc section - end
 // violation first line 'File must contain copyright statement'

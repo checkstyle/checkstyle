@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.io.IOException;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   int x;
   public Example1(int n) {}
@@ -52,4 +52,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

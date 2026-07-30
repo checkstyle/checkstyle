@@ -30,7 +30,8 @@
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p id="Example1-config">
           To configure the default check that will check <code>@param</code>,
-          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
+          <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>,
+          <code>@since</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -73,6 +74,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

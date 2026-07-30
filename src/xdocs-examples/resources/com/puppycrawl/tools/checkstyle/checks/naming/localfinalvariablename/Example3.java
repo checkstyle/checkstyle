@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
 
 import java.util.Scanner;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   void MyMethod() {
     try (Scanner scanner = new Scanner(System.in)) {
@@ -28,4 +28,4 @@ class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

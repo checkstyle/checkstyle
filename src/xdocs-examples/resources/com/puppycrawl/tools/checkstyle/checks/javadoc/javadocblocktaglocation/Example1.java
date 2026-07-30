@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   /**
    * Escaped tag &#64;version (OK)
@@ -30,4 +30,4 @@ class Example1 {
     return 0;
   }
 }
-// xdoc section -- end
+// xdoc section - end

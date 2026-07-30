@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.useenhancedswitch;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   int switchExpressions(int x) {
     // violation below 'Switch can be replaced with enhanced switch'
@@ -28,4 +28,4 @@ public class Example2 {
     return y;
   }
 }
-// xdoc section -- end
+// xdoc section - end

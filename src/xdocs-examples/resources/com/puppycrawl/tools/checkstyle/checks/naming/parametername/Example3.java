@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   void method0(int v) {}
   void method1(int v1) {}
@@ -20,4 +20,4 @@ class Example3 {
     return true;
   }
 }
-// xdoc section -- end
+// xdoc section - end

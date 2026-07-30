@@ -17,7 +17,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
 
   // violation below 'Line is longer than 80 characters'
@@ -36,4 +36,4 @@ public class UseCase1 {
     "My_Sweet_String".equalsIgnoreCase(nullString);
   }
 }
-// xdoc section -- end
+// xdoc section - end

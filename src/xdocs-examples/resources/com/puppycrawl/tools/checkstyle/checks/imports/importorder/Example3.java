@@ -14,7 +14,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-// xdoc section -- start
+// xdoc section - start
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' < 'l'
 
@@ -30,6 +30,6 @@ import org.w3c.dom.Element; // violation ''org.w3c.dom.Element' should be separa
 
 import com.sun.security.auth.UserPrincipal;
 import com.sun.source.tree.Tree;
-// xdoc section -- end
+// xdoc section - end
 
 public class Example3 { }

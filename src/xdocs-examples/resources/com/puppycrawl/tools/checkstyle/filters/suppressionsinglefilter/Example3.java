@@ -11,7 +11,7 @@
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // filtered violation 9 lines above 'Line matches the illegal pattern'
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
 
   private int MyVariable = 5;
@@ -29,4 +29,4 @@ public class Example3 {
     );
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -9,7 +9,7 @@
 */
 
 // non-compiled with javac: Compilable with Java25
-// xdoc section -- start
+// xdoc section - start
 // violation below 'should not be line-wrapped'
 package com.puppycrawl.
   tools.checkstyle.checks.whitespace.nolinewrap;
@@ -25,6 +25,6 @@ import module
 // violation below 'should not be line-wrapped'
 import static java.math.
   BigInteger.ZERO;
-// xdoc section -- end
+// xdoc section - end
 
 class Example3 { }

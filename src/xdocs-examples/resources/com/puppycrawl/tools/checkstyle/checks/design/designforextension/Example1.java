@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
-// xdoc section -- start
+// xdoc section - start
 public abstract class Example1 {
   private int bar;
 
@@ -45,4 +45,4 @@ public abstract class Example1 {
     return "";
   }
 }
-// xdoc section -- end
+// xdoc section - end

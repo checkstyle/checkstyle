@@ -12,8 +12,8 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
+// xdoc section - start
 public interface UseCase5 {
   public int CONSTANT1 = 1; // filtered violation 'Redundant 'public' modifier.'
 }
-// xdoc section -- end
+// xdoc section - end

@@ -9,9 +9,9 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
 /*
-// xdoc section -- start
+// xdoc section - start
 .../TestExample2.xml
 .../Example1.java // violation 'File match folder pattern'
-// xdoc section -- end
+// xdoc section - end
 */
 class Example6 {}

@@ -9,7 +9,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example3 {
   public void myTest() {
@@ -17,4 +17,4 @@ public class Example3 {
     String test = "Some content"; // ok, as only txt file validated
   }
 }
-// xdoc section -- end
+// xdoc section - end

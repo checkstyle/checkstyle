@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicoloninenumeration;
 
-// xdoc section -- start
+// xdoc section - start
 enum Normal {
     A,
     B,
@@ -18,4 +18,4 @@ enum Normal {
 enum NoSemicolon {
     A, B // ok, only enum constants without semicolon
 }
-// xdoc section -- end
+// xdoc section - end

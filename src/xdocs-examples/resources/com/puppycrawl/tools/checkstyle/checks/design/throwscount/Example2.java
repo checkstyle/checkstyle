@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.throwscount;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   // violation below 'Throws count is 5 (max allowed is 2)'
   public void myFunction() throws CloneNotSupportedException,
@@ -36,4 +36,4 @@ public class Example2 {
                                 NullPointerException {
   }
 }
-// xdoc section -- end
+// xdoc section - end

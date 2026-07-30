@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   public void myTest() {
 
@@ -30,4 +30,4 @@ public class UseCase2 {
     long num6 = 010L;   // violation 'Token text matches the illegal pattern'
   }
 }
-// xdoc section -- end
+// xdoc section - end

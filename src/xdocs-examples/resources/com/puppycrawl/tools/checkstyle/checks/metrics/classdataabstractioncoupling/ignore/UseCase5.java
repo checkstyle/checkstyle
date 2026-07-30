@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore;
 
-// xdoc section -- start
+// xdoc section - start
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.UseCase1;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.Example2;
 import com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling.ignore.deeper.UseCase2;
@@ -49,4 +49,4 @@ class UseCase5 {
   BufferedReader bufferedReader = new BufferedReader(pipedReader);
   CharArrayWriter charArrayWriter = new CharArrayWriter();
 }
-// xdoc section -- end
+// xdoc section - end

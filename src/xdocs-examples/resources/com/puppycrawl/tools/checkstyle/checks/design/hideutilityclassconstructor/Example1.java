@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below 'should not have a public or default constructor'
 @java.lang.Deprecated
 class Example1 {
@@ -48,5 +48,5 @@ class Application1 {
   public static void main(String[] args) {
   }
 }
-// xdoc section -- end
+// xdoc section - end
 @interface SpringBootApplication {}

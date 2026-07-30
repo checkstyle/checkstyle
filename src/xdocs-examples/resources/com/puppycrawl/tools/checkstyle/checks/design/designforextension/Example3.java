@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
-// xdoc section -- start
+// xdoc section - start
 public abstract class Example3 {
   private int bar;
 
@@ -47,4 +47,4 @@ public abstract class Example3 {
     return "";
   }
 }
-// xdoc section -- end
+// xdoc section - end

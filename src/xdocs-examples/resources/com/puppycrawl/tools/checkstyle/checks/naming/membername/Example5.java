@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.naming.membername;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   public int num1;
   protected int num2;
@@ -21,4 +21,4 @@ class Example5 {
   int NUM3;
   private int NUM4;   // violation 'Name 'NUM4' must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

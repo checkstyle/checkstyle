@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingleadingasterisk;
 
-// xdoc section -- start
+// xdoc section - start
 /**
  * Valid Java-style comment.
  *
@@ -46,4 +46,4 @@ class Wrapped {}
   * </pre>
   */
 class Example1 {}
-// xdoc section -- end
+// xdoc section - end

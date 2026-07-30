@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
 import java.awt.Image; // violation 'Disallowed import - java.awt.Image'
@@ -18,4 +18,4 @@ import java.util.Date;
 import java.util.List;
 
 public class UseCase2 {}
-// xdoc section -- end
+// xdoc section - end

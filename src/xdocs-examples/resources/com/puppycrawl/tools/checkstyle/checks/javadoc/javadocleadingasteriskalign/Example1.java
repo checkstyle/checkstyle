@@ -7,7 +7,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocleadingasteriskalign;
-// xdoc section -- start
+// xdoc section - start
 // violation 2 lines below '1, expected is 2.'
 /**
 * Javadoc for class.
@@ -57,4 +57,4 @@ public class Example1 {
     GOOD
   }
 }
-// xdoc section -- end
+// xdoc section - end

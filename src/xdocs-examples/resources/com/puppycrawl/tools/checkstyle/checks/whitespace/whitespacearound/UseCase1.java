@@ -12,7 +12,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   void example() {
     int b=10;
@@ -53,4 +53,4 @@ class UseCase1 {
     c >>>= 1;
   }
 }
-// xdoc section -- end
+// xdoc section - end

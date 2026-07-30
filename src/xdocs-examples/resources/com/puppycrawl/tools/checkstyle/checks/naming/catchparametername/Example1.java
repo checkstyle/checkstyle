@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public void myTest() {
     try {
@@ -31,4 +31,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

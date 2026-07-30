@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below "Class Data Abstraction Coupling is 8 (max allowed is 7)."
 public class UseCase3 {
   Set set = new HashSet(); // Ignored by default
@@ -37,4 +37,4 @@ public class UseCase3 {
   Example4 example4 = new Example4();
   UseCase4 useCase4 = new UseCase4(); // Counted 8
 }
-// xdoc section -- end
+// xdoc section - end

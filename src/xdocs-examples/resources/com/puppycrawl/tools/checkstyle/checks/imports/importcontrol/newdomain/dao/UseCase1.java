@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.newdomain.dao;
 
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
@@ -18,4 +18,4 @@ import java.util.Scanner;
 import javax.swing.ActionMap; // violation 'Disallowed import - javax.swing'
 
 public class UseCase1 {}
-// xdoc section -- end
+// xdoc section - end

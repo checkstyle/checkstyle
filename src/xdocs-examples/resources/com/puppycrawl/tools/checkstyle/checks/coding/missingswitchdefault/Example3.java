@@ -7,7 +7,7 @@
 */
 // Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
-// xdoc section -- start
+// xdoc section - start
 sealed interface S permits A, B, C {}
 final class A implements S {}
 final class B implements S {}
@@ -57,4 +57,4 @@ public class Example3 {
     };
   }
 }
-// xdoc section -- end
+// xdoc section - end

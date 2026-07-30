@@ -9,7 +9,7 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.util.Collections.*;
@@ -21,6 +21,6 @@ import javax.net.*;
 import org.apache.commons.io.FileUtils; // violation 'should be placed at the end'
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation 'should be separated'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-// xdoc section -- end
+// xdoc section - end
 public class Example4 {
 }

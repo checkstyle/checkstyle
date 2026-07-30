@@ -13,7 +13,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbycommentfilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example6 {
   // violation below ''int' is followed by whitespace'
   public static final int [] array = {}; // SUPPRESS CHECKSTYLE NoWhitespaceAfter
@@ -29,4 +29,4 @@ public class Example6 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

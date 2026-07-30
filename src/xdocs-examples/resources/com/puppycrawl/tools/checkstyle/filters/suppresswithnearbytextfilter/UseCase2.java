@@ -10,5 +10,5 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 
 public class UseCase2 {}
-// xdoc section -- start
-// xdoc section -- end
+// xdoc section - start
+// xdoc section - end

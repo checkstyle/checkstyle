@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.superfinalize;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   protected void finalize() throws Throwable {
     super.finalize(); // ok, calls super.finalize()
@@ -18,4 +18,4 @@ class InvalidExample {
   protected void finalize() throws Throwable {
   }
 }
-// xdoc section -- end
+// xdoc section - end

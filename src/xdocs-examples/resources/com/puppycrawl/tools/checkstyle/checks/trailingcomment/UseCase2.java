@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   public static void main(String[] args) {
     int x = 10;
@@ -28,4 +28,4 @@ public class UseCase2 {
   private static void doSomething(String param) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

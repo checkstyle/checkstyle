@@ -13,7 +13,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase3 {
   public void foo() {
     // violation below 'New instances should be created via var keyword'
@@ -21,4 +21,4 @@ public class UseCase3 {
     var b = new Object();
   }
 }
-// xdoc section -- end
+// xdoc section - end

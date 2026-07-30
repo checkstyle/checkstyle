@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-// xdoc section -- start
+// xdoc section - start
 import java.io.IOException;
 import java.net.URL;
 // violation below 'Extra separation in import group before 'java.io.IOException''
@@ -20,6 +20,6 @@ import java.util.Set; // violation 'Wrong lexicographical order for 'java.util.S
 import java.util.Map; // violation 'Wrong lexicographical order for 'java.util.Map' import. Should be before 'java.util.Set'.'
 import com.sun.security.auth.UserPrincipal; // violation 'Wrong lexicographical order for 'com.sun.security.auth.UserPrincipal' import. Should be before 'java.util.Map'.'
 import com.sun.source.tree.Tree;
-// xdoc section -- end
+// xdoc section - end
 
 public class Example1 { }

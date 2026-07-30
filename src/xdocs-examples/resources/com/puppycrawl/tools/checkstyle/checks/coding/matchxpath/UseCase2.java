@@ -12,7 +12,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   // violation below 'Method name should not be test or foo'
   public void test() {}
@@ -21,4 +21,4 @@ public class UseCase2 {
   public void foo() {}
   public void sayHello() {}
 }
-// xdoc section -- end
+// xdoc section - end

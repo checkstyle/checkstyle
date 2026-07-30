@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   private int K; // violation 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
@@ -38,4 +38,4 @@ class Example2 {
   public void needsLotsOfParameters2 (int a,
     int b, int c, int d, int e, int f, int g, int h) {}
 }
-// xdoc section -- end
+// xdoc section - end

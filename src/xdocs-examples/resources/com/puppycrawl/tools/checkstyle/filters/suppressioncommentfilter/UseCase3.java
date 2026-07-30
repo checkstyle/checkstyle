@@ -13,7 +13,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
-// xdoc section -- start
+// xdoc section - start
 class UseCase3
 {
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -47,4 +47,4 @@ class UseCase3
   //cson IllegalCatch
 
 }
-// xdoc section -- end
+// xdoc section - end

@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 
   private String field;
@@ -30,4 +30,4 @@ class Example2 {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured
   }
 }
-// xdoc section -- end
+// xdoc section - end

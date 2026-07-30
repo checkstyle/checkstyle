@@ -333,24 +333,11 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
-            "checks/finalparameters/InputFinalParameters9.java",
-            "checks/finalparameters/InputFinalParameters2.java",
-            "checks/finalparameters/InputFinalParameters.java",
-            "checks/finalparameters/InputFinalParameters6.java",
-            "checks/finalparameters/InputFinalParameters10.java",
-            "checks/finalparameters/InputFinalParametersPrimitiveTypes.java",
             "checks/finalparameters/InputFinalParameters3.java",
-            "checks/finalparameters/InputFinalParametersInterfaceMethod.java",
-            "checks/finalparameters/InputFinalParameters8.java",
             "checks/finalparameters/InputFinalParametersPatternVariables.java",
-            "checks/finalparameters/InputFinalParametersPrimitiveTypes2.java",
-            "checks/finalparameters/"
-                    + "InputFinalParametersRecordForLoopPatternVariables.java",
-            "checks/coding/declarationorder/Example1.java",
-            "checks/coding/declarationorder/Example2.java",
-            "checks/coding/declarationorder/Example3.java",
+             "checks/finalparameters/"
+                     + "InputFinalParametersRecordForLoopPatternVariables.java",
             "checks/coding/equalshashcode/Example1.java",
-            "checks/coding/illegaltype/InputIllegalTypeArrays.java",
             "checks/coding/illegaltype/InputIllegalTypeTestDefaults.java",
             "checks/coding/illegaltype/InputIllegalTypeEmptyStringMemberModifiers.java",
             "checks/coding/illegaltype/InputIllegalTypeTestExtendsImplements.java",
@@ -374,8 +361,6 @@ public final class InlineConfigParser {
             "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
             "checks/coding/nestedifdepth/Example1.java",
             "checks/coding/nestedifdepth/Example2.java",
-            "checks/coding/nestedtrydepth/Example1.java",
-            "checks/coding/nestedtrydepth/Example2.java",
             "checks/coding/noclone/Example1.java",
             "checks/coding/simplifybooleanreturn/Example1.java",
             "checks/coding/superfinalize/InputSuperFinalizeVariations.java",

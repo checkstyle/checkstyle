@@ -13,7 +13,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 import javax.annotation.processing.Generated;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class UseCase9 {
   int age = 23; // violation "'23' is a magic number."
@@ -51,7 +51,7 @@ public class UseCase9 {
   @Generated("second")
   public void Test2() {} // violation "Name 'Test2' must match pattern"
 }
-// xdoc section -- end
+// xdoc section - end
 class Main {
   int someField = 11; // violation "'11' is a magic number."
   void FOO() {} // filtered violation "Name 'FOO' must match pattern"

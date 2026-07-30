@@ -26,9 +26,9 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 public class Example7 {}
 
 /*
-// xdoc section -- start
+// xdoc section - start
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'
-// xdoc section -- end
+// xdoc section - end
 */

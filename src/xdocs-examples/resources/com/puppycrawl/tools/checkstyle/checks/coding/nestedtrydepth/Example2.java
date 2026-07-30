@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedtrydepth;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   void testMethod() {
     try {
@@ -28,7 +28,7 @@ public class Example2 {
       try {
         try { // ok, current depth is 2, max allowed depth is 3
           try { // ok, current depth is 3, max allowed depth is 3
-            try { // violation, current depth is 4, max allowed depth is 3
+            try { // violation 'Nested try depth is 4 (max allowed is 3).'
             } catch (Exception e) {}
           } catch (Exception e) {}
         } catch (Exception e) {}
@@ -36,4 +36,4 @@ public class Example2 {
     } catch (Exception e) {}
   }
 }
-// xdoc section -- end
+// xdoc section - end

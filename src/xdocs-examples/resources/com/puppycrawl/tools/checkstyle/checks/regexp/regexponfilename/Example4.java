@@ -10,12 +10,12 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
 /*
-// xdoc section -- start
+// xdoc section - start
 .../checkstyle.xml
 .../Test Example1.xml
 .../TestExample2.xml
 .../TestExample3.md  // violation 'Only property and xml files to be located in the resource folder'
 .../TestExample4.xml
-// xdoc section -- end
+// xdoc section - end
 */
 class Example4 {}

@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   int field1,field2,field3;
 
@@ -29,4 +29,4 @@ class Example3 {
     field3 = field3;
   }
 }
-// xdoc section -- end
+// xdoc section - end

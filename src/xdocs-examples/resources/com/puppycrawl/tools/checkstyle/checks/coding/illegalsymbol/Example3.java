@@ -10,12 +10,12 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   // ok, 😀 comment in emoji
 
   int value1 = 1;
   String value2 = "Hello 😀"; // violation 'Illegal symbol detected: '😀''
 }
-// xdoc section -- end
+// xdoc section - end
 

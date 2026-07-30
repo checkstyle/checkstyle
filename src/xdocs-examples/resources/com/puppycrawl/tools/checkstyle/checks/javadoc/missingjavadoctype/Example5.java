@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-// xdoc section -- start
+// xdoc section - start
 /** Documented. */
 public class Example5 {
   /** Javadoc. */
@@ -33,4 +33,4 @@ public class Example5 {
   /** Javadoc. */
   public interface G {}
 }
-// xdoc section -- end
+// xdoc section - end

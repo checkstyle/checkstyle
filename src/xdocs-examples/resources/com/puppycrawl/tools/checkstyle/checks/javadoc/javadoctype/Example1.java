@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 import javax.annotation.processing.Generated;
-// xdoc section -- start
+// xdoc section - start
 /**
  * @author a
  * @version $Revision1$
@@ -42,4 +42,4 @@ public class Example1 {
   @Generated("tool")
   public class ClassG<T> {}
 }
-// xdoc section -- end
+// xdoc section - end

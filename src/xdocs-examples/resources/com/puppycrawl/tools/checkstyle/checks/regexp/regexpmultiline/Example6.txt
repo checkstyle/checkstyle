@@ -8,10 +8,10 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 /var/tmp$ cat -n Test.java
 1
 2
 3
 4
-// xdoc section -- end
+// xdoc section - end

@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   // violation below 'Summary javadoc is missing'
   /** */
@@ -43,4 +43,4 @@ class Example2 {
   void withoutDotPeriod() {}
   // violation 4 lines above 'First sentence of Javadoc is missing an ending period'
 }
-// xdoc section -- end
+// xdoc section - end

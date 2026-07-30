@@ -11,10 +11,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   public UseCase1() {}
   // violation below 'Name 'UseCase1' must not equal the enclosing class name.'
   public void UseCase1() {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
 import javax.annotation.processing.Generated;
 
-// xdoc section -- start
+// xdoc section - start
 // filtered violation 4 lines below "Name 'SetSomeVar' must match pattern"
 public class UseCase7 {
   int age = 23;
@@ -50,4 +50,4 @@ public class UseCase7 {
   @Generated("second")
   public void Test2() {} // violation "Name 'Test2' must match pattern"
 }
-// xdoc section -- end
+// xdoc section - end

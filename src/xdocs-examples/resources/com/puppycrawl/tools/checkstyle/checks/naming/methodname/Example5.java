@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   public void method1() {}
   protected void Method2() {} // ok because 'applyToProtected' is false
@@ -20,4 +20,4 @@ class Example5 {
   public void Example3() {} // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

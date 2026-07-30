@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 { // violation 'Number of package methods is 1 (max allowed is 0)'
 
   public void outerMethod1(int i) {}
@@ -30,4 +30,4 @@ class Example5 { // violation 'Number of package methods is 1 (max allowed is 0)
     public void innerMethod2() {} // NOT counted towards Example
   }
 }
-// xdoc section -- end
+// xdoc section - end

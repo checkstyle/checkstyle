@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   abstract class AbstractFirst {}
   abstract class Second {}
@@ -22,4 +22,4 @@ class Example3 {
 
   class GeneratorSixth {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -37,10 +37,10 @@ This project and everyone participating in it is governed by the
   have a few issues labeled as [good first issue][goodFirst-Issue] to
   help you get started. Please watch [videos][videos-playlist] on how to
   setup local environment and send first fix.
-- Once you get your first PR merged, you can move on to [good second issue][goodSecond-Issue]
-  ,[good third issue][goodThird-Issue], and finally [good fourth issue][goodFourth-Issue]
-  before taking up some bug fixes or features. Always make sure that the issue you select
-  has the [approved][Approved-Label] label.
+- Once you get your first PR merged, you can move on to [good second issue][goodSecond-Issue],
+  [good third issue][goodThird-Issue], [good fourth issue][goodFourth-Issue],
+  and finally [good fifth issue][goodFifth-Issue] before taking up some bug fixes or features.
+  Always make sure that the issue you select has the [approved][Approved-Label] label.
 - When you decide which issue you would like to take up,
   please comment on the issue to let others know that you are working on it ("I am on it.").
   It is completely ok to change a mind, please try to remove comment.
@@ -147,6 +147,8 @@ https://github.com/checkstyle/checkstyle/labels/good%20second%20issue
 https://github.com/checkstyle/checkstyle/labels/good%20third%20issue
 [goodFourth-Issue]:
 https://github.com/checkstyle/checkstyle/labels/good%20fourth%20issue
+[goodFifth-Issue]:
+https://github.com/checkstyle/checkstyle/labels/good%20fifth%20issue
 [Approved-Label]:
 https://github.com/checkstyle/checkstyle/labels/approved
 [pr-rules]:

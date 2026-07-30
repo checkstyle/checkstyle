@@ -8,7 +8,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   record Rec1(int other) {}
 
@@ -16,4 +16,4 @@ class Example1 {
 
   record Rec3(double myNumber) {}
 }
-// xdoc section -- end
+// xdoc section - end

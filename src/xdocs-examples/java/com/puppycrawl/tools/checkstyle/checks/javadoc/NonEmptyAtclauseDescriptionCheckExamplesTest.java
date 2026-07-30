@@ -41,6 +41,7 @@ public class NonEmptyAtclauseDescriptionCheckExamplesTest
             "18: " + getCheckMessage(MSG_KEY),
             "19: " + getCheckMessage(MSG_KEY),
             "20: " + getCheckMessage(MSG_KEY),
+            "21: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);

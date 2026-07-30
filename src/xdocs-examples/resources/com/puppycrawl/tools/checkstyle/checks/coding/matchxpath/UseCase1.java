@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
 import java.util.HashMap;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase1 {
   // violation below 'Parameterized constructors are not allowed'
   public UseCase1(Object c) { }
@@ -22,4 +22,4 @@ public class UseCase1 {
   public UseCase1(int a, HashMap<String, Integer> b) { }
   public UseCase1() { }
 }
-// xdoc section -- end
+// xdoc section - end

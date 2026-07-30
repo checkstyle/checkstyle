@@ -16,7 +16,7 @@ import com.google.common.collect.ImmutableSet;
 import java.util.HashSet;
 import java.util.Set;
 
-// xdoc section -- start
+// xdoc section - start
 class UseCase2 {
   private int myPrivateField1;
 
@@ -53,4 +53,4 @@ class UseCase2 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 }
-// xdoc section -- end
+// xdoc section - end

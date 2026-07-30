@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 public abstract class Example2 {
   int b = 0;
   public void foo() { // violation, NPath complexity is 128 (max allowed is 100)
@@ -55,4 +55,4 @@ public abstract class Example2 {
   public abstract String baz();
   public abstract void print(String str);
 }
-// xdoc section -- end
+// xdoc section - end

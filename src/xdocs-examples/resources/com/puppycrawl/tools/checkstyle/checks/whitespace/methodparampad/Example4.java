@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
   public Example4() {
     super();
@@ -25,4 +25,4 @@ class Example4 {
   public void methodWithVeryLongName
   () {} // ok, because allowLineBreaks is true
 }
-// xdoc section -- end
+// xdoc section - end

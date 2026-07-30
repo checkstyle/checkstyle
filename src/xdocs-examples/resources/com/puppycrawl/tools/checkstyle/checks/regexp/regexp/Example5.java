@@ -11,7 +11,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
-// xdoc section -- start
+// xdoc section - start
 // (c) MyCompany
 // (c) MyCompany
 // This code is copyrighted.
@@ -23,4 +23,4 @@ public class Example5 {
     // fix me.
   } // violation 2 lines above 'The error limit has been exceeded'
 }
-// xdoc section -- end
+// xdoc section - end

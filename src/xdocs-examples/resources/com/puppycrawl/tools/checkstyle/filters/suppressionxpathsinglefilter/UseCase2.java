@@ -15,7 +15,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
+// xdoc section - start
 public class UseCase2 {
   private int age = 23;
   private int number = 100;
@@ -29,4 +29,4 @@ public class UseCase2 {
     number = number;
   }
 }
-// xdoc section -- end
+// xdoc section - end

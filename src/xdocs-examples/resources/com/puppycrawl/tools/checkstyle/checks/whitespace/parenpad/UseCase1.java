@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.util.Iterator;
 import java.io.Closeable;
-// xdoc section -- start
+// xdoc section - start
 class UseCase1 {
   void m(int i, int j, Iterator xs, Closeable resource) throws Exception {
     for ( ; i < j; i++, j--) {}               // ok, no check after left '('
@@ -20,4 +20,4 @@ class UseCase1 {
     try (Closeable r = resource; ) {}         // ok, no check before right ')
   }
 }
-// xdoc section -- end
+// xdoc section - end

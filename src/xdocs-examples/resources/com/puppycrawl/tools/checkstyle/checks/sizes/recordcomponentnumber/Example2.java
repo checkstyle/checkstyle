@@ -11,7 +11,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2{
   public record MyRecord1(int x, int y, String str) {}
 
@@ -24,4 +24,4 @@ class Example2{
   private record MyRecord4(int x, int y,
                            String str, double d) {}
 }
-// xdoc section -- end
+// xdoc section - end

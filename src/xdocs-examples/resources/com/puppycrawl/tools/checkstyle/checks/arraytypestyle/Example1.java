@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   int[] nums; // ok since default format checks for Java style
   String strings[]; // violation 'Array brackets at illegal position'
@@ -21,4 +21,4 @@ public class Example1 {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

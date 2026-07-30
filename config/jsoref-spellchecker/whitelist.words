@@ -243,6 +243,7 @@ ctc
 ctor
 ctx
 customimportorder
+customtagsandannotations
 cvf
 CVS
 cyclomatic
@@ -1051,6 +1052,7 @@ paramcounter
 parameterassignment
 parametername
 parameternumber
+paramtag
 Parcelable
 parenpad
 PARM

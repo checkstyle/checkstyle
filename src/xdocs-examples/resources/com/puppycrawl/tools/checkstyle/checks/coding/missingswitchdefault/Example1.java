@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void Example1(int i) {
     switch (i) { // violation 'switch without "default" clause'
@@ -29,4 +29,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

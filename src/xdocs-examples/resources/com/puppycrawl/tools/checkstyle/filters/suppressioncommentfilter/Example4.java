@@ -11,7 +11,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
 
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
@@ -41,4 +41,4 @@ class Example4 {
   public static final int varC = 1; // violation 'must match pattern'
   /*CHECKSTYLE:ON*/
 }
-// xdoc section -- end
+// xdoc section - end

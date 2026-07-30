@@ -13,7 +13,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public void method1() { }
   // violation below 'Private methods must appear after public methods'
@@ -24,4 +24,4 @@ public class Example1 {
   public void method5() { }
   private void method6() { }
 }
-// xdoc section -- end
+// xdoc section - end

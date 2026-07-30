@@ -5,16 +5,17 @@ on:
     branches:
       - master
   pull_request:
+    types: [ opened, synchronize, reopened, closed ]
     branches: '*'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk17:
-    if: github.repository == 'checkstyle/checkstyle'
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 21
@@ -37,7 +38,7 @@ jobs:
       - run: .ci/no-exception-test.sh openjdk17-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk19:
-    if: github.repository == 'checkstyle/checkstyle'
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 21
@@ -60,7 +61,7 @@ jobs:
       - run: .ci/no-exception-test.sh openjdk19-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk20:
-    if: github.repository == 'checkstyle/checkstyle'
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 21
@@ -83,7 +84,7 @@ jobs:
       - run: .ci/no-exception-test.sh openjdk20-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
   no-exception-openjdk25:
-    if: github.repository == 'checkstyle/checkstyle'
+    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 21
