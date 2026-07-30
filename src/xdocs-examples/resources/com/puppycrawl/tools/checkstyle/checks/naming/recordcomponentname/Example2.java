@@ -14,8 +14,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 class Example2 {
   record Rec1(int other) {}
 
-  record Rec2(String Values) {} // violation, Name must match '^[a-z]+$'
+  record Rec2(String Values) {} // violation 'Name 'Values' must match pattern'
 
-  record Rec3(double myNumber) {} // violation, Name must match '^[a-z]+$'
+  record Rec3(double myNumber) {} // violation 'Name 'myNumber' must match pattern'
 }
 // xdoc section - end
