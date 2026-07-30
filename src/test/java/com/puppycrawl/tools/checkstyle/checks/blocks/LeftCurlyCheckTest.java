@@ -625,6 +625,18 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNlOrSingleline() throws Exception {
+        final String[] expected = {
+            "28:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
+            "40:26: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 26),
+            "50:44: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 44),
+            "55:51: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 51),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyTestNlOrSingleline.java"), expected);
+    }
+
+    @Test
     public void commentBeforeLeftCurly2() throws Exception {
         final String[] expected = {
             "54:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),

@@ -71,4 +71,27 @@ public enum LeftCurlyOption {
      */
     NL,
 
+    /**
+     * Represents the policy that if the block is entirely on a single line, then the
+     * brace may be placed at the end of that line. Otherwise, the {@code NL} rule is
+     * applied, and the brace must be on a new line.
+     *
+     * <p>For example, Checkstyle will allow:
+     *
+     * <pre>
+     * if (condition) { ... }
+     * </pre>
+     *
+     * <p>But for a block spanning multiple lines, Checkstyle will enforce:
+     *
+     * <pre>
+     * if (condition)
+     * {
+     *     ...
+     * }
+     * </pre>
+     *
+     **/
+    NL_OR_SINGLELINE,
+
 }
