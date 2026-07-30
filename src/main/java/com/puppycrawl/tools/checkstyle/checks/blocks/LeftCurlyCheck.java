@@ -298,10 +298,35 @@ public class LeftCurlyCheck
             else if (option == LeftCurlyOption.EOL) {
                 validateEol(brace, braceLine);
             }
+            else if (option == LeftCurlyOption.NL_OR_SINGLELINE) {
+                if (!isSingleLineBlock(brace)
+                        && !CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+                    log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+                }
+            }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
             }
         }
+    }
+
+    /**
+     * Checks whether the block that the given left curly brace opens is
+     * entirely on a single line, i.e. its matching right curly brace is on
+     * the same line as the left curly brace.
+     *
+     * @param brace token for left curly brace
+     * @return true if the block is on a single line
+     */
+    private static boolean isSingleLineBlock(DetailAST brace) {
+        final DetailAST rightCurly;
+        if (brace.getType() == TokenTypes.LCURLY) {
+            rightCurly = brace.getParent().getLastChild();
+        }
+        else {
+            rightCurly = brace.getLastChild();
+        }
+        return TokenUtil.areOnSameLine(brace, rightCurly);
     }
 
     /**

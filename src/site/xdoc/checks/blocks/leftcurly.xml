@@ -313,6 +313,34 @@ class UseCase1
     GREEN;
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check to apply the <code>nl_or_singleline</code> policy:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LeftCurly"&gt;
+      &lt;property name="option" value="nl_or_singleline"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase2
+{
+  void singleLineOk() { return; }
+
+  void multiLineOk()
+  {
+    return;
+  }
+
+  void multiLineViolation() { // violation ''{' at column 29 should be on a new line.'
+    return;
+  }
+}
 </code></pre></div>
       </subsection>
 
