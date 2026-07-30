@@ -17,7 +17,6 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
             1;} default : x = 5;         // violation '}' at column 15 should be alone on a line'
         }
     }
-
     public static void test10() {
         int mode = 0;
         switch (mode) {
@@ -46,7 +45,10 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
         switch (mode) {
             case 0: {
 
-            int x = 1; } case 1: {int x = 1;} break;  // 2 violations
+            int x = 1; } case 1: {int x = 1;} break;
+            // 2 violations above:
+            // ''}' at column 24 should be alone on a line.'
+            // ''}' at column 45 should be alone on a line.'
         }
     }
     public static void test13() {
@@ -65,16 +67,20 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
         switch (mode) {
             case 0: {
 
-            } case 1: {  }         // 2 violations
+            } case 1: {  }
+            // 2 violations above:
+            // ''}' at column 13 should be alone on a line.'
+            // ''}' at column 26 should be alone on a line.'
             default : {break;}
         }
     }
-
     public static void test15() {
         int mode = 0;
-        switch (mode) {case 0: { } case 1: {  } } // 2 violations
+        switch (mode) {case 0: { } case 1: {  } }
+        // 2 violations above:
+        // ''}' at column 34 should be alone on a line.'
+        // ''}' at column 47 should be alone on a line.'
     }
-
     public static void test16() {
         int mode = 0;
         switch (mode) {
@@ -84,7 +90,6 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
             case 2: int t = 1; { };
         }
     }
-
     public static void test17() {
         int mode = 0;
         switch (mode) {
@@ -94,15 +99,12 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
             case 1:
             mode++;
             {
-
             } int y; // ok, the braces is not a first child of case
             case 3:
             {
-
             } int z = 1;  // violation '}' at column 13 should be alone on a line'
         }
     }
-
     public static void test18() {
         int mode = 0;
         switch (mode) {
@@ -112,9 +114,7 @@ public class InputRightCurlyCaseBlocksInSwitchStatementAlone2 {
             case 1:
             int z;
             {
-
             }break; default: break; // ok, the braces is not a first child of case
         }
     }
 }
-
