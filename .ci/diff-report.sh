@@ -170,6 +170,28 @@ prepare-environment)
   echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
   ;;
 
+generate-report)
+  cd .ci-temp/contribution/checkstyle-tester
+  bash
+  REF="forked/$BRANCH"
+  REPO="../../../../checkstyle"
+  BASE_BRANCH="upstream/master"
+  export MAVEN_OPTS="-Xmx5g"
+  if [ -f new_module_config.xml ]; then
+    groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
+      -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+      --allowExcludes
+  elif [ -f patch_config.xml ]; then
+    groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
+      -pc patch_config.xml -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+      --allowExcludes
+  else
+    groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
+      -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+      --allowExcludes
+  fi
+  ;;
+
 process-local-repo-config-files)
   # Some properties and modules are explicitly added in the config files to prevent parser failures
   mkdir -p .ci-temp
