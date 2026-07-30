@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedifdepth;
 
-// xdoc section - start
+// xdoc section -- start
 class Example2 {
   void Test() {
     if (true) {
@@ -51,4 +51,4 @@ class Example2 {
     }
   }
 }
-// xdoc section - end
+// xdoc section -- end
