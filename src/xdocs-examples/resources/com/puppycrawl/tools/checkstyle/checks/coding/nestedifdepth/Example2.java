@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedifdepth;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   void Test() {
     if (true) {
@@ -20,7 +20,7 @@ class Example2 {
     if (true) {
       if (true) {
         if (true) {}
-        else{}
+        else {}
       }
     }
 
@@ -37,8 +37,12 @@ class Example2 {
       if (true) {
         if (true) {
           if (true) {
-            if (true) { // violation above, "Nested if-else depth is 4 (max allowed is 3)."
-              if (true) {} // violation above, "Nested if-else depth is 5 (max allowed is 3)."
+            // violation above, """Nested if-else depth is
+            //  4 (max allowed is 3)."""
+            if (true) {
+              // violation above, """Nested if-else depth is
+              //  5 (max allowed is 3)."""
+              if (true) {}
               else {}
             }
           }
@@ -47,4 +51,4 @@ class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end
