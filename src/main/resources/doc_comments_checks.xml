@@ -56,6 +56,9 @@
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on documents comments style guide -->
 
+    <!-- Package-Level Comments -->
+    <module name="MissingJavadocPackage"/>
+
     <!-- Format of a Doc Comment -->
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocVariable"/>
