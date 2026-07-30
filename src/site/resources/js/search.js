@@ -191,6 +191,7 @@
         }
         scored.sort(function (a, b) {
             if (b.score !== a.score) { return b.score - a.score; }
+            if (b.entry.weight !== a.entry.weight) { return b.entry.weight - a.entry.weight; }
             return (a.entry.title || "").localeCompare(b.entry.title || "");
         });
         return scored.slice(0, MAX_RESULTS).map(function (s) { return s.entry; });
@@ -320,6 +321,12 @@
 
         titleRow.appendChild(titleEl);
         titleRow.appendChild(badge);
+        if (entry.since) {
+            var sinceBadge = document.createElement("span");
+            sinceBadge.className   = "cs-search-since-badge";
+            sinceBadge.textContent = entry.since;
+            titleRow.appendChild(sinceBadge);
+        }
         item.appendChild(titleRow);
 
         if (entry.description) {
