@@ -1036,6 +1036,7 @@ packageannotation
 packagecomment
 packagedeclaration
 packagehtml
+packagehtmlcontents
 packagehtmltemplate
 packageinfo
 packagelevelcomments
