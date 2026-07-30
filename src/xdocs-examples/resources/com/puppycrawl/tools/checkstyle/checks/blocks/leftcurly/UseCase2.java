@@ -1,0 +1,27 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="LeftCurly">
+      <property name="option" value="nl_or_singleline"/>
+    </module>
+  </module>
+</module>
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
+
+// xdoc section - start
+class UseCase2
+{
+  void singleLineOk() { return; }
+
+  void multiLineOk()
+  {
+    return;
+  }
+
+  void multiLineViolation() { // violation ''{' at column 29 should be on a new line.'
+    return;
+  }
+}
+// xdoc section - end

@@ -654,6 +654,31 @@
               </div>
             </td>
           </tr>
+
+          <tr>
+            <td><code>nl_or_singleline</code></td>
+            <td>
+              If the block is entirely on a single line, then the brace may be
+              placed at the end of that line. Otherwise, the <code>nl</code> rule
+              is applied, and the brace must be on a new line.
+              For example, Checkstyle will allow:
+              <div class="wrapper">
+                <pre>
+    if (condition) { ... }
+                </pre>
+              </div>
+              But for a block spanning multiple lines, Checkstyle will
+              enforce:
+              <div class="wrapper">
+                <pre>
+    if (condition)
+    {
+        ...
+    }
+                </pre>
+              </div>
+            </td>
+          </tr>
         </table>
       </div>
     </section>
