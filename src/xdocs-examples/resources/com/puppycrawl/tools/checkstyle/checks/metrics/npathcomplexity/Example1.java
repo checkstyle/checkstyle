@@ -23,7 +23,7 @@ public abstract class Example1 {
     print(m > n ? baz() : bar());
   }
 
-  public void boo() { // violation, NPath complexity is 217 (max allowed is 200)
+  public void boo() { // violation 'NPath Complexity is 217 (max allowed is 200).'
     // looping through 3 switch statements produces 6^3 + 1 (217) possible outcomes
     for(int i = 0; i < b; i++) { // for statement adds 1 to final complexity
       switch(i) { // each independent switch statement multiplies complexity by 6
