@@ -390,8 +390,6 @@ public final class InlineConfigParser {
             "checks/imports/importorder/Example10.java",
             "checks/metrics/npathcomplexity/Example1.java",
             "checks/metrics/npathcomplexity/Example2.java",
-            "checks/naming/recordcomponentname/Example1.java",
-            "checks/naming/recordcomponentname/Example2.java",
             "checks/naming/recordtypeparametername/Example1.java",
             "checks/naming/recordtypeparametername/Example2.java",
             "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic8.java",
