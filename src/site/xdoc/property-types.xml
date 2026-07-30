@@ -693,6 +693,33 @@
               </div>
             </td>
           </tr>
+
+          <tr>
+            <td>
+              <a id="LeftCurlyOption-nl_or_singleline"/>
+              <a href="#LeftCurlyOption-nl_or_singleline">nl_or_singleline</a>
+            </td>
+            <td>
+              If the whole block fits on a single line, then apply the
+              <code>eol</code> rule. Otherwise, apply the <code>nl</code> rule.
+              Checkstyle will allow:
+              <div class="wrapper">
+                <pre><code class="language-java">
+                  if (condition) { doSomething(); }
+                </code></pre>
+              </div>
+              But for a block spanning multiple lines, Checkstyle will
+              enforce:
+              <div class="wrapper">
+                <pre><code class="language-java">
+                  if (condition)
+                  {
+                  ...
+                  }
+                </code></pre>
+              </div>
+            </td>
+          </tr>
         </table>
       </div>
     </section>
