@@ -270,7 +270,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.arraytypestyle.ArrayTypeStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",

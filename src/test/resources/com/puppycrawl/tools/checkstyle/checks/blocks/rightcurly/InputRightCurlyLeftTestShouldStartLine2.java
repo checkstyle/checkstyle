@@ -108,7 +108,10 @@ class FooCtorTestShouldStartLine2
         public void FooCtor()
     {
                 i = 1;
-    }} // 2 violations
+    }}
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 6 should be alone on a line.'
 
 /**
 * Test input for closing brace if that brace terminates
@@ -119,7 +122,10 @@ class FooMethodTestShouldStartLine2
         public void fooMethod()
     {
                 int i = 1;
-    }} // 2 violations
+    }}
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 6 should be alone on a line.'
 
 /**
 * Test input for closing brace if that brace terminates
@@ -133,7 +139,10 @@ class FooInnerTestShouldStartLine2
         {
 
                 }
-    }} // 2 violations
+    }}
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 6 should be alone on a line.'
 
 /**
  * False positive
@@ -208,5 +217,8 @@ class ClassWithStaticInitializersTestShouldStartLine2
         void display();
         interface Interface4 {
             void myMethod();
-        }} // 2 violations
+        }}
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 10 should be alone on a line.'
 }

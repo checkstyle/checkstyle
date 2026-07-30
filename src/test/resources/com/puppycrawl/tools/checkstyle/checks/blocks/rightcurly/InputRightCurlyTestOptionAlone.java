@@ -59,7 +59,10 @@ public class InputRightCurlyTestOptionAlone {
         // violation below ''}' at column 53 should be alone on a line'
         for (int i = 1; i < 10; i++) { byte b = 10; }
 
-        if (a < 2) { --a; } else if (a > 3) { a++; } // 2 violations
+        if (a < 2) { --a; } else if (a > 3) { a++; }
+        // 2 violations above:
+        // ''}' at column 27 should be alone on a line.'
+        // ''}' at column 52 should be alone on a line.'
 
         java.util.List<String> list = new java.util.ArrayList<>();
         list.stream()
@@ -72,7 +75,10 @@ public class InputRightCurlyTestOptionAlone {
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-        }{}; // 2 violations
+        }{};
+        // 2 violations above:
+        // ''}' at column 9 should be alone on a line.'
+        // ''}' at column 11 should be alone on a line.'
         };
     }
 
@@ -102,5 +108,8 @@ public class InputRightCurlyTestOptionAlone {
         void display();
         interface Interface4 {
             void myMethod();
-        }} // 2 violations
+        }}
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 10 should be alone on a line.'
 }

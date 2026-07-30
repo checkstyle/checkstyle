@@ -13,4 +13,7 @@ public class InputRightCurlyTestEndOfFile
     public static void main(String[] arg)
     {
 
- }} // 2 violations
+ }}
+// 2 violations above:
+// ''}' at column 2 should be alone on a line.'
+// ''}' at column 3 should be alone on a line.'
