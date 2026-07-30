@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
+import com.puppycrawl.tools.checkstyle.utils.InlineConfigUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -604,11 +605,13 @@ public final class InlineConfigParser {
 
         final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
-        if (!checkIsXmlConfig(lines)) {
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, inputFilePath);
+        if (matched == null || !matched.xmlStyleConfig()) {
             throw new CheckstyleException("Config cannot be parsed as xml.");
         }
 
-        final List<String> inlineConfig = getInlineConfig(lines);
+        final List<String> inlineConfig = getInlineConfig(lines, inputFilePath, matched);
         final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
         final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
         final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
@@ -633,31 +636,25 @@ public final class InlineConfigParser {
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }
 
-    /**
-     * Check whether a file provides xml configuration.
-     *
-     * @param lines lines of the file
-     * @return true if a file provides xml configuration, otherwise false.
-     */
-    private static boolean checkIsXmlConfig(List<String> lines) {
-        return "/*xml".equals(lines.getFirst());
-    }
-
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.getFirst().startsWith("/*")) {
-            throw new CheckstyleException("Config not specified on top."
-                + "Please see other inputs for examples of what is required.");
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, inputFilePath);
+        if (matched == null) {
+            throw new CheckstyleException("Config not specified on top. Expected "
+                    + InlineConfigUtils.describeExpectedDelimiters(inputFilePath)
+                    + " as the first line. Please see other inputs for examples of what"
+                    + " is required.");
         }
 
-        final List<String> inlineConfig = getInlineConfig(lines);
+        final List<String> inlineConfig = getInlineConfig(lines, inputFilePath, matched);
 
-        if (checkIsXmlConfig(lines)) {
+        if (matched.xmlStyleConfig()) {
             final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
             final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
             final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
-                inputSource, new PropertiesExpander(System.getProperties()),
+                    inputSource, new PropertiesExpander(System.getProperties()),
                     ConfigurationLoader.IgnoredModulesOptions.EXECUTE
             );
             final String configName = xmlConfig.getName();
@@ -672,11 +669,37 @@ public final class InlineConfigParser {
         }
     }
 
-    private static List<String> getInlineConfig(List<String> lines) {
-        return lines.stream()
-                .skip(1)
-                .takeWhile(line -> !line.startsWith("*/"))
-                .toList();
+    /**
+     * Extracts the raw config lines (between the start and end delimiter) for the given
+     * file, stripping the leading {@code #} comment marker from each line when the target
+     * file is a {@code .properties} file (since every config line there must itself be a
+     * valid properties-file comment).
+     *
+     * @param lines all lines of the file.
+     * @param inputFilePath the input file path, used to select the delimiter and
+     *     line-prefix-stripping behavior.
+     * @return the inline config lines, ready to be parsed as XML or key-value pairs.
+     */
+    private static List<String> getInlineConfig(List<String> lines, String inputFilePath,
+                                                InlineConfigUtils.MatchedDelimiter matched) {
+        final int endIndex = InlineConfigUtils.getConfigEndIndex(lines, matched);
+        final int startIndex;
+        if (matched.end() == null) {
+            startIndex = 0;
+        }
+        else {
+            startIndex = 1;
+        }
+        final List<String> rawConfigLines = lines.subList(startIndex, endIndex);
+
+        final List<String> result;
+        if (inputFilePath.endsWith(".properties")) {
+            result = InlineConfigUtils.stripPropertiesCommentPrefix(rawConfigLines);
+        }
+        else {
+            result = rawConfigLines;
+        }
+        return result;
     }
 
     private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,
