@@ -438,7 +438,7 @@
                                   VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="JavadocMethod">
-      <property name="accessModifiers" value="public"/>
+      <property name="accessModifiers" value="public, protected"/>
       <property name="allowMissingParamTags" value="true"/>
       <property name="allowMissingReturnTag" value="true"/>
       <property name="allowedAnnotations" value="Override, Test"/>
