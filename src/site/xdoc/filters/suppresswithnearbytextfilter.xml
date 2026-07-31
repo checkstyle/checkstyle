@@ -346,18 +346,17 @@ public class UseCase1 {
         <p id="UseCase2-config">
           To configure the filter to suppress audit events for the current and previous line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+        <div class="wrapper"><pre class="prettyprint"><code>
+&lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="lineRange" value="-1"/&gt;
   &lt;/module&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="UseCase2-raw">
+        <p id="UseCase2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 # // filtered violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=41 # ok as within line range
 key.one=42 # SUPPRESS CHECKSTYLE because I want to
