@@ -75,6 +75,7 @@ blocks:
                 - .ci/validation.sh no-error-orekit
                 - .ci/validation.sh no-error-checkstyles-sevntu
                 - .ci/validation.sh no-error-sevntu-checks
+                - .ci/validation.sh no-error-checkstyle-openrewrite-recipes
                 - .ci/validation.sh no-error-contribution
                 - .ci/validation.sh no-error-methods-distance
                 - .ci/validation.sh no-error-equalsverifier
