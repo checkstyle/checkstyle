@@ -66,8 +66,8 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "59:17: " + getCheckMessage(MSG_KEY, "s"),
             "75:17: " + getCheckMessage(MSG_KEY, "s"),
             "81:17: " + getCheckMessage(MSG_KEY, "s"),
-            "96:45: " + getCheckMessage(MSG_KEY, "e"),
-            "99:36: " + getCheckMessage(MSG_KEY, "e"),
+            "97:45: " + getCheckMessage(MSG_KEY, "e"),
+            "101:36: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFinalParameters3.java"), expected);
@@ -227,9 +227,9 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "17:47: " + getCheckMessage(MSG_KEY, "s"),
             "19:26: " + getCheckMessage(MSG_KEY, "i"),
-            "24:34: " + getCheckMessage(MSG_KEY, "name"),
-            "30:18: " + getCheckMessage(MSG_KEY, "s"),
-            "32:26: " + getCheckMessage(MSG_KEY, "name"),
+            "25:34: " + getCheckMessage(MSG_KEY, "name"),
+            "31:18: " + getCheckMessage(MSG_KEY, "s"),
+            "34:26: " + getCheckMessage(MSG_KEY, "name"),
         };
         verifyWithInlineConfigParser(
             getPath("InputFinalParametersPatternVariables.java"), expected);
@@ -238,7 +238,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordForLoopPatternVariableDefinitions() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_KEY, "name"),
+            "18:22: " + getCheckMessage(MSG_KEY, "name"),
         };
         verifyWithInlineConfigParser(
             getNonCompilablePath("InputFinalParametersRecordForLoopPatternVariables.java"),
