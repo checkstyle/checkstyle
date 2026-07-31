@@ -710,24 +710,26 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
         final DetailAST parent = getRecordDef(compactDef);
         final List<DetailAST> params = getRecordComponents(parent);
 
-        final ListIterator<JavadocTag> tagIt = tags.listIterator();
-        while (tagIt.hasNext()) {
-            final JavadocTag tag = tagIt.next();
-
+        for (JavadocTag tag : tags) {
             if (!tag.isParamTag()) {
                 continue;
             }
 
-            tagIt.remove();
+            if (isDuplicateParamTag(tags, tag)) {
+                log(tag.getLineNo(), tag.getColumnNo(), MSG_DUPLICATE_TAG,
+                        JavadocTagInfo.PARAM.getText());
+            }
+            else {
+                final String arg1 = tag.getFirstArg();
+                final boolean found = removeMatchingParam(params, arg1);
 
-            final String arg1 = tag.getFirstArg();
-            final boolean found = removeMatchingParam(params, arg1);
-
-            if (!found) {
-                log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
-                        JavadocTagInfo.PARAM.getText(), arg1);
+                if (!found) {
+                    log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                            JavadocTagInfo.PARAM.getText(), arg1);
+                }
             }
         }
+        tags.removeIf(JavadocTag::isParamTag);
 
         if (!allowMissingParamTags && reportExpectedTags) {
             for (DetailAST param : params) {
@@ -752,30 +754,32 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                 .getTypeParameters(parent);
 
         // Loop over the tags, checking to see they exist in the params.
-        final ListIterator<JavadocTag> tagIt = tags.listIterator();
-        while (tagIt.hasNext()) {
-            final JavadocTag tag = tagIt.next();
-
+        for (JavadocTag tag : tags) {
             if (!tag.isParamTag()) {
                 continue;
             }
 
-            tagIt.remove();
-
-            final String arg1 = tag.getFirstArg();
-            boolean found = removeMatchingParam(params, arg1);
-
-            if (arg1.endsWith(ELEMENT_END)) {
-                found = searchMatchingTypeParameter(typeParams,
-                        arg1.substring(1, arg1.length() - 1));
+            if (isDuplicateParamTag(tags, tag)) {
+                log(tag.getLineNo(), tag.getColumnNo(), MSG_DUPLICATE_TAG,
+                        JavadocTagInfo.PARAM.getText());
             }
+            else {
+                final String arg1 = tag.getFirstArg();
+                boolean found = removeMatchingParam(params, arg1);
 
-            // Handle extra JavadocTag
-            if (!found) {
-                log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
-                        JavadocTagInfo.PARAM.getText(), arg1);
+                if (arg1.endsWith(ELEMENT_END)) {
+                    found = searchMatchingTypeParameter(typeParams,
+                            arg1.substring(1, arg1.length() - 1));
+                }
+
+                // Handle extra JavadocTag
+                if (!found) {
+                    log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
+                            JavadocTagInfo.PARAM.getText(), arg1);
+                }
             }
         }
+        tags.removeIf(JavadocTag::isParamTag);
 
         // Now dump out all type parameters/parameters without tags :- unless
         // the user has chosen to suppress these problems
@@ -792,6 +796,26 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                     + ELEMENT_END);
             }
         }
+    }
+
+    /**
+     * Checks if the {@code @param} tag duplicates an earlier {@code @param} tag.
+     *
+     * @param tags all tags to check
+     * @param tag the tag to check
+     * @return true if there is an earlier {@code @param} tag with the same argument
+     */
+    private static boolean isDuplicateParamTag(List<JavadocTag> tags, JavadocTag tag) {
+        final int tagIndex = tags.indexOf(tag);
+        boolean result = false;
+        for (int tagPosition = 0; tagPosition < tagIndex; tagPosition++) {
+            final JavadocTag currentTag = tags.get(tagPosition);
+            if (currentTag.isParamTag()
+                    && currentTag.getFirstArg().equals(tag.getFirstArg())) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     /**
