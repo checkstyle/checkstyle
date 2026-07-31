@@ -196,6 +196,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "91:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "Unneeded"),
             "92: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "101:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@return"),
+            "114:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@throws"),
 
         };
         verifyWithInlineConfigParser(
@@ -205,6 +206,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTagsThree() throws Exception {
         final String[] expected = {
+            "36:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@throws"),
             "67:28: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IOException"),
             "73:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "aParam"),
             "116: " + getCheckMessage(MSG_RETURN_EXPECTED),
