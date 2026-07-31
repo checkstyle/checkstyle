@@ -632,6 +632,27 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     }
 
+    @Test
+    public void testJavadocMethodDuplicateThrows() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodDuplicateThrows.java"), expected);
+    }
+
+    @Test
+    public void testJavadocMethodDuplicateParam() throws Exception {
+        final String[] expected = {
+            "21:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
+            "30:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
+            "38:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
+            "47:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "extra"),
+            "48:8: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
+            "57:12: " + getCheckMessage(MSG_DUPLICATE_TAG, "@param"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodDuplicateParam.java"), expected);
+    }
+
     /**
      * Verifies that the check fails on unsupported Javadoc tokens.
      *
