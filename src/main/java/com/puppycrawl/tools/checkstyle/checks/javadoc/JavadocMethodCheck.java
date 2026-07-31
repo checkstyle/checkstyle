@@ -400,7 +400,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
         final DetailNode identifier = JavadocUtil.findFirstToken(
                 ast, JavadocCommentsTokenTypes.IDENTIFIER);
         if (identifier != null) {
-            javadocTags.add(new JavadocTag(0, 0,
+            javadocTags.add(new JavadocTag(ast.getLineNumber(), ast.getColumnNumber(),
                     tagName, identifier.getText()));
         }
     }
@@ -895,8 +895,25 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
             }
             tagIt.remove();
 
+            final String documentedClassName = tag.getFirstArg();
+            boolean duplicate = false;
+            for (JavadocTag currentTag : javadocTags) {
+                if (currentTag == tag) {
+                    break;
+                }
+                if (currentTag.isThrowsTag()
+                        && isClassNamesSame(currentTag.getFirstArg(), documentedClassName)) {
+                    duplicate = true;
+                    break;
+                }
+            }
+            if (duplicate) {
+                log(tag.getLineNo(), tag.getColumnNo(),
+                        MSG_DUPLICATE_TAG, JavadocTagInfo.THROWS.getText());
+            }
+
             // Loop looking for matching throw
-            processThrows(throwsList, tag.getFirstArg());
+            processThrows(throwsList, documentedClassName);
         }
         // Now dump out all throws without tags :- unless
         // the user has chosen to suppress these problems

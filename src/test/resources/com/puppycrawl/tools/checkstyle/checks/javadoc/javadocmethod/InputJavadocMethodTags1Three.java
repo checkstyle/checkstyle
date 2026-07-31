@@ -28,7 +28,7 @@ public class InputJavadocMethodTags1Three {
     {
         return 579190;
     }
-
+    // violation 5 lines below 'Duplicate @throws tag.'
     /**
      * Bug XXXX, "two tags for the same exception"
      *

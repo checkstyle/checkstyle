@@ -105,10 +105,10 @@ public class InputJavadocMethodTags1One {
     {
         return 0;
     }
-
+    // violation 6 lines below 'Duplicate @throws tag.'
     /**
      * Documenting different causes for the same exception
-     * in separate tags is OK (bug 540384).
+     * in separate tags is not OK (bug 540384).
      *
      * @throws java.io.IOException if A happens
      * @throws java.io.IOException if B happens
