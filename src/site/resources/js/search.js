@@ -191,6 +191,7 @@
         }
         scored.sort(function (a, b) {
             if (b.score !== a.score) { return b.score - a.score; }
+            if (b.entry.weight !== a.entry.weight) { return b.entry.weight - a.entry.weight; }
             return (a.entry.title || "").localeCompare(b.entry.title || "");
         });
         return scored.slice(0, MAX_RESULTS).map(function (s) { return s.entry; });
@@ -318,8 +319,18 @@
         badge.style.color      = color;
         badge.style.borderColor = color + "44";
 
+        var metaEl = document.createElement("span");
+        metaEl.className = "cs-search-meta";
+        metaEl.appendChild(badge);
+        if (entry.since) {
+            var sinceBadge = document.createElement("span");
+            sinceBadge.className   = "cs-search-since-badge";
+            sinceBadge.textContent = entry.since;
+            metaEl.appendChild(sinceBadge);
+        }
+
         titleRow.appendChild(titleEl);
-        titleRow.appendChild(badge);
+        titleRow.appendChild(metaEl);
         item.appendChild(titleRow);
 
         if (entry.description) {
