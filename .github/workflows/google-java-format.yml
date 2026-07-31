@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  VERSION: 1.35.0
+  VERSION: 1.36.1
 
 jobs:
   test:
