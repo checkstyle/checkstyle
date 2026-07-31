@@ -13,6 +13,18 @@
   <suppress id="presenceOfCompilationComment"
             files="/checks/outertypefilename/package-info.java"/>
 
+  <!--  Intentional suppressions for testing -->
+  <suppress checks="NewlineAtEndOfFile"
+            files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewlineLfCrCrlf.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+            files="checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewline.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+            files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewline2.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+            files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewlineCr.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+            files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewlineCrlf.java"/>
+
   <suppress id="noCheckstyleInInputs"
             files="/checks/imports/redundantimport/InputRedundantImportWithoutPackage.java"/>
   <suppress id="noCheckstyleInInputs"
