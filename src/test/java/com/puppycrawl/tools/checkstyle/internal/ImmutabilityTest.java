@@ -161,6 +161,7 @@ public class ImmutabilityTest {
      * {@link #testClassesWithImmutableFieldsShouldBeStateless()} rule.
      */
     private static final Set<String> SUPPRESSED_CLASSES_FOR_STATELESS_CHECK_RULE = Set.of(
+        "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkFirstOccurrenceCheck",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
