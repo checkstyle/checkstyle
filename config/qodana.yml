@@ -42,6 +42,7 @@ exclude:
 
       - .mvn/
 
+      - src/main/java/com/puppycrawl/tools/checkstyle/site/
       - src/xdocs-examples/resources/
       - src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/ParseTreeBuilder.java
       - src/test/java/com/puppycrawl/tools/checkstyle/grammar/javadoc/ParseTreeBuilder.java
