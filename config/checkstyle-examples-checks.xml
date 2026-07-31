@@ -17,6 +17,9 @@
     <property name="lineRange" value="-1"/>
     <property name="checkPattern" value="RegexpSingleline"/>
   </module>
+  <!-- Miscellaneous -->
+  <module name="NewlineAtEndOfFile" />
+
   <!-- Regexp -->
   <module name="RegexpOnFilename">
     <property name="id" value="exampleFileName"/>
