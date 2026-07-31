@@ -647,7 +647,7 @@ html {
 
 .cs-search-title-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 6px;
     margin-bottom: 2px;
 }
@@ -683,6 +683,22 @@ html {
     white-space: nowrap;
     flex-shrink: 0;
     letter-spacing: 0.02em;
+}
+
+.cs-search-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    flex-shrink: 0;
+}
+
+.cs-search-since-badge {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #0277bd;
+    white-space: nowrap;
 }
 
 .cs-search-result-desc {
