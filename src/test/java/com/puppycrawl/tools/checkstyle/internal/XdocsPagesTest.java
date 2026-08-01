@@ -115,6 +115,23 @@ public class XdocsPagesTest {
 
     private static final Pattern END_OF_SENTENCE = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
 
+    /**
+     * Regex mirroring {@code TocMacro.ITEM_WITH_PATH_PATTERN}: an Example/UseCase
+     * paragraph immediately followed by its example macro's path param. Kept in
+     * sync manually with the macro so this test enforces the exact contract the
+     * macro depends on to extract nested TOC titles.
+     */
+    private static final Pattern TOC_ITEM_WITH_PATH_PATTERN = Pattern.compile(
+            "<p\\s+id=\"((?:Example|UseCase)\\d+)-config\"[^>]*>\\s*(.*?)\\s*</p>\\s*"
+                    + "<macro\\s+name=\"example\">\\s*"
+                    + "<param\\s+name=\"path\"\\s+value=\"([^\"]+)\"\\s*/>",
+            Pattern.DOTALL);
+
+    /**
+     * Strips inline HTML tags, mirroring TocMacro's own tag-stripping behavior.
+     */
+    private static final Pattern TOC_TAG_PATTERN = Pattern.compile("<[^>]+>");
+
     private static final List<String> XML_FILESET_LIST = List.of(
             "TreeWalker",
             "name=\"Checker\"",
@@ -2923,6 +2940,105 @@ public class XdocsPagesTest {
         assertWithMessage(message)
             .that(violations)
             .isEmpty();
+    }
+
+    @Test
+    public void testAllExampleAndUseCaseParagraphsHaveDescriptiveText() throws Exception {
+        final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
+        final List<String> violations = new ArrayList<>();
+
+        for (final Path template : templates) {
+            final String content = Files.readString(template);
+            final String fileName = template.getFileName().toString();
+
+            collectTocExtractableDescriptionViolations(fileName, content, violations);
+        }
+
+        final String message;
+        if (violations.isEmpty()) {
+            message = "";
+        }
+        else {
+            final StringBuilder builder = new StringBuilder(256);
+            builder.append("Found ")
+                    .append(violations.size())
+                    .append(" TOC-extraction violation(s):\n");
+            for (String violation : violations) {
+                builder.append("  ").append(violation).append('\n');
+            }
+            message = builder.toString();
+        }
+
+        assertWithMessage(message)
+                .that(violations)
+                .isEmpty();
+    }
+
+    /**
+     * Collects every Example/UseCase description problem found in a template:
+     * ids whose config paragraph is correctly positioned before its example
+     * macro but has no descriptive text, and ids that exist in the file but
+     * aren't matched by TocMacro's extraction pattern at all (e.g. due to
+     * incorrect placement or extra markup between the paragraph and the macro).
+     * Violations are collected rather than asserted immediately, so all
+     * problems across all templates are reported together in one failure.
+     *
+     * @param fileName the template's file name, for violation messages.
+     * @param content the full template source text.
+     * @param violations the list to append violation messages to.
+     */
+    private static void collectTocExtractableDescriptionViolations(String fileName,
+                        String content, List<String> violations) {
+        final Set<String> allExampleIds = findAllExampleAndUseCaseIds(content);
+        final Set<String> matchedIds = new HashSet<>();
+
+        final Matcher itemMatcher = TOC_ITEM_WITH_PATH_PATTERN.matcher(content);
+        while (itemMatcher.find()) {
+            final String exampleId = itemMatcher.group(1);
+            final String rawParagraph = itemMatcher.group(2);
+            final String strippedText = TOC_TAG_PATTERN.matcher(rawParagraph)
+                    .replaceAll("")
+                    .replaceAll("\\s+", " ")
+                    .trim();
+
+            if (strippedText.isEmpty()) {
+                violations.add(fileName + ": description paragraph for '" + exampleId
+                        + "-config' has no text for TocMacro to extract a TOC title from");
+            }
+
+            matchedIds.add(exampleId);
+        }
+
+        final Set<String> unmatchedIds = new TreeSet<>(allExampleIds);
+        unmatchedIds.removeAll(matchedIds);
+
+        for (String unmatchedId : unmatchedIds) {
+            violations.add(fileName + ": '" + unmatchedId + "-config' paragraph does not "
+                    + "immediately precede a <macro name=\"example\"> with a 'path' param, "
+                    + "so TocMacro's extraction pattern cannot match it");
+        }
+    }
+
+    /**
+     * Finds every {@code ExampleN}/{@code UseCaseN} id declared via a
+     * {@code -config} paragraph anywhere in the template, regardless of
+     * whether it matches the extraction pattern -- used to detect ids that
+     * exist but silently fail extraction.
+     *
+     * @param content the full template source text.
+     * @return the set of "ExampleN"/"UseCaseN" prefixes found.
+     */
+    private static Set<String> findAllExampleAndUseCaseIds(String content) {
+        final Pattern idPattern = Pattern.compile(
+                "<p\\s+id=\"((?:Example|UseCase)\\d+)-config\"");
+        final Matcher matcher = idPattern.matcher(content);
+        final Set<String> result = new TreeSet<>();
+
+        while (matcher.find()) {
+            result.add(matcher.group(1));
+        }
+
+        return result;
     }
 
     private static boolean hasAnyUseCaseId(Document doc) {
