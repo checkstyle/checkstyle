@@ -481,6 +481,7 @@ formatofdoccomment
 Fpuppycrawl
 fq
 Fqcn
+Fqn
 freemarker
 Fregexp
 Fresources
@@ -659,6 +660,7 @@ javadocblocktaglocation
 javadoccontentlocation
 javadocdetailnodeparser
 javadocleadingasteriskalign
+javadoclinkfirstoccurrence
 javadocmethod
 javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
