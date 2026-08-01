@@ -81,7 +81,10 @@
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
           to be present with digital value on method javadocs also in addition to default tokens.
-          Attention: it is required to set "ignore" in tagSeverity.
+          Set <code>tagSeverity</code> to <code>ignore</code> to suppress
+          <code>javadoc.writeTag</code> violations for matching <code>@since</code> tags.
+          Missing <code>@since</code> tags and tag format violations are still reported with
+          the common severity property.
         </p>
         <macro name="example">
           <param name="path"
@@ -98,8 +101,9 @@
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
           To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens,
-          reporting a mismatched tag format as an error severity violation.
+          to be present with digital value on method javadocs also in addition to default tokens.
+          The <code>tagSeverity</code> property is set to <code>error</code>, but tag format
+          violations are still reported with the common severity property.
         </p>
         <macro name="example">
           <param name="path"
@@ -132,6 +136,24 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure Check to forbid <code>@author</code> tags in Javadoc comments.
+          The <code>SuppressionSingleFilter</code> suppresses missing tag violations,
+          as missing <code>@author</code> tags are desired in this use case.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+        Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
