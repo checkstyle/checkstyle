@@ -17,6 +17,36 @@
     </section>
 
     <section name="What is Javadoc comment">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#What_is_Javadoc_comment">What is Javadoc comment</a></li>
+            <li><a href="#Limitations">Limitations</a></li>
+            <li><a href="#Tight-HTML_rules">Tight-HTML rules</a></li>
+            <li><a href="#How_to_create_Javadoc_Check">How to create Javadoc Check</a></li>
+            <li><a
+              href="#Difference_between_Java_Grammar_and_Javadoc_comments_Grammar">Difference
+              between Java Grammar and Javadoc comments Grammar</a></li>
+            <li><a href="#Tool_to_print_Javadoc_tree_structure">Tool to print Javadoc tree
+              structure</a></li>
+            <li><a href="#Access_Java_AST_from_Javadoc_Check">Access Java AST from Javadoc
+              Check</a></li>
+            <li><a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a></li>
+            <li><a href="#Checkstyle_SDK_GUI">Checkstyle SDK GUI</a></li>
+            <li><a href="#Customize_token_types_in_Javadoc_Checks">Customize token types in
+              Javadoc Checks</a></li>
+            <li><a href="#Integrating_new_Javadoc_Check">Integrating new Javadoc Check</a></li>
+            <li><a href="#Declare_check.27s_external_resource_locations">Declare check's external
+              resource locations</a></li>
+            <li><a href="#Examples_of_Javadoc_Checks">Examples of Javadoc Checks</a></li>
+            <li><a href="#Javadoc_parser_behavior_for_current_HTML_version_and_new_HTML_version">
+              Javadoc parser behavior for current HTML version and new HTML version</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
       Javadoc comment is a multiline comment <code>/*  */</code> that starts with the <b>*</b>
       character and placed above the class definition, interface definition, enum definition,

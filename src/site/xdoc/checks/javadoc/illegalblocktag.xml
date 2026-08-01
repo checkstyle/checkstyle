@@ -8,6 +8,31 @@
   <body>
     <section name="IllegalBlockTag">
       <p>Since Checkstyle 13.10.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalBlockTag_Description">Description</a></li>
+          <li><a href="#IllegalBlockTag_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalBlockTag_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Example of default Check configuration that does nothing.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check to forbid the <code>@todo</code> block tag wherever it appears. The default <code>tagTextPattern</code> is <code>^$</code>, so any non-empty tag text is a violation.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check to report <code>@since</code> tags whose text does not match a digital version pattern (default tokens: types and methods).</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Same as Example 3, but only type tokens so method-level <code>@since</code> tags are ignored.</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalBlockTag_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalBlockTag_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalBlockTag_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalBlockTag_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalBlockTag_Description">
         <div>
           Detects a user-defined Javadoc block tag and reports a violation when the tag

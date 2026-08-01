@@ -8,6 +8,36 @@
   <body>
     <section name="IllegalInstantiation">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalInstantiation_Description">Description</a></li>
+          <li><a href="#IllegalInstantiation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalInstantiation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Find instantiations of <code>java.lang.Boolean</code> and <code>java.lang.Integer</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#IllegalInstantiation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Finally, there is a limitation that it is currently not possible to specify array classes</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalInstantiation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalInstantiation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalInstantiation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalInstantiation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalInstantiation_Description">
         <div>
           Checks for illegal instantiations where a factory method is preferred.

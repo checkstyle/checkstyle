@@ -8,6 +8,36 @@
   <body>
     <section name="JavadocType">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocType_Description">Description</a></li>
+          <li><a href="#JavadocType_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocType_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For <code>public</code> scope</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For an <code>@author</code> tag</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">For a CVS revision version tag</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">For <code>private</code> classes only</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">That allows missing <code>@param</code> tags</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">That allows unknown tags</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">A check that allows skipping validation at all for classes annotated with <code>@unknownTag</code></a></li>
+              <li><a href="#Example9-config" class="toc-sublink">For <code>CLASS_DEF</code> tokens only</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocType_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocType_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocType_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocType_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocType_Description">
         <div>
           Checks the Javadoc comments for type definitions. By default, does

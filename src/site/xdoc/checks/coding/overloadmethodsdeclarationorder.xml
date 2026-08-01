@@ -8,6 +8,29 @@
   <body>
     <section name="OverloadMethodsDeclarationOrder">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OverloadMethodsDeclarationOrder_Description">Description</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OverloadMethodsDeclarationOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">According to OpenJDK guidelines, where overloaded methods should be grouped together and ordered by increasing parameter count</a></li>
+            </ul>
+          </li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OverloadMethodsDeclarationOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="OverloadMethodsDeclarationOrder_Description">
         <div>
           Checks that overloaded methods are grouped together. Overloaded methods have the same
