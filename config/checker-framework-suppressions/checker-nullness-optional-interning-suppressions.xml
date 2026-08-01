@@ -6057,6 +6057,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/PreferCodeOrSnippetJavadocInlineTagCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter args of AbstractCheck.log.</message>
+    <lineContent>log(node.getLineNumber(), MSG_KEY_MULTI_LINE, getHtmlTagName(node));</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/PreferCodeOrSnippetJavadocInlineTagCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter args of AbstractCheck.log.</message>
+    <lineContent>log(node.getLineNumber(), MSG_KEY_SINGLE_LINE, getHtmlTagName(node));</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>

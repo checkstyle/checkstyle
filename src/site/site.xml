@@ -251,6 +251,8 @@
           <item name="MissingJavadocType" href="checks/javadoc/missingjavadoctype.html"/>
           <item name="NonEmptyAtclauseDescription"
                 href="checks/javadoc/nonemptyatclausedescription.html"/>
+          <item name="PreferCodeOrSnippetJavadocInlineTag"
+                href="checks/javadoc/prefercodeorsnippetjavadocinlinetag.html"/>
           <item name="PreferLiteralJavadocInlineTag"
                 href="checks/javadoc/preferliteraljavadocinlinetag.html"/>
           <item name="RequireEmptyLineBeforeBlockTagGroup"

@@ -736,6 +736,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.MissingJavadocTypeCheck");
         NAME_TO_FULL_MODULE_NAME.put("NonEmptyAtclauseDescriptionCheck",
                 BASE_PACKAGE + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck");
+        NAME_TO_FULL_MODULE_NAME.put("PreferCodeOrSnippetJavadocInlineTagCheck",
+                BASE_PACKAGE + ".checks.javadoc.PreferCodeOrSnippetJavadocInlineTagCheck");
         NAME_TO_FULL_MODULE_NAME.put("PreferLiteralJavadocInlineTagCheck",
                 BASE_PACKAGE + ".checks.javadoc.PreferLiteralJavadocInlineTagCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireEmptyLineBeforeBlockTagGroupCheck",
