@@ -1,32 +1,32 @@
 /*
 AvoidEscapedUnicodeCharacters
-allowEscapesForControlCharacters = (default)false
+allowEscapesForControlCharacters = true
 allowByTailComment = (default)false
 allowIfAllCharactersEscaped = (default)false
-allowNonPrintableEscapes = true
+allowNonPrintableEscapes = (default)false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
-public class InputAvoidEscapedUnicodeCharacters4Two {
+public class InputAvoidEscapedUnicodeCharacters1Two {
 
+        // violation below 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev5 = "\u03bcs";
-        // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev6 = "\u03bcs";
         // violation above 'Unicode escape(s) usage should be avoided.'
-        private String unitAbbrev7 = "\u03bcs";        /* comment separated by tab */
+        private String unitAbbrev7 = "\u03bcs";       /* comment is separated by tab */
         // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev8 = "\u03bcs"; /* comment has 2 lines */
         // violation above 'Unicode escape(s) usage should be avoided.'
 
         void foo() {
                 for (char c = '\u0000'; c < '\uffff'; c++) {
-                        if (c == '\u001b' ||
-        // violation above 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
+                        if (c == '\u001b' ||     // ESC
                                         c == '\u2014')
-        // violation above 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                                 continue;
                 }
         }
@@ -39,7 +39,6 @@ public class InputAvoidEscapedUnicodeCharacters4Two {
 
         private String onlyEscaped = "\\\u1234";
         // violation above 'Unicode escape(s) usage should be avoided.'
-
         private String sumilarToEscapedByB = "b\u1234";
         // violation above 'Unicode escape(s) usage should be avoided.'
         private String sumilarToEscapedCommentedByB = "b\u1234";
