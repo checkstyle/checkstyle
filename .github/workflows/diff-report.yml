@@ -164,18 +164,9 @@ jobs:
       - name: Copy Report to AWS S3 Bucket
         env:
           LABEL: ${{ needs.parse_body.outputs.report_label }}
+          COMMIT_SHA: ${{ needs.parse_body.outputs.commit_sha }}
         run: |
-          bash
-          TIME=$(date +%Y%H%M%S)
-          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
-          DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
-          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" \
-            --recursive --storage-class STANDARD_IA
-          if [ -n "$LABEL" ]; then
-            echo "$LABEL: " > .ci-temp/message
-          fi
-          echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+          ./.ci/diff-report.sh copy-report-to-aws-s3-bucket
 
       - name: Set output
         id: out
