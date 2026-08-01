@@ -782,6 +782,7 @@
       <property name="scope" value="private"/>
     </module>
     <module name="NonEmptyAtclauseDescription"/>
+    <module name="PreferCodeOrSnippetJavadocInlineTag"/>
     <module name="SingleLineJavadoc"/>
     <module name="SummaryJavadoc"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
