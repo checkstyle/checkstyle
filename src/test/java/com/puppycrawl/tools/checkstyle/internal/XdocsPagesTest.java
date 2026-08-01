@@ -115,6 +115,13 @@ public class XdocsPagesTest {
 
     private static final Pattern END_OF_SENTENCE = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
 
+    /** Matches the numeric id, e.g. "Example3" or "UseCase1", from a "-config" paragraph id. */
+    private static final Pattern EXAMPLE_ID_PATTERN =
+            Pattern.compile("^((?:Example|UseCase)\\d+)-config$");
+
+    /** Strips inline HTML tags left in scraped paragraph text except {@code <code>} tags. */
+    private static final Pattern TAG_PATTERN = Pattern.compile("</?(?!code\\b)[a-zA-Z][^>]*>");
+
     private static final List<String> XML_FILESET_LIST = List.of(
             "TreeWalker",
             "name=\"Checker\"",
@@ -2923,6 +2930,183 @@ public class XdocsPagesTest {
         assertWithMessage(message)
             .that(violations)
             .isEmpty();
+    }
+
+    @Test
+    public void testAllExampleAndUseCaseParagraphsHaveDescriptiveText() throws Exception {
+        final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
+
+        assertWithMessage("Expected to find at least one xdoc template under src/site")
+                .that(templates)
+                .isNotEmpty();
+
+        final List<String> failures = new ArrayList<>();
+
+        for (final Path template : templates) {
+            final String content = Files.readString(template);
+            final String fileName = template.getFileName().toString();
+
+            validateTocExtractableDescriptions(fileName, content, failures);
+        }
+
+        assertWithMessage("TOC-extractable description problems found:\n%s",
+                String.join("\n", failures))
+                .that(failures)
+                .isEmpty();
+    }
+
+    /**
+     * Validates that every Example/UseCase id found in the template has a
+     * matching descriptive paragraph immediately before its example macro,
+     * with non-empty text content once tags are stripped -- the same
+     * extraction TocMacro performs to build nested TOC entries. Failures are
+     * appended to {@code failures} rather than asserted immediately, so a
+     * single test run can report every problem across all templates.
+     *
+     * @param fileName the template's file name, for failure messages.
+     * @param content the full template source text.
+     * @param failures the list of failure messages to append to.
+     * @throws Exception if the content cannot be parsed as XML.
+     */
+    private static void validateTocExtractableDescriptions(String fileName, String content,
+            List<String> failures) throws Exception {
+        final Document doc = parseXml(content);
+        final Set<String> matchedIds = new HashSet<>();
+        final NodeList paragraphs = doc.getElementsByTagName("p");
+
+        for (int index = 0; index < paragraphs.getLength(); index++) {
+            final Element paragraph = (Element) paragraphs.item(index);
+            final Matcher idMatcher = EXAMPLE_ID_PATTERN.matcher(paragraph.getAttribute("id"));
+
+            if (!idMatcher.matches()) {
+                continue;
+            }
+
+            final Element nextElement = nextSiblingElement(paragraph);
+            if (nextElement == null
+                    || !"macro".equals(nextElement.getTagName())
+                    || !"example".equals(nextElement.getAttribute("name"))
+                    || !hasPathParam(nextElement)) {
+                continue;
+            }
+
+            final String exampleId = idMatcher.group(1);
+            final String strippedText = TAG_PATTERN.matcher(paragraph.getTextContent())
+                    .replaceAll("")
+                    .replaceAll("\\s+", " ")
+                    .trim();
+
+            if ("Notes:".equals(strippedText)) {
+                matchedIds.add(exampleId);
+                continue;
+            }
+
+            if (strippedText.isEmpty()) {
+                failures.add(String.format(Locale.ROOT,
+                        "%s: description paragraph for '%s-config' must have non-empty text "
+                                + "so TocMacro can extract a TOC title from it",
+                        fileName, exampleId));
+            }
+
+            matchedIds.add(exampleId);
+        }
+
+        final Set<String> unmatchedIds = new TreeSet<>(findAllExampleAndUseCaseIds(content));
+        unmatchedIds.removeAll(matchedIds);
+
+        if (!unmatchedIds.isEmpty()) {
+            failures.add(String.format(Locale.ROOT,
+                    "%s: the following Example/UseCase ids have a config paragraph that "
+                            + "TocMacro's extraction pattern cannot match (paragraph must "
+                            + "immediately precede a <macro name=\"example\"> with a 'path' "
+                            + "param): %s",
+                    fileName, unmatchedIds));
+        }
+    }
+
+    /**
+     * Finds every {@code ExampleN}/{@code UseCaseN} id declared via a
+     * {@code -config} paragraph anywhere in the template, regardless of
+     * whether it matches the extraction pattern -- used to detect ids that
+     * exist but silently fail extraction.
+     *
+     * @param content the full template source text.
+     * @return the set of "ExampleN"/"UseCaseN" prefixes found.
+     * @throws Exception if the content cannot be parsed as XML.
+     */
+    private static Set<String> findAllExampleAndUseCaseIds(String content) throws Exception {
+        final Document doc = parseXml(content);
+        final Set<String> result = new TreeSet<>();
+        final NodeList paragraphs = doc.getElementsByTagName("p");
+
+        for (int index = 0; index < paragraphs.getLength(); index++) {
+            final Element paragraph = (Element) paragraphs.item(index);
+            final Matcher idMatcher = EXAMPLE_ID_PATTERN.matcher(paragraph.getAttribute("id"));
+            if (idMatcher.matches()) {
+                result.add(idMatcher.group(1));
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Parses the given xdoc source text into a DOM {@link Document}.
+     *
+     * @param content the full template source text.
+     * @return the parsed document.
+     * @throws Exception if parsing fails.
+     */
+    private static Document parseXml(String content) throws Exception {
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(false);
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(new InputSource(new StringReader(content)));
+    }
+
+    /**
+     * Finds the next sibling that is itself an {@link Element}, skipping over
+     * text/whitespace nodes and {@code <ul>} elements (which are allowed between
+     * a config paragraph and its example macro).
+     *
+     * @param node the node to start from.
+     * @return the next sibling element, or {@code null} if none exists.
+     */
+    private static Element nextSiblingElement(Node node) {
+        Node sibling = node.getNextSibling();
+        Element result = null;
+        while (sibling != null) {
+            if (sibling.getNodeType() == Node.ELEMENT_NODE) {
+                final Element element = (Element) sibling;
+                // Skip <ul> elements as they're allowed between paragraph and macro
+                if (!"ul".equals(element.getTagName())) {
+                    result = element;
+                    break;
+                }
+            }
+            sibling = sibling.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given {@code <macro name="example">} element has a
+     * child {@code <param name="path">}.
+     *
+     * @param macroElement the macro element to inspect.
+     * @return {@code true} if a path param child is present.
+     */
+    private static boolean hasPathParam(Element macroElement) {
+        final NodeList params = macroElement.getElementsByTagName("param");
+        boolean result = false;
+        for (int index = 0; index < params.getLength(); index++) {
+            final Element param = (Element) params.item(index);
+            if ("path".equals(param.getAttribute("name"))) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     private static boolean hasAnyUseCaseId(Document doc) {
