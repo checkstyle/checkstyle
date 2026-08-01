@@ -168,7 +168,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -197,35 +197,43 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "104:24: " + getCheckMessage(MSG_KEY),
             "107:31: " + getCheckMessage(MSG_KEY),
             "107:48: " + getCheckMessage(MSG_KEY),
-            "114:38: " + getCheckMessage(MSG_KEY),
-            "116:38: " + getCheckMessage(MSG_KEY),
-            "118:38: " + getCheckMessage(MSG_KEY),
-            "120:38: " + getCheckMessage(MSG_KEY),
-            "124:31: " + getCheckMessage(MSG_KEY),
-            "124:45: " + getCheckMessage(MSG_KEY),
-            "128:34: " + getCheckMessage(MSG_KEY),
-            "130:46: " + getCheckMessage(MSG_KEY),
-            "135:38: " + getCheckMessage(MSG_KEY),
-            "142:38: " + getCheckMessage(MSG_KEY),
-            "145:46: " + getCheckMessage(MSG_KEY),
-            "147:55: " + getCheckMessage(MSG_KEY),
-            "149:46: " + getCheckMessage(MSG_KEY),
-            "151:55: " + getCheckMessage(MSG_KEY),
-            "153:46: " + getCheckMessage(MSG_KEY),
-            "155:55: " + getCheckMessage(MSG_KEY),
-            "157:46: " + getCheckMessage(MSG_KEY),
-            "159:55: " + getCheckMessage(MSG_KEY),
-            "161:46: " + getCheckMessage(MSG_KEY),
-            "163:55: " + getCheckMessage(MSG_KEY),
-            "165:48: " + getCheckMessage(MSG_KEY),
-            "167:57: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
+                getPath("InputAvoidEscapedUnicodeCharactersOne.java"), expected);
     }
 
     @Test
-    public void testAllowEscapesForControlCharacterSet() throws Exception {
+    public void testDefaultTwo() throws Exception {
+        final String[] expected = {
+            "15:38: " + getCheckMessage(MSG_KEY),
+            "17:38: " + getCheckMessage(MSG_KEY),
+            "19:38: " + getCheckMessage(MSG_KEY),
+            "21:38: " + getCheckMessage(MSG_KEY),
+            "25:31: " + getCheckMessage(MSG_KEY),
+            "25:45: " + getCheckMessage(MSG_KEY),
+            "29:34: " + getCheckMessage(MSG_KEY),
+            "31:46: " + getCheckMessage(MSG_KEY),
+            "36:38: " + getCheckMessage(MSG_KEY),
+            "43:38: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
+            "48:55: " + getCheckMessage(MSG_KEY),
+            "50:46: " + getCheckMessage(MSG_KEY),
+            "52:55: " + getCheckMessage(MSG_KEY),
+            "54:46: " + getCheckMessage(MSG_KEY),
+            "56:55: " + getCheckMessage(MSG_KEY),
+            "58:46: " + getCheckMessage(MSG_KEY),
+            "60:55: " + getCheckMessage(MSG_KEY),
+            "62:46: " + getCheckMessage(MSG_KEY),
+            "64:55: " + getCheckMessage(MSG_KEY),
+            "66:48: " + getCheckMessage(MSG_KEY),
+            "68:57: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersTwo.java"), expected);
+    }
+
+    @Test
+    public void testAllowEscapesForControlCharacterSetOne() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -251,33 +259,41 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "102:24: " + getCheckMessage(MSG_KEY),
             "105:31: " + getCheckMessage(MSG_KEY),
             "105:48: " + getCheckMessage(MSG_KEY),
-            "112:38: " + getCheckMessage(MSG_KEY),
-            "113:38: " + getCheckMessage(MSG_KEY),
-            "115:38: " + getCheckMessage(MSG_KEY),
-            "117:38: " + getCheckMessage(MSG_KEY),
-            "121:45: " + getCheckMessage(MSG_KEY),
-            "124:46: " + getCheckMessage(MSG_KEY),
-            "129:38: " + getCheckMessage(MSG_KEY),
-            "136:38: " + getCheckMessage(MSG_KEY),
-            "138:46: " + getCheckMessage(MSG_KEY),
-            "140:55: " + getCheckMessage(MSG_KEY),
-            "142:46: " + getCheckMessage(MSG_KEY),
-            "144:55: " + getCheckMessage(MSG_KEY),
-            "146:46: " + getCheckMessage(MSG_KEY),
-            "148:55: " + getCheckMessage(MSG_KEY),
-            "150:46: " + getCheckMessage(MSG_KEY),
-            "152:55: " + getCheckMessage(MSG_KEY),
-            "154:46: " + getCheckMessage(MSG_KEY),
-            "156:55: " + getCheckMessage(MSG_KEY),
-            "158:48: " + getCheckMessage(MSG_KEY),
-            "160:57: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAvoidEscapedUnicodeCharacters1.java"), expected);
+                getPath("InputAvoidEscapedUnicodeCharacters1One.java"), expected);
     }
 
     @Test
-    public void testAllowByTailComment() throws Exception {
+    public void testAllowEscapesForControlCharacterSetTwo() throws Exception {
+        final String[] expected = {
+            "16:38: " + getCheckMessage(MSG_KEY),
+            "17:38: " + getCheckMessage(MSG_KEY),
+            "19:38: " + getCheckMessage(MSG_KEY),
+            "21:38: " + getCheckMessage(MSG_KEY),
+            "25:45: " + getCheckMessage(MSG_KEY),
+            "28:46: " + getCheckMessage(MSG_KEY),
+            "33:38: " + getCheckMessage(MSG_KEY),
+            "40:38: " + getCheckMessage(MSG_KEY),
+            "42:46: " + getCheckMessage(MSG_KEY),
+            "44:55: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
+            "48:55: " + getCheckMessage(MSG_KEY),
+            "50:46: " + getCheckMessage(MSG_KEY),
+            "52:55: " + getCheckMessage(MSG_KEY),
+            "54:46: " + getCheckMessage(MSG_KEY),
+            "56:55: " + getCheckMessage(MSG_KEY),
+            "58:46: " + getCheckMessage(MSG_KEY),
+            "60:55: " + getCheckMessage(MSG_KEY),
+            "62:48: " + getCheckMessage(MSG_KEY),
+            "64:57: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharacters1Two.java"), expected);
+    }
+
+    @Test
+    public void testAllowByTailCommentOne() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "26:38: " + getCheckMessage(MSG_KEY),
@@ -297,23 +313,31 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "104:24: " + getCheckMessage(MSG_KEY),
             "108:31: " + getCheckMessage(MSG_KEY),
             "108:48: " + getCheckMessage(MSG_KEY),
-            "121:31: " + getCheckMessage(MSG_KEY),
-            "121:45: " + getCheckMessage(MSG_KEY),
-            "130:38: " + getCheckMessage(MSG_KEY),
-            "136:38: " + getCheckMessage(MSG_KEY),
-            "138:46: " + getCheckMessage(MSG_KEY),
-            "142:46: " + getCheckMessage(MSG_KEY),
-            "145:46: " + getCheckMessage(MSG_KEY),
-            "148:46: " + getCheckMessage(MSG_KEY),
-            "151:46: " + getCheckMessage(MSG_KEY),
-            "154:48: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAvoidEscapedUnicodeCharacters2.java"), expected);
+                getPath("InputAvoidEscapedUnicodeCharacters2One.java"), expected);
     }
 
     @Test
-    public void testAllowAllCharactersEscaped() throws Exception {
+    public void testAllowByTailCommentTwo() throws Exception {
+        final String[] expected = {
+            "21:31: " + getCheckMessage(MSG_KEY),
+            "21:45: " + getCheckMessage(MSG_KEY),
+            "30:38: " + getCheckMessage(MSG_KEY),
+            "36:38: " + getCheckMessage(MSG_KEY),
+            "38:46: " + getCheckMessage(MSG_KEY),
+            "42:46: " + getCheckMessage(MSG_KEY),
+            "45:46: " + getCheckMessage(MSG_KEY),
+            "48:46: " + getCheckMessage(MSG_KEY),
+            "51:46: " + getCheckMessage(MSG_KEY),
+            "54:48: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharacters2Two.java"), expected);
+    }
+
+    @Test
+    public void testAllowAllCharactersEscapedOne() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -324,26 +348,34 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "46:38: " + getCheckMessage(MSG_KEY),
             "48:38: " + getCheckMessage(MSG_KEY),
             "58:32: " + getCheckMessage(MSG_KEY),
-            "103:38: " + getCheckMessage(MSG_KEY),
-            "105:38: " + getCheckMessage(MSG_KEY),
-            "107:38: " + getCheckMessage(MSG_KEY),
-            "109:38: " + getCheckMessage(MSG_KEY),
-            "119:38: " + getCheckMessage(MSG_KEY),
-            "127:46: " + getCheckMessage(MSG_KEY),
-            "129:55: " + getCheckMessage(MSG_KEY),
-            "131:46: " + getCheckMessage(MSG_KEY),
-            "133:55: " + getCheckMessage(MSG_KEY),
-            "135:46: " + getCheckMessage(MSG_KEY),
-            "137:55: " + getCheckMessage(MSG_KEY),
-            "139:46: " + getCheckMessage(MSG_KEY),
-            "141:55: " + getCheckMessage(MSG_KEY),
-            "143:46: " + getCheckMessage(MSG_KEY),
-            "145:55: " + getCheckMessage(MSG_KEY),
-            "147:48: " + getCheckMessage(MSG_KEY),
-            "149:57: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAvoidEscapedUnicodeCharacters3.java"), expected);
+                getPath("InputAvoidEscapedUnicodeCharacters3One.java"), expected);
+    }
+
+    @Test
+    public void testAllowAllCharactersEscapedTwo() throws Exception {
+        final String[] expected = {
+            "15:38: " + getCheckMessage(MSG_KEY),
+            "17:38: " + getCheckMessage(MSG_KEY),
+            "19:38: " + getCheckMessage(MSG_KEY),
+            "21:38: " + getCheckMessage(MSG_KEY),
+            "31:38: " + getCheckMessage(MSG_KEY),
+            "39:46: " + getCheckMessage(MSG_KEY),
+            "41:55: " + getCheckMessage(MSG_KEY),
+            "43:46: " + getCheckMessage(MSG_KEY),
+            "45:55: " + getCheckMessage(MSG_KEY),
+            "47:46: " + getCheckMessage(MSG_KEY),
+            "49:55: " + getCheckMessage(MSG_KEY),
+            "51:46: " + getCheckMessage(MSG_KEY),
+            "53:55: " + getCheckMessage(MSG_KEY),
+            "55:46: " + getCheckMessage(MSG_KEY),
+            "57:55: " + getCheckMessage(MSG_KEY),
+            "59:48: " + getCheckMessage(MSG_KEY),
+            "61:57: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharacters3Two.java"), expected);
     }
 
     @Test
@@ -369,26 +401,26 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void allowNonPrintableEscapesTwo() throws Exception {
         final String[] expected = {
+            "15:38: " + getCheckMessage(MSG_KEY),
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
             "21:38: " + getCheckMessage(MSG_KEY),
-            "23:38: " + getCheckMessage(MSG_KEY),
-            "28:34: " + getCheckMessage(MSG_KEY),
-            "30:46: " + getCheckMessage(MSG_KEY),
-            "35:38: " + getCheckMessage(MSG_KEY),
-            "42:38: " + getCheckMessage(MSG_KEY),
-            "45:46: " + getCheckMessage(MSG_KEY),
-            "47:55: " + getCheckMessage(MSG_KEY),
-            "49:46: " + getCheckMessage(MSG_KEY),
-            "51:55: " + getCheckMessage(MSG_KEY),
-            "53:46: " + getCheckMessage(MSG_KEY),
-            "55:55: " + getCheckMessage(MSG_KEY),
-            "57:46: " + getCheckMessage(MSG_KEY),
-            "59:55: " + getCheckMessage(MSG_KEY),
-            "61:46: " + getCheckMessage(MSG_KEY),
-            "63:55: " + getCheckMessage(MSG_KEY),
-            "65:48: " + getCheckMessage(MSG_KEY),
-            "67:57: " + getCheckMessage(MSG_KEY),
+            "26:34: " + getCheckMessage(MSG_KEY),
+            "28:46: " + getCheckMessage(MSG_KEY),
+            "33:38: " + getCheckMessage(MSG_KEY),
+            "40:38: " + getCheckMessage(MSG_KEY),
+            "43:46: " + getCheckMessage(MSG_KEY),
+            "45:55: " + getCheckMessage(MSG_KEY),
+            "47:46: " + getCheckMessage(MSG_KEY),
+            "49:55: " + getCheckMessage(MSG_KEY),
+            "51:46: " + getCheckMessage(MSG_KEY),
+            "53:55: " + getCheckMessage(MSG_KEY),
+            "55:46: " + getCheckMessage(MSG_KEY),
+            "57:55: " + getCheckMessage(MSG_KEY),
+            "59:46: " + getCheckMessage(MSG_KEY),
+            "61:55: " + getCheckMessage(MSG_KEY),
+            "63:48: " + getCheckMessage(MSG_KEY),
+            "65:57: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharacters4Two.java"), expected);
