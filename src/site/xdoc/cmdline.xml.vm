@@ -26,7 +26,35 @@
             <li><a href="#Description">Description</a></li>
             <li><a href="#Command_line_usage">Command line usage</a></li>
             <li><a href="#Download_and_Run">Download and Run</a></li>
-            <li><a href="#Examples">Examples</a></li>
+            <li><a href="#Examples">Examples</a>
+              <ul class="toc-sublist">
+                <li><a href="#Using_Configuration_File">Using Configuration File</a></li>
+                <li><a href="#Specifying_Output_Format">Specifying Output Format</a></li>
+                <li><a href="#Using_a_Properties_File">Using a Properties File</a></li>
+                <li><a href="#Specifying_an_Output_File">Specifying an Output File</a></li>
+                <li><a href="#Printing_XPath_Suppressions">Printing XPath Suppressions</a></li>
+                <li><a href="#Generating_Xpath_Suppressions_XML">Generating Xpath Suppressions
+                  XML</a></li>
+                <li><a href="#Generating_Checks_And_Files_Suppressions_XML">Generating Checks And
+                  Files Suppressions XML</a></li>
+                <li><a href="#Setting_Tab_Width">Setting Tab Width</a></li>
+                <li><a href="#Displaying_Abstract_Syntax_Tree">Displaying Abstract Syntax
+                  Tree</a></li>
+                <li><a href="#Displaying_AST_with_Comments">Displaying AST with Comments</a></li>
+                <li><a href="#Displaying_AST_with_Javadoc">Displaying AST with Javadoc</a></li>
+                <li><a href="#Printing_Javadoc_Parse_Tree">Printing Javadoc Parse Tree</a></li>
+                <li><a href="#Debugging_CheckStyle">Debugging CheckStyle</a></li>
+                <li><a href="#Excluding_Specific_Files_or_Directories">Excluding Specific
+                  Files/Directories</a></li>
+                <li><a href="#Excluding_Files_Using_Regex">Excluding Files Using Regex</a></li>
+                <li><a href="#Displaying_Checkstyle_Version">Displaying Checkstyle Version</a></li>
+                <li><a href="#Matching_AST_Branches">Matching AST Branches</a></li>
+                <li><a href="#Displaying_Help_Message">Displaying Help Message</a></li>
+                <li><a href="#Executing_Ignored_Modules">Executing Ignored Modules</a></li>
+                <li><a href="#Handling_Folder_and_File_Inputs">Handling Folder and File
+                  Inputs</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

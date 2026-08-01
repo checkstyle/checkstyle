@@ -17,6 +17,26 @@
     </section>
 
     <section name="Overview">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#Writing_Listeners">Writing Listeners</a></li>
+            <li><a href="#Using_Listeners">Using Listeners</a></li>
+            <li><a href="#Examples">Examples</a>
+              <ul class="toc-sublist">
+                <li><a href="#CommonsLoggingListener">CommonsLoggingListener</a></li>
+                <li><a href="#MailLogger">MailLogger</a></li>
+              </ul>
+            </li>
+            <li><a href="#Huh_I_can_t_figure_it_out">Huh? I can't figure it out!</a></li>
+            <li><a href="#Contributing">Contributing</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         A Checkstyle listener monitors the progress of a <code>Checker</code> during the audit
         of files. The <code>Checker</code> notifies its attached listeners of
