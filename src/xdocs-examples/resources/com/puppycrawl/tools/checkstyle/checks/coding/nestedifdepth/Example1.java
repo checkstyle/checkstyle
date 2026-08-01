@@ -17,15 +17,18 @@ class Example1 {
 
     if (true) {
       if (true) {
-        if (true) {} // violation, nested if-else depth is 2 (max allowed is 1)
-        else{}
+        // violation above, 'Nested if-else depth is 2 (max allowed is 1).'
+        if (true) {}
+        else {}
       }
     }
 
     if (true) {
       if (true) {
-        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-          if (true) {} // violation, nested if-else depth is 2 (max allowed is 1)
+        // violation above, 'Nested if-else depth is 2 (max allowed is 1).'
+        if (true) {
+          // violation above, 'Nested if-else depth is 3 (max allowed is 1).'
+          if (true) {}
           else {}
         }
       }
@@ -33,12 +36,13 @@ class Example1 {
 
     if (true) {
       if (true) {
-        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-          if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-            if (true) { // violation, nested if-else depth is 4 (max allowed is 1)
-              if (true) {} // violation, nested if-else depth is 5 (max allowed is 1)
-              else {}
-            }
+        // violation above, 'Nested if-else depth is 2 (max allowed is 1).'
+        if (true) {
+          // violation above, 'Nested if-else depth is 3 (max allowed is 1).'
+          if (true) {
+            // violation above, 'Nested if-else depth is 4 (max allowed is 1).'
+            if (true) {}
+            else {}
           }
         }
       }
