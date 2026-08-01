@@ -12,6 +12,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java"/>
+      </macro>
       <subsection name="Description" id="SuppressWarningsHolder_Description">
         <macro name="description">
             <param name="modulePath"

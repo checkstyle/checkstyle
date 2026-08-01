@@ -8,6 +8,33 @@
   <body>
     <section name="RegexpOnFilename">
       <p>Since Checkstyle 6.15</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RegexpOnFilename_Description">Description</a></li>
+          <li><a href="#RegexpOnFilename_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RegexpOnFilename_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Report file names that contain a space</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Forbid 'xml' files in folders</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Forbid 'md' files except 'README.md file' in folders, with custom message</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Only allow property and xml files to be located in the resource folder</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Only allow only camelcase</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Forbid files that do not start with 'Test' in folders named 'regexponfilename'</a></li>
+            </ul>
+          </li>
+          <li><a href="#RegexpOnFilename_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RegexpOnFilename_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RegexpOnFilename_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RegexpOnFilename_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RegexpOnFilename_Description">
         <div>
           Checks that a specified pattern matches based on file and/or folder path.

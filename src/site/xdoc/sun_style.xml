@@ -11,6 +11,19 @@
 
   <body>
     <section name="Sun's Java Style Checkstyle Coverage">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Sun_Useful_information">Useful information</a></li>
+            <li><a href="#Sun_Legend">Legend</a></li>
+            <li><a href="#Sun_Coverage_table">Coverage table</a></li>
+            <li><a href="#Sun_Suppressions">Suppressions</a></li>
+          </ul>
+        </div>
+      </div>
       <subsection name="Useful information" id="Sun_Useful_information">
         <p>
           This coverage report was created for

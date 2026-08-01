@@ -8,6 +8,32 @@
   <body>
     <section name="ParameterNumber">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ParameterNumber_Description">Description</a></li>
+          <li><a href="#ParameterNumber_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ParameterNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow 10 parameters for a method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Rationale: developer may need to override method with many parameters from 3-rd party library. In this case developer has no control over number of parameters.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Ignore methods and constructors annotated with <code>JsonCreator</code> annotation</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Allow 6 parameters for a method, while ignoring methods with <code>@Override</code> or <code>@java.lang.Override</code> annotation</a></li>
+            </ul>
+          </li>
+          <li><a href="#ParameterNumber_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ParameterNumber_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ParameterNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ParameterNumber_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ParameterNumber_Description">
         <div>
           Checks the number of parameters of a method or constructor.

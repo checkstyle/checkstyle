@@ -8,6 +8,47 @@
   <body>
     <section name="ImportControl">
       <p>Since Checkstyle 4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ImportControl_Description">Description</a></li>
+          <li><a href="#ImportControl_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ImportControl_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Using an import control file called "${config.folder}/import-control1.xml", then have the following</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Only check the "${config.folder}/api" directory using an import control file called "${config.folder}/import-control2.xml", then have the following</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Using an import control file called "${config.folder}/import-control13.xml" for module imports (Java 25+)</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Using an import control file with regex for module imports</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ImportControl_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase7-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase8-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#UseCase9-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#ImportControl_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ImportControl_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ImportControl_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ImportControl_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ImportControl_Description">
         <div>
           Controls what can be imported in each package and file. Useful for ensuring
