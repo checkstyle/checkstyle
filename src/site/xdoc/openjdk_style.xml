@@ -11,6 +11,21 @@
 
   <body>
     <section name="OpenJDK's Java Style Checkstyle Coverage">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#OpenJDK_Useful_information">Useful information</a></li>
+            <li><a href="#OpenJDK_Legend">Legend</a></li>
+            <li><a href="#OpenJDK_Coverage_table">Coverage table</a></li>
+            <li><a href="#OpenJDK_Header">Header</a></li>
+            <li><a href="#OpenJDK_Severity_Level">Severity Level</a></li>
+            <li><a href="#OpenJDK_Suppressions">Suppressions</a></li>
+          </ul>
+        </div>
+      </div>
       <subsection name="Useful information" id="OpenJDK_Useful_information">
         <p>
           This coverage report was created for
