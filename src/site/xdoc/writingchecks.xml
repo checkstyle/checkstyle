@@ -17,7 +17,36 @@
     </section>
 
     <section name="Overview">
-
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#Writing_Checks">Writing Checks</a></li>
+            <li><a href="#Java_Grammar">Java Grammar</a></li>
+            <li><a href="#Printing_a_Java_tree_structure">Printing a Java tree structure</a></li>
+            <li><a href="#The_Checkstyle_SDK_Gui">The Checkstyle SDK Gui</a></li>
+            <li><a href="#Understanding_the_visitor_pattern">
+              Understanding the visitor pattern</a></li>
+            <li><a href="#Visitor_in_action">Visitor in action</a></li>
+            <li><a href="#Understanding_token_sets">Understanding token sets</a></li>
+            <li><a href="#Comment_Tokens_in_AST">Comment Tokens in AST</a></li>
+            <li><a href="#Navigating_the_AST">Navigating the AST</a></li>
+            <li><a href="#Defining_Check_Properties">Defining Check Properties</a></li>
+            <li><a href="#Logging_violations">Logging violations</a></li>
+            <li><a href="#XPath_Support">XPath Support</a></li>
+            <li><a href="#Integrating_Checks">Integrating Checks</a></li>
+            <li><a href="#Limitations">Limitations</a></li>
+            <li><a href="#Writing_FileSetChecks">Writing FileSetChecks</a></li>
+            <li><a href="#Declare_check.27s_external_resource_locations">
+              Declare check's external resource locations</a></li>
+            <li><a href="#Huh.3F_I_can.27t_figure_it_out.21">Huh? I can't figure it out!</a></li>
+            <li><a href="#Contributing">Contributing</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         OK, so you have finally decided to write your own Check.  Welcome
         aboard! This is a really easy thing to do. Very basic Java knowledge is required
