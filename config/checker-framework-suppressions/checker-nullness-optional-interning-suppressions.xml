@@ -8690,6 +8690,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/TocMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter value of Optional.of.</message>
+    <lineContent>result = Optional.of(id);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ViolationMessagesMacro.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference clss.getPackage()</message>
