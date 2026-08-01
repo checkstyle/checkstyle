@@ -161,6 +161,7 @@ chapternaming
 chapterprogrammingpractices
 charset
 CHDBEFIF
+checkbox
 checkchmod
 checkerframework
 checkmodule
@@ -919,6 +920,7 @@ nestedtrydepth
 netbeans
 newdomain
 newlineatendoffile
+NEX
 Nfc
 NFF
 Nfo
@@ -1280,6 +1282,7 @@ singleline
 singlelined
 singlelinejavadoc
 singlespaceseparator
+sitetoc
 sivakumar
 Slawinski
 slf
@@ -1422,6 +1425,7 @@ tokentype
 tolist
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
+tooltips
 TOSTRING
 Touchscreen
 tpc
@@ -1437,6 +1441,7 @@ tstamp
 tt
 tta
 ttf
+Tvar
 tvf
 tw
 typebodypadding
