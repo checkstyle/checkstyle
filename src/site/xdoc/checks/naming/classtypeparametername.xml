@@ -8,6 +8,30 @@
   <body>
     <section name="ClassTypeParameterName">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ClassTypeParameterName_Description">Description</a></li>
+          <li><a href="#ClassTypeParameterName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassTypeParameterName_Examples">Examples</a><span class="toc-sub-arrow"></span></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">format=^[A-Z]{2,}$</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">format=(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)</a></li>
+            </ul>
+          </li>
+          <li><a href="#ClassTypeParameterName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ClassTypeParameterName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ClassTypeParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ClassTypeParameterName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ClassTypeParameterName_Description">
         <div>
           Checks that class type parameter names conform to a specified pattern.

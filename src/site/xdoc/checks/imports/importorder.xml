@@ -8,6 +8,39 @@
   <body>
     <section name="ImportOrder">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ImportOrder_Description">Description</a></li>
+          <li><a href="#ImportOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ImportOrder_Examples">Examples</a><span class="toc-sub-arrow"></span></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Notes: "com" package is not mentioned on configuration, because it is ignored by Eclipse Kepler and Luna (looks like Eclipse defect) configuration below doesn't work in all 100% cases due to inconsistent behavior prior to Mars release, but covers most scenarios Example</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it matches default Eclipse formatter configuration (tested on Mars release): group of static imports is on the top groups of type imports: "java" and "javax" packages first, then "org" and "com", then all other imports as one group imports will be sorted in the groups groups are separated by, at least, one blank line and aren't separated internally Example</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Note: "separated" option is disabled because IDEA default has blank line between "java" and static imports, and no blank line between "javax" and "java".</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">So that it matches default NetBeans formatter configuration (tested on v8): groups of type imports are not defined, all imports will be sorted as a one group static imports are not separated, they will be sorted along with other imports Example</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Allows static imports grouped to the top being sorted alphabetically</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">With groups of static imports</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Example for <code>useContainerOrderingForStatic=true</code></a></li>
+              <li><a href="#Example9-config" class="toc-sublink">Example for <code>useContainerOrderingForStatic=false</code></a></li>
+              <li><a href="#Example10-config" class="toc-sublink">Example for <code>separatedStaticGroups=true</code></a></li>
+              <li><a href="#Example11-config" class="toc-sublink">With groups of static imports when staticGroups="" represents all imports as {@code everything else} group</a></li>
+              <li><a href="#Example12-config" class="toc-sublink">With groups of static imports when staticGroups="java, javax" represents three groups i.e java*, javax* and * (everything else). In below example the static imports <code> com...</code> should be in last group</a></li>
+            </ul>
+          </li>
+          <li><a href="#ImportOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ImportOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ImportOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ImportOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ImportOrder_Description">
         <div>
           Checks the ordering/grouping of imports. Features are:
