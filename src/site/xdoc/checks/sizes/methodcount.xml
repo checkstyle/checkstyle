@@ -8,6 +8,34 @@
   <body>
     <section name="MethodCount">
       <p>Since Checkstyle 5.3</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodCount_Description">Description</a></li>
+          <li><a href="#MethodCount_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MethodCount_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow no more than 5 methods per type declaration</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow no more than 2 public methods per type declaration, and 6 methods in total</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Use separate maximums for private methods</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Use separate maximums for package-private methods</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Use separate maximums for protected methods</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Use tokens</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodCount_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodCount_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodCount_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodCount_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MethodCount_Description">
         <div>
           Checks the number of methods declared in each type declaration by access modifier

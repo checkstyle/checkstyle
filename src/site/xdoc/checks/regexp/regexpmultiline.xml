@@ -8,6 +8,36 @@
   <body>
     <section name="RegexpMultiline">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RegexpMultiline_Description">Description</a></li>
+          <li><a href="#RegexpMultiline_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RegexpMultiline_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">To run the check with its default configuration (no matches will be)</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Find calls to print to the console</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Match text that spans multiple lines, like normal code in a Java file</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Match a maximum of three test strings</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Match a minimum of two test strings</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Restrict an empty file</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Match a minimum of two test strings</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Find calls to print to the console with a custom message</a></li>
+              <li><a href="#Example9-config" class="toc-sublink">Match a maximum of three test strings</a></li>
+            </ul>
+          </li>
+          <li><a href="#RegexpMultiline_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RegexpMultiline_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RegexpMultiline_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RegexpMultiline_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RegexpMultiline_Description">
         <div>
           Checks that a specified pattern matches across multiple lines in any file type.

@@ -8,6 +8,29 @@
   <body>
     <section name="UnnecessarySemicolonAfterOuterTypeDeclaration">
       <p>Since Checkstyle 8.31</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Description">Description</a></li>
+          <li><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Detect unnecessary semicolon only after top level class definitions</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnnecessarySemicolonAfterOuterTypeDeclaration_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Description">
         <div>
           Checks if unnecessary semicolon is used after type declaration.

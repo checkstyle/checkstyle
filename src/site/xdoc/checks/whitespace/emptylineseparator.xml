@@ -8,6 +8,34 @@
   <body>
     <section name="EmptyLineSeparator">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#EmptyLineSeparator_Description">Description</a></li>
+          <li><a href="#EmptyLineSeparator_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EmptyLineSeparator_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">To check empty line for PACKAGE_DEF</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">To check empty line for IMPORT</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">To check empty line for VARIABLE_DEF and METHOD_DEF</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">To allow no empty line between fields</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">To disallow multiple empty lines between class members</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">To disallow multiple empty lines inside constructor, initialization block and method</a></li>
+            </ul>
+          </li>
+          <li><a href="#EmptyLineSeparator_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#EmptyLineSeparator_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#EmptyLineSeparator_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#EmptyLineSeparator_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="EmptyLineSeparator_Description">
         <div>
           Checks for empty line separators after,

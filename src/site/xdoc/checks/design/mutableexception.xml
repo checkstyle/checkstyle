@@ -8,6 +8,30 @@
   <body>
     <section name="MutableException">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MutableException_Description">Description</a></li>
+          <li><a href="#MutableException_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MutableException_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it checks for class name that ends with 'Exception'</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it checks for type name that is used in 'extends' and ends with 'Throwable'</a></li>
+            </ul>
+          </li>
+          <li><a href="#MutableException_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MutableException_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MutableException_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MutableException_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MutableException_Description">
         <div>
           Ensures that exception classes (classes with names conforming to some pattern
