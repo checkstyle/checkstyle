@@ -817,11 +817,16 @@ fragment HEXCHARS: '#' [0-9a-fA-F]+;
 fragment DECCHARS: [0-9]+ '%'?;
 
 fragment DOUBLE_QUOTE_STRING
-    : '"' ~[<"]* '"'
+    : '"' ( ~["<] | LT_IN_ATTR )* '"'
     ;
 
 fragment SINGLE_QUOTE_STRING
-    : '\'' ~[<']* '\''
+    : '\'' ( ~['<] | LT_IN_ATTR )* '\''
+    ;
+
+fragment LT_IN_ATTR
+    : '<' { _input.LA(1) != '/' && _input.LA(1) != '!'
+            && !Character.isLetter(_input.LA(1)) }?
     ;
 
 fragment UNQUOTED_STRING
