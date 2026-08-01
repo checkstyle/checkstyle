@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/InterfaceMemberImpliedModifierCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/InterfaceMemberImpliedModifierCheck.java"/>
+      </macro>
       <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">
         <macro name="description">
             <param name="modulePath"
