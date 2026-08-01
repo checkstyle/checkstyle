@@ -17,6 +17,18 @@
     </section>
 
     <section name="Overview">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#Description">Description</a></li>
+            <li><a href="#Xml_report">Xml report</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         Checkstyle can generate XML, SARIF and plain text reports of its findings.
       </p>

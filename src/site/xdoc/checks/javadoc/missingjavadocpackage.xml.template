@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocPackageCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocPackageCheck.java"/>
+      </macro>
       <subsection name="Description" id="MissingJavadocPackage_Description">
         <macro name="description">
             <param name="modulePath"
