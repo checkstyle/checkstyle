@@ -16,8 +16,8 @@
           This coverage report was created for
           <a href="https://google.github.io/styleguide/javaguide.html">
             Google Java Style</a>(
-          <a href="styleguides/google-java-style-20250426/javaguide.html">
-            cached page</a>), version of 26 Apr 2025.
+          <a href="styleguides/google-java-style-20260409/javaguide.html">
+            cached page</a>), version of 9 Apr 2026.
         </p>
         <p>
           <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
@@ -374,6 +374,10 @@
                   <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
                     config</a>)
+                  <br />
+                  <br />
+                  Not covered: Every source file should have a package declaration
+                  except compact source files.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement">
@@ -419,6 +423,29 @@
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard">
                     samples</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a name="a3.3.1.1"/>
+                  <a href="#3.3.1.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20250426/javaguide.html#s3.3.1.1-module-imports">
+                    3.3.1.1 No module imports</a>
+                </td>
+                <td>
+                  Not covered:
+                  <br />
+                  New module AvoidModuleImport will be added at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/19968">
+                    #19968
+                  </a>
+                </td>
+                <td>
                 </td>
               </tr>
               <tr>
@@ -2127,6 +2154,25 @@
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule528typevariablenames">
                     samples</a>
                   <br />
+                </td>
+              </tr>
+              <tr>
+                <td><a name="a5.2.9"/>
+                  <a href="#5.2.9">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20250426/javaguide.html#s5.2.9-unnamed-variables">
+                    5.2.9 Unnamed variables</a>
+                </td>
+                <td>
+                  Covered at sections <a href="#5.2.6">Parameter names</a> and
+                  <a href="#5.2.7">Local variable names</a>.
+                </td>
+                <td>
                 </td>
               </tr>
               <tr>
