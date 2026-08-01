@@ -133,6 +133,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase1.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure Check to forbid <code>@author</code> tags in Javadoc comments.
+          The <code>SuppressionSingleFilter</code> suppresses missing tag violations,
+          as missing <code>@author</code> tags are desired in this use case.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+        Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/writetag/UseCase2.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
