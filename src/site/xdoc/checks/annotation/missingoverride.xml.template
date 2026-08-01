@@ -12,6 +12,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java"/>
+      </macro>
       <subsection name="Description" id="MissingOverride_Description">
         <macro name="description">
             <param name="modulePath"

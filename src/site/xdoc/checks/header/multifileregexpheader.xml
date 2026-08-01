@@ -8,6 +8,31 @@
   <body>
     <section name="MultiFileRegexpHeader">
       <p>Since Checkstyle 10.24.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MultiFileRegexpHeader_Description">Description</a></li>
+          <li><a href="#MultiFileRegexpHeader_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MultiFileRegexpHeader_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-raw" class="toc-sublink">Such that no violations arise. Default values of properties are used.</a></li>
+              <li><a href="#Example2-raw" class="toc-sublink">Use multiple header files</a></li>
+              <li><a href="#Example3-raw" class="toc-sublink">Verify that each file starts with one of multiple headers.</a></li>
+              <li><a href="#Example4-raw" class="toc-sublink">For a configuration where any header is accepted</a></li>
+            </ul>
+          </li>
+          <li><a href="#MultiFileRegexpHeader_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MultiFileRegexpHeader_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MultiFileRegexpHeader_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MultiFileRegexpHeader_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MultiFileRegexpHeader_Description">
         <div>
           Checks the header of a source file against multiple header files that contain a

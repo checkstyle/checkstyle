@@ -8,6 +8,27 @@
   <body>
     <section name="UnusedLambdaParameterShouldBeUnnamed">
       <p>Since Checkstyle 10.18.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnusedLambdaParameterShouldBeUnnamed_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnusedLambdaParameterShouldBeUnnamed_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnusedLambdaParameterShouldBeUnnamed_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnusedLambdaParameterShouldBeUnnamed_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnusedLambdaParameterShouldBeUnnamed_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnusedLambdaParameterShouldBeUnnamed_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="UnusedLambdaParameterShouldBeUnnamed_Description">
         <div>
           Ensures that lambda parameters that are not used are declared as an unnamed variable.

@@ -8,6 +8,34 @@
   <body>
     <section name="TypeBodyPadding">
       <p>Since Checkstyle 13.9.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#TypeBodyPadding_Description">Description</a></li>
+          <li><a href="#TypeBodyPadding_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#TypeBodyPadding_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Require blank lines even for empty type bodies</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Not require a blank line after the opening brace</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Not require a blank line before the closing brace</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Require blank lines for inner classes too</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Require blank lines for local classes too</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Only run on interfaces, enums, annotations, and records (bypassing classes)</a></li>
+            </ul>
+          </li>
+          <li><a href="#TypeBodyPadding_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#TypeBodyPadding_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#TypeBodyPadding_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#TypeBodyPadding_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="TypeBodyPadding_Description">
         <div>
           Checks the padding of the body of type definitions (classes, interfaces,
