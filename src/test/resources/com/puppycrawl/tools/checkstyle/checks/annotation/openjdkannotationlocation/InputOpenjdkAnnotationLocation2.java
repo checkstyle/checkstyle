@@ -47,9 +47,8 @@ class TestClassBad {
 
     @MyAnnotation11 @MyAnnotation12
     @MyAnnotation13 int a;
-    // 2 violations above:
-    //  'Annotations must be on a separate line from 'a'.'
-    //  'Annotations on 'a' must be all on one line or all on separate lines.'
+    // violation above """Annotations on 'a' must be all on one line or
+    // all on separate lines."""
 
     @MyAnnotation11 @MyAnnotation12 @MyAnnotation13 int b;
 
@@ -76,6 +75,11 @@ class TestClassBad {
     }
 
     @MyAnnotation15(value = "") public void method7() {};
+
+    void methodWithLocalVariable() {
+        @MyAnnotation11 int
+                localVariable;
+    }
 }
 
 @interface MyAnnotation11 {
