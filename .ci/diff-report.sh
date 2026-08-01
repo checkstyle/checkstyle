@@ -192,6 +192,19 @@ generate-report)
   fi
   ;;
 
+copy-report-to-aws-s3-bucket)
+  TIME=$(date +%Y%H%M%S)
+  FOLDER="${COMMIT_SHA}_$TIME"
+  DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
+  LINK="https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com"
+  aws s3 cp "$DIFF" "s3://${AWS_BUCKET_NAME}/$FOLDER/reports/diff/" \
+    --recursive --storage-class STANDARD_IA
+  if [ -n "$LABEL" ]; then
+    echo "$LABEL: " > .ci-temp/message
+  fi
+  echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+  ;;
+
 process-local-repo-config-files)
   # Some properties and modules are explicitly added in the config files to prevent parser failures
   mkdir -p .ci-temp
