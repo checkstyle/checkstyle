@@ -724,6 +724,10 @@ log(ast, "too.many.methods", this.max);
           If it is not, you can get hard to understand parse errors.
         </li>
         <li>
+          Javadoc comments have to pass the JDK <code>javadoc</code> tool syntax checks
+          to get valid violations.
+        </li>
+        <li>
           Java
           <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.5">
             tokens (identifiers, keywords)</a>
