@@ -361,7 +361,6 @@ Duser
 dv
 Dversion
 Dxml
-eb
 EBFF
 EBNF
 ecj
@@ -1110,6 +1109,7 @@ POJO
 Popup
 Postgresql
 prebuilts
+prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
 prefs
 PRESIZE
