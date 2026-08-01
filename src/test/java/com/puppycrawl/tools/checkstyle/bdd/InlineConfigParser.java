@@ -324,8 +324,6 @@ public final class InlineConfigParser {
             "checks/coding/illegaltype/InputIllegalTypeTestSameFileNameGeneral.java",
             "checks/coding/illegaltype/InputIllegalTypeTestStarImports.java",
             "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
-            "checks/coding/nestedifdepth/Example1.java",
-            "checks/coding/nestedifdepth/Example2.java",
             "checks/coding/noclone/Example1.java",
             "checks/coding/simplifybooleanreturn/Example1.java",
             "checks/coding/superfinalize/InputSuperFinalizeVariations.java",
