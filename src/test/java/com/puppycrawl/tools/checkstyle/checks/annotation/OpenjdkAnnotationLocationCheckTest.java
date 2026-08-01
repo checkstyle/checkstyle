@@ -121,7 +121,6 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "method"),
             "27:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "badMethod"),
-            "36:29: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "Temp"),
         };
 
         verifyWithInlineConfigParser(
@@ -153,12 +152,42 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
+    public void testSingleLineTypesAndConstructor() throws Exception {
+        final String[] expected = {
+            "20:46: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "MultilineC"),
+            "27:48: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "MultilineRat"),
+            "39:38: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "GenericMethods2"),
+            "46:34: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "MultilineInterface"),
+            "52:34: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "MultilineEnum"),
+            "59:38: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "VALUE_WITH_BODY"),
+            "66:34: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "MultilineRecord"),
+            "75:38: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE,
+                    "MultilineCompactConstructor"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOpenjdkAnnotationLocation6.java"), expected);
+    }
+
+    @Test
     public void testPackage() throws Exception {
         final String[] expected = {
             "10:84: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "inputs"),
         };
         verifyWithInlineConfigParser(
                 getPath("inputs/package-info.java"), expected);
+    }
+
+    @Test
+    public void testSingleLinePackage() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("inputs/singleline/package-info.java"), expected);
     }
 
 }
