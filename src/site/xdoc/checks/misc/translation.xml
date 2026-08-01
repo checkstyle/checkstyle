@@ -8,6 +8,31 @@
   <body>
     <section name="Translation">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#Translation_Description">Description</a></li>
+          <li><a href="#Translation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Translation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Check existence of Japanese and French translations</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to validate only bundles which base names start with &quot;ButtonLabels&quot;</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check only files which have '.properties' and '.translations' extensions</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">With default settings (only the existence of the default translation file is checked)</a></li>
+            </ul>
+          </li>
+          <li><a href="#Translation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#Translation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#Translation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#Translation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="Translation_Description">
         <div>
           Ensures the correct translation of code by checking property files for consistency

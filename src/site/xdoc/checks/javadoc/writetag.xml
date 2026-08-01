@@ -8,6 +8,39 @@
   <body>
     <section name="WriteTag">
       <p>Since Checkstyle 4.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#WriteTag_Description">Description</a></li>
+          <li><a href="#WriteTag_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#WriteTag_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Example of default Check configuration that do nothing.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present on type javadoc.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present on type and method javadocs. Attention: all presence of tags are also highlighted as violation.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present with digital value on method javadocs also in addition to default tokens. Set <code>tagSeverity</code> to <code>ignore</code> to suppress <code>javadoc.writeTag</code> violations for matching <code>@since</code> tags. Missing <code>@since</code> tags and tag format violations are still reported with the common severity property.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present with digital value on method javadocs also in addition to default tokens. The <code>tagSeverity</code> property is set to <code>error</code>, but tag format violations are still reported with the common severity property.</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#WriteTag_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Check to forbid <code>@author</code> tags in Javadoc comments. The <code>SuppressionSingleFilter</code> suppresses missing tag violations, as missing <code>@author</code> tags are desired in this use case.</a></li>
+            </ul>
+          </li>
+          <li><a href="#WriteTag_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#WriteTag_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#WriteTag_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#WriteTag_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="WriteTag_Description">
         <div>
           Requires user defined Javadoc tag to be present in Javadoc comment with defined format.

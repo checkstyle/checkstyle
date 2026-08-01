@@ -8,6 +8,49 @@
   <body>
     <section name="Regexp">
       <p>Since Checkstyle 4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#Regexp_Description">Description</a></li>
+          <li><a href="#Regexp_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Regexp_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration does nothing</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to make sure a copyright statement is included in the file</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to make sure a duplicate pattern is not used</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to configure the check to avoid using System.out.println</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to configure the check to configure the error limit</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Configure to ignore comments</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">An example of how to configure the check to make sure the pattern is treated as illegal without any other property overrides</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#Regexp_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Another example of how to configure the check to make sure a copyright statement is included in the file</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Your statement may be multiline.</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Configure Check to make sure that it appear only once</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Instead of printing whole regexp that might be unnecessary for user, you can substitute it to some static text</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Configure the check to find trailing whitespace at the end of a line</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">Configure the check to find case-insensitive occurrences of "debug"</a></li>
+              <li><a href="#UseCase7-config" class="toc-sublink">Verify that each file has the multiline header where year could be any digits.</a></li>
+              <li><a href="#UseCase8-config" class="toc-sublink">There is also a feature to limit the number of violations reported. When the limit is reached the check aborts with a message reporting that the limit has been reached.</a></li>
+              <li><a href="#UseCase9-config" class="toc-sublink">Configure the check to make sure there are no calls to <code>System.out.println</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#Regexp_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#Regexp_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#Regexp_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#Regexp_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="Regexp_Description">
         <div>
           Checks that a specified pattern exists, exists less than
