@@ -17,6 +17,24 @@
     </section>
 
     <section name="Overview">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#Writing_Filters">Writing Filters</a></li>
+            <li><a href="#Writing_TreeWalkerFilters">Writing TreeWalkerFilters</a></li>
+            <li><a href="#Using_TreeWalkerFilters">Using TreeWalkerFilters</a></li>
+            <li><a href="#Declare_check.27s_external_resource_locations">
+              Declare check's external resource locations</a></li>
+            <li><a href="#Using_Filters">Using Filters</a></li>
+            <li><a href="#Huh.3F_I_can.27t_figure_it_out.21">Huh? I can't figure it out!</a></li>
+            <li><a href="#Contributing">Contributing</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         A <code>Checker</code> has a set of <code>Filter</code>s that decide which audit events
         the <code>Checker</code> reports through its listeners.  Interface <code>Filter</code>
