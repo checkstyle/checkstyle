@@ -16,9 +16,22 @@
       </macro>
     </section>
 
-    <section name="How To Set System Property For CLI">
+  <section name="How To Set System Property For CLI">
+      <div class="toc-panel">
+          <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+          <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+          <div class="toc-content">
+              <p class="toc-heading">On This Page</p>
+              <ul class="toc-list">
+                  <li><a href="#How_To_Set_System_Property_For_CLI">
+                    How To Set System Property For CLI</a></li>
+                  <li><a href="#Enable_External_DTD_Load">Enable External DTD Load</a></li>
+                  <li><a href="#Property_Chaining_Support">Property Chaining Support</a></li>
+              </ul>
+          </div>
+      </div>
       <p>
-        System properties should be provided to <code>java</code> command.
+          System properties should be provided to <code>java</code> command.
         Example: <code>java -D&lt;property&gt;=&lt;value&gt; -jar ... </code>
       </p>
       <p>
