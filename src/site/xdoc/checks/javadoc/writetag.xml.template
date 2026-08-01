@@ -81,8 +81,11 @@
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
-          to be present on type and method javadocs that has only digits and dots in text.
-          Attention: it is required to set "ignore" in tagSeverity.
+          to be present with digital value on method javadocs also in addition to default tokens.
+          Set <code>tagSeverity</code> to <code>ignore</code> to suppress
+          <code>javadoc.writeTag</code> violations for matching <code>@since</code> tags.
+          Missing <code>@since</code> tags and tag format violations are still reported with
+          the common severity property.
         </p>
         <macro name="example">
           <param name="path"
@@ -98,9 +101,10 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          If tagSeverity is not "ignore" Check will violate <code>@since</code> tag
-          absence on type and method javadocs, match by pattern will make violation different,
-          that will allow to keep required violation only by Filters.
+          To configure Check to demand <code>@since</code> tag
+          to be present with digital value on method javadocs also in addition to default tokens.
+          The <code>tagSeverity</code> property is set to <code>error</code>, but tag format
+          violations are still reported with the common severity property.
         </p>
         <macro name="example">
           <param name="path"
@@ -119,8 +123,9 @@
 
       <subsection name="Use Cases" id="WriteTag_Use_Cases">
         <p id="UseCase1-config">
-          To configure Check to demand <code>@since</code> tag
-          and in the same time print violation with specific severity on each presence of such tag.
+          To configure Check to forbid <code>@author</code> tags in Javadoc comments.
+          The <code>SuppressionSingleFilter</code> suppresses missing tag violations,
+          as missing <code>@author</code> tags are desired in this use case.
         </p>
         <macro name="example">
           <param name="path"

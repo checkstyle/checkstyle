@@ -1,13 +1,22 @@
 /*xml
 <module name="Checker">
+  <module name=
+      "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="message"
+              value="^Type Javadoc comment is missing @author tag\.$"/>
+  </module>
+
   <module name="TreeWalker">
     <module name="WriteTag">
       <property name="tokens"
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" />
-      <property name="tag" value="@since"/>
-      <property name="tagFormat" value="[1-9\.]"/>
+                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF, CTOR_DEF,
+                ENUM_CONSTANT_DEF, ANNOTATION_FIELD_DEF,
+                COMPACT_CTOR_DEF" />
+      <property name="tag" value="@author"/>
       <property name="tagSeverity" value="error"/>
+      <message key="javadoc.writeTag" value="No {0} tags should be used."/>
     </module>
   </module>
 </module>
@@ -15,21 +24,18 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 // xdoc section - start
-// violation 3 lines below 'Javadoc tag @since=1.2'
+
+// violation 4 lines below 'No @author tags should be used.'
 /**
- * Some class
- * @since 1.2
+ * Some class.
+ *
+ * @author John Doe
  */
 public class UseCase1 {
-  // violation 3 lines below 'Type Javadoc tag @since'
-  /**
-   * some doc
-   * @since
-   */
-  void testMethod1() {}
 
-  /** some doc */
-  public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  /**
+   * Helper without author tag.
+   */
+  void testMethod() {}
 }
 // xdoc section - end
