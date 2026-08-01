@@ -370,6 +370,11 @@
   <!-- Category overview pages don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
             files="src/site/xdoc/checks/[a-z]+\.xml"/>
+  <!-- Index templates don't need toc macro by design -->
+  <suppress checks="RegexpSingleline" id="sitetocMacroMustExist"
+            files="[\\/]checks\.xml\.template$"/>
+  <suppress checks="RegexpSingleline" id="sitetocMacroMustExist"
+            files="[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template$"/>
 
   <!-- Index templates don't need description macro by design -->
   <suppress id="descriptionMacroMustExist"
