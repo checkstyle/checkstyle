@@ -2,15 +2,15 @@
 AvoidEscapedUnicodeCharacters
 allowEscapesForControlCharacters = (default)false
 allowByTailComment = (default)false
-allowIfAllCharactersEscaped = (default)false
-allowNonPrintableEscapes = true
+allowIfAllCharactersEscaped = true
+allowNonPrintableEscapes = (default)false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
-public class InputAvoidEscapedUnicodeCharacters4Two {
+public class InputAvoidEscapedUnicodeCharacters3Two {
 
         private String unitAbbrev5 = "\u03bcs";
         // violation above 'Unicode escape(s) usage should be avoided.'
@@ -23,22 +23,18 @@ public class InputAvoidEscapedUnicodeCharacters4Two {
 
         void foo() {
                 for (char c = '\u0000'; c < '\uffff'; c++) {
-                        if (c == '\u001b' ||
-        // violation above 'Unicode escape(s) usage should be avoided.'
-                                        c == '\u2014')
-        // violation above 'Unicode escape(s) usage should be avoided.'
+                        if (c == '\u001b' ||     // ESC
+                                        c == '\u2014')   // Em-Dash?
                                 continue;
                 }
         }
         private String unitAbbrev9 = "\u03bcs"; /* comment */ int i;
         // violation above 'Unicode escape(s) usage should be avoided.'
-
         private String notAUnicodeEscaped1 = "\\u1234";
 
         private String notAUnicodeEscaped2 = "\\\\u1234";
 
         private String onlyEscaped = "\\\u1234";
-        // violation above 'Unicode escape(s) usage should be avoided.'
 
         private String sumilarToEscapedByB = "b\u1234";
         // violation above 'Unicode escape(s) usage should be avoided.'
