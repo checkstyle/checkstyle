@@ -1044,6 +1044,12 @@
     </module>
     <module name="WhitespaceAround"/>
     <module name="WhitespaceBeforeEmptyBody"/>
+    <module name="WriteTag">
+      <property name="tag" value="@author"/>
+      <property name="severity" value="ignore"/>
+      <property name="tagSeverity" value="error"/>
+      <message key="javadoc.writeTag" value="No {0} tags should be used."/>
+    </module>
 
   </module>
 
