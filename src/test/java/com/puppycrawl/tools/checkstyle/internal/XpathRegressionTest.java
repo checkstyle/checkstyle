@@ -72,6 +72,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "MissingDeprecated",
                     "NonEmptyAtclauseDescription",
                     "PreferLiteralJavadocInlineTag",
+                    "PreferCodeOrSnippetJavadocInlineTag",
                     "RequireEmptyLineBeforeBlockTagGroup",
                     "SingleLineJavadoc",
                     "SummaryJavadoc",
