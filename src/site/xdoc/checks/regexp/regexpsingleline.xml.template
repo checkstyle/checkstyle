@@ -155,6 +155,7 @@
 
       <subsection name="Use Cases" id="RegexpSingleline_Use_Cases">
         <p id="UseCase1-config">
+        To configure the check to allow no more than one occurrence of 'System.exit(' per file:
         </p>
         <macro name="example">
           <param name="path"
