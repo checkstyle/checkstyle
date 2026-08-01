@@ -93,4 +93,13 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
+    @Test
+    public void testUseCase2() throws Exception {
+        final String[] expected = {
+            "32: No @author tags should be used.",
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
+    }
+
 }
