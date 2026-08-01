@@ -37,8 +37,9 @@ class Example2 {
       if (true) {
         if (true) {
           if (true) {
-            if (true) {//violation "Nested if-else depth is 4 (max allowed is 3)."
-              if (true) {}//violation "Nested if-else depth is 5 (max allowed is 3)."
+            if (true) { // violation 'Nested if-else depth is 4 (max allowed is 3).'
+              if (true) {} // violation """Nested if-else depth is
+              // 5 (max allowed is 3)."""
               else {}
             }
           }
