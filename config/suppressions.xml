@@ -196,4 +196,8 @@
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
 
+  <!-- until https://github.com/checkstyle/checkstyle/issues/21288 -->
+  <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
+            files=".*\.java"
+            message="Use snippet inline tag instead of .* tag\."/>
 </suppressions>
