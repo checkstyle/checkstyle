@@ -20,7 +20,6 @@ import java.lang.annotation.Target;
     @Annotation2(value = "foo")
     @Annotation2
     @Annotation2("bar") public String valueBad();
-    // violation above 'Annotations must be on a separate line from 'valueBad'.'
 
     @Annotation2(value = "foo")
     @Annotation2
@@ -40,9 +39,8 @@ import java.lang.annotation.Target;
     @Annotation2(value = "foo")
     @Annotation2 @Annotation2(value = "some")
     @Annotation2("bar") public String valueBadTwo();
-    // 2 violations above:
-    //    'Annotations must be on a separate line from 'valueBadTwo'.'
-    //    'Annotations on 'valueBadTwo' must be all on one line or all on separate lines.'
+    // violation above """Annotations on 'valueBadTwo' must be all on one line or
+    // all on separate lines."""
 
     @Annotation2(value = "foo")
     @Annotation2

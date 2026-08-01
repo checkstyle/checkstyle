@@ -56,12 +56,14 @@ public class InputAnnotationsDoAndDonts {
         }
     }
 
-    // ok until https://github.com/checkstyle/checkstyle/issues/20978
     class Donts extends Temp {
 
+        // violation below 'Annotations must be on a separate line from 'foo'.'
         @Override @Deprecated public void foo() {
         }
 
+        // violation 4 lines below """Annotations on 'foo2' must be all on one line or all on
+        // separate lines."""
         @Override @Deprecated
         @SafeVarargs
         public final void foo2(String... arg) {
