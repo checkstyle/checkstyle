@@ -39,7 +39,10 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
  * <div>
  * Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
  * To define the format for a tag, set property tagFormat to a regular expression.
- * Property tagSeverity is used for severity of events when the tag exists.
+ * The common severity property is used for missing tag and tag format violations.
+ * Property tagSeverity is used only for javadoc.writeTag violations when the
+ * configured tag exists and its contents match tagFormat, or when tagFormat is not
+ * configured.
  * No violation reported in case there is no javadoc.
  * </div>
  *
@@ -72,7 +75,10 @@ public class WriteTagCheck extends AbstractJavadocCheck {
     /** Specify the name of tag. */
     private String tag;
 
-    /** Specify the severity level when tag is found and printed. */
+    /**
+     * Specify the severity level for javadoc.writeTag violations when the configured
+     * tag is found and its contents match tagFormat, or when tagFormat is not configured.
+     */
     private SeverityLevel tagSeverity = SeverityLevel.INFO;
 
     /** Whether the target tag was found in the current Javadoc tree. */
@@ -109,7 +115,9 @@ public class WriteTagCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Setter to specify the severity level when tag is found and printed.
+     * Setter to specify the severity level for javadoc.writeTag violations when the
+     * configured tag is found and its contents match tagFormat, or when tagFormat is
+     * not configured.
      *
      * @param severity  The new severity level
      * @see SeverityLevel
