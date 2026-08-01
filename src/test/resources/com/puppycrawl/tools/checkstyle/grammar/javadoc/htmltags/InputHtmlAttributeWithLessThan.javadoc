@@ -1,0 +1,4 @@
+* <img src="a.png" alt="a < b">
+* <img src='a.png' alt='x < y'>
+* <a href="b.html" id="a < b">text</a>
+*
