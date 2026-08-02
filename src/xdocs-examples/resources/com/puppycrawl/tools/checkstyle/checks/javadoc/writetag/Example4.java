@@ -6,7 +6,7 @@
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
                 ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" />
       <property name="tag" value="@since"/>
-      <property name="tagFormat" value="[1-9\.]"/>
+      <property name="tagFormat" value="^[1-9\.]+$"/>
       <property name="tagSeverity" value="ignore"/>
     </module>
   </module>
@@ -27,6 +27,18 @@ public class Example4 {
    * @since
    */
   void testMethod1() {}
+  // violation 3 lines above 'Type Javadoc tag @since'
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
   // violation 3 lines above 'Type Javadoc tag @since'
   /** some doc */
   public void testMethod2() {}
