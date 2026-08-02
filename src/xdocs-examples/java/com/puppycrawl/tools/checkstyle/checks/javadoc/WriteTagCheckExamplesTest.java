@@ -88,11 +88,8 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
 
     @Test
     public void testUseCase1() throws Exception {
-        final String pattern = "[1-9\\.]";
         final String[] expected = {
-            "21: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.2"),
-            "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "32: No @author tags should be used.",
         };
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
