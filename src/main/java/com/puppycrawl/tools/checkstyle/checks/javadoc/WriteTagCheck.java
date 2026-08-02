@@ -61,6 +61,12 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_MISSING_METHOD_TAG = "method.missingTag";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_WRITE_TAG = "javadoc.writeTag";
 
     /**
@@ -86,6 +92,9 @@ public class WriteTagCheck extends AbstractJavadocCheck {
 
     /** Parent line number for the missing tag report in the current Javadoc tree. */
     private int parentLineNo;
+
+    /** Parent token type for the missing tag report in the current Javadoc tree. */
+    private int parentTokenType;
 
     /**
      * Creates a new {@code WriteTagCheck} instance.
@@ -191,6 +200,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
         final DetailAST javadocComment = findJavadoc(ast);
         if (javadocComment != null) {
             parentLineNo = ast.getLineNo();
+            parentTokenType = ast.getType();
             super.visitToken(javadocComment);
         }
     }
@@ -219,8 +229,24 @@ public class WriteTagCheck extends AbstractJavadocCheck {
     @Override
     public void finishJavadocTree(DetailNode rootAst) {
         if (tag != null && !tagFound) {
-            log(parentLineNo, MSG_MISSING_TAG, tag);
+            log(parentLineNo, getMissingTagMessageKey(), tag);
         }
+    }
+
+    /**
+     * Returns the message key for a missing Javadoc tag based on the parent token type.
+     *
+     * @return message key for the missing-tag violation
+     */
+    private String getMissingTagMessageKey() {
+        final String messageKey;
+        if (parentTokenType == TokenTypes.METHOD_DEF) {
+            messageKey = MSG_MISSING_METHOD_TAG;
+        }
+        else {
+            messageKey = MSG_MISSING_TAG;
+        }
+        return messageKey;
     }
 
     /**
