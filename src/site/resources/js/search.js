@@ -7,16 +7,18 @@
     var resultsContainer   = null;
     var searchInput        = null;
     var TYPE_COLORS = {
-        "Check":       "#c00",
+        "Check":       "#cc0000",
         "Filter":      "#2e7d32",
         "File Filter": "#1565c0",
-        "General":     "#555"
+        "Property":    "#7b5ea7",
+        "General":     "#555555"
     };
 
     var TYPE_LABELS = {
         "Check":       "Check",
         "Filter":      "Filter",
         "File Filter": "File Filter",
+        "Property":    "Prop",
         "General":     "Doc"
     };
     var debounceTimer = null;
