@@ -122,7 +122,9 @@
     <module name="LocalVariableName"/>
     <module name="MemberName"/>
     <module name="MethodName"/>
-    <module name="PackageName"/>
+    <module name="PackageName">
+      <property name="format" value="^(com|edu|gov|mil|net|org)(\.[a-zA-Z_]\w*)*$"/>
+    </module>
     <module name="ParameterName"/>
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
