@@ -756,4 +756,5 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         return result;
     }
 
+
 }
