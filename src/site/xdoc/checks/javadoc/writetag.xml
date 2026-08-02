@@ -8,6 +8,35 @@
   <body>
     <section name="WriteTag">
       <p>Since Checkstyle 4.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#WriteTag_Description">Description</a></li>
+          <li><a href="#WriteTag_Properties">Properties</a></li>
+          <li><a href="#WriteTag_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">Example of default Check configuration that do nothing.</a></li>
+              <li><a href="#Example2-config">Check to demand <code>@since</code> tag to be present on type javadoc.</a></li>
+              <li><a href="#Example3-config">Check to demand <code>@since</code> tag to be present on type and method javadocs. Attention: all presence of tags are also highlighted as violation.</a></li>
+              <li><a href="#Example4-config">Check to demand <code>@since</code> tag to be present on type and method javadocs that has only digits and dots in text. Attention: it is required to set "ignore" in tagSeverity.</a></li>
+              <li><a href="#Example5-config">If tagSeverity is not "ignore" Check will violate <code>@since</code> tag absence on type and method javadocs, match by pattern will make violation different, that will allow to keep required violation only by Filters.</a></li>
+            </ul>
+          </li>
+          <li><a href="#WriteTag_Use_Cases">Use Cases</a>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config">Check to demand <code>@since</code> tag and in the same time print violation with specific severity on each presence of such tag.</a></li>
+            </ul>
+          </li>
+          <li><a href="#WriteTag_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#WriteTag_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#WriteTag_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#WriteTag_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="WriteTag_Description">
         <div>
           Requires user defined Javadoc tag to be present in Javadoc comment with defined format.

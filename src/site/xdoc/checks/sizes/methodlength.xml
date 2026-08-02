@@ -8,6 +8,29 @@
   <body>
     <section name="MethodLength">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodLength_Description">Description</a></li>
+          <li><a href="#MethodLength_Properties">Properties</a></li>
+          <li><a href="#MethodLength_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">So that it accepts at most 4 lines</a></li>
+              <li><a href="#Example2-config">So that it accepts methods with at most 4 lines</a></li>
+              <li><a href="#Example3-config">So that it accepts methods with at most 4 lines, not counting empty lines and comments</a></li>
+              <li><a href="#Example4-config">With default settings, so that it accepts methods with at most 150 lines</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodLength_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodLength_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodLength_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MethodLength_Description">
         <div>
           Checks for long methods and constructors.

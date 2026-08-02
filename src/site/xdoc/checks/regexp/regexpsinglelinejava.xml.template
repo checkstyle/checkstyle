@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineJavaCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineJavaCheck.java"/>
+      </macro>
       <subsection name="Description" id="RegexpSinglelineJava_Description">
         <macro name="description">
             <param name="modulePath"
