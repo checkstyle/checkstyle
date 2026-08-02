@@ -26,6 +26,18 @@ public class Example3 {
    */
   void testMethod1() {}
   // violation 3 lines above 'Javadoc tag @since='
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+  // violation 3 lines above 'Javadoc tag @since=1.6'
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+  // violation 3 lines above 'Javadoc tag @since=1.1-beta'
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'

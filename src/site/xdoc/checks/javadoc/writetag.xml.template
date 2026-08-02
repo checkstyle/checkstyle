@@ -45,8 +45,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure Check to demand some special tag (for example <code>@since</code>)
-          to be present on classes javadoc.
+          To configure Check to demand <code>@since</code> tag
+          to be present on type javadoc.
         </p>
         <macro name="example">
           <param name="path"
@@ -62,8 +62,9 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure Check to demand some special tag (for example <code>@since</code>)
-          to be present on method javadocs also in addition to default tokens.
+          To configure Check to demand <code>@since</code> tag
+          to be present on type and method javadocs. Attention: all presence of tags are also
+          highlighted as violation.
         </p>
         <macro name="example">
           <param name="path"
@@ -80,7 +81,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens.
+          to be present on type and method javadocs that contains digital value.
           Attention: it is required to set "ignore" in tagSeverity.
         </p>
         <macro name="example">
@@ -97,9 +98,9 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens,
-          reporting a mismatched tag format as an error severity violation.
+          If tagSeverity is not "ignore" Check will violate <code>@since</code> tag
+          absence on type and method javadocs, match by pattern will make violation different,
+          that will allow to keep required violation only by Filters.
         </p>
         <macro name="example">
           <param name="path"

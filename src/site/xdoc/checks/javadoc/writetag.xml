@@ -127,14 +127,26 @@ public class Example1 {
    */
   void testMethod1() {}
 
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+
   /** some doc */
   public void testMethod2() {}
 
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure Check to demand some special tag (for example <code>@since</code>)
-          to be present on classes javadoc.
+          To configure Check to demand <code>@since</code> tag
+          to be present on type javadoc.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -161,14 +173,27 @@ public class Example2 {
    */
   void testMethod1() {} // ok, as methods are not checked by default
 
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+
   /** some doc */
   public void testMethod2() {}
 
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure Check to demand some special tag (for example <code>@since</code>)
-          to be present on method javadocs also in addition to default tokens.
+          To configure Check to demand <code>@since</code> tag
+          to be present on type and method javadocs. Attention: all presence of tags are also
+          highlighted as violation.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -198,6 +223,18 @@ public class Example3 {
    */
   void testMethod1() {}
   // violation 3 lines above 'Javadoc tag @since='
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+  // violation 3 lines above 'Javadoc tag @since=1.6'
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+  // violation 3 lines above 'Javadoc tag @since=1.1-beta'
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
@@ -205,7 +242,7 @@ public class Example3 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens.
+          to be present on type and method javadocs that contains digital value.
           Attention: it is required to set &quot;ignore&quot; in tagSeverity.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -216,7 +253,7 @@ public class Example3 {
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
                 ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
       &lt;property name="tag" value="@since"/&gt;
-      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+      &lt;property name="tagFormat" value="^[1-9\.]+$"/&gt;
       &lt;property name="tagSeverity" value="ignore"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -238,15 +275,27 @@ public class Example4 {
    */
   void testMethod1() {}
   // violation 3 lines above 'Type Javadoc tag @since'
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+  // violation 3 lines above 'Type Javadoc tag @since'
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens,
-          reporting a mismatched tag format as an error severity violation.
+          If tagSeverity is not &quot;ignore&quot; Check will violate <code>@since</code> tag
+          absence on type and method javadocs, match by pattern will make violation different,
+          that will allow to keep required violation only by Filters.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -256,7 +305,7 @@ public class Example4 {
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
                 ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
       &lt;property name="tag" value="@since"/&gt;
-      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+      &lt;property name="tagFormat" value="^[1-9\.]+$"/&gt;
       &lt;property name="tagSeverity" value="error"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
@@ -277,6 +326,18 @@ public class Example5 {
    * @since
    */
   void testMethod1() {}
+  // violation 3 lines above 'Type Javadoc tag @since must match pattern'
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+  // violation 3 lines above 'Javadoc tag @since=1.6'
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
   // violation 3 lines above 'Type Javadoc tag @since must match pattern'
   /** some doc */
   public void testMethod2() {}
