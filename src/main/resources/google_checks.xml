@@ -466,12 +466,7 @@
                       RECORD_DEF, ANNOTATION_DEF"/>
       <property name="excludeScope" value="nothing"/>
     </module>
-    <module name="MethodName">
-      <property name="format"
-          value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-z0-9]*(?:[A-Z][a-z0-9]*)*(?:_[0-9]+)*$"/>
-      <message key="name.invalidPattern"
-             value="Method name ''{0}'' must match pattern ''{1}''."/>
-    </module>
+    <module name="GoogleMethodName"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="MethodName"/>
       <property name="query" value="//METHOD_DEF[
