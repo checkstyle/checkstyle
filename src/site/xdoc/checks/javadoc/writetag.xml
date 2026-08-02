@@ -240,7 +240,7 @@ public class Example3 {
   // violation 3 lines above 'Javadoc tag @since=1.1-beta'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Method Javadoc comment is missing @since tag.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -295,7 +295,7 @@ public class Example4 {
   // violation 3 lines above 'Type Javadoc tag @since'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Method Javadoc comment is missing @since tag.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -348,7 +348,7 @@ public class Example5 {
   // violation 3 lines above 'Type Javadoc tag @since must match pattern'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Method Javadoc comment is missing @since tag.'
 }
 </code></pre></div>
       </subsection>
@@ -365,7 +365,7 @@ public class Example5 {
       "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"&gt;
     &lt;property name="checks" value="WriteTag"/&gt;
     &lt;property name="message"
-              value="^Type Javadoc comment is missing @author tag\.$"/&gt;
+              value="^(Type|Method) Javadoc comment is missing @author tag\.$"/&gt;
   &lt;/module&gt;
 
   &lt;module name="TreeWalker"&gt;
@@ -426,6 +426,11 @@ public class UseCase1 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.writeTag%22">
               javadoc.writeTag
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22method.missingTag%22">
+              method.missingTag
             </a>
           </li>
           <li>
