@@ -38,6 +38,7 @@
             <message-key key="javadoc.parse.rule.error"/>
             <message-key key="javadoc.unclosedHtml"/>
             <message-key key="javadoc.writeTag"/>
+            <message-key key="method.missingTag"/>
             <message-key key="type.missingTag"/>
             <message-key key="type.tagFormat"/>
          </message-keys>

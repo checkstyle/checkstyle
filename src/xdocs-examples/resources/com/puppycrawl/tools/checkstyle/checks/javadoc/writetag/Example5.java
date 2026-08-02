@@ -42,6 +42,6 @@ public class Example5 {
   // violation 3 lines above 'Type Javadoc tag @since must match pattern'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Method Javadoc comment is missing @since tag.'
 }
 // xdoc section - end

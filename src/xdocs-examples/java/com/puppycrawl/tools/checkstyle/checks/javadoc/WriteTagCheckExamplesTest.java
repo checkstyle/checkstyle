@@ -53,7 +53,7 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
             "25: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", ""),
             "31: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.6"),
             "37: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.1-beta"),
-            "42: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "42: " + getCheckMessage(WriteTagCheck.MSG_MISSING_METHOD_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -66,7 +66,7 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
             "23: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
             "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
             "39: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "44: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "44: " + getCheckMessage(WriteTagCheck.MSG_MISSING_METHOD_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -80,7 +80,7 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
             "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
             "33: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.6"),
             "39: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "44: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "44: " + getCheckMessage(WriteTagCheck.MSG_MISSING_METHOD_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -92,7 +92,7 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
         final String[] expected = {
             "21: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.2"),
             "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "32: " + getCheckMessage(WriteTagCheck.MSG_MISSING_METHOD_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);

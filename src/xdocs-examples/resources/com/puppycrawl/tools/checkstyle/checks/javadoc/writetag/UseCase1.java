@@ -30,6 +30,6 @@ public class UseCase1 {
 
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Method Javadoc comment is missing @since tag.'
 }
 // xdoc section - end

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNCLOSED_HTML_TAG;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_MISSING_METHOD_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_MISSING_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_TAG_FORMAT;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck.MSG_WRITE_TAG;
@@ -112,6 +113,15 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagMissingTag.java"), expected);
+    }
+
+    @Test
+    public void testMissingTagOnMethod() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_MISSING_METHOD_TAG, "@since"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagMissingTagMethod.java"), expected);
     }
 
     @Test
