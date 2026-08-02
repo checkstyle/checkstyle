@@ -8,6 +8,40 @@
   <body>
     <section name="WhitespaceAround">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#WhitespaceAround_Description">Description</a></li>
+          <li><a href="#WhitespaceAround_Properties">Properties</a></li>
+          <li><a href="#WhitespaceAround_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">Default configuration</a></li>
+              <li><a href="#Example2-config">For whitespace only around curly braces: Note: '{' can be parsed either to LCURLY or SLIST.</a></li>
+              <li><a href="#Example3-config">Allow empty method bodies</a></li>
+              <li><a href="#Example4-config">Allow empty constructor bodies</a></li>
+              <li><a href="#Example5-config">Allow empty type bodies</a></li>
+              <li><a href="#Example6-config">Allow empty loop bodies</a></li>
+              <li><a href="#Example7-config">Allow empty lambda bodies</a></li>
+              <li><a href="#Example8-config">Allow empty catch bodies</a></li>
+              <li><a href="#Example9-config">Ignore the colon</a></li>
+              <li><a href="#Example10-config">Allow empty switch block statements</a></li>
+            </ul>
+          </li>
+          <li><a href="#WhitespaceAround_Use_Cases">Use Cases</a>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config">For whitespace only around assignment operators</a></li>
+            </ul>
+          </li>
+          <li><a href="#WhitespaceAround_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#WhitespaceAround_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#WhitespaceAround_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#WhitespaceAround_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="WhitespaceAround_Description">
         <div>
           Checks that a token is surrounded by whitespace. Empty constructor,

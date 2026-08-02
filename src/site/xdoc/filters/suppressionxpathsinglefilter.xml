@@ -8,6 +8,43 @@
   <body>
     <section name="SuppressionXpathSingleFilter">
       <p>Since Checkstyle 8.18</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressionXpathSingleFilter_Description">Description</a></li>
+          <li><a href="#SuppressionXpathSingleFilter_Properties">Properties</a></li>
+          <li><a href="#SuppressionXpathSingleFilter_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">Suppress the MethodName check for all methods with name MyMethod inside Example1 and Example3 files</a></li>
+              <li><a href="#Example2-config">To suppress MethodName check for method names matched pattern 'MyMethod[0-9]'</a></li>
+              <li><a href="#Example3-config">To suppress checks being specified by id property</a></li>
+              <li><a href="#Example4-config">To suppress checks for all package definitions</a></li>
+              <li><a href="#Example5-config">To suppress MethodName check for all methods</a></li>
+              <li><a href="#Example6-config">To suppress checks in the Example6 file by non-query</a></li>
+              <li><a href="#Example7-config">The following example is an example of what checks would be suppressed while building Spring projects with checkstyle plugin. Please find more information at: spring-javaformat</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionXpathSingleFilter_Use_Cases">Use Cases</a>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config">In the following sample, violations for LeftCurly check will be suppressed for methods with name testMethod1 inside UseCase1 file.</a></li>
+              <li><a href="#UseCase2-config">The following example demonstrates how to suppress RequireThis violations for variable age inside changeAge method.</a></li>
+              <li><a href="#UseCase3-config">Suppress <code>IllegalThrows</code> violations only for methods with name throwsMethod and only for <code>RuntimeException</code> exceptions. Double colon is used for axis iterations. In the following example <code>ancestor</code> axis is used to iterate all ancestor nodes of the current node with type <code>METHOD_DEF</code> and name throwsMethod. Please read more about xpath axes at W3Schools Xpath Axes.</a></li>
+              <li><a href="#UseCase4-config">The following sample demonstrates how to suppress all violations for method itself and all descendants. <code>descendant-or-self</code> axis iterates through current node and all children nodes at any level. Keyword <code>node()</code> selects node elements. Please read more about xpath syntax at W3Schools Xpath Syntax.</a></li>
+              <li><a href="#UseCase5-config">To suppress RedundantModifier check for interface definitions</a></li>
+              <li><a href="#UseCase6-config">Suppress checks for elements which are either class definitions, or method definitions</a></li>
+              <li><a href="#UseCase7-config">Suppress checks for MyMethod1 or MyMethod2 methods</a></li>
+              <li><a href="#UseCase8-config">Suppress checks for variable testVariable1 inside testMethod method inside UseCase8 class</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionXpathSingleFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressionXpathSingleFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressionXpathSingleFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressionXpathSingleFilter_Description">
         <div>
           Filter <code>SuppressionXpathSingleFilter</code> suppresses audit events for Checks

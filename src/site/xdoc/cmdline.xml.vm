@@ -17,6 +17,19 @@
     </section>
 
     <section name="Description">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Description">Description</a></li>
+            <li><a href="#Command_line_usage">Command line usage</a></li>
+            <li><a href="#Download_and_Run">Download and Run</a></li>
+            <li><a href="#Examples">Examples</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         This document describes how to run Checkstyle using the command line
         tool. The latest version of Checkstyle can be downloaded as described at
