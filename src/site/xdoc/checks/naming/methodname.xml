@@ -8,6 +8,37 @@
   <body>
     <section name="MethodName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"></label>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodName_Description">Description</a></li>
+          <li><a href="#MethodName_Properties">Properties</a></li>
+          <li><a href="#MethodName_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">Default configuration</a></li>
+              <li><a href="#Example2-config">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores is</a></li>
+              <li><a href="#Example3-config">An example of how to configure the check to allow method names to be equal to the residing class name is</a></li>
+              <li><a href="#Example4-config">An example of how to suppress the check to public methods</a></li>
+              <li><a href="#Example5-config">An example of how to suppress the check to protected methods</a></li>
+              <li><a href="#Example6-config">An example of how to suppress the check to private methods</a></li>
+              <li><a href="#Example7-config">An example of how to suppress the check to package-private methods</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodName_Use_Cases">Use Cases</a>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config">An example of how to configure the check to disallow method names to be equal to the residing class name is</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MethodName_Description">
         <div>
           Checks that method names conform to a specified pattern.
