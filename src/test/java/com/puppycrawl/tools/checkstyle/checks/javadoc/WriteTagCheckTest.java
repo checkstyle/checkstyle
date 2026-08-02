@@ -115,6 +115,15 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMissingTagOnMethod() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagMissingTagMethod.java"), expected);
+    }
+
+    @Test
     public void testInterface() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
