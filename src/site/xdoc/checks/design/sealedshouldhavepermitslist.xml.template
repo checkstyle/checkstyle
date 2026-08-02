@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/SealedShouldHavePermitsListCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/SealedShouldHavePermitsListCheck.java"/>
+      </macro>
       <subsection name="Description" id="SealedShouldHavePermitsList_Description">
         <macro name="description">
             <param name="modulePath"
