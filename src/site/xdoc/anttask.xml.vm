@@ -17,7 +17,20 @@
     </section>
 
     <section name="Description">
-
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Description">Description</a></li>
+            <li><a href="#Installation">Installation</a></li>
+            <li><a href="#Parameters">Parameters</a></li>
+            <li><a href="#Nested_Elements">Nested Elements</a></li>
+            <li><a href="#Examples">Examples</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         This task runs Checkstyle over specified Java files.
         The latest version of checkstyle can be found at
