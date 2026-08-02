@@ -54,75 +54,116 @@ public class InputUnderscoreUsedInNames {
 
   static class MultipartVersioningNamesBad {
 
-    void guava_34_4_6() {} // false-negative, _ between digit and letter
+    void guava_34_4_6() {}
+
+    // violation 2 lines above """Method name 'guava_34_4_6' has invalid underscore
+    // usage, underscores only allowed between adjacent digits."""
 
     void guava34_4_6() {}
 
-    void kotlin_2_9_94() {} // false-negative, _ between digit and letter
+    void kotlin_2_9_94() {}
+
+    // violation 2 lines above """Method name 'kotlin_2_9_94' has invalid underscore
+    // usage, underscores only allowed between adjacent digits."""
 
     void kotlin2_9_94() {}
 
-    void gradle_9_5_1() {} // false-negative, _ between digit and letter
+    void gradle_9_5_1() {}
+
+    // violation 2 lines above """Method name 'gradle_9_5_1' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void gradle9_5_1() {}
 
-    void jdk_9_0_392() {} // false-negative, _ between digit and letter
+    void jdk_9_0_392() {}
+
+    // violation 2 lines above """Method name 'jdk_9_0_392' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void jdk9_0_392() {}
 
-    // violation below 'Method name .* must match pattern'
     void kotlin_lang1_9_2() {}
+
+    // violation 2 lines above """Method name 'kotlin_lang1_9_2' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void kotlinLang1_9_2() {}
 
     void convertToKotlinVersion1_9_24() {}
 
-    // violation below 'Method name .* must match pattern'
     void jdk_method8_90() {}
 
-    void jdk_Method8_90() {} // violation 'Method name .* must match pattern'
+    // violation 2 lines above """Method name 'jdk_method8_90' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
+
+    void jdk_Method8_90() {}
+
+    // violation 2 lines above """Method name 'jdk_Method8_90' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void jdkMethod8_90() {}
 
-    // violation below 'Method name .* must match pattern'
     void guava_version33_4_2() {}
 
-    void guava_Version33_4_2() {} // violation 'Method name .* must match pattern'
+    // violation 2 lines above """Method name 'guava_version33_4_2' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
+
+    void guava_Version33_4_2() {}
+
+    // violation 2 lines above """Method name 'guava_Version33_4_2' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void guavaVersion33_4_2() {}
 
-    void kotlin1_9_24_() {} // violation 'Method name .* must match pattern'
+    void kotlin1_9_24_() {}
+
+    // violation 2 lines above """Method name 'kotlin1_9_24_' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void kotlin1_9_24() {}
 
-    void guava_33_4_5_() {} // violation 'Method name .* must match pattern'
+    void guava_33_4_5_() {}
+
+    // violation 2 lines above """Method name 'guava_33_4_5_' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void guava33_4_5() {}
   }
 
   class UnderscoresInNonTestMethods {
 
-    // violation below 'Method name .* must match pattern'
     void testSetCount_zeroToZero_addSupported() {}
+
+    // violation 2 lines above """Method name 'testSetCount_zeroToZero_addSupported' has
+    // invalid underscore usage, underscores only allowed between adjacent digits."""
 
     void testSetCountZeroToZeroAddSupported() {}
 
-    // violation below 'Method name .* must match pattern'
     void testPutNullValue_supported() {}
+
+    // violation 2 lines above """Method name 'testPutNullValue_supported' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void testPutNullValueSupported() {}
 
-    // violation below 'Method name .* must match pattern'
     void testAddAll_nonEmptyList() {}
+
+    // violation 2 lines above """Method name 'testAddAll_nonEmptyList' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void testAddAllNonEmptyList() {}
 
-    // violation below 'Method name .* must match pattern'
     void testEntrySet_hashCode_size1() {}
+
+    // violation 2 lines above """Method name 'testEntrySet_hashCode_size1' has invalid
+    // underscore usage, underscores only allowed between adjacent digits."""
 
     void testEntrySetHashCodeSize1() {}
 
-    void testCount_3() {} // false-negative, normal method must not use _
+    void testCount_3() {}
+
+    // violation 2 lines above """Method name 'testCount_3' has invalid underscore
+    // usage, underscores only allowed between adjacent digits."""
 
     void testCount3() {}
   }
@@ -135,8 +176,12 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testsetcount_zerotozero_addsupported() {}
 
-    @Test // violation below 'Method name .* must match pattern'
+    @Test
     void testSetCount_ZeroToZero_AddSupported() {}
+
+    // violation 2 lines above """Test method name 'testSetCount_ZeroToZero_AddSupported'
+    // segment must be more than a character, start lowercase, and not have a
+    // single lowercase followed by uppercase, or consecutive uppercase."""
 
     @Test
     void testPutNullValue_supported() {}
@@ -144,8 +189,12 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testputnullvalue_supported() {}
 
-    @Test // violation below 'Method name .* must match pattern'
+    @Test
     void testPutNullValue_Supported() {}
+
+    // violation 2 lines above """Test method name 'testPutNullValue_Supported' segment must
+    // be more than a character, start lowercase, and not have a single lowercase followed
+    // by uppercase, or consecutive uppercase."""
 
     @Test
     void testAddAll_nonEmptyList() {}
@@ -154,7 +203,11 @@ public class InputUnderscoreUsedInNames {
     void testaddall_nonemptylist() {}
 
     @Test
-    void testAddAll_NonEmptyList() {} // violation 'Method name .* must match pattern'
+    void testAddAll_NonEmptyList() {}
+
+    // violation 2 lines above """Test method name 'testAddAll_NonEmptyList' segment must
+    // be more than a character, start lowercase, and not have a single lowercase followed
+    // by uppercase, or consecutive uppercase."""
 
     @Test
     void testEntrySet_hashCode_size1() {}
@@ -163,10 +216,17 @@ public class InputUnderscoreUsedInNames {
     void testentryset_hashcode_size1() {}
 
     @Test
-    void testEntrySet_HashCode_Size1() {} // violation 'Method name .* must match pattern'
+    void testEntrySet_HashCode_Size1() {}
+
+    // violation 2 lines above """Test method name 'testEntrySet_HashCode_Size1' segment
+    // must be more than a character, start lowercase, and not have a single lowercase
+    // followed by uppercase, or consecutive uppercase."""
 
     @Test
     void testCount_3() {}
+
+    // violation 2 lines above """Test method name 'testCount_3' has invalid
+    // underscore usage, underscore only allowed between letters or between digits"""
 
     @Test
     void testCount_number3() {}
