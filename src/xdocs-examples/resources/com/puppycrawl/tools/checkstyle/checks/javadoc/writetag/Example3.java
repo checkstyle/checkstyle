@@ -40,6 +40,6 @@ public class Example3 {
   // violation 3 lines above 'Javadoc tag @since=1.1-beta'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Method Javadoc comment is missing @since tag.'
 }
 // xdoc section - end
