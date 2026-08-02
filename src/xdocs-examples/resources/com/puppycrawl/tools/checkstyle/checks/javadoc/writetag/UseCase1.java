@@ -4,7 +4,7 @@
       "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter">
     <property name="checks" value="WriteTag"/>
     <property name="message"
-              value="^Type Javadoc comment is missing @author tag\.$"/>
+              value="^Javadoc comment is missing @author tag\.$"/>
   </module>
 
   <module name="TreeWalker">
