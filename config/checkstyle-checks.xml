@@ -749,6 +749,7 @@
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
+    <module name="JavadocRegexp"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
