@@ -95,7 +95,7 @@
           </tr>
 
           <tr>
-            <td>file</td>
+            <td><a id="file"/><a href="#file">file</a></td>
             <td>File to run checkstyle on.</td>
             <td>
               One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
@@ -104,7 +104,7 @@
           </tr>
 
           <tr>
-            <td>fileset</td>
+            <td><a id="fileset"/><a href="#fileset">fileset</a></td>
             <td>
               A set of files to run checkstyle on. Nested attribute.
               See <a href="https://ant.apache.org/manual/Types/fileset.html">fileset</a>
@@ -117,7 +117,7 @@
           </tr>
 
           <tr>
-            <td>path</td>
+            <td><a id="path"/><a href="#path">path</a></td>
             <td>
               A set of path to run checkstyle on. Nested attribute.
               See <a href="https://ant.apache.org/manual/using.html#path">path</a>
@@ -130,7 +130,7 @@
           </tr>
 
           <tr>
-            <td>config</td>
+            <td><a id="config"/><a href="#config">config</a></td>
             <td>
               Specifies the location of the file, URL, or Java resource that defines the
               configuration modules.
@@ -142,7 +142,7 @@
           </tr>
 
           <tr>
-            <td>properties</td>
+            <td><a id="properties"/><a href="#properties">properties</a></td>
             <td>
               Specifies a file that contains properties for <a
               href="config.html#Properties"> expanded property values</a> of the
@@ -153,7 +153,7 @@
           </tr>
 
           <tr>
-            <td>failOnViolation</td>
+            <td><a id="failOnViolation"/><a href="#failOnViolation">failOnViolation</a></td>
             <td>
               Specifies whether the build will continue even if there are
               violations. Defaults to <code>&quot;true&quot;</code>.
@@ -162,13 +162,13 @@
           </tr>
 
           <tr>
-            <td>failureProperty</td>
+            <td><a id="failureProperty"/><a href="#failureProperty">failureProperty</a></td>
             <td>The name of a property to set in the event of a violation.</td>
             <td>No</td>
           </tr>
 
           <tr>
-            <td>maxErrors</td>
+            <td><a id="maxErrors"/><a href="#maxErrors">maxErrors</a></td>
             <td>
               The maximum number of errors that are tolerated before
               breaking the build or setting the failure property. Defaults
@@ -178,7 +178,7 @@
           </tr>
 
           <tr>
-            <td>maxWarnings</td>
+            <td><a id="maxWarnings"/><a href="#maxWarnings">maxWarnings</a></td>
             <td>
               The maximum number of warnings that are tolerated before
               breaking the build or setting the failure property. Defaults
@@ -191,7 +191,8 @@
           </tr>
 
           <tr>
-            <td>executeIgnoredModules</td>
+            <td><a id="executeIgnoredModules"/>
+              <a href="#executeIgnoredModules">executeIgnoredModules</a></td>
             <td>
               For efficiency, Checkstyle does not invoke modules with a configured severity of
               "ignore" (since their output would be ignored anyway). A small number of modules
@@ -243,7 +244,7 @@
           </tr>
 
           <tr>
-            <td>type</td>
+            <td><a id="type"/><a href="#type">type</a></td>
             <td>
               <p>The type of output to generate. The valid values are:</p>
               <ul>
@@ -267,6 +268,7 @@
           </tr>
 
           <tr>
+            <td><a id="toFile"/><a href="#toFile">toFile</a></td>
             <td>toFile</td>
             <td>
               The file to write output to. Defaults to standard output. Note,
@@ -275,7 +277,7 @@
             <td>No</td>
           </tr>
           <tr>
-            <td>useFile</td>
+            <td><a id="useFile"/><a href="#useFile">useFile</a></td>
             <td>Boolean that determines whether output should be sent to
             a file.  Default is <code>true</code>.</td>
             <td>No</td>
@@ -298,19 +300,19 @@
             <td><b>Required</b></td>
           </tr>
           <tr>
-            <td>key</td>
+            <td><a id="key"/><a href="#key">key</a></td>
             <td><p>The key for the property.</p></td>
             <td>Yes</td>
           </tr>
 
           <tr>
-            <td>value</td>
+            <td><a id="value"/><a href="#value">value</a></td>
             <td>The value of the property specified as a string.</td>
             <td>Either <i>value</i> or <i>file</i></td>
           </tr>
 
           <tr>
-            <td>file</td>
+            <td><a id="property-file"/><a href="#property-file">file</a></td>
             <td>
               The value of the property specified as a file. This is great for
               specifying file names relative to the ANT build file.
