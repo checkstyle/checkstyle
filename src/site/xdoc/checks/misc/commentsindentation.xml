@@ -8,6 +8,29 @@
   <body>
     <section name="CommentsIndentation">
       <p>Since Checkstyle 6.10</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#CommentsIndentation_Description">Description</a></li>
+          <li><a href="#CommentsIndentation_Properties">Properties</a></li>
+          <li><a href="#CommentsIndentation_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">Where both single-line and block comments are checked for indentation violations</a></li>
+              <li><a href="#Example2-config">Validate only single-line comments</a></li>
+            </ul>
+          </li>
+          <li><a href="#CommentsIndentation_Use_Cases">Use Cases</a>
+          </li>
+          <li><a href="#CommentsIndentation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#CommentsIndentation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#CommentsIndentation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#CommentsIndentation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="CommentsIndentation_Description">
         <div>
           Controls the indentation between comments and surrounding code.
