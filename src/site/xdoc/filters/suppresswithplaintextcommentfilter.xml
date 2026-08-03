@@ -8,6 +8,35 @@
   <body>
     <section name="SuppressWithPlainTextCommentFilter">
       <p>Since Checkstyle 8.6</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWithPlainTextCommentFilter_Description">Description</a></li>
+          <li><a href="#SuppressWithPlainTextCommentFilter_Properties">Properties</a></li>
+          <li><a href="#SuppressWithPlainTextCommentFilter_Examples">Examples</a>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config">A filter to suppress audit events between a comment containing <code>// CHECKSTYLE:OFF</code> and a comment containing <code>// CHECKSTYLE:ON</code> (the default comments). Checker is configured to check only properties files using UniqueProperties check</a></li>
+              <li><a href="#Example2-config">A filter to suppress audit events between a comment containing <code>STOP CHECK</code> and a comment containing <code>RESUME CHECK</code>. Checker is configured to check only properties files using UniqueProperties check</a></li>
+              <li><a href="#Example3-config">A filter to suppress UniqueProperties check audit events between a comment containing <code>STOP UNIQUE CHECK</code> and a comment containing <code>RESUME UNIQUE CHECK</code>. Checker is configured to check only properties files using both UniqueProperties check and OrderedProperties check</a></li>
+              <li><a href="#Example4-config">A filter to suppress audit events for the check mentioned in the comment <code>CSOFF: regexp</code> and <code>CSON: regexp</code>. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' values for the 'type' parameter</a></li>
+              <li><a href="#Example5-config">A filter to suppress all audit events between a comment containing <code>CSOFF: ALMOST_ALL</code> and a comment containing <code>CSON: ALMOST_ALL</code>, except for the RegexpSingleline check. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' values for the 'type' parameter</a></li>
+              <li><a href="#Example6-config">A filter to suppress audit events that match a specific message in the messageFormat (allowing suppression not only by the check's name but also by the message content, as the same check can report violations with different message formats) between a comment containing <code>CSOFF</code> and comment containing <code>CSON</code>. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' and 'config' values for the 'type' parameter</a></li>
+              <li><a href="#Example7-config">Example of Checkstyle checks and SuppressWithPlainTextCommentFilter configuration - the checkFormat, set to '$1', indicates that the ID of the check is in the first group of offCommentFormat and onCommentFormat regular expressions. Checker is configured to check only XML files using RegexpSingleline check to detect disallowed 'code' and 'config' values for the 'type' parameter</a></li>
+              <li><a href="#Example8-config">Example of how to configure the check to suppress more than one check. Checker is configured to check only SQL files using RegexpSingleline check to detect usage of JOIN operations and LineLength check to detect lines exceeding 60 characters</a></li>
+              <li><a href="#UseCase1-config">This check is not limited to comments. It can match any symbols in the given file as <code>offCommentFormat</code> and <code>onCommentFormat</code> for suppression. The following example shows how to suppress violations within a text block for the LineLength check. Checker is configured to use LineLength check to detect lines exceeding the maximum length of 100 characters</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWithPlainTextCommentFilter_Use_Cases">Use Cases</a>
+          </li>
+          <li><a href="#SuppressWithPlainTextCommentFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWithPlainTextCommentFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWithPlainTextCommentFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressWithPlainTextCommentFilter_Description">
         <div>
           Filter <code>SuppressWithPlainTextCommentFilter</code> uses plain text to suppress
