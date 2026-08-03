@@ -6,6 +6,7 @@
     var focusedResultIndex = -1;
     var resultsContainer   = null;
     var searchInput        = null;
+    var kbdBadge            = null;
     var TYPE_COLORS = {
         "Check":       "#cc0000",
         "Filter":      "#2e7d32",
@@ -73,6 +74,12 @@
         searchInput.setAttribute("aria-expanded",    "false");
         searchInput.setAttribute("role",             "combobox");
 
+        kbdBadge = document.createElement("span");
+        kbdBadge.id = "checkstyle-search-kbd";
+        kbdBadge.textContent = "S";
+        kbdBadge.setAttribute("aria-hidden", "true");
+        kbdBadge.title = "Press S to search";
+
         var clearBtn = document.createElement("button");
         clearBtn.id = "checkstyle-search-clear";
         clearBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" '
@@ -94,9 +101,11 @@
             clearBtn.style.display = "none";
             hideResults();
             searchInput.focus();
+            updateKbdVisibility();
         });
 
         posWrap.appendChild(searchInput);
+        posWrap.appendChild(kbdBadge);
         posWrap.appendChild(clearBtn);
         posWrap.appendChild(resultsContainer);
         wrapper.appendChild(posWrap);
@@ -106,6 +115,7 @@
         searchInput.addEventListener("input",   onInput);
         searchInput.addEventListener("keydown", onKeyDown);
         searchInput.addEventListener("focus",   onFocus);
+        searchInput.addEventListener("blur",    updateKbdVisibility);
 
         document.addEventListener("click", function (e) {
             if (!wrapper.contains(e.target)) { hideResults(); }
@@ -120,6 +130,19 @@
                 searchInput.select();
             }
         });
+
+        updateKbdVisibility();
+    }
+
+    /**
+     * Shows the "S" keyboard-shortcut badge only when the field is empty and unfocused;
+     * hides it once the user focuses the input or has typed something (so it never
+     * collides with the clear button).
+     */
+    function updateKbdVisibility() {
+        if (!kbdBadge || !searchInput) { return; }
+        var show = document.activeElement !== searchInput && searchInput.value.length === 0;
+        kbdBadge.style.display = show ? "flex" : "none";
     }
 
     /**
@@ -421,6 +444,7 @@
         if (clearBtn) {
             clearBtn.style.display = query.length > 0 ? "flex" : "none";
         }
+        updateKbdVisibility();
 
         debounceTimer = setTimeout(function() {
             if (query.length < MIN_QUERY_LENGTH) {
@@ -442,6 +466,7 @@
      */
     function onFocus() {
         ensureIndexLoaded();
+        updateKbdVisibility();
         var query = searchInput.value.trim();
         if (query.length >= MIN_QUERY_LENGTH && resultsContainer.innerHTML !== "") {
             showResults();

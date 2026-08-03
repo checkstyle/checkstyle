@@ -181,18 +181,6 @@ public final class SearchIndexGenerator {
     /** Exception message prefix used when an XDoc file fails to parse. */
     private static final String PARSE_FAILURE_MSG = "Failed to parse XDoc file: ";
 
-    /**
-     * Suffix label appended to example titles for configuration snippets.
-     * Yields e.g. "AnnotationLocation: Example1 [config]".
-     */
-    private static final String EXAMPLE_LABEL_CONFIG = " [config]";
-
-    /**
-     * Suffix label appended to example titles for Java code examples.
-     * Yields e.g. "AnnotationLocation: Example1 [code]".
-     */
-    private static final String EXAMPLE_LABEL_CODE = " [code]";
-
     /** Magic number for minimum word length. */
     private static final int MIN_WORD_LENGTH = 2;
 
@@ -245,7 +233,7 @@ public final class SearchIndexGenerator {
      * </ul>
      */
     private static final Pattern EXAMPLE_PARAGRAPH_ID =
-            Pattern.compile("^(Example\\d+)-(config|code)$");
+            Pattern.compile("^(Example\\d+)-(config)$");
 
     /**
      * Generic section/subsection names that are structurally repeated across
@@ -686,20 +674,12 @@ public final class SearchIndexGenerator {
             final String exampleLabel = matcher.group(1);
             final String exampleType = matcher.group(2);
 
-            final String labelSuffix;
-            if ("config".equals(exampleType)) {
-                labelSuffix = EXAMPLE_LABEL_CONFIG;
-            }
-            else {
-                labelSuffix = EXAMPLE_LABEL_CODE;
-            }
-
             final String introText = WHITESPACE
                     .matcher(paragraph.getTextContent())
                     .replaceAll(SPACE).trim();
 
             final String title = checkName + TITLE_SEPARATOR
-                    + exampleLabel + labelSuffix;
+                    + exampleLabel;
             final String url = baseUrl + ANCHOR_SEPARATOR + id;
             final String description =
                     truncate(introText, MAX_DESCRIPTION_LENGTH);

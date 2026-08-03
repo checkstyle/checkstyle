@@ -573,6 +573,35 @@ html {
     transition: background-color 0.15s ease;
 }
 
+#checkstyle-search-input {
+    padding-right: 56px;
+}
+
+#checkstyle-search-kbd {
+    box-sizing: border-box;
+    position: absolute;
+    right: 8px;
+    top: 40%;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    padding: 0;
+    font-size: 11px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 600;
+    color: #888;
+    background: #f2f2f2;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.04);
+    cursor: default;
+    user-select: none;
+}
+
 #checkstyle-search-clear:hover {
     background-color: #e0e0e0;
     color: #333;
@@ -713,7 +742,11 @@ html {
 #checkstyle-search-results::-webkit-scrollbar-thumb:hover { background: #bbb; }
 
 @media screen and (max-width: 823px) {
+    #checkstyle-search-kbd {
+        display: none !important;
+    }
     #checkstyle-search-input {
+        padding-right: 32px;
         font-size: 16px;
     }
     #checkstyle-search-results {
