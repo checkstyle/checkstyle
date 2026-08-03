@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java"/>
+      </macro>
       <subsection name="Description" id="ReturnCount_Description">
         <macro name="description">
             <param name="modulePath"

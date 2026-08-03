@@ -197,3 +197,32 @@ else {
 }
 
 window.addEventListener("resize", setBodyColumnMargin);
+
+window.addEventListener("load", function () {
+    "use strict";
+
+    const tocPanel = document.querySelector(".toc-panel");
+    const breadcrumbs = document.getElementById("breadcrumbs");
+
+    if (!tocPanel || !breadcrumbs) {
+        return;
+    }
+
+    function updateTocPosition() {
+        const rect = breadcrumbs.getBoundingClientRect();
+
+        if (rect.bottom > 20) {
+            // Breadcrumbs are still visible.
+            tocPanel.style.top = `${rect.bottom + 10}px`;
+        }
+        else {
+            // Breadcrumbs have scrolled away.
+            tocPanel.style.top = "20px";
+        }
+    }
+
+    updateTocPosition();
+
+    window.addEventListener("scroll", updateTocPosition);
+    window.addEventListener("resize", updateTocPosition);
+});
