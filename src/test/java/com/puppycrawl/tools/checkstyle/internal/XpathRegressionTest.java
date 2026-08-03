@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkFirstOccurrenceCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
@@ -66,9 +67,10 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
                     "AtclauseOrder",
                     "JavadocBlockTagLocation",
+                    "JavadocLeadingAsteriskAlign",
+                    "JavadocLinkFirstOccurrence",
                     "JavadocMethod",
                     "JavadocMissingLeadingAsterisk",
-                    "JavadocLeadingAsteriskAlign",
                     "JavadocMissingWhitespaceAfterAsterisk",
                     "JavadocParagraph",
                     "JavadocTagContinuationIndentation",
@@ -84,6 +86,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
     // but not subclasses of AbstractJavadocCheck.
     private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = Set.of(
+                    JavadocLinkFirstOccurrenceCheck.class,
                     JavadocMethodCheck.class,
                     JavadocTypeCheck.class,
                     WriteTagCheck.class
