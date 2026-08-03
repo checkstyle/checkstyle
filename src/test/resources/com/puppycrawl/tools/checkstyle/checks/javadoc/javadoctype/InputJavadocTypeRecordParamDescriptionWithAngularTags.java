@@ -59,14 +59,14 @@ record Record2<T>(int a, int b) {
  * @param <T>
  * @param    <P>
  */
-record Record5<T, U>() {} // violation 'Type Javadoc comment is missing @param '<U>' tag.'
+record Record5<T, U>() {} // violation 'Javadoc comment is missing @param '<U>' tag.'
 
 // violation 3 lines below 'Unused @param tag for \'region\'.'
 /**
  *
  * @param region
  */
-record Record6(int a) {} // violation 'Type Javadoc comment is missing @param 'a' tag.'
+record Record6(int a) {} // violation 'Javadoc comment is missing @param 'a' tag.'
 
 /**
  *

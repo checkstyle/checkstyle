@@ -76,7 +76,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
     /**
      * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
      */
-    // violation 2 lines above 'Type Javadoc tag SEE_BLOCK_TAG must match pattern*.'
+    // violation 2 lines above 'Javadoc tag SEE_BLOCK_TAG must match pattern*.'
     public static void test() {
 
     }
