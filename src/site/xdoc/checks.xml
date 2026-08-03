@@ -895,6 +895,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocregexp.html#JavadocRegexp">
+                JavadocRegexp
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments do not match a configured regular expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
                 JavadocTagContinuationIndentation
               </a>
