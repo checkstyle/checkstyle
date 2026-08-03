@@ -732,6 +732,7 @@
 
     <!-- Javadoc Comments -->
     <module name="AtclauseOrder"/>
+    <module name="InappropriateJavadocBlockTagsOnType"/>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation">
       <!-- default tags -->
