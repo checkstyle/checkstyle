@@ -12,8 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordtypeparametername;
 class Example1 {
   record Record1<T>() {}
 
-  record Record2<t>() {} // violation, Name "t" must match pattern '^[A-Z]$'
+  record Record2<t>() {} // violation 'Name 't' must match pattern'
 
-  record Record3<abc>() {} // violation, Name "abc" must match pattern '^[A-Z]$'
+  record Record3<abc>() {} // violation 'Name 'abc' must match pattern'
 }
 // xdoc section - end

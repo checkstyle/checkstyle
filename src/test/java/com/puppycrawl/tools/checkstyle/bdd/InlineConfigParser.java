@@ -345,8 +345,6 @@ public final class InlineConfigParser {
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
             "checks/imports/avoidstarimport/InputAvoidStarImportExcludes.java",
             "checks/imports/importorder/Example10.java",
-            "checks/naming/recordtypeparametername/Example1.java",
-            "checks/naming/recordtypeparametername/Example2.java",
             "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic8.java",
             "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic5.java",
             "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic2.java",
