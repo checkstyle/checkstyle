@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 class InputWriteTagTwoClasses {
 }
 
-// violation 4 lines below 'Type Javadoc comment is missing @incomplete tag.'
+// violation 4 lines below 'Javadoc comment is missing @incomplete tag.'
 /**
  * No incomplete tag here.
  */
