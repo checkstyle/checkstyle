@@ -51,9 +51,9 @@
 class Example1 {
   record Record1&lt;T&gt;() {}
 
-  record Record2&lt;t&gt;() {} // violation, Name "t" must match pattern '^[A-Z]$'
+  record Record2&lt;t&gt;() {} // violation 'Name 't' must match pattern'
 
-  record Record3&lt;abc&gt;() {} // violation, Name "abc" must match pattern '^[A-Z]$'
+  record Record3&lt;abc&gt;() {} // violation 'Name 'abc' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p>
@@ -76,7 +76,7 @@ class Example2 {
 
   record Record2&lt;t&gt;() {}
 
-  record Record3&lt;abc&gt;() {} // violation, Name "abc" must match pattern '^[A-Z]$'
+  record Record3&lt;abc&gt;() {} // violation 'Name 'abc' must match pattern'
 }
 </code></pre></div>
       </subsection>
