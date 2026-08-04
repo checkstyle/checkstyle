@@ -140,4 +140,14 @@ public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedTryCatchIfElse2.java"));
     }
 
+    @Test
+    public void testLeftCurlyTypes() throws Exception {
+        verifyWithWholeConfig(getPath("InputLeftCurlyTypes.java"));
+    }
+
+    @Test
+    public void testLeftCurlyTypesFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedLeftCurlyTypes.java"));
+    }
+
 }
