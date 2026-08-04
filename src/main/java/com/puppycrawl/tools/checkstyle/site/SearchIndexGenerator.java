@@ -518,7 +518,8 @@ public final class SearchIndexGenerator {
         final File[] xmlFiles = xdocsDir.listFiles(file -> {
             final String name = file.getName();
             return file.isFile()
-                    && PLAIN_XML.matcher(name).find();
+                    && PLAIN_XML.matcher(name).find()
+                    && !name.startsWith("releasenotes");
         });
 
         if (xmlFiles != null) {
