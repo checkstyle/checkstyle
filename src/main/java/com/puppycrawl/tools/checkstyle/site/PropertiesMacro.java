@@ -217,11 +217,11 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static List<String> orderProperties(Set<String> properties) {
         final List<String> orderProperties = new ArrayList<>(properties);
-        if (orderProperties.remove(TOKENS_PROPERTY)) {
-            orderProperties.add(TOKENS_PROPERTY);
-        }
         if (orderProperties.remove(SiteUtil.JAVADOC_TOKENS)) {
             orderProperties.add(SiteUtil.JAVADOC_TOKENS);
+        }
+        if (orderProperties.remove(TOKENS_PROPERTY)) {
+            orderProperties.add(TOKENS_PROPERTY);
         }
         return List.copyOf(orderProperties);
     }
