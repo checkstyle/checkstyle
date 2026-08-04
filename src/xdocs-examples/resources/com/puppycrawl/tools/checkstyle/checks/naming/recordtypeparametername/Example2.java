@@ -16,6 +16,6 @@ class Example2 {
 
   record Record2<t>() {}
 
-  record Record3<abc>() {} // violation, Name "abc" must match pattern '^[A-Z]$'
+  record Record3<abc>() {} // violation 'Name 'abc' must match pattern'
 }
 // xdoc section - end
