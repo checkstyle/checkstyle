@@ -50,7 +50,8 @@ public class InputSuppressWarningsFilterById { // violation 'Missing a Javadoc c
     @SuppressWarnings("checkstyle:ignore")
     private int A1 = 1; // filtered violation ''A1' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
 
-    @SuppressWarnings("checkstyle:ignore") // filtered violation 'Uncommented main method found'
+    // filtered violation below 'Uncommented main method found'
+    @SuppressWarnings("checkstyle:ignore")
     public static void main(String[] args) {
 
     }
