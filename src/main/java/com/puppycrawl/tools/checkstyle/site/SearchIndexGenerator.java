@@ -518,7 +518,8 @@ public final class SearchIndexGenerator {
         final File[] xmlFiles = xdocsDir.listFiles(file -> {
             final String name = file.getName();
             return file.isFile()
-                    && PLAIN_XML.matcher(name).find();
+                    && PLAIN_XML.matcher(name).find()
+                    && !name.startsWith("releasenotes");
         });
 
         if (xmlFiles != null) {
@@ -824,8 +825,6 @@ public final class SearchIndexGenerator {
                     .matcher(cells.item(1).getTextContent())
                     .replaceAll(SPACE).trim();
 
-            final String title = checkName + TITLE_SEPARATOR + propName;
-            final String url = baseUrl + ANCHOR_SEPARATOR + propName;
             final String description = truncate(propDesc, MAX_DESCRIPTION_LENGTH);
             final String keywords = extractKeywordsFromText(
                     checkName + SPACE + propName + SPACE + propDesc);
@@ -842,6 +841,8 @@ public final class SearchIndexGenerator {
             }
             final int weight = getWeightForType(PROPERTY_TYPE);
 
+            final String title = checkName + TITLE_SEPARATOR + propName;
+            final String url = baseUrl + ANCHOR_SEPARATOR + propName;
             propertyEntries.add(new SearchIndexEntry(
                     title, url, category, PROPERTY_TYPE,
                     description, keywords, since, weight));
