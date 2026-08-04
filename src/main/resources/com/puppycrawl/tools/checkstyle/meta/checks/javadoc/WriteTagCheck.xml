@@ -38,11 +38,11 @@
             </property>
          </properties>
          <message-keys>
-            <message-key key="javadoc.missingTag"/>
             <message-key key="javadoc.parse.rule.error"/>
-            <message-key key="javadoc.tagFormat"/>
             <message-key key="javadoc.unclosedHtml"/>
             <message-key key="javadoc.writeTag"/>
+            <message-key key="writetag.missingTag"/>
+            <message-key key="writetag.tagFormat"/>
          </message-keys>
       </check>
    </module>
