@@ -391,25 +391,15 @@ class Example1 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -454,25 +444,15 @@ class Example2 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
-    // ok '-&gt;', '(' and ')' not configured
+    Runnable noop = () -&gt;{ };
+    // violation above ''{' is not preceded with whitespace.'
+    // ok, '-&gt;', '(' and ')'
+    // are not configured
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -516,25 +496,15 @@ class Example3 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -578,25 +548,15 @@ class Example4 {
 
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -640,25 +600,15 @@ class Example5 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -702,25 +652,15 @@ class Example6 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-
-    // ok, allowEmptyLoops
-    // is true above
-
     do {} while (y == 1);
 
     // ok, allowEmptyLoops is true
@@ -764,25 +704,15 @@ class Example7 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
+    Runnable noop = () -&gt;{ };
     // violation above '-&gt;' is not followed by whitespace.
-
-    // ok, allowEmptyLambdas
-    // is true above
+    // ok, allowEmptyLambdas is true
 
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -826,25 +756,15 @@ class Example8 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-
-    // ok, allowEmptyCatches
-    // is true above
-
+    catch (Exception e){ }
+    // ok, allowEmptyCatches is true
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -893,25 +813,15 @@ class Example9 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { } // violation '':' is not preceded with whitespace'
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
@@ -956,25 +866,15 @@ class Example10 {
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
-    Runnable noop = () -&gt;{};
-    // 4 violations above:
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
     //  ''-&gt;' is not followed by whitespace'
-    //  ''{' is not followed by whitespace'
     //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i &lt; 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
