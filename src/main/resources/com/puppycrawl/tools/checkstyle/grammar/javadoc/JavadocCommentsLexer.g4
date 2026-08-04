@@ -817,11 +817,11 @@ fragment HEXCHARS: '#' [0-9a-fA-F]+;
 fragment DECCHARS: [0-9]+ '%'?;
 
 fragment DOUBLE_QUOTE_STRING
-    : '"' ~[<"]* '"'
+    : '"' ~["]* '"'
     ;
 
 fragment SINGLE_QUOTE_STRING
-    : '\'' ~[<']* '\''
+    : '\'' ~[']* '\''
     ;
 
 fragment UNQUOTED_STRING
