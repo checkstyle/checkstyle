@@ -23,6 +23,8 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -65,6 +67,19 @@ public class SearchIndexGeneratorTest {
 
     /** Name of the field under test on {@link SearchIndexGenerator}. */
     private static final String CATEGORY_FIELD_NAME = "CHECKS_CATEGORY_DISPLAY_NAMES";
+
+    private static String minimalXdoc(String sectionName) {
+        return "<?xml version=\"1.0\"?>\n"
+                + "<document>\n"
+                + "  <body>\n"
+                + "    <section name=\"" + sectionName + "\">\n"
+                + "      <subsection name=\"Description\">\n"
+                + "        <p>Description of " + sectionName + ".</p>\n"
+                + "      </subsection>\n"
+                + "    </section>\n"
+                + "  </body>\n"
+                + "</document>\n";
+    }
 
     @Test
     public void checksCategoryDisplayNamesMatchSidebarNavigation() throws Exception {
@@ -128,6 +143,41 @@ public class SearchIndexGeneratorTest {
             }
         }
         return result;
+    }
+
+    /**
+     * Release note pages ({@code releasenotes.xml},
+     * {@code releasenotes_old_*.xml}) must not appear in the search index.
+     * Before the fix, all plain {@code .xml} files in the xdocs root were
+     * processed without exclusion, causing release note entries to pollute
+     * search results. The fix adds a
+     * {@code !name.startsWith("releasenotes")} predicate in
+     * This test ensures that predicate is never accidentally removed.
+     */
+    @Test
+    public void testReleaseNotesAreExcludedFromSearchIndex() throws Exception {
+        final Path xdocsDir = Files.createTempDirectory("xdocs");
+        xdocsDir.toFile().deleteOnExit();
+
+        Files.writeString(xdocsDir.resolve("releasenotes.xml"),
+                minimalXdoc("Release 10.21.0"));
+        Files.writeString(xdocsDir.resolve("releasenotes_old_8-0_8-34.xml"),
+                minimalXdoc("Release 8.0 to 8.34"));
+
+        final Path outputFile = Files.createTempFile("search-index", ".json");
+        outputFile.toFile().deleteOnExit();
+
+        SearchIndexGenerator.main(
+                xdocsDir.toString(),
+                outputFile.toString()
+        );
+
+        final String output = Files.readString(outputFile);
+
+        assertWithMessage(
+                "Release note pages must not produce entries in the search index")
+                .that(output)
+                .doesNotContain("releasenotes");
     }
 
 }
