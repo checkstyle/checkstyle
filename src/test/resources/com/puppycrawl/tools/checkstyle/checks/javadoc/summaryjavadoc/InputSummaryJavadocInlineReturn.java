@@ -69,8 +69,8 @@ class InputSummaryJavadocInlineReturn {
     }
 
     // the return tag is empty, which is not allowed
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
-     // violation below 'Summary javadoc is missing.'
      * {@return}
      */
     int returnNothing() {

@@ -10,8 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 class InputSummaryJavadocInlineReturn2 {
 
+    // violation 2 lines below 'Summary javadoc is missing.'
     /**
-     * // violation below 'Summary javadoc is missing.'
      * {@return <p></p>}
      */
     int returnNothing() {
