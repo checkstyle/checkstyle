@@ -309,6 +309,10 @@
           <item name="RedundantModifier" href="checks/modifier/redundantmodifier.html"/>
         </item>
 
+        <item name="Modules" href="checks/modules/index.html" collapse="true">
+          <item name="ModuleDirectiveOrder" href="checks/modules/moduledirectiveorder.html"/>
+        </item>
+
         <item name="Naming Conventions" href="checks/naming/index.html" collapse="true">
           <item name="AbbreviationAsWordInName"
                 href="checks/naming/abbreviationaswordinname.html"/>

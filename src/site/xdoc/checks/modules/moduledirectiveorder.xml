@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ModuleDirectiveOrder</title>
+  </head>
+  <body>
+    <section name="ModuleDirectiveOrder">
+      <p>Since Checkstyle 14.1.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ModuleDirectiveOrder_Description">Description</a></li>
+          <li><a href="#ModuleDirectiveOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ModuleDirectiveOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a custom order of directive kinds</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Validate only the order of directive blocks, without any blank line validation</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ModuleDirectiveOrder_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Report directive blocks that are out of order</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Report a missing blank line between directive blocks</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Report multiple blank lines between directive blocks</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Report directives of one kind split into several blocks</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Report blank lines inside a directive block</a></li>
+            </ul>
+          </li>
+          <li><a href="#ModuleDirectiveOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ModuleDirectiveOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ModuleDirectiveOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ModuleDirectiveOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="ModuleDirectiveOrder_Description">
+        <div>
+          Checks the ordering, grouping and separation of directives in a module
+          declaration. Directives of each kind must form a single block, the blocks
+          must appear in a configurable order, and each block must be separated from
+          the previous one by exactly one blank line.
+        </div>
+
+        <p>
+          The default configuration enforces
+          <a href="https://google.github.io/styleguide/javaguide.html#s3.5-module-declaration">
+          Google Java Style Guide, Section 3.5.1</a>: all <code>requires</code> directives
+          first, then <code>exports</code>, <code>opens</code>, <code>uses</code> and <code>provides</code>,
+          each kind in a single block, with a single blank line between blocks. Blank
+          lines are what delimit blocks, so blank lines between directives of the same
+          kind are also violations.
+        </p>
+
+        <p>
+          All forms of <code>requires</code> (plain, <code>transitive</code>, <code>static</code>)
+          belong to a single block, and the order of directives inside a block is not
+          validated.
+        </p>
+
+        <p>
+          Directive kinds that are not listed in the <code>order</code> property are not
+          validated.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="ModuleDirectiveOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="order"/><a href="#order">order</a></td>
+              <td>Specify directive kinds in the order their blocks must appear inside the module declaration.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>requires, exports, opens, uses, provides</code></td>
+              <td>14.1.0</td>
+            </tr>
+            <tr>
+              <td><a id="validateBlockSeparation"/><a href="#validateBlockSeparation">validateBlockSeparation</a></td>
+              <td>Control whether blank line separation is validated: exactly one blank line between directive blocks and no blank lines inside a block.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>14.1.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ModuleDirectiveOrder_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+  requires transitive java.sql;
+
+  exports com.example.api;
+
+  opens com.example.model;
+
+  uses com.example.api.Service;
+
+  provides com.example.api.Service with com.example.impl.ServiceImpl;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check with a custom order of directive kinds:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"&gt;
+      &lt;property name="order" value="requires, uses, provides, exports, opens"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+
+  exports com.example.api;
+
+  uses com.example.api.Service;
+  // violation above ''uses' directive should be before 'exports' directive.'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to validate only the order of directive
+          blocks, without any blank line validation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"&gt;
+      &lt;property name="validateBlockSeparation" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+  exports com.example.api;
+  uses com.example.api.Service;
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ModuleDirectiveOrder_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to report directive blocks that are out of
+          order:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  exports com.example.api;
+
+  requires java.base;
+  // violation above ''requires' directive should be before 'exports' directive.'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check to report a missing blank line between
+          directive blocks:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+  exports com.example.api;
+  // violation above 'separated from the previous block by exactly one empty line'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-config">
+          To configure the check to report multiple blank lines between
+          directive blocks:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+
+
+  exports com.example.api;
+  // violation above 'separated from the previous block by exactly one empty line'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase4-config">
+          To configure the check to report directives of one kind split into
+          several blocks:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+
+  exports com.example.api;
+
+  requires java.sql;
+  // violation above 'All 'requires' directives should be in a single block.'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase5-config">
+          To configure the check to report blank lines inside a directive
+          block:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModuleDirectiveOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+module com.example.app {
+  requires java.base;
+
+  requires java.sql;
+  // violation above 'Empty line not allowed inside 'requires' directive block.'
+
+  exports com.example.api;
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ModuleDirectiveOrder_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModuleDirectiveOrder">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ModuleDirectiveOrder_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodules+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22module.directive.grouping%22">
+              module.directive.grouping
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodules+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22module.directive.order%22">
+              module.directive.order
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodules+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22module.directive.separated.internally%22">
+              module.directive.separated.internally
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodules+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22module.directive.separation%22">
+              module.directive.separation
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ModuleDirectiveOrder_Fully_Qualified_Name">
+        <p> com.puppycrawl.tools.checkstyle.checks.modules.ModuleDirectiveOrderCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ModuleDirectiveOrder_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

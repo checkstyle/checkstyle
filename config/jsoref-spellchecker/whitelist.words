@@ -477,7 +477,7 @@ Fmain
 Fmessages
 Fmetrics
 Fmodifier
-FModule
+fmodule
 Fnaming
 Fopenjdk
 forbiddenapis
@@ -873,6 +873,7 @@ mockito
 Modello
 modifiedcontrolvariable
 modifierorder
+moduledirectiveorder
 moduleinfo
 Mohnen
 mojohaus

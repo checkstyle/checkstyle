@@ -682,6 +682,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/modules/ModuleDirectiveOrderCheck.java</fileName>
+    <specifier>methodref.param</specifier>
+    <message>Incompatible parameter type for anObject</message>
+    <lineContent>.anyMatch(kind::equals);</lineContent>
+    <details>
+      found   : @GuardSatisfied Object
+      required: @GuardedBy String
+      Consequence: method in @GuardedBy String
+      @GuardedBy boolean equals(@GuardedBy String this, @GuardSatisfied Object p0)
+      is not a valid method reference for method in @GuardedBy Predicate&lt;@GuardedBy String&gt;
+      @GuardedBy boolean test(@GuardedBy Predicate&lt;@GuardedBy String&gt; this, @GuardedBy String p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AccessModifierOption.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
