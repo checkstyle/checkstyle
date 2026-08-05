@@ -55,7 +55,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_MISSING_TAG = "type.missingTag";
+    public static final String MSG_MISSING_TAG = "writetag.missingTag";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -67,7 +67,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_TAG_FORMAT = "type.tagFormat";
+    public static final String MSG_TAG_FORMAT = "writetag.tagFormat";
 
     /** Specify the regexp to match tag content. */
     private Pattern tagFormat;
