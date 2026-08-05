@@ -169,7 +169,7 @@ public class Example1 {
  *
  */
 public class Example2 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
@@ -219,7 +219,7 @@ public class Example2 {
  *
  */
 public class Example3 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
@@ -240,7 +240,7 @@ public class Example3 {
   // violation 3 lines above 'Javadoc tag @since=1.1-beta'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -274,13 +274,13 @@ public class Example3 {
  *
  */
 public class Example4 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-  // violation 3 lines above 'Type Javadoc tag @since'
+  // violation 3 lines above 'Javadoc tag @since must match pattern'
   /**
    * some doc
    * @since 1.6
@@ -292,10 +292,10 @@ public class Example4 {
    * @since 1.1-beta
    */
   void testMethod1WithAlphaSince() {}
-  // violation 3 lines above 'Type Javadoc tag @since'
+  // violation 3 lines above 'Javadoc tag @since must match pattern'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -327,13 +327,13 @@ public class Example4 {
  *
  */
 public class Example5 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-  // violation 3 lines above 'Type Javadoc tag @since must match pattern'
+  // violation 3 lines above 'Javadoc tag @since must match pattern'
   /**
    * some doc
    * @since 1.6
@@ -345,10 +345,10 @@ public class Example5 {
    * @since 1.1-beta
    */
   void testMethod1WithAlphaSince() {}
-  // violation 3 lines above 'Type Javadoc tag @since must match pattern'
+  // violation 3 lines above 'Javadoc tag @since must match pattern'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
 }
 </code></pre></div>
       </subsection>
@@ -365,7 +365,7 @@ public class Example5 {
       "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"&gt;
     &lt;property name="checks" value="WriteTag"/&gt;
     &lt;property name="message"
-              value="^Type Javadoc comment is missing @author tag\.$"/&gt;
+              value="^Javadoc comment is missing @author tag\.$"/&gt;
   &lt;/module&gt;
 
   &lt;module name="TreeWalker"&gt;
@@ -429,13 +429,13 @@ public class UseCase1 {
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTag%22">
-              type.missingTag
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22writetag.missingTag%22">
+              writetag.missingTag
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.tagFormat%22">
-              type.tagFormat
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22writetag.tagFormat%22">
+              writetag.tagFormat
             </a>
           </li>
         </ul>
