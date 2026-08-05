@@ -350,7 +350,6 @@ public final class InlineConfigParser {
             "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic2.java",
             "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport.java",
             "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic7.java",
             "checks/regexp/regexpsingleline/Example2.java",
             "checks/regexp/regexpsingleline/UseCase1.java",
             "checks/sizes/recordcomponentnumber/Example1.java",
