@@ -666,6 +666,7 @@ javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
 javadocpropertiesgenerator
+javadocregexp
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
