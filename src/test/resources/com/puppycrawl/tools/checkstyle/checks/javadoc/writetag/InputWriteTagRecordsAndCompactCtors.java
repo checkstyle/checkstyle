@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 public class InputWriteTagRecordsAndCompactCtors {
 
-    // violation 2 lines below 'Type Javadoc tag @incomplete must match pattern '\\S''
+    // violation 2 lines below 'Javadoc tag @incomplete must match pattern '\\S''
     /**
      * @incomplete
      */
