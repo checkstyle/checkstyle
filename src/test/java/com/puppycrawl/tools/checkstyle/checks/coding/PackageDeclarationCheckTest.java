@@ -163,6 +163,14 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testModuleInfoFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module-info.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final PackageDeclarationCheck check = new PackageDeclarationCheck();
         assertWithMessage("Acceptable tokens should not be null")
