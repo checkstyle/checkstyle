@@ -14,11 +14,8 @@ class Example9 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example9(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example9(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () ->{ };
@@ -30,20 +27,11 @@ class Example9 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { } // violation '':' is not preceded with whitespace'
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 // xdoc section - end

@@ -384,11 +384,8 @@ class Example1 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example1(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example1(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -400,21 +397,12 @@ class Example1 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -437,11 +425,8 @@ class Example2 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example2(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example2(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -453,21 +438,12 @@ class Example2 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -489,11 +465,8 @@ class Example3 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example3(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example3(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -505,21 +478,12 @@ class Example3 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-
-  // ok, allowEmptyMethods is true
-
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -541,11 +505,8 @@ class Example4 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example4(){}
-  // violation above ''{' is not preceded with whitespace.
-
-  // ok, allowEmptyConstructors is true
-
+  public Example4(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -557,21 +518,12 @@ class Example4 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
@@ -593,11 +545,8 @@ class Example5 {
 
   // ok, allowEmptyTypes is true
 
-  public Example5(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example5(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -609,21 +558,12 @@ class Example5 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
@@ -645,11 +585,8 @@ class Example6 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example6(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example6(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -661,21 +598,12 @@ class Example6 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-
-    // ok, allowEmptyLoops is true
-
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
@@ -697,11 +625,8 @@ class Example7 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example7(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example7(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -713,21 +638,12 @@ class Example7 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example8-config">
@@ -749,11 +665,8 @@ class Example8 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example8(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example8(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -765,21 +678,12 @@ class Example8 {
     // ok, allowEmptyCatches is true
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div>
         <p>
@@ -806,11 +710,8 @@ class Example9 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example9(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example9(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -822,21 +723,12 @@ class Example9 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { } // violation '':' is not preceded with whitespace'
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -859,11 +751,8 @@ class Example10 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example10(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example10(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
     Runnable noop = () -&gt;{ };
@@ -875,21 +764,12 @@ class Example10 {
     // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    do {} while (y == 1);
-    // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    do { } while (y == 1);
     switch (y) {
-      case 1: {}
-
-      // ok, allowEmptySwitchBlockStatements is true
-
+      case 1: { }
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction() { }
 }
 </code></pre></div>
       </subsection>
