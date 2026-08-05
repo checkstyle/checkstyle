@@ -37,4 +37,27 @@ final class InputLocalVariableNameSimple {
     int aaAa1a;
     int aaAaaAa2a1;
   }
+
+  /** Test local variables. */
+  private void localVariablesUnderscoresBetweenDigits() {
+    // bad examples
+    int a_1; // violation 'Local variable name 'a_1' must match pattern'
+    int a222_B; // violation 'Local variable name 'a222_B' must match pattern'
+    int a_b; // violation 'Local variable name 'a_b' must match pattern'
+    int ab_1_2; // violation 'Local variable name 'ab_1_2' must match pattern'
+    int guava_33_4_6; // violation 'Local variable name 'guava_33_4_6' must match pattern'
+    int abc3_a; // violation 'Local variable name 'abc3_a' must match pattern'
+    int _a; // violation 'Local variable name '_a' must match pattern'
+    int aaa22_; // violation 'Local variable name 'aaa22_' must match pattern'
+
+    // good examples
+    int a1;
+    int a2222B;
+    int ab;
+    int ab1_2;
+    int guava33_4_6;
+    int abc3a;
+    int a;
+    int aaa22;
+  }
 }
