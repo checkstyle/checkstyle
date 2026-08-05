@@ -14,46 +14,29 @@ class Example7 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example7(){}
-  // 3 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
-  //  ''}' is not preceded with whitespace'
+  public Example7(){ }
+  // violation above ''{' is not preceded with whitespace.'
   int y = 0;
   void example() {
-    Runnable noop = () ->{};
+    Runnable noop = () ->{ };
     // violation above '->' is not followed by whitespace.
-
-    // ok, allowEmptyLambdas
-    // is true above
+    // ok, allowEmptyLambdas is true
 
     try { }
-    catch (Exception e){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace.'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i < 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
-    do {} while (y == 1);
+    do{ } while (y == 1);
     // 2 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''}' is not preceded with whitespace'
+    //  ''do' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     switch (y) {
-      case 1: {}
-      // 2 violations above:
-      //  ''{' is not followed by whitespace'
-      //  ''}' is not preceded with whitespace'
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace.'
     }
   }
-  void myFunction() {}
-  // 2 violations above:
-  //  ''{' is not followed by whitespace'
-  //  ''}' is not preceded with whitespace'
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace.'
 }
 // xdoc section - end
