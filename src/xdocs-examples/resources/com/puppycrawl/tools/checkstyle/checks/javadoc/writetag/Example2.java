@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  *
  */
 public class Example2 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
