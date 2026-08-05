@@ -6,7 +6,7 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
          MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, \
          LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND, LITERAL_INSTANCEOF, GT, LT, GE, \
          LE, EQUAL, NOT_EQUAL, UNARY_MINUS, UNARY_PLUS, INC, DEC, LNOT, BNOT, \
-         POST_INC, POST_DEC, INDEX_OP, DOT, LOR
+         POST_INC, POST_DEC, INDEX_OP, DOT, LOR, TYPECAST
 
 
 */
@@ -38,32 +38,32 @@ public class InputUnnecessaryParenthesesCasts3 {
         Attrs le = new Attrs();
         String fileName = "log.txt";
         setFileLastModified(fileName,
-                //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+                // violation below 'Unnecessary parentheses around expression'
                 ((long) le.getMTime()) * 1000);
         setFileLastModified(fileName,
                 (long) le.getMTime() * 1000);
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         if (!Eval && unm > 0 && ((int) (12f * unm - 1)) > unm+20) {}
         if (!Eval && unm > 0 && (int) (12f * unm - 1) > unm+20) {}
 
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         final long l8 = ((long) record.get(unm)) & 0xffL;
         final long l9 = (long) record.get(unm) & 0xffL;
 
         int maxSize = 21;
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         double used = maxSize == 0 ? 0 : 100 * (((double) unm) / maxSize);
         double used1 = maxSize == 0 ? 0 : 100 * ((double) unm / maxSize);
 
         int dX = 90;
         int dY = 2;
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around expression'
         int stepx = (int) (((double)dX) * MDP_MULT) / dY;
         int stepy = (int) ((double)dX * MDP_MULT) / dY;
 
         Object layerOffset;
-        //no violation below until https://github.com/checkstyle/checkstyle/issues/14872
+        // violation below 'Unnecessary parentheses around assignment right-hand side'
         unm += ((int) (Math.sqrt(unm) * 1.5));
         unm += (int) (Math.sqrt(unm) * 1.5);
     }
