@@ -102,6 +102,12 @@
   <suppress id="presenceOfCompilationComment"
             files="beforeexecutionexclusionfilefilter/.*"/>
 
+  <!-- Module declarations compile only in files named 'module-info.java', but example
+       files must be named 'ExampleN.java'. These examples can never compile, so they
+       cannot carry a truthful 'Compilable with JavaN' comment. -->
+  <suppress id="presenceOfCompilationComment"
+            files="moduledirectiveorder/.*"/>
+
   <!-- Without showing symbol, user can get confused which one we are referring to -->
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap/Example1.java"/>

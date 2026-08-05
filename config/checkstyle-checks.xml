@@ -898,6 +898,9 @@
     </module>
     <module name="AnnotatedDeclarationVisibility"/>
 
+    <!-- Modules -->
+    <module name="ModuleDirectiveOrder"/>
+
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">
       <property name="ignoreFinal" value="false"/>

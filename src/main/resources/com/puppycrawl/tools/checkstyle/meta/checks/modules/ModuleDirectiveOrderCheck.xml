@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modules.ModuleDirectiveOrderCheck"
+             name="ModuleDirectiveOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the ordering, grouping and separation of directives in a module
+ declaration. Directives of each kind must form a single block, the blocks
+ must appear in a configurable order, and each block must be separated from
+ the previous one by exactly one blank line.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ The default configuration enforces
+ &lt;a href="https://google.github.io/styleguide/javaguide.html#s3.5-module-declaration"&gt;
+ Google Java Style Guide, Section 3.5.1&lt;/a&gt;: all &lt;code&gt;requires&lt;/code&gt; directives
+ first, then &lt;code&gt;exports&lt;/code&gt;, &lt;code&gt;opens&lt;/code&gt;, &lt;code&gt;uses&lt;/code&gt; and &lt;code&gt;provides&lt;/code&gt;,
+ each kind in a single block, with a single blank line between blocks. Blank
+ lines are what delimit blocks, so blank lines between directives of the same
+ kind are also violations.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ All forms of &lt;code&gt;requires&lt;/code&gt; (plain, &lt;code&gt;transitive&lt;/code&gt;, &lt;code&gt;static&lt;/code&gt;)
+ belong to a single block, and the order of directives inside a block is not
+ validated.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Directive kinds that are not listed in the &lt;code&gt;order&lt;/code&gt; property are not
+ validated.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="requires, exports, opens, uses, provides"
+                      name="order"
+                      type="java.lang.String[]">
+               <description>Specify directive kinds in the order their blocks must appear inside the module declaration.</description>
+            </property>
+            <property default-value="true" name="validateBlockSeparation" type="boolean">
+               <description>Control whether blank line separation is validated: exactly one blank line between directive blocks and no blank lines inside a block.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="module.directive.grouping"/>
+            <message-key key="module.directive.order"/>
+            <message-key key="module.directive.separated.internally"/>
+            <message-key key="module.directive.separation"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
