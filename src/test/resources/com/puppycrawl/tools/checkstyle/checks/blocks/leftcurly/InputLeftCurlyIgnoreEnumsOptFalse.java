@@ -30,6 +30,7 @@ public class InputLeftCurlyIgnoreEnumsOptFalse {
     }
 
     void method1(int a) {
+        // violation below ''{' at column 20 should have line break after'
         switch (a) {case 1: ; }
     }
 }
