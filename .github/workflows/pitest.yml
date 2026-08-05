@@ -37,6 +37,7 @@ jobs:
           - metrics
           - misc
           - modifier
+          - modules
           - naming
           - packagenamesloader
           - regexp

@@ -309,6 +309,7 @@ public final class SearchIndexGenerator {
         CHECKS_CATEGORY_DISPLAY_NAMES.put("metrics", "Metrics");
         CHECKS_CATEGORY_DISPLAY_NAMES.put("misc", "Miscellaneous");
         CHECKS_CATEGORY_DISPLAY_NAMES.put("modifier", "Modifiers");
+        CHECKS_CATEGORY_DISPLAY_NAMES.put("modules", "Modules");
         CHECKS_CATEGORY_DISPLAY_NAMES.put("naming", "Naming Conventions");
         CHECKS_CATEGORY_DISPLAY_NAMES.put("regexp", "Regexp");
         CHECKS_CATEGORY_DISPLAY_NAMES.put("sizes", "Size Violations");

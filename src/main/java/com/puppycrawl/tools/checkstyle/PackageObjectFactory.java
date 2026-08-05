@@ -432,6 +432,7 @@ public class PackageObjectFactory implements ModuleFactory {
         fillChecksFromJavadocPackage();
         fillChecksFromMetricsPackage();
         fillChecksFromModifierPackage();
+        fillChecksFromModulesPackage();
         fillChecksFromNamingPackage();
         fillChecksFromRegexpPackage();
         fillChecksFromSizesPackage();
@@ -802,6 +803,14 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.modifier.ModifierOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("RedundantModifierCheck",
                 BASE_PACKAGE + ".checks.modifier.RedundantModifierCheck");
+    }
+
+    /**
+     * Fill short-to-full module names map with Checks from modules package.
+     */
+    private static void fillChecksFromModulesPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("ModuleDirectiveOrderCheck",
+                BASE_PACKAGE + ".checks.modules.ModuleDirectiveOrderCheck");
     }
 
     /**

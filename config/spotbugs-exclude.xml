@@ -10,6 +10,15 @@
     <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
   </Match>
   <Match>
+    <!-- SpotBugs suggests replacing the List field 'order' with a Set because it is
+         queried with 'contains'. The field cannot be a Set: it defines the sequence
+         in which directive blocks must appear, so element positions matter. Rewriting
+         'contains' as 'indexOf(...) >= 0' to hide the membership query is rejected by
+         the Qodana inspection ListIndexOfReplaceableByContains. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.modules.ModuleDirectiveOrderCheck" />
+    <Bug pattern="DLC_DUBIOUS_LIST_COLLECTION" />
+  </Match>
+  <Match>
     <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
     <Class name="com.puppycrawl.tools.checkstyle.Main" />
     <Method name="loadProperties" />
