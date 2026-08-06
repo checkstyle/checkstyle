@@ -176,4 +176,13 @@ public class ModifierOrderCheckTest
                 expected);
     }
 
+    @Test
+    public void testCustomOrder() throws Exception {
+        final String[] expected = {
+            "12:19: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderCustomOrder.java"), expected);
+    }
+
 }

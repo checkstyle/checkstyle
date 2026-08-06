@@ -44,6 +44,13 @@
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html"&gt;
  type annotations&lt;/a&gt; from validation.
  &lt;/p&gt;</description>
+         <properties>
+            <property default-value="public, protected, private, abstract, default, static, sealed, non-sealed, final, transient, volatile, synchronized, native, strictfp"
+                      name="order"
+                      type="java.lang.String[]">
+               <description>Specify the order of modifiers.</description>
+            </property>
+         </properties>
          <message-keys>
             <message-key key="annotation.order"/>
             <message-key key="mod.order"/>
