@@ -77,12 +77,12 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample4() throws Exception {
-        final String tagOrder = "[@author, @version, @param, @return"
+        final String tagOrder = "[@version, @author, @param, @return"
             + ", @throws, @exception,"
-            + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
+            + " @see, @since, @serial, @serialField, @serialData]";
 
         final String[] expected = {
-            "48: " + getCheckMessage(MSG_KEY, tagOrder),
+            "23: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);

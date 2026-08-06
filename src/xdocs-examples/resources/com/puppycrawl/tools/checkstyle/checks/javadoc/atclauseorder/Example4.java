@@ -2,7 +2,11 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="AtclauseOrder">
-      <property name="target" value="METHOD_DEF"/>
+      <property name="target" value="CLASS_DEF"/>
+      <property name="tagOrder"
+                value="@version, @author, @param, @return,
+                       @throws, @exception, @see, @since,
+                       @serial, @serialField, @serialData"/>
     </module>
   </module>
 </module>
@@ -11,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
 // xdoc section - start
-
+// violation 5 lines below 'Block tags have to appear in the order'
 /**
 * Some javadoc.
 *
@@ -30,7 +34,7 @@ import java.io.Serializable;
 public class Example4 {
   class Valid implements Serializable {}
 
-  // ok below 'Block tags have to appear in the order'
+  // ok below, ENUM_DEF is not checked because target is CLASS_DEF
   /**
    * Some javadoc.
    *
@@ -50,7 +54,6 @@ public class Example4 {
   public int foo(int a) {
     return a;
   }
-  // violation 5 lines above 'Block tags have to appear in the order'
+  // ok above, METHOD_DEF is not checked because target is CLASS_DEF
 }
 // xdoc section - end
-

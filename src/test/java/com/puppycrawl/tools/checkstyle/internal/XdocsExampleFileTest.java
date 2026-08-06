@@ -98,7 +98,6 @@ public class XdocsExampleFileTest {
     private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
         "checks/coding/magicnumber/",
         "checks/design/onetoplevelclass/",
-        "checks/javadoc/atclauseorder/",
         "checks/javadoc/missingjavadocmethod/",
         "checks/naming/constantname/",
         "checks/naming/methodname/",
