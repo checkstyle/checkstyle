@@ -18,7 +18,7 @@ class InputMissingJavadocTypeSkipAnnotations1 {
 
 // violation below 'Missing a Javadoc comment.'
 @com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.ThisIsOk1
-class InputJavadocTypeSkipAnnotationsFQN1 {
+class InputJavadocTypeSkipAnnotationsFullyQualifiedName1 {
 }
 
 // violation below 'Missing a Javadoc comment.'

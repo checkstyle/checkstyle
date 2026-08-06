@@ -53,7 +53,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
 
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(JavadocVariableCheck.class,
-                JavadocVariableCheck.MSG_JAVADOC_MISSING),
+                JavadocVariableCheck.MSG_JAVADOC_MISSING, "age"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -82,7 +82,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
 
         final String[] expectedViolation = {
             "6:9: " + getCheckMessage(JavadocVariableCheck.class,
-                JavadocVariableCheck.MSG_JAVADOC_MISSING),
+                JavadocVariableCheck.MSG_JAVADOC_MISSING, "fData"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -115,7 +115,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
 
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(JavadocVariableCheck.class,
-                JavadocVariableCheck.MSG_JAVADOC_MISSING),
+                JavadocVariableCheck.MSG_JAVADOC_MISSING, "count"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
