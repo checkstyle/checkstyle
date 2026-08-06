@@ -78,7 +78,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
     /** Maximum children allowed in setter/getter. */
     private static final int SETTER_GETTER_MAX_CHILDREN = 7;
@@ -215,7 +215,8 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         if (shouldCheck(ast, theScope)) {
             final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
             if (blockCommentNode == null && !isMissingJavadocAllowed(ast)) {
-                log(ast, MSG_JAVADOC_MISSING);
+                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+                log(ast, MSG_JAVADOC_MISSING, name);
             }
         }
     }

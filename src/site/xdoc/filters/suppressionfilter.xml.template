@@ -48,7 +48,7 @@
           file <code>Example1.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
           22 and 26 of file <code>Example1.java</code>,
-          and <code>'Missing a Javadoc comment'</code> violations
+          and <code>'Missing a Javadoc comment for'</code> violations
           for all lines and files:
         </p>
         <macro name="example">

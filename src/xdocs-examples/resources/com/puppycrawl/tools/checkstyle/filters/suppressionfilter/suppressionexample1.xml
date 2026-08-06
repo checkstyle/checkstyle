@@ -11,5 +11,5 @@
   <suppress checks="MagicNumber"
     files="Example1.java"
     lines="22,26"/>
-  <suppress message="Missing a Javadoc comment"/>
+  <suppress message="Missing a Javadoc comment for"/>
 </suppressions>

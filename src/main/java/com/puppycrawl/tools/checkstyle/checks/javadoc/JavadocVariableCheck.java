@@ -47,8 +47,8 @@ public class JavadocVariableCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
     /**
      * Specify the set of access modifiers used to determine which fields should be checked.
      *  This includes both explicitly declared modifiers and implicit ones, such as package-private
@@ -136,7 +136,8 @@ public class JavadocVariableCheck
         if (shouldCheck(ast)) {
             final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
             if (blockCommentNode == null) {
-                log(ast, MSG_JAVADOC_MISSING);
+                final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+                log(ast, MSG_JAVADOC_MISSING, name);
             }
         }
     }
