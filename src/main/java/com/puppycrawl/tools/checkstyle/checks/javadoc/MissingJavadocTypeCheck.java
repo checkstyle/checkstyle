@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -50,7 +51,7 @@ public final class MissingJavadocTypeCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
     /**
      * Stores all Javadoc comment nodes collected during the tree traversal.
@@ -178,7 +179,9 @@ public final class MissingJavadocTypeCheck extends AbstractJavadocCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast) && !hasJavadoc(ast)) {
-            log(ast, MSG_JAVADOC_MISSING);
+            final String name = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT))
+                .getText();
+            log(ast, MSG_JAVADOC_MISSING, name);
         }
     }
 
