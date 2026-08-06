@@ -11,6 +11,16 @@
         <table>
           <tr>
             <td>
+              <a href="avoidmoduleimport.html#AvoidModuleImport">
+                AvoidModuleImport
+              </a>
+            </td>
+            <td>
+              Checks that there are no module imports.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="avoidstarimport.html#AvoidStarImport">
                 AvoidStarImport
               </a>
