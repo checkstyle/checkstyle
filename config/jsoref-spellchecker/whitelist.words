@@ -84,6 +84,7 @@ avoiddoublebraceinitialization
 avoidescapedunicodecharacters
 avoidinlineconditionals
 avoidlatin
+avoidmoduleimport
 avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
