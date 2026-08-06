@@ -66,7 +66,6 @@ public class InputOneVariablePerDeclarationReformatted {
                     void method2() {
                         for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
                         }
-
                         for (int i = 0; i < 4; i++) {}
                     }
                 };
@@ -74,7 +73,6 @@ public class InputOneVariablePerDeclarationReformatted {
         void method2() {
             for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
             }
-
             for (int i = 0; i < 4; i++) {}
         }
 
@@ -84,7 +82,6 @@ public class InputOneVariablePerDeclarationReformatted {
             java.lang.Object obj;
             Object obj1;
         }
-
     }
 
     class Suppress {
