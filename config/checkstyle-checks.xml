@@ -713,6 +713,7 @@
     </module>
 
     <!-- Imports -->
+    <module name="AvoidModuleImport"/>
     <module name="AvoidStarImport"/>
     <module name="AvoidStaticImport"/>
     <module name="CustomImportOrder">
