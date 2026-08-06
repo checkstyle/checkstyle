@@ -90,8 +90,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          An example of how to configure check on local variables and parameters
-          but do not validate loop variables:
+          An example of how to configure the check to validate unnamed variables
+          declared with VARIABLE_DEF:
         </p>
         <macro name="example">
           <param name="path"

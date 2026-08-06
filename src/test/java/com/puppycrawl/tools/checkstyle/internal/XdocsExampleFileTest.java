@@ -103,8 +103,7 @@ public class XdocsExampleFileTest {
         "checks/naming/methodname/",
         "checks/naming/typename/",
         "checks/nocodeinfile/",
-        "checks/outertypefilename/",
-        "checks/coding/finallocalvariable/"
+        "checks/outertypefilename/"
     );
 
     @Test
