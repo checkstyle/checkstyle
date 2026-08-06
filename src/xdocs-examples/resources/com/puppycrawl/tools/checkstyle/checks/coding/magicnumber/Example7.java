@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MagicNumber">
-      <property name="ignoreNumbers" value="0, 1, 10"/>
+      <property name="ignoreNumbers" value="0, 1, 8, 10"/>
     </module>
   </module>
 </module>
@@ -17,7 +17,7 @@ public class Example7 {
 
   void method1() {
     int i = 1;
-    int j = 8; // violation ''8' is a magic number.'
+    int j = 8; // ok, as 8 is ignored
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
