@@ -199,11 +199,39 @@ public final class JavadocUtil {
     @Nullable
     public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
         DetailAST result = null;
-        DetailAST child = ast.getFirstChild();
-        while (result == null && child.getType() != TokenTypes.IDENT) {
-            result = findJavadocComment(child);
-            child = child.getNextSibling();
+        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
+            result = getPackageJavadoc(ast);
         }
+        else {
+            DetailAST child = ast.getFirstChild();
+            while (result == null && child.getType() != TokenTypes.IDENT) {
+                result = findJavadocComment(child);
+                child = child.getNextSibling();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the Javadoc block comment attached to the given package definition AST node.
+     *
+     * @param ast the package definition AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    private static DetailAST getPackageJavadoc(DetailAST ast) {
+        DetailAST previousSibling = ast.getPreviousSibling();
+
+        DetailAST result = null;
+        while (previousSibling != null) {
+            if (previousSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                    && JavadocUtil.isJavadocComment(previousSibling)) {
+                result = previousSibling;
+                break;
+            }
+            previousSibling = previousSibling.getPreviousSibling();
+        }
+
         return result;
     }
 
