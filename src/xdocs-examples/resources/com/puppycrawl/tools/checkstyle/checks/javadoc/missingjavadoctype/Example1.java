@@ -27,7 +27,7 @@ public class Example1 {
   /** Javadoc. */
   private class E {}
 
-  public interface F {} // violation 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
   /** Javadoc. */
   public interface G {}
 }

@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck.MSG_JAVADOC_MISSING;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,7 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "F"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -43,9 +43,9 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "B"),
+            "20:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "C"),
+            "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "F"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,7 +54,7 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "19:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "B"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -63,9 +63,9 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "25:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "27:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "39:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "B"),
+            "27:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "C"),
+            "39:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "F"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -74,7 +74,7 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "F"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -83,7 +83,7 @@ public class MissingJavadocTypeCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testUseCase1() throws Exception {
         final String[] expected = {
-            "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "32:3: " + getCheckMessage(MSG_JAVADOC_MISSING, "Class3"),
         };
 
         verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
