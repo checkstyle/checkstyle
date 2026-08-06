@@ -25,7 +25,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
@@ -362,12 +361,13 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            final StringTokenizer tokenizer = new StringTokenizer(
-                    value.toString(), COMMA_SEPARATOR);
+            final String[] tokens = value.toString().split(COMMA_SEPARATOR, -1);
             final List<Pattern> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : tokens) {
+                if (token.isEmpty()) {
+                    continue;
+                }
                 result.add(CommonUtil.createPattern(token.trim()));
             }
 
@@ -455,12 +455,13 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
+            final String[] tokens = value.toString().trim().split(COMMA_SEPARATOR, -1);
             final List<String> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : tokens) {
+                if (token.isEmpty()) {
+                    continue;
+                }
                 result.add(token.trim());
             }
 
@@ -490,13 +491,13 @@ public abstract class AbstractAutomaticBean
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            // Converts to a String and trims it for the tokenizer.
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
+            final String[] tokens = value.toString().trim().split(COMMA_SEPARATOR, -1);
             final List<AccessModifierOption> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : tokens) {
+                if (token.isEmpty()) {
+                    continue;
+                }
                 result.add(AccessModifierOption.getInstance(token));
             }
 
