@@ -357,7 +357,6 @@ Duser
 dv
 Dversion
 Dxml
-eb
 EBFF
 EBNF
 ecj
@@ -614,6 +613,7 @@ importnolinewrap
 importorder
 importrule
 imprt
+inappropriatejavadocblocktagsonfield
 Incompatabilities
 indentcontinuationlines
 Inet
