@@ -29,8 +29,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,6 +45,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
@@ -58,6 +63,49 @@ public class XdocsExampleFileTest {
         "tokens",
         "javadocTokens",
         "violateExecutionOnNonTightHtml"
+    );
+
+    /**
+     * Modules using the external-XML-config verification path
+     * (verifyWithExternalXmlConfig) instead of InlineConfigParser's inline-comment
+     * config format. Their config lives in a separate external XML file rather
+     * than embedded as a comment block in the resource file itself, so
+     * InlineConfigParser cannot parse them at all - this is a scope limit, not a
+     * pending duplicate-violation finding. Remove an entry here only once a
+     * parser for that format is added to this test.
+     *
+     * <p>See <a href="https://github.com/checkstyle/checkstyle/issues/18809">...</a>
+     * for background on why these checks use a separate config mechanism (their
+     * "config" often overlaps with literal file-header content being validated).
+     */
+    private static final Set<String> UNSUPPORTED_CONFIG_FORMAT_MODULES = Set.of(
+        "checks/header/header/",
+        "checks/header/multifileregexpheader/",
+        "checks/header/regexpheader/",
+        "checks/imports/importcontrol/"
+    );
+
+    /**
+     * Modules with confirmed or as-yet-unreviewed duplicate-behavior examples,
+     * temporarily suppressed until each is reviewed and either fixed (the examples
+     * are made behaviorally distinct) or confirmed intentional and documented.
+     *
+     * <p>Remove an entry here once its examples are fixed or the duplication is
+     * confirmed acceptable and reflected in xdocs commentary. Do not add new
+     * entries without reviewing the flagged examples first - see
+     * <a href="https://github.com/checkstyle/checkstyle/issues/21072">...</a>
+     */
+    private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
+        "checks/coding/magicnumber/",
+        "checks/design/onetoplevelclass/",
+        "checks/javadoc/atclauseorder/",
+        "checks/javadoc/missingjavadocmethod/",
+        "checks/naming/constantname/",
+        "checks/naming/methodname/",
+        "checks/naming/typename/",
+        "checks/nocodeinfile/",
+        "checks/outertypefilename/",
+        "checks/coding/finallocalvariable/"
     );
 
     @Test
@@ -161,6 +209,36 @@ public class XdocsExampleFileTest {
         }
     }
 
+    @Test
+    public void testAllModuleExamplesAreBehaviorallyUnique() throws Exception {
+        final Path examplesTestRoot = Path.of(
+                "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
+        final Path examplesResources = Path.of("src/xdocs-examples/resources");
+        final Path examplesNonCompilable = Path.of("src/xdocs-examples/resources-noncompilable");
+        final List<String> failures = new ArrayList<>();
+
+        try (Stream<Path> testFiles = Files.walk(examplesTestRoot)) {
+            testFiles
+                    .filter(path -> path.toString().endsWith("ExamplesTest.java"))
+                    .forEach(testFile -> {
+                        try {
+                            checkUniquenessForModule(testFile, examplesResources,
+                                    examplesNonCompilable, failures);
+                        }
+                        catch (IOException exception) {
+                            throw new IllegalStateException("Error processing: "
+                                    + testFile, exception);
+                        }
+                    });
+        }
+
+        if (!failures.isEmpty()) {
+            assertWithMessage("Found examples with duplicate behavior:\n"
+                    + String.join("\n", failures))
+                    .fail();
+        }
+    }
+
     private static Set<String> collectReferencedExamplePaths() throws Exception {
         final Set<String> referenced = new HashSet<>();
 
@@ -250,6 +328,139 @@ public class XdocsExampleFileTest {
                     });
             }
         }
+    }
+
+    private static void checkUniquenessForModule(Path testFile, Path examplesResources,
+             Path examplesNonCompilable, List<String> failures) throws IOException {
+        final String className = Path.of("src/xdocs-examples/java").toAbsolutePath()
+                .relativize(testFile.toAbsolutePath()).toString()
+                .replace(File.separator, ".")
+                .replaceFirst("\\.java$", "");
+
+        try {
+            final Class<?> testClass = Class.forName(className);
+            final AbstractPathTestSupport instance = (AbstractPathTestSupport) testClass
+                    .getDeclaredConstructor().newInstance();
+            final String packageLocation = instance.getPackageLocation();
+
+            checkUniquenessInDirectory(examplesResources.resolve(packageLocation), failures);
+            checkUniquenessInDirectory(examplesNonCompilable.resolve(packageLocation), failures);
+        }
+        catch (ReflectiveOperationException exception) {
+            throw new IllegalStateException("Failed to instantiate " + className, exception);
+        }
+    }
+
+    private static void checkUniquenessInDirectory(Path exampleDir, List<String> failures)
+            throws IOException {
+        if (Files.exists(exampleDir) && Files.isDirectory(exampleDir)) {
+            final String normalizedDirPath = exampleDir.toString()
+                    .replace(File.separatorChar, '/') + "/";
+
+            final boolean unsupportedFormat = UNSUPPORTED_CONFIG_FORMAT_MODULES.stream()
+                    .anyMatch(normalizedDirPath::endsWith);
+
+            if (!unsupportedFormat) {
+                final String moduleName = exampleDir.getFileName().toString();
+                final boolean suppressed = SUPPRESSED_UNIQUENESS_CHECK_MODULES.stream()
+                        .anyMatch(normalizedDirPath::endsWith);
+                final Map<String, List<String>> signatureToExamples = collectSignatures(
+                        exampleDir, suppressed, failures);
+
+                reportDuplicates(moduleName, suppressed, signatureToExamples, failures);
+            }
+        }
+    }
+
+    private static Map<String, List<String>> collectSignatures(Path exampleDir,
+               boolean suppressed, List<String> failures) throws IOException {
+        final Map<String, List<String>> signatureToExamples = new HashMap<>();
+
+        try (Stream<Path> exampleFiles = Files.list(exampleDir)) {
+            final List<Path> examples = exampleFiles
+                    .filter(path -> {
+                        return path.getFileName().toString()
+                                .matches("Example\\d+\\.java");
+                    })
+                    .sorted()
+                    .toList();
+
+            if (examples.size() >= 2) {
+                for (Path exampleFile : examples) {
+                    final String signature = buildSignature(exampleFile, suppressed, failures);
+                    if (signature != null) {
+                        signatureToExamples
+                                .computeIfAbsent(signature, key -> new ArrayList<>())
+                                .add(exampleFile.getFileName().toString());
+                    }
+                }
+            }
+        }
+
+        return signatureToExamples;
+    }
+
+    private static void reportDuplicates(String moduleName, boolean suppressed,
+             Map<String, List<String>> signatureToExamples, List<String> failures) {
+        if (!suppressed) {
+            signatureToExamples.forEach((signature, examples) -> {
+                if (examples.size() > 1) {
+                    failures.add(String.format(Locale.ROOT,
+                            "Module '%s': examples %s produce identical violations (%s).",
+                            moduleName, examples, signature));
+                }
+            });
+        }
+    }
+
+    /**
+     * Builds a signature from an example's expected violations: line number plus
+     * message, joined per violation. Line number is included (not stripped)
+     * because all examples of a check are guaranteed structurally identical by
+     * AST (enforced separately by XdocsExamplesAstConsistencyTest) - only
+     * comments/config differ - so a given line number means the same structural
+     * position across every example of that module, making it a meaningful part
+     * of the comparison rather than noise.
+     *
+     * <p>Returns null if any violation message in the file is unspecified, or if
+     * the file has zero violations, since neither case is a reliable duplicate
+     * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES /
+     * SUPPRESSED_CHECKS.
+     *
+     * @param suppressed whether this module is in SUPPRESSED_UNIQUENESS_CHECK_MODULES;
+     *     when true, parse failures are silently skipped instead of recorded, so
+     *     unrelated pre-existing parsing issues don't block review of the
+     *     duplicate-violation finding itself.
+     */
+    private static String buildSignature(Path exampleFile, boolean suppressed,
+             List<String> failures) {
+        String signature;
+        try {
+            final TestInputConfiguration parsed =
+                    InlineConfigParser.parse(exampleFile.toString());
+            final List<TestInputViolation> violations = parsed.getViolations();
+
+            final boolean hasUnspecifiedMessage = violations.stream()
+                    .anyMatch(violation -> violation.message() == null);
+
+            if (hasUnspecifiedMessage || violations.isEmpty()) {
+                signature = null;
+            }
+            else {
+                signature = violations.stream()
+                        .sorted()
+                        .map(violation -> violation.lineNo() + ":" + violation.message())
+                        .collect(Collectors.joining("|"));
+            }
+        }
+        // -@cs[IllegalCatch] InlineConfigParser.parse declares "throws Exception";
+        catch (Exception exception) {
+            if (!suppressed) {
+                failures.add("Failed to parse " + exampleFile + ": " + exception.getMessage());
+            }
+            signature = null;
+        }
+        return signature;
     }
 
 }
