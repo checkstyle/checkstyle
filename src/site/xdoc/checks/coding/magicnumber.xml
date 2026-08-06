@@ -515,7 +515,7 @@ public class Example6 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MagicNumber"&gt;
-      &lt;property name="ignoreNumbers" value="0, 1, 10"/&gt;
+      &lt;property name="ignoreNumbers" value="0, 1, 8, 10"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -528,7 +528,7 @@ public class Example7 {
 
   void method1() {
     int i = 1;
-    int j = 8; // violation ''8' is a magic number.'
+    int j = 8; // ok, as 8 is ignored
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);

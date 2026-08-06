@@ -139,8 +139,6 @@ public class MagicNumberCheckExamplesTest extends AbstractExamplesModuleTestSupp
                     MagicNumberCheck.MSG_KEY, 6),
             "16:23: " + getCheckMessage(
                     MagicNumberCheck.MSG_KEY, 7),
-            "20:13: " + getCheckMessage(
-                    MagicNumberCheck.MSG_KEY, 8),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
