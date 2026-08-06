@@ -732,6 +732,9 @@
 
     <!-- Javadoc Comments -->
     <module name="AtclauseOrder"/>
+    <module name="IllegalBlockTag">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation">
       <!-- default tags -->
