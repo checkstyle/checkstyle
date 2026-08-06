@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NoCodeInFileCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NoCodeInFileCheck.java"/>
+      </macro>
 
       <subsection name="Description" id="NoCodeInFile_Description">
         <macro name="description">

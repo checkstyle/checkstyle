@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java"/>
+      </macro>
       <subsection name="Description" id="HiddenField_Description">
         <macro name="description">
           <param name="modulePath"

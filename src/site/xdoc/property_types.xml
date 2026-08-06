@@ -17,6 +17,52 @@
     </section>
 
     <section name="Overview">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#boolean">boolean</a></li>
+            <li><a href="#byte">byte</a></li>
+            <li><a href="#byte.5B.5D">byte[]</a></li>
+            <li><a href="#char">char</a></li>
+            <li><a href="#char.5B.5D">char[]</a></li>
+            <li><a href="#double">double</a></li>
+            <li><a href="#double.5B.5D">double[]</a></li>
+            <li><a href="#float">float</a></li>
+            <li><a href="#float.5B.5D">float[]</a></li>
+            <li><a href="#int">int</a></li>
+            <li><a href="#int.5B.5D">int[]</a></li>
+            <li><a href="#long">long</a></li>
+            <li><a href="#long.5B.5D">long[]</a></li>
+            <li><a href="#short">short</a></li>
+            <li><a href="#short.5B.5D">short[]</a></li>
+            <li><a href="#AccessModifierOption.5B.5D">AccessModifierOption[]</a></li>
+            <li><a href="#BlockOption">BlockOption</a></li>
+            <li><a href="#ClosingParensOption">ClosingParensOption</a></li>
+            <li><a href="#ElementStyleOption">ElementStyleOption</a></li>
+            <li><a href="#File">File</a></li>
+            <li><a href="#ImportOrderOption">ImportOrderOption</a></li>
+            <li><a href="#JavadocContentLocationOption">JavadocContentLocationOption</a></li>
+            <li><a href="#LeftCurlyOption">LeftCurlyOption</a></li>
+            <li><a href="#LineEndingOption">LineEndingOption</a></li>
+            <li><a href="#LineSeparatorOption">LineSeparatorOption</a></li>
+            <li><a href="#PadOption">PadOption</a></li>
+            <li><a href="#Pattern">Pattern</a></li>
+            <li><a href="#Pattern.5B.5D">Pattern[]</a></li>
+            <li><a href="#RightCurlyOption">RightCurlyOption</a></li>
+            <li><a href="#Scope">Scope</a></li>
+            <li><a href="#SeverityLevel">SeverityLevel</a></li>
+            <li><a href="#String">String</a></li>
+            <li><a href="#String.5B.5D">String[]</a></li>
+            <li><a href="#TrailingArrayCommaOption">TrailingArrayCommaOption</a></li>
+            <li><a href="#URI">URI</a></li>
+            <li><a href="#WrapOption">WrapOption</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         Checkstyle is configured using properties, which are string
         representations. This document describes how these string
