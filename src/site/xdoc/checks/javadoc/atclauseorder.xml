@@ -251,21 +251,28 @@ public class Example3 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
-            To configure the check such that it targets only methods:
+            To configure the check such that it targets only classes, with a
+            custom tag order:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AtclauseOrder"&gt;
-      &lt;property name="target" value="METHOD_DEF"/&gt;
+      &lt;property name="target" value="CLASS_DEF"/&gt;
+      &lt;property name="tagOrder"
+                value="@version, @author, @param, @return,
+                       @throws, @exception, @see, @since,
+                       @serial, @serialField, @serialData"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">
-          Example:
+          Results in the following violation, as only the class-level javadoc is
+          checked and its tags do not follow the custom order:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 5 lines below 'Block tags have to appear in the order'
 /**
 * Some javadoc.
 *
@@ -284,7 +291,7 @@ public class Example3 {
 public class Example4 {
   class Valid implements Serializable {}
 
-  // ok below 'Block tags have to appear in the order'
+  // ok below, ENUM_DEF is not checked because target is CLASS_DEF
   /**
    * Some javadoc.
    *
@@ -304,7 +311,7 @@ public class Example4 {
   public int foo(int a) {
     return a;
   }
-  // violation 5 lines above 'Block tags have to appear in the order'
+  // ok above, METHOD_DEF is not checked because target is CLASS_DEF
 }
 </code></pre></div>
       </subsection>
