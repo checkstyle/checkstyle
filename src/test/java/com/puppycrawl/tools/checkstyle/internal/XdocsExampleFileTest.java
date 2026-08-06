@@ -96,7 +96,6 @@ public class XdocsExampleFileTest {
      * <a href="https://github.com/checkstyle/checkstyle/issues/21072">...</a>
      */
     private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
-        "checks/coding/magicnumber/",
         "checks/design/onetoplevelclass/",
         "checks/javadoc/atclauseorder/",
         "checks/javadoc/missingjavadocmethod/",
