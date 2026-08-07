@@ -564,6 +564,8 @@
                       | //ClassDeclaration[@SimpleName='WriteTagCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
                       | //ClassDeclaration[@SimpleName='JavadocTypeCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      | //ClassDeclaration[@SimpleName='IllegalBlockTagCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>
