@@ -2,7 +2,7 @@
 SuppressionXpathSingleFilter
 files = (default)(null)
 checks = (default)(null)
-message = Missing a Javadoc comment
+message = Missing a Javadoc comment for
 id = (null)
 query = (default)(null)
 
@@ -27,7 +27,7 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 public class InputSuppressionXpathSingleFilterDecideByMessage {
-    // filtered violation above 'Missing a Javadoc comment.'
+    // filtered violation above 'Missing a Javadoc comment for'
     private int countTokens() {
         double pi = 3.14; // violation
         return 123; // violation

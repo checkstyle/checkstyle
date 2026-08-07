@@ -465,10 +465,14 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAttachedJavadocCommentForVariableDefinitions() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
-            "20:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
-            "24:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
-            "32:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "17:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "modifierPath"),
+            "20:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "annotationPath"),
+            "24:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "noJavadoc"),
+            "32:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "initializerCommentOnly"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilVariableDefComments.java"), expected);
@@ -478,9 +482,12 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     public void testGetAttachedJavadocCommentForEnumConstantDefinitions()
             throws Exception {
         final String[] expected = {
-            "21:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
-            "28:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
-            "31:5: " + getCheckMessage(JavadocVariableCheck.class, MSG_JAVADOC_MISSING),
+            "21:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "BODY"),
+            "28:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "NO_JAVADOC"),
+            "31:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "REAL"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);

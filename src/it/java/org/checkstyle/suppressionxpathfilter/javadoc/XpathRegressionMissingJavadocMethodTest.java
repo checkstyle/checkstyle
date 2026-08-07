@@ -53,7 +53,8 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
-                MissingJavadocMethodCheck.MSG_JAVADOC_MISSING),
+                MissingJavadocMethodCheck.MSG_JAVADOC_MISSING,
+                "InputXpathMissingJavadocMethodCtor"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -90,7 +91,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
-                MissingJavadocMethodCheck.MSG_JAVADOC_MISSING),
+                MissingJavadocMethodCheck.MSG_JAVADOC_MISSING, "foo"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -124,7 +125,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
-                MissingJavadocMethodCheck.MSG_JAVADOC_MISSING),
+                MissingJavadocMethodCheck.MSG_JAVADOC_MISSING, "foo"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
