@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.IllegalBlockTagCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkWellKnownApiCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
@@ -68,9 +69,10 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "AtclauseOrder",
                     "IllegalBlockTag",
                     "JavadocBlockTagLocation",
+                    "JavadocLeadingAsteriskAlign",
+                    "JavadocLinkWellKnownApi",
                     "JavadocMethod",
                     "JavadocMissingLeadingAsterisk",
-                    "JavadocLeadingAsteriskAlign",
                     "JavadocMissingWhitespaceAfterAsterisk",
                     "JavadocParagraph",
                     "JavadocRegexp",
@@ -88,6 +90,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     // but not subclasses of AbstractJavadocCheck.
     private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = Set.of(
                     IllegalBlockTagCheck.class,
+                    JavadocLinkWellKnownApiCheck.class,
                     JavadocMethodCheck.class,
                     JavadocTypeCheck.class,
                     WriteTagCheck.class

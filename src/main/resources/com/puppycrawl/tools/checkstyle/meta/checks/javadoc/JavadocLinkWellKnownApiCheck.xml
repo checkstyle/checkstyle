@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkWellKnownApiCheck"
+             name="JavadocLinkWellKnownApi"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that Javadoc comments avoid unnecessary &lt;code&gt;{@link}&lt;/code&gt; and &lt;code&gt;{@linkplain}&lt;/code&gt; tags
+ for APIs that are considered well-known. Linking well-known APIs can make comments harder to
+ read without adding much value for the reader.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check reports &lt;code&gt;{@link}&lt;/code&gt; references to configured well-known APIs.
+ Two properties are supported:
+ &lt;code&gt;wellKnownQualifiedPackages&lt;/code&gt; and &lt;code&gt;wellKnownSimpleNames&lt;/code&gt;.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Both properties are needed because Checkstyle does not resolve Javadoc link targets.
+ For example, &lt;code&gt;java.lang.String&lt;/code&gt; contains the package name, so it can be
+ matched through &lt;code&gt;wellKnownQualifiedPackages&lt;/code&gt;. However, &lt;code&gt;String&lt;/code&gt;
+ only contains the simple name &lt;code&gt;String&lt;/code&gt;, so it needs to be matched through
+ &lt;code&gt;wellKnownSimpleNames&lt;/code&gt;. Resolution of imports is not a solution since
+ &lt;code&gt;java.lang&lt;/code&gt; is implicitly imported.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ For &lt;code&gt;wellKnownQualifiedPackages&lt;/code&gt;, only references to classes that are
+ direct members of a well-known package are reported. References to a member
+ (for example, &lt;code&gt;String#length()&lt;/code&gt;), a nested class (for example,
+ &lt;code&gt;System.Logger&lt;/code&gt;), a subpackage (for example, &lt;code&gt;java.lang.ref.WeakReference&lt;/code&gt;),
+ and a package itself (for example, &lt;code&gt;java.lang.ref&lt;/code&gt;) are not reported.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="violateExecutionOnNonTightHtml"
+                      type="boolean">
+               <description>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
+            </property>
+            <property default-value="java.lang"
+                      name="wellKnownQualifiedPackages"
+                      type="java.lang.String[]">
+               <description>Specify package names whose fully qualified API references should not be linked.</description>
+            </property>
+            <property default-value="String"
+                      name="wellKnownSimpleNames"
+                      type="java.lang.String[]">
+               <description>Specify simple API names that should not be linked.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.unclosedHtml"/>
+            <message-key key="javadoc.wellKnownApi"/>
+            <message-key key="javadoc.wellKnownPackage"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
