@@ -163,6 +163,10 @@
   <suppress checks="FileLength"
     files="visibilitymodifier/Example\d+.java"/>
 
+  <!-- Examples need to show that member, subpackage, nested class and package references are not checked -->
+  <suppress checks="FileLength"
+    files="javadoclinkwellknownapi/Example\d+.*"/>
+
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
     files="newlineatendoffile/Example\d+.*"/>
