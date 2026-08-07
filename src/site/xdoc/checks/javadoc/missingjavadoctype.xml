@@ -124,7 +124,7 @@ public class Example1 {
   /** Javadoc. */
   private class E {}
 
-  public interface F {} // violation 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
   /** Javadoc. */
   public interface G {}
 }
@@ -149,9 +149,9 @@ public class Example2 {
   /** Javadoc. */
   public class A {}
 
-  private class B {}   // violation 'Missing a Javadoc comment'
+  private class B {}   // violation 'Missing a Javadoc comment for 'B'.'
 
-  protected class C {} // violation 'Missing a Javadoc comment'
+  protected class C {} // violation 'Missing a Javadoc comment for 'C'.'
   /** Javadoc. */
   class D {}
   /** Javadoc. */
@@ -163,7 +163,7 @@ public class Example2 {
   /** Javadoc. */
   private class E {}
 
-  public interface F {} // violation 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
   /** Javadoc. */
   public interface G {}
 }
@@ -188,7 +188,7 @@ public class Example3 {
   /** Javadoc. */
   public class A {}
 
-  private class B {} // violation 'Missing a Javadoc comment'
+  private class B {} // violation 'Missing a Javadoc comment for 'B'.'
 
   protected class C {}
   /** Javadoc. */
@@ -229,9 +229,9 @@ public class Example4 {
   /** Javadoc. */
   public class A {}
 
-  private class B {}   // violation 'Missing a Javadoc comment'
+  private class B {}   // violation 'Missing a Javadoc comment for 'B'.'
 
-  protected class C {} // violation 'Missing a Javadoc comment'
+  protected class C {} // violation 'Missing a Javadoc comment for 'C'.'
   /** Javadoc. */
   class D {}
   /** Javadoc. */
@@ -243,7 +243,7 @@ public class Example4 {
   /** Javadoc. */
   private class E {}
 
-  public interface F {} // violation 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
   /** Javadoc. */
   public interface G {}
 }
@@ -281,7 +281,7 @@ public class Example5 {
   /** Javadoc. */
   private class E {}
 
-  public interface F {} // violation 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
   /** Javadoc. */
   public interface G {}
 }
@@ -316,7 +316,7 @@ class UseCase1 {
   @MyClass.Annotation
   private class Class2 { }
 
-  private class Class3 { } // violation 'Missing a Javadoc comment'
+  private class Class3 { } // violation 'Missing a Javadoc comment for 'Class3'.'
 }
 </code></pre></div>
       </subsection>
@@ -341,8 +341,8 @@ class UseCase1 {
       <subsection name="Violation Messages" id="MissingJavadocType_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
-              javadoc.missing
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.named%22">
+              javadoc.missing.named
             </a>
           </li>
           <li>
