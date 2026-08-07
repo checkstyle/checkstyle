@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -178,12 +179,16 @@ public class LeftCurlyCheck
                 startToken = ast;
                 yield getBraceFromSwitchMember(ast);
             }
+            case TokenTypes.OBJBLOCK -> {
+                startToken = ast;
+                DetailAST braceToken = null;
+                if (ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                    braceToken = ast;
+                }
+                yield braceToken;
+            }
             default -> {
-                // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
-                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
-                // It has been done to improve coverage to 100%. I couldn't replace it with
-                // if-else-if block because code was ugly and didn't pass pmd check.
-
+                // ATTENTION! We have default here, but we expect case TokenTypes.LITERAL_SWITCH
                 startToken = ast;
                 yield ast.findFirstToken(TokenTypes.LCURLY);
             }
@@ -296,7 +301,7 @@ public class LeftCurlyCheck
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(brace, braceLine);
+                validateEol(startToken, brace, braceLine);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
@@ -307,14 +312,15 @@ public class LeftCurlyCheck
     /**
      * Validate EOL case.
      *
+     * @param startToken token for start of expression.
      * @param brace brace AST
      * @param braceLine line content
      */
-    private void validateEol(DetailAST brace, String braceLine) {
+    private void validateEol(DetailAST startToken, DetailAST brace, String braceLine) {
         if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
-        if (!hasLineBreakAfter(brace)) {
+        if (!hasLineBreakAfter(startToken, brace)) {
             log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
@@ -344,21 +350,26 @@ public class LeftCurlyCheck
     /**
      * Checks if left curly has line break after.
      *
+     * @param startToken token for start of expression.
      * @param leftCurly
      *        Left curly token.
      * @return
      *        True, left curly has line break after.
      */
-    private boolean hasLineBreakAfter(DetailAST leftCurly) {
-        DetailAST nextToken = null;
-        if (leftCurly.getType() == TokenTypes.SLIST) {
+    private boolean hasLineBreakAfter(DetailAST startToken, DetailAST leftCurly) {
+        DetailAST nextToken = leftCurly.getNextSibling();
+        if (leftCurly.getType() == TokenTypes.OBJBLOCK
+                && (!ignoreEnums || startToken.getType() != TokenTypes.ENUM_DEF)) {
+            nextToken = NullUtil.notNull(leftCurly.findFirstToken(TokenTypes.LCURLY))
+                    .getNextSibling();
+
+        }
+        else if (leftCurly.getType() == TokenTypes.SLIST) {
             nextToken = leftCurly.getFirstChild();
         }
-        else {
-            if (!ignoreEnums
-                    && leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
-                nextToken = leftCurly.getNextSibling();
-            }
+        if (nextToken != null && nextToken.getType() == TokenTypes.INSTANCE_INIT
+                && startToken.getType() == TokenTypes.OBJBLOCK) {
+            nextToken = null;
         }
         return nextToken == null
                 || nextToken.getType() == TokenTypes.RCURLY
