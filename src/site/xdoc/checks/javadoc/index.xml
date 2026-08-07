@@ -77,6 +77,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadoclinkwellknownapi.html#JavadocLinkWellKnownApi">
+                JavadocLinkWellKnownApi
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments avoid unnecessary <code>{@link}</code> and
+              <code>{@linkplain}</code> tags for APIs that are considered well-known.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocmethod.html#JavadocMethod">
                 JavadocMethod
               </a>
