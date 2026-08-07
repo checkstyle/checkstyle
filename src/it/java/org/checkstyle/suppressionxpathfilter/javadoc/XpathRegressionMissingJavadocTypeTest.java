@@ -55,7 +55,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
-                    "ClassMissingJavadocType"),
+                    "InputXpathMissingJavadocTypeClass"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -85,7 +85,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         final String[] expectedViolation = {
             "7:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
-                    "ScopeMissingJavadocType"),
+                    "Test"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -117,7 +117,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
-                    "ExcludedMissingJavadocType"),
+                    "Test"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -148,7 +148,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         final String[] expectedViolation = {
             "5:5: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
-                    "AnnotationMissingJavadocType"),
+                    "innerClass"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -184,7 +184,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(MissingJavadocTypeCheck.class,
                     MissingJavadocTypeCheck.MSG_JAVADOC_MISSING,
-                    "TokenMissingJavadocType"),
+                    "InputXpathMissingJavadocTypeToken"),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

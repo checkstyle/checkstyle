@@ -109,7 +109,7 @@
     &lt;property name="lines" value="1,5-100"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="message" value="Missing a Javadoc comment"/&gt;
+    &lt;property name="message" value="Missing a Javadoc comment for"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
