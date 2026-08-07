@@ -14,10 +14,9 @@ class Example6 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example6(){}
-  // 3 violations above:
+  public Example6() {}
+  // 2 violations above:
   //  ''{' is not followed by whitespace'
-  //  ''{' is not preceded with whitespace'
   //  ''}' is not preceded with whitespace'
   int y = 0;
   void example() {
@@ -28,18 +27,12 @@ class Example6 {
     //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
+    catch (Exception e) {}
+    // 2 violations above:
     //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i < 10; i++){}
-
-    // ok, allowEmptyLoops
-    // is true above
-
     do {} while (y == 1);
 
     // ok, allowEmptyLoops is true

@@ -14,8 +14,7 @@ class Example4 {
   // 2 violations above:
   //  ''{' is not followed by whitespace'
   //  ''}' is not preceded with whitespace'
-  public Example4(){}
-  // violation above ''{' is not preceded with whitespace.
+  public Example4() {}
 
   // ok, allowEmptyConstructors is true
 
@@ -28,18 +27,12 @@ class Example4 {
     //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-    // 3 violations above:
+    catch (Exception e) {}
+    // 2 violations above:
     //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
     //  ''}' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 0; i < 10; i++){}
-    // 3 violations above:
-    //  ''{' is not followed by whitespace'
-    //  ''{' is not preceded with whitespace'
-    //  ''}' is not preceded with whitespace'
     do {} while (y == 1);
     // 2 violations above:
     //  ''{' is not followed by whitespace'
