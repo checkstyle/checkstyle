@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocLinkWellKnownApi</title>
+  </head>
+  <body>
+    <section name="JavadocLinkWellKnownApi">
+      <p>Since Checkstyle 14.1.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocLinkWellKnownApi_Description">Description</a></li>
+          <li><a href="#JavadocLinkWellKnownApi_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocLinkWellKnownApi_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With custom well-known APIs</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With a different set of well-known APIs</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocLinkWellKnownApi_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocLinkWellKnownApi_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocLinkWellKnownApi_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocLinkWellKnownApi_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="JavadocLinkWellKnownApi_Description">
+        <div>
+          Checks that Javadoc comments avoid unnecessary <code>{@link}</code> and <code>{@linkplain}</code> tags
+          for APIs that are considered well-known. Linking well-known APIs can make comments harder to
+          read without adding much value for the reader.
+        </div>
+
+        <p>
+          This check reports <code>{@link}</code> references to configured well-known APIs.
+          Two properties are supported:
+          <code>wellKnownQualifiedPackages</code> and <code>wellKnownSimpleNames</code>.
+        </p>
+
+        <p>
+          Both properties are needed because Checkstyle does not resolve Javadoc link targets.
+          For example, <code>java.lang.String</code> contains the package name, so it can be
+          matched through <code>wellKnownQualifiedPackages</code>. However, <code>String</code>
+          only contains the simple name <code>String</code>, so it needs to be matched through
+          <code>wellKnownSimpleNames</code>. Resolution of imports is not a solution since
+          <code>java.lang</code> is implicitly imported.
+        </p>
+
+        <p>
+          For <code>wellKnownQualifiedPackages</code>, only references to classes that are
+          direct members of a well-known package are reported. References to a member
+          (for example, <code>String#length()</code>), a nested class (for example,
+          <code>System.Logger</code>), a subpackage (for example, <code>java.lang.ref.WeakReference</code>),
+          and a package itself (for example, <code>java.lang.ref</code>) are not reported.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocLinkWellKnownApi_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.1.0</td>
+            </tr>
+            <tr>
+              <td><a id="wellKnownQualifiedPackages"/><a href="#wellKnownQualifiedPackages">wellKnownQualifiedPackages</a></td>
+              <td>Specify package names whose fully qualified API references should not be linked.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>java.lang</code></td>
+              <td>14.1.0</td>
+            </tr>
+            <tr>
+              <td><a id="wellKnownSimpleNames"/><a href="#wellKnownSimpleNames">wellKnownSimpleNames</a></td>
+              <td>Specify simple API names that should not be linked.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>String</code></td>
+              <td>14.1.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocLinkWellKnownApi_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocLinkWellKnownApi"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  // violation 3 lines below """'String' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@link String}.
+   */
+  public String valid() { return ""; }
+
+  // ok, Integer is not in the default wellKnownSimpleNames
+  /**
+   * Uses a {@link Integer}.
+   */
+  public Integer validInteger() { return 0; }
+
+  // ok, java.util is not in the default wellKnownQualifiedPackages
+  /**
+   * Uses a {@link java.util.List}.
+   */
+  public java.util.List validList() { return null; }
+  // violation 3 lines below """'java.lang.String' should not be linked because
+  //  it belongs to a well-known package."""
+  /**
+   * Uses a {@link java.lang.String}.
+   */
+  public String validLangString() { return ""; }
+  // violation 3 lines below """'String' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@linkplain String}.
+   */
+  public String validLinkplain() { return ""; }
+
+  // ok, Object is not in the default wellKnownSimpleNames
+  /**
+   * Uses a {@linkplain Object}.
+   */
+  public Object validLinkplainObject() { return null; }
+
+  // ok, member references are not checked
+  /**
+   * Uses a {@link String#length()}.
+   */
+  public int validMember() { return 0; }
+
+  // ok, member references are not checked
+  /**
+   * Uses a {@link java.lang.Class&lt;String&gt;#getName()}.
+   */
+  public String validMemberQualified() { return ""; }
+
+  // ok, subpackage references are not checked
+  /**
+   * Uses a {@link java.lang.ref.WeakReference}.
+   */
+  public java.lang.ref.WeakReference validSubpackage() { return null; }
+
+  // ok, nested class references are not checked
+  /**
+   * Uses a {@link java.lang.System.Logger}.
+   */
+  public java.lang.System.Logger validNestedClass() { return null; }
+
+  // ok, package references are not checked
+  /**
+   * Uses a {@link java.lang.ref}.
+   */
+  public Class&lt;?&gt; validPackageReference() { return null; }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check with custom well-known APIs:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocLinkWellKnownApi"&gt;
+      &lt;property name="wellKnownQualifiedPackages" value="java.lang, java.util"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  // violation 3 lines below """'String' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@link String}.
+   */
+  public String valid() { return ""; }
+
+  // ok, Integer is not in the default wellKnownSimpleNames
+  /**
+   * Uses a {@link Integer}.
+   */
+  public Integer validInteger() { return 0; }
+  // violation 3 lines below """'java.util.List' should not be linked because
+  //  it belongs to a well-known package."""
+  /**
+   * Uses a {@link java.util.List}.
+   */
+  public java.util.List validList() { return null; }
+  // violation 3 lines below """'java.lang.String' should not be linked because
+  //  it belongs to a well-known package."""
+  /**
+   * Uses a {@link java.lang.String}.
+   */
+  public String validLangString() { return ""; }
+  // violation 3 lines below """'String' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@linkplain String}.
+   */
+  public String validLinkplain() { return ""; }
+
+  // ok, Object is not in the default wellKnownSimpleNames
+  /**
+   * Uses a {@linkplain Object}.
+   */
+  public Object validLinkplainObject() { return null; }
+
+  // ok, member references are not checked
+  /**
+   * Uses a {@link String#length()}.
+   */
+  public int validMember() { return 0; }
+
+  // ok, member references are not checked
+  /**
+   * Uses a {@link java.lang.Class&lt;String&gt;#getName()}.
+   */
+  public String validMemberQualified() { return ""; }
+
+  // ok, subpackage references are not checked
+  /**
+   * Uses a {@link java.lang.ref.WeakReference}.
+   */
+  public java.lang.ref.WeakReference validSubpackage() { return null; }
+
+  // ok, nested class references are not checked
+  /**
+   * Uses a {@link java.lang.System.Logger}.
+   */
+  public java.lang.System.Logger validNestedClass() { return null; }
+
+  // ok, package references are not checked
+  /**
+   * Uses a {@link java.lang.ref}.
+   */
+  public Class&lt;?&gt; validPackageReference() { return null; }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check with a different set of well-known APIs:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocLinkWellKnownApi"&gt;
+      &lt;property name="wellKnownQualifiedPackages" value="java.lang"/&gt;
+      &lt;property name="wellKnownSimpleNames" value="String, Integer"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  // violation 3 lines below """'String' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@link String}.
+   */
+  public String valid() { return ""; }
+  // violation 3 lines below """'Integer' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@link Integer}.
+   */
+  public Integer validInteger() { return 0; }
+
+  // ok, java.util is not configured
+  /**
+   * Uses a {@link java.util.List}.
+   */
+  public java.util.List validList() { return null; }
+  // violation 3 lines below """'java.lang.String' should not be linked because
+  //  it belongs to a well-known package."""
+  /**
+   * Uses a {@link java.lang.String}.
+   */
+  public String validLangString() { return ""; }
+  // violation 3 lines below """'String' should not be linked because it is
+  //  configured as a well-known API."""
+  /**
+   * Uses a {@linkplain String}.
+   */
+  public String validLinkplain() { return ""; }
+
+  // ok, Object is not configured
+  /**
+   * Uses a {@linkplain Object}.
+   */
+  public Object validLinkplainObject() { return null; }
+
+  // ok, member references are not checked
+  /**
+   * Uses a {@link String#length()}.
+   */
+  public int validMember() { return 0; }
+
+  // ok, member references are not checked
+  /**
+   * Uses a {@link java.lang.Class&lt;String&gt;#getName()}.
+   */
+  public String validMemberQualified() { return ""; }
+
+  // ok, subpackage references are not checked
+  /**
+   * Uses a {@link java.lang.ref.WeakReference}.
+   */
+  public java.lang.ref.WeakReference validSubpackage() { return null; }
+
+  // ok, nested class references are not checked
+  /**
+   * Uses a {@link java.lang.System.Logger}.
+   */
+  public java.lang.System.Logger validNestedClass() { return null; }
+
+  // ok, package references are not checked
+  /**
+   * Uses a {@link java.lang.ref}.
+   */
+  public Class&lt;?&gt; validPackageReference() { return null; }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="JavadocLinkWellKnownApi_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLinkWellKnownApi">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavadocLinkWellKnownApi_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wellKnownApi%22">
+              javadoc.wellKnownApi
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wellKnownPackage%22">
+              javadoc.wellKnownPackage
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="JavadocLinkWellKnownApi_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkWellKnownApiCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocLinkWellKnownApi_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
