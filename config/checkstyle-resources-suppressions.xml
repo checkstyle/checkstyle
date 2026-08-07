@@ -248,6 +248,9 @@
   <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
   <suppress checks="FileTabCharacter"
     files="/InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
+  <!-- intentional tabs, the check expands them to the configured tab width -->
+  <suppress checks="FileTabCharacter"
+    files="/InputOpenjdkMethodParameterAlignmentTabs\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
