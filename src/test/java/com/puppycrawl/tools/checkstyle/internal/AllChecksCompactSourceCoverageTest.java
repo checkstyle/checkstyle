@@ -134,6 +134,7 @@ public class AllChecksCompactSourceCoverageTest {
         "HexLiteralCaseCheck",
         "HiddenFieldCheck",
         "HideUtilityClassConstructorCheck",
+        "IllegalBlockTagCheck",
         "IllegalCatchCheck",
         "IllegalIdentifierNameCheck",
         "IllegalImportCheck",
