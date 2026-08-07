@@ -663,6 +663,7 @@ javadocblocktaglocation
 javadoccontentlocation
 javadocdetailnodeparser
 javadocleadingasteriskalign
+javadoclinkwellknownapi
 javadocmethod
 javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
