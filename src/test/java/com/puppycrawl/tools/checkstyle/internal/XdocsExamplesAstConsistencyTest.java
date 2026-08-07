@@ -66,19 +66,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Ensures xdocs Java examples for a check differ only by comments, and that
- * example count matches documented property count.
- *
- * <p>Compares only code between xdoc section markers, including line numbers.
- * {@code ok}/{@code violation}/{@code xdoc section} comments are excluded;
- * block-comment markers are forbidden (use {@code //}), enforced by
- * {@link #testNoBlockCommentMarkers()}.
+ * example count matches documented property count. Compares only code between
+ * xdoc section markers; {@code ok}/{@code violation}/{@code xdoc section}
+ * comments are excluded and block-comment markers are forbidden.
  *
  * <p>Examples may live in subdirectories without becoming separate modules
- * (see {@link #isModuleDirectory(Path)}).
- *
- * <p>Filename/multi-file checks (e.g. {@code RegexpOnFilename}, {@code Translation})
- * document examples as non-Java pseudo-paths; when none of a directory's examples
- * parse, {@link #checkExampleCount} falls back to
+ * (see {@link #isModuleDirectory(Path)}). Pseudo-path modules (e.g.
+ * {@code RegexpOnFilename}, {@code Translation}) fall back to
  * {@link #checkPropertyCoverageFallback} instead of AST comparison.
  */
 public class XdocsExamplesAstConsistencyTest {
@@ -96,8 +90,6 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Examples that cannot be parsed as valid Java.
-     * These files are intentionally non-compilable for documentation purposes.
-     *
      */
     private static final Set<String> UNPARSEABLE_EXAMPLES = Set.of(
             "checks/regexp/regexponfilename/Example1",
@@ -106,36 +98,28 @@ public class XdocsExamplesAstConsistencyTest {
     );
 
     /**
-     * Properties that are intentionally never demonstrated in an example, e.g.
-     * because they are purely technical/internal and not related to the check's
-     * main purpose.
+     * Properties intentionally never demonstrated in an example.
      */
     private static final Set<String> IGNORED_PROPERTIES_FOR_COVERAGE = Set.of(
         "violateExecutionOnNonTightHtml"
     );
 
     /**
-     * Cache for module property counts to avoid repeated, expensive reflective lookups
-     * during test execution.
+     * Cache for module property counts.
      */
     private static final ConcurrentMap<String, Integer> PROPERTY_COUNT_CACHE =
         new ConcurrentHashMap<>();
 
     /**
-     * Cache mapping a lower-cased xdocs directory name (e.g. {@code declarationorder}) to
-     * the check's simple class name (e.g. {@code DeclarationOrderCheck}), built once from
-     * the full list of checkstyle module classes. Avoids repeated classpath scans.
+     * Cache mapping a lower-cased xdocs directory name to the check's simple class name.
      */
     private static final ConcurrentMap<String, String> MODULE_SIMPLE_NAME_CACHE =
         buildModuleSimpleNameIndex();
 
     /**
      * Examples that have independent code structure and should not be compared.
-     * These represent different use cases or configurations with different code.
-     *
-     * <p>Format: "directory/ExampleN" where the example has unique code.
-     *
-     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/19891">...</a>
+     * Format: "directory/ExampleN" where the example has unique code.
+     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/19891">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
@@ -167,9 +151,25 @@ public class XdocsExamplesAstConsistencyTest {
     );
 
     /**
+     * Modules with no example demonstrating the default configuration. Most require
+     * at least one property to be meaningful; others are documentation gaps.
+     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/XXXX">...</a>
+     */
+    private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
+            "checks/coding/matchxpath",
+            "checks/coding/returncount",
+            "checks/descendanttoken",
+            "checks/imports/importcontrol",
+            "filters/severitymatchfilter",
+            "filters/suppressionfilter",
+            "filters/suppressionsinglefilter",
+            "filters/suppressionxpathfilter",
+            "filters/suppressionxpathsinglefilter",
+            "filters/suppresswithplaintextcommentfilter"
+    );
+
+    /**
      * Tests that examples with the same code structure maintain consistency.
-     * Examples not marked as independent must have identical AST structure,
-     * including the line numbers of each node within the xdoc section.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -229,12 +229,7 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Tests that no example file uses block comments as {@code ok} or
-     * {@code violation} markers. All such markers must use single-line
-     * comments instead. For example:
-     * <pre>
-     *   BAD:  &#47;* ok, allowMissingReturnTag is true *&#47;
-     *   GOOD: // ok, allowMissingReturnTag is true
-     * </pre>
+     * {@code violation} markers; all must use single-line comments instead.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -277,15 +272,8 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Tests that the number of AST-consistent examples matches the number of
-     * documented properties plus one (one example per property + one baseline
-     * example with no properties set). Unlike a raw file count, this groups
-     * examples by actual structural AST equality, so a directory that merely
-     * has the "right number" of files but where one of them is structurally
-     * different will correctly fail.
-     *
-     * <p>For modules whose examples are all pseudo-path/non-Java documentation
-     * (see class-level Javadoc), this falls back to a property-coverage check
-     * instead of AST grouping, via {@link #checkPropertyCoverageFallback}.
+     * documented properties plus one. For pseudo-path modules this falls back
+     * to {@link #checkPropertyCoverageFallback}.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -309,23 +297,12 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Tests that every documented property of a module is actually configured
-     * by at least one of its AST-matching examples. Unlike
-     * {@link #testExampleCountMatchesPropertyCount}, which only checks the count
-     * of matching examples, this test checks semantic coverage: it is possible
-     * for the count to be correct while one property is demonstrated twice and
-     * another isn't demonstrated at all. This test catches that gap.
-     *
-     * <p>Unlike the AST-comparison tests, this test does not parse example files
-     * as Java. It only looks for an embedded {@code /*xml ... *}{@code /}
-     * configuration block, so example files are discovered by name pattern and
-     * the actual presence of that block, regardless of file extension (or lack
-     * of one). This lets a check's examples span mixed file types (e.g.
-     * {@code Example1.java}, {@code Example2.cpp}, {@code Example3.txt}) while
-     * still being counted toward property coverage - as long as each file
-     * carries a real config block. Files without one (e.g. a stray
-     * {@code .properties} companion file) are silently excluded rather than
-     * causing a false gap or a parse failure.
+     * Tests that every documented property is configured by at least one example.
+     * Unlike {@link #testExampleCountMatchesPropertyCount}, this checks semantic
+     * coverage, so a property demonstrated twice while another isn't shown at all
+     * is still caught. Example files are discovered by name pattern and the
+     * presence of an embedded {@code /*xml ... *}{@code /} config block, so they
+     * may span mixed file types (e.g. {@code Example1.java}, {@code Example2.cpp}).
      *
      * @throws IOException if an I/O error occurs
      */
@@ -348,18 +325,112 @@ public class XdocsExamplesAstConsistencyTest {
             .isEmpty();
     }
 
+    @Test
+    public void testEveryModuleHasDefaultConfigExample() throws IOException {
+        final List<String> violations = Collections.synchronizedList(new ArrayList<>());
+
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                    .filter(Files::isDirectory)
+                    .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
+                    .parallel()
+                    .forEach(dir -> processDirectoryForDefaultConfigCheck(dir, violations));
+        }
+
+        final String message = formatDefaultConfigViolationsMessage(violations);
+
+        assertWithMessage(message)
+                .that(violations)
+                .isEmpty();
+    }
+
     /**
-     * Collects files from {@code dir} and its subdirectories, but never descends
-     * into a subdirectory that is itself a resolvable module directory (per
-     * {@link #isModuleDirectory}).
+     * Processes a single module directory: checks whether at least one example
+     * demonstrates the module's default configuration (i.e. the module element
+     * with zero {@code <property>} children).
      *
-     * <p>This is what keeps recursion properly scoped: (e.g.
-     * {@code classdataabstractioncoupling/ignore/deeper}), and those should be
-     * walked into. But some modules are nested as filesystem subdirectories of
-     * another, unrelated module (e.g. {@code checks/regexp/regexpmultiline} is
-     * its own module living under the {@code checks/regexp} module's directory);
-     * such subdirectories must be treated as separate module roots, not folded
-     * into the parent's examples.
+     * @param dir the directory to check
+     * @param violations a thread-safe list to collect any discovered violations
+     */
+    private static void processDirectoryForDefaultConfigCheck(Path dir, List<String> violations) {
+        try {
+            final List<Path> examples = new ArrayList<>(getExamplePropertyCoverageFiles(dir));
+            examples.addAll(getNonCompilableExamplePropertyCoverageFiles(dir));
+
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+            final String relativePath = getRelativePath(dir);
+
+            if (moduleName != null && !examples.isEmpty() && !isModuleWithNoProperties(examples)
+                    && !EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES.contains(relativePath)) {
+                final String xmlModuleName = stripCheckSuffix(moduleName);
+                boolean hasDefaultConfig = false;
+
+                for (Path example : examples) {
+                    if (exampleHasDefaultConfig(example, xmlModuleName)) {
+                        hasDefaultConfig = true;
+                        break;
+                    }
+                }
+
+                if (!hasDefaultConfig) {
+                    violations.add("Directory: " + relativePath
+                            + "\nNo example uses the default configuration "
+                            + "(module element with zero configured properties).");
+                }
+            }
+        }
+        catch (IOException | ParserConfigurationException | SAXException exception) {
+            throw new IllegalStateException("Failed processing directory: " + dir, exception);
+        }
+    }
+
+    /**
+     * Checks whether a single example file demonstrates the module's default
+     * configuration (i.e. the module element with zero configured properties).
+     *
+     * @param example the example file to check
+     * @param xmlModuleName the module's simple name as it appears in embedded XML
+     * @return true if the example's config block has a module element with no properties
+     * @throws IOException if an I/O error occurs
+     * @throws ParserConfigurationException if a document builder cannot be created
+     * @throws SAXException if the XML content is malformed
+     */
+    private static boolean exampleHasDefaultConfig(Path example, String xmlModuleName)
+            throws IOException, ParserConfigurationException, SAXException {
+        final String xmlBlock = extractXmlConfigBlock(example);
+        final Element moduleElement;
+        if (xmlBlock == null) {
+            moduleElement = null;
+        }
+        else {
+            moduleElement = parseConfigModuleElement(xmlBlock, xmlModuleName);
+        }
+        return moduleElement != null && collectPropertyNames(moduleElement).isEmpty();
+    }
+
+    /**
+     * Formats default-config violations into a single, readable error message.
+     *
+     * @param violations the list of violation strings
+     * @return a formatted string detailing all found gaps
+     */
+    private static String formatDefaultConfigViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        if (!violations.isEmpty()) {
+            builder.append("Found ").append(violations.size())
+                    .append(" modules with no example demonstrating the default"
+                            + " configuration.\n\n");
+
+            violations.stream()
+                    .sorted()
+                    .forEach(violation -> builder.append(violation).append("\n\n"));
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Collects files from {@code dir} and its subdirectories, stopping at nested
+     * module directory boundaries (per {@link #isModuleDirectory}).
      *
      * @param dir the directory to search
      * @param fileFilter predicate selecting which regular files to collect
@@ -387,16 +458,10 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether the given directory resolves to an actual checkstyle module
-     * (i.e. its name maps to a check/filter class via {@link #toModuleClassSimpleName}).
-     *
-     * <p>Used to keep example discovery scoped correctly: a module directory's
-     * own subdirectories (e.g. {@code classdataabstractioncoupling/ignore},
-     * {@code classdataabstractioncoupling/ignore/deeper}) do not themselves
-     * resolve to a module, so they are excluded from being processed as
-     * separate, independent modules - while {@link #getExampleFiles} and
-     * {@link #getExamplePropertyCoverageFiles} still walk into them when
-     * collecting examples that belong to the enclosing module.
+     * Checks whether the given directory resolves to a checkstyle module (via
+     * {@link #toModuleClassSimpleName}). Nested subdirectories that do not
+     * resolve to a module are walked into by {@link #getExampleFiles} and
+     * {@link #getExamplePropertyCoverageFiles}.
      *
      * @param dir the directory to check
      * @return true if the directory name resolves to a known module
@@ -467,15 +532,11 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks a single module directory: unions the properties configured across
-     * all of its examples (each of which is guaranteed by
-     * {@link #getExamplePropertyCoverageFiles} to carry an embedded XML config
-     * block) and compares that against the full set of documented properties
-     * for the module, reporting any that aren't covered.
+     * Checks a single module directory: unions properties configured across all
+     * examples and compares them against the full set of documented properties.
      *
      * @param dir the directory to check
-     * @param examples the list of pre-fetched example files, each known to
-     *                 contain an embedded XML config block
+     * @param examples the list of pre-fetched example files
      * @return a violation message, or null if every property is covered / not applicable
      * @throws IOException if an I/O error occurs
      */
@@ -542,15 +603,10 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts the set of property names actually configured for the given module
-     * within an example's embedded {@code /*xml ... *}{@code /} config block.
-     *
-     * <p>Uses a plain, non-validating DOM parse rather than
-     * {@code ConfigurationLoader}, since the latter is designed to fully execute
-     * a configuration (DTD validation, {@code ${...}} property substitution such
-     * as {@code config.folder}) which several example configs intentionally use
-     * and which isn't relevant here — this method only needs the property
-     * <em>names</em>, not a runnable configuration.
+     * Extracts property names configured for {@code moduleName} within an
+     * example's embedded {@code /*xml ... *}{@code /} config block. Uses a plain,
+     * non-validating DOM parse since only property names are needed, not a
+     * runnable configuration.
      *
      * @param example the example file
      * @param moduleName the module's simple name as it appears in the embedded XML
@@ -726,15 +782,9 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks a single module directory: resolves the check class, counts its
-     * documented properties, and compares that against the size of the *actual*
-     * AST-matching example group (not just the raw file count).
-     *
-     * <p>If none of the module's examples parse as valid Java (e.g. modules like
-     * {@code RegexpOnFilename} or {@code Translation} that document filename or
-     * multi-file consistency rules via a pseudo-path comment rather than real
-     * Java), AST-group comparison is meaningless, so this falls back to
-     * {@link #checkPropertyCoverageFallback} instead.
+     * Checks a single module directory: compares documented property count against
+     * the size of the actual AST-matching example group. Falls back to
+     * {@link #checkPropertyCoverageFallback} when no example parses as valid Java.
      *
      * @param dir the directory to check
      * @param examples the list of pre-fetched example files
@@ -788,12 +838,9 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Checks whether an example's xdoc section actually parses as valid Java.
-     * Unlike {@link #isExampleUnparseable}, which only checks a fixed whitelist
-     * (used to tolerate isolated unparseable files elsewhere), this attempts a
-     * real parse - used specifically to detect modules like RegexpOnFilename or
-     * Translation where every single example is a pseudo-path listing embedded
-     * in a comment rather than real Java, so the module as a whole should route
-     * to {@link #checkPropertyCoverageFallback} instead of AST-group comparison.
+     * Unlike {@link #isExampleUnparseable}, this attempts a real parse to detect
+     * pseudo-path modules (e.g. RegexpOnFilename, Translation) that should route
+     * to {@link #checkPropertyCoverageFallback}.
      *
      * @param example the example file path
      * @return true if the xdoc section parses successfully as Java
@@ -812,14 +859,10 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Fallback validation for modules whose examples are entirely in the "hacky"
-     * pseudo-path documentation format (no example parses as comparable Java) -
-     * e.g. filename or multi-file consistency checks like RegexpOnFilename and
-     * Translation, which have no per-file AST to demonstrate in the first place.
-     * Since AST-group comparison can't apply, this instead requires that every
-     * documented property is actually configured by at least one example's
-     * embedded XML config block - mirroring {@link #checkPropertyCoverage} but
-     * scoped to this one directory's already-fetched example list.
+     * Fallback validation for pseudo-path modules (e.g. RegexpOnFilename,
+     * Translation) whose examples cannot be parsed as comparable Java. Requires
+     * that every documented property is configured by at least one example's
+     * embedded XML config block, mirroring {@link #checkPropertyCoverage}.
      *
      * @param dir the directory being checked
      * @param relativePath the directory's relative path, for messaging
@@ -869,11 +912,8 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Groups examples by structural AST equality and returns the size of the
-     * largest group found. Constructor-presence is used to pre-split the
-     * examples, mirroring {@link #validateExamplesByConstructorPresence}, since
-     * that split represents an intentionally separate AST family, not a mismatch.
-     * Examples that fail to parse are skipped from grouping (they are validated
-     * elsewhere by the unparseable-examples allowance).
+     * largest group found. Examples are pre-split by constructor presence,
+     * mirroring {@link #validateExamplesByConstructorPresence}.
      *
      * @param examples candidate example files (already filtered for suppression)
      * @return size of the largest AST-identical group, or 0 if none parse
@@ -1154,17 +1194,9 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Gets all Example*.java files from a directory, including those found in
-     * its own subdirectories (e.g. modules that group related use-cases into
-     * folders such as {@code ignore} or {@code ignore/deeper}).
-     *
-     * <p>This walk is always rooted at a single module directory (callers only
-     * ever pass directories for which {@link #isModuleDirectory} is true), and
-     * via {@link #collectFilesWithinModule} it stops descending as soon as it
-     * hits a subdirectory that is itself a resolvable module directory - so it
-     * never crosses into sibling/nested module directories (e.g.
-     * {@code checks/regexp/regexpmultiline} is excluded from
-     * {@code checks/regexp}'s examples).
+     * Gets all Example*.java files from a directory, including those in its own
+     * subdirectories. The walk stops at nested module directory boundaries via
+     * {@link #collectFilesWithinModule}, so it never crosses into sibling modules.
      *
      * @param dir the module directory to search
      * @return list of example file paths
@@ -1179,23 +1211,12 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Gets all Example* files from a directory (and its own subdirectories)
-     * that contain an embedded {@code /*xml ... *}{@code /} configuration
-     * block, regardless of file extension (or the lack of one).
-     *
-     * <p>Used only for property-coverage checking ({@link #testEveryPropertyHasAnExample}),
-     * which inspects that embedded block via plain text/DOM extraction rather
-     * than parsing the file as Java. This lets a check's examples span mixed
-     * file types (e.g. {@code Example1.java}, {@code Example2.cpp},
-     * {@code Example3.txt}) while still contributing to property coverage.
-     * Files that match the {@code Example<N>} naming pattern but don't actually
-     * carry a config block (e.g. a stray {@code .properties} companion file)
-     * are excluded, since they have nothing to contribute and aren't reliably
-     * identifiable by extension alone.
-     *
-     * <p>As with {@link #getExampleFiles}, this walk is rooted at a single
-     * module directory and, via {@link #collectFilesWithinModule}, stops
-     * descending at any nested module directory boundary.
+     * Gets all Example* files from a directory (and its own subdirectories) that
+     * contain an embedded {@code /*xml ... *}{@code /} config block, regardless
+     * of file extension. Used only for property-coverage checking
+     * ({@link #testEveryPropertyHasAnExample}), which inspects the embedded block
+     * rather than parsing the file as Java. Files matching the {@code Example<N>}
+     * pattern without a config block are excluded.
      *
      * @param dir the module directory to search
      * @return list of example file paths containing an XML config block
@@ -1416,12 +1437,10 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts content between xdoc section markers from a file.
-     *
-     * <p>The extracted lines are re-joined and parsed fresh by {@link #parseContent}, so
-     * AST line numbers are always relative to the start of the extracted section (line 1).
-     * This makes line-number comparisons between examples independent of any difference in
-     * header length (license block, imports, etc.) above the marker.
+     * Extracts content between xdoc section markers from a file. The extracted
+     * lines are re-joined and parsed fresh by {@link #parseContent}, so AST line
+     * numbers are relative to the start of the section, independent of header
+     * length above the marker.
      *
      * @param file the file to read
      * @return the content between markers, or entire file if no markers
@@ -1535,8 +1554,6 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Converts a DetailAST into a structural representation that excludes only
      * {@code ok}, {@code violation}, and {@code xdoc section} single-line comments.
-     * All other single-line comments, as well as Javadoc and block comments, are
-     * included in the comparison.
      *
      * @param ast the AST to convert
      * @return structural representation of the AST, or null if the node is a
@@ -1615,20 +1632,10 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Checks whether a comment is a documentation marker that should be
-     * excluded from structural comparison.
-     *
-     * <p>Skipped prefixes:
-     * <ul>
-     *   <li>{@code ok} - suppressed-violation marker</li>
-     *   <li>{@code violation} - violation marker (including {@code filtered violation})</li>
-     *   <li>{@code xdoc section} - section boundary marker</li>
-     *   <li>{@code N violation(s)} - count-style marker, e.g. {@code 3 violations}</li>
-     *   <li>A single-quoted string starting and ending with a single-quote character
-     *       continuation line, e.g. {@code //    'Expected }&#64;{@code param tag for p1.'}.
-     *       These lines appear below a count-style or
-     *       {@code violation above} marker and may be separated from it by a blank line,
-     *       so they cannot be reliably caught by the continuation-chain logic alone.</li>
-     * </ul>
+     * excluded from structural comparison. Skipped prefixes include
+     * {@code ok}, {@code violation} (including {@code filtered violation}),
+     * {@code xdoc section}, count-style {@code N violation(s)}, and
+     * single-quoted continuation lines.
      *
      * @param comment the stripped comment text (everything after {@code //})
      * @return true if the comment is a marker that should be ignored
@@ -1645,25 +1652,12 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts comments that participate in comparison.
-     *
-     * <p>The following comments are ignored:
-     * <ul>
-     *   <li>{@code ok}</li>
-     *   <li>{@code violation} (including {@code filtered violation}
-     *       and count-style {@code N violations})</li>
-     *   <li>xdoc section markers</li>
-     *   <li>standalone continuation lines immediately following a skipped marker —
-     *       e.g. <code>// no space after '{'</code> after {@code // 3 violations}</li>
-     * </ul>
-     *
-     * <p>A standalone continuation line is one where there is no code before the
-     * double-slash on that line, and the previous comment line was a skipped marker.
-     * Inline trailing comments on code lines are always evaluated independently.
-     *
-     * <p>All other comments, including javadoc comments, are included in comparison.
-     * Inline {@code // violation}, {@code // ok}, and other marker comments within
-     * javadoc are excluded, per {@link #isIgnoredComment}.
+     * Extracts comments that participate in comparison. Ignored comments are
+     * {@code ok}, {@code violation} (including count-style {@code N violations}),
+     * xdoc section markers, and standalone continuation lines immediately
+     * following a skipped marker. All other comments, including javadoc, are
+     * included; inline marker comments within javadoc are excluded per
+     * {@link #isIgnoredComment}.
      *
      * @param content example content
      * @return comments participating in comparison
