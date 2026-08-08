@@ -79,4 +79,24 @@ public class InputLocalFinalVariableName {
       e.printStackTrace();
     }
   }
+
+  /** Some javadoc. */
+  void testFinalLocalVariables() {
+    // bad examples
+    final int a__ = 1; // violation 'Local final variable name 'a__' must match pattern'
+    final int a_b = 2; // violation 'Local final variable name 'a_b' must match pattern'
+    final int a22b_3 = 2; // violation 'Local final variable name 'a22b_3' must match pattern'
+    final int _a_b_1 = 4; // violation 'Local final variable name '_a_b_1' must match pattern'
+    final int guava2__1 = 3; // violation 'Local final variable name 'guava2__1' must match pattern'
+    final int guava_33_4_6 = 3;
+    // violation above 'Local final variable name 'guava_33_4_6' must match pattern'
+
+    // good examples
+    final int a = 1;
+    final int ab = 2;
+    final int a22b3 = 2;
+    final int ab1 = 4;
+    final int guava2_1 = 3;
+    final int guava33_4_6 = 3;
+  }
 }
