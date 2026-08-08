@@ -866,6 +866,7 @@
     <module name="RedundantModifier">
       <property name="jdkVersion" value="${checkstyle.java.version}"/>
     </module>
+    <module name="RedundantModifierCompactSource"/>
     <module name="AnnotatedDeclarationVisibility"/>
 
     <!-- Naming Conventions -->
