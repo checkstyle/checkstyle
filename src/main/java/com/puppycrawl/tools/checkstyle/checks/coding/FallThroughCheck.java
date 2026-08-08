@@ -49,7 +49,14 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  *
  * <p>
- * Note: The check assumes that there is no unreachable code in the {@code case}.
+ * Note:
+ * The check assumes that there is no unreachable code in the {@code case}.
+ * </p>
+ *
+ * <p>
+ *  A {@code case} whose code ends in an infinite loop is not flagged, e.g.
+ * {@code while (true) {}}, {@code for (;;) {}}, {@code for (;true;) {}}
+ * or {@code do {} while (true);}.
  * </p>
  *
  * @since 3.4
