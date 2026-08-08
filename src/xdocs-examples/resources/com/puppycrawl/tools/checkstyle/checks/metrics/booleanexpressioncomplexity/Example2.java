@@ -26,5 +26,27 @@ public class Example2
     // violation above 'Boolean expression complexity is 6 (max allowed is 5)'
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&) + 1(|) = 6
   }
+
+  public static boolean isType(int type)
+  {
+    return type == 1
+            || type == 2
+            || type == 3
+            || type == 4
+            || type == 5;
+  }
+
+  public static boolean isValid(boolean a, boolean b, boolean c, boolean d)
+  {
+    return a && b && c && d;
+  }
+
+  public static boolean isExpressionAsOne(boolean a, boolean b, boolean c,
+           boolean d, Object leftType, Object rightType)
+  {
+    return a && b && c &&
+            d && leftType != null && rightType != null;
+  }
+
 }
 // xdoc section - end
