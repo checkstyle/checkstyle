@@ -2,6 +2,7 @@
 BooleanExpressionComplexity
 max = 5
 tokens = BXOR,LAND,LOR
+treatUniformSimpleSequentialExpressionsAsOne = (default)false
 
 
 */

@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupport {
@@ -42,11 +43,11 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     public void test() throws Exception {
 
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "39:46: " + getCheckMessage(MSG_KEY, 4, 3),
-            "50:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "57:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "60:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "22:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "40:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "51:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "58:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "61:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(
@@ -74,15 +75,15 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void testWrongToken() {
         final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
-            new BooleanExpressionComplexityCheck();
+                new BooleanExpressionComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         final IllegalArgumentException exc =
                 getExpectedThrowable(IllegalArgumentException.class,
                         () -> booleanExpressionComplexityCheckObj.visitToken(ast));
         assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("Unknown type: interface[0x-1]");
+                .that(exc.getMessage())
+                .isEqualTo("Unknown type: interface[0x-1]");
     }
 
     @Test
@@ -100,10 +101,10 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final int max = 3;
 
         final String[] expected = {
-            "16:12: " + getCheckMessage(MSG_KEY, 4, max),
-            "25:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "37:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "48:27: " + getCheckMessage(MSG_KEY, 4, max),
+            "17:12: " + getCheckMessage(MSG_KEY, 4, max),
+            "26:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "38:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "49:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verifyWithInlineConfigParser(
@@ -119,6 +120,46 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexityLeaves.java"), expected);
+    }
+
+    @Test
+    public void testComplexityUniformChain() throws Exception {
+
+        final int max = 1;
+
+        final String[] expected = {
+            "32:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "37:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "42:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "48:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "54:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "59:9: " + getCheckMessage(MSG_KEY, 2, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChain.java"), expected);
+    }
+
+    @Test
+    public void testUniformChainOperators() throws Exception {
+
+        final int max = 1;
+
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "27:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "36:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "41:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "46:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "55:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "64:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "73:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "82:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "87:9: " + getCheckMessage(MSG_KEY, 2, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChainOperators.java"), expected);
     }
 
     @Test
@@ -146,6 +187,126 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
                 expected);
+    }
+
+    @Test
+    public void testExcludedNodeNesting() throws Exception {
+        final int max = 0;
+        final String[] expected = {
+            "18:25: " + getCheckMessage(MSG_KEY, 1, max),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityExcludedNodeNesting.java"),
+                expected);
+    }
+
+    @Test
+    public void testUniformChainCastTarget() throws Exception {
+        final int max = 1;
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY, 2, max),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChainCastTarget.java"), expected);
+    }
+
+    @Test
+    public void testUniformChainMissingRightOperandDoesNotThrow() throws Exception {
+        final DetailAstImpl land = new DetailAstImpl();
+        land.initialize(new CommonToken(TokenTypes.LAND, "&&"));
+        final DetailAstImpl operand = new DetailAstImpl();
+        operand.initialize(new CommonToken(TokenTypes.IDENT, "a"));
+        land.addChild(operand);
+        final boolean result = TestUtil.invokeStaticMethod(
+                BooleanExpressionComplexityCheck.class, "isUniformChain",
+                Boolean.class, land);
+        assertWithMessage("isUniformChain should safely return false for a boolean "
+                + "operator node missing its right operand, not throw")
+                .that(result)
+                .isFalse();
+    }
+
+    @Test
+    public void testUniformChainMissingRightOperandWithValidLeftChain() throws Exception {
+        final DetailAstImpl outerLand = new DetailAstImpl();
+        outerLand.initialize(new CommonToken(TokenTypes.LAND, "&&"));
+        final DetailAstImpl innerLand = new DetailAstImpl();
+        innerLand.initialize(new CommonToken(TokenTypes.LAND, "&&"));
+        final DetailAstImpl leafA = new DetailAstImpl();
+        leafA.initialize(new CommonToken(TokenTypes.IDENT, "a"));
+        final DetailAstImpl leafB = new DetailAstImpl();
+        leafB.initialize(new CommonToken(TokenTypes.IDENT, "b"));
+        innerLand.addChild(leafA);
+        innerLand.addChild(leafB);
+        outerLand.addChild(innerLand);
+        final boolean result = TestUtil.invokeStaticMethod(
+                BooleanExpressionComplexityCheck.class, "isUniformChain",
+                Boolean.class, outerLand);
+        assertWithMessage("isUniformChain should be false when the right operand is "
+                + "missing, even though the left operand alone forms a valid chain")
+                .that(result)
+                .isFalse();
+    }
+
+    @Test
+    public void testLeafKeyMissingLeftHandSideDoesNotThrow() throws Exception {
+        final DetailAstImpl equalNode = new DetailAstImpl();
+        equalNode.initialize(new CommonToken(TokenTypes.EQUAL, "=="));
+        final String result = TestUtil.invokeStaticMethod(
+                BooleanExpressionComplexityCheck.class, "leafKey",
+                String.class, equalNode);
+        assertWithMessage("leafKey should safely return null for a relational node "
+                + "missing its left-hand side, not throw")
+                .that(result)
+                .isNull();
+    }
+
+    @Test
+    public void testCanonicalTextMissingDotOperandsDoesNotThrow() throws Exception {
+        final DetailAstImpl dotNode = new DetailAstImpl();
+        dotNode.initialize(new CommonToken(TokenTypes.DOT, "."));
+        final String result = TestUtil.invokeStaticMethod(
+                BooleanExpressionComplexityCheck.class, "canonicalText",
+                String.class, dotNode);
+        assertWithMessage("canonicalText should safely return null for a DOT node "
+                + "missing both operands, not throw")
+                .that(result)
+                .isNull();
+    }
+
+    @Test
+    public void testCanonicalTextDotLeftTextNullOnly() throws Exception {
+        final DetailAstImpl dotNode = new DetailAstImpl();
+        dotNode.initialize(new CommonToken(TokenTypes.DOT, "."));
+        final DetailAstImpl unrecognizedLeft = new DetailAstImpl();
+        unrecognizedLeft.initialize(new CommonToken(TokenTypes.PLUS, "+"));
+        final DetailAstImpl rightIdent = new DetailAstImpl();
+        rightIdent.initialize(new CommonToken(TokenTypes.IDENT, "field"));
+        dotNode.addChild(unrecognizedLeft);
+        dotNode.addChild(rightIdent);
+        final String result = TestUtil.invokeStaticMethod(
+                BooleanExpressionComplexityCheck.class, "canonicalText",
+                String.class, dotNode);
+        assertWithMessage("canonicalText should return null when the left operand's "
+                + "shape is unrecognized, even though the right operand is present")
+                .that(result)
+                .isNull();
+    }
+
+    @Test
+    public void testCanonicalTextDotRightNullOnly() throws Exception {
+        final DetailAstImpl dotNode = new DetailAstImpl();
+        dotNode.initialize(new CommonToken(TokenTypes.DOT, "."));
+        final DetailAstImpl leftIdent = new DetailAstImpl();
+        leftIdent.initialize(new CommonToken(TokenTypes.IDENT, "obj"));
+        dotNode.addChild(leftIdent);
+        final String result = TestUtil.invokeStaticMethod(
+                BooleanExpressionComplexityCheck.class, "canonicalText",
+                String.class, dotNode);
+        assertWithMessage("canonicalText should return null when the right operand "
+                + "is missing, even though the left operand resolves fine")
+                .that(result)
+                .isNull();
     }
 
 }

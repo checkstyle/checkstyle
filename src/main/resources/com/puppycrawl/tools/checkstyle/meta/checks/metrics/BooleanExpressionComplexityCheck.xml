@@ -30,11 +30,16 @@
             <property default-value="3" name="max" type="int">
                <description>Specify the maximum number of boolean operations allowed in one expression.</description>
             </property>
-            <property default-value="LAND,BAND,LOR,BOR,BXOR"
+            <property default-value="BAND,LAND,LOR,BOR,BXOR"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
                <description>tokens to check</description>
+            </property>
+            <property default-value="false"
+                      name="treatUniformSimpleSequentialExpressionsAsOne"
+                      type="boolean">
+               <description>Control whether a flat, uniform chain of the same boolean operator counts as a single unit of complexity instead of one unit per operator.</description>
             </property>
          </properties>
          <message-keys>
