@@ -35,15 +35,25 @@ public class JavadocLeadingAsteriskAlignExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_KEY, 1, 2),
-            "18:5: " + getCheckMessage(MSG_KEY, 5, 4),
-            "28:3: " + getCheckMessage(MSG_KEY, 3, 4),
-            "29:3: " + getCheckMessage(MSG_KEY, 3, 4),
-            "39:1: " + getCheckMessage(MSG_KEY, 1, 4),
-            "50:5: " + getCheckMessage(MSG_KEY, 5, 6),
+            "13:1: " + getCheckMessage(MSG_KEY, 0, 1),
+            "18:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "28:3: " + getCheckMessage(MSG_KEY, 0, 1),
+            "29:3: " + getCheckMessage(MSG_KEY, 0, 1),
+            "39:1: " + getCheckMessage(MSG_KEY, -2, 1),
+            "50:5: " + getCheckMessage(MSG_KEY, 0, 1),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "25:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "26:4: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
 }
