@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck"
+             name="InappropriateJavadocBlockTagsOnPackage"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that Javadoc block tags for package definitions do not contain tags
+ that are semantically invalid for packages.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Package definitions do not have return types or throw declarations. Therefore,
+ &lt;code&gt;@return&lt;/code&gt; and &lt;code&gt;@throws&lt;/code&gt;/&lt;code&gt;@exception&lt;/code&gt; Javadoc block tags used
+ in their Javadoc comments are considered inappropriate and should be removed
+ or replaced with proper documentation.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Parent is &lt;code&gt;com.puppycrawl.tools.checkstyle.TreeWalker&lt;/code&gt;
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Violation Message Keys:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;javadoc.inappropriate.tag&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="violateExecutionOnNonTightHtml"
+                      type="boolean">
+               <description>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.inappropriate.tag"/>
+            <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.unclosedHtml"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

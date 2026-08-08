@@ -22,6 +22,17 @@
           </tr>
           <tr>
             <td>
+              <a href="inappropriatejavadocblocktagsonpackage.html#InappropriateJavadocBlockTagsOnPackage">
+                InappropriateJavadocBlockTagsOnPackage
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for package definitions do not contain tags that are
+              semantically invalid for packages.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="invalidjavadocposition.html#InvalidJavadocPosition">
                 InvalidJavadocPosition
               </a>
