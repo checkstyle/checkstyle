@@ -44,7 +44,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores is:
+          followed by at least 7 letters or digits is:
         </p>
         <macro name="example">
           <param name="path"
