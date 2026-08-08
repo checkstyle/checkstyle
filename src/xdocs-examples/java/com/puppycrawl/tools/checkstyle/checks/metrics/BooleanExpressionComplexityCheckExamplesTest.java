@@ -61,4 +61,14 @@ public class BooleanExpressionComplexityCheckExamplesTest
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:15: " + getCheckMessage(MSG_KEY, 5, 3),
+            "25:15: " + getCheckMessage(MSG_KEY, 6, 3),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }

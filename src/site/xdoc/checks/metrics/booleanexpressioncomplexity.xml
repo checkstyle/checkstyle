@@ -51,6 +51,13 @@
               <td>3.4</td>
             </tr>
             <tr>
+              <td><a id="treatUniformSimpleSequentialExpressionsAsOne"/><a href="#treatUniformSimpleSequentialExpressionsAsOne">treatUniformSimpleSequentialExpressionsAsOne</a></td>
+              <td>Control whether a flat, uniform chain of the same boolean operator counts as a single unit of complexity instead of one unit per operator.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -178,6 +185,40 @@ public class Example3
 
     boolean e = a ^ (a || b) ^ (b || a) &amp; (a | b);
     // violation above 'Boolean expression complexity is 4 (max allowed is 3)'
+    // 1(^) + 1(||) + 1(^) + 1(||) = 4, &amp; and | are ignored here
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check so that a uniform, simple, sequential chain of the
+          same boolean operator (e.g. <code>a &amp;&amp; b &amp;&amp; c</code>) counts
+          as a single unit of complexity instead of one unit per operator:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="BooleanExpressionComplexity"&gt;
+      &lt;property name="treatUniformSimpleSequentialExpressionsAsOne" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4
+{
+  public static void main(String ... args)
+  {
+    boolean a = true;
+    boolean b = false;
+
+    boolean c = (a &amp; b) | (b ^ a); // ok, 1(^) = 1 (max allowed 3)
+
+    boolean d = (a &amp; b) | (b ^ a) | (a ^ b);
+    // violation above 'Boolean expression complexity is 5 (max allowed is 3)'
+
+    boolean e = a ^ (a || b) ^ (b || a) &amp; (a | b);
+    // violation above 'Boolean expression complexity is 6 (max allowed is 3)'
     // 1(^) + 1(||) + 1(^) + 1(||) = 4, &amp; and | are ignored here
   }
 }
