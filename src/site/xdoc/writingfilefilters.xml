@@ -17,6 +17,22 @@
     </section>
 
     <section name="Overview">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#Writing_Before_Execution_File_Filters">
+              Writing Before Execution File Filters</a></li>
+            <li><a href="#Using_Before_Execution_File_Filters">
+              Using Before Execution File Filters</a></li>
+            <li><a href="#Huh.3F_I_can.27t_figure_it_out.21">Huh? I can't figure it out!</a></li>
+            <li><a href="#Contributing">Contributing</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         A <code>Checker</code> has a set of <code>BeforeExecutionFileFilter</code>s that decide
         which files the <code>Checker</code> processes.  Interface

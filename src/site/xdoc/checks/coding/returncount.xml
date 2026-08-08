@@ -8,6 +8,32 @@
   <body>
     <section name="ReturnCount">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ReturnCount_Description">Description</a></li>
+          <li><a href="#ReturnCount_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ReturnCount_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">So that it doesn't allow more than three return statements per method (ignoring the <code>equals()</code> method)</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it doesn't allow any return statements per void method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it doesn't allow more than 2 return statements per method (ignoring the <code>equals()</code> method) and more than 1 return statements per void method</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it doesn't allow more than three return statements per method for all methods</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">So that it doesn't allow any return statements in constructors, more than one return statement in all lambda expressions and more than two return statements in methods</a></li>
+            </ul>
+          </li>
+          <li><a href="#ReturnCount_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ReturnCount_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ReturnCount_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ReturnCount_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ReturnCount_Description">
         <div>
           Restricts the number of return statements in methods, constructors and lambda expressions.

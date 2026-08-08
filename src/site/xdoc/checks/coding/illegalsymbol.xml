@@ -8,6 +8,38 @@
   <body>
     <section name="IllegalSymbol">
       <p>Since Checkstyle 13.4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalSymbol_Description">Description</a></li>
+          <li><a href="#IllegalSymbol_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalSymbol_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Forbid emoji ranges</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For ASCII-only mode</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#IllegalSymbol_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">For ASCII-only mode</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">For ASCII-only mode</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalSymbol_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalSymbol_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalSymbol_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalSymbol_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalSymbol_Description">
         <div>
           Checks that specified symbols (by Unicode code points or ranges) are not used in code.

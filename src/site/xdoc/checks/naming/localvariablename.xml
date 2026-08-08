@@ -8,6 +8,37 @@
   <body>
     <section name="LocalVariableName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#LocalVariableName_Description">Description</a></li>
+          <li><a href="#LocalVariableName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LocalVariableName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores is</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to allow one character variable name in initialization expressions in FOR loop, where regexp allows 2 or more chars</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LocalVariableName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase2-config" class="toc-sublink">An example of how to configure the check to that all variables have 3 or more chars in name</a></li>
+            </ul>
+          </li>
+          <li><a href="#LocalVariableName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#LocalVariableName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#LocalVariableName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#LocalVariableName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="LocalVariableName_Description">
         <div>
           Checks that local, non-<code>final</code> variable names conform to a specified pattern.

@@ -9,6 +9,36 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
       <p>Since Checkstyle 5.7</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWarningsHolder_Description">Description</a></li>
+          <li><a href="#SuppressWarningsHolder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWarningsHolder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">To use default module configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">If <code>aliasList</code> property was provided you can use your own names e.g. below code will work if there was provided a <code> com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramcounter</code> in the <code>aliasList</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressWarningsHolder_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">You can also use simple check name like <code>ParameterNumberCheck=paramcounter</code> instead to use fully qualified name of check in the <code>aliasList</code></a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">The check can also be used without suffix of &quot;Check&quot; like <code>ParameterNumber=paramcounter</code> in the <code>aliasList</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWarningsHolder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWarningsHolder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWarningsHolder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressWarningsHolder_Description">
         <div>
           Maintains a set of check suppressions from <code>@SuppressWarnings</code> annotations.
