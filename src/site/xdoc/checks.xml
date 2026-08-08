@@ -628,6 +628,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/illegalblocktag.html#IllegalBlockTag">
+                IllegalBlockTag
+              </a>
+            </td>
+            <td>
+              Detects a user-defined Javadoc block tag and reports a violation when the tag is
+              present with text that does not match <code>tagTextPattern</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/illegalcatch.html#IllegalCatch">
                 IllegalCatch
               </a>
