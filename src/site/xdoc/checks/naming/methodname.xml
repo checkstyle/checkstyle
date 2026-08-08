@@ -101,13 +101,13 @@ class Example1 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores is:
+          followed by at least 7 letters or digits is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+       &lt;property name="format" value="^[a-z][a-zA-Z0-9]{7,}$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -115,10 +115,10 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  public void method1() {}
+  public void method1() {}    // violation 'Name 'method1' must match pattern'
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
-  private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Example3() {} // violation 'Name 'Example3' must match pattern'
+  private void Method3() {}   // violation 'Name 'Method3' must match pattern'
+  public void Example3() {}   // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
