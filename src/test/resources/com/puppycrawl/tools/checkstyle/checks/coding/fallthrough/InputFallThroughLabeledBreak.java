@@ -85,7 +85,7 @@ public class InputFallThroughLabeledBreak {
                     while (true) {
                         continue loop_inner;
                     }
-                case 10:  // violation 'Fall through from previous branch of the switch statement.'
+                case 10:
                     inner1:
                     {
                         switch (a) {
