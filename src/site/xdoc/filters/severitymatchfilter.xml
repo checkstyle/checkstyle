@@ -20,7 +20,9 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SeverityMatchFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">Ignore audit events with severity level <code>info</code></a></li>
+              <li><a href="#Example1-config" class="toc-sublink">The default configuration accepts only audit events with severity level <code>error</code> and filters out all other severity levels</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">To reject only audit events with severity level <code>info</code> and accept all other severity levels, use the following configuration</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">To accept only audit events with severity level <code>info</code> and filter out all other severity levels, set the <code>severity</code> property and keep the default value of <code>acceptOnMatch</code></a></li>
             </ul>
           </li>
           <li><a href="#SeverityMatchFilter_Example_of_Usage">Example of Usage</a></li>
@@ -79,7 +81,35 @@
       </subsection>
       <subsection name="Examples" id="SeverityMatchFilter_Examples">
         <p id="Example1-config">
-          Ignore audit events with severity level <code>info</code>:
+          The default configuration accepts only audit events with severity
+          level <code>error</code> and filters out all other severity levels:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="severity" value="info"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SeverityMatchFilter"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+            Example code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  // filtered violation below 'must match pattern'
+  public void method1(int V1){} // ok, ParameterName's severity is info
+
+  public void Method2(){} // violation, MethodName's severity is defaulted to error
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+          To reject only audit events with severity level <code>info</code>
+          and accept all other severity levels, use the following configuration:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -95,15 +125,45 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">
+        <p id="Example2-code">
             Example code:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+public class Example2 {
   // filtered violation below 'must match pattern'
   public void method1(int V1){} // ok, ParameterName's severity is info
 
   public void Method2(){} // violation, MethodName's severity is defaulted to error
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To accept only audit events with severity level <code>info</code>
+          and filter out all other severity levels, set the <code>severity</code>
+          property and keep the default value of <code>acceptOnMatch</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="severity" value="info"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SeverityMatchFilter"&gt;
+    &lt;property name="severity" value="info"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+            Example code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+
+  public void method1(int V1){} // violation, ParameterName's severity is info
+  // filtered violation below 'must match pattern'
+  public void Method2(){} // ok, MethodName's severity is defaulted to error
 }
 </code></pre></div>
       </subsection>

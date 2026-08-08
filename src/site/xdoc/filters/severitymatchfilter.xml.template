@@ -37,7 +37,8 @@
       </subsection>
       <subsection name="Examples" id="SeverityMatchFilter_Examples">
         <p id="Example1-config">
-          Ignore audit events with severity level <code>info</code>:
+          The default configuration accepts only audit events with severity
+          level <code>error</code> and filters out all other severity levels:
         </p>
         <macro name="example">
           <param name="path"
@@ -50,6 +51,43 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+          To reject only audit events with severity level <code>info</code>
+          and accept all other severity levels, use the following configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+            Example code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To accept only audit events with severity level <code>info</code>
+          and filter out all other severity levels, set the <code>severity</code>
+          property and keep the default value of <code>acceptOnMatch</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">
+            Example code:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/severitymatchfilter/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
