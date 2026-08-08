@@ -449,4 +449,26 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testFallThroughInfiniteLoop() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughInfiniteLoop.java"), expected);
+    }
+
+    @Test
+    public void testFallThroughFiniteLoop() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "25:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "33:13: " + getCheckMessage(MSG_FALL_THROUGH),
+            "39:13: " + getCheckMessage(MSG_FALL_THROUGH),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputFallThroughFiniteLoop.java"), expected);
+    }
+
 }

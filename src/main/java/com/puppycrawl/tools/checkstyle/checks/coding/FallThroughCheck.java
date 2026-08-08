@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -49,7 +50,13 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  *
  * <p>
- * Note: The check assumes that there is no unreachable code in the {@code case}.
+ * Note:
+ * <ul>
+ * <li>The check assumes that there is no unreachable code in the {@code case}.</li>
+ * <li>A {@code case} whose code ends in an infinite loop is not flagged, e.g.
+ * {@code while (true) {}}, {@code for (;;) {}}, {@code for (;true;) {}}
+ * or {@code do {} while (true);}.</li>
+ * </ul>
  * </p>
  *
  * @since 3.4
@@ -134,7 +141,8 @@ public class FallThroughCheck extends AbstractCheck {
         if (!isLastGroup || checkLastCaseGroup) {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-            if (slist != null && !CheckUtil.isTerminated(slist) && !hasFallThroughComment(ast)) {
+            if (slist != null && !CheckUtil.isTerminated(slist)
+                    && !hasFallThroughComment(ast) && !hasInfiniteLoop(slist)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -202,6 +210,73 @@ public class FallThroughCheck extends AbstractCheck {
                     .anyMatch(firstChild -> reliefPattern.matcher(firstChild.getText()).find());
         }
         return result;
+    }
+
+    /**
+     * Checks if the case group's statement list contains an infinite loop.
+     *
+     * @param slist the statement list to check
+     * @return true if an infinite loop is found
+     */
+    private static boolean hasInfiniteLoop(DetailAST slist) {
+        boolean hasInfiniteLoop = false;
+        for (DetailAST child = slist.getFirstChild();
+             child != null; child = child.getNextSibling()) {
+            switch (child.getType()) {
+                case TokenTypes.LITERAL_FOR ->
+                    hasInfiniteLoop = checkForLoop(child);
+                case TokenTypes.LITERAL_WHILE ->
+                    hasInfiniteLoop = checkWhileCondition(child);
+                case TokenTypes.LITERAL_DO -> {
+                    final DetailAST lparen =
+                        NullUtil.notNull(child.findFirstToken(TokenTypes.LPAREN));
+                    hasInfiniteLoop = checkWhileCondition(lparen);
+                }
+                default -> {
+                    // do nothing
+                }
+            }
+        }
+        return hasInfiniteLoop;
+    }
+
+    /**
+     * Checks if a for loop is infinite (empty or {@code true} condition).
+     *
+     * @param forLoop the for loop to check
+     * @return true if the for loop is infinite
+     */
+    private static boolean checkForLoop(DetailAST forLoop) {
+        boolean isInfiniteLoop = false;
+        if (forLoop.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
+            final DetailAST condition =
+                    NullUtil.notNull(forLoop.findFirstToken(TokenTypes.FOR_CONDITION));
+            DetailAST child = condition.getFirstChild();
+            if (child != null) {
+                // EXPR node always has child
+                child = NullUtil.notNull(child.getFirstChild());
+            }
+            isInfiniteLoop = child == null || child.getType() == TokenTypes.LITERAL_TRUE;
+        }
+        return isInfiniteLoop;
+    }
+
+    /**
+     * Checks if a while/do-while loop's condition is literal {@code true}.
+     *
+     * @param loop the while loop, or the do-while's LPAREN token
+     * @return true if the condition is {@code true}
+     */
+    private static boolean checkWhileCondition(DetailAST loop) {
+        final DetailAST expression;
+        if (loop.getType() == TokenTypes.LITERAL_WHILE) {
+            expression = NullUtil.notNull(loop.findFirstToken(TokenTypes.EXPR));
+        }
+        else {
+            expression = NullUtil.notNull(loop.getNextSibling());
+        }
+        final DetailAST firstChild = NullUtil.notNull(expression.getFirstChild());
+        return firstChild.getType() == TokenTypes.LITERAL_TRUE;
     }
 
 }
