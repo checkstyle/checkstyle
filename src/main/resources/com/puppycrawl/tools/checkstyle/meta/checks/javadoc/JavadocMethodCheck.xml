@@ -87,6 +87,11 @@
                       type="java.lang.String[]">
                <description>Specify annotations that allow missed documentation.</description>
             </property>
+            <property default-value="false"
+                      name="ignoreMethodsWithImplementation"
+                      type="boolean">
+               <description>Control whether to ignore Javadoc requirements for methods with an implementation.</description>
+            </property>
             <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"

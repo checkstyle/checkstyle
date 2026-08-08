@@ -167,6 +167,9 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      */
     private boolean allowInlineReturn;
 
+    /** Control whether to ignore Javadoc requirements for methods with an implementation. */
+    private boolean ignoreMethodsWithImplementation;
+
     /** Specify the access modifiers where Javadoc comments are checked. */
     private AccessModifierOption[] accessModifiers = {
         AccessModifierOption.PUBLIC,
@@ -213,6 +216,17 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      */
     public void setAllowInlineReturn(boolean value) {
         allowInlineReturn = value;
+    }
+
+    /**
+     * Setter to control whether to ignore Javadoc requirements for methods
+     * with an implementation.
+     *
+     * @param value user's value.
+     * @since 13.10.0
+     */
+    public void setIgnoreMethodsWithImplementation(boolean value) {
+        ignoreMethodsWithImplementation = value;
     }
 
     /**
@@ -305,13 +319,26 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
 
     @Override
     public final void visitToken(DetailAST ast) {
-        if (shouldCheck(ast)) {
+        if (shouldCheck(ast) && !shouldIgnoreMethod(ast)) {
             final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
             if (blockCommentNode != null) {
                 currentAst = ast;
                 super.visitToken(blockCommentNode);
             }
         }
+    }
+
+    /**
+     * Checks whether the method has an implementation whose Javadoc requirements
+     * should be ignored.
+     *
+     * @param ast the declaration to check
+     * @return {@code true} when the method should be ignored
+     */
+    private boolean shouldIgnoreMethod(DetailAST ast) {
+        return ignoreMethodsWithImplementation
+                && ast.getType() == TokenTypes.METHOD_DEF
+                && ast.findFirstToken(TokenTypes.SLIST) != null;
     }
 
     @Override

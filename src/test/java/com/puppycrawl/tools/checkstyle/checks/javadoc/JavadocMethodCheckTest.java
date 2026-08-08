@@ -614,6 +614,17 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIgnoreMethodsWithImplementation() throws Exception {
+        final String[] expected = {
+            "24:41: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "27:45: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+            "32:33: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocMethodIgnoreMethodsWithImplementation.java"), expected);
+    }
+
+    @Test
     public void testJavadocMethodBlockComment() throws Exception {
         final String[] expected = {
             "29: " + getCheckMessage(MSG_RETURN_EXPECTED),
