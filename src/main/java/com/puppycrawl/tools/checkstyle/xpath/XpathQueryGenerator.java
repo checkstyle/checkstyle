@@ -379,8 +379,31 @@ public class XpathQueryGenerator {
             case '\'' -> "&apos;&apos;";
             case '\"' -> "&quot;";
             case '&' -> "&amp;";
-            default -> String.valueOf(chr);
+            default -> encodeControlCharacter(chr);
         };
+    }
+
+    /**
+     * Renders control characters that are illegal in XML 1.0 as a {@code #x}-prefixed
+     * hexadecimal escape so the value stays well-formed when written into an XML attribute,
+     * mirroring
+     * {@link com.puppycrawl.tools.checkstyle.XMLLogger#encode}. Tab is legal in XML 1.0 and
+     * kept as is. Line feed and carriage return never reach here as they are already replaced
+     * with the literal {@code \n} and {@code \r} text earlier by
+     * {@link XpathUtil#getTextAttributeValue}.
+     *
+     * @param chr the character to render.
+     * @return the rendered character.
+     */
+    private static String encodeControlCharacter(char chr) {
+        final String result;
+        if (chr != '\t' && Character.isISOControl(chr)) {
+            result = "#x" + Integer.toHexString(chr) + ";";
+        }
+        else {
+            result = String.valueOf(chr);
+        }
+        return result;
     }
 
 }
