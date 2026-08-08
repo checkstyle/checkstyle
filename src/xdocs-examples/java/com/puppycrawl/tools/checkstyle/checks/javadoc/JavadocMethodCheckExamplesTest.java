@@ -124,4 +124,12 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+            "18:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+        };
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+    }
+
 }
