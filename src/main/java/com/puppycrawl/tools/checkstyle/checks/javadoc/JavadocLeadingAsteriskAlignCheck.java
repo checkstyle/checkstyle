@@ -34,7 +34,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks the alignment of
  * <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
  * leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
- * are aligned vertically under the first asterisk ( &#42; )
+ * are aligned vertically at the number of columns to the right of the slash ( / ) of the
+ * opening Javadoc tag that is specified by the {@code indentation} property. By default
+ * they are aligned under the first asterisk ( &#42; )
  * of opening Javadoc tag. The alignment of closing Javadoc tag ( &#42;/ ) is also checked.
  * If a closing Javadoc tag contains non-whitespace character before it
  * then it's alignment will be ignored.
@@ -58,20 +60,43 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_KEY = "javadoc.asterisk.indentation";
 
+    /** Default indentation of leading asterisks. */
+    private static final int DEFAULT_INDENTATION = 1;
+
     /** Specifies the line number of starting block of the javadoc comment. */
     private int javadocStartLineNumber;
 
-    /** Specifies the column number of starting block of the javadoc comment with tabs expanded. */
+    /** Specifies the column number of the slash of the opening javadoc tag with tabs expanded. */
+    private int javadocStartColumnNumberTabsExpanded;
+
+    /** Specifies the expected column number of leading asterisks with tabs expanded. */
     private int expectedColumnNumberTabsExpanded;
 
     /** Specifies the lines of the file being processed. */
     private String[] fileLines;
 
     /**
+     * Specify the number of columns between the slash ( / ) of the opening javadoc tag
+     * and the leading asterisks.
+     */
+    private int indentation = DEFAULT_INDENTATION;
+
+    /**
      * Creates a new {@code JavadocLeadingAsteriskAlignCheck} instance.
      */
     public JavadocLeadingAsteriskAlignCheck() {
         // no code by default
+    }
+
+    /**
+     * Setter to specify the number of columns between the slash ( / ) of the opening
+     * javadoc tag and the leading asterisks.
+     *
+     * @param indentation number of columns
+     * @since 13.11.0
+     */
+    public void setIndentation(int indentation) {
+        this.indentation = indentation;
     }
 
     @Override
@@ -89,17 +114,19 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
     @Override
     public void beginJavadocTree(DetailNode rootAst) {
-        // this method processes and sets information of starting javadoc tag.
         fileLines = getLines();
         final String startLine = fileLines[rootAst.getLineNumber() - 1];
         javadocStartLineNumber = rootAst.getLineNumber();
-        expectedColumnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
+        javadocStartColumnNumberTabsExpanded = 1 + CommonUtil.lengthExpandedTabs(
+            startLine, getBlockCommentAst().getColumnNo(), getTabWidth());
+        final int defaultColumnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
             startLine, rootAst.getColumnNumber() - 1, getTabWidth());
+        expectedColumnNumberTabsExpanded =
+            defaultColumnNumberTabsExpanded + indentation - DEFAULT_INDENTATION;
     }
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        // this method checks the alignment of leading asterisks.
         final boolean isJavadocOpeningLine = ast.getLineNumber() == javadocStartLineNumber;
 
         if (isJavadocOpeningLine) {
@@ -115,14 +142,14 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
             final int columnNumberTabsExpanded = getColumnNumberTabsExpanded(ast);
 
             if (!hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
-                log(ast, MSG_KEY, columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+                log(ast, MSG_KEY, getIndentationLevel(columnNumberTabsExpanded),
+                        getIndentationLevel(expectedColumnNumberTabsExpanded));
             }
         }
     }
 
     @Override
     public void finishJavadocTree(DetailNode rootAst) {
-        // this method checks the alignment of closing javadoc tag.
         final DetailAST javadocEndToken = getBlockCommentAst().getLastChild();
         final String lastLine = fileLines[javadocEndToken.getLineNo() - 1];
         final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
@@ -132,11 +159,11 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
                 .ifPresent(columnNumber -> {
                     final int columnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
                             lastLine, columnNumber, getTabWidth());
-
                     if (!hasValidAlignment(
                             expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
                         log(javadocEndToken, MSG_KEY,
-                                columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+                                getIndentationLevel(columnNumberTabsExpanded),
+                                getIndentationLevel(expectedColumnNumberTabsExpanded));
                     }
                 });
     }
@@ -172,6 +199,18 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
                 fileLines[ast.getLineNumber() - 1],
                 ast.getColumnNumber(),
                 getTabWidth());
+    }
+
+    /**
+     * Converts a tab-expanded column number into an indentation level, which is
+     * the number of columns between the slash ( / ) of the opening javadoc tag
+     * and the given column.
+     *
+     * @param columnNumberTabsExpanded tab-expanded column number
+     * @return indentation level
+     */
+    private int getIndentationLevel(int columnNumberTabsExpanded) {
+        return columnNumberTabsExpanded - javadocStartColumnNumberTabsExpanded;
     }
 
     /**
