@@ -109,8 +109,8 @@
         </macro><hr class="example-separator"/>
         <p id="Example6-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores. Also, suppress the check from being
-          applied to package-private type:
+          followed by letters, digits, and underscores. Also, restrict the check to only apply
+          to enum definitions:
         </p>
         <macro name="example">
           <param name="path"
