@@ -661,6 +661,7 @@ javadocblocktaglocation
 javadoccontentlocation
 javadocdetailnodeparser
 javadocleadingasteriskalign
+javadoclinkfirstoccurrence
 javadocmethod
 javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
