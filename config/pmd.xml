@@ -563,6 +563,9 @@
                                             or @Name='setJavadocTokens']
                       | //ClassDeclaration[@SimpleName='WriteTagCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      | //ClassDeclaration[@SimpleName='InappropriateJavadocBlockTagsOnFieldCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
+                                            or @Name='setJavadocTokens']
                       | //ClassDeclaration[@SimpleName='JavadocTypeCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
