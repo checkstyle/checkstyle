@@ -153,7 +153,7 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Modules with no example demonstrating the default configuration. Most require
      * at least one property to be meaningful; others are documentation gaps.
-     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/XXXX">...</a>
+     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21137">...</a>
      */
     private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
             "checks/coding/matchxpath",
