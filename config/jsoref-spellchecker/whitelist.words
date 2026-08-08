@@ -616,6 +616,7 @@ importnolinewrap
 importorder
 importrule
 imprt
+inappropriatejavadocblocktagsonfield
 Incompatabilities
 indentcontinuationlines
 Inet
@@ -891,6 +892,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
