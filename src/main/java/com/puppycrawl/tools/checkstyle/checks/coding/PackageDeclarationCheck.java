@@ -71,6 +71,12 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      */
     private boolean isCompactSourceFile;
 
+    /**
+     * Whether the file is a modular compilation unit, which consists of a
+     * module declaration and cannot declare a package.
+     */
+    private boolean isModularCompilationUnit;
+
     /** Control whether to check for directory and package name match. */
     private boolean matchDirectoryStructure = true;
 
@@ -111,11 +117,13 @@ public final class PackageDeclarationCheck extends AbstractCheck {
         defined = false;
         isCompactSourceFile = ast != null
                 && ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
+        isModularCompilationUnit = ast != null
+                && ast.findFirstToken(TokenTypes.MODULE_DEF) != null;
     }
 
     @Override
     public void finishTree(DetailAST ast) {
-        if (!defined && !isCompactSourceFile && ast != null) {
+        if (!defined && !isCompactSourceFile && !isModularCompilationUnit && ast != null) {
             log(ast, MSG_KEY_MISSING);
         }
     }
