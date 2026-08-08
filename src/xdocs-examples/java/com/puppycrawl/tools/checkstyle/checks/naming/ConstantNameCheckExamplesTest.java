@@ -65,9 +65,9 @@ public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "20:20: " + getCheckMessage(MSG_INVALID_PATTERN, "third_Constant3", DEFAULT_PATTERN),
-            "21:28: " + getCheckMessage(MSG_INVALID_PATTERN, "fourth_Const4", DEFAULT_PATTERN),
-            "24:20: " + getCheckMessage(MSG_INVALID_PATTERN, "loggerMYSELF", DEFAULT_PATTERN),
+            "18:20: " + getCheckMessage(MSG_INVALID_PATTERN, "third_Constant3", DEFAULT_PATTERN),
+            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "fourth_Const4", DEFAULT_PATTERN),
+            "22:20: " + getCheckMessage(MSG_INVALID_PATTERN, "loggerMYSELF", DEFAULT_PATTERN),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
