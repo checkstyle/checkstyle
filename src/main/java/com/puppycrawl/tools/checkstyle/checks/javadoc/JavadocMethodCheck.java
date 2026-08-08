@@ -167,6 +167,9 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      */
     private boolean allowInlineReturn;
 
+    /** Control whether to ignore Javadoc requirements for methods with an implementation. */
+    private boolean ignoreMethodsWithImplementation;
+
     /** Specify the access modifiers where Javadoc comments are checked. */
     private AccessModifierOption[] accessModifiers = {
         AccessModifierOption.PUBLIC,
@@ -213,6 +216,17 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
      */
     public void setAllowInlineReturn(boolean value) {
         allowInlineReturn = value;
+    }
+
+    /**
+     * Setter to control whether to ignore Javadoc requirements for methods
+     * with an implementation.
+     *
+     * @param value user's value.
+     * @since 13.10.0
+     */
+    public void setIgnoreMethodsWithImplementation(boolean value) {
+        ignoreMethodsWithImplementation = value;
     }
 
     /**
@@ -312,6 +326,19 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                 super.visitToken(blockCommentNode);
             }
         }
+    }
+
+    /**
+     * Checks whether the method has an implementation whose Javadoc requirements
+     * should be ignored.
+     *
+     * @param ast the declaration to check
+     * @return {@code true} when the method should be ignored
+     */
+    private boolean shouldIgnoreMethod(DetailAST ast) {
+        return ignoreMethodsWithImplementation
+                && ast.getType() == TokenTypes.METHOD_DEF
+                && ast.findFirstToken(TokenTypes.SLIST) != null;
     }
 
     @Override
@@ -444,22 +471,28 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
     /**
      * Checks whether the given declaration should be validated.
      *
-     * <p>The declaration is checked only when both its own access modifier and the
-     * access modifier of the surrounding type match the configured
+     * <p>The declaration is checked only when it is not ignored by
+     * {@code ignoreMethodsWithImplementation}, and both its own access modifier
+     * and the access modifier of the surrounding type match the configured
      * {@code accessModifiers}.</p>
      *
      * @param ast the method, constructor, annotation field, or compact constructor
      *        AST node to check
-     * @return {@code true} if the declaration is inside the configured access scope
+     * @return {@code true} if the declaration should be checked
      */
     private boolean shouldCheck(final DetailAST ast) {
-        final Optional<AccessModifierOption> surroundingAccessModifier = CheckUtil
-                .getSurroundingAccessModifier(ast);
-        final AccessModifierOption accessModifier = CheckUtil
-                .getAccessModifierFromModifiersToken(ast);
-        return surroundingAccessModifier.isPresent() && Arrays.stream(accessModifiers)
-                        .anyMatch(modifier -> modifier == surroundingAccessModifier.get())
-                && Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
+        boolean result = !shouldIgnoreMethod(ast);
+        if (result) {
+            final Optional<AccessModifierOption> surroundingAccessModifier = CheckUtil
+                    .getSurroundingAccessModifier(ast);
+            final AccessModifierOption accessModifier = CheckUtil
+                    .getAccessModifierFromModifiersToken(ast);
+            result = surroundingAccessModifier.isPresent() && Arrays.stream(accessModifiers)
+                            .anyMatch(modifier -> modifier == surroundingAccessModifier.get())
+                    && Arrays.stream(accessModifiers)
+                            .anyMatch(modifier -> modifier == accessModifier);
+        }
+        return result;
     }
 
     /**
