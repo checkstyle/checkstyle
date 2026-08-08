@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.util.regex.Pattern;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -338,6 +340,17 @@ public class SuppressFilterElementTest {
 
         assertWithMessage("Path with backslash should match regex with backslash")
                 .that(testFilter.accept(event))
+                .isFalse();
+    }
+
+    @Test
+    public void testMatchNormalizedPathIfRequiredWhenIdentical() {
+        final Pattern pattern = Pattern.compile("MyClass\\.java");
+        final boolean match = SuppressFilterElement.matchNormalizedPathIfRequired(
+                pattern, "MyClass.java");
+
+        assertWithMessage("matchNormalizedPathIfRequired should return false when unchanged")
+                .that(match)
                 .isFalse();
     }
 
