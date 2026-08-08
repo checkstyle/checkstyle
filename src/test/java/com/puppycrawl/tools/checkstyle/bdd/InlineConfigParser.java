@@ -344,7 +344,6 @@ public final class InlineConfigParser {
                     + "InputUnusedLocalVariablePatternVariablesCondition2.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
             "checks/imports/avoidstarimport/InputAvoidStarImportExcludes.java",
-            "checks/imports/importorder/Example10.java",
             "checks/sizes/recordcomponentnumber/Example1.java",
             "checks/sizes/recordcomponentnumber/Example2.java",
             "checks/whitespace/separatorwrap/Example1.java",
