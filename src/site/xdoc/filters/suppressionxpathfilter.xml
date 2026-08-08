@@ -8,6 +8,48 @@
   <body>
     <section name="SuppressionXpathFilter">
       <p>Since Checkstyle 8.6</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressionXpathFilter_Description">Description</a></li>
+          <li><a href="#SuppressionXpathFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionXpathFilter_Examples">Examples</a><span class="toc-sub-arrow"></span></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">For example #1, the following configuration demonstrates the <code>optional</code> property. The <code>file</code> property points to a non-existent suppressions file and <code>optional</code> is set to <code>true</code>, so suppressions are skipped and violations are reported</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For example #2, the following configuration demonstrates the <code>optional</code> property set to <code>false</code>. The <code>file</code> property points to a suppressions file that exists but does not suppress the violation, so violations are reported</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For example #3, the following configuration demonstrates the <code>optional</code> property set to <code>false</code>. The <code>file</code> property points to a suppressions file that exists but does not suppress the violation, so violations are reported</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressionXpathFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"></span></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">For UseCase #1, to configure the check</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">For UseCase #2, to configure the check</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">For UseCase #3, to configure the check</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">For UseCase #4, to configure the check</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">For UseCase #5, to configure the check</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">For UseCase #6, to configure the check</a></li>
+              <li><a href="#UseCase7-config" class="toc-sublink">For UseCase #7, to configure the check</a></li>
+              <li><a href="#UseCase8-config" class="toc-sublink">For UseCase #8, to configure the check</a></li>
+              <li><a href="#UseCase9-config" class="toc-sublink">For UseCase #9, to configure the check</a></li>
+              <li><a href="#UseCase10-config" class="toc-sublink">For UseCase #10, to configure the check</a></li>
+              <li><a href="#UseCase11-config" class="toc-sublink">For UseCase #11, to configure the check</a></li>
+              <li><a href="#UseCase12-config" class="toc-sublink">For UseCase #12, to configure the check</a></li>
+              <li><a href="#UseCase13-config" class="toc-sublink">For UseCase #13, to configure the check</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionXpathFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressionXpathFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressionXpathFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressionXpathFilter_Description">
         <div>
           Filter <code>SuppressionXpathFilter</code> works as
