@@ -36,6 +36,11 @@
                       validation-type="tokenSet">
                <description>tokens to check</description>
             </property>
+            <property default-value="false"
+                      name="treatUniformSimpleSequentialExpressionsAsOne"
+                      type="boolean">
+               <description>Control whether a flat, uniform chain of the same boolean operator counts as a single unit of complexity instead of one unit per operator.</description>
+            </property>
          </properties>
          <message-keys>
             <message-key key="booleanExpressionComplexity"/>
