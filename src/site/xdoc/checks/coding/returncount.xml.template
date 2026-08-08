@@ -29,9 +29,7 @@
 
       <subsection name="Examples" id="ReturnCount_Examples">
         <p id="Example1-config">
-          To configure the check so that it doesn't allow more than three
-          return statements per method (ignoring the <code>equals()</code>
-          method):
+          To configure the check:
         </p>
         <macro name="example">
           <param name="path"
