@@ -368,7 +368,8 @@ public class MainTest {
             + "[ERROR] ";
         final String expectedOutputEnd = addEndOfLine(
                 "InputMainCustomSeverityForGoogleConfig.java:3:1:"
-                    + " Missing a Javadoc comment. [MissingJavadocType]",
+                    + " Missing a Javadoc comment for 'InputMainCustomSeverityForGoogleConfig'."
+                    + " [MissingJavadocType]",
                 auditFinishMessage.getMessage());
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -387,7 +388,8 @@ public class MainTest {
                 + "[WARN] ";
         final String expectedOutputEnd = addEndOfLine(
                 "InputMainCustomSeverityForGoogleConfig.java:3:1:"
-                        + " Missing a Javadoc comment. [MissingJavadocType]",
+                        + " Missing a Javadoc comment for"
+                        + " 'InputMainCustomSeverityForGoogleConfig'. [MissingJavadocType]",
                 auditFinishMessage.getMessage());
         assertWithMessage("Unexpected output log")
                 .that(systemOut.getCapturedData())

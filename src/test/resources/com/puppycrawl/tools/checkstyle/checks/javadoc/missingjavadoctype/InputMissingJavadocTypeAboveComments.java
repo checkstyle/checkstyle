@@ -24,10 +24,10 @@ public class InputMissingJavadocTypeAboveComments {
     /**
      *
      */
-    public class Myclass { } /* My class */
+    public class MyClass { } /* My class */
 
     // violation below 'Missing a Javadoc comment.'
-    public class Myclass2 { }
+    public class MyClass2 { }
 
     /**
      *
@@ -46,9 +46,9 @@ public class InputMissingJavadocTypeAboveComments {
 
     /**
      *
-     */ public class Myclass3 { }
+     */ public class MyClass3 { }
 
-  /**javadoc*/ public class Myclass5 { }
+  /**javadoc*/ public class MyClass5 { }
 
   /** Test class for variable naming in for each clause.
    *
