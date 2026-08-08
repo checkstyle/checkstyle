@@ -99,7 +99,6 @@ public class XdocsExampleFileTest {
         "checks/javadoc/missingjavadocmethod/",
         "checks/naming/constantname/",
         "checks/naming/methodname/",
-        "checks/naming/typename/",
         "checks/nocodeinfile/",
         "checks/outertypefilename/"
     );
