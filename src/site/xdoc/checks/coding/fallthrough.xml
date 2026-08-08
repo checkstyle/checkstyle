@@ -52,7 +52,14 @@
         </p>
 
         <p>
-          Note: The check assumes that there is no unreachable code in the <code>case</code>.
+          Note:
+          The check assumes that there is no unreachable code in the <code>case</code>.
+        </p>
+
+        <p>
+          A <code>case</code> whose code ends in an infinite loop is not flagged, e.g.
+          <code>while (true) {}</code>, <code>for (;;) {}</code>, <code>for (;true;) {}</code>
+          or <code>do {} while (true);</code>.
         </p>
       </subsection>
 
