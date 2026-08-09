@@ -39,9 +39,10 @@ class BadCommas < A, B, C extends Map < A, String > > {
 // violation below 'Top-level class Wildcard has to reside in its own source file.'
 class Wildcard {
   public static void foo(Collection < ? extends Wildcard[] > collection) {
-    // 3 violations above:
+    // 4 violations above:
     //  ''\<' is followed by whitespace.'
     //  ''\<' is preceded with whitespace.'
+    // ''\]' is followed by whitespace'
     //  ''\>' is preceded with whitespace.'
     // A statement is important in this method to flush out any
     // issues with parsing the wildcard in the signature
