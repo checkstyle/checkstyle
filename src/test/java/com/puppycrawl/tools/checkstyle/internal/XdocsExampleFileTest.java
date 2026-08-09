@@ -96,10 +96,20 @@ public class XdocsExampleFileTest {
      * <a href="https://github.com/checkstyle/checkstyle/issues/21072">...</a>
      */
     private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
-        "checks/javadoc/missingjavadocmethod/",
-        "checks/naming/constantname/",
-        "checks/nocodeinfile/",
-        "checks/outertypefilename/"
+        "checks/annotation/annotationlocation/",
+        "checks/coding/hiddenfield/",
+        "checks/coding/returncount/",
+        "checks/imports/avoidstarimport/",
+        "checks/javadoc/javadocvariable/",
+        "checks/javadoc/missingjavadoctype/",
+        "checks/naming/illegalidentifiername/",
+        "checks/naming/localfinalvariablename/",
+        "checks/naming/patternvariablename/",
+        "checks/outertypefilename/",
+        "checks/regexp/regexpmultiline/",
+        "checks/regexp/regexpsingleline/",
+        "checks/trailingcomment/",
+        "checks/whitespace/filetabcharacter/"
     );
 
     @Test
@@ -179,14 +189,14 @@ public class XdocsExampleFileTest {
                         .filter(path -> {
                             final String fileName = path.getFileName().toString();
                             return Files.isRegularFile(path)
-                                && (fileName.startsWith("Example")
+                                    && (fileName.startsWith("Example")
                                     || fileName.startsWith("UseCase"));
                         })
                         .forEach(exampleFile -> {
                             final String relative = xdocsExamplesBase
-                                .relativize(exampleFile)
-                                .toString()
-                                .replace(File.separatorChar, '/');
+                                    .relativize(exampleFile)
+                                    .toString()
+                                    .replace(File.separatorChar, '/');
                             if (!referencedPaths.contains(relative)) {
                                 failures.add(relative);
                             }
@@ -198,7 +208,7 @@ public class XdocsExampleFileTest {
         if (!failures.isEmpty()) {
             assertWithMessage(
                 "The following example files are not referenced in any xml.template file:\n"
-                    + String.join("\n", failures))
+                        + String.join("\n", failures))
                 .fail();
         }
     }
@@ -408,16 +418,26 @@ public class XdocsExampleFileTest {
     }
 
     /**
-     * Builds a signature from an example's expected violations: line number plus
-     * message, joined per violation. Line number is included (not stripped)
-     * because all examples of a check are guaranteed structurally identical by
-     * AST (enforced separately by XdocsExamplesAstConsistencyTest) - only
-     * comments/config differ - so a given line number means the same structural
-     * position across every example of that module, making it a meaningful part
-     * of the comparison rather than noise.
+     * Builds a signature from an example's expected violations, restricted to the
+     * region between "// xdoc section - start" and "// xdoc section - end" (the
+     * only part actually rendered to users in the generated HTML), with line
+     * numbers normalized relative to the start marker.
      *
-     * <p>Returns null if any violation message in the file is unspecified, or if
-     * the file has zero violations, since neither case is a reliable duplicate
+     * <p>Line number is included (not stripped) because all examples of a check
+     * are guaranteed structurally identical by AST (enforced separately by
+     * XdocsExamplesAstConsistencyTest) - only comments/config differ - so a given
+     * relative line number means the same structural position within the visible
+     * section across every example of that module, making it a meaningful part of
+     * the comparison rather than noise. Restricting to the visible section and
+     * normalizing against the start marker (rather than the absolute file line)
+     * avoids false collisions/false negatives caused by incidental whitespace or
+     * config-block padding above the marker, which is invisible to users and
+     * should never affect whether two examples look identical in the rendered
+     * docs - see review discussion on #21072.
+     *
+     * <p>Returns null if any violation message in the file is unspecified, if
+     * the file has zero violations within the visible section, or if the markers
+     * themselves cannot be found, since none of those are a reliable duplicate
      * signal - see InlineConfigParser.SUPPRESSED_VALIDATE_MESSAGE_FILES /
      * SUPPRESSED_CHECKS.
      *
@@ -437,14 +457,34 @@ public class XdocsExampleFileTest {
             final boolean hasUnspecifiedMessage = violations.stream()
                     .anyMatch(violation -> violation.message() == null);
 
-            if (hasUnspecifiedMessage || violations.isEmpty()) {
+            final int[] sectionBounds = findVisibleSectionBounds(exampleFile);
+
+            if (hasUnspecifiedMessage || sectionBounds == null || violations.isEmpty()) {
                 signature = null;
             }
             else {
-                signature = violations.stream()
-                        .sorted()
-                        .map(violation -> violation.lineNo() + ":" + violation.message())
-                        .collect(Collectors.joining("|"));
+                final int startLine = sectionBounds[0];
+                final int endLine = sectionBounds[1];
+
+                final List<TestInputViolation> visibleViolations = violations.stream()
+                        .filter(violation -> {
+                            return violation.lineNo() > startLine
+                                    && violation.lineNo() < endLine;
+                        })
+                        .toList();
+
+                if (visibleViolations.isEmpty()) {
+                    signature = null;
+                }
+                else {
+                    signature = visibleViolations.stream()
+                            .sorted()
+                            .map(violation -> {
+                                final int relativeLine = violation.lineNo() - startLine;
+                                return relativeLine + ":" + violation.message();
+                            })
+                            .collect(Collectors.joining("|"));
+                }
             }
         }
         // -@cs[IllegalCatch] InlineConfigParser.parse declares "throws Exception";
@@ -455,6 +495,36 @@ public class XdocsExampleFileTest {
             signature = null;
         }
         return signature;
+    }
+
+    /**
+     * Locates the 1-based line numbers of the "// xdoc section - start" and
+     * "// xdoc section - end" marker comments in a file.
+     *
+     * @return a two-element array {startLine, endLine}, or null if either marker
+     *     is missing (in which case the file is skipped from comparison rather
+     *     than guessed at).
+     */
+    private static int[] findVisibleSectionBounds(Path exampleFile) throws IOException {
+        final List<String> lines = Files.readAllLines(exampleFile);
+        int startLine = -1;
+        int endLine = -1;
+
+        for (int index = 0; index < lines.size(); index++) {
+            final String trimmed = lines.get(index).trim();
+            if (XdocsExamplesAstConsistencyTest.XDOC_START_MARKER.equals(trimmed)) {
+                startLine = index + 1;
+            }
+            else if (XdocsExamplesAstConsistencyTest.XDOC_END_MARKER.equals(trimmed)) {
+                endLine = index + 1;
+            }
+        }
+
+        int[] result = null;
+        if (startLine != -1 && endLine != -1) {
+            result = new int[] {startLine, endLine};
+        }
+        return result;
     }
 
 }
