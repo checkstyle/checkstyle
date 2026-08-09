@@ -12,11 +12,12 @@
         <div>
           Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
           To define the format for a tag, set property tagFormat to a regular expression.
-          The common severity property is used for missing tag and tag format violations.
-          Property tagSeverity is used only for javadoc.writeTag violations when the
-          configured tag exists and its contents match tagFormat, or when tagFormat is not
-          configured.
+          Violations are reported only when the configured tag is missing or when the tag content
+          does not match tagFormat.
+          No violation is reported when the tag is present and matches tagFormat (or when tagFormat
+          is not configured).
           No violation reported in case there is no javadoc.
+          To forbid tags instead of requiring them, use IllegalBlockTag.
         </div>
       </subsection>
 
@@ -42,13 +43,6 @@
               <td>Specify the regexp to match tag content.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
-              <td>4.2</td>
-            </tr>
-            <tr>
-              <td><a id="tagSeverity"/><a href="#tagSeverity">tagSeverity</a></td>
-              <td>Specify the severity level for javadoc.writeTag violations when the configured tag is found and its contents match tagFormat, or when tagFormat is not configured.</td>
-              <td><a href="../../property_types.html#SeverityLevel">SeverityLevel</a></td>
-              <td><code>info</code></td>
               <td>4.2</td>
             </tr>
             <tr>
@@ -195,8 +189,8 @@ public class Example2 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure Check to demand <code>@since</code> tag
-          to be present on type and method javadocs. Attention: all presence of tags are also
-          highlighted as violation.
+          to be present on type and method javadocs.
+          Matching tags produce no violation.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -225,19 +219,19 @@ public class Example3 {
    * @since
    */
   void testMethod1() {}
-  // violation 3 lines above 'Javadoc tag @since='
+
   /**
    * some doc
    * @since 1.6
    */
   void testMethod1WithNumSince() {}
-  // violation 3 lines above 'Javadoc tag @since=1.6'
+
   /**
    * some doc
    * @since 1.1-beta
    */
   void testMethod1WithAlphaSince() {}
-  // violation 3 lines above 'Javadoc tag @since=1.1-beta'
+
   /** some doc */
   public void testMethod2() {}
   // violation 1 lines above 'Javadoc comment is missing @since tag.'
@@ -246,9 +240,7 @@ public class Example3 {
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
           to be present with digital value on method javadocs also in addition to default tokens.
-          Set <code>tagSeverity</code> to <code>ignore</code> to suppress
-          <code>javadoc.writeTag</code> violations for matching <code>@since</code> tags.
-          Missing <code>@since</code> tags and tag format violations are still reported with
+          Missing <code>@since</code> tags and tag format violations are reported with
           the common severity property.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -260,7 +252,6 @@ public class Example3 {
                 ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
       &lt;property name="tag" value="@since"/&gt;
       &lt;property name="tagFormat" value="^[1-9\.]+$"/&gt;
-      &lt;property name="tagSeverity" value="ignore"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -297,108 +288,6 @@ public class Example4 {
   public void testMethod2() {}
   // violation 1 lines above 'Javadoc comment is missing @since tag.'
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens.
-          The <code>tagSeverity</code> property is set to <code>error</code>, but tag format
-          violations are still reported with the common severity property.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="WriteTag"&gt;
-      &lt;property name="tokens"
-                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
-      &lt;property name="tag" value="@since"/&gt;
-      &lt;property name="tagFormat" value="^[1-9\.]+$"/&gt;
-      &lt;property name="tagSeverity" value="error"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">
-        Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * Some class
- *
- */
-public class Example5 {
-  // violation 1 lines above 'Javadoc comment is missing @since tag.'
-  /**
-   * some doc
-   * @since
-   */
-  void testMethod1() {}
-  // violation 3 lines above 'Javadoc tag @since must match pattern'
-  /**
-   * some doc
-   * @since 1.6
-   */
-  void testMethod1WithNumSince() {}
-  // violation 3 lines above 'Javadoc tag @since=1.6'
-  /**
-   * some doc
-   * @since 1.1-beta
-   */
-  void testMethod1WithAlphaSince() {}
-  // violation 3 lines above 'Javadoc tag @since must match pattern'
-  /** some doc */
-  public void testMethod2() {}
-  // violation 1 lines above 'Javadoc comment is missing @since tag.'
-}
-</code></pre></div>
-      </subsection>
-
-      <subsection name="Use Cases" id="WriteTag_Use_Cases">
-        <p id="UseCase1-config">
-          To configure Check to forbid <code>@author</code> tags in Javadoc comments.
-          The <code>SuppressionSingleFilter</code> suppresses missing tag violations,
-          as missing <code>@author</code> tags are desired in this use case.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name=
-      "com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"&gt;
-    &lt;property name="checks" value="WriteTag"/&gt;
-    &lt;property name="message"
-              value="^Javadoc comment is missing @author tag\.$"/&gt;
-  &lt;/module&gt;
-
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="WriteTag"&gt;
-      &lt;property name="tokens"
-                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF, CTOR_DEF,
-                ENUM_CONSTANT_DEF, ANNOTATION_FIELD_DEF,
-                COMPACT_CTOR_DEF" /&gt;
-      &lt;property name="tag" value="@author"/&gt;
-      &lt;property name="tagSeverity" value="error"/&gt;
-      &lt;message key="javadoc.writeTag" value="No {0} tags should be used."/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="UseCase1-code">
-        Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 4 lines below 'No @author tags should be used.'
-/**
- * Some class.
- *
- * @author John Doe
- */
-public class UseCase1 {
-
-  /**
-   * Helper without author tag.
-   */
-  void testMethod() {}
-}
 </code></pre></div>
       </subsection>
 
@@ -421,11 +310,6 @@ public class UseCase1 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
               javadoc.unclosedHtml
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.writeTag%22">
-              javadoc.writeTag
             </a>
           </li>
           <li>
