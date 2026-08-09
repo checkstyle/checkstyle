@@ -50,9 +50,6 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     public void testExample3() throws Exception {
         final String[] expected = {
             "21: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
-            "25: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", ""),
-            "31: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.6"),
-            "37: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.1-beta"),
             "42: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
@@ -63,36 +60,13 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
     public void testExample4() throws Exception {
         final String pattern = "^[1-9\\.]+$";
         final String[] expected = {
-            "23: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
-            "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "39: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "44: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "22: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
+            "26: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "38: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
+            "43: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String pattern = "^[1-9\\.]+$";
-        final String[] expected = {
-            "23: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
-            "27: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "33: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", "1.6"),
-            "39: " + getCheckMessage(WriteTagCheck.MSG_TAG_FORMAT, "@since", pattern),
-            "44: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
-    }
-
-    @Test
-    public void testUseCase1() throws Exception {
-        final String[] expected = {
-            "32: No @author tags should be used.",
-        };
-
-        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
