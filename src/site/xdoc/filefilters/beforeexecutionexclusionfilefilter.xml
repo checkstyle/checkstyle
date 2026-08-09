@@ -8,6 +8,30 @@
   <body>
     <section name="BeforeExecutionExclusionFileFilter">
       <p>Since Checkstyle 7.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#BeforeExecutionExclusionFileFilter_Description">Description</a></li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#BeforeExecutionExclusionFileFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With the default configuration, no files are matched against the <code>fileNamePattern</code>, so the filter does not affect the audit</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">The filter to exclude all 'module-info.java' files</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">The filter to run only on required files for example that ends with "Remote" or end with "Client" in names or named as "Remote.java" or "Client.java" use negative lookahead</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">The filter to exclude all 'test' folder files and all 'module-info.java' files</a></li>
+            </ul>
+          </li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#BeforeExecutionExclusionFileFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
         <div>
           File filter <code>BeforeExecutionExclusionFileFilter</code> decides which files should be
