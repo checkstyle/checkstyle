@@ -207,6 +207,7 @@ public class AllChecksCompactSourceCoverageTest {
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
         "OneStatementPerLineCheck",
         "OneTopLevelClassCheck",
+        "OpenjdkMethodThrowsAlignmentCheck",
         "OperatorWrapCheck",
         "OuterTypeNumberCheck",
         "OverloadMethodsDeclarationOrderCheck",
