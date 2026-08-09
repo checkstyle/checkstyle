@@ -1037,7 +1037,7 @@
             </td>
             <td>
               Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
-              &quot;magic numbers&quot;</a> where a magic number is a numeric literal that is not
+              <code>"magic number"</code></a> where a magic number is a numeric literal that is not
               defined as a constant.
             </td>
           </tr>
@@ -1632,6 +1632,16 @@
             </td>
             <td>
               Checks that pattern variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/preferliteraljavadocinlinetag.html#PreferLiteralJavadocInlineTag">
+                PreferLiteralJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags are preferred over escaping entities.
             </td>
           </tr>
           <tr>

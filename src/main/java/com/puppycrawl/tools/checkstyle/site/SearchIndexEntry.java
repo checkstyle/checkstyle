@@ -43,7 +43,7 @@ public record SearchIndexEntry(String title, String url, String category,
     /** Maximum ASCII value for the lookup table. */
     private static final int ASCII_MAX = 128;
 
-    /** Lookup table for JSON escape sequences for characters &lt; 128 (ASCII range). */
+    /** Lookup table for JSON escape sequences for characters {@literal <} 128 (ASCII range). */
     private static final String[] JSON_ESCAPES;
 
     static {
