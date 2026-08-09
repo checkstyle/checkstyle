@@ -2,7 +2,6 @@
 WriteTag
 tag = @emptytag
 tagFormat =(default)(null)
-tagSeverity = (default)info
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 violateExecutionOnNonTightHtml = (default)false
 
@@ -11,7 +10,6 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-// violation 7 lines below 'Javadoc tag @emptytag='
 /**
  * Testing tag writing
  * @author Daniel Grenner
