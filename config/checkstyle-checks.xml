@@ -46,6 +46,15 @@
     <property name="files"
               value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
+  <!-- WriteTag @since is required only on *Check.java types -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="files" value=".*(?&lt;!Check)\.java$"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="files" value="Abstract\w*Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
+  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--
@@ -681,6 +690,11 @@
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="WriteTag"/>
     </module>
+    <!-- Nested types inside *Check.java are not public Check APIs -->
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="WriteTag"/>
+      <property name="query" value="//CLASS_DEF[parent::OBJBLOCK]"/>
+    </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MethodCount"/>
@@ -1049,10 +1063,9 @@
     <module name="WhitespaceAround"/>
     <module name="WhitespaceBeforeEmptyBody"/>
     <module name="WriteTag">
-      <property name="tag" value="@author"/>
-      <property name="severity" value="ignore"/>
-      <property name="tagSeverity" value="error"/>
-      <message key="javadoc.writeTag" value="No {0} tags should be used."/>
+      <property name="tag" value="@since"/>
+      <property name="tagFormat" value="\S"/>
+      <property name="tokens" value="CLASS_DEF"/>
     </module>
 
   </module>

@@ -6073,7 +6073,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: tagFormat, tag</message>
+    <message>the constructor does not initialize fields: tagFormat, tag, parentAst</message>
     <lineContent>public WriteTagCheck() {</lineContent>
   </checkerFrameworkError>
 
