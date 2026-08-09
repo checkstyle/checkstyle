@@ -46,6 +46,15 @@
     <property name="files"
               value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
+  <!-- WriteTag @since is required only on *Check.java types -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="files" value=".*(?&lt;!Check)\.java$"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="files" value="Abstract\w+Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
+  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--
@@ -1049,10 +1058,9 @@
     <module name="WhitespaceAround"/>
     <module name="WhitespaceBeforeEmptyBody"/>
     <module name="WriteTag">
-      <property name="tag" value="@author"/>
-      <property name="severity" value="ignore"/>
-      <property name="tagSeverity" value="error"/>
-      <message key="javadoc.writeTag" value="No {0} tags should be used."/>
+      <property name="tag" value="@since"/>
+      <property name="tagFormat" value="\S"/>
+      <property name="tokens" value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF"/>
     </module>
 
   </module>

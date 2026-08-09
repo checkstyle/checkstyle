@@ -17,11 +17,5 @@
     <module name="EmptyLineSeparator">
       <property name="severity" value="warning"/>
     </module>
-    <module name="WriteTag">
-      <property name="tag" value="@incomplete"/>
-      <property name="tagFormat" value="\S"/>
-      <property name="severity" value="ignore"/>
-      <property name="tagSeverity" value="warning"/>
-    </module>
   </module>
 </module>

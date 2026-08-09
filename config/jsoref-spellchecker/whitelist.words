@@ -530,7 +530,6 @@ gpgv
 gradle
 gradlew
 graphicsenv
-Grenner
 grep
 grepped
 groovyism
@@ -891,6 +890,7 @@ multiplevariabledeclarations
 Multiset
 multithreading
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
