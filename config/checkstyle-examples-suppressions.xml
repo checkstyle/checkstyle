@@ -183,6 +183,10 @@
   <suppress checks="LineLength"
             files="regexponfilename/Example[14].java"/>
 
+  <!-- The full violation message is longer than the example line-length limit. -->
+  <suppress checks="LineLength"
+            files="javadocendcommentdelimiter/Example1.java"/>
+
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling/UseCase6.java"/>
 
