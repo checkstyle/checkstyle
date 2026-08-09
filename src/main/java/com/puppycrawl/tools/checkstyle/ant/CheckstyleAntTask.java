@@ -110,7 +110,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Whether to execute ignored modules - some modules may log above
-     * their severity depending on their configuration (e.g. WriteTag) so
+     * their severity depending on their configuration so
      * need to be included
      */
     private boolean executeIgnoredModules;

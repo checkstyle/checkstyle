@@ -2,7 +2,6 @@
 WriteTag
 tag = @since
 tagFormat = (default)null
-tagSeverity = ignore
 tokens = METHOD_DEF
 violateExecutionOnNonTightHtml = (default)false
 
