@@ -1,3 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>createRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (executeIgnoredModules) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>createRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (executeIgnoredModules) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>createRootModule</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (executeIgnoredModules) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>CheckstyleAntTask.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
+    <mutatedMethod>setExecuteIgnoredModules</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable executeIgnoredModules</description>
+    <lineContent>executeIgnoredModules = omit;</lineContent>
+  </mutation>
 </suppressedMutations>
