@@ -21,12 +21,11 @@
   <suppress checks="LogicConditionNeedOptimization"
              files="IntMatchFilterElement\.java"/>
 
-  <!-- JavadocTagInfo.java, JavadocTags.java, InvalidJavadocTag.java, JavadocTag.java will be
-  deprecated as we completely switch to ANTLR parser for javadoc. All the mentioned classes
-  are required only for old javadoc parsers and their usage will be excluded from
-  JavadocUtil.java and JavadocUtilTest.java. -->
+  <!-- JavadocTagInfo.java, InvalidJavadocTag.java, and JavadocTag.java will be deprecated as we
+  completely switch to ANTLR parser for javadoc. The classes are required only for old javadoc
+  parsers and their usage will be excluded from JavadocUtilTest.java. -->
   <suppress checks="ForbidCertainImports"
-             files="JavadocUtil\.java|JavadocUtilTest\.java"/>
+             files="JavadocUtilTest\.java"/>
   <!-- Uses other checks as a basis for it's tests. -->
   <suppress checks="ForbidCertainImports"
              files="ViolationTest\.java"/>
