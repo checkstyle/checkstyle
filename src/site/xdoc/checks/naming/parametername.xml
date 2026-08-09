@@ -8,6 +8,38 @@
   <body>
     <section name="ParameterName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ParameterName_Description">Description</a></li>
+          <li><a href="#ParameterName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ParameterName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to skip methods with Override annotation from validation</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">The following configuration checks that the parameters always start with two lowercase characters and, in addition, that public method parameters cannot be one character long</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ParameterName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters and digits is</a></li>
+            </ul>
+          </li>
+          <li><a href="#ParameterName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ParameterName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ParameterName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ParameterName_Description">
         <div>
           Checks that method parameter names conform to a specified pattern.

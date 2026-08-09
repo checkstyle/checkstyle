@@ -8,6 +8,34 @@
   <body>
     <section name="AvoidStarImport">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AvoidStarImport_Description">Description</a></li>
+          <li><a href="#AvoidStarImport_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AvoidStarImport_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members from class <code>java.lang.Math</code> are allowed</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that star imports from all packages are allowed</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that starred static member imports from all packages are allowed</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> are allowed</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members imports from all packages are allowed</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">According to OpenJDK guidelines, where at most one star import is allowed per file</a></li>
+            </ul>
+          </li>
+          <li><a href="#AvoidStarImport_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AvoidStarImport_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AvoidStarImport_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AvoidStarImport_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AvoidStarImport_Description">
         <div>
           Checks that there are no import statements that use the <code>*</code> notation.

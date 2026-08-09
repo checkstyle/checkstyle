@@ -8,6 +8,30 @@
   <body>
     <section name="JavadocTagContinuationIndentation">
       <p>Since Checkstyle 6.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocTagContinuationIndentation_Description">Description</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocTagContinuationIndentation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With two spaces indentation</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Show violations for Tight-HTML Rules</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocTagContinuationIndentation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocTagContinuationIndentation_Description">
         <div>
           Checks the indentation of the continuation lines in block tags. That is whether the continued

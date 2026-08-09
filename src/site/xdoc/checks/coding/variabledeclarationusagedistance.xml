@@ -8,6 +8,39 @@
   <body>
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#VariableDeclarationUsageDistance_Description">Description</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#VariableDeclarationUsageDistance_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default config</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Set allowed distance</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Ignore certain variables</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Force validation between scopes</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Check final variables</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#VariableDeclarationUsageDistance_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Configure the check to default</a></li>
+            </ul>
+          </li>
+          <li><a href="#VariableDeclarationUsageDistance_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
         <div>
           Checks the distance between declaration of variable and its first usage.

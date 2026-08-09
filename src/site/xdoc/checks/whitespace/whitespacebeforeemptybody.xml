@@ -8,6 +8,29 @@
   <body>
     <section name="WhitespaceBeforeEmptyBody">
       <p>Since Checkstyle 13.9.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#WhitespaceBeforeEmptyBody_Description">Description</a></li>
+          <li><a href="#WhitespaceBeforeEmptyBody_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#WhitespaceBeforeEmptyBody_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For only methods and classes</a></li>
+            </ul>
+          </li>
+          <li><a href="#WhitespaceBeforeEmptyBody_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#WhitespaceBeforeEmptyBody_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#WhitespaceBeforeEmptyBody_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#WhitespaceBeforeEmptyBody_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="WhitespaceBeforeEmptyBody_Description">
         <div>
           Checks that a whitespace is present before the opening brace of an empty body.
