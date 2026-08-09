@@ -37,6 +37,7 @@ public class InputLambdaAndChildOnTheSameLine {
   }
 
   void testMethod2() {
+    // violation 3 lines below ''\]' is not followed by whitespace'
     var service = (CharSequence) Proxy.newProxyInstance(
         InputLambdaAndChildOnTheSameLine.class.getClassLoader(),
         new Class[]{CharSequence.class},
@@ -50,6 +51,7 @@ public class InputLambdaAndChildOnTheSameLine {
   }
 
   void testMethod3() {
+    // violation 3 lines below ''\]' is not followed by whitespace'
     var service = (CharSequence) Proxy.newProxyInstance(
         InputLambdaAndChildOnTheSameLine.class.getClassLoader(),
         new Class[]{CharSequence.class},
