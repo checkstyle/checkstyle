@@ -169,7 +169,9 @@ public class SuppressFilterElement
         boolean match = fileRegexp.matcher(fileName).find();
         if (!match) {
             final String slashesFileName = fileName.replace('\\', '/');
-            match = fileRegexp.matcher(slashesFileName).find();
+            if (!slashesFileName.equals(fileName)) {
+                match = fileRegexp.matcher(slashesFileName).find();
+            }
         }
         return match;
     }
