@@ -8,6 +8,45 @@
   <body>
     <section name="SuppressWithNearbyCommentFilter">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWithNearbyCommentFilter_Description">Description</a></li>
+          <li><a href="#SuppressWithNearbyCommentFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWithNearbyCommentFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">A filter to suppress audit events for check on any line with a comment <code>SUPPRESS CHECKSTYLE check</code></a></li>
+              <li><a href="#Example2-config" class="toc-sublink">A filter to suppress all audit events on any line containing the comment <code>CHECKSTYLE IGNORE THIS LINE</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">A filter so that <code>// ok to catch (Throwable|Exception|RuntimeException) here</code> permits the current and previous line to avoid generating an IllegalCatch audit event</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">A filter so that only C++ style comments (<code>//</code>) are checked for suppression, disabling C style (<code>/* ... *&#47;</code>) comment matching</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">A filter so that only C style comments (<code>/* ... *&#47;</code>) are checked for suppression, disabling C++ style (<code>//</code>) comment matching</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">A filter so that <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code> only suppresses audit events reported by a check with a matching module ID</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">A filter so that <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code> suppresses audit events on the current line and the next 2 lines</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">A filter so that <code>// SUPPRESS CHECKSTYLE NoWhitespaceAfter</code> suppresses audit events whose message contains "whitespace"</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressWithNearbyCommentFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">A filter so that <code>CHECKSTYLE IGNORE check FOR NEXTvar LINES</code> avoids triggering any audits for the given check for the current line and the next var lines (for a total of var+1 lines)</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">A filter to avoid any audits on code like</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">A filter to allow suppress one or more Checks (separated by "|") and demand comment no less than 14 symbols</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Example of Checkstyle checks and SuppressWithNearbyCommentFilter configuration (idFormat which is set to '$1' points that ID of the checks is in the first group of commentFormat regular expressions)</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Example of how to configure the check to suppress more than one checks. The influence format is specified in the second regexp group.</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWithNearbyCommentFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWithNearbyCommentFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWithNearbyCommentFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
         <div>
           Filter <code>SuppressWithNearbyCommentFilter</code> uses nearby comments to suppress audit events.

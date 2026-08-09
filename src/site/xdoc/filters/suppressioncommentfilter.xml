@@ -8,6 +8,43 @@
   <body>
     <section name="SuppressionCommentFilter">
       <p>Since Checkstyle 3.5</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressionCommentFilter_Description">Description</a></li>
+          <li><a href="#SuppressionCommentFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionCommentFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">A filter to suppress audit events (MemberNameCheck, ConstantNameCheck and IllegalCatchCheck have been taken here for reference) between a comment containing <code>CHECKSTYLE:OFF</code> and a comment containing <code>CHECKSTYLE:ON</code></a></li>
+              <li><a href="#Example2-config" class="toc-sublink">A filter so that <code>// stop constant check</code> and <code>// resume constant check</code> marks legitimate constant names</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">A filter so that <code>UNUSED OFF:var</code> and <code>UNUSED ON: var</code> marks a variable or parameter known not to be used by the code by matching the variable name in the message through a specified message in messageFormat</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">A filter to suppress violations for checks matching <code>MemberName</code> using the <code>checkFormat</code> property</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">A filter to suppress violations for checks matching <code>MemberName</code> using the <code>checkFormat</code> property</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">A filter to suppress violations for checks with a specific ID using the <code>idFormat</code> property</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">It is possible to specify an ID of checks, so that it can be leveraged by the SuppressionCommentFilter to skip validations. The following examples show how to skip validations near code that is surrounded with <code>// CSOFF &lt;ID&gt;</code> and <code>// CSON &lt;ID&gt;</code>, where ID is the ID of checks you want to suppress. In the config of SuppressionCommentFilter, checkFormat is set to '$1' which points to the ID written in the offCommentFormat and onCommentFormat. Config for such a case is written below</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Example depicting use of checkC and checkCPP style comments</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressionCommentFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">A filter so that name of suppressed check mentioned in comment <code>CSOFF: regexp</code> and <code>CSON: regexp</code> mark a matching check</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">A filter to suppress all audit events between a comment containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> and a comment containing <code>CHECKSTYLE_OFF: ALMOST_ALL</code> except for the ConstantName check</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Example of how to configure the check to suppress checks by name defined in comment.</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionCommentFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressionCommentFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressionCommentFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressionCommentFilter_Description">
         <div>
           Filter <code>SuppressionCommentFilter</code> uses pairs of comments to suppress audit events.
