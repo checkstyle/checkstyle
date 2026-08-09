@@ -1,3 +1,4 @@
+InputArrayBracketNoWhitespace.java
 InputTryCatchIfElse.java
 InputVerticalWhitespace.java
 InputClassWithChainedMethods.java
