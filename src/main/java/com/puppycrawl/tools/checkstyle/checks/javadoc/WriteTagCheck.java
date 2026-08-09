@@ -29,7 +29,6 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -39,11 +38,12 @@ import com.puppycrawl.tools.checkstyle.utils.NullUtil;
  * <div>
  * Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
  * To define the format for a tag, set property tagFormat to a regular expression.
- * The common severity property is used for missing tag and tag format violations.
- * Property tagSeverity is used only for javadoc.writeTag violations when the
- * configured tag exists and its contents match tagFormat, or when tagFormat is not
- * configured.
+ * Violations are reported only when the configured tag is missing or when the tag content
+ * does not match tagFormat.
+ * No violation is reported when the tag is present and matches tagFormat (or when tagFormat
+ * is not configured).
  * No violation reported in case there is no javadoc.
+ * To forbid tags instead of requiring them, use IllegalBlockTag.
  * </div>
  *
  * @since 4.2
@@ -61,12 +61,6 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_WRITE_TAG = "javadoc.writeTag";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
     public static final String MSG_TAG_FORMAT = "writetag.tagFormat";
 
     /** Specify the regexp to match tag content. */
@@ -75,17 +69,11 @@ public class WriteTagCheck extends AbstractJavadocCheck {
     /** Specify the name of tag. */
     private String tag;
 
-    /**
-     * Specify the severity level for javadoc.writeTag violations when the configured
-     * tag is found and its contents match tagFormat, or when tagFormat is not configured.
-     */
-    private SeverityLevel tagSeverity = SeverityLevel.INFO;
-
     /** Whether the target tag was found in the current Javadoc tree. */
     private boolean tagFound;
 
-    /** Parent line number for the missing tag report in the current Javadoc tree. */
-    private int parentLineNo;
+    /** Parent AST for the missing tag report in the current Javadoc tree. */
+    private DetailAST parentAst;
 
     /**
      * Creates a new {@code WriteTagCheck} instance.
@@ -112,19 +100,6 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      */
     public void setTagFormat(Pattern pattern) {
         tagFormat = pattern;
-    }
-
-    /**
-     * Setter to specify the severity level for javadoc.writeTag violations when the
-     * configured tag is found and its contents match tagFormat, or when tagFormat is
-     * not configured.
-     *
-     * @param severity  The new severity level
-     * @see SeverityLevel
-     * @since 4.2
-     */
-    public final void setTagSeverity(SeverityLevel severity) {
-        tagSeverity = severity;
     }
 
     /**
@@ -190,7 +165,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST javadocComment = findJavadoc(ast);
         if (javadocComment != null) {
-            parentLineNo = ast.getLineNo();
+            parentAst = ast;
             super.visitToken(javadocComment);
         }
     }
@@ -207,10 +182,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
             tagFound = true;
             final String content = getTagContent(ast);
 
-            if (tagFormat == null || tagFormat.matcher(content).find()) {
-                logTag(ast.getLineNumber(), tag, content);
-            }
-            else {
+            if (tagFormat != null && !tagFormat.matcher(content).find()) {
                 log(ast.getLineNumber(), MSG_TAG_FORMAT, tag, tagFormat.pattern());
             }
         }
@@ -219,7 +191,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
     @Override
     public void finishJavadocTree(DetailNode rootAst) {
         if (tag != null && !tagFound) {
-            log(parentLineNo, MSG_MISSING_TAG, tag);
+            log(parentAst, MSG_MISSING_TAG, tag);
         }
     }
 
@@ -288,24 +260,6 @@ public class WriteTagCheck extends AbstractJavadocCheck {
             }
         }
         return cmt;
-    }
-
-    /**
-     * Log a message.
-     *
-     * @param line the line number where the violation was found
-     * @param tagName the Javadoc tag to be logged
-     * @param tagValue the contents of the tag
-     *
-     * @see java.text.MessageFormat
-     */
-    private void logTag(int line, String tagName, String tagValue) {
-        final String originalSeverity = getSeverity();
-        setSeverity(tagSeverity.getName());
-
-        log(line, MSG_WRITE_TAG, tagName, tagValue);
-
-        setSeverity(originalSeverity);
     }
 
 }

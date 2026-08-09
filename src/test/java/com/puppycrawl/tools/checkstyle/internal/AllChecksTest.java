@@ -150,10 +150,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
                     "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL", "TEXT_BLOCK_CONTENT")
                     .collect(Collectors.toUnmodifiableSet()));
-        // we do not use this check as it is deprecated
+        // only CLASS_DEF: require @since on public *Check types (see checkstyle-checks.xml)
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
-                Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF",
-                    "ANNOTATION_FIELD_DEF", "RECORD_DEF", "COMPACT_CTOR_DEF")
+                Stream.of("INTERFACE_DEF", "ENUM_DEF", "ANNOTATION_DEF", "METHOD_DEF",
+                    "CTOR_DEF", "ENUM_CONSTANT_DEF", "ANNOTATION_FIELD_DEF", "RECORD_DEF",
+                    "COMPACT_CTOR_DEF")
                     .collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method/constructor declaration could be long due to "parameters/exceptions", it
