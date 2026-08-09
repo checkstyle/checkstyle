@@ -2,7 +2,6 @@
 WriteTag
 tag = @author
 tagFormat = \\S
-tagSeverity = error
 tokens = ENUM_DEF, ENUM_CONSTANT_DEF
 violateExecutionOnNonTightHtml = (default)false
 
