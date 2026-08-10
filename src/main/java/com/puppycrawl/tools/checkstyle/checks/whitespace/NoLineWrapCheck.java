@@ -74,6 +74,7 @@ public class NoLineWrapCheck extends AbstractCheck {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.MODULE_IMPORT,
+            TokenTypes.MODULE_DEF,
         };
     }
 
@@ -91,6 +92,7 @@ public class NoLineWrapCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.MODULE_DEF,
         };
     }
 
