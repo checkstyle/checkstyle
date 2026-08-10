@@ -168,10 +168,23 @@ public class SuppressFilterElement
     private boolean isFileMatch(String fileName) {
         boolean match = fileRegexp.matcher(fileName).find();
         if (!match) {
-            final String slashesFileName = fileName.replace('\\', '/');
-            match = fileRegexp.matcher(slashesFileName).find();
+            match = matchNormalizedPathIfRequired(fileRegexp, fileName);
         }
         return match;
+    }
+
+    /**
+     * Fallback match for file names containing backslashes.
+     *
+     * @param fileRegexp the regexp pattern to check against
+     * @param fileName the name of the file to check
+     * @return true if the normalized file name matches the pattern
+     */
+    /* package */ static boolean matchNormalizedPathIfRequired(final Pattern fileRegexp,
+            final String fileName) {
+        final String slashesFileName = fileName.replace('\\', '/');
+        return !slashesFileName.equals(fileName)
+                && fileRegexp.matcher(slashesFileName).find();
     }
 
     /**
