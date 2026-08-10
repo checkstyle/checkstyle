@@ -197,7 +197,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF", "RECORD_DEF",
                 "COMPACT_CTOR_DEF",
                 // module import declarations are not part of the Google style config token set
-                "MODULE_IMPORT")
+                "MODULE_IMPORT",
+                // module declarations are not part of the Google style config token set
+                "MODULE_DEF")
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
                 // location could be any to allow writing expressions for indexes evaluation
