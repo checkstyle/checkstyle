@@ -83,6 +83,7 @@ Autowiring
 avoiddoublebraceinitialization
 avoidescapedunicodecharacters
 avoidinlineconditionals
+avoidlatin
 avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
