@@ -5781,6 +5781,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnTypeCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference currentAst.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>final String typeName = currentAst.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnTypeCheck.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentAst</message>
+    <lineContent>public InappropriateJavadocBlockTagsOnTypeCheck() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocBlockTagLocationCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Set.contains.</message>
