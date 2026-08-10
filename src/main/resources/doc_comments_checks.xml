@@ -97,6 +97,14 @@
     <!-- First Sentence -->
     <module name="SummaryJavadoc"/>
 
+    <!-- Avoid Latin -->
+    <module name="JavadocRegexp">
+      <property name="format"
+                value="(^|\W)(aka|i\.e\.|e\.g\.|viz\.)(\W|$)"/>
+      <property name="ignoreCase" value="true"/>
+      <property name="ignoreMarkup" value="true"/>
+    </module>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property name="file" value="${org.checkstyle.doc.comments.suppressionxpathfilter.config}"
