@@ -101,7 +101,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AvoidNestedBlocksCheck",
         "AvoidNoArgumentSuperConstructorCallCheck",
         "AvoidStarImportCheck",
-        "AvoidStaticImportCheck",
         "BooleanExpressionComplexityCheck",
         "CatchParameterNameCheck",
         "ClassDataAbstractionCouplingCheck",
