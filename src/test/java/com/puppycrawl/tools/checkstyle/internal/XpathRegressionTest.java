@@ -84,9 +84,11 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "WriteTag"
     );
 
-    // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
-    // but not subclasses of AbstractJavadocCheck.
-    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = Set.of(
+    // AbstractJavadocCheck subclasses that also visit Java AST tokens (not pure
+    // Javadoc-tree checks). isPureJavadocCheck filters them out because their
+    // required tokens are not only BLOCK_COMMENT_BEGIN, yet they still belong in
+    // INCOMPATIBLE_JAVADOC_CHECK_NAMES (no Xpath suppression for Javadoc yet).
+    private static final Set<Class<?>> NON_PURE_JAVADOC_CHECKS = Set.of(
                     IllegalBlockTagCheck.class,
                     JavadocMethodCheck.class,
                     JavadocTypeCheck.class,
@@ -158,13 +160,13 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 .filter(AbstractJavadocCheck.class::isAssignableFrom)
                 .filter(XpathRegressionTest::isPureJavadocCheck)
                 .collect(Collectors.toCollection(HashSet::new));
-        // add the extra checks
-        abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
+        // include AbstractJavadocCheck subclasses that visit Java AST tokens too
+        abstractJavadocCheckNames.addAll(NON_PURE_JAVADOC_CHECKS);
         final Set<String> abstractJavadocCheckSimpleNames =
                 CheckUtil.getSimpleNames(abstractJavadocCheckNames);
         abstractJavadocCheckSimpleNames.removeAll(INTERNAL_MODULES);
-        assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contains all descendants "
-                    + "of AbstractJavadocCheck")
+        assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contain all pure "
+                    + "AbstractJavadocCheck descendants plus non-pure Javadoc checks")
             .that(abstractJavadocCheckSimpleNames)
             .isEqualTo(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
     }
