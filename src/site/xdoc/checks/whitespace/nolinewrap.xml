@@ -90,6 +90,8 @@
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
                   .
               </td>
               <td>
@@ -101,6 +103,8 @@
                     STATIC_IMPORT</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_IMPORT">
                     MODULE_IMPORT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
                   .
               </td>
               <td>5.8</td>
