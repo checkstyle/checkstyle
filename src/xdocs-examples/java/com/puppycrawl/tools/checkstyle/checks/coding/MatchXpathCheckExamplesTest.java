@@ -32,12 +32,19 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
     @Test
     public void testExample1() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
         final String[] expected = {
             "20:3: " + "Private methods must appear after public methods",
             "23:3: " + "Private methods must appear after public methods",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test

@@ -158,7 +158,6 @@ public class XdocsExamplesAstConsistencyTest {
      * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21137">...</a>
      */
     private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
-            "checks/coding/matchxpath",
             "checks/coding/returncount",
             "checks/descendanttoken",
             "checks/imports/importcontrol",

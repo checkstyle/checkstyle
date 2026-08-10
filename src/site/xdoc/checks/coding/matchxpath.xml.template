@@ -38,8 +38,8 @@
 
       <subsection name="Examples" id="MatchXpath_Examples">
         <p id="Example1-config">
-          The following example demonstrates validation of methods order, so that public methods
-          should come before the private ones:</p>
+          The following example demonstrates the default configuration (no xpath query),
+          so no violations are reported even if methods are not in order:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
@@ -49,6 +49,20 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          The following example demonstrates validation of methods order, so that public methods
+          should come before the private ones:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p>
