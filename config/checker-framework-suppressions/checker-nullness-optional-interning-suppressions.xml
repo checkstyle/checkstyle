@@ -5780,7 +5780,6 @@
     </details>
   </checkerFrameworkError>
 
-
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocBlockTagLocationCheck.java</fileName>
     <specifier>argument</specifier>

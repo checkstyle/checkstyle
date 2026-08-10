@@ -96,10 +96,8 @@ public class InappropriateJavadocBlockTagsOnFieldCheck extends AbstractJavadocCh
             final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
             if (blockCommentNode != null) {
                 final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
-                if (ident != null) {
-                    currentFieldName = ident.getText();
-                    super.visitToken(blockCommentNode);
-                }
+                currentFieldName = ident.getText();
+                super.visitToken(blockCommentNode);
             }
         }
     }
@@ -108,9 +106,7 @@ public class InappropriateJavadocBlockTagsOnFieldCheck extends AbstractJavadocCh
     public void visitJavadocToken(DetailNode ast) {
         final DetailNode tagNameNode = JavadocUtil.findFirstToken(ast,
                 JavadocCommentsTokenTypes.TAG_NAME);
-        if (tagNameNode != null) {
-            log(ast, MSG_KEY, tagNameNode.getText(), currentFieldName);
-        }
+        log(ast, MSG_KEY, tagNameNode.getText(), currentFieldName);
     }
 
 }
