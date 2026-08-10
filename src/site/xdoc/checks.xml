@@ -1234,6 +1234,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/imports/moduleimportorder.html#ModuleImportOrder">
+                ModuleImportOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering and placement of module import declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
                 MultiFileRegexpHeader
               </a>
