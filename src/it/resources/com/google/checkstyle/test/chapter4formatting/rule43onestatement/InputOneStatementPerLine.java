@@ -213,7 +213,8 @@ public class InputOneStatementPerLine {
   //  'Only one variable definition per line allowed.'
   int var1 = 5,
       var4 = 5; int var2 = 6, // violation 'Each variable declaration must be in its own statement.'
-          var3 = 5; // violation 'Only one statement per line allowed.'
+          var3 = 5;
+  // violation 2 lines above 'Only one statement per line allowed.'
 
   /**
    * Two statements on the same line
@@ -224,7 +225,8 @@ public class InputOneStatementPerLine {
   //  'Only one variable definition per line allowed.'
   //  'Each variable declaration must be in its own statement.'
   int var6 = 5; int var7 = 6,
-      var8 = 5; // violation 'Only one statement per line allowed.'
+      var8 = 5;
+  // violation 2 lines above 'Only one statement per line allowed.'
 
   /**
    * Two statements on the same line
@@ -233,13 +235,13 @@ public class InputOneStatementPerLine {
    */
   private void foo2() {
     toString(
-
-    ); toString(// violation ''method call' .* incorrect indentation level 4, expected .* 6.'
+    // 2 violations 3 lines below:
+    // ''method call' .* incorrect indentation level 4, expected .* 6.'
+    // 'Only one statement per line allowed.'
+    ); toString(
 
         );
-    // 2 violations above:
-    // ''method call rparen' has incorrect indentation level 8, expected level should be 4.'
-    // 'Only one statement per line allowed.'
+    // violation above 'method call rparen' .* incorrect indentation level 8, expected .* 4.'
   }
 
   /**
@@ -301,7 +303,7 @@ public class InputOneStatementPerLine {
     //  ''{' at column 30 should have line break after.'
     //  ''}' at column 41 should be alone on a line.'
 
-    // violation below 'Multiline comment line(s) 306, 307, 308 should start with leading asterisk'
+    // violation below 'Multiline comment line(s) 308, 309, 310 should start with leading asterisk'
     /*
       One statement inside for block where
       increment and conditional expressions are empty
