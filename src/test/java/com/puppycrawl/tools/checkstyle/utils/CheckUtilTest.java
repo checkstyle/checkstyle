@@ -423,9 +423,9 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     /**
      * Retrieves the AST node from a specific file based on the specified token type.
      *
+     * @param filePath The file from which the AST node should be retrieved.
      * @param type The token type to search for in the file.
      *             This parameter determines the type of AST node to retrieve.
-     * @param filePath The file from which the AST node should be retrieved.
      * @return The AST node associated with the specified token type from the given file.
      * @throws Exception If there's an issue reading or parsing the file.
      */
