@@ -64,6 +64,7 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.MODULE_DEF,
         };
         assertWithMessage("Default acceptable tokens are invalid")
                 .that(actual)
@@ -159,6 +160,32 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
         };
         verifyWithInlineConfigParser(
                 getPath("inputs/package-info.java"), expected);
+    }
+
+    @Test
+    public void testModuleAnnotationOnTargetLine() throws Exception {
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "app"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module1/module-info.java"), expected);
+    }
+
+    @Test
+    public void testModuleMixedAnnotations() throws Exception {
+        final String[] expected = {
+            "10:10: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "app2"),
+            "10:10: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "app2"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module2/module-info.java"), expected);
+    }
+
+    @Test
+    public void testOpenModule() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module3/module-info.java"), expected);
     }
 
 }
