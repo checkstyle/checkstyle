@@ -1,0 +1,22 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MatchXpath">
+    </module>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
+
+// xdoc section - start
+public class Example2 {
+    public void method1() { }
+
+    private void method2() { }
+    public void method3() { }
+
+    private void method4() { }
+    public void method5() { }
+    private void method6() { }
+}
+// xdoc section - end

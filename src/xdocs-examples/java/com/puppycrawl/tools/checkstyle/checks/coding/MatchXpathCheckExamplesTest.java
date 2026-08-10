@@ -41,6 +41,13 @@ public class MatchXpathCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
     public void testUseCase1() throws Exception {
         final String[] expected = {
             "20:3: " + "Parameterized constructors are not allowed",

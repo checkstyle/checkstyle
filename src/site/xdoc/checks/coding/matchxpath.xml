@@ -21,6 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MatchXpath_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">The following example demonstrates validation of methods order, so that public methods should come before the private ones</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">The following example demonstrates the default configuration (no xpath query), so no violations are reported even if methods are not in order</a></li>
             </ul>
           </li>
           <li>
@@ -121,6 +122,30 @@ public class Example1 {
   private void method4() { }
   public void method5() { }
   private void method6() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          The following example demonstrates the default configuration (no xpath query),
+          so no violations are reported even if methods are not in order:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+    public void method1() { }
+
+    private void method2() { }
+    public void method3() { }
+
+    private void method4() { }
+    public void method5() { }
+    private void method6() { }
 }
 </code></pre></div><hr class="example-separator"/>
         <p>
