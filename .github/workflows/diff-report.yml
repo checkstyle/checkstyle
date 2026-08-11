@@ -182,33 +182,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Get message
+      - name: Build PR comment message
         env:
           MSG: ${{ needs.make_report.outputs.message }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p .ci-temp
-          if [ -z "$MSG" ]; then
-            JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
-            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
-            API_LINK="${API_LINK}${{github.run_id}}/jobs"
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          FAILURE_PREFIX: "Report generation"
+        run: ./.ci/build-pr-comment.sh
 
-            curl --fail-with-body -X GET "${API_LINK}" \
-              -H "Accept: application/vnd.github+json" \
-              -H "Authorization: token $GITHUB_TOKEN" \
-              -o .ci-temp/info.json
-
-            jq '.jobs' .ci-temp/info.json > ".ci-temp/jobs"
-            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
-            jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
-            jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
-            echo "Report generation failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
-            echo "step $(cat .ci-temp/step_name).<br>Link: $JOBS_LINK" >> .ci-temp/message
-          else
-            echo "$MSG" > .ci-temp/message
-          fi
-
-      - name: Set message
+      - name: Export PR comment message
         id: out
         run: |
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
