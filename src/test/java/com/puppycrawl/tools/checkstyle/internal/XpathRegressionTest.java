@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -43,12 +42,6 @@ import org.junit.jupiter.api.Test;
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.IllegalBlockTagCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
@@ -60,8 +53,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "RegexpSinglelineJava (reason is at  #7759)"
     );
 
-    // Javadoc checks are not compatible with SuppressionXpathFilter
-    // till https://github.com/checkstyle/checkstyle/issues/5770
+    // Checks that report violations on Javadoc AST nodes (not Java AST).
+    // Incompatible with SuppressionXpathFilter until
+    // https://github.com/checkstyle/checkstyle/issues/5770
     // then all of them should be added to #INCOMPATIBLE_CHECK_NAMES
     // and this field should be removed
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
@@ -82,15 +76,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "SingleLineJavadoc",
                     "SummaryJavadoc",
                     "WriteTag"
-    );
-
-    // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
-    // but not subclasses of AbstractJavadocCheck.
-    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = Set.of(
-                    IllegalBlockTagCheck.class,
-                    JavadocMethodCheck.class,
-                    JavadocTypeCheck.class,
-                    WriteTagCheck.class
     );
 
     // Modules that will never have xpath support ever because they not report violations
@@ -148,25 +133,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     @Override
     protected String getResourceLocation() {
         return "it";
-    }
-
-    @Test
-    public void validateIncompatibleJavadocCheckNames() throws IOException {
-        // subclasses of AbstractJavadocCheck that are only interested in Javadoc tree
-        final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
-                .stream()
-                .filter(AbstractJavadocCheck.class::isAssignableFrom)
-                .filter(XpathRegressionTest::isPureJavadocCheck)
-                .collect(Collectors.toCollection(HashSet::new));
-        // add the extra checks
-        abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
-        final Set<String> abstractJavadocCheckSimpleNames =
-                CheckUtil.getSimpleNames(abstractJavadocCheckNames);
-        abstractJavadocCheckSimpleNames.removeAll(INTERNAL_MODULES);
-        assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contains all descendants "
-                    + "of AbstractJavadocCheck")
-            .that(abstractJavadocCheckSimpleNames)
-            .isEqualTo(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
     }
 
     @Test
@@ -253,18 +219,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 // input files should be named correctly
                 validateInputDirectory(dir);
             }
-        }
-    }
-
-    private static boolean isPureJavadocCheck(Class<?> check) {
-        try {
-            final AbstractJavadocCheck instance =
-                    (AbstractJavadocCheck) check.getDeclaredConstructor().newInstance();
-            return Arrays.equals(instance.getRequiredTokens(),
-                    new int[] {TokenTypes.BLOCK_COMMENT_BEGIN});
-        }
-        catch (ReflectiveOperationException exc) {
-            throw new IllegalStateException("Reflection operation problem for " + check, exc);
         }
     }
 
