@@ -23,7 +23,7 @@ import java.io.Serializable;
  */
 class InputAtclauseOrderIncorrectCustom4 implements Serializable
 {
-    // violation 5 lines below 'Block tags have to appear in the order .\[@since.*'
+    // violation 5 lines below 'Block tags have to appear in the order .[@since.*'
     /**
      * Some javadoc.
      *
