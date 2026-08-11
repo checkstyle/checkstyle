@@ -34,12 +34,14 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
@@ -346,6 +348,53 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetAllNodesOfTypeForNoChildren() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+
+        final List<DetailNode> nodes = JavadocUtil.getAllNodesOfType(parent,
+                JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid nodes")
+            .that(nodes)
+            .isEmpty();
+    }
+
+    @Test
+    public void testGetAllNodesOfTypeForNoMatches() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        parent.addChild(createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME));
+        parent.addChild(createJavadocNode(JavadocCommentsTokenTypes.EQUALS));
+
+        final List<DetailNode> nodes = JavadocUtil.getAllNodesOfType(parent,
+                JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid nodes")
+            .that(nodes)
+            .isEmpty();
+    }
+
+    @Test
+    public void testGetAllNodesOfType() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl firstTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl tagNameNode = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+        final JavadocNodeImpl secondTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        tagNameNode.addChild(createJavadocNode(JavadocCommentsTokenTypes.TEXT));
+
+        parent.addChild(firstTextNode);
+        parent.addChild(tagNameNode);
+        parent.addChild(secondTextNode);
+
+        final List<DetailNode> nodes = JavadocUtil.getAllNodesOfType(parent,
+                JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid nodes")
+            .that(nodes)
+            .containsExactly(firstTextNode, secondTextNode)
+            .inOrder();
+    }
+
+    @Test
     public void testGetJavadocCommentContent() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         final DetailAstImpl javadoc = new DetailAstImpl();
@@ -403,6 +452,12 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("%s string", message)
             .that(actual.toString())
             .isEqualTo(expected.toString());
+    }
+
+    private static JavadocNodeImpl createJavadocNode(int tokenType) {
+        final JavadocNodeImpl result = new JavadocNodeImpl();
+        result.setType(tokenType);
+        return result;
     }
 
     @Test
