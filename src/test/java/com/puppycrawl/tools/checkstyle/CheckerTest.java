@@ -1689,7 +1689,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Reason of non-Input based testing:
      * There are bunch of asserts that expects full path to file,
      * usage of "basedir" make it stripped and we need put everywhere code like
-     * <pre>CommonUtil.relativizePath(checker.getConfiguration().getProperty("basedir"), file)</pre>
+     * {@code CommonUtil.relativizePath(checker.getConfiguration().getProperty("basedir"), file)}
      * but Checker object is not always available in code.
      * Propagating it in all code methods will complicate code.
      */
