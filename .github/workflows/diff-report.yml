@@ -15,13 +15,26 @@ name: Diff-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
+  PULL_REQUEST_URL: >-
+    ${{ github.event.issue.pull_request.url
+        || format('https://api.github.com/repos/checkstyle/checkstyle/pulls/{0}',
+                  inputs.pr-number) }}
   # yamllint disable-line rule:line-length
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
-  USER_LOGIN: ${{ github.event.issue.user.login }}
 
 on:
   issue_comment:
     types: [ created, edited ]
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'PR number'
+        required: true
+        type: string
+      trigger-phrase:
+        description: 'Comment phrase that normally triggers this workflow'
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -35,7 +48,7 @@ concurrency:
 jobs:
   # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: github.event.comment.body == 'GitHub, generate report'
+    if: (inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report'
     runs-on: ubuntu-latest
     outputs:
       projects_link: ${{ steps.parse.outputs.projects_link }}
@@ -48,6 +61,7 @@ jobs:
 
     steps:
       - name: React to comment
+        if: github.event_name == 'issue_comment'
         uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -65,10 +79,14 @@ jobs:
       - name: Getting PR description
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
-          PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
+          PULL_REQUEST_URL: ${{ env.PULL_REQUEST_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
+          if [ -z "$ISSUE_BODY" ]; then
+            ISSUE_BODY=$(curl --fail-with-body -s -H "Authorization: token $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" "$PULL_REQUEST_URL" | jq --raw-output .body)
+          fi
           # convert windows line endings to unix in event text
           echo "$ISSUE_BODY" > .ci-temp/windows.txt
           tr -d '\15\32' < .ci-temp/windows.txt > .ci-temp/text
