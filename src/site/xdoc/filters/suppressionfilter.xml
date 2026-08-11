@@ -307,7 +307,7 @@ public class UseCase1 {
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress files="[/\\]\..+" checks=".*"/&gt;
+  &lt;suppress files="[/]\..+" checks=".*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
         <p id="UseCase2-code">Example:</p>
@@ -376,7 +376,7 @@ class Inner {
           Suppress all checks for Maven-generated code:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
+&lt;suppress files=&quot;[/]target[/]&quot; checks=&quot;.*&quot;/&gt;
         </code></pre></div>
         <p>
           Suppress all checks for Maven-generated code

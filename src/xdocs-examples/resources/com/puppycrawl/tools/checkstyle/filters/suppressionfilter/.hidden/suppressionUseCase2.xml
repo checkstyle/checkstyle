@@ -5,5 +5,5 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-  <suppress files="[/\\]\..+" checks=".*"/>
+  <suppress files="[/]\..+" checks=".*"/>
 </suppressions>

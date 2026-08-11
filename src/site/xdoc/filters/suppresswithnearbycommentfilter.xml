@@ -476,7 +476,7 @@ public class UseCase2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
       &lt;property name="commentFormat"
-                value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{13,}"/&gt;
+                value="@cs\.suppress [(\w+(\|\w+)*)] \w[-\.'`,:;\w ]{13,}"/&gt;
       &lt;property name="checkFormat" value="$1"/&gt;
       &lt;property name="influenceFormat" value="1"/&gt;
     &lt;/module&gt;
@@ -512,7 +512,7 @@ public class UseCase3 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressWithNearbyCommentFilter"&gt;
       &lt;property name="commentFormat"
-        value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{14,}"/&gt;
+        value="@cs\.suppress [(\w+(\|\w+)*)] \w[-\.'`,:;\w ]{14,}"/&gt;
       &lt;property name="checkFormat" value="$1"/&gt;
       &lt;property name="influenceFormat" value="1"/&gt;
     &lt;/module&gt;

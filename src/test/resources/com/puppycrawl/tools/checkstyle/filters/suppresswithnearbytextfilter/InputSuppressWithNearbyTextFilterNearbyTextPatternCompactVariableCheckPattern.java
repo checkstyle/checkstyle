@@ -1,6 +1,6 @@
 /*
 SuppressWithNearbyTextFilter
-nearbyTextPattern = -@cs\\[(\\w+)\\] (\\w+)
+nearbyTextPattern = -@cs[(\\w+)] (\\w+)
 checkPattern = $1
 messagePattern = (default)(null)
 idPattern = (default)(null)
