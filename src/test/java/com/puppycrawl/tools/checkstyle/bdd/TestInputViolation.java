@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.bdd;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 /**
  * Represents a test input violation with line number and message.
@@ -30,15 +29,6 @@ import java.util.regex.Pattern;
  */
 public record TestInputViolation(int lineNo, String message)
         implements Comparable<TestInputViolation> {
-
-    /** Pattern to match the symbol: "{". */
-    private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
-
-    /** Pattern to match the symbol: "(". */
-    private static final Pattern OPEN_PAREN_PATTERN = Pattern.compile("\\(");
-
-    /** Pattern to match the symbol: ")". */
-    private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
@@ -58,13 +48,41 @@ public record TestInputViolation(int lineNo, String message)
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
-            String rawMessage = message;
-            rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
-            rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
-            rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            regex += rawMessage + ".*";
+            final String[] segments = message.split("\\\\Q|\\\\E", -1);
+            final StringBuilder builder = new StringBuilder();
+            for (int index = 0; index < segments.length; index++) {
+                if (index > 0) {
+                    if (index % 2 == 1) {
+                        builder.append("\\Q");
+                    }
+                    else {
+                        builder.append("\\E");
+                    }
+                }
+                if (index % 2 == 0) {
+                    builder.append(escapeSegment(segments[index]));
+                }
+                else {
+                    builder.append(segments[index]);
+                }
+            }
+            regex += builder.toString() + ".*";
         }
         return regex;
+    }
+
+    /**
+     * Escapes standard BDD violation special characters in a message segment.
+     *
+     * @param segment the segment to escape
+     * @return the escaped segment
+     */
+    private static String escapeSegment(String segment) {
+        return segment.replace("{", "\\{")
+                .replace("(", "\\(")
+                .replace(")", "\\)")
+                .replace("[", "\\[")
+                .replace("]", "\\]");
     }
 
     @Override
