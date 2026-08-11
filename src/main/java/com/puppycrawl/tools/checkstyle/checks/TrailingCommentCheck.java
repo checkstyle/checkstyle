@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The check to ensure that lines with code do not end with comment.
  * For the case of {@code //} comments that means that the only thing that should precede
  * it is whitespace. It doesn't check comments if they do not end a line; for example,
- * it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
+ * it accepts the following: {@code Thread.sleep( 10 /*some comment here* / );}
  * Format property is intended to deal with the <code>} // while</code> example.
  * </div>
  *
@@ -86,9 +86,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * are even more important in the age of automated refactorings.
  * </p>
  *
- * @noinspection HtmlTagCanBeJavadocTag
- * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
- *      when replaced with Javadoc tag
  * @since 3.4
  */
 @StatelessCheck
