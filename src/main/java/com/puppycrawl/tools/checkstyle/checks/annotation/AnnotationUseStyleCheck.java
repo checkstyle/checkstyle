@@ -118,25 +118,21 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     public enum ElementStyleOption {
 
         /**
-         * Expanded example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
+         * Expanded example: {@code @SuppressWarnings(value={"unchecked","unused",})}.
          */
         EXPANDED,
 
         /**
          * Compact example
-         *
-         * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+         * <br>
+         * {@code @SuppressWarnings({"unchecked","unused",})}
          * <br>or<br>
-         * <pre>@SuppressWarnings("unchecked")</pre>.
+         * {@code @SuppressWarnings("unchecked")}.
          */
         COMPACT,
 
         /**
-         * Compact example
-         *
-         * <pre>@SuppressWarnings("unchecked")</pre>.
+         * Compact example: {@code @SuppressWarnings("unchecked")}.
          */
         COMPACT_NO_ARRAY,
 
@@ -155,16 +151,12 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     public enum TrailingArrayCommaOption {
 
         /**
-         * With comma example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
+         * With comma example: {@code @SuppressWarnings(value={"unchecked","unused",})}.
          */
         ALWAYS,
 
         /**
-         * Without comma example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>.
+         * Without comma example: {@code @SuppressWarnings(value={"unchecked","unused"})}.
          */
         NEVER,
 
@@ -183,16 +175,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     public enum ClosingParensOption {
 
         /**
-         * With parens example
-         *
-         * <pre>@Deprecated()</pre>.
+         * With parens example :
+         * {@code @Deprecated()}.
          */
         ALWAYS,
 
         /**
-         * Without parens example
-         *
-         * <pre>@Deprecated</pre>.
+         * Without parens example: {@code @Deprecated}.
          */
         NEVER,
 

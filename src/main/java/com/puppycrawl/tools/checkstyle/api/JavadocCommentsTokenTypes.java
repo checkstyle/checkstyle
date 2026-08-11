@@ -169,8 +169,7 @@ public final class JavadocCommentsTokenTypes {
      * <li>{@link #THROWS_BLOCK_TAG}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @param value The parameter of method.}</pre>
+     * <p><b>Example:</b>{@code * @param value The parameter of method.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -196,8 +195,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * At-sign {@code @} that starts a block tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @author name}</pre>
+     * <p><b>Example:</b>{@code * @author name}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -223,8 +221,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @author name.}</pre>
+     * <p><b>Example:</b>{@code * @author name.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -251,8 +248,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @deprecated deprecated text.}</pre>
+     * <p><b>Example:</b>{@code * @deprecated deprecated text.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -280,8 +276,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @param value The parameter of method.}</pre>
+     * <p><b>Example:</b>{@code * @param value The parameter of method.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -310,8 +305,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @return The return of method.}</pre>
+     * <p><b>Example:</b>{@code * @return The return of method.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -339,8 +333,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION} - description</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @throws IOException if an I/O error occurs}</pre>
+     * <p><b>Example:</b>{@code * @throws IOException if an I/O error occurs}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -370,8 +363,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @exception FileNotFoundException when file is not found.}</pre>
+     * <p><b>Example:</b>{@code * @exception FileNotFoundException when file is not found.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -425,8 +417,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>This tag has only one argument — {@link #TEXT}:</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @version value}</pre>
+     * <p><b>Example:</b>{@code * @version value}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -455,8 +446,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #HTML_ELEMENT}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @see SomeClass#Field}</pre>
+     * <p><b>Example:</b>{@code * @see SomeClass#Field}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -487,8 +477,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION} – optional description text</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @hidden value}</pre>
+     * <p><b>Example:</b>{@code * @hidden value}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -515,8 +504,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #IDENTIFIER} – the referenced service type</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @uses com.example.app.MyService}</pre>
+     * <p><b>Example:</b>{@code * @uses com.example.app.MyService}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -545,7 +533,8 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @provides com.example.MyService with com.example.MyServiceImpl}</pre>
+     *
+     * <p>{@code * @provides com.example.MyService with com.example.MyServiceImpl}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -574,8 +563,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION} – optional description text</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @serial include}</pre>
+     * <p><b>Example:</b>{@code * @serial include}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -602,8 +590,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION} – optional description text</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @serialData data description value}</pre>
+     * <p><b>Example:</b>{@code * @serialData data description value}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -632,8 +619,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION} – field description</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @serialField name String The person's full name.}</pre>
+     * <p><b>Example:</b>{@code * @serialField name String The person's full name.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -662,8 +648,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This type represents any block tag that is not explicitly recognized by Checkstyle,
      * such as a project-specific or malformed tag.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @mycustomtag This is a custom block tag.}</pre>
+     * <p><b>Example:</b>{@code * @mycustomtag This is a custom block tag.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -809,8 +794,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have no children:</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@code println("Hello");}}</pre>
+     * <p><b>Example:</b>{@code * {@code println("Hello");}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -835,8 +819,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@link Math#max(int, int) label}}</pre>
+     * <p><b>Example:</b>{@code * {@link Math#max(int, int) label}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -875,8 +858,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@linkplain String#indexOf(int, int) label}}</pre>
+     * <p><b>Example:</b>{@code * {@linkplain String#indexOf(int, int) label}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -914,8 +896,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #REFERENCE}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@value Integer#MAX_VALUE}}</pre>
+     * <p><b>Example:</b>{@code * {@value Integer#MAX_VALUE}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -943,8 +924,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This node represents an inline {@code {@summary ...}} tag used to provide a
      * short summary description within a Javadoc sentence.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@summary This is a short summary.}}</pre>
+     * <p><b>Example:</b>{@code * Example showing {@summary This is a short summary.}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -970,8 +950,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This node models the inline {@code {@inheritDoc}} tag that instructs Javadoc
      * to inherit documentation from the corresponding element in a parent class or interface.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@inheritDoc}}</pre>
+     * <p><b>Example:</b>{@code * {@inheritDoc}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -994,7 +973,8 @@ public final class JavadocCommentsTokenTypes {
      * <p>Such Javadoc tag is used to reference a system property.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * This method uses {@systemProperty user.home} system property.}</pre>
+     *
+     * <p>{@code * This method uses {@systemProperty user.home} system property.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1018,8 +998,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * {@code {@literal}} inline tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@literal @Override}}</pre>
+     * <p><b>Example:</b>{@code * {@literal @Override}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1043,8 +1022,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This node represents an inline {@code {@return ...}} tag used to
      * describe the returned value directly within a Javadoc sentence.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code Example showing result {@return The computed value.}}</pre>
+     * <p><b>Example:</b>{@code Example showing result {@return The computed value.}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1071,7 +1049,8 @@ public final class JavadocCommentsTokenTypes {
      * index term inside a Javadoc sentence.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@index keyword description of the index term}.}</pre>
+     *
+     * <p>{@code * Example showing {@index keyword description of the index term}.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1131,8 +1110,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * {@code @custom} inline tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@custom This is a Custom Inline Tag}.}</pre>
+     * <p><b>Example:</b>{@code * Example showing {@custom This is a Custom Inline Tag}.}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1157,8 +1135,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Identifier token.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @throws Exception if error.}</pre>
+     * <p><b>Example:</b>{@code * @throws Exception if error.}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1180,8 +1157,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Hash symbol {@code #} used in references within Javadoc.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @see MyClass#myMethod()}</pre>
+     * <p><b>Example:</b>{@code * @see MyClass#myMethod()}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1269,8 +1245,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Comma symbol {@code , }.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @see #method(int, int)}</pre>
+     * <p><b>Example:</b>{@code * @see #method(int, int)}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1360,8 +1335,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Less-than symbol {@code < }.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @see List<String>}</pre>
+     * <p><b>Example:</b>{@code * @see List<String>}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1388,8 +1362,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Greater-than symbol {@code > }.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @see List<String>}</pre>
+     * <p><b>Example:</b>{@code * @see List<String>}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1493,8 +1466,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Represents a type used in a method parameter.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code {@link java.util.List#add(Object)}} </pre>
+     * <p><b>Example:</b>{@code {@link java.util.List#add(Object)}}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1614,8 +1586,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Represents the type arguments inside a generic type reference.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code {@link java.util.List<String>}}</pre>
+     * <p><b>Example:</b>{@code {@link java.util.List<String>}}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1673,8 +1644,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Description part of a Javadoc tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @param value The parameter description goes here.}</pre>
+     * <p><b>Example:</b>{@code * @param value The parameter description goes here.}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1733,8 +1703,8 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>
      * <b>Example:</b>
+     * {@code * @snippet lang=java}
      * </p>
-     * <pre>{@code * @snippet lang=java}</pre>
      *
      * <p>
      * <b>Tree:</b>
@@ -1794,8 +1764,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * {@code ATTRIBUTE_VALUE} Value assigned to an attribute.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code <a href="example">text</a>}</pre>
+     * <p><b>Example:</b>{@code <a href="example">text</a>}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1827,8 +1796,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Colon symbol {@code : }.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * {@snippet :config}}</pre>
+     * <p><b>Example:</b>{@code * {@snippet :config}}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1860,8 +1828,10 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>This node represents the term inside an inline {@code {@index ...}} tag in Javadoc.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@index keyword description of the index term}.}</pre>
+     * <p>
+     * <b>Example:</b>
+     * {@code * Example showing {@index keyword description of the index term}.}
+     * </p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -1894,8 +1864,7 @@ public final class JavadocCommentsTokenTypes {
      * attributes appear as plain text under the {@code DESCRIPTION} node,
      * not as a separate {@code SNIPPET_ATTRIBUTE} node.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @snippet lang=java}</pre>
+     * <p><b>Example:</b>{@code * @snippet lang=java}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1923,8 +1892,7 @@ public final class JavadocCommentsTokenTypes {
      * plain text under the {@code DESCRIPTION} node, not as a separate
      * {@code SNIPPET_ATTRIBUTES} node.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @snippet lang=java region=main}</pre>
+     * <p><b>Example:</b>{@code * @snippet lang=java region=main}</p>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1949,7 +1917,8 @@ public final class JavadocCommentsTokenTypes {
      * </p>
      *
      * <b>Example:</b>
-     * <pre>{@code * @snippet lang=java * System.out.println("hello");}</pre>
+     *
+     * <p>{@code * @snippet lang=java * System.out.println("hello");}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2008,8 +1977,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Parameter name reference in a Javadoc {@code @param} block tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @param value The parameter of method.}</pre>
+     * <p><b>Example:</b>{@code * @param value The parameter of method.}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2114,8 +2082,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This node represents the textual content between an HTML start tag and
      * the corresponding end tag inside a Javadoc comment.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     * <p><b>Example:</b>{@code * <a href="https://example.com">link</a>}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2218,8 +2185,7 @@ public final class JavadocCommentsTokenTypes {
      * the opening delimiter, tag name, optional attributes, and the closing
      * delimiter of the opening tag.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     * <p><b>Example:</b>{@code * <a href="https://example.com">link</a>}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2248,8 +2214,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This node represents the closing part of an HTML element and contains the
      * closing delimiter, optional slash, and the tag name.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     * <p><b>Example:</b>{@code * <a href="https://example.com">link</a>}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2387,8 +2352,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Used for void HTML elements.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <br />}</pre>
+     * <p><b>Example:</b>{@code * <br />}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2479,8 +2443,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #HTML_COMMENT_END}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <!-- Hello World! -->}</pre>
+     * <p><b>Example:</b>{@code * <!-- Hello World! -->}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -2530,8 +2493,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>This node represents the closing delimiter of an HTML comment in
      * Javadoc (for example {@code -->}).</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <!-- hidden comment -->}</pre>
+     * <p><b>Example:</b>{@code * <!-- hidden comment -->}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code

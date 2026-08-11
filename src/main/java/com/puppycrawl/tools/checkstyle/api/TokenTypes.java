@@ -494,8 +494,10 @@ public final class TokenTypes {
      * dot which is the root of a fully qualified type, or an array of
      * any of these. The second child may be type arguments to the type.
      *
-     * <p>For example:</p>
-     * <pre>boolean var = true;</pre>
+     * <p>
+     * For example:
+     * {@code boolean var = true;}
+     * </p>
      *
      * <p>parses as:</p>
      * <pre>
@@ -1558,8 +1560,7 @@ public final class TokenTypes {
     /**
      * The {@code strictfp} keyword.
      *
-     * <p>For example:</p>
-     * <pre>public strictfp class Test {}</pre>
+     * <p>For example: {@code public strictfp class Test {}}</p>
      *
      * <p>parses as:</p>
      * <pre>
@@ -3603,8 +3604,7 @@ public final class TokenTypes {
     /**
      * The {@code %=} (remainder assignment) operator.
      *
-     * <p>For example:</p>
-     * <pre>a %= 2;</pre>
+     * <p>For example: {@code a %= 2;}</p>
      *
      * <p>parses as:</p>
      * <pre>
@@ -4615,8 +4615,7 @@ public final class TokenTypes {
      * A string literal.  This is a sequence of (possibly escaped)
      * characters enclosed in double quotes.
      *
-     * <p>For example:</p>
-     * <pre>String str = "StringLiteral";</pre>
+     * <p>For example: {@code String str = "StringLiteral";}</p>
      *
      * <p>parses as:</p>
      * <pre>
@@ -5328,8 +5327,7 @@ public final class TokenTypes {
      * Children are either: type name or wildcard type with possible type
      * upper or lower bounds.
      *
-     * <p>For example:</p>
-     * <pre>List&lt;? super List&gt; list;</pre>
+     * <p>For example: {@code List< ? super List> list }</p>
      *
      * <p>parses as:</p>
      * <pre>
@@ -5395,8 +5393,7 @@ public final class TokenTypes {
      * This node has one child - the type that is being used for
      * the bounding.
      *
-     * <p>For example:</p>
-     * <pre>List&lt;? extends Number&gt; list;</pre>
+     * <p>For example: {@code List< ? extends Number> list;}</p>
      *
      * <p>parses as:</p>
      * <pre>
@@ -5428,8 +5425,7 @@ public final class TokenTypes {
      * A lower bounds on a wildcard type argument. This node has one child
      *  - the type that is being used for the bounding.
      *
-     *  <p>For example:</p>
-     *  <pre>List&lt;? super Integer&gt; list;</pre>
+     *  <p>For example: {@code List< ? super Integer> list;}</p>
      *
      *  <p>parses as:</p>
      *  <pre>
