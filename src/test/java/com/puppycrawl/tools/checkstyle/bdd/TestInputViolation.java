@@ -40,6 +40,12 @@ public record TestInputViolation(int lineNo, String message)
     /** Pattern to match the symbol: ")". */
     private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
+    /** Pattern to match the symbol: "[". */
+    private static final Pattern OPEN_BRACKET_PATTERN = Pattern.compile("\\[");
+
+    /** Pattern to match the symbol: "]". */
+    private static final Pattern CLOSE_BRACKET_PATTERN = Pattern.compile("\\]");
+
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
         return lineNo;
@@ -58,13 +64,42 @@ public record TestInputViolation(int lineNo, String message)
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
-            String rawMessage = message;
-            rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
-            rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
-            rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            regex += rawMessage + ".*";
+            final String rawMessage = message;
+            final String[] segments = rawMessage.split("\\\\Q|\\\\E", -1);
+            final StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < segments.length; i++) {
+                if (i > 0) {
+                    if (i % 2 == 1) {
+                        builder.append("\\Q");
+                    } else {
+                        builder.append("\\E");
+                    }
+                }
+                if (i % 2 == 0) {
+                    builder.append(escapeSegment(segments[i]));
+                } else {
+                    builder.append(segments[i]);
+                }
+            }
+            regex += builder.toString() + ".*";
         }
         return regex;
+    }
+
+    /**
+     * Escapes standard BDD violation metacharacters in a message segment.
+     *
+     * @param segment the segment to escape
+     * @return the escaped segment
+     */
+    private static String escapeSegment(String segment) {
+        String result = segment;
+        result = OPEN_CURLY_PATTERN.matcher(result).replaceAll("\\\\{");
+        result = OPEN_PAREN_PATTERN.matcher(result).replaceAll("\\\\(");
+        result = CLOSE_PAREN_PATTERN.matcher(result).replaceAll("\\\\)");
+        result = OPEN_BRACKET_PATTERN.matcher(result).replaceAll("\\\\[");
+        result = CLOSE_BRACKET_PATTERN.matcher(result).replaceAll("\\\\]");
+        return result;
     }
 
     @Override
