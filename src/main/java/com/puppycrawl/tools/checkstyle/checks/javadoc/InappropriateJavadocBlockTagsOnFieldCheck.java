@@ -44,7 +44,7 @@ public class InappropriateJavadocBlockTagsOnFieldCheck extends AbstractJavadocCh
     public static final String MSG_KEY = "javadoc.inappropriate.tag";
 
     /** Name of the field currently being checked. */
-    private String currentFieldName = "";
+    private String currentFieldName;
 
     /**
      * Creates a new {@code InappropriateJavadocBlockTagsOnFieldCheck} instance.
