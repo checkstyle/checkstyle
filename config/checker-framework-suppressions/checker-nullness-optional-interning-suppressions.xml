@@ -9385,4 +9385,17 @@
       method return type: @Initialized @NonNull NodeInfo
     </details>
   </checkerFrameworkError>
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>currentFieldName = ident.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnFieldCheck.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentFieldName</message>
+    <lineContent>public InappropriateJavadocBlockTagsOnFieldCheck() {</lineContent>
+  </checkerFrameworkError>
 </suppressedErrors>
