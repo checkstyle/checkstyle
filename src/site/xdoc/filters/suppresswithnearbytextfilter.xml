@@ -407,7 +407,7 @@ key.two=44
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="nearbyTextPattern"
-      value="-@cs\[(\w+)\] (\w+)"/&gt;
+      value="-@cs[(\w+)] (\w+)"/&gt;
     &lt;property name="checkPattern" value="$1"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;

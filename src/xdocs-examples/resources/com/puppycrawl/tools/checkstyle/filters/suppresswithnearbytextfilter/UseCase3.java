@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="SuppressWithNearbyTextFilter">
     <property name="nearbyTextPattern"
-      value="-@cs\[(\w+)\] (\w+)"/>
+      value="-@cs[(\w+)] (\w+)"/>
     <property name="checkPattern" value="$1"/>
   </module>
   <module name="TreeWalker">

@@ -3,7 +3,7 @@
   <module name="TreeWalker">
     <module name="SuppressWithNearbyCommentFilter">
       <property name="commentFormat"
-                value="@cs\.suppress \[(\w+(\|\w+)*)\] \w[-\.'`,:;\w ]{13,}"/>
+                value="@cs\.suppress [(\w+(\|\w+)*)] \w[-\.'`,:;\w ]{13,}"/>
       <property name="checkFormat" value="$1"/>
       <property name="influenceFormat" value="1"/>
     </module>

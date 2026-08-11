@@ -1,6 +1,6 @@
 /*
 SuppressWithNearbyCommentFilter
-commentFormat = -@csoff\\[(MoveVariableInside\\((If\\|Else)\\))(?:\\|(\\w+))?\\]\\((\\d+)\\) .{10,}
+commentFormat = -@csoff[(MoveVariableInside\\((If\\|Else)\\))(?:\\|(\\w+))?]\\((\\d+)\\) .{10,}
 checkFormat = (default).*
 messageFormat = (default)(null)
 idFormat = on(If|Else)
