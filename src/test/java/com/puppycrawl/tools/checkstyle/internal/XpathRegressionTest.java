@@ -42,6 +42,7 @@ import org.junit.jupiter.api.Test;
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
+
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
@@ -60,6 +61,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
                     "AtclauseOrder",
                     "IllegalBlockTag",
+                    "InappropriateJavadocBlockTagsOnField",
                     "JavadocBlockTagLocation",
                     "JavadocMethod",
                     "JavadocMissingLeadingAsterisk",
@@ -76,6 +78,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "SummaryJavadoc",
                     "WriteTag"
     );
+
 
     // Modules that will never have xpath support ever because they not report violations
     private static final Set<String> NO_VIOLATION_MODULES = Set.of(
