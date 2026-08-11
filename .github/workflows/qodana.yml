@@ -1,16 +1,14 @@
 name: IDEA inspections
 on:
   pull_request:
-    types: [ opened, synchronize, reopened, closed ]
     branches: [ master ]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   qodana:
-    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -23,7 +21,7 @@ jobs:
           fetch-depth: 1
 
       - name: Run Qodana Scan
-        uses: JetBrains/qodana-action@v2026.2.0
+        uses: JetBrains/qodana-action@v2026.1
         with:
           use-caches: false
           use-annotations: false

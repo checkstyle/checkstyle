@@ -124,7 +124,13 @@ jobs:
       # Diff report will be generated taking upstream's master branch as a base branch
       - name: set upstream
         run: |
-          ./.ci/diff-report.sh set-upstream
+          bash
+          MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+          git remote add upstream "$MAIN_REPO_GIT_URL"
+          git fetch upstream
+          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          git remote add forked "$FORK_REPO_GIT_URL"
+          git fetch forked
 
       - name: Setup local maven cache
         uses: actions/cache@v6
@@ -133,7 +139,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Set up JDK
-        uses: actions/setup-java@v5.7.0
+        uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'temurin'
@@ -146,7 +152,12 @@ jobs:
 
       - name: Prepare environment
         run: |
-          ./.ci/diff-report.sh prepare-environment
+          mv .ci-temp/projects.properties ./.ci-temp/contribution/checkstyle-tester/
+          mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
@@ -159,14 +170,41 @@ jobs:
         env:
           BRANCH: ${{ needs.parse_body.outputs.branch }}
         run: |
-          ./.ci/diff-report.sh generate-report
+          cd .ci-temp/contribution/checkstyle-tester
+          bash
+          REF="forked/$BRANCH"
+          REPO="../../../../checkstyle"
+          BASE_BRANCH="upstream/master"
+          export MAVEN_OPTS="-Xmx5g"
+          if [ -f new_module_config.xml ]; then
+            groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
+              -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+              --allowExcludes
+          elif [ -f patch_config.xml ]; then
+            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
+              -pc patch_config.xml -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+              --allowExcludes
+          else
+            groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
+              -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+              --allowExcludes
+          fi
 
       - name: Copy Report to AWS S3 Bucket
         env:
           LABEL: ${{ needs.parse_body.outputs.report_label }}
-          COMMIT_SHA: ${{ needs.parse_body.outputs.commit_sha }}
         run: |
-          ./.ci/diff-report.sh copy-report-to-aws-s3-bucket
+          bash
+          TIME=$(date +%Y%H%M%S)
+          FOLDER="${{needs.parse_body.outputs.commit_sha}}_$TIME"
+          DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
+          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
+          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" \
+            --recursive --storage-class STANDARD_IA
+          if [ -n "$LABEL" ]; then
+            echo "$LABEL: " > .ci-temp/message
+          fi
+          echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
 
       - name: Set output
         id: out

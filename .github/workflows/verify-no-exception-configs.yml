@@ -2,16 +2,15 @@ name: 'verify-no-exception-configs'
 
 on:
   pull_request:
-    types: [ opened, synchronize, reopened, closed ]
     branches: '*'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
   verify-no-exception-configs:
-    if: github.event.action != 'closed' && github.repository == 'checkstyle/checkstyle'
+    if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
