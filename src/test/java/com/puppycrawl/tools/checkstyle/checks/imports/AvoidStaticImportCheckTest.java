@@ -159,4 +159,31 @@ public class AvoidStaticImportCheckTest
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testCompactSourceFile()
+            throws Exception {
+        final String[] expected = {
+            "10:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
+            "11:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.PI"),
+            "12:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sin"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAvoidStaticImportCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileExcludes()
+            throws Exception {
+        final String[] expected = {
+            "12:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.sin"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAvoidStaticImportCompactSourceFileExcludes.java"),
+                expected);
+    }
+
 }
