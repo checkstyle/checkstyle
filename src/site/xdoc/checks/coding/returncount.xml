@@ -120,16 +120,12 @@
 
       <subsection name="Examples" id="ReturnCount_Examples">
         <p id="Example1-config">
-          To configure the check so that it doesn't allow more than three
-          return statements per method (ignoring the <code>equals()</code>
-          method):
+          To configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="ReturnCount"&gt;
-      &lt;property name="max" value="3"/&gt;
-    &lt;/module&gt;
+    &lt;module name="ReturnCount"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -146,14 +142,14 @@ public class Example1 {
         if (x &lt; -2) { return -1; }
         return 0;
     }
-    // violation below 'max allowed for non-void methods/lambdas is 3'
+    // violation below 'max allowed for non-void methods/lambdas is 2'
     public int signB(int x) {
         if (x &lt; -2) { return -1; }
         if (x == 0) { return 0; }
         if (x &gt; 2) { return 2; }
         return 1;
     }
-    // ok below, because non-void restriction is 3
+    // ok below, because default non-void restriction is 2
     final Predicate&lt;Integer&gt; lambdaA = i -&gt; {
         if (i &gt; 5) { return true; }
         return false;
