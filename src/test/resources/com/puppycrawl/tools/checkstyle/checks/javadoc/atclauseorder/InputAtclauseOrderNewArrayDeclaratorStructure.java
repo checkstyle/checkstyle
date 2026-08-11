@@ -22,7 +22,7 @@ import javax.transaction.xa.Xid;
 
 public interface InputAtclauseOrderNewArrayDeclaratorStructure
         <D extends GenericDeclaration> extends Type, AnnotatedElement {
-    // violation 17 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 17 lines below 'Block tags have to appear in the order .[@author.*'
      /**
       * Returns an array of {@code Type} objects representing the
       * upper bound(s) of this type variable.  If no upper bound is
@@ -44,7 +44,7 @@ public interface InputAtclauseOrderNewArrayDeclaratorStructure
       */
      Type[] getBounds();
 
-     // violation 13 lines below 'Block tags have to appear in the order .\[@author.*'
+     // violation 13 lines below 'Block tags have to appear in the order .[@author.*'
       /**
        * Obtains a list of prepared transaction branches from a resource
        * manager. The transaction manager calls this method during recovery
@@ -68,9 +68,9 @@ public interface InputAtclauseOrderNewArrayDeclaratorStructure
 }
 
 class Other {
-    // violation 12 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 12 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 12 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 12 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 12 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 12 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * The focus traversal keys. These keys will generate focus traversal
      * behavior for Components for which focus traversal keys are enabled. If a
