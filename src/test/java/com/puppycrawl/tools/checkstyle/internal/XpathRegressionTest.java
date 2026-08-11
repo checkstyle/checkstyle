@@ -45,10 +45,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.IllegalBlockTagCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
@@ -60,8 +56,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "RegexpSinglelineJava (reason is at  #7759)"
     );
 
-    // Javadoc checks are not compatible with SuppressionXpathFilter
-    // till https://github.com/checkstyle/checkstyle/issues/5770
+    // Checks that report violations on Javadoc AST nodes (not Java AST).
+    // Incompatible with SuppressionXpathFilter until
+    // https://github.com/checkstyle/checkstyle/issues/5770
     // then all of them should be added to #INCOMPATIBLE_CHECK_NAMES
     // and this field should be removed
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
@@ -82,15 +79,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "SingleLineJavadoc",
                     "SummaryJavadoc",
                     "WriteTag"
-    );
-
-    // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
-    // but not subclasses of AbstractJavadocCheck.
-    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = Set.of(
-                    IllegalBlockTagCheck.class,
-                    JavadocMethodCheck.class,
-                    JavadocTypeCheck.class,
-                    WriteTagCheck.class
     );
 
     // Modules that will never have xpath support ever because they not report violations
@@ -152,21 +140,24 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateIncompatibleJavadocCheckNames() throws IOException {
-        // subclasses of AbstractJavadocCheck that are only interested in Javadoc tree
-        final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
+        // Pure AbstractJavadocCheck subclasses (required tokens only
+        // BLOCK_COMMENT_BEGIN) always report on the Javadoc tree, so they must
+        // stay in INCOMPATIBLE_JAVADOC_CHECK_NAMES. Other entries in that set
+        // (e.g. IllegalBlockTag) also report on Javadoc AST nodes even when they
+        // visit additional Java tokens; they are listed manually and guarded by
+        // validateIntegrationTestClassNames (missing Xpath IT if dropped).
+        final Set<Class<?>> pureJavadocChecks = CheckUtil.getCheckstyleChecks()
                 .stream()
                 .filter(AbstractJavadocCheck.class::isAssignableFrom)
                 .filter(XpathRegressionTest::isPureJavadocCheck)
                 .collect(Collectors.toCollection(HashSet::new));
-        // add the extra checks
-        abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
-        final Set<String> abstractJavadocCheckSimpleNames =
-                CheckUtil.getSimpleNames(abstractJavadocCheckNames);
-        abstractJavadocCheckSimpleNames.removeAll(INTERNAL_MODULES);
-        assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contains all descendants "
-                    + "of AbstractJavadocCheck")
-            .that(abstractJavadocCheckSimpleNames)
-            .isEqualTo(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
+        final Set<String> pureJavadocCheckNames =
+                CheckUtil.getSimpleNames(pureJavadocChecks);
+        pureJavadocCheckNames.removeAll(INTERNAL_MODULES);
+        assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contain all pure "
+                    + "AbstractJavadocCheck descendants")
+            .that(INCOMPATIBLE_JAVADOC_CHECK_NAMES)
+            .containsAtLeastElementsIn(pureJavadocCheckNames);
     }
 
     @Test
