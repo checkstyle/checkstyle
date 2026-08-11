@@ -42,7 +42,7 @@ class Wildcard {
     // 4 violations above:
     //  ''\<' is followed by whitespace.'
     //  ''\<' is preceded with whitespace.'
-    // ''\]' is followed by whitespace'
+    // '']' is followed by whitespace'
     //  ''\>' is preceded with whitespace.'
     // A statement is important in this method to flush out any
     // issues with parsing the wildcard in the signature
