@@ -75,9 +75,9 @@ public class JavadocDetailNodeParser {
      * </p>
      *
      * @param javadocCommentAst
-     *        the {@link DetailAST} node representing the Javadoc comment in the
+     *        the {@code DetailAST} node representing the Javadoc comment in the
      *        source file
-     * @return a {@link ParseStatus} containing the root of the parsed Javadoc
+     * @return a {@code ParseStatus} containing the root of the parsed Javadoc
      *        tree (if successful), the first non-tight HTML tag (if any), and
      *        the error message (if parsing failed)
      */

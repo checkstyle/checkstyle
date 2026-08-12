@@ -221,7 +221,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
      * this method will return {@code null}.
      *
      * @param ast the AST
-     * @return the {@link SuppressWarnings SuppressWarnings} annotation
+     * @return the {@code SuppressWarnings SuppressWarnings} annotation
      */
     private static DetailAST getSuppressWarnings(DetailAST ast) {
         DetailAST annotation = AnnotationUtil.getAnnotation(ast, SUPPRESS_WARNINGS);

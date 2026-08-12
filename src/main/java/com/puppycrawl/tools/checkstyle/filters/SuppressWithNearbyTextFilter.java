@@ -195,7 +195,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * Returns {@link FileText} instance created based on the given file name.
      *
      * @param fileName the name of the file.
-     * @return {@link FileText} instance.
+     * @return {@code FileText} instance.
      * @throws IllegalStateException if the file could not be read.
      */
     private static FileText getFileText(String fileName) {
@@ -218,7 +218,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     /**
      * Collets all {@link Suppression} instances retrieved from the given {@link FileText}.
      *
-     * @param fileText {@link FileText} instance.
+     * @param fileText {@code FileText} instance.
      */
     private void collectSuppressions(FileText fileText) {
         suppressions.clear();
@@ -256,9 +256,9 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * the given {@link AuditEvent}. The nearest suppression is the suppression which scope
      * is before the line and column of the event.
      *
-     * @param suppressions collection of {@link Suppression} instances.
-     * @param event {@link AuditEvent} instance.
-     * @return {@link Suppression} instance.
+     * @param suppressions collection of {@code Suppression} instances.
+     * @param event {@code AuditEvent} instance.
+     * @return {@code Suppression} instance.
      */
     private static Optional<Suppression> getNearestSuppression(Collection<Suppression> suppressions,
                                                                AuditEvent event) {
@@ -366,8 +366,8 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
         /**
          * Checks whether the {@link AuditEvent} is in the scope of the suppression.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} is in the scope of the suppression.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} is in the scope of the suppression.
          */
         private boolean isInScopeOfSuppression(AuditEvent event) {
             final int eventLine = event.getLine();
@@ -377,8 +377,8 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
         /**
          * Checks whether {@link AuditEvent} source name matches the check pattern.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} source name matches the check pattern.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} source name matches the check pattern.
          */
         private boolean isCheckMatch(AuditEvent event) {
             final Matcher checkMatcher = eventSourceRegexp.matcher(event.getSourceName());
@@ -388,8 +388,8 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
         /**
          * Checks whether the {@link AuditEvent} module ID matches the ID pattern.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} module ID matches the ID pattern.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} module ID matches the ID pattern.
          */
         private boolean isIdMatch(AuditEvent event) {
             boolean match = true;
@@ -408,8 +408,8 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
         /**
          * Checks whether the {@link AuditEvent} message matches the message pattern.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} message matches the message pattern.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} message matches the message pattern.
          */
         private boolean isMessageMatch(AuditEvent event) {
             boolean match = true;

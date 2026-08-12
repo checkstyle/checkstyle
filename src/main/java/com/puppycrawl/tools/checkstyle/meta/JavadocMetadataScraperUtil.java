@@ -164,7 +164,7 @@ public final class JavadocMetadataScraperUtil {
      * @param node the parent node
      * @param tokenType the token type to match
      * @return an {@link Optional} containing the first matching child node,
-     *         or an empty {@link Optional} if none is found
+     *         or an empty {@code Optional} if none is found
      */
     private static Optional<DetailNode> getFirstChildOfType(DetailNode node, int tokenType) {
         return JavadocUtil.getAllNodesOfType(node, tokenType).stream().findFirst();

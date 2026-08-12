@@ -150,8 +150,8 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
      * Visit ast of type {@link TokenTypes#IDENT}
      * and check if it is a candidate for a catch parameter identifier.
      *
-     * @param identifierAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} could be a catch parameter identifier
+     * @param identifierAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} could be a catch parameter identifier
      */
     private static boolean isCatchParameterIdentifierCandidate(DetailAST identifierAst) {
         // we should ignore the ident if it is in the exception declaration
@@ -164,8 +164,8 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
      * Check if the given {@link TokenTypes#IDENT} is a child of a dot operator
      * and is a candidate for catch parameter.
      *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a child of a dot operator
+     * @param identAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} is a child of a dot operator
      *     and a candidate for catch parameter.
      */
     private static boolean isMethodInvocation(DetailAST identAst) {
@@ -177,8 +177,8 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
     /**
      * Check if the given {@link TokenTypes#IDENT} is a left hand side value.
      *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a left hand side value.
+     * @param identAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} is a left hand side value.
      */
     private static boolean isLeftHandOfAssignment(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
@@ -246,7 +246,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
          * Get the parameter definition token of the catch parameter
          * represented by ast of type {@link TokenTypes#PARAMETER_DEF}.
          *
-         * @return the ast of type {@link TokenTypes#PARAMETER_DEF}
+         * @return the ast of type {@code TokenTypes#PARAMETER_DEF}
          */
         private DetailAST getParameterDefinition() {
             return parameterDefinition;

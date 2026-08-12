@@ -315,7 +315,7 @@ public final class PropertyDetails {
         /**
          * Builds and returns the {@link PropertyDetails}.
          *
-         * @return a new {@link PropertyDetails} instance.
+         * @return a new {@code PropertyDetails} instance.
          */
         public PropertyDetails build() {
             return new PropertyDetails(this);
