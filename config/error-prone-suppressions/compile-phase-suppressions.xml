@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
   <!-- Temporal suppression. Refactoring to avoid such wrapping results in violations from Checker and inspections -->
+
+  <!-- PreferLiteralJavadocInlineTagCheck file intentionally contains escaped entity -->
+  <error>
+    <sourceFile>PreferLiteralJavadocInlineTagCheck.java</sourceFile>
+    <bugPattern>EscapedEntity</bugPattern>
+    <description>HTML entities in @code/@literal tags will appear literally in the rendered javadoc.</description>
+    <lineContent>* &lt;li&gt;{@literal &amp;amp;}&lt;/li&gt;</lineContent>
+  </error>
+  <error>
+    <sourceFile>PreferLiteralJavadocInlineTagCheck.java</sourceFile>
+    <bugPattern>EscapedEntity</bugPattern>
+    <description>HTML entities in @code/@literal tags will appear literally in the rendered javadoc.</description>
+    <lineContent>* &lt;li&gt;{@literal &amp;apos;}&lt;/li&gt;</lineContent>
+  </error>
+  <error>
+    <sourceFile>PreferLiteralJavadocInlineTagCheck.java</sourceFile>
+    <bugPattern>EscapedEntity</bugPattern>
+    <description>HTML entities in @code/@literal tags will appear literally in the rendered javadoc.</description>
+    <lineContent>* &lt;li&gt;{@literal &amp;gt;}&lt;/li&gt;</lineContent>
+  </error>
+  <error>
+    <sourceFile>PreferLiteralJavadocInlineTagCheck.java</sourceFile>
+    <bugPattern>EscapedEntity</bugPattern>
+    <description>HTML entities in @code/@literal tags will appear literally in the rendered javadoc.</description>
+    <lineContent>* &lt;li&gt;{@literal &amp;lt;}&lt;/li&gt;</lineContent>
+  </error>
+  <error>
+    <sourceFile>PreferLiteralJavadocInlineTagCheck.java</sourceFile>
+    <bugPattern>EscapedEntity</bugPattern>
+    <description>HTML entities in @code/@literal tags will appear literally in the rendered javadoc.</description>
+    <lineContent>* &lt;li&gt;{@literal &amp;quot;}&lt;/li&gt;</lineContent>
+  </error>
+
 </suppressedErrors>

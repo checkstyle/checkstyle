@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * According to the JLS, it is legal to include a trailing comma
- * in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
+ * in arrays used in annotations but Sun's Java 5 {@literal &} 6 compilers will not
  * compile with this syntax. This may in be a bug in Sun's compilers
  * since eclipse 3.4's built-in compiler does allow this syntax as
  * defined in the JLS. Note: this was tested with compilers included with

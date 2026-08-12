@@ -39,7 +39,7 @@
         <p>
           The NPATH metric computes the number of possible execution paths through a
           function(method). It takes into account the nesting of conditional statements
-          and multipart boolean expressions (A &amp;&amp; B, C || D, E ? F :G and
+          and multipart boolean expressions (<code>A &amp;&amp; B, C || D, E ? F :G</code> and
           their combinations).
         </p>
 

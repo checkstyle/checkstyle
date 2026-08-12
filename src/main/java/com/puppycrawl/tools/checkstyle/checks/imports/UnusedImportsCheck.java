@@ -455,8 +455,8 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Strips a trailing parameter name (e.g. &quot;outputTarget&quot; in
-     * &quot;Result outputTarget&quot;) from a type token when the
+     * Strips a trailing parameter name (e.g. {@code "outputTarget"} in
+     * {@code "Result outputTarget"}) from a type token when the
      * Javadoc lexer merges the type and parameter name into a
      * single PARAMETER_TYPE token.
      *

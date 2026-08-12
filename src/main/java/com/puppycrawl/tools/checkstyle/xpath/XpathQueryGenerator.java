@@ -337,7 +337,8 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Escape {@literal <}, {@literal >}, &amp;, &#39; and &quot; as their entities.
+     * Escape {@literal <}, {@literal >}, {@literal &}, {@literal '} and {@literal "}
+     * as their entities.
      * Custom method for Xpath generation to maintain compatibility
      * with Saxon and encoding outside Ascii range characters.
      *
@@ -365,7 +366,7 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Encodes escape character for Xpath. Escape characters need '&amp;' before, but it also
+     * Encodes escape character for Xpath. Escape characters need '{@literal &}' before, but it also
      * requires XML 1.1
      * until <a href="https://github.com/checkstyle/checkstyle/issues/5168">#5168</a>.
      *
