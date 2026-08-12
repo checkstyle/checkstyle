@@ -33,7 +33,8 @@
 
       <subsection name="Examples" id="LocalFinalVariableName_Examples">
         <p id="Example1-config">
-          To configure the check:
+          An example of how to configure the check so that the length of the
+          name is not less than 4:
         </p>
         <macro name="example">
           <param name="path"
