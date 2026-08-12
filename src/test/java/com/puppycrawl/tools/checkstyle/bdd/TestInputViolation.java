@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.bdd;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 /**
  * Represents a test input violation with line number and message.
@@ -30,15 +29,6 @@ import java.util.regex.Pattern;
  */
 public record TestInputViolation(int lineNo, String message)
         implements Comparable<TestInputViolation> {
-
-    /** Pattern to match the symbol: "{". */
-    private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
-
-    /** Pattern to match the symbol: "(". */
-    private static final Pattern OPEN_PAREN_PATTERN = Pattern.compile("\\(");
-
-    /** Pattern to match the symbol: ")". */
-    private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
@@ -58,13 +48,52 @@ public record TestInputViolation(int lineNo, String message)
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
-            String rawMessage = message;
-            rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
-            rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
-            rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            regex += rawMessage + ".*";
+            regex += escapeSegment(message) + ".*";
         }
         return regex;
+    }
+
+    /**
+     * Escapes standard BDD violation special characters in a message segment.
+     *
+     * @param segment the segment to escape
+     * @return the escaped segment
+     */
+    private static String escapeSegment(String segment) {
+        final StringBuilder result = new StringBuilder();
+        int index = 0;
+        while (index < segment.length()) {
+            final int qStart = segment.indexOf("\\Q", index);
+            if (qStart == -1) {
+                result.append(escapeOutside(segment.substring(index)));
+                break;
+            }
+            result.append(escapeOutside(segment.substring(index, qStart)));
+            result.append("\\Q");
+            final int qEnd = segment.indexOf("\\E", qStart + 2);
+            if (qEnd == -1) {
+                result.append(segment.substring(qStart + 2));
+                break;
+            }
+            result.append(segment.substring(qStart + 2, qEnd));
+            result.append("\\E");
+            index = qEnd + 2;
+        }
+        return result.toString();
+    }
+
+    /**
+     * Escapes standard BDD violation special characters in a message segment outside of Q/E blocks.
+     *
+     * @param part the part of the segment to escape
+     * @return the escaped part
+     */
+    private static String escapeOutside(String part) {
+        return part.replace("{", "\\{")
+                .replace("(", "\\(")
+                .replace(")", "\\)")
+                .replace("[", "\\[")
+                .replace("]", "\\]");
     }
 
     @Override
