@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 // xdoc section - start
 class Example2 {
-
+  // for testing
   // violation below "should be on the same line with its target."
   @SuppressWarnings("deprecation")
   public Example2() {
