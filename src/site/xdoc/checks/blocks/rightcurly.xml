@@ -21,16 +21,16 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RightCurly_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">option=alone</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">option=alone_or_singleline</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With policy <code>alone</code> for <code> else</code> and METHOD_DEF tokens</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With policy <code>alone_or_singleline</code> for <code> if</code> and METHOD_DEF tokens</a></li>
             </ul>
           </li>
           <li>
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#RightCurly_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#UseCase1-config" class="toc-sublink">option=alone</a></li>
-              <li><a href="#UseCase2-config" class="toc-sublink">option=alone_or_singleline</a></li>
+              <li><a href="#UseCase1-config" class="toc-sublink">With policy <code>alone</code> for Switch Statements, Switch Cases and Switch Default</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">With policy <code>alone_or_singleline</code> for Switch Statements, Switch Cases and Switch Default</a></li>
             </ul>
           </li>
           <li><a href="#RightCurly_Example_of_Usage">Example of Usage</a></li>

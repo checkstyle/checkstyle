@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EmptyBlock_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">option=text</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For the <code>text</code> policy and only <code> try</code> blocks</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For case and default in switch block</a></li>
             </ul>
           </li>

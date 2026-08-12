@@ -82,7 +82,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-           Example:
+           To configure the check to not allow unnamed variables with JDK 21
+           for pattern variable detection:
         </p>
         <macro name="example">
           <param name="path"

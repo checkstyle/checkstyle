@@ -21,8 +21,8 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ExecutableStatementCount_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">max=2</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">max=2</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a threshold of 2 for constructor</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With a threshold of 2 for method definitions</a></li>
             </ul>
           </li>
           <li><a href="#ExecutableStatementCount_Example_of_Usage">Example of Usage</a></li>

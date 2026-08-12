@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OperatorWrap_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">option=eol</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For assignment operators at the end of a line</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For operators at the beginning of a line</a></li>
             </ul>
           </li>
