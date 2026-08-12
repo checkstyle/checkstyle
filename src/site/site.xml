@@ -74,6 +74,7 @@
     </menu>
 
     <menu name="Documentation">
+      <item name="Getting Started" href="getting_started.html"/>
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
         <item name="System Properties" href="config_system_properties.html"/>

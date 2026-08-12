@@ -154,6 +154,10 @@
   <suppress id="lineLength"
             files="/src/site/xdoc/(checks|(file)?filters)/(?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
+  <!-- Site documentation files with card layouts have long lines -->
+  <suppress id="lineLength" files="/src/site/xdoc/getting_started\.xml\.vm"/>
+  <suppress id="lineLength" files="/src/site/xdoc/index\.xml\.vm"/>
+
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
          files="src/it/java/com/.*" />

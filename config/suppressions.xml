@@ -176,6 +176,9 @@
        until https://github.com/checkstyle/checkstyle/issues/13426 -->
   <suppress id="lineLengthXml"
             files="/src/site/xdoc/(checks|(file)?filters)/(?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
+  <!-- getting_started.xml.vm and index.xml.vm have long lines for code examples and links -->
+  <suppress id="lineLengthXml" files="/src/site/xdoc/getting_started\.xml\.vm"/>
+  <suppress id="lineLengthXml" files="/src/site/xdoc/index\.xml\.vm"/>
 
   <!-- The file is generated -->
   <suppress checks="FileTabCharacter"
