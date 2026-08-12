@@ -9,13 +9,7 @@
   </head>
 
   <body>
-    <section name="Content">
-      <macro name="toc">
-        <param name="fromDepth" value="1"/>
-        <param name="toDepth" value="1"/>
-      </macro>
-    </section>
-    <section name="Content">
+    <section name="Overview">
       <div class="toc-panel">
         <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
         <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
@@ -40,8 +34,6 @@
           </ul>
         </div>
       </div>
-    </section>
-    <section name="Overview">
       <p>
         A Checkstyle configuration specifies which <em>modules</em> to
         plug in and apply to Java source files. Modules are structured
