@@ -614,7 +614,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * of the current ast node, if there is no such node, null is returned.
      *
      * @param ast ast node
-     * @return ast node of type {@link FinalVariableCandidate#LOOP_TYPES} that is the ancestor
+     * @return ast node of type {@code FinalVariableCandidate#LOOP_TYPES} that is the ancestor
      *         of the current ast node, null if no such node exists
      */
     private static DetailAST getParentLoop(DetailAST ast) {
@@ -645,10 +645,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * for (int i = 0, j = 0; i < j; i++) { . . . }
      * }
      * </p>
-     * {@code i, j} are defined in {@link TokenTypes#FOR_INIT for-loop init}
+     * {@code i, j} are defined in {@code TokenTypes#FOR_INIT for-loop init}
      *
      * @param variableDef variable definition node.
-     * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
+     * @return true if variable is defined in {@code TokenTypes#FOR_INIT for-loop init}
      */
     private static boolean isVariableInForInit(DetailAST variableDef) {
         return variableDef.getParent().getType() == TokenTypes.FOR_INIT;

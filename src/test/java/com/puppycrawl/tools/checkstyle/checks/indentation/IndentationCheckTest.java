@@ -3553,7 +3553,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     /**
      * Verifies that the arguments of {@link IndentationCheck#MSG_ERROR},
      * {@link IndentationCheck#MSG_CHILD_ERROR}, {@link IndentationCheck#MSG_CHILD_ERROR_MULTI},
-     * {@link IndentationCheck#MSG_CHILD_ERROR_MULTI} are in appropriate order.
+     * {@code IndentationCheck#MSG_CHILD_ERROR_MULTI} are in appropriate order.
      *
      * <p>In other tests, the argument 0 and text before it are chopped off and only the rest of
      * messages are verified. Therefore, the argument 0 is required to be the first argument in

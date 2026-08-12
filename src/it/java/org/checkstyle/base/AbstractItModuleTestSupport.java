@@ -102,8 +102,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Creates a default module configuration {@link DefaultConfiguration} for a given object
      * of type {@link Class}.
      *
-     * @param clazz a {@link Class} type object.
-     * @return default module configuration for the given {@link Class} instance.
+     * @param clazz a {@code Class} type object.
+     * @return default module configuration for the given {@code Class} instance.
      */
     protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
@@ -116,7 +116,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @param masterConfig The master configuration to examine.
      * @param moduleName module name.
      * @param moduleId module id.
-     * @return {@link Configuration} instance for the given module name.
+     * @return {@code Configuration} instance for the given module name.
      * @throws IllegalStateException if there is a problem retrieving the module
      *         or config.
      */
@@ -165,7 +165,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      *
      * @param masterConfig The master configuration to pull results from.
      * @param moduleIds module IDs.
-     * @return List of {@link Configuration} instances.
+     * @return List of {@code Configuration} instances.
      * @throws CheckstyleException if there is an error with the config.
      */
     protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
@@ -235,7 +235,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      *
      * @param masterConfig The master configuration to examine.
      * @param moduleName module name.
-     * @return {@link Configuration} instance for the given module name.
+     * @return {@code Configuration} instance for the given module name.
      */
     private static List<Configuration> getModuleConfigs(Configuration masterConfig,
             String moduleName) {
@@ -258,8 +258,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
-     * @param moduleConfig {@link Configuration} instance.
-     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     * @param moduleConfig {@code Configuration} instance.
+     * @return {@code Checker} instance based on the given {@code Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig)
@@ -272,10 +272,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
-     * @param moduleConfig {@link Configuration} instance.
+     * @param moduleConfig {@code Configuration} instance.
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
-     *                                                  under {@link TreeWalker}.
-     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     *                                                  under {@code TreeWalker}.
+     * @return {@code Checker} instance based on the given {@code Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
@@ -309,9 +309,9 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Creates {@link DefaultConfiguration} for the {@link TreeWalker}
      * based on the given {@link Configuration} instance.
      *
-     * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the {@link TreeWalker}
-     *     based on the given {@link Configuration} instance.
+     * @param config {@code Configuration} instance.
+     * @return {@code DefaultConfiguration} for the {@code TreeWalker}
+     *     based on the given {@code Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration rootConfig =
@@ -328,8 +328,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Creates {@link DefaultConfiguration} or the Checker.
      * based on the the list of {@link Configuration}.
      *
-     * @param configs list of {@link Configuration} instances.
-     * @return {@link DefaultConfiguration} for the Checker.
+     * @param configs list of {@code Configuration} instances.
+     * @return {@code DefaultConfiguration} for the Checker.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(
             List<Configuration> configs) {
@@ -350,8 +350,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link DefaultConfiguration} for the given {@link Configuration} instance.
      *
-     * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     * @param config {@code Configuration} instance.
+     * @return {@code DefaultConfiguration} for the given {@code Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
         final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
@@ -397,7 +397,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Performs verification of files.
      * Uses provided {@link Checker} instance.
      *
-     * @param checker {@link Checker} instance.
+     * @param checker {@code Checker} instance.
      * @param processedFiles files to process.
      * @param messageFileName message file name.
      * @param expected an array of expected messages.
@@ -500,7 +500,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Each file is mapped to their corresponding violation messages. Reads input stream for these
      * messages using instance of {@link InputStreamReader}.
      *
-     * @param errorCount count of errors after checking set of files against {@link Checker}.
+     * @param errorCount count of errors after checking set of files against {@code Checker}.
      * @return a {@link Map} object containing file names and the corresponding violation messages.
      * @throws IOException exception can occur when reading input stream.
      */

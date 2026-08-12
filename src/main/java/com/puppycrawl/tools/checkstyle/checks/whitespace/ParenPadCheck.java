@@ -233,8 +233,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * Checks whether {@link TokenTypes#RPAREN} is a closing paren
      * of a {@link TokenTypes#TYPECAST}.
      *
-     * @param ast of a {@link TokenTypes#RPAREN} to check.
-     * @return true if ast is a closing paren of a {@link TokenTypes#TYPECAST}.
+     * @param ast of a {@code TokenTypes#RPAREN} to check.
+     * @return true if ast is a closing paren of a {@code TokenTypes#TYPECAST}.
      */
     private static boolean isInTypecast(DetailAST ast) {
         boolean result = false;

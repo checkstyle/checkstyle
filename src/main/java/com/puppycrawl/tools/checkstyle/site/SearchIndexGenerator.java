@@ -410,7 +410,7 @@ public final class SearchIndexGenerator {
      * @param xdocsDir  the xdocs root (used for URL building)
      * @throws IllegalStateException if {@code checksDir} cannot be listed, or
      *         if one of its subdirectories has no entry in
-     *         {@link #CHECKS_CATEGORY_DISPLAY_NAMES}
+     *         {@code #CHECKS_CATEGORY_DISPLAY_NAMES}
      */
     private void processChecksDirectory(File checksDir, File xdocsDir) {
         final File[] categoryDirs = checksDir.listFiles(File::isDirectory);

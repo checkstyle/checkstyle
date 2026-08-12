@@ -167,8 +167,8 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
      * Visit ast of type {@link TokenTypes#IDENT}
      * and check if it is a candidate for a lambda parameter identifier.
      *
-     * @param identifierAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} could be a lambda parameter identifier
+     * @param identifierAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} could be a lambda parameter identifier
      */
     private static boolean isLambdaParameterIdentifierCandidate(DetailAST identifierAst) {
         // we should ignore the ident if it is in the lambda parameters declaration
@@ -184,8 +184,8 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
      * Check if the given {@link TokenTypes#IDENT} has a valid parent token.
      * A valid parent token is a token that can be a parent for a lambda parameter identifier.
      *
-     * @param identifierAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} has a valid parent token
+     * @param identifierAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} has a valid parent token
      */
     private static boolean hasValidParentToken(DetailAST identifierAst) {
         return !TokenUtil.isOfType(identifierAst.getParent(), INVALID_LAMBDA_PARAM_IDENT_PARENTS);
@@ -195,8 +195,8 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
      * Check if the given {@link TokenTypes#IDENT} is a child of a dot operator
      * and is a candidate for lambda parameter.
      *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a child of a dot operator
+     * @param identAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} is a child of a dot operator
      *     and a candidate for lambda parameter.
      */
     private static boolean isMethodInvocation(DetailAST identAst) {
@@ -208,8 +208,8 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
     /**
      * Check if the given {@link TokenTypes#IDENT} is a left hand side value.
      *
-     * @param identAst token representing {@link TokenTypes#IDENT}
-     * @return true if the given {@link TokenTypes#IDENT} is a left hand side value.
+     * @param identAst token representing {@code TokenTypes#IDENT}
+     * @return true if the given {@code TokenTypes#IDENT} is a left hand side value.
      */
     private static boolean isLeftHandOfAssignment(DetailAST identAst) {
         final DetailAST parent = identAst.getParent();
@@ -270,7 +270,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
          * Get ast of type {@link TokenTypes#IDENT} of the given
          * lambda parameter.
          *
-         * @return ast of type {@link TokenTypes#IDENT} of the given lambda parameter
+         * @return ast of type {@code TokenTypes#IDENT} of the given lambda parameter
          */
         private DetailAST getIdentifierAst() {
             return identifierAst;
