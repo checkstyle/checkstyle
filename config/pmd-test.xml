@@ -49,6 +49,7 @@
     <exclude name="JUnitUseExpected"/>
     <!-- will be addressed in https://github.com/checkstyle/checkstyle/projects/5 -->
     <exclude name="NonThreadSafeSingleton"/>
+    <exclude name="UseStringSplitWithLimit"/>
   </rule>
 
   <rule ref="category/java/design.xml/NcssCount">
