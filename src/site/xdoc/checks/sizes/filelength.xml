@@ -21,8 +21,8 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#FileLength_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Accept files with up to 2000 lines</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">max=5</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">max=5</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept files with up to 5 lines</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Accept files with up to 5 lines and with txt extension only</a></li>
             </ul>
           </li>
           <li><a href="#FileLength_Example_of_Usage">Example of Usage</a></li>

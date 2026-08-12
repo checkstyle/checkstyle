@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EmptyForInitializerPad_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">option=space</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Require white space at an empty for iterator</a></li>
             </ul>
           </li>
           <li><a href="#EmptyForInitializerPad_Example_of_Usage">Example of Usage</a></li>

@@ -27,10 +27,10 @@
               <li><a href="#Example5-config" class="toc-sublink">Force some packages in special import group</a></li>
               <li><a href="#Example6-config" class="toc-sublink">Such that empty line separator between two groups is enabled</a></li>
               <li><a href="#Example7-config" class="toc-sublink">Such that import groups are forced to be sorted alphabetically</a></li>
-              <li><a href="#Example8-config" class="toc-sublink">Notes: "com" package is not mentioned on configuration, because it is ignored by Eclipse Kepler and Luna (looks like Eclipse defect) configuration below doesn't work in all 100% cases due to inconsistent behavior prior to Mars release, but covers most scenarios Example</a></li>
-              <li><a href="#Example9-config" class="toc-sublink">So that it matches default Eclipse formatter configuration (tested on Mars release): group of static imports is on the top groups of non-static imports: "java" and "javax" packages first, then "org" and "com", then all other imports as one group imports will be sorted in the groups groups are separated by one blank line Example</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Notes for Eclipse Kepler and Luna</a></li>
+              <li><a href="#Example9-config" class="toc-sublink">So that it matches default Eclipse formatter configuration (tested on Mars release)</a></li>
               <li><a href="#Example10-config" class="toc-sublink">Note: "separated" option is disabled because IDEA default has blank line between "java" and static imports, and no blank line between "javax" and "java"</a></li>
-              <li><a href="#Example11-config" class="toc-sublink">So that it matches default NetBeans formatter configuration (tested on v8): groups of non-static imports are not defined, all imports will be sorted as a one group static imports are not separated, they will be sorted along with other imports Example</a></li>
+              <li><a href="#Example11-config" class="toc-sublink">So that it matches default NetBeans formatter configuration (tested on v8)</a></li>
               <li><a href="#Example12-config" class="toc-sublink">To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use thirdPartyPackageRegExp and standardPackageRegExp options.</a></li>
               <li><a href="#Example13-config" class="toc-sublink">Also, this check can be configured to force empty line separator between import groups. For example.</a></li>
               <li><a href="#Example14-config" class="toc-sublink">It is possible to enforce ASCII sort order of imports in groups using the following configuration</a></li>
@@ -434,7 +434,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by single blank line</li>
         </ul><hr class="example-separator"/>
-        <p id="Example8-config">Notes:</p>
+        <p id="Example8-config">Notes for Eclipse Kepler and Luna:</p>
         <ul>
           <li>&quot;com&quot; package is not mentioned on configuration, because it is
               ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>

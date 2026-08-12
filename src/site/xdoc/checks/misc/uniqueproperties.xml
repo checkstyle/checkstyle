@@ -22,7 +22,7 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example1-raw" class="toc-sublink">Example: in foo.properties file</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">fileExtensions=customProperties</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Scan custom file extensions</a></li>
               <li><a href="#Example2-raw" class="toc-sublink">Example: in foo.customProperties file</a></li>
               <li><a href="#Example3-raw" class="toc-sublink">Example: in foo.properties file</a></li>
             </ul>
