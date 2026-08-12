@@ -487,7 +487,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Whether ast node of type {@link TokenTypes#LITERAL_NEW} is a part of a local
      * anonymous inner class.
      *
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+     * @param literalNewAst ast node of type {@code TokenTypes#LITERAL_NEW}
      * @return true if variableDefAst is an instance variable in local anonymous inner class
      */
     private static boolean isInsideLocalAnonInnerClass(DetailAST literalNewAst) {
@@ -652,7 +652,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Get the {@link TypeDeclDesc} of the super class of anonymous inner class.
      *
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return {@link TypeDeclDesc} of the super class of anonymous inner class
+     * @return {@code TypeDeclDesc} of the super class of anonymous inner class
      */
     private TypeDeclDesc getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
         TypeDeclDesc obtainedClass = null;
@@ -950,7 +950,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * value if it is used as the left operand of an assignment or as an
      * operand of a stand-alone increment or decrement.
      *
-     * @param identAst ast of type {@link TokenTypes#IDENT}
+     * @param identAst ast of type {@code TokenTypes#IDENT}
      * @return true if identAst is used as a left-hand side value
      */
     private static boolean isLeftHandSideValue(DetailAST identAst) {
@@ -964,7 +964,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Checks whether the ast of type {@link TokenTypes#IDENT} is used as
      * an operand of a stand-alone increment or decrement.
      *
-     * @param identAst ast of type {@link TokenTypes#IDENT}
+     * @param identAst ast of type {@code TokenTypes#IDENT}
      * @return true if identAst is used as an operand of stand-alone
      *         increment or decrement
      */
@@ -1074,7 +1074,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /**
          * Get the associated ast node of type {@link TokenTypes#TYPE}.
          *
-         * @return the associated ast node of type {@link TokenTypes#TYPE}
+         * @return the associated ast node of type {@code TokenTypes#TYPE}
          */
         /* package */ DetailAST getTypeAst() {
             return typeAst;

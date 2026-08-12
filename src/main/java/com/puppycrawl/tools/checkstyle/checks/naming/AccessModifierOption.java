@@ -50,7 +50,7 @@ public enum AccessModifierOption {
      * For example, passing PACKAGE or package as a modifier name
      * will return {@link AccessModifierOption#PACKAGE}.
      *
-     * @param modifierName access modifier name represented as a {@link String}.
+     * @param modifierName access modifier name represented as a {@code String}.
      * @return the AccessModifier associated with given access modifier name.
      */
     public static AccessModifierOption getInstance(String modifierName) {

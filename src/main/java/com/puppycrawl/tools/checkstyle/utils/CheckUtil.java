@@ -336,8 +336,8 @@ public final class CheckUtil {
      * Returns {@link AccessModifierOption} based on the information about access modifier
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
      *
-     * @param modifiersToken token of type {@link TokenTypes#MODIFIERS}.
-     * @return {@link AccessModifierOption}.
+     * @param modifiersToken token of type {@code TokenTypes#MODIFIERS}.
+     * @return {@code AccessModifierOption}.
      * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'
      */
     private static AccessModifierOption getAccessModifierFromModifiersTokenDirectly(

@@ -197,7 +197,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * <p>Reason of suppression for resource, IOResourceOpenedButNotSafelyClosed:
      * {@link AxisIterator} implements {@link java.io.Closeable} interface,
-     * but none of the subclasses of the {@link AxisIterator}
+     * but none of the subclasses of the {@code AxisIterator}
      * class has non-empty {@code close()} method.
      *
      * @param axisNumber element from {@code AxisInfo}
@@ -239,7 +239,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * <p>Reason of suppression for resource, IOResourceOpenedButNotSafelyClosed:
      * {@link AxisIterator} implements {@link java.io.Closeable} interface,
-     * but none of the subclasses of the {@link AxisIterator}
+     * but none of the subclasses of the {@code AxisIterator}
      * class has non-empty {@code close()} method.
      *
      * @return iterator
@@ -260,7 +260,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * <p>Reason of suppression for resource, IOResourceOpenedButNotSafelyClosed:
      * {@link AxisIterator} implements {@link java.io.Closeable} interface,
-     * but none of the subclasses of the {@link AxisIterator}
+     * but none of the subclasses of the {@code AxisIterator}
      * class has non-empty {@code close()} method.
      *
      * @return iterator
