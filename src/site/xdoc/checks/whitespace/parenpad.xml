@@ -22,7 +22,7 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">For selected tokens</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">option=space</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Require spaces inside parentheses</a></li>
             </ul>
           </li>
           <li>

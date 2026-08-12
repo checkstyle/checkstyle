@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#PackageName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">format=^[A-Z]+(\.[a-z][a-z0-9]*)*$</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to ensure with packages start with a upper case letter and only contains lowercase letters or numbers is</a></li>
             </ul>
           </li>
           <li><a href="#PackageName_Example_of_Usage">Example of Usage</a></li>
