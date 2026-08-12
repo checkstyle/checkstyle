@@ -22,8 +22,8 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWarnings_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">format=^unchecked$|^unused$</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">format=^unchecked$|^unused$</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that the "unchecked" and "unused" warnings cannot be suppressed on anything but variable and parameter declarations.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that the "unchecked" and "unused" warnings cannot be suppressed at any location</a></li>
             </ul>
           </li>
           <li><a href="#SuppressWarnings_Example_of_Usage">Example of Usage</a></li>

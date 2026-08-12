@@ -20,7 +20,7 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassMemberImpliedModifier_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">Configuration</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">So that it checks that all implicit modifiers on nested interfaces, enums, and records are explicitly specified in classes and records.</a></li>
               <li><a href="#Example2-config" class="toc-sublink">Not require explicit <code>static</code> on nested enums</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Not require explicit <code>static</code> on nested interfaces</a></li>
               <li><a href="#Example4-config" class="toc-sublink">Not require explicit <code>static</code> on nested records</a></li>

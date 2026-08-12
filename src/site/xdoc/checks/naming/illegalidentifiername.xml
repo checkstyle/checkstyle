@@ -20,9 +20,9 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalIdentifierName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">Configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">format=(?i)^(?!(when|record|yield|var|permits|sealed|open|transitive|_)$|(.*\$)).+$</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">Configuration</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Include some of JLS Keywords in the set of illegal identifiers (See Java Language Specification for the full list of JLS keywords)</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Target only a specific token</a></li>
             </ul>
           </li>
           <li><a href="#IllegalIdentifierName_Example_of_Usage">Example of Usage</a></li>
