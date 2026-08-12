@@ -25,7 +25,7 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="presenceOfCompilationComment"/>
-    <property name="format" value="^// non-compiled with javac: (Compilable with Java(\d+)|(contains specially crafted set of imports)|(but was compiled on jdk before)|(missing package)|(package statement is different than folder)|(reference to non existent))"/>
+    <property name="format" value="^// non-compiled with javac: (Compilable with Java(\d+)|(contains specially crafted set of imports)|(contains intentionally invalid Java syntax)|(but was compiled on jdk before)|(missing package)|(package statement is different than folder)|(reference to non existent))"/>
     <property name="message"
               value="Missing compilation comment"/>
     <property name="fileExtensions" value="java"/>
