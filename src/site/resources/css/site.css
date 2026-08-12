@@ -1131,10 +1131,13 @@ table {
 
 @media screen and (max-width: 823px) {
     .toc-panel {
-        display: none !important;
-        width: 0 !important;
-        height: 0 !important;
-        position: absolute !important;
+        position: relative !important;
+        display: block !important;
+        top: auto !important;
+        right: auto !important;
+        width: auto !important;
+        max-height: none !important;
+        margin-bottom: 20px;
     }
 
     #bodyColumn,

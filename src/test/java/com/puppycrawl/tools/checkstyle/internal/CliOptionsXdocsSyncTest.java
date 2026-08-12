@@ -47,7 +47,7 @@ public class CliOptionsXdocsSyncTest {
     @Test
     public void validateCliDocSections() throws Exception {
         final NodeList sections = getSectionsFromXdoc("src/site/xdoc/cmdline.xml.vm");
-        final Node cmdUsageSection = sections.item(2);
+        final Node cmdUsageSection = sections.item(1);
         final Map<String, String> cmdOptions = getOptions(cmdUsageSection);
 
         final Class<?> cliOptions = Class.forName("com.puppycrawl.tools.checkstyle"
@@ -82,7 +82,7 @@ public class CliOptionsXdocsSyncTest {
     @Test
     public void validateCliUsageSection() throws Exception {
         final NodeList sections = getSectionsFromXdoc("src/site/xdoc/cmdline.xml.vm");
-        final Node usageSource = XmlUtil.getFirstChildElement(sections.item(2));
+        final Node usageSource = XmlUtil.getFirstChildElement(sections.item(1));
         final String usageText = XmlUtil.getFirstChildElement(usageSource).getTextContent();
 
         final Set<String> shortParamsXdoc = getParameters(usageText, "-[a-zA-CE-X]\\b");
