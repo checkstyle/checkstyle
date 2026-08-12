@@ -129,6 +129,7 @@ breadcrumbs
 BSR
 Bsubscribe
 BTest
+btn
 btnfrs
 buf
 bugdatabase
@@ -200,7 +201,7 @@ CNAME
 Cnt
 cobertura
 codacy
-codebases
+codebase
 codeclimate
 codeconventions
 codecov
@@ -243,6 +244,7 @@ css
 cstyle
 csv
 csvfilterelement
+cta
 ctc
 ctor
 ctx
@@ -505,7 +507,6 @@ funmodifiablecollection
 Fwhitespace
 Fx
 Fxq
-gav
 Gdrox
 generalform
 genericwhitespace
@@ -672,6 +673,7 @@ javadocpackage
 javadocparagraph
 javadocpropertiesgenerator
 javadocregexp
+javadocstyle
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
@@ -769,8 +771,9 @@ keyname
 keyscan
 konstantinos
 Kordas
-Kotlin
+kotlin
 Kp
+kts
 lambdabodylength
 lambdaparametername
 LBRACE
@@ -1390,6 +1393,7 @@ systemout
 tac
 tagconventions
 Taglib
+tagline
 taglist
 taskdef
 tbody
