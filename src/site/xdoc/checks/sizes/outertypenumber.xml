@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OuterTypeNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Accept 1 outer type per file</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">max=3</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept 2 outer types per file</a></li>
             </ul>
           </li>
           <li><a href="#OuterTypeNumber_Example_of_Usage">Example of Usage</a></li>

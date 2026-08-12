@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RecordComponentName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">format=^[a-z]+$</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that are only letters in lowercase</a></li>
             </ul>
           </li>
           <li><a href="#RecordComponentName_Example_of_Usage">Example of Usage</a></li>

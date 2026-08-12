@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NonEmptyAtclauseDescription_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">The default check that will check <code>@param</code>, <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>, <code>@since</code></a></li>
-              <li><a href="#Example2-config" class="toc-sublink">javadocTokens=PARAM_BLOCK_TAG,THROWS_BLOCK_TAG</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Validate <code>@param</code>, <code>@throws</code> tags</a></li>
             </ul>
           </li>
           <li><a href="#NonEmptyAtclauseDescription_Example_of_Usage">Example of Usage</a></li>
