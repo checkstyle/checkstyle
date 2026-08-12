@@ -60,7 +60,30 @@ public record TestInputViolation(int lineNo, String message)
      * @return the escaped segment
      */
     private static String escapeSegment(String segment) {
-        return segment.replace("{", "\\{")
+        final StringBuilder result = new StringBuilder();
+        int index = 0;
+        while (index < segment.length()) {
+            final int qStart = segment.indexOf("\\Q", index);
+            if (qStart == -1) {
+                result.append(escapeOutside(segment.substring(index)));
+                break;
+            }
+            result.append(escapeOutside(segment.substring(index, qStart)));
+            result.append("\\Q");
+            final int qEnd = segment.indexOf("\\E", qStart + 2);
+            if (qEnd == -1) {
+                result.append(segment.substring(qStart + 2));
+                break;
+            }
+            result.append(segment.substring(qStart + 2, qEnd));
+            result.append("\\E");
+            index = qEnd + 2;
+        }
+        return result.toString();
+    }
+
+    private static String escapeOutside(String part) {
+        return part.replace("{", "\\{")
                 .replace("(", "\\(")
                 .replace(")", "\\)")
                 .replace("[", "\\[")

@@ -48,7 +48,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 public class InputSuppressWarningsFilterById { // violation 'Missing a Javadoc comment'
 
     @SuppressWarnings("checkstyle:ignore")
-    private int A1 = 1; // filtered violation ''A1' must match pattern '\^[a-z][a-zA-Z0-9]\*\$''
+    private int A1 = 1; // filtered violation ''A1' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
 
     // filtered violation below 'Uncommented main method found'
     @SuppressWarnings("checkstyle:ignore")
