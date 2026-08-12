@@ -21,11 +21,11 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ConstantName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">format=^log(ger)?$|^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">applyToPublic=false</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">applyToPrivate=false</a></li>
-              <li><a href="#Example5-config" class="toc-sublink">applyToPackage=false</a></li>
-              <li><a href="#Example6-config" class="toc-sublink">applyToPrivate=false</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">The following configuration apart from names allowed by default allows <code>log</code> or <code>logger</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">The following configuration skip validation on public constant field and protected constant field.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">The following configuration skip validation on private constant field.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">The following configuration skip validation on package-private constant field.</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">The following configuration skip validation on package-private constant field.</a></li>
             </ul>
           </li>
           <li><a href="#ConstantName_Example_of_Usage">Example of Usage</a></li>

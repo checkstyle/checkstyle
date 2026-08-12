@@ -19,12 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -32,7 +28,6 @@ import java.util.regex.Pattern;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
-import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.sink.Sink;
 import org.codehaus.plexus.component.annotations.Component;
@@ -45,10 +40,10 @@ import org.codehaus.plexus.component.annotations.Component;
  * can never drift from what the page actually renders, and any section not
  * present in a given file's source is silently skipped -- pages do not need
  * to declare which sections they have. Examples and Use Cases subsections
- * additionally get nested entries, titled either by the first non-default
- * {@code property=value} found in the example's referenced source file, or
- * by a shortened form of the example's descriptive paragraph when no
- * distinguishing property can be found.
+ * additionally get a collapsible nested entry list, titled from the
+ * descriptive paragraph associated with each example in the source -- never
+ * from the example's own property values -- so the title always reflects
+ * what the page author actually wrote.
  */
 @Component(role = Macro.class, hint = "sitetoc")
 public class TocMacro extends AbstractMacro {
@@ -74,23 +69,52 @@ public class TocMacro extends AbstractMacro {
     /** A single double quote character, used to open HTML attribute values. */
     private static final String QUOTE = "\"";
 
-    /** Base directory that example {@code path} params are resolved against. */
-    private static final String EXAMPLES_BASE_DIR = "src/xdocs-examples/";
-
-    /** Matches an Example/UseCase paragraph followed immediately by its example macro. */
-    private static final Pattern ITEM_WITH_PATH_PATTERN = Pattern.compile(
-            "<p\\s+id=\"((?:Example|UseCase)\\d+)-(config|raw)\"[^>]*>\\s*(.*?)\\s*</p>\\s*"
-                    + "<macro\\s+name=\"example\">\\s*"
-                    + "<param\\s+name=\"path\"\\s+value=\"([^\"]+)\"\\s*/>",
+    /**
+     * Matches each Example/UseCase id-tagged paragraph independently. Unlike
+     * an approach that also requires an adjacent {@code <macro name="example">}
+     * tag, this makes no assumption about what immediately follows the
+     * paragraph, since other markup (lists, extra paragraphs) can legally sit
+     * between the id-tagged paragraph and its example macro. Matching each
+     * anchor independently also guarantees {@code find()} advances past every
+     * one in turn, so none can be skipped or have their content swallowed by
+     * a neighboring match.
+     */
+    private static final Pattern ANCHOR_PATTERN = Pattern.compile(
+            "<p\\s+id=\"((?:Example|UseCase)\\d+)-(config|raw)\"[^>]*>\\s*(.*?)\\s*</p>",
             Pattern.DOTALL);
 
-    /** Matches a property assignment inside an example's embedded config comment. */
-    private static final Pattern PROPERTY_PATTERN = Pattern.compile(
-            "<property\\s+name=\"([^\"]+)\"\\s+value=\"([^\"]*)\"\\s*/>");
+    /**
+     * Matches a single plain (non id-tagged) paragraph. The {@code (?=[\s>])}
+     * lookahead after {@code <p} is required so this can never accidentally
+     * match the start of an unrelated tag such as {@code <param>} -- without
+     * it, {@code <p} alone matches the first two characters of "param" too.
+     * This pattern is intentionally not anchored to any particular position;
+     * {@link #findImmediatelyPrecedingPlainParagraph} finds every match in
+     * the preceding text and then separately verifies true adjacency.
+     */
+    private static final Pattern PLAIN_P_PATTERN = Pattern.compile(
+            "<p(?=[\\s>])(?![^>]*\\bid=)[^>]*>\\s*(.*?)\\s*</p>", Pattern.DOTALL);
+
+    /** Matches when a string is entirely whitespace (or empty), used for adjacency checks. */
+    private static final Pattern WHITESPACE_ONLY_PATTERN = Pattern.compile("\\A\\s*\\z");
+
+    /**
+     * Matches a title that, once normalized, is nothing but a bare label
+     * such as "Configuration" or "Notes" with no real descriptive content.
+     * Only titles matching this are eligible to be replaced by a preceding
+     * paragraph's text; titles with genuine content are always kept as-is,
+     * so an unrelated nearby paragraph can never override a good title.
+     */
+    private static final Pattern TRIVIAL_LABEL_PATTERN = Pattern.compile(
+            "(?i)^(?:configuration|notes?|example)$");
+
+    /** Strips a trailing standalone "Example"/"Example:" artifact from scraped text. */
+    private static final Pattern TRAILING_EXAMPLE_PATTERN = Pattern.compile(
+            "(?i)\\s*Example:?\\s*$");
 
     /** Strips the common "To configure the check to produce a violation on/when" lead-in. */
     private static final Pattern LEAD_IN_PATTERN = Pattern.compile(
-            "^\\s*To configure(?: the check)?"
+            "^\\s*To configure(?: the check| the Check)?"
                     + "(?:\\s+to\\s+(?:produce\\s+a\\s+violation)?)?"
                     + "(?:\\s+on)?"
                     + "(?:\\s+when)?\\s*",
@@ -108,9 +132,6 @@ public class TocMacro extends AbstractMacro {
             "<subsection\\s+(?:name=\"([^\"]*)\"\\s+id=\"([^\"]*)\""
                     + "|id=\"([^\"]*)\"\\s+name=\"([^\"]*)\")");
 
-    /** Property name to always skip when deriving a property=value title. */
-    private static final String TOKENS_PROPERTY = "tokens";
-
     /** Regex group index of the {@code id} attribute when it appears second (name, id order). */
     private static final int GROUP_ID_NAME_FIRST = 2;
 
@@ -119,14 +140,6 @@ public class TocMacro extends AbstractMacro {
 
     /** Regex group index of the {@code name} attribute when it appears second (id, name order). */
     private static final int GROUP_NAME_ID_FIRST = 4;
-
-    /**
-     * Regex group index of the {@code path} param's value in
-     * {@link #ITEM_WITH_PATH_PATTERN}. Coincidentally the same numeric value
-     * as {@link #GROUP_ID_ID_FIRST}, but kept as a distinct constant since the
-     * two patterns and group meanings are otherwise unrelated.
-     */
-    private static final int GROUP_EXAMPLE_PATH = 4;
 
     /** Closing anchor/list-item tag pair used to end a TOC entry. */
     private static final String LI_CLOSE = "</a></li>\n";
@@ -163,12 +176,7 @@ public class TocMacro extends AbstractMacro {
 
     @Override
     public void execute(Sink sink, MacroRequest request) {
-        final String modulePath = (String) request.getParameter("modulePath");
         final String sourceContent = request.getSourceContent();
-
-        final Map<String, PropertyDetails> propertyDetails = loadPropertyDetails(modulePath);
-        final Path repoRoot = resolveRepoRoot(modulePath);
-        final TocContext context = new TocContext(sourceContent, propertyDetails, repoRoot);
 
         sink.rawText("<div class=\"toc-panel\">\n");
         sink.rawText("  <input type=\"checkbox\" id=\"toc-toggle\" "
@@ -180,7 +188,7 @@ public class TocMacro extends AbstractMacro {
         sink.rawText("    <ul class=\"toc-list\">\n");
 
         for (String section : SECTION_NAMES.keySet()) {
-            writeSectionEntry(sink, section, context);
+            writeSectionEntry(sink, section, sourceContent);
         }
 
         sink.rawText("    </ul>\n");
@@ -189,31 +197,31 @@ public class TocMacro extends AbstractMacro {
     }
 
     /**
-     * Writes a single top-level {@code <li>}, with nested Example/UseCase
-     * entries when the section is Examples or Use Cases. The anchor id is
-     * read directly from the matching {@code <subsection>} tag's actual
-     * {@code id} attribute in the source, rather than assumed from a naming
-     * convention, so the link can never drift from what the page really
-     * renders. If no matching {@code <subsection>} exists in the source,
-     * nothing is written for this section -- pages are not required to have
-     * every canonical section.
+     * Writes a single top-level {@code <li>}, with a collapsible nested
+     * Example/UseCase entry list when the section is Examples or Use Cases.
+     * The anchor id is read directly from the matching {@code <subsection>}
+     * tag's actual {@code id} attribute in the source, rather than assumed
+     * from a naming convention, so the link can never drift from what the
+     * page really renders. If no matching {@code <subsection>} exists in
+     * the source, nothing is written for this section -- pages are not
+     * required to have every canonical section.
      *
      * @param sink sink to write to.
      * @param section the canonical section key.
-     * @param context shared per-page context for resolving anchors and titles.
+     * @param sourceContent the full template source text.
      */
-    private static void writeSectionEntry(Sink sink, String section, TocContext context) {
+    private static void writeSectionEntry(Sink sink, String section, String sourceContent) {
         final String sectionName = SECTION_NAMES.get(section);
 
         if (sectionName != null) {
             final Optional<String> anchorId =
-                    findSubsectionAnchor(context.sourceContent(), sectionName);
+                    findSubsectionAnchor(sourceContent, sectionName);
 
             if (anchorId.isPresent()) {
                 final String anchor = anchorId.get();
 
                 if (NESTED_SECTIONS.contains(section)) {
-                    final String body = extractSectionBody(context.sourceContent(), anchor);
+                    final String body = extractSectionBody(sourceContent, anchor);
                     sink.rawText("          <li>\n");
                     final String toggleId = "toc-sub-" + section;
                     sink.rawText("            <input type=\"checkbox\" id=\"" + toggleId
@@ -222,7 +230,7 @@ public class TocMacro extends AbstractMacro {
                             + toggleId + "\" class=\"toc-sub-toggle\">"
                             + "<a href=\"#" + anchor + QUOTE_CLOSE_TAG + sectionName + "</a>"
                             + "<span class=\"toc-sub-arrow\"/></label>\n");
-                    writeNestedItems(sink, body, context);
+                    writeNestedItems(sink, body);
                     sink.rawText("          </li>\n");
                 }
                 else {
@@ -297,17 +305,18 @@ public class TocMacro extends AbstractMacro {
 
     /**
      * Writes nested {@code <li>} entries for each Example/UseCase found
-     * within a subsection's body text, titled by property=value when
-     * possible, falling back to a shortened descriptive sentence. Titles
-     * are shown in full and allowed to wrap across lines, rather than being
-     * truncated with an ellipsis, so the whole label is always readable.
+     * within a subsection's body text. Each id-tagged paragraph is matched
+     * independently via {@link #ANCHOR_PATTERN}, so every example produces
+     * exactly one entry, in source order, and none can be skipped or have
+     * its content merged with a neighboring example. Titles are shown in
+     * full and allowed to wrap across lines, rather than being truncated
+     * with an ellipsis, so the whole label is always readable.
      *
      * @param sink sink to write to.
      * @param sectionBody the raw text of the subsection.
-     * @param context shared per-page context for resolving titles.
      */
-    private static void writeNestedItems(Sink sink, String sectionBody, TocContext context) {
-        final Matcher itemMatcher = ITEM_WITH_PATH_PATTERN.matcher(sectionBody);
+    private static void writeNestedItems(Sink sink, String sectionBody) {
+        final Matcher itemMatcher = ANCHOR_PATTERN.matcher(sectionBody);
         boolean hasItems = false;
 
         while (itemMatcher.find()) {
@@ -317,23 +326,8 @@ public class TocMacro extends AbstractMacro {
             }
             final String anchorId = itemMatcher.group(1);
             final String suffix = itemMatcher.group(2);
-            final String rawParagraph = itemMatcher.group(3);
-            final String fallbackTitle;
-            if (rawParagraph == null) {
-                fallbackTitle = DEFAULT_TITLE;
-            }
-            else {
-                fallbackTitle = toSentenceTitle(rawParagraph);
-            }
-            final String examplePath = itemMatcher.group(GROUP_EXAMPLE_PATH);
-
-            final String title;
-            if (examplePath == null) {
-                title = fallbackTitle;
-            }
-            else {
-                title = derivePropertyTitle(examplePath, context).orElse(fallbackTitle);
-            }
+            final String ownParagraph = itemMatcher.group(3);
+            final String title = resolveTitle(sectionBody, itemMatcher.start(), ownParagraph);
 
             sink.rawText("              <li><a href=\"#" + anchorId
                     + "-" + suffix + "\" class=\"toc-sublink\">" + title + LI_CLOSE);
@@ -345,134 +339,97 @@ public class TocMacro extends AbstractMacro {
     }
 
     /**
-     * Loads documented property defaults for the current module, if a
-     * {@code modulePath} param was supplied. Returns an empty map otherwise,
-     * or if lookup fails for any reason -- property-based titling is a
-     * nice-to-have, not something that should break page generation.
+     * Resolves the title for one example. The id-tagged paragraph's own text
+     * is preferred and used as-is whenever it carries real descriptive
+     * content. Only when that text is a bare label ("Configuration:",
+     * "Notes:", "Example:") with no descriptive value of its own does this
+     * fall back to an immediately adjacent preceding plain paragraph -- and
+     * only if that paragraph itself is not also a bare label. This ordering
+     * ensures a genuine description already present on the id-tagged
+     * paragraph is never overridden by an unrelated nearby paragraph.
      *
-     * @param modulePath path to the module's Java source, or {@code null}.
-     * @return a map of property name to its documented details.
+     * @param sectionBody the raw text of the subsection.
+     * @param matchStart the offset where the id-tagged paragraph's match began.
+     * @param ownParagraph the id-tagged paragraph's own raw inner text.
+     * @return the resolved, human-readable title.
      */
-    private static Map<String, PropertyDetails> loadPropertyDetails(String modulePath) {
-        Map<String, PropertyDetails> result = Map.of();
-        if (modulePath != null) {
-            try {
-                final Path modulePathObj = Path.of(modulePath.replace('\\', '/'));
-                final Path fileName = modulePathObj.getFileName();
-                if (fileName != null) {
-                    final String moduleName = fileName.toString().replace("Check.java", "");
-                    final Object instance = SiteUtil.getModuleInstance(moduleName);
-                    result = SiteUtil.buildPropertyDetails(
-                            SiteUtil.getPropertiesForDocumentation(instance.getClass(), instance),
-                            moduleName, modulePathObj, instance);
+    private static String resolveTitle(String sectionBody, int matchStart, String ownParagraph) {
+        String title = toSentenceTitle(ownParagraph);
+        if (TRIVIAL_LABEL_PATTERN.matcher(title).matches()) {
+            final String preceding = findImmediatelyPrecedingPlainParagraph(
+                    sectionBody, matchStart);
+            if (preceding != null) {
+                final String precedingTitle = toSentenceTitle(preceding);
+                if (!TRIVIAL_LABEL_PATTERN.matcher(precedingTitle).matches()) {
+                    title = precedingTitle;
                 }
             }
-            catch (MacroExecutionException ignored) {
-                result = Map.of();
-            }
         }
-        return result;
+        return title;
     }
 
     /**
-     * Derives the repository root from the module's source path so example
-     * resource paths (relative to {@link #EXAMPLES_BASE_DIR}) can be resolved
-     * to an absolute file location.
+     * Looks immediately backward from the start of an id-tagged paragraph for
+     * a plain (non id-tagged) sibling {@code <p>}, but only if it is directly
+     * adjacent -- separated from the id-tagged paragraph by nothing but
+     * whitespace. If anything else (a separator, code block, another tagged
+     * paragraph) sits in between, no preceding paragraph is returned, so a
+     * description can never be pulled in across another example's content.
+     * This scans for every plain paragraph in the preceding text and takes
+     * the last one, rather than relying on {@code find()}'s leftmost-match
+     * behavior, since a lazy match anchored only at the end can otherwise
+     * start from the first plain paragraph in the section and stretch
+     * across several unrelated examples to reach that end point.
      *
-     * @param modulePath path to the module's Java source, or {@code null}.
-     * @return the repository root, or the current working directory if
-     *         {@code modulePath} is absent or doesn't contain the expected marker.
+     * @param sectionBody the raw text of the subsection.
+     * @param matchStart the offset where the id-tagged paragraph's match began.
+     * @return the plain paragraph's raw text, or {@code null} if none is
+     *     directly adjacent.
      */
-    private static Path resolveRepoRoot(String modulePath) {
-        Path result = Path.of("");
-        if (modulePath != null) {
-            final String normalized = modulePath.replace('\\', '/');
-            final int marker = normalized.indexOf("src/main/java");
-            if (marker > 0) {
-                result = Path.of(normalized.substring(0, marker));
-            }
+    private static String findImmediatelyPrecedingPlainParagraph(String sectionBody,
+                                                                 int matchStart) {
+        final String before = sectionBody.substring(0, matchStart);
+        final Matcher plainMatcher = PLAIN_P_PATTERN.matcher(before);
+        String lastGroup = null;
+        int lastEnd = -1;
+        while (plainMatcher.find()) {
+            lastGroup = plainMatcher.group(1);
+            lastEnd = plainMatcher.end();
+        }
+        String result = null;
+        if (lastGroup != null
+                && WHITESPACE_ONLY_PATTERN.matcher(before.substring(lastEnd)).matches()) {
+            result = lastGroup;
         }
         return result;
     }
 
     /**
-     * Reads an example's referenced source file and finds the first property
-     * whose value differs from its documented default, skipping {@code tokens}.
+     * Converts a raw scraped paragraph into a short sentence-based title by
+     * removing inline markup, normalizing whitespace, stripping the common
+     * lead-in clause, stripping a trailing standalone "Example"/"Example:"
+     * artifact, and trimming the trailing colon.
      *
-     * @param examplePath the {@code path} param value from the example macro.
-     * @param context shared per-page context providing property defaults and repo root.
-     * @return an "name=value" title, or empty if the file can't be read or
-     *         every property in it matches its documented default.
-     */
-    private static Optional<String> derivePropertyTitle(String examplePath, TocContext context) {
-        Optional<String> result = Optional.empty();
-        final Map<String, PropertyDetails> propertyDetails = context.propertyDetails();
-        if (!propertyDetails.isEmpty()) {
-            try {
-                final Path fullPath = context.repoRoot()
-                        .resolve(EXAMPLES_BASE_DIR + examplePath.replace('\\', '/'));
-                final String content = Files.readString(fullPath);
-                final Matcher propMatcher = PROPERTY_PATTERN.matcher(content);
-
-                while (propMatcher.find() && result.isEmpty()) {
-                    result = extractPropertyTitle(propMatcher, propertyDetails);
-                }
-            }
-            catch (IOException ignored) {
-                result = Optional.empty();
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Extracts a property title from a matcher group if the property differs
-     * from its default value.
-     *
-     * @param propMatcher the property matcher positioned at a match.
-     * @param propertyDetails the documented property defaults.
-     * @return an "name=value" title, or empty if the property matches default.
-     */
-    private static Optional<String> extractPropertyTitle(
-            Matcher propMatcher, Map<String, PropertyDetails> propertyDetails) {
-        final String name = propMatcher.group(1);
-        final String value = propMatcher.group(2);
-        Optional<String> result = Optional.empty();
-
-        if (name != null && value != null && !TOKENS_PROPERTY.equals(name)) {
-            final PropertyDetails details = propertyDetails.get(name);
-            final boolean isDefault = details == null
-                    || Objects.equals(details.getDefaultValue(), value);
-            if (!isDefault) {
-                result = Optional.of(name + "=" + value);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Converts a raw "ExampleN-config"/"UseCaseN-config" paragraph into a
-     * short sentence-based title by removing inline markup, normalizing
-     * whitespace, stripping the common lead-in clause, and trimming the
-     * trailing colon. Used as a fallback when no distinguishing property
-     * can be found.
-     *
-     * @param rawParagraph the paragraph's raw inner text.
+     * @param rawParagraph the paragraph's raw inner text, or {@code null}.
      * @return a short, human-readable title.
      */
     private static String toSentenceTitle(String rawParagraph) {
-        String text = TAG_PATTERN.matcher(rawParagraph).replaceAll("");
-        text = normalizeWhitespace(text);
-        text = LEAD_IN_PATTERN.matcher(text).replaceFirst("");
-        text = text.strip();
-        if (text.endsWith(":")) {
-            text = text.substring(0, text.length() - 1);
-        }
-        if (text.isEmpty()) {
-            text = DEFAULT_TITLE;
-        }
-        else {
-            text = Character.toUpperCase(text.charAt(0)) + text.substring(1);
+        String text = DEFAULT_TITLE;
+        if (rawParagraph != null) {
+            text = TAG_PATTERN.matcher(rawParagraph).replaceAll("");
+            text = normalizeWhitespace(text);
+            text = LEAD_IN_PATTERN.matcher(text).replaceFirst("");
+            text = TRAILING_EXAMPLE_PATTERN.matcher(text).replaceFirst("");
+            text = text.strip();
+            if (text.endsWith(":")) {
+                text = text.substring(0, text.length() - 1);
+            }
+            if (text.isEmpty()) {
+                text = DEFAULT_TITLE;
+            }
+            else {
+                text = Character.toUpperCase(text.charAt(0)) + text.substring(1);
+            }
         }
         return text;
     }
@@ -486,18 +443,6 @@ public class TocMacro extends AbstractMacro {
      */
     private static String normalizeWhitespace(String text) {
         return WHITESPACE_PATTERN.matcher(text).replaceAll(" ").strip();
-    }
-
-    /**
-     * Bundles the per-page context needed while writing TOC entries, so
-     * helper methods don't need long parameter lists.
-     *
-     * @param sourceContent the full template source text.
-     * @param propertyDetails documented property defaults for this module.
-     * @param repoRoot repository root, for resolving example file paths.
-     */
-    private record TocContext(String sourceContent,
-                              Map<String, PropertyDetails> propertyDetails, Path repoRoot) {
     }
 
 }
