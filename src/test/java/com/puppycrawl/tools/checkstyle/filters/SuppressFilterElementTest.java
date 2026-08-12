@@ -341,4 +341,15 @@ public class SuppressFilterElementTest {
                 .isFalse();
     }
 
+    @Test
+    public void testMatchNormalizedPathIfRequiredWhenIdentical() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "MyClass\\.java", null, null, null, null, null);
+        final AuditEvent event = new AuditEvent(this, "OtherClass.java", null);
+
+        assertWithMessage("Filter should accept event when file name does not match")
+                .that(testFilter.accept(event))
+                .isTrue();
+    }
+
 }
