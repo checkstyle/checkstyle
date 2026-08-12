@@ -1202,7 +1202,9 @@ rpmfind
 rq
 Rr
 Rsa
+rsh
 RSPEC
+rsync
 Rtl
 ru
 ruleannotations
@@ -1259,7 +1261,6 @@ scache
 Schneeberger
 scm
 scopeutil
-scp
 screenshot
 Scss
 sdk
