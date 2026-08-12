@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#BooleanExpressionComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">max=5</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With 5 allowed operation in boolean expression</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Ignore <code>&amp;</code> and <code>|</code></a></li>
             </ul>
           </li>
