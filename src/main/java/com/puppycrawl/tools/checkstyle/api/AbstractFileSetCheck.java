@@ -135,7 +135,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link Violation}.
+     * @return the sorted set of {@code Violation}.
      */
     public SortedSet<Violation> getViolations() {
         return new TreeSet<>(context.get().violations);
@@ -214,7 +214,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Adds the sorted set of {@link Violation} to the message collector.
      *
-     * @param violations the sorted set of {@link Violation}.
+     * @param violations the sorted set of {@code Violation}.
      */
     protected void addViolations(SortedSet<Violation> violations) {
         context.get().violations.addAll(violations);
