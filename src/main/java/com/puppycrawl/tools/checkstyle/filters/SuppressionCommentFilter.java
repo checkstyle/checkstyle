@@ -521,8 +521,8 @@ public class SuppressionCommentFilter
         /**
          * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} source name matches the check format.
          */
         private boolean isCheckMatch(TreeWalkerAuditEvent event) {
             final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
@@ -532,8 +532,8 @@ public class SuppressionCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
@@ -552,8 +552,8 @@ public class SuppressionCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
             boolean match = true;

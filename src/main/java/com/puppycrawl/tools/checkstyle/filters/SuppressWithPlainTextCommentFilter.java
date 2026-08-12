@@ -202,7 +202,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Caches {@link FileText} instance created based on the given file name.
      *
      * @param fileName the name of the file.
-     * @return {@link FileText} instance.
+     * @return {@code FileText} instance.
      * @throws IllegalStateException if the file could not be read.
      */
     private static FileText getFileText(String fileName) {
@@ -225,7 +225,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     /**
      * Collects the list of {@link Suppression} instances retrieved from the given {@link FileText}.
      *
-     * @param fileText {@link FileText} instance.
+     * @param fileText {@code FileText} instance.
      */
     private void cacheSuppressions(FileText fileText) {
         for (int lineNo = 0; lineNo < fileText.size(); lineNo++) {
@@ -264,9 +264,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * the given {@link AuditEvent}. The nearest suppression is the suppression which scope
      * is before the line and column of the event.
      *
-     * @param suppressions collection of {@link Suppression} instances.
-     * @param event {@link AuditEvent} instance.
-     * @return {@link Suppression} instance.
+     * @param suppressions collection of {@code Suppression} instances.
+     * @param event {@code AuditEvent} instance.
+     * @return {@code Suppression} instance.
      */
     private static Suppression getNearestSuppression(Collection<Suppression> suppressions,
                                                      AuditEvent event) {
@@ -393,8 +393,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /**
          * Checks whether the suppression matches the given {@link AuditEvent}.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the suppression matches {@link AuditEvent}.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the suppression matches {@code AuditEvent}.
          */
         private boolean isMatch(AuditEvent event) {
             return isInScopeOfSuppression(event)
@@ -406,8 +406,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /**
          * Checks whether {@link AuditEvent} is in the scope of the suppression.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if {@link AuditEvent} is in the scope of the suppression.
+         * @param event {@code AuditEvent} instance.
+         * @return true if {@code AuditEvent} is in the scope of the suppression.
          */
         private boolean isInScopeOfSuppression(AuditEvent event) {
             return lineNo <= event.getLine();
@@ -416,8 +416,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /**
          * Checks whether {@link AuditEvent} source name matches the check format.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} source name matches the check format.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} source name matches the check format.
          */
         private boolean isCheckMatch(AuditEvent event) {
             final Matcher checkMatcher = eventSourceRegexp.matcher(event.getSourceName());
@@ -427,8 +427,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /**
          * Checks whether the {@link AuditEvent} module ID matches the ID format.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} module ID matches the ID format.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(AuditEvent event) {
             boolean match = true;
@@ -447,8 +447,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /**
          * Checks whether the {@link AuditEvent} message matches the message format.
          *
-         * @param event {@link AuditEvent} instance.
-         * @return true if the {@link AuditEvent} message matches the message format.
+         * @param event {@code AuditEvent} instance.
+         * @return true if the {@code AuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(AuditEvent event) {
             boolean match = true;

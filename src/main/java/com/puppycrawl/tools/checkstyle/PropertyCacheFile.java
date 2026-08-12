@@ -261,7 +261,7 @@ public final class PropertyCacheFile {
      * Loads a set of {@link ExternalResource} based on their locations.
      *
      * @param resourceLocations locations of external configuration resources.
-     * @return a set of {@link ExternalResource}.
+     * @return a set of {@code ExternalResource}.
      */
     private static Set<ExternalResource> loadExternalResources(Set<String> resourceLocations) {
         final Set<ExternalResource> resources = new HashSet<>();
@@ -359,7 +359,7 @@ public final class PropertyCacheFile {
      * Fills cache with a set of {@link ExternalResource}.
      * If external resource from the set is already in cache, it will be skipped.
      *
-     * @param externalResources a set of {@link ExternalResource}.
+     * @param externalResources a set of {@code ExternalResource}.
      */
     private void fillCacheWithExternalResources(Set<ExternalResource> externalResources) {
         externalResources

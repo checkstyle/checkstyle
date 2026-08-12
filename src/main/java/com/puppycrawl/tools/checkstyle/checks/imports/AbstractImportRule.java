@@ -82,7 +82,7 @@ public abstract class AbstractImportRule {
      * was a match and if the rule is to allow access.
      *
      * @param matched indicates whether there was a match.
-     * @return An appropriate {@link AccessResult}.
+     * @return An appropriate {@code AccessResult}.
      */
     protected AccessResult calculateResult(final boolean matched) {
         AccessResult result = AccessResult.UNKNOWN;
