@@ -537,4 +537,5 @@
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>
+
 </ruleset>
