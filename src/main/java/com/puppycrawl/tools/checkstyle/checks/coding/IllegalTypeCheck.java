@@ -608,7 +608,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @since 6.3
      */
     public void setMemberModifiers(String modifiers) {
-        memberModifiers = TokenUtil.asBitSet(modifiers.split(","));
+        memberModifiers = TokenUtil.asBitSet(modifiers.split(",", -1));
     }
 
 }

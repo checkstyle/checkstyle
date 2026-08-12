@@ -303,7 +303,8 @@
       -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
-      -Xep:StringSplitter:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/21036. -->
+      -Xep:StringSplitter:OFF
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
