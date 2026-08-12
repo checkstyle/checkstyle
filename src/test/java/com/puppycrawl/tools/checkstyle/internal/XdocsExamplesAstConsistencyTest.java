@@ -80,7 +80,7 @@ public class XdocsExamplesAstConsistencyTest {
     public static final String XDOC_START_MARKER = "// xdoc section - start";
     public static final String XDOC_END_MARKER = "// xdoc section - end";
 
-    private static final Path XDOCS_ROOT = Path.of(
+    public static final Path XDOCS_ROOT = Path.of(
             "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle"
     );
 
@@ -468,7 +468,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @param dir the directory to check
      * @return true if the directory name resolves to a known module
      */
-    private static boolean isModuleDirectory(Path dir) {
+    public static boolean isModuleDirectory(Path dir) {
         return toModuleClassSimpleName(dir.getFileName().toString()) != null;
     }
 
@@ -500,7 +500,7 @@ public class XdocsExamplesAstConsistencyTest {
      *         or an empty list if no such directory exists
      * @throws IOException if an I/O error occurs
      */
-    private static List<Path> getNonCompilableExamplePropertyCoverageFiles(Path dir)
+    public static List<Path> getNonCompilableExamplePropertyCoverageFiles(Path dir)
             throws IOException {
         final String relativePath = getRelativePath(dir);
         final Path nonCompilableDir = XDOCS_NONCOMPILABLE_ROOT.resolve(relativePath);
@@ -646,11 +646,10 @@ public class XdocsExamplesAstConsistencyTest {
      * @param moduleName the module simple name to find
      * @return the matching module {@link Element}, or null if not found
      * @throws ParserConfigurationException if a document builder cannot be created
-     * @throws IOException if an I/O error occurs during parsing
      * @throws SAXException if the XML content is malformed
      */
-    private static Element parseConfigModuleElement(String xmlBlock, String moduleName)
-            throws ParserConfigurationException, IOException, SAXException {
+    public static Element parseConfigModuleElement(String xmlBlock, String moduleName)
+            throws ParserConfigurationException, SAXException {
         final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(false);
@@ -662,8 +661,14 @@ public class XdocsExamplesAstConsistencyTest {
             "http://xml.org/sax/features/external-parameter-entities", false);
 
         final DocumentBuilder builder = factory.newDocumentBuilder();
-        final Document document = builder.parse(
-            new ByteArrayInputStream(xmlBlock.getBytes(StandardCharsets.UTF_8)));
+        final Document document;
+        try {
+            document = builder.parse(
+                new ByteArrayInputStream(xmlBlock.getBytes(StandardCharsets.UTF_8)));
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to parse in-memory XML block", exception);
+        }
 
         return findModuleElement(document.getDocumentElement(), moduleName);
     }
@@ -703,7 +708,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @param moduleElement the module element to read properties from
      * @return the set of configured property names
      */
-    private static Set<String> collectPropertyNames(Element moduleElement) {
+    public static Set<String> collectPropertyNames(Element moduleElement) {
         final Set<String> names = new HashSet<>();
         final NodeList children = moduleElement.getChildNodes();
 
@@ -727,7 +732,7 @@ public class XdocsExamplesAstConsistencyTest {
      *         markers, or null if no such block is present
      * @throws IOException if an I/O error occurs
      */
-    private static String extractXmlConfigBlock(Path file) throws IOException {
+    public static String extractXmlConfigBlock(Path file) throws IOException {
         final String content = Files.readString(file);
         String result = null;
 
@@ -987,7 +992,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @return true if no example file contains a {@code <property} element in its XML config
      * @throws IOException if an I/O error occurs reading an example file
      */
-    private static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
+    public static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
         boolean noProperties = true;
 
         for (Path example : examples) {
@@ -1050,7 +1055,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @param dirName the last path segment of the example directory
      * @return the resolved module simple name, or null if no matching module class was found
      */
-    private static String toModuleClassSimpleName(String dirName) {
+    public static String toModuleClassSimpleName(String dirName) {
         return MODULE_SIMPLE_NAME_CACHE.get(dirName.toLowerCase(Locale.ROOT));
     }
 
@@ -1086,7 +1091,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @param simpleName the class simple name
      * @return the name with any trailing {@code Check} removed
      */
-    private static String stripCheckSuffix(String simpleName) {
+    public static String stripCheckSuffix(String simpleName) {
         String result = simpleName;
         if (simpleName.endsWith("Check")) {
             result = simpleName.substring(0, simpleName.length() - "Check".length());
@@ -1224,7 +1229,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @return list of example file paths containing an XML config block
      * @throws IOException if an I/O error occurs
      */
-    private static List<Path> getExamplePropertyCoverageFiles(Path dir) throws IOException {
+    public static List<Path> getExamplePropertyCoverageFiles(Path dir) throws IOException {
         final List<Path> examples = collectFilesWithinModule(dir, path -> {
             return path.getFileName().toString().matches("Example\\d+(\\..+)?")
                     && hasXmlConfigBlock(path);
