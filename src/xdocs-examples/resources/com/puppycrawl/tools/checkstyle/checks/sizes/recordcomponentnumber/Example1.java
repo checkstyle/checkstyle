@@ -15,8 +15,8 @@ class Example1{
 
   public record MyRecord2(int x, int y, double d,
                     String str, char c, float f) {}
-
-  record MyRecord3(int x, int y, int z, double d, // violation, 9 components
+  // violation below 'Number of record components is 9 (max allowed is 8).'
+  record MyRecord3(int x, int y, int z, double d,
                     String str1, String str2, char c, float f, String location) {}
 
   private record MyRecord4(int x, int y,
