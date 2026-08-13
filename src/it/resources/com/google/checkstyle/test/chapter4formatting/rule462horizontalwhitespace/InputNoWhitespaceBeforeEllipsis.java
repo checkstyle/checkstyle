@@ -42,21 +42,21 @@ public class InputNoWhitespaceBeforeEllipsis {
   /** Some javadoc. */
   void test6(String[] ... param) {}
   // 2 violations above:
-  // ''\]' is followed by whitespace'
+  // '']' is followed by whitespace'
   // ''...' is preceded with whitespace.'
 
   /** Some javadoc. */
   void test7(String @NonNull[]... param) {}
   // 2 violations above:
   // ''NonNull' is not followed by whitespace'
-  // ''\[' is not preceded with whitespace'
+  // ''[' is not preceded with whitespace'
 
   /** Some javadoc. */
   void test8(String @NonNull[] ... param) {}
   // 4 violations above:
   //   ''NonNull' is not followed by whitespace'
-  // ''\[' is not preceded with whitespace'
-  // ''\]' is followed by whitespace'
+  // ''[' is not preceded with whitespace'
+  // '']' is followed by whitespace'
   //   ''...' is preceded with whitespace.'
 
   void test9(String @Size(max = 10) ... names) {}
@@ -68,19 +68,19 @@ public class InputNoWhitespaceBeforeEllipsis {
 
   void test12(@NonNull String @C []    ... arg) {}
   // 3 violations above:
-  // ''\]' is followed by whitespace'
+  // '']' is followed by whitespace'
   // ''...' is preceded with whitespace'
   // 'Use a single space to separate non-whitespace characters'
 
   void test13(@NonNull String    [] @B ... arg) {}
   // 2 violations above:
-  // ''\[' is preceded with whitespace'
+  // ''[' is preceded with whitespace'
   // 'Use a single space to separate non-whitespace characters'
 
   void test14(   String    [] @B ... arg) {}
   // 4 violations above:
   // ''(' is followed by whitespace'
   // 'Use a single space to separate non-whitespace characters'
-  // ''\[' is preceded with whitespace'
+  // ''[' is preceded with whitespace'
   // 'Use a single space to separate non-whitespace characters'
 }
