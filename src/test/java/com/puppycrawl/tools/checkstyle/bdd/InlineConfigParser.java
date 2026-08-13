@@ -302,7 +302,6 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
-            "checks/coding/equalshashcode/Example1.java",
             "checks/coding/illegaltype/InputIllegalTypeTestIgnoreMethodNames.java",
             "checks/coding/illegaltype/InputIllegalTypeTestEnhancedInstanceof.java",
             "checks/coding/illegaltype/InputIllegalTypeTestLegalAbstractClassNames.java",
