@@ -70,10 +70,31 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTags() throws Exception {
+    public void testTags1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputJavadocTypeTags.java"), expected);
+                getPath("InputJavadocTypeTags1.java"), expected);
+    }
+
+    @Test
+    public void testTags2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTags2.java"), expected);
+    }
+
+    @Test
+    public void testTags3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTags3.java"), expected);
+    }
+
+    @Test
+    public void testTags4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeTags4.java"), expected);
     }
 
     @Test
