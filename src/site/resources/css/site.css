@@ -1140,6 +1140,20 @@ table {
         margin-bottom: 20px;
     }
 
+    .toc-heading {
+        font-size: 12px;
+    }
+
+    .toc-list > li > a,
+    .toc-sub-toggle a {
+        font-size: 15px;
+    }
+
+    .toc-sublist a,
+    .toc-sublink {
+        font-size: 14px;
+    }
+
     #bodyColumn,
     #bodyColumn:has(.toc-panel),
     #bodyColumn:has(.toc-panel):has(.toc-toggle-checkbox:not(:checked)) {
