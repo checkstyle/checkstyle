@@ -417,7 +417,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      * @param parent The parent DOM node.
      * @param tagName The tag name to filter child elements by.
      * @return An {@link Optional} with the first matching child element,
-     *         or empty {@link Optional} if none found or parent is null.
+     *         or empty {@code Optional} if none found or parent is null.
      */
     private static Optional<Element> getFirstChildElementByTagName(Node parent, String tagName) {
         Optional<Element> result = Optional.empty();

@@ -8,6 +8,31 @@
   <body>
     <section name="JavadocRegexp">
       <p>Since Checkstyle 13.10.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocRegexp_Description">Description</a></li>
+          <li><a href="#JavadocRegexp_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocRegexp_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default settings that do not perform any validation</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Find closing &lt;/p&gt; tags in raw Javadoc source</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Find uppercase abbreviation 'AKA' in text visible in generated Javadoc HTML pages</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Find abbreviation 'aka' in text visible in generated Javadoc HTML pages regardless of case</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocRegexp_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocRegexp_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocRegexp_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocRegexp_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocRegexp_Description">
         <div>
           Checks that Javadoc comments do not match a configured regular expression.
@@ -216,6 +241,10 @@ class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocRegexp">
               Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocRegexp">
+              Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

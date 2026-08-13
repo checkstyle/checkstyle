@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalBlockTag</title>
+  </head>
+  <body>
+    <section name="IllegalBlockTag">
+      <p>Since Checkstyle 13.10.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalBlockTag_Description">Description</a></li>
+          <li><a href="#IllegalBlockTag_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalBlockTag_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Example of default Check configuration that does nothing.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check to forbid the <code>@todo</code> block tag wherever it appears. The default <code>tagTextPattern</code> is <code>^$</code>, so any non-empty tag text is a violation.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check to report <code>@since</code> tags whose text does not match a digital version pattern (default tokens: types and methods).</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Same as Example 3, but only type tokens so method-level <code>@since</code> tags are ignored.</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalBlockTag_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalBlockTag_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalBlockTag_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalBlockTag_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="IllegalBlockTag_Description">
+        <div>
+          Detects a user-defined Javadoc block tag and reports a violation when the tag
+          is present with text that does not match <code>tagTextPattern</code>.
+          With the default pattern <code>^$</code> (same as <code>Regexp</code> format default;
+          matches only empty content), any non-empty text of the configured tag is a
+          violation. No violation is reported when there is no Javadoc or when
+          <code>tag</code> is not configured.
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="IllegalBlockTag_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="tag"/><a href="#tag">tag</a></td>
+              <td>Specify the name of tag.</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code>null</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
+              <td><a id="tagTextPattern"/><a href="#tagTextPattern">tagTextPattern</a></td>
+              <td>Specify the regexp that tag content is allowed to match. Content that does not match is treated as illegal.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>^$</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                    COMPACT_CTOR_DEF</a>
+                  .
+              </td>
+              <td>13.10.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="IllegalBlockTag_Examples">
+        <p id="Example1-config">
+          Example of default Check configuration that does nothing.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalBlockTag"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+        Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some class
+ * @since 1.1-beta
+ */
+public class Example1 {
+
+  /**
+   * some doc
+   * @todo remove
+   * @since 1.1-beta
+   */
+  void testMethod1() {}
+
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod2() {}
+
+  /**
+   * some doc
+   * @todo later
+   * @since 1.2
+   */
+  void testMethod3() {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure Check to forbid the <code>@todo</code> block tag
+          wherever it appears. The default <code>tagTextPattern</code> is
+          <code>^$</code>, so any non-empty tag text is a violation.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalBlockTag"&gt;
+      &lt;property name="tag" value="@todo"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+        Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some class
+ * @since 1.1-beta
+ */
+public class Example2 {
+
+  /**
+   * some doc
+   * @todo remove
+   * @since 1.1-beta
+   */
+  void testMethod1() {}
+  // violation 4 lines above 'Block tag 'todo' is matched illegal pattern'
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod2() {}
+
+  /**
+   * some doc
+   * @todo later
+   * @since 1.2
+   */
+  void testMethod3() {}
+  // violation 4 lines above 'Block tag 'todo' is matched illegal pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure Check to report <code>@since</code> tags whose text
+          does not match a digital version pattern (default tokens: types and methods).
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalBlockTag"&gt;
+      &lt;property name="tag" value="@since"/&gt;
+      &lt;property name="tagTextPattern" value="^[1-9\\.]+$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+        Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some class
+ * @since 1.1-beta
+ */
+public class Example3 {
+  // violation 3 lines above 'Block tag 'since' is matched illegal pattern'
+  /**
+   * some doc
+   * @todo remove
+   * @since 1.1-beta
+   */
+  void testMethod1() {}
+  // violation 3 lines above 'Block tag 'since' is matched illegal pattern'
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod2() {}
+
+  /**
+   * some doc
+   * @todo later
+   * @since 1.2
+   */
+  void testMethod3() {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          Same as Example 3, but only type tokens so method-level
+          <code>@since</code> tags are ignored.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalBlockTag"&gt;
+      &lt;property name="tokens"
+                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
+                ANNOTATION_DEF, RECORD_DEF" /&gt;
+      &lt;property name="tag" value="@since"/&gt;
+      &lt;property name="tagTextPattern" value="^[1-9\\.]+$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+        Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some class
+ * @since 1.1-beta
+ */
+public class Example4 {
+  // violation 3 lines above 'Block tag 'since' is matched illegal pattern'
+  /**
+   * some doc
+   * @todo remove
+   * @since 1.1-beta
+   */
+  void testMethod1() {}
+
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod2() {}
+
+  /**
+   * some doc
+   * @todo later
+   * @since 1.2
+   */
+  void testMethod3() {}
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="IllegalBlockTag_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalBlockTag">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="IllegalBlockTag_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegalblocktag.illegalPattern%22">
+              illegalblocktag.illegalPattern
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="IllegalBlockTag_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.IllegalBlockTagCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="IllegalBlockTag_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

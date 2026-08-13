@@ -207,6 +207,7 @@
                                    may only be represented as '{}' when not part of a
                                    multi-block statement (4.1.3)"/>
     </module>
+    <module name="ArrayBracketNoWhitespace"/>
     <module name="SingleSpaceSeparator"/>
     <module name="OneStatementPerLine"/>
     <module name="MultipleVariableDeclarations"/>
@@ -466,12 +467,7 @@
                       RECORD_DEF, ANNOTATION_DEF"/>
       <property name="excludeScope" value="nothing"/>
     </module>
-    <module name="MethodName">
-      <property name="format"
-          value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-z0-9]*(?:[A-Z][a-z0-9]*)*(?:_[0-9]+)*$"/>
-      <message key="name.invalidPattern"
-             value="Method name ''{0}'' must match pattern ''{1}''."/>
-    </module>
+    <module name="GoogleMethodName"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="MethodName"/>
       <property name="query" value="//METHOD_DEF[
@@ -497,6 +493,13 @@
     </module>
     <module name="CommentsIndentation">
       <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
+    </module>
+    <module name="MultilineCommentLeadingAsteriskPresence"/>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="MultilineCommentLeadingAsteriskPresence"/>
+      <property name="query"
+                value="//BLOCK_COMMENT_BEGIN[preceding-sibling::RPAREN
+                and following-sibling::SEMI]"/>
     </module>
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">

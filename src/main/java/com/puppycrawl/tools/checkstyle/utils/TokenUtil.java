@@ -241,7 +241,7 @@ public final class TokenUtil {
      *
      * @param root root node.
      * @param predicate predicate.
-     * @return {@link Optional} of {@link DetailAST} node which matches the predicate.
+     * @return {@code Optional} of {@code DetailAST} node which matches the predicate.
      */
     public static Optional<DetailAST> findFirstTokenByPredicate(DetailAST root,
                                                                 Predicate<DetailAST> predicate) {

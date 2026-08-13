@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>13.10.0-SNAPSHOT</version>
+  <version>13.11.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -221,7 +221,7 @@
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.25.8</pitest.plugin.version>
+    <pitest.plugin.version>1.25.9</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -229,7 +229,7 @@
     <pitest.junit5.plugin.version>1.2.3</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>6.1.2</junit.version>
+    <junit.version>6.1.3</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>4.2.1</checkerframework.version>
@@ -4901,10 +4901,6 @@
                 <param>replaceVersionString</param>
                 <!-- this method in XMLLogger.java works properly only when execution is from jar -->
                 <param>printVersionString</param>
-                <!-- Switch expressions with enum cases produce equivalent mutations
-                that cannot be killed since all branches are already covered.
-                See https://github.com/checkstyle/checkstyle/issues/18024 -->
-                <param>renderSeverityLevel</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>

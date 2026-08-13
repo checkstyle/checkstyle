@@ -10,6 +10,335 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.10.0">
+      <div class="releaseDate">09.08.2026</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            JavadocVariable MissingJavadocMethod MissingJavadocType: Expand Javadoc violation
+            messages to include named context.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/5744">#5744</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            WriteTag: new messages when violation is on method.
+            Author: kalayciburak
+            <a href="https://github.com/checkstyle/checkstyle/issues/21071">#21071</a>
+          </li>
+          <li>
+            NonEmptyAtclauseDescription should to validate since tags.
+            Author: arimu1
+            <a href="https://github.com/checkstyle/checkstyle/issues/19991">#19991</a>
+          </li>
+          <li>
+            New Check: GoogleMethodName to fix false-negative on method names with underscores.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17841">#17841</a>
+          </li>
+          <li>
+            New Check: IllegalBlockTag.
+            Author: Burak Kalaycı
+            <a href="https://github.com/checkstyle/checkstyle/issues/21079">#21079</a>
+          </li>
+          <li>
+            New check: JavadocRegexp.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/20987">#20987</a>
+          </li>
+          <li>
+            New check: ArrayBracketWhitespace.
+            Author: Saad
+            <a href="https://github.com/checkstyle/checkstyle/issues/18064">#18064</a>
+          </li>
+          <li>
+            New Check: GoogleMethodNameCheck to enforce Google Java Style Guide method naming.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/18420">#18420</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Add MultilineCommentLeadingAsteriskPresence check to google_checks.xml.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/20995">#20995</a>
+          </li>
+          <li>
+            JavadocMethod: check for duplicate parameter block tags.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/3469">#3469</a>
+          </li>
+          <li>
+            Javadoc parse error on HTML comment with a line ending in a hyphen.
+            Author: kairav mittal
+            <a href="https://github.com/checkstyle/checkstyle/issues/20972">#20972</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Contents of package.html source file.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19931">#19931</a>
+          </li>
+          <li>
+            google_checks.xml incorrectly marks return inlined tag as violation from SummaryJavadoc.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/18842">#18842</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Custom Tags and Annotations.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19925">#19925</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - @param.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19919">#19919</a>
+          </li>
+          <li>
+            Add checks for Documentation Comments Style Guide - Notes.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19808">#19808</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Web site Table of content for each page as right side panel.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/20514">#20514</a>
+          </li>
+          <li>
+            Fix examples with duplicate violation behavior.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21119">#21119</a>
+          </li>
+          <li>
+            Fix violation message comments to use quoted text and remove associated suppressions.
+            Author: Bruno Souza, Khushi Vishwas, kalayciburak, dicypr, BitsToBytes-Saksham, Ali
+            Akbar, sua321, atharv, Noor Ahmadi, Bruno Rodrigo do N. de Souza, Elamathi K, unknown,
+            Shreya Teli, Shabanov Maxim, Vedanth
+            <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
+          </li>
+          <li>
+            bump org.gaul:modernizer-maven-plugin to 3.5.0.
+            Author: Dhanush Pothulapati
+            <a href="https://github.com/checkstyle/checkstyle/issues/20940">#20940</a>
+          </li>
+          <li>
+            Add xdocs test enforcing at least one default-config example per module.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21129">#21129</a>
+          </li>
+          <li>
+            make examples of WhitespaceAround compact.
+            Author: Shabanov Maxim
+            <a href="https://github.com/checkstyle/checkstyle/issues/20794">#20794</a>
+          </li>
+          <li>
+            Uncaught TypeError in resetStyling() due to missing .xright element across multiple
+            pages when inspecting or interacting with left panel links.
+            Author: avadhutmali
+            <a href="https://github.com/checkstyle/checkstyle/issues/16963">#16963</a>
+          </li>
+          <li>
+            Update writingjavadocchecks.html to actual state.
+            Author: sahitya0xsingh
+            <a href="https://github.com/checkstyle/checkstyle/issues/20837">#20837</a>
+          </li>
+          <li>
+            Website search: remove release notes from index.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21097">#21097</a>
+          </li>
+          <li>
+            Add test to validate Examples produce unique violations by behavior.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21108">#21108</a>
+          </li>
+          <li>
+            Move violation comments out of Javadoc for all input files.
+            Author: arturict
+            <a href="https://github.com/checkstyle/checkstyle/issues/19764">#19764</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Shabanov Maxim, Ali Akbar
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Move violation comments above of annotated methods.
+            Author: Ali Akbar
+            <a href="https://github.com/checkstyle/checkstyle/issues/19803">#19803</a>
+          </li>
+          <li>
+            Search: exclude Example [code] results from index; add visible hint for &quot;s&quot;
+            shortcut.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21089">#21089</a>
+          </li>
+          <li>
+            Add client-side search functionality to Checkstyle documentation website.
+            Author: Saksham Gupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/19507">#19507</a>
+          </li>
+          <li>
+            Update Ant Task table to have links to each property.
+            Author: Mohit Sharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/21081">#21081</a>
+          </li>
+          <li>
+            Rename &quot;Doc&quot; to &quot;Prop&quot; for properties in Search Bar.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21054">#21054</a>
+          </li>
+          <li>
+            WriteTag not triggered when on severity=ignore and tagSeverity=warning.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/952">#952</a>
+          </li>
+          <li>
+            Add test enforcing that Example/UseCase paragraphs have extractable descriptive text
+            for TocMacro.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21069">#21069</a>
+          </li>
+          <li>
+            WriteTag Example4 is not clear.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/21072">#21072</a>
+          </li>
+          <li>
+            Improvements to diff report generation.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/12991">#12991</a>
+          </li>
+          <li>
+            antlr-report workflow scans fork&#39;s master instead of PR branch, also support target
+            project as comment argument.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/21059">#21059</a>
+          </li>
+          <li>
+            JavadocParagraph: inconsistent AST structure when unexpected closing tag is found.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/5492">#5492</a>
+          </li>
+          <li>
+            Add validation for end of line at the end of file for resources.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/21041">#21041</a>
+          </li>
+          <li>
+            Add CI validation job for checkstyle-openrewrite-recipes.
+            Author: MonuChaudhary14
+            <a href="https://github.com/checkstyle/checkstyle/issues/21019">#21019</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: Shabanov Maxim
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Filters need xdoc macros to support non java files for config load.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/19932">#19932</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - @deprecated.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19921">#19921</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - @since.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19922">#19922</a>
+          </li>
+          <li>
+            Resolve warnings in pitest CI run.
+            Author: kalayciburak
+            <a href="https://github.com/checkstyle/checkstyle/issues/20977">#20977</a>
+          </li>
+          <li>
+            Mention good-fifth-issue in CONTRIBUTING.md.
+            Author: ivamly
+            <a href="https://github.com/checkstyle/checkstyle/issues/21023">#21023</a>
+          </li>
+          <li>
+            Update all workflows participate in CI on PR to auto-cancel.
+            Author: arturict
+            <a href="https://github.com/checkstyle/checkstyle/issues/21006">#21006</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Method descriptions begin with a verb phrase,
+            Class/interface/field descriptions can omit the subject and simply state the object.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19910">#19910</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Ordering Multiple Tags.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19914">#19914</a>
+          </li>
+          <li>
+            Update `xdoc section` snippet marker from double hyphen to single hyphen.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21034">#21034</a>
+          </li>
+          <li>
+            Replace author email with GitHub username in release notes.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/20777">#20777</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Use &quot;this&quot; instead of &quot;the&quot;, Add
+            description beyond the API name, Be clear when using the term &quot;field&quot;.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19911">#19911</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Use &lt;code&gt; style for keywords and names.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19882">#19882</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Documenting Unchecked Exceptions.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19928">#19928</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Method and constructor parentheses, Phrases
+            instead of sentences, Third-person descriptions.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19907">#19907</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - @version.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19918">#19918</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - @see, @serial, @serialField, @serialData, {@link}.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19924">#19924</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Writing API Specifications.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19823">#19823</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Writing Programming Guide Documentation.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19834">#19834</a>
+          </li>
+          <li>
+            doc: mention JDK 25 is good to build checkstyle.
+            Author: vivek-0509
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.9.0">
       <div class="releaseDate">27.07.2026</div>
       <p>Breaking backward compatibility:</p>

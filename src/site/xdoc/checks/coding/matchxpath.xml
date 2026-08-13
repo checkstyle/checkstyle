@@ -8,6 +8,40 @@
   <body>
     <section name="MatchXpath">
       <p>Since Checkstyle 8.39</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MatchXpath_Description">Description</a></li>
+          <li><a href="#MatchXpath_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MatchXpath_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The following example demonstrates the default configuration (no xpath query) that do nothing</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">The following example demonstrates validation of methods order, so that public methods should come before the private ones</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#MatchXpath_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">To violate if there are any parametrized constructors</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">To violate if method name is 'test' or 'foo'</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">To violate if new instance creation was done without var type to avoid duplication of reference in statement</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">To violate if class has more than 1 constructor</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Reports a violation if an array initialization has more than 10 elements.</a></li>
+            </ul>
+          </li>
+          <li><a href="#MatchXpath_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MatchXpath_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MatchXpath_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MatchXpath_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MatchXpath_Description">
         <div>
           Evaluates Xpath query and report violation on all matching AST nodes. This check allows
@@ -61,7 +95,30 @@
       </subsection>
 
       <subsection name="Examples" id="MatchXpath_Examples">
-        <p id="Example1-config">
+        <p id="Example1-config">The following example demonstrates the default
+        configuration (no xpath query) that do nothing</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MatchXpath"&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public void method1() { }
+
+  private void method2() { }
+  public void method3() { }
+
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
           The following example demonstrates validation of methods order, so that public methods
           should come before the private ones:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -77,9 +134,9 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+public class Example2 {
   public void method1() { }
   // violation below 'Private methods must appear after public methods'
   private void method2() { }

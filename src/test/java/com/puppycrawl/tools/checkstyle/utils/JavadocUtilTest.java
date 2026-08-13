@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableChec
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -34,12 +35,16 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
 public class JavadocUtilTest extends AbstractModuleTestSupport {
 
@@ -58,7 +63,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 4, text[3].length());
         final JavadocTags allTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
+            getJavadocTags(comment, JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
             .that(allTags.validTags())
             .hasSize(5);
@@ -72,7 +77,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 4, text[1].length());
         final JavadocTags allTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
+            getJavadocTags(comment, JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
             .that(allTags.validTags())
             .hasSize(1);
@@ -86,9 +91,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 2, text[1].length());
         final JavadocTags blockTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+            getJavadocTags(comment, JavadocTagType.BLOCK);
         final JavadocTags inlineTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
+            getJavadocTags(comment, JavadocTagType.INLINE);
         assertWithMessage("Invalid valid tags size")
             .that(blockTags.validTags())
             .hasSize(1);
@@ -103,8 +108,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             "/** {@link List link text }",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.ALL).validTags();
         assertWithMessage("Invalid first arg")
             .that(tags.getFirst().getFirstArg())
             .isEqualTo("List link text");
@@ -116,8 +121,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             "/** {@link List#add(Object)}",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.ALL).validTags();
         assertWithMessage("Invalid first arg")
             .that(tags.getFirst().getFirstArg())
             .isEqualTo("List#add(Object)");
@@ -131,8 +136,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 2, text[1].length());
 
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.ALL).validTags();
 
         assertWithMessage("Invalid tags size")
             .that(tags)
@@ -166,8 +171,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         final String[] text = {"/** Also {@link Name value} */"};
         final Comment comment = new Comment(text, 1, 0, text[0].length());
 
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.INLINE).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.INLINE).validTags();
 
         assertWithMessage("Invalid tags size")
             .that(tags)
@@ -191,7 +196,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
+            getJavadocTags(comment, JavadocTagType.ALL);
         assertWithMessage("Unexpected invalid tags size")
             .that(allTags.invalidTags())
             .hasSize(2);
@@ -491,6 +496,55 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
+    }
+
+    private static JavadocTags getJavadocTags(TextBlock textBlock, JavadocTagType tagType) {
+        final String[] text = textBlock.getText();
+        final List<TagInfo> tags = new ArrayList<>();
+        final boolean isBlockTags = tagType == JavadocTagType.ALL
+                || tagType == JavadocTagType.BLOCK;
+        if (isBlockTags) {
+            tags.addAll(BlockTagUtil.extractBlockTags(text));
+        }
+        final boolean isInlineTags = tagType == JavadocTagType.ALL
+                || tagType == JavadocTagType.INLINE;
+        if (isInlineTags) {
+            tags.addAll(InlineTagUtil.extractInlineTags(text));
+        }
+
+        final List<JavadocTag> validTags = new ArrayList<>();
+        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
+
+        for (TagInfo tag : tags) {
+            final LineColumn position = tag.getPosition();
+            final int col = position.getColumn();
+            // Add the starting line of the comment to the line number to get the actual line number
+            // in the source.
+            // Lines are one-indexed, so need an off-by-one correction.
+            final int line = textBlock.getStartLineNo() + position.getLine() - 1;
+
+            final String tagName = tag.getName();
+            try {
+                validTags.add(new JavadocTag(line, col, tagName, tag.getValue()));
+            }
+            catch (IllegalArgumentException ignored) {
+                invalidTags.add(new InvalidJavadocTag(line, col, tagName));
+            }
+        }
+
+        return new JavadocTags(List.copyOf(validTags), List.copyOf(invalidTags));
+    }
+
+    private record JavadocTags(List<JavadocTag> validTags,
+                               List<InvalidJavadocTag> invalidTags) {
+    }
+
+    private enum JavadocTagType {
+
+        BLOCK,
+        INLINE,
+        ALL,
+
     }
 
 }

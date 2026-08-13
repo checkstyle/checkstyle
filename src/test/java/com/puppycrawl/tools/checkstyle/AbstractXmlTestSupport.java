@@ -108,8 +108,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
     /**
      * Verifies if xml nodes in actual xml document and expected xml document match or not.
      *
-     * @param expected the expected xml node. A {@link Node} interface.
-     * @param actual the actual xml node. A {@link Node} interface.
+     * @param expected the expected xml node. A {@code Node} interface.
+     * @param actual the actual xml node. A {@code Node} interface.
      * @param path the path to the current xml node that are compared.
      * @param ordered an ordered predicate for xml nodes.
      */
@@ -177,8 +177,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * Verifies if a xml node in actual xml document and expected xml document match or not based on
      * their name, type, and attributes.
      *
-     * @param expected the expected xml node. A {@link Node} interface.
-     * @param actual the actual xml node. A {@link Node} interface.
+     * @param expected the expected xml node. A {@code Node} interface.
+     * @param actual the actual xml node. A {@code Node} interface.
      * @param path the path to the current xml nodes that are compared.
      * @param ordered an ordered predicate for xml nodes.
      */
@@ -213,8 +213,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * Verifies xml attributes of collection of actual nodes by comparing with collection
      * of expected node attributes.
      *
-     * @param expected collection of expected nodes. A {@link NamedNodeMap} interface.
-     * @param actual collection of actual nodes. A {@link NamedNodeMap} interface.
+     * @param expected collection of expected nodes. A {@code NamedNodeMap} interface.
+     * @param actual collection of actual nodes. A {@code NamedNodeMap} interface.
      * @param path the path to these xml nodes that are compared.
      */
     private static void verifyXmlAttributes(NamedNodeMap expected, NamedNodeMap actual,
@@ -245,8 +245,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * Verifies xml attributes of actual node (like name, and node value) by comparing with
      * expected node attributes.
      *
-     * @param expected the expected xml node. A {@link Node} interface.
-     * @param actual the actual xml node. A {@link Node} interface.
+     * @param expected the expected xml node. A {@code Node} interface.
+     * @param actual the actual xml node. A {@code Node} interface.
      * @param path the path to the current xml nodes that are compared.
      */
     private static void verifyXmlAttribute(Node expected, Node actual, String path) {

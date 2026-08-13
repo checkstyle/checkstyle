@@ -124,7 +124,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link Violation}.
+     * @return the sorted set of {@code Violation}.
      */
     public SortedSet<Violation> getViolations() {
         return new TreeSet<>(context.get().violations);

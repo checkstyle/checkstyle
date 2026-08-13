@@ -6073,7 +6073,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: tagFormat, tag</message>
+    <message>the constructor does not initialize fields: tagFormat, tag, parentAst</message>
     <lineContent>public WriteTagCheck() {</lineContent>
   </checkerFrameworkError>
 
@@ -8679,6 +8679,17 @@
       unsatisfiable constraint: capture extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
       Pattern.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
       From: Argument constraint
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/TocMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter value of Optional.of.</message>
+    <lineContent>result = Optional.of(id);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
     </details>
   </checkerFrameworkError>
 

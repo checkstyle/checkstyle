@@ -7,7 +7,6 @@
                 ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" />
       <property name="tag" value="@since"/>
       <property name="tagFormat" value="^[1-9\.]+$"/>
-      <property name="tagSeverity" value="ignore"/>
     </module>
   </module>
 </module>

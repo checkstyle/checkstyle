@@ -83,6 +83,7 @@ Autowiring
 avoiddoublebraceinitialization
 avoidescapedunicodecharacters
 avoidinlineconditionals
+avoidlatin
 avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
@@ -162,6 +163,7 @@ chapternaming
 chapterprogrammingpractices
 charset
 CHDBEFIF
+checkbox
 checkchmod
 checkerframework
 checkmodule
@@ -530,7 +532,6 @@ gpgv
 gradle
 gradlew
 graphicsenv
-Grenner
 grep
 grepped
 groovyism
@@ -594,6 +595,7 @@ Igno
 IGNORETHIS
 igorminar
 Ilja
+illegalblocktag
 illegalcatch
 illegalex
 illegalidentifiername
@@ -923,6 +925,7 @@ nestedtrydepth
 netbeans
 newdomain
 newlineatendoffile
+NEX
 Nfc
 NFF
 Nfo
@@ -1199,7 +1202,9 @@ rpmfind
 rq
 Rr
 Rsa
+rsh
 RSPEC
+rsync
 Rtl
 ru
 ruleannotations
@@ -1256,7 +1261,6 @@ scache
 Schneeberger
 scm
 scopeutil
-scp
 screenshot
 Scss
 sdk
@@ -1284,6 +1288,7 @@ singleline
 singlelined
 singlelinejavadoc
 singlespaceseparator
+sitetoc
 sivakumar
 Slawinski
 slf
@@ -1345,6 +1350,7 @@ styleguide
 subdir
 subelements
 subext
+sublink
 subscope
 sudo
 suitebuilder
@@ -1426,6 +1432,7 @@ tokentype
 tolist
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
+tooltips
 TOSTRING
 Touchscreen
 tpc
@@ -1441,6 +1448,7 @@ tstamp
 tt
 tta
 ttf
+Tvar
 tvf
 tw
 typebodypadding

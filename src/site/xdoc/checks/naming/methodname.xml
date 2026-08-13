@@ -8,6 +8,41 @@
   <body>
     <section name="MethodName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodName_Description">Description</a></li>
+          <li><a href="#MethodName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MethodName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by at least 7 letters or digits is</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to allow method names to be equal to the residing class name is</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to suppress the check to public methods</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to suppress the check to protected methods</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">An example of how to suppress the check to private methods</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">An example of how to suppress the check to package-private methods</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#MethodName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check to disallow method names to be equal to the residing class name is</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MethodName_Description">
         <div>
           Checks that method names conform to a specified pattern.
@@ -101,13 +136,13 @@ class Example1 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores is:
+          followed by at least 7 letters or digits is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+       &lt;property name="format" value="^[a-z][a-zA-Z0-9]{7,}$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -115,10 +150,10 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  public void method1() {}
+  public void method1() {}    // violation 'Name 'method1' must match pattern'
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
-  private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Example3() {} // violation 'Name 'Example3' must match pattern'
+  private void Method3() {}   // violation 'Name 'Method3' must match pattern'
+  public void Example3() {}   // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
@@ -264,10 +299,6 @@ class UseCase1 {
 
       <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
         <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
-            Google Style</a>
-          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Sun Style</a>

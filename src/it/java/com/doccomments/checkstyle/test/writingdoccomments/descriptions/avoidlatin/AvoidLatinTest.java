@@ -17,25 +17,22 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.puppycrawl.tools.checkstyle.checks.javadoc;
+package com.doccomments.checkstyle.test.writingdoccomments.descriptions.avoidlatin;
 
-import java.util.List;
+import org.junit.jupiter.api.Test;
 
-/**
- * Value object for combining the list of valid validTags with information
- * about invalid validTags encountered in a certain Javadoc comment.
- *
- * @param validTags valid tags
- * @param invalidTags invalid tags
- */
-public record JavadocTags(List<JavadocTag> validTags, List<InvalidJavadocTag> invalidTags) {
+import com.doccomments.checkstyle.test.base.AbstractDocCommentsModuleTestSupport;
 
-    /**
-     * Creates an instance.
-     */
-    public JavadocTags {
-        validTags = List.copyOf(validTags);
-        invalidTags = List.copyOf(invalidTags);
+public class AvoidLatinTest extends AbstractDocCommentsModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/doccomments/checkstyle/test/writingdoccomments/descriptions/avoidlatin/";
+    }
+
+    @Test
+    public void testAvoidLatin() throws Exception {
+        verifyWithWholeConfig(getPath("InputAvoidLatin.java"));
     }
 
 }

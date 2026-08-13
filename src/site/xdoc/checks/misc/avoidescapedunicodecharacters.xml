@@ -8,6 +8,32 @@
   <body>
     <section name="AvoidEscapedUnicodeCharacters">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AvoidEscapedUnicodeCharacters_Description">Description</a></li>
+          <li><a href="#AvoidEscapedUnicodeCharacters_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AvoidEscapedUnicodeCharacters_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to allow using escapes for non-printable, control characters</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to allow using escapes if trail comment is present</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to configure the check to allow if all characters in literal are escaped.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to configure the check to allow using escapes for non-printable whitespace characters</a></li>
+            </ul>
+          </li>
+          <li><a href="#AvoidEscapedUnicodeCharacters_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AvoidEscapedUnicodeCharacters_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AvoidEscapedUnicodeCharacters_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AvoidEscapedUnicodeCharacters_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AvoidEscapedUnicodeCharacters_Description">
         <div>
           Restricts using

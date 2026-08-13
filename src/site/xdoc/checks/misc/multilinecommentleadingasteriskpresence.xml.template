@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/MultilineCommentLeadingAsteriskPresenceCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/MultilineCommentLeadingAsteriskPresenceCheck.java"/>
+      </macro>
       <subsection name="Description" id="MultilineCommentLeadingAsteriskPresence_Description">
         <macro name="description">
           <param name="modulePath"
@@ -38,8 +42,13 @@
         id="MultilineCommentLeadingAsteriskPresence_Example_of_Usage">
         <ul>
           <li>
-           <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultilineCommentLeadingAsteriskPresence">
-           Checkstyle Style
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultilineCommentLeadingAsteriskPresence">
+            Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultilineCommentLeadingAsteriskPresence">
+            Checkstyle Style
             </a>
           </li>
         </ul>

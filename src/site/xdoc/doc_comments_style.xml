@@ -11,6 +11,20 @@
 
   <body>
     <section name="Documentation Comments Style Checkstyle Coverage ">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Documentation_Comments_Useful_information">Useful information</a></li>
+            <li><a href="#Documentation_Comments_Legend">Legend</a></li>
+            <li><a href="#Documentation_Comments_Coverage_table">Coverage table</a></li>
+            <li><a href="#Documentation_Comments_Severity_Level">Severity Level</a></li>
+            <li><a href="#Documentation_Comments_Suppressions">Suppressions</a></li>
+          </ul>
+        </div>
+      </div>
       <subsection name="Useful information" id="Documentation_Comments_Useful_information">
         <p>
           This coverage report was created for
@@ -689,12 +703,18 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt=""/>
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
-                  Guideline is not covered until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/20987">#20987</a>.
+                  <a href="checks/javadoc/javadocregexp.html#JavadocRegexp">
+                    JavadocRegexp</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocRegexp">
+                  config</a>)
                 </td>
-                <td/>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/descriptions/avoidlatin">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <!-- TAGS -->
