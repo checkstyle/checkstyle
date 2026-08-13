@@ -37,7 +37,7 @@
               <li><a href="#UseCase1-config" class="toc-sublink">Note, if allowPublicImmutableFields is set to true, the check will also check whether generic type parameters are immutable. If at least one generic type parameter is mutable, there will be a violation.</a></li>
               <li><a href="#UseCase2-config" class="toc-sublink">Passing fields annotated with @org.junit.Rule, @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations</a></li>
               <li><a href="#UseCase3-config" class="toc-sublink">Passing fields annotated with short annotation name</a></li>
-              <li><a href="#UseCase4-config" class="toc-sublink">1) To configure the check to use only 'allowPublicImmutableFields' option</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Use only 'allowPublicImmutableFields' option</a></li>
             </ul>
           </li>
           <li><a href="#VisibilityModifier_Example_of_Usage">Example of Usage</a></li>
@@ -885,7 +885,7 @@ class UseCase3 {
           allowPublicFinalFields options, please, study the following examples.
         </p>
         <p id="UseCase4-config">
-           1) To configure the check to use only 'allowPublicImmutableFields' option:
+           To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;

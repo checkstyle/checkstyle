@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UncommentedMain_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">excludedClasses=\.Main$</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow the <code>main</code> method for all classes with "Main" name</a></li>
             </ul>
           </li>
           <li><a href="#UncommentedMain_Example_of_Usage">Example of Usage</a></li>
