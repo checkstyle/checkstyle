@@ -20,16 +20,16 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LocalFinalVariableName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">format=^[a-z][a-zA-Z0-9]*$</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">With default properties</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">format=^[A-Z][A-Z0-9]*$</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check for names of local final parameters and resources in try statements (without checks on variables)</a></li>
             </ul>
           </li>
           <li>
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LocalFinalVariableName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#UseCase1-config" class="toc-sublink">format=^[A-Z][A-Z0-9]*$</a></li>
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check for names that are only upper case letters and digits is</a></li>
             </ul>
           </li>
           <li><a href="#LocalFinalVariableName_Example_of_Usage">Example of Usage</a></li>

@@ -21,7 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NPathComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">max=100</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a threshold of 100</a></li>
             </ul>
           </li>
           <li><a href="#NPathComplexity_Example_of_Usage">Example of Usage</a></li>
