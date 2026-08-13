@@ -186,6 +186,9 @@
   <!-- Example needs to exclude fully qualified name longer than 85 characters  -->
   <suppress checks="LineLength" files="classdataabstractioncoupling/UseCase6.java"/>
 
+  <!-- we need to show the whole violation message -->
+  <suppress checks="LineLength" files="equalshashcode/Example1.java"/>
+
   <!-- Example needs to have really long regex format properly shown in config  -->
   <suppress checks="LineLength" files="illegalidentifiername/Example[2].java"/>
 
