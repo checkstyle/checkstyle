@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/TypeNameCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/TypeNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="TypeName_Description">
         <macro name="description">
             <param name="modulePath"
@@ -109,8 +113,8 @@
         </macro><hr class="example-separator"/>
         <p id="Example6-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores. Also, suppress the check from being
-          applied to package-private type:
+          followed by letters, digits, and underscores. Also, restrict the check to only apply
+          to enum definitions:
         </p>
         <macro name="example">
           <param name="path"

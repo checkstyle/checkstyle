@@ -56,6 +56,9 @@
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on documents comments style guide -->
 
+    <!-- Package-Level Comments -->
+    <module name="MissingJavadocPackage"/>
+
     <!-- Format of a Doc Comment -->
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocVariable"/>
@@ -93,6 +96,14 @@
 
     <!-- First Sentence -->
     <module name="SummaryJavadoc"/>
+
+    <!-- Avoid Latin -->
+    <module name="JavadocRegexp">
+      <property name="format"
+                value="(^|\W)(aka|i\.e\.|e\.g\.|viz\.)(\W|$)"/>
+      <property name="ignoreCase" value="true"/>
+      <property name="ignoreMarkup" value="true"/>
+    </module>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">

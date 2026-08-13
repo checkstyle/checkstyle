@@ -8,6 +8,32 @@
   <body>
     <section name="FinalLocalVariable">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#FinalLocalVariable_Description">Description</a></li>
+          <li><a href="#FinalLocalVariable_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#FinalLocalVariable_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it checks local variables and parameters</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check so that it also validates enhanced For Loop Variable is</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to configure the check to validate unnamed variables declared with VARIABLE_DEF</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to configure unnamed variables with parameter_def and validate unnamed variables.</a></li>
+            </ul>
+          </li>
+          <li><a href="#FinalLocalVariable_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#FinalLocalVariable_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#FinalLocalVariable_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#FinalLocalVariable_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="FinalLocalVariable_Description">
         <div>
           Checks that local variables that never have their values changed are declared final.
@@ -180,15 +206,15 @@ class Example3
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
-          An example of how to configure check on local variables and parameters
-          but do not validate loop variables:
+          An example of how to configure the check to validate unnamed variables
+          declared with VARIABLE_DEF:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="FinalLocalVariable"&gt;
-      &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
-      &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="validateUnnamedVariables" value="true"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -198,15 +224,15 @@ class Example3
 class Example4
 {
   static int foo(int x, int y) {
-    // 2 violations above:
-    // 'Variable 'x' should be declared final'
-    // 'Variable 'y' should be declared final'
-    int _  = 1;
+
+    // ok above, because PARAMETER_DEF is not configured in tokens
+
+    int _  = 1; // violation 'Variable '_' should be declared final'
 
     return x+y;
   }
   public static void main (String []args) {
-    // violation above 'Variable 'args' should be declared final'
+    // ok above, because PARAMETER_DEF is not configured in tokens
     // ok below, because validateEnhancedForLoopVariable is false by default
     for (String i : args) {
       System.out.println(i);

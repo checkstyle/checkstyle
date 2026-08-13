@@ -8,6 +8,32 @@
   <body>
     <section name="UniqueProperties">
       <p>Since Checkstyle 5.7</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UniqueProperties_Description">Description</a></li>
+          <li><a href="#UniqueProperties_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UniqueProperties_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example1-raw" class="toc-sublink">Example: in foo.properties file</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Scan custom file extensions</a></li>
+              <li><a href="#Example2-raw" class="toc-sublink">Example: in foo.customProperties file</a></li>
+              <li><a href="#Example3-raw" class="toc-sublink">Example: in foo.properties file</a></li>
+            </ul>
+          </li>
+          <li><a href="#UniqueProperties_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UniqueProperties_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UniqueProperties_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UniqueProperties_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="UniqueProperties_Description">
         <div>
           Detects duplicated keys in properties files.
@@ -54,7 +80,7 @@
         <p id="Example1-raw">
           Example: in foo.properties file
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 # // violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=44
 key.two=32
@@ -82,7 +108,7 @@ key.one=54
         <p id="Example3-raw">
           Example: in foo.properties file
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 # OK below, no duplication violation, as the file is not checked
 key.one=44
 key.two=32

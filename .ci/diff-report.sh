@@ -160,6 +160,51 @@ set-upstream)
   git fetch forked
   ;;
 
+prepare-environment)
+  mv .ci-temp/projects.properties ./.ci-temp/contribution/checkstyle-tester/
+  mv .ci-temp/*.xml ./.ci-temp/contribution/checkstyle-tester/
+  curl --fail-with-body -s "https://get.sdkman.io" | bash
+  # shellcheck disable=SC1091
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install groovy
+  echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+  ;;
+
+generate-report)
+  cd .ci-temp/contribution/checkstyle-tester
+  bash
+  REF="forked/$BRANCH"
+  REPO="../../../../checkstyle"
+  BASE_BRANCH="upstream/master"
+  export MAVEN_OPTS="-Xmx5g"
+  if [ -f new_module_config.xml ]; then
+    groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
+      -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+      --allowExcludes
+  elif [ -f patch_config.xml ]; then
+    groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -bc diff_config.xml\
+      -pc patch_config.xml -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+      --allowExcludes
+  else
+    groovy diff.groovy -r "$REPO" -b "$BASE_BRANCH" -p "$REF" -c diff_config.xml\
+      -l projects.properties -xm "-Dcheckstyle.failsOnError=false"\
+      --allowExcludes
+  fi
+  ;;
+
+copy-report-to-aws-s3-bucket)
+  TIME=$(date +%Y%H%M%S)
+  FOLDER="${COMMIT_SHA}_$TIME"
+  DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
+  LINK="https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com"
+  aws s3 cp "$DIFF" "s3://${AWS_BUCKET_NAME}/$FOLDER/reports/diff/" \
+    --recursive --storage-class STANDARD_IA
+  if [ -n "$LABEL" ]; then
+    echo "$LABEL: " > .ci-temp/message
+  fi
+  echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+  ;;
+
 process-local-repo-config-files)
   # Some properties and modules are explicitly added in the config files to prevent parser failures
   mkdir -p .ci-temp

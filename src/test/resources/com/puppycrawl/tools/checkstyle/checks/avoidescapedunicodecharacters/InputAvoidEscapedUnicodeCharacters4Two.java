@@ -10,8 +10,6 @@ allowNonPrintableEscapes = true
 
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
-import java.util.concurrent.TimeUnit;
-
 public class InputAvoidEscapedUnicodeCharacters4Two {
 
         private String unitAbbrev5 = "\u03bcs";

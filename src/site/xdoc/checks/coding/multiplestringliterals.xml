@@ -8,6 +8,31 @@
   <body>
     <section name="MultipleStringLiterals">
       <p>Since Checkstyle 3.5</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MultipleStringLiterals_Description">Description</a></li>
+          <li><a href="#MultipleStringLiterals_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MultipleStringLiterals_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it allows two occurrences of each string</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it ignores &quot;, &quot; and empty strings</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it flags duplicate strings in all syntactical contexts, even in annotations like <code>@SuppressWarnings("unchecked")</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#MultipleStringLiterals_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MultipleStringLiterals_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MultipleStringLiterals_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MultipleStringLiterals_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MultipleStringLiterals_Description">
         <div>
           Checks for multiple occurrences of the same string literal within a single file.

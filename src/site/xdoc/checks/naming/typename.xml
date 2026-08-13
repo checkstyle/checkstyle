@@ -8,6 +8,34 @@
   <body>
     <section name="TypeName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#TypeName_Description">Description</a></li>
+          <li><a href="#TypeName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#TypeName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores. Also, suppress the check from being applied to protected and private type</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">The following configuration element ensures that interface names begin with <code>"I_"</code>, followed by letters and digits</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores. Also, suppress the check from being applied to public and package-private type</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores. Also, suppress the check from being applied to public type</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores. Also, restrict the check to only apply to enum definitions</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores. Also, restrict the check to only apply to class definitions</a></li>
+            </ul>
+          </li>
+          <li><a href="#TypeName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#TypeName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#TypeName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#TypeName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="TypeName_Description">
         <div>
           Checks that type names conform to a specified pattern.
@@ -222,15 +250,15 @@ class Example5 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores. Also, suppress the check from being
-          applied to package-private type:
+          followed by letters, digits, and underscores. Also, restrict the check to only apply
+          to enum definitions:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="TypeName"&gt;
       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
-      &lt;property name="applyToPackage" value="false"/&gt;
+      &lt;property name="tokens" value="ENUM_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -239,10 +267,10 @@ class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example6 {
   public interface firstName {}
-  public class SecondName {}     // violation 'Name 'SecondName' must match pattern'
-  protected class Third_Name {}  // violation 'Name 'Third_Name' must match pattern'
-  private class FourthName_ {}   // violation 'Name 'FourthName_' must match pattern'
-  enum Fifth_Name {}
+  public class SecondName {}
+  protected class Third_Name {}
+  private class FourthName_ {}
+  enum Fifth_Name {} // violation 'Name 'Fifth_Name' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">

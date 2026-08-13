@@ -8,6 +8,29 @@
   <body>
     <section name="RecordTypeParameterName">
       <p>Since Checkstyle 8.36</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RecordTypeParameterName_Description">Description</a></li>
+          <li><a href="#RecordTypeParameterName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RecordTypeParameterName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that are only a single letter is</a></li>
+            </ul>
+          </li>
+          <li><a href="#RecordTypeParameterName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RecordTypeParameterName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RecordTypeParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RecordTypeParameterName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RecordTypeParameterName_Description">
         <div>
           Checks that record type parameter names conform to a specified pattern.
@@ -51,9 +74,9 @@
 class Example1 {
   record Record1&lt;T&gt;() {}
 
-  record Record2&lt;t&gt;() {} // violation, Name "t" must match pattern '^[A-Z]$'
+  record Record2&lt;t&gt;() {} // violation 'Name 't' must match pattern'
 
-  record Record3&lt;abc&gt;() {} // violation, Name "abc" must match pattern '^[A-Z]$'
+  record Record3&lt;abc&gt;() {} // violation 'Name 'abc' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p>
@@ -76,7 +99,7 @@ class Example2 {
 
   record Record2&lt;t&gt;() {}
 
-  record Record3&lt;abc&gt;() {} // violation, Name "abc" must match pattern '^[A-Z]$'
+  record Record3&lt;abc&gt;() {} // violation 'Name 'abc' must match pattern'
 }
 </code></pre></div>
       </subsection>

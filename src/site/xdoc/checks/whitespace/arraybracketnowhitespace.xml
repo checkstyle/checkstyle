@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ArrayBracketNoWhitespace</title>
+  </head>
+  <body>
+    <section name="ArrayBracketNoWhitespace">
+      <p>Since Checkstyle 13.10.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ArrayBracketNoWhitespace_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ArrayBracketNoWhitespace_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#ArrayBracketNoWhitespace_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ArrayBracketNoWhitespace_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ArrayBracketNoWhitespace_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ArrayBracketNoWhitespace_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="ArrayBracketNoWhitespace_Description">
+        <div>
+          Checks that the whitespace around square-bracket tokens <code>[</code> and <code>]</code>
+          follows the Google Java Style Guide requirements for array declarations,
+          array creation, and array indexing as described in
+          <a href="https://google.github.io/styleguide/javaguide.html#s4.6.2-horizontal-whitespace">
+          Section 4.6.2: Horizontal Whitespace</a>.
+        </div>
+
+        <p>
+          Left square bracket ("<code>[</code>"):
+        </p>
+        <ul>
+        <li>must not be preceded with whitespace when preceded by a
+          <code>TYPE</code> or <code>IDENT</code> in array declarations or array access</li>
+        <li>must not be followed with whitespace</li>
+        </ul>
+
+        <p>
+          Right square bracket ("<code>]</code>"):
+        </p>
+        <ul>
+        <li>must not be preceded with whitespace</li>
+        <li>must be followed with whitespace in all cases, except when followed by:
+        <ul>
+        <li>another bracket: <code>[][]</code></li>
+        <li>a dot for member access: <code>arr[i].length</code></li>
+        <li>a comma or semicolon: <code>arr[i],</code> or <code>arr[i];</code></li>
+        <li>postfix operators: <code>arr[i]++</code> or <code>arr[i]--</code></li>
+        <li>a right parenthesis or another closing construct: <code>(arr[i])</code></li>
+        </ul>
+        </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="ArrayBracketNoWhitespace_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayBracketNoWhitespace"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example 1:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  int[] numbersGood = new int[10];
+  int[] numbersWarn = new int[10 ]; // violation ''\]' is preceded with whitespace'
+
+  String[] dataGood = {"a", "b"};
+  String [] dataWarn = {"a", "b"}; // violation ''\[' is preceded with whitespace'
+
+  byte bufferGood[];
+  byte bufferWarn[ ];
+  // 2 violations above:
+  // ''\[' is followed by whitespace'
+  // ''\]' is preceded with whitespace'
+
+  int[] matrixGood[];
+  int[] matrixWarn[] ; // violation ''\]' is followed by whitespace'
+
+  void methodGood(int[] arr) {}
+  void methodWarn(int[]arr) {} // violation ''\]' is not followed by whitespace'
+
+  void processArray(int[] arr) {
+    int[] goodArr = {arr[0], arr[1]};
+    int[] warnArr = {arr[0], arr[1] };// violation ''\]' is followed by whitespace'
+
+    int valueGood = arr[0] * 2;
+    int valueWarn = arr[0]* 2; // violation ''\]' is not followed by whitespace'
+
+    int good = arr[0] &gt;&gt; 2;
+    int warn = arr[0]&gt;&gt;2; // violation ''\]' is not followed by whitespace'
+
+    arr[0]++;
+    arr[0] ++; // violation ''\]' is followed by whitespace'
+
+    Class&lt;?&gt; goodClass = int[].class;
+    Class&lt;?&gt; warnClass = int[] .class; // violation ''\]' is followed by whitespace.'
+
+    IntFunction&lt;int[]&gt; goodMethodRef = int[]::new;
+    IntFunction&lt;int[]&gt; warnMethodRef = int[] ::new;
+    // violation above ''\]' is followed by whitespace.'
+    IntFunction&lt;int[] &gt; warnAngleBracket = int[]::new;
+    // violation above ''\]' is followed by whitespace.'
+  }
+
+  void goodEllipsis(String[]... params) {}
+  void warnEllipsis(String[] ... params) {}
+  // violation above ''\]' is followed by whitespace'
+}
+</code></pre></div><hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ArrayBracketNoWhitespace_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayBracketNoWhitespace">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayBracketNoWhitespace">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ArrayBracketNoWhitespace_Violation_Messages">
+      <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+              ws.followed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+              ws.notFollowed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notPreceded%22">
+              ws.notPreceded
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+              ws.preceded
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="ArrayBracketNoWhitespace_Fully_Qualified_Name">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck
+        </p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ArrayBracketNoWhitespace_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

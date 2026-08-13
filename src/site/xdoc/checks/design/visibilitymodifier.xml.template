@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java"/>
+      </macro>
       <subsection name="Description" id="VisibilityModifier_Description">
         <macro name="description">
             <param name="modulePath"
@@ -216,7 +220,7 @@
           allowPublicFinalFields options, please, study the following examples.
         </p>
         <p id="UseCase4-config">
-           1) To configure the check to use only 'allowPublicImmutableFields' option:
+           To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
         <macro name="example">
           <param name="path"

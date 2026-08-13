@@ -17,6 +17,36 @@
     </section>
 
     <section name="What is Javadoc comment">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#What_is_Javadoc_comment">What is Javadoc comment</a></li>
+            <li><a href="#Limitations">Limitations</a></li>
+            <li><a href="#Tight-HTML_rules">Tight-HTML rules</a></li>
+            <li><a href="#How_to_create_Javadoc_Check">How to create Javadoc Check</a></li>
+            <li><a
+              href="#Difference_between_Java_Grammar_and_Javadoc_comments_Grammar">Difference
+              between Java Grammar and Javadoc comments Grammar</a></li>
+            <li><a href="#Tool_to_print_Javadoc_tree_structure">Tool to print Javadoc tree
+              structure</a></li>
+            <li><a href="#Access_Java_AST_from_Javadoc_Check">Access Java AST from Javadoc
+              Check</a></li>
+            <li><a href="#HTML_Code_In_Javadoc_Comments">HTML Code In Javadoc Comments</a></li>
+            <li><a href="#Checkstyle_SDK_GUI">Checkstyle SDK GUI</a></li>
+            <li><a href="#Customize_token_types_in_Javadoc_Checks">Customize token types in
+              Javadoc Checks</a></li>
+            <li><a href="#Integrating_new_Javadoc_Check">Integrating new Javadoc Check</a></li>
+            <li><a href="#Declare_check.27s_external_resource_locations">Declare check's external
+              resource locations</a></li>
+            <li><a href="#Examples_of_Javadoc_Checks">Examples of Javadoc Checks</a></li>
+            <li><a href="#Javadoc_parser_behavior_for_current_HTML_version_and_new_HTML_version">
+              Javadoc parser behavior for current HTML version and new HTML version</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
       Javadoc comment is a multiline comment <code>/*  */</code> that starts with the <b>*</b>
       character and placed above the class definition, interface definition, enum definition,
@@ -330,25 +360,33 @@ JAVADOC_CONTENT -> JAVADOC_CONTENT [0:0]
     <section name="Access Java AST from Javadoc Check">
       <p>
         As you already know the Javadoc AST is a result of parsing a block comment.
-        There is a method to get the original block comment from a Javadoc Check.
-        You may need this block comment to check its position in the
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree.
+        There are two main ways to access the Java AST from a Javadoc Check, depending on whether
+        you need a simple check of the Javadoc's position, or you require correlated traversal of
+        both Java and Javadoc ASTs.
       </p>
-      <p>
-        For example, to write a JavadocCheck that verifies @param tags in the Javadoc comment of
-        a method definition, you also need all of the method's parameter names. To get a method
-        definition AST you should access the
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree
-        from a javadoc Check. For this purpose use the
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#getBlockCommentAst--">
-            getBlockCommentAst()</a>
-        method that returns a
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> node.
-      </p>
-      <p>
-        Example:
-      </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+
+      <subsection
+          name="Using getBlockCommentAst"
+          id="Access_Java_AST_from_Javadoc_Check_Using_getBlockCommentAst">
+        <p>
+          You may need the original block comment to check its position in the
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree.
+        </p>
+        <p>
+          For example, to write a JavadocCheck that verifies @param tags in the Javadoc comment of
+          a method definition, you also need all of the method's parameter names. To get a method
+          definition AST you should access the
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> tree
+          from a javadoc Check. For this purpose use the
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#[[#]]#getBlockCommentAst()">
+              getBlockCommentAst()</a>
+          method that returns a
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/DetailAST.html">DetailAST</a> node.
+        </p>
+        <p>
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class MyCheck extends AbstractJavadocCheck {
 
     @Override
@@ -374,7 +412,79 @@ class MyCheck extends AbstractJavadocCheck {
         }
     }
 }
-      </code></pre></div>
+        </code></pre></div>
+      </subsection>
+
+      <subsection
+          name="Overriding visitToken"
+          id="Access_Java_AST_from_Javadoc_Check_Overriding_visitToken">
+        <p>
+          If your Check needs to perform a correlated traversal of both the Java code
+          and its Javadoc (for example, to process specific Java tokens rather than
+          just Javadoc tokens), you can override the
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#[[#]]#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)">
+            visitToken(DetailAST)</a> method.
+        </p>
+        <p>
+          By default, <code>AbstractJavadocCheck</code>
+          subscribes to the
+          <code>BLOCK_COMMENT_BEGIN</code> token,
+          parses the Javadoc AST, and then delegates to
+          <code>visitJavadocToken(DetailNode)</code>.
+
+          By overriding <code>getDefaultTokens()</code>
+          and <code>visitToken(DetailAST)</code>,
+          your Check can subscribe to specific Java AST nodes
+          (e.g., <code>METHOD_DEF</code>,
+          <code>CLASS_DEF</code>),
+          access the Java AST node, and still trigger
+          Javadoc parsing by manually calling
+          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html#[[#]]#visitToken(com.puppycrawl.tools.checkstyle.api.DetailAST)">
+              <code>super.visitToken(blockCommentNode)</code></a>.
+        </p>
+        <p>
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class MyCheck extends AbstractJavadocCheck {
+    // Subscribe to Java AST nodes
+    @Override
+    public int[] getDefaultTokens() {
+        return new int[]{TokenTypes.METHOD_DEF};
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return new int[]{TokenTypes.METHOD_DEF};
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return new int[]{TokenTypes.METHOD_DEF};
+    }
+
+    @Override
+    public int[] getDefaultJavadocTokens() {
+        return new int[]{JavadocCommentsTokenTypes.PARAMETER_NAME};
+    }
+    @Override
+    public void visitToken(DetailAST ast) {
+        // Process the Java AST node here
+        log(ast, "msg.key");
+        DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
+        if (blockCommentNode != null) {
+            // Trigger Javadoc parsing and visitJavadocToken
+            super.visitToken(blockCommentNode);
+        }
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode paramNameNode) {
+        // Process the Javadoc AST node here
+    }
+}
+        </code></pre></div>
+      </subsection>
     </section>
 
     <section name="HTML Code In Javadoc Comments">
@@ -768,9 +878,9 @@ Checkstyle ends with 6 errors.
         Java checks are controlled by methods <a href="writingchecks.html#Understanding_token_sets">
           setTokens(), getDefaultTokens(), getAccessibleTokens(), getRequiredTokens(). </a>
         JavaDoc checks use the same model plus 4 additional methods for Javadoc tokens.
-        As Java AST and Javadoc AST are not bound,
-        it is highly recommended for Javadoc checks to not use customization of java tokens and
-        except to be executed only on javadoc tokens.
+        By default, Javadoc checks are executed only on Javadoc tokens, but they can also be
+        customized to subscribe to Java tokens (see <a href="#Access_Java_AST_from_Javadoc_Check">
+        Access Java AST from Javadoc Check</a>).
       </p>
       <p>
         There are four methods in the AbstractJavadocCheck class to control the processed

@@ -8,6 +8,30 @@
   <body>
     <section name="RedundantModifier">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RedundantModifier_Description">Description</a></li>
+          <li><a href="#RedundantModifier_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RedundantModifier_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check only methods</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">If you are using JDK 11</a></li>
+            </ul>
+          </li>
+          <li><a href="#RedundantModifier_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RedundantModifier_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RedundantModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RedundantModifier_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RedundantModifier_Description">
         <div>
           Checks for redundant modifiers.

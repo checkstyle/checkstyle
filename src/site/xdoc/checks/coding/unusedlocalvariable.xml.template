@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnusedLocalVariable_Description">
         <macro name="description">
             <param name="modulePath"
@@ -78,7 +82,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-           Example:
+           To configure the check to not allow unnamed variables with JDK 21
+           for pattern variable detection:
         </p>
         <macro name="example">
           <param name="path"

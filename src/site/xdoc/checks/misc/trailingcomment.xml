@@ -8,12 +8,45 @@
   <body>
     <section name="TrailingComment">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#TrailingComment_Description">Description</a></li>
+          <li><a href="#TrailingComment_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#TrailingComment_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce only comment on a line</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check so that trailing comment with exact comments like "SUPPRESS CHECKSTYLE", "NOPMD", "NOSONAR" are suppressed</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#TrailingComment_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Check so that trailing comment starting with "SUPPRESS CHECKSTYLE", "NOPMD", "NOSONAR" are suppressed</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Allow trailing comments that match a specific pattern</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Allow trailing multiline comments that match a specific pattern</a></li>
+            </ul>
+          </li>
+          <li><a href="#TrailingComment_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#TrailingComment_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#TrailingComment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#TrailingComment_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="TrailingComment_Description">
         <div>
           The check to ensure that lines with code do not end with comment.
           For the case of <code>//</code> comments that means that the only thing that should precede
           it is whitespace. It doesn't check comments if they do not end a line; for example,
-          it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
+          it accepts the following: <code>Thread.sleep( 10 /*some comment here* / );</code>
           Format property is intended to deal with the <code>} // while</code> example.
         </div>
 

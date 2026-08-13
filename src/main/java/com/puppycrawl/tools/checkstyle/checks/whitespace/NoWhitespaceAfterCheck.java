@@ -237,7 +237,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * RBRACK}, {@link TokenTypes#IDENT IDENT} or an array type definition (literal).
      *
      * @param ast
-     *        , {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
+     *        , {@code TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
      * @return previous node by text order.
      * @throws IllegalStateException if an unexpected token type is encountered.
      */
@@ -318,7 +318,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * getArrayDeclaratorPreviousElement method.
      *
      * @param ast
-     *        , {@link TokenTypes#INDEX_OP INDEX_OP} node.
+     *        , {@code TokenTypes#INDEX_OP INDEX_OP} node.
      * @return previous node by text order.
      */
     private static DetailAST getIndexOpPreviousElement(DetailAST ast) {

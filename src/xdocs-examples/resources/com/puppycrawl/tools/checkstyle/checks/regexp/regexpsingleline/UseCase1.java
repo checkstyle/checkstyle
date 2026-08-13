@@ -20,7 +20,7 @@ public class UseCase1 {
       doSomething();
       System.exit(0);
     } catch (Exception e) {
-      System.exit(1); // violation, as there are more than one occurrence.
+      System.exit(1); // violation 'Line matches the illegal pattern'
     }
   }
 

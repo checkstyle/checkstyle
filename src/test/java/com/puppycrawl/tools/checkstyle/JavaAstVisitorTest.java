@@ -261,7 +261,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
      *
      * <p>
      * Reason: we have iterative expression AST building to avoid stackoverflow
-     * in {@link JavaAstVisitor#visitBinOp(JavaLanguageParser.BinOpContext)}. In actual
+     * in {@code JavaAstVisitor#visitBinOp(JavaLanguageParser.BinOpContext)}. In actual
      * generated parser, we avoid stackoverflow thanks to the left recursive expression
      * rule (eliminating unnecessary recursive calls to hierarchical expression production rules).
      * However, ANTLR's ParserATNSimulator has no such optimization. So, the number of recursive

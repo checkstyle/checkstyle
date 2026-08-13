@@ -8,6 +8,30 @@
   <body>
     <section name="BooleanExpressionComplexity">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#BooleanExpressionComplexity_Description">Description</a></li>
+          <li><a href="#BooleanExpressionComplexity_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#BooleanExpressionComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With 5 allowed operation in boolean expression</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Ignore <code>&amp;</code> and <code>|</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#BooleanExpressionComplexity_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#BooleanExpressionComplexity_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#BooleanExpressionComplexity_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#BooleanExpressionComplexity_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="BooleanExpressionComplexity_Description">
         <div>
           Restricts the number of boolean operators (<code>&amp;&amp;</code>, <code>||</code>,

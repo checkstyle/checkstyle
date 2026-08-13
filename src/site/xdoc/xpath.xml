@@ -14,6 +14,22 @@
     </section>
 
     <section name="Overview">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Overview">Overview</a></li>
+            <li><a href="#XPath_Version">XPath Version</a></li>
+            <li><a href="#AST_and_XPath">AST and XPath</a></li>
+            <li><a href="#The_.40text_Attribute">The @text Attribute</a></li>
+            <li><a href="#Supported_XPath_Axes">Supported XPath Axes</a></li>
+            <li><a href="#Using_XPath_for_Suppressions">Using XPath for Suppressions</a></li>
+            <li><a href="#Using_XPath_for_Custom_Checks">Using XPath for Custom Checks</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         Checkstyle uses XPath queries in two main ways:
       </p>

@@ -446,7 +446,8 @@ no-error-xwiki)
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
-  checkout_from https://github.com/xwiki/xwiki-platform.git
+  checkout_from https://github.com/xwiki/xwiki-platform.git \
+    "16906187c4ab5d3c""cf93cd4818ad577579a7e7eb"
   cd .ci-temp/xwiki-platform
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
@@ -1020,6 +1021,21 @@ no-error-sevntu-checks)
      -Dcheckstyle.non-main-files-suppressions.file=config/checkstyle-non-main-files-suppressions.xml
   cd ../../
   removeFolderWithProtectedFiles sevntu.checkstyle
+  ;;
+
+no-error-checkstyle-openrewrite-recipes)
+  set -e
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo CS_version: "${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  checkout_from https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd .ci-temp/checkstyle-openrewrite-recipes
+  ./mvnw -e --no-transfer-progress verify -DskipTests -Drewrite.skip=true \
+    -Dcheckstyle.version="${CS_POM_VERSION}" \
+    -Dcheckstyle.config=../../config/checkstyle-checks.xml
+  cd ../
+  removeFolderWithProtectedFiles checkstyle-openrewrite-recipes
   ;;
 
 no-error-contribution)

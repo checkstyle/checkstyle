@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
@@ -47,8 +48,8 @@ public class JavadocVariableCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
     /**
      * Specify the set of access modifiers used to determine which fields should be checked.
      *  This includes both explicitly declared modifiers and implicit ones, such as package-private
@@ -136,7 +137,9 @@ public class JavadocVariableCheck
         if (shouldCheck(ast)) {
             final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
             if (blockCommentNode == null) {
-                log(ast, MSG_JAVADOC_MISSING);
+                final String name = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT))
+                    .getText();
+                log(ast, MSG_JAVADOC_MISSING, name);
             }
         }
     }
@@ -148,7 +151,8 @@ public class JavadocVariableCheck
      * @return true if the variable name of ast is in the ignore list.
      */
     private boolean isIgnored(DetailAST ast) {
-        final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+        final String name = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT))
+            .getText();
         return ignoreNamePattern != null && ignoreNamePattern.matcher(name).matches()
             || "serialVersionUID".equals(name);
     }

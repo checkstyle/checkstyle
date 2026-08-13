@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
+      </macro>
       <subsection name="Description" id="SuppressionFilter_Description">
         <macro name="description">
             <param name="modulePath"
@@ -48,7 +52,7 @@
           file <code>Example1.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
           22 and 26 of file <code>Example1.java</code>,
-          and <code>'Missing a Javadoc comment'</code> violations
+          and <code>'Missing a Javadoc comment for'</code> violations
           for all lines and files:
         </p>
         <macro name="example">
@@ -101,7 +105,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/UseCase2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/UseCase2.properties"/>
           <param name="type" value="config"/>
         </macro>
         <p id="suppressionUseCase2-raw">
@@ -111,18 +115,14 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionUseCase2.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/suppressionUseCase2.xml"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="hidden-raw">
-          Below Example is suppressed because
-          <code>hidden.properties</code> file inside
-          the <code>.hidden</code> folder:
-        </p>
+        <p id="UseCase2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/hidden.properties"/>
-          <param name="type" value="raw"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/UseCase2.properties"/>
+          <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="UseCase3-config">
             Suppress checks by violation message:

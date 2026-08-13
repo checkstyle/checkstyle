@@ -170,7 +170,10 @@ public class InputRightCurlyTestAloneOrSingleline {
     void foo25() {
         for (int i = 0; i < 10; i++) {
             System.identityHashCode("Hello, world!");
-        }} // 2 violations
+        }}
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 10 should be alone on a line.'
 
     void foo26() {
         for (int i = 0; i < 10; i++) {

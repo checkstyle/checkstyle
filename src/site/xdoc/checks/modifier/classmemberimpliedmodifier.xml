@@ -8,6 +8,31 @@
   <body>
     <section name="ClassMemberImpliedModifier">
       <p>Since Checkstyle 8.16</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ClassMemberImpliedModifier_Description">Description</a></li>
+          <li><a href="#ClassMemberImpliedModifier_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassMemberImpliedModifier_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">So that it checks that all implicit modifiers on nested interfaces, enums, and records are explicitly specified in classes and records.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Not require explicit <code>static</code> on nested enums</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Not require explicit <code>static</code> on nested interfaces</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Not require explicit <code>static</code> on nested records</a></li>
+            </ul>
+          </li>
+          <li><a href="#ClassMemberImpliedModifier_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ClassMemberImpliedModifier_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ClassMemberImpliedModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ClassMemberImpliedModifier_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ClassMemberImpliedModifier_Description">
         <div>
           Checks for implicit modifiers on nested types in classes and records.

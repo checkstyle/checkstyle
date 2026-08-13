@@ -85,19 +85,16 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
     public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "1: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+            "11: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
                     "keyB", 2),
-            "4: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+            "14: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
                     "keyC", 2),
         };
 
         final String[] expectedWithFilter = {};
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("UseCase2.java"),
-                getPath(".hidden/hidden.properties"),
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath(".hidden/UseCase2.properties"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test

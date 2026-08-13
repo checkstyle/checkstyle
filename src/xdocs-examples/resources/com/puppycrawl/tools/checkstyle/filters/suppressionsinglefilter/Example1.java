@@ -10,7 +10,7 @@
     <property name="lines" value="1,5-100"/>
   </module>
   <module name="SuppressionSingleFilter">
-    <property name="message" value="Missing a Javadoc comment"/>
+    <property name="message" value="Missing a Javadoc comment for"/>
   </module>
 </module>
 */

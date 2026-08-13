@@ -29,34 +29,12 @@ import javax.annotation.Nullable;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.LineColumn;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
 /**
  * Contains utility methods for working with Javadoc.
  */
 public final class JavadocUtil {
-
-    /**
-     * The type of Javadoc tag we want returned.
-     */
-    public enum JavadocTagType {
-
-        /** Block type. */
-        BLOCK,
-        /** Inline type. */
-        INLINE,
-        /** All validTags. */
-        ALL,
-
-    }
 
     /** Maps from a token name to value. */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
@@ -85,53 +63,6 @@ public final class JavadocUtil {
 
     /** Prevent instantiation. */
     private JavadocUtil() {
-    }
-
-    /**
-     * Gets validTags from a given piece of Javadoc.
-     *
-     * @param textBlock
-     *        the Javadoc comment to process.
-     * @param tagType
-     *        the type of validTags we're interested in
-     * @return all standalone validTags from the given javadoc.
-     */
-    public static JavadocTags getJavadocTags(TextBlock textBlock,
-            JavadocTagType tagType) {
-        final String[] text = textBlock.getText();
-        final List<TagInfo> tags = new ArrayList<>();
-        final boolean isBlockTags = tagType == JavadocTagType.ALL
-                                        || tagType == JavadocTagType.BLOCK;
-        if (isBlockTags) {
-            tags.addAll(BlockTagUtil.extractBlockTags(text));
-        }
-        final boolean isInlineTags = tagType == JavadocTagType.ALL
-                                        || tagType == JavadocTagType.INLINE;
-        if (isInlineTags) {
-            tags.addAll(InlineTagUtil.extractInlineTags(text));
-        }
-
-        final List<JavadocTag> validTags = new ArrayList<>();
-        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
-
-        for (TagInfo tag : tags) {
-            final LineColumn position = tag.getPosition();
-            final int col = position.getColumn();
-            // Add the starting line of the comment to the line number to get the actual line number
-            // in the source.
-            // Lines are one-indexed, so need an off-by-one correction.
-            final int line = textBlock.getStartLineNo() + position.getLine() - 1;
-
-            final String tagName = tag.getName();
-            try {
-                validTags.add(new JavadocTag(line, col, tagName, tag.getValue()));
-            }
-            catch (IllegalArgumentException ignored) {
-                invalidTags.add(new InvalidJavadocTag(line, col, tagName));
-            }
-        }
-
-        return new JavadocTags(validTags, invalidTags);
     }
 
     /**

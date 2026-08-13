@@ -13,9 +13,6 @@
   <suppress id="lineLength" files="compilable-input-paths.txt"/>
   <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
 
-  <!-- Expected report file for WriteTagCheckTest, contains full paths -->
-  <suppress id="lineLength"
-            files="/writetag/ExpectedWriteTagResetSeverity\.txt"/>
 
   <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
@@ -243,6 +240,8 @@
 
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/whitespace/arraybracketnowhitespace.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/annotation/missingoverrideonrecordaccessor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/annotation/packageannotation.xml.template"/>
@@ -356,6 +355,8 @@
             files="src/site/xdoc/checks/coding/useenhancedswitch.xml.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/misc/multilinecommentleadingasteriskpresence.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src/site/xdoc/checks/naming/googlemethodname.xml.template"/>
 
   <!-- Index templates don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
@@ -368,6 +369,11 @@
   <!-- Category overview pages don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
             files="src/site/xdoc/checks/[a-z]+\.xml"/>
+  <!-- Index templates don't need toc macro by design -->
+  <suppress checks="RegexpSingleline" id="sitetocMacroMustExist"
+            files="[\\/]checks\.xml\.template$"/>
+  <suppress checks="RegexpSingleline" id="sitetocMacroMustExist"
+            files="[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template$"/>
 
   <!-- Index templates don't need description macro by design -->
   <suppress id="descriptionMacroMustExist"

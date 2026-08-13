@@ -7,8 +7,12 @@
          <description>&lt;div&gt;
  Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
  To define the format for a tag, set property tagFormat to a regular expression.
- Property tagSeverity is used for severity of events when the tag exists.
+ Violations are reported only when the configured tag is missing or when the tag content
+ does not match tagFormat.
+ No violation is reported when the tag is present and matches tagFormat (or when tagFormat
+ is not configured).
  No violation reported in case there is no javadoc.
+ To forbid tags instead of requiring them, use IllegalBlockTag.
  &lt;/div&gt;</description>
          <properties>
             <property name="tag" type="java.lang.String">
@@ -16,11 +20,6 @@
             </property>
             <property name="tagFormat" type="java.util.regex.Pattern">
                <description>Specify the regexp to match tag content.</description>
-            </property>
-            <property default-value="info"
-                      name="tagSeverity"
-                      type="com.puppycrawl.tools.checkstyle.api.SeverityLevel">
-               <description>Specify the severity level when tag is found and printed.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"
@@ -37,9 +36,8 @@
          <message-keys>
             <message-key key="javadoc.parse.rule.error"/>
             <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.writeTag"/>
-            <message-key key="type.missingTag"/>
-            <message-key key="type.tagFormat"/>
+            <message-key key="writetag.missingTag"/>
+            <message-key key="writetag.tagFormat"/>
          </message-keys>
       </check>
    </module>

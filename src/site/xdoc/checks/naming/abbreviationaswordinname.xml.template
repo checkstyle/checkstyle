@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="AbbreviationAsWordInName_Description">
         <macro name="description">
             <param name="modulePath"
@@ -97,6 +101,22 @@
         <p>
           To configure to allow abbreviations up to 2 consecutive capital letters.
         </p>
+        <p id="Example5-config">Configuration:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p>
+          To configure to check only method names.
+        </p>
         <p id="Example6-config">Configuration:</p>
         <macro name="example">
           <param name="path"
@@ -111,7 +131,8 @@
         </macro>
         <hr class="example-separator"/>
         <p>
-          To configure to check only method names.
+          To configure to allow abbreviations up to 1 consecutive capital letter,
+          allow specific abbreviations, and check overridden methods.
         </p>
         <p id="Example7-config">Configuration:</p>
         <macro name="example">
@@ -127,8 +148,8 @@
         </macro>
         <hr class="example-separator"/>
         <p>
-          To configure to allow abbreviations up to 1 consecutive capital letter,
-          allow specific abbreviations, and check overridden methods.
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
         </p>
         <p id="Example8-config">Configuration:</p>
         <macro name="example">
@@ -140,23 +161,6 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example8.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <hr class="example-separator"/>
-        <p>
-          To configure to check variables, enforcing no abbreviations
-          except for variables that are both static and final.
-        </p>
-        <p id="Example5-config">Configuration:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

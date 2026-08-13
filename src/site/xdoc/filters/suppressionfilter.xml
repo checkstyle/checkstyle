@@ -8,6 +8,36 @@
   <body>
     <section name="SuppressionFilter">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressionFilter_Description">Description</a></li>
+          <li><a href="#SuppressionFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Suppress certain checks by check name, file, and line number</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressionFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Suppress certain checks by their module id</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Suppress all checks for hidden files and folders</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Suppress checks by violation message</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressionFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressionFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressionFilter_Description">
         <div>
           Filter <code>SuppressionFilter</code> rejects audit events for Check violations according to a
@@ -146,7 +176,7 @@
           file <code>Example1.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
           22 and 26 of file <code>Example1.java</code>,
-          and <code>'Missing a Javadoc comment'</code> violations
+          and <code>'Missing a Javadoc comment for'</code> violations
           for all lines and files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -163,7 +193,7 @@
   &lt;suppress checks="MagicNumber"
     files="Example1.java"
     lines="22,26"/&gt;
-  &lt;suppress message="Missing a Javadoc comment"/&gt;
+  &lt;suppress message="Missing a Javadoc comment for"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
         <p id="Example1-code">Example:</p>
@@ -255,14 +285,11 @@ public class UseCase1 {
         <p id="UseCase2-config">
             Suppress all checks for hidden files and folders:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="properties"/&gt;
-
+        <div class="wrapper"><pre class="prettyprint"><code>
+&lt;property name="fileExtensions" value="properties"/&gt;
   &lt;module name="SuppressionFilter"&gt;
     &lt;property name="file" value="suppressionUseCase2.xml"/&gt;
   &lt;/module&gt;
-
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
@@ -283,12 +310,8 @@ public class UseCase1 {
   &lt;suppress files="[/\\]\..+" checks=".*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="hidden-raw">
-          Below Example is suppressed because
-          <code>hidden.properties</code> file inside
-          the <code>.hidden</code> folder:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <p id="UseCase2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
 keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
 keyB=value2
 # // filtered violation below 'Duplicated property 'keyC' (2 occurrence(s)).'

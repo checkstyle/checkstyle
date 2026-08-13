@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java"/>
+      </macro>
       <subsection name="Description" id="OneTopLevelClass_Description">
         <macro name="description">
             <param name="modulePath"
@@ -46,13 +50,15 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-code">
-          An example of code without violations:
+        </macro>
+      </subsection>
+      <subsection name="Use Cases" id="OneTopLevelClass_Use_Cases">
+        <p id="UseCase1-code">
+        An example of code without public top-level type:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

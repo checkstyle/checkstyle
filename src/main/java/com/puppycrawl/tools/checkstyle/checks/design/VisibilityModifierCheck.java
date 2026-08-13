@@ -660,7 +660,7 @@ public class VisibilityModifierCheck
     /**
      * Gets canonical type's name from given {@link TokenTypes#TYPE TYPE} node.
      *
-     * @param type DetailAST {@link TokenTypes#TYPE TYPE} node.
+     * @param type DetailAST {@code TokenTypes#TYPE TYPE} node.
      * @return canonical type's name
      */
     private static String getCanonicalName(DetailAST type) {

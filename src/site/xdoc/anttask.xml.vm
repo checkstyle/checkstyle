@@ -17,7 +17,39 @@
     </section>
 
     <section name="Description">
-
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Description">Description</a></li>
+            <li><a href="#Installation">Installation</a></li>
+            <li><a href="#Parameters">Parameters</a></li>
+            <li><a href="#Nested_Elements">Nested Elements</a></li>
+            <li>
+              <a href="#Examples">Examples</a>
+              <ul class="toc-sublist">
+                <li><a href="#Checkstyle_use_ant_configuration">Checkstyle use ant
+                  configuration</a></li>
+                <li><a href="#Run_checkstyle_with_configuration_file">Run checkstyle with
+                  configuration file</a></li>
+                <li><a href="#Run_checkstyle_on_set_of_files">Run checkstyle on a set of
+                  Java files</a></li>
+                <li><a href="#Run_checkstyle_on_source_path">Run checkstyle on a source
+                  path</a></li>
+                <li><a href="#Run_checkstyle_output_formats">Run checkstyle with output
+                  formats</a></li>
+                <li><a href="#Run_checkstyle_with_package_names">Run checkstyle with package
+                  names file</a></li>
+                <li><a href="#Run_checkstyle_automated_build">Run checkstyle in automated
+                  build</a></li>
+                <li><a href="#Run_checkstyle_custom_JAR">Run checkstyle with custom JAR</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
       <p>
         This task runs Checkstyle over specified Java files.
         The latest version of checkstyle can be found at
@@ -95,7 +127,7 @@
           </tr>
 
           <tr>
-            <td>file</td>
+            <td><a id="file"/><a href="#file">file</a></td>
             <td>File to run checkstyle on.</td>
             <td>
               One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
@@ -104,7 +136,7 @@
           </tr>
 
           <tr>
-            <td>fileset</td>
+            <td><a id="fileset"/><a href="#fileset">fileset</a></td>
             <td>
               A set of files to run checkstyle on. Nested attribute.
               See <a href="https://ant.apache.org/manual/Types/fileset.html">fileset</a>
@@ -117,7 +149,7 @@
           </tr>
 
           <tr>
-            <td>path</td>
+            <td><a id="path"/><a href="#path">path</a></td>
             <td>
               A set of path to run checkstyle on. Nested attribute.
               See <a href="https://ant.apache.org/manual/using.html#path">path</a>
@@ -130,7 +162,7 @@
           </tr>
 
           <tr>
-            <td>config</td>
+            <td><a id="config"/><a href="#config">config</a></td>
             <td>
               Specifies the location of the file, URL, or Java resource that defines the
               configuration modules.
@@ -142,7 +174,7 @@
           </tr>
 
           <tr>
-            <td>properties</td>
+            <td><a id="properties"/><a href="#properties">properties</a></td>
             <td>
               Specifies a file that contains properties for <a
               href="config.html#Properties"> expanded property values</a> of the
@@ -153,7 +185,7 @@
           </tr>
 
           <tr>
-            <td>failOnViolation</td>
+            <td><a id="failOnViolation"/><a href="#failOnViolation">failOnViolation</a></td>
             <td>
               Specifies whether the build will continue even if there are
               violations. Defaults to <code>&quot;true&quot;</code>.
@@ -162,13 +194,13 @@
           </tr>
 
           <tr>
-            <td>failureProperty</td>
+            <td><a id="failureProperty"/><a href="#failureProperty">failureProperty</a></td>
             <td>The name of a property to set in the event of a violation.</td>
             <td>No</td>
           </tr>
 
           <tr>
-            <td>maxErrors</td>
+            <td><a id="maxErrors"/><a href="#maxErrors">maxErrors</a></td>
             <td>
               The maximum number of errors that are tolerated before
               breaking the build or setting the failure property. Defaults
@@ -178,7 +210,7 @@
           </tr>
 
           <tr>
-            <td>maxWarnings</td>
+            <td><a id="maxWarnings"/><a href="#maxWarnings">maxWarnings</a></td>
             <td>
               The maximum number of warnings that are tolerated before
               breaking the build or setting the failure property. Defaults
@@ -191,7 +223,8 @@
           </tr>
 
           <tr>
-            <td>executeIgnoredModules</td>
+            <td><a id="executeIgnoredModules"/>
+              <a href="#executeIgnoredModules">executeIgnoredModules</a></td>
             <td>
               For efficiency, Checkstyle does not invoke modules with a configured severity of
               "ignore" (since their output would be ignored anyway). A small number of modules
@@ -243,7 +276,7 @@
           </tr>
 
           <tr>
-            <td>type</td>
+            <td><a id="type"/><a href="#type">type</a></td>
             <td>
               <p>The type of output to generate. The valid values are:</p>
               <ul>
@@ -267,6 +300,7 @@
           </tr>
 
           <tr>
+            <td><a id="toFile"/><a href="#toFile">toFile</a></td>
             <td>toFile</td>
             <td>
               The file to write output to. Defaults to standard output. Note,
@@ -275,7 +309,7 @@
             <td>No</td>
           </tr>
           <tr>
-            <td>useFile</td>
+            <td><a id="useFile"/><a href="#useFile">useFile</a></td>
             <td>Boolean that determines whether output should be sent to
             a file.  Default is <code>true</code>.</td>
             <td>No</td>
@@ -298,19 +332,19 @@
             <td><b>Required</b></td>
           </tr>
           <tr>
-            <td>key</td>
+            <td><a id="key"/><a href="#key">key</a></td>
             <td><p>The key for the property.</p></td>
             <td>Yes</td>
           </tr>
 
           <tr>
-            <td>value</td>
+            <td><a id="value"/><a href="#value">value</a></td>
             <td>The value of the property specified as a string.</td>
             <td>Either <i>value</i> or <i>file</i></td>
           </tr>
 
           <tr>
-            <td>file</td>
+            <td><a id="property-file"/><a href="#property-file">file</a></td>
             <td>
               The value of the property specified as a file. This is great for
               specifying file names relative to the ANT build file.
@@ -330,32 +364,28 @@
             here</a>.
       </p>
 
+      <h4 id="Checkstyle_use_ant_configuration"><span>
+        Checkstyle use ant configuration
+      </span></h4>
       <p>
-        <b>
-          Checkstyle use ant configuration to validate its own code. See example is our git
-          repository -
-          <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
-            config/ant-phase-verify.xml</a>.
-        </b>
+        Checkstyle use ant configuration to validate its own code. See example is our git
+        repository -
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
+          config/ant-phase-verify.xml</a>.
       </p>
 
-      <p>
-        <b>
-          Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on a single file
-        </b>
-      </p>
+      <h4 id="Run_checkstyle_with_configuration_file"><span>
+        Run checkstyle with configuration file docs/sun_checks.xml on a single file
+      </span></h4>
 
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot; file=&quot;Check.java&quot;/&gt;
       </code></pre></div>
 
-      <p>
-        <b>
-          Run checkstyle on a set of Java files using site-wide configuration
-          and an expanded property value
-        </b>
-      </p>
+      <h4 id="Run_checkstyle_on_set_of_files"><span>
+        Run checkstyle on a set of Java files using site-wide configuration
+        and an expanded property value
+      </span></h4>
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;/path/to/site/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
@@ -365,11 +395,9 @@
 &lt;/checkstyle&gt;
       </code></pre></div>
 
-      <p>
-        <b>
-          Run checkstyle on a previously defined source path.
-        </b>
-      </p>
+      <h4 id="Run_checkstyle_on_source_path"><span>
+        Run checkstyle on a previously defined source path
+      </span></h4>
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;!-- Somewhere in your config --&gt;
 &lt;path id="project.sourcepath"&gt;
@@ -385,12 +413,10 @@
 &lt;/checkstyle&gt;
       </code></pre></div>
 
-      <p>
-        <b>
-          Run checkstyle on a set of files and output messages to standard
-          output in plain format, and files in XML &amp; SARIF format
-        </b>
-      </p>
+      <h4 id="Run_checkstyle_output_formats"><span>
+        Run checkstyle on a set of files and output messages to standard
+        output in plain format, and files in XML &amp; SARIF format
+      </span></h4>
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;&gt;
   &lt;fileset dir=&quot;src/checkstyle&quot; includes=&quot;**/*.java&quot;/&gt;
@@ -400,28 +426,23 @@
 &lt;/checkstyle&gt;
       </code></pre></div>
 
-      <p>
-        <b>
-          Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on a file and provide a package
-          names file
-        </b>
-      </p>
+      <h4 id="Run_checkstyle_with_package_names"><span>
+        Run checkstyle with configuration file docs/sun_checks.xml on a file
+        and provide a package names file
+      </span></h4>
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
             packageNamesFile=&quot;myPackageNames.xml&quot;
             file=&quot;Check.java&quot;/&gt;
       </code></pre></div>
 
-      <p>
-        <b>
-          Run checkstyle in an automated build and send an email report if
-          style violations are detected
-        </b>
-      </p>
+      <h4 id="Run_checkstyle_automated_build"><span>
+        Run checkstyle in an automated build and send an email report if
+        style violations are detected
+      </span></h4>
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;target name=&quot;checkstyle&quot;
-        description=&quot;Generates a report of code convention violations.&quot;>
+        description=&quot;Generates a report of code convention violations.&quot;&gt;
 
   &lt;checkstyle config=&quot;docs/sun_checks.xml&quot;
               failureProperty=&quot;checkstyle.failure&quot;
@@ -452,13 +473,14 @@
 &lt;/target&gt;
       </code></pre></div>
 
+      <h4 id="Run_checkstyle_custom_JAR"><span>
+        Run checkstyle with a custom JAR with implementation of custom Checks
+      </span></h4>
       <p>
-        <b>
-          To run checkstyle with a custom JAR with implementation of custom Checks
-          be sure the custom JAR is found on the classpath. An example can be found at
-          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
-          checkstyle-samples</a>.
-        </b>
+        To run checkstyle with a custom JAR with implementation of custom Checks
+        be sure the custom JAR is found on the classpath. An example can be found at
+        <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
+        checkstyle-samples</a>.
       </p>
 
     </section>

@@ -34,22 +34,34 @@ public class InputRightCurlyTestSwitchCase3 {
         if (7>x) {
            switch (x) {
                case(1):
-                   break;}} // 2 violations
+                   break;}}
+        // 2 violations above:
+        // ''}' at column 26 should be alone on a line.'
+        // ''}' at column 27 should be alone on a line.'
     }
 
     public void someMethod2() {
         int x = 90;
         if (7>x) {
-           switch (x) { case(1): break;}} // 2 violations
+           switch (x) { case(1): break;}}
+        // 2 violations above:
+        // ''}' at column 40 should be alone on a line.'
+        // ''}' at column 41 should be alone on a line.'
     }
 
     public void someMethod3() {
         int x = 90;
         if (7>x) {switch (x) {case(1): break;}
         } // violation above ''}' at column 46 should be alone on a line'
-        if (7>x) {switch (x) { }} // 2 violations
+        if (7>x) {switch (x) { }}
+        // 2 violations above:
+        // ''}' at column 32 should be alone on a line.'
+        // ''}' at column 33 should be alone on a line.'
         if (7>x) {switch (x) {
-            }} // 2 violations
+            }}
+        // 2 violations above:
+        // ''}' at column 13 should be alone on a line.'
+        // ''}' at column 14 should be alone on a line.'
         if (7>x) {switch (x) {
             }
        }

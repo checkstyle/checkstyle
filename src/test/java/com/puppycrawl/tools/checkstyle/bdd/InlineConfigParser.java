@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
+import com.puppycrawl.tools.checkstyle.utils.InlineConfigUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -266,64 +267,32 @@ public final class InlineConfigParser {
      * are updated with proper violation messages.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsHolder",
-            "com.puppycrawl.tools.checkstyle.checks.arraytypestyle.ArrayTypeStyleCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.descendanttoken.DescendantTokenCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
             "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck",
-            "com.puppycrawl.tools.checkstyle.checks.trailingcomment.TrailingCommentCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPad",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparator",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPad",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAround",
-            "com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyTextFilter",
-            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
-            "com.puppycrawl.tools.checkstyle.filters.SuppressionFilter",
-            "com.puppycrawl.tools.checkstyle.sariflogger.SarifLogger"
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"
     );
 
     /**
@@ -333,16 +302,7 @@ public final class InlineConfigParser {
      * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
-            "checks/finalparameters/InputFinalParameters3.java",
-            "checks/finalparameters/InputFinalParametersPatternVariables.java",
-             "checks/finalparameters/"
-                     + "InputFinalParametersRecordForLoopPatternVariables.java",
             "checks/coding/equalshashcode/Example1.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestDefaults.java",
-            "checks/coding/illegaltype/InputIllegalTypeEmptyStringMemberModifiers.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestExtendsImplements.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestFormat.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestGenerics.java",
             "checks/coding/illegaltype/InputIllegalTypeTestIgnoreMethodNames.java",
             "checks/coding/illegaltype/InputIllegalTypeTestEnhancedInstanceof.java",
             "checks/coding/illegaltype/InputIllegalTypeTestLegalAbstractClassNames.java",
@@ -359,11 +319,7 @@ public final class InlineConfigParser {
             "checks/coding/illegaltype/InputIllegalTypeTestSameFileNameGeneral.java",
             "checks/coding/illegaltype/InputIllegalTypeTestStarImports.java",
             "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
-            "checks/coding/nestedifdepth/Example1.java",
-            "checks/coding/nestedifdepth/Example2.java",
             "checks/coding/noclone/Example1.java",
-            "checks/coding/simplifybooleanreturn/Example1.java",
-            "checks/coding/superfinalize/InputSuperFinalizeVariations.java",
             "checks/coding/unusedlocalvariable/Example1.java",
             "checks/coding/unusedlocalvariable/Example2.java",
             "checks/coding/unusedlocalvariable/Example4.java",
@@ -387,21 +343,6 @@ public final class InlineConfigParser {
                     + "InputUnusedLocalVariablePatternVariablesCondition2.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
             "checks/imports/avoidstarimport/InputAvoidStarImportExcludes.java",
-            "checks/imports/importorder/Example10.java",
-            "checks/metrics/npathcomplexity/Example1.java",
-            "checks/metrics/npathcomplexity/Example2.java",
-            "checks/naming/recordcomponentname/Example1.java",
-            "checks/naming/recordcomponentname/Example2.java",
-            "checks/naming/recordtypeparametername/Example1.java",
-            "checks/naming/recordtypeparametername/Example2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic8.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic5.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineMultilineSupport2.java",
-            "checks/regexp/regexpmultiline/InputRegexpMultilineSemantic7.java",
-            "checks/regexp/regexpsingleline/Example2.java",
-            "checks/regexp/regexpsingleline/UseCase1.java",
             "checks/sizes/recordcomponentnumber/Example1.java",
             "checks/sizes/recordcomponentnumber/Example2.java",
             "checks/whitespace/separatorwrap/Example1.java",
@@ -459,6 +400,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.GoogleNonConstantFieldNameCheck");
         MODULE_MAPPINGS.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
+        MODULE_MAPPINGS.put("GoogleMethodName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.GoogleMethodNameCheck");
         MODULE_MAPPINGS.put("ParameterName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
         MODULE_MAPPINGS.put("RegexpOnFilename",
@@ -606,11 +549,13 @@ public final class InlineConfigParser {
 
         final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
-        if (!checkIsXmlConfig(lines)) {
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, inputFilePath);
+        if (matched == null || !matched.xmlStyleConfig()) {
             throw new CheckstyleException("Config cannot be parsed as xml.");
         }
 
-        final List<String> inlineConfig = getInlineConfig(lines);
+        final List<String> inlineConfig = getInlineConfig(lines, inputFilePath, matched);
         final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
         final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
         final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
@@ -635,31 +580,25 @@ public final class InlineConfigParser {
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }
 
-    /**
-     * Check whether a file provides xml configuration.
-     *
-     * @param lines lines of the file
-     * @return true if a file provides xml configuration, otherwise false.
-     */
-    private static boolean checkIsXmlConfig(List<String> lines) {
-        return "/*xml".equals(lines.getFirst());
-    }
-
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.getFirst().startsWith("/*")) {
-            throw new CheckstyleException("Config not specified on top."
-                + "Please see other inputs for examples of what is required.");
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, inputFilePath);
+        if (matched == null) {
+            throw new CheckstyleException("Config not specified on top. Expected "
+                    + InlineConfigUtils.describeExpectedDelimiters(inputFilePath)
+                    + " as the first line. Please see other inputs for examples of what"
+                    + " is required.");
         }
 
-        final List<String> inlineConfig = getInlineConfig(lines);
+        final List<String> inlineConfig = getInlineConfig(lines, inputFilePath, matched);
 
-        if (checkIsXmlConfig(lines)) {
+        if (matched.xmlStyleConfig()) {
             final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
             final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
             final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
-                inputSource, new PropertiesExpander(System.getProperties()),
+                    inputSource, new PropertiesExpander(System.getProperties()),
                     ConfigurationLoader.IgnoredModulesOptions.EXECUTE
             );
             final String configName = xmlConfig.getName();
@@ -674,11 +613,37 @@ public final class InlineConfigParser {
         }
     }
 
-    private static List<String> getInlineConfig(List<String> lines) {
-        return lines.stream()
-                .skip(1)
-                .takeWhile(line -> !line.startsWith("*/"))
-                .toList();
+    /**
+     * Extracts the raw config lines (between the start and end delimiter) for the given
+     * file, stripping the leading {@code #} comment marker from each line when the target
+     * file is a {@code .properties} file (since every config line there must itself be a
+     * valid properties-file comment).
+     *
+     * @param lines all lines of the file.
+     * @param inputFilePath the input file path, used to select the delimiter and
+     *     line-prefix-stripping behavior.
+     * @return the inline config lines, ready to be parsed as XML or key-value pairs.
+     */
+    private static List<String> getInlineConfig(List<String> lines, String inputFilePath,
+                                                InlineConfigUtils.MatchedDelimiter matched) {
+        final int endIndex = InlineConfigUtils.getConfigEndIndex(lines, matched);
+        final int startIndex;
+        if (matched.end() == null) {
+            startIndex = 0;
+        }
+        else {
+            startIndex = 1;
+        }
+        final List<String> rawConfigLines = lines.subList(startIndex, endIndex);
+
+        final List<String> result;
+        if (inputFilePath.endsWith(".properties")) {
+            result = InlineConfigUtils.stripPropertiesCommentPrefix(rawConfigLines);
+        }
+        else {
+            result = rawConfigLines;
+        }
+        return result;
     }
 
     private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,

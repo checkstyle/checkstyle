@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordcomponentname;
 class Example1 {
   record Rec1(int other) {}
 
-  record Rec2(String Values) {} // violation, Name must match '^[a-z][a-zA-Z0-9]*$'
+  record Rec2(String Values) {} // violation 'Name 'Values' must match pattern'
 
   record Rec3(double myNumber) {}
 }

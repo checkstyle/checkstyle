@@ -8,6 +8,35 @@
   <body>
     <section name="MagicNumber">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MagicNumber_Description">Description</a></li>
+          <li><a href="#MagicNumber_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MagicNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it checks floating-point numbers that are not 0, 0.5, or 1</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it ignores magic numbers in field declarations</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check annotation element defaults</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Config example of constantWaiverParentToken option</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Config example of ignoreHashCodeMethod option</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Config example of ignoreNumbers option</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Config example of ignoreAnnotation option</a></li>
+            </ul>
+          </li>
+          <li><a href="#MagicNumber_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MagicNumber_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MagicNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MagicNumber_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MagicNumber_Description">
         <div>
           Checks that there are no
@@ -515,7 +544,7 @@ public class Example6 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MagicNumber"&gt;
-      &lt;property name="ignoreNumbers" value="0, 1, 10"/&gt;
+      &lt;property name="ignoreNumbers" value="0, 1, 8, 10"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -528,7 +557,7 @@ public class Example7 {
 
   void method1() {
     int i = 1;
-    int j = 8; // violation ''8' is a magic number.'
+    int j = 8; // ok, as 8 is ignored
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);

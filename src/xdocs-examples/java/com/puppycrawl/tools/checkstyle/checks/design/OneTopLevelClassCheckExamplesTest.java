@@ -44,17 +44,17 @@ public class OneTopLevelClassCheckExamplesTest extends AbstractExamplesModuleTes
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_KEY, "ViolationExample2"),
-        };
-
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
-    public void testExample3() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_KEY, "ViolationUseCase1"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }

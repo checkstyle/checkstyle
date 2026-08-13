@@ -8,6 +8,33 @@
   <body>
     <section name="SuppressionSingleFilter">
       <p>Since Checkstyle 8.23</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressionSingleFilter_Description">Description</a></li>
+          <li><a href="#SuppressionSingleFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionSingleFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">A filter to suppress violations of <code>NoWhitespaceAfter</code> and <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges using <code>SuppressionSingleFilter</code></a></li>
+              <li><a href="#Example2-config" class="toc-sublink">A filter to suppress violations of <code>NoWhitespaceAfter</code> on a specific column in <code>Example2.java</code> using <code>SuppressionSingleFilter</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">A filter to suppress violations of <code>RegexpSinglelineCheck</code> in <code>Example3.java</code> using <code>SuppressionSingleFilter</code></a></li>
+              <li><a href="#Example4-config" class="toc-sublink">A filter to suppress violations of <code>NoWhitespaceAfter</code> in <code>Example4.java</code> using <code>SuppressionSingleFilter</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">A filter to suppress <code>MagicNumber</code> violations whose message matches <code>100</code> using <code>SuppressionSingleFilter</code></a></li>
+              <li><a href="#Example6-config" class="toc-sublink">A filter to suppress <code>MagicNumber</code> violations on specific line ranges using the <code>lines</code> property</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">A filter to suppress <code>MagicNumber</code> violations using the <code>id</code> property</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionSingleFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressionSingleFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressionSingleFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressionSingleFilter_Description">
         <div>
           Filter <code>SuppressionSingleFilter</code> suppresses audit events for Checks violations in the
@@ -109,7 +136,7 @@
     &lt;property name="lines" value="1,5-100"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="message" value="Missing a Javadoc comment"/&gt;
+    &lt;property name="message" value="Missing a Javadoc comment for"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>

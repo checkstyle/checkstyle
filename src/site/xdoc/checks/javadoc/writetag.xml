@@ -8,12 +8,41 @@
   <body>
     <section name="WriteTag">
       <p>Since Checkstyle 4.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#WriteTag_Description">Description</a></li>
+          <li><a href="#WriteTag_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#WriteTag_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Example of default Check configuration that do nothing.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present on type javadoc.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present on type and method javadocs. Matching tags produce no violation.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check to demand <code>@since</code> tag to be present with digital value on method javadocs also in addition to default tokens. Missing <code>@since</code> tags and tag format violations are reported with the common severity property.</a></li>
+            </ul>
+          </li>
+          <li><a href="#WriteTag_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#WriteTag_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#WriteTag_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#WriteTag_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="WriteTag_Description">
         <div>
           Requires user defined Javadoc tag to be present in Javadoc comment with defined format.
           To define the format for a tag, set property tagFormat to a regular expression.
-          Property tagSeverity is used for severity of events when the tag exists.
+          Violations are reported only when the configured tag is missing or when the tag content
+          does not match tagFormat.
+          No violation is reported when the tag is present and matches tagFormat (or when tagFormat
+          is not configured).
           No violation reported in case there is no javadoc.
+          To forbid tags instead of requiring them, use IllegalBlockTag.
         </div>
       </subsection>
 
@@ -39,13 +68,6 @@
               <td>Specify the regexp to match tag content.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
-              <td>4.2</td>
-            </tr>
-            <tr>
-              <td><a id="tagSeverity"/><a href="#tagSeverity">tagSeverity</a></td>
-              <td>Specify the severity level when tag is found and printed.</td>
-              <td><a href="../../property_types.html#SeverityLevel">SeverityLevel</a></td>
-              <td><code>info</code></td>
               <td>4.2</td>
             </tr>
             <tr>
@@ -127,14 +149,26 @@ public class Example1 {
    */
   void testMethod1() {}
 
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+
   /** some doc */
   public void testMethod2() {}
 
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure Check to demand some special tag (for example <code>@since</code>)
-          to be present on classes javadoc.
+          To configure Check to demand <code>@since</code> tag
+          to be present on type javadoc.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -154,12 +188,24 @@ public class Example1 {
  *
  */
 public class Example2 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
    */
   void testMethod1() {} // ok, as methods are not checked by default
+
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
 
   /** some doc */
   public void testMethod2() {}
@@ -167,8 +213,9 @@ public class Example2 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure Check to demand some special tag (for example <code>@since</code>)
-          to be present on method javadocs also in addition to default tokens.
+          To configure Check to demand <code>@since</code> tag
+          to be present on type and method javadocs.
+          Matching tags produce no violation.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -191,22 +238,35 @@ public class Example2 {
  *
  */
 public class Example3 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-  // violation 3 lines above 'Javadoc tag @since='
+
+  /**
+   * some doc
+   * @since 1.6
+   */
+  void testMethod1WithNumSince() {}
+
+  /**
+   * some doc
+   * @since 1.1-beta
+   */
+  void testMethod1WithAlphaSince() {}
+
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure Check to demand <code>@since</code> tag
           to be present with digital value on method javadocs also in addition to default tokens.
-          Attention: it is required to set &quot;ignore&quot; in tagSeverity.
+          Missing <code>@since</code> tags and tag format violations are reported with
+          the common severity property.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -216,8 +276,7 @@ public class Example3 {
                 value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
                 ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
       &lt;property name="tag" value="@since"/&gt;
-      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
-      &lt;property name="tagSeverity" value="ignore"/&gt;
+      &lt;property name="tagFormat" value="^[1-9\.]+$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -231,99 +290,28 @@ public class Example3 {
  *
  */
 public class Example4 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
   /**
    * some doc
    * @since
    */
   void testMethod1() {}
-  // violation 3 lines above 'Type Javadoc tag @since'
-  /** some doc */
-  public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure Check to demand <code>@since</code> tag
-          to be present with digital value on method javadocs also in addition to default tokens,
-          reporting a mismatched tag format as an error severity violation.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="WriteTag"&gt;
-      &lt;property name="tokens"
-                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
-      &lt;property name="tag" value="@since"/&gt;
-      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
-      &lt;property name="tagSeverity" value="error"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">
-        Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * Some class
- *
- */
-public class Example5 {
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 3 lines above 'Javadoc tag @since must match pattern'
   /**
    * some doc
-   * @since
+   * @since 1.6
    */
-  void testMethod1() {}
-  // violation 3 lines above 'Type Javadoc tag @since must match pattern'
-  /** some doc */
-  public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
-}
-</code></pre></div>
-      </subsection>
+  void testMethod1WithNumSince() {}
 
-      <subsection name="Use Cases" id="WriteTag_Use_Cases">
-        <p id="UseCase1-config">
-          To configure Check to demand <code>@since</code> tag
-          and in the same time print violation with specific severity on each presence of such tag.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="WriteTag"&gt;
-      &lt;property name="tokens"
-                value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF,
-                ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
-      &lt;property name="tag" value="@since"/&gt;
-      &lt;property name="tagFormat" value="[1-9\.]"/&gt;
-      &lt;property name="tagSeverity" value="error"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="UseCase1-code">
-        Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 3 lines below 'Javadoc tag @since=1.2'
-/**
- * Some class
- * @since 1.2
- */
-public class UseCase1 {
-  // violation 3 lines below 'Type Javadoc tag @since'
   /**
    * some doc
-   * @since
+   * @since 1.1-beta
    */
-  void testMethod1() {}
-
+  void testMethod1WithAlphaSince() {}
+  // violation 3 lines above 'Javadoc tag @since must match pattern'
   /** some doc */
   public void testMethod2() {}
-  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
+  // violation 1 lines above 'Javadoc comment is missing @since tag.'
 }
 </code></pre></div>
       </subsection>
@@ -350,18 +338,13 @@ public class UseCase1 {
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.writeTag%22">
-              javadoc.writeTag
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22writetag.missingTag%22">
+              writetag.missingTag
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTag%22">
-              type.missingTag
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.tagFormat%22">
-              type.tagFormat
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22writetag.tagFormat%22">
+              writetag.tagFormat
             </a>
           </li>
         </ul>

@@ -8,6 +8,29 @@
   <body>
     <section name="NPathComplexity">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NPathComplexity_Description">Description</a></li>
+          <li><a href="#NPathComplexity_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NPathComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a threshold of 100</a></li>
+            </ul>
+          </li>
+          <li><a href="#NPathComplexity_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NPathComplexity_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NPathComplexity_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NPathComplexity_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NPathComplexity_Description">
         <div>
           Checks the NPATH complexity against a specified limit.
@@ -147,7 +170,7 @@ public abstract class Example1 {
     print(m &gt; n ? baz() : bar());
   }
 
-  public void boo() { // violation, NPath complexity is 217 (max allowed is 200)
+  public void boo() { // violation 'NPath Complexity is 217 (max allowed is 200).'
     // looping through 3 switch statements produces 6^3 + 1 (217) possible outcomes
     for(int i = 0; i &lt; b; i++) { // for statement adds 1 to final complexity
       switch(i) { // each independent switch statement multiplies complexity by 6
@@ -196,7 +219,7 @@ public abstract class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public abstract class Example2 {
   int b = 0;
-  public void foo() { // violation, NPath complexity is 128 (max allowed is 100)
+  public void foo() { // violation 'NPath Complexity is 128 (max allowed is 100).'
     int a,b,t,m,n;
     a=b=t=m=n = 0;
 
@@ -209,7 +232,7 @@ public abstract class Example2 {
     print(m &gt; n ? baz() : bar());
   }
 
-  public void boo() { // violation, NPath complexity is 217 (max allowed is 100)
+  public void boo() { // violation 'NPath Complexity is 217 (max allowed is 100).'
     // looping through 3 switch statements produces 6^3 + 1 (217) possible outcomes
     for(int i = 0; i &lt; b; i++) { // for statement adds 1 to final complexity
       switch(i) { // each independent switch statement multiplies complexity by 6

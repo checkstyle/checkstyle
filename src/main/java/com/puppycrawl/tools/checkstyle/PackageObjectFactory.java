@@ -702,6 +702,8 @@ public class PackageObjectFactory implements ModuleFactory {
     private static void fillChecksFromJavadocPackage() {
         NAME_TO_FULL_MODULE_NAME.put("AtclauseOrderCheck",
                 BASE_PACKAGE + ".checks.javadoc.AtclauseOrderCheck");
+        NAME_TO_FULL_MODULE_NAME.put("IllegalBlockTagCheck",
+                BASE_PACKAGE + ".checks.javadoc.IllegalBlockTagCheck");
         NAME_TO_FULL_MODULE_NAME.put("InvalidJavadocPositionCheck",
                 BASE_PACKAGE + ".checks.javadoc.InvalidJavadocPositionCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocBlockTagLocationCheck",
@@ -720,6 +722,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocPackageCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocParagraphCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocParagraphCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocRegexpCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocRegexpCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTagContinuationIndentationCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocTagContinuationIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTypeCheck",
@@ -806,6 +810,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.GoogleNonConstantFieldNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodNameCheck",
                 BASE_PACKAGE + ".checks.naming.MethodNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("GoogleMethodNameCheck",
+                BASE_PACKAGE + ".checks.naming.GoogleMethodNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("MethodTypeParameterNameCheck",
                 BASE_PACKAGE + ".checks.naming.MethodTypeParameterNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageNameCheck",
@@ -872,6 +878,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from whitespace package.
      */
     private static void fillChecksFromWhitespacePackage() {
+        NAME_TO_FULL_MODULE_NAME.put("ArrayBracketNoWhitespaceCheck",
+                BASE_PACKAGE + ".checks.whitespace.ArrayBracketNoWhitespaceCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyForInitializerPadCheck",
                 BASE_PACKAGE + ".checks.whitespace.EmptyForInitializerPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyForIteratorPadCheck",

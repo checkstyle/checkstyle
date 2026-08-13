@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.npathcomplexity;
 // xdoc section - start
 public abstract class Example2 {
   int b = 0;
-  public void foo() { // violation, NPath complexity is 128 (max allowed is 100)
+  public void foo() { // violation 'NPath Complexity is 128 (max allowed is 100).'
     int a,b,t,m,n;
     a=b=t=m=n = 0;
 
@@ -25,7 +25,7 @@ public abstract class Example2 {
     print(m > n ? baz() : bar());
   }
 
-  public void boo() { // violation, NPath complexity is 217 (max allowed is 100)
+  public void boo() { // violation 'NPath Complexity is 217 (max allowed is 100).'
     // looping through 3 switch statements produces 6^3 + 1 (217) possible outcomes
     for(int i = 0; i < b; i++) { // for statement adds 1 to final complexity
       switch(i) { // each independent switch statement multiplies complexity by 6

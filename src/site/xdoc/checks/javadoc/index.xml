@@ -22,6 +22,17 @@
           </tr>
           <tr>
             <td>
+              <a href="illegalblocktag.html#IllegalBlockTag">
+                IllegalBlockTag
+              </a>
+            </td>
+            <td>
+              Detects a user-defined Javadoc block tag and reports a violation when the tag is
+              present with text that does not match <code>tagTextPattern</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="invalidjavadocposition.html#InvalidJavadocPosition">
                 InvalidJavadocPosition
               </a>
@@ -113,6 +124,16 @@
             </td>
             <td>
               Checks the Javadoc paragraph.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javadocregexp.html#JavadocRegexp">
+                JavadocRegexp
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments do not match a configured regular expression.
             </td>
           </tr>
           <tr>

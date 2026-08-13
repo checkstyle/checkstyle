@@ -8,6 +8,29 @@
   <body>
     <section name="AnonInnerLength">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AnonInnerLength_Description">Description</a></li>
+          <li><a href="#AnonInnerLength_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AnonInnerLength_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Accept anonymous classes with up to 20 lines by default</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept anonymous classes with up to 7 lines</a></li>
+            </ul>
+          </li>
+          <li><a href="#AnonInnerLength_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AnonInnerLength_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AnonInnerLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AnonInnerLength_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AnonInnerLength_Description">
         <div>
           Checks for long anonymous inner classes.

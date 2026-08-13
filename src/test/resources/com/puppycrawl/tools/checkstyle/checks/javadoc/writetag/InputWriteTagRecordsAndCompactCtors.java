@@ -1,7 +1,6 @@
 /*
 WriteTag
 tag = @incomplete
-tagSeverity = error
 tagFormat = \\S
 tokens = INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF
 violateExecutionOnNonTightHtml = (default)false
@@ -15,14 +14,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 public class InputWriteTagRecordsAndCompactCtors {
 
-    // violation 2 lines below 'Type Javadoc tag @incomplete must match pattern '\\S''
+    // violation 2 lines below 'Javadoc tag @incomplete must match pattern '\\S''
     /**
      * @incomplete
      */
     class TestClass {
     }
 
-    // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
     /**
      * @incomplete Failed to recognize 'record' introduced in Java 14.
      */
@@ -33,7 +31,6 @@ public class InputWriteTagRecordsAndCompactCtors {
 
     record MyRecord2(String myString) {
 
-        // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
         /**
          * @incomplete Failed to recognize 'record' introduced in Java 14.
          */
@@ -44,7 +41,6 @@ public class InputWriteTagRecordsAndCompactCtors {
 
     record MyRecord3(int x) {
 
-        // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
         /**
          * @incomplete Failed to recognize 'record' introduced in Java 14.
          */
@@ -58,7 +54,6 @@ public class InputWriteTagRecordsAndCompactCtors {
 
         private record MyRecord5(int z) {
 
-            // violation 2 lines below 'Failed to recognize 'record' introduced in Java 14.'
             /**
              * @incomplete Failed to recognize 'record' introduced in Java 14.
              */

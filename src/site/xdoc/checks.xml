@@ -101,6 +101,19 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/arraybracketnowhitespace.html#ArrayBracketNoWhitespace">
+                ArrayBracketNoWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around square-bracket tokens <code>[</code> and
+              <code>]</code> follows the Google Java Style Guide requirements for array
+              declarations, array creation, and array indexing as described in <a href="https://google.github.io/styleguide/javaguide.html#s4.6.2-horizontal-whitespace">
+              Section 4.6.2: Horizontal Whitespace</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/arraytrailingcomma.html#ArrayTrailingComma">
                 ArrayTrailingComma
               </a>
@@ -561,6 +574,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/naming/googlemethodname.html#GoogleMethodName">
+                GoogleMethodName
+              </a>
+            </td>
+            <td>
+              Checks that method names conform to the <a href="https://google.github.io/styleguide/javaguide.html#s5.2.3-method-names">
+              Google Java Style Guide</a> for method naming.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/naming/googlenonconstantfieldname.html#GoogleNonConstantFieldName">
                 GoogleNonConstantFieldName
               </a>
@@ -611,6 +635,17 @@
             <td>
               Makes sure that utility classes (classes that contain only static methods or fields in
               their API) do not have a public constructor.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/illegalblocktag.html#IllegalBlockTag">
+                IllegalBlockTag
+              </a>
+            </td>
+            <td>
+              Detects a user-defined Javadoc block tag and reports a violation when the tag is
+              present with text that does not match <code>tagTextPattern</code>.
             </td>
           </tr>
           <tr>
@@ -891,6 +926,16 @@
             </td>
             <td>
               Checks the Javadoc paragraph.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocregexp.html#JavadocRegexp">
+                JavadocRegexp
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments do not match a configured regular expression.
             </td>
           </tr>
           <tr>

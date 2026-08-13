@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocRegexp</title>
+  </head>
+  <body>
+    <section name="JavadocRegexp">
+      <p>Since Checkstyle 13.10.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocRegexp_Description">Description</a></li>
+          <li><a href="#JavadocRegexp_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocRegexp_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default settings that do not perform any validation</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Find closing &lt;/p&gt; tags in raw Javadoc source</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Find uppercase abbreviation 'AKA' in text visible in generated Javadoc HTML pages</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Find abbreviation 'aka' in text visible in generated Javadoc HTML pages regardless of case</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocRegexp_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocRegexp_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocRegexp_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocRegexp_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="JavadocRegexp_Description">
+        <div>
+          Checks that Javadoc comments do not match a configured regular expression.
+        </div>
+
+        <p>
+          The check can operate on raw Javadoc source or on the text visible to readers.
+          Raw matching includes Javadoc tags, HTML tags, HTML attributes, and formatting
+          characters. Visible-text matching ignores markup and matches only Javadoc text content.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocRegexp_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="format"/><a href="#format">format</a></td>
+              <td>Specify the regular expression to match forbidden Javadoc content.</td>
+              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><code>^$</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
+              <td><a id="ignoreCase"/><a href="#ignoreCase">ignoreCase</a></td>
+              <td>Control whether to ignore case when matching.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
+              <td><a id="ignoreMarkup"/><a href="#ignoreMarkup">ignoreMarkup</a></td>
+              <td>Control whether to ignore Javadoc and HTML markup when matching.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.10.0</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.10.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocRegexp_Examples">
+        <p id="Example1-config">
+          To configure the check with default settings that do not perform any validation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocRegexp"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  // ok, default settings do not perform any validation
+  /**
+   * &lt;p&gt;See &lt;a href="https://example.com/aka"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+   */
+  void first() {}
+
+  // ok, default settings do not perform any validation
+  /**
+   * Creates a user, AKA an account owner.
+   */
+  void second() {}
+
+  // ok, default settings do not perform any validation
+  /**
+   * Creates a user, aka an account owner.
+   */
+  void third() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to find closing &lt;/p&gt; tags in raw Javadoc source:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocRegexp"&gt;
+      &lt;property name="format" value="&amp;lt;/p&amp;gt;"/&gt;
+      &lt;property name="ignoreCase" value="false"/&gt;
+      &lt;property name="ignoreMarkup" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+
+  // violation below 'Javadoc content matches the illegal pattern'
+  /**
+   * &lt;p&gt;See &lt;a href="https://example.com/aka"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+   */
+  void first() {}
+
+  // ok, raw source has no closing paragraph tag
+  /**
+   * Creates a user, AKA an account owner.
+   */
+  void second() {}
+
+  // ok, raw source has no closing paragraph tag
+  /**
+   * Creates a user, aka an account owner.
+   */
+  void third() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to find uppercase abbreviation 'AKA' in text visible
+          in generated Javadoc HTML pages:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocRegexp"&gt;
+      &lt;property name="format" value="(^|\W)(AKA)(\W|$)"/&gt;
+      &lt;property name="ignoreCase" value="false"/&gt;
+      &lt;property name="ignoreMarkup" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+
+  // ok, rendered text has no AKA
+  /**
+   * &lt;p&gt;See &lt;a href="https://example.com/aka"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+   */
+  void first() {}
+
+  // violation below 'Javadoc content matches the illegal pattern'
+  /**
+   * Creates a user, AKA an account owner.
+   */
+  void second() {}
+
+  // ok, rendered text has no AKA
+  /**
+   * Creates a user, aka an account owner.
+   */
+  void third() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to find abbreviation 'aka' in text visible
+          in generated Javadoc HTML pages regardless of case:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocRegexp"&gt;
+      &lt;property name="format" value="aka"/&gt;
+      &lt;property name="ignoreCase" value="true"/&gt;
+      &lt;property name="ignoreMarkup" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+
+  // ok, rendered text has no aka
+  /**
+   * &lt;p&gt;See &lt;a href="https://example.com/aka"&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+   */
+  void first() {}
+
+  // violation below 'Javadoc content matches the illegal pattern'
+  /**
+   * Creates a user, AKA an account owner.
+   */
+  void second() {}
+
+  // violation below 'Javadoc content matches the illegal pattern'
+  /**
+   * Creates a user, aka an account owner.
+   */
+  void third() {}
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="JavadocRegexp_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocRegexp">
+              Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocRegexp">
+              Documentation Comments Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavadocRegexp_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.regexp.match%22">
+              javadoc.regexp.match
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="JavadocRegexp_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocRegexpCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocRegexp_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

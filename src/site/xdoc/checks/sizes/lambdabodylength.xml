@@ -8,6 +8,29 @@
   <body>
     <section name="LambdaBodyLength">
       <p>Since Checkstyle 8.37</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#LambdaBodyLength_Description">Description</a></li>
+          <li><a href="#LambdaBodyLength_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LambdaBodyLength_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Accept lambda bodies with up to 10 lines</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept lambda bodies with max 5 lines</a></li>
+            </ul>
+          </li>
+          <li><a href="#LambdaBodyLength_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#LambdaBodyLength_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#LambdaBodyLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#LambdaBodyLength_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="LambdaBodyLength_Description">
         <div>
           Checks lambda body length.

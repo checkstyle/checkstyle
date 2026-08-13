@@ -336,6 +336,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testHtmlCommentWithHyphens() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlCommentWithHyphens.txt"),
+                getHtmlTagsPath("InputHtmlCommentWithHyphens.javadoc"));
+    }
+
+    @Test
     public void testReferencesToUriFragments() throws Exception {
         verifyJavadocTree(getPath("ExpectedReferencesToUriFragments.txt"),
                 getPath("InputReferencesToUriFragments.javadoc"));

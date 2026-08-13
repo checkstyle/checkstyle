@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java"/>
+      </macro>
       <subsection name="Description" id="FinalLocalVariable_Description">
         <macro name="description">
           <param name="modulePath"
@@ -90,8 +94,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          An example of how to configure check on local variables and parameters
-          but do not validate loop variables:
+          An example of how to configure the check to validate unnamed variables
+          declared with VARIABLE_DEF:
         </p>
         <macro name="example">
           <param name="path"

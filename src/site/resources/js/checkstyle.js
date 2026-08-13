@@ -168,11 +168,27 @@ function setCollapsableMenuButton() {
 }
 
 function resetStyling() {
-    document.querySelector("#leftColumn").removeAttribute("style");
-    document.querySelector("body").removeAttribute("style");
-    document.querySelector("#bodyColumn").style.removeProperty("position");
-    document.querySelector("#hamburger").remove();
-    document.querySelector(".xright").lastChild.remove();
+    const leftColumn = document.querySelector("#leftColumn");
+    const body = document.querySelector("body");
+    const bodyColumn = document.querySelector("#bodyColumn");
+    const hamburger = document.querySelector("#hamburger");
+    const xright = document.querySelector(".xright");
+
+    if (leftColumn) {
+        leftColumn.removeAttribute("style");
+    }
+    if (body) {
+        body.removeAttribute("style");
+    }
+    if (bodyColumn) {
+        bodyColumn.style.removeProperty("position");
+    }
+    if (hamburger) {
+        hamburger.remove();
+    }
+    if (xright && xright.lastChild) {
+        xright.lastChild.remove();
+    }
 }
 
 window.addEventListener("load", function () {
@@ -197,3 +213,32 @@ else {
 }
 
 window.addEventListener("resize", setBodyColumnMargin);
+
+window.addEventListener("load", function () {
+    "use strict";
+
+    const tocPanel = document.querySelector(".toc-panel");
+    const breadcrumbs = document.getElementById("breadcrumbs");
+
+    if (!tocPanel || !breadcrumbs) {
+        return;
+    }
+
+    function updateTocPosition() {
+        const rect = breadcrumbs.getBoundingClientRect();
+
+        if (rect.bottom > 20) {
+            // Breadcrumbs are still visible.
+            tocPanel.style.top = `${rect.bottom + 10}px`;
+        }
+        else {
+            // Breadcrumbs have scrolled away.
+            tocPanel.style.top = "20px";
+        }
+    }
+
+    updateTocPosition();
+
+    window.addEventListener("scroll", updateTocPosition);
+    window.addEventListener("resize", updateTocPosition);
+});

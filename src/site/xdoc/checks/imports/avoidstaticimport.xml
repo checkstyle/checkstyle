@@ -8,6 +8,29 @@
   <body>
     <section name="AvoidStaticImport">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AvoidStaticImport_Description">Description</a></li>
+          <li><a href="#AvoidStaticImport_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AvoidStaticImport_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that the <code>java.lang.System.out</code> member and all members from <code>java.lang.Math</code> are allowed</a></li>
+            </ul>
+          </li>
+          <li><a href="#AvoidStaticImport_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AvoidStaticImport_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AvoidStaticImport_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AvoidStaticImport_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AvoidStaticImport_Description">
         <div>
           Checks that there are no static import statements.

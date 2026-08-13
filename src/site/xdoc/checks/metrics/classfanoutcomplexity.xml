@@ -8,6 +8,39 @@
   <body>
     <section name="ClassFanOutComplexity">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ClassFanOutComplexity_Description">Description</a></li>
+          <li><a href="#ClassFanOutComplexity_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassFanOutComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a threshold of 2</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With three excluded classes <code>HashMap</code>, <code>HashSet</code> and <code>Place3</code></a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Exclude classes with a regular expression <code>.*Reader$</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">With an excluded package <code>java.io</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ClassFanOutComplexity_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Also note, that checkstyle will not exclude classes within the same file even if it was listed in the <code>excludedPackages</code> parameter. For example, assuming the config is</a></li>
+            </ul>
+          </li>
+          <li><a href="#ClassFanOutComplexity_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ClassFanOutComplexity_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ClassFanOutComplexity_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ClassFanOutComplexity_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ClassFanOutComplexity_Description">
         <div>
           Checks the number of other types a given class/record/interface/enum/annotation

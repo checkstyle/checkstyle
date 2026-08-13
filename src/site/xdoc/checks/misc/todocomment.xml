@@ -8,6 +8,36 @@
   <body>
     <section name="TodoComment">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#TodoComment_Description">Description</a></li>
+          <li><a href="#TodoComment_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#TodoComment_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For comments that contain <code>TODO</code> and <code>FIXME</code>, case-insensitive</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#TodoComment_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Detect box comments (Google Java Style Guide §4.8.6.1)</a></li>
+            </ul>
+          </li>
+          <li><a href="#TodoComment_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#TodoComment_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#TodoComment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#TodoComment_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="TodoComment_Description">
         <div>
           Checks for <code>TODO:</code> comments. Actually it is a generic

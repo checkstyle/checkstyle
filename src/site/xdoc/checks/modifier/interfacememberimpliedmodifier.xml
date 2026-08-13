@@ -8,6 +8,35 @@
   <body>
     <section name="InterfaceMemberImpliedModifier">
       <p>Since Checkstyle 8.12</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#InterfaceMemberImpliedModifier_Description">Description</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#InterfaceMemberImpliedModifier_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">So that it checks that all implicit modifiers on methods, fields and nested types are explicitly specified in interfaces.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">This example checks that all implicit modifiers on methods and fields are explicitly specified, but nested types do not need to be.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">This example checks that all implicit modifiers on methods and nested types are explicitly specified, but fields do not need to be.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">This example checks that all implicit modifiers on fields and nested types are explicitly specified, but methods do not need to be.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>public</code> modifier on nested types does not need to be.</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>static</code> modifier on nested types does not need to be.</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>public</code> modifier on fields does not need to be.</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>static</code> modifier on fields does not need to be.</a></li>
+            </ul>
+          </li>
+          <li><a href="#InterfaceMemberImpliedModifier_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">
         <div>
           Checks for implicit modifiers on interface members and nested types.

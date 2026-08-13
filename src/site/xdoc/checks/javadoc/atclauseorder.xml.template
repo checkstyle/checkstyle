@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AtclauseOrderCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AtclauseOrderCheck.java"/>
+      </macro>
       <subsection name="Description" id="AtclauseOrder_Description">
         <macro name="description">
             <param name="modulePath"
@@ -77,7 +81,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-            To configure the check such that it targets only methods:
+            To configure the check such that it targets only classes, with a
+            custom tag order:
         </p>
         <macro name="example">
           <param name="path"
@@ -85,7 +90,8 @@
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
-          Example:
+          Results in the following violation, as only the class-level javadoc is
+          checked and its tags do not follow the custom order:
         </p>
         <macro name="example">
           <param name="path"

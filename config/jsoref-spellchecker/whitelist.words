@@ -51,6 +51,7 @@ Aqj
 archunit
 arity
 Arquillian
+arraybracketnowhitespace
 arraycopy
 arraysquarebracketsattype
 arraytrailingcomma
@@ -82,6 +83,7 @@ Autowiring
 avoiddoublebraceinitialization
 avoidescapedunicodecharacters
 avoidinlineconditionals
+avoidlatin
 avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
@@ -161,6 +163,7 @@ chapternaming
 chapterprogrammingpractices
 charset
 CHDBEFIF
+checkbox
 checkchmod
 checkerframework
 checkmodule
@@ -239,6 +242,7 @@ cson
 css
 cstyle
 csv
+csvfilterelement
 ctc
 ctor
 ctx
@@ -288,6 +292,7 @@ Denforcer
 DENORMALIZER
 Depedency
 dependabot
+deprecatedtag
 deque
 descendanttoken
 descr
@@ -355,6 +360,7 @@ Duser
 dv
 Dversion
 Dxml
+eb
 EBFF
 EBNF
 ecj
@@ -518,6 +524,7 @@ google
 googleblog
 googleecommon
 googlegroups
+googlemethodname
 googlenonconstantfieldname
 googlesource
 GPath
@@ -526,7 +533,6 @@ gpgv
 gradle
 gradlew
 graphicsenv
-Grenner
 grep
 grepped
 groovyism
@@ -590,6 +596,7 @@ Igno
 IGNORETHIS
 igorminar
 Ilja
+illegalblocktag
 illegalcatch
 illegalex
 illegalidentifiername
@@ -664,6 +671,7 @@ javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
 javadocpropertiesgenerator
+javadocregexp
 javadoctagcontinuationindentation
 javadoctags
 javadoctype
@@ -918,6 +926,7 @@ nestedtrydepth
 netbeans
 newdomain
 newlineatendoffile
+NEX
 Nfc
 NFF
 Nfo
@@ -1037,6 +1046,7 @@ packageannotation
 packagecomment
 packagedeclaration
 packagehtml
+packagehtmlcontents
 packagehtmltemplate
 packageinfo
 packagelevelcomments
@@ -1193,7 +1203,9 @@ rpmfind
 rq
 Rr
 Rsa
+rsh
 RSPEC
+rsync
 Rtl
 ru
 ruleannotations
@@ -1250,7 +1262,6 @@ scache
 Schneeberger
 scm
 scopeutil
-scp
 screenshot
 Scss
 sdk
@@ -1273,10 +1284,12 @@ simplestatements
 Simplifiable
 simplifybooleanexpression
 simplifybooleanreturn
+sincetag
 singleline
 singlelined
 singlelinejavadoc
 singlespaceseparator
+sitetoc
 sivakumar
 Slawinski
 slf
@@ -1338,6 +1351,7 @@ styleguide
 subdir
 subelements
 subext
+sublink
 subscope
 sudo
 suitebuilder
@@ -1419,6 +1433,7 @@ tokentype
 tolist
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
+tooltips
 TOSTRING
 Touchscreen
 tpc
@@ -1434,6 +1449,7 @@ tstamp
 tt
 tta
 ttf
+Tvar
 tvf
 tw
 typebodypadding

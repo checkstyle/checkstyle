@@ -8,6 +8,31 @@
   <body>
     <section name="AbstractClassName">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AbstractClassName_Description">Description</a></li>
+          <li><a href="#AbstractClassName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AbstractClassName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it check name but ignore <code>abstract</code> modifier</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Ignore name validation when class declared as 'abstract'</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">With <code>format</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#AbstractClassName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AbstractClassName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AbstractClassName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AbstractClassName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AbstractClassName_Description">
         <div>
           Ensures that the names of abstract classes conforming to some pattern
