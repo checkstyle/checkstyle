@@ -60,40 +60,7 @@ public record TestInputViolation(int lineNo, String message)
      * @return the escaped segment
      */
     private static String escapeSegment(String segment) {
-        final StringBuilder result = new StringBuilder();
-        int index = 0;
-        while (index < segment.length()) {
-            final int qStart = segment.indexOf("\\Q", index);
-            if (qStart == -1) {
-                result.append(escapeOutside(segment.substring(index)));
-                index = segment.length();
-            }
-            else {
-                result.append(escapeOutside(segment.substring(index, qStart)))
-                        .append("\\Q");
-                final int qEnd = segment.indexOf("\\E", qStart + 2);
-                if (qEnd == -1) {
-                    result.append(segment.substring(qStart + 2));
-                    index = segment.length();
-                }
-                else {
-                    result.append(segment.substring(qStart + 2, qEnd))
-                            .append("\\E");
-                    index = qEnd + 2;
-                }
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Escapes standard BDD violation special characters in a message segment outside of Q/E blocks.
-     *
-     * @param part the part of the segment to escape
-     * @return the escaped part
-     */
-    private static String escapeOutside(String part) {
-        return part.replace("{", "\\{")
+        return segment.replace("{", "\\{")
                 .replace("(", "\\(")
                 .replace(")", "\\)")
                 .replace("[", "\\[")
