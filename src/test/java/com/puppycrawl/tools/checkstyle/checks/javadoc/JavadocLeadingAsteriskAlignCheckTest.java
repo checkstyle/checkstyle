@@ -44,21 +44,21 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     @Test
     public void testIncorrectJavadoc() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
-            "19:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
-            "26:3: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 3, 4),
-            "33:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
-            "38:3: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 3, 4),
-            "43:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 7, 4),
-            "49:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 4),
-            "56:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 7, 4),
-            "62:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 4),
-            "68:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 7, 4),
-            "69:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
-            "74:9: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 9, 6),
-            "80:8: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 8, 6),
-            "90:4: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 4, 6),
-            "96:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 7, 6),
+            "13:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
+            "19:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+            "26:3: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
+            "33:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+            "38:3: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
+            "43:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 4, 1),
+            "49:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, -2, 1),
+            "56:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 4, 1),
+            "62:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, -2, 1),
+            "68:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 4, 1),
+            "69:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+            "74:9: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 4, 1),
+            "80:8: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 3, 1),
+            "90:4: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, -1, 1),
+            "96:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
         };
 
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignIncorrect.java");
@@ -68,11 +68,11 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     @Test
     public void testTabs() throws Exception {
         final String[] expected = {
-            "50:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
-            "62:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 6),
-            "63:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 7, 6),
-            "74:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 7, 6),
-            "75:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 6),
+            "50:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+            "62:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
+            "63:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+            "74:7: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
+            "75:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 1),
         };
 
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignTabs.java");
@@ -82,7 +82,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     @Test
     public void testMultipleLeadingAsterisks() throws Exception {
         final String[] expected = {
-            "20:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
+            "20:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 1),
         };
 
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignMultipleAsterisks.java");
@@ -92,12 +92,39 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     @Test
     public void testLeadingAsteriskOnOpeningLine() throws Exception {
         final String[] expected = {
-            "18:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 6, 11),
-            "19:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 6, 11),
-            "20:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 6, 11),
+            "18:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 6),
+            "19:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 6),
+            "20:6: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 6),
         };
 
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignOpeningLine.java");
+        verifyWithInlineConfigParser(filePath, expected);
+    }
+
+    @Test
+    public void testIndentationZero() throws Exception {
+        final String[] expected = {
+            "25:4: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 0),
+            "26:4: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 0),
+            "32:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 2, 0),
+            "38:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, -2, 0),
+            "49:3: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 6),
+            "50:3: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 0, 6),
+        };
+
+        final String filePath = getPath("InputJavadocLeadingAsteriskAlignIndentationZero.java");
+        verifyWithInlineConfigParser(filePath, expected);
+    }
+
+    @Test
+    public void testIndentationTwo() throws Exception {
+        final String[] expected = {
+            "20:4: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
+            "21:4: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
+            "32:8: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 2),
+        };
+
+        final String filePath = getPath("InputJavadocLeadingAsteriskAlignIndentationTwo.java");
         verifyWithInlineConfigParser(filePath, expected);
     }
 
