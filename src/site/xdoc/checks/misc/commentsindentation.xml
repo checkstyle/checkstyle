@@ -27,6 +27,14 @@
           <li>
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#CommentsIndentation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Comment is used as a single-line border to separate groups of methods.</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Single line block comment is placed within an empty code block. Note, if comment is placed at the end of the empty code block, we have Checkstyle's limitations to clearly detect user intention of explanation target - above or below. The only case we can assume as a violation is when a single-line comment within the empty code block has indentation level that is lower than the indentation level of the closing right curly brace.</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">'fallthrough' comments and Also similar comments placed within an empty case block.Note, if comment is placed at the end of the empty case block, we have Checkstyle limitations to clearly detect user intention of explanation target - above or below. The only case we can assume as a violation is when a single-line comment within the empty case block has indentation level that is lower than the indentation level of the next case. token.</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Comment is placed within a distributed statement.</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Single line block comment has previous and next statement.</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">Comment within the block tries to describe the next code block.</a></li>
+            </ul>
           </li>
           <li><a href="#CommentsIndentation_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#CommentsIndentation_Violation_Messages">Violation Messages</a></li>
@@ -166,8 +174,18 @@ public class Example2 {
 
       <subsection name="Use Cases" id="CommentsIndentation_Use_Cases">
         <p>Please take a look at the following examples to understand how the check works:</p>
+        <p id="UseCase1-config">
+          Comment is used as a single-line border to separate groups of methods.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
         <p id="UseCase1-code">
-          Example #3: Comment is used as a single-line border to separate groups of methods.
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase1 {
@@ -182,13 +200,23 @@ public class UseCase1 {
   public void foo2() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="UseCase2-code">
-          Example #4: Single line block comment is placed within an empty code block.
+        <p id="UseCase2-config">
+          Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
           only case we can assume as a violation is when a single-line comment within the empty
           code block has indentation level that is lower than the indentation level of the closing
           right curly brace.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase2 {
@@ -205,7 +233,7 @@ public class UseCase2 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="UseCase3-code">Example #5: 'fallthrough' comments and Also similar
+        <p id="UseCase3-config">'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
            clearly detect user intention of explanation target - above or below.
@@ -213,6 +241,16 @@ public class UseCase2 {
            within the empty case block has indentation level that is lower than the
            indentation level of the next case.
           token.</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase3-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase3 {
   void testMethod(String a) {
@@ -240,7 +278,17 @@ public class UseCase3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="UseCase4-code">Example #6: Comment is placed within a distributed statement.</p>
+        <p id="UseCase4-config">Comment is placed within a distributed statement.</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase4 {
   void testMethod() {
@@ -257,8 +305,18 @@ public class UseCase4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="UseCase5-config">
+          Single line block comment has previous and next statement.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
         <p id="UseCase5-code">
-          Example #7: Single line block comment has previous and next statement.
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase5 {
@@ -282,8 +340,18 @@ public class UseCase5 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="UseCase6-config">
+          Comment within the block tries to describe the next code block.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
         <p id="UseCase6-code">
-          Example #8: Comment within the block tries to describe the next code block.
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase6 {

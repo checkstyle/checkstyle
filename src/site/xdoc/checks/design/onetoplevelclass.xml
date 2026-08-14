@@ -20,11 +20,15 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OneTopLevelClass_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of code without public top-level type</a></li>
             </ul>
           </li>
           <li>
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#OneTopLevelClass_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of code without public top-level type</a></li>
+            </ul>
           </li>
           <li><a href="#OneTopLevelClass_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#OneTopLevelClass_Violation_Messages">Violation Messages</a></li>
@@ -71,8 +75,18 @@ class ViolationExample1 { // violation "has to reside in its own source file."
   // methods
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-code">
+        <p id="Example2-config">
           An example of code without public top-level type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneTopLevelClass"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 { // ok, only one top-level class
@@ -81,8 +95,18 @@ public class Example2 { // ok, only one top-level class
 </code></pre></div>
       </subsection>
       <subsection name="Use Cases" id="OneTopLevelClass_Use_Cases">
-        <p id="UseCase1-code">
+        <p id="UseCase1-config">
         An example of code without public top-level type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OneTopLevelClass"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase1 { // ok, first top-level class

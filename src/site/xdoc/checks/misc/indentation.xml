@@ -33,6 +33,9 @@
           <li>
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#Indentation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">But if forceStrictCondition = false, this code is valid</a></li>
+            </ul>
           </li>
           <li><a href="#Indentation_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#Indentation_Violation_Messages">Violation Messages</a></li>
@@ -654,8 +657,18 @@ class Example8 {
       </subsection>
 
       <subsection name="Use Cases" id="Indentation_Use_Cases">
-        <p id="UseCase1-code">
+        <p id="UseCase1-config">
           But if forceStrictCondition = false, this code is valid:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class UseCase1 {
