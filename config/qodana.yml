@@ -1,6 +1,6 @@
 version: 1.0
 
-image: jetbrains/qodana-jvm-community:2026.1
+image: jetbrains/qodana-jvm-community:2026.2
 projectJDK: "21"
 
 failureConditions:
@@ -57,3 +57,11 @@ exclude:
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagInfo.java
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java
+
+  # until https://github.com/checkstyle/checkstyle/issues/21219
+  - name: Annotator
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
+  - name: ClassCanBeRecord
+    paths:
+      - src/test/java/com/puppycrawl/tools/checkstyle/bdd/TestInputConfiguration.java
