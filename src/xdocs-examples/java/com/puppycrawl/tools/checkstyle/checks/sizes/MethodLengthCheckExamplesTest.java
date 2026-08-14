@@ -34,15 +34,7 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
 
     @Test
     public void testExample1() throws Exception {
-
-        final int max = 4;
-
-        final String[] expected = {
-            "18:3: " + getCheckMessage(MSG_KEY, 5, max, "Example1"),
-            "31:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
-            "43:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
-            "51:5: " + getCheckMessage(MSG_KEY, 5, max, "MyBadRecord"),
-        };
+        final String[] expected = {};
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
@@ -52,23 +44,31 @@ public class MethodLengthCheckExamplesTest extends AbstractExamplesModuleTestSup
         final int max = 4;
 
         final String[] expected = {
-            "32:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
-            "44:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
+            "18:3: " + getCheckMessage(MSG_KEY, 5, max, "Example2"),
+            "31:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
+            "43:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
+            "51:5: " + getCheckMessage(MSG_KEY, 5, max, "MyBadRecord"),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
+
+        final int max = 4;
+
         final String[] expected = {
-            "33:3: " + getCheckMessage(MSG_KEY, 6, 4, "firstMethod"),
+            "32:3: " + getCheckMessage(MSG_KEY, 6, max, "firstMethod"),
+            "44:3: " + getCheckMessage(MSG_KEY, 5, max, "thirdMethod"),
         };
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {};
+        final String[] expected = {
+            "33:3: " + getCheckMessage(MSG_KEY, 6, 4, "firstMethod"),
+        };
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
