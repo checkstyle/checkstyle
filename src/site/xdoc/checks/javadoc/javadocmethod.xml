@@ -28,6 +28,7 @@
               <li><a href="#Example6-config" class="toc-sublink">Ly for tokens which are Constructor Definitions</a></li>
               <li><a href="#Example7-config" class="toc-sublink">Validate <code>throws</code> tags, you can use following config.</a></li>
               <li><a href="#Example8-config" class="toc-sublink">Allow inline <code>return</code> tags, you can use following config.</a></li>
+              <li><a href="#Example9-config" class="toc-sublink">Ignore Javadoc requirements for methods that have an implementation</a></li>
             </ul>
           </li>
           <li><a href="#JavadocMethod_Example_of_Usage">Example of Usage</a></li>
@@ -148,6 +149,13 @@ public int checkReturnTag(final int aTagIndex,
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
+            </tr>
+            <tr>
+              <td><a id="ignoreMethodsWithImplementation"/><a href="#ignoreMethodsWithImplementation">ignoreMethodsWithImplementation</a></td>
+              <td>Control whether to ignore Javadoc requirements for methods with an implementation.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.10.0</td>
             </tr>
             <tr>
               <td><a id="validateThrows"/><a href="#validateThrows">validateThrows</a></td>
@@ -570,6 +578,54 @@ public class Example8 {
    */
   public int getFoo() {
     // ok, allowInlineReturn is true
+    return 0;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check to ignore Javadoc requirements for methods
+          that have an implementation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+        &lt;property name="ignoreMethodsWithImplementation" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example9 {
+
+  /** */
+  Example9(int x) {}
+  // violation above 'Expected @param tag for 'x'.'
+  /** */
+  public int m1(int p1) throws IOException {
+    // ok, Javadoc requirements are ignored
+    // because the method has
+    // an implementation
+    throw new IOException();
+  }
+
+  /**
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int m2(int p1) {
+    return p1;
+  }
+  // ok, Javadoc requirements are ignored
+  /** */
+  void m3(int p1) {}
+  // ok, Javadoc requirements are ignored
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+    // ok, Javadoc requirements are ignored
     return 0;
   }
 }
