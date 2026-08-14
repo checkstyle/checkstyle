@@ -310,7 +310,6 @@
 
     <file name="MetadataGeneratorUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"/>
-      <allow class="com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger"/>
     </file>
 
   </subpackage>
