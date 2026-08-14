@@ -182,8 +182,8 @@ public final class Main {
      * @param parseResult generic access to options and parameters found on the command line
      * @param options encapsulates options and parameters specified on the command line
      * @return number of violations
-     * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
+     * @throws IOException if a file could not be read.
      * @noinspection UseOfSystemOutOrSystemErr
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
@@ -283,8 +283,8 @@ public final class Main {
      * @param options user-specified options
      * @param filesToProcess the list of files whose style to check
      * @return number of violations
-     * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
+     * @throws IOException if a file could not be read.
      * @noinspection UseOfSystemOutOrSystemErr
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
@@ -356,10 +356,10 @@ public final class Main {
      * @param options user-specified options
      * @param filesToProcess the list of files whose style to check
      * @return number of violations of ERROR level
-     * @throws IOException
-     *         when output file could not be found
      * @throws CheckstyleException
      *         when properties file could not be loaded
+     * @throws IOException
+     *         when output file could not be found
      */
     private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
             throws CheckstyleException, IOException {

@@ -143,9 +143,9 @@ public final class FileText {
      *
      * @param file the name of the file
      * @param charsetName the encoding to use when reading the file
-     * @throws NullPointerException if the text is null
-     * @throws IllegalStateException if the charset is not supported.
      * @throws IOException if the file could not be read
+     * @throws IllegalStateException if the charset is not supported.
+     * @throws NullPointerException if the text is null
      */
     public FileText(File file, String charsetName) throws IOException {
         this.file = file;
@@ -188,8 +188,8 @@ public final class FileText {
      * @param inputFile File to read
      * @param decoder Charset decoder
      * @return File's text
-     * @throws IOException Unable to open or read the file
      * @throws FileNotFoundException when inputFile does not exist
+     * @throws IOException Unable to open or read the file
      */
     private static String readFile(final File inputFile, final CharsetDecoder decoder)
             throws IOException {
