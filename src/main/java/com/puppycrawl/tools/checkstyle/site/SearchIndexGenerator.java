@@ -589,9 +589,9 @@ public final class SearchIndexGenerator {
      *
      * @param xmlFile the XDoc source file to parse
      * @return list of entries, one per top-level section found
+     * @throws IOException on file read failure
      * @throws ParserConfigurationException on XML parser setup failure
      * @throws SAXException on XML parse error
-     * @throws IOException on file read failure
      */
     private static List<SearchIndexEntry> buildGeneralPageEntries(File xmlFile)
             throws ParserConfigurationException, SAXException, IOException {
@@ -892,9 +892,9 @@ public final class SearchIndexGenerator {
      *
      * @param xmlFile the XDoc source file
      * @return the parsed Document
+     * @throws IOException on file read failure
      * @throws ParserConfigurationException on XML parser setup failure
      * @throws SAXException on XML parse error
-     * @throws IOException on file read failure
      */
     private static Document parseXml(File xmlFile)
             throws ParserConfigurationException, SAXException, IOException {
