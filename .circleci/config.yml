@@ -40,7 +40,6 @@ jobs:
           key: mvn-cache-{{ checksum "pom.xml" }}
           paths:
             - .m2
-            - .mvn/wrapper
 
   validate-with-script:
     description: Runs a non-maven script using the job name as the argument.
