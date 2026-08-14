@@ -342,6 +342,24 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testHtmlAttributeWithLessThan() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlAttributeWithLessThan.txt"),
+                getHtmlTagsPath("InputHtmlAttributeWithLessThan.javadoc"));
+    }
+
+    @Test
+    public void testHtmlAttributeUnclosedQuote() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlAttributeUnclosedQuote.txt"),
+                getHtmlTagsPath("InputHtmlAttributeUnclosedQuote.javadoc"));
+    }
+
+    @Test
+    public void testHtmlAttributeUnclosedHrefFollowedByTag() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlAttributeUnclosedHrefFollowedByTag.txt"),
+                getHtmlTagsPath("InputHtmlAttributeUnclosedHrefFollowedByTag.javadoc"));
+    }
+
+    @Test
     public void testReferencesToUriFragments() throws Exception {
         verifyJavadocTree(getPath("ExpectedReferencesToUriFragments.txt"),
                 getPath("InputReferencesToUriFragments.javadoc"));
