@@ -20,6 +20,6 @@ public class InputArrayBracketNoWhitespaceMultiline {
         int x[]  // ok - trailing spaces before a line comment, no warning
         ;
         int[] arr3 = new int
- [5]; // violation ''\[' is preceded with whitespace.'
+ [5]; // violation ''[' is preceded with whitespace.'
     }
 }
