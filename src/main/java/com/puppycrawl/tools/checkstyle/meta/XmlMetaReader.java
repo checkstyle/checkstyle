@@ -116,8 +116,8 @@ public final class XmlMetaReader {
      * @param moduleMetadataStream input stream object of a module's metadata file
      * @param moduleType type of module
      * @return module detail object extracted from the XML metadata file
-     * @throws ParserConfigurationException if a parser configuration exception occurs
      * @throws IOException if a IO exception occurs
+     * @throws ParserConfigurationException if a parser configuration exception occurs
      * @throws SAXException if a SAX exception occurs during parsing the XML file
      */
     public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
