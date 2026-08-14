@@ -10,9 +10,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocleadingasteriskali
 
 public interface InputJavadocLeadingAsteriskAlignOpeningLine {
 
-    // violation 5 lines below 'Leading asterisk has incorrect indentation level 6, expected is 11.'
-    // violation 5 lines below 'Leading asterisk has incorrect indentation level 6, expected is 11.'
-    // violation 5 lines below 'Leading asterisk has incorrect indentation level 6, expected is 11.'
+    // violation 5 lines below 'Leading asterisk has incorrect indentation level 1, expected is 6.'
+    // violation 5 lines below 'Leading asterisk has incorrect indentation level 1, expected is 6.'
+    // violation 5 lines below 'Leading asterisk has incorrect indentation level 1, expected is 6.'
 
     /**   *  ***
      * There is a space, then a leading asterisk, then a space,
