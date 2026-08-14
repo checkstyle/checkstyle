@@ -348,8 +348,8 @@ public final class ConfigurationLoader {
         /**
          * Creates a new InternalLoader.
          *
-         * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
+         * @throws SAXException if an error occurs
          */
         private InternalLoader()
                 throws SAXException, ParserConfigurationException {
