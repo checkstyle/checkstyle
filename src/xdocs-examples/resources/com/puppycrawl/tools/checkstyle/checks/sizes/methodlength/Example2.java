@@ -2,7 +2,6 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MethodLength">
-      <property name="tokens" value="METHOD_DEF"/>
       <property name="max" value="4"/>
     </module>
   </module>
@@ -15,14 +14,14 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 // xdoc section - start
 public class Example2 {
 
-  // ok, CTOR_DEF is not in configured tokens
-  public Example2()  {
+  // violation below 'Method Example2 length is 5 lines (max allowed is 4)'
+  public Example2() {
     int var1 = 2;
     int var2 = 4;
     int sum = var1 + var2;
   }
 
-  // ok, CTOR_DEF is not in configured tokens
+  // ok, as it is less than 4 lines
   public Example2(int a)  {
     int var1 = 2;
     int sum = var1 + a;
@@ -48,7 +47,7 @@ public class Example2 {
   }
 
   record MyBadRecord() {
-    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    // violation below 'Method MyBadRecord length is 5 lines (max allowed is 4)'
     public MyBadRecord {
 
       System.out.println("line3");

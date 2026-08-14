@@ -33,8 +33,8 @@
 
       <subsection name="Examples" id="MethodLength_Examples">
         <p id="Example1-config">
-          To configure the check so that it accepts at most 4
-          lines:
+          To configure the check with default settings, so that it accepts
+          methods with at most 150 lines:
         </p>
         <macro name="example">
           <param name="path"
@@ -48,7 +48,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check so that it accepts methods with at most 4
+          To configure the check so that it accepts at most 4
           lines:
         </p>
         <macro name="example">
@@ -64,7 +64,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it accepts methods with at most 4
-          lines, not counting empty lines and comments:
+          lines:
         </p>
         <macro name="example">
           <param name="path"
@@ -78,8 +78,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To configure the check with default settings, so that it accepts
-          methods with at most 150 lines:
+          To configure the check so that it accepts methods with at most 4
+          lines, not counting empty lines and comments:
         </p>
         <macro name="example">
           <param name="path"
