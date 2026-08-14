@@ -8,12 +8,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocleadingasteriskalign;
 // xdoc section - start
-// violation 2 lines below '1, expected is 2.'
+// violation 2 lines below '0, expected is 1.'
 /**
 * Javadoc for class.
  */
 public class Example1 {
-  // violation 2 lines below '5, expected is 4.'
+  // violation 2 lines below '2, expected is 1.'
   /**
     * Javadoc for instance variable, over-indented.
    */
@@ -23,17 +23,17 @@ public class Example1 {
    * Javadoc for instance variable, correctly aligned.
    */
   private int goodIndentField;
-  // violation 2 lines below '3, expected is 4.'
+  // violation 2 lines below '0, expected is 1.'
   /**
   *  Javadoc for method, under-indented.
   */
   private void wrongIndentMethod() {}
-  // violation 2 lines above '3, expected is 4.'
+  // violation 2 lines above '0, expected is 1.'
   /**
    * Javadoc for method, correctly aligned.
    */
   private void goodIndentMethod() {}
-  // violation 3 lines below '1, expected is 4.'
+  // violation 3 lines below '-2, expected is 1.'
   /**
    Javadoc for constructor, missing leading asterisk alignment on closing tag.
 */
@@ -45,7 +45,7 @@ public class Example1 {
   public Example1(int value) {}
 
   private enum indentedEnum {
-    // violation 2 lines below '5, expected is 6.'
+    // violation 2 lines below '0, expected is 1.'
     /**
     *  Wrong alignment for enum constant.
      */
