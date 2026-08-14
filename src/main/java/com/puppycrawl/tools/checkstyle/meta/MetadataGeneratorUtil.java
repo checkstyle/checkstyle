@@ -237,8 +237,8 @@ public final class MetadataGeneratorUtil {
     /**
      * Get files that represent modules.
      *
-     * @param moduleFolders folders to check
      * @param path          rootPath
+     * @param moduleFolders folders to check
      * @return files for scrapping javadoc and generation of metadata files
      * @throws IOException ioException
      */

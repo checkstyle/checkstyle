@@ -44,10 +44,10 @@ public final class CodePointUtil {
     /**
      * Checks if the given code point array contains only whitespace up to specified index.
      *
-     * @param codePoints
-     *            array of Unicode code point of string to check
      * @param index
      *            index to check up to (exclusive)
+     * @param codePoints
+     *            array of Unicode code point of string to check
      * @return true if all code points preceding given index are whitespace
      */
     public static boolean hasWhitespaceBefore(int index, int... codePoints) {
@@ -73,8 +73,8 @@ public final class CodePointUtil {
      * Tests if the unicode code points array
      * ends with the specified suffix.
      *
-     * @param suffix the suffix
      * @param codePoints the array of unicode code points to check
+     * @param suffix the suffix
      * @return {@code true}, if the unicode code points array ends with provided suffix
      */
     public static boolean endsWith(int[] codePoints, String suffix) {

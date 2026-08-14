@@ -766,6 +766,7 @@
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
+    <module name="JavadocParamOrder"/>
     <module name="JavadocRegexp"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="JavadocType">
