@@ -1,6 +1,6 @@
 version: 1.0
 
-image: jetbrains/qodana-jvm-community:2026.1
+image: jetbrains/qodana-jvm-community:2026.2
 projectJDK: "21"
 
 failureConditions:
