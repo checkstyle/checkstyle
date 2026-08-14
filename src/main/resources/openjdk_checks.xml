@@ -301,6 +301,7 @@
 
     <module name="SummaryJavadoc"/>
     <module name="JavadocContentLocation"/>
+    <module name="PreferLiteralJavadocInlineTag"/>
 
     <module name="MissingOverride"/>
     <module name="MissingOverrideOnRecordAccessor"/>
