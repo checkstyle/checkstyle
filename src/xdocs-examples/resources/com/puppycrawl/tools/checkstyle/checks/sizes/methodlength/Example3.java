@@ -4,7 +4,6 @@
     <module name="MethodLength">
       <property name="tokens" value="METHOD_DEF"/>
       <property name="max" value="4"/>
-      <property name="countEmpty" value="false"/>
     </module>
   </module>
 </module>
@@ -38,13 +37,13 @@ public class Example3 {
   }
 
   public void secondMethod() {
-    // ok, countEmpty property is false,so this line doesn't count
+
     System.out.println("line 3");
   }
-
+  // violation below 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
-    // ok, countEmpty property is false,so this line and the line above don't count
+    // ok, empty line above is counted by default,just like this comment
     System.out.println("line 4");
   }
 
