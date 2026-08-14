@@ -8661,12 +8661,7 @@
     <details>
       unsatisfiable constraint: @Initialized @PolyNull String &lt;: @Initialized @NonNull String
       @Initialized @NonNull String = use of T from Collectors.toCollection(ArrayList&lt;String&gt;::new)
-      From complementary bound.: @Initialized @NonNull String &lt;= use of T from Collectors.toCollection(ArrayList&lt;String&gt;::new)
-      @Initialized @NonNull ArrayList&lt;@Initialized @NonNull String&gt; &lt;: inference type: java.util.Collection&lt;T&gt;
-      @Initialized @NonNull ArrayList&lt;@Initialized @NonNull String&gt; &lt;: use of C from Collectors.toCollection(ArrayList&lt;String&gt;::new)
-      From complementary bound.: @Initialized @NonNull ArrayList&lt;@Initialized @NonNull String&gt; -&gt; use of C from Collectors.toCollection(ArrayList&lt;String&gt;::new)
-      ArrayList&lt;String&gt;::new -&gt; inference type: java.util.function.Supplier&lt;C&gt;
-      From: Argument constraint
+      From: From complementary bound.
     </details>
   </checkerFrameworkError>
 
