@@ -6,14 +6,14 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketnowhitespa
 
 public class InputArrayBracketNoWhitespaceNextToken {
     void testImmediatelyAdjacentTokens(int[] arr) {
-        int a = arr[0]+1; // violation ''\]' is not followed by whitespace.'
-        int b = arr[0]-1; // violation ''\]' is not followed by whitespace.'
-        int c = arr[0]*2; // violation ''\]' is not followed by whitespace.'
+        int a = arr[0]+1; // violation '']' is not followed by whitespace.'
+        int b = arr[0]-1; // violation '']' is not followed by whitespace.'
+        int c = arr[0]*2; // violation '']' is not followed by whitespace.'
     }
 
     void testEarlierLineHighColumnTokens(
             int[] someVeryLongNamedArray) {
-        int result = someVeryLongNamedArray[0]+1; // violation ''\]' is not followed by whitespace.'
+        int result = someVeryLongNamedArray[0]+1; // violation '']' is not followed by whitespace.'
     }
 
     void testTokenOnNextLine(int[] arr) {
@@ -23,15 +23,15 @@ public class InputArrayBracketNoWhitespaceNextToken {
             ;
 
         int[][
-                  ] // violation ''\]' is preceded with whitespace.'
+                  ] // violation '']' is preceded with whitespace.'
                    a
-                    [] // violation ''\[' is preceded with whitespace.'
+                    [] // violation ''[' is preceded with whitespace.'
                           [] ;
         // 2 violations above:
-        // ''\[' is preceded with whitespace.'
-        // ''\]' is followed by whitespace.'
+        // ''[' is preceded with whitespace.'
+        // '']' is followed by whitespace.'
 
-        for (int i = 0; i < arr[0] ; i++) {} // violation ''\]' is followed by whitespace.'
+        for (int i = 0; i < arr[0] ; i++) {} // violation '']' is followed by whitespace.'
     }
 
     void testGetNextTokenFromParent(int[] arr) {
@@ -74,7 +74,7 @@ public class InputArrayBracketNoWhitespaceNextToken {
                         a[1] * b[1] * c[0];
     }
 
-    void method4(String[] ... params) { // violation ''\]' is followed by whitespace'
+    void method4(String[] ... params) { // violation '']' is followed by whitespace'
     }
 
     void method5(String[]... params) {
@@ -83,7 +83,7 @@ public class InputArrayBracketNoWhitespaceNextToken {
     @java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE_USE)
     @interface Ann {}
 
-    void method6(String @Ann [] ... param) { // violation ''\]' is followed by whitespace'
+    void method6(String @Ann [] ... param) { // violation '']' is followed by whitespace'
     }
 
     void method7(String @Ann []... param) {
