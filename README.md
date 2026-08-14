@@ -169,7 +169,7 @@ https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
 [maven-central]:
 https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle
 [mavenbadge]:
-https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
+https://central.sonatype.com/artifact/com.puppycrawl.tools/checkstyle
 [mavenbadge img]:
 https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
