@@ -54,8 +54,8 @@ public final class MetadataGeneratorUtil {
      *
      * @param path arguments
      * @param moduleFolders folders to check
-     * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
+     * @throws IOException ioException
      */
     public static void generate(String path, String... moduleFolders)
             throws IOException, CheckstyleException {

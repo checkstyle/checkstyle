@@ -673,6 +673,7 @@ javadocpropertiesgenerator
 javadocregexp
 javadoctagcontinuationindentation
 javadoctags
+javadocthrowsorder
 javadoctype
 javadocutil
 javadocvariable
