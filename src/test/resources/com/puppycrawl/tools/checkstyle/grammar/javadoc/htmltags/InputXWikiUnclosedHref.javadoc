@@ -1,0 +1,6 @@
+* Pattern for matching characters not allowed in data attributes.
+* <p>
+* This is the inverse of the definition of a name being
+* <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible>XML-compatible</a>,
+* i.e., matching the <a href="https://www.w3.org/TR/xml/#NT-Name">Name production</a> without ":".
+*
