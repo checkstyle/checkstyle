@@ -66,8 +66,8 @@ public final class XmlMetaWriter {
      * Helper function to write module details to XML file.
      *
      * @param moduleDetails module details
-     * @throws TransformerException if a transformer exception occurs
      * @throws ParserConfigurationException if a parser configuration exception occurs
+     * @throws TransformerException if a transformer exception occurs
      */
     public static void write(ModuleDetails moduleDetails) throws TransformerException,
             ParserConfigurationException {
