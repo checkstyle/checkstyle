@@ -43,8 +43,16 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example2-code">
+        <p id="Example2-config">
           An example of code without public top-level type:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
         </p>
         <macro name="example">
           <param name="path"
@@ -53,8 +61,16 @@
         </macro>
       </subsection>
       <subsection name="Use Cases" id="OneTopLevelClass_Use_Cases">
-        <p id="UseCase1-code">
+        <p id="UseCase1-config">
         An example of code without public top-level type:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/onetoplevelclass/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
         </p>
         <macro name="example">
           <param name="path"

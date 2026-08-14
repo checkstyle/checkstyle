@@ -29,6 +29,10 @@
           <li>
             <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#RequireThis_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">1) If you arrange 'this' in your code on your own, the check will not raise violation for variables which use 'this' to reference a class field, for</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">2) If method parameter is returned from the method, the check will not raise violation for returned variable/parameter, for</a></li>
+            </ul>
           </li>
           <li><a href="#RequireThis_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#RequireThis_Violation_Messages">Violation Messages</a></li>
@@ -251,9 +255,21 @@ class Example4 {
         <p>
           Please, be aware of the following logic, which is implemented in the check:
         </p>
-        <p id="UseCase1-code">
+        <p id="UseCase1-config">
           1) If you arrange 'this' in your code on your own, the check will not raise violation for
           variables which use 'this' to reference a class field, for example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class UseCase1 {
@@ -271,9 +287,21 @@ class UseCase1 {
 }
 </code></pre></div>
         <hr class="example-separator"/>
-        <p id="UseCase2-code">
+        <p id="UseCase2-config">
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class UseCase2 {
