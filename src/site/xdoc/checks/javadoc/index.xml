@@ -159,6 +159,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocthrowsorder.html#JavadocThrowsOrder">
+                JavadocThrowsOrder
+              </a>
+            </td>
+            <td>
+              Checks that multiple <code>@throws</code> and <code>@exception</code> Javadoc tags are
+              listed alphabetically by exception name.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadoctype.html#JavadocType">
                 JavadocType
               </a>

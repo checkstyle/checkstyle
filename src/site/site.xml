@@ -245,6 +245,7 @@
           <item name="JavadocRegexp" href="checks/javadoc/javadocregexp.html"/>
           <item name="JavadocTagContinuationIndentation"
                 href="checks/javadoc/javadoctagcontinuationindentation.html"/>
+          <item name="JavadocThrowsOrder" href="checks/javadoc/javadocthrowsorder.html"/>
           <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
           <item name="JavadocVariable" href="checks/javadoc/javadocvariable.html"/>
           <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>

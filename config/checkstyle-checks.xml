@@ -769,6 +769,7 @@
     <module name="JavadocParamOrder"/>
     <module name="JavadocRegexp"/>
     <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocThrowsOrder"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>

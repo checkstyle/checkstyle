@@ -290,8 +290,8 @@ public final class PropertyCacheFile {
      *
      * @param location external resource location.
      * @return array of bytes which represents the content of external resource in binary form.
-     * @throws IOException if error while loading occurs.
      * @throws CheckstyleException if error while loading occurs.
+     * @throws IOException if error while loading occurs.
      */
     private static byte[] loadExternalResource(String location)
             throws IOException, CheckstyleException {
