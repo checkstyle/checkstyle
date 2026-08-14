@@ -37,10 +37,9 @@ jobs:
             ./.ci/validation.sh ci-temp-check
       - save_cache:
           name: Save Maven repo and wrapper cache
-          key: mvn-cache-{{ checksum "pom.xml" }}
+          key: mvn-cache-v2-{{ checksum "pom.xml" }}
           paths:
             - .m2
-            - .mvn/wrapper
 
   validate-with-script:
     description: Runs a non-maven script using the job name as the argument.
