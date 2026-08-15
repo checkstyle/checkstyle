@@ -381,6 +381,25 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testObjBlockTokenOnly() throws Exception {
+        final String[] expected = {
+            "13:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyObjBlockTokenOnly.java"), expected);
+    }
+
+    @Test
+    public void testObjBlockWithTypeToken() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
+            "15:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlyObjBlockWithTypeToken.java"), expected);
+    }
+
+    @Test
     public void testDefaultLambda() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
