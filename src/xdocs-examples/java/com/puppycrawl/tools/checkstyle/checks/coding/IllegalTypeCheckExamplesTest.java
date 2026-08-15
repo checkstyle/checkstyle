@@ -63,13 +63,14 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "17:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
-            "19:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
-            "21:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
-            "24:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
-            "27:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
-            "30:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
-            "40:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "19:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
+            "21:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "23:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
+            "26:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
+            "29:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
+            "32:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "42:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "77:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "AbstractSet"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -138,24 +139,6 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
         };
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
-    }
-
-    @Test
-    public void testExample9() throws Exception {
-        final String[] expected = {
-            "20:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
-            "22:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
-            "24:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
-            "27:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
-            "30:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
-            "33:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
-            "35:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
-            "39:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
-            "43:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
-            "78:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "AbstractSet"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
 }
