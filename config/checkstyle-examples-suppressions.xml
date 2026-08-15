@@ -105,9 +105,6 @@
   <!-- Without showing symbol, user can get confused which one we are referring to -->
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap/Example1.java"/>
-  <!-- Example contains '[' in violation message intentionally -->
-  <suppress id="discouragedRegexpInViolationMessage"
-    files="arraybracketnowhitespace/Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap/Example2.java"/>
   <!-- it prints user regexp -->
