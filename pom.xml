@@ -211,7 +211,7 @@
     <slf4j.version>2.0.18</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
-    <checkstyle-files-generator.version>1.0.3</checkstyle-files-generator.version>
+    <checkstyle-files-generator.version>1.0.4</checkstyle-files-generator.version>
     <sevntu.checkstyle.plugin.version>1.44.1</sevntu.checkstyle.plugin.version>
     <sevntu-checkstyle-check.checkstyle.version>
       10.4
@@ -236,7 +236,6 @@
     <checkerframework.version>4.2.2</checkerframework.version>
     <error-prone.version>2.50.0</error-prone.version>
     <error-prone-support.version>0.30.0</error-prone-support.version>
-    <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
       -Xep:AssertJNullnessAssertion:ERROR
@@ -342,6 +341,17 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.20.0</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
@@ -494,38 +504,6 @@
       <artifactId>checker-qual</artifactId>
       <version>${checkerframework.version}</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.doxia</groupId>
-      <artifactId>doxia-core</artifactId>
-      <version>${doxia.version}</version>
-      <exclusions>
-        <!-- Excluded due to security vulnerability in version 1.11
-             https://github.com/checkstyle/checkstyle/pull/13357#issuecomment-1639480844 -->
-        <exclusion>
-          <groupId>commons-codec</groupId>
-          <artifactId>commons-codec</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.google.collections</groupId>
-          <artifactId>google-collections</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-utils</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.doxia</groupId>
-      <artifactId>doxia-module-xdoc</artifactId>
-      <version>${doxia.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.collections</groupId>
-          <artifactId>google-collections</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
 
@@ -891,18 +869,6 @@
         <artifactId>rewrite-maven-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.plexus</groupId>
-        <artifactId>plexus-component-metadata</artifactId>
-        <version>2.2.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate-metadata</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
         <version>3.5.0</version>
@@ -1040,21 +1006,6 @@
             </configuration>
           </execution>
           <execution>
-            <id>generate-search-index</id>
-            <phase>process-classes</phase>
-            <goals><goal>java</goal></goals>
-            <configuration>
-              <classpathScope>compile</classpathScope>
-              <mainClass>
-                com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator
-              </mainClass>
-              <arguments>
-                <argument>${project.basedir}/src/site/xdoc</argument>
-                <argument>${project.build.directory}/site/search-index.json</argument>
-              </arguments>
-            </configuration>
-          </execution>
-          <execution>
             <id>run-checkstyle-files-generator</id>
             <phase>process-classes</phase>
             <goals>
@@ -1075,6 +1026,22 @@
                 </argument>
                 <argument>${project.basedir}</argument>
                 <argument>--generateMetadata</argument>
+                <argument>--generateXdoc</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>generate-search-index</id>
+            <phase>process-classes</phase>
+            <goals><goal>java</goal></goals>
+            <configuration>
+              <classpathScope>compile</classpathScope>
+              <mainClass>
+                com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator
+              </mainClass>
+              <arguments>
+                <argument>${project.basedir}/src/site/xdoc</argument>
+                <argument>${project.build.directory}/site/search-index.json</argument>
               </arguments>
             </configuration>
           </execution>
@@ -1197,7 +1164,6 @@
                     <!-- Metadata Generator related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails</exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
@@ -1606,23 +1572,6 @@
                     </limit>
                   </limits>
                 </rule>
-                <!-- Metadata Generator related classes, temporary limits for
-                https://github.com/checkstyle/checkstyle/issues/8761, needs to be revisited -->
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.90</minimum>
-                    </limit>
-                  </limits>
-                </rule>
                 <rule>
                   <element>CLASS</element>
                   <includes>
@@ -1687,13 +1636,10 @@
                 <requireMavenVersion>
                   <version>3.6.3</version>
                 </requireMavenVersion>
-                <!-- doxia-core has a dependency convergence within itself and doxia-module-xdoc -->
                 <dependencyConvergence>
                   <excludes>
-                    <exclude>org.apache.maven.doxia:doxia-core</exclude>
                     <exclude>org.apache.commons*</exclude>
                     <exclude>org.apache.httpcomponents*</exclude>
-                    <exclude>org.codehaus.plexus*</exclude>
                     <exclude>org.slf4j*</exclude>
                   </excludes>
                 </dependencyConvergence>
@@ -2174,7 +2120,6 @@
                 <exclude>**/SingleLineJavadocCheck.class</exclude>
                 <exclude>**/SummaryJavadocCheck.class</exclude>
                 <exclude>**/WriteTagCheck.class</exclude>
-                <exclude>**/JavadocMetadataScraperUtil.class</exclude>
               </excludes>
             </configuration>
           </execution>
