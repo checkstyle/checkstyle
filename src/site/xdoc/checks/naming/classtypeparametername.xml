@@ -21,8 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassTypeParameterName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">For names that are uppercase word</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">For names that are camel case word with T as suffix (Google Style)</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For names that are camel case word with T as suffix (Google Style)</a></li>
             </ul>
           </li>
           <li><a href="#ClassTypeParameterName_Example_of_Usage">Example of Usage</a></li>
@@ -81,28 +80,6 @@ class Example1 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check for names that are uppercase word:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="ClassTypeParameterName"&gt;
-      &lt;property name="format" value="^[A-Z]{2,}$"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
-  class MyClass1&lt;T&gt; {}        // violation 'Name 'T' must match pattern'
-  class MyClass2&lt;t&gt; {}        // violation 'Name 't' must match pattern'
-  class MyClass3&lt;abc&gt; {}      // violation 'Name 'abc' must match pattern'
-  class MyClass4&lt;LISTENER&gt; {}
-  class MyClass5&lt;RequestT&gt; {} // violation 'Name 'RequestT' must match pattern'
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
           To configure the check for names that are camel case word with T as suffix
           (<a href="../../styleguides/google-java-style-20250426/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
@@ -115,9 +92,9 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class Example2 {
   class MyClass1&lt;T&gt; {}
   class MyClass2&lt;t&gt; {}        // violation 'Name 't' must match pattern'
   class MyClass3&lt;abc&gt; {}      // violation 'Name 'abc' must match pattern'
