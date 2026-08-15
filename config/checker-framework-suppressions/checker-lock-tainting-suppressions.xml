@@ -345,15 +345,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method compareTo is @Pure but calls getViolation which is @ReleasesNoLocks (weaker side effect guarantee)</message>
-    <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
+    <message>method compareTo is @Pure but calls compareLocation which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <lineContent>int result = compareLocation(other);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>method compareTo is @Pure but calls getViolation which is @ReleasesNoLocks (weaker side effect guarantee)</message>
-    <lineContent>result = getViolation().compareTo(other.getViolation());</lineContent>
+    <message>method compareTo is @Pure but calls compareContent which is @ReleasesNoLocks (weaker side effect guarantee)</message>
+    <lineContent>result = compareContent(other);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
