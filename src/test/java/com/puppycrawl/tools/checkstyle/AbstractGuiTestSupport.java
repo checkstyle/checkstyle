@@ -56,10 +56,10 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
     /**
      * Helper method to find a component by its name.
      *
+     * @param <T> the type of component to find
      * @param root the root component to start search
      * @param name the name of component to find
      * @param clazz the subtype of component
-     * @param <T> the type of component to find
      * @return the component if found, {@code null} otherwise
      */
     protected static <T extends Component> T findComponentByName(Component root, String name,

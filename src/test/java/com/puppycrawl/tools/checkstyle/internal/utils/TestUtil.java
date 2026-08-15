@@ -286,8 +286,8 @@ public final class TestUtil {
      * for an example of how to use this method when task does not return a result, i.e.
      * the given method's return type is {@code void}.
      *
-     * @param callable the task to execute
      * @param <V> return type of task - {@code Void} if task does not return result
+     * @param callable the task to execute
      * @return result
      * @throws Exception if getting result fails
      */
@@ -512,11 +512,11 @@ public final class TestUtil {
     /**
      * Invokes a private method for an instance.
      *
+     * @param <T> the type of the result
      * @param instance the instance whose method to invoke
      * @param methodToExecute the name of the method to invoke
      * @param resultClazz used for cast of result
      * @param arguments the optional arguments
-     * @param <T> the type of the result
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      */
@@ -561,11 +561,11 @@ public final class TestUtil {
     /**
      * Invokes a static private method for a class.
      *
+     * @param <T> the type of the result
      * @param ownerClass the class whose static method to invoke
      * @param methodToExecute the name of the method to invoke
      * @param resultClass used for cast of result
      * @param arguments the optional arguments
-     * @param <T> the type of the result
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      */
@@ -611,9 +611,9 @@ public final class TestUtil {
      * Instantiates an object of the given class with the given arguments,
      * even if the constructor is private.
      *
+     * @param <T> the type of the object to instantiate
      * @param targetClass The class to instantiate
      * @param arguments The arguments to pass to the constructor
-     * @param <T> the type of the object to instantiate
      * @return  The instantiated object
      * @throws ReflectiveOperationException if the constructor invocation failed
      */
