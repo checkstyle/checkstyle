@@ -25,6 +25,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -90,6 +91,56 @@ public final class XdocUtil {
                 })) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
+    }
+
+    /**
+     * Read the documented property names from a module's generated xdoc page.
+     *
+     * @param moduleName module class simple name
+     * @return documented property names
+     */
+    public static Set<String> getDocumentedProperties(String moduleName) {
+        String pageName = moduleName;
+        if (pageName.endsWith("Check")) {
+            pageName = pageName.substring(0, pageName.length() - "Check".length());
+        }
+        final String fileName = pageName.toLowerCase(Locale.ROOT) + ".xml";
+        final Set<String> result = new HashSet<>();
+
+        try {
+            Path xdocPath = null;
+            for (Path path : getXdocsFilePaths()) {
+                if (path.getFileName().toString().equals(fileName)) {
+                    xdocPath = path;
+                    break;
+                }
+            }
+            if (xdocPath == null) {
+                throw new IllegalStateException("Generated xdoc does not exist: " + fileName);
+            }
+            final String content = Files.readString(xdocPath);
+            final Document document = XmlUtil.getRawXml(fileName, content, content);
+            final NodeList subsections = document.getElementsByTagName("subsection");
+            for (int index = 0; index < subsections.getLength(); index++) {
+                final Element subsection = (Element) subsections.item(index);
+                if ("Properties".equals(subsection.getAttribute("name"))) {
+                    final NodeList rows = subsection.getElementsByTagName("tr");
+                    for (int rowIndex = 1; rowIndex < rows.getLength(); rowIndex++) {
+                        final NodeList columns = ((Element) rows.item(rowIndex))
+                                .getElementsByTagName("td");
+                        if (columns.getLength() > 0) {
+                            result.add(columns.item(0).getTextContent().trim());
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        catch (IOException | ParserConfigurationException exception) {
+            throw new IllegalStateException("Failed to read generated xdoc: " + fileName,
+                    exception);
+        }
+        return Set.copyOf(result);
     }
 
     /**
