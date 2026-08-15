@@ -149,7 +149,7 @@ catchparametername
 cba
 cbeaff
 CComments
-cdata
+CDATA
 cde
 Cdi
 Cfg
@@ -454,6 +454,7 @@ fileorganization
 filepath
 fileset
 filesetcheck
+filesgenerator
 filestructure
 filesystem
 filetab
@@ -1180,7 +1181,6 @@ requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
 Rethrown
-Rethrows
 returncount
 returnsreceiver
 returntag
@@ -1339,6 +1339,7 @@ stemp
 stext
 sthref
 stmt
+stoyank
 streamapi
 streamreader
 strictfp
