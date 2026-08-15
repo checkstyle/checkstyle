@@ -102,6 +102,8 @@
       <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
       <Class name=
              "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck" />
+      <Class name=
+             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkFirstOccurrenceCheck" />
       <!-- has only one public method and all initialized in that method -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
       <!-- beginProcessing() is kind of c-tor -->
