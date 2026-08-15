@@ -47,7 +47,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check for names that are uppercase word:
+          To configure the check for names that are camel case word with T as suffix
+          (<a href="../../styleguides/google-java-style-20250426/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
         <macro name="example">
           <param name="path"
@@ -58,21 +59,6 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example2.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-config">
-          To configure the check for names that are camel case word with T as suffix
-          (<a href="../../styleguides/google-java-style-20250426/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example3.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example3-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/classtypeparametername/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
