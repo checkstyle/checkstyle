@@ -458,8 +458,8 @@ public enum JavadocTagInfo {
      *
      * @param text String representing the tag text
      * @return Returns a JavadocTag type from a String representing the tag
-     * @throws NullPointerException if the text is null
      * @throws IllegalArgumentException if the text is not a valid tag
+     * @throws NullPointerException if the text is null
      */
     public static JavadocTagInfo fromText(final String text) {
         if (text == null) {
@@ -481,8 +481,8 @@ public enum JavadocTagInfo {
      *
      * @param name String name of the tag
      * @return Returns a JavadocTag type from a String representing the tag
-     * @throws NullPointerException if the text is null
      * @throws IllegalArgumentException if the text is not a valid tag
+     * @throws NullPointerException if the text is null
      */
     public static JavadocTagInfo fromName(final String name) {
         if (name == null) {
