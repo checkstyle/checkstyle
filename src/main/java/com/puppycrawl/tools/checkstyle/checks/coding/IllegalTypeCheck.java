@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ul>
  *
  * <p>
- * as methods that are differ from interface methods are rarely used, so in most cases user will
+ * as methods that differ from interface methods are rarely used, so in most cases user will
  * benefit from checking for them.
  * </p>
  *
