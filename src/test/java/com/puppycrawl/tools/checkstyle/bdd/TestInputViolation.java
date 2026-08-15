@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.bdd;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 /**
  * Represents a test input violation with line number and message.
@@ -30,15 +29,6 @@ import java.util.regex.Pattern;
  */
 public record TestInputViolation(int lineNo, String message)
         implements Comparable<TestInputViolation> {
-
-    /** Pattern to match the symbol: "{". */
-    private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
-
-    /** Pattern to match the symbol: "(". */
-    private static final Pattern OPEN_PAREN_PATTERN = Pattern.compile("\\(");
-
-    /** Pattern to match the symbol: ")". */
-    private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
@@ -58,13 +48,82 @@ public record TestInputViolation(int lineNo, String message)
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
-            String rawMessage = message;
-            rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
-            rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
-            rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            regex += rawMessage + ".*";
+            regex += escapeSegment(message) + ".*";
         }
         return regex;
+    }
+
+    /**
+     * Escapes standard BDD violation special characters in a message segment.
+     *
+     * @param segment the segment to escape
+     * @return the escaped segment
+     */
+    private static String escapeSegment(String segment) {
+        final StringBuilder result = new StringBuilder(segment.length());
+        boolean inQuote = false;
+        int index = 0;
+        while (index < segment.length()) {
+            if (isQuoteStart(segment, index)) {
+                inQuote = true;
+                result.append("\\Q");
+                index += 2;
+            }
+            else if (isQuoteEnd(segment, index)) {
+                inQuote = false;
+                result.append("\\E");
+                index += 2;
+            }
+            else {
+                final char character = segment.charAt(index);
+                if (!inQuote && isSpecialChar(character)) {
+                    result.append('\\');
+                }
+                result.append(character);
+                index++;
+            }
+        }
+        return result.toString();
+    }
+
+    /**
+     * Checks if the segment at the given index is the start of a quote block.
+     *
+     * @param segment the segment
+     * @param index the index
+     * @return true if it is the start of a quote block
+     */
+    private static boolean isQuoteStart(String segment, int index) {
+        return index < segment.length() - 1
+                && segment.charAt(index) == '\\'
+                && segment.charAt(index + 1) == 'Q';
+    }
+
+    /**
+     * Checks if the segment at the given index is the end of a quote block.
+     *
+     * @param segment the segment
+     * @param index the index
+     * @return true if it is the end of a quote block
+     */
+    private static boolean isQuoteEnd(String segment, int index) {
+        return index < segment.length() - 1
+                && segment.charAt(index) == '\\'
+                && segment.charAt(index + 1) == 'E';
+    }
+
+    /**
+     * Checks if the character is a special regex character that needs escaping.
+     *
+     * @param character the character
+     * @return true if the character is a special character
+     */
+    private static boolean isSpecialChar(char character) {
+        return character == '{'
+                || character == '('
+                || character == ')'
+                || character == '['
+                || character == ']';
     }
 
     @Override
