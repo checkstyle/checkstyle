@@ -97,6 +97,38 @@ public class NoLineWrapCheckTest
     }
 
     @Test
+    public void testNoLineWrapModuleDef() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY, "MODULE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("moduledefwrapped/module-info.java"), expected);
+    }
+
+    @Test
+    public void testNoLineWrapModuleDefGood() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("moduledefgood/module-info.java"), expected);
+    }
+
+    @Test
+    public void testNoLineWrapModuleDefWithAnnotation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("moduledefannotation/module-info.java"), expected);
+    }
+
+    @Test
+    public void testNoLineWrapModuleDefWithAnnotationSkipFalse() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY, "MODULE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("moduledefannotationfalse/module-info.java"), expected);
+    }
+
+    @Test
     public void testNoLineWrapWithSkipAnnotationsFalse() throws Exception {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
