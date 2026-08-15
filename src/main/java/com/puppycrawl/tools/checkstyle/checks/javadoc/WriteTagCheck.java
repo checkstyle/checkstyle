@@ -32,7 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -204,8 +203,8 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      */
     private static String getTagContent(DetailNode javadocBlockTagNode) {
         final DetailNode tagNodeNextSibling = JavadocUtil.findFirstToken(
-            javadocBlockTagNode.getFirstChild(),
-            JavadocCommentsTokenTypes.TAG_NAME).getNextSibling();
+                javadocBlockTagNode.getFirstChild(),
+                JavadocCommentsTokenTypes.TAG_NAME).getNextSibling();
 
         final int stringBuilderCapacity = 128;
         final StringBuilder rawTextBuilder = new StringBuilder(stringBuilderCapacity);
@@ -245,21 +244,48 @@ public class WriteTagCheck extends AbstractJavadocCheck {
      */
     @Nullable
     private static DetailAST findJavadoc(DetailAST ast) {
-        DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+        DetailAST cmt = findLastBlockComment(ast);
         if (cmt == null) {
-            final DetailAST modifiers = NullUtil.notNull(ast.findFirstToken(TokenTypes.MODIFIERS));
+            final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            if (modifiers != null) {
+                final DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+                cmt = findLastBlockComment(modifiers);
 
-            final DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
-            cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-            if (annotation != null) {
-                cmt = annotation.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                if (annotation != null) {
+                    cmt = findLastBlockComment(annotation);
+
+                }
             }
             if (cmt == null && type != null) {
-                cmt = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+                cmt = findLastBlockComment(type);
             }
         }
         return cmt;
+    }
+
+    /**
+     * Finds the last (closest to the actual declaration) direct child of
+     * {@code parent} that is a {@code BLOCK_COMMENT_BEGIN}.
+     *
+     * @param parent the node whose children should be searched
+     * @return the last matching {@code BLOCK_COMMENT_BEGIN} child, or null if none exists
+     */
+    private static DetailAST findLastBlockComment(DetailAST parent) {
+        DetailAST result = null;
+        DetailAST child = parent.getLastChild();
+
+        while (child != null) {
+            if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                result = child;
+                child = null;
+            }
+            else {
+                child = child.getPreviousSibling();
+            }
+        }
+
+        return result;
     }
 
 }
