@@ -61,9 +61,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -85,17 +83,12 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Generates xdocs pages from templates and performs validations.
- * Before running this test, the following commands have to be executed:
- * - mvn clean compile - Required for next command
- * - mvn plexus-component-metadata:generate-metadata - Required to find custom macros and parser
+ * Validates xdocs pages generated during the Maven {@code process-classes} phase.
  */
 public class XdocsPagesTest {
 
@@ -303,30 +296,11 @@ public class XdocsPagesTest {
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
             " names must be in alphabetical order at " + SITE_PATH;
 
-    @TempDir
-    private static File temporaryFolder;
-
-    /**
-     * Generate xdoc content from templates before validation.
-     * This method will be removed once
-     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
-     *
-     * @throws Exception if something goes wrong
-     */
-    @BeforeAll
-    public static void generateXdocContent() throws Exception {
-        XdocGenerator.generateXdocContent(temporaryFolder);
-    }
-
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
         final String availableChecks = Files.readString(AVAILABLE_CHECKS_PATH);
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
-            .stream()
-            .filter(checkName -> {
-                return !"ClassAndPropertiesSettersJavadocScraper".equals(checkName);
-            })
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     assertWithMessage(
@@ -1290,7 +1264,7 @@ public class XdocsPagesTest {
         final String expectedTypeName = Optional.ofNullable(field)
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
                 .map(propertyType -> propertyType.value().getDescription())
-                .map(SiteUtil::simplifyTypeName)
+                .map(XdocsPagesTest::simplifyTypeName)
                 .orElseGet(fieldClass::getSimpleName);
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
                 field, fieldClass, instance);
@@ -1310,6 +1284,12 @@ public class XdocsPagesTest {
                 .that(actualValue)
                 .isEqualTo(expectedValue);
         }
+    }
+
+    private static String simplifyTypeName(String fullTypeName) {
+        final int separatorIndex = Math.max(fullTypeName.lastIndexOf('$'),
+                fullTypeName.lastIndexOf('.'));
+        return fullTypeName.substring(separatorIndex + 1);
     }
 
     private static void validatePropertySectionPropertyTokens(String fileName, String sectionName,
