@@ -131,8 +131,8 @@ public final class JavaParser {
      * @param file the file to parse
      * @param options {@link Options} to control inclusion of comment nodes
      * @return DetailAST tree
-     * @throws IOException if the file could not be read
      * @throws CheckstyleException if the file is not a valid Java source file
+     * @throws IOException if the file could not be read
      */
     public static DetailAST parseFile(File file, Options options)
             throws IOException, CheckstyleException {

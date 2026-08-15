@@ -152,9 +152,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      *
      * @param checkXdocFile Path to the check's XDoc file.
      * @return The main section name.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
-     * @throws IOException if an I/O error occurs reading the file.
      * @throws AssertionError if no {@literal <section name=...>} is found.
+     * @throws IOException if an I/O error occurs reading the file.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      */
     private static String getMainSectionName(Path checkXdocFile)
             throws ParserConfigurationException, IOException {
@@ -184,9 +184,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      *
      * @param checkXdocFile Path to the check's XDoc file.
      * @return The check's description text.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
-     * @throws IOException if an I/O error occurs reading the file.
      * @throws AssertionError if no suitable description subsection is found.
+     * @throws IOException if an I/O error occurs reading the file.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      */
     private static String getCheckDescriptionFromXdoc(Path checkXdocFile)
             throws ParserConfigurationException, IOException {
@@ -304,9 +304,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      * @param categoryIndexFile Path to the category's index.xml file.
      * @return A map with check names (from {@literal <a>} tag text) as keys
      *         and {@link CheckIndexInfo} objects as values.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
-     * @throws IOException if an I/O error occurs reading the file.
      * @throws AssertionError if no {@literal <table>} is found in the index file.
+     * @throws IOException if an I/O error occurs reading the file.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      */
     private static Map<String, CheckIndexInfo> parseCategoryIndex(Path categoryIndexFile)
             throws ParserConfigurationException, IOException {
