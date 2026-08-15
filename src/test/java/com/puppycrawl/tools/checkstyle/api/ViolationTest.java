@@ -186,6 +186,168 @@ public class ViolationTest {
             .isEqualTo(0);
     }
 
+    @Test
+    public void testCompareToWithDifferentTokenType() {
+        final Violation violation1 = new Violation(1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, null);
+        final Violation violation2 = new Violation(1, 1, TokenTypes.OBJBLOCK,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, null);
+
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2))
+                .isNotEqualTo(0);
+        assertWithMessage("Invalid comparing result")
+                .that(Integer.signum(violation1.compareTo(violation2)))
+                .isEqualTo(-Integer.signum(violation2.compareTo(violation1)));
+    }
+
+    @Test
+    public void testCompareToWithDifferentColumnCharIndex() {
+        final Violation violation1 = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, null);
+        final Violation violation2 = new Violation(1, 1, 2, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, null);
+
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(violation2.compareTo(violation1) > 0)
+                .isTrue();
+    }
+
+    @Test
+    public void testCompareToWithDifferentSeverityLevel() {
+        final Violation violation1 = new Violation(1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.INFO, "module", Violation.class, null);
+        final Violation violation2 = new Violation(1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.WARNING, "module", Violation.class, null);
+
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(violation2.compareTo(violation1) > 0)
+                .isTrue();
+    }
+
+    @Test
+    public void testCompareToWithDifferentKeySameCustomMessage() {
+        final Violation violation1 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, "custom text");
+        final Violation violation2 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "other.key",
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, "custom text");
+
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(violation2.compareTo(violation1) > 0)
+                .isTrue();
+    }
+
+    @Test
+    public void testCompareToWithDifferentBundleSameCustomMessage() {
+        final Violation violation1 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, "custom text");
+        final Violation violation2 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.naming.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, "custom text");
+
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(violation2.compareTo(violation1) > 0)
+                .isTrue();
+    }
+
+    @DefaultLocale("en")
+    @Test
+    public void testCompareToWithCustomMessageMatchingBundleMessage() {
+        final Violation violation1 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
+        final Violation violation2 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, "Empty statement.");
+
+        assertWithMessage("Rendered messages must match for this test to be valid")
+                .that(violation1.getViolation())
+                .isEqualTo(violation2.getViolation());
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2))
+                .isNotEqualTo(0);
+        assertWithMessage("Invalid comparing result")
+                .that(Integer.signum(violation1.compareTo(violation2)))
+                .isEqualTo(-Integer.signum(violation2.compareTo(violation1)));
+    }
+
+    @Test
+    public void testCompareToWithDifferentArgsSameRenderedMessage() {
+        final Violation violation1 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                new String[] {"first"}, "module", Violation.class, "custom text");
+        final Violation violation2 = new Violation(1, 1,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                new String[] {"second"}, "module", Violation.class, "custom text");
+
+        assertWithMessage("Rendered messages must match for this test to be valid")
+                .that(violation1.getViolation())
+                .isEqualTo(violation2.getViolation());
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2) < 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(violation2.compareTo(violation1) > 0)
+                .isTrue();
+    }
+
+    @Test
+    public void testCompareToOrdersByTextBeforeTokenType() {
+        // OBJBLOCK sorts before CLASS_DEF, so the token type alone would order these
+        // the other way round
+        final Violation violation1 = new Violation(1, 1, TokenTypes.OBJBLOCK,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, "zebra");
+        final Violation violation2 = new Violation(1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, "apple");
+
+        assertWithMessage("Invalid comparing result")
+                .that(violation1.compareTo(violation2) > 0)
+                .isTrue();
+        assertWithMessage("Invalid comparing result")
+                .that(violation2.compareTo(violation1) < 0)
+                .isTrue();
+    }
+
+    @Test
+    public void testCompareToConsistentWithEquals() {
+        final Violation violation1 = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, "custom");
+        final Violation violation2 = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, "custom");
+
+        assertWithMessage("Equal violations must compare to zero")
+                .that(violation1.compareTo(violation2))
+                .isEqualTo(0);
+        assertWithMessage("Violations comparing to zero must be equal")
+                .that(violation1)
+                .isEqualTo(violation2);
+    }
+
     private static Violation createSampleViolation() {
         return createSampleViolationWithId("module");
     }
