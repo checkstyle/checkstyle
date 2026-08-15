@@ -264,8 +264,7 @@ public class AllChecksCompactSourceCoverageTest {
         "VariableDeclarationUsageDistanceCheck",
         "WhenShouldBeUsedCheck",
         "WhitespaceAfterCheck",
-        "WhitespaceAroundCheck",
-        "WriteTagCheck"
+        "WhitespaceAroundCheck"
     );
 
     @Test
