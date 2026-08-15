@@ -18,6 +18,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Contains classes for generating the Checkstyle website.
+ * Contains classes related to Checkstyle website generation.
  */
 package com.puppycrawl.tools.checkstyle.site;

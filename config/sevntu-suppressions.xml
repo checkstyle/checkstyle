@@ -44,7 +44,4 @@
   <suppress checks="ForbidCertainImports" files="AnnotationUtilTest\.java"/>
   <suppress checks="ForbidCertainImports" files="CheckUtilTest\.java"/>
 
-  <!-- Required for reversing a list -->
-  <suppress checks="ForbidCertainImports" files="SiteUtil\.java"/>
-
 </suppressions>

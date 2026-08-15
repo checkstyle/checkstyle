@@ -46,7 +46,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -61,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.site.SiteUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -592,13 +591,7 @@ public class XdocsExamplesAstConsistencyTest {
         Set<String> result = Set.of();
 
         if (moduleName != null) {
-            try {
-                final Object instance = SiteUtil.getModuleInstance(moduleName);
-                result = SiteUtil.getPropertiesForDocumentation(instance.getClass(), instance);
-            }
-            catch (MacroExecutionException exception) {
-                // Failure to resolve is expected for some non-check modules
-            }
+            result = XdocUtil.getDocumentedProperties(moduleName);
         }
 
         return result;
@@ -1013,25 +1006,17 @@ public class XdocsExamplesAstConsistencyTest {
      * @return the property count, or -1 on failure
      */
     private static int loadPropertyCount(String moduleName) {
-        int count = -1;
-        try {
-            final Object instance = SiteUtil.getModuleInstance(moduleName);
-            final Set<String> properties = new HashSet<>(SiteUtil.getPropertiesForDocumentation(
-                    instance.getClass(), instance));
-            properties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
-            count = properties.size();
-        }
-        catch (MacroExecutionException exception) {
-            // Failure to resolve is expected for some non-check modules
-        }
-        return count;
+        final Set<String> properties = new HashSet<>(
+                XdocUtil.getDocumentedProperties(moduleName));
+        properties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
+        return properties.size();
     }
 
     /**
      * Converts a lower-cased directory name (e.g. {@code declarationorder}) into
      * the check's simple class name (e.g. {@code DeclarationOrderCheck}) as expected by
-     * {@link SiteUtil#getModuleInstance}, using an index built once from all known
-     * checkstyle module classes.
+     * the generated documentation, using an index built once from all known Checkstyle
+     * module classes.
      *
      * @param dirName the last path segment of the example directory
      * @return the resolved module simple name, or null if no matching module class was found
@@ -1043,7 +1028,7 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Builds a one-time index mapping lower-cased simple class name stem
      * (i.e. class simple name with any trailing {@code Check} removed, lower-cased)
-     * to the actual module simple name expected by {@link SiteUtil#getModuleInstance}.
+     * to the actual module simple class name.
      * Built once to avoid repeating an expensive classpath scan per directory.
      *
      * @return the populated index
