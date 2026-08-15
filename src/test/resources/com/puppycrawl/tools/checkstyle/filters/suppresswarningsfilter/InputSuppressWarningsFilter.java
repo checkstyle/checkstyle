@@ -53,10 +53,10 @@ class InputSuppressWarningsFilter {
     @SuppressWarnings("foo") @interface A { } // violation 'Missing a Javadoc comment'
 
     // include a non-checkstyle suppression; suppression on same line
-    @SuppressWarnings("unused") int I; // violation ''I' must match .* \Q'^[a-z][a-zA-Z0-9]*$'\E'
+    @SuppressWarnings("unused") int I; // violation ''I' must match .* '\^[a-z][a-zA-Z0-9]\*\$''
     @SuppressWarnings({"membername"})
-    private int J; // filtered violation 'Name 'J' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
-    private int K; // violation 'Name 'K' must match pattern \Q'^[a-z][a-zA-Z0-9]*$'\E'
+    private int J; // filtered violation 'Name 'J' must match pattern '\^[a-z][a-zA-Z0-9]\*\$''
+    private int K; // violation 'Name 'K' must match pattern '\^[a-z][a-zA-Z0-9]\*\$''
 
     // DO NOT REFORMAT: L and X should be on the same line
     @SuppressWarnings(value="membername")
