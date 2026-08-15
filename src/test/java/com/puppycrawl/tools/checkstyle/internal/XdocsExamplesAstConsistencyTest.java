@@ -179,7 +179,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadoctagcontinuationindentation",
             "checks/javadoc/singlelinejavadoc",
             "checks/lineending",
-            "checks/naming/classtypeparametername",
             "checks/naming/patternvariablename",
             "checks/newlineatendoffile",
             "checks/sizes/linelength",
