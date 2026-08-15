@@ -20,21 +20,26 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks that the order of modifiers conforms to the suggestions in the
+ * Validates that the modifiers appear in the correct, standard order.
+ * By default the order of modifiers conforms to the suggestions in the
  * <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
  * Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
- * The correct order is:
+ * The default order is:
  * </div>
  *
  * <ol>
@@ -55,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ol>
  *
  * <p>
- * In additional, modifiers are checked to ensure all annotations
+ * Additionally, modifiers are checked to ensure all annotations
  * are declared before all other modifiers.
  * </p>
  *
@@ -72,7 +77,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 3.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class ModifierOrderCheck
     extends AbstractCheck {
 
@@ -89,6 +94,12 @@ public class ModifierOrderCheck
     public static final String MSG_MODIFIER_ORDER = "mod.order";
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_MODIFIER_CUSTOM_ORDER = "mod.custom.order";
+
+    /**
      * The order of modifiers as suggested in sections 8.1.1,
      * 8.3.1 and 8.4.3 of the JLS.
      */
@@ -99,10 +110,35 @@ public class ModifierOrderCheck
     };
 
     /**
+     * To specify the order of modifiers.
+     */
+    private String[] modifiersOrder = JLS_ORDER;
+
+    /**
+     * Indicates if the order of modifiers is custom.
+     */
+    private boolean isCustomOrder;
+
+    /**
      * Creates a new {@code ModifierOrderCheck} instance.
      */
     public ModifierOrderCheck() {
         // no code by default
+    }
+
+    /**
+     * Setter to set the order of modifiers.
+     *
+     * @param modifierOrder the order of modifiers
+     * @since 14.2.0
+     */
+    public void setModifiersOrder(String... modifierOrder) {
+        if (!Arrays.equals(modifierOrder, JLS_ORDER)) {
+            final Set<String> uniqueOrder = new LinkedHashSet<>(Arrays.asList(modifierOrder));
+            Collections.addAll(uniqueOrder, JLS_ORDER);
+            modifiersOrder = uniqueOrder.toArray(new String[0]);
+            isCustomOrder = true;
+        }
     }
 
     @Override
@@ -140,7 +176,12 @@ public class ModifierOrderCheck
                                 .getText());
                 }
                 else {
-                    log(error, MSG_MODIFIER_ORDER, error.getText());
+                    if (isCustomOrder) {
+                        log(error, MSG_MODIFIER_CUSTOM_ORDER, error.getText());
+                    }
+                    else {
+                        log(error, MSG_MODIFIER_ORDER, error.getText());
+                    }
                 }
             }
         }
@@ -154,7 +195,7 @@ public class ModifierOrderCheck
      * @return null if the order is correct, otherwise returns the offending
      *     modifier AST.
      */
-    private static DetailAST checkOrderSuggestedByJls(List<DetailAST> modifiers) {
+    private DetailAST checkOrderSuggestedByJls(List<DetailAST> modifiers) {
         final Iterator<DetailAST> iterator = modifiers.iterator();
 
         // Speed past all initial annotations
@@ -176,13 +217,13 @@ public class ModifierOrderCheck
                     break;
                 }
 
-                while (index < JLS_ORDER.length
-                       && !JLS_ORDER[index].equals(modifier.getText())) {
+                while (index < modifiersOrder.length
+                       && !modifiersOrder[index].equals(modifier.getText())) {
                     index++;
                 }
 
-                if (index == JLS_ORDER.length) {
-                    // Current modifier is out of JLS order
+                if (index == modifiersOrder.length) {
+                    // Current modifier is out of modifiers order
                     offendingModifier = modifier;
                 }
                 else if (iterator.hasNext()) {
