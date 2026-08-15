@@ -3,6 +3,8 @@
   <module name="TreeWalker">
     <module name="IllegalType">
       <property name="ignoredMethodNames" value="function1, function2"/>
+      <property name="validateAbstractClassNames" value="true"/>
+      <property name="legalAbstractClassNames" value="AbstractList"/>
     </module>
   </module>
 </module>
@@ -71,7 +73,7 @@ public class Example3 extends TreeSet {
   public void var() {
     var message = "Hello, World!";
   }
-
+  // violation below 'Usage of type 'AbstractSet' is not allowed'
   public AbstractSet<String> function4() {
     return null;
   }
