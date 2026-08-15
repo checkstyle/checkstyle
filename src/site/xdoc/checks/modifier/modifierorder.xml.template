@@ -34,6 +34,18 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder/Example1.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config"> To configure the check with custom modifiers order: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code"> Code: </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/modifier/modifierorder/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

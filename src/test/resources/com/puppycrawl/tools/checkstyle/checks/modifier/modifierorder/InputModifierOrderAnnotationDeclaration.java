@@ -1,6 +1,8 @@
 /*
 ModifierOrder
-
+modifiersOrder = (default)public, protected, private, abstract, default, static,\
+                sealed, non-sealed, final, transient, volatile,\
+                synchronized, native, strictfp
 
 */
 
