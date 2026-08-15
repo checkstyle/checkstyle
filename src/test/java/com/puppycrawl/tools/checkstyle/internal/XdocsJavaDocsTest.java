@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -83,8 +82,12 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
-        final List<Path> templatesWithPropertiesMacro =
-                SiteUtil.getTemplatesThatContainPropertiesMacro();
+        final List<Path> templatesWithPropertiesMacro = new ArrayList<>();
+        for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
+            if (Files.readString(path).contains("<macro name=\"properties\">")) {
+                templatesWithPropertiesMacro.add(path);
+            }
+        }
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             currentXdocPath = path;

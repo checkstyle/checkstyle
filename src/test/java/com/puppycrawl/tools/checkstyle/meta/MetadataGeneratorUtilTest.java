@@ -38,8 +38,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
     private static final Set<String> MODULES_CONTAINING_NO_METADATA_FILE = Set.of(
             "Checker",
-            "TreeWalker",
-            "ClassAndPropertiesSettersJavadocScraper"
+            "TreeWalker"
     );
 
     @Override

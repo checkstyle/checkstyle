@@ -54,9 +54,7 @@
     <properties>
       <!-- we allow catching Exception in certain cases to provide more details in wrapper -->
       <property name="violationSuppressXPath"
-         value="//ClassDeclaration[@SimpleName='PropertiesMacro']
-                        //MethodDeclaration[@Name='writeTablePropertiesRows']
-                    | //ClassDeclaration[@SimpleName='Checker']
+         value="//ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFiles']
                     | //ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFile']

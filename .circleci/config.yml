@@ -143,6 +143,13 @@ workflows:
       - validate-with-maven-script:
           name: no-error-xwiki
           image-name: cimg/openjdk:21.0.6
+          # pre-steps are until https://github.com/checkstyle/checkstyle/issues/21245
+          pre-steps:
+            - run:
+                name: Install xmlstarlet
+                command: |
+                  sudo apt update
+                  sudo apt install -y --no-install-recommends xmlstarlet
           command: ./.ci/validation.sh no-error-xwiki
       - validate-with-maven-script:
           name: no-error-pmd

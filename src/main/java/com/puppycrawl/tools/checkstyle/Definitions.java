@@ -31,8 +31,7 @@ public final class Definitions {
             "com.puppycrawl.tools.checkstyle.messages";
 
     /** Name of modules which are not checks, but are internal modules. */
-    public static final Set<String> INTERNAL_MODULES = Set.of(
-                    "com.puppycrawl.tools.checkstyle.site.ClassAndPropertiesSettersJavadocScraper");
+    public static final Set<String> INTERNAL_MODULES = Set.of();
 
     /**
      * Do no allow {@code Definitions} instances to be created.

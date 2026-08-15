@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
  * Prerequisites for execution:
  * <ul>
  *   <li>{@code mvn clean compile}</li>
- *   <li>{@code mvn plexus-component-metadata:generate-metadata}
+ *   <li>{@code mvn process-classes}
  *       (for custom macro/parser discovery)</li>
  * </ul>
  */

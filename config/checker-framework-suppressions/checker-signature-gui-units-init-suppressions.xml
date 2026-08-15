@@ -1175,22 +1175,4 @@
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
     <lineContent>tree.addTreeExpansionListener(new UpdatingTreeExpansionListener());</lineContent>
   </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter className of Class.forName.</message>
-    <lineContent>final Class&lt;?&gt; superClass = Class.forName(classFullName);</lineContent>
-    <details>
-      found   : @SignatureUnknown String
-      required: @ClassGetName String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
-    <specifier>call.ui</specifier>
-    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>attributes.addAttribute(SinkEventAttributes.HREF, href);</lineContent>
-  </checkerFrameworkError>
 </suppressedErrors>

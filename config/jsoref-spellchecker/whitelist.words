@@ -192,7 +192,7 @@ clazz
 clemens
 Clickable
 Cloneable
-clss
+cls
 cmdline
 cmp
 cmt
@@ -555,7 +555,6 @@ Haml
 Hardcoded
 hashcode
 hashtable
-HASHTAG
 hazelcast
 hbase
 hcoles
@@ -1423,7 +1422,6 @@ timeline
 timezone
 TKN
 tmp
-tmpdir
 tngtech
 toc
 todo
@@ -1434,7 +1432,6 @@ tokentype
 tolist
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
-tooltips
 TOSTRING
 Touchscreen
 tpc
