@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
@@ -189,9 +190,68 @@ public class LeftCurlyCheck
             }
         };
 
-        if (brace != null) {
+        if (brace != null && !isBraceVerifiedByParent(ast)) {
             verifyBrace(brace, startToken);
         }
+    }
+
+    /**
+     * Checks whether the brace of the given token is verified through its parent
+     * as well. An {@code OBJBLOCK} shares its brace with the type definition it
+     * belongs to, and the case label of an arrow switch shares its brace with the
+     * {@code SWITCH_RULE}. Without this the same brace is reported twice.
+     *
+     * @param ast the token being visited
+     * @return {@code true} if the parent already verifies the same brace
+     */
+    private boolean isBraceVerifiedByParent(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final boolean result;
+        if (ast.getType() == TokenTypes.OBJBLOCK) {
+            result = isTypeDefinition(parent) && isConfigured(parent);
+        }
+        else if (TokenUtil.isOfType(ast, TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT)) {
+            result = parent.getType() == TokenTypes.SWITCH_RULE && isConfigured(parent);
+        }
+        else {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given token declares a type, and therefore owns the
+     * brace of the {@code OBJBLOCK} below it.
+     *
+     * @param ast the token to check
+     * @return {@code true} if the token is a type definition
+     */
+    private static boolean isTypeDefinition(DetailAST ast) {
+        return TokenUtil.isOfType(ast,
+                TokenTypes.ANNOTATION_DEF,
+                TokenTypes.CLASS_DEF,
+                TokenTypes.ENUM_CONSTANT_DEF,
+                TokenTypes.ENUM_DEF,
+                TokenTypes.INTERFACE_DEF,
+                TokenTypes.RECORD_DEF);
+    }
+
+    /**
+     * Checks whether the token type of the given node is configured for this check.
+     *
+     * @param ast the token to check
+     * @return {@code true} if this check visits that token type
+     */
+    private boolean isConfigured(DetailAST ast) {
+        final Set<String> configuredTokens = getTokenNames();
+        final boolean result;
+        if (configuredTokens.isEmpty()) {
+            result = TokenUtil.isOfType(ast, getDefaultTokens());
+        }
+        else {
+            result = configuredTokens.contains(TokenUtil.getTokenName(ast.getType()));
+        }
+        return result;
     }
 
     /**
@@ -354,10 +414,13 @@ public class LeftCurlyCheck
         if (leftCurly.getType() == TokenTypes.SLIST) {
             nextToken = leftCurly.getFirstChild();
         }
-        else {
-            if (!ignoreEnums
-                    && leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
+        else if (!ignoreEnums) {
+            if (leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
                 nextToken = leftCurly.getNextSibling();
+            }
+            else if (leftCurly.getParent().getType() == TokenTypes.ENUM_DEF) {
+                // the brace of the enum body is the first child of its OBJBLOCK
+                nextToken = leftCurly.getFirstChild().getNextSibling();
             }
         }
         return nextToken == null
