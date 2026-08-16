@@ -23,8 +23,6 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -32,7 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 
 /**
  * <div>
@@ -163,7 +160,7 @@ public class WriteTagCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST javadocComment = findJavadoc(ast);
+        final DetailAST javadocComment = JavadocUtil.getAttachedJavadocComment(ast);
         if (javadocComment != null) {
             parentAst = ast;
             super.visitToken(javadocComment);
@@ -235,31 +232,6 @@ public class WriteTagCheck extends AbstractJavadocCheck {
         }
 
         return rawTextBuilder.toString().stripLeading();
-    }
-
-    /**
-     * Finds the Javadoc comment associated with a structural AST node.
-     *
-     * @param ast the structural node (e.g., CLASS_DEF, METHOD_DEF)
-     * @return the Javadoc block comment if found, or null
-     */
-    @Nullable
-    private static DetailAST findJavadoc(DetailAST ast) {
-        DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-        if (cmt == null) {
-            final DetailAST modifiers = NullUtil.notNull(ast.findFirstToken(TokenTypes.MODIFIERS));
-            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-
-            final DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
-            cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-            if (annotation != null) {
-                cmt = annotation.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-            }
-            if (cmt == null && type != null) {
-                cmt = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
-            }
-        }
-        return cmt;
     }
 
 }
