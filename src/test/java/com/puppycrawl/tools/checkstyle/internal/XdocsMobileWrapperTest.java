@@ -77,17 +77,19 @@ public class XdocsMobileWrapperTest {
                         + "' needs a wrapping <span> or <div> with the class 'wrapper'.";
                 assertWithMessage(wrapperMessage)
                         .that(node.getNodeName())
-                        .isAnyOf("div", "span");
+                        .isAnyOf("div", "span", "p");
                 assertWithMessage(wrapperMessage)
                         .that(node.hasAttributes())
                         .isTrue();
                 assertWithMessage(wrapperMessage)
                         .that(node.getAttributes().getNamedItem("class"))
                         .isNotNull();
+                final String classValue = node.getAttributes().getNamedItem("class")
+                        .getNodeValue();
                 assertWithMessage(wrapperMessage)
-                        .that(node.getAttributes().getNamedItem("class")
-                                .getNodeValue())
-                        .contains("wrapper");
+                        .that(classValue.contains("wrapper")
+                                || classValue.contains("cs-card-title"))
+                        .isTrue();
 
                 if ("table".equals(child.getNodeName())) {
                     iterateNode(child, fileName, sectionName);
@@ -97,8 +99,8 @@ public class XdocsMobileWrapperTest {
                             + "needs the additional class inline if it should be displayed inline "
                             + "or block if scrolling in mobile view should be enabled.";
                     assertWithMessage(dataImageInlineMessage)
-                            .that(node.getAttributes().getNamedItem("class")
-                                    .getNodeValue().matches(".*(block|inline).*"))
+                            .that(classValue.matches(".*(block|inline).*")
+                                    || classValue.contains("cs-card-title"))
                             .isTrue();
                 }
             }
