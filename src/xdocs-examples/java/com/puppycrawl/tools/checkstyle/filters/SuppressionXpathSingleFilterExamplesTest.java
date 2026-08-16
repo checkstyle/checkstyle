@@ -316,6 +316,20 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
         verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
     }
 
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "14:15: " + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "16:15: " + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "18:15: " + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+                expected, expected);
+    }
+
     private static File[] getFilesInFolder(Path path) throws IOException {
         try (Stream<Path> stream = Files.walk(path.toAbsolutePath())) {
             return stream.filter(Files::isRegularFile)
