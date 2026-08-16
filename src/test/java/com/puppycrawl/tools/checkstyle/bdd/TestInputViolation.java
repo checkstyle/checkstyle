@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.bdd;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 /**
  * Represents a test input violation with line number and message.
@@ -30,15 +29,6 @@ import java.util.regex.Pattern;
  */
 public record TestInputViolation(int lineNo, String message)
         implements Comparable<TestInputViolation> {
-
-    /** Pattern to match the symbol: "{". */
-    private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
-
-    /** Pattern to match the symbol: "(". */
-    private static final Pattern OPEN_PAREN_PATTERN = Pattern.compile("\\(");
-
-    /** Pattern to match the symbol: ")". */
-    private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
@@ -58,13 +48,40 @@ public record TestInputViolation(int lineNo, String message)
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
-            String rawMessage = message;
-            rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
-            rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
-            rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
-            regex += rawMessage + ".*";
+            regex += escapeSegment(message) + ".*";
         }
         return regex;
+    }
+
+    /**
+     * Escapes standard BDD violation special characters in a message segment.
+     *
+     * @param segment the segment to escape
+     * @return the escaped segment
+     */
+    private static String escapeSegment(String segment) {
+        final StringBuilder result = new StringBuilder(segment.length());
+        boolean inQuote = false;
+        int i = 0;
+        while (i < segment.length()) {
+            if (i < segment.length() - 1 && segment.charAt(i) == '\\' && segment.charAt(i + 1) == 'Q') {
+                inQuote = true;
+                result.append("\\Q");
+                i += 2;
+            } else if (i < segment.length() - 1 && segment.charAt(i) == '\\' && segment.charAt(i + 1) == 'E') {
+                inQuote = false;
+                result.append("\\E");
+                i += 2;
+            } else {
+                char c = segment.charAt(i);
+                if (!inQuote && (c == '{' || c == '(' || c == ')' || c == '[' || c == ']')) {
+                    result.append('\\');
+                }
+                result.append(c);
+                i++;
+            }
+        }
+        return result.toString();
     }
 
     @Override
