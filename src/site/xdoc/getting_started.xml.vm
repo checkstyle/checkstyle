@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Get Started with Checkstyle</title>
+  </head>
+
+  <body>
+
+    <section name="Get Started with Checkstyle">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Getting_Started_Add_a_starter_configuration">
+                1. Add a starter configuration
+              </a></li>
+            <li>
+              <input type="checkbox" id="toc-sub-Getting_Started_Run_Checkstyle"
+                     class="toc-sub-toggle-checkbox" checked="checked"/>
+              <label for="toc-sub-Getting_Started_Run_Checkstyle"
+                     class="toc-sub-toggle">
+                <a href="#Getting_Started_Run_Checkstyle">
+                  2. Run Checkstyle
+                </a><span class="toc-sub-arrow"/>
+              </label>
+              <ul class="toc-sublist">
+                <li><a href="#2._Run_Checkstyle_Choose_how_you_want_to_run_Checkstyle"
+                       class="toc-sublink">Choose how you want to run Checkstyle</a></li>
+                <li><a href="#2._Run_Checkstyle_Maven" class="toc-sublink">Maven</a></li>
+                <li><a href="#2._Run_Checkstyle_Gradle" class="toc-sublink">Gradle</a></li>
+                <li><a href="#2._Run_Checkstyle_Command_line"
+                       class="toc-sublink">Command line</a></li>
+              </ul>
+            </li>
+            <li><a href="#Getting_Started_Read_the_result">
+                3. Read the result
+              </a></li>
+            <li><a href="#Getting_Started_Choose_the_rules_for_your_project">
+                4. Choose the rules for your project
+              </a></li>
+            <li><a href="#Getting_Started_Where_to_go_next">Where to go next</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>
+        Run Checkstyle on a Java project and see your first result in a
+        few minutes.
+      </p>
+
+      <p>
+        Checkstyle needs two things: <b>Java source code to analyze</b>
+        and a <b>configuration that defines the checks to apply</b>. This
+        guide starts with one simple check so you can verify that
+        everything is working before choosing a complete coding standard.
+      </p>
+
+      <p>
+        Before you begin, make sure your Java runtime is supported by the
+        Checkstyle version you are using. See
+        <a href="index.html#Additional_Information_JRE_and_JDK">JRE and JDK
+          compatibility</a> for details.
+      </p>
+    </section>
+
+    <section name="1. Add a starter configuration"
+             id="Getting_Started_Add_a_starter_configuration">
+      <p>
+        Every Checkstyle run uses a configuration file that defines which
+        checks are enabled.
+      </p>
+
+      <p>Create <code>config/checkstyle/checkstyle.xml</code>:</p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE module PUBLIC
+  "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+      <p>
+        This deliberately enables only <b>AvoidStarImport</b>, which
+        reports wildcard imports such as:
+      </p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">import java.util.*;</code></pre></div>
+
+      <p>
+        The configuration is intentionally small so that the first setup
+        is easy to understand. It is <b>not intended to be a complete
+        coding standard</b>. After Checkstyle is running, you can
+        <a href="#a4._Choose_the_rules_for_your_project">adopt
+        one of the supplied style configurations or add the checks your
+        project needs</a>.
+      </p>
+    </section>
+
+    <section name="2. Run Checkstyle"
+             id="Getting_Started_Run_Checkstyle">
+      <p>Choose one of the following methods. You only need to complete one.</p>
+
+      <subsection name="Choose how you want to run Checkstyle"
+                  id="2._Run_Checkstyle_Choose_how_you_want_to_run_Checkstyle">
+        <div class="cs-grid">
+          <a href="#2._Run_Checkstyle_Maven" class="cs-card">
+            <p class="cs-card-title"><img src="images/logo-maven.svg" class="cs-card-logo"/>Maven</p>
+            <p>Choose this if your project uses a <code>pom.xml</code>.</p>
+          </a>
+          <a href="#2._Run_Checkstyle_Gradle" class="cs-card">
+            <p class="cs-card-title"><img src="images/logo-gradle.svg" class="cs-card-logo"/>Gradle</p>
+            <p>Choose this if your project uses <code>build.gradle</code> or <code>build.gradle.kts</code>.</p>
+          </a>
+          <a href="#2._Run_Checkstyle_Command_line" class="cs-card">
+            <p class="cs-card-title"><img src="images/logo-terminal.svg" class="cs-card-logo"/>Command Line</p>
+            <p>Choose this if you want to try Checkstyle without changing your build.</p>
+          </a>
+        </div>
+        <p>
+          Using Ant? See the <a href="anttask.html">Checkstyle Ant Task</a>
+          documentation.
+        </p>
+      </subsection>
+
+      <subsection name="Maven"
+                   id="2._Run_Checkstyle_Maven">
+        <p>
+          Add the Maven Checkstyle Plugin to the <code>&lt;plugins&gt;</code>
+          section of your <code>pom.xml</code>:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+  &lt;version&gt;3.6.0&lt;/version&gt;
+
+  &lt;configuration&gt;
+    &lt;configLocation&gt;config/checkstyle/checkstyle.xml&lt;/configLocation&gt;
+  &lt;/configuration&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;com.puppycrawl.tools&lt;/groupId&gt;
+      &lt;artifactId&gt;checkstyle&lt;/artifactId&gt;
+      &lt;version&gt;${projectVersion}&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;</code></pre></div>
+
+        <p>Run:</p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">./mvnw checkstyle:check</code></pre></div>
+
+        <p>
+          If your project does not use the Maven Wrapper, use
+          <code>mvn checkstyle:check</code>.
+        </p>
+
+        <p>
+          The Maven plugin has its own release cycle, so the Checkstyle
+          dependency above is specified explicitly to use the version
+          documented on this site.
+        </p>
+
+        <p>
+          Once the setup works, you can configure Checkstyle to run
+          automatically as part of your Maven build. See
+          <a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/">Maven
+            integration</a> for the available options.
+        </p>
+        <p>
+          <a class="cs-btn cs-btn-secondary" href="#Getting_Started_Read_the_result">Next: Read the result &#8594;</a>
+        </p>
+      </subsection>
+
+      <subsection name="Gradle" id="2._Run_Checkstyle_Gradle">
+        <p>
+          Apply Gradle's Checkstyle plugin and select the Checkstyle
+          version to use.
+        </p>
+
+        <p>For <code>build.gradle</code>:</p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-groovy">plugins {
+  id 'checkstyle'
+}
+
+checkstyle {
+  toolVersion = '${projectVersion}'
+}</code></pre></div>
+
+        <p>For <code>build.gradle.kts</code>:</p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-kotlin">plugins {
+  checkstyle
+}
+
+checkstyle {
+  toolVersion = "${projectVersion}"
+}</code></pre></div>
+
+        <p>
+          Gradle uses <code>config/checkstyle/checkstyle.xml</code> as the
+          default Checkstyle configuration, so the starter configuration
+          created above is already in the expected location.
+        </p>
+
+        <p>Run Checkstyle against your main Java sources:</p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">./gradlew checkstyleMain</code></pre></div>
+
+        <p>
+          If your project does not use the Gradle Wrapper, use
+          <code>gradle checkstyleMain</code>.
+        </p>
+
+        <p>
+          The Gradle <code>check</code> task also includes the Checkstyle
+          tasks, so Checkstyle can become part of your normal project
+          verification once you are ready.
+        </p>
+        <p>
+          <a class="cs-btn cs-btn-secondary" href="#Getting_Started_Read_the_result">Next: Read the result &#8594;</a>
+        </p>
+      </subsection>
+
+      <subsection name="Command line" id="2._Run_Checkstyle_Command_line">
+        <p>
+          The command line is the quickest way to try Checkstyle without
+          modifying a Maven or Gradle build.
+        </p>
+
+        <p>
+          Download <code>checkstyle-${projectVersion}-all.jar</code> from
+          the <a href="https://github.com/checkstyle/checkstyle/releases/">latest
+          release</a>, then run:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-bash">java -jar checkstyle-${projectVersion}-all.jar \
+  -c config/checkstyle/checkstyle.xml \
+  src/main/java</code></pre></div>
+
+        <p>
+          Checkstyle accepts individual Java files or directories. When a
+          directory is supplied, the files inside it are checked
+          recursively.
+        </p>
+
+        <p>
+          For all command-line options, see
+          <a href="cmdline.html">Command Line</a>.
+        </p>
+        <p>
+          <a class="cs-btn cs-btn-secondary" href="#Getting_Started_Read_the_result">Next: Read the result &#8594;</a>
+        </p>
+      </subsection>
+    </section>
+
+    <section name="3. Read the result" id="Getting_Started_Read_the_result">
+      <p>
+        If Checkstyle finds a wildcard import, you will see a diagnostic
+        similar to:
+      </p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-text">Starting audit...
+[ERROR] Main.java:1:18: Using the '.*' form of import should be avoided. [AvoidStarImport]
+Audit done.
+Checkstyle ends with 1 errors.</code></pre></div>
+
+      <p>A Checkstyle diagnostic tells you:</p>
+      <ul>
+        <li>the file where the violation occurred;</li>
+        <li>the line and column;</li>
+        <li>what rule was violated;</li>
+        <li>and the Checkstyle check that reported it.</li>
+      </ul>
+
+      <p>
+        Here, <code>[AvoidStarImport]</code> tells you that the violation
+        came from the <b>AvoidStarImport</b> check. Follow the check name
+        to its documentation to learn what it checks and how it can be
+        configured.
+      </p>
+
+      <p>
+        If Checkstyle reports no violations, that is also a successful
+        run &#8212; your code simply passes the configured rule.
+      </p>
+
+      <p>
+        To verify the setup manually, temporarily add a wildcard import
+        such as:
+      </p>
+
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">import java.util.*;</code></pre></div>
+
+      <p>
+        Run Checkstyle again and confirm that <code>AvoidStarImport</code>
+        is reported.
+      </p>
+    </section>
+
+    <section name="4. Choose the rules for your project"
+             id="Getting_Started_Choose_the_rules_for_your_project">
+      <p>
+        Now that Checkstyle is running, replace the starter configuration
+        with the coding standard you actually want to enforce.
+      </p>
+
+      <p>You can start from one of Checkstyle's supplied configurations:</p>
+
+      <div class="cs-grid">
+        <a href="google_style.html"
+           class="cs-card">
+          <p class="cs-card-title"><img src="images/logo-google.svg" class="cs-card-logo"/>Google Java Style</p>
+          <p>Start with Checkstyle's Google Java Style configuration.</p>
+        </a>
+        <a href="sun_style.html"
+           class="cs-card">
+          <p class="cs-card-title"><img src="images/logo-sun.svg" class="cs-card-logo"/>Sun Conventions</p>
+          <p>Start with Checkstyle's Sun Conventions configuration.</p>
+        </a>
+        <a href="openjdk_style.html"
+           class="cs-card">
+          <p class="cs-card-title"><img src="images/logo-openjdk.svg" class="cs-card-logo"/>OpenJDK Style</p>
+          <p>Start with Checkstyle's OpenJDK Style configuration.</p>
+        </a>
+        <a
+           href="doc_comments_style.html"
+           class="cs-card">
+          <p class="cs-card-title"><img src="images/logo-doc.svg" class="cs-card-logo"/>Doc Style</p>
+          <p>Start with Checkstyle's Doc Style configuration.</p>
+        </a>
+      </div>
+
+      <p>
+        Or create your own configuration by choosing only the checks that
+        make sense for your project.
+      </p>
+
+      <p>
+        <a href="checks.html">Browse all checks &#8594;</a><br/>
+        <a href="config.html">Learn how configuration works &#8594;</a>
+      </p>
+    </section>
+
+    <section name="Where to go next" id="Getting_Started_Where_to_go_next">
+      <p>
+        You're ready. Checkstyle is now set up for your project. Explore the resources below when you want to customize rules, integrations, or advanced behavior.
+      </p>
+
+      <ul>
+        <li><a href="checks.html">Browse Checks</a> to see the rules
+          Checkstyle provides.</li>
+        <li><a href="config.html">Configuration</a> explains how to enable
+          checks and change their properties.</li>
+        <li><a href="config_filters.html">Suppressions and Filters</a> let
+          you handle intentional exceptions.</li>
+        <li><a href="running.html">Running Checkstyle</a> documents
+          command-line and Ant execution in detail.</li>
+        <li>IDE integrations can provide faster feedback while you write
+          code. See
+          <a href="index.html#Related_Tools_Active_Tools">Active Tools</a>.</li>
+        <li>Maven and Gradle integrations can make Checkstyle part of your
+          regular build and CI process.</li>
+      </ul>
+
+      <p>
+        For most projects, keep the Checkstyle configuration in version
+        control so developers and automated builds use the same rules.
+      </p>
+    </section>
+
+  </body>
+</document>

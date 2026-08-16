@@ -715,6 +715,9 @@ public class XdocsPagesTest {
                     sectionName = "Documentation Comments";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
+                else if (sectionName.isEmpty()) {
+                    expectedId = nameString.replace(' ', '_');
+                }
                 else {
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
