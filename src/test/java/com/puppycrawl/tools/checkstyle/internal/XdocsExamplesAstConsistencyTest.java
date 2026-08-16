@@ -169,15 +169,12 @@ public class XdocsExamplesAstConsistencyTest {
      * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21229">...</a>
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
-            "checks/annotation/missingdeprecated",
             "checks/coding/illegaltype",
             "checks/design/designforextension",
             "checks/imports/avoidstarimport",
             "checks/javadoc/atclauseorder",
             "checks/javadoc/javadocblocktaglocation",
             "checks/javadoc/javadocpackage",
-            "checks/javadoc/javadoctagcontinuationindentation",
-            "checks/javadoc/singlelinejavadoc",
             "checks/lineending",
             "checks/naming/classtypeparametername",
             "checks/naming/patternvariablename",
@@ -188,7 +185,7 @@ public class XdocsExamplesAstConsistencyTest {
     );
 
     /**
-     * Tests that examples with the same code structure maintain consistency.
+     * Tests that examples with same code structure maintain consistency.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -247,8 +244,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Tests that no example file uses block comments as {@code ok} or
-     * {@code violation} markers.
+     * Tests that no example uses block comments as {@code ok} or {@code violation} markers.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -290,7 +286,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Tests that the number of AST-consistent examples matches property count + 1.
+     * Tests that AST-consistent example count matches property count + 1.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -357,7 +353,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Processes a directory to check for default config example.
+     * Processes directory to check for default config example.
      *
      * @param dir the directory to check
      * @param violations a thread-safe list to collect any discovered violations
@@ -395,7 +391,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks if an example demonstrates the module's default configuration.
+     * Checks if example demonstrates module's default configuration.
      *
      * @param example the example file to check
      * @param xmlModuleName the module's simple name as it appears in embedded XML
@@ -418,7 +414,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Formats default-config violations into a single, readable error message.
+     * Formats default-config violations into a readable error message.
      *
      * @param violations the list of violation strings
      * @return a formatted string detailing all found gaps
@@ -467,7 +463,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether the given directory resolves to a checkstyle module.
+     * Checks if directory resolves to a checkstyle module.
      *
      * @param dir the directory to check
      * @return true if the directory name resolves to a known module
@@ -494,8 +490,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Gets Example* files with an embedded XML config block from the
-     * non-compilable sibling directory.
+     * Gets Example* files with embedded XML config from non-compilable directory.
      *
      * @param dir the compilable xdocs directory
      * @return list of example file paths from the non-compilable sibling directory
@@ -514,7 +509,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Formats property-coverage violations into a single, readable error message.
+     * Formats property-coverage violations into a readable error message.
      *
      * @param violations the list of violation strings
      * @return a formatted string detailing all found gaps
@@ -535,8 +530,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks a single module directory: compares configured properties against
-     * documented properties.
+     * Checks module directory: compares configured vs documented properties.
      *
      * @param dir the directory to check
      * @param examples the list of pre-fetched example files
@@ -560,7 +554,8 @@ public class XdocsExamplesAstConsistencyTest {
                     final Set<String> configuredProperties = new HashSet<>();
                     for (Path example : examples) {
                         configuredProperties.addAll(
-                                extractConfiguredPropertyNames(example, xmlModuleName));
+                                extractConfiguredPropertyNames(example,
+                                        xmlModuleName));
                     }
 
                     final Set<String> uncoveredProperties = new HashSet<>(documentedProperties);
@@ -581,11 +576,10 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Resolves the full set of documented property names for the module.
+     * Resolves full set of documented property names for the module.
      *
      * @param dir the example directory
-     * @return the set of documented property names, or an empty set if the module
-     *         could not be resolved
+     * @return the set of documented property names, or an empty set
      */
     private static Set<String> resolveDocumentedPropertyNames(Path dir) {
         final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
@@ -605,8 +599,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts property names configured for {@code moduleName} within an
-     * example's embedded XML config block.
+     * Extracts property names configured for {@code moduleName} in example's XML.
      *
      * @param example the example file
      * @param moduleName the module's simple name as it appears in the embedded XML
@@ -635,7 +628,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Parses the given XML config fragment and finds the {@code <module>} element.
+     * Parses XML config fragment and finds the {@code <module>} element.
      *
      * @param xmlBlock the raw XML content, rooted at {@code <module name="Checker">}
      * @param moduleName the module simple name to find
@@ -669,7 +662,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Recursively searches an XML {@link Element} tree for a {@code <module>} element.
+     * Recursively searches XML {@link Element} tree for {@code <module>} element.
      *
      * @param element the element to search from
      * @param moduleName the module simple name to find
@@ -696,7 +689,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Collects the {@code name} attribute of every direct {@code <property>} child.
+     * Collects {@code name} attribute of every direct {@code <property>} child.
      *
      * @param moduleElement the module element to read properties from
      * @return the set of configured property names
@@ -717,7 +710,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts the embedded XML configuration block from an example file.
+     * Extracts embedded XML configuration block from example file.
      *
      * @param file the example file to read
      * @return the XML content between the markers, or null if no such block is present
@@ -739,9 +732,7 @@ public class XdocsExamplesAstConsistencyTest {
         return result;
     }
 
-    /**
-     * Processes a directory to identify example-count-vs-property-count violations.
-     */
+    /** Processes directory to identify example-count-vs-property-count violations. */
     private static void processDirectory(Path dir, List<String> violations) {
         try {
             final List<Path> examples = getExampleFiles(dir);
@@ -758,7 +749,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Formats the collection of violations into a single, readable error message.
+     * Formats violations into a readable error message.
      *
      * @param violations the list of violation strings
      * @return a formatted string detailing all found inconsistencies
@@ -777,8 +768,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks a single module directory: compares documented property count against
-     * the size of the actual AST-matching example group.
+     * Checks module directory: compares documented property count vs AST-matching examples.
      *
      * @param dir the directory to check
      * @param examples the list of pre-fetched example files
@@ -790,42 +780,93 @@ public class XdocsExamplesAstConsistencyTest {
 
         if (!isModuleWithNoProperties(examples)) {
             final String relativePath = getRelativePath(dir);
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+            final String xmlModuleName;
+            if (moduleName == null) {
+                xmlModuleName = null;
+            }
+            else {
+                xmlModuleName = stripCheckSuffix(moduleName);
+            }
+
             final List<Path> regularExamples = examples.stream()
                     .filter(example -> {
                         return !isExampleIndependent(
                                 relativePath, example.getFileName().toString());
                     })
+                    .filter(example -> {
+                        return xmlModuleName == null
+                                || !hasConfiguresOnlyIgnoredProperties(example, xmlModuleName);
+                    })
                     .toList();
 
-            final int propertyCount = resolvePropertyCount(dir);
+            result = validateExampleCount(dir, relativePath, regularExamples);
+        }
+        return result;
+    }
 
-            if (propertyCount >= 0 && regularExamples.size() > 1
-                    && !EXAMPLE_COUNT_SUPPRESSED_MODULES.contains(relativePath)) {
-                final List<Path> parseableExamples = new ArrayList<>();
-                for (Path example : regularExamples) {
-                    if (isActuallyParseable(example)) {
-                        parseableExamples.add(example);
-                    }
-                }
+    /**
+     * Validates example count against property count.
+     *
+     * @param dir the directory to check
+     * @param relativePath the relative path of the module
+     * @param regularExamples the list of regular example files
+     * @return a violation message, or null if consistent
+     * @throws IOException if an I/O error occurs
+     */
+    private static String validateExampleCount(Path dir, String relativePath,
+                                                List<Path> regularExamples) throws IOException {
+        String result = null;
+        final int propertyCount = resolvePropertyCount(dir);
 
-                if (parseableExamples.isEmpty()) {
-                    result = checkPropertyCoverageFallback(dir, relativePath,
-                            regularExamples, propertyCount);
-                }
-                else {
-                    final int largestAstGroupSize =
-                            findLargestAstMatchingGroupSize(parseableExamples);
-                    final int expected = propertyCount + 1;
-
-                    if (largestAstGroupSize != expected) {
-                        result = "Directory: " + relativePath
-                                + "\nProperties: " + propertyCount
-                                + "\nExpected AST-matching examples: " + expected
-                                + "\nActual largest AST-matching group: " + largestAstGroupSize
-                                + " (of " + parseableExamples.size() + " total example files)";
-                    }
+        if (propertyCount >= 0 && regularExamples.size() > 1
+                && !EXAMPLE_COUNT_SUPPRESSED_MODULES.contains(relativePath)) {
+            final List<Path> parseableExamples = new ArrayList<>();
+            for (Path example : regularExamples) {
+                if (isActuallyParseable(example)) {
+                    parseableExamples.add(example);
                 }
             }
+
+            if (parseableExamples.isEmpty()) {
+                result = checkPropertyCoverageFallback(dir, relativePath,
+                        regularExamples, propertyCount);
+            }
+            else {
+                final int largestAstGroupSize =
+                        findLargestAstMatchingGroupSize(parseableExamples);
+                final int expected = propertyCount + 1;
+
+                if (largestAstGroupSize != expected) {
+                    result = "Directory: " + relativePath
+                            + "\nProperties: " + propertyCount
+                            + "\nExpected AST-matching examples: " + expected
+                            + "\nActual largest AST-matching group: " + largestAstGroupSize
+                            + " (of " + parseableExamples.size() + " total example files)";
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if an example's config only contains ignored properties.
+     * Such examples are default-config and shouldn't count as demonstrating real properties.
+     *
+     * @param example the example file
+     * @param xmlModuleName the module's simple name as it appears in the embedded XML
+     * @return true if the example's only configured properties (if any) are ignored ones
+     */
+    private static boolean hasConfiguresOnlyIgnoredProperties(Path example, String xmlModuleName) {
+        final boolean result;
+        try {
+            final Set<String> configured = new HashSet<>(
+                    extractConfiguredPropertyNames(example, xmlModuleName));
+            result = !configured.isEmpty()
+                    && IGNORED_PROPERTIES_FOR_COVERAGE.containsAll(configured);
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to read example: " + example, exception);
         }
         return result;
     }
@@ -899,9 +940,8 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Groups examples by structural AST equality and returns the size of the
-     * largest group found. Examples are pre-split by constructor presence,
-     * mirroring {@link #validateExamplesByConstructorPresence}.
+     * Groups examples by structural AST equality and returns largest group size.
+     * Examples are pre-split by constructor presence.
      *
      * @param examples candidate example files (already filtered for suppression)
      * @return size of the largest AST-identical group, or 0 if none parse
@@ -927,8 +967,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Finds the size of the largest group of structurally-identical ASTs within
-     * a single subset of examples (already split by constructor presence).
+     * Finds size of largest group of structurally-identical ASTs within example subset.
      *
      * @param examples the subset of examples to group
      * @return size of the largest AST-identical group, or 0 if none parse
@@ -964,10 +1003,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether none of the examples in this directory define any module properties.
-     * When a module has no configurable properties, its examples may intentionally use
-     * very different code to demonstrate different behaviours, so consistency checking
-     * is not meaningful.
+     * Checks if examples in this directory define any module properties.
      *
      * @param examples the list of example files in the directory
      * @return true if no example file contains a {@code <property} element in its XML config
@@ -989,7 +1025,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Retrieves the documented property count for a module using a cache to optimize performance.
+     * Retrieves documented property count for a module using cache to optimize performance.
      *
      * @param dir the directory path associated with the module
      * @return the number of properties, or -1 if the module cannot be resolved
@@ -1028,10 +1064,8 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Converts a lower-cased directory name (e.g. {@code declarationorder}) into
-     * the check's simple class name (e.g. {@code DeclarationOrderCheck}) as expected by
-     * {@link SiteUtil#getModuleInstance}, using an index built once from all known
-     * checkstyle module classes.
+     * Converts lower-cased directory name to check's simple class name.
+     * Uses index built once from all known checkstyle module classes.
      *
      * @param dirName the last path segment of the example directory
      * @return the resolved module simple name, or null if no matching module class was found
@@ -1041,10 +1075,8 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Builds a one-time index mapping lower-cased simple class name stem
-     * (i.e. class simple name with any trailing {@code Check} removed, lower-cased)
-     * to the actual module simple name expected by {@link SiteUtil#getModuleInstance}.
-     * Built once to avoid repeating an expensive classpath scan per directory.
+     * Builds index mapping lower-cased simple class name stem to module simple name.
+     * Built once to avoid repeating expensive classpath scan per directory.
      *
      * @return the populated index
      */
@@ -1067,7 +1099,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Removes a trailing {@code Check} suffix from a class simple name, if present.
+     * Removes trailing {@code Check} suffix from class simple name, if present.
      *
      * @param simpleName the class simple name
      * @return the name with any trailing {@code Check} removed
@@ -1081,7 +1113,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Formats the violation message for block comment markers.
+     * Formats violation message for block comment markers.
      *
      * @param violations the list of violations
      * @return formatted message
@@ -1107,7 +1139,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks a single example file for block comments used as ok/violation markers.
+     * Checks example file for block comments used as ok/violation markers.
      *
      * @param file the example file to check
      * @return the list of violation messages
@@ -1143,9 +1175,8 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks if a directory contains multiple example files, including any
-     * contained in its own non-module subdirectories (see
-     * {@link #collectFilesWithinModule}).
+     * Checks if directory contains multiple example files, including any
+     * contained in its own non-module subdirectories.
      *
      * @param dir the directory to check
      * @return true if the directory (recursively, stopping at nested module
