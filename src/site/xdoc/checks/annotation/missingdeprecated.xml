@@ -22,7 +22,13 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MissingDeprecated_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">Such that it prints violation messages if tight HTML rules are not obeyed</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#MissingDeprecated_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Such that it reports violations when tight HTML rules are not obeyed</a></li>
             </ul>
           </li>
           <li><a href="#MissingDeprecated_Example_of_Usage">Example of Usage</a></li>
@@ -128,10 +134,13 @@ class Example1 {
   @Deprecated
   public static final int CONST = 12;
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
-          To configure the check such that it prints violation
-          messages if tight HTML rules are not obeyed
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingDeprecated_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check such that it reports violations when tight HTML rules are not
+          obeyed:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -142,9 +151,9 @@ class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
+class UseCase1 {
   @Deprecated
   public static final int MY_CONST = 13;
 

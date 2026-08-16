@@ -44,21 +44,24 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example1.java"/>
             <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example2-config">
-          To configure the check such that it prints violation
-          messages if tight HTML rules are not obeyed
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingDeprecated_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check such that it reports violations when tight HTML rules are not
+          obeyed:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/Example2.java"/>
-            <param name="type" value="code"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/UseCase1.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
