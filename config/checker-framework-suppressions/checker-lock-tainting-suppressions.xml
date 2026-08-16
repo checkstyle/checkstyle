@@ -1463,51 +1463,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>methodref.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>result = Optional.ofNullable(value).map(Object::toString).orElse(null);</lineContent>
-    <details>
-      found   : @GuardSatisfied Object
-      required: @GuardedBy Object
-      Consequence: method in @GuardedBy Object
-      @GuardedBy String toString(@GuardSatisfied Object this)
-      is not a valid method reference for method in @GuardedBy Function&lt;@GuardedBy Object, @GuardedBy String&gt;
-      @GuardedBy String apply(@GuardedBy Function&lt;@GuardedBy Object, @GuardedBy String&gt; this, @GuardedBy Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public void println() {</lineContent>
-    <details>
-      found   : @GuardedBy CustomPrintWriter
-      required: @GuardSatisfied PrintWriter
-      Consequence: method in @GuardedBy CustomPrintWriter
-      void println(@GuardedBy CustomPrintWriter this)
-      cannot override method in @GuardedBy PrintWriter
-      void println(@GuardSatisfied PrintWriter this)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public void write(String line, int offset, int length) {</lineContent>
-    <details>
-      found   : @GuardedBy CustomPrintWriter
-      required: @GuardSatisfied PrintWriter
-      Consequence: method in @GuardedBy CustomPrintWriter
-      void write(@GuardedBy CustomPrintWriter this, @GuardedBy String p0, @GuardedBy int p1, @GuardedBy int p2)
-      cannot override method in @GuardedBy PrintWriter
-      void write(@GuardSatisfied PrintWriter this, @GuardedBy String p0, @GuardedBy int p1, @GuardedBy int p2)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
