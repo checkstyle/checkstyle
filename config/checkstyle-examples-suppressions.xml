@@ -148,7 +148,7 @@
 
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
-    files="illegaltype/Example\d+.*"/>
+    files="illegaltype/(Example|UseCase)\d+.*"/>
 
   <!-- Examples contains important violations that need to be shown -->
   <suppress checks="FileLength"
