@@ -27,6 +27,7 @@
               <li><a href="#Example5-config" class="toc-sublink">To suppress MethodName check for all methods</a></li>
               <li><a href="#Example6-config" class="toc-sublink">To suppress checks in the Example6 file by non-query</a></li>
               <li><a href="#Example7-config" class="toc-sublink">The following example is an example of what checks would be suppressed while building Spring projects with checkstyle plugin. Please find more information at: spring-javaformat</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">To use the default configuration, where no properties are set and nothing is suppressed</a></li>
             </ul>
           </li>
           <li>
@@ -344,6 +345,31 @@ public class Example6 {
 .../src/myApplication.java // violation, Name 'myApplication' must match pattern.
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To use the default configuration, where no properties are set and nothing is suppressed
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+public class Example8 {
+  // violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
+  // violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
+}
 </code></pre></div><hr class="example-separator"/>
         </subsection>
         <subsection name="Use Cases" id="SuppressionXpathSingleFilter_Use_Cases">
