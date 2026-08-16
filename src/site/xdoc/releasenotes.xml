@@ -10,6 +10,176 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.11.0">
+      <div class="releaseDate">16.08.2026</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            WriteTag: remove tagSeverity property and make Check to work only for violation of tag
+            absence.
+            Author: Burak KALAYCI
+            <a href="https://github.com/checkstyle/checkstyle/issues/21080">#21080</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: PreferLiteralJavadocInlineTag.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20984">#20984</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Xdoc file generation should be separate project that executes in maven build as just
+            another phase; remove doxia dependency.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a>
+          </li>
+          <li>
+            Add PreferLiteralJavadocInlineTag in openjdk_checks.xml.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/21222">#21222</a>
+          </li>
+          <li>
+            google_checks.xml: LocalVariableName/LocalFinalVariableName false positive for
+            identifier example &quot;guava33_4_6&quot; from Google Java Style Guide.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21101">#21101</a>
+          </li>
+          <li>
+            Javadoc parse error on quoted HTML attribute value containing &#39;&lt;&#39;.
+            Author: kairav mittal
+            <a href="https://github.com/checkstyle/checkstyle/issues/20973">#20973</a>
+          </li>
+          <li>
+            Documentation Comments Style Guide - Avoid Latin.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/19913">#19913</a>
+          </li>
+          <li>
+            Google style: False negative missing spacing between type and variable.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17728">#17728</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            `testExampleCountMatchesPropertyCount` incorrectly counts examples that only configure
+            `violateExecutionOnNonTightHtml`.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21243">#21243</a>
+          </li>
+          <li>
+            Improve the Checkstyle landing page.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21187">#21187</a>
+          </li>
+          <li>
+            Create some ability to execute metadata file generation before test phase.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/8775">#8775</a>
+          </li>
+          <li>
+            Improve Input coverage for compact sources (JEP 512) for all Checks.
+            Author: Shabanov Maxim
+            <a href="https://github.com/checkstyle/checkstyle/issues/20590">#20590</a>
+          </li>
+          <li>
+            Fix broken Javadoc method links in *.xml.vm file due to Doxia anchor encoding.
+            Author: sahitya0xsingh
+            <a href="https://github.com/checkstyle/checkstyle/issues/21114">#21114</a>
+          </li>
+          <li>
+            Fix violation message comments to use quoted text and remove associated suppressions.
+            Author: yura
+            <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: pascofire
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Improvements to site workflow.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/13206">#13206</a>
+          </li>
+          <li>
+            Website table of contents doesn&#39;t show use cases.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21216">#21216</a>
+          </li>
+          <li>
+            Make testExampleCountMatchesPropertyCount enforce exact example count match.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21228">#21228</a>
+          </li>
+          <li>
+            Renumber examples so default-config example is Example1.
+            Author: Burak KALAYCI
+            <a href="https://github.com/checkstyle/checkstyle/issues/21207">#21207</a>
+          </li>
+          <li>
+            Fix examples with duplicate violation behavior.
+            Author: Burak KALAYCI
+            <a href="https://github.com/checkstyle/checkstyle/issues/21119">#21119</a>
+          </li>
+          <li>
+            doc: remove redundant `toc` Doxia macro.
+            Author: stoyanK7
+          </li>
+          <li>
+            Update grammar inputs for JDK20.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/13418">#13418</a>
+          </li>
+          <li>
+            enforce that a module&#39;s default-config example is always Example1.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21197">#21197</a>
+          </li>
+          <li>
+            TocMacro: TOC entry title should always come from config description, not from a
+            property.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21202">#21202</a>
+          </li>
+          <li>
+            deployment of website to Sourceforge is failed.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/20691">#20691</a>
+          </li>
+          <li>
+            Fix modules suppressed from the default-config example test.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21137">#21137</a>
+          </li>
+          <li>
+            weird XpathRegressionTest.REGEXP_JAVADOC_CHECKS list.
+            Author: Burak KALAYCI
+            <a href="https://github.com/checkstyle/checkstyle/issues/21159">#21159</a>
+          </li>
+          <li>
+            Remove old method from pitest exclude config.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/21174">#21174</a>
+          </li>
+          <li>
+            Test&#39;s violation-line comparison uses absolute file lines instead of lines relative
+            to the visible xdoc section.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21152">#21152</a>
+          </li>
+          <li>
+            remove usage of JavadocTags class.
+            Author: subotac
+            <a href="https://github.com/checkstyle/checkstyle/issues/21154">#21154</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.10.0">
       <div class="releaseDate">09.08.2026</div>
       <p>Breaking backward compatibility:</p>
