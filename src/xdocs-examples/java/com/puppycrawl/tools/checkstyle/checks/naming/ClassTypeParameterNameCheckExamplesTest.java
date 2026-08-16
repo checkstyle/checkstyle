@@ -59,7 +59,7 @@ public class ClassTypeParameterNameCheckExamplesTest extends AbstractExamplesMod
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
         final String[] expected = {
             "16:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "t", pattern),
@@ -67,7 +67,7 @@ public class ClassTypeParameterNameCheckExamplesTest extends AbstractExamplesMod
             "18:18: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "LISTENER", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }

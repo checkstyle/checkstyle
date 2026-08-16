@@ -175,7 +175,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocblocktaglocation",
             "checks/javadoc/javadocpackage",
             "checks/lineending",
-            "checks/naming/classtypeparametername",
             "checks/naming/patternvariablename",
             "checks/newlineatendoffile",
             "checks/sizes/linelength",
