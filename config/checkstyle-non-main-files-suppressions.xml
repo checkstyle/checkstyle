@@ -345,6 +345,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/whitespace/nowhitespacebeforecasedefaultcolon.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/whitespace/openjdkmethodparameteralignment.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/filters/suppresswarningsfilter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/whenshouldbeused.xml.template"/>
