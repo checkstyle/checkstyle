@@ -104,7 +104,6 @@ public class AllChecksCompactSourceCoverageTest {
         "BooleanExpressionComplexityCheck",
         "CatchParameterNameCheck",
         "ClassDataAbstractionCouplingCheck",
-        "ClassMemberImpliedModifierCheck",
         "ClassTypeParameterNameCheck",
         "CommentsIndentationCheck",
         "ConstantNameCheck",
