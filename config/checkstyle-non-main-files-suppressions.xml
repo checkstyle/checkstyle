@@ -149,8 +149,7 @@
   <suppress id="lineLength" files="/releasenotes_old_8\-0_8\-34\.xml"/>
 
   <!-- All xdoc checks/filters files are generated from templates and have escaped characters that
-       make the lines long. We still validate index.xml and template files.
-       until https://github.com/checkstyle/checkstyle/issues/13426 -->
+       make the lines long. We still validate index.xml and template files. -->
   <suppress id="lineLength"
             files="/src/site/xdoc/(checks|(file)?filters)/(?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 

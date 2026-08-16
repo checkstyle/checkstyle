@@ -76,8 +76,6 @@ public final class XdocUtil {
 
     /**
      * Gets xdocs template file paths. These are files ending with .xml.template.
-     * This module will be removed once
-     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
      *
      * @return a set of xdocs template file paths.
      * @throws IOException if an I/O error occurs.
