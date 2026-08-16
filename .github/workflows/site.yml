@@ -16,8 +16,17 @@ name: "Site"
 env:
   AWS_REGION: "us-east-2"
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
+  PR_NUMBER: >-
+    ${{
+      inputs.pr-number
+      || github.event.issue.number
+      || github.event.pull_request.number
+    }}
 
 on:
+  pull_request:
+    paths:
+      - 'src/site/**'
   issue_comment:
     types: [ created, edited ]
   workflow_dispatch:
@@ -33,7 +42,13 @@ permissions:
   actions: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ inputs.pr-number || github.event.issue.number || github.ref }}
+  group: >-
+    ${{ github.workflow }}-${{
+      inputs.pr-number
+      || github.event.issue.number
+      || github.event.pull_request.number
+      || github.ref
+    }}
   cancel-in-progress: false
 
 jobs:
@@ -42,6 +57,7 @@ jobs:
           || github.event.comment.body == 'GitHub, generate website'
           || github.event.comment.body == 'GitHub, generate site'
           || inputs.pr-number != ''
+          || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: React to comment
@@ -66,14 +82,14 @@ jobs:
         id: pr_info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ inputs.pr-number || github.event.issue.number }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
           ./.ci/site.sh get-pr-info
 
       - name: Download checkstyle for PR
         uses: actions/checkout@v7
         with:
-          ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
+          ref: refs/pull/${{ env.PR_NUMBER }}/head
           path: .ci-temp/checkstyle
           fetch-depth: 0
 
@@ -105,7 +121,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_SHA: ${{ steps.pr_info.outputs.commit_sha }}
-          PR_NUMBER: ${{ inputs.pr-number || github.event.issue.number }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
           AWS_BUCKET_NAME: ${{ env.AWS_BUCKET_NAME }}
           AWS_REGION: ${{ env.AWS_REGION }}
         run: |
@@ -132,5 +148,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          issue-number: ${{ inputs.pr-number || github.event.issue.number }}
+          issue-number: ${{ env.PR_NUMBER }}
           body: ${{ steps.out.outputs.message }}

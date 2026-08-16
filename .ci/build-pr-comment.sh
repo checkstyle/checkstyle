@@ -22,9 +22,10 @@ curl --fail-with-body -X GET "${API_LINK}" \
   -o .ci-temp/info.json
 
 jq '.jobs' .ci-temp/info.json > .ci-temp/jobs
-jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/jobs > .ci-temp/job_name
-jq '.[] | select(.conclusion == "failure") | .steps' .ci-temp/jobs > .ci-temp/steps
-jq '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
+jq -r '.[] | select(any(.steps[]; .conclusion == "failure")) | .name' \
+  .ci-temp/jobs > .ci-temp/job_name
+jq '.[] | select(any(.steps[]; .conclusion == "failure")) | .steps' .ci-temp/jobs > .ci-temp/steps
+jq -r '.[] | select(.conclusion == "failure") | .name' .ci-temp/steps > .ci-temp/step_name
 
 if [ -n "$FAILURE_PREFIX" ]; then
   echo "${FAILURE_PREFIX} failed on phase $(cat .ci-temp/job_name)," > .ci-temp/message
