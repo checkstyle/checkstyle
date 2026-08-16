@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 // xdoc section - start
-class Example2 {
+class UseCase1 {
   @Deprecated
   public static final int MY_CONST = 13;
 

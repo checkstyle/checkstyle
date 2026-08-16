@@ -43,13 +43,13 @@ public class MissingDeprecatedCheckExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "33: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
