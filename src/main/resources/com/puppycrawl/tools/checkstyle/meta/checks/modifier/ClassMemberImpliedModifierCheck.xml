@@ -30,6 +30,18 @@
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
+ Enum, interface, and record declarations in a compact source file are members of the
+ implicitly declared class, so they are also implicitly &lt;code&gt;static&lt;/code&gt;.
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ enum Age {  // violation
+   CHILD, ADULT
+ }
+
+ void main() {}
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
  Rationale for this check: Nested enums, interfaces, and records are treated differently from
  nested classes as they are only allowed to be &lt;code&gt;static&lt;/code&gt;. Developers should not need to
  remember this rule, and this check provides the means to enforce that the modifier is coded

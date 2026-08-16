@@ -53,6 +53,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </code></pre></div>
  *
  * <p>
+ * Enum, interface, and record declarations in a compact source file are members of the
+ * implicitly declared class, so they are also implicitly {@code static}.
+ * </p>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * enum Age {  // violation
+ *   CHILD, ADULT
+ * }
+ *
+ * void main() {}
+ * </code></pre></div>
+ *
+ * <p>
  * Rationale for this check: Nested enums, interfaces, and records are treated differently from
  * nested classes as they are only allowed to be {@code static}. Developers should not need to
  * remember this rule, and this check provides the means to enforce that the modifier is coded
@@ -185,16 +197,19 @@ public class ClassMemberImpliedModifierCheck
     }
 
     /**
-     * Checks if ast is in a class, enum, anon class or record block.
+     * Checks if ast is in a class, enum, anon class or record block, including the
+     * implicitly declared class of a compact source file.
      *
      * @param ast the current ast
-     * @return true if ast is in a class, enum, anon class or record
+     * @return true if ast is in a class, enum, anon class or record, including
+     *         the implicitly declared class of a compact source file
      */
     private static boolean isInTypeBlock(DetailAST ast) {
         return ScopeUtil.isInScope(ast, Scope.ANONINNER)
                 || ScopeUtil.isInClassBlock(ast)
                 || ScopeUtil.isInEnumBlock(ast)
-                || ScopeUtil.isInRecordBlock(ast);
+                || ScopeUtil.isInRecordBlock(ast)
+                || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
 }

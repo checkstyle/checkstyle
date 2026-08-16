@@ -145,6 +145,29 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY, "static"),
+            "14:1: " + getCheckMessage(MSG_KEY, "static"),
+            "17:1: " + getCheckMessage(MSG_KEY, "static"),
+            "19:1: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputClassMemberImpliedModifierCompactSource.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFilePropertiesDisabled() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputClassMemberImpliedModifierCompactSourceCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testIllegalState() {
         final DetailAstImpl init = new DetailAstImpl();
         init.setType(TokenTypes.STATIC_INIT);
