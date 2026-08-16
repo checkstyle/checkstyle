@@ -37,7 +37,6 @@ public class InputWrappingMethodDoAndDonts {
 
     class Donts {
 
-        // Not covered until https://github.com/checkstyle/checkstyle/issues/20638
         public void someMethod(String aString,
                        List<Integer> aList,
                        Map<String, String> aMap,
