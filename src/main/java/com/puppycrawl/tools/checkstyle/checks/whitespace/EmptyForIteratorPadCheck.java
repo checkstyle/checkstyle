@@ -33,11 +33,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * space is required at an empty for iterator, or such white space is
  * forbidden. No check occurs if there is a line wrap at the iterator, as in
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * for (Iterator foo = very.long.line.iterator();
  *     foo.hasNext();
  *    )
- * </code></pre></div>
+ * }
  *
  * @since 3.0
  */

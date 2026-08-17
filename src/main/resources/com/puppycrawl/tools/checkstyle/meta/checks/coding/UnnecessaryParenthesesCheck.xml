@@ -26,13 +26,13 @@
  operator precedence but unaware about operator associativity.
  It won't catch cases such as:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@ lang="text":
  int x = (a + b) + c; // 1st Case
  boolean p = true; // 2nd Case
  int q = 4;
  int r = 3;
  if (p == (q &amp;lt;= r)) {}
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ }
 
  &lt;p&gt;
  In the first case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
@@ -48,7 +48,7 @@
  &lt;p&gt;
  The partial support for operator precedence includes cases of the following type:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@ lang="text":
  boolean a = true, b = true;
  boolean c = false, d = false;
  if ((a &amp;amp;&amp;amp; b) || c) { // violation, unnecessary paren
@@ -67,7 +67,7 @@
  }
  if ((++f) &amp;gt; g &amp;amp;&amp;amp; a) { // violation, unnecessary paren
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ }</description>
          <properties>
             <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LOR,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC,INDEX_OP,DOT"
                       name="tokens"

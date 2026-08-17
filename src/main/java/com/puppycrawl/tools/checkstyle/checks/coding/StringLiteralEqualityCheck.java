@@ -37,16 +37,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: Novice Java programmers often use code like:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * if (x == "something")
- * </code></pre></div>
+ * }
  *
  * <p>
  * when they mean
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * if ("something".equals(x))
- * </code></pre></div>
+ * }
  *
  * @since 3.2
  */

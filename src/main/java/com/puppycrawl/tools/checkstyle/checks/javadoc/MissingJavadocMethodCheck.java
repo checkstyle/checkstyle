@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * For getters and setters for the property {@code allowMissingPropertyJavadoc}, the methods must
  * match exactly the structures below.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public void setNumber(final int number)
  * {
  *     mNumber = number;
@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {
  *     return false;
  * }
- * </code></pre></div>
+ * }
  *
  * @since 8.21
  */
