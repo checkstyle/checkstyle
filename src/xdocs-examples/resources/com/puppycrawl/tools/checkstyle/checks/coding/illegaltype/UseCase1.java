@@ -2,8 +2,9 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalType">
-      <property name="validateAbstractClassNames" value="true"/>
-      <property name="legalAbstractClassNames" value="AbstractList"/>
+      <property name="illegalClassNames" value="var"/>
+      <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="id" value="IllegalTypeVarAsField"/>
     </module>
   </module>
 </module>
@@ -16,30 +17,30 @@ import java.util.*;
 import java.util.function.Consumer;
 
 // xdoc section - start
-// violation below 'Usage of type 'TreeSet' is not allowed'
-public class Example9 extends TreeSet {
-  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+
+public class UseCase1 extends TreeSet {
+
   public <T extends java.util.HashSet> void method() {
-    // violation below 'Usage of type 'LinkedHashMap' is not allowed'
+
     LinkedHashMap<Integer, String> linkedHashMap =
         new LinkedHashMap<Integer, String>();
-    // violation below 'Usage of type 'TreeMap' is not allowed'
+
     TreeMap<Integer, String> treemap = new TreeMap<Integer, String>();
     java.lang.IllegalArgumentException illegalex;
-    // violation below 'Usage of type 'java.util.TreeSet' is not allowed'
+
     java.util.TreeSet treeset;
   }
-  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+
   public <T extends java.util.HashSet> void typeParam(T t) {}
-  // violation below 'Usage of type 'HashMap' is not allowed'
+
   public HashMap<String, String> function1() {
     return null;
   }
-  // violation below 'Usage of type 'HashMap' is not allowed'
+
   private HashMap<String, String> function2() {
     return null;
   }
-  // violation below 'Usage of type 'HashMap' is not allowed'
+
   protected HashMap<Integer, String> function3() {
     return null;
   }
@@ -73,8 +74,8 @@ public class Example9 extends TreeSet {
 
   public void var() {
     var message = "Hello, World!";
-  }
-  // violation below 'Usage of type 'AbstractSet' is not allowed'
+  } // violation above 'Usage of type 'var' is not allowed'
+
   public AbstractSet<String> function4() {
     return null;
   }
