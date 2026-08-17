@@ -785,6 +785,57 @@
       </div>
     </section>
 
+    <section name="ModuleImportOrderOption">
+      <p>
+        This type represents the policy for the position of module import
+        declarations relative to type and static imports.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="ModuleImportOrderOptions">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td>
+              <a id="ModuleImportOrderOption-top"/>
+              <a href="#ModuleImportOrderOption-top">top</a>
+            </td>
+            <td>All module imports are at the top. For example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+    import module java.desktop;
+    import module java.sql;
+
+    import a.b.D;
+    import static x.y.Z.f;</code></pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <a id="ModuleImportOrderOption-bottom"/>
+              <a href="#ModuleImportOrderOption-bottom">bottom</a>
+            </td>
+            <td>All module imports are at the bottom. For example:
+              <div class="wrapper">
+                <pre><code class="language-java">
+    import a.b.D;
+    import static x.y.Z.f;
+
+    import module java.desktop;
+    import module java.sql;</code></pre>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
     <section name="PadOption">
       <p>
         This type represents the policy for padding with white space. The
