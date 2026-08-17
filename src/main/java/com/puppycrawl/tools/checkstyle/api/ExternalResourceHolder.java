@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
  * The following interface should be implemented by each module (inheritor of
  * {@link AbstractCheck}, implementor of {@link FileSetCheck}, or {@link Filter}) which uses
  * external resources of any kind for its configuration. Such modules must declare external
- * resource locations as a set of {@link String} which will be returned from
+ * resource locations as a set of {@code String} which will be returned from
  * {@link #getExternalResourceLocations}. This allows Checkstyle to invalidate (clear) cache
  * when the content of at least one external configuration resource of the module is changed.
  *
