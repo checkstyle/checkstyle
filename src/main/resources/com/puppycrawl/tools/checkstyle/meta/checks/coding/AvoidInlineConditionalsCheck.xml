@@ -7,10 +7,10 @@
          <description>&lt;div&gt;
  Detects inline conditionals. Here is one example of an inline conditional:
  &lt;/div&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@ lang="text":
  String a = getParameter("a");
- String b = (a==null || a.length()&amp;lt;1) ? null : a.substring(1);
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ String b = (a==null || a.length() &gt; 1) ? null : a.substring(1);
+ }
 
  &lt;p&gt;
  Rationale: Some developers find inline conditionals hard to read, so
