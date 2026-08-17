@@ -108,11 +108,11 @@
         <p>Enums can also contain abstract methods and methods which can be overridden by the declared
           enumeration fields.
           See the following example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public enum EnumClass {
   FIELD_1,
   FIELD_2 {
-    &#64;Override
+    @Override
     public final void method1() {} // violation expected
   };
 
@@ -135,7 +135,7 @@ public enum EnumClass {
         <p>Public modifier for constructors in non-public non-protected classes
           is always obsolete: </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public class PublicClass {
   public PublicClass() {} // OK
 }
@@ -149,7 +149,7 @@ class PackagePrivateClass {
           because removing public modifier from ProtectedInnerClass
           constructor will make this code not compiling: </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 package a;
 public class ClassExample {
   protected class ProtectedInnerClass {

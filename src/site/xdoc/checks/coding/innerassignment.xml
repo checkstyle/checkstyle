@@ -45,7 +45,7 @@
         <p>
           Note: Check allows usage of the popular assignments in loops:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 String line;
 while ((line = bufferedReader.readLine()) != null) { // OK
   // process the line

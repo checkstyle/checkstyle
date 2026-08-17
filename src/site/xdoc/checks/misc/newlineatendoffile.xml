@@ -47,8 +47,8 @@
         <p>
           Example (the line with 'No newline at end of file' should not be in the diff):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-&#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
+        <div class="wrapper"><pre class="prettyprint"><code>
+@@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
 PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
 
 StaticMethodCandidateCheck.name = Static Method Candidate

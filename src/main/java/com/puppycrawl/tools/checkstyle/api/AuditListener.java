@@ -24,13 +24,13 @@ import java.util.EventListener;
 /**
  * Listener in charge of receiving events from the Checker.
  * Typical events sequence is:
- * <pre>
+ * {@snippet lang="text" :
  * auditStarted
  *   (fileStarted
  *     (addError)*
  *   fileFinished )*
  * auditFinished
- * </pre>
+ * }
  */
 public interface AuditListener
     extends EventListener {

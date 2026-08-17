@@ -44,7 +44,7 @@
         <p>
           For example, this check finds the obsolete braces in
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public void guessTheOutput()
 {
   int whichIsWhich = 0;
@@ -58,7 +58,7 @@ public void guessTheOutput()
         <p>
           and debugging / refactoring leftovers such as
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 // if (conditionThatIsNotUsedAnyLonger)
 {
   System.out.println("unconditional");

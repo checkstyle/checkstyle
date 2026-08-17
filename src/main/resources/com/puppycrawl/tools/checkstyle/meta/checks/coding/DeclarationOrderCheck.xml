@@ -39,7 +39,7 @@
  forward references &lt;/a&gt; from validation due to the fact that we have Checkstyle's limitations
  to clearly detect user intention of fields location and grouping. For example:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public class A {
    private double x = 1.0;
    private double y = 2.0;
