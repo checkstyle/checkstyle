@@ -39,22 +39,22 @@ import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
  * <p>
  *     Example class
  * </p>
- * <pre>
+ * {@snippet :
  * public class Main {
  *
  *     public String sayHello(String name) {
  *         return "Hello, " + name;
  *     }
  * }
- * </pre>
+ * }
  *
  * <p>
  *     Following expression returns list of queries. Each query is the string representing full
  *     path to the node inside Xpath tree, whose line number is 3 and column number is 4.
  * </p>
- * <pre>
+ * {@snippet :
  *     new XpathQueryGenerator(rootAst, 3, 4).generate();
- * </pre>
+ * }
  *
  * <p>
  *     Result list

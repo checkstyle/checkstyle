@@ -27,9 +27,10 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
  *
  * @see <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html">
  *     javadoc - The Java API Documentation Generator</a>
- * @noinspection JavadocDeclaration ,EmptyClass
+ * @noinspection JavadocDeclaration, EmptyClass, JavadocLinkAsPlainText
  * @noinspectionreason JavadocDeclaration - Javadoc is intentional
  * @noinspectionreason EmptyClass - false positive from Language Injection in snippet block
+ * @noinspectionreason JavadocLinkAsPlainText - false positive in snippet block
  */
 @SuppressWarnings({"InvalidInlineTag", "UnrecognisedJavadocTag"})
 public final class JavadocCommentsTokenTypes {
@@ -38,7 +39,7 @@ public final class JavadocCommentsTokenTypes {
      * Root node of any Javadoc comment.
      *
      * <p><b>Tree for example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--NEWLINE -> \n
@@ -46,7 +47,7 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--LEADING_ASTERISK -> *
      * `--NEWLINE -> \n
-     * }</pre>
+     * }
      */
     public static final int JAVADOC_CONTENT = JavadocCommentsLexer.JAVADOC;
 
@@ -61,7 +62,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --BLOCK_COMMENT_BEGIN -> /**
      *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
@@ -71,7 +72,7 @@ public final class JavadocCommentsTokenTypes {
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
      * `   --BLOCK_COMMENT_END -> *
-     * }</pre>
+     * }
      */
     public static final int LEADING_ASTERISK = JavadocCommentsLexer.LEADING_ASTERISK;
 
@@ -86,7 +87,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --BLOCK_COMMENT_BEGIN -> /*
      *    |--COMMENT_CONTENT -> **\r\n **** This is a Javadoc line.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
@@ -97,7 +98,7 @@ public final class JavadocCommentsTokenTypes {
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
      * `   --BLOCK_COMMENT_END -> *
-     * }</pre>
+     * }
      */
     public static final int LEADING_ASTERISKS = JavadocCommentsLexer.LEADING_ASTERISKS;
 
@@ -112,7 +113,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --BLOCK_COMMENT_BEGIN -> /**
      *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
@@ -122,7 +123,7 @@ public final class JavadocCommentsTokenTypes {
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
      * `   --BLOCK_COMMENT_END -> *
-     * }</pre>
+     * }
      */
 
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
@@ -141,7 +142,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --BLOCK_COMMENT_BEGIN -> /**
      *    |--COMMENT_CONTENT -> *\r\n * This is plain text content.\r\n
      *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
@@ -151,7 +152,7 @@ public final class JavadocCommentsTokenTypes {
      *    |       |--NEWLINE -> \r\n
      *    |       `--TEXT ->
      *    `--BLOCK_COMMENT_END -> * /
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_CONTENT
      */
@@ -172,7 +173,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @param value The parameter of method.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -184,7 +185,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--PARAMETER_NAME -> value
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  The parameter of method.
-     * }</pre>
+     * }
      *
      * @see #PARAM_BLOCK_TAG
      * @see #RETURN_BLOCK_TAG
@@ -198,7 +199,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @author name}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
@@ -207,7 +208,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> author
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  name
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -224,7 +225,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @author name.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -234,7 +235,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> author
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  name.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -251,7 +252,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @deprecated deprecated text.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -261,7 +262,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> deprecated
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  deprecated text.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -279,7 +280,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @param value The parameter of method.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -291,7 +292,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--PARAMETER_NAME -> value
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  The parameter of method.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -308,7 +309,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @return The return of method.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -318,7 +319,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> return
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  The return of method.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -336,7 +337,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @throws IOException if an I/O error occurs}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -348,7 +349,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--IDENTIFIER -> IOException
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  if an I/O error occurs
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -366,7 +367,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @exception FileNotFoundException when file is not found.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -378,7 +379,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--IDENTIFIER -> FileNotFoundException
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  when file is not found.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -396,7 +397,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code * @since 1.0}</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -406,7 +407,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> since
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  1.0
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -420,7 +421,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @version value}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -430,7 +431,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> version
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  value
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -449,7 +450,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @see SomeClass#Field}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -463,7 +464,7 @@ public final class JavadocCommentsTokenTypes {
      *             |--HASH -> #
      *             `--MEMBER_REFERENCE -> MEMBER_REFERENCE
      *                 `--IDENTIFIER -> Field
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -480,7 +481,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @hidden value}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -490,7 +491,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> hidden
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  value
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -507,7 +508,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @uses com.example.app.MyService}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -517,7 +518,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> uses
      *         |--TEXT ->
      *         `--IDENTIFIER -> com.example.app.MyService
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -537,7 +538,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>{@code * @provides com.example.MyService with com.example.MyServiceImpl}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -549,7 +550,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--IDENTIFIER -> com.example.MyService
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  with com.example.MyServiceImpl
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -566,7 +567,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @serial include}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -576,7 +577,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> serial
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  include
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -593,7 +594,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @serialData data description value}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -603,7 +604,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> serialData
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  data description value
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -622,7 +623,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @serialField name String The person's full name.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -636,7 +637,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--FIELD_TYPE -> String
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  The person's full name.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -651,7 +652,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @mycustomtag This is a custom block tag.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -661,7 +662,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> mycustomtag
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  This is a custom block tag.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_BLOCK_TAG
      */
@@ -687,7 +688,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
@@ -705,7 +706,7 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--TEXT -> public class Test {}
      * `--NEWLINE -> \n
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -725,7 +726,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
@@ -743,7 +744,7 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--TEXT -> public class Test {}
      * `--NEWLINE -> \n
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -764,7 +765,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
@@ -782,7 +783,7 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--TEXT -> public class Test {}
      * `--NEWLINE -> \n
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      * @see #JAVADOC_INLINE_TAG_START
@@ -797,14 +798,14 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@code println("Hello");}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     |--CODE_INLINE_TAG -> CODE_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> { @
      *     |--TAG_NAME -> code
      *     |--TEXT ->  println("Hello");
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -822,7 +823,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@link Math#max(int, int) label}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> { @
@@ -843,7 +844,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--DESCRIPTION -> DESCRIPTION
      *     |   `--TEXT -> label
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -861,7 +862,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@linkplain String#indexOf(int, int) label}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINKPLAIN_INLINE_TAG -> LINKPLAIN_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> { @
@@ -882,7 +883,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--DESCRIPTION -> DESCRIPTION
      *     |   `--TEXT ->  label
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -899,7 +900,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@value Integer#MAX_VALUE}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * --JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--VALUE_INLINE_TAG -> VALUE_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> { @
@@ -912,7 +913,7 @@ public final class JavadocCommentsTokenTypes {
      *     |       `--IDENTIFIER -> MAX_VALUE
      *     |--TEXT ->
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -927,7 +928,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * Example showing {@summary This is a short summary.}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->  Example showing
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -937,7 +938,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--DESCRIPTION -> DESCRIPTION
      *         |   `--TEXT ->  This is a short summary.
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -953,7 +954,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@inheritDoc}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -961,7 +962,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--JAVADOC_INLINE_TAG_START -> { @
      *         |--TAG_NAME -> inheritDoc
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -977,7 +978,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>{@code * This method uses {@systemProperty user.home} system property.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->  This method uses
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -988,7 +989,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--IDENTIFIER -> user.home
      * |       `--JAVADOC_INLINE_TAG_END -> }
      * |--TEXT ->  system property.
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1001,7 +1002,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@literal @Override}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1010,7 +1011,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_NAME -> literal
      *         |--TEXT ->  @Override
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1025,7 +1026,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code Example showing result {@return The computed value.}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->  Example showing result
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1035,7 +1036,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--DESCRIPTION -> DESCRIPTION
      *         |   `--TEXT ->  The computed value.
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1053,7 +1054,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>{@code * Example showing {@index keyword description of the index term}.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->  Example showing
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1066,7 +1067,7 @@ public final class JavadocCommentsTokenTypes {
      *         |   `--TEXT ->  description of the index term
      *         `--JAVADOC_INLINE_TAG_END -> }
      * |--TEXT -> .
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1085,7 +1086,7 @@ public final class JavadocCommentsTokenTypes {
      * }}</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT -> Example showing
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1101,7 +1102,7 @@ public final class JavadocCommentsTokenTypes {
      *         |   |--LEADING_ASTERISK -> *
      *         |   `--TEXT ->
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1113,7 +1114,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * Example showing {@custom This is a Custom Inline Tag}.}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->  Example showing
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1124,7 +1125,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |   `--TEXT ->  This is a Custom Inline Tag
      * |       `--JAVADOC_INLINE_TAG_END -> }
      * |--TEXT -> .
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1138,7 +1139,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @throws Exception if error.}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -1150,7 +1151,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--IDENTIFIER -> Exception
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  if error.
-     * }</pre>
+     * }
      */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
@@ -1160,7 +1161,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @see MyClass#myMethod()}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
@@ -1174,7 +1175,7 @@ public final class JavadocCommentsTokenTypes {
      * |           |--IDENTIFIER -> myMethod
      * |           |--LPAREN -> (
      * |           `--RPAREN -> )
-     * }</pre>
+     * }
      *
      * @see #REFERENCE
      */
@@ -1189,7 +1190,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1205,7 +1206,7 @@ public final class JavadocCommentsTokenTypes {
      *                 |--LPAREN -> (
      *                 `--RPAREN -> )
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #REFERENCE
      */
@@ -1220,7 +1221,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1236,7 +1237,7 @@ public final class JavadocCommentsTokenTypes {
      *                 |--LPAREN -> (
      *                 `--RPAREN -> )
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #REFERENCE
      */
@@ -1248,7 +1249,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @see #method(int, int)}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
@@ -1267,7 +1268,7 @@ public final class JavadocCommentsTokenTypes {
      *         |       |   |--TEXT ->
      *         |       |   `--PARAMETER_TYPE -> int
      *         |       `--RPAREN -> )
-     * }</pre>
+     * }
      */
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
@@ -1275,12 +1276,12 @@ public final class JavadocCommentsTokenTypes {
      * Slash symbol {@code /} used in module or package references within Javadoc.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@link String};
-     * }</pre>
+     * }
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *         |--JAVADOC_INLINE_TAG_START -> {@
@@ -1291,7 +1292,7 @@ public final class JavadocCommentsTokenTypes {
      *         |   |--SLASH -> /
      *         |   `--IDENTIFIER -> java.lang.String
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #REFERENCE
      */
@@ -1304,12 +1305,12 @@ public final class JavadocCommentsTokenTypes {
      * such as {@code ? extends Type} or {@code ? super Type}.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@link java.util.List<? extends Number>};
-     * }</pre>
+     * }
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *         |--JAVADOC_INLINE_TAG_START -> {@
@@ -1326,7 +1327,7 @@ public final class JavadocCommentsTokenTypes {
      *         |       |   `--IDENTIFIER -> Number
      *         |       `--GT -> >
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #TYPE_ARGUMENT
      */
@@ -1338,7 +1339,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @see List<String>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
@@ -1355,7 +1356,7 @@ public final class JavadocCommentsTokenTypes {
      * |               `--GT -> >
      * |--NEWLINE -> \n
      * `--TEXT ->
-     * }</pre>
+     * }
      */
     public static final int LT = JavadocCommentsLexer.LT;
 
@@ -1365,7 +1366,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @see List<String>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
@@ -1382,7 +1383,7 @@ public final class JavadocCommentsTokenTypes {
      * |               `--GT -> >
      * |--NEWLINE -> \n
      * `--Text ->
-     * }</pre>
+     * }
      */
 
     public static final int GT = JavadocCommentsLexer.GT;
@@ -1399,7 +1400,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1421,7 +1422,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--DESCRIPTION -> DESCRIPTION
      *         |   `--TEXT ->  list of any subtype of Number
      *         `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1435,7 +1436,7 @@ public final class JavadocCommentsTokenTypes {
      * of any supertype of Integer}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> { @
@@ -1455,7 +1456,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--DESCRIPTION -> DESCRIPTION
      *     |   `--TEXT ->  list of any supertype of Integer
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #PARAMETER_TYPE
      */
@@ -1469,7 +1470,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code {@link java.util.List#add(Object)}}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {@
@@ -1484,7 +1485,7 @@ public final class JavadocCommentsTokenTypes {
      *     |       |   `--PARAMETER_TYPE -> Object
      *     |       `--RPAREN -> )
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #REFERENCE
      */
@@ -1497,19 +1498,19 @@ public final class JavadocCommentsTokenTypes {
      * {@code {@link String#length()}}.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@link String#length()}
-     * }</pre>
+     * }
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |--LINK_INLINE_TAG -> LINK_INLINE_TAG
      * |   |--JAVADOC_INLINE_TAG_START -> {@
      * |   |--TAG_NAME -> link
      * |   |--REFERENCE -> String#length()
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1521,12 +1522,12 @@ public final class JavadocCommentsTokenTypes {
      * <p>Represents a field or method in a type reference.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@link String#length()}
-     * }</pre>
+     * }
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {@
@@ -1540,7 +1541,7 @@ public final class JavadocCommentsTokenTypes {
      *     |       |--LPAREN -> (
      *     |       `--RPAREN -> )
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #REFERENCE
      */
@@ -1551,12 +1552,12 @@ public final class JavadocCommentsTokenTypes {
      * member reference within a Javadoc inline {@code @link} tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@link Math#max(int, int)}
-     * }</pre>
+     * }
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {\@
@@ -1575,7 +1576,7 @@ public final class JavadocCommentsTokenTypes {
      *     |       |   `--PARAMETER_TYPE -> int
      *     |       `--RPAREN -> )
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #PARAMETER_TYPE
      */
@@ -1589,7 +1590,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code {@link java.util.List<String>}}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {@
@@ -1603,7 +1604,7 @@ public final class JavadocCommentsTokenTypes {
      *     |       |   `--IDENTIFIER -> String
      *     |       `--GT -> >
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #TYPE_ARGUMENT
      */
@@ -1616,12 +1617,12 @@ public final class JavadocCommentsTokenTypes {
      * argument list.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@link java.util.List<String>}
-     * }</pre>
+     * }
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {@
@@ -1635,7 +1636,7 @@ public final class JavadocCommentsTokenTypes {
      *             |   `--IDENTIFIER -> String
      *             `--GT -> >
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #TYPE_ARGUMENTS
      */
@@ -1647,7 +1648,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @param value The parameter description goes here.}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
      *     |--AT_SIGN -> @
      *     |--TAG_NAME -> param
@@ -1655,7 +1656,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--PARAMETER_NAME -> value
      *     `--DESCRIPTION -> DESCRIPTION
      *         `--TEXT ->  The parameter description goes here.
-     * }</pre>
+     * }
      */
     public static final int DESCRIPTION = JavadocCommentsLexer.DESCRIPTION;
 
@@ -1667,12 +1668,12 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>In this example, the format specifier {@code 0x%04x} is used to format the integer
      * {@code Modifier#PUBLIC} as a hexadecimal value, padded with zeros to a width of four characters.</p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@value %04x java.lang.reflect.Modifier#PUBLIC}
-     * }</pre>
+     * }
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--VALUE_INLINE_TAG -> VALUE_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {@
@@ -1686,7 +1687,7 @@ public final class JavadocCommentsTokenTypes {
      *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
      *     |       `--IDENTIFIER -> PUBLIC
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #VALUE_INLINE_TAG
      */
@@ -1709,7 +1710,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>
      * <b>Tree:</b>
      * </p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -1719,7 +1720,7 @@ public final class JavadocCommentsTokenTypes {
      *        |--TAG_NAME -> snippet
      *        `--DESCRIPTION -> DESCRIPTION
      *            `--TEXT ->  lang=java
-     * }</pre>
+     * }
      *
      * @see #SNIPPET_ATTRIBUTE
      */
@@ -1731,14 +1732,14 @@ public final class JavadocCommentsTokenTypes {
      * <p>Used within snippet attributes to assign values.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * { @snippet lang="java" :
      *   int x = 1;
      * }
-     * }</pre>
+     * }
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
      *     |--JAVADOC_INLINE_TAG_START -> {@
@@ -1754,7 +1755,7 @@ public final class JavadocCommentsTokenTypes {
      *     |   |--TEXT ->   int x = 1;
      *     |   |--NEWLINE -> \r\n
      *     `--JAVADOC_INLINE_TAG_END -> }
-     * }</pre>
+     * }
      *
      * @see #SNIPPET_ATTRIBUTE
      * @see #SNIPPET_ATTRIBUTES
@@ -1767,7 +1768,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code <a href="example">text</a>}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * |--HTML_TAG_START -> HTML_TAG_START
      * |   |--TAG_OPEN -> <
@@ -1786,7 +1787,7 @@ public final class JavadocCommentsTokenTypes {
      * |--TAG_SLASH -> /
      * |--TAG_NAME -> a
      * `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ATTRIBUTE
      * @see #TAG_ATTR_NAME
@@ -1799,7 +1800,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * {@snippet :config}}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
@@ -1817,7 +1818,7 @@ public final class JavadocCommentsTokenTypes {
      * |--TEXT -> /
      * |--NEWLINE -> \n
      * `--TEXT -> class Test {}
-     * }</pre>
+     * }
      *
      * @see #SNIPPET_INLINE_TAG
      */
@@ -1834,7 +1835,7 @@ public final class JavadocCommentsTokenTypes {
      * </p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->  Example showing
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -1847,7 +1848,7 @@ public final class JavadocCommentsTokenTypes {
      *         |   `--TEXT ->  description of the index term
      *         `--JAVADOC_INLINE_TAG_END -> }
      * |--TEXT -> .
-     * }</pre>
+     * }
      *
      * @see #JAVADOC_INLINE_TAG
      */
@@ -1867,7 +1868,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @snippet lang=java}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -1877,7 +1878,7 @@ public final class JavadocCommentsTokenTypes {
      *        |--TAG_NAME -> snippet
      *        `--DESCRIPTION -> DESCRIPTION
      *            `--TEXT ->  lang=java
-     * }</pre>
+     * }
      */
     public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
 
@@ -1895,7 +1896,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @snippet lang=java region=main}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -1905,7 +1906,7 @@ public final class JavadocCommentsTokenTypes {
      *        |--TAG_NAME -> snippet
      *        `--DESCRIPTION -> DESCRIPTION
      *            `--TEXT ->  lang=java region=main
-     * }</pre>
+     * }
      */
     public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
 
@@ -1921,7 +1922,7 @@ public final class JavadocCommentsTokenTypes {
      * <p>{@code * @snippet lang=java * System.out.println("hello");}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -1934,7 +1935,7 @@ public final class JavadocCommentsTokenTypes {
      *            |--NEWLINE -> \n
      *            |--LEADING_ASTERISK -> *
      *            `--TEXT -> System.out.println("hello");
-     * }</pre>
+     * }
      */
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
@@ -1949,7 +1950,7 @@ public final class JavadocCommentsTokenTypes {
      * </pre>
      *
      * <b>Tree:</b>
-     * <pre>
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /&#42;*
      * |--NEWLINE -> \n
@@ -1968,7 +1969,7 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--LEADING_ASTERISK -> *
      * `--TEXT -> /
-     * </pre>
+     * }
      *
      * @see #FIELD_TYPE
      */
@@ -1980,7 +1981,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * @param value The parameter of method.}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -1992,7 +1993,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--PARAMETER_NAME -> value
      *         `--DESCRIPTION -> DESCRIPTION
      *             `--TEXT ->  The parameter of method.
-     * }</pre>
+     * }
      *
      * @see #PARAM_BLOCK_TAG
      */
@@ -2003,20 +2004,20 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Example in Javadoc:</p>
      *
-     * <pre>{@code
+     * {@snippet lang="text" :
      * {@see "foo"}
-     * }</pre>
+     * }
      *
      * <p>Tree:</p>
      *
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
      *     |--AT_SIGN -> @
      *     |--TAG_NAME -> see
      *     |--TEXT ->
      *     `--STRING_LITERAL -> "foo"
-     * }</pre>
+     * }
      */
     public static final int STRING_LITERAL = JavadocCommentsLexer.STRING_LITERAL;
 
@@ -2033,7 +2034,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
@@ -2052,27 +2053,24 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
-     * }</pre>
+     * }
      */
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
 
     /**
      * Void HTML element (self-closing).
      *
-     * <p>Example in Javadoc:</p>
-     * <pre>
-     * &lt;br&gt;
-     * </pre>
+     * <p>Example in Javadoc: {@code <br>}</p>
      *
      * <p>Tree:</p>
-     * <pre>
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * `--VOID_ELEMENT -> VOID_ELEMENT
      *     `--HTML_TAG_START -> HTML_TAG_START
-     *         |--TAG_OPEN -> &lt;
+     *         |--TAG_OPEN -> <
      *         |--TAG_NAME -> br
-     *         `--TAG_CLOSE -> &gt;
-     * </pre>
+     *         `--TAG_CLOSE -> >
+     * }
      */
     public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
 
@@ -2085,7 +2083,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * <a href="https://example.com">link</a>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * `--HTML_ELEMENT -> HTML_ELEMENT
      *     |--HTML_TAG_START -> HTML_TAG_START
@@ -2105,7 +2103,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_SLASH -> /
      *         |--TAG_NAME -> a
      *         `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ELEMENT
      */
@@ -2117,13 +2115,10 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Represents one attribute inside an HTML tag.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <input type="text">
-     * }</pre>
+     * <p><b>Example:</b>{@code <input type="text">}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * `--VOID_ELEMENT -> VOID_ELEMENT
      *     `--HTML_TAG_START -> HTML_TAG_START
@@ -2136,7 +2131,7 @@ public final class JavadocCommentsTokenTypes {
      *         |       |--EQUALS -> =
      *         |       `--ATTRIBUTE_VALUE -> "text"
      *         `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ATTRIBUTES
      */
@@ -2149,13 +2144,10 @@ public final class JavadocCommentsTokenTypes {
      * <p>Appears in Javadoc comments when documenting HTML elements that contain
      * multiple attributes.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <div lang="en" custom-attr="value"></div>
-     * }</pre>
+     * <p><b>Example:</b>{@code <div lang="en" custom-attr="value"></div>}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * |--HTML_TAG_START -> HTML_TAG_START
      * |   |--TAG_OPEN -> <
@@ -2172,7 +2164,7 @@ public final class JavadocCommentsTokenTypes {
      * |   |       |--EQUALS -> =
      * |   |       `--ATTRIBUTE_VALUE -> "value"
      * |   `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ATTRIBUTE
      */
@@ -2188,7 +2180,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * <a href="https://example.com">link</a>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * `--HTML_ELEMENT -> HTML_ELEMENT
      *     `--HTML_TAG_START -> HTML_TAG_START
@@ -2201,7 +2193,7 @@ public final class JavadocCommentsTokenTypes {
      *         |       |--EQUALS -> =
      *         |       `--ATTRIBUTE_VALUE -> "https://example.com"
      *         `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ELEMENT
      */
@@ -2217,7 +2209,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * <a href="https://example.com">link</a>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * |--LEADING_ASTERISK -> *
      * `--HTML_ELEMENT -> HTML_ELEMENT
      *     |--HTML_TAG_START -> HTML_TAG_START
@@ -2237,7 +2229,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TAG_SLASH -> /
      *         |--TAG_NAME -> a
      *         `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ELEMENT
      */
@@ -2247,13 +2239,10 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Represents the opening {@literal "<"} symbol of an HTML start tag.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <div class="container" lang="en"></div>
-     * }</pre>
+     * <p><b>Example:</b>{@code <div class="container" lang="en"></div>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * |--HTML_TAG_START -> HTML_TAG_START
      * |   |--TAG_OPEN -> <
@@ -2273,7 +2262,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--TAG_SLASH -> /
      *     |--TAG_NAME -> div
      *     `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_TAG_START
      */
@@ -2284,15 +2273,10 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Appears inside an HTML tag within Javadoc comments.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <div class="container">
-     *     Content
-     * </div>
-     * }</pre>
+     * <p><b>Example: </b>{@code <div class="container">Content</div>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * |--HTML_TAG_START -> HTML_TAG_START
      * |   |--TAG_OPEN -> <
@@ -2310,7 +2294,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--TAG_SLASH -> /
      *     |--TAG_NAME -> div
      *     `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * <p>Here {@code TAG_NAME} corresponds to {@code "div"}.</p>
      */
@@ -2322,13 +2306,10 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Appears in Javadoc comments when documenting HTML elements.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <p>Some text</p>
-     * }</pre>
+     * <p><b>Example:</b>{@code <p>Some text</p>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * |--HTML_TAG_START -> HTML_TAG_START
      * |   |--TAG_OPEN -> <
@@ -2341,7 +2322,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--TAG_SLASH -> /
      *     |--TAG_NAME -> p
      *     `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_TAG_START
      */
@@ -2355,12 +2336,12 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * <br />}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * VOID_ELEMENT -> VOID_ELEMENT
      * |--TAG_OPEN -> <
      * |--TAG_NAME -> br
      * `--TAG_SLASH_CLOSE -> />
-     * }</pre>
+     * }
      *
      * @see #HTML_ELEMENT
      */
@@ -2372,13 +2353,10 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Appears in Javadoc comments when closing HTML elements.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <p>Paragraph text</p>
-     * }</pre>
+     * <p><b>Example: </b>{@code <p>Paragraph text</p>}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * |--HTML_TAG_START -> HTML_TAG_START
      * |   |--TAG_OPEN -> <
@@ -2391,7 +2369,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--TAG_SLASH -> /
      *     |--TAG_NAME -> p
      *     `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_TAG_END
      */
@@ -2401,13 +2379,10 @@ public final class JavadocCommentsTokenTypes {
      * {@code TAG_ATTR_NAME} represents the name of an attribute inside an
      * HTML element within a Javadoc comment.
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <img src="logo.png" alt="Site logo">
-     * }</pre>
+     * <p><b>Example: </b>{@code <img src="logo.png" alt="Site logo">}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text" :
      * HTML_ELEMENT -> HTML_ELEMENT
      * `--VOID_ELEMENT -> VOID_ELEMENT
      *     `--HTML_TAG_START -> HTML_TAG_START
@@ -2425,7 +2400,7 @@ public final class JavadocCommentsTokenTypes {
      *         |       |--EQUALS -> =
      *         |       `--ATTRIBUTE_VALUE -> "Site logo"
      *         `--TAG_CLOSE -> >
-     * }</pre>
+     * }
      *
      * @see #HTML_ATTRIBUTES
      */
@@ -2446,21 +2421,21 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * <!-- Hello World! -->}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text ":
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \r\n
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--HTML_COMMENT -> HTML_COMMENT
-     *     |--HTML_COMMENT_START -> <!--
+     *     |--HTML_COMMENT_START -> &lt;!--
      *     |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
      *     |   `--TEXT ->  Hello World!
      *     `--HTML_COMMENT_END -> -->
      * |--NEWLINE -> \r\n
      * |--LEADING_ASTERISK -> *
      * |--TEXT -> /
-     * }</pre>
+     * }
      *
      * @see #HTML_COMMENT
      */
@@ -2475,13 +2450,13 @@ public final class JavadocCommentsTokenTypes {
      * Example: {@code <!-- Note: This method is for demonstration purposes only. -->}
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text ":
      * HTML_COMMENT -> HTML_COMMENT
-     * |--HTML_COMMENT_START -> <!--
+     * |--HTML_COMMENT_START -> &lt;!--
      * |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
      * |   `--TEXT ->  Note: This method is for demonstration purposes only.
      * `--HTML_COMMENT_END -> -->
-     * }</pre>
+     * }
      *
      * @see #HTML_COMMENT_END
      */
@@ -2496,15 +2471,15 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b>{@code * <!-- hidden comment -->}</p>
      *
      * <b>Tree:</b>
-     * <pre>{@code
+     * {@snippet lang="text ":
      * |--LEADING_ASTERISK -> *
      * |--TEXT ->
      * |--HTML_COMMENT -> HTML_COMMENT
-     * |   |--HTML_COMMENT_START -> <!--
+     * |   |--HTML_COMMENT_START -> &lt;!--
      * |   |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
      * |   |   `--TEXT ->  hidden comment
      * |   `--HTML_COMMENT_END -> -->
-     * }</pre>
+     * }
      *
      * @see #HTML_COMMENT
      */
@@ -2519,13 +2494,13 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b> {@code <!-- This is a comment -->}</p>
      *
      * <p><b>Tree:</b></p>
-     * <pre>{@code
+     * {@snippet lang="text ":
      * HTML_COMMENT -> HTML_COMMENT
-     * |--HTML_COMMENT_START -> <!--
+     * |--HTML_COMMENT_START -> &lt;!--
      * |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
      * |   `--TEXT ->  This is a comment
      * `--HTML_COMMENT_END -> -->
-     * }</pre>
+     * }
      *
      * @see #HTML_COMMENT
      */

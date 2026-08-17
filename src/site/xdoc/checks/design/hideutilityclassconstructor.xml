@@ -47,19 +47,19 @@
           If you make the constructor protected you may want to consider the following constructor
           implementation technique to disallow instantiating subclasses:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class StringUtils // not final to allow subclassing
-{
-  protected StringUtils() {
-    // prevents calls from subclass
-    throw new UnsupportedOperationException();
-  }
+          {@ lang="text":
+          public class StringUtils // not final to allow subclassing
+          {
+          protected StringUtils() {
+          // prevents calls from subclass
+          throw new UnsupportedOperationException();
+          }
 
-  public static int count(char c, String s) {
-    // ...
-  }
-}
-        </code></pre></div>
+          public static int count(char c, String s) {
+          // ...
+          }
+          }
+          }
       </subsection>
 
       <subsection name="Properties" id="HideUtilityClassConstructor_Properties">
