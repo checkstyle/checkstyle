@@ -410,18 +410,11 @@ no-error-xwiki)
   ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
 
-  # XWiki rejects commons-logging in Checkstyle's transitive dependency tree.
-  # until https://github.com/checkstyle/checkstyle/issues/21245
-  xmlstarlet ed --inplace \
-    -N pom="http://maven.apache.org/POM/4.0.0" \
-    -s "/pom:project/pom:dependencies/pom:dependency[pom:groupId='commons-logging' \
-      and pom:artifactId='commons-logging' and not(pom:optional)]" \
-    -t elem -n optional -v true \
-    pom.xml
-
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/xwiki/xwiki-commons.git"
+  checkout_from \
+    "https://github.com/stoyanK7/xwiki-commons.git" \
+    "misc-exclude-commons-logging-from-checkstyle-test-jar"
   cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
@@ -463,10 +456,6 @@ no-error-xwiki)
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles xwiki-platform
-  # Needed to pass the git-diff check
-  # until https://github.com/checkstyle/checkstyle/issues/21245
-  cd ..
-  git restore pom.xml
   ;;
 
 no-error-test-sbe)
