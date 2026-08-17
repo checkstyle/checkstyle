@@ -122,7 +122,6 @@ public class XdocsExampleFileTest {
      */
     private static final Set<String> MODULES_WITHOUT_DEFAULT_FIRST_EXAMPLE = Set.of(
         "checks/coding/illegaltokentext",
-        "checks/naming/localfinalvariablename",
         "checks/translation"
     );
 
