@@ -33,8 +33,7 @@
 
       <subsection name="Examples" id="LocalFinalVariableName_Examples">
         <p id="Example1-config">
-          An example of how to configure the check so that the length of the
-          name is not less than 4:
+          To configure the check with default properties:
         </p>
         <macro name="example">
           <param name="path"
@@ -48,7 +47,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check with default properties:
+          An example of how to configure the check so that the length of the
+          name is not less than 4:
         </p>
         <macro name="example">
           <param name="path"

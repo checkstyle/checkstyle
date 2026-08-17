@@ -20,8 +20,8 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LocalFinalVariableName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">An example of how to configure the check so that the length of the name is not less than 4</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">With default properties</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">With default properties</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check so that the length of the name is not less than 4</a></li>
               <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check for names of local final parameters and resources in try statements (without checks on variables)</a></li>
             </ul>
           </li>
@@ -99,6 +99,33 @@
 
       <subsection name="Examples" id="LocalFinalVariableName_Examples">
         <p id="Example1-config">
+          To configure the check with default properties:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LocalFinalVariableName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void MyMethod() {
+    try (Scanner scanner = new Scanner(System.in)) {
+
+      final int VAR1 = 5;  // violation 'Name 'VAR1' must match pattern'
+      final int var1 = 10;
+    }
+    catch (final Exception ex) {
+
+      final int VAR2 = 15; // violation 'Name 'VAR2' must match pattern'
+      final int var2 = 20;
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
           An example of how to configure the check so that the length of the
           name is not less than 4:
         </p>
@@ -111,9 +138,9 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">Code Example:</p>
+        <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
+class Example2 {
   void MyMethod() {
     try (Scanner scanner = new Scanner(System.in)) {
 
@@ -124,33 +151,6 @@ class Example1 {
 
       final int VAR2 = 15; // violation 'Name 'VAR2' must match pattern'
       final int var2 = 20; // violation 'Name 'var2' must match pattern'
-    }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
-          To configure the check with default properties:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="LocalFinalVariableName"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
-  void MyMethod() {
-    try (Scanner scanner = new Scanner(System.in)) {
-
-      final int VAR1 = 5;  // violation 'Name 'VAR1' must match pattern'
-      final int var1 = 10;
-    }
-    catch (final Exception ex) {
-
-      final int VAR2 = 15; // violation 'Name 'VAR2' must match pattern'
-      final int var2 = 20;
     }
   }
 }
