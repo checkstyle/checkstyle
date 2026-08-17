@@ -73,8 +73,8 @@
           Programmers sometimes mistakenly use the type of their class <code>Foo</code>
           as the type of the parameter to <code>equals()</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public boolean equals(Foo obj) {...}
+        <div class="wrapper"><pre class="prettyprint"><code>
+public boolean equals(Foo obj) { }
         </code></pre></div>
 
         <p>

@@ -52,10 +52,10 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   build files or log4j configuration files. See SuppressionFilter.
  * </p>
  * <div class="wrapper">
- * <pre>
- * &lt;suppress checks="OrderedProperties"
- *   files="log4j.properties|ResourceBundle/Bug.*.properties|logging.properties"/&gt;
- * </pre>
+ * {@snippet lang="text" :
+ * <suppress checks="OrderedProperties"
+ *   files="log4j.properties|ResourceBundle/Bug.*.properties|logging.properties"/>
+ * }
  * </div>
  *
  * <p>Known limitation: The key should not contain a newline.

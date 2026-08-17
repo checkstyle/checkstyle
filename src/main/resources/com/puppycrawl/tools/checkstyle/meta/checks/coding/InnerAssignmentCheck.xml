@@ -19,7 +19,7 @@
  &lt;p&gt;
  Note: Check allows usage of the popular assignments in loops:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  String line;
  while ((line = bufferedReader.readLine()) != null) { // OK
    // process the line

@@ -103,11 +103,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * The check validates a XML document when it loads the document. To validate against
  * the above DTD, include the following document type declaration in your XML document:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
- * &lt;!DOCTYPE import-control PUBLIC
+ * {@snippet lang="text" :
+ * <!DOCTYPE import-control PUBLIC
  *     "-//Checkstyle//DTD ImportControl Configuration 1.5//EN"
- *     "https://checkstyle.org/dtds/import_control_1_5.dtd"&gt;
- * </code></pre></div>
+ *     "https://checkstyle.org/dtds/import_control_1_5.dtd">
+ * }
+ *
+ * @noinspection JavadocLinkAsPlainText
+ * @noinspectionreason JavadocLinkAsPlainText - link is in plain text in snippet
  *
  * @since 4.0
  */
