@@ -94,6 +94,10 @@
   <suppress checks="PackageDeclarationCheck"
     files="rulepackagenames/InputPackageNameBad\.java"/>
 
+  <!-- until https://github.com/checkstyle/checkstyle/issues/21110 -->
+  <suppress checks="PackageDeclarationCheck"
+    files="module-info\.java"/>
+
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
     files="javadoctype/InputJavadocTypeWithBlockComment\.java"/>
