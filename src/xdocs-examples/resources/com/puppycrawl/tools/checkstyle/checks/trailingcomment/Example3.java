@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="TrailingComment">
-      <property name="legalComment" value="^ (SUPPRESS CHECKSTYLE|NOPMD|NOSONAR)$"/>
+      <property name="legalComment" value="^ ok, SUPPRESS CHECKSTYLE$"/>
     </module>
   </module>
 </module>
@@ -15,7 +15,7 @@ public class Example3 {
   int a;
   int b;
   int c;
-  int d; // violation 'Don't use trailing comments.'
+  int d; // ok, SUPPRESS CHECKSTYLE
 
   public static void main(String[] args) {
     int x = 10;
