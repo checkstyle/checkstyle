@@ -23,9 +23,7 @@
       </p>
     </div>
 
-    <section name="">
-    <subsection name="See Checkstyle in Action"
-                  id="See_Checkstyle_in_Action">
+    <section name="See Checkstyle in Action">
       <p>
         Configure a rule, run Checkstyle against your Java source, and get a
         precise violation.
@@ -71,11 +69,10 @@
         <a href="config.html">configuration</a> and
         <a href="running.html">running Checkstyle</a>.
       </p>
-    </subsection>
+    </section>
 
 
-    <subsection name="What can Checkstyle check?"
-                  id="What_can_Checkstyle_check?">
+    <section name="What can Checkstyle check?">
       <div class="cs-grid">
         <a href="checks/naming/index.html" class="cs-card">
           <p class="cs-card-title">Naming</p>
@@ -118,14 +115,14 @@
                checked="checked"/>
         <input type="radio" name="cs-check-demo" id="demo-finalclass" class="cs-toggle-input"/>
         <input type="radio" name="cs-check-demo" id="demo-magicnumber" class="cs-toggle-input"/>
-        <input type="radio" name="cs-check-demo" id="demo-javadocstyle" class="cs-toggle-input"/>
+        <input type="radio" name="cs-check-demo" id="demo-emptystatement" class="cs-toggle-input"/>
         <input type="radio" name="cs-check-demo" id="demo-leftcurly" class="cs-toggle-input"/>
 
         <div class="cs-toggle-labels">
           <label for="demo-typename">TypeName</label>
           <label for="demo-finalclass">FinalClass</label>
           <label for="demo-magicnumber">MagicNumber</label>
-          <label for="demo-javadocstyle">JavadocStyle</label>
+          <label for="demo-emptystatement">EmptyStatement</label>
           <label for="demo-leftcurly">LeftCurly</label>
         </div>
 
@@ -158,13 +155,12 @@
             should be named constants.</p>
         </div>
 
-        <div id="panel-javadocstyle" class="cs-toggle-panel cs-check-panel cs-code-wrapper">
-          <pre class="cs-check-code"><span class="cs-code-comment">// Missing javadoc</span>
-<span class="cs-code-keyword">public void</span> method() {}</pre>
+        <div id="panel-emptystatement" class="cs-toggle-panel cs-check-panel cs-code-wrapper">
+          <pre class="cs-check-code"><span class="cs-code-keyword">if</span> (retries &gt; <span class="cs-code-number">3</span>);</pre>
           <p class="cs-check-violation"><span class="cs-check-badge">ERROR</span>
-            MyClass.java:2:1: Missing a Javadoc comment. <b>[JavadocStyle]</b></p>
-          <p class="cs-check-desc">Ensures public methods have Javadoc comments for proper
-            documentation.</p>
+            Retry.java:1:18: Empty statement. <b>[EmptyStatement]</b></p>
+          <p class="cs-check-desc">Detects empty statements (standalone semicolons) that can
+            introduce hard-to-spot bugs.</p>
         </div>
 
         <div id="panel-leftcurly" class="cs-toggle-panel cs-check-panel cs-code-wrapper">
@@ -178,7 +174,7 @@
             declaration for consistent formatting.</p>
         </div>
       </div>
-    </subsection>
+    </section>
 
     <div class="cs-fits-callout">
       <p class="cs-fits-title">Where Checkstyle fits</p>
@@ -193,8 +189,7 @@
       </p>
     </div>
 
-    <subsection name="Make Checkstyle yours"
-                  id="Make_Checkstyle_yours">
+    <section name="Make Checkstyle Yours">
       <p>
         Adopt an established configuration as a practical starting point,
         or define exactly which rules apply to your codebase.
@@ -237,10 +232,9 @@
             policies. See Configuration</p>
         </a>
       </div>
-    </subsection>
+    </section>
 
-    <subsection name="Use it in your workflow"
-                  id="Use_it_in_your_workflow">
+    <section name="Use It In Your Workflow">
       <p>
         One configuration, everywhere it needs to run — your build,
         your terminal, and your CI pipeline.
@@ -286,10 +280,9 @@
         Checkstyle also plugs into your CI/CD pipeline. See the
         <a href="#Related_Tools_Active_Tools">Active Tools</a>.
       </p>
-    </subsection>
+    </section>
 
-    <subsection name="Ready to try Checkstyle?"
-                  id="Ready_to_try_Checkstyle?">
+    <section name="Ready to Try Checkstyle">
       <p>
         Choose an integration above, adopt a supplied configuration or
         write your own, and run Checkstyle against your Java sources.
@@ -313,7 +306,6 @@
         or use <a href="https://jitpack.io/">jitpack.io</a> to build artifacts directly,
         even from your own fork.
       </p>
-    </subsection>
     </section>
 
     <hr class="cs-section-divider"/>
