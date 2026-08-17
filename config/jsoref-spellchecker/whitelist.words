@@ -177,7 +177,6 @@ chmod
 chr
 ci
 cimg
-Cinit
 circleci
 cirrusci
 classannotations
@@ -322,12 +321,12 @@ Djacoco
 Djapicmp
 Djdepend
 Dlinkcheck
+Dlychee
 DMail
 Dmaven
 Dmdep
 dnd
 Dnew
-doccheck
 doccomments
 docdefaultconstr
 Dockter
@@ -395,7 +394,6 @@ ent
 enum
 eol
 eot
-epl
 equalsavoidnull
 equalshashcode
 equalsverifier
@@ -470,12 +468,12 @@ finalparameters
 findbugs
 Findentation
 findstr
-firefox
 firstsentence
 FIXME
 Fjava
 Fjavadoc
 fluido
+fluxzero
 Fmain
 Fmessages
 Fmetrics
@@ -518,6 +516,7 @@ gitattributes
 github
 githubusercontent
 Gjs
+GLIBC
 globbing
 GMetrics
 gnupg
@@ -706,7 +705,6 @@ jdt
 jedit
 jenkins
 jep
-jeremymanson
 jessesquires
 jetbrains
 JFile
@@ -866,7 +864,6 @@ mixin
 mkdir
 MKo
 mkordas
-MLINKCHECK
 MMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMM
 moby
@@ -884,7 +881,6 @@ moradan
 mozilla
 MRELEASE
 mstudman
-MTAGLIST
 multicharacter
 multifileregexpheader
 multiline
@@ -894,6 +890,7 @@ multiplestringliterals
 multiplevariabledeclarations
 Multiset
 multithreading
+musl
 mutableexception
 MVC
 mvn
@@ -1079,7 +1076,6 @@ patreon
 patternvariableassignment
 patternvariablename
 Paulicke
-paypal
 pbludov
 Pcheckstyle
 pdf
@@ -1101,6 +1097,7 @@ pkgextra
 pkx
 PLHM
 plugin
+Plychee
 PMB
 pmd
 pmdruleset
@@ -1432,6 +1429,7 @@ tokenization
 tokenizer
 tokentype
 tolist
+toml
 Toolbar
 toolongpackagetotestcoveragegooglesjavastylerule
 TOSTRING
