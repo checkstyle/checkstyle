@@ -21,7 +21,7 @@
  Attention: Annotations among modifiers are ignored (looks like false-negative)
  as there might be a problem with annotations for return types:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public @Nullable Long getStartTimeOrNull() { ... }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -33,9 +33,9 @@
  &lt;p&gt;
  Example:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
- &amp;#64;Override
- &amp;#64;Nullable
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ @Override
+ @Nullable
  public String getNameIfPresent() { ... }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 

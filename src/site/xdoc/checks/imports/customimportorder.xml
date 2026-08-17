@@ -62,7 +62,7 @@
           SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
           Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
           name and import name are identical:
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 package java.util.concurrent.locks;
 
 import java.io.File;
@@ -140,7 +140,7 @@ import java.util.regex.Matcher; //#8
         <p>
           1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         </code></pre></div>
@@ -153,7 +153,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
         <p>
           2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
         </code></pre></div>
 

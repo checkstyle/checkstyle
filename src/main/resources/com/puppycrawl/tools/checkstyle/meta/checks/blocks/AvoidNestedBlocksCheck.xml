@@ -16,7 +16,7 @@
  &lt;p&gt;
  For example, this check finds the obsolete braces in
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public void guessTheOutput()
  {
    int whichIsWhich = 0;
@@ -30,7 +30,7 @@
  &lt;p&gt;
  and debugging / refactoring leftovers such as
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  // if (conditionThatIsNotUsedAnyLonger)
  {
    System.out.println("unconditional");

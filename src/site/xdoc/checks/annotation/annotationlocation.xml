@@ -53,7 +53,7 @@
           Attention: Annotations among modifiers are ignored (looks like false-negative)
           as there might be a problem with annotations for return types:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public @Nullable Long getStartTimeOrNull() { ... }
         </code></pre></div>
 
@@ -65,9 +65,9 @@ public @Nullable Long getStartTimeOrNull() { ... }
         <p>
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&#64;Override
-&#64;Nullable
+        <div class="wrapper"><pre class="prettyprint"><code>
+@Override
+@Nullable
 public String getNameIfPresent() { ... }
         </code></pre></div>
       </subsection>

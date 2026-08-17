@@ -17,8 +17,8 @@
  &lt;p&gt;
  Example (the line with 'No newline at end of file' should not be in the diff):
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-text"&gt;
- &amp;#64;&amp;#64; -32,4 +32,5 &amp;#64;&amp;#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ @@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
  PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
 
  StaticMethodCandidateCheck.name = Static Method Candidate

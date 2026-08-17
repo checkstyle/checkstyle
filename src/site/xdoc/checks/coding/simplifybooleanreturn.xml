@@ -34,7 +34,7 @@
           Checks for over-complicated boolean return or yield statements.
           For example the following code
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 if (valid())
   return false;
 else
@@ -44,7 +44,7 @@ else
         <p>
           could be written as
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 return !valid();
         </code></pre></div>
 
