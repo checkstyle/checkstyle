@@ -44,26 +44,26 @@
         <p>
           For example, this check finds the obsolete braces in
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public void guessTheOutput()
-{
-  int whichIsWhich = 0;
-  {
-    whichIsWhich = 2;
-  }
-  System.out.println("value = " + whichIsWhich);
-}
-        </code></pre></div>
+          {@:
+          public void guessTheOutput()
+          {
+          int whichIsWhich = 0;
+          {
+          whichIsWhich = 2;
+          }
+          System.out.println("value = " + whichIsWhich);
+          }
+          }
 
         <p>
           and debugging / refactoring leftovers such as
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// if (conditionThatIsNotUsedAnyLonger)
-{
-  System.out.println("unconditional");
-}
-        </code></pre></div>
+          {@:
+          // if (conditionThatIsNotUsedAnyLonger)
+          {
+          System.out.println("unconditional");
+          }
+          }
 
         <p>
           A case in a switch statement does not implicitly form a block.

@@ -51,13 +51,13 @@
           compiler does not require the <code>static</code> modifier. This check provides the ability to enforce
           that the <code>static</code> modifier is explicitly coded and not implicitly added by the compiler.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public final class Person {
-  enum Age {  // violation
-    CHILD, ADULT
-  }
-}
-        </code></pre></div>
+          {@ lang="text":
+          public final class Person {
+          enum Age {  // violation
+          CHILD, ADULT
+          }
+          }
+          }
 
         <p>
           Rationale for this check: Nested enums, interfaces, and records are treated differently from

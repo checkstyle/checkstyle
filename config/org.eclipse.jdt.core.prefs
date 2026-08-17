@@ -14,6 +14,7 @@ org.eclipse.jdt.core.compiler.problem.discouragedReference=error
 org.eclipse.jdt.core.compiler.problem.emptyStatement=error
 org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
 # The severity is set to 'warning', since we need to suppress it in some cases.
+# org.eclipse.jdt.core.compiler.problem.missingJavadocTagDescription
 org.eclipse.jdt.core.compiler.problem.explicitlyClosedAutoCloseable=warning
 org.eclipse.jdt.core.compiler.problem.fallthroughCase=error
 org.eclipse.jdt.core.compiler.problem.fatalOptionalError=enabled
@@ -41,7 +42,8 @@ org.eclipse.jdt.core.compiler.problem.missingEnumCaseDespiteDefault=enabled
 org.eclipse.jdt.core.compiler.problem.missingHashCodeMethod=error
 org.eclipse.jdt.core.compiler.problem.missingJavadocCommentsOverriding=enabled
 org.eclipse.jdt.core.compiler.problem.missingJavadocCommentsVisibility=protected
-org.eclipse.jdt.core.compiler.problem.missingJavadocTagDescription=all_standard_tags
+# This property incorrectly flags snippet inline tag.For more details see: https://github.com/eclipse-jdt/eclipse.jdt.core/issues/1583
+# org.eclipse.jdt.core.compiler.problem.missingJavadocTagDescription=all_standard_tags
 org.eclipse.jdt.core.compiler.problem.missingJavadocTagsMethodTypeParameters=enabled
 org.eclipse.jdt.core.compiler.problem.missingJavadocTagsOverriding=enabled
 org.eclipse.jdt.core.compiler.problem.missingJavadocTagsVisibility=protected
