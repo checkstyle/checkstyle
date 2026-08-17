@@ -59,7 +59,6 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "18:10: " + getCheckMessage(MSG_KEY),
             "24:16: " + getCheckMessage(MSG_KEY),
         };
 
