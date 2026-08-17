@@ -45,21 +45,21 @@
         <p>
           Note: Check allows usage of the popular assignments in loops:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-String line;
-while ((line = bufferedReader.readLine()) != null) { // OK
-  // process the line
-}
+          {@:
+          String line;
+          while ((line = bufferedReader.readLine()) != null) { // OK
+          // process the line
+          }
 
-for (;(line = bufferedReader.readLine()) != null;) { // OK
-  // process the line
-}
+          for (;(line = bufferedReader.readLine()) != null;) { // OK
+          // process the line
+          }
 
-do {
-  // process the line
-}
-while ((line = bufferedReader.readLine()) != null); // OK
-        </code></pre></div>
+          do {
+          // process the line
+          }
+          while ((line = bufferedReader.readLine()) != null); // OK
+          }
 
         <p>
           Assignment inside a condition is not a problem here, as the assignment is surrounded

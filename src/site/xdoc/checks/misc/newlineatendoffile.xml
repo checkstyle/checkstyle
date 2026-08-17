@@ -47,16 +47,16 @@
         <p>
           Example (the line with 'No newline at end of file' should not be in the diff):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-&#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
-PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
+          {@ lang="text":
+          @@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
+          PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
 
-StaticMethodCandidateCheck.name = Static Method Candidate
--StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
-\ No newline at end of file
-+StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
-+StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
-        </code></pre></div>
+          StaticMethodCandidateCheck.name = Static Method Candidate
+          -StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
+          \ No newline at end of file
+          +StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
+          +StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
+          }
 
         <p>
           It can also trick the VCS to report the wrong owner for such lines.

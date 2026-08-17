@@ -89,10 +89,10 @@ import org.xml.sax.SAXException;
  * </ul>
  *
  * <p>Usage (called by exec-maven-plugin in pom.xml):</p>
- * <pre>
+ * {@snippet lang="text" :
  *   java SearchIndexGenerator &lt;xdocsDir&gt; &lt;outputFilePath&gt;
  *   java SearchIndexGenerator src/site/xdoc target/site/search-index.json
- * </pre>
+ * }
  */
 public final class SearchIndexGenerator {
 
@@ -653,12 +653,12 @@ public final class SearchIndexGenerator {
      * visible in search result listings without needing to open the page.</p>
      *
      * <p>Confirmed XDoc template structure for the Examples subsection:</p>
-     * <pre>
+     * {@snippet lang="text" :
      *   &lt;p id="Example1-config"&gt;To configure the check...&lt;/p&gt;
      *   &lt;macro name="example"&gt;&lt;param name="type" value="config"/&gt;&lt;/macro&gt;
      *   &lt;p id="Example1-code"&gt;Example:&lt;/p&gt;
      *   &lt;macro name="example"&gt;&lt;param name="type" value="code"/&gt;&lt;/macro&gt;
-     * </pre>
+     * }
      *
      * @param doc      the parsed XDoc document
      * @param baseUrl  the page url without anchor
