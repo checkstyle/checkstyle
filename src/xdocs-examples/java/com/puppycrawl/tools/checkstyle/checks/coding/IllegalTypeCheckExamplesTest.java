@@ -134,15 +134,6 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample8() throws Exception {
         final String[] expected = {
-            "76:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "var"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
-    }
-
-    @Test
-    public void testExample9() throws Exception {
-        final String[] expected = {
             "20:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
             "22:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
             "24:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
@@ -155,7 +146,16 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "78:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "AbstractSet"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "76:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "var"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
