@@ -96,6 +96,17 @@ public final class BlockCommentPosition {
     }
 
     /**
+     * Node is on module definition.
+     *
+     * @param blockComment DetailAST
+     * @return true if node is before module
+     */
+    public static boolean isOnModule(DetailAST blockComment) {
+        return isOnPlainModule(blockComment)
+                || isOnTokenWithAnnotation(blockComment, TokenTypes.MODULE_DEF);
+    }
+
+    /**
      * Node is on interface definition.
      *
      * @param blockComment DetailAST
@@ -233,6 +244,22 @@ public final class BlockCommentPosition {
         return isOnPlainClassMember(blockComment)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.ANNOTATION_FIELD_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.ANNOTATION_FIELD_DEF);
+    }
+
+    /**
+     * Checks that block comment is on module definition without annotations. The
+     * comment must be a direct child of {@code MODULE_DEF} preceded only by the
+     * empty {@code ANNOTATIONS} node, so that a comment placed after the
+     * {@code open} keyword is not accepted.
+     *
+     * @param blockComment block comment start DetailAST
+     * @return true if block comment is on module definition without annotations
+     */
+    private static boolean isOnPlainModule(DetailAST blockComment) {
+        final DetailAST prevSibling = getPrevSiblingSkipComments(blockComment);
+        return blockComment.getParent().getType() == TokenTypes.MODULE_DEF
+                && prevSibling.getType() == TokenTypes.ANNOTATIONS
+                && !prevSibling.hasChildren();
     }
 
     /**
