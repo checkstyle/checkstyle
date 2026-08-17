@@ -55,13 +55,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * operator precedence but unaware about operator associativity.
  * It won't catch cases such as:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * int x = (a + b) + c; // 1st Case
  * boolean p = true; // 2nd Case
  * int q = 4;
  * int r = 3;
- * if (p == (q &lt;= r)) {}
- * </code></pre></div>
+ * if (p == (q <= r)) {}
+ * }
  *
  * <p>
  * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
@@ -77,26 +77,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * The partial support for operator precedence includes cases of the following type:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * boolean a = true, b = true;
  * boolean c = false, d = false;
- * if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
+ * if ((a && b) || c) { // violation, unnecessary paren
  * }
- * if (a &amp;&amp; (b || c)) { // ok
+ * if (a && (b || c)) { // ok
  * }
- * if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
+ * if ((a == b) && c) { // violation, unnecessary paren
  * }
- * String e = &quot;e&quot;;
- * if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
+ * String e = "e";
+ * if ((e instanceof String) && a || b) { // violation, unnecessary paren
  * }
  * int f = 0;
  * int g = 0;
- * if (!(f &gt;= g) // ok
- *         &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
+ * if (!(f >= g) // ok
+ *         && (g > f)) { // violation, unnecessary paren
  * }
- * if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
+ * if ((++f) > g && a) { // violation, unnecessary paren
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.4
  */

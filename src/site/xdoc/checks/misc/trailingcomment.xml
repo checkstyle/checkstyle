@@ -55,9 +55,9 @@
           comments are a bad practice. An end line comment would be one that is on
           the same line as actual code. For example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 a = b + c;      // Some insightful comment
-d = e / f;      /* Some insightful block comment &#42;/
+d = e / f;      /* Some insightful block comment * /
         </code></pre></div>
 
         <p>

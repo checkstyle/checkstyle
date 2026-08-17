@@ -541,10 +541,10 @@ public final class CheckUtil {
     /**
      * Get the short name of super class of anonymous inner class.
      * Example:
-     * <pre>
+     * {@snippet lang="text" :
      * TestClass.NestedClass obj = new Test().new NestedClass() {};
      * // Short name will be Test.NestedClass
-     * </pre>
+     * }
      *
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
      * @return short name of base class of anonymous inner class

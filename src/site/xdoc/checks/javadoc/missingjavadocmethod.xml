@@ -56,7 +56,7 @@
           For getters and setters for the property <code>allowMissingPropertyJavadoc</code>, the methods must
           match exactly the structures below.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public void setNumber(final int number)
 {
     mNumber = number;

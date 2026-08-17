@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Note: Check allows usage of the popular assignments in loops:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * String line;
  * while ((line = bufferedReader.readLine()) != null) { // OK
  *   // process the line
@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   // process the line
  * }
  * while ((line = bufferedReader.readLine()) != null); // OK
- * </code></pre></div>
+ * }
  *
  * <p>
  * Assignment inside a condition is not a problem here, as the assignment is surrounded
@@ -188,22 +188,22 @@ public class InnerAssignmentCheck
     /**
      * Determines if ast is in the body of a flow control statement without
      * braces. An example of such a statement would be
-     * <pre>
-     * if (y &lt; 0)
+     * {@snippet :
+     * if (y > 0)
      *     x = y;
-     * </pre>
+     * }
      *
      * <p>
      * This leads to the following AST structure:
      * </p>
-     * <pre>
+     * {@snippet lang="text" :
      * LITERAL_IF
      *     LPAREN
      *     EXPR // test
      *     RPAREN
      *     EXPR // body
      *     SEMI
-     * </pre>
+     * }
      *
      * <p>
      * We need to ensure that ast is in the body and not in the test.
@@ -224,7 +224,7 @@ public class InnerAssignmentCheck
 
     /**
      * Tests whether the given AST is used in the "assignment in loop" idiom.
-     * <pre>
+     * {@snippet :
      * String line;
      * while ((line = bufferedReader.readLine()) != null) {
      *   // process the line
@@ -236,7 +236,7 @@ public class InnerAssignmentCheck
      *   // process the line
      * }
      * while ((line = bufferedReader.readLine()) != null);
-     * </pre>
+     * }
      * Assignment inside a condition is not a problem here, as the assignment is surrounded by an
      * extra pair of parentheses. The comparison is {@code != null} and there is no chance that
      * intention was to write {@code line == reader.readLine()}.

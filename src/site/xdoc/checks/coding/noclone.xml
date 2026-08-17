@@ -108,7 +108,7 @@
           limitation of a copy constructor (or static factory). Assume
           Square is a subclass for Shape.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 Shape s1 = new Square();
 System.out.println(s1 instanceof Square); //true
         </code></pre></div>
@@ -118,7 +118,7 @@ System.out.println(s1 instanceof Square); //true
           that's the beauty of polymorphism but the code wants to copy
           the Square which is declared as a Shape, its super type...
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 Shape s2 = new Shape(s1); //using the copy constructor
 System.out.println(s2 instanceof Square); //false
         </code></pre></div>
@@ -127,7 +127,7 @@ System.out.println(s2 instanceof Square); //false
           The working solution (without knowing about all subclasses and doing many
           casts) is to do the following (assuming correct clone implementation).
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 Shape s2 = s1.clone();
 System.out.println(s2 instanceof Square); //true
         </code></pre></div>

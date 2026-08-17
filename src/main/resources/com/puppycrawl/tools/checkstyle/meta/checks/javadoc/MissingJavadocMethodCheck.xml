@@ -22,7 +22,7 @@
  For getters and setters for the property &lt;code&gt;allowMissingPropertyJavadoc&lt;/code&gt;, the methods must
  match exactly the structures below.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public void setNumber(final int number)
  {
      mNumber = number;
