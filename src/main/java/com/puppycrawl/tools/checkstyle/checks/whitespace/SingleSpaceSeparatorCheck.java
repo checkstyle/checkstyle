@@ -52,10 +52,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * check, so both braces in the following case will be reported as violations.
  * </p>
  *
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
+ * {@snippet :
+ * public long toNanos(long d)  { return d;             } // 2 violations
  * public long toMicros(long d) { return d / (C1 / C0); }
- * </code></pre></div>
+ * }
  *
  * @since 6.19
  */

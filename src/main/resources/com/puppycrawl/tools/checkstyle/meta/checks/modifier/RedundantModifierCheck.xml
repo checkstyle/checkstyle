@@ -79,18 +79,18 @@
  &lt;p&gt;Enums can also contain abstract methods and methods which can be overridden by the declared
  enumeration fields.
  See the following example:&lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@:
  public enum EnumClass {
    FIELD_1,
    FIELD_2 {
-     &amp;#64;Override
+     @Override
      public final void method1() {} // violation expected
    };
 
    public void method1() {}
    public final void method2() {} // no violation expected
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ }
 
  &lt;p&gt;Since these methods can be overridden in these situations, the final methods are not
  marked as redundant even though they can't be extended by other classes/enums.&lt;/p&gt;
@@ -106,7 +106,7 @@
  &lt;p&gt;Public modifier for constructors in non-public non-protected classes
  is always obsolete: &lt;/p&gt;
 
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@:
  public class PublicClass {
    public PublicClass() {} // OK
  }
@@ -114,13 +114,13 @@
  class PackagePrivateClass {
    public PackagePrivateClass() {} // violation expected
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ }
 
  &lt;p&gt;There is no violation in the following example,
  because removing public modifier from ProtectedInnerClass
  constructor will make this code not compiling: &lt;/p&gt;
 
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@ lang="text":
  package a;
  public class ClassExample {
    protected class ProtectedInnerClass {
@@ -133,7 +133,7 @@
  public class ClassExtending extends ClassExample {
    ProtectedInnerClass pc = new ProtectedInnerClass();
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ }</description>
          <properties>
             <property default-value="22" name="jdkVersion" type="java.lang.String">
                <description>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release.</description>

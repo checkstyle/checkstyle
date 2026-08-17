@@ -30,14 +30,14 @@ public enum ImportOrderOption {
      * Represents the policy that static imports are all at the top.
      * For example:
      *
-     * <pre>
+     * {@snippet :
      *  import static java.awt.Button.ABORT;
      *  import static java.io.File.createTempFile;
      *  import static javax.swing.WindowConstants.*;
      *
      *  import java.awt.Button;
      *  import java.awt.event.ActionEvent;
-     * </pre>
+     * }
      */
     TOP,
 
@@ -45,7 +45,7 @@ public enum ImportOrderOption {
      * Represents the policy that static imports are above the local group.
      * For example:
      *
-     * <pre>
+     * {@snippet :
      *  import static java.awt.Button.A;
      *  import static javax.swing.WindowConstants.*;
      *  import java.awt.Dialog;
@@ -54,7 +54,7 @@ public enum ImportOrderOption {
      *  import static java.io.File.createTempFile;
      *  import java.io.File;
      *  import java.io.IOException;
-     * </pre>
+     * }
      */
     ABOVE,
 
@@ -77,7 +77,7 @@ public enum ImportOrderOption {
      * Represents the policy that static imports are under the local group.
      * For example:
      *
-     * <pre>
+     * {@snippet :
      *  import java.awt.Dialog;
      *  import javax.swing.JComponent;
      *  import static java.awt.Button.A;
@@ -86,7 +86,7 @@ public enum ImportOrderOption {
      *  import java.io.File;
      *  import java.io.IOException;
      *  import static java.io.File.createTempFile;
-     * </pre>
+     * }
      */
     UNDER,
 
@@ -94,14 +94,14 @@ public enum ImportOrderOption {
      * Represents the policy that static imports are all at the bottom.
      * For example:
      *
-     * <pre>
+     * {@snippet :
      *  import java.awt.Button;
      *  import java.awt.event.ActionEvent;
      *
      *  import static java.awt.Button.ABORT;
      *  import static java.io.File.createTempFile;
      *  import static javax.swing.WindowConstants.*;
-     * </pre>
+     * }
      */
     BOTTOM,
 

@@ -36,23 +36,23 @@
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-enum Foo1 {
-  FOO,
-  BAR;
-}
-        </code></pre></div>
+          {@:
+          enum Foo1 {
+          FOO,
+          BAR;
+          }
+          }
 
         <p>
           The check demands that there should not be any comma after last constant in
           enum definition.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-enum Foo1 {
-  FOO,
-  BAR, // violation
-}
-        </code></pre></div>
+          {@:
+          enum Foo1 {
+          FOO,
+          BAR, // violation
+          }
+          }
       </subsection>
 
       <subsection name="Examples" id="NoEnumTrailingComma_Examples">

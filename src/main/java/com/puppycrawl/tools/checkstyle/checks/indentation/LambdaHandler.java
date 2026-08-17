@@ -210,10 +210,10 @@ public class LambdaHandler extends AbstractExpressionHandler {
      * when the statement is not on the same line as the lambda operator ({@code ->}).
      * This applies to single-statement switch rules without curly braces {@code {}}.
      * Example:
-     * <pre>
+     * {@snippet lang="text" :
      * case ONE {@code ->}
      *     1;
-     * </pre>
+     * }
      *
      * @param isLambdaFirstInLine if {@code ->} is the first element on the line
      */
