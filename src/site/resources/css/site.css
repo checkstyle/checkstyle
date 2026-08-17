@@ -142,15 +142,6 @@ h1:hover:has(> a > img:first-child) .anchor {
   border-bottom: 1px solid #e0e0e0;
 }
 
-.cs-hero-title {
-  font-size: 28px !important;
-  font-weight: bold;
-  text-transform: none !important;
-  margin: 0 0 8px !important;
-  line-height: 1.3 !important;
-  color: #1a1a1a;
-}
-
 .cs-hero-tagline {
   font-size: 14.5px !important;
   line-height: 1.55 !important;
@@ -367,20 +358,22 @@ a.cs-card {
 }
 
 #demo-typename:checked ~ .cs-toggle-labels label[for="demo-typename"],
+#demo-avoidstarimport:checked ~ .cs-toggle-labels label[for="demo-avoidstarimport"],
+#demo-invalidjavadocposition:checked ~ .cs-toggle-labels label[for="demo-invalidjavadocposition"],
+#demo-leftcurly:checked ~ .cs-toggle-labels label[for="demo-leftcurly"],
 #demo-finalclass:checked ~ .cs-toggle-labels label[for="demo-finalclass"],
-#demo-magicnumber:checked ~ .cs-toggle-labels label[for="demo-magicnumber"],
-#demo-javadocstyle:checked ~ .cs-toggle-labels label[for="demo-javadocstyle"],
-#demo-leftcurly:checked ~ .cs-toggle-labels label[for="demo-leftcurly"] {
+#demo-magicnumber:checked ~ .cs-toggle-labels label[for="demo-magicnumber"] {
   background: #08c;
   color: #fff;
   border-color: #08c;
 }
 
 #demo-typename:checked ~ #panel-typename,
+#demo-avoidstarimport:checked ~ #panel-avoidstarimport,
+#demo-invalidjavadocposition:checked ~ #panel-invalidjavadocposition,
+#demo-leftcurly:checked ~ #panel-leftcurly,
 #demo-finalclass:checked ~ #panel-finalclass,
-#demo-magicnumber:checked ~ #panel-magicnumber,
-#demo-javadocstyle:checked ~ #panel-javadocstyle,
-#demo-leftcurly:checked ~ #panel-leftcurly {
+#demo-magicnumber:checked ~ #panel-magicnumber {
   display: block;
 }
 
@@ -888,10 +881,6 @@ section#Properties .wrapper table td a {
     padding-right: 0;
   }
 
-  .cs-hero-title {
-    font-size: 22px !important;
-  }
-
   .cs-hero-tagline {
     font-size: 14px !important;
   }
@@ -903,6 +892,14 @@ section#Properties .wrapper table td a {
   .cs-workflow {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .cs-workflow-card {
+    flex: 0 1 auto;
+  }
+
+  .cs-workflow-card > .wrapper {
+    flex: 0 1 auto;
   }
 
   .cs-workflow-arrow {
