@@ -58,14 +58,14 @@ public final class XpathUtil {
      * There are three types of AST tokens:
      * 1. Tokens for which the texts are equal to the name of the token. Or in other words,
      * nodes for which the following expression is always true:
-     * <pre>
+     * {@snippet :
      *     detailAst.getText().equals(TokenUtil.getTokenName(detailAst.getType()))
-     * </pre>
+     * }
      * For example:
-     * <pre>
+     * {@snippet lang="text" :
      *     //MODIFIERS[@text='MODIFIERS']
      *     //OBJBLOCK[@text='OBJBLOCK']
-     * </pre>
+     * }
      * These tokens do not match required criteria because their texts do not carry any additional
      * information, they do not affect the xpath requests and do not help to get more accurate
      * results. The texts of these nodes are useless. No matter what code you analyze, these
@@ -81,24 +81,24 @@ public final class XpathUtil {
      * 3. Tokens for which texts are not constant. The texts of these nodes are closely related
      * to a concrete class, method, variable and so on.
      * For example:
-     * <pre>
+     * {@snippet :
      *     String greeting = "HelloWorld";
      *     //STRING_LITERAL[@text='HelloWorld']
-     * </pre>
-     * <pre>
+     * }
+     * {@snippet :
      *     int year = 2017;
      *     //NUM_INT[@text=2017]
-     * </pre>
-     * <pre>
+     * }
+     * {@snippet :
      *     int age = 23;
      *     //NUM_INT[@text=23]
-     * </pre>
+     * }
      * As you can see same {@code NUM_INT} token type can have different texts, depending on
      * context.
-     * <pre>
+     * {@snippet :
      *     public class MyClass {}
      *     //IDENT[@text='MyClass']
-     * </pre>
+     * }
      * Only these tokens support text attribute because they make our xpath queries more accurate.
      * These token types are listed below.
      */

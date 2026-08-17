@@ -56,22 +56,22 @@
           For getters and setters for the property <code>allowMissingPropertyJavadoc</code>, the methods must
           match exactly the structures below.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public void setNumber(final int number)
-{
-    mNumber = number;
-}
+          {@:
+          public void setNumber(final int number)
+          {
+          mNumber = number;
+          }
 
-public int getNumber()
-{
-    return mNumber;
-}
+          public int getNumber()
+          {
+          return mNumber;
+          }
 
-public boolean isSomething()
-{
-    return false;
-}
-        </code></pre></div>
+          public boolean isSomething()
+          {
+          return false;
+          }
+          }
       </subsection>
 
       <subsection name="Properties" id="MissingJavadocMethod_Properties">

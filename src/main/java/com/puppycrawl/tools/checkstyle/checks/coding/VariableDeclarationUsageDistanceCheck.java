@@ -628,10 +628,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
     /**
      * Checks if variable is in operator declaration. For instance:
-     * <pre>
+     * {@snippet lang="text" :
      * boolean b = true;
      * if (b) {...}
-     * </pre>
+     * }
      * Variable 'b' is in declaration of operator IF.
      *
      * @param operator
@@ -709,21 +709,21 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     /**
      * Check if the token should be ignored for distance counting.
      * For example,
-     * <pre>
+     * {@snippet :
      *     try (final AutoCloseable t = new java.io.StringReader(a);) {
      *     }
-     * </pre>
+     * }
      * final is a zero-distance token and should be ignored for distance counting.
-     * <pre>
-     *     class Table implements Comparator&lt;Integer&gt;{
+     * {@snippet :
+     *     class Table implements Comparator<Integer>{
      *     }
-     * </pre>
+     * }
      * An inner class may be defined. Both tokens implements and extends
      * are zero-distance tokens.
-     * <pre>
+     * {@snippet :
      *     public int method(Object b){
      *     }
-     * </pre>
+     * }
      * public is a modifier and zero-distance token. int is a type and
      * zero-distance token.
      *

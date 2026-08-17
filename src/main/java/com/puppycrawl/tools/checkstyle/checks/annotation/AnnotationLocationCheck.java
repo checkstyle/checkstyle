@@ -44,9 +44,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Attention: Annotations among modifiers are ignored (looks like false-negative)
  * as there might be a problem with annotations for return types:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public @Nullable Long getStartTimeOrNull() { ... }
- * </code></pre></div>
+ * }
  *
  * <p>
  * Such annotations are better to keep close to type.
@@ -56,11 +56,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Example:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * &#64;Override
- * &#64;Nullable
+ * {@snippet lang="text" :
+ * @Override
+ * @Nullable
  * public String getNameIfPresent() { ... }
- * </code></pre></div>
+ * }
  *
  * <p>
  * Notes:

@@ -28,10 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <div>
  * Detects inline conditionals. Here is one example of an inline conditional:
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * String a = getParameter("a");
- * String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
- * </code></pre></div>
+ * String b = (a==null || a.length() > 1) ? null : a.substring(1);
+ * }
  *
  * <p>
  * Rationale: Some developers find inline conditionals hard to read, so
