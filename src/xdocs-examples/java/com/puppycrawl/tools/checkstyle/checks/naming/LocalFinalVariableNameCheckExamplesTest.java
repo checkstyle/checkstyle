@@ -35,6 +35,18 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
+            "18:17: " + getCheckMessage(
+                    MSG_INVALID_PATTERN, "VAR1", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "23:17: " + getCheckMessage(
+                    MSG_INVALID_PATTERN, "VAR2", "^([a-z][a-zA-Z0-9]*|_)$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
             "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR1",
                     "^[a-z][a-zA-Z0-9]{4,}$"),
             "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var1",
@@ -45,18 +57,6 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
                     "^[a-z][a-zA-Z0-9]{4,}$"),
             "26:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var2",
                     "^[a-z][a-zA-Z0-9]{4,}$"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
-    }
-
-    @Test
-    public void testExample2() throws Exception {
-        final String[] expected = {
-            "18:17: " + getCheckMessage(
-                    MSG_INVALID_PATTERN, "VAR1", "^([a-z][a-zA-Z0-9]*|_)$"),
-            "23:17: " + getCheckMessage(
-                    MSG_INVALID_PATTERN, "VAR2", "^([a-z][a-zA-Z0-9]*|_)$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
