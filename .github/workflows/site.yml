@@ -24,7 +24,7 @@ env:
     }}
 
 on:
-  pull_request:
+  pull_request_target:
     paths:
       - 'src/site/**'
   issue_comment:
@@ -57,7 +57,7 @@ jobs:
           || github.event.comment.body == 'GitHub, generate website'
           || github.event.comment.body == 'GitHub, generate site'
           || inputs.pr-number != ''
-          || github.event_name == 'pull_request'
+          || github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     steps:
       - name: React to comment
