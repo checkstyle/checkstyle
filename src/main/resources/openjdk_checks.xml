@@ -327,6 +327,7 @@
       <property name="query"
                 value="//METHOD_DEF/SLIST[LITERAL_RETURN
                         or EXPR[following-sibling::SEMI[following-sibling::*[self::RCURLY]]]]"/>
+      <property name="message" value=".*should have line break after.*"/>
     </module>
     <module name="RightCurly">
       <property name="id" value="RightCurlySame"/>
