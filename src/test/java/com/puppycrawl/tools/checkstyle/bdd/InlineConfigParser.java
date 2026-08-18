@@ -343,8 +343,6 @@ public final class InlineConfigParser {
                     + "InputUnusedLocalVariablePatternVariablesCondition2.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
             "checks/imports/avoidstarimport/InputAvoidStarImportExcludes.java",
-            "checks/sizes/recordcomponentnumber/Example2.java",
-            "checks/whitespace/separatorwrap/Example1.java",
             "com/google/checkstyle/test/chapter5naming/rule522classnames/"
                     + "InputClassNamesWithUnderscore.java",
             "com/google/checkstyle/test/chapter5naming/rule53camelcase/"
