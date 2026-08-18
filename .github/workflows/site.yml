@@ -20,13 +20,9 @@ env:
     ${{
       inputs.pr-number
       || github.event.issue.number
-      || github.event.pull_request.number
     }}
 
 on:
-  pull_request_target:
-    paths:
-      - 'src/site/**'
   issue_comment:
     types: [ created, edited ]
   workflow_dispatch:
@@ -46,7 +42,6 @@ concurrency:
     ${{ github.workflow }}-${{
       inputs.pr-number
       || github.event.issue.number
-      || github.event.pull_request.number
       || github.ref
     }}
   cancel-in-progress: false
@@ -57,7 +52,6 @@ jobs:
           || github.event.comment.body == 'GitHub, generate website'
           || github.event.comment.body == 'GitHub, generate site'
           || inputs.pr-number != ''
-          || github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     steps:
       - name: React to comment
