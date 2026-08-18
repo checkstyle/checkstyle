@@ -35,15 +35,36 @@ public class JavadocLeadingAsteriskAlignExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_KEY, 1, 2),
-            "18:5: " + getCheckMessage(MSG_KEY, 5, 4),
-            "28:3: " + getCheckMessage(MSG_KEY, 3, 4),
-            "29:3: " + getCheckMessage(MSG_KEY, 3, 4),
-            "39:1: " + getCheckMessage(MSG_KEY, 1, 4),
-            "50:5: " + getCheckMessage(MSG_KEY, 5, 6),
+            "13:1: " + getCheckMessage(MSG_KEY, 0, 1),
+            "18:5: " + getCheckMessage(MSG_KEY, 2, 1),
+            "28:3: " + getCheckMessage(MSG_KEY, 0, 1),
+            "29:3: " + getCheckMessage(MSG_KEY, 0, 1),
+            "39:1: " + getCheckMessage(MSG_KEY, -2, 1),
+            "50:5: " + getCheckMessage(MSG_KEY, 0, 1),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "16:2: " + getCheckMessage(MSG_KEY, 1, 0),
+            "20:5: " + getCheckMessage(MSG_KEY, 2, 0),
+            "21:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "25:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "26:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "35:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "36:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "41:1: " + getCheckMessage(MSG_KEY, -2, 0),
+            "45:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "46:4: " + getCheckMessage(MSG_KEY, 1, 0),
+            "53:6: " + getCheckMessage(MSG_KEY, 1, 0),
+            "57:6: " + getCheckMessage(MSG_KEY, 1, 0),
+            "58:6: " + getCheckMessage(MSG_KEY, 1, 0),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
 }

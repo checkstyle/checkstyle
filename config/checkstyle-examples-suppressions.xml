@@ -122,6 +122,15 @@
   <suppress checks="FileLength"
             files="googlenonconstantfieldname/Example1.java"/>
 
+  <!-- Example needs extra header lines to demonstrate the indentation property -->
+  <suppress checks="FileLength"
+            files="javadocleadingasteriskalign/Example2.java"/>
+
+  <!-- Javadoc text must stay identical to Example1's for AST/comment consistency,
+       and the added trailing violation-marker comment pushes it over LineLength -->
+  <suppress checks="LineLength"
+            files="javadocleadingasteriskalign/Example2.java"/>
+
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
     files="avoidstarimport/Example[1-6].java"/>
