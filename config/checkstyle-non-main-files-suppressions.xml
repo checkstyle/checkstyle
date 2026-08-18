@@ -327,6 +327,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/misc/nocodeinfile.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/misc/openjdkmethodthrowsalignment.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/misc/outertypefilename.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/misc/upperell.xml.template"/>

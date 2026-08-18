@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkMethodThrowsAlignmentCheck"
+             name="OpenjdkMethodThrowsAlignment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the line wrapping and alignment of a throws clause in a wrapped method declaration
+ according to the OpenJDK style guide.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ The throws clause must start on a new line and be indented eight spaces relative to either the
+ method declaration or the preceding parameter line. It must also stand out from the parameter
+ list, so alignment with the preceding line is not accepted.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="openjdk.method.throws.indentation"/>
+            <message-key key="openjdk.method.throws.line.new"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

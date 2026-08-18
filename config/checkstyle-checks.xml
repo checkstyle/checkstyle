@@ -860,6 +860,10 @@
        -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="OpenjdkMethodThrowsAlignment">
+      <!-- This Check is specific to the OpenJDK style guide. -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="OuterTypeFilename"/>
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />

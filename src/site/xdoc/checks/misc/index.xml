@@ -137,6 +137,17 @@
           </tr>
           <tr>
             <td>
+              <a href="openjdkmethodthrowsalignment.html#OpenjdkMethodThrowsAlignment">
+                OpenjdkMethodThrowsAlignment
+              </a>
+            </td>
+            <td>
+              Checks the line wrapping and alignment of a throws clause in a wrapped method
+              declaration according to the OpenJDK style guide.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="orderedproperties.html#OrderedProperties">
                 OrderedProperties
               </a>
