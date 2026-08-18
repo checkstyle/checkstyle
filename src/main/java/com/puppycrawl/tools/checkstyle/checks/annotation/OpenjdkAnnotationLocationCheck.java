@@ -89,6 +89,7 @@ public class OpenjdkAnnotationLocationCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.MODULE_DEF,
         };
     }
 
