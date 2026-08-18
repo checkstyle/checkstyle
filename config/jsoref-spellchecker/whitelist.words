@@ -511,6 +511,7 @@ Gdrox
 generalform
 genericwhitespace
 Getenv
+getmessage
 gg
 gh
 Ghj
@@ -951,6 +952,7 @@ NODESET
 noembed
 noenumtrailingcomma
 nofinalizer
+nogetmessageinthrow
 noinspection
 noinspectionreason
 nojavadoc
@@ -1183,7 +1185,8 @@ requiredtags
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
-Rethrown
+rethrowing
+rethrown
 returncount
 returnsreceiver
 returntag
