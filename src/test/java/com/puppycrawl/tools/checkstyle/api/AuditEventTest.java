@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
+import java.io.File;
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 public class AuditEventTest {
@@ -87,6 +90,22 @@ public class AuditEventTest {
         assertWithMessage("invalid source name")
                 .that(event.getSourceName())
                 .isEqualTo("com.puppycrawl.tools.checkstyle.api.AuditEventTest");
+        assertWithMessage("invalid file text")
+                .that(event.getFileText())
+                .isNull();
+    }
+
+    @Test
+    public void testFileText() {
+        final FileText fileText = new FileText(new File("fileName"),
+                Collections.singletonList("line"));
+        final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
+                SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
+        final AuditEvent event = new AuditEvent(getClass(), "fileName", message, fileText);
+
+        assertWithMessage("invalid file text")
+                .that(event.getFileText())
+                .isEqualTo(fileText);
     }
 
 }

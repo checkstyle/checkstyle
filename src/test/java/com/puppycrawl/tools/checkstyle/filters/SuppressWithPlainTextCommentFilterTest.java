@@ -45,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -402,6 +403,26 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         assertWithMessage("Cache should handle missing file.")
                 .that(tempFile.exists()).isFalse();
+    }
+
+    /**
+     * Verifies that the filter uses the {@link FileText} carried by the {@link AuditEvent}
+     * instead of reading the file from disk. The file name points to a non-existent file, so
+     * any attempt to read it from disk would fail.
+     */
+    @Test
+    public void testUsesFileTextFromEvent() {
+        final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
+        final FileText fileText = new FileText(new File("nonexistent.java"),
+                Arrays.asList("// CHECKSTYLE:OFF", "some violation"));
+        final Violation violation = new Violation(2, null, null, null, null,
+                Object.class, null);
+        final AuditEvent event =
+                new AuditEvent(this, "nonexistent.java", violation, fileText);
+
+        assertWithMessage("Filter should suppress using file text from the event")
+                .that(filter.accept(event))
+                .isFalse();
     }
 
     /**

@@ -181,7 +181,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
 
             if (!currentFileName.equals(eventFileName)) {
                 currentFileName = eventFileName;
-                final FileText fileText = getFileText(eventFileName);
+                final FileText fileText = getFileText(event);
                 currentFileSuppressionCache.clear();
                 if (fileText != null) {
                     cacheSuppressions(fileText);
@@ -196,6 +196,22 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     @Override
     protected void finishLocalSetup() {
         // No code by default
+    }
+
+    /**
+     * Returns the {@link FileText} for the given event, reusing the file source carried by
+     * the event when available, or reading it from disk otherwise.
+     *
+     * @param event {@link AuditEvent} instance.
+     * @return {@link FileText} instance.
+     * @throws IllegalStateException if the file could not be read.
+     */
+    private static FileText getFileText(AuditEvent event) {
+        FileText result = event.getFileText();
+        if (result == null) {
+            result = getFileText(event.getFileName());
+        }
+        return result;
     }
 
     /**

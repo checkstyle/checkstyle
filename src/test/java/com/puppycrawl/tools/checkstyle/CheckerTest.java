@@ -339,6 +339,36 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFireErrorsSharesFileText() throws Exception {
+        final Checker checker = new Checker();
+        final FileTextCapturingFilter filter = new FileTextCapturingFilter();
+        checker.addFilter(filter);
+        final DummyFileSetViolationCheck check = new DummyFileSetViolationCheck();
+        check.configure(new DefaultConfiguration("DummyFileSetViolationCheck"));
+        checker.addFileSetCheck(check);
+
+        final File file = new File(getPath("InputCheckerTestSeverity.java"));
+        checker.process(Collections.singletonList(file));
+
+        final AuditEvent processedEvent = filter.getLastEvent();
+        assertWithMessage("AuditEvent should carry the file text of the processed file")
+                .that(processedEvent.getFileText())
+                .isNotNull();
+        assertWithMessage("AuditEvent file text should belong to the processed file")
+                .that(processedEvent.getFileText().getFile().getAbsolutePath())
+                .isEqualTo(file.getAbsolutePath());
+
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(new Violation(1, 0, "a Bundle", "message.key",
+                new Object[] {"arg"}, null, getClass(), null));
+        checker.fireErrors("Some Other File Name", violations);
+
+        assertWithMessage("AuditEvent should not carry file text for a different file")
+                .that(filter.getLastEvent().getFileText())
+                .isNull();
+    }
+
+    @Test
     public void testRemoveFilter() {
         final Checker checker = new Checker();
         final DebugFilter filter = new DebugFilter();
@@ -1798,6 +1828,22 @@ public class CheckerTest extends AbstractModuleTestSupport {
         @Override
         public boolean accept(AuditEvent event) {
             return false;
+        }
+
+    }
+
+    public static final class FileTextCapturingFilter implements Filter {
+
+        private AuditEvent lastEvent;
+
+        public AuditEvent getLastEvent() {
+            return lastEvent;
+        }
+
+        @Override
+        public boolean accept(AuditEvent event) {
+            lastEvent = event;
+            return true;
         }
 
     }
