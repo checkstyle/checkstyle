@@ -55,23 +55,17 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expectedWithoutFilter = {
-            "22:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
-            "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
-            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
-            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
-            "26:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
-            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
-        };
-        final String[] expectedWithFilter = {
-            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
-            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
-            "26:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
-            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
+        final String[] expected = {
+            "15:15: " + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "17:15: " + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "19:15: " + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
-                expectedWithoutFilter, expectedWithFilter);
+                expected, expected);
     }
 
     @Test
@@ -314,6 +308,27 @@ public class SuppressionXpathSingleFilterExamplesTest extends AbstractExamplesMo
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration.createConfiguration();
         verify(createChecker(parsedConfig), getFilesInFolder(path), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expectedWithoutFilter = {
+            "22:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod", "^[a-z][a-zA-Z0-9]*$"),
+            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "26:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] expectedWithFilter = {
+            "24:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethod2", "^[a-z][a-zA-Z0-9]*$"),
+            "26:15: " + getCheckMessage(AbstractNameCheck.class, MSG_INVALID_PATTERN,
+            "MyMethodA", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     private static File[] getFilesInFolder(Path path) throws IOException {

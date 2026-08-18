@@ -20,13 +20,14 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionXpathSingleFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">Suppress the MethodName check for all methods with name MyMethod inside Example1 and Example3 files</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">SuppressionXpathSingleFilter with its default configuration, where no properties are set and nothing is suppressed</a></li>
               <li><a href="#Example2-config" class="toc-sublink">To suppress MethodName check for method names matched pattern 'MyMethod[0-9]'</a></li>
               <li><a href="#Example3-config" class="toc-sublink">To suppress checks being specified by id property</a></li>
               <li><a href="#Example4-config" class="toc-sublink">To suppress checks for all package definitions</a></li>
               <li><a href="#Example5-config" class="toc-sublink">To suppress MethodName check for all methods</a></li>
               <li><a href="#Example6-config" class="toc-sublink">To suppress checks in the Example6 file by non-query</a></li>
               <li><a href="#Example7-config" class="toc-sublink">The following example is an example of what checks would be suppressed while building Spring projects with checkstyle plugin. Please find more information at: spring-javaformat</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Suppress the MethodName check for all methods with name MyMethod inside Example8 and Example3 files</a></li>
             </ul>
           </li>
           <li>
@@ -132,22 +133,14 @@
       </subsection>
       <subsection name="Examples" id="SuppressionXpathSingleFilter_Examples">
         <p id="Example1-config">
-          To configure to suppress the MethodName check
-          for all methods with name MyMethod
-          inside Example1 and Example3 files:
+          To configure SuppressionXpathSingleFilter with its default configuration,
+          where no properties are set and nothing is suppressed:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="files" value="Example(1|3)\.java"/&gt;
-      &lt;property name="checks" value="MethodName"/&gt;
-      &lt;property name="query" value="(//CLASS_DEF[./IDENT[@text='Example1']]
-                /OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod'])|
-                (//CLASS_DEF[./IDENT[@text='Example3']]/OBJBLOCK
-                /METHOD_DEF/IDENT[@text='MyMethod'])"/&gt;
-    &lt;/module&gt;
+    &lt;module name="SuppressionXpathSingleFilter"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -156,7 +149,8 @@
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
 public class Example1 {
-  // filtered violation below 'Name 'MyMethod' must match pattern'
+  public Example1() {}
+  // violation below 'Name 'MyMethod' must match pattern'
   public void MyMethod() {}
   // violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
@@ -345,6 +339,40 @@ public class Example6 {
 .../src/myApplicationTests.java // filtered violation 'must match pattern'
 .../src/test/java/insidePackage.java // filtered violation 'must match pattern'
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure to suppress the MethodName check
+          for all methods with name MyMethod
+          inside Example8 and Example3 files:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="files" value="Example(8|3)\.java"/&gt;
+      &lt;property name="checks" value="MethodName"/&gt;
+      &lt;property name="query" value="(//CLASS_DEF[./IDENT[@text='Example8']]
+                /OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod'])|
+                (//CLASS_DEF[./IDENT[@text='Example3']]/OBJBLOCK
+                /METHOD_DEF/IDENT[@text='MyMethod'])"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
+
+public class Example8 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
+  // violation below 'Name 'MyMethod2' must match pattern'
+  public void MyMethod2() {}
+  // violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
+}
+</code></pre></div><hr class="example-separator"/>
         </subsection>
         <subsection name="Use Cases" id="SuppressionXpathSingleFilter_Use_Cases">
         <p id="UseCase1-config">
@@ -364,7 +392,7 @@ public class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="UseCase1-code">Code Example:</p>
+         <p id="UseCase1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class UseCase1 {
   public void testMethod1()
