@@ -10,6 +10,53 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 14.0.0">
+      <div class="releaseDate">18.08.2026</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Java Grammar: module-info.java support.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/8240">#8240</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            InvalidJavadocPosition: false positive on module-info.java Javadoc.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/21112">#21112</a>
+          </li>
+          <li>
+            PackageDeclaration: false positive &quot;Missing package declaration&quot; on
+            module-info.java.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/21110">#21110</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Resolve Commons Logging incompatibility with XWiki validation.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/21245">#21245</a>
+          </li>
+          <li>
+            doc: mention 14.x in JRE matrix and Java 25 language support on index page.
+            Author: vivek-0509
+          </li>
+          <li>
+            Renumber examples so default-config example is Example1.
+            Author: yura
+            <a href="https://github.com/checkstyle/checkstyle/issues/21207">#21207</a>
+          </li>
+          <li>
+            Fix modules with incorrect example count in  EXAMPLE_COUNT_SUPPRESSED_MODULES.
+            Author: Burak KALAYCI
+            <a href="https://github.com/checkstyle/checkstyle/issues/21229">#21229</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 13.11.0">
       <div class="releaseDate">16.08.2026</div>
       <p>Breaking backward compatibility:</p>
