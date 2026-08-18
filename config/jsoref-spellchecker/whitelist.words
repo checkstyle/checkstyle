@@ -414,6 +414,7 @@ executablestatementcount
 Exif
 explicitinitialization
 expr
+expressionoverblocklambda
 Externalizable
 fallsthrough
 fallthrough

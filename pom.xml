@@ -3662,6 +3662,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.ExpressionOverBlockLambdaCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheckTest</param>
@@ -3696,6 +3697,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.ExpressionOverBlockLambdaCheckTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
