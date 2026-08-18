@@ -230,7 +230,7 @@ workflows:
           command: ./.ci/validation.sh javadoc
       - validate-with-maven-script:
           name: site
-          image-name: *cs_img
+          image-name: cimg/openjdk:21.0.6
           command: ./.ci/validation.sh site
       - validate-with-maven-script:
           name: release-dry-run
