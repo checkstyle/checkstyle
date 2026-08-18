@@ -383,7 +383,7 @@
             </tr>
             <tr>
               <td>
-                13.x
+                13.x, 14.x
               </td>
               <td>
                 21 and above
@@ -443,7 +443,7 @@
                     id="Additional_Information_Supported_Java_Language_Version">
         <p>
           Checkstyle can parse all Java language features introduced
-          in <a href="https://docs.oracle.com/javase/specs/jls/se22/html/index.html">Java 22</a>
+          in <a href="https://docs.oracle.com/javase/specs/jls/se25/html/index.html">Java 25</a>
           and below. We may support preview features depending on community demand.
         </p>
         <p>
