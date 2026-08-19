@@ -759,6 +759,10 @@
       <property name="tags" value="noinspection"/>
     </module>
     <module name="JavadocContentLocation"/>
+    <module name="JavadocEndCommentDelimiter">
+      <!-- Existing project sources use additional asterisks in Javadoc closing delimiters. -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="JavadocMethod">
       <property name="validateThrows" value="true"/>
     </module>

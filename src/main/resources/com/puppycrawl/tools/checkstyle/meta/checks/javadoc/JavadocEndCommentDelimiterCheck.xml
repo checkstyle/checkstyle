@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocEndCommentDelimiterCheck"
+             name="JavadocEndCommentDelimiter"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>Checks that the Javadoc end-comment delimiter contains exactly one asterisk.</description>
+         <message-keys>
+            <message-key key="javadoc.end.comment.delimiter"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
