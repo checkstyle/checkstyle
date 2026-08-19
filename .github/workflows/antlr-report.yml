@@ -37,7 +37,7 @@ jobs:
             || startsWith(github.event.comment.body, 'GitHub, generate ANTLR report for '))
     runs-on: ubuntu-latest
     outputs:
-      message: ${{ steps.out.outputs.message }}
+      commit_sha: ${{ steps.branch.outputs.commit_sha }}
     steps:
       - name: React to comment
         uses: actions/github-script@v9
@@ -170,6 +170,41 @@ jobs:
           export MAVEN_OPTS="-Xmx5g"
           bash ./launch_diff_antlr.sh "$BRANCH"
 
+      - name: Tar ANTLR report
+        run: |
+          tar -cvf "$RUNNER_TEMP/antlr-report.tar" \
+            -C .ci-temp/contribution/checkstyle-tester/reports diff
+
+      - name: Upload ANTLR report
+        uses: actions/upload-artifact@v7
+        with:
+          name: checkstyle-antlr-report-${{ steps.branch.outputs.commit_sha }}
+          path: ${{ runner.temp }}/antlr-report.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  publish_report:
+    runs-on: ubuntu-latest
+    needs: make_report
+    outputs:
+      message: ${{ steps.out.outputs.message }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Download ANTLR report
+        uses: actions/download-artifact@v8
+        with:
+          name: checkstyle-antlr-report-${{ needs.make_report.outputs.commit_sha }}
+          path: .
+
+      - name: Extract ANTLR report
+        run: |
+          mkdir -p .ci-temp/contribution/checkstyle-tester/reports
+          tar -xvf antlr-report.tar \
+            -C .ci-temp/contribution/checkstyle-tester/reports
+          rm antlr-report.tar
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
@@ -181,18 +216,24 @@ jobs:
         id: out
         run: |
           TIME=$(date +%Y%H%M%S)
-          FOLDER="antlr_${{ steps.branch.outputs.commit_sha }}_$TIME"
+          FOLDER="antlr_${{ needs.make_report.outputs.commit_sha }}_$TIME"
           DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
-          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" \
+          LINK="https://${{ env.AWS_BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
+
+          aws s3 cp "$DIFF" \
+            "s3://${{ env.AWS_BUCKET_NAME }}/$FOLDER/reports/diff/" \
             --recursive --storage-class STANDARD_IA
-          echo "ANTLR report: $LINK/$FOLDER/reports/diff/index.html" > .ci-temp/message
-          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
+
+          echo "ANTLR report: $LINK/$FOLDER/reports/diff/index.html" \
+            > .ci-temp/message
+
+          ./.ci/append-to-github-output.sh \
+            "message" "$(cat .ci-temp/message)"
 
   # should be always last step
   send_message:
     runs-on: ubuntu-latest
-    needs: [ make_report ]
+    needs: [ make_report, publish_report ]
     if: failure() || success()
     steps:
       - name: Checkout repository
@@ -200,7 +241,7 @@ jobs:
 
       - name: Get message
         env:
-          MSG: ${{ needs.make_report.outputs.message }}
+          MSG: ${{ needs.publish_report.outputs.message }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
