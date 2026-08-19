@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head><title>RedundantModifierCompactSource</title></head>
+  <body>
+    <section name="RedundantModifierCompactSource">
+      <p>Since Checkstyle 13.11.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RedundantModifierCompactSource_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RedundantModifierCompactSource_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#RedundantModifierCompactSource_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RedundantModifierCompactSource_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RedundantModifierCompactSource_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RedundantModifierCompactSource_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="RedundantModifierCompactSource_Description">
+        <div>
+          Checks for redundant modifiers on methods and fields declared directly in compact source files.
+        </div>
+        <p>
+          The check reports <code>public</code>, <code>protected</code>, <code>private</code>,
+          <code>static</code>, <code>final</code>, and <code>strictfp</code> on direct methods.
+          It reports <code>public</code>, <code>protected</code>, <code>private</code>, and
+          <code>static</code> on direct fields.
+        </p>
+        <p>
+          A <code>final</code>, <code>static</code>, or <code>private</code> modifier is retained
+          when removing it would make a variable-arity method annotated with
+          <code>@SafeVarargs</code> invalid.
+          An invalid fixed-arity use of <code>@SafeVarargs</code> does not prevent
+          <code>final</code> from being reported.
+        </p>
+        <p>
+          Only fields and methods whose immediate parent is a compact compilation unit are checked.
+          Use <a href="redundantmodifier.html">RedundantModifier</a> for declarations in ordinary
+          and nested types.
+        </p>
+      </subsection>
+      <subsection name="Examples" id="RedundantModifierCompactSource_Examples">
+        <p id="Example1-config">To configure the check:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RedundantModifierCompactSource"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public static void process() {}
+// 2 violations above:
+// 'Redundant 'public' modifier on a direct member.'
+// 'Redundant 'static' modifier on a direct member.'
+
+protected final strictfp void calculate() {}
+// 3 violations above:
+// 'Redundant 'protected' modifier on a direct member.'
+// 'Redundant 'final' modifier on a direct member.'
+// 'Redundant 'strictfp' modifier on a direct member.'
+
+// violation below 'Redundant 'private' modifier on a direct member.'
+private void helper() {}
+
+public static int first;
+// 2 violations above:
+// 'Redundant 'public' modifier on a direct member.'
+// 'Redundant 'static' modifier on a direct member.'
+
+// violation below 'Redundant 'protected' modifier on a direct member.'
+protected int second;
+
+// violation below 'Redundant 'private' modifier on a direct member.'
+private int third;
+
+void main() {}
+</code></pre></div>
+      </subsection>
+      <subsection name="Example of Usage" id="RedundantModifierCompactSource_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantModifierCompactSource">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Violation Messages" id="RedundantModifierCompactSource_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22redundantModifierCompactSource%22">
+              redundantModifierCompactSource
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+      <subsection name="Fully Qualified Name"
+                  id="RedundantModifierCompactSource_Fully_Qualified_Name">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCompactSourceCheck
+        </p>
+      </subsection>
+      <subsection name="Parent Module" id="RedundantModifierCompactSource_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

@@ -1697,6 +1697,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/modifier/redundantmodifiercompactsource.html#RedundantModifierCompactSource">
+                RedundantModifierCompactSource
+              </a>
+            </td>
+            <td>
+              Checks for redundant modifiers on methods and fields declared directly in compact
+              source files.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/regexp/regexp.html#Regexp">
                 Regexp
               </a>

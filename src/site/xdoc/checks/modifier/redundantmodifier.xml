@@ -163,6 +163,10 @@ public class ClassExtending extends ClassExample {
   ProtectedInnerClass pc = new ProtectedInnerClass();
 }
         </code></pre></div>
+        <p>
+          Use <a href="redundantmodifiercompactsource.html">
+          RedundantModifierCompactSource</a> for direct compact-source fields and methods.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="RedundantModifier_Properties">
