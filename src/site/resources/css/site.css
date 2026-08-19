@@ -369,7 +369,7 @@ a.cs-card {
 #demo-typename:checked ~ .cs-toggle-labels label[for="demo-typename"],
 #demo-finalclass:checked ~ .cs-toggle-labels label[for="demo-finalclass"],
 #demo-magicnumber:checked ~ .cs-toggle-labels label[for="demo-magicnumber"],
-#demo-javadocstyle:checked ~ .cs-toggle-labels label[for="demo-javadocstyle"],
+#demo-missingjavadocmethod:checked ~ .cs-toggle-labels label[for="demo-missingjavadocmethod"],
 #demo-leftcurly:checked ~ .cs-toggle-labels label[for="demo-leftcurly"] {
   background: #08c;
   color: #fff;
@@ -379,7 +379,7 @@ a.cs-card {
 #demo-typename:checked ~ #panel-typename,
 #demo-finalclass:checked ~ #panel-finalclass,
 #demo-magicnumber:checked ~ #panel-magicnumber,
-#demo-javadocstyle:checked ~ #panel-javadocstyle,
+#demo-missingjavadocmethod:checked ~ #panel-missingjavadocmethod,
 #demo-leftcurly:checked ~ #panel-leftcurly {
   display: block;
 }
@@ -909,6 +909,15 @@ section#Properties .wrapper table td a {
     align-self: center;
     transform: rotate(90deg);
     padding: 2px 0;
+  }
+
+  .cs-workflow-code {
+    max-height: none;
+    padding: 8px 10px;
+  }
+
+  .cs-workflow-card > .wrapper {
+    margin: 0;
   }
 
   #leftColumn {

@@ -69,7 +69,16 @@
                 return;
             }
 
-            const name = anchorItem.previousSibling.previousElementSibling.id;
+            // skip headings that have no preceding anchor element
+            const previousSibling = anchorItem.previousSibling;
+            if (!previousSibling || !previousSibling.previousElementSibling) {
+                return;
+            }
+
+            const name = previousSibling.previousElementSibling.id;
+            if (!name) {
+                return;
+            }
             const link = url + "#" + name;
 
             createAnchor(anchorItem, link, name, relativePath, anchorItem);

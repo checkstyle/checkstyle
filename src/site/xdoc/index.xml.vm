@@ -118,14 +118,14 @@
                checked="checked"/>
         <input type="radio" name="cs-check-demo" id="demo-finalclass" class="cs-toggle-input"/>
         <input type="radio" name="cs-check-demo" id="demo-magicnumber" class="cs-toggle-input"/>
-        <input type="radio" name="cs-check-demo" id="demo-javadocstyle" class="cs-toggle-input"/>
+        <input type="radio" name="cs-check-demo" id="demo-missingjavadocmethod" class="cs-toggle-input"/>
         <input type="radio" name="cs-check-demo" id="demo-leftcurly" class="cs-toggle-input"/>
 
         <div class="cs-toggle-labels">
           <label for="demo-typename">TypeName</label>
           <label for="demo-finalclass">FinalClass</label>
           <label for="demo-magicnumber">MagicNumber</label>
-          <label for="demo-javadocstyle">JavadocStyle</label>
+          <label for="demo-missingjavadocmethod">MissingJavadocMethod</label>
           <label for="demo-leftcurly">LeftCurly</label>
         </div>
 
@@ -158,13 +158,15 @@
             should be named constants.</p>
         </div>
 
-        <div id="panel-javadocstyle" class="cs-toggle-panel cs-check-panel cs-code-wrapper">
-          <pre class="cs-check-code"><span class="cs-code-comment">// Missing javadoc</span>
-<span class="cs-code-keyword">public void</span> method() {}</pre>
+        <div id="panel-missingjavadocmethod" class="cs-toggle-panel cs-check-panel cs-code-wrapper">
+          <pre class="cs-check-code"><span class="cs-code-keyword">public class</span> MyClass {
+  <span class="cs-code-keyword">public void</span> method() {}
+}</pre>
           <p class="cs-check-violation"><span class="cs-check-badge">ERROR</span>
-            MyClass.java:2:1: Missing a Javadoc comment. <b>[JavadocStyle]</b></p>
-          <p class="cs-check-desc">Ensures public methods have Javadoc comments for proper
-            documentation.</p>
+            MyClass.java:2:3: Missing a Javadoc comment for 'method'.
+            <b>[MissingJavadocMethod]</b></p>
+          <p class="cs-check-desc">Requires Javadoc comments on public methods to ensure
+            proper API documentation.</p>
         </div>
 
         <div id="panel-leftcurly" class="cs-toggle-panel cs-check-panel cs-code-wrapper">
