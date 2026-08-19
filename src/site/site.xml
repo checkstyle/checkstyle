@@ -106,6 +106,7 @@
           <item name="AvoidNestedBlocks" href="checks/blocks/avoidnestedblocks.html"/>
           <item name="EmptyBlock" href="checks/blocks/emptyblock.html"/>
           <item name="EmptyCatchBlock" href="checks/blocks/emptycatchblock.html"/>
+          <item name="GoogleRightCurly" href="checks/blocks/googlerightcurly.html"/>
           <item name="LeftCurly" href="checks/blocks/leftcurly.html"/>
           <item name="NeedBraces" href="checks/blocks/needbraces.html"/>
           <item name="RightCurly" href="checks/blocks/rightcurly.html"/>
