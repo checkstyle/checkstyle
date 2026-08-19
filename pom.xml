@@ -2013,8 +2013,6 @@
                 <exclude>spotless/import.order</exclude>
                 <exclude>spotless/licence.header</exclude>
                 <exclude>yamllint.yaml</exclude>
-                <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
-                <exclude>linkcheck-suppressions.txt</exclude>
               </excludes>
             </validationSet>
             <validationSet>
@@ -2238,6 +2236,54 @@
           </validations>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>io.fluxzero</groupId>
+        <artifactId>lychee-maven-plugin</artifactId>
+        <version>0.2.9</version>
+        <executions>
+          <execution>
+            <id>lychee-check</id>
+            <phase>post-site</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <skip>${lychee.skip}</skip>
+          <!-- lychee binary version to download -->
+          <version>0.24.2</version>
+          <!-- Use musl variant for Linux to avoid GLIBC version requirements -->
+          <linuxVariant>musl</linuxVariant>
+          <!-- Check the generated site directory -->
+          <scanDirectories>
+            <scanDirectory>
+              <directory>${project.build.directory}/site</directory>
+              <includes>
+                <include>**/*.html</include>
+              </includes>
+              <excludes>
+                <!-- Skip auto-generated reports that have no authored links -->
+                <exclude>jacoco/**</exclude>
+                <exclude>xref/**</exclude>
+                <exclude>xref-test/**</exclude>
+                <exclude>dsm/**</exclude>
+                <exclude>styleguides/**</exclude>
+                <!-- Skip dependencies.html as it contains auto-generated license links -->
+                <exclude>dependencies.html</exclude>
+              </excludes>
+            </scanDirectory>
+          </scanDirectories>
+          <!-- Extra lychee CLI arguments -->
+          <args>
+            <arg>--config</arg>
+            <arg>${project.basedir}/config/lychee.toml</arg>
+            <arg>--root-dir</arg>
+            <arg>${project.build.directory}/site</arg>
+          </args>
+          <failOnError>true</failOnError>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -2355,178 +2401,6 @@
         </reportSets>
       </plugin>
 
-      <!-- this report should be created last -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-linkcheck-plugin</artifactId>
-        <version>1.2</version>
-        <configuration>
-          <httpMethod>GET</httpMethod>
-          <timeout>6000</timeout>
-          <httpFollowRedirect>false</httpFollowRedirect>
-          <forceSite>false</forceSite>
-          <!-- To resolve redirection violation, to find new target url, use:
-              URL=https://www.cs.....
-              curl -s -I $URL -L | awk '/Location: (.*)/ {print $2}' | tail -n 1
-          -->
-          <excludedPages>
-            <excludedPage>dependencies.html</excludedPage>
-            <excludedPage>jacoco/**</excludedPage>
-            <excludedPage>dsm/**</excludedPage>
-            <excludedPage>xref/**</excludedPage>
-            <excludedPage>xref-test/**</excludedPage>
-            <excludedPage>pmd.html</excludedPage>
-            <excludedPage>surefire-report.html</excludedPage>
-            <!-- Excluded due to checkstyle's issue #549
-                 until http://jira.codehaus.org/browse/MTAGLIST-69 will be fixed -->
-            <excludedPage>taglist.html</excludedPage>
-            <!-- styleguides are copies as-is to cache state we support -->
-            <excludedPage>styleguides/**</excludedPage>
-          </excludedPages>
-          <excludedHttpStatusErrors>
-            <excludedHttpStatusError>401</excludedHttpStatusError>
-          </excludedHttpStatusErrors>
-          <excludedLinks>
-            <excludedLink>reports/google-style/guava</excludedLink>
-            <excludedLink>reports/javadoc/openjdk8</excludedLink>
-            <!-- posting to the mailing list "checkstyle-announce" is private -->
-            <excludedLink>privilege of admins</excludedLink>
-            <!-- this page is not yet created when linkcheck executed -->
-            <excludedLink>project-info.html</excludedLink>
-            <!-- this page is not yet created when linkcheck executed -->
-            <excludedLink>project-reports.html</excludedLink>
-            <!-- redirects to US page, it is better to stay international -->
-            <excludedLink>https://paypal.com/</excludedLink>
-            <!-- temporal suppress till plugin update link in his source -->
-            <excludedLink>http://www.mojohaus.org/exec-maven-plugin</excludedLink>
-            <excludedLink>http://www.mojohaus.org/versions-maven-plugin</excludedLink>
-            <excludedLink>http://www.mojohaus.org/xml-maven-plugin</excludedLink>
-            <!-- SSL -->
-            <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
-
-            <!-- we did too many requests to GitHub,
-                 now GitHub reject all requests "429 Too Many Requests" -->
-            <excludedLink>https://github.com/*</excludedLink>
-            <excludedLink>http://jeremymanson.blogspot.com/*</excludedLink>
-            <excludedLink>https://javarevisited.blogspot.com/*</excludedLink>
-            <excludedLink>https://webtoolkit.googleblog.com/*</excludedLink>
-            <!-- redirects to US page, it is better to stay international -->
-            <excludedLink>https://help.github.com/*</excludedLink>
-            <excludedLink>http://search.maven.org/*</excludedLink>
-            <!-- codehaus does not exist anymore -->
-            <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
-            <excludedLink>
-              http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin
-            </excludedLink>
-            <!-- Excluded due to Maven Codehaus Plugin's issue #4:
-                 https://github.com/mojohaus/mojohaus.github.io/issues/4 -->
-            <excludedLink>http://mojo.codehaus.org/antlr-maven-plugin</excludedLink>
-            <!-- Excluded due to long lasting problem with link that they do not want to fix -->
-            <excludedLink>
-              https://www.mojohaus.org/jdepend-maven-plugin/jdepend-maven-plugin
-            </excludedLink>
-            <!-- Excluded due to Maven Taglist Plugin's issue #3:
-                 https://github.com/mojohaus/taglist-maven-plugin/issues/3 -->
-            <excludedLink>http://mojo.codehaus.org/taglist-maven-plugin</excludedLink>
-            <!-- Excluded due to Maven ANTLR4 Plugin's issue #978:
-                 https://github.com/antlr/antlr4/issues/978 -->
-            <excludedLink>https://www.antlr.org/antlr4-maven-plugin/</excludedLink>
-            <!-- Excluded due to Maven Release Plugin's issue #919:
-                 https://issues.apache.org/jira/browse/MRELEASE-919 -->
-            <excludedLink>https://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
-            <!-- permanent java.net.UnknownHostException : -->
-            <excludedLink>http://jacoco-maven-plugin/</excludedLink>
-            <!-- Excluded till https://issues.sonatype.org/browse/NEXUS-9643 -->
-            <excludedLink>
-              http://www.sonatype.com/public-parent/nexus-maven-plugins/nexus-staging/nexus-staging-maven-plugin/
-            </excludedLink>
-
-            <!-- Excluded due to linkcheck's issue #22:
-                 https://issues.apache.org/jira/browse/MLINKCHECK-22 -->
-            <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
-            <!-- Too unstable sites to keep validate them -->
-            <excludedLink>http://tide.olympe.in/*</excludedLink>
-            <excludedLink>http://dl.acm.org/*</excludedLink>
-            <!-- permanent SSLException -->
-            <excludedLink>https://git-scm.com</excludedLink>
-            <!-- too frequent to return 500 -->
-            <excludedLink>https://docs.oracle.com/javase/specs/jls/se17/html/jls-15.html#jls-15.28</excludedLink>
-            <!-- I do not know how to resolve this "302 Found" response -->
-            <excludedLink>https://plus.google.com/+CheckstyleJava</excludedLink>
-            <!-- 302 redirect to
-             https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server/version-history
-             this link does not look like permanent, it is better to keep the existing link -->
-            <excludedLink>
-              https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server
-            </excludedLink>
-            <!-- 403 forbidden -->
-            <excludedLink>https://oss.sonatype.org/content/repositories/snapshots/</excludedLink>
-            <!-- link is valid but permanent "SocketTimeoutException : Read timed out" -->
-            <excludedLink>https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin</excludedLink>
-            <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>https://gradle.org</excludedLink>
-            <excludedLink>https://www.codacy.com/</excludedLink>
-            <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>
-              https://docs.gradle.org/current/userguide/checkstyle_plugin.html
-            </excludedLink>
-            <!-- ConnectTimeoutException -->
-            <excludedLink>https://www.w3.org/TR/*</excludedLink>
-            <!-- very frequent SocketTimeoutException : Read timed out -->
-            <excludedLink>https://maven.apache.org/*</excludedLink>
-            <!-- This URL become to require to log in first to see content -->
-            <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
-            <!-- link works but plugin's request always result in 404 -->
-            <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
-            <!-- permanent 403, but it works fine out of plugin execution -->
-            <excludedLink>https://opencollective.com/*</excludedLink>
-            <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>
-              https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing
-            </excludedLink>
-            <!-- 405 Not Allowed, link present in generated website only -->
-            <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
-            <!-- site works fine in browser but for plugin always return 500  -->
-            <excludedLink>https://liberapay.com/checkstyle/</excludedLink>
-            <!-- CertPathValidatorException: validity check failed  -->
-            <excludedLink>https://www.jarchitect.com</excludedLink>
-            <!-- until new plugins are released to generate link with https -->
-            <excludedLink>http://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
-            <excludedLink>http://maven.apache.org/plugins/maven-deploy-plugin/</excludedLink>
-            <excludedLink>http://maven.apache.org/plugins/maven-eclipse-plugin/</excludedLink>
-            <excludedLink>http://maven.apache.org/plugins/maven-install-plugin/</excludedLink>
-            <excludedLink>http://maven.apache.org/plugins/maven-linkcheck-plugin/</excludedLink>
-            <excludedLink>http://www.mojohaus.org/build-helper-maven-plugin/</excludedLink>
-            <!-- until new plugins are released to generate link with trailing '/' -->
-            <excludedLink>https://www.mojohaus.org/exec-maven-plugin</excludedLink>
-            <!-- until plugin generate link without redirection -->
-            <excludedLink>https://www.eclipse.org/legal/epl-v20.html</excludedLink>
-            <!-- permanent 403 -->
-            <excludedLink>https://www.ej-technologies.com/*</excludedLink>
-            <excludedLink>https://stackoverflow.com/questions/*</excludedLink>
-            <!-- permanent 403 -->
-            <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
-            <excludedLink>https://www.ietf.org/rfc/rfc4627.txt</excludedLink>
-            <excludedLink>https://liberapay.com/assets/widgets/donate.svg</excludedLink>
-            <excludedLink>https://maven-doccheck.sourceforge.net/</excludedLink>
-            <excludedLink>http://jdee.sourceforge.net/</excludedLink>
-            <excludedLink>https://qalab.sourceforge.net/</excludedLink>
-            <excludedLink>https://codeclimate.com</excludedLink>
-            <excludedLink>https://saxon.sourceforge.net/saxon7.1/expressions.html</excludedLink>
-            <excludedLink>https://www.baeldung.com/*</excludedLink>
-            <excludedLink>https://medium.com/*</excludedLink>
-            <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
-            <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
-            <!-- 404 Not Found,
-             from broken link check to avoid false positives due to old certificate issues -->
-            <excludedLink>https://bugs.eclipse.org/</excludedLink>
-            <!-- permanent 404 -->
-            <excludedLink>https://bytebuddy.net/byte-buddy</excludedLink>
-            <excludedLink>https://bytebuddy.net/byte-buddy-agent</excludedLink>
-          </excludedLinks>
-        </configuration>
-      </plugin>
-
     </plugins>
   </reporting>
 
@@ -2605,6 +2479,32 @@
                 <phase>none</phase>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- Profile for lychee offline mode (internal links only) -->
+      <id>lychee-offline</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.fluxzero</groupId>
+            <artifactId>lychee-maven-plugin</artifactId>
+            <version>0.2.9</version>
+            <configuration>
+              <version>0.24.2</version>
+              <!-- Use musl variant for Linux to avoid GLIBC version requirements -->
+              <linuxVariant>musl</linuxVariant>
+              <args>
+                <arg>--offline</arg>
+                <arg>--config</arg>
+                <arg>${project.basedir}/config/lychee.toml</arg>
+                <arg>--root-dir</arg>
+                <arg>${project.build.directory}/site</arg>
+              </args>
+            </configuration>
           </plugin>
         </plugins>
       </build>
