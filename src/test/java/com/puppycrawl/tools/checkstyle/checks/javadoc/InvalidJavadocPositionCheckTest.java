@@ -155,17 +155,17 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("module/module-info.java"), expected);
+            getNonCompilablePath("module-info/module/module-info.java"), expected);
     }
 
     @Test
     public void testInvalidJavadocPositionOpenModuleInfo() throws Exception {
         final String[] expected = {
-            "13:6: " + getCheckMessage(MSG_KEY),
+            "12:6: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("open/module-info.java"), expected);
+            getNonCompilablePath("module-info/open/module-info.java"), expected);
     }
 
     @Test
@@ -175,7 +175,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-            getNonCompilablePath("annotated/module-info.java"), expected);
+            getNonCompilablePath("module-info/annotated/module-info.java"), expected);
     }
 
 }
