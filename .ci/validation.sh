@@ -83,7 +83,7 @@ check-missing-pitests)
     "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil"
     "com.puppycrawl.tools.checkstyle.grammar.SimpleToken" "${list[@]}")
 
-  CMD="find src/main/java -type f ! -name 'package-info.java'"
+  CMD="find src/main/java -type f ! -name 'package-info.java' ! -name 'module-info.java'"
 
   for item in "${list[@]}"
   do
@@ -661,6 +661,81 @@ assembly-run-all-jar)
   fi
   rm .ci-temp/output.json
 
+  ;;
+
+module-path-run)
+  # Verifies module-info.java end to end: run Checkstyle as a named module from the
+  # JVM module path, without any --add-modules/--add-reads options, covering module
+  # resolution, module instantiation by short and by fully qualified name, property
+  # setting through beanutils, XPath suppression (Saxon), localized message bundles
+  # and SARIF rule metadata (org.reflections and slf4j). All other tests run
+  # Checkstyle on the class path, where the descriptor is ignored.
+  ./mvnw -e --no-transfer-progress clean package -Pno-validations
+  ./mvnw -e --no-transfer-progress dependency:build-classpath \
+    -Dmdep.includeScope=runtime -Dmdep.outputFile=target/module-path.txt
+  CS_POM_VERSION="$(getPomVersion)"
+  MODULE_PATH="target/checkstyle-$CS_POM_VERSION.jar:$(cat target/module-path.txt)"
+  mkdir -p .ci-temp
+  cat > .ci-temp/Input.java <<'JAVA'
+public class Input {
+    private int x = 12345;
+    public void foo() {
+        int y = 42;
+    }
+    public void bar() {
+        int z = 99;
+    }
+}
+JAVA
+  cat > .ci-temp/suppressions.xml <<'XML'
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN" "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+<suppressions>
+  <suppress-xpath checks="MagicNumber" query="//METHOD_DEF[./IDENT[@text='bar']]//NUM_INT"/>
+</suppressions>
+XML
+  cat > .ci-temp/config.xml <<'XML'
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="SuppressionXpathFilter">
+      <property name="file" value=".ci-temp/suppressions.xml"/>
+    </module>
+    <module name="MagicNumber">
+      <property name="ignoreNumbers" value="42"/>
+    </module>
+    <module name="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck">
+      <property name="format" value="^[a-z][a-zA-Z0-9]{2,}$"/>
+    </module>
+  </module>
+</module>
+XML
+  echo "Module resolution:"
+  java --module-path "$MODULE_PATH" --describe-module com.puppycrawl.tools.checkstyle | head -1
+  echo "Execution from module path, German locale:"
+  java -Duser.language=de -Duser.country=DE --module-path "$MODULE_PATH" \
+    --module com.puppycrawl.tools.checkstyle/com.puppycrawl.tools.checkstyle.Main \
+    -c .ci-temp/config.xml .ci-temp/Input.java > .ci-temp/output.log || true
+  cat .ci-temp/output.log
+  # expected: exactly the two violations on line 2; 42 is ignored via the
+  # beanutils-set property and 99 is suppressed via xpath
+  if [ "$(grep -c '\[ERROR\]' .ci-temp/output.log)" != "2" ] \
+      || ! grep -q "Die magische Zahl '12345'" .ci-temp/output.log; then
+    echo "Unexpected module path output"
+    exit 1
+  fi
+  echo "Execution from module path, SARIF report:"
+  java --module-path "$MODULE_PATH" \
+    --module com.puppycrawl.tools.checkstyle/com.puppycrawl.tools.checkstyle.Main \
+    -c .ci-temp/config.xml -f sarif -o .ci-temp/output.sarif .ci-temp/Input.java || true
+  if ! grep -q "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck" \
+      .ci-temp/output.sarif; then
+    echo "SARIF rule metadata was not loaded from the named module"
+    exit 1
+  fi
+  rm -f .ci-temp/Input.java .ci-temp/suppressions.xml .ci-temp/config.xml \
+    .ci-temp/output.log .ci-temp/output.sarif
   ;;
 
 check-since-version)
