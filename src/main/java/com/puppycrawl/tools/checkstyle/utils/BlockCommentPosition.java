@@ -102,7 +102,7 @@ public final class BlockCommentPosition {
      * @return true if node is before module
      */
     public static boolean isOnModule(DetailAST blockComment) {
-        return isOnPlainModule(blockComment)
+        return isOnModuleWithoutAnnotation(blockComment)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.MODULE_DEF);
     }
 
@@ -255,7 +255,7 @@ public final class BlockCommentPosition {
      * @param blockComment block comment start DetailAST
      * @return true if block comment is on module definition without annotations
      */
-    private static boolean isOnPlainModule(DetailAST blockComment) {
+    private static boolean isOnModuleWithoutAnnotation(DetailAST blockComment) {
         final DetailAST prevSibling = getPrevSiblingSkipComments(blockComment);
         return blockComment.getParent().getType() == TokenTypes.MODULE_DEF
                 && prevSibling.getType() == TokenTypes.ANNOTATIONS
