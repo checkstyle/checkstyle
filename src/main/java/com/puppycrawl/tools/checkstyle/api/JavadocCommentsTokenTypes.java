@@ -392,8 +392,7 @@ public final class JavadocCommentsTokenTypes {
      *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * @since 1.0}</pre>
+     * <p><b>Example: </b>{@code * @since 1.0}</p>
      *
      * <b>Tree:</b>
      * <pre>{@code
