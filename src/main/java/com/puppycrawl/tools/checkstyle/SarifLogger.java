@@ -317,8 +317,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
             final ResourceBundle bundle = ResourceBundle.getBundle(
                     bundleName,
                     Locale.ROOT,
-                    moduleClass.getClassLoader(),
-                    new LocalizedMessage.Utf8Control()
+                    moduleClass.getClassLoader()
             );
             for (String key : moduleDetails.getViolationMessageKeys()) {
                 result.put(key, bundle.getString(key));
