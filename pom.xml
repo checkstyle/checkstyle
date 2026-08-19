@@ -5436,6 +5436,9 @@
                   com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest
                 </param>
                 <param>
+                  com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheckTest
+                </param>
+                <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest
                 </param>
                 <param>
