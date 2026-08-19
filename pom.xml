@@ -214,7 +214,7 @@
     <checkstyle-files-generator.version>1.0.2</checkstyle-files-generator.version>
     <sevntu.checkstyle.plugin.version>1.44.1</sevntu.checkstyle.plugin.version>
     <sevntu-checkstyle-check.checkstyle.version>
-      10.4
+      14.0.0
     </sevntu-checkstyle-check.checkstyle.version>
     <versions.plugin.version>2.21.0</versions.plugin.version>
     <compiler.plugin.version>3.15.0</compiler.plugin.version>
@@ -459,7 +459,8 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
-      <scope>runtime</scope>
+      <!-- Compile scope only so that "requires org.slf4j" in module-info.java resolves;
+           no Checkstyle code imports slf4j, it is needed at runtime by org.reflections. -->
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -583,6 +584,13 @@
           <version>3.12.0</version>
           <configuration>
             <detectJavaApiLink>false</detectJavaApiLink>
+            <!-- javadoc switches to module mode (all output nested under a
+                 "com.puppycrawl.tools.checkstyle/" directory) whenever module-info.java exists
+                 under -sourcepath, which would break all existing apidocs links on the site and
+                 in the linkcheck config. Document a copy of the sources without the descriptor
+                 instead (see the copy-javadoc-sources execution of maven-resources-plugin) so
+                 the published layout and URLs stay unchanged. -->
+            <sourcepath>${project.build.directory}/javadoc-sources:${project.build.directory}/generated-sources/antlr</sourcepath>
             <!-- Exclude generated sources. -->
             <excludePackageNames>
               com.puppycrawl.tools.checkstyle.grammar.java:
@@ -918,6 +926,25 @@
         <version>3.5.0</version>
         <executions>
           <execution>
+            <!-- Descriptor-free copy of the sources for javadoc, see maven-javadoc-plugin config. -->
+            <id>copy-javadoc-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/javadoc-sources</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/src/main/java</directory>
+                  <excludes>
+                    <exclude>module-info.java</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
             <id>copy-dtd-resources</id>
             <phase>pre-site</phase>
             <goals>
@@ -974,6 +1001,17 @@
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
         </configuration>
+        <executions>
+          <execution>
+            <id>default-testCompile</id>
+            <configuration>
+              <!-- Tests (and the test input files compiled as test sources) are not part
+                   of the module and are executed on the classpath, so compile them on the
+                   classpath as well instead of patching them into the module. -->
+              <useModulePath>false</useModulePath>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -1778,6 +1816,7 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>3.5.6</version>
         <configuration>
+          <useModulePath>false</useModulePath>
           <includes>
             <include>com/google/**/*.java</include>
             <include>com/openjdk/**/*.java</include>
@@ -1816,6 +1855,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.6</version>
         <configuration>
+          <useModulePath>false</useModulePath>
           <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
@@ -1887,9 +1927,6 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
-            <manifestEntries>
-              <Automatic-Module-Name>${project.groupId}.${project.artifactId}</Automatic-Module-Name>
-            </manifestEntries>
           </archive>
           <excludes>
             <exclude>**/Input*.*</exclude>
@@ -1901,6 +1938,14 @@
             <goals>
               <goal>test-jar</goal>
             </goals>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <!-- Test jar is not a module; give it a stable automatic name distinct from the main module. -->
+                  <Automatic-Module-Name>${project.groupId}.${project.artifactId}.tests</Automatic-Module-Name>
+                </manifestEntries>
+              </archive>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -2299,6 +2344,11 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <!-- Reporting does not inherit pluginManagement config; use the descriptor-free
+             source copy here as well so the site apidocs keep their pre-module layout. -->
+        <configuration>
+          <sourcepath>${project.build.directory}/javadoc-sources:${project.build.directory}/generated-sources/antlr</sourcepath>
+        </configuration>
         <reportSets>
           <reportSet>
             <id>default</id>
@@ -2603,6 +2653,10 @@
                         <exclude>META-INF/*.SF</exclude>
                         <exclude>META-INF/*.DSA</exclude>
                         <exclude>META-INF/*.RSA</exclude>
+                        <!-- The all-in-one jar bundles many artifacts and is classpath-only,
+                             so it must not carry any module descriptor (ours or a dependency's). -->
+                        <exclude>module-info.class</exclude>
+                        <exclude>META-INF/versions/*/module-info.class</exclude>
                       </excludes>
                     </filter>
                   </filters>
