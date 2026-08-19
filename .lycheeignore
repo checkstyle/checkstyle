@@ -1,0 +1,8 @@
+# Suppressions for lychee link checker
+# until https://github.com/checkstyle/checkstyle/issues/21268
+apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG
+apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_BLOCK_TAG
+apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_BLOCK_TAG
+apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_BLOCK_TAG
+apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#SINCE_BLOCK_TAG
+apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG
