@@ -65,3 +65,15 @@ exclude:
   - name: ClassCanBeRecord
     paths:
       - src/test/java/com/puppycrawl/tools/checkstyle/bdd/TestInputConfiguration.java
+
+  # "requires" on automatic modules is unavoidable until those dependencies ship
+  # module descriptors; for Saxon see https://saxonica.plan.io/issues/7193
+  - name: JavaRequiresAutoModule
+    paths:
+      - src/main/java/module-info.java
+  # "requires org.slf4j" looks unused to static analysis, but org.reflections is an
+  # automatic module that cannot declare its own slf4j runtime dependency, so this
+  # module must require it or resolution fails at run time (SARIF metadata loading)
+  - name: Java9RedundantRequiresStatement
+    paths:
+      - src/main/java/module-info.java
