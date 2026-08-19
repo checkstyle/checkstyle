@@ -134,7 +134,8 @@ public class AllTestsTest {
     }
 
     private static void grabAllFiles(Map<String, List<String>> allTests, File file) {
-        if (file.isFile()) {
+        // module-info.java lives at the source root, outside any package, and has no test
+        if (file.isFile() && !"module-info.java".equals(file.getName())) {
             final String path;
 
             try {
