@@ -623,8 +623,6 @@ jobs:
     needs: [ download_configs, checkout_and_cache ]
     if: always() && needs.download_configs.result == 'success'
     runs-on: ubuntu-latest
-    outputs:
-      message: ${{ steps.out.outputs.message }}
     steps:
       - name: Download workspace artifact
         uses: actions/download-artifact@v8
@@ -676,13 +674,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
 
       - name: Print config.xml
         run: |
@@ -838,30 +829,74 @@ jobs:
           retention-days: 1
           if-no-files-found: error
 
+  publish_report:
+    needs: [
+      make_report,
+      download_configs,
+      checkout_and_cache
+    ]
+    if: |
+      always()
+      && needs.make_report.result == 'success'
+      && needs.download_configs.result == 'success'
+      && needs.checkout_and_cache.result == 'success'
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.out.outputs.message }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          repository: checkstyle/checkstyle
+
+      - name: Download report artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: checkstyle-regression-report-${{ needs.checkout_and_cache.outputs.commit_sha }}
+          path: .
+
+      - name: Extract report artifact
+        run: |
+          mkdir -p .ci-temp/reports
+          tar -xvf regression-report.tar -C .ci-temp/reports
+          rm regression-report.tar
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Copy Report to AWS S3 Bucket
         env:
           LABEL: ${{ needs.download_configs.outputs.report_label }}
           COMMIT_SHA: ${{ needs.checkout_and_cache.outputs.commit_sha }}
         run: |
-          bash
           TIME=$(date +%Y%H%M%S)
           FOLDER="${COMMIT_SHA}_$TIME"
           DIFF="./.ci-temp/reports/diff"
-          LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
-          aws s3 cp $DIFF "s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/" --recursive
+          LINK="https://${{ env.AWS_BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
+
+          aws s3 cp "$DIFF" \
+            "s3://${{ env.AWS_BUCKET_NAME }}/$FOLDER/reports/diff/" \
+            --recursive
+
           if [ -n "$LABEL" ]; then
             echo "$LABEL: " > .ci-temp/message
           fi
+
           echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
 
       - name: Set output
         id: out
         run: |
-          echo "Link: ""$(cat .ci-temp/message)"
-          ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
+          echo "Link: $(cat .ci-temp/message)"
+          ./.ci/append-to-github-output.sh \
+            "message" "$(cat .ci-temp/message)"
 
   add_sad_Emoji:
-    needs: [ check_pr_status, parse_comment, make_report ]
+    needs: [ check_pr_status, parse_comment, make_report, publish_report ]
     if: cancelled()
     runs-on: ubuntu-latest
     steps:
@@ -891,11 +926,13 @@ jobs:
       handle_local_config_for_baseline_report,
       download_configs,
       make_report,
+      publish_report,
       add_sad_Emoji
     ]
     if: always()
       && (needs.make_report.result == 'failure'
-          || needs.make_report.outputs.message != ''
+          || needs.publish_report.result == 'failure'
+          || needs.publish_report.outputs.message != ''
           || needs.download_configs.result == 'failure'
           || needs.handle_existing_config_bundle.result == 'failure'
           || needs.handle_generated_config_bundle.result == 'failure'
@@ -920,9 +957,10 @@ jobs:
 
       - name: Get message
         env:
-          MSG: ${{ needs.make_report.outputs.message }}
+          MSG: ${{ needs.publish_report.outputs.message }}
           DOWNLOAD_RESULT: ${{ needs.download_configs.result }}
           MAKE_REPORT_RESULT: ${{ needs.make_report.result }}
+          PUBLISH_REPORT_RESULT: ${{ needs.publish_report.result }}
           EXISTING_CONFIG_RESULT: ${{ needs.handle_existing_config_bundle.result }}
           GENERATED_CONFIG_RESULT: ${{ needs.handle_generated_config_bundle.result }}
           CONFIGS_IN_PR_RESULT: ${{ needs.handle_configs_in_pr_description.result }}
@@ -995,6 +1033,11 @@ jobs:
           elif [ "$MAKE_REPORT_RESULT" == "failure" ]; then
             {
               echo "Report generation failed. Please check the logs for more details."
+              echo "<br>Link: $JOBS_LINK"
+            } > .ci-temp/message
+          elif [ "$PUBLISH_REPORT_RESULT" == "failure" ]; then
+            {
+              echo "Report publication failed. Please check the logs for more details."
               echo "<br>Link: $JOBS_LINK"
             } > .ci-temp/message
           elif [ "$CHECKOUT_RESULT" == "failure" ]; then
