@@ -53,6 +53,8 @@ jobs:
           || github.event.comment.body == 'GitHub, generate site'
           || inputs.pr-number != ''
     runs-on: ubuntu-latest
+    outputs:
+      commit_sha: ${{ steps.pr_info.outputs.commit_sha }}
     steps:
       - name: React to comment
         if: github.event_name == 'issue_comment'
@@ -103,6 +105,31 @@ jobs:
         run: |
           ./.ci/site.sh generate-site
 
+      - name: Upload generated site
+        uses: actions/upload-artifact@v7
+        with:
+          name: checkstyle-site
+          path: .ci-temp/checkstyle/target/site
+          if-no-files-found: error
+          retention-days: 1
+
+  publish_site:
+    runs-on: ubuntu-latest
+    needs: site
+    outputs:
+      message: ${{ steps.publish.outputs.message }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          repository: checkstyle/checkstyle
+
+      - name: Download generated site
+        uses: actions/download-artifact@v8
+        with:
+          name: checkstyle-site
+          path: .ci-temp/checkstyle/target/site
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
@@ -114,17 +141,27 @@ jobs:
         id: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COMMIT_SHA: ${{ steps.pr_info.outputs.commit_sha }}
+          COMMIT_SHA: ${{ needs.site.outputs.commit_sha }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
           AWS_BUCKET_NAME: ${{ env.AWS_BUCKET_NAME }}
           AWS_REGION: ${{ env.AWS_REGION }}
         run: |
           ./.ci/site.sh publish-site
 
+  send_message:
+    runs-on: ubuntu-latest
+    needs: [ site, publish_site ]
+    if: always()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          repository: checkstyle/checkstyle
+
       - name: Build PR comment message
         if: always()
         env:
-          MSG: ${{ steps.publish.outputs.message }}
+          MSG: ${{ needs.publish_site.outputs.message }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           FAILURE_PREFIX: "Site generation"
