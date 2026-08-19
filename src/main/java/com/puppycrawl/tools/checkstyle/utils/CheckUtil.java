@@ -366,7 +366,8 @@ public final class CheckUtil {
     /**
      * Returns the access modifier of the surrounding "block".
      *
-     * @param node the node to return the access modifier for
+     * @param node method, constructor, annotation field, or compact constructor declaration
+     *        to return the surrounding access modifier for
      * @return the access modifier of the surrounding block
      */
     public static Optional<AccessModifierOption> getSurroundingAccessModifier(DetailAST node) {
@@ -375,14 +376,20 @@ public final class CheckUtil {
              returnValue.isEmpty() && !TokenUtil.isRootNode(token);
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.ENUM_DEF) {
-                returnValue = Optional.ofNullable(getAccessModifierFromModifiersToken(token));
+            if (TokenUtil.isOfType(type,
+                    TokenTypes.CLASS_DEF,
+                    TokenTypes.INTERFACE_DEF,
+                    TokenTypes.ANNOTATION_DEF,
+                    TokenTypes.ENUM_DEF)) {
+                returnValue = Optional.ofNullable(
+                        getAccessModifierFromModifiersToken(token));
             }
             else if (type == TokenTypes.LITERAL_NEW) {
                 break;
+            }
+            else if (TokenUtil.isOfType(token.getParent(),
+                    TokenTypes.COMPACT_COMPILATION_UNIT)) {
+                returnValue = Optional.of(AccessModifierOption.PACKAGE);
             }
         }
 
