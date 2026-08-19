@@ -129,13 +129,14 @@ public class LocalizedMessage {
     /**
      * Obtain the ResourceBundle. Uses the classloader
      * of the class emitting this message, to be sure to get the correct
-     * bundle.
+     * bundle. Property files are read as UTF-8 by the JDK since Java 9,
+     * and a custom {@code ResourceBundle.Control} is not supported when
+     * called from a named module, so the default control is used.
      *
      * @return a ResourceBundle.
      */
     private ResourceBundle getBundle() {
-        return ResourceBundle.getBundle(bundle, messageLocale, sourceClass.getClassLoader(),
-                new Utf8Control());
+        return ResourceBundle.getBundle(bundle, messageLocale, sourceClass.getClassLoader());
     }
 
     /**
