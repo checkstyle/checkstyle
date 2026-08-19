@@ -995,9 +995,13 @@
               <classpathScope>compile</classpathScope>
               <mainClass>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</mainClass>
               <arguments>
-                <argument>${project.build.sourceDirectory}/com/puppycrawl/tools/checkstyle/api/TokenTypes.java</argument>
+                <argument>
+                  ${project.build.sourceDirectory}/com/puppycrawl/tools/checkstyle/api/TokenTypes.java
+                </argument>
                 <argument>--destfile</argument>
-                <argument>${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties</argument>
+                <argument>
+                  ${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties
+                </argument>
               </arguments>
             </configuration>
           </execution>
