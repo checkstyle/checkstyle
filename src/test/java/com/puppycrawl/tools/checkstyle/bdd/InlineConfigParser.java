@@ -303,7 +303,6 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
             "checks/coding/equalshashcode/Example1.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestIgnoreMethodNames.java",
             "checks/coding/illegaltype/InputIllegalTypeTestEnhancedInstanceof.java",
             "checks/coding/illegaltype/InputIllegalTypeTestLegalAbstractClassNames.java",
             "checks/coding/illegaltype/InputIllegalTypeTestMemberModifiers.java",
