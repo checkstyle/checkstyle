@@ -42,9 +42,7 @@
       </subsection>
       <subsection name="Examples" id="SuppressionXpathSingleFilter_Examples">
         <p id="Example1-config">
-          To configure to suppress the MethodName check
-          for all methods with name MyMethod
-          inside Example1 and Example3 files:
+          Default configuration does nothing:
         </p>
         <macro name="example">
           <param name="path"
@@ -144,6 +142,22 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example7.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure to suppress the MethodName check
+          for all methods with name MyMethod
+          inside Example8 and Example3 files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         </subsection>
         <subsection name="Use Cases" id="SuppressionXpathSingleFilter_Use_Cases">
         <p id="UseCase1-config">
@@ -156,7 +170,7 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="UseCase1-code">Code Example:</p>
+         <p id="UseCase1-code">Code Example:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathsinglefilter/UseCase1.java"/>
