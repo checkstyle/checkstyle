@@ -220,6 +220,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testModuleInfo() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "2:9: " + getCheckMessage(MSG_ERROR, "module directive", 8, 4),
+            "4:3: " + getCheckMessage(MSG_ERROR, "module directive", 2, 4),
+            "6:7: " + getCheckMessage(MSG_ERROR, "java", 6, 8),
+            "7:7: " + getCheckMessage(MSG_ERROR, "module directive", 6, 4),
+            "8:7: " + getCheckMessage(MSG_ERROR, "module directive", 6, 4),
+            "9:9: " + getCheckMessage(MSG_ERROR, "com", 8, 10),
+        };
+        verifyWarns(checkConfig,
+                getNonCompilablePath("InputIndentationModuleInfo.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] requiredTokens = checkObj.getRequiredTokens();
