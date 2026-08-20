@@ -29,14 +29,14 @@ public enum RightCurlyOption {
      * Represents the policy that the brace must be alone on the line.
      * For example:
      *
-     * <pre>
+     * {@snippet lang="text" :
      * try {
      *     ...
      * <b>}</b>
      * finally {
      *     ...
      * <b>}</b>
-     * </pre>
+     * }
      **/
     ALONE,
 
@@ -45,7 +45,7 @@ public enum RightCurlyOption {
      * yet allows single-line format of block.
      * For example:
      *
-     * <pre>
+     * {@snippet lang="text" :
      * // Brace is alone on the line
      * try {
      *     ...
@@ -56,7 +56,7 @@ public enum RightCurlyOption {
      *
      * // Single-line format of block
      * public long getId() { return id; <b>}</b>
-     * </pre>
+     * }
      **/
     ALONE_OR_SINGLELINE,
 
@@ -71,7 +71,7 @@ public enum RightCurlyOption {
      *
      * <p>Examples:</p>
      *
-     * <pre>
+     * {@snippet lang="text" :
      * public long getId() {return id;<b>}</b> // this is OK, it is single-line
      *
      * // try-catch-finally blocks
@@ -94,36 +94,36 @@ public enum RightCurlyOption {
      * }
      *
      * // if-else blocks
-     * if (a &#62; 0) {
+     * if (a > 0) {
      *     ...
      * <b>}</b> else { // this is OK
      *     ...
      * }
      *
-     * if (a &#62; 0) {
+     * if (a > 0) {
      *     ...
      * <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
      * else {
      *     ...
      * }
      *
-     * if (a &#62; 0) {
+     * if (a > 0) {
      *     ...
      * <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement, so should be alone
      *
      * Thread t = new Thread(new Runnable() {
-     *  &#64;Override
+     *  @Override
      *  public void run() {
      *                ...
      *  <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
      * <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
      *
-     * if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
-     * if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
-     * if (a &#62; 0) {
+     * if (a > 0) { ... <b>}</b> // OK, single-line multi-block statement
+     * if (a > 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
+     * if (a > 0) {
      *     ...
      * } else { ... <b>}</b> // OK, single-line multi-block statement
-     * </pre>
+     * }
      **/
     SAME,
 

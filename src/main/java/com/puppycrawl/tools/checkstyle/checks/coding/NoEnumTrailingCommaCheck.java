@@ -32,23 +32,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *  them in other locations. To unify the coding style, the use of trailing commas should
  *  be prohibited.
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * enum Foo1 {
  *   FOO,
  *   BAR;
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  *  The check demands that there should not be any comma after last constant in
  *  enum definition.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * enum Foo1 {
  *   FOO,
  *   BAR, // violation
  * }
- * </code></pre></div>
+ * }
  *
  * @since 8.29
  */
