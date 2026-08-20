@@ -76,31 +76,31 @@
           enforce that the <code>public</code> and <code>static</code> modifiers are explicitly coded and not
           implicitly added by the compiler.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public interface AddressFactory {
-  // check enforces code contains "public static final"
-  public static final String UNKNOWN = "Unknown";
+          {@ lang="text":
+          public interface AddressFactory {
+          // check enforces code contains "public static final"
+          public static final String UNKNOWN = "Unknown";
 
-  String OTHER = "Other";  // violation
+          String OTHER = "Other";  // violation
 
-  // check enforces code contains "public" or "private"
-  public static AddressFactory instance();
+          // check enforces code contains "public" or "private"
+          public static AddressFactory instance();
 
-  // check enforces code contains "public abstract"
-  public abstract Address createAddress(String addressLine, String city);
+          // check enforces code contains "public abstract"
+          public abstract Address createAddress(String addressLine, String city);
 
-  List&lt;Address&gt; findAddresses(String city);  // violation
+          List&lt;Address&gt; findAddresses(String city);  // violation
 
-  // check enforces default methods are explicitly declared "public"
-  public default Address createAddress(String city) {
-    return createAddress(UNKNOWN, city);
-  }
+          // check enforces default methods are explicitly declared "public"
+          public default Address createAddress(String city) {
+          return createAddress(UNKNOWN, city);
+          }
 
-  default Address createOtherAddress() {  // violation
-    return createAddress(OTHER, OTHER);
-  }
-}
-        </code></pre></div>
+          default Address createOtherAddress() {  // violation
+          return createAddress(OTHER, OTHER);
+          }
+          }
+          }
 
         <p>
           Rationale for this check: Methods, fields and nested types are treated differently

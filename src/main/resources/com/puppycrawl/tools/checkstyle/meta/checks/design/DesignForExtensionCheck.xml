@@ -82,7 +82,7 @@
  &lt;p&gt;
  Example of code that cause violation as it is designed for extension:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@ lang="text":
  public abstract class Plant {
    private String roots;
    private String trunk;
@@ -98,7 +98,7 @@
  public class Tree extends Plant {
    private List leaves;
 
-   &amp;#64;Overrides
+   @Overrides
    protected void validate() {
      super.validate();
      if (leaves == null) throw new IllegalArgumentException("No leaves!");
@@ -108,12 +108,12 @@
      validate();
    }
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ }
 
  &lt;p&gt;
  Example of code without violation:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ {@ lang="text":
  public abstract class Plant {
    private String roots;
    private String trunk;
@@ -128,7 +128,7 @@
 
    public abstract void grow();
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ }</description>
          <properties>
             <property default-value="After, AfterClass, Before, BeforeClass, Test"
                       name="ignoredAnnotations"
