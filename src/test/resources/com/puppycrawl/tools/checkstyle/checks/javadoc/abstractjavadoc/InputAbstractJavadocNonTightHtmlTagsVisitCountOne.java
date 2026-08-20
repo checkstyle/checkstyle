@@ -7,6 +7,7 @@ reportVisitJavadocToken = true
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
+// violation 4 lines below 'Unclosed HTML tag found: p'
 /**
  * <body>
  * <p> This class is only meant for testing. </p>
@@ -15,7 +16,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
-// violation 5 lines above 'Unclosed HTML tag found: p'
 public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
     /** <p> <p> paraception </p> </p> */
     private int field1;
@@ -57,6 +57,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
     // violation 2 lines above 'Unclosed HTML tag found: p'
     void setField2(int field2) {this.field2 = field2;}
 
+    // violation 6 lines below 'Unclosed HTML tag found: tr'
     /**
      * <p> paragraph with a <br>singletonElement. <hr> And it contains another one. </p>
      * <li> List with singletonElement
@@ -64,7 +65,6 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
      *     <tr> nonTight
      */
-    // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}
 
     /**
@@ -73,10 +73,10 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
     private void setField3(int field3) { this.field3 = field3;}
 
 
+    // violation 2 lines below 'Type Javadoc tag SEE_BLOCK_TAG must match pattern*.'
     /**
      * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
      */
-    // violation 2 lines above 'Type Javadoc tag SEE_BLOCK_TAG must match pattern*.'
     public static void test() {
 
     }

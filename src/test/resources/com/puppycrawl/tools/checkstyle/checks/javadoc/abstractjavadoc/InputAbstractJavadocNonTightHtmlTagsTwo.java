@@ -6,6 +6,7 @@ violateExecutionOnNonTightHtml = true
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
+// violation 4 lines below 'Unclosed HTML tag found: p'
 /**
  * <body>
  * <p> This class is only meant for testing. </p>
@@ -14,7 +15,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
-// violation 5 lines above 'Unclosed HTML tag found: p'
 public class InputAbstractJavadocNonTightHtmlTagsTwo {
     /** <p> <p> paraception </p> */ // violation 'Unclosed HTML tag found: p'
     private int field4;
@@ -40,12 +40,12 @@ public class InputAbstractJavadocNonTightHtmlTagsTwo {
      */
     private int field6;
 
+    // violation 4 lines below 'Unclosed HTML tag found: li'
     /**
      * <body> body <p> paragraph <li> list </li> </p> </body>
      *
      * @return <li> <li> outer list isn't nested in parse tree </li>
      */
-    // violation 2 lines above 'Unclosed HTML tag found: li'
 
     private int getField4() {return field4;}
 
@@ -76,12 +76,12 @@ public class InputAbstractJavadocNonTightHtmlTagsTwo {
      */
     private void setField5(int field5) {this.field5 = field5;}
 
+    // violation 2 lines below 'Unclosed HTML tag found: p'
     /**
      *  <p> <li> <TR> <Td> <tH> <body> <colGROUP> <DD>
      *      <dt> <Head> <HTML> <option> <tBody> <tHead>
      *      <tFoot>
      * @param field6 value to which {@link #field6} is to be set to
      */
-    // violation 5 lines above 'Unclosed HTML tag found: p'
     private void setField6(int field6) {this.field6 = field6;}
 }
