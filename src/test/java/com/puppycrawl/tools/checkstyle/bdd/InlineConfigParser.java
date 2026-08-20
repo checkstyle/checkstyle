@@ -318,7 +318,6 @@ public final class InlineConfigParser {
             "checks/coding/illegaltype/InputIllegalTypeSameFileNameFalsePositive.java",
             "checks/coding/illegaltype/InputIllegalTypeTestSameFileNameGeneral.java",
             "checks/coding/illegaltype/InputIllegalTypeTestStarImports.java",
-            "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
             "checks/coding/noclone/Example1.java",
             "checks/coding/unusedlocalvariable/Example1.java",
             "checks/coding/unusedlocalvariable/Example2.java",
