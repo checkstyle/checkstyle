@@ -447,8 +447,7 @@ no-error-xwiki)
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
-  checkout_from https://github.com/xwiki/xwiki-platform.git \
-    "16906187c4ab5d3c""cf93cd4818ad577579a7e7eb"
+  checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
