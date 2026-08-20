@@ -4628,20 +4628,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</message>
-    <lineContent>return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</message>
-    <lineContent>return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
     <lineContent>if (ident.getLineNo() == getMainAst().getLineNo()) {</lineContent>
   </checkerFrameworkError>
@@ -4662,16 +4648,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>if (modifiers.hasChildren()) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>.findFirstToken(TokenTypes.LCURLY);</lineContent>
+    <lineContent>return getListChild().findFirstToken(TokenTypes.LCURLY);</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
@@ -4682,7 +4661,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>.findFirstToken(TokenTypes.RCURLY);</lineContent>
+    <lineContent>return getListChild().findFirstToken(TokenTypes.RCURLY);</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
@@ -4693,7 +4672,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ClassDefHandler.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return getMainAst().findFirstToken(TokenTypes.OBJBLOCK);</lineContent>
+    <lineContent>return listChild;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
@@ -4989,6 +4968,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
+    <lineContent>register(TokenTypes.EXPORTS, ModuleDirectiveHandler.class);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
+      required: @Initialized @NonNull HandlerFactory
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
     <lineContent>register(TokenTypes.IMPORT, ImportHandler.class);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
@@ -5209,6 +5199,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
+    <lineContent>register(TokenTypes.MODULE_DEF, ClassDefHandler.class);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
+      required: @Initialized @NonNull HandlerFactory
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
     <lineContent>register(TokenTypes.MODULE_IMPORT, ImportHandler.class);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
@@ -5231,6 +5232,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
+    <lineContent>register(TokenTypes.OPENS, ModuleDirectiveHandler.class);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
+      required: @Initialized @NonNull HandlerFactory
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
     <lineContent>register(TokenTypes.PACKAGE_DEF, PackageDefHandler.class);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
@@ -5242,7 +5254,29 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
+    <lineContent>register(TokenTypes.PROVIDES, ModuleDirectiveHandler.class);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
+      required: @Initialized @NonNull HandlerFactory
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
     <lineContent>register(TokenTypes.RECORD_DEF, ClassDefHandler.class);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
+      required: @Initialized @NonNull HandlerFactory
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
+    <lineContent>register(TokenTypes.REQUIRES, ModuleDirectiveHandler.class);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
       required: @Initialized @NonNull HandlerFactory
@@ -5287,6 +5321,17 @@
     <specifier>method.invocation</specifier>
     <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
     <lineContent>register(TokenTypes.SWITCH_RULE, SwitchRuleHandler.class);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
+      required: @Initialized @NonNull HandlerFactory
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
+    <lineContent>register(TokenTypes.USES, ModuleDirectiveHandler.class);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
       required: @Initialized @NonNull HandlerFactory
