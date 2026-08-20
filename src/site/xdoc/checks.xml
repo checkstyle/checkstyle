@@ -1636,6 +1636,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/prefercodeorsnippetjavadocinlinetag.html#PreferCodeOrSnippetJavadocInlineTag">
+                PreferCodeOrSnippetJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags <code>{@code ...}</code> and <code>{@snippet
+              ...}</code> are preferred over HTML tags <code>&lt;code&gt;</code> and
+              <code>&lt;pre&gt;</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/preferliteraljavadocinlinetag.html#PreferLiteralJavadocInlineTag">
                 PreferLiteralJavadocInlineTag
               </a>
