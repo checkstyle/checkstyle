@@ -1,22 +1,23 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="ModifierOrder"/>
+    <module name="ModifierOrder">
+      <property name="modifiersOrder" value="static, final, public, private"/>
+    </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.modifier.modifierorder;
 
 // xdoc section - start
-public class Example1 {
+public class Example2 {
   public static final int MAX_VALUE = 100;
+  // violation above 'static' modifier out of order with the defined modifier order.
 
-  // violation below "'private' modifier out of order with the JLS suggestions"
   final private String exampleOne = "ExampleOne";
 
-  // violation below "'private' modifier out of order with the JLS suggestions"
   static private int exampleTwo;
-
+  // violation below 'static' modifier out of order with the defined modifier order.
   private static void method() {}
 
   // violation below 'annotation modifier does not precede non-annotation modifiers'
