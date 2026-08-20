@@ -348,11 +348,7 @@ public final class InlineConfigParser {
                     + "InputUnderscoreUsedInNames.java",
             "com/openjdk/checkstyle/test/chapterformatting/"
                     + "ruleorderofconstructorsandoverloadedmethods/"
-                    + "InputOrderOfConstructorsAndOverloadedMethodsOne.java",
-            "com/openjdk/checkstyle/test/chapternaming/ruletypevariables/"
-                    + "InputTypeVariablesOne.java",
-            "com/openjdk/checkstyle/test/chapternaming/rulevariables/"
-                    + "InputVariablesInvalid.java"
+                    + "InputOrderOfConstructorsAndOverloadedMethodsOne.java"
     );
 
     /**
