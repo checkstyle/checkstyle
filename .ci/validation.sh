@@ -1117,6 +1117,10 @@ no-error-spring-integration)
   cd .ci-temp/spring-integration
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
+  sed -i'' 's/withPayload(converted)/withPayload(java.util.Objects.requireNonNull(converted))/' spring-integration-jms/src/main/java/org/springframework/integration/jms/channel/AbstractJmsChannel.java
+  sed -i'' 's/withPayload(object)/withPayload(java.util.Objects.requireNonNull(object))/' spring-integration-jms/src/main/java/org/springframework/integration/jms/inbound/JmsDestinationPollingSource.java
+  sed -i'' 's/withPayload(result)/withPayload(java.util.Objects.requireNonNull(result))/' spring-integration-jms/src/main/java/org/springframework/integration/jms/outbound/JmsOutboundGateway.java
+  sed -i'' 's/withPayload(result)/withPayload(java.util.Objects.requireNonNull(result))/' spring-integration-jms/src/main/java/org/springframework/integration/jms/inbound/ChannelPublishingJmsMessageListener.java
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL \
     -P$PROP_CS_VERSION="${CS_POM_VERSION}"
   cd ../
