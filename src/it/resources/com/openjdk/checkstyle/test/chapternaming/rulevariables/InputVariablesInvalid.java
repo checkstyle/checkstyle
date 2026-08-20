@@ -6,12 +6,12 @@ import java.util.stream.Stream;
 
 public class InputVariablesInvalid {
 
-    static int ItStatic1 = 2; // violation 'must match pattern'
-    protected static int ItStatic2 = 2; // violation 'must match pattern'
-    private static int ItStatic = 2; // violation 'must match pattern'
-    static int it_static = 2; // violation 'must match pattern'
-    static int It_Static = 2; // violation 'must match pattern'
-    private static int It_Static1 = 2; // violation 'must match pattern'
+    static int ItStatic1 = 2; // violation 'Name 'ItStatic1' must match pattern'
+    protected static int ItStatic2 = 2; // violation 'Name 'ItStatic2' must match pattern'
+    private static int ItStatic = 2; // violation 'Name 'ItStatic' must match pattern'
+    static int it_static = 2; // violation 'Name 'it_static' must match pattern'
+    static int It_Static = 2; // violation 'Name 'It_Static' must match pattern'
+    private static int It_Static1 = 2; // violation 'Name 'It_Static1' must match pattern'
 
     public int NUM1; // violation 'Name 'NUM1' must match pattern'
     protected int NUM2; // violation 'Name 'NUM2' must match pattern'
