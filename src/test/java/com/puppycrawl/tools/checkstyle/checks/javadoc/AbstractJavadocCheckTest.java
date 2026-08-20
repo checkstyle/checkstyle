@@ -142,7 +142,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAntlrLexerError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "12: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     29, "token recognition error at: '-'", "fieldName"),
         };
         verifyWithInlineConfigParser(
