@@ -74,9 +74,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input 'see'", "SEE_TAG"),
-            "50: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
+            "52: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
                     "no viable alternative at input '}'", "REFERENCE"),
-            "58: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
+            "61: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
                     "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
@@ -142,7 +142,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAntlrLexerError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "12: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     29, "token recognition error at: '-'", "fieldName"),
         };
         verifyWithInlineConfigParser(
@@ -435,12 +435,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                     29, "token recognition error at: '-'", "fieldName"),
             "40: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     30, "token recognition error at: '-'", " "),
-            "72: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "74: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     32, "mismatched input 'description' expecting <EOF>", "JAVADOC"),
-            "88: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "90: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     34, "mismatched input 'description' "
                              + "expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
-            "95: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+            "97: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     39, "mismatched input 'description'"
                             + " expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
         };
@@ -452,13 +452,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtmlTagIntolerantCheckOne() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "22: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
             "54: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "64: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "65: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsOne.java"), expected);
@@ -467,11 +467,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtmlTagIntolerantCheckTwo() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "25: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "46: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "80: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "47: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "81: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsTwo.java"), expected);
@@ -494,13 +494,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
             "47: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "55: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "65: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "77:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "SEE_BLOCK_TAG"),
+            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "78:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "SEE_BLOCK_TAG"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountOne.java"),
@@ -510,10 +510,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonTightHtmlTagIntolerantCheckVisitCountTwo() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "47: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "57:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "SEE_BLOCK_TAG"),
-            "82: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "48: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "58:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "SEE_BLOCK_TAG"),
+            "83: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountTwo.java"),
@@ -523,7 +523,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "15: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 68,
                     "no viable alternative at input '</'", "HTML_ELEMENT"),
@@ -531,7 +531,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "48: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
             "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "66:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
-            "78: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "79: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTags2.java"), expected);
@@ -540,10 +540,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml3() throws Exception {
         final String[] expected = {
-            "15:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
-            "30:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
-            "36: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "38:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
+            "16:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
+            "32:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
+            "39: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "41:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTags3.java"), expected);

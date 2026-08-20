@@ -7,6 +7,7 @@ reportVisitJavadocToken = true
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
+// violation 5 lines below 'Unclosed HTML tag found: p'
 /**
  * <body>
  * <p> This class is only meant for testing. </p>
@@ -17,7 +18,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
-// violation 6 lines above 'Unclosed HTML tag found: p'
 
 public class InputAbstractJavadocNonTightHtmlTags2 {
     /** <p> <p> paraception </p>  */
@@ -70,6 +70,7 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
     //                            'tag PARAM_BLOCK_TAG'
     void setField2(int field2) {this.field2 = field2;}
 
+    // violation 6 lines below 'Unclosed HTML tag found: tr'
     /**
      * <p> paragraph with a <br>singletonElement. <hr> And it contains another. </p>
      * <li> List with singletonElement
@@ -77,6 +78,5 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
      *     <tr> nonTight
      */
-    // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}
 }
