@@ -51,7 +51,6 @@ public class ModuleDirectiveHandler extends AbstractExpressionHandler {
         }
 
         final DetailAST semi = mainAst.findFirstToken(TokenTypes.SEMI);
-
         checkWrappingIndentation(mainAst, semi);
     }
 

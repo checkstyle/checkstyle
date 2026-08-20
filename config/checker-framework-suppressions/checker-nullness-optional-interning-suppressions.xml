@@ -5589,6 +5589,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/ModuleDirectiveHandler.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter lastNode of AbstractExpressionHandler.checkWrappingIndentation.</message>
+    <lineContent>checkWrappingIndentation(mainAst, semi);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/NewHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter expression of NewHandler.checkNestedNew.</message>
