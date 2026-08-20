@@ -37,8 +37,9 @@
           <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations">
           OpenJDK Style</a>.
           Declaration annotations must either reside entirely on a single line or
-          have each annotation placed on its own separate line. Annotations should
-          not share a line with the target declaration, except for single-line methods and fields.
+          have each annotation placed on its own separate line. Annotations may share
+          a line with the target declaration only when all annotations and the complete
+          target declaration are on that same line.
         </div>
 
         <p>
@@ -179,6 +180,10 @@ class Example1 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkAnnotationLocation">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkAnnotationLocation">
+            OpenJDK Style</a>
           </li>
         </ul>
       </subsection>
