@@ -41,6 +41,21 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
 
     @Test
     public void testExample1() throws Exception {
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyVariable", "^[a-z][a-zA-Z0-9]*$"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "10"),
+            "26:15: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "100"),
+            "28:15: " + getCheckMessage(EmptyBlockCheck.class,
+                    "block.noStatement"),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expected, expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "20:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
@@ -56,9 +71,23 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
                     EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyVariable", "^[a-z][a-zA-Z0-9]*$"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "10"),
+            "26:15: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "100"),
+            "28:15: " + getCheckMessage(EmptyBlockCheck.class, "block.noStatement"),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+                expected, expected);
     }
 
     @Test

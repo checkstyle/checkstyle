@@ -1,6 +1,9 @@
 /*xml
 <module name="Checker">
-  <module name="SuppressionFilter"/>
+  <module name="SuppressionFilter">
+    <property name="file" value="nonexisting.xml"/>
+    <property name="optional" value="true"/>
+  </module>
   <module name="TreeWalker">
     <module name="MemberName"/>
     <module name="MagicNumber"/>
@@ -9,12 +12,9 @@
 </module>
 */
 
-
-
-
 package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
 // xdoc section - start
-public class Example1 {
+public class Example3 {
 
   // violation below 'Name 'MyVariable' must match pattern'
   int MyVariable;
