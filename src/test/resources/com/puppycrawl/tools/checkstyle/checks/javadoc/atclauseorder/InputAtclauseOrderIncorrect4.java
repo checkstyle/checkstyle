@@ -11,9 +11,9 @@ tagOrder = (default)@author, @version, @param, @return, @throws, @exception, \
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 /** Javadoc for import */
 import java.io.Serializable;
-// violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 7 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *
@@ -24,7 +24,7 @@ import java.io.Serializable;
  * @author max
  */
 class InputAtclauseOrderIncorrect4 implements Serializable {
-    // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 7 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some javadoc.
      *
@@ -33,7 +33,7 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
      * @serialData Some javadoc.
      * @author max
      */
-    // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
     class InnerClassWithAnnotations4 {
         /**
          * Some text.
@@ -44,8 +44,8 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
         String method5(String aString) {
             return "null";
         }
-        // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
-        // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
+        // violation 7 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @param aString Some text.
@@ -60,8 +60,8 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
         }
     }
     InnerClassWithAnnotations4 anon = new InnerClassWithAnnotations4() {
-        // violation 5 lines below 'Block tags have to appear in the order .\[@author.*'
-        // violation 5 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 5 lines below 'Block tags have to appear in the order .[@author.*'
+        // violation 5 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @deprecated Some text.
@@ -72,8 +72,8 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
             return "null";
         }
 
-        // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
-        // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
+        // violation 7 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @param aString Some text.
@@ -88,9 +88,9 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
         }
     };
 }
-// violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 7 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *
@@ -101,7 +101,7 @@ class InputAtclauseOrderIncorrect4 implements Serializable {
  * @author max
  */
 enum Foo4 {}
-// violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 7 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *

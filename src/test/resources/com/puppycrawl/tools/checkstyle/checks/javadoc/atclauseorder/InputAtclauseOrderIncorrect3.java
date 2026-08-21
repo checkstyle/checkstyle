@@ -13,9 +13,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 /** Javadoc for import */
 import java.io.Serializable;
 
-// violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 7 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *
@@ -27,7 +27,7 @@ import java.io.Serializable;
  */
 class InputAtclauseOrderIncorrect3 implements Serializable
 {
-    // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 7 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some javadoc.
      *
@@ -38,7 +38,7 @@ class InputAtclauseOrderIncorrect3 implements Serializable
      */
     class InnerClassWithAnnotations3
     {
-        // violation 4 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 4 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @deprecated Some text.
@@ -46,7 +46,7 @@ class InputAtclauseOrderIncorrect3 implements Serializable
          */
         void method3() throws Exception {}
 
-        // violation 5 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 5 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @throws Exception Some text.
@@ -61,7 +61,7 @@ class InputAtclauseOrderIncorrect3 implements Serializable
 
     InnerClassWithAnnotations3 anon = new InnerClassWithAnnotations3()
     {
-        // violation 4 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 4 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @deprecated Some text.
@@ -69,7 +69,7 @@ class InputAtclauseOrderIncorrect3 implements Serializable
          */
         void method3() throws Exception {}
 
-        // violation 4 lines below 'Block tags have to appear in the order .\[@author.*'
+        // violation 4 lines below 'Block tags have to appear in the order .[@author.*'
         /**
          * Some text.
          * @throws Exception Some text.
