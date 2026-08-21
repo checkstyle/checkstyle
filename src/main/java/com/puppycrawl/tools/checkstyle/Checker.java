@@ -276,7 +276,6 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *
      * @param files a list of files to process.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
-     * @throws Error wraps any java.lang.Error happened during execution
      * @noinspection ProhibitedExceptionThrown
      * @noinspectionreason ProhibitedExceptionThrown - There is no other way to
      *      deliver filename that was under processing.

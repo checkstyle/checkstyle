@@ -47,7 +47,6 @@ public final class NullUtil {
      * @param <T> the type of the reference
      * @param ref a reference of @Nullable type, that is non-null at run time
      * @return the argument, cast to have the type qualifier {@code @NonNull}
-     * @throws AssertionError if ref is null and assertions are enabled
      */
     public static <T> @NonNull T notNull(@Nullable T ref) {
         if (ref == null) {

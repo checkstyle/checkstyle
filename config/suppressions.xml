@@ -158,6 +158,14 @@
   <suppress checks="ClassFanOutComplexity"
             files="/src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java"/>
 
+  <!-- JavadocNoErrorInThrowsTag intentionally forbids documenting Error types. -->
+  <suppress checks="JavadocMethod"
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
+            message="Expected @throws tag for 'Error'\."/>
+  <suppress checks="JavadocMethod"
+            files="/src/main/java/com/puppycrawl/tools/checkstyle/utils/NullUtil.java"
+            message="Expected @throws tag for 'AssertionError'\."/>
+
   <!-- API docs intentionally show adjacent asterisks as Javadoc content. -->
   <suppress id="blockCommentStartWithSpace"
             files="/src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java"/>

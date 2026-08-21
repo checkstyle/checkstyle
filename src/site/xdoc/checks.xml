@@ -899,6 +899,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocnoerrorinthrowstag.html#JavadocNoErrorInThrowsTag">
+                JavadocNoErrorInThrowsTag
+              </a>
+            </td>
+            <td>
+              Checks that <code>Error</code> types are not documented in <code>@throws</code> or
+              <code>@exception</code> Javadoc tags.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadocpackage.html#JavadocPackage">
                 JavadocPackage
               </a>
