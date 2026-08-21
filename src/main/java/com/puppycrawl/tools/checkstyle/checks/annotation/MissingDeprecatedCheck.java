@@ -62,13 +62,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * these files until the javadoc tool faithfully supports it. An example config
  * using SuppressionSingleFilter is:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+ * {@snippet lang="text" :
  * &lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&gt;
  * &lt;module name="SuppressionSingleFilter"&gt;
  *     &lt;property name="checks" value="MissingDeprecatedCheck"/&gt;
  *     &lt;property name="files" value="package-info\.java"/&gt;
  * &lt;/module&gt;
- * </code></pre></div>
+ * }
+ *
+ * @noinspection JavadocLinkAsPlainText
+ * @noinspectionreason JavadocLinkAsPlainText - link is in plain text in snippet
  *
  * @since 5.0
  */

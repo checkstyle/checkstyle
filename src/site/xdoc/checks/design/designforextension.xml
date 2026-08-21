@@ -112,53 +112,53 @@
         <p>
           Example of code that cause violation as it is designed for extension:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public abstract class Plant {
-  private String roots;
-  private String trunk;
+          {@ lang="text":
+          public abstract class Plant {
+          private String roots;
+          private String trunk;
 
-  protected void validate() {
-    if (roots == null) throw new IllegalArgumentException("No roots!");
-    if (trunk == null) throw new IllegalArgumentException("No trunk!");
-  }
+          protected void validate() {
+          if (roots == null) throw new IllegalArgumentException("No roots!");
+          if (trunk == null) throw new IllegalArgumentException("No trunk!");
+          }
 
-  public abstract void grow();
-}
+          public abstract void grow();
+          }
 
-public class Tree extends Plant {
-  private List leaves;
+          public class Tree extends Plant {
+          private List leaves;
 
-  &#64;Overrides
-  protected void validate() {
-    super.validate();
-    if (leaves == null) throw new IllegalArgumentException("No leaves!");
-  }
+          @Overrides
+          protected void validate() {
+          super.validate();
+          if (leaves == null) throw new IllegalArgumentException("No leaves!");
+          }
 
-  public void grow() {
-    validate();
-  }
-}
-        </code></pre></div>
+          public void grow() {
+          validate();
+          }
+          }
+          }
 
         <p>
           Example of code without violation:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public abstract class Plant {
-  private String roots;
-  private String trunk;
+          {@ lang="text":
+          public abstract class Plant {
+          private String roots;
+          private String trunk;
 
-  private void validate() {
-    if (roots == null) throw new IllegalArgumentException("No roots!");
-    if (trunk == null) throw new IllegalArgumentException("No trunk!");
-    validateEx();
-  }
+          private void validate() {
+          if (roots == null) throw new IllegalArgumentException("No roots!");
+          if (trunk == null) throw new IllegalArgumentException("No trunk!");
+          validateEx();
+          }
 
-  protected void validateEx() { }
+          protected void validateEx() { }
 
-  public abstract void grow();
-}
-        </code></pre></div>
+          public abstract void grow();
+          }
+          }
       </subsection>
 
       <subsection name="Properties" id="DesignForExtension_Properties">

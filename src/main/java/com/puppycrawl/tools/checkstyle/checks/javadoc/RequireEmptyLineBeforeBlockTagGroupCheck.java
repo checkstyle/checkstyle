@@ -70,10 +70,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
     /**
      * Case when space separates the tag and multiple asterisks like in the below example.
-     * <pre>
+     * {@snippet lang="text" :
      *  /**
-     *   &#42;&#42; &#64;param noSpace there is no space here
-     * </pre>
+     *   &#42; &#64;param noSpace there is no space here
+     * }
      */
     private static final List<Integer> ONLY_TAG_VARIATION_3 = Arrays.asList(
             JavadocCommentsTokenTypes.TEXT,
@@ -82,10 +82,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
     /**
      * Case when no space separates the tag and multiple asterisks like in the below example.
-     * <pre>
+     * {@snippet lang="text" :
      *  /**
      *   &#42;&#42;&#64;param noSpace there is no space here
-     * </pre>
+     * }
      */
     private static final List<Integer> ONLY_TAG_VARIATION_4 = Arrays.asList(
             JavadocCommentsTokenTypes.LEADING_ASTERISKS,
@@ -93,10 +93,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
     /**
      * Case when one extra asterisk is in the javadoc start like in the below example.
-     * <pre>
+     * {@snippet lang="text" :
      *  /&#42;&#42;&#42;
      *   &#42; &#64;param noSpace there is no space here
-     * </pre>
+     * }
      */
     private static final List<Integer> ONLY_TAG_VARIATION_5 = Arrays.asList(
             JavadocCommentsTokenTypes.TEXT,
@@ -106,10 +106,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
 
     /**
      * Case when a boxed javadoc has only a block tag like in the below example.
-     * <pre>
+     * {@snippet lang="text" :
      *  /&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;
      *   &#42;&#42;&#42; &#64;param noSpace there is no space here
-     * </pre>
+     * }
      */
     private static final List<Integer> ONLY_TAG_VARIATION_6 = Arrays.asList(
             JavadocCommentsTokenTypes.TEXT,
@@ -183,29 +183,29 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * Returns true when there are is only whitespace and asterisks before the provided tagNode.
      * When javadoc has only a javadoc tag like {@literal @} in it, the JAVADOC_TAG in a JAVADOC
      * detail node will always have 2 or 3 siblings before it. The parse tree looks like:
-     * <pre>
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x1] : [*]
      * |--TEXT[4x2] : [ ]
      * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
-     * </pre>
+     * }
      * Or it can also look like:
-     * <pre>
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x1] : [*]
      * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
-     * </pre>
+     * }
      * We do not include the variation
-     * <pre>
-     *  /**&#64;param noSpace there is no space here
-     * </pre>
+     * {@snippet lang="text" :
+     *  /**@param noSpace there is no space here
+     * }
      * which results in the tree
-     * <pre>
+     * {@snippet lang="text" :
      * JAVADOC_CONTENT[3x0]
      * |--JAVADOC_BLOCK_TAG[4x3] : [@param noSpace there is no space here\n ]
-     * </pre>
+     * }
      * because this one is invalid. We must recommend placing a blank line to separate &#64;param
      * from the first javadoc asterisks.
      *
