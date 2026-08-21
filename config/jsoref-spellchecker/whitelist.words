@@ -668,6 +668,7 @@ javadoclinkwellknownapi
 javadocmethod
 javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
+javadocnoerrorinthrowstag
 javadocpackage
 javadocparagraph
 javadocparamorder
