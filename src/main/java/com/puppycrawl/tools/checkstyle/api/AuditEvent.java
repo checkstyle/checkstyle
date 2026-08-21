@@ -46,6 +46,8 @@ public final class AuditEvent {
     private final String fileName;
     /** Violation associated with the event. **/
     private final Violation violation;
+    /** The file contents. */
+    private final FileContents fileContents;
 
     /**
      * Creates a new instance.
@@ -72,9 +74,21 @@ public final class AuditEvent {
      * @param src source of the event
      * @param fileName file associated with the event
      * @param violation the actual violation
-     * @throws IllegalArgumentException if {@code src} is {@code null}.
      */
     public AuditEvent(Object src, String fileName, Violation violation) {
+        this(src, fileName, violation, null);
+    }
+
+    /**
+     * Creates a new {@code AuditEvent} instance.
+     *
+     * @param src source of the event
+     * @param fileName file associated with the event
+     * @param violation the actual violation
+     * @param fileContents file content associated with the event
+     * @throws IllegalArgumentException if {@code src} is {@code null}.
+     */
+    public AuditEvent(Object src, String fileName, Violation violation, FileContents fileContents) {
         if (src == null) {
             throw new IllegalArgumentException("null source");
         }
@@ -82,6 +96,7 @@ public final class AuditEvent {
         source = src;
         this.fileName = fileName;
         this.violation = violation;
+        this.fileContents = fileContents;
     }
 
     /**
@@ -101,6 +116,16 @@ public final class AuditEvent {
      */
     public String getFileName() {
         return fileName;
+    }
+
+    /**
+     * Returns the content of file beign audited.
+     *
+     * @return the file contant currently being audited or null if there is
+     *     no relation to a file.
+     */
+    public FileContents getFileContent() {
+        return fileContents;
     }
 
     /**
