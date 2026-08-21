@@ -57,8 +57,8 @@ public final class AstTreeStringPrinter {
      * @param file the file to print.
      * @param options {@link JavaParser.Options} to control the inclusion of comment nodes.
      * @return the AST of the file in String form.
-     * @throws IOException if the file could not be read.
      * @throws CheckstyleException if the file is not a Java source.
+     * @throws IOException if the file could not be read.
      */
     public static String printFileAst(File file, JavaParser.Options options)
             throws IOException, CheckstyleException {
@@ -70,8 +70,8 @@ public final class AstTreeStringPrinter {
      *
      * @param file java file
      * @return Full tree
-     * @throws IOException Failed to open a file
      * @throws CheckstyleException error while parsing the file
+     * @throws IOException Failed to open a file
      */
     public static String printJavaAndJavadocTree(File file)
             throws IOException, CheckstyleException {

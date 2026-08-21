@@ -165,8 +165,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      *
      * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
-     * @throws IllegalArgumentException if outputStreamOptions is null
      * @throws IOException if there is reading errors.
+     * @throws IllegalArgumentException if outputStreamOptions is null
      * @noinspection deprecation
      * @noinspectionreason We are forced to keep AutomaticBean compatability
      *     because of maven-checkstyle-plugin. Until #12873.
@@ -182,8 +182,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      *
      * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
-     * @throws IllegalArgumentException if outputStreamOptions is null
      * @throws IOException if there is reading errors.
+     * @throws IllegalArgumentException if outputStreamOptions is null
      */
     public SarifLogger(
         OutputStream outputStream,

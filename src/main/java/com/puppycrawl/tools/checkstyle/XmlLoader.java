@@ -61,8 +61,8 @@ public class XmlLoader
      * Creates a new instance.
      *
      * @param publicIdToResourceNameMap maps public IDs to DTD resource names
-     * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
+     * @throws SAXException if an error occurs
      */
     protected XmlLoader(Map<String, String> publicIdToResourceNameMap)
             throws SAXException, ParserConfigurationException {
@@ -152,8 +152,8 @@ public class XmlLoader
          * it is even security problem to allow files from outside.
          *
          * @param factory factory to be configured with special features
-         * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
+         * @throws SAXException if an error occurs
          */
         public static void setFeaturesBySystemProperty(SAXParserFactory factory)
                 throws SAXException, ParserConfigurationException {
