@@ -666,6 +666,7 @@ javadocleadingasteriskalign
 javadocmethod
 javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
+javadocnoerrorinthrowstag
 javadocpackage
 javadocparagraph
 javadocparamorder
