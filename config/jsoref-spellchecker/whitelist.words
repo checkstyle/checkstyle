@@ -25,6 +25,7 @@ alundblad
 amazonaws
 amd
 androidx
+ANNOS
 annotateddeclarationvisibility
 annotationlocation
 annotationonsameline
@@ -336,6 +337,7 @@ doctype
 documentationcomments
 documentingexceptionswiththrowstag
 donotignoreexceptions
+Donts
 Dorg
 DOTALL
 doubletag
@@ -468,6 +470,7 @@ findbugs
 Findentation
 findstr
 firstsentence
+fis
 FIXME
 Fjava
 Fjavadoc
@@ -804,6 +807,7 @@ localhost
 localvariablename
 Loggable
 lombok
+lookaheads
 lookaround
 Loughran
 lowercased
@@ -1392,10 +1396,12 @@ taglist
 taskdef
 tbody
 tcr
+tcs
 td
 teamcity
 technotes
 temurin
+tes
 testattr
 Testik
 testinputfolder
