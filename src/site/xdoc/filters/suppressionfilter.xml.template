@@ -37,11 +37,25 @@
       </subsection>
       <subsection name="Examples" id="SuppressionFilter_Examples">
         <p id="Example1-config">
-            Suppress certain checks by check name, file, and line number:
+          Default configuration does nothing:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+            Suppress certain checks by check name, file, and line number:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="suppressionexample1-raw">
@@ -49,9 +63,9 @@
           a <code>SuppressionFilter</code> to
           reject <code>MemberNameCheck</code> violations for
           line 20 of
-          file <code>Example1.java</code>,
+          file <code>Example2.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
-          22 and 26 of file <code>Example1.java</code>,
+          22 and 26 of file <code>Example2.java</code>,
           and <code>'Missing a Javadoc comment for'</code> violations
           for all lines and files:
         </p>
@@ -60,10 +74,24 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample1.xml"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To ignore a missing suppressions file:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         </subsection>
