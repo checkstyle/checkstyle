@@ -86,4 +86,5 @@ public class TestInputViolationTest {
                 .isEqualTo("4:(?:\\d+:)?\\s.*unmatched \\E\\(parenthesis\\).*");
     }
 
+    // Minor comment to trigger CI.
 }
