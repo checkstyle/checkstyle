@@ -142,6 +142,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
             TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.MODULE_DEF,
         };
     }
 
