@@ -58,32 +58,32 @@
               <td><a id="javadocTokens"/><a href="#javadocTokens">javadocTokens</a></td>
               <td>javadoc tokens to check</td>
               <td>subset of javadoc tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_BLOCK_TAG">
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#PARAM_BLOCK_TAG">
                     PARAM_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#RETURN_BLOCK_TAG">
                     RETURN_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#THROWS_BLOCK_TAG">
                     THROWS_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#EXCEPTION_BLOCK_TAG">
                     EXCEPTION_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#DEPRECATED_BLOCK_TAG">
                     DEPRECATED_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#SINCE_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#SINCE_BLOCK_TAG">
                     SINCE_BLOCK_TAG</a>
                   .
               </td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_BLOCK_TAG">
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#PARAM_BLOCK_TAG">
                     PARAM_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#RETURN_BLOCK_TAG">
                     RETURN_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#THROWS_BLOCK_TAG">
                     THROWS_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#EXCEPTION_BLOCK_TAG">
                     EXCEPTION_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#DEPRECATED_BLOCK_TAG">
                     DEPRECATED_BLOCK_TAG</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#SINCE_BLOCK_TAG">
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#SINCE_BLOCK_TAG">
                     SINCE_BLOCK_TAG</a>
                   .
               </td>
