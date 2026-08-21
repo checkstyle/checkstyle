@@ -11,9 +11,9 @@ tagOrder = (default)@author, @version, @param, @return, @throws, @exception, \
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 public class InputAtclauseOrderWithAnnotationsOutsideJavadoc {
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some javadoc.
      *
@@ -26,9 +26,9 @@ public class InputAtclauseOrderWithAnnotationsOutsideJavadoc {
     @Deprecated
     public boolean branchContains(int type) { return true; }
 
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some javadoc.
      *
@@ -41,9 +41,9 @@ public class InputAtclauseOrderWithAnnotationsOutsideJavadoc {
     public boolean branchContains2(int type) { return true; }
 }
 
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *
@@ -57,9 +57,9 @@ public class InputAtclauseOrderWithAnnotationsOutsideJavadoc {
 class TestClass {}
 
 class TestInnerClasses extends InputAtclauseOrderWithAnnotationsOutsideJavadoc{
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some javadoc.
      *
@@ -71,9 +71,9 @@ class TestInnerClasses extends InputAtclauseOrderWithAnnotationsOutsideJavadoc{
      */
     @Deprecated
     TestClass one = new TestClass(){};
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some javadoc.
      *
@@ -88,9 +88,9 @@ class TestInnerClasses extends InputAtclauseOrderWithAnnotationsOutsideJavadoc{
         return false;
     }
 }
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *
@@ -103,9 +103,9 @@ class TestInnerClasses extends InputAtclauseOrderWithAnnotationsOutsideJavadoc{
 @Deprecated
 enum TestEnums {}
 
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *

@@ -13,8 +13,8 @@ public class InputArrayBracketNoWhitespaceExpressions {
         int result1 = matrix[arr[0]][arr[1]];
         int result2 = matrix[ arr[0]][arr[1 ]];
         // 2 violations above:
-        // ''\[' is followed by whitespace'
-        // ''\]' is preceded with whitespace'
+        // ''[' is followed by whitespace'
+        // '']' is preceded with whitespace'
 
         // Array access in ternary operator
         int result3 = arr[0] > 0 ? arr[1] : arr[2];
@@ -70,7 +70,7 @@ public class InputArrayBracketNoWhitespaceExpressions {
         int o = arr[0]
             + arr[1];
 
-        int q = arr[0]+ arr[1] // violation ''\]' is not followed by whitespace'
+        int q = arr[0]+ arr[1] // violation '']' is not followed by whitespace'
             + arr[2];
     }
 }
