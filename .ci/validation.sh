@@ -1116,6 +1116,16 @@ no-error-spring-integration)
   cd .ci-temp/spring-integration
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
+  REQ="java.util.Objects.requireNonNull"
+  JMS_PATH="spring-integration-jms/src/main/java/org/springframework/integration/jms"
+  sed -i'' "s/withPayload(converted)/withPayload($REQ(converted))/" \
+    $JMS_PATH/channel/AbstractJmsChannel.java
+  sed -i'' "s/withPayload(object)/withPayload($REQ(object))/" \
+    $JMS_PATH/inbound/JmsDestinationPollingSource.java
+  sed -i'' "s/withPayload(result)/withPayload($REQ(result))/" \
+    $JMS_PATH/outbound/JmsOutboundGateway.java
+  sed -i'' "s/withPayload(result)/withPayload($REQ(result))/" \
+    $JMS_PATH/inbound/ChannelPublishingJmsMessageListener.java
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL \
     -P$PROP_CS_VERSION="${CS_POM_VERSION}"
   cd ../
