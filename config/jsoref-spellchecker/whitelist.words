@@ -16,6 +16,7 @@ addons
 adr
 AFBR
 AFilter
+aggregators
 allchecks
 allclasses
 allowlegacy
@@ -25,6 +26,7 @@ alundblad
 amazonaws
 amd
 androidx
+ANNOS
 annotateddeclarationvisibility
 annotationlocation
 annotationonsameline
@@ -49,6 +51,7 @@ appveyor
 APRV
 Aqj
 archunit
+args
 arity
 Arquillian
 arraybracketnowhitespace
@@ -145,6 +148,7 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
+cas
 casegroup
 catchparametername
 cba
@@ -804,6 +808,7 @@ localhost
 localvariablename
 Loggable
 lombok
+lookaheads
 lookaround
 Loughran
 lowercased
@@ -1392,10 +1397,12 @@ taglist
 taskdef
 tbody
 tcr
+tcs
 td
 teamcity
 technotes
 temurin
+tes
 testattr
 Testik
 testinputfolder

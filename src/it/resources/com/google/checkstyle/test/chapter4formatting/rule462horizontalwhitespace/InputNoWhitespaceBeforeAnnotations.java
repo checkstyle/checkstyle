@@ -18,16 +18,16 @@ public class InputNoWhitespaceBeforeAnnotations {
   @NonNull int @AnnoType[] @NonNull2[] field1;
   // 4 violations above:
   //   ''AnnoType' is not followed by whitespace'
-  //   ''\[' is not preceded with whitespace'
+  //   ''[' is not preceded with whitespace'
   //   ''NonNull2' is not followed by whitespace'
-  //   ''\[' is not preceded with whitespace'
+  //   ''[' is not preceded with whitespace'
 
   @NonNull int @AnnoType [] @NonNull2 [] field2;
 
   @NonNull int @AnnoType [] @NonNull2[] field3;
   // 2 violations above:
   // ''NonNull2' is not followed by whitespace'
-  // ''\[' is not preceded with whitespace'
+  // ''[' is not preceded with whitespace'
 
   // @NonNull int @NonNull ... field3; // non-compilable
   // @NonNull int @NonNull... field4; // non-compilable
@@ -45,7 +45,7 @@ public class InputNoWhitespaceBeforeAnnotations {
   public void foo3(final char @NonNull[] param) {}
   // 2 violations above:
   // ''NonNull' is not followed by whitespace'
-  // ''\[' is not preceded with whitespace'
+  // ''[' is not preceded with whitespace'
 
   /** Some javadoc. */
   public void foo4(final char @NonNull [] param) {}
