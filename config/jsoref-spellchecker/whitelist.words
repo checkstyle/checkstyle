@@ -25,6 +25,7 @@ alundblad
 amazonaws
 amd
 androidx
+ANNOS
 annotateddeclarationvisibility
 annotationlocation
 annotationonsameline
@@ -804,6 +805,7 @@ localhost
 localvariablename
 Loggable
 lombok
+lookaheads
 lookaround
 Loughran
 lowercased
@@ -1392,10 +1394,12 @@ taglist
 taskdef
 tbody
 tcr
+tcs
 td
 teamcity
 technotes
 temurin
+tes
 testattr
 Testik
 testinputfolder
