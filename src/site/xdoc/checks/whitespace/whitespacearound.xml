@@ -51,7 +51,7 @@
           Checks that a token is surrounded by whitespace. Empty constructor,
           method, class, enum, interface, loop bodies (blocks), lambdas of the form
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public MyClass() {}      // empty constructor
 public void func() {}    // empty method
 public interface Foo {} // empty interface
@@ -75,7 +75,7 @@ public @interface Beta {} // empty annotation type
         <p>
           This check does not flag as violation double brace initialization like:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 new Properties() {{
     setProperty("key", "value");
 }};
@@ -86,7 +86,7 @@ new Properties() {{
           contains SLIST to check if beginning of block is surrounded by whitespace
           and catch block is empty, for example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 try {
     k = 5 / i;
 } catch (ArithmeticException ex) {}

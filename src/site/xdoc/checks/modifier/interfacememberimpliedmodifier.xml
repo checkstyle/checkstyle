@@ -76,7 +76,7 @@
           enforce that the <code>public</code> and <code>static</code> modifiers are explicitly coded and not
           implicitly added by the compiler.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public interface AddressFactory {
   // check enforces code contains "public static final"
   public static final String UNKNOWN = "Unknown";
@@ -89,7 +89,7 @@ public interface AddressFactory {
   // check enforces code contains "public abstract"
   public abstract Address createAddress(String addressLine, String city);
 
-  List&lt;Address&gt; findAddresses(String city);  // violation
+  List&amp;lt;Address&amp;gt; findAddresses(String city);  // violation
 
   // check enforces default methods are explicitly declared "public"
   public default Address createAddress(String city) {

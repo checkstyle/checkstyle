@@ -42,14 +42,14 @@
         <p>
           Rationale: Novice Java programmers often use code like:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 if (x == "something")
         </code></pre></div>
 
         <p>
           when they mean
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 if ("something".equals(x))
         </code></pre></div>
       </subsection>

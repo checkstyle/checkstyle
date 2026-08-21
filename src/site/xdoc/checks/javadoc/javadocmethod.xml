@@ -95,8 +95,8 @@
           For example, if the following method is implementing a method required by
           an interface, then the Javadoc could be done as:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&#47;** {&#64;inheritDoc} *&#47;
+        <div class="wrapper"><pre class="prettyprint"><code>
+/** {@inheritDoc} * /
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
                           int aLineNo)
