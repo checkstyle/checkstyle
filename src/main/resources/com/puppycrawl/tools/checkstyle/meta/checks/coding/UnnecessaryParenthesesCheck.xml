@@ -26,7 +26,7 @@
  operator precedence but unaware about operator associativity.
  It won't catch cases such as:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  int x = (a + b) + c; // 1st Case
  boolean p = true; // 2nd Case
  int q = 4;
@@ -48,7 +48,7 @@
  &lt;p&gt;
  The partial support for operator precedence includes cases of the following type:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  boolean a = true, b = true;
  boolean c = false, d = false;
  if ((a &amp;amp;&amp;amp; b) || c) { // violation, unnecessary paren
@@ -57,7 +57,7 @@
  }
  if ((a == b) &amp;amp;&amp;amp; c) { // violation, unnecessary paren
  }
- String e = &amp;quot;e&amp;quot;;
+ String e = "e";
  if ((e instanceof String) &amp;amp;&amp;amp; a || b) { // violation, unnecessary paren
  }
  int f = 0;

@@ -36,7 +36,7 @@
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 enum Foo1 {
   FOO,
   BAR;
@@ -47,7 +47,7 @@ enum Foo1 {
           The check demands that there should not be any comma after last constant in
           enum definition.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 enum Foo1 {
   FOO,
   BAR, // violation

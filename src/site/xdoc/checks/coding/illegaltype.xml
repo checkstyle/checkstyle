@@ -65,7 +65,7 @@
           This helps to avoid ambiguous cases, e.g.: <code>java.awt.List</code> was set as
           illegal class name, then, code like:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 import java.util.List;
 ...
 List list; //No violation here

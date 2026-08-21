@@ -28,8 +28,8 @@
  check, so both braces in the following case will be reported as violations.
  &lt;/p&gt;
 
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
- public long toNanos(long d)  { return d;             } &amp;#47;&amp;#47; 2 violations
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ public long toNanos(long d)  { return d;             } // 2 violations
  public long toMicros(long d) { return d / (C1 / C0); }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>

@@ -33,9 +33,9 @@
         <div>
           Detects inline conditionals. Here is one example of an inline conditional:
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 String a = getParameter("a");
-String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
+String b = (a==null || a.length() &gt; 1) ? null : a.substring(1);
         </code></pre></div>
 
         <p>
