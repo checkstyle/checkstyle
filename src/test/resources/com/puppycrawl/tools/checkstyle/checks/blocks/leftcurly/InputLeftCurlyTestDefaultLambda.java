@@ -27,4 +27,13 @@ public class InputLeftCurlyTestDefaultLambda
     { // violation ''{' at column 5 should be on the previous line'
         String.valueOf("Hello world one!");
     };
+
+    void method() {
+        Runnable runTask = ()
+                -> {
+            System.out.println("Starting task");
+            System.out.println("Task completed");
+        };
+    }
+
 }
