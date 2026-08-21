@@ -1083,4 +1083,15 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    @Test
+    public void testSuppressionWarningsModuleInfo() throws Exception {
+        final String[] expected = {
+            "14:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
+        };
+
+        final String filename = "module-info/empty/module-info.java";
+
+        verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
+    }
+
 }
