@@ -7,6 +7,6 @@ class InputSeparatorWrapArrayDeclarator {
   protected int[] arrayDeclarationWithBadWrapping = new int
       [] {1, 2};
       // 2 violations above:
-      // ''\[' is preceded with whitespace'
-      // ''\[' should be on the previous line'
+      // ''[' is preceded with whitespace'
+      // ''[' should be on the previous line'
 }
