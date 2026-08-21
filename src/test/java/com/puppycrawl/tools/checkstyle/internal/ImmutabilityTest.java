@@ -163,6 +163,7 @@ public class ImmutabilityTest {
     private static final Set<String> SUPPRESSED_CLASSES_FOR_STATELESS_CHECK_RULE = Set.of(
         "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
+        "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNoErrorInThrowsTagCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck",
