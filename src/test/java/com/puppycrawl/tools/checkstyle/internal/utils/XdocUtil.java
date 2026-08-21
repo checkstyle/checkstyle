@@ -180,9 +180,9 @@ public final class XdocUtil {
      * Gets names of checkstyle's modules which are documented in xdocs.
      *
      * @return a set of checkstyle's modules which have xdoc documentation.
+     * @throws IOException if any IO errors occur.
      * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies
      *              the configuration requested.
-     * @throws IOException if any IO errors occur.
      * @throws SAXException if any parse errors occur.
      */
     public static Set<String> getModulesNamesWhichHaveXdoc() throws Exception {

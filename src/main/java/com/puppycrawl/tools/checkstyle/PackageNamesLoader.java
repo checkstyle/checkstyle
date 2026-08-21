@@ -167,8 +167,8 @@ public final class PackageNamesLoader
      *
      * @param packageFile file from package
      * @param namesLoader package names loader
-     * @throws SAXException if an error while parsing occurs
      * @throws CheckstyleException if unable to open file
+     * @throws SAXException if an error while parsing occurs
      */
     private static void processFile(URL packageFile, PackageNamesLoader namesLoader)
             throws SAXException, CheckstyleException {
