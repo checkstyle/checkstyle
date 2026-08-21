@@ -1,6 +1,6 @@
 /*
-com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck
-format = ^unchecked$*
+SuppressWarnings
+format = (default)^\\s*+$
 tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, \
          ENUM_CONSTANT_DEF, PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, CTOR_DEF, \
          COMPACT_CTOR_DEF, RECORD_DEF, PATTERN_VARIABLE_DEF, MODULE_DEF
@@ -8,11 +8,10 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 */
 
-package com.puppycrawl.tools.checkstyle.utils.annotationutil;
+// non-compiled with javac: reference to non existent packages
 
-public class InputAnnotationUtilNoMatchingAnnotation {
-
-    @Deprecated
-    public void test() {
-    }
+// violation below 'The warning '' cannot be suppressed at this location'
+@SuppressWarnings("")
+module com.example.app {
+    requires java.base;
 }
