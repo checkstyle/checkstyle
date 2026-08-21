@@ -366,8 +366,9 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
             "33:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
-            "44:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
-            "46:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
+            "37:64: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 64),
+            "45:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 15),
+            "47:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestTryWithResourceSame.java"), expected);
@@ -1122,6 +1123,28 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         final String fileName =
                 "InputRightCurlyDefaultBlocksWithSwitchExpressionAloneOrSingleline.java";
         verifyWithInlineConfigParser(getPath(fileName), expected);
+    }
+
+    @Test
+    public void testTryCatchIfElse() throws Exception {
+        final String[] expected = {
+            "27:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
+            "31:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestTryCatchIfElse.java"),
+                expected);
+    }
+
+    @Test
+    public void testTryCatchIfElse2() throws Exception {
+        final String[] expected = {
+            "39:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
+            "42:40: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 40),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestTryCatchIfElse2.java"),
+                expected);
     }
 
 }
