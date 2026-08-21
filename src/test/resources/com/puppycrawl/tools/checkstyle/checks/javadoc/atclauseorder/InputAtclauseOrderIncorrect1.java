@@ -11,9 +11,9 @@ tagOrder = (default)@author, @version, @param, @return, @throws, @exception, \
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 /** Javadoc for import */
 import java.io.Serializable;
-// violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-// violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+// violation 7 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+// violation 8 lines below 'Block tags have to appear in the order .[@author.*'
 /**
  * Some javadoc.
  *
@@ -41,7 +41,7 @@ class InputAtclauseOrderIncorrect1 implements Serializable {
      * @serialField
      */
     private String tThirdName;
-    // violation 7 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 7 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some text.
      * @param aString Some text.
@@ -53,9 +53,9 @@ class InputAtclauseOrderIncorrect1 implements Serializable {
     String method(String aString) throws Exception {
         return "null";
     }
-    // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 6 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 6 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some text.
      * @serialData Some javadoc.
@@ -66,14 +66,14 @@ class InputAtclauseOrderIncorrect1 implements Serializable {
     String method1(String aString) throws Exception {
         return "null";
     }
-    // violation 4 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 4 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some text.
      * @throws Exception Some text.
      * @param aString Some text.
      */
     void method2(String aString) throws Exception {}
-    // violation 4 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 4 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some text.
      * @deprecated Some text.
@@ -89,8 +89,8 @@ class InputAtclauseOrderIncorrect1 implements Serializable {
     String method4() throws Exception {
         return "null";
     }
-    // violation 5 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 5 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 5 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 5 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some text.
      * @deprecated Some text.
@@ -101,9 +101,9 @@ class InputAtclauseOrderIncorrect1 implements Serializable {
     {
         return "null";
     }
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
-    // violation 8 lines below 'Block tags have to appear in the order .\[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
+    // violation 8 lines below 'Block tags have to appear in the order .[@author.*'
     /**
      * Some text.
      * @param aString Some text.

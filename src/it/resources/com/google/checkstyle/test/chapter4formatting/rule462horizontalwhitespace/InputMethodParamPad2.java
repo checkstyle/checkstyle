@@ -54,7 +54,7 @@ public class InputMethodParamPad2 {
 
   /** Some javadoc. */
   public void newArray() {
-    int[] a = new int[]{0, 1}; // violation ''\]' is not followed by whitespace'
+    int[] a = new int[]{0, 1}; // violation '']' is not followed by whitespace'
     java.util.Vector<String> v = new java.util.Vector<String>();
     java.util.Vector<String> v1 = new Vector<String>();
   }
