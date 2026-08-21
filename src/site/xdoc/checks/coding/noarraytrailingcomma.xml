@@ -36,7 +36,7 @@
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 int[] foo = new int[] {
   1,
   2
@@ -46,7 +46,7 @@ int[] foo = new int[] {
         <p>
           The check demands that there should not be any comma after the last element of an array.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 String[] foo = new String[] {
   "FOO",
   "BAR", // violation

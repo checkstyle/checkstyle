@@ -50,9 +50,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * A method is recognized as a setter if it is in the following form
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-text">
+ * {@snippet lang="text" :
  * ${returnType} set${Name}(${anyType} ${name}) { ... }
- * </code></pre></div>
+ * }
  *
  * <p>
  * where ${anyType} is any primitive type, class or interface name;
@@ -60,9 +60,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * capitalized form that appears in the method name. By default, it is expected
  * that setter returns void, i.e. ${returnType} is 'void'. For example
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * void setTime(long time) { ... }
- * </code></pre></div>
+ * {@snippet lang="text" :
+ * void setTime(long time) {  }
+ * }
  *
  * <p>
  * Any other return types will not let method match a setter pattern. However,
@@ -70,11 +70,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * definition of a setter is expanded, so that setter return type can also be
  * a class in which setter is declared. For example
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * class PageBuilder {
- *   PageBuilder setName(String name) { ... }
+ *   PageBuilder setName(String name) {  }
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * Such methods are known as chain-setters and a common when Builder-pattern

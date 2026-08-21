@@ -34,7 +34,7 @@
  these files until the javadoc tool faithfully supports it. An example config
  using SuppressionSingleFilter is:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-xml"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  &amp;lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&amp;gt;
  &amp;lt;module name="SuppressionSingleFilter"&amp;gt;
      &amp;lt;property name="checks" value="MissingDeprecatedCheck"/&amp;gt;
