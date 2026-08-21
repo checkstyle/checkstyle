@@ -231,6 +231,8 @@
           <item name="IllegalBlockTag" href="checks/javadoc/illegalblocktag.html"/>
           <item name="InappropriateJavadocBlockTagsOnType"
                 href="checks/javadoc/inappropriatejavadocblocktagsontype.html"/>
+          <item name="InappropriateJavadocBlockTagsOnField"
+                href="checks/javadoc/inappropriatejavadocblocktagsonfield.html"/>
           <item name="InvalidJavadocPosition" href="checks/javadoc/invalidjavadocposition.html"/>
           <item name="JavadocBlockTagLocation" href="checks/javadoc/javadocblocktaglocation.html"/>
           <item name="JavadocContentLocation" href="checks/javadoc/javadoccontentlocation.html"/>
