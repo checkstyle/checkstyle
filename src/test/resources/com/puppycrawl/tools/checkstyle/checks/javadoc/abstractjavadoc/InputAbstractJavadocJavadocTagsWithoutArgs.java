@@ -46,18 +46,20 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
     }
 
+    // Details: no viable alternative at input '}' while parsing REFERENCE
+    // violation 2 lines below 'Javadoc comment at column 13 has parse error.'
     /**
      * {@link}
-     */// violation above 'Javadoc comment at column 13 has parse error.'
-    // Details: no viable alternative at input '}' while parsing REFERENCE
+     */
     public void method7() {
 
     }
 
+    // Details: no viable alternative at input '}' while parsing REFERENCE
+    // violation 2 lines below 'Javadoc comment at column 19 has parse error.'
     /**
      * {@linkplain }
-     */ // violation above 'Javadoc comment at column 19 has parse error.'
-    // Details: no viable alternative at input '}' while parsing REFERENCE
+     */
     public void method8() {
 
     }
