@@ -33,6 +33,17 @@
           </tr>
           <tr>
             <td>
+              <a href="inappropriatejavadocblocktagsontype.html#InappropriateJavadocBlockTagsOnType">
+                InappropriateJavadocBlockTagsOnType
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for type definitions (class, interface, enum, record,
+              annotation) do not contain tags that are semantically invalid for types.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="invalidjavadocposition.html#InvalidJavadocPosition">
                 InvalidJavadocPosition
               </a>
