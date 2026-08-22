@@ -5817,6 +5817,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocLinkFirstOccurrenceCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>declaredTypeNames.add(ast.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocLinkFirstOccurrenceCheck.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: importedNames, starImports, declaredTypeNames</message>
+    <lineContent>public JavadocLinkFirstOccurrenceCheck() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of List.add.</message>

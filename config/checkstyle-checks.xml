@@ -762,8 +762,9 @@
     <module name="JavadocMethod">
       <property name="validateThrows" value="true"/>
     </module>
-    <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocLeadingAsteriskAlign"/>
+    <module name="JavadocLinkFirstOccurrence"/>
+    <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocParamOrder"/>
