@@ -1,0 +1,49 @@
+--- src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java
++++ src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java
+@@ -23,6 +23,7 @@
+ import java.util.List;
+ import java.util.Map;
++import java.util.Optional;
+ import java.util.regex.Pattern;
+ 
+@@ -139,6 +140,38 @@
+         return result;
+     }
+ 
++    /**
++     * Returns the Javadoc block comment attached to the given package AST node.
++     * Because of <a href="https://github.com/checkstyle/checkstyle/issues/4392">parser bug</a>
++     * parser can place javadoc comment either as previous sibling of package definition
++     * or (if there is annotation between package def and javadoc) inside package definition tree.
++     * So we should look for javadoc in both places.
++     *
++     * @param ast the package declaration AST node
++     * @return the attached Javadoc block comment, or {@code null} if none is found
++     */
++    @Nullable
++    public static DetailAST getAttachedJavadocCommentForPackage(final DetailAST ast) {
++        DetailAST result = null;
++        if (ast.getPreviousSibling() != null
++                && ast.getPreviousSibling().getType() == TokenTypes.BLOCK_COMMENT_BEGIN
++                && isJavadocComment(ast.getPreviousSibling())) {
++            result = ast.getPreviousSibling();
++        }
++        else {
++            final Optional<DetailAST> firstAnnotationChild = Optional.of(ast.getFirstChild())
++                .map(DetailAST::getFirstChild)
++                .map(DetailAST::getFirstChild);
++            if (firstAnnotationChild.isPresent()) {
++                for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
++                     child = child.getNextSibling()) {
++                    if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
++                            && isJavadocComment(child)) {
++                        result = child;
++                        break;
++                    }
++                }
++            }
++        }
++        return result;
++    }
++
+     /**
