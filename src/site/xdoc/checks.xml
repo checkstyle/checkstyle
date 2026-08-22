@@ -1256,6 +1256,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/modules/moduledirectiveorder.html#ModuleDirectiveOrder">
+                ModuleDirectiveOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering, grouping and separation of directives in a module declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
                 MultiFileRegexpHeader
               </a>
