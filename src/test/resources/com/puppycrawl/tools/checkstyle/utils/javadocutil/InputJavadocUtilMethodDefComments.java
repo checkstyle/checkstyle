@@ -60,4 +60,26 @@ class InputJavadocUtilMethodDefComments {
     int danglingReal() { // violation '@return tag should be present and have description'
         return 1;
     }
+
+    /**
+     * First javadoc.
+     */
+    // single line comment
+    /**
+     * Second javadoc.
+     * @return ignored
+     */
+    int singleLineCommentBetween() {
+        return 1;
+    }
+
+    /**
+     * Javadoc comment.
+     */
+    /*
+     * Non-javadoc block comment.
+     */
+    int blockCommentBetween() { // violation '@return tag should be present and have description'
+        return 1;
+    }
 }

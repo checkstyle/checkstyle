@@ -1,3 +1,9 @@
+/*
+com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.utils.javadocutil;
 
 /**classComment*/
