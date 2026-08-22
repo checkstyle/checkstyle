@@ -1,0 +1,108 @@
+#####################################################################################
+# GitHub Action to detect website file changes in PRs.
+#
+# Workflow starts when:
+# 1) pull_request - opened, synchronize, reopened
+#
+# This workflow automatically detects changes in website source files (src/site/xdoc/**)
+# and reports them as a PR comment to alert maintainers that documentation was modified.
+#####################################################################################
+name: Website-Diff
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+    paths:
+      - 'src/site/xdoc/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  website-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Fetch origin/master
+        run: |
+          git fetch origin master
+
+      - name: Check for website source changes
+        id: check_changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/master HEAD | grep '^src/site/xdoc/' || true)
+
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "Website source files were modified."
+
+            # Create report
+            mkdir -p .ci-temp
+            {
+              echo "## Website File Change Detection"
+              echo ""
+              echo "Website source files (src/site/xdoc/**) were modified in this PR."
+              echo ""
+              echo "### Modified files:"
+              echo ""
+              echo '```'
+              echo "$CHANGED_FILES"
+              echo '```'
+              echo ""
+              echo "### Instructions"
+              echo ""
+              echo "- Please ensure the website is regenerated if these"
+              echo "  changes affect the generated output."
+              echo "- Review the source files in src/site/xdoc/ to verify"
+              echo "  the documentation changes are intentional."
+            } > .ci-temp/diff-message.md
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No website source files were modified."
+          fi
+
+      - name: Comment PR with results
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const message = fs.readFileSync('.ci-temp/diff-message.md', 'utf8');
+
+            // Find existing comment by this workflow
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Website File Change Detection')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: message
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: message
+              });
+            }

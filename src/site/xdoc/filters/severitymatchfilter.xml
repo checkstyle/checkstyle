@@ -8,6 +8,7 @@
   <body>
     <section name="SeverityMatchFilter">
       <p>Since Checkstyle 3.2</p>
+
       <div class="toc-panel">
   <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
   <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>

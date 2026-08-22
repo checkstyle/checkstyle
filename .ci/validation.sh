@@ -1435,6 +1435,18 @@ git-diff)
   fi
   ;;
 
+website-diff)
+  # Check if any website source files were modified (committed changes only)
+  if git diff --name-only origin/master HEAD 2>/dev/null | grep -q '^src/site/xdoc/'; then
+    echo "Website source files (src/site/xdoc/**) were modified."
+    echo "Please ensure the website is regenerated and committed if needed."
+    echo "Modified files:"
+    git diff --name-only origin/master HEAD | grep '^src/site/xdoc/'
+  else
+    echo "No website source files (src/site/xdoc/**) were modified."
+  fi
+  ;;
+
 git-no-merge-commits)
   MERGE_COMMITS=$(git rev-list --merges master.."$PR_HEAD_SHA")
 

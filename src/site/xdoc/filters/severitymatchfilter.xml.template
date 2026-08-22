@@ -11,6 +11,7 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SeverityMatchFilter.java"/>
       </macro>
+
       <macro name="sitetoc">
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SeverityMatchFilter.java"/>
