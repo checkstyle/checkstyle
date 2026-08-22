@@ -6815,6 +6815,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OpenjdkMethodParameterAlignmentCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter parameters of OpenjdkMethodParameterAlignmentCheck.getParameters.</message>
+    <lineContent>getParameters(ast.findFirstToken(TokenTypes.PARAMETERS));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference node.findFirstToken(TokenTypes.COLON)</message>
