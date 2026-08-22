@@ -749,6 +749,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/inappropriatejavadocblocktagsontype.html#InappropriateJavadocBlockTagsOnType">
+                InappropriateJavadocBlockTagsOnType
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for type definitions (class, interface, enum, record,
+              annotation) do not contain tags that are semantically invalid for types.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/misc/indentation.html#Indentation">
                 Indentation
               </a>
