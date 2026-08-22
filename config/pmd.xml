@@ -535,4 +535,20 @@
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>
+
+  <rule name="UseStringSplitWithLimit"
+        language="java"
+        message="String.split() should be called with a limit argument,
+        e.g. String.split(regex, -1)."
+        class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
+    <description>
+      String.split() without limit has surprising behaviour.
+      Prefer using String.split() along with limit, e.g. String.split(regex, -1).
+    </description>
+    <properties>
+      <property name="xpath"
+                value="//MethodCall[@MethodName='split'][count(ArgumentList/*) = 1]
+                [*[not(self::ArgumentList)][pmd-java:typeIs('java.lang.String')]]"/>
+    </properties>
+  </rule>
 </ruleset>
