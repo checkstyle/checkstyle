@@ -222,6 +222,32 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIncorrectJavadocPosition() {
+        final DetailAstImpl commentBegin = new DetailAstImpl();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+
+        final DetailAstImpl javadocCommentContent = new DetailAstImpl();
+        javadocCommentContent.setType(TokenTypes.COMMENT_CONTENT);
+        javadocCommentContent.setText("* valid javadoc ");
+
+        final DetailAstImpl commentEnd = new DetailAstImpl();
+        commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
+        commentEnd.setText("*/");
+
+        commentBegin.setFirstChild(javadocCommentContent);
+        javadocCommentContent.setNextSibling(commentEnd);
+
+        final DetailAstImpl aJavadocPosition = new DetailAstImpl();
+        aJavadocPosition.setType(TokenTypes.SLIST);
+        aJavadocPosition.setFirstChild(commentBegin);
+
+        assertWithMessage("Should return false when javadoc is in incorrect position")
+                .that(JavadocUtil.isJavadocComment(commentBegin))
+                .isFalse();
+    }
+
+    @Test
     public void testEmptyBlockCommentAst() {
         final DetailAstImpl commentBegin = new DetailAstImpl();
         commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
@@ -371,6 +397,241 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid nodes")
             .that(nodes)
             .isEmpty();
+    }
+
+    @Test
+    public void testFindFirstToken() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl firstTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl tagNameNode = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+
+        parent.addChild(firstTextNode);
+        parent.addChild(tagNameNode);
+
+        final DetailNode result =
+            JavadocUtil.findFirstToken(parent, JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid node")
+            .that(result)
+            .isEqualTo(firstTextNode);
+    }
+
+    @Test
+    public void testIsCorrectJavadocPositionFollowedByNonJavadocBlockComment() {
+        final DetailAstImpl classDef = new DetailAstImpl();
+        classDef.setType(TokenTypes.CLASS_DEF);
+
+        final DetailAstImpl modifiers = new DetailAstImpl();
+        modifiers.setType(TokenTypes.MODIFIERS);
+
+        final DetailAstImpl javadocBegin = new DetailAstImpl();
+        javadocBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        javadocBegin.setText("/*");
+        final DetailAstImpl javadocContent = new DetailAstImpl();
+        javadocContent.setType(TokenTypes.COMMENT_CONTENT);
+        javadocContent.setText("* valid javadoc");
+        javadocBegin.setFirstChild(javadocContent);
+
+        final DetailAstImpl nonJavadocBegin = new DetailAstImpl();
+        nonJavadocBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        nonJavadocBegin.setText("/*");
+        final DetailAstImpl nonJavadocContent = new DetailAstImpl();
+        nonJavadocContent.setType(TokenTypes.COMMENT_CONTENT);
+        nonJavadocContent.setText("not javadoc");
+        nonJavadocBegin.setFirstChild(nonJavadocContent);
+
+        final DetailAstImpl literalClass = new DetailAstImpl();
+        literalClass.setType(TokenTypes.LITERAL_CLASS);
+
+        classDef.setFirstChild(modifiers);
+        modifiers.setNextSibling(javadocBegin);
+        javadocBegin.setNextSibling(nonJavadocBegin);
+        nonJavadocBegin.setNextSibling(literalClass);
+
+        assertWithMessage("Should return true for javadoc followed by non-javadoc block comment")
+                .that(JavadocUtil.isCorrectJavadocPosition(javadocBegin))
+                .isTrue();
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackagePreviousSiblingIsJavadoc() {
+        final DetailAstImpl packageDef = new DetailAstImpl();
+        packageDef.setType(TokenTypes.PACKAGE_DEF);
+
+        final DetailAstImpl commentBegin = new DetailAstImpl();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+
+        final DetailAstImpl compilationUnit = new DetailAstImpl();
+        compilationUnit.setType(TokenTypes.COMPILATION_UNIT);
+        compilationUnit.setFirstChild(commentBegin);
+
+        final DetailAstImpl commentContent = new DetailAstImpl();
+        commentContent.setType(TokenTypes.COMMENT_CONTENT);
+        commentContent.setText("* valid javadoc");
+
+        final DetailAstImpl commentEnd = new DetailAstImpl();
+        commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
+        commentEnd.setText("*/");
+
+        commentBegin.setFirstChild(commentContent);
+        commentContent.setNextSibling(commentEnd);
+
+        commentBegin.setNextSibling(packageDef);
+
+        assertWithMessage("Should return javadoc")
+                .that(JavadocUtil.getAttachedJavadocCommentForPackage(packageDef))
+                .isEqualTo(commentBegin);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackagePreviousSiblingNotJavadoc() {
+        final DetailAstImpl packageDef = new DetailAstImpl();
+        packageDef.setType(TokenTypes.PACKAGE_DEF);
+
+        final DetailAstImpl commentBegin = new DetailAstImpl();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+        final DetailAstImpl commentContent = new DetailAstImpl();
+        commentContent.setType(TokenTypes.COMMENT_CONTENT);
+        commentContent.setText("not javadoc");
+        commentBegin.setFirstChild(commentContent);
+
+        commentBegin.setNextSibling(packageDef);
+
+        assertWithMessage("Should return null")
+                .that(JavadocUtil.getAttachedJavadocCommentForPackage(packageDef))
+                .isNull();
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInsideAnnotation() {
+        final DetailAstImpl packageDef = new DetailAstImpl();
+        packageDef.setType(TokenTypes.PACKAGE_DEF);
+
+        final DetailAstImpl annotations = new DetailAstImpl();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        packageDef.setFirstChild(annotations);
+
+        final DetailAstImpl annotation = new DetailAstImpl();
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotations.setFirstChild(annotation);
+
+        final DetailAstImpl commentBegin = new DetailAstImpl();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+
+        final DetailAstImpl commentContent = new DetailAstImpl();
+        commentContent.setType(TokenTypes.COMMENT_CONTENT);
+        commentContent.setText("* valid javadoc");
+        commentBegin.setFirstChild(commentContent);
+
+        final DetailAstImpl commentEnd = new DetailAstImpl();
+        commentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
+        commentEnd.setText("*/");
+        commentContent.setNextSibling(commentEnd);
+
+        annotation.setFirstChild(commentBegin);
+
+        assertWithMessage("Should return javadoc")
+                .that(JavadocUtil.getAttachedJavadocCommentForPackage(packageDef))
+                .isEqualTo(commentBegin);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInsideAnnotationNotJavadoc() {
+        final DetailAstImpl packageDef = new DetailAstImpl();
+        packageDef.setType(TokenTypes.PACKAGE_DEF);
+
+        final DetailAstImpl annotations = new DetailAstImpl();
+        annotations.setType(TokenTypes.ANNOTATIONS);
+        packageDef.setFirstChild(annotations);
+
+        final DetailAstImpl annotation = new DetailAstImpl();
+        annotation.setType(TokenTypes.ANNOTATION);
+        annotations.setFirstChild(annotation);
+
+        final DetailAstImpl atToken = new DetailAstImpl();
+        atToken.setType(TokenTypes.AT);
+        annotation.setFirstChild(atToken);
+
+        final DetailAstImpl commentBegin = new DetailAstImpl();
+        commentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
+        commentBegin.setText("/*");
+        final DetailAstImpl commentContent = new DetailAstImpl();
+        commentContent.setType(TokenTypes.COMMENT_CONTENT);
+        commentContent.setText("not javadoc");
+        commentBegin.setFirstChild(commentContent);
+
+        atToken.setNextSibling(commentBegin);
+
+        assertWithMessage("Should return null")
+                .that(JavadocUtil.getAttachedJavadocCommentForPackage(packageDef))
+                .isNull();
+    }
+
+    @Test
+    public void testIsTag() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+
+        assertWithMessage("Should return false")
+            .that(JavadocUtil.isTag(parent, "myTag"))
+            .isFalse();
+
+        final JavadocNodeImpl tagStart =
+            createJavadocNode(JavadocCommentsTokenTypes.HTML_TAG_START);
+        parent.addChild(tagStart);
+
+        final JavadocNodeImpl tagName = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+        tagName.setText("myTag");
+        tagStart.addChild(tagName);
+
+        assertWithMessage("Should return true")
+            .that(JavadocUtil.isTag(parent, "myTag"))
+            .isTrue();
+
+        assertWithMessage("Should return false")
+            .that(JavadocUtil.isTag(parent, "otherTag"))
+            .isFalse();
+    }
+
+    @Test
+    public void testGetNextSibling() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl first = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl second = createJavadocNode(JavadocCommentsTokenTypes.NEWLINE);
+        final JavadocNodeImpl third = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+
+        parent.addChild(first);
+        parent.addChild(second);
+        parent.addChild(third);
+
+        assertWithMessage("Should find NEWLINE")
+            .that(JavadocUtil.getNextSibling(first, JavadocCommentsTokenTypes.NEWLINE))
+            .isEqualTo(second);
+
+        assertWithMessage("Should find TAG_NAME")
+            .that(JavadocUtil.getNextSibling(first, JavadocCommentsTokenTypes.TAG_NAME))
+            .isEqualTo(third);
+
+        assertWithMessage("Should return null")
+            .that(JavadocUtil.getNextSibling(first, JavadocCommentsTokenTypes.HTML_TAG_START))
+            .isNull();
+    }
+
+    @Test
+    public void testGetTagName() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl tagStart =
+            createJavadocNode(JavadocCommentsTokenTypes.HTML_TAG_START);
+        final JavadocNodeImpl tagName = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+        tagName.setText("myTag");
+        tagStart.addChild(tagName);
+        parent.addChild(tagStart);
+
+        assertWithMessage("Should return myTag")
+            .that(JavadocUtil.getTagName(parent))
+            .isEqualTo("myTag");
     }
 
     @Test
