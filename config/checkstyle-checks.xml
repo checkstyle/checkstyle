@@ -762,6 +762,7 @@
     <module name="JavadocMethod">
       <property name="validateThrows" value="true"/>
     </module>
+    <module name="JavadocLinkWellKnownApi"/>
     <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
