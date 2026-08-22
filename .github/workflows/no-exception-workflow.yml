@@ -26,7 +26,7 @@ jobs:
 
       - name: Install Groovy
         run: |
-          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          curl --retry 5 --retry-delay 2 --retry-all-errors --fail-with-body -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
@@ -49,7 +49,7 @@ jobs:
 
       - name: Install Groovy
         run: |
-          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          curl --retry 5 --retry-delay 2 --retry-all-errors --fail-with-body -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
@@ -72,7 +72,7 @@ jobs:
 
       - name: Install Groovy
         run: |
-          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          curl --retry 5 --retry-delay 2 --retry-all-errors --fail-with-body -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
@@ -95,7 +95,7 @@ jobs:
 
       - name: Install Groovy
         run: |
-          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          curl --retry 5 --retry-delay 2 --retry-all-errors --fail-with-body -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
