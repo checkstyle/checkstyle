@@ -46,29 +46,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-code">
-          Example file content with name of file Example3.java
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="OuterTypeFilename_Use_Cases">
+        <p id="UseCase1-code">
+          An example of the check applied to an interface:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-code">
-          Example file content with name of file Example4.java
+        <p id="UseCase2-code">
+          An example of the check applied to an enum:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example4.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example5-code">
-          Example file content with name of file Example5.java
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/outertypefilename/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
