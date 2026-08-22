@@ -577,8 +577,7 @@
               </td>
               <td>
                 In 2007 was awarded
-                <a href="https://www.eclipse.org/org/press-release/
-                  20070306eclipsecommunityawards.php">
+                <a href="https://www.eclipse.org/org/press-release/20070306eclipsecommunityawards.php">
                   Best Open Source Eclipse-based Developer tool
                 </a>.
               </td>
@@ -690,8 +689,7 @@
               <td><a href="https://maven.apache.org/">Maven</a></td>
               <td>Vincent Massol</td>
               <td>Checkstyle supported out of the box</td>
-              <td><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/
-                  checkstyle.html">
+              <td><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
                   example report</a></td>
             </tr>
             <tr>
