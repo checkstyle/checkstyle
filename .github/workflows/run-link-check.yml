@@ -19,6 +19,8 @@ jobs:
   check_issues:
     if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     steps:
       - name: Set up JDK 21
         uses: actions/setup-java@v5.7.0
@@ -37,3 +39,5 @@ jobs:
 
       - name: Check links
         run: ./.ci/run-link-check-plugin.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

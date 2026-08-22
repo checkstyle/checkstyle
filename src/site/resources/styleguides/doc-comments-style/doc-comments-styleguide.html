@@ -28,7 +28,7 @@
 
     <p>At Java Software, we have several guidelines that might make our documentation comments different than those of third party developers. Our documentation comments define the official <em>Java Platform API Specification</em>. To this end, our target audience is those who write Java compatibility tests, or conform or re-implement the Java platform, in addition to developers. We spend time and effort focused on specifying boundary conditions, argument ranges and corner cases rather than defining common programming terms, writing conceptual overviews, and including examples for developers.</p>
 
-    <p>Thus, there are commonly two different ways to write doc comments -- as API specifications, or as programming guide documentation. These two targets are described in the following sections. A staff with generous resources can afford to blend both into the same documentation, (properly "chunked"); however, our priorities dictate that we give prime focus to writing API specifications in doc comments. This is why developers often need to turn to other documents, such as <a href="https://docs.oracle.com/en/java/javase/12/">Java SE Technical Documentation</a> and <a href="//docs.oracle.com/javase/tutorial/index.html">The Java Tutorials</a> for programming guides.</p>
+    <p>Thus, there are commonly two different ways to write doc comments -- as API specifications, or as programming guide documentation. These two targets are described in the following sections. A staff with generous resources can afford to blend both into the same documentation, (properly "chunked"); however, our priorities dictate that we give prime focus to writing API specifications in doc comments. This is why developers often need to turn to other documents, such as <a href="https://docs.oracle.com/en/java/javase/12/">Java SE Technical Documentation</a> and <a href="https://docs.oracle.com/javase/tutorial/index.html">The Java Tutorials</a> for programming guides.</p>
 
     <h4 id="writing-api-specs">Writing API Specifications</h4>
 
@@ -79,7 +79,7 @@
 
     <p><strong>API documentation</strong> (API docs) or <strong>API specifications</strong> (API specs)</p>
 
-    <p>On-line or hardcopy descriptions of the API, intended primarily for programmers writing in Java. These can be generated using the Javadoc tool or created some other way. An API specification is a particular kind of API document, as described <a href="#writing-api-specs">above</a>. An example of an API specification is the on-line <a href="//docs.oracle.com/javase/7/docs/api/">Java Platform, Standard Edition 7 API Specification</a>.</p>
+    <p>On-line or hardcopy descriptions of the API, intended primarily for programmers writing in Java. These can be generated using the Javadoc tool or created some other way. An API specification is a particular kind of API document, as described <a href="#writing-api-specs">above</a>. An example of an API specification is the on-line <a href="https://docs.oracle.com/javase/7/docs/api/">Java Platform, Standard Edition 7 API Specification</a>.</p>
 
     <p><strong>Documentation comments</strong> (doc comments)</p>
 
@@ -100,7 +100,7 @@
       <li>Miscellaneous unprocessed files - these include images, sample source code, class files, applets, HTML files, and whatever else you might want to reference from the previous files.</li>
     </ul>
 
-    <p>For more details, see: <a href="//docs.oracle.com/javase/7/docs/technotes/tools/solaris/javadoc.html#sourcefiles">Source Files</a>.</p>
+    <p>For more details, see: <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/javadoc.html#sourcefiles">Source Files</a>.</p>
 
     <h2 id="writing-doc-comments">Writing Doc Comments</h2>
 
@@ -137,7 +137,7 @@ return null;
       <li>The <a href="#get-image">resulting HTML</a> from running Javadoc is shown below</li>
       <li>Each line above is indented to align with the code below the comment.</li>
       <li>The first line contains the begin-comment delimiter (<code>/**</code>).</li>
-      <li>Starting with Javadoc 1.4, the <a href="//docs.oracle.com/javase/7/docs/technotes/tools/solaris/javadoc.html#leadingasterisks">leading asterisks are optional</a>.</li>
+      <li>Starting with Javadoc 1.4, the <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/javadoc.html#leadingasterisks">leading asterisks are optional</a>.</li>
       <li>Write the first sentence as a short summary of the method, as Javadoc automatically places it in the method summary table and index.</li>
       <li>Notice the inline tag <code>{@link URL}</code>, which converts to an HTML hyperlink pointing to the documentation for the URL class. This inline tag can be used anywhere that a comment can be written, such as in the text following block tags.</li>
       <li>If you have more than one paragraph in the doc comment, separate the paragraphs with a <code>&lt;p&gt;</code> paragraph tag, as shown.</li>
@@ -173,7 +173,7 @@ return null;
 
     <p><strong>See Also:</strong></p>
 
-    <p><a title="class in java.awt" href="//docs.oracle.com/javase/7/docs/api/java/awt/Image.html"><code>Image</code></a></p>
+    <p><a title="class in java.awt" href="https://docs.oracle.com/javase/7/docs/api/java/awt/Image.html"><code>Image</code></a></p>
 
     <p>Also see <a href="#troubleshooting-curly-quotes">Troubleshooting Curly Quotes (Microsoft Word)</a> at the end of this document.</p>
 
@@ -363,7 +363,7 @@ public void setToolTipText(String text) {</code></pre>
       <li><a href="#custom-tags-annotations">Custom tags and Annotations</a></li>
     </ul>
 
-    <p>Most of the following tags are specified in the <a href="//docs.oracle.com/javase/specs/">Java Language Specification, First Edition</a>. Also see the <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#javadoctags">Javadoc reference page</a>.</p>
+    <p>Most of the following tags are specified in the <a href="https://docs.oracle.com/javase/specs/">Java Language Specification, First Edition</a>. Also see the <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#javadoctags">Javadoc reference page</a>.</p>
 
     <h4 id="order-of-tags">Order of Tags</h4>
 
@@ -378,7 +378,7 @@ public void setToolTipText(String text) {</code></pre>
       <li><code>@see</code></li>
       <li><code>@since</code></li>
       <li><code>@serial</code> or @serialField or @serialData</li>
-      <li><code>@deprecated</code> see <a href="//docs.oracle.com/javase/7/docs/technotes/guides/javadoc/deprecation/deprecation.html">How and When To Deprecate APIs</a></li>
+      <li><code>@deprecated</code> see <a href="https://docs.oracle.com/javase/7/docs/technotes/guides/javadoc/deprecation/deprecation.html">How and When To Deprecate APIs</a></li>
     </ul>
 
     <h4 id="ordering-multiple-tags">Ordering Multiple Tags</h4>
@@ -391,7 +391,7 @@ public void setToolTipText(String text) {</code></pre>
 
     <p id="multiple@throws">Multiple @throws tags, also known as @exception, should be listed alphabetically by the exception names.</p>
 
-    <p id="multiple@see">Multiple @see tags should be ordered as follows, which is roughly the same order as their arguments are <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#seesearchorder">searched for by javadoc</a>, basically from nearest to farthest access, from least-qualified to fully-qualified, The following list shows this progression. Notice the methods and constructors are in "telescoping" order, which means the "no arg" form first, then the "1 arg" form, then the "2 arg" form, and so forth. Where a second sorting key is needed, they could be listed either alphabetically or grouped logically.</p>
+    <p id="multiple@see">Multiple @see tags should be ordered as follows, which is roughly the same order as their arguments are <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#seesearchorder">searched for by javadoc</a>, basically from nearest to farthest access, from least-qualified to fully-qualified, The following list shows this progression. Notice the methods and constructors are in "telescoping" order, which means the "no arg" form first, then the "1 arg" form, then the "2 arg" form, and so forth. Where a second sorting key is needed, they could be listed either alphabetically or grouped logically.</p>
 
     <pre><code>@see #field
 @see #Constructor(Type, Type...)
@@ -420,17 +420,17 @@ public void setToolTipText(String text) {</code></pre>
 
     <h4 id="tag-comments">Tag Comments</h4>
 
-    <p>As a reminder, the fundamental use of these tags is described on the <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#javadoctags">Javadoc Reference page</a>. Java Software generally uses the following additional guidelines to create comments for each tag:</p>
+    <p>As a reminder, the fundamental use of these tags is described on the <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#javadoctags">Javadoc Reference page</a>. Java Software generally uses the following additional guidelines to create comments for each tag:</p>
 
     <h5 id="author-tag">@author</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#author">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#author">reference page</a></p>
 
     <p>You can provide one @author tag, multiple @author tags, or no @author tags. In these days of the community process when development of new APIs is an open, joint effort, the JSR can be consider the author for new packages at the package level. For example, the new package java.nio has "@author JSR-51 Expert Group" at the package level. Then individual programmers can be assigned to @author at the class level. As this tag can only be applied at the overview, package and class level, the tag applies only to those who make significant contributions to the design or implementation, and so would not ordinarily include technical writers.</p>
 
     <p>The @author tag is not critical, because it is not included when generating the API specification, and so it is seen only by those viewing the source code. Version history can also be used for determining contributors for internal purposes.</p>
 
-    <p>If someone felt strongly they need to add @author at the member level, they could do so by running javadoc using the new 1.4 <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#tag"><code>-tag</code></a> option:</p>
+    <p>If someone felt strongly they need to add @author at the member level, they could do so by running javadoc using the new 1.4 <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#tag"><code>-tag</code></a> option:</p>
 
     <p><code>-tag author:a:"Author:"</code></p>
 
@@ -438,13 +438,13 @@ public void setToolTipText(String text) {</code></pre>
 
     <h5 id="version-tag">@version</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#version">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#version">reference page</a></p>
 
     <p>The Java Software convention for the argument to the @version tag is the SCCS string "%I%, %G%", which converts to something like "<code>1.39, 02/28/97</code>" mm/dd/yy when the file is checked out of SCCS.</p>
 
     <h5 id="param-tag">@param</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#version">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#version">reference page</a></p>
 
     <p>The @param tag is followed by the name, not data type, of the parameter, followed by a description of the parameter. By convention, the first noun in the description is the data type of the parameter. Articles like "a", "an", and "the" can precede the noun. An exception is made for the primitive <code>int</code>, where the data type is usually omitted. Additional spaces can be inserted between the name and description so that the descriptions line up in a block. Dashes or other punctuation should not be inserted before the description, as the Javadoc tool inserts one dash.</p>
 
@@ -474,7 +474,7 @@ public void setToolTipText(String text) {</code></pre>
 
     <h5 id="return-tag">@return</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#return">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#return">reference page</a></p>
 
     <p>Omit @return for methods that return void and for constructors; include it for all other methods, even if its content is entirely redundant with the method description. Having an explicit @return tag makes it easier for someone to find the return value quickly. Whenever possible, supply return values for special cases such as specifying the value returned when an out-of-bounds argument is supplied.</p>
 
@@ -482,7 +482,7 @@ public void setToolTipText(String text) {</code></pre>
 
     <h5 id="deprecated-tag">@deprecated</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#deprecated">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#deprecated">reference page</a></p>
 
     <p>The @deprecated description in the first sentence should at least tell the user when the API was deprecated and what to use as a replacement. Only the first sentence will appear in the summary section and index. Subsequent sentences can also explain why it has been deprecated. When generating the description for a deprecated API, the Javadoc tool moves the @deprecated text ahead of the description, placing it in italics and preceding it with a bold warning: "Deprecated". An <code>@see</code> tag for Javadoc 1.1 or <code>{@link}</code> tag for Javadoc 1.2 or later should be included that points to the replacement method:</p>
 
@@ -512,7 +512,7 @@ public void setToolTipText(String text) {</code></pre>
 
     <h5 id="since-tag">@since</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#since">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#since">reference page</a></p>
 
     <p>Specify the product version when the Java name was added to the API specification if different from the implementation. For example, if a package, class, interface or member was added to the Java 2 Platform, Standard Edition, API Specification at version 1.2, use:</p>
 
@@ -532,7 +532,7 @@ public void setToolTipText(String text) {</code></pre>
 
     <h5 id="throws-tag">@throws (@exception was the original tag)</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#throws">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#throws">reference page</a></p>
 
     <p>A @throws tag should be included for any checked exceptions declared in the throws clause, as illustrated below, and also for any unchecked exceptions that the caller might reasonably want to catch, with the exception of <code>NullPointerException</code>. Errors should not be documented as they are unpredictable. For more details, please see <a href="#documenting-exceptions-throws-tag">Documenting Exceptions with the @throws Tag</a>.</p>
 
@@ -544,11 +544,11 @@ public void f() throws IOException {
 // body
 }</code></pre>
 
-    <p>See the <a href="//docs.oracle.com/javase/specs/">Exceptions chapter</a> of the <em>Java Language Specification, Second Edition</em> for more on exceptions. Also see <a href="#multiple@throws">order of multiple @throws tags</a>.</p>
+    <p>See the <a href="https://docs.oracle.com/javase/specs/">Exceptions chapter</a> of the <em>Java Language Specification, Second Edition</em> for more on exceptions. Also see <a href="#multiple@throws">order of multiple @throws tags</a>.</p>
 
     <h5 id="see-tag">@see</h5>
 
-    <p><a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#see">reference page</a></p>
+    <p><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#see">reference page</a></p>
 
     <p>Also see <a href="#multiple@see">order of multiple @see tags</a>.</p>
 
@@ -558,13 +558,13 @@ public void f() throws IOException {
 
     <h5 id="serial-data-tag">@serialData</h5>
 
-    <p>All added in Javadoc 1.2 <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#serial">reference page</a></p>
+    <p>All added in Javadoc 1.2 <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#serial">reference page</a></p>
 
-    <p>For information about how to use these tags, along with an example, see "Documenting Serializable Fields and Data for a Class," <a href="//docs.oracle.com/javase/7/docs/platform/serialization/spec/serial-arch.html">Section 1.6 of the Java Object Serialization Specification</a>. Also see Oracle's <a href="https://www.oracle.com/java/technologies/javase/serialized-criteria.html">criteria</a> for including classes in the serialized form specification.</p>
+    <p>For information about how to use these tags, along with an example, see "Documenting Serializable Fields and Data for a Class," <a href="https://docs.oracle.com/javase/7/docs/platform/serialization/spec/serial-arch.html">Section 1.6 of the Java Object Serialization Specification</a>. Also see Oracle's <a href="https://www.oracle.com/java/technologies/javase/serialized-criteria.html">criteria</a> for including classes in the serialized form specification.</p>
 
     <h5 id="link-tag">{@link}</h5>
 
-    <p>Added in Javadoc 1.2 <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#link ">reference page</a></p>
+    <p>Added in Javadoc 1.2 <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#link ">reference page</a></p>
 
     <p>For conventions, see <a href="#inline-links-economically">Use In-Line Links Economically</a>.</p>
 
@@ -575,7 +575,7 @@ public void f() throws IOException {
     <p>In general, if the markup is intended to affect or produce documentation, it should probably be a javadoc tag; otherwise, it should be an annotation.</p>
 
     <ul>
-      <li>Tag - Intended as a way of adding structure and content to the documentation. Allows multi-line text to be provided. Use the <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#tag">-tag</a> or <a href="//docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#taglet">-taglet</a> Javadoc option to create custom tags. Tags should never affect program semantics.</li>
+      <li>Tag - Intended as a way of adding structure and content to the documentation. Allows multi-line text to be provided. Use the <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#tag">-tag</a> or <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#taglet">-taglet</a> Javadoc option to create custom tags. Tags should never affect program semantics.</li>
       <li>Annotation - Does not directly affect program semantics, but does affect the way programs are treated by tools and libraries, which can in turn affect the semantics of the running program. Annotations can be read from source files, class files, or reflectively at run time. Allows a single line of text to be provided.</li>
     </ul>
 
@@ -583,7 +583,7 @@ public void f() throws IOException {
 
     <h3 id="documenting-default-constructors">Documenting Default Constructors</h3>
 
-    <p><a href="//docs.oracle.com/javase/specs/">Section 8.8.7 of the Java Language Specification, Second Edition</a> describes a default constructor: If a class contains no constructor declarations, then a default constructor that takes no parameters is automatically provided. It invokes the superclass constructor with no arguments. The constructor has the same access as its class.</p>
+    <p><a href="https://docs.oracle.com/javase/specs/">Section 8.8.7 of the Java Language Specification, Second Edition</a> describes a default constructor: If a class contains no constructor declarations, then a default constructor that takes no parameters is automatically provided. It invokes the superclass constructor with no arguments. The constructor has the same access as its class.</p>
 
     <p>The Javadoc tool generates documentation for default constructors. When it documents such a constructor, Javadoc leaves its description blank, because a default constructor can have no doc comment. The question then arises: How do you add a doc comment for a default constructor? The simple answer is that it is not possible and, conveniently, our programming convention is to avoid default constructors. We considered but rejected the idea that the Javadoc tool should generate a default comment for default constructors.</p>
 
@@ -679,7 +679,7 @@ throws IndexOutOfBoundsException</code></pre>
     <ol>
       <li>Copies its contents, everything between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>, below the summary tables in the destination file <code>package-summary.html</code>.</li>
       <li>Processes any <code>@see</code>, <code>@since</code> or <code>{@link}</code> Javadoc tags that are present.</li>
-      <li>Copies the first sentence to the right-hand column of the <a href="//docs.oracle.com/javase/7/docs/api/overview-summary.html"><strong>Overview&nbsp;Summary</strong></a>.</li>
+      <li>Copies the first sentence to the right-hand column of the <a href="https://docs.oracle.com/javase/7/docs/api/overview-summary.html"><strong>Overview&nbsp;Summary</strong></a>.</li>
     </ol>
 
     <h4 id="package-html-template">Template for package.html source file</h4>
@@ -726,7 +726,7 @@ throws IndexOutOfBoundsException</code></pre>
 
     <h3 id="documenting-anonymous-inner-classes">Documenting Anonymous Inner Classes</h3>
 
-    <p>Anonymous inner classes are defined in Java Language Specification, Second Edition, at <a href="//docs.oracle.com/javase/specs/">Anonymous Class Declaration</a>. The Javadoc tool does not directly document anonymous classes, that is, their declarations and doc comments are ignored. If you want to document an anonymous class, the proper way to do so is in a doc comment of its outer class, or another closely associated class.</p>
+    <p>Anonymous inner classes are defined in Java Language Specification, Second Edition, at <a href="https://docs.oracle.com/javase/specs/">Anonymous Class Declaration</a>. The Javadoc tool does not directly document anonymous classes, that is, their declarations and doc comments are ignored. If you want to document an anonymous class, the proper way to do so is in a doc comment of its outer class, or another closely associated class.</p>
 
     <p>For example, if you had an anonymous <code>TreeSelectionListener</code> inner class in a method <code>makeTree</code> that returns a <code>JTree</code> object that users of this class might want to override, you could document in the method comment that the returned <code>JTree</code> has a <code>TreeSelectionListener</code> attached to it:</p>
 
