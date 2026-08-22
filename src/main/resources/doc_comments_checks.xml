@@ -77,6 +77,8 @@
 
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
+    <module name="JavadocParamOrder"/>
+    <module name="JavadocThrowsOrder"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="MissingDeprecated"/>
 
