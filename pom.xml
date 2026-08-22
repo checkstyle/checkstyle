@@ -2281,6 +2281,8 @@
             <arg>${project.basedir}/config/lychee.toml</arg>
             <arg>--root-dir</arg>
             <arg>${project.build.directory}/site</arg>
+            <arg>--github-token</arg>
+            <arg>${env.GITHUB_TOKEN}</arg>
           </args>
           <failOnError>true</failOnError>
         </configuration>
