@@ -69,9 +69,8 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
-          To configure check so that trailing comment with exact comments like
-          "SUPPRESS CHECKSTYLE", "NOPMD", "NOSONAR"
-          are suppressed:
+          To configure the check so that a trailing comment matching
+          legalComment is suppressed:
         </p>
         <macro name="example">
           <param name="path"
