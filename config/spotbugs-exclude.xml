@@ -102,6 +102,11 @@
       <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
       <Class name=
              "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck" />
+      <!-- currentAst is always assigned in visitToken before super.visitToken triggers
+           visitJavadocToken, so it is never actually null when dereferenced -->
+      <Class
+      name=
+      "com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnTypeCheck" />
       <!-- has only one public method and all initialized in that method -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
       <!-- beginProcessing() is kind of c-tor -->
