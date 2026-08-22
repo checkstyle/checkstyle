@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.Optional;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -86,58 +84,10 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (CheckUtil.isPackageInfo(getFilePath()) && !hasJavadoc(ast)) {
+        if (CheckUtil.isPackageInfo(getFilePath())
+                && JavadocUtil.getAttachedJavadocCommentForPackage(ast) == null) {
             log(ast, MSG_PKG_JAVADOC_MISSING);
         }
-    }
-
-    /**
-     * Checks that there is javadoc before ast.
-     * Because of <a href="https://github.com/checkstyle/checkstyle/issues/4392">parser bug</a>
-     * parser can place javadoc comment either as previous sibling of package definition
-     * or (if there is annotation between package def and javadoc) inside package definition tree.
-     * So we should look for javadoc in both places.
-     *
-     * @param ast {@link TokenTypes#PACKAGE_DEF} token to check
-     * @return true if there is javadoc, false otherwise
-     */
-    private static boolean hasJavadoc(DetailAST ast) {
-        final boolean hasJavadocBefore = ast.getPreviousSibling() != null
-            && isJavadoc(ast.getPreviousSibling());
-        return hasJavadocBefore || hasJavadocAboveAnnotation(ast);
-    }
-
-    /**
-     * Checks javadoc existence in annotations list.
-     *
-     * @param ast package def
-     * @return true if there is a javadoc, false otherwise
-     */
-    private static boolean hasJavadocAboveAnnotation(DetailAST ast) {
-        final Optional<DetailAST> firstAnnotationChild = Optional.of(ast.getFirstChild())
-            .map(DetailAST::getFirstChild)
-            .map(DetailAST::getFirstChild);
-        boolean result = false;
-        if (firstAnnotationChild.isPresent()) {
-            for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
-                 child = child.getNextSibling()) {
-                if (isJavadoc(child)) {
-                    result = true;
-                    break;
-                }
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Checks that ast is a javadoc comment.
-     *
-     * @param ast token to check
-     * @return true if ast is a javadoc comment, false otherwise
-     */
-    private static boolean isJavadoc(DetailAST ast) {
-        return ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN && JavadocUtil.isJavadocComment(ast);
     }
 
 }
