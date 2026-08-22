@@ -167,7 +167,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("module-info.java"), expected);
+                getNonCompilablePath("module-info/default/module-info.java"), expected);
     }
 
     @Test

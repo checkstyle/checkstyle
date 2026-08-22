@@ -168,7 +168,8 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
             "12:13: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_TARGET_LINE, "app"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("module1/module-info.java"), expected);
+                getNonCompilablePath(
+                        "module-info/annotation-on-target-line/module-info.java"), expected);
     }
 
     @Test
@@ -178,14 +179,14 @@ public class OpenjdkAnnotationLocationCheckTest extends AbstractModuleTestSuppor
             "10:10: " + getCheckMessage(MSG_KEY_ANNOTATION_ALONE_OR_SAME, "app2"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("module2/module-info.java"), expected);
+                getNonCompilablePath("module-info/mixed-annotations/module-info.java"), expected);
     }
 
     @Test
     public void testOpenModule() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("module3/module-info.java"), expected);
+                getNonCompilablePath("module-info/open/module-info.java"), expected);
     }
 
 }
