@@ -15,11 +15,13 @@ public class InputOneVariablePerDeclaration {
     // violation below 'Only one variable definition per line allowed.'
     java.lang.String string; java.lang.String[]
                                         strings;
+    // violation 2 lines above 'Only one statement per line allowed.'
     // both definitions are wrapped
     // violation below 'Only one variable definition per line allowed.'
     java.lang
             .String string1; java.lang.String[]
                                         strings1;
+    // violation 2 lines above 'Only one statement per line allowed.'
 
     void method1() {
         String str, str1; // violation 'Each variable declaration must be in its own statement.'
@@ -48,12 +50,13 @@ public class InputOneVariablePerDeclaration {
         // violation below 'Only one variable definition per line allowed.'
         java.lang.String string; java.lang.String[]
                                             strings;
+        // violation 2 lines above 'Only one statement per line allowed.'
         // both definitions are wrapped
         // violation below 'Only one variable definition per line allowed.'
         java.lang
                 .String string1; java.lang.String[]
                                             strings1;
-
+        // violation 2 lines above 'Only one statement per line allowed.'
         Inner anon = new Inner() {
             int abc, pqr;
             // violation above 'Each variable declaration must be in its own statement.'
@@ -67,16 +70,16 @@ public class InputOneVariablePerDeclaration {
             // violation below 'Only one variable definition per line allowed.'
             java.lang.String string; java.lang.String[]
                             strings;
+            // violation 2 lines above 'Only one statement per line allowed.'
             // both definitions are wrapped
             // violation below 'Only one variable definition per line allowed.'
             java.lang
                     .String string1; java.lang.String[]
                             strings1;
-
+            // violation 2 lines above 'Only one statement per line allowed.'
             void method2() {
                 for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
                 }
-
                 for (int i = 0; i < 4; i++) {}
             }
 
@@ -93,7 +96,6 @@ public class InputOneVariablePerDeclaration {
         void method2() {
             for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
             }
-
             for (int i = 0; i < 4; i++) {}
         }
 
@@ -105,7 +107,6 @@ public class InputOneVariablePerDeclaration {
             //  'Only one variable definition per line allowed.'
             //  'Only one statement per line allowed.'
         }
-
     }
 
     class Suppress {
