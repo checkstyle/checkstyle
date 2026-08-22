@@ -12,7 +12,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 import java.io.IOException;
 
-class InputWriteTagTypeSince {
+/** Valid javadoc. */
+/* ignore */
+class InputWriteTagTypeSince { // violation 'Javadoc comment is missing @since tag.'
     /**
      * @since      2.2.2 (2019-12-31)
      * @return value of type {@code String}
@@ -24,4 +26,14 @@ class InputWriteTagTypeSince {
         }
         return "";
     }
+
+    /**
+     * Test to check.
+     * @param i to check.
+     * @return false.
+     */
+    /* package */ boolean contentsExcluded(int i) {
+        return false;
+    } // violation 2 lines above 'Javadoc comment is missing @since tag.'
+
 }

@@ -97,11 +97,57 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getNonCompilablePath("compact/InputWriteTagCheckNonCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testDefault() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserTwice(
+                getNonCompilablePath("compact/InputWriteTagCheckDefaultTokens.java"), expected);
+    }
+
+    @Test
+    public void testTagContent() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserTwice(
+                getNonCompilablePath("compact/InputWriteTagCheckExactTagContent.java"), expected);
+    }
+
+    @Test
     public void testInterface() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagInterface.java"), expected
         );
+    }
+
+    @Test
+    public void testEnum() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+            "24:5: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagEnum.java"), expected
+        );
+    }
+
+    @Test
+    public void testSince() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+            "38:5: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagSince.java"),
+                expected);
     }
 
     @Test
@@ -208,7 +254,10 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTagTypeSince() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+            "35:19: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+        };
         verifyWithInlineConfigParserTwice(
             getPath("InputWriteTagTypeSince.java"), expected);
     }
@@ -227,6 +276,16 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParserTwice(
             getPath("InputWriteTagNonTightHtml.java"), expected);
+    }
+
+    @Test
+    public void testCommentAboveJavadoc() throws Exception {
+        final String[] expected = {
+            "27:5: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+            "42:5: " + getCheckMessage(MSG_MISSING_TAG, "@since"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagCheckCommentAboveJavadoc.java"), expected);
     }
 
     @Test
