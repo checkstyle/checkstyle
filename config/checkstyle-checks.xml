@@ -750,6 +750,7 @@
       <property name="tag" value="@author"/>
     </module>
     <module name="InappropriateJavadocBlockTagsOnType"/>
+    <module name="InappropriateJavadocBlockTagsOnField"/>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation">
       <!-- default tags -->

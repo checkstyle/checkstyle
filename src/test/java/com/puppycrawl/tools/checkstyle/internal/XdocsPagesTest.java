@@ -1066,14 +1066,14 @@ public class XdocsPagesTest {
         final List<String> orderedPropertyNames = new ArrayList<>(properties);
         final List<String> tablePropertyNames = new ArrayList<>();
 
-        // javadocTokens and tokens should be last
-        if (orderedPropertyNames.contains("javadocTokens")) {
-            orderedPropertyNames.remove("javadocTokens");
-            orderedPropertyNames.add("javadocTokens");
-        }
+        // tokens and javadocTokens should be last
         if (orderedPropertyNames.contains("tokens")) {
             orderedPropertyNames.remove("tokens");
             orderedPropertyNames.add("tokens");
+        }
+        if (orderedPropertyNames.contains("javadocTokens")) {
+            orderedPropertyNames.remove("javadocTokens");
+            orderedPropertyNames.add("javadocTokens");
         }
 
         rows
@@ -1196,9 +1196,9 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            assertWithMessage("%s section '%s' should have token properties last", fileName,
+            assertWithMessage("%s section '%s' should have javadoc token properties last", fileName,
                 sectionName)
-                    .that(didTokens)
+                    .that(didJavadocTokens)
                     .isFalse();
 
             final String propertyName = columns.getFirst().getTextContent();
@@ -1219,10 +1219,10 @@ public class XdocsPagesTest {
             }
             else {
                 assertWithMessage(
-                    "%s section '%s' should have javadoc token properties"
-                        + " next to last, before tokens",
+                    "%s section '%s' should have token properties"
+                        + " next to last, before javadoc tokens",
                     fileName, sectionName)
-                    .that(didJavadocTokens)
+                    .that(didTokens)
                     .isFalse();
 
                 validatePropertySectionPropertyEx(fileName, sectionName, instance, columns,
