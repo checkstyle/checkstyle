@@ -32,7 +32,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public final class TestInputConfiguration {
+public record TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
+                                     List<TestInputViolation> violations,
+                                     List<TestInputViolation> filteredViolations,
+                                     Configuration xmlConfiguration) {
 
     private static final String ROOT_MODULE_NAME = Checker.class.getSimpleName();
 
@@ -65,42 +68,16 @@ public final class TestInputConfiguration {
                 + ".VerifyPositionAfterLastTabFileSet"
     ));
 
-    private final List<ModuleInputConfiguration> childrenModules;
-
-    private final List<TestInputViolation> violations;
-
-    private final List<TestInputViolation> filteredViolations;
-
-    private final Configuration xmlConfiguration;
-
-    private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
-                                   List<TestInputViolation> violations,
-                                   List<TestInputViolation> filteredViolations) {
-        this.childrenModules = childrenModules;
-        this.violations = violations;
-        this.filteredViolations = filteredViolations;
-        xmlConfiguration = null;
-    }
-
-    private TestInputConfiguration(List<TestInputViolation> violations,
-                                   List<TestInputViolation> filteredViolations,
-                                   Configuration xmlConfiguration) {
-        childrenModules = null;
-        this.violations = violations;
-        this.filteredViolations = filteredViolations;
-        this.xmlConfiguration = xmlConfiguration;
-    }
-
-    public List<ModuleInputConfiguration> getChildrenModules() {
-        return Collections.unmodifiableList(childrenModules);
-    }
-
-    public List<TestInputViolation> getViolations() {
-        return Collections.unmodifiableList(violations);
-    }
-
-    public List<TestInputViolation> getFilteredViolations() {
-        return Collections.unmodifiableList(filteredViolations);
+    public TestInputConfiguration {
+        if (childrenModules != null) {
+            childrenModules = Collections.unmodifiableList(childrenModules);
+        }
+        if (violations != null) {
+            violations = Collections.unmodifiableList(violations);
+        }
+        if (filteredViolations != null) {
+            filteredViolations = Collections.unmodifiableList(filteredViolations);
+        }
     }
 
     public DefaultConfiguration createConfiguration() {
@@ -121,10 +98,6 @@ public final class TestInputConfiguration {
                 });
         root.addChild(treeWalker);
         return root;
-    }
-
-    public Configuration getXmlConfiguration() {
-        return xmlConfiguration;
     }
 
     public DefaultConfiguration createConfigurationWithoutFilters() {
@@ -190,6 +163,7 @@ public final class TestInputConfiguration {
 
         public TestInputConfiguration buildWithXmlConfiguration() {
             return new TestInputConfiguration(
+                    null,
                     violations,
                     filteredViolations,
                     xmlConfiguration
@@ -200,7 +174,8 @@ public final class TestInputConfiguration {
             return new TestInputConfiguration(
                     childrenModules,
                     violations,
-                    filteredViolations
+                    filteredViolations,
+                    null
             );
         }
 

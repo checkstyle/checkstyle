@@ -390,7 +390,7 @@ public class AllChecksCompactSourceCoverageTest {
         }
         for (Path input : inputs) {
             final TestInputConfiguration config = InlineConfigParser.parse(input.toString());
-            for (ModuleInputConfiguration module : config.getChildrenModules()) {
+            for (ModuleInputConfiguration module : config.childrenModules()) {
                 if (checkClassName.equals(module.getModuleName())) {
                     nonDefaultsPerInput.add(module.getNonDefaultProperties().keySet());
                 }

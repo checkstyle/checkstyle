@@ -497,7 +497,7 @@ public class XdocsExampleFileTest {
         try {
             final TestInputConfiguration parsed =
                     InlineConfigParser.parse(exampleFile.toString());
-            final List<TestInputViolation> violations = parsed.getViolations();
+            final List<TestInputViolation> violations = parsed.violations();
 
             final boolean hasUnspecifiedMessage = violations.stream()
                     .anyMatch(violation -> violation.message() == null);
