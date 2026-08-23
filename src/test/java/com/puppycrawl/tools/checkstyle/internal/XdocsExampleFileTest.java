@@ -110,8 +110,7 @@ public class XdocsExampleFileTest {
         "checks/outertypefilename/",
         "checks/regexp/regexpmultiline/",
         "checks/regexp/regexpsingleline/",
-        "checks/trailingcomment/",
-        "checks/whitespace/filetabcharacter/"
+        "checks/trailingcomment/"
     );
 
     /**

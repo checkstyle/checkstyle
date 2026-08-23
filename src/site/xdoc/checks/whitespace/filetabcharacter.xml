@@ -131,16 +131,16 @@ class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="FileTabCharacter"&gt;
-    &lt;property name="fileExtensions" value="java, xml"/&gt;
+    &lt;property name="fileExtensions" value="xml"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example - Test.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  int a; // violation 'File contains tab characters'
+  int a; // ok, no check performed on java file extension
 
-  public void foo (int arg) { // ok, only first occurrence in file reported
+  public void foo (int arg) { // ok, java is not specified in check config
     a = arg; // ok, indented using spaces
   }
 }
