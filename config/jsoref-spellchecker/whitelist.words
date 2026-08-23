@@ -1182,6 +1182,7 @@ reportyml
 requiredtags
 requireemptylinebeforeblocktaggroup
 requirethis
+Rescanning
 resourceleak
 Rethrown
 returncount
