@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidModuleImportCheck"
+             name="AvoidModuleImport"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that there are no module imports.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: Module import declarations (&lt;code&gt;import module M;&lt;/code&gt;) import, on
+ demand, every public top level type exported by a module and by any
+ modules it transitively reads. This is a much broader, less explicit
+ surface than single type or on demand package imports, making it harder to
+ tell where a type comes from, and it increases the risk of ambiguous
+ references between same named types in different exported packages.
+ Disallowing module imports keeps imports explicit and predictable.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="excludes" type="java.lang.String[]">
+               <description>Specify modules allowed to import.</description>
+            </property>
+            <property default-value="0" name="maxAllowedModuleImports" type="int">
+               <description>Control number of module imports allowed.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="import.avoidModule"/>
+            <message-key key="import.avoidModuleCount"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
