@@ -41,13 +41,13 @@ public class InputJavadocMethodExtraThrowsOne {
         }
     }
 
+    // violation 7 lines below 'Expected @throws tag for 'IllegalStateException'.'
     /**
      * declared exception in method signature is missed in javadoc
      * @param properties some value
      * @throws java.lang.IllegalArgumentException when argument is wrong
      * @throws java.lang.NullPointerException indicates null was passed
      */
-    // violation below 'Expected @throws tag for 'IllegalStateException'.'
     public void doSomething2(String properties) throws IllegalStateException {
         // here is NPE possible
         if (properties.charAt(0) == 0) {
