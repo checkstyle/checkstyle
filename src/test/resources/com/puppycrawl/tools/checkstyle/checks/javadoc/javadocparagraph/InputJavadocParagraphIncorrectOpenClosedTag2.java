@@ -8,12 +8,12 @@ violateExecutionOnNonTightHtml = (default)false
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
+// violation 4 lines below '<p> tag should be placed immediately before the first word'
 /**
  * Some summary.
  *
  * <p>  Some Javadoc. </p>
  */
-// violation 2 lines above '<p> tag should be placed immediately before the first word'
 public class InputJavadocParagraphIncorrectOpenClosedTag2 {
 
     /**

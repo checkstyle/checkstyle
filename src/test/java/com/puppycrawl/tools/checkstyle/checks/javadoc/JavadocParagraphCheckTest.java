@@ -91,7 +91,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrect2() throws Exception {
         final String[] expected = {
-            "14:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
+            "15:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
             "22:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
             "37:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "table"),
             "49:8: " + getCheckMessage(MSG_MISPLACED_TAG),
@@ -191,7 +191,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocParagraphOpenClosedTag() throws Exception {
         final String[] expected = {
-            "14:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "15:4: " + getCheckMessage(MSG_MISPLACED_TAG),
             "21:7: " + getCheckMessage(MSG_LINE_BEFORE),
             "28:20: " + getCheckMessage(MSG_LINE_BEFORE),
             "29:20: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -210,7 +210,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testJavadocParagraphOpenClosedTag2() throws Exception {
         final String[] expected = {
-            "14:4: " + getCheckMessage(MSG_MISPLACED_TAG),
+            "15:4: " + getCheckMessage(MSG_MISPLACED_TAG),
             "21:7: " + getCheckMessage(MSG_LINE_BEFORE),
             "30:20: " + getCheckMessage(MSG_MISPLACED_TAG),
             "30:20: " + getCheckMessage(MSG_LINE_BEFORE),
