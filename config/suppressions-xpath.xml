@@ -512,6 +512,13 @@
           query="//METHOD_DEF[./IDENT[@text='getLineNumbersFromExpected']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
 
+  <!-- fillChecksFromJavadocPackage registers every bundled javadoc check, so a large
+       number of executable statements is expected. -->
+  <suppress-xpath
+          files="PackageObjectFactory.java"
+          checks="ExecutableStatementCount"
+          query="//METHOD_DEF[./IDENT[@text='fillChecksFromJavadocPackage']]"/>
+
   <!-- Property orderByIncreasingParameterCount of ConstructorsDeclarationGrouping conflicts
   with CustomDeclarationOrder.CustomDeclarationOrder intentionally keeps publicly usable
   constructors before private implementation details, even if it breaks constructor ordering
