@@ -770,22 +770,20 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img
-                        src="images/ban_red.png"
-                        alt="" />
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
-                  Guideline that multiple <code>@param</code> tags should be listed in
-                    argument-declaration order is not covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/8990">#8990</a>.
+                  <a href="checks/javadoc/javadocparamorder.html#JavadocParamOrder">
+                    JavadocParamOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParamOrder">
+                  config</a>)
                   <br/>
                   <span class="wrapper inline">
-                    <img
-                        src="images/ban_red.png"
-                        alt="" />
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
-                  Guideline that multiple <code>@throws</code> tags should be listed
-                    alphabetically by exception name is not covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/19698">#19698</a>.
+                  <a href="checks/javadoc/javadocthrowsorder.html#JavadocThrowsOrder">
+                    JavadocThrowsOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocThrowsOrder">
+                  config</a>)
                   <br/>
                   <span class="wrapper inline">
                     <img
@@ -805,7 +803,11 @@
                     chronological order cannot be covered because Checkstyle only sees the latest
                     file content and does not have Git history or other historical class context.
                 </td>
-                <td/>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/tagconventions/multipletags">
+                    samples
+                  </a>
+                </td>
               </tr>
 
               <tr>
