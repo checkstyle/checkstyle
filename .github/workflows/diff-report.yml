@@ -157,6 +157,7 @@ jobs:
           name: diff-report
           path: .ci-temp/contribution/checkstyle-tester/reports/diff
           if-no-files-found: error
+          include-hidden-files: true
           retention-days: 1
 
   publish_report:
