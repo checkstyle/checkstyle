@@ -243,6 +243,8 @@
                 href="checks/javadoc/javadocmissingleadingasterisk.html"/>
           <item name="JavadocMissingWhitespaceAfterAsterisk"
                 href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html"/>
+          <item name="JavadocNoErrorInThrowsTag"
+                href="checks/javadoc/javadocnoerrorinthrowstag.html"/>
           <item name="JavadocPackage" href="checks/javadoc/javadocpackage.html"/>
           <item name="JavadocParagraph" href="checks/javadoc/javadocparagraph.html"/>
           <item name="JavadocParamOrder" href="checks/javadoc/javadocparamorder.html"/>
