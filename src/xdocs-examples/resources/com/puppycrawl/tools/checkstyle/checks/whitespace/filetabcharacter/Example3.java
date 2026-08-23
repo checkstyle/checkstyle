@@ -1,7 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="FileTabCharacter">
-    <property name="fileExtensions" value="java, xml"/>
+    <property name="fileExtensions" value="xml"/>
   </module>
 </module>
 
@@ -12,9 +12,9 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
 
 // xdoc section - start
 class Example3 {
-	int a; // violation 'File contains tab characters'
+	int a; // ok, no check performed on java file extension
 
-	public void foo (int arg) { // ok, only first occurrence in file reported
+	public void foo (int arg) { // ok, java is not specified in check config
     a = arg; // ok, indented using spaces
   }
 }

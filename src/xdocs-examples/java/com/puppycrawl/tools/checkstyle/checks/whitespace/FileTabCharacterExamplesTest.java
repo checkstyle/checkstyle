@@ -55,9 +55,7 @@ public class FileTabCharacterExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
