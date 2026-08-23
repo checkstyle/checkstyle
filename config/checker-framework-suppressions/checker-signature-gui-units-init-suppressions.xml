@@ -56,6 +56,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnnecessaryFullyQualifiedTypeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter name of Class.forName.</message>
+    <lineContent>Class.forName(candidate, false, null);</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @ClassGetName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
