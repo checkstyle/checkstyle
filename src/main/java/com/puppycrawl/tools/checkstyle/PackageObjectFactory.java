@@ -720,6 +720,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocMissingLeadingAsteriskCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocMissingWhitespaceAfterAsteriskCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocNoErrorInThrowsTagCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocNoErrorInThrowsTagCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocPackageCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocPackageCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocParagraphCheck",
