@@ -77,6 +77,7 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
         return number;
     }
 
+    // violation 8 lines below '@return tag .*.'
     /**
      * Missing return at the end followed by empty line.
      *
@@ -84,7 +85,6 @@ public class InputJavadocMethodMissingJavadocTagsDefault {
      * @return
      *
      */
-    // violation below '@return tag .*.'
     private int missingReturnAtTheEndFollowedByEmptyLine(int number) {
         return number;
     }
