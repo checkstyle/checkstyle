@@ -62,6 +62,3 @@ exclude:
   - name: Annotator
     paths:
       - src/main/java/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.java
-  - name: ClassCanBeRecord
-    paths:
-      - src/test/java/com/puppycrawl/tools/checkstyle/bdd/TestInputConfiguration.java

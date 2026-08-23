@@ -32,7 +32,10 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-public final class TestInputConfiguration {
+public record TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
+                                     List<TestInputViolation> violations,
+                                     List<TestInputViolation> filteredViolations,
+                                     Configuration xmlConfiguration) {
 
     private static final String ROOT_MODULE_NAME = Checker.class.getSimpleName();
 
@@ -65,30 +68,16 @@ public final class TestInputConfiguration {
                 + ".VerifyPositionAfterLastTabFileSet"
     ));
 
-    private final List<ModuleInputConfiguration> childrenModules;
-
-    private final List<TestInputViolation> violations;
-
-    private final List<TestInputViolation> filteredViolations;
-
-    private final Configuration xmlConfiguration;
-
     private TestInputConfiguration(List<ModuleInputConfiguration> childrenModules,
                                    List<TestInputViolation> violations,
                                    List<TestInputViolation> filteredViolations) {
-        this.childrenModules = childrenModules;
-        this.violations = violations;
-        this.filteredViolations = filteredViolations;
-        xmlConfiguration = null;
+        this(childrenModules, violations, filteredViolations, null);
     }
 
     private TestInputConfiguration(List<TestInputViolation> violations,
                                    List<TestInputViolation> filteredViolations,
                                    Configuration xmlConfiguration) {
-        childrenModules = null;
-        this.violations = violations;
-        this.filteredViolations = filteredViolations;
-        this.xmlConfiguration = xmlConfiguration;
+        this(null, violations, filteredViolations, xmlConfiguration);
     }
 
     public List<ModuleInputConfiguration> getChildrenModules() {
