@@ -160,7 +160,7 @@ public class HideUtilityClassConstructorCheckTest
     @Test
     public void testIgnoreAnnotatedByFullQualifier() throws Exception {
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY),
+            "10:1: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructor"
