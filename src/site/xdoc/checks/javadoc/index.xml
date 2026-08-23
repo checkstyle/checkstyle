@@ -33,6 +33,16 @@
           </tr>
           <tr>
             <td>
+              <a href="inappropriatejavadocblocktagsonfield.html#InappropriateJavadocBlockTagsOnField">
+                InappropriateJavadocBlockTagsOnField
+              </a>
+            </td>
+            <td>
+              Checks for inappropriate Javadoc block tags on field declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="inappropriatejavadocblocktagsontype.html#InappropriateJavadocBlockTagsOnType">
                 InappropriateJavadocBlockTagsOnType
               </a>
