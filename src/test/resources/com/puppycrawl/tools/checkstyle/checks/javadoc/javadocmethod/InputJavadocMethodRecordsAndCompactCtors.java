@@ -50,13 +50,13 @@ public class InputJavadocMethodRecordsAndCompactCtors {
     public record MySecondRecord() {
         static String props = "";
 
+        // violation 4 lines below 'Unused @param tag'
         /**
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
          * @throws java.lang.IllegalStateException when argument is wrong
          */
-        // violation 3 lines above 'Unused @param tag'
         public MySecondRecord {
             // here is NPE possible
             if (props.charAt(0) == 0) {
@@ -68,14 +68,14 @@ public class InputJavadocMethodRecordsAndCompactCtors {
 
     // Record component, compact ctor
     public record MyThirdRecord(String myString) {
+        // violation 5 lines below 'Unused @param tag '
+        // violation 7 lines below 'Expected @param tag for 'myString'.'
         /**
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
          * @throws java.lang.IllegalStateException when argument is wrong
          */
-        // violation 3 lines above 'Unused @param tag '
-        // violation below 'Expected @param tag for 'myString'.'
         public MyThirdRecord {
             // here is NPE possible
             if (myString.charAt(0) == 0) {
@@ -87,14 +87,14 @@ public class InputJavadocMethodRecordsAndCompactCtors {
 
     // Record component, ctor
     public record MyFourthRecord(String myString) {
+        // violation 5 lines below 'Unused @param tag for 'properties'.'
+        // violation 7 lines below 'Expected @param tag for 'myInt'.'
         /**
          * exception is explitly thrown in code missed in javadoc
          *
          * @param properties some value
          * @throws java.lang.IllegalStateException when argument is wrong
          */
-        // violation 3 lines above 'Unused @param tag for 'properties'.'
-        // violation below 'Expected @param tag for 'myInt'.'
         public MyFourthRecord(int myInt) {
             this("my string");
             // here is NPE possible
