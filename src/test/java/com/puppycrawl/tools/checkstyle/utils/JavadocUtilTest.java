@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -39,11 +41,13 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
@@ -374,6 +378,87 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFindFirstToken() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl firstTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl tagNameNode = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+
+        parent.addChild(firstTextNode);
+        parent.addChild(tagNameNode);
+
+        final DetailNode result =
+            JavadocUtil.findFirstToken(parent, JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid node")
+            .that(result)
+            .isEqualTo(firstTextNode);
+    }
+
+    @Test
+    public void testIsTag() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+
+        assertWithMessage("Should return false")
+            .that(JavadocUtil.isTag(parent, "myTag"))
+            .isFalse();
+
+        final JavadocNodeImpl tagStart =
+            createJavadocNode(JavadocCommentsTokenTypes.HTML_TAG_START);
+        parent.addChild(tagStart);
+
+        final JavadocNodeImpl tagName = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+        tagName.setText("myTag");
+        tagStart.addChild(tagName);
+
+        assertWithMessage("Should return true")
+            .that(JavadocUtil.isTag(parent, "myTag"))
+            .isTrue();
+
+        assertWithMessage("Should return false")
+            .that(JavadocUtil.isTag(parent, "otherTag"))
+            .isFalse();
+    }
+
+    @Test
+    public void testGetNextSibling() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl first = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl second = createJavadocNode(JavadocCommentsTokenTypes.NEWLINE);
+        final JavadocNodeImpl third = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+
+        parent.addChild(first);
+        parent.addChild(second);
+        parent.addChild(third);
+
+        assertWithMessage("Should find NEWLINE")
+            .that(JavadocUtil.getNextSibling(first, JavadocCommentsTokenTypes.NEWLINE))
+            .isEqualTo(second);
+
+        assertWithMessage("Should find TAG_NAME")
+            .that(JavadocUtil.getNextSibling(first, JavadocCommentsTokenTypes.TAG_NAME))
+            .isEqualTo(third);
+
+        assertWithMessage("Should return null")
+            .that(JavadocUtil.getNextSibling(first, JavadocCommentsTokenTypes.HTML_TAG_START))
+            .isNull();
+    }
+
+    @Test
+    public void testGetTagName() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl tagStart =
+            createJavadocNode(JavadocCommentsTokenTypes.HTML_TAG_START);
+        final JavadocNodeImpl tagName = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+        tagName.setText("myTag");
+        tagStart.addChild(tagName);
+        parent.addChild(tagStart);
+
+        assertWithMessage("Should return myTag")
+            .that(JavadocUtil.getTagName(parent))
+            .isEqualTo("myTag");
+    }
+
+    @Test
     public void testGetAllNodesOfType() {
         final JavadocNodeImpl parent = new JavadocNodeImpl();
         final JavadocNodeImpl firstTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
@@ -473,6 +558,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
                     MSG_EXPECTED_TAG, "@param", "value"),
             "40: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
             "60: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "82: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilMethodDefComments.java"), expected);
@@ -551,6 +637,58 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackagePreviousSiblingIsJavadoc()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("pkgisjavadoc/package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackagePreviousSiblingNotJavadoc()
+            throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MissingJavadocPackageCheck.class,
+                    MSG_PKG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("pkgnotjavadoc/package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInsideAnnotation()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("pkgannotationisjavadoc/package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageInsideAnnotationNotJavadoc()
+            throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MissingJavadocPackageCheck.class,
+                    MSG_PKG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("pkgannotationnotjavadoc/package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForTypeDefinitions() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilTypeDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForModuleDefinitions() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("modulejavadoc/module-info.java"), expected);
     }
 
     private static JavadocTags getJavadocTags(TextBlock textBlock, JavadocTagType tagType) {
