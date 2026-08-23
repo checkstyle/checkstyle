@@ -26,7 +26,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault {
      *
      * @return something
      */
-    // violation 2 lines above 'Invalid 'return' tag for 'invalidReturn'.'
+    // violation 2 lines above 'Invalid '@return' tag for 'invalidReturn'.'
     private String invalidReturn;
 
     /**
@@ -34,7 +34,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault {
      *
      * @param badParam bad param description
      */
-    // violation 2 lines above 'Invalid 'param' tag for 'invalidParam'.'
+    // violation 2 lines above 'Invalid '@param' tag for 'invalidParam'.'
     protected Object invalidParam;
 
     /**
@@ -42,7 +42,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault {
      *
      * @throws Exception when error occurs
      */
-    // violation 2 lines above 'Invalid 'throws' tag for 'invalidThrows'.'
+    // violation 2 lines above 'Invalid '@throws' tag for 'invalidThrows'.'
     public boolean invalidThrows;
 
     /**
@@ -50,7 +50,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault {
      *
      * @exception Exception when error occurs
      */
-    // violation 2 lines above 'Invalid 'exception' tag for 'invalidException'.'
+    // violation 2 lines above 'Invalid '@exception' tag for 'invalidException'.'
     public boolean invalidException;
 
     /**
@@ -61,10 +61,10 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault {
      * @throws RuntimeException on error
      * @exception IllegalStateException on state error
      */
-    // violation 5 lines above 'Invalid 'return' tag for 'multipleInvalid'.'
-    // violation 5 lines above 'Invalid 'param' tag for 'multipleInvalid'.'
-    // violation 5 lines above 'Invalid 'throws' tag for 'multipleInvalid'.'
-    // violation 5 lines above 'Invalid 'exception' tag for 'multipleInvalid'.'
+    // violation 5 lines above 'Invalid '@return' tag for 'multipleInvalid'.'
+    // violation 5 lines above 'Invalid '@param' tag for 'multipleInvalid'.'
+    // violation 5 lines above 'Invalid '@throws' tag for 'multipleInvalid'.'
+    // violation 5 lines above 'Invalid '@exception' tag for 'multipleInvalid'.'
     public double multipleInvalid;
 
     /**
@@ -76,8 +76,8 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault {
      * @throws Exception test
      * @deprecated deprecated
      */
-    // violation 5 lines above 'Invalid 'return' tag for 'mixedTags'.'
-    // violation 4 lines above 'Invalid 'throws' tag for 'mixedTags'.'
+    // violation 5 lines above 'Invalid '@return' tag for 'mixedTags'.'
+    // violation 4 lines above 'Invalid '@throws' tag for 'mixedTags'.'
     public float mixedTags;
 
     // Field without javadoc

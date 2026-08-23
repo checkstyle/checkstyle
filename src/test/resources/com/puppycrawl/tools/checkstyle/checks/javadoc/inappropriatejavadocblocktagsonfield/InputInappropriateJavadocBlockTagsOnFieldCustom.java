@@ -17,7 +17,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldCustom {
      *
      * @return something
      */
-    // violation 2 lines above 'Invalid 'return' tag for 'fieldReturn'.'
+    // violation 2 lines above 'Invalid '@return' tag for 'fieldReturn'.'
     private String fieldReturn;
 
     /**
@@ -25,7 +25,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldCustom {
      *
      * @param badParam bad param description
      */
-    // violation 2 lines above 'Invalid 'param' tag for 'fieldParam'.'
+    // violation 2 lines above 'Invalid '@param' tag for 'fieldParam'.'
     protected Object fieldParam;
 
     /**

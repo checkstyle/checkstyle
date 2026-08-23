@@ -31,7 +31,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault2 {
              *
              * @return local class field
              */
-            // violation 2 lines above 'Invalid 'return' tag for 'localClassField'.'
+            // violation 2 lines above 'Invalid '@return' tag for 'localClassField'.'
             public int localClassField;
         }
 
@@ -76,8 +76,8 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault2 {
          * @return constant
          * @param invalid tag
          */
-        // violation 3 lines above 'Invalid 'return' tag for 'INTERFACE_CONST'.'
-        // violation 3 lines above 'Invalid 'param' tag for 'INTERFACE_CONST'.'
+        // violation 3 lines above 'Invalid '@return' tag for 'INTERFACE_CONST'.'
+        // violation 3 lines above 'Invalid '@param' tag for 'INTERFACE_CONST'.'
         int INTERFACE_CONST = 42;
 
         /**

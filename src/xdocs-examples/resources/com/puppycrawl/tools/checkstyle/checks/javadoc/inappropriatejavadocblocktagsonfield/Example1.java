@@ -23,13 +23,13 @@ class Example1 {
    * Inappropriate tags on class field.
    *
    * @return Invalid tag for field.
-   * // violation above 'Invalid 'return' tag for 'field2'.'
+   * // violation above 'Invalid '@return' tag for 'field2'.'
    * @param BAD Invalid tag for field.
-   * // violation above 'Invalid 'param' tag for 'field2'.'
+   * // violation above 'Invalid '@param' tag for 'field2'.'
    * @throws Exception Invalid tag for field.
-   * // violation above 'Invalid 'throws' tag for 'field2'.'
+   * // violation above 'Invalid '@throws' tag for 'field2'.'
    * @exception Exception Invalid tag for field.
-   * // violation above 'Invalid 'exception' tag for 'field2'.'
+   * // violation above 'Invalid '@exception' tag for 'field2'.'
    */
   private String field2;
 
@@ -38,9 +38,9 @@ class Example1 {
      * Inappropriate tags on interface field.
      *
      * @return Invalid tag for field.
-     * // violation above 'Invalid 'return' tag for 'INT_FIELD'.'
+     * // violation above 'Invalid '@return' tag for 'INT_FIELD'.'
      * @param BAD Invalid tag for field.
-     * // violation above 'Invalid 'param' tag for 'INT_FIELD'.'
+     * // violation above 'Invalid '@param' tag for 'INT_FIELD'.'
      */
     int INT_FIELD = 0;
   }

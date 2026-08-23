@@ -107,7 +107,7 @@ public class InappropriateJavadocBlockTagsOnFieldCheck extends AbstractJavadocCh
     public final void visitJavadocToken(DetailNode ast) {
         final DetailNode tagNameNode = JavadocUtil.findFirstToken(ast,
                 JavadocCommentsTokenTypes.TAG_NAME);
-        final String tagName = tagNameNode.getText().substring(1);
+        final String tagName = tagNameNode.getText();
         log(ast, MSG_KEY, tagName, NullUtil.notNull(currentFieldName));
     }
 

@@ -18,7 +18,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault3 {
          *
          * @throws Exception err
          */
-        // violation 2 lines above 'Invalid 'throws' tag for 'enumField'.'
+        // violation 2 lines above 'Invalid '@throws' tag for 'enumField'.'
         private int enumField;
 
         /**
@@ -35,7 +35,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault3 {
          *
          * @return val
          */
-        // violation 2 lines above 'Invalid 'return' tag for 'RECORD_STATIC_FIELD'.'
+        // violation 2 lines above 'Invalid '@return' tag for 'RECORD_STATIC_FIELD'.'
         public static final String RECORD_STATIC_FIELD = "rec";
 
         /**
@@ -52,7 +52,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault3 {
          *
          * @exception Exception tag
          */
-        // violation 2 lines above 'Invalid 'exception' tag for 'ANNOTATION_FIELD'.'
+        // violation 2 lines above 'Invalid '@exception' tag for 'ANNOTATION_FIELD'.'
         String ANNOTATION_FIELD = "ann";
     }
 
@@ -62,7 +62,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault3 {
          *
          * @param badParam tag
          */
-        // violation 2 lines above 'Invalid 'param' tag for 'nestedField'.'
+        // violation 2 lines above 'Invalid '@param' tag for 'nestedField'.'
         private long nestedField;
     }
 
@@ -72,7 +72,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault3 {
          *
          * @return value
          */
-        // violation 2 lines above 'Invalid 'return' tag for 'innerField'.'
+        // violation 2 lines above 'Invalid '@return' tag for 'innerField'.'
         private short innerField;
     }
 
@@ -83,7 +83,7 @@ public class InputInappropriateJavadocBlockTagsOnFieldDefault3 {
              *
              * @return anon field
              */
-            // violation 2 lines above 'Invalid 'return' tag for 'anonField'.'
+            // violation 2 lines above 'Invalid '@return' tag for 'anonField'.'
             private int anonField;
         };
     }
