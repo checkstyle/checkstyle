@@ -756,6 +756,12 @@
             <td>
               Checks that Javadoc block tags for type definitions (class, interface, enum, record,
               annotation) do not contain tags that are semantically invalid for types.
+              <a href="checks/javadoc/inappropriatejavadocblocktagsonfield.html#InappropriateJavadocBlockTagsOnField">
+                InappropriateJavadocBlockTagsOnField
+              </a>
+            </td>
+            <td>
+              Checks for inappropriate Javadoc block tags on field declarations.
             </td>
           </tr>
           <tr>
