@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 import java.util.TreeSet;
 
 public class InputIllegalTypeTestMemberModifiers {
-    private AbstractClass a = null; // violation 'Usage of type AbstractClass is not allowed'.
+    private AbstractClass a = null; // violation "Usage of type 'AbstractClass' is not allowed."
     private NotAnAbstractClass b = null; /*another comment*/
 
     private java.util.AbstractList c = null;
@@ -51,7 +51,7 @@ public class InputIllegalTypeTestMemberModifiers {
         java.util.TreeSet<Object> treeSet = null;
     }
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
-    protected AbstractClass a1 = null; // violation 'Usage of type AbstractClass is not allowed'.
+    protected AbstractClass a1 = null; // violation "Usage of type 'AbstractClass' is not allowed."
     public AbstractClass a2 = null;
 
     //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
