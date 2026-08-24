@@ -8,10 +8,12 @@
  Checks that Javadoc block tags for fields do not contain tags that are semantically
  invalid for fields.
  &lt;/div&gt;
+ 
  &lt;p&gt;
  This check helps to maintain the accuracy and usefulness of Javadoc documentation
  by ensuring that only valid tags are used for field declarations.
  &lt;/p&gt;
+ 
  &lt;p&gt;
  Specifically, the following tags are considered inappropriate for field declarations:
  &lt;/p&gt;
@@ -21,6 +23,7 @@
    &lt;li&gt;&lt;code&gt;@throws&lt;/code&gt;&lt;/li&gt;
    &lt;li&gt;&lt;code&gt;@exception&lt;/code&gt;&lt;/li&gt;
  &lt;/ul&gt;
+ 
  &lt;p&gt;
  Fields do not return values, take parameters, or throw exceptions. Therefore,
  these tags are inappropriate in their Javadocs.

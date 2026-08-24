@@ -33,10 +33,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks that Javadoc block tags for fields do not contain tags that are semantically
  * invalid for fields.
  * </div>
+ *
  * <p>
  * This check helps to maintain the accuracy and usefulness of Javadoc documentation
  * by ensuring that only valid tags are used for field declarations.
  * </p>
+ *
  * <p>
  * Specifically, the following tags are considered inappropriate for field declarations:
  * </p>
@@ -46,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   <li>{@code @throws}</li>
  *   <li>{@code @exception}</li>
  * </ul>
+ *
  * <p>
  * Fields do not return values, take parameters, or throw exceptions. Therefore,
  * these tags are inappropriate in their Javadocs.
