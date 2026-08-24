@@ -63,7 +63,7 @@ public final class TokenUtil {
         TOKEN_IDS = TOKEN_NAME_TO_VALUE.values().stream().mapToInt(Integer::intValue).toArray();
     }
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private TokenUtil() {
     }
 

@@ -80,16 +80,16 @@ public final class PropertyCacheFile {
     /** Default number for base 16 encoding. */
     private static final int BASE_16 = 16;
 
-    /** The details on files. **/
+    /** The details on files. */
     private final Properties details = new Properties();
 
-    /** Configuration object. **/
+    /** Configuration object. */
     private final Configuration config;
 
-    /** File name of cache. **/
+    /** File name of cache. */
     private final String fileName;
 
-    /** Generated configuration hash. **/
+    /** Generated configuration hash. */
     private String configHash;
 
     /**

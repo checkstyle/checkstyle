@@ -200,4 +200,9 @@
   <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
             files=".*\.java"
             message="Use snippet inline tag instead of .* tag\."/>
+
+  <!-- Using {@code @code} with an escaped slash renders the entity text in Javadocs. -->
+  <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
+            files="JavadocEndCommentDelimiterCheck.java"
+            message="Use code or snippet inline tags instead of 'code' tag\."/>
 </suppressions>

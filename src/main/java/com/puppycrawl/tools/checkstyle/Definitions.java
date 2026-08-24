@@ -23,7 +23,7 @@ import java.util.Set;
 
 /**
  * Contains constant definitions common to the package.
- **/
+ */
 public final class Definitions {
 
     /** Name of resource bundle for Checkstyle. */
@@ -35,7 +35,7 @@ public final class Definitions {
 
     /**
      * Do no allow {@code Definitions} instances to be created.
-     **/
+     */
     private Definitions() {
     }
 

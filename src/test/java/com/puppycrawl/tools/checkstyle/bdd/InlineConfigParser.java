@@ -436,7 +436,7 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck");
     }
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private InlineConfigParser() {
     }
 
