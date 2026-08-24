@@ -192,7 +192,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testModuleInfo() throws Exception {
 
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verifyWithInlineConfigParser(

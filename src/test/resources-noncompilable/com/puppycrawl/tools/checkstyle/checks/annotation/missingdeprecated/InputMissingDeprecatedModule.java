@@ -1,3 +1,4 @@
+// non-compiled with javac: Compilable with Java9
 /*
 MissingDeprecated
 violateExecutionOnNonTightHtml = (default)false
@@ -7,6 +8,7 @@ violateExecutionOnNonTightHtml = (default)false
 /**
  * Javadoc without the deprecated tag.
  */
-@Deprecated // violation 'Must include both @java.lang.Deprecated annotation and @deprecated Javadoc tag with description.'
+// violation below 'Must include.*@java.lang.Deprecated.*@deprecated.*description.'
+@Deprecated
 module com.example.app {
 }
