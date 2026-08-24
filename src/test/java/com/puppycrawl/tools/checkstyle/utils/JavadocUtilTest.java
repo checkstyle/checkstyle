@@ -20,9 +20,11 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck.MSG_INAPPROPRIATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
@@ -39,11 +41,13 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
@@ -551,6 +555,58 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageDirectSibling() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnPackageCheck.class,
+                    MSG_INAPPROPRIATE_TAG, "return", "package"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilPackageDirectSibling.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageNoComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilPackageNoComment.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageNonJavadocComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilPackageNonJavadocComment.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageNonJavadocComment2() throws Exception {
+        final String[] expected = {
+            "7:1: " + getCheckMessage(MissingJavadocPackageCheck.class, MSG_PKG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("nonjavadoc/package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageViaAnnotation() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnPackageCheck.class,
+                    MSG_INAPPROPRIATE_TAG, "return", "package"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("annotation/package-info.java"), expected);
+    }
+
+    @Test
+    public void testMissingJavadocPackage() throws Exception {
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MissingJavadocPackageCheck.class, MSG_PKG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("annotationnojavadoc/package-info.java"), expected);
     }
 
     private static JavadocTags getJavadocTags(TextBlock textBlock, JavadocTagType tagType) {

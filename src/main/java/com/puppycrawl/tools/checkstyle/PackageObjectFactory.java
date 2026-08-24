@@ -709,6 +709,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.AtclauseOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("IllegalBlockTagCheck",
                 BASE_PACKAGE + ".checks.javadoc.IllegalBlockTagCheck");
+        NAME_TO_FULL_MODULE_NAME.put("InappropriateJavadocBlockTagsOnPackageCheck",
+                BASE_PACKAGE + ".checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck");
         NAME_TO_FULL_MODULE_NAME.put("InappropriateJavadocBlockTagsOnTypeCheck",
                 BASE_PACKAGE + ".checks.javadoc.InappropriateJavadocBlockTagsOnTypeCheck");
         NAME_TO_FULL_MODULE_NAME.put("InvalidJavadocPositionCheck",

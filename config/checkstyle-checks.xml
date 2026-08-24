@@ -752,6 +752,7 @@
     <module name="IllegalBlockTag">
       <property name="tag" value="@author"/>
     </module>
+    <module name="InappropriateJavadocBlockTagsOnPackage"/>
     <module name="InappropriateJavadocBlockTagsOnType"/>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation">
