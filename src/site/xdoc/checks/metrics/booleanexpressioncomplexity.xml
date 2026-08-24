@@ -23,6 +23,7 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">With 5 allowed operation in boolean expression</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Ignore <code>&amp;</code> and <code>|</code></a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that a uniform, simple, sequential chain of the same boolean operator (e.g. <code>a &amp;&amp; b &amp;&amp; c</code>) counts as a single unit of complexity instead of one unit per operator</a></li>
             </ul>
           </li>
           <li><a href="#BooleanExpressionComplexity_Example_of_Usage">Example of Usage</a></li>
@@ -75,6 +76,13 @@
               <td>3.4</td>
             </tr>
             <tr>
+              <td><a id="treatUniformSimpleSequentialExpressionsAsOne"/><a href="#treatUniformSimpleSequentialExpressionsAsOne">treatUniformSimpleSequentialExpressionsAsOne</a></td>
+              <td>Control whether a flat, uniform chain of the same boolean operator counts as a single unit of complexity instead of one unit per operator.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.1.0</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -91,10 +99,10 @@
                   .
               </td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
-                    LAND</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
                     BAND</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+                    LAND</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
                     LOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
@@ -138,6 +146,21 @@ public class Example1
     // violation above 'Boolean expression complexity is 6 (max allowed is 3)'
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&amp;) + 1(|) = 6
   }
+
+  public static boolean isType(int type)
+  {// violation below 'Boolean expression complexity is 4 (max allowed is 3)'
+    return type == 1
+            || type == 2
+            || type == 3
+            || type == 4
+            || type == 5;
+  }
+
+  public static boolean isValid(boolean a, boolean b, boolean c, boolean d)
+  {
+    return a &amp;&amp; b &amp;&amp; c &amp;&amp; d;
+  }
+
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -171,6 +194,21 @@ public class Example2
     // violation above 'Boolean expression complexity is 6 (max allowed is 5)'
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&amp;) + 1(|) = 6
   }
+
+  public static boolean isType(int type)
+  {
+    return type == 1
+            || type == 2
+            || type == 3
+            || type == 4
+            || type == 5;
+  }
+
+  public static boolean isValid(boolean a, boolean b, boolean c, boolean d)
+  {
+    return a &amp;&amp; b &amp;&amp; c &amp;&amp; d;
+  }
+
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -204,6 +242,70 @@ public class Example3
     // violation above 'Boolean expression complexity is 4 (max allowed is 3)'
     // 1(^) + 1(||) + 1(^) + 1(||) = 4, &amp; and | are ignored here
   }
+
+  public static boolean isType(int type)
+  { // violation below 'Boolean expression complexity is 4 (max allowed is 3)'
+    return type == 1
+            || type == 2
+            || type == 3
+            || type == 4
+            || type == 5;
+  }
+
+  public static boolean isValid(boolean a, boolean b, boolean c, boolean d)
+  {
+    return a &amp;&amp; b &amp;&amp; c &amp;&amp; d;
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check so that a uniform, simple, sequential chain of the
+          same boolean operator (e.g. <code>a &amp;&amp; b &amp;&amp; c</code>) counts
+          as a single unit of complexity instead of one unit per operator:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="BooleanExpressionComplexity"&gt;
+      &lt;property name="treatUniformSimpleSequentialExpressionsAsOne" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4
+{
+  public static void main(String ... args)
+  {
+    boolean a = true;
+    boolean b = false;
+
+    boolean c = (a &amp; b) | (b ^ a); // ok, 1(^) = 1 (max allowed 3)
+
+    boolean d = (a &amp; b) | (b ^ a) | (a ^ b);
+    // violation above 'Boolean expression complexity is 5 (max allowed is 3)'
+
+    boolean e = a ^ (a || b) ^ (b || a) &amp; (a | b);
+    // violation above 'Boolean expression complexity is 6 (max allowed is 3)'
+    // 1(^) + 1(||) + 1(^) + 1(||) = 4, &amp; and | are ignored here
+  }
+
+  public static boolean isType(int type)
+  {
+    return type == 1
+            || type == 2
+            || type == 3
+            || type == 4
+            || type == 5;
+  }
+
+  public static boolean isValid(boolean a, boolean b, boolean c, boolean d)
+  {
+    return a &amp;&amp; b &amp;&amp; c &amp;&amp; d;
+  }
+
 }
 </code></pre></div>
       </subsection>
