@@ -115,6 +115,7 @@ public class IllegalInstantiationCheck
             TokenTypes.LITERAL_NEW,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
@@ -132,7 +133,7 @@ public class IllegalInstantiationCheck
             case TokenTypes.LITERAL_NEW -> processLiteralNew(ast);
             case TokenTypes.PACKAGE_DEF -> processPackageDef(ast);
             case TokenTypes.IMPORT -> processImport(ast);
-            case TokenTypes.CLASS_DEF -> processClassDef(ast);
+            case TokenTypes.CLASS_DEF, TokenTypes.RECORD_DEF -> processClassDef(ast);
             default -> throw new IllegalArgumentException("Unknown type " + ast);
         }
     }
@@ -143,10 +144,10 @@ public class IllegalInstantiationCheck
     }
 
     /**
-     * Collects classes defined in the source file. Required
+     * Collects classes and records defined in the source file. Required
      * to avoid false alarms for local vs. java.lang classes.
      *
-     * @param ast the class def token.
+     * @param ast the class or record def token.
      */
     private void processClassDef(DetailAST ast) {
         final DetailAST identToken = ast.findFirstToken(TokenTypes.IDENT);
