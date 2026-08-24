@@ -501,7 +501,7 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
-        return testInputConfigBuilder.build().getViolations();
+        return testInputConfigBuilder.build().violations();
     }
 
     public static List<TestInputViolation> getFilteredViolationsFromInputFile(String inputFilePath)
@@ -520,7 +520,7 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
-        return testInputConfigBuilder.build().getFilteredViolations();
+        return testInputConfigBuilder.build().filteredViolations();
     }
 
     public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath)
