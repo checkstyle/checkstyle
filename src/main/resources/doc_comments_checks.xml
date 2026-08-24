@@ -106,6 +106,9 @@
       <property name="ignoreCase" value="true"/>
       <property name="ignoreMarkup" value="true"/>
     </module>
+    <!-- Inline Links -->
+    <module name="JavadocLinkWellKnownApi"/>
+    <module name="JavadocLinkFirstOccurrence"/>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
