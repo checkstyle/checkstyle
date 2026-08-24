@@ -1,7 +1,7 @@
 /*
 IllegalInstantiation
 classes = jaaa.lnng.Boolean,jaaa.lnng.String
-tokens = (default)IMPORT,LITERAL_NEW,PACKAGE_DEF,CLASS_DEF
+tokens = (default)IMPORT,LITERAL_NEW,PACKAGE_DEF,CLASS_DEF,RECORD_DEF
 
 
 */
