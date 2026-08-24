@@ -1,15 +1,18 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="IllegalTokenText"/>
+    <module name="IllegalTokenText">
+      <property name="tokens" value="COMMENT_CONTENT"/>
+      <property name="format" value="a href"/>
+    </module>
   </module>
 </module>
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 // xdoc section - start
-
-public class Example4 {
+// violation first line 'Token text matches the illegal pattern 'a href''
+public class Example4 { // violation above 'Token text matches the illegal pattern'
   public void myTest() {
 
     String test  = "a href";

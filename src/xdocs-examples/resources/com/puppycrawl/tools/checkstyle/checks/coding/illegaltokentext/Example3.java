@@ -2,8 +2,9 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalTokenText">
-      <property name="tokens" value="COMMENT_CONTENT"/>
+      <property name="tokens" value="STRING_LITERAL"/>
       <property name="format" value="a href"/>
+      <property name="ignoreCase" value="true"/>
     </module>
   </module>
 </module>
@@ -11,12 +12,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
 // xdoc section - start
-// violation first line 'Token text matches the illegal pattern 'a href''
-public class Example3 { // violation above 'Token text matches the illegal pattern'
+
+public class Example3 {
   public void myTest() {
-
+    // violation below 'Token text matches the illegal pattern 'a href'.'
     String test  = "a href";
-
+    // violation below 'Token text matches the illegal pattern 'a href'.'
     String test2 = "A href";
     String link = "href";
     final String quote = """
