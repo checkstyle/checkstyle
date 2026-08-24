@@ -57,12 +57,12 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
      */
     public static final String AUDIT_FINISHED_MESSAGE = "DefaultLogger.auditFinished";
 
-    /** Where to write info messages. **/
+    /** Where to write info messages. */
     private final PrintWriter infoWriter;
     /** Close info stream after use. */
     private final boolean closeInfo;
 
-    /** Where to write error messages. **/
+    /** Where to write error messages. */
     private final PrintWriter errorWriter;
     /** Close error stream after use. */
     private final boolean closeError;
@@ -164,7 +164,7 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
      * If the column number is non-zero, then also display it.
      *
      * @see AuditListener
-     **/
+     */
     @Override
     public void addError(AuditEvent event) {
         final SeverityLevel severityLevel = event.getSeverityLevel();

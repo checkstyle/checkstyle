@@ -43,9 +43,9 @@ public final class DetailAstImpl implements DetailAST {
     /** Constant to indicate if not calculated the child count. */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
-    /** The line number. **/
+    /** The line number. */
     private int lineNo = NOT_INITIALIZED;
-    /** The column number. **/
+    /** The column number. */
     private int columnNo = NOT_INITIALIZED;
 
     /** Number of children. */

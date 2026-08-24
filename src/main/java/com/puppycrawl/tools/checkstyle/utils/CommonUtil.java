@@ -72,7 +72,7 @@ public final class CommonUtil {
     /** The extension separator. */
     private static final String EXTENSION_SEPARATOR = ".";
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private CommonUtil() {
     }
 
@@ -84,7 +84,7 @@ public final class CommonUtil {
      * @return a created regexp object
      * @throws IllegalArgumentException
      *             if unable to create Pattern object.
-     **/
+     */
     public static Pattern createPattern(String pattern) {
         return createPattern(pattern, 0);
     }
@@ -99,7 +99,7 @@ public final class CommonUtil {
      * @return a created regexp object
      * @throws IllegalArgumentException
      *             if unable to create Pattern object.
-     **/
+     */
     public static Pattern createPattern(String pattern, int flags) {
         try {
             return Pattern.compile(pattern, flags);
@@ -177,7 +177,7 @@ public final class CommonUtil {
      * @param line
      *            the string to process
      * @return the length of the string ignoring all trailing whitespace
-     **/
+     */
     public static int lengthMinusTrailingWhitespace(String line) {
         int len = line.length();
         for (int i = len - 1; i >= 0; i--) {
