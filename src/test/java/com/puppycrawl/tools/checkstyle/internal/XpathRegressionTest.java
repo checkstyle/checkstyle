@@ -60,6 +60,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public static final Set<String> INCOMPATIBLE_JAVADOC_CHECK_NAMES = Set.of(
                     "AtclauseOrder",
                     "IllegalBlockTag",
+                    "InappropriateJavadocBlockTagsOnField",
                     "JavadocBlockTagLocation",
                     "JavadocLeadingAsteriskAlign",
                     "JavadocLinkFirstOccurrence",
