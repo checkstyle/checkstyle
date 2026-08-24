@@ -75,7 +75,7 @@ public final class JavadocPropertiesGenerator {
      *
      * @param args the command line arguments
      * @throws CheckstyleException if parser or lexer failed or if there is an IO problem
-     **/
+     */
     public static void main(String... args) throws CheckstyleException {
         final CliOptions cliOptions = new CliOptions();
         final CommandLine cmd = new CommandLine(cliOptions);
