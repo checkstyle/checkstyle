@@ -1,6 +1,6 @@
 /*
 IllegalInstantiation
-classes = java.lang.InputTest
+classes = java.lang.InputTestRecord
 tokens = (default)IMPORT,LITERAL_NEW,PACKAGE_DEF,CLASS_DEF,RECORD_DEF
 
 
@@ -8,9 +8,9 @@ tokens = (default)IMPORT,LITERAL_NEW,PACKAGE_DEF,CLASS_DEF,RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
-public class InputIllegalInstantiationSameClassNameJavaLang
+public class InputIllegalInstantiationSameRecordNameJavaLang
 {
-    InputTest obj = new InputTest();
+    InputTestRecord obj = new InputTestRecord();
 }
-class InputTest {
+record InputTestRecord() {
 }
