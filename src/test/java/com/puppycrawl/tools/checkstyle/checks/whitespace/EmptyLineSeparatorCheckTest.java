@@ -199,6 +199,14 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEmptyLineSeparatorException() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorException.java"), expected);
+    }
+
+    @Test
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
 
         final String[] expected = {
