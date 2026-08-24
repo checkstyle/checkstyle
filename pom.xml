@@ -5363,6 +5363,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheckTest
+                </param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
