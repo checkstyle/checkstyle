@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocEndCommentDelimiterCheck"
+             name="JavadocEndCommentDelimiter"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that the Javadoc closing delimiter contains exactly one asterisk before
+ the slash.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ The closing delimiter of a Javadoc comment is &lt;code&gt;*&amp;amp;#47;&lt;/code&gt;. This check reports
+ Javadoc comments whose closing delimiter is preceded by another asterisk, such as
+ &lt;code&gt;**&amp;amp;#47;&lt;/code&gt; or &lt;code&gt;***&amp;amp;#47;&lt;/code&gt;.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="javadoc.end.delimiter"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
