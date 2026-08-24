@@ -749,6 +749,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/inappropriatejavadocblocktagsonfield.html#InappropriateJavadocBlockTagsOnField">
+                InappropriateJavadocBlockTagsOnField
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for fields do not contain tags that are semantically
+              invalid for fields.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/inappropriatejavadocblocktagsontype.html#InappropriateJavadocBlockTagsOnType">
                 InappropriateJavadocBlockTagsOnType
               </a>
