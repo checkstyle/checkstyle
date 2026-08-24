@@ -6,7 +6,7 @@ source ./.ci/util.sh
 case $1 in
 
 guava-with-google-checks)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "$CS_POM_VERSION"
@@ -29,7 +29,7 @@ guava-with-google-checks)
   ;;
 
 guava-with-sun-checks)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "$CS_POM_VERSION"
@@ -140,7 +140,7 @@ openjdk25-with-checks-nonjavadoc-error)
   ;;
 
 no-exception-lucene-and-others-javadoc)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
@@ -163,7 +163,7 @@ no-exception-lucene-and-others-javadoc)
   ;;
 
 no-exception-cassandra-storm-tapestry-javadoc)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -185,7 +185,7 @@ no-exception-cassandra-storm-tapestry-javadoc)
   ;;
 
 no-exception-hadoop-apache-groovy-scouter-javadoc)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -208,7 +208,7 @@ no-exception-hadoop-apache-groovy-scouter-javadoc)
   ;;
 
 no-exception-only-javadoc)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -230,7 +230,7 @@ no-exception-only-javadoc)
   ;;
 
 no-exception-samples-ant)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress -B install -Pno-validations
@@ -248,7 +248,7 @@ no-exception-samples-ant)
   ;;
 
 no-exception-samples-gradle)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress -B install -Pno-validations
@@ -267,7 +267,7 @@ no-exception-samples-gradle)
   ;;
 
 no-exception-samples-maven)
-  CS_POM_VERSION="$(getCheckstylePomVersion)" \
+  CS_POM_VERSION="$(getPomVersion)" \
     || { echo "Failed to get Checkstyle POM version."; exit 1; }
   echo 'CS_POM_VERSION='"${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress -B install -Pno-validations

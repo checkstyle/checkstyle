@@ -19,7 +19,7 @@ curl --fail-with-body -i -H "Authorization: token $GITHUB_TOKEN" \
 
 echo "Creation of new milestone ..."
 
-CURRENT_VERSION=$(getCheckstylePomVersionWithoutSnapshot) \
+CURRENT_VERSION=$(getPomVersionWithoutSnapshot) \
   || { echo "Failed to get Checkstyle POM version."; exit 1; }
 echo CURRENT_VERSION="$CURRENT_VERSION"
 
