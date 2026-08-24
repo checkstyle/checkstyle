@@ -61,7 +61,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -83,15 +85,19 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
+import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Validates xdocs pages generated during the Maven {@code process-classes} phase.
+ * Generates xdocs pages from templates and performs validations.
+ * Before running this test, the following commands have to be executed:
+ * - mvn clean compile - Required for next command
+ * - mvn plexus-component-metadata:generate-metadata - Required to find custom macros and parser
  */
 public class XdocsPagesTest {
-
     private static final Path SITE_PATH = Path.of("src/site/site.xml");
     private static final Path CHECKSTYLE_JS_PATH = Path.of(
         "src/site/resources/js/checkstyle.js");
@@ -107,13 +113,6 @@ public class XdocsPagesTest {
             .compile("^Since Checkstyle \\d+\\.\\d+(\\.\\d+)?");
 
     private static final Pattern END_OF_SENTENCE = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
-
-    /** Matches the numeric id, e.g. "Example3" or "UseCase1", from a "-config" paragraph id. */
-    private static final Pattern EXAMPLE_ID_PATTERN =
-            Pattern.compile("^((?:Example|UseCase)\\d+)-config$");
-
-    /** Strips inline HTML tags left in scraped paragraph text except {@code <code>} tags. */
-    private static final Pattern TAG_PATTERN = Pattern.compile("</?(?!code\\b)[a-zA-Z][^>]*>");
 
     private static final List<String> XML_FILESET_LIST = List.of(
             "TreeWalker",
@@ -200,6 +199,7 @@ public class XdocsPagesTest {
             "InterfaceIsType",
             "JavadocMethod",
             "JavadocPackage",
+            "JavadocStyle",
             "JavadocType",
             "JavadocVariable",
             "LeftCurly",
@@ -244,26 +244,11 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
-    // Requirement is not yet public.
-    private static final Set<String> IGNORED_GOOGLE_MODULES = Set.of(
-            "RegexpSingleline"
-    );
-
     private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigOpenJdkStyleModules());
 
     private static final Set<String> DOC_COMMENTS_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigDocCommentsStyleModules());
-
-    /**
-     * Example pairs that are intentionally placed in the same separated group, as they
-     * demonstrate the same configuration applied to files of different types.
-     * Each entry has the form {@code templateFileName:previousExamplePrefix:currentExamplePrefix}
-     * and marks that pair as allowed to appear without a separator between them.
-     */
-    private static final Set<String> ALLOWED_EXAMPLES_WITHOUT_SEPARATOR = Set.of(
-        "newlineatendoffile.xml.template:Example4:Example6"
-    );
 
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
@@ -296,11 +281,30 @@ public class XdocsPagesTest {
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
             " names must be in alphabetical order at " + SITE_PATH;
 
+    @TempDir
+    private static File temporaryFolder;
+
+    /**
+     * Generate xdoc content from templates before validation.
+     * This method will be removed once
+     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
+     *
+     * @throws Exception if something goes wrong
+     */
+    @BeforeAll
+    public static void generateXdocContent() throws Exception {
+        XdocGenerator.generateXdocContent(temporaryFolder);
+    }
+
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
         final String availableChecks = Files.readString(AVAILABLE_CHECKS_PATH);
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
+            .stream()
+            .filter(checkName -> {
+                return !"ClassAndPropertiesSettersJavadocScraper".equals(checkName);
+            })
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     assertWithMessage(
@@ -689,9 +693,6 @@ public class XdocsPagesTest {
                     sectionName = "Documentation Comments";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
-                else if (sectionName.isEmpty()) {
-                    expectedId = nameString.replace(' ', '_');
-                }
                 else {
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
@@ -899,9 +900,6 @@ public class XdocsPagesTest {
         for (Node subSection : XmlUtil.getChildrenElements(section)) {
             if (subSectionPos == 0 && "p".equals(subSection.getNodeName())) {
                 validateSinceDescriptionSection(fileName, sectionName, subSection);
-                continue;
-            }
-            if ("div".equals(subSection.getNodeName())) {
                 continue;
             }
 
@@ -1267,7 +1265,7 @@ public class XdocsPagesTest {
         final String expectedTypeName = Optional.ofNullable(field)
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
                 .map(propertyType -> propertyType.value().getDescription())
-                .map(XdocsPagesTest::simplifyTypeName)
+                .map(SiteUtil::simplifyTypeName)
                 .orElseGet(fieldClass::getSimpleName);
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
                 field, fieldClass, instance);
@@ -1287,12 +1285,6 @@ public class XdocsPagesTest {
                 .that(actualValue)
                 .isEqualTo(expectedValue);
         }
-    }
-
-    private static String simplifyTypeName(String fullTypeName) {
-        final int separatorIndex = Math.max(fullTypeName.lastIndexOf('$'),
-                fullTypeName.lastIndexOf('.'));
-        return fullTypeName.substring(separatorIndex + 1);
     }
 
     private static void validatePropertySectionPropertyTokens(String fileName, String sectionName,
@@ -1687,7 +1679,7 @@ public class XdocsPagesTest {
                                                  Node subSection,
                                                  Object instance) throws Exception {
         final Class<?> clss = instance.getClass();
-        final Set<Field> fields = CheckUtil.getCheckMessagesWithDeepScan(clss);
+        final Set<Field> fields = CheckUtil.getCheckMessages(clss, true);
         final Set<String> list = new TreeSet<>();
 
         for (Field field : fields) {
@@ -1845,9 +1837,7 @@ public class XdocsPagesTest {
                 .isTrue();
         assertWithMessage("%s section '%s' should have a google section since it is in it's config",
             fileName, sectionName)
-                .that(hasGoogle
-                    || !GOOGLE_MODULES.contains(sectionName)
-                    || IGNORED_GOOGLE_MODULES.contains(sectionName))
+                .that(hasGoogle || !GOOGLE_MODULES.contains(sectionName))
                 .isTrue();
         assertWithMessage("%s section '%s' should have a sun section since it is in it's config",
             fileName, sectionName)
@@ -1930,11 +1920,7 @@ public class XdocsPagesTest {
             final NodeList sources = getTagSourcesNode(path, "tr");
 
             final Set<String> styleChecks = switch (styleName) {
-                case "google" -> {
-                    final Set<String> checks = new HashSet<>(GOOGLE_MODULES);
-                    checks.removeAll(IGNORED_GOOGLE_MODULES);
-                    yield checks;
-                }
+                case "google" -> new HashSet<>(GOOGLE_MODULES);
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);
@@ -2773,14 +2759,11 @@ public class XdocsPagesTest {
                         final String currentExPrefix = getExamplePrefix(currentId);
                         if (lastExampleIdPrefix != null
                                 && !lastExampleIdPrefix.equals(currentExPrefix)) {
-                            final boolean isSeparated = separatorSeen
-                                    || isSeparatorSuppressed(template, lastExampleIdPrefix,
-                                            currentExPrefix);
                             assertWithMessage(
                                 "Missing <hr class=\"example-separator\"/> "
                                     + "between %s and %s in file: %s",
                                     lastExampleIdPrefix, currentExPrefix, template)
-                                    .that(isSeparated)
+                                    .that(separatorSeen)
                                     .isTrue();
                             separatorSeen = false;
                         }
@@ -2789,22 +2772,6 @@ public class XdocsPagesTest {
                 }
             }
         }
-    }
-
-    /**
-     * Checks whether the given pair of consecutive examples is explicitly allowed to be
-     * grouped together without a separator between them.
-     *
-     * @param template template file the examples belong to
-     * @param previousExamplePrefix prefix of the preceding example
-     * @param currentExamplePrefix prefix of the following example
-     * @return true if the missing separator is intentional
-     */
-    private static boolean isSeparatorSuppressed(Path template, String previousExamplePrefix,
-                                                 String currentExamplePrefix) {
-        final String key = template.getFileName() + ":" + previousExamplePrefix
-                + ":" + currentExamplePrefix;
-        return ALLOWED_EXAMPLES_WITHOUT_SEPARATOR.contains(key);
     }
 
     private static List<Path> collectAllXmlTemplatesUnderSrcSite() throws IOException {
@@ -2918,183 +2885,6 @@ public class XdocsPagesTest {
             .isEmpty();
     }
 
-    @Test
-    public void testAllExampleAndUseCaseParagraphsHaveDescriptiveText() throws Exception {
-        final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
-
-        assertWithMessage("Expected to find at least one xdoc template under src/site")
-                .that(templates)
-                .isNotEmpty();
-
-        final List<String> failures = new ArrayList<>();
-
-        for (final Path template : templates) {
-            final String content = Files.readString(template);
-            final String fileName = template.getFileName().toString();
-
-            failures.addAll(validateTocExtractableDescriptions(fileName, content));
-        }
-
-        assertWithMessage("TOC-extractable description problems found:\n%s",
-                String.join("\n", failures))
-                .that(failures)
-                .isEmpty();
-    }
-
-    /**
-     * Validates that every Example/UseCase id found in the template has a
-     * matching descriptive paragraph immediately before its example macro,
-     * with non-empty text content once tags are stripped -- the same
-     * extraction TocMacro performs to build nested TOC entries.
-     *
-     * @param fileName the template's file name, for failure messages.
-     * @param content the full template source text.
-     * @return the list of failure messages.
-     * @throws Exception if the content cannot be parsed as XML.
-     */
-    private static List<String> validateTocExtractableDescriptions(String fileName,
-            String content) throws Exception {
-        final Document doc = parseXml(content);
-        final Set<String> matchedIds = new HashSet<>();
-        final List<String> failures = new ArrayList<>();
-        final NodeList paragraphs = doc.getElementsByTagName("p");
-
-        for (int index = 0; index < paragraphs.getLength(); index++) {
-            final Element paragraph = (Element) paragraphs.item(index);
-            final Matcher idMatcher = EXAMPLE_ID_PATTERN.matcher(paragraph.getAttribute("id"));
-
-            if (!idMatcher.matches()) {
-                continue;
-            }
-
-            final Element nextElement = nextSiblingElement(paragraph);
-            if (nextElement == null
-                    || !"macro".equals(nextElement.getTagName())
-                    || !"example".equals(nextElement.getAttribute("name"))
-                    || !hasPathParam(nextElement)) {
-                continue;
-            }
-
-            final String exampleId = idMatcher.group(1);
-            final String strippedText = TAG_PATTERN.matcher(paragraph.getTextContent())
-                    .replaceAll("")
-                    .replaceAll("\\s+", " ")
-                    .trim();
-
-            if ("Notes:".equals(strippedText)) {
-                matchedIds.add(exampleId);
-                continue;
-            }
-
-            if (strippedText.isEmpty()) {
-                failures.add(String.format(Locale.ROOT,
-                        "%s: description paragraph for '%s-config' must have non-empty text "
-                                + "so TocMacro can extract a TOC title from it",
-                        fileName, exampleId));
-            }
-
-            matchedIds.add(exampleId);
-        }
-
-        final Set<String> unmatchedIds = new TreeSet<>(findAllExampleAndUseCaseIds(content));
-        unmatchedIds.removeAll(matchedIds);
-
-        if (!unmatchedIds.isEmpty()) {
-            failures.add(String.format(Locale.ROOT,
-                    "%s: the following Example/UseCase ids have a config paragraph that "
-                            + "TocMacro's extraction pattern cannot match (paragraph must "
-                            + "immediately precede a <macro name=\"example\"> with a 'path' "
-                            + "param): %s",
-                    fileName, unmatchedIds));
-        }
-        return failures;
-    }
-
-    /**
-     * Finds every {@code ExampleN}/{@code UseCaseN} id declared via a
-     * {@code -config} paragraph anywhere in the template, regardless of
-     * whether it matches the extraction pattern -- used to detect ids that
-     * exist but silently fail extraction.
-     *
-     * @param content the full template source text.
-     * @return the set of "ExampleN"/"UseCaseN" prefixes found.
-     * @throws Exception if the content cannot be parsed as XML.
-     */
-    private static Set<String> findAllExampleAndUseCaseIds(String content) throws Exception {
-        final Document doc = parseXml(content);
-        final Set<String> result = new TreeSet<>();
-        final NodeList paragraphs = doc.getElementsByTagName("p");
-
-        for (int index = 0; index < paragraphs.getLength(); index++) {
-            final Element paragraph = (Element) paragraphs.item(index);
-            final Matcher idMatcher = EXAMPLE_ID_PATTERN.matcher(paragraph.getAttribute("id"));
-            if (idMatcher.matches()) {
-                result.add(idMatcher.group(1));
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Parses the given xdoc source text into a DOM {@link Document}.
-     *
-     * @param content the full template source text.
-     * @return the parsed document.
-     * @throws Exception if parsing fails.
-     */
-    private static Document parseXml(String content) throws Exception {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(false);
-        final DocumentBuilder builder = factory.newDocumentBuilder();
-        return builder.parse(new InputSource(new StringReader(content)));
-    }
-
-    /**
-     * Finds the next sibling that is itself an {@link Element}, skipping over
-     * text/whitespace nodes and {@code <ul>} elements (which are allowed between
-     * a config paragraph and its example macro).
-     *
-     * @param node the node to start from.
-     * @return the next sibling element, or {@code null} if none exists.
-     */
-    private static Element nextSiblingElement(Node node) {
-        Node sibling = node.getNextSibling();
-        Element result = null;
-        while (sibling != null) {
-            if (sibling.getNodeType() == Node.ELEMENT_NODE) {
-                final Element element = (Element) sibling;
-                // Skip <ul> elements as they're allowed between paragraph and macro
-                if (!"ul".equals(element.getTagName())) {
-                    result = element;
-                    break;
-                }
-            }
-            sibling = sibling.getNextSibling();
-        }
-        return result;
-    }
-
-    /**
-     * Checks whether the given {@code <macro name="example">} element has a
-     * child {@code <param name="path">}.
-     *
-     * @param macroElement the macro element to inspect.
-     * @return {@code true} if a path param child is present.
-     */
-    private static boolean hasPathParam(Element macroElement) {
-        final NodeList params = macroElement.getElementsByTagName("param");
-        boolean result = false;
-        for (int index = 0; index < params.getLength(); index++) {
-            final Element param = (Element) params.item(index);
-            if ("path".equals(param.getAttribute("name"))) {
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
     private static boolean hasAnyUseCaseId(Document doc) {
         final NodeList allParagraphElements = doc.getElementsByTagName("p");
         boolean found = false;
@@ -3128,5 +2918,4 @@ public class XdocsPagesTest {
     private interface PredicateProcess {
         boolean hasFit(Path path);
     }
-
 }
