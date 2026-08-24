@@ -617,6 +617,7 @@ importnolinewrap
 importorder
 importrule
 imprt
+inappropriatejavadocblocktagsonpackage
 inappropriatejavadocblocktagsontype
 Incompatabilities
 indentcontinuationlines
@@ -894,6 +895,8 @@ multifileregexpheader
 multiline
 multilinecommentleadingasteriskpresence
 Multimap
+multipleannotations
+multipleannotationsnojavadoc
 multiplestringliterals
 multipletags
 multiplevariabledeclarations
@@ -970,6 +973,7 @@ NONFORMATTED
 NONGROUP
 NONJAVA
 nonjavadoc
+nonjavadocwithannotation
 nonlegacy
 nonnull
 nonrequiredjavadoc
