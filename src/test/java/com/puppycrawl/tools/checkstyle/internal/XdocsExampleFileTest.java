@@ -119,7 +119,6 @@ public class XdocsExampleFileTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/21207">...</a>
      */
     private static final Set<String> MODULES_WITHOUT_DEFAULT_FIRST_EXAMPLE = Set.of(
-        "checks/coding/illegaltokentext",
         "checks/translation"
     );
 

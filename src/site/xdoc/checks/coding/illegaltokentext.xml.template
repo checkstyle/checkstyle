@@ -33,8 +33,7 @@
 
       <subsection name="Examples" id="IllegalTokenText_Examples">
         <p id="Example1-config">
-          To configure the check to forbid String literals containing
-          <code>"a href"</code>:
+          To configure the check with default properties:
         </p>
         <macro name="example">
           <param name="path"
@@ -49,7 +48,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to forbid String literals containing
-          <code>"a href"</code> for the ignoreCase mode:
+          <code>"a href"</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -63,8 +62,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check to forbid comment content containing
-          <code>"a href"</code>:
+          To configure the check to forbid String literals containing
+          <code>"a href"</code> for the ignoreCase mode:
         </p>
         <macro name="example">
           <param name="path"
@@ -78,7 +77,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To configure the check with default properties:
+          To configure the check to forbid comment content containing
+          <code>"a href"</code>:
         </p>
         <macro name="example">
           <param name="path"
