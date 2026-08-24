@@ -230,6 +230,8 @@
         <item name="Javadoc Comments" href="checks/javadoc/index.html" collapse="true">
           <item name="AtclauseOrder" href="checks/javadoc/atclauseorder.html"/>
           <item name="IllegalBlockTag" href="checks/javadoc/illegalblocktag.html"/>
+          <item name="InappropriateJavadocBlockTagsOnField"
+                href="checks/javadoc/inappropriatejavadocblocktagsonfield.html"/>
           <item name="InappropriateJavadocBlockTagsOnType"
                 href="checks/javadoc/inappropriatejavadocblocktagsontype.html"/>
           <item name="InvalidJavadocPosition" href="checks/javadoc/invalidjavadocposition.html"/>
