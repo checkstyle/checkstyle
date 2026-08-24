@@ -35,11 +35,6 @@ function getCheckstylePomVersionWithoutSnapshot {
   getCheckstylePomVersion | sed "s/-SNAPSHOT//"
 }
 
-function getCheckstylePomVersionWithoutSnapshotWithXmlstarlet {
-  xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
-    -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//"
-}
-
 function checkout_from {
   CLONE_URL=$1
   TARGET_SHA=$2
