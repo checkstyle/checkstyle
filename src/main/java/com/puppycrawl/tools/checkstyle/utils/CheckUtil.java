@@ -682,9 +682,21 @@ public final class CheckUtil {
 
         final DetailAST elseStmt = getNextNonCommentAst(thenStmt);
 
-        return elseStmt != null
-                && isTerminated(thenStmt, useBreak, useContinue, labels)
-                && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+        final boolean isTerminated;
+
+        if (TokenUtil.isOfType(ast.getParent().getParent(), TokenTypes.LITERAL_FOR,
+                TokenTypes.LITERAL_WHILE, TokenTypes.DO_WHILE)) {
+            isTerminated = isTerminated(thenStmt, useBreak, useContinue, labels)
+                    || elseStmt != null
+                    && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+        }
+        else {
+            isTerminated = elseStmt != null
+                    && isTerminated(thenStmt, useBreak, useContinue, labels)
+                    && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+        }
+
+        return isTerminated;
     }
 
     /**
@@ -720,7 +732,16 @@ public final class CheckUtil {
             final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
             loopBody = rparen.getNextSibling();
         }
-        return isTerminated(loopBody, false, false, labels);
+
+        final boolean isInfiniteLoop;
+        if (ast.getType() == TokenTypes.LITERAL_FOR) {
+            isInfiniteLoop = checkForLoop(ast);
+        }
+        else {
+            isInfiniteLoop = checkWhileCondition(ast);
+        }
+        return isInfiniteLoop && !isTerminated(loopBody, true, false, labels)
+                || isTerminated(loopBody, false, false, labels);
     }
 
     /**
@@ -800,6 +821,40 @@ public final class CheckUtil {
                                       boolean useContinue, Set<String> labels) {
         return isTerminated(
             synchronizedAst.findFirstToken(TokenTypes.SLIST), useBreak, useContinue, labels);
+    }
+
+    /**
+     * Checks if a for loop is infinite (empty or {@code true} condition).
+     *
+     * @param forLoop the for loop to check
+     * @return true if the for loop is infinite
+     */
+    private static boolean checkForLoop(DetailAST forLoop) {
+        boolean isInfiniteLoop = false;
+        if (forLoop.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
+            final DetailAST condition =
+                    NullUtil.notNull(forLoop.findFirstToken(TokenTypes.FOR_CONDITION));
+            DetailAST child = condition.getFirstChild();
+            if (child != null) {
+                // EXPR node always has child
+                child = NullUtil.notNull(child.getFirstChild());
+            }
+            isInfiniteLoop = child == null || child.getType() == TokenTypes.LITERAL_TRUE;
+        }
+        return isInfiniteLoop;
+    }
+
+    /**
+     * Checks if a while/do-while loop's condition is literal {@code true}.
+     *
+     * @param loop the while loop, or the do-while's LPAREN token
+     * @return true if the condition is {@code true}
+     */
+    private static boolean checkWhileCondition(DetailAST loop) {
+        final DetailAST lparen = NullUtil.notNull(loop.findFirstToken(TokenTypes.LPAREN));
+        final DetailAST expression = NullUtil.notNull(lparen.getNextSibling());
+        final DetailAST firstChild = NullUtil.notNull(expression.getFirstChild());
+        return firstChild.getType() == TokenTypes.LITERAL_TRUE;
     }
 
 }
