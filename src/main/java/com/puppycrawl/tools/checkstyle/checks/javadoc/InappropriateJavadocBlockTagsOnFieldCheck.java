@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.NullUtil;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <div>
@@ -104,9 +104,15 @@ public class InappropriateJavadocBlockTagsOnFieldCheck extends AbstractJavadocCh
 
     @Override
     public final void visitToken(DetailAST ast) {
+        if (!ScopeUtil.isClassFieldDef(ast)) {
+            return;
+        }
+        final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
+        if (ident == null) {
+            return;
+        }
         final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
         if (blockCommentNode != null) {
-            final DetailAST ident = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT));
             currentFieldName = ident.getText();
             super.visitToken(blockCommentNode);
         }
@@ -114,10 +120,25 @@ public class InappropriateJavadocBlockTagsOnFieldCheck extends AbstractJavadocCh
 
     @Override
     public final void visitJavadocToken(DetailNode ast) {
-        final DetailNode tagNameNode = JavadocUtil.findFirstToken(ast,
-                JavadocCommentsTokenTypes.TAG_NAME);
-        final String tagName = tagNameNode.getText();
-        log(ast, MSG_KEY, tagName, NullUtil.notNull(currentFieldName));
+        final String tagName;
+        switch (ast.getType()) {
+            case JavadocCommentsTokenTypes.PARAM_BLOCK_TAG:
+                tagName = "param";
+                break;
+            case JavadocCommentsTokenTypes.RETURN_BLOCK_TAG:
+                tagName = "return";
+                break;
+            case JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG:
+                tagName = "exception";
+                break;
+            case JavadocCommentsTokenTypes.THROWS_BLOCK_TAG:
+                tagName = "throws";
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown javadoc token type " + ast);
+        }
+
+        log(ast, MSG_KEY, tagName, currentFieldName);
     }
 
 }
