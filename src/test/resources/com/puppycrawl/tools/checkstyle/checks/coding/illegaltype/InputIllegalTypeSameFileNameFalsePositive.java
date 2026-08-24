@@ -25,7 +25,7 @@ public class InputIllegalTypeSameFileNameFalsePositive
 {
     InputIllegalTypeGregCal cal = AnObject.getInstance();
     Date date = null;
-    SubCal subCalendar = null; // violation 'Usage of type SubCal is not allowed'.
+    SubCal subCalendar = null; // violation "Usage of type 'SubCal' is not allowed."
 
     private static class AnObject extends InputIllegalTypeGregCal {
 
