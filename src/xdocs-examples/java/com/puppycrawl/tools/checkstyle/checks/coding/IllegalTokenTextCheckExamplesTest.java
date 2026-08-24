@@ -34,9 +34,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
-            "18:20: " + getCheckMessage(MSG_KEY, "a href"),
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -44,8 +42,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "19:20: " + getCheckMessage(MSG_KEY, "a href"),
-            "21:20: " + getCheckMessage(MSG_KEY, "a href"),
+            "18:20: " + getCheckMessage(MSG_KEY, "a href"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -54,8 +51,8 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "1:3: " + getCheckMessage(MSG_KEY, "a href"),
-            "14:3: " + getCheckMessage(MSG_KEY, "a href"),
+            "19:20: " + getCheckMessage(MSG_KEY, "a href"),
+            "21:20: " + getCheckMessage(MSG_KEY, "a href"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -63,7 +60,10 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {};
+        final String[] expected = {
+            "1:3: " + getCheckMessage(MSG_KEY, "a href"),
+            "14:3: " + getCheckMessage(MSG_KEY, "a href"),
+        };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
