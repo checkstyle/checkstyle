@@ -675,12 +675,12 @@
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-migrate-java</artifactId>
-              <version>3.42.0</version>
+              <version>3.42.1</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.41.0</version>
+              <version>2.41.1</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
