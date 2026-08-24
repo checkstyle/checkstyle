@@ -77,6 +77,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocendcommentdelimiter.html#JavadocEndCommentDelimiter">
+                JavadocEndCommentDelimiter
+              </a>
+            </td>
+            <td>
+              Checks that the Javadoc closing delimiter contains exactly one asterisk before the
+              slash.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
                 JavadocLeadingAsteriskAlign
               </a>
