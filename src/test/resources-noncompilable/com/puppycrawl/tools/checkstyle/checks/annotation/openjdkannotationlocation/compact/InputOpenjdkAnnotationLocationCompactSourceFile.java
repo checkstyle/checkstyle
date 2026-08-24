@@ -35,6 +35,7 @@ int good;
 void main() {
     @SuppressWarnings("unused")
     @Deprecated int local1 = 0;
+    // violation above 'Annotations must be on a separate line from 'local1'.'
     @Deprecated int local2 = 0;
     System.out.println(local1 + local2 + field1);
 }
