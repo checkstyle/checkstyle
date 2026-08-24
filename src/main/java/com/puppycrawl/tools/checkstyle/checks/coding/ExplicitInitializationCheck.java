@@ -56,7 +56,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Control whether only explicit initializations made to null for objects should be checked.
-     **/
+     */
     private boolean onlyObjectReferences;
 
     /**

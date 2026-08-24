@@ -28,7 +28,7 @@ import java.util.List;
  */
 public interface RootModule extends Configurable {
 
-    /** Cleans up the object. **/
+    /** Cleans up the object. */
     void destroy();
 
     /**
