@@ -541,13 +541,26 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt=""/>
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
-                  Guidelines are not covered until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/19937">#19937</a>,
-                  <a href="https://github.com/checkstyle/checkstyle/issues/19938">#19938</a>.
+                  <a href="checks/javadoc/javadoclinkwellknownapi.html#JavadocLinkWellKnownApi">
+                    JavadocLinkWellKnownApi</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLinkWellKnownApi">
+                  config</a>)
+                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/javadoc/javadoclinkfirstoccurrence.html#JavadocLinkFirstOccurrence">
+                    JavadocLinkFirstOccurrence</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLinkFirstOccurrence">
+                  config</a>)
                 </td>
-                <td/>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/styleguide/inlinelinks">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td><a name="omit-parentheses-general-methods"/>
