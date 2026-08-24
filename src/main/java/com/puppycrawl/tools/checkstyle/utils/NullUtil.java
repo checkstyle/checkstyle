@@ -35,7 +35,7 @@ import org.jspecify.annotations.Nullable;
  */
 public final class NullUtil {
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private NullUtil() {
     }
 
