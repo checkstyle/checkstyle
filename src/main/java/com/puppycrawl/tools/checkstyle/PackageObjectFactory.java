@@ -57,13 +57,13 @@ public class PackageObjectFactory implements ModuleFactory {
 
         /**
          * Searching from registered checkstyle modules and from packages given in constructor.
-         **/
+         */
         SEARCH_REGISTERED_PACKAGES,
         /**
          * As SEARCH_REGISTERED_PACKAGES and also try to load class from all of packages given in
          * constructor.
          * Required for eclipse-cs plugin.
-         **/
+         */
         TRY_IN_ALL_REGISTERED_PACKAGES,
 
     }
@@ -712,6 +712,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocBlockTagLocationCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocContentLocationCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocContentLocationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocEndCommentDelimiterCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocEndCommentDelimiterCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocLeadingAsteriskAlignCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocLeadingAsteriskAlignCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocLinkFirstOccurrenceCheck",

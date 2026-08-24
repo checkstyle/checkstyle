@@ -37,7 +37,7 @@ public enum RightCurlyOption {
      *     ...
      * <b>}</b>
      * }
-     **/
+     */
     ALONE,
 
     /**
@@ -57,7 +57,7 @@ public enum RightCurlyOption {
      * // Single-line format of block
      * public long getId() { return id; <b>}</b>
      * }
-     **/
+     */
     ALONE_OR_SINGLELINE,
 
     /**
@@ -124,7 +124,7 @@ public enum RightCurlyOption {
      *     ...
      * } else { ... <b>}</b> // OK, single-line multi-block statement
      * }
-     **/
+     */
     SAME,
 
 }

@@ -29,13 +29,13 @@ import java.util.Arrays;
  */
 public enum LineSeparatorOption {
 
-    /** Windows-style line separators. **/
+    /** Windows-style line separators. */
     CRLF("\r\n"),
 
-    /** Mac-style line separators. **/
+    /** Mac-style line separators. */
     CR("\r"),
 
-    /** Unix-style line separators. **/
+    /** Unix-style line separators. */
     LF("\n"),
 
     /**
@@ -44,7 +44,7 @@ public enum LineSeparatorOption {
      */
     LF_CR_CRLF("#"),
 
-    /** System default line separators. **/
+    /** System default line separators. */
     SYSTEM(System.lineSeparator());
 
     /** The line separator representation. */

@@ -54,7 +54,7 @@ public class XmlLoader
 
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;
-    /** Parser to read XML files. **/
+    /** Parser to read XML files. */
     private final XMLReader parser;
 
     /**
@@ -141,7 +141,7 @@ public class XmlLoader
         public static final String EXTERNAL_PARAMETER_ENTITIES =
                 "http://xml.org/sax/features/external-parameter-entities";
 
-        /** Stop instances being created. **/
+        /** Stop instances being created. */
         private LoadExternalDtdFeatureProvider() {
         }
 
