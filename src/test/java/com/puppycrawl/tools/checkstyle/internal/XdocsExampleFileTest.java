@@ -109,8 +109,7 @@ public class XdocsExampleFileTest {
         "checks/naming/patternvariablename/",
         "checks/outertypefilename/",
         "checks/regexp/regexpmultiline/",
-        "checks/regexp/regexpsingleline/",
-        "checks/trailingcomment/"
+        "checks/regexp/regexpsingleline/"
     );
 
     /**
