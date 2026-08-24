@@ -44,28 +44,28 @@ public final class Violation
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** The line number. **/
+    /** The line number. */
     private final int lineNo;
-    /** The column number. **/
+    /** The column number. */
     private final int columnNo;
-    /** The column char index. **/
+    /** The column char index. */
     private final int columnCharIndex;
-    /** The token type constant. See {@link TokenTypes}. **/
+    /** The token type constant. See {@link TokenTypes}. */
     private final int tokenType;
 
-    /** The severity level. **/
+    /** The severity level. */
     private final SeverityLevel severityLevel;
 
     /** The id of the module generating the violation. */
     private final String moduleId;
 
-    /** Key for the violation format. **/
+    /** Key for the violation format. */
     private final String key;
 
     /** Arguments for MessageFormat. */
     private final Object[] args;
 
-    /** Name of the resource bundle to get violations from. **/
+    /** Name of the resource bundle to get violations from. */
     private final String bundle;
 
     /** Class of the source for this Violation. */
