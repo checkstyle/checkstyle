@@ -5921,6 +5921,14 @@
     </details>
   </checkerFrameworkError>
 
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnFieldCheck.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: currentAst</message>
+    <lineContent>public InappropriateJavadocBlockTagsOnFieldCheck() {</lineContent>
+  </checkerFrameworkError>
+
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnPackageCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
