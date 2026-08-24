@@ -96,6 +96,14 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
+    public void testSameRecordNameAsJavaLang() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputIllegalInstantiationSameRecordNameJavaLang.java"),
+                expected);
+    }
+
+    @Test
     public void testJava8() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
