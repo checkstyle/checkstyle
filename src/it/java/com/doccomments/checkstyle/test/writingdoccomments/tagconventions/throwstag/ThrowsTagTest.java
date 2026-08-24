@@ -40,4 +40,9 @@ public class ThrowsTagTest extends AbstractDocCommentsModuleTestSupport {
         verifyWithWholeConfig(getPath("InputIncorrectThrowsTag.java"));
     }
 
+    @Test
+    public void testNoErrorInThrowsTag() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoErrorInThrowsTag.java"));
+    }
+
 }
