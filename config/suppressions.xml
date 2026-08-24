@@ -200,4 +200,7 @@
   <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
             files=".*\.java"
             message="Use snippet inline tag instead of .* tag\."/>
+  <!-- Localized message template includes the caught exception's message for user-facing output -->
+  <suppress checks="NoGetMessageInThrow" files="[\\/]Checker\.java"/>
+
 </suppressions>
