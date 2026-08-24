@@ -27,6 +27,8 @@ amd
 androidx
 annotateddeclarationvisibility
 annotationlocation
+annotationnojavadoc
+annotationnonjavadoc
 annotationonsameline
 annotationusestyle
 annotationutil
@@ -618,6 +620,7 @@ importnolinewrap
 importorder
 importrule
 imprt
+inappropriatejavadocblocktagsonpackage
 inappropriatejavadocblocktagsontype
 Incompatabilities
 indentcontinuationlines
@@ -895,6 +898,8 @@ multifileregexpheader
 multiline
 multilinecommentleadingasteriskpresence
 Multimap
+multipleannotations
+multipleannotationsnojavadoc
 multiplestringliterals
 multipletags
 multiplevariabledeclarations
