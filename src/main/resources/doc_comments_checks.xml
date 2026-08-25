@@ -74,6 +74,7 @@
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocEndCommentDelimiter"/>
 
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
