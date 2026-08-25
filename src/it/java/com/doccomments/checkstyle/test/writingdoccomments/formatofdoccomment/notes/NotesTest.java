@@ -41,4 +41,9 @@ public class NotesTest extends AbstractDocCommentsModuleTestSupport {
         verifyWithWholeConfig(getPath("InputIncorrectNotes.java"));
     }
 
+    @Test
+    public void testJavadocEndCommentDelimiter() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocEndCommentDelimiterNotes.java"));
+    }
+
 }

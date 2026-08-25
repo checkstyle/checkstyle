@@ -378,15 +378,13 @@
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
                   config</a>)
                   <br/>
-                  <br/>
                   <span class="wrapper inline">
-                    <img
-                        src="images/ban_red.png"
-                        alt="" />
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
-                  Guideline that end-comment delimiter should contain only one asterisk is not
-                    covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/20982">#20982</a>.
+                  <a href="checks/javadoc/javadocendcommentdelimiter.html#JavadocEndCommentDelimiter">
+                    JavadocEndCommentDelimiter</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocEndCommentDelimiter">
+                  config</a>)
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/formatofdoccomment/notes">
