@@ -307,6 +307,14 @@
     <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
   </Match>
 
+  <!-- false positive: tree traversal with unknown result size -->
+  <!-- until https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck" />
+    <Method name="visitEachToken" />
+    <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
+  </Match>
+
   <!-- it has xdoc annotation, we need to reconsider it after we finalize our xdoc generation -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck" />
