@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -43,6 +44,32 @@ public final class Violation
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
+
+    /** Comparator for nullable strings that orders null before any value. */
+    private static final Comparator<String> NULLABLE_STRING_COMPARATOR =
+            Comparator.nullsFirst(Comparator.naturalOrder());
+
+    /**
+     * Comparator defining the natural ordering of violations. It compares the
+     * same fields as {@link #equals(Object)} so that a comparison result of
+     * zero is consistent with equality, as the {@link Comparable} contract
+     * recommends. Line, column, module id, source class, and rendered message
+     * stay the leading criteria; the remaining fields act as tie breakers only.
+     */
+    private static final Comparator<Violation> VIOLATION_COMPARATOR =
+            Comparator.comparingInt(Violation::getLineNo)
+                    .thenComparingInt(Violation::getColumnNo)
+                    .thenComparing(violation -> violation.moduleId, NULLABLE_STRING_COMPARATOR)
+                    .thenComparing(Violation::getSourceClassName, NULLABLE_STRING_COMPARATOR)
+                    .thenComparing(Violation::getViolation)
+                    .thenComparingInt(Violation::getColumnCharIndex)
+                    .thenComparingInt(Violation::getTokenType)
+                    .thenComparing(Violation::getSeverityLevel,
+                            Comparator.nullsFirst(Comparator.naturalOrder()))
+                    .thenComparing(Violation::getKey, NULLABLE_STRING_COMPARATOR)
+                    .thenComparing(violation -> violation.bundle, NULLABLE_STRING_COMPARATOR)
+                    .thenComparing(violation -> violation.customMessage, NULLABLE_STRING_COMPARATOR)
+                    .thenComparing(violation -> Arrays.deepToString(violation.args));
 
     /** The line number. **/
     private final int lineNo;
@@ -390,42 +417,24 @@ public final class Violation
 
     @Override
     public int compareTo(Violation other) {
-        final int result;
+        return VIOLATION_COMPARATOR.compare(this, other);
+    }
 
-        if (lineNo == other.lineNo) {
-            if (columnNo == other.columnNo) {
-                if (Objects.equals(moduleId, other.moduleId)) {
-                    if (Objects.equals(sourceClass, other.sourceClass)) {
-                        result = getViolation().compareTo(other.getViolation());
-                    }
-                    else if (sourceClass == null) {
-                        result = -1;
-                    }
-                    else if (other.sourceClass == null) {
-                        result = 1;
-                    }
-                    else {
-                        result = sourceClass.getName().compareTo(other.sourceClass.getName());
-                    }
-                }
-                else if (moduleId == null) {
-                    result = -1;
-                }
-                else if (other.moduleId == null) {
-                    result = 1;
-                }
-                else {
-                    result = moduleId.compareTo(other.moduleId);
-                }
-            }
-            else {
-                result = Integer.compare(columnNo, other.columnNo);
-            }
+    /**
+     * Gets the source class name or {@code null} when no source class is set.
+     *
+     * @return the source class name or {@code null}
+     */
+    @Nullable
+    private String getSourceClassName() {
+        final String name;
+        if (sourceClass == null) {
+            name = null;
         }
         else {
-            result = Integer.compare(lineNo, other.lineNo);
+            name = sourceClass.getName();
         }
-        return result;
+        return name;
     }
 
     /**
