@@ -142,7 +142,7 @@ public final class ConfigurationLoader {
     /** The SAX document handler. */
     private final InternalLoader saxHandler;
 
-    /** Property resolver. **/
+    /** Property resolver. */
     private final PropertyResolver overridePropsResolver;
 
     /** Flags if modules with the severity 'ignore' should be omitted. */
@@ -339,7 +339,7 @@ public final class ConfigurationLoader {
         /** Name of the key attribute. */
         private static final String KEY = "key";
 
-        /** The loaded configurations. **/
+        /** The loaded configurations. */
         private final Deque<DefaultConfiguration> configStack = new ArrayDeque<>();
 
         /** The Configuration that is being built. */

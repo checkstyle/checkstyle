@@ -74,7 +74,7 @@ public class MultiFileRegexpHeaderCheck
 
     /**
      * Regex pattern for a blank line.
-     **/
+     */
     private static final String EMPTY_LINE_PATTERN = "^$";
 
     /**
@@ -84,7 +84,7 @@ public class MultiFileRegexpHeaderCheck
 
     /**
      * Compiled regex pattern for a blank line.
-     **/
+     */
     private static final Pattern BLANK_LINE = Pattern.compile(EMPTY_LINE_PATTERN);
 
     /**

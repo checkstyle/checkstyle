@@ -68,7 +68,7 @@ public final class JavaParser {
 
     }
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private JavaParser() {
     }
 
