@@ -40,4 +40,9 @@ public class ParamTagTest extends AbstractDocCommentsModuleTestSupport {
         verifyWithWholeConfig(getPath("InputIncorrectParamTag.java"));
     }
 
+    @Test
+    public void testJavadocRegexp() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocRegexpParamTag.java"));
+    }
+
 }
