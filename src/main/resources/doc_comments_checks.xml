@@ -82,6 +82,10 @@
     <module name="JavadocNoErrorInThrowsTag"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="MissingDeprecated"/>
+    <module name="JavadocRegexp">
+      <property name="format"
+                value="(?m)^\s*\*\s*@param\s+\S+\s*[-:,](?=\s|$)"/>
+    </module>
 
     <!-- Required Tags --> <!-- @param --> <!-- @return --> <!-- @throws -->
     <module name="JavadocMethod">
