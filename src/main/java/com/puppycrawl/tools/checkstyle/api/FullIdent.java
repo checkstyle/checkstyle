@@ -37,10 +37,10 @@ import java.util.List;
  *
  * @see TokenTypes#DOT
  * @see TokenTypes#IDENT
- **/
+ */
 public final class FullIdent {
 
-    /** The list holding subsequent elements of identifier. **/
+    /** The list holding subsequent elements of identifier. */
     private final List<String> elements = new ArrayList<>();
     /** The topmost and leftmost AST of the full identifier. */
     private DetailAST detailAst;

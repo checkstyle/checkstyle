@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
  */
 public final class FilterUtil {
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private FilterUtil() {
     }
 

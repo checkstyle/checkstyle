@@ -121,7 +121,7 @@ public final class XpathUtil {
     /** Delimiter to separate xpath results. */
     private static final String DELIMITER = "---------" + System.lineSeparator();
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private XpathUtil() {
     }
 

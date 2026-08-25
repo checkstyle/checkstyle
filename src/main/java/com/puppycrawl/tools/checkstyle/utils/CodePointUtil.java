@@ -26,7 +26,7 @@ import java.util.Arrays;
  */
 public final class CodePointUtil {
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private CodePointUtil() {
     }
 

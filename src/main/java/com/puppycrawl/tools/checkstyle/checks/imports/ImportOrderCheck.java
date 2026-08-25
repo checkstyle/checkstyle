@@ -176,7 +176,7 @@ public class ImportOrderCheck
      * both the type and static imports use the properties {@code groups} and {@code separated}.
      * When the {@code option} property is set to {@code TOP} or {@code BOTTOM}, static imports
      * uses the properties {@code staticGroups} and {@code separatedStaticGroups}.
-     **/
+     */
     private boolean staticImportsApart;
 
     /**

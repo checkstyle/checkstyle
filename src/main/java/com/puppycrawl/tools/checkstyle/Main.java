@@ -106,7 +106,7 @@ public final class Main {
      * @noinspectionreason CallToPrintStackTrace - driver class for Checkstyle must be able to
      *      show all details in case of failure
      * @noinspectionreason CallToSystemExit - driver class must call exit
-     **/
+     */
     public static void main(String... args) throws IOException {
 
         final CliOptions cliOptions = new CliOptions();

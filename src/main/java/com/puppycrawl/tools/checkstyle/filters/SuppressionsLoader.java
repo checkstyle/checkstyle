@@ -106,21 +106,21 @@ public final class SuppressionsLoader
     private static final String DTD_SUPPRESSIONS_NAME_1_2_XPATH =
         "com/puppycrawl/tools/checkstyle/suppressions_1_2_xpath.dtd";
 
-    /** File search error message. **/
+    /** File search error message. */
     private static final String UNABLE_TO_FIND_ERROR_MESSAGE = "Unable to find: ";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_FILES = "files";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_CHECKS = "checks";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_MESSAGE = "message";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_ID = "id";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_QUERY = "query";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_LINES = "lines";
-    /** String literal for attribute name. **/
+    /** String literal for attribute name. */
     private static final String ATTRIBUTE_NAME_COLUMNS = "columns";
 
     /**
