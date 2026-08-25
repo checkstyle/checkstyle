@@ -32,6 +32,8 @@ or at [Maven repo](https://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyl
 
 Documentation is available in HTML format, see [Checkstyle checks][checks-docs].
 
+The latest deployed website from `master` is available [here][site-latest].
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)
@@ -273,3 +275,6 @@ https://checkstyle.org/checks.html
 
 [build-instructions]:
 https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md
+
+[site-latest]:
+https://checkstyle-diff-reports.s3.us-east-2.amazonaws.com/website/latest/index.html
