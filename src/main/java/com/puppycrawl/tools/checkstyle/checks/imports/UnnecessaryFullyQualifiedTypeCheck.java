@@ -248,7 +248,7 @@ public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
      * Collects a fully qualified type reference if the given {@link TokenTypes#DOT}
      * node represents one.
      *
-     * @param ast the {@link TokenTypes#DOT} node
+     * @param ast the {@code TokenTypes#DOT} node
      */
     private void processDot(DetailAST ast) {
         if (isInTypeContext(ast)) {
@@ -261,19 +261,10 @@ public class UnnecessaryFullyQualifiedTypeCheck extends AbstractCheck {
     }
 
     /**
-     * Reconstructs the fully qualified name represented by a {@link TokenTypes#DOT}
-     * node. An ordinary qualified name is a chain of {@code DOT} nodes each with two
-     * children (a qualifier and a simple name), which {@link FullIdent} reconstructs
-     * directly. A type-use annotation embedded in the qualified name (for example
-     * {@code pkg.@Nullable Type}, permitted by JSR 308) instead produces a
-     * {@code DOT} node with three children: the qualifier, an
-     * {@link TokenTypes#ANNOTATIONS} node for the embedded annotation, and the
-     * simple name. {@link FullIdent} only ever inspects the first two children of a
-     * {@code DOT} node, so in that shape the simple name would otherwise be silently
-     * dropped; this method detects that shape and reconstructs the name using the
-     * qualifier and the actual third child instead.
+     * Reconstructs the fully qualified name for a {@code TokenTypes#DOT} node,
+     * handling the extra child produced by an embedded type-use annotation.
      *
-     * @param ast the {@link TokenTypes#DOT} node
+     * @param ast the {@code TokenTypes#DOT} node
      * @return the fully qualified name the node represents
      */
     private static String buildFullName(DetailAST ast) {
