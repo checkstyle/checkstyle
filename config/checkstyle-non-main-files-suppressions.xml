@@ -285,6 +285,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/nofinalizer.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/nogetmessageinthrow.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/overloadmethodsdeclarationorder.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/coding/parameterassignment.xml.template"/>
