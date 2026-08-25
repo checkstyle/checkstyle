@@ -4,3 +4,4 @@ com.puppycrawl.tools.checkstyle.DefaultConfiguration#addAttribute(java.lang.Stri
 com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int,int,java.lang.String,java.lang.Object[]) @ Use of this log method is forbidden, please use AbstractCheck#log(DetailAST ast, String key, Object... args)
 com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int,java.lang.String,java.lang.Object[]) @ Use of this log method is forbidden, please use AbstractCheck#log(DetailAST ast, String key, Object... args)
 java.net.URI#toString() @ This method can return garbage for non-ascii data, please use URI#toASCIIString()
+java.lang.String#split(java.lang.String) @ String.split() without limit has surprising behavior, please use String#split(String, int) with limit argument, e.g. String.split(regex, -1).
