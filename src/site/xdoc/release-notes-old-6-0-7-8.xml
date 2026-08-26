@@ -832,7 +832,7 @@
             Strive for 100% mutation coverage. Author: rnveach, Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3708">#3708</a>
           </li>
           <li>
-            doc: Fix typo in config_imports.xml. Author: Jochen Van de Velde
+            doc: Fix typo in config-imports.xml. Author: Jochen Van de Velde
           </li>
           <li>
             Investigate pitest tool. Author: Roman Ivanov <a href="https://github.com/checkstyle/checkstyle/issues/3271">#3271</a>
@@ -1589,7 +1589,7 @@
             Author: Roman Ivanov
           </li>
           <li>
-            all rows in coverage table google_style.html should have anchor. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2975">#2975</a>
+            all rows in coverage table google-style.html should have anchor. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2975">#2975</a>
           </li>
           <li>
             Strive for 100% line coverage for java grammar. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2973">#2973</a>
@@ -1694,7 +1694,7 @@
             Refactor Comments AST Test. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2396">#2396</a>
           </li>
           <li>
-            doc: example to checkstyle&#39;s Ant configuration was added to anttask.html.
+            doc: example to checkstyle&#39;s Ant configuration was added to ant-task.html.
             Author: Roman Ivanov
           </li>
           <li>
@@ -1954,7 +1954,7 @@
             Make validation of expected warnings in integration tests more strict. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2658">#2658</a>
           </li>
           <li>
-            spelling: fix typo in word &#39;Existing&#39; in google_style.xml. Author: liscju
+            spelling: fix typo in word &#39;Existing&#39; in google-style.xml. Author: liscju
           </li>
           <li>
             Fix ParseTreeBuilder&#39;s variable names to be more readable. Author: Baratali Izmailov <a href="https://github.com/checkstyle/checkstyle/issues/2642">#2642</a>
@@ -2518,7 +2518,7 @@
           Remove errors from Maven output in TokenTypesDocletTest. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2195">#2195</a>
         </li>
         <li>
-          Anchor naming checks in google_style.xml. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2108">#2108</a>
+          Anchor naming checks in google-style.xml. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2108">#2108</a>
         </li>
         <li>
           AbstractHeaderCheck coverage has been increased to 100%. Author: Ilja Dubinin <a href="https://github.com/checkstyle/checkstyle/issues/1292">#1292</a>
@@ -2536,7 +2536,7 @@
           Update Maven Project Info Reports Plugin to 2.8.1. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/pull/2182">#2182</a>
         </li>
         <li>
-          Split all modules to be separate at config_naming.html. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2108">#2108</a>
+          Split all modules to be separate at config-naming.html. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/2108">#2108</a>
         </li>
         <li>
           Remove already fixed exclusion from PMD configuration. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/961">#961</a>
@@ -4133,14 +4133,14 @@
       <p>Notes:</p>
       <ul>
         <li>
-          <a href="google_style.html">Google style</a>
-          is now covered to maximum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+          <a href="google-style.html">Google style</a>
+          is now covered to maximum of Checkstyle ability. See detailed report <a href="google-style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
         <li>
           All binaries are now compiled by Jdk6. Jdk5 is not supported any more.
         </li>
       </ul>
-      <b><a href="releasenotes_old_1-0_5-9.html">Old Release Notes 1.0 through 5.9</a></b>
+      <b><a href="release-notes-old-1-0-5-9.html">Old Release Notes 1.0 through 5.9</a></b>
     </section>
   </body>
 </document>
