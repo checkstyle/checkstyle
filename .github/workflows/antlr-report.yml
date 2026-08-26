@@ -222,7 +222,7 @@ jobs:
 
           aws s3 cp "$DIFF" \
             "s3://${{ env.AWS_BUCKET_NAME }}/$FOLDER/reports/diff/" \
-            --recursive --storage-class STANDARD_IA
+            --recursive --storage-class STANDARD_IA --quiet
 
           echo "ANTLR report: $LINK/$FOLDER/reports/diff/index.html" \
             > .ci-temp/message

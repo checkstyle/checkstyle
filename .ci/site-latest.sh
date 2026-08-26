@@ -17,7 +17,7 @@ publish-site)
   checkForVariable "AWS_BUCKET_NAME"
   checkForVariable "AWS_REGION"
 
-  aws s3 sync "target/site/" "s3://${AWS_BUCKET_NAME}/website/latest/" --delete
+  aws s3 sync "target/site/" "s3://${AWS_BUCKET_NAME}/website/latest/" --delete --quiet
 
   LINK="https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com/website/latest/index.html"
   echo "Published to '$LINK'"

@@ -198,7 +198,7 @@ copy-report-to-aws-s3-bucket)
   DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
   LINK="https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com"
   aws s3 cp "$DIFF" "s3://${AWS_BUCKET_NAME}/$FOLDER/reports/diff/" \
-    --recursive --storage-class STANDARD_IA
+    --recursive --storage-class STANDARD_IA --quiet
   if [ -n "$LABEL" ]; then
     echo "$LABEL: " > .ci-temp/message
   fi
