@@ -115,7 +115,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
       </code></pre></div>
       <p>
         Additionally, Checkstyle provides a
-        <a href="writingchecks.html#The_Checkstyle_SDK_Gui">GUI application</a>
+        <a href="writing-checks.html#The_Checkstyle_SDK_Gui">GUI application</a>
         that displays the AST interactively, making it easier to explore the tree
         structure and build XPath queries.
       </p>

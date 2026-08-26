@@ -59,14 +59,14 @@
             <tr>
               <td><a id="annotations"/><a href="#annotations">annotations</a></td>
               <td>Setter for annotation canonical names.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>com.google.common.annotations.VisibleForTesting</code></td>
               <td>13.9.0</td>
             </tr>
             <tr>
               <td><a id="visibility"/><a href="#visibility">visibility</a></td>
               <td>Setter for allowed visibility modifiers. Allowed values: public, protected, package, private.</td>
-              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><a href="../../property-types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>protected, package</code></td>
               <td>13.9.0</td>
             </tr>

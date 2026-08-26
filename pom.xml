@@ -211,7 +211,7 @@
     <slf4j.version>2.0.18</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
-    <checkstyle-files-generator.version>1.0.2</checkstyle-files-generator.version>
+    <checkstyle-files-generator.version>1.0.3-SNAPSHOT</checkstyle-files-generator.version>
     <sevntu.checkstyle.plugin.version>1.44.1</sevntu.checkstyle.plugin.version>
     <sevntu-checkstyle-check.checkstyle.version>
       10.4
