@@ -85,21 +85,21 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>8.24</td>
             </tr>
             <tr>
               <td><a id="ignorePattern"/><a href="#ignorePattern">ignorePattern</a></td>
               <td>Specify pattern for lines to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^(package|import) .*</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum line length allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>80</code></td>
               <td>3.0</td>
             </tr>

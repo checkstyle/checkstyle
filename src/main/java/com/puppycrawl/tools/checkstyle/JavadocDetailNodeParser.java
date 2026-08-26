@@ -260,7 +260,7 @@ public class JavadocDetailNodeParser {
          * Stores the first non-tight HTML tag encountered while parsing javadoc.
          *
          * @see <a
-         *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
         private DetailNode firstNonTightHtmlTag;
@@ -313,7 +313,7 @@ public class JavadocDetailNodeParser {
          *
          * @return returns true if the javadoc has at least one non-tight HTML tag; false otherwise
          * @see <a
-         *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
         public boolean isNonTight() {
@@ -325,7 +325,7 @@ public class JavadocDetailNodeParser {
          *
          * @return the first non-tight HTML tag that is encountered while parsing Javadoc,
          *     if one exists
-         * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         * @see <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
         public DetailNode getFirstNonTightHtmlTag() {
