@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  * specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
  * another scope, set property scope to a different
- * <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
+ * <a href="https://checkstyle.org/property-types.html#Scope">scope</a>.
  * </div>
  *
  * <p>

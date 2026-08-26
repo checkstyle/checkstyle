@@ -543,7 +543,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/16753">#16753</a>
         </li>
         <li>
-          add Content section to config.xml and writinglisteners.xml.vm.
+          add Content section to config.xml and writing-listeners.xml.vm.
           Author: Brijeshthummar02
           <a href="https://github.com/checkstyle/checkstyle/issues/1241">#1241</a>
         </li>
@@ -2221,7 +2221,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/15048">#15048</a>
         </li>
         <li>
-          doc: Update releasenotes.xml to place correct name of property - ignoreAnnotatedBy.
+          doc: Update release-notes.xml to place correct name of property - ignoreAnnotatedBy.
           Author: Roman Ivanov
         </li>
         <li>
@@ -2970,7 +2970,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/14518">#14518</a>
         </li>
         <li>
-          doc: fix line length violation in releasenotes.xml.
+          doc: fix line length violation in release-notes.xml.
           Author: mahfouz72
         </li>
       </ul>
@@ -3098,7 +3098,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/14346">#14346</a>
         </li>
         <li>
-          doc: fix releasenotes.xml line length violation.
+          doc: fix release-notes.xml line length violation.
           Author: Nick Mancuso
         </li>
       </ul>
@@ -4968,7 +4968,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/12479">#12479</a>
         </li>
         <li>
-          Remove &#39;releasenotes.xml after commit:&#39;.
+          Remove &#39;release-notes.xml after commit:&#39;.
           Author: Roman Ivanov
           <a href="https://github.com/checkstyle/checkstyle/issues/12468">#12468</a>
         </li>
@@ -5779,7 +5779,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/11726">#11726</a>
         </li>
         <li>
-          Automate update of releasenotes.xml by content for new release.
+          Automate update of release-notes.xml by content for new release.
           Author: Rahul Khinchi
           <a href="https://github.com/checkstyle/checkstyle/issues/11729">#11729</a>
         </li>
@@ -6105,7 +6105,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/11370">#11370</a>
         </li>
         <li>
-          doc: Improve grammar in writingchecks.xml.
+          doc: Improve grammar in writing-checks.xml.
           Author: Otto Kaaij
         </li>
         <li>
@@ -7219,7 +7219,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/10527">#10527</a>
         </li>
         <li>
-          doc: fix writingchecks.xml docs.
+          doc: fix writing-checks.xml docs.
           Author: Nick Mancuso
         </li>
         <li>
@@ -7709,7 +7709,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/9459">#9459</a>
         </li>
         <li>
-          doc: fix typo in writingchecks.xml.
+          doc: fix typo in writing-checks.xml.
           Author: Joshua Kuan
         </li>
         <li>
@@ -10460,7 +10460,7 @@
         </li>
       </ul>
       <b>
-        <a href="releasenotes_old_8-0_8-34.html">Old Release Notes 8.0 through 8.34</a>
+        <a href="release-notes-old-8-0-8-34.html">Old Release Notes 8.0 through 8.34</a>
       </b>
     </section>
   </body>

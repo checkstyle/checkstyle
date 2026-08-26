@@ -61,7 +61,7 @@
             <tr>
               <td><a id="orderByIncreasingParameterCount"/><a href="#orderByIncreasingParameterCount">orderByIncreasingParameterCount</a></td>
               <td>Control whether to enforce order by increasing parameter count (arity) or not.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.6.0</td>
             </tr>

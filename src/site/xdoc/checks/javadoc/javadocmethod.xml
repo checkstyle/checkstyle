@@ -117,49 +117,49 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td><a id="accessModifiers"/><a href="#accessModifiers">accessModifiers</a></td>
               <td>Specify the access modifiers where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><a href="../../property-types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>8.42</td>
             </tr>
             <tr>
               <td><a id="allowInlineReturn"/><a href="#allowInlineReturn">allowInlineReturn</a></td>
               <td>Control whether to allow inline return tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>10.23.0</td>
             </tr>
             <tr>
               <td><a id="allowMissingParamTags"/><a href="#allowMissingParamTags">allowMissingParamTags</a></td>
               <td>Control whether to ignore violations when a method has parameters but does not have matching <code>param</code> tags in the javadoc.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="allowMissingReturnTag"/><a href="#allowMissingReturnTag">allowMissingReturnTag</a></td>
               <td>Control whether to ignore violations when a method returns non-void type and does not have a <code>return</code> tag in the javadoc.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
               <td>Specify annotations that allow missed documentation.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="validateThrows"/><a href="#validateThrows">validateThrows</a></td>
               <td>Control whether to validate <code>throws</code> tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.7.0</td>
             </tr>
