@@ -235,7 +235,7 @@ public class JavadocTypeCheck extends AbstractJavadocCheck {
     /**
      * Setter to control when to print violations if the Javadoc being examined by this check
      * violates the tight html rules defined at
-     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight-HTML Rules</a>.
      *
      * @param shouldReportViolation value to which the field shall be set to
