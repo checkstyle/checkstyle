@@ -70,7 +70,7 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of boolean operations allowed in one expression.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>3.4</td>
             </tr>

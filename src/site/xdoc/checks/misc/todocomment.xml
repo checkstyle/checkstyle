@@ -67,7 +67,7 @@
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify pattern to match comments against.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>TODO:</code></td>
               <td>3.0</td>
             </tr>
