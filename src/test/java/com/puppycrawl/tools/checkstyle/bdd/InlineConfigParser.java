@@ -305,8 +305,6 @@ public final class InlineConfigParser {
             "checks/coding/equalshashcode/Example1.java",
             "checks/coding/noclone/Example1.java",
             "checks/coding/unusedlocalvariable/Example1.java",
-            "checks/coding/unusedlocalvariable/Example2.java",
-            "checks/coding/unusedlocalvariable/Example4.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariable3.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses4.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses5.java",
