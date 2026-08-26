@@ -68,23 +68,23 @@
 
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
-      <item name="Release Notes" href="releasenotes.html"/>
+      <item name="Release Notes" href="release-notes.html"/>
       <item name="Consulting" href="consulting.html"/>
       <item name="Sponsoring" href="sponsoring.html"/>
     </menu>
 
     <menu name="Documentation">
-      <item name="Getting Started" href="getting_started.html"/>
+      <item name="Getting Started" href="getting-started.html"/>
       <item name="Configuration" href="config.html">
-        <item name="Property Types" href="property_types.html"/>
-        <item name="System Properties" href="config_system_properties.html"/>
+        <item name="Property Types" href="property-types.html"/>
+        <item name="System Properties" href="config-system-properties.html"/>
         <item name="XPath" href="xpath.html"/>
       </item>
 
       <item name="Running" href="running.html">
-        <item name="Ant Task" href="anttask.html"/>
+        <item name="Ant Task" href="ant-task.html"/>
         <item name="Command Line" href="cmdline.html"/>
-        <item name="Result Reports" href="result_reports.html"/>
+        <item name="Result Reports" href="result-reports.html"/>
       </item>
 
       <item name="Checks" href="checks.html">
@@ -418,24 +418,24 @@
               href="filefilters/beforeexecutionexclusionfilefilter.html"/>
       </item>
 
-      <item name="Style Configurations" href="style_configs.html">
-        <item name="Google's Style" href="google_style.html"/>
-        <item name="OpenJDK's Style" href="openjdk_style.html"/>
-        <item name="Sun's Style" href="sun_style.html"/>
-        <item name="Documentation Comments Style" href="doc_comments_style.html"/>
+      <item name="Style Configurations" href="style-configs.html">
+        <item name="Google's Style" href="google-style.html"/>
+        <item name="OpenJDK's Style" href="openjdk-style.html"/>
+        <item name="Sun's Style" href="sun-style.html"/>
+        <item name="Documentation Comments Style" href="doc-comments-style.html"/>
       </item>
     </menu>
 
     <menu name="Developers">
       <item name="Extending Checkstyle" href="extending.html">
-        <item name="Writing Checks" href="writingchecks.html"/>
-        <item name="Writing Javadoc Checks" href="writingjavadocchecks.html"/>
-        <item name="Writing Filters" href="writingfilters.html"/>
-        <item name="Writing File Filters" href="writingfilefilters.html"/>
-        <item name="Writing Listeners" href="writinglisteners.html"/>
+        <item name="Writing Checks" href="writing-checks.html"/>
+        <item name="Writing Javadoc Checks" href="writing-javadoc-checks.html"/>
+        <item name="Writing Filters" href="writing-filters.html"/>
+        <item name="Writing File Filters" href="writing-filefilters.html"/>
+        <item name="Writing Listeners" href="writing-listeners.html"/>
       </item>
       <item name="Contributing" href="contributing.html"/>
-      <item name="Beginning Development" href="beginning_development.html">
+      <item name="Beginning Development" href="beginning-development.html">
         <item name="Eclipse IDE" href="eclipse.html"/>
         <item name="NetBeans IDE" href="netbeans.html"/>
         <item name="IntelliJ IDE" href="idea.html"/>

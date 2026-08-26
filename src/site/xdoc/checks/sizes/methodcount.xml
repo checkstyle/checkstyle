@@ -94,35 +94,35 @@ public class ExampleClass {
             <tr>
               <td><a id="maxPackage"/><a href="#maxPackage">maxPackage</a></td>
               <td>Specify the maximum number of <code>package</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td><a id="maxPrivate"/><a href="#maxPrivate">maxPrivate</a></td>
               <td>Specify the maximum number of <code>private</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td><a id="maxProtected"/><a href="#maxProtected">maxProtected</a></td>
               <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td><a id="maxPublic"/><a href="#maxPublic">maxPublic</a></td>
               <td>Specify the maximum number of <code>public</code> methods allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td><a id="maxTotal"/><a href="#maxTotal">maxTotal</a></td>
               <td>Specify the maximum number of methods allowed at all scope levels.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
