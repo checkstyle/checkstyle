@@ -127,7 +127,7 @@
           </a>
         </div>
         <p>
-          Using Ant? See the <a href="anttask.html">Checkstyle Ant Task</a>
+          Using Ant? See the <a href="ant-task.html">Checkstyle Ant Task</a>
           documentation.
         </p>
       </subsection>
@@ -320,17 +320,17 @@ Checkstyle ends with 1 errors.</code></pre></div>
       <p>You can start from one of Checkstyle's supplied configurations:</p>
 
       <div class="cs-grid">
-        <a href="google_style.html"
+        <a href="google-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-google.svg" class="cs-card-logo"/>Google Java Style</p>
           <p>Start with Checkstyle's Google Java Style configuration.</p>
         </a>
-        <a href="sun_style.html"
+        <a href="sun-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-sun.svg" class="cs-card-logo"/>Sun Conventions</p>
           <p>Start with Checkstyle's Sun Conventions configuration.</p>
         </a>
-        <a href="openjdk_style.html"
+        <a href="openjdk-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-openjdk.svg" class="cs-card-logo"/>OpenJDK Style</p>
           <p>Start with Checkstyle's OpenJDK Style configuration.</p>
@@ -364,7 +364,7 @@ Checkstyle ends with 1 errors.</code></pre></div>
           Checkstyle provides.</li>
         <li><a href="config.html">Configuration</a> explains how to enable
           checks and change their properties.</li>
-        <li><a href="config_filters.html">Suppressions and Filters</a> let
+        <li><a href="config-filters.html">Suppressions and Filters</a> let
           you handle intentional exceptions.</li>
         <li><a href="running.html">Running Checkstyle</a> documents
           command-line and Ant execution in detail.</li>
