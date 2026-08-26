@@ -10,8 +10,8 @@ public class InputUnusedLocalVariableNestedClasses6 {
   int a = 12;
 
   void foo() {
-    int a = 12; // violation, unused variable 'a'
-    int ab = 12; // violation, unused variable 'ab'
+    int a = 12; // violation 'Unused local variable 'a'.'
+    int ab = 12; // violation 'Unused local variable 'ab'.'
 
     class abc {
       Test a = new Test() {
