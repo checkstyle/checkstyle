@@ -61,7 +61,7 @@
             <tr>
               <td><a id="ignorePrimitiveTypes"/><a href="#ignorePrimitiveTypes">ignorePrimitiveTypes</a></td>
               <td>Ignore primitive types as parameters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
             </tr>
@@ -69,7 +69,7 @@
               <td><a id="ignoreUnnamedParameters"/><a href="#ignoreUnnamedParameters">ignoreUnnamedParameters</a></td>
               <td>Ignore <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed parameters</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>10.18.0</td>
             </tr>
