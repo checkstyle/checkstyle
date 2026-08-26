@@ -53,21 +53,21 @@
             <tr>
               <td><a id="ignoreAnnotatedBy"/><a href="#ignoreAnnotatedBy">ignoreAnnotatedBy</a></td>
               <td>Ignore methods and constructors annotated with the specified annotation(s).</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>10.15.0</td>
             </tr>
             <tr>
               <td><a id="ignoreOverriddenMethods"/><a href="#ignoreOverriddenMethods">ignoreOverriddenMethods</a></td>
               <td>Ignore number of parameters for methods with <code>@Override</code> annotation.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of parameters allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>7</code></td>
               <td>3.0</td>
             </tr>

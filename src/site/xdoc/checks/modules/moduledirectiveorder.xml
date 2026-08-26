@@ -86,14 +86,14 @@
             <tr>
               <td><a id="order"/><a href="#order">order</a></td>
               <td>Specify directive kinds in the order their blocks must appear inside the module declaration.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>requires, exports, opens, uses, provides</code></td>
               <td>14.1.0</td>
             </tr>
             <tr>
               <td><a id="validateBlockSeparation"/><a href="#validateBlockSeparation">validateBlockSeparation</a></td>
               <td>Control whether blank line separation is validated: exactly one blank line between directive blocks and no blank lines inside a block.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>14.1.0</td>
             </tr>

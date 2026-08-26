@@ -61,14 +61,14 @@
             <tr>
               <td><a id="excludes"/><a href="#excludes">excludes</a></td>
               <td>Specify modules allowed to import.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>14.1.0</td>
             </tr>
             <tr>
               <td><a id="maxAllowedModuleImports"/><a href="#maxAllowedModuleImports">maxAllowedModuleImports</a></td>
               <td>Control number of module imports allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>14.1.0</td>
             </tr>

@@ -97,49 +97,49 @@
             <tr>
               <td><a id="checkC"/><a href="#checkC">checkC</a></td>
               <td>Control whether to check C style comments (&#47;* ... *&#47;).</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><a href="../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="checkCPP"/><a href="#checkCPP">checkCPP</a></td>
               <td>Control whether to check C++ style comments (<code>//</code>).</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><a href="../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
               <td>Specify check pattern to suppress. The pattern is matched against the fully qualified class name of the Check.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="idFormat"/><a href="#idFormat">idFormat</a></td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.24</td>
             </tr>
             <tr>
               <td><a id="messageFormat"/><a href="#messageFormat">messageFormat</a></td>
               <td>Specify message pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="offCommentFormat"/><a href="#offCommentFormat">offCommentFormat</a></td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>CHECKSTYLE:OFF</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="onCommentFormat"/><a href="#onCommentFormat">onCommentFormat</a></td>
               <td>Specify comment pattern to trigger filter to end suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>CHECKSTYLE:ON</code></td>
               <td>3.5</td>
             </tr>
