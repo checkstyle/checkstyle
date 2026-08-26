@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document>
-    <properties>
-        <title>Beginning_Development</title>
-    </properties>
-    <body>
-        <section name="beginning_development">
-            <p>
-                The beginning_development guidelines have moved to GitHub.
-            </p>
-            <p>
-                Please see
-                <a href="https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md">
-                    BEGINNING_DEVELOPMENT.md
-                </a>
-                for the complete and up-to-date documentation.
-            </p>
-        </section>
-    </body>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Redirecting</title>
+  </head>
+
+  <body>
+    <section name="Redirecting">
+      <p>Redirecting to beginning-development.html</p>
+    </section>
+  </body>
 </document>

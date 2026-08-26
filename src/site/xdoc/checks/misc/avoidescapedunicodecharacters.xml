@@ -61,28 +61,28 @@
             <tr>
               <td><a id="allowByTailComment"/><a href="#allowByTailComment">allowByTailComment</a></td>
               <td>Allow use escapes if trail comment is present.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="allowEscapesForControlCharacters"/><a href="#allowEscapesForControlCharacters">allowEscapesForControlCharacters</a></td>
               <td>Allow use escapes for non-printable, control characters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="allowIfAllCharactersEscaped"/><a href="#allowIfAllCharactersEscaped">allowIfAllCharactersEscaped</a></td>
               <td>Allow if all characters in literal are escaped.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="allowNonPrintableEscapes"/><a href="#allowNonPrintableEscapes">allowNonPrintableEscapes</a></td>
               <td>Allow use escapes for non-printable, whitespace characters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>

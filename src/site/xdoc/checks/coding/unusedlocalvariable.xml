@@ -61,14 +61,14 @@
               <td><a id="allowUnnamedVariables"/><a href="#allowUnnamedVariables">allowUnnamedVariables</a></td>
               <td>Allow variables named with a single underscore (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed variables</a> in Java 21+).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>10.18.0</td>
             </tr>
             <tr>
               <td><a id="jdkVersion"/><a href="#jdkVersion">jdkVersion</a></td>
               <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release. Before JDK 22, named pattern variables in switch labels and instanceof record Destructuring cannot be replaced with <code>_</code>, so violations on them are suppressed when jdkVersion is set below 22.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>22</code></td>
               <td>13.7.0</td>
             </tr>
