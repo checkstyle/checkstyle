@@ -2073,7 +2073,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/19993">#19993</a>
           </li>
           <li>
-            google_style.xml: support multiple config links per rule entry in XdocsPagesTest.
+            google-style.xml: support multiple config links per rule entry in XdocsPagesTest.
             Author: atharv
             <a href="https://github.com/checkstyle/checkstyle/issues/19892">#19892</a>
           </li>
@@ -4608,7 +4608,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/17304">#17304</a>
           </li>
           <li>
-            website: fix links in google_style.html.
+            website: fix links in google-style.html.
             Author: SteLeo1602
             <a href="https://github.com/checkstyle/checkstyle/issues/17488">#17488</a>
           </li>
@@ -4782,7 +4782,7 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/17283">#17283</a>
           </li>
         </ul>
-      <b><a href="releasenotes_old_8-35_10-26.html">Old Release Notes 8.35 through 10.26.1</a></b>
+      <b><a href="release-notes-old-8-35-10-26.html">Old Release Notes 8.35 through 10.26.1</a></b>
     </section>
   </body>
 </document>
