@@ -90,42 +90,42 @@
             <tr>
               <td><a id="allowedAbbreviationLength"/><a href="#allowedAbbreviationLength">allowedAbbreviationLength</a></td>
               <td>Indicate the number of consecutive capital letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="allowedAbbreviations"/><a href="#allowedAbbreviations">allowedAbbreviations</a></td>
               <td>Specify abbreviations that must be skipped for checking.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreFinal"/><a href="#ignoreFinal">ignoreFinal</a></td>
               <td>Allow to skip variables with <code>final</code> modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreOverriddenMethods"/><a href="#ignoreOverriddenMethods">ignoreOverriddenMethods</a></td>
               <td>Allow to ignore methods tagged with <code>@Override</code> annotation (that usually mean inherited name).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreStatic"/><a href="#ignoreStatic">ignoreStatic</a></td>
               <td>Allow to skip variables with <code>static</code> modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreStaticFinal"/><a href="#ignoreStaticFinal">ignoreStaticFinal</a></td>
               <td>Allow to skip variables with both <code>static</code> and <code>final</code> modifiers.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.32</td>
             </tr>

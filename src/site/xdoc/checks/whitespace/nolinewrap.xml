@@ -60,7 +60,7 @@
             <tr>
               <td><a id="skipAnnotations"/><a href="#skipAnnotations">skipAnnotations</a></td>
               <td>Specify whether to skip annotations to be part of target token.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>13.9.0</td>
             </tr>
