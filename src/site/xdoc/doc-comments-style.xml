@@ -488,7 +488,7 @@
                         alt="" />
                   </span>
                   Violations of this guideline cannot be detected by Checkstyle due to its
-                  <a href="writingchecks.html#Limitations">
+                  <a href="writing-checks.html#Limitations">
                     limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
@@ -1244,7 +1244,7 @@
                         alt="" />
                   </span>
                   Checkstyle cannot distinguish checked from unchecked exceptions due to its
-                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    <a href="writing-checks.html#Limitations">limitation</a>: the complete
                     inheritance hierarchy of a type cannot be determined.
                 </td>
                 <td>
@@ -1270,7 +1270,7 @@
                         alt="" />
                   </span>
                   Checkstyle cannot distinguish checked from unchecked exceptions due to its
-                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    <a href="writing-checks.html#Limitations">limitation</a>: the complete
                     inheritance hierarchy of a type cannot be determined.
                 </td>
                 <td/>
@@ -1305,7 +1305,7 @@
                         alt="" />
                   </span>
                   Checkstyle cannot distinguish checked from unchecked exceptions due to its
-                    <a href="writingchecks.html#Limitations">limitation</a>: the complete
+                    <a href="writing-checks.html#Limitations">limitation</a>: the complete
                     inheritance hierarchy of a type cannot be determined.
                 </td>
                 <td/>
@@ -1533,10 +1533,10 @@
         </p>
         <p>
           For detailed guidance on severity levels, refer to the
-          <a href="./property_types.html#SeverityLevel">Severity Level</a>.
+          <a href="./property-types.html#SeverityLevel">Severity Level</a>.
           To configure this property, see the instructions for the
           <a href="./cmdline.html#Command_line_usage">CLI's <code>-p</code> option</a> , or use the
-          <a href="./anttask.html#Parameters"><code>properties</code> parameter in Ant</a>,
+          <a href="./ant-task.html#Parameters"><code>properties</code> parameter in Ant</a>,
           or set the Java system property before running Checkstyle.
         </p>
       </subsection>

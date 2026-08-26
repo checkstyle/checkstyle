@@ -93,7 +93,7 @@
             <tr>
               <td><a id="symbolCodes"/><a href="#symbolCodes">symbolCodes</a></td>
               <td>Specify the symbols to check for.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>0x2190-0x27BF, 0x1F600-0x1F64F, 0x1F680-0x1F6FF, 0x1F700-0x10FFFF</code></td>
               <td>13.4.0</td>
             </tr>

@@ -130,7 +130,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
     /**
      * Scans the XDOC_CHECKS_DIR for all individual check XDoc files.
-     * It filters out common files like 'index.xml' and 'property_types.xml'.
+     * It filters out common files like 'index.xml' and 'property-types.xml'.
      *
      * @return A list of paths to check XDoc files.
      * @throws IOException if an I/O error occurs when walking the path.
@@ -141,7 +141,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().endsWith(".xml"))
                     .filter(path -> !"index.xml".equals(path.getFileName().toString()))
-                    .filter(path -> !"property_types.xml".equals(path.getFileName().toString()))
+                    .filter(path -> !"property-types.xml".equals(path.getFileName().toString()))
                     .toList();
         }
     }
