@@ -530,5 +530,4 @@
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
-
 </suppressions>

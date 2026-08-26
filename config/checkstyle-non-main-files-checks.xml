@@ -52,6 +52,17 @@
     <message key="regexp.filename.mismatch"
              value="Filename should be in kebab-case."/>
   </module>
+  <module name="RegexpOnFilename">
+    <property name="id" value="siteXmlFileNaming"/>
+    <property name="folderPattern"
+              value="[\\/]src[\\/]site[\\/].*"/>
+    <property name="fileNamePattern"
+              value="^[a-z0-9]+(?:-[a-z0-9]+)*\.(?:xml|html)(?:\.vm)?$"/>
+    <property name="fileExtensions" value="xml, html"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch"
+           value="Site XML and HTML filenames should use lowercase kebab-case."/>
+  </module>
 
   <module name="RegexpSingleline">
     <property name="id" value="lineLength"/>

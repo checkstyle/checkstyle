@@ -96,35 +96,35 @@
             <tr>
               <td><a id="checks"/><a href="#checks">checks</a></td>
               <td>Define a Regular Expression matched against the name of the check associated with an audit event. The pattern is matched against the fully qualified class name of the Check.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td><a id="files"/><a href="#files">files</a></td>
               <td>Define a Regular Expression matched against the file name associated with an audit event.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td><a id="id"/><a href="#id">id</a></td>
               <td>Define a string matched against the ID of the check associated with an audit event.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td><a id="message"/><a href="#message">message</a></td>
               <td>Define a Regular Expression matched against the message of the check associated with an audit event.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td><a id="query"/><a href="#query">query</a></td>
               <td>Define a string xpath query.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>

@@ -100,21 +100,21 @@ public String getNameIfPresent() { ... }
             <tr>
               <td><a id="allowSamelineMultipleAnnotations"/><a href="#allowSamelineMultipleAnnotations">allowSamelineMultipleAnnotations</a></td>
               <td>Allow annotation(s) to be located on the same line as target element.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="allowSamelineParameterizedAnnotation"/><a href="#allowSamelineParameterizedAnnotation">allowSamelineParameterizedAnnotation</a></td>
               <td>Allow one and only parameterized annotation to be located on the same line as target element.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td><a id="allowSamelineSingleParameterlessAnnotation"/><a href="#allowSamelineSingleParameterlessAnnotation">allowSamelineSingleParameterlessAnnotation</a></td>
               <td>Allow single parameterless annotation to be located on the same line as target element.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.1</td>
             </tr>

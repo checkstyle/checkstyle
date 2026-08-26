@@ -89,21 +89,21 @@
               <td><a id="baseName"/><a href="#baseName">baseName</a></td>
               <td>Specify <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
  Base name</a> of resource bundles which contain message resources. It helps the check to distinguish config and localization resources.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^messages.*$</code></td>
               <td>6.17</td>
             </tr>
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>.properties</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="requiredTranslations"/><a href="#requiredTranslations">requiredTranslations</a></td>
               <td>Specify language codes of required translations which must exist in project.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>6.11</td>
             </tr>
