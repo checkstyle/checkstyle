@@ -513,7 +513,7 @@
                         alt="" />
                   </span>
                   Violations of this guideline cannot be detected by Checkstyle due to its
-                  <a href="writingchecks.html#Limitations">
+                  <a href="writing-checks.html#Limitations">
                     limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
@@ -1455,7 +1455,7 @@
                         alt="" />
                   </span>
                   Violations of this guideline cannot be detected by Checkstyle due to its
-                  <a href="writingchecks.html#Limitations">
+                  <a href="writing-checks.html#Limitations">
                     limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
@@ -1993,7 +1993,7 @@
                         alt="" />
                   </span>
                   As with section 5.2.4, due to
-                  <a href="writingchecks.html#Limitations">limitations</a>,
+                  <a href="writing-checks.html#Limitations">limitations</a>,
                   Checkstyle cannot determine whether a static final field is semantically
                   a constant or not. In other words, GoogleNonConstantFieldName cannot verify
                   that static final fields use lower case name when they are not constants (e.g.,
@@ -2243,7 +2243,7 @@
                         alt="" />
                   </span>
                   Violations of this guideline cannot be detected by Checkstyle due to its
-                  <a href="writingchecks.html#Limitations">
+                  <a href="writing-checks.html#Limitations">
                     limitation</a>, multiple file checking is not supported.
                 </td>
                 <td>
@@ -2298,7 +2298,7 @@
                         alt="" />
                   </span>
                   Violations of this guideline cannot be detected by Checkstyle due to its
-                  <a href="writingchecks.html#Limitations">
+                  <a href="writing-checks.html#Limitations">
                     limitation</a>, multiple file checking is not supported.
                 </td>
                 <td/>
@@ -2737,10 +2737,10 @@
         </p>
         <p>
           For detailed guidance on severity levels, refer to the
-          <a href="./property_types.html#SeverityLevel">Severity Level</a>.
+          <a href="./property-types.html#SeverityLevel">Severity Level</a>.
           To configure this property, see the instructions for the
           <a href="./cmdline.html#Command_line_usage">CLI's <code>-p</code> option</a> , or use the
-          <a href="./anttask.html#Parameters"><code>properties</code> parameter in Ant</a>,
+          <a href="./ant-task.html#Parameters"><code>properties</code> parameter in Ant</a>,
           or set the Java system property before running Checkstyle.
         </p>
       </subsection>

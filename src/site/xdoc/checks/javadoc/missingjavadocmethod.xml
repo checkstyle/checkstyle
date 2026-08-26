@@ -42,7 +42,7 @@
           Checks for missing Javadoc comments for a method or constructor. The scope to verify is
           specified using the <code>Scope</code> class and defaults to <code>Scope.PUBLIC</code>. To verify
           another scope, set property scope to a different
-          <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
+          <a href="https://checkstyle.org/property-types.html#Scope">scope</a>.
         </div>
 
         <p>
