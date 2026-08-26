@@ -107,7 +107,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final Node section = sources.item(position);
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
-                if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
+                if ("Content".equals(sectionName) || "Overview".equals(sectionName)
+                        || "Redirecting".equals(sectionName)) {
                     continue;
                 }
 

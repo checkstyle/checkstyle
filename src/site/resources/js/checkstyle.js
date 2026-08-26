@@ -35,16 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let minor = parseInt(versionParts[1], 10);
 
     if (major >= 1 && major < 6) {
-        window.location.replace(`./releasenotes_old_1-0_5-9.html${url.hash}`);
+        window.location.replace(`./release-notes-old-1-0-5-9.html${url.hash}`);
     }
     else if (major === 6 || major === 7) {
-        window.location.replace(`./releasenotes_old_6-0_7-8.html${url.hash}`);
+        window.location.replace(`./release-notes-old-6-0-7-8.html${url.hash}`);
     }
     else if (major === 8 && minor >= 0 && minor <= 34) {
-        window.location.replace(`./releasenotes_old_8-0_8-34.html${url.hash}`);
+        window.location.replace(`./release-notes-old-8-0-8-34.html${url.hash}`);
     }
     else if (major >= 8 && major <= 10) {
-        window.location.replace(`./releasenotes_old_8-35_10-26.html${url.hash}`);
+        window.location.replace(`./release-notes-old-8-35-10-26.html${url.hash}`);
     }
 });
 
@@ -76,6 +76,41 @@ window.addEventListener("load", function () {
             else {
                 window.location.replace(`./${checkType}`);
             }
+        }
+    }
+    else if (document.title.startsWith("Redirecting")) {
+        const urlObj = new URL(currentUrl);
+        const pathSegments = urlObj.pathname.split("/");
+        const oldHtmlFile = pathSegments[pathSegments.length - 1];
+
+        const redirectMap = {
+            "google_style.html": "google-style.html",
+            "openjdk_style.html": "openjdk-style.html",
+            "sun_style.html": "sun-style.html",
+            "property_types.html": "property-types.html",
+            "releasenotes.html": "release-notes.html",
+            "report_issue.html": "report-issue.html",
+            "result_reports.html": "result-reports.html",
+            "style_configs.html": "style-configs.html",
+            "writingchecks.html": "writing-checks.html",
+            "writingfilefilters.html": "writing-filefilters.html",
+            "writingfilters.html": "writing-filters.html",
+            "writingjavadocchecks.html": "writing-javadoc-checks.html",
+            "writinglisteners.html": "writing-listeners.html",
+            "anttask.html": "ant-task.html",
+            "beginning_development.html": "beginning-development.html",
+            "doc_comments_style.html": "doc-comments-style.html"
+        };
+
+        if (redirectMap[oldHtmlFile]) {
+            const newUrl = `./${redirectMap[oldHtmlFile]}${urlObj.hash}`;
+
+            const section = document.querySelector("section[name='Redirecting'] p");
+            if (section) {
+                section.innerHTML = `Redirecting to <a href="${newUrl}">${redirectMap[oldHtmlFile]}</a>`;
+            }
+
+            window.location.replace(newUrl);
         }
     }
 });
