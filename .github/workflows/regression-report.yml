@@ -880,7 +880,7 @@ jobs:
 
           aws s3 cp "$DIFF" \
             "s3://${{ env.AWS_BUCKET_NAME }}/$FOLDER/reports/diff/" \
-            --recursive
+            --recursive --quiet
 
           if [ -n "$LABEL" ]; then
             echo "$LABEL: " > .ci-temp/message
