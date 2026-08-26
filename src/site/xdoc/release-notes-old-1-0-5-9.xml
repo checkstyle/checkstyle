@@ -50,7 +50,7 @@
       <p>New features:</p>
       <ul>
         <li>
-          Google Java Style <a href="google_style.html">xml configuration</a> was added. Author: Max Vetrenko.
+          Google Java Style <a href="google-style.html">xml configuration</a> was added. Author: Max Vetrenko.
         </li>
         <li>
           New: AbbreviationAsWordInName check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/212">#212</a>
@@ -420,7 +420,7 @@
           are declared as <code>static</code>. Raised in bug #3222810.
         </li>
         <li>
-          Enhanced the <a href="anttask.html#Parameters">ANT task</a>,
+          Enhanced the <a href="ant-task.html#Parameters">ANT task</a>,
           <a href="cmdline.html#Command_line_usage">Command Line</a> and
           <a href="filters/suppressionfilter.html#SuppressionFilter">Suppression Filter</a> to be
           able to load their configuration file from either the filesystem or
@@ -491,8 +491,8 @@
         </li>
         <li>
           Enhanced the property types
-          <a href="property_types.html#String.5B.5D">String[]</a> and
-          <a href="property_types.html#int.5B.5D">int[]</a> to support being
+          <a href="property-types.html#String.5B.5D">String[]</a> and
+          <a href="property-types.html#int.5B.5D">int[]</a> to support being
           supplied multiple times to construct the equivalent of a comma
           separated list.
         </li>

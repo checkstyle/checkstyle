@@ -81,12 +81,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * There are two or more static imports with the same method name
  * (javac can distinguish imports with same name but different parameters, but checkstyle can not
- * due to <a href="https://checkstyle.org/writingchecks.html#Limitations">limitation.</a>)
+ * due to <a href="https://checkstyle.org/writing-checks.html#Limitations">limitation.</a>)
  * </li>
  * <li>
  * Module import declarations are used. Checkstyle does not resolve modules and therefore cannot
  * determine which packages or types are brought into scope by an {@code import module} declaration.
- * See <a href="https://checkstyle.org/writingchecks.html#Limitations">limitations.</a>
+ * See <a href="https://checkstyle.org/writing-checks.html#Limitations">limitations.</a>
  * </li>
  * </ul>
  *
@@ -151,7 +151,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
     /**
      * Setter to control when to print violations if the Javadoc being examined by this check
      * violates the tight html rules defined at
-     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight-HTML Rules</a>.
      *
      * @param shouldReportViolation value to which the field shall be set to

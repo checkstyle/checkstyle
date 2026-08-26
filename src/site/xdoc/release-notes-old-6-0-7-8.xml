@@ -4133,14 +4133,14 @@
       <p>Notes:</p>
       <ul>
         <li>
-          <a href="google_style.html">Google style</a>
-          is now covered to maximum of Checkstyle ability. See detailed report <a href="google_style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
+          <a href="google-style.html">Google style</a>
+          is now covered to maximum of Checkstyle ability. See detailed report <a href="google-style.html">here</a>. Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
         </li>
         <li>
           All binaries are now compiled by Jdk6. Jdk5 is not supported any more.
         </li>
       </ul>
-      <b><a href="releasenotes_old_1-0_5-9.html">Old Release Notes 1.0 through 5.9</a></b>
+      <b><a href="release-notes-old-1-0-5-9.html">Old Release Notes 1.0 through 5.9</a></b>
     </section>
   </body>
 </document>
