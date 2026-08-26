@@ -17,7 +17,7 @@
         teams enforce consistent coding standards automatically.
       </p>
       <p class="cs-cta-row">
-        <a class="cs-btn cs-btn-primary" href="getting_started.html">Get Started</a>
+        <a class="cs-btn cs-btn-primary" href="getting-started.html">Get Started</a>
         <a class="cs-btn cs-btn-secondary" href="checks.html">Browse Checks</a>
       </p>
     </section>
@@ -198,7 +198,7 @@
         formatting, and class design. It doesn't determine expression
         types or build a full inheritance hierarchy, so it's commonly
         used alongside tools that perform whole-program analysis. Read the
-        <a href="writingchecks.html#Limitations">detailed limitations</a>
+        <a href="writing-checks.html#Limitations">detailed limitations</a>
         for specifics.
       </p>
     </div>
@@ -209,7 +209,7 @@
         or define exactly which rules apply to your codebase.
       </p>
       <div class="cs-grid">
-        <a href="google_style.html"
+        <a href="google-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-google.svg" class="cs-card-logo"/>Google Java Style</p>
           <p>Start from Checkstyle's supplied configuration and coverage
@@ -217,7 +217,7 @@
             Google Java Style guide
           </p>
         </a>
-        <a href="sun_style.html"
+        <a href="sun-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-sun.svg" class="cs-card-logo"/>Sun Conventions</p>
           <p>Use the supplied Sun-style configuration and review its
@@ -225,7 +225,7 @@
             Sun Code Conventions
           </p>
         </a>
-        <a href="openjdk_style.html"
+        <a href="openjdk-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-openjdk.svg" class="cs-card-logo"/>OpenJDK Style</p>
           <p>Use the OpenJDK-style configuration for modern Java development.
@@ -233,7 +233,7 @@
             OpenJDK Style guide</p>
         </a>
         <a
-           href="doc_comments_style.html"
+           href="doc-comments-style.html"
            class="cs-card">
           <p class="cs-card-title"><img src="images/logo-doc.svg" class="cs-card-logo"/>Doc Style</p>
           <p>Use the Doc-style configuration focused on Javadoc and documentation
@@ -270,7 +270,7 @@
             Gradle Checkstyle plugin
             — no extra setup required.</p>
         </a>
-        <a href="anttask.html" class="cs-card">
+        <a href="ant-task.html" class="cs-card">
           <p class="cs-card-title"><img src="images/logo-ant.svg" class="cs-card-logo"/>ANT</p>
           <p>Integrate Checkstyle into your ANT build process using the
             ANT task. Configure checks and generate
@@ -303,7 +303,7 @@
         Current release is <b>${projectVersion}</b>.
       </p>
       <p class="cs-cta-row">
-        <a class="cs-btn cs-btn-primary" href="getting_started.html">Get Started</a>
+        <a class="cs-btn cs-btn-primary" href="getting-started.html">Get Started</a>
         <a class="cs-btn cs-btn-secondary" href="config.html">Configuration</a>
         <a class="cs-btn cs-btn-secondary" href="checks.html">Browse Checks</a>
       </p>
@@ -440,7 +440,7 @@
         <p>
           Checkstyle currently is confirmed to be buildable by all JDKs from 21 through 25.
           Most recent JDKs may be supported. Please
-          <a href="https://checkstyle.org/report_issue.html">report an issue</a>
+          <a href="https://checkstyle.org/report-issue.html">report an issue</a>
           if there are any problems with recent JDKs.
         </p>
       </subsection>
@@ -453,7 +453,7 @@
           and below. We may support preview features depending on community demand.
         </p>
         <p>
-          Please <a href="report_issue.html">report an issue</a> if you
+          Please <a href="report-issue.html">report an issue</a> if you
           encounter any issues with the support of the latest Java language features.
         </p>
       </subsection>
@@ -461,7 +461,7 @@
       <subsection name="Limitations" id="Additional_Information_Limitations">
         <p>
           Checkstyle is a single file static analysis tool, for more details please read
-          the full list of <a href="writingchecks.html#Limitations">limitations</a>.
+          the full list of <a href="writing-checks.html#Limitations">limitations</a>.
         </p>
       </subsection>
 
@@ -522,7 +522,7 @@
         </p>
 
         <ul>
-          <li>An <a href="anttask.html">Ant task</a>.</li>
+          <li>An <a href="ant-task.html">Ant task</a>.</li>
           <li>A <a href="cmdline.html">command line</a> interface (CLI).</li>
         </ul>
 

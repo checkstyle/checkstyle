@@ -50,7 +50,7 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify maximum allowed nesting depth.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>5.3</td>
             </tr>
