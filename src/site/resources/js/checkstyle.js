@@ -35,16 +35,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let minor = parseInt(versionParts[1], 10);
 
     if (major >= 1 && major < 6) {
-        window.location.replace(`./releasenotes_old_1-0_5-9.html${url.hash}`);
+        window.location.replace(`./release-notes-old-1-0-5-9.html${url.hash}`);
     }
     else if (major === 6 || major === 7) {
-        window.location.replace(`./releasenotes_old_6-0_7-8.html${url.hash}`);
+        window.location.replace(`./release-notes-old-6-0-7-8.html${url.hash}`);
     }
     else if (major === 8 && minor >= 0 && minor <= 34) {
-        window.location.replace(`./releasenotes_old_8-0_8-34.html${url.hash}`);
+        window.location.replace(`./release-notes-old-8-0-8-34.html${url.hash}`);
     }
     else if (major >= 8 && major <= 10) {
-        window.location.replace(`./releasenotes_old_8-35_10-26.html${url.hash}`);
+        window.location.replace(`./release-notes-old-8-35-10-26.html${url.hash}`);
     }
 });
 
@@ -58,7 +58,7 @@ window.addEventListener("load", function () {
         const urlObj = new URL(currentUrl);
         const pathSegments = urlObj.pathname.split("/");
         const configHtmlFile = pathSegments[pathSegments.length - 1];
-        const checkType = /config_([a-z]+).html/.exec(configHtmlFile)[1];
+        const checkType = /config-([a-z-]+).html/.exec(configHtmlFile)?.[1];
         const checkName = urlObj.hash.substring(1).toLowerCase();
 
         if (checkName) {

@@ -530,5 +530,6 @@
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
-
+  <suppress id="siteXmlFileNaming"
+    files="src/site/xdoc/config_.*\.xml"/>
 </suppressions>
