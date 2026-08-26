@@ -112,14 +112,14 @@ d = e / f;      /* Some insightful block comment * /
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify pattern for strings allowed before the comment.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^[\s});]*$</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="legalComment"/><a href="#legalComment">legalComment</a></td>
               <td>Define pattern for text allowed in trailing comments. This pattern will not be applied to multiline comments.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>

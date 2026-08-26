@@ -531,4 +531,8 @@
   <suppress id="resourceFileName"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
 
+  <!-- Redirect files in src/site/resources/redirects/ are exempt from hyphen naming convention -->
+  <suppress id="siteXmlFileNaming"
+    files="src/site/resources/redirects/.*"/>
+
 </suppressions>

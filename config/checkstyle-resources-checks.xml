@@ -41,6 +41,15 @@
     <message key="regexp.filename.match"
              value="module-info.java files must be located in a ''module-info/&lt;case&gt;/'' folder under the Check''s input directory."/>
   </module>
+  <module name="RegexpOnFilename">
+    <property name="id" value="siteXmlFileNaming"/>
+    <property name="folderPattern"
+             value="[\\/]src[\\/]site[\\/].*"/>
+    <property name="fileNamePattern" value=".*_.*\.(xml|html)"/>
+    <property name="match" value="true"/>
+    <message key="regexp.filename.match"
+           value="Site XML and HTML files should use hyphens (-) instead of underscores (_) in filenames. Redirect files in src/site/resources/redirects/ are exempt."/>
+  </module>
 
   <module name="TreeWalker">
     <module name="PackageDeclarationCheck"/>
