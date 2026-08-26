@@ -58,28 +58,28 @@
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify the regular expression to match forbidden Javadoc content.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^$</code></td>
               <td>13.10.0</td>
             </tr>
             <tr>
               <td><a id="ignoreCase"/><a href="#ignoreCase">ignoreCase</a></td>
               <td>Control whether to ignore case when matching.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.10.0</td>
             </tr>
             <tr>
               <td><a id="ignoreMarkup"/><a href="#ignoreMarkup">ignoreMarkup</a></td>
               <td>Control whether to ignore Javadoc and HTML markup when matching.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.10.0</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.10.0</td>
             </tr>
