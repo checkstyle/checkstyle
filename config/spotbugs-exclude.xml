@@ -106,6 +106,9 @@
            visitJavadocToken, so it is never actually null when dereferenced -->
       <Class
       name=
+      "com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnFieldCheck" />
+      <Class
+      name=
       "com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnTypeCheck" />
       <Class name=
              "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkFirstOccurrenceCheck" />

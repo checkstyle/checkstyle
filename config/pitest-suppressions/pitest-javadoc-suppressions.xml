@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>InappropriateJavadocBlockTagsOnFieldCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnFieldCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (ScopeUtil.isClassFieldDef(ast)) {</lineContent>
+  </mutation>
 </suppressedMutations>
