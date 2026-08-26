@@ -15,6 +15,7 @@ public class UseCase1 {
   int a; // SUPPRESS CHECKSTYLE - OK, comment starts with " SUPPRESS CHECKSTYLE"
   int b; // NOPMD - OK, comment starts with " NOPMD"
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
-  int d; // violation 'Don't use trailing comments.'
+  int d; // some comment - does not match legalComment
+  // violation above 'Don't use trailing comments.'
 }
 // xdoc section - end
