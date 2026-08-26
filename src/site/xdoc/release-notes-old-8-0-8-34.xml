@@ -1511,7 +1511,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/7339">#7339</a>
         </li>
         <li>
-          doc: change &quot;property&quot; to &quot;type&quot; in property_types.xml.
+          doc: change &quot;property&quot; to &quot;type&quot; in property-types.xml.
           Author: pbludov
         </li>
         <li>
@@ -5294,7 +5294,7 @@
         </li>
       </ul>
       <b>
-        <a href="releasenotes_old_6-0_7-8.html">Old Release Notes 6.0 through 7.8</a>
+        <a href="release-notes-old-6-0-7-8.html">Old Release Notes 6.0 through 7.8</a>
       </b>
     </section>
   </body>

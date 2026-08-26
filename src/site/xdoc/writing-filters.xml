@@ -67,7 +67,7 @@
       <p>
         The <code>Filter</code> that we demonstrate here rejects
         audit events for files whose name matches a <a
-        href="property_types.html#Pattern">Pattern</a>.  In order to
+        href="property-types.html#Pattern">Pattern</a>.  In order to
         enable the specification of the file name pattern as a property in a
         configuration file, the <code>Filter</code> is an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
@@ -200,7 +200,7 @@ public class CommentAnnotationFilter
 
     <section name="Declare check's external resource locations">
       <p>
-        See <a href="writingchecks.html#Declare_check.27s_external_resource_locations">
+        See <a href="writing-checks.html#Declare_check.27s_external_resource_locations">
         Declare check's external resource locations</a>.
       </p>
     </section>
