@@ -69,7 +69,7 @@
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>.properties</code></td>
               <td>8.22</td>
             </tr>

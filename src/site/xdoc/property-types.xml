@@ -1021,7 +1021,7 @@
             <td>Option</td>
             <td>Definition</td>
             <td><a href="cmdline.html">CLI</a></td>
-            <td><a href="anttask.html">Ant task</a></td>
+            <td><a href="ant-task.html">Ant task</a></td>
           </tr>
 
           <tr>
@@ -1044,7 +1044,7 @@
             <td>
               Such violation not printed in output, however,
               depending on the setting of
-              <a href="anttask.html#Parameters"><code>executeIgnoredModules</code></a>
+              <a href="ant-task.html#Parameters"><code>executeIgnoredModules</code></a>
               when executed, the module may still run and if an exception occurs, the exception
               will turn into an error and act as one.
             </td>
@@ -1080,7 +1080,7 @@
             </td>
             <td>
               Displays the violation, might fail the execution.<br/>
-              <a href="anttask.html#Parameters"><code>maxWarnings</code></a> can be used to pass
+              <a href="ant-task.html#Parameters"><code>maxWarnings</code></a> can be used to pass
               the execution until a certain number of warnings are found.
             </td>
           </tr>
@@ -1099,7 +1099,7 @@
             </td>
             <td>
               Displays the violation, might fail the execution.<br/>
-              <a href="anttask.html#Parameters"><code>maxErrors</code></a> can be used to pass
+              <a href="ant-task.html#Parameters"><code>maxErrors</code></a> can be used to pass
               the execution until a certain number of error are found.
             </td>
           </tr>
