@@ -1247,13 +1247,7 @@
                   </span>
                   Checkstyle cannot distinguish checked from unchecked exceptions due to its
                     <a href="writingchecks.html#Limitations">limitation</a>: the complete
-                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
-                    validate differences between exceptions declared in method signatures and
-                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
-                    may reveal extra unchecked exceptions declared in signatures, but this
-                    validation cannot fully decide which unchecked exceptions should be documented.
-                    Not covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                    inheritance hierarchy of a type cannot be determined.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/doccomments/checkstyle/test/writingdoccomments/documentingexceptionswiththrowstag/exceptionstodocument">
@@ -1279,13 +1273,7 @@
                   </span>
                   Checkstyle cannot distinguish checked from unchecked exceptions due to its
                     <a href="writingchecks.html#Limitations">limitation</a>: the complete
-                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
-                    validate differences between exceptions declared in method signatures and
-                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
-                    may reveal extra unchecked exceptions declared in signatures, but this
-                    validation cannot fully decide which unchecked exceptions should be documented.
-                    Not covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                    inheritance hierarchy of a type cannot be determined.
                 </td>
                 <td/>
               </tr>
@@ -1320,13 +1308,7 @@
                   </span>
                   Checkstyle cannot distinguish checked from unchecked exceptions due to its
                     <a href="writingchecks.html#Limitations">limitation</a>: the complete
-                    inheritance hierarchy of a type cannot be determined. A dedicated Check could
-                    validate differences between exceptions declared in method signatures and
-                    exceptions documented in Javadoc <code>@throws</code> tags. Such differences
-                    may reveal extra unchecked exceptions declared in signatures, but this
-                    validation cannot fully decide which unchecked exceptions should be documented.
-                    Not covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/20844">#20844</a>.
+                    inheritance hierarchy of a type cannot be determined.
                 </td>
                 <td/>
               </tr>
