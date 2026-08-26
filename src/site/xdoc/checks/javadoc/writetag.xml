@@ -59,21 +59,21 @@
             <tr>
               <td><a id="tag"/><a href="#tag">tag</a></td>
               <td>Specify the name of tag.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
             <tr>
               <td><a id="tagFormat"/><a href="#tagFormat">tagFormat</a></td>
               <td>Specify the regexp to match tag content.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.9.0</td>
             </tr>

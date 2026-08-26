@@ -42,7 +42,7 @@
           Checks for missing Javadoc comments for a method or constructor. The scope to verify is
           specified using the <code>Scope</code> class and defaults to <code>Scope.PUBLIC</code>. To verify
           another scope, set property scope to a different
-          <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
+          <a href="https://checkstyle.org/property-types.html#Scope">scope</a>.
         </div>
 
         <p>
@@ -87,42 +87,42 @@ public boolean isSomething()
             <tr>
               <td><a id="allowMissingPropertyJavadoc"/><a href="#allowMissingPropertyJavadoc">allowMissingPropertyJavadoc</a></td>
               <td>Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
               <td>Configure annotations that allow missed documentation.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td><a id="excludeScope"/><a href="#excludeScope">excludeScope</a></td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><a href="../../property-types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td><a id="ignoreMethodNamesRegex"/><a href="#ignoreMethodNamesRegex">ignoreMethodNamesRegex</a></td>
               <td>Ignore method whose names are matching specified regex.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td><a id="minLineCount"/><a href="#minLineCount">minLineCount</a></td>
               <td>Control the minimal amount of lines in method to allow no documentation.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>-1</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><a href="../../property-types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.21</td>
             </tr>
