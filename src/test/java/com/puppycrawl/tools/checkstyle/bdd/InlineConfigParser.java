@@ -306,11 +306,6 @@ public final class InlineConfigParser {
             "checks/coding/noclone/Example1.java",
             "checks/coding/unusedlocalvariable/Example1.java",
             "checks/coding/unusedlocalvariable/InputUnusedLocalVariable3.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses4.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses5.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableNestedClasses6.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariableNestedClasses7.java",
             "checks/coding/unusedlocalvariable/"
                     + "InputUnusedLocalVariableAllowNamedPatternVariables.java",
             "checks/coding/unusedlocalvariable/"
