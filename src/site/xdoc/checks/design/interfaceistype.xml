@@ -64,7 +64,7 @@
             <tr>
               <td><a id="allowMarkerInterfaces"/><a href="#allowMarkerInterfaces">allowMarkerInterfaces</a></td>
               <td>Control whether marker interfaces like Serializable are allowed.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.1</td>
             </tr>

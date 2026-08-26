@@ -54,7 +54,7 @@
             <tr>
               <td><a id="skipIfLastAndSharedWithCase"/><a href="#skipIfLastAndSharedWithCase">skipIfLastAndSharedWithCase</a></td>
               <td>Control whether to allow <code>default</code> along with <code>case</code> if they are not last.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.7</td>
             </tr>
