@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document>
-  <properties>
-    <title>How To Report Issue</title>
-  </properties>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Redirecting</title>
+  </head>
+
   <body>
-    <section name="Report Issue" id="report_issue">
-      <p>
-        All issue reporting guidelines are now maintained in GitHub.
-      </p>
-      <p>
-        Please see
-        <a href="https://github.com/checkstyle/checkstyle/blob/master/docs/report-issue.md">
-          report-issue.md
-        </a>
-        for the complete and up-to-date guidelines.
-      </p>
+    <section name="Redirecting">
+      <p>Redirecting to report-issue.html</p>
     </section>
   </body>
 </document>
