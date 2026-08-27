@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 // xdoc section - start
 public class Example2 {
   {
-    int k = 12; // violation, assign and update but never use 'k'
+    int k = 12; // violation 'Unused local variable 'k'.'
     k++;
   }
 
@@ -24,20 +24,20 @@ public class Example2 {
   }
 
   void method(int b) {
-    int[] arr = {1, 2, 3};  // violation, unused local variable 'arr'
+    int[] arr = {1, 2, 3};  // violation 'Unused local variable 'arr'.'
     int[] anotherArr = {1}; // ok, 'anotherArr' is accessed
     anotherArr[0] = 4;
   }
 
   String convertValue(String newValue) {
-    String s = newValue.toLowerCase(); // violation, unused local variable 's'
-    String _ = newValue.toLowerCase(); // violation, unused local variable '_'
+    String s = newValue.toLowerCase(); // violation 'Unused local variable 's'.'
+    String _ = newValue.toLowerCase(); // violation 'Unused local variable '_'.'
     return newValue.toLowerCase();
   }
 
   void read() throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    String s; // violation, unused local variable 's'
+    String s; // violation 'Unused local variable 's'.'
     while ((s = reader.readLine()) != null) {}
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader("abc.txt"))) {}
@@ -47,9 +47,9 @@ public class Example2 {
 
   void loops() {
     int j = 12;
-    for (int i = 0; j < 11; i++)  // violation, unused local variable 'i'
+    for (int i = 0; j < 11; i++)  // violation 'Unused local variable 'i'.'
       for (int p = 0; j < 11; p++) p /= 2;   // ok, 'p' is used
-    for (Integer _ : new  int[0]) { } // violation, unused local variable '_'
+    for (Integer _ : new  int[0]) { } // violation 'Unused local variable '_'.'
   }
 
   void lambdas() {
