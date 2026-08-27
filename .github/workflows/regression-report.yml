@@ -879,14 +879,14 @@ jobs:
           LINK="https://${{ env.AWS_BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
 
           aws s3 cp "$DIFF" \
-            "s3://${{ env.AWS_BUCKET_NAME }}/$FOLDER/reports/diff/" \
+            "s3://${{ env.AWS_BUCKET_NAME }}/diff/$FOLDER/" \
             --recursive --quiet
 
           if [ -n "$LABEL" ]; then
             echo "$LABEL: " > .ci-temp/message
           fi
 
-          echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+          echo "$LINK/diff/$FOLDER/index.html" >> .ci-temp/message
 
       - name: Set output
         id: out

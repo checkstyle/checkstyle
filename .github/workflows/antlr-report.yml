@@ -221,10 +221,10 @@ jobs:
           LINK="https://${{ env.AWS_BUCKET_NAME }}.s3.${{ env.AWS_REGION }}.amazonaws.com"
 
           aws s3 cp "$DIFF" \
-            "s3://${{ env.AWS_BUCKET_NAME }}/$FOLDER/reports/diff/" \
+            "s3://${{ env.AWS_BUCKET_NAME }}/diff/$FOLDER/" \
             --recursive --storage-class STANDARD_IA --quiet
 
-          echo "ANTLR report: $LINK/$FOLDER/reports/diff/index.html" \
+          echo "ANTLR report: $LINK/diff/$FOLDER/index.html" \
             > .ci-temp/message
 
           ./.ci/append-to-github-output.sh \

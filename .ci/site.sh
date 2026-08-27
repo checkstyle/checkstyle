@@ -48,10 +48,10 @@ publish-site)
   SITE=".ci-temp/checkstyle/target/site"
   LINK="https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com"
   
-  aws s3 cp "$SITE" "s3://${AWS_BUCKET_NAME}/$FOLDER/" --recursive --quiet
-  echo "$LINK/$FOLDER/index.html" > .ci-temp/message
+  aws s3 cp "$SITE" "s3://${AWS_BUCKET_NAME}/website/$FOLDER/" --recursive --quiet
+  echo "$LINK/website/$FOLDER/index.html" > .ci-temp/message
   
-  ./.ci/generate-extra-site-links.sh "$PR_NUMBER" "$LINK/$FOLDER"
+  ./.ci/generate-extra-site-links.sh "$PR_NUMBER" "$LINK/website/$FOLDER"
   
   ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
   ;;
