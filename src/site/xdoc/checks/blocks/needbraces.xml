@@ -64,14 +64,14 @@
             <tr>
               <td><a id="allowEmptyLoopBody"/><a href="#allowEmptyLoopBody">allowEmptyLoopBody</a></td>
               <td>Allow loops with empty bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
             </tr>
             <tr>
               <td><a id="allowSingleLineStatement"/><a href="#allowSingleLineStatement">allowSingleLineStatement</a></td>
               <td>Allow single-line statements without braces.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.5</td>
             </tr>
