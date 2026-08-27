@@ -197,12 +197,12 @@ copy-report-to-aws-s3-bucket)
   FOLDER="${COMMIT_SHA}_$TIME"
   DIFF="./.ci-temp/contribution/checkstyle-tester/reports/diff"
   LINK="https://${AWS_BUCKET_NAME}.s3.${AWS_REGION}.amazonaws.com"
-  aws s3 cp "$DIFF" "s3://${AWS_BUCKET_NAME}/$FOLDER/reports/diff/" \
+  aws s3 cp "$DIFF" "s3://${AWS_BUCKET_NAME}/diff/$FOLDER/" \
     --recursive --storage-class STANDARD_IA --quiet
   if [ -n "$LABEL" ]; then
     echo "$LABEL: " > .ci-temp/message
   fi
-  echo "$LINK/$FOLDER/reports/diff/index.html" >> .ci-temp/message
+  echo "$LINK/diff/$FOLDER/index.html" >> .ci-temp/message
   ;;
 
 process-local-repo-config-files)
