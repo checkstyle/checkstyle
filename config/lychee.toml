@@ -23,6 +23,8 @@ exclude = [
   # Old deleted GitHub issues
   "https://github.com/checkstyle/checkstyle/issues/2728",
   "https://github.com/checkstyle/checkstyle/issues/2788",
+  # OpenCollective returns 403 to automated link checkers
+  "https://opencollective.com/.*",
 ]
 
 # Timeout for each link check (in seconds)
