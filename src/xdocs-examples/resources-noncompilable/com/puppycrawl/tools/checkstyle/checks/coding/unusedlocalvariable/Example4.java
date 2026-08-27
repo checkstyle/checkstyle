@@ -16,7 +16,7 @@ public class Example4 {
   static final class Circle extends Shape {}
   static final class Rect extends Shape {}
   void patternVariables(Object obj, Shape s) {
-    if (obj instanceof String str) { // violation, unused local variable 'str'
+    if (obj instanceof String str) { // violation 'Unused local variable 'str'.'
       System.out.println("string");
     }
     if (obj instanceof String t) { // ok, 't' is used
