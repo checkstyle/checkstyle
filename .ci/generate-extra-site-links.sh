@@ -33,6 +33,29 @@ CHANGED_XDOCS_PATHS=$(echo "$GITHUB_API_RESPONSE" \
   || true)
 echo "CHANGED_XDOCS_PATHS=$CHANGED_XDOCS_PATHS"
 
+TRACKED_API_DIR="src/main/java/com/puppycrawl/tools/checkstyle/api"
+TRACKED_API_CLASSES="(TokenTypes|JavadocCommentsTokenTypes)"
+CHANGED_API_CLASSES_PATHS=$(echo "$GITHUB_API_RESPONSE" \
+  | jq -r '.[] | select(.status != "removed") | .filename' \
+  | grep -E "^$TRACKED_API_DIR/$TRACKED_API_CLASSES\.java$" \
+  || true)
+echo "CHANGED_API_CLASSES_PATHS=$CHANGED_API_CLASSES_PATHS"
+
+if [[ -n "$CHANGED_API_CLASSES_PATHS" ]]; then
+  while IFS= read -r CURRENT_API_CLASS_PATH; do
+    echo "Processing file: $CURRENT_API_CLASS_PATH"
+
+    CURRENT_API_CLASS_NAME=$(
+      echo "$CURRENT_API_CLASS_PATH" | sed 's/src\/main\/java\/\(.*\)\.java/\1/'
+    )
+    echo "CURRENT_API_CLASS_NAME=$CURRENT_API_CLASS_NAME"
+
+    echo "" >> .ci-temp/message
+    echo "$AWS_FOLDER_LINK/apidocs/$CURRENT_API_CLASS_NAME.html" >> .ci-temp/message
+    echo "Added link: $AWS_FOLDER_LINK/apidocs/$CURRENT_API_CLASS_NAME.html"
+  done <<< "$CHANGED_API_CLASSES_PATHS"
+fi
+
 if [[ -z "$CHANGED_XDOCS_PATHS" ]]; then
   echo "[WARN] No xdocs were changed in the pull request."
   exit 0
