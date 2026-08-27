@@ -18,36 +18,36 @@
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- &lt;code&gt;files&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ &lt;code&gt;files&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;
  Pattern&lt;/a&gt; matched against the file name associated with an audit event.
  It is optional. If unmatched, all Unix path separators (/)
  are converted to Windows separators (\) and retried.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;checks&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ &lt;code&gt;checks&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;
  Pattern&lt;/a&gt; matched against the name of the check associated with an audit event.
  Optional as long as &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;message&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ &lt;code&gt;message&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#Pattern"&gt;
  Pattern&lt;/a&gt; matched against the message of the check associated with an audit event.
  Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;id&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;id&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property_types.html#String"&gt;String&lt;/a&gt;
+ &lt;code&gt;id&lt;/code&gt; - a &lt;a href="https://checkstyle.org/property-types.html#String"&gt;String&lt;/a&gt;
  matched against the &lt;a href="https://checkstyle.org/config.html#Id"&gt;check id&lt;/a&gt;
  associated with an audit event.
  Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
  &lt;/li&gt;
  &lt;li&gt;
  &lt;code&gt;lines&lt;/code&gt; - a comma-separated list of values, where each value is an
- &lt;a href="https://checkstyle.org/property_types.html#int"&gt;int&lt;/a&gt;
+ &lt;a href="https://checkstyle.org/property-types.html#int"&gt;int&lt;/a&gt;
  or a range of integers denoted by integer-integer.
  It is optional.
  &lt;/li&gt;
  &lt;li&gt;
  &lt;code&gt;columns&lt;/code&gt; - a comma-separated list of values, where each value is an
- &lt;a href="https://checkstyle.org/property_types.html#int"&gt;int&lt;/a&gt;
+ &lt;a href="https://checkstyle.org/property-types.html#int"&gt;int&lt;/a&gt;
  or a range of integers denoted by integer-integer.
  It is optional.
  &lt;/li&gt;
