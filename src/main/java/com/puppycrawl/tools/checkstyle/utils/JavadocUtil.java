@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
@@ -134,6 +135,43 @@ public final class JavadocUtil {
         while (result == null && child.getType() != TokenTypes.IDENT) {
             result = findJavadocComment(child);
             child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Returns the Javadoc block comment attached to the given package AST node.
+     * Because of <a href="https://github.com/checkstyle/checkstyle/issues/4392">parser bug</a>
+     * parser can place javadoc comment either as previous sibling of package definition
+     * or (if there is annotation between package def and javadoc) inside package definition tree.
+     * So we should look for javadoc in both places.
+     *
+     * @param ast the package declaration AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    public static DetailAST getAttachedJavadocCommentForPackage(final DetailAST ast) {
+        DetailAST result = null;
+        final DetailAST prevSibling = ast.getPreviousSibling();
+        if (prevSibling != null
+                && prevSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            result = prevSibling;
+        }
+        else {
+            final Optional<DetailAST> firstAnnotationChild =
+                Optional.ofNullable(ast.getFirstChild())
+                    .map(DetailAST::getFirstChild)
+                    .map(DetailAST::getFirstChild);
+            if (firstAnnotationChild.isPresent()) {
+                for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
+                     child = child.getNextSibling()) {
+                    if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                            && isJavadocComment(child)) {
+                        result = child;
+                        break;
+                    }
+                }
+            }
         }
         return result;
     }
