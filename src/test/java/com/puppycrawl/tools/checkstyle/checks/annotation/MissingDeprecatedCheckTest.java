@@ -188,4 +188,15 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
                 getPath("InputMissingDeprecatedSingleComment.java"), expected);
     }
 
+    @Test
+    public void testModuleInfo() throws Exception {
+
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module-info.java"), expected);
+    }
+
 }
