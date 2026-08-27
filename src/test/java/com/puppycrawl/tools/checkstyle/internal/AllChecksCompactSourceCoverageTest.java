@@ -144,6 +144,7 @@ public class AllChecksCompactSourceCoverageTest {
         "IllegalTypeCheck",
         "ImportControlCheck",
         "ImportOrderCheck",
+        "InappropriateJavadocBlockTagsOnFieldCheck",
         "IndentationCheck",
         "InnerAssignmentCheck",
         "InterfaceIsTypeCheck",
