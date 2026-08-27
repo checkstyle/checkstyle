@@ -44,7 +44,6 @@ public class InputLambdaExpressionsDosAndDonts {
 
     public void styleGuideDonts(List<String> list) {
 
-        // ok, for block until https://github.com/checkstyle/checkstyle/issues/20692
         Runnable r = () -> { System.out.println("Hello World"); };
         // violation above ''{' at column 28 should have line break after.'
 
