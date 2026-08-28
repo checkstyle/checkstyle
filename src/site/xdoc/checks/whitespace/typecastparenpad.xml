@@ -52,7 +52,7 @@
             <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to pad parentheses.</td>
-              <td><a href="../../property_types.html#PadOption">PadOption</a></td>
+              <td><a href="../../property-types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.2</td>
             </tr>

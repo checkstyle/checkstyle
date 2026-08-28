@@ -461,7 +461,7 @@ public class MethodLimitCheck extends AbstractCheck
     <section name="Comment Tokens in AST">
 
       <p>
-        Before <a href="releasenotes_old_6-0_7-8.html#Release_6.0">Checkstyle 6.0</a>,
+        Before <a href="release-notes-old-6-0-7-8.html#Release_6.0">Checkstyle 6.0</a>,
         there were no comments in the AST. Comments are not code and are ignored by compiler,
         so they were not the primary focus of Checkstyle,
         but more and more requests appeared to do validation of javadoc and comments.
@@ -491,7 +491,7 @@ public class MethodLimitCheck extends AbstractCheck
         <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
           <code>AbstractJavadocCheck</code>
         </a>are "comment Checks".
-        (See also <a href="writingjavadocchecks.html">'Writing Javadoc Checks'</a>)
+        (See also <a href="writing-javadoc-checks.html">'Writing Javadoc Checks'</a>)
       </p>
       <p>
         The following Comment specific tokens exist:

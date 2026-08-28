@@ -63,35 +63,35 @@
             <tr>
               <td><a id="allowEmpty"/><a href="#allowEmpty">allowEmpty</a></td>
               <td>Allow empty type bodies to omit blank line padding.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>13.9.0</td>
             </tr>
             <tr>
               <td><a id="atEndOfBody"/><a href="#atEndOfBody">atEndOfBody</a></td>
               <td>Require a blank line before the type body closing brace.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>13.9.0</td>
             </tr>
             <tr>
               <td><a id="atStartOfBody"/><a href="#atStartOfBody">atStartOfBody</a></td>
               <td>Require a blank line after the type body opening brace.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>13.9.0</td>
             </tr>
             <tr>
               <td><a id="skipInner"/><a href="#skipInner">skipInner</a></td>
               <td>Control whether to skip checking of inner types.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>13.9.0</td>
             </tr>
             <tr>
               <td><a id="skipLocal"/><a href="#skipLocal">skipLocal</a></td>
               <td>Control whether to skip checking of local types.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>13.9.0</td>
             </tr>

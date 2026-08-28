@@ -53,14 +53,14 @@
             <tr>
               <td><a id="ignoreAnnotationCanonicalNames"/><a href="#ignoreAnnotationCanonicalNames">ignoreAnnotationCanonicalNames</a></td>
               <td>Specify annotations canonical names which ignore variables in consideration.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>java.io.Serial</code></td>
               <td>14.1.0</td>
             </tr>
             <tr>
               <td><a id="ignoredFieldPattern"/><a href="#ignoredFieldPattern">ignoredFieldPattern</a></td>
               <td>Specify a regular expression pattern for field names to ignore, even if they otherwise satisfy this check's detection of an unused private field. Note this replaces the default value entirely — to keep <code>serialVersionUID</code> ignored alongside your own pattern, include it explicitly, e.g. <code>^(serialVersionUID|LOG|LOGGER)$</code>.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>serialVersionUID</code></td>
               <td>14.1.0</td>
             </tr>
