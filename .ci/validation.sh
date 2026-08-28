@@ -1376,7 +1376,6 @@ no-warning-imports-guava)
   export MAVEN_OPTS="-Xmx4g"
   PROJECTS=checks-import-order/projects-to-test-imports-guava.properties
   CONFIG=checks-import-order/checks-imports-error-guava.xml
-  REPORT=reports/guava/site/index.html
   CS_POM_VERSION="$(getPomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1386,7 +1385,12 @@ no-warning-imports-guava)
       --allowExcludes -p "$BRANCH" -r ../../.. \
       --useShallowClone \
       --mode single -xm "-Dcheckstyle.failsOnError=false"
-  RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
+  REPORT="reports/$BRANCH/guava/checkstyle-result.xml"
+  if [[ ! -f "$REPORT" ]]; then
+    echo "Report does not exist: $REPORT"
+    exit 1
+  fi
+  RESULT=$(grep 'severity="warning"' "$REPORT" || true)
   cd ../../
   removeFolderWithProtectedFiles contribution
   if [ -z "$RESULT" ]; then
