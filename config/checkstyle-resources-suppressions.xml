@@ -530,5 +530,7 @@
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
-
+  <!-- files used for redirection to not break old links -->
+  <suppress id="siteXmlFileNaming"
+    files="src/site/xdoc/config_.*\.xml"/>
 </suppressions>

@@ -188,32 +188,32 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <ul>
  * <li>
  * {@code files} -
- * a <a href="https://checkstyle.org/property_types.html#Pattern">Pattern</a>
+ * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit
  * event. It is optional. If unmatched, all Unix path separators (/)
  * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} -
- * a <a href="https://checkstyle.org/property_types.html#Pattern">Pattern</a>
+ * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the name of the check associated with an audit
  * event. Optional as long as {@code id} or {@code message} is specified.
  * </li>
  * <li>
  * {@code message} -
- * a <a href="https://checkstyle.org/property_types.html#Pattern">Pattern</a>
+ * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the message of the check associated with an audit
  * event. Optional as long as {@code checks} or {@code id} is specified.
  * </li>
  * <li>
  * {@code id} -
- * a <a href="https://checkstyle.org/property_types.html#String">String</a>
+ * a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * matched against the ID of the check associated with an audit
  * event. Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>
  * {@code query} -
- * a <a href="https://checkstyle.org/property_types.html#String">String</a>
+ * a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * xpath query. It is optional.
  * </li>
  * </ul>
