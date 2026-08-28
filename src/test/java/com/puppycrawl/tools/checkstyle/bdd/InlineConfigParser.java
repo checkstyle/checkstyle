@@ -305,20 +305,6 @@ public final class InlineConfigParser {
             "checks/coding/equalshashcode/Example1.java",
             "checks/coding/noclone/Example1.java",
             "checks/coding/unusedlocalvariable/Example1.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariable3.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariableAllowNamedPatternVariables.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariablePatternVariables.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariablePatternVariables2.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariablePatternVariablesAllowUnnamed.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariablePatternVariablesCondition.java",
-            "checks/coding/unusedlocalvariable/"
-                    + "InputUnusedLocalVariablePatternVariablesCondition2.java",
-            "checks/coding/unusedlocalvariable/InputUnusedLocalVariableUnnamedTryCatch.java",
             "checks/sizes/recordcomponentnumber/Example2.java",
             "checks/whitespace/separatorwrap/Example1.java",
             "com/google/checkstyle/test/chapter5naming/rule53camelcase/"

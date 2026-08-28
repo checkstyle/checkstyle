@@ -11,7 +11,7 @@ public class InputUnusedLocalVariablePatternVariables2 {
 
     void unusedGuardedPattern(Object obj) {
         switch (obj) {
-            case Integer i when 1 > 0 -> System.out.println("positive"); // violation 'i'
+            case Integer i when 1 > 0 -> System.out.println("positive"); // violation 'Unused local variable 'i'.'
             default                   -> System.out.println("other");
         }
     }
@@ -25,7 +25,7 @@ public class InputUnusedLocalVariablePatternVariables2 {
 
     void unusedInColonCase(Object obj) {
         switch (obj) {
-            case String s: // violation, Unused local variable 's'
+            case String s: // violation 'Unused local variable 's'.'
                 System.out.println("string");
                 break;
             default:
@@ -44,7 +44,7 @@ public class InputUnusedLocalVariablePatternVariables2 {
     }
 
     void unusedInstanceof(Object obj) {
-        if (obj instanceof String s) { // violation, Unused local variable 's'
+        if (obj instanceof String s) { // violation 'Unused local variable 's'.'
             System.out.println("it is a string");
         }
     }
