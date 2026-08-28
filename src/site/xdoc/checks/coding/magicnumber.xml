@@ -138,35 +138,35 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             <tr>
               <td><a id="ignoreAnnotation"/><a href="#ignoreAnnotation">ignoreAnnotation</a></td>
               <td>Ignore magic numbers in annotation declarations.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.4</td>
             </tr>
             <tr>
               <td><a id="ignoreAnnotationElementDefaults"/><a href="#ignoreAnnotationElementDefaults">ignoreAnnotationElementDefaults</a></td>
               <td>Ignore magic numbers in annotation elements defaults.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.23</td>
             </tr>
             <tr>
               <td><a id="ignoreFieldDeclaration"/><a href="#ignoreFieldDeclaration">ignoreFieldDeclaration</a></td>
               <td>Ignore magic numbers in field declarations.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.6</td>
             </tr>
             <tr>
               <td><a id="ignoreHashCodeMethod"/><a href="#ignoreHashCodeMethod">ignoreHashCodeMethod</a></td>
               <td>Ignore magic numbers in hashCode methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td><a id="ignoreNumbers"/><a href="#ignoreNumbers">ignoreNumbers</a></td>
               <td>Specify non-magic numbers.</td>
-              <td><a href="../../property_types.html#double.5B.5D">double[]</a></td>
+              <td><a href="../../property-types.html#double.5B.5D">double[]</a></td>
               <td><code>-1, 0, 1, 2</code></td>
               <td>3.1</td>
             </tr>

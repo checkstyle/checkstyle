@@ -68,7 +68,7 @@
             <tr>
               <td><a id="treatTryResourcesAsStatement"/><a href="#treatTryResourcesAsStatement">treatTryResourcesAsStatement</a></td>
               <td>Enable resources processing.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.23</td>
             </tr>

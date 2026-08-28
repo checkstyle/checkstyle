@@ -38,7 +38,6 @@ antlib
 antlr
 ANTLRv
 antrun
-anttask
 Aop
 api
 apidocs
@@ -1577,12 +1576,8 @@ workflow
 worktree
 wq
 writetag
-writingchecks
 writingdoccomments
-writingfilefilters
-writingfilters
 writingjavadocchecks
-writinglisteners
 Wsdl
 www
 Wyq
