@@ -668,6 +668,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from imports package.
      */
     private static void fillChecksFromImportsPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("AvoidModuleImportCheck",
+                BASE_PACKAGE + ".checks.imports.AvoidModuleImportCheck");
         NAME_TO_FULL_MODULE_NAME.put("AvoidStarImportCheck",
                 BASE_PACKAGE + ".checks.imports.AvoidStarImportCheck");
         NAME_TO_FULL_MODULE_NAME.put("AvoidStaticImportCheck",
