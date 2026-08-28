@@ -91,7 +91,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * is to log violation upon encountering non-tight HTML in javadoc.
      *
      * @see ParseStatus#isNonTight()
-     * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * @see <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight HTML rules</a>
      */
     private boolean violateExecutionOnNonTightHtml;
@@ -153,7 +153,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @return true if the check should or can process javadoc containing non-tight html tags;
      *     false otherwise
      * @see ParseStatus#isNonTight()
-     * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * @see <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight HTML rules</a>
      */
     public boolean acceptJavadocWithNonTightHtml() {
@@ -163,7 +163,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * Setter to control when to print violations if the Javadoc being examined by this check
      * violates the tight html rules defined at
-     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight-HTML Rules</a>.
      *
      * @param shouldReportViolation value to which the field shall be set to
