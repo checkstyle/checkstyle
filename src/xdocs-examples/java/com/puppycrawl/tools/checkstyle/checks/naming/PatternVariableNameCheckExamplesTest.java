@@ -71,14 +71,14 @@ public class PatternVariableNameCheckExamplesTest extends AbstractExamplesModule
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase2() throws Exception {
 
         final String[] expected = {
             "37:30: " + getCheckMessage(MSG_INVALID_PATTERN, "STRING", "^([a-z][a-zA-Z0-9]*|_)$"),
             "40:31: " + getCheckMessage(MSG_INVALID_PATTERN, "num_1", "^([a-z][a-zA-Z0-9]*|_)$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
 }
