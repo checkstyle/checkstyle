@@ -96,18 +96,20 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
+      </subsection>
 
-        <p id="Example5-config">Special message if line separator is defined:</p>
+      <subsection name="Use Cases" id="NewlineAtEndOfFile_Use_Cases">
+        <p id="UseCase1-config">Special message if line separator is defined:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

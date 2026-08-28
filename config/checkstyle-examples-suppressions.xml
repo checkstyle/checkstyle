@@ -166,7 +166,7 @@
 
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
-    files="newlineatendoffile/Example\d+.*"/>
+    files="newlineatendoffile/(Example|UseCase)\d+.*"/>
 
   <!-- We need to maintain indentation on xml part -->
   <suppress checks="LineLength"

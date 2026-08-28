@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
 // xdoc section - start
-public class Example5 { // ⤶
+public class UseCase1 { // ⤶
 // ⤶
 } // violation first line 'File does not end with a newline 'crlf'.'
 // xdoc section - end
