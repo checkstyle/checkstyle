@@ -173,7 +173,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/javadocpackage",
             "checks/lineending",
             "checks/naming/patternvariablename",
-            "checks/newlineatendoffile",
             "checks/sizes/linelength",
             "checks/whitespace/emptylineseparator",
             "filters/suppresswarningsfilter"
