@@ -22,11 +22,14 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck.MSG_KEY_ANNOTATION_LOCATION_ALONE;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
@@ -351,6 +354,23 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputAnnotationLocationCompactSourceFile.java"),
             expected);
+    }
+
+    @Test
+    public void testGetAnnotationNameThrowsOnNonAnnotationNode() throws Exception {
+        final DetailAstImpl nonAnnotationNode = new DetailAstImpl();
+        nonAnnotationNode.initialize(TokenTypes.CLASS_DEF, "class");
+        final ReflectiveOperationException exception =
+                assertThrows(ReflectiveOperationException.class, () -> {
+                    TestUtil.invokeStaticMethod(AnnotationLocationCheck.class,
+                            "getAnnotationName", String.class, nonAnnotationNode);
+                });
+
+        assertWithMessage("Invalid exception cause")
+                .that(exception).hasCauseThat().isInstanceOf(IllegalStateException.class);
+        assertWithMessage("Invalid exception message")
+                .that(exception).hasCauseThat().hasMessageThat()
+                .isEqualTo("only annotations are possible");
     }
 
 }
