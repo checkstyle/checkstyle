@@ -860,7 +860,7 @@ Checkstyle ends with 6 errors.
       </p>
       <p>
         For detail reference you can see
-        <a href="./writingchecks.html#The_Checkstyle_SDK_Gui">
+        <a href="./writing-checks.html#The_Checkstyle_SDK_Gui">
           Checkstyle GUI documentation
         </a>.
       </p>
@@ -868,7 +868,8 @@ Checkstyle ends with 6 errors.
 
     <section name="Customize token types in Javadoc Checks">
       <p>
-        Java checks are controlled by methods <a href="writingchecks.html#Understanding_token_sets">
+        Java checks are controlled by methods
+        <a href="writing-checks.html#Understanding_token_sets">
           setTokens(), getDefaultTokens(), getAccessibleTokens(), getRequiredTokens(). </a>
         JavaDoc checks use the same model plus 4 additional methods for Javadoc tokens.
         By default, Javadoc checks are executed only on Javadoc tokens, but they can also be
@@ -929,13 +930,14 @@ Checkstyle ends with 6 errors.
       Javadoc Checks as well as regular Checks extend
         <a href="apidocs/com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck.html">
         AbstractCheck</a> class. So integrating a new Javadoc Check is similar to
-        <a href="writingchecks.html#Integrating_Checks">integrating other Checks</a>.
+        <a href="writing-checks.html#Integrating_Checks">integrating other Checks</a>.
       </p>
     </section>
 
     <section name="Declare check's external resource locations">
       <p>
-      See <a href="writingchecks.html#Declare_check.27s_external_resource_locations">Declare check's
+      See
+      <a href="writing-checks.html#Declare_check.27s_external_resource_locations">Declare check's
       external resource locations</a>.
       </p>
     </section>
