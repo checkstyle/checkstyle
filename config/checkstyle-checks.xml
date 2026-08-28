@@ -743,6 +743,7 @@
       <property name="option" value="top"/>
       <property name="sortStaticImportsAlphabetically" value="true"/>
     </module>
+    <module name="ModuleImportOrder"/>
     <module name="RedundantImport"/>
     <module name="UnnecessaryFullyQualifiedType"/>
     <module name="UnusedImports"/>
