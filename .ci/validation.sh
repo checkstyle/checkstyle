@@ -1402,7 +1402,6 @@ no-warning-imports-guava)
 no-warning-imports-java-design-patterns)
   PROJECTS=checks-import-order/projects-to-test-imports-java-design-patterns.properties
   CONFIG=checks-import-order/checks-imports-error-java-design-patterns.xml
-  REPORT=reports/java-design-patterns/site/index.html
   CS_POM_VERSION="$(getPomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: "${CS_POM_VERSION}"
@@ -1412,7 +1411,12 @@ no-warning-imports-java-design-patterns)
       --allowExcludes -p "$BRANCH" -r ../../..\
       --useShallowClone \
       --mode single
-  RESULT=$(grep -A 5 "&#160;Warning</td>" $REPORT | cat)
+  REPORT="reports/$BRANCH/java-design-patterns/checkstyle-result.xml"
+  if [[ ! -f "$REPORT" ]]; then
+    echo "Report does not exist: $REPORT"
+    exit 1
+  fi
+  RESULT=$(grep 'severity="warning"' "$REPORT" || true)
   cd ../../
   removeFolderWithProtectedFiles contribution
   if [ -z "$RESULT" ]; then
