@@ -147,12 +147,12 @@ public class SearchIndexGeneratorTest {
     }
 
     /**
-     * Release note pages ({@code releasenotes.xml},
-     * {@code releasenotes_old_*.xml}) must not appear in the search index.
+     * Release note pages ({@code release-notes.xml},
+     * {@code release-notes-old-*.xml}) must not appear in the search index.
      * Before the fix, all plain {@code .xml} files in the xdocs root were
      * processed without exclusion, causing release note entries to pollute
      * search results. The fix adds a
-     * {@code !name.startsWith("releasenotes")} predicate in
+     * {@code !name.startsWith("release-notes")} predicate in
      * This test ensures that predicate is never accidentally removed.
      */
     @Test
@@ -160,9 +160,9 @@ public class SearchIndexGeneratorTest {
         final Path xdocsDir = tempDir.resolve("xdocs");
         Files.createDirectories(xdocsDir);
 
-        Files.writeString(xdocsDir.resolve("releasenotes.xml"),
+        Files.writeString(xdocsDir.resolve("release-notes.xml"),
                 minimalXdoc("Release 10.21.0"));
-        Files.writeString(xdocsDir.resolve("releasenotes_old_8-0_8-34.xml"),
+        Files.writeString(xdocsDir.resolve("release-notes-old-8-0-8-34.xml"),
                 minimalXdoc("Release 8.0 to 8.34"));
 
         final Path outputFile = tempDir.resolve("search-index.json");
@@ -177,7 +177,7 @@ public class SearchIndexGeneratorTest {
         assertWithMessage(
                 "Release note pages must not produce entries in the search index")
                 .that(output)
-                .doesNotContain("releasenotes");
+                .doesNotContain("release-notes");
     }
 
 }
