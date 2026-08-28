@@ -73,8 +73,8 @@ import org.xml.sax.SAXException;
  *       results.</li>
  *
  *   <li><b>Full general-page indexing.</b> Each meaningful {@code <section>}
- *       in general documentation pages (e.g. {@code config_system_properties},
- *       {@code writingchecks}, {@code cmdline}) is indexed as its own entry
+ *       in general documentation pages (e.g. {@code config-system-properties},
+ *       {@code writing-checks}, {@code cmdline}) is indexed as its own entry
  *       with the full section text used for keyword extraction - not just the
  *       first sentence. This makes page-internal headings discoverable.</li>
  *
@@ -255,7 +255,7 @@ public final class SearchIndexGenerator {
 
     /**
      * Matches {@code config_<category>.xml} files that redirect to check category pages.
-     * Captures the category name (e.g. "metrics" from "config_metrics.xml") in group 1.
+     * Captures the category name (e.g. "metrics" from "config-metrics.xml") in group 1.
      */
     private static final Pattern CONFIG_CATEGORY =
           Pattern.compile("^config_(.+)\\.xml$");
@@ -519,7 +519,7 @@ public final class SearchIndexGenerator {
             final String name = file.getName();
             return file.isFile()
                     && PLAIN_XML.matcher(name).find()
-                    && !name.startsWith("releasenotes");
+                    && !name.startsWith("release-notes");
         });
 
         if (xmlFiles != null) {
