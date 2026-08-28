@@ -16,8 +16,8 @@ public class InputUnusedLocalVariablePatternVariables {
 
     void unusedInArrowCase(Shape s) {
         switch (s) {
-            case Circle c    -> process(s); // violation, Unused local variable 'c'
-            case Rectangle r -> process(s); // violation, Unused local variable 'r'
+            case Circle c    -> process(s); // violation 'Unused local variable 'c'.'
+            case Rectangle r -> process(s); // violation 'Unused local variable 'r'.'
             default -> { }
         }
     }
@@ -40,8 +40,8 @@ public class InputUnusedLocalVariablePatternVariables {
 
     void unusedRecordPatternArrow(Box<? extends Shape> box) {
         switch (box) {
-            case Box(Circle c)    -> process(box); // violation, Unused local variable 'c'
-            case Box(Rectangle r) -> process(box); // violation, Unused local variable 'r'
+            case Box(Circle c)    -> process(box); // violation 'Unused local variable 'c'.'
+            case Box(Rectangle r) -> process(box); // violation 'Unused local variable 'r'.'
             default -> { }
         }
     }
