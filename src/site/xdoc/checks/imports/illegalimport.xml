@@ -64,28 +64,28 @@
             <tr>
               <td><a id="illegalClasses"/><a href="#illegalClasses">illegalClasses</a></td>
               <td>Specify class names to reject, if <b>regexp</b> property is not set, checks if import equals class name. If <b>regexp</b> property is set, then list of class names will be interpreted as regular expressions. Note, all properties for match will be used.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.8</td>
             </tr>
             <tr>
               <td><a id="illegalModules"/><a href="#illegalModules">illegalModules</a></td>
               <td>Specify module names to reject, if <b>regexp</b> property is not set, checks if import equals module name. If <b>regexp</b> property is set, then list of module names will be interpreted as regular expressions. Note, all properties for match will be used.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>12.3.0</td>
             </tr>
             <tr>
               <td><a id="illegalPkgs"/><a href="#illegalPkgs">illegalPkgs</a></td>
               <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import is the part of package. If <b>regexp</b> property is set, then list of packages will be interpreted as regular expressions. Note, all properties for match will be used.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>sun</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="regexp"/><a href="#regexp">regexp</a></td>
               <td>Control whether the <code>illegalPkgs</code>, <code>illegalClasses</code> and <code>illegalModules</code> should be interpreted as regular expressions.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
             </tr>
