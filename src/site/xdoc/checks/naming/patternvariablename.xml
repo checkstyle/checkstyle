@@ -22,7 +22,6 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that have a lower case letter, followed by letters and digits, optionally separated by underscore</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check with different format for final and non-final pattern variables</a></li>
             </ul>
           </li>
           <li>
@@ -30,6 +29,7 @@
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#PatternVariableName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check to that all variables have 3 or more chars in name</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">An example of how to configure the check with different format for final and non-final pattern variables</a></li>
             </ul>
           </li>
           <li><a href="#PatternVariableName_Example_of_Usage">Example of Usage</a></li>
@@ -118,8 +118,38 @@ class Example2 {
 
   }
 }
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="PatternVariableName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check to that all variables have 3 or more
+          chars in name:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PatternVariableName"&gt;
+      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  void foo(Object o1){
+    if (o1 instanceof String STRING) {}
+    // violation above 'Name 'STRING' must match pattern*.'
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {}
+
+    if (o1 instanceof Integer n) {}
+    // violation above 'Name 'n' must match pattern*.'
+  }
+}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="UseCase2-config">
           An example of how to configure the check with different format for final and non-final
           pattern variables:
         </p>
@@ -150,9 +180,9 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase2 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
     // violation above 'Name 'STRING' must match pattern*.'
@@ -161,36 +191,6 @@ class Example3 {
     // violation above 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
 
-  }
-}
-</code></pre></div>
-      </subsection>
-
-      <subsection name="Use Cases" id="PatternVariableName_Use_Cases">
-        <p id="UseCase1-config">
-          An example of how to configure the check to that all variables have 3 or more
-          chars in name:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="PatternVariableName"&gt;
-      &lt;property name="format" value="^[a-z][_a-zA-Z0-9]{2,}$"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="UseCase1-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class UseCase1 {
-  void foo(Object o1){
-    if (o1 instanceof String STRING) {}
-    // violation above 'Name 'STRING' must match pattern*.'
-    if (o1 instanceof Integer num) {}
-    if (o1 instanceof Integer num_1) {}
-
-    if (o1 instanceof Integer n) {}
-    // violation above 'Name 'n' must match pattern*.'
   }
 }
 </code></pre></div>
