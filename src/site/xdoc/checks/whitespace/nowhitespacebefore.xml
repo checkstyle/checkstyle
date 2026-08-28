@@ -63,7 +63,7 @@
             <tr>
               <td><a id="allowLineBreaks"/><a href="#allowLineBreaks">allowLineBreaks</a></td>
               <td>Control whether whitespace is allowed if the token is at a linebreak.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
