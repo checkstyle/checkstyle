@@ -23,7 +23,13 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Always use Unix-style line separators</a></li>
               <li><a href="#Example4-config" class="toc-sublink">Work only on Java, XML and Cpp files</a></li>
-              <li><a href="#Example5-config" class="toc-sublink">Special message if line separator is defined</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#NewlineAtEndOfFile_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Special message if line separator is defined</a></li>
             </ul>
           </li>
           <li><a href="#NewlineAtEndOfFile_Example_of_Usage">Example of Usage</a></li>
@@ -181,9 +187,11 @@ int main() { // ⤶
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 Sample txt file. // ok, this file is not specified in the config.
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
 
-        <p id="Example5-config">Special message if line separator is defined:</p>
+      <subsection name="Use Cases" id="NewlineAtEndOfFile_Use_Cases">
+        <p id="UseCase1-config">Special message if line separator is defined:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="NewlineAtEndOfFile"&gt;
@@ -191,9 +199,9 @@ Sample txt file. // ok, this file is not specified in the config.
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 { // ⤶
+public class UseCase1 { // ⤶
 // ⤶
 } // violation first line 'File does not end with a newline 'crlf'.'
 </code></pre></div>
