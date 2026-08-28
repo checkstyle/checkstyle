@@ -66,7 +66,7 @@
         </macro><hr class="example-separator"/>
         <p>
           Checkstyle provides <a href="https://checkstyle.org/cmdline.html">command line tool</a>
-          and <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">GUI
+          and <a href="https://checkstyle.org/writing-checks.html#The_Checkstyle_SDK_Gui">GUI
           application</a> with options to show AST and to ease usage of Xpath queries.
         </p>
         <p><b>-T</b> option prints AST tree of the checked file.</p>

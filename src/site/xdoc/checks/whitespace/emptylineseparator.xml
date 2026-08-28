@@ -76,21 +76,21 @@
             <tr>
               <td><a id="allowMultipleEmptyLines"/><a href="#allowMultipleEmptyLines">allowMultipleEmptyLines</a></td>
               <td>Allow multiple empty lines between class members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.3</td>
             </tr>
             <tr>
               <td><a id="allowMultipleEmptyLinesInsideClassMembers"/><a href="#allowMultipleEmptyLinesInsideClassMembers">allowMultipleEmptyLinesInsideClassMembers</a></td>
               <td>Allow multiple empty lines inside class members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.18</td>
             </tr>
             <tr>
               <td><a id="allowNoEmptyLineBetweenFields"/><a href="#allowNoEmptyLineBetweenFields">allowNoEmptyLineBetweenFields</a></td>
               <td>Allow no empty line between fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
