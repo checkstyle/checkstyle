@@ -67,15 +67,15 @@ public class DesignForExtensionCheckExamplesTest extends AbstractExamplesModuleT
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "18:3: " + getCheckMessage(MSG_KEY, "Example4", "m1"),
-            "21:3: " + getCheckMessage(MSG_KEY, "Example4", "m2"),
-            "38:3: " + getCheckMessage(MSG_KEY, "Example4", "m7"),
-            "46:3: " + getCheckMessage(MSG_KEY, "Example4", "toString"),
+            "18:3: " + getCheckMessage(MSG_KEY, "UseCase1", "m1"),
+            "21:3: " + getCheckMessage(MSG_KEY, "UseCase1", "m2"),
+            "38:3: " + getCheckMessage(MSG_KEY, "UseCase1", "m7"),
+            "46:3: " + getCheckMessage(MSG_KEY, "UseCase1", "toString"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
