@@ -25,7 +25,7 @@ public class InputUnusedLocalVariablePatternVariables2 {
 
     void unusedInColonCase(Object obj) {
         switch (obj) {
-            case String s: // violation, Unused local variable 's'
+            case String s: // violation 'Unused local variable 's'.'
                 System.out.println("string");
                 break;
             default:
@@ -44,7 +44,7 @@ public class InputUnusedLocalVariablePatternVariables2 {
     }
 
     void unusedInstanceof(Object obj) {
-        if (obj instanceof String s) { // violation, Unused local variable 's'
+        if (obj instanceof String s) { // violation 'Unused local variable 's'.'
             System.out.println("it is a string");
         }
     }

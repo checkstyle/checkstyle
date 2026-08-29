@@ -16,8 +16,8 @@ public class InputUnusedLocalVariablePatternVariablesAllowUnnamed {
 
     void unusedNamedPatternVar(Shape s) {
         switch (s) {
-            case Circle    c -> process(s); // violation, unused named local variable 'c'
-            case Rectangle r -> process(s); // violation, unused named local variable 'r'
+            case Circle    c -> process(s); // violation 'Unused named local variable 'c'.'
+            case Rectangle r -> process(s); // violation 'Unused named local variable 'r'.'
         }
         switch (s) {
             case Circle    _ -> process(s);
@@ -27,8 +27,8 @@ public class InputUnusedLocalVariablePatternVariablesAllowUnnamed {
 
     void unusedNamedRecordPattern(Box<? extends Shape> box) {
         switch (box) {
-            case Box(Circle    c) -> process(box); // violation, unused named local variable 'c'
-            case Box(Rectangle r) -> process(box); // violation, unused named local variable 'r'
+            case Box(Circle    c) -> process(box); // violation 'Unused named local variable 'c'.'
+            case Box(Rectangle r) -> process(box); // violation 'Unused named local variable 'r'.'
             default -> {
 
             }
@@ -43,7 +43,7 @@ public class InputUnusedLocalVariablePatternVariablesAllowUnnamed {
     }
 
     void unusedNamedInstanceof(Object obj) {
-        if (obj instanceof String s) { // violation, unused named local variable 's'
+        if (obj instanceof String s) { // violation 'Unused named local variable 's'.'
             System.out.println("it is a string");
         }
         if (obj instanceof String t) {
@@ -54,7 +54,7 @@ public class InputUnusedLocalVariablePatternVariablesAllowUnnamed {
    void namedloops() {
         int[] orderIDs = {34, 45, 23, 27, 15};
         int total = 0;
-        for (int id : orderIDs) { // violation, unused named local variable 'id'
+        for (int id : orderIDs) { // violation 'Unused named local variable 'id'.'
             total++;
         }
         System.out.println("Total: " + total);
