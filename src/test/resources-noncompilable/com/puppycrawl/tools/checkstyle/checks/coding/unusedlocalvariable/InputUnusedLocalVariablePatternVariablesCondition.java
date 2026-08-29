@@ -17,10 +17,10 @@ public class InputUnusedLocalVariablePatternVariablesCondition {
     record Rectangle(ColoredPoint upperLeft, ColoredPoint lowerRight) {}
 
     public void patternVariableConditionalStatements(Ball ball) {
-        if (ball instanceof RedBall redBall) { // violation, unused local variable 'redBall'
+        if (ball instanceof RedBall redBall) { // violation 'Unused local variable 'redBall'.'
             process(ball);
         } else if (ball instanceof GreenBall greenBall) {
-            stopProcessing(ball); // violation above, unused local variable 'greenBall'
+            stopProcessing(ball); // violation above 'Unused local variable 'greenBall'.'
         }
         if (ball instanceof RedBall _) {
             process(ball);
@@ -38,7 +38,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition {
     }
 
     public void patternVariableNegatedInstanceofUnused(Ball ball) {
-        if (!(ball instanceof RedBall redBall)) { // violation, unused local variable 'redBall'
+        if (!(ball instanceof RedBall redBall)) { // violation 'Unused local variable 'redBall'.'
             process(ball);
         }
     }
@@ -52,16 +52,16 @@ public class InputUnusedLocalVariablePatternVariablesCondition {
     }
 
     public void patternVariableNegatedInstanceofRecordUnused(Box<? extends Ball> box) {
-        if (!(box instanceof Box(RedBall redBall))) { // violation, unused local variable 'redBall'
+        if (!(box instanceof Box(RedBall redBall))) { // violation 'local variable 'redBall''
             process(box);
         }
     }
 
     public void patternVariableInRecordPatternConditional(Box<? extends Ball> box) {
-        if (box instanceof Box(RedBall redBall)) { // violation, unused local variable 'redBall'
+        if (box instanceof Box(RedBall redBall)) { // violation 'Unused local variable 'redBall'.'
             process(box);
         } else if (box instanceof Box(GreenBall greenBall)) {
-            stopProcessing(box); // violation above, unused local variable 'greenBall'
+            stopProcessing(box); // violation above 'Unused local variable 'greenBall'.'
         }
         if (box instanceof Box(RedBall _)) {
             process(box);
@@ -78,7 +78,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition {
 
     public void patternVariableNestedRecordPatterns(Object o) {
         if (o instanceof Rectangle(ColoredPoint(int p, int x, String c),
-                ColoredPoint lr)) { // violation, unused local variable 'lr'
+                ColoredPoint lr)) { // violation 'Unused local variable 'lr'.'
             System.out.println(p + "" + x + c);
         }
         if (o instanceof Rectangle(ColoredPoint(int p, int x, String c), ColoredPoint _)) {
