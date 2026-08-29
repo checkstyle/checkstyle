@@ -328,7 +328,7 @@ class Example4 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AnnotationLocation"&gt;
-      &lt;property name="allowSamelineMultipleAnnotations" value="false"/&gt;
+      &lt;property name="allowSamelineSingleParameterlessAnnotation" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -339,7 +339,7 @@ class Example5 {
   @Nonnull
   private boolean field1;
   @Override public int hashCode() { return 1; }
-
+  // violation above 'Annotation 'Override' should be alone on line'
   @Nonnull
   private boolean field2;
   @Override
@@ -350,7 +350,7 @@ class Example5 {
   // violation above 'Annotation 'SuppressWarnings' should be alone on line'
   @SuppressWarnings("deprecation") public int foo() { return 1; }
   // violation above 'Annotation 'SuppressWarnings' should be alone on line'
-  @Nonnull @Mock DataLoader loader3;
+  @Nonnull @Mock DataLoader loader3; // violation ''Nonnull' should be alone on line'
   // violation above 'Annotation 'Mock' should be alone on line'
 }
 </code></pre></div>
