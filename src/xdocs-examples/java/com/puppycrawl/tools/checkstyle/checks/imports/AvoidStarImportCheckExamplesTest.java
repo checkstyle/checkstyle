@@ -75,21 +75,21 @@ public class AvoidStarImportCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "17:29: " + getCheckMessage(MSG_KEY, "java.lang.Math.*"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "18:17: " + getCheckMessage(MSG_KEY, "java.util.*"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
     @Test
