@@ -75,20 +75,23 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example3.java"/>
             <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="DesignForExtension_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc which can span multiple lines to be designed for extension.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/Example4.java"/>
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/design/designforextension/UseCase1.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>

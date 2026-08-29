@@ -23,7 +23,13 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">Allow methods which have @Override annotations to be designed for extension.</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Allow methods which contain a specified comment text pattern in their javadoc to be designed for extension.</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">Allow methods which contain a specified comment text pattern in their javadoc which can span multiple lines to be designed for extension.</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#DesignForExtension_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Allow methods which contain a specified comment text pattern in their javadoc which can span multiple lines to be designed for extension.</a></li>
             </ul>
           </li>
           <li><a href="#DesignForExtension_Example_of_Usage">Example of Usage</a></li>
@@ -345,8 +351,11 @@ public abstract class Example3 {
     return "";
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="DesignForExtension_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to allow methods which contain a specified comment text pattern in
           their javadoc which can span multiple lines to be designed for extension.
         </p>
@@ -360,9 +369,9 @@ public abstract class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public abstract class Example4 {
+public abstract class UseCase1 {
   private int bar;
 
   // violation below ''m1' does not have javadoc that explains how to do that safely'

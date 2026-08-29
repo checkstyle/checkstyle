@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 // xdoc section - start
-public abstract class Example4 {
+public abstract class UseCase1 {
   private int bar;
 
   // violation below ''m1' does not have javadoc that explains how to do that safely'
