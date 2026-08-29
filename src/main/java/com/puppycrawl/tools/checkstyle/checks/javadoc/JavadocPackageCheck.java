@@ -88,6 +88,10 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+        // A modular compilation unit is not a package member (JLS 7.3).
+        if ("module-info.java".equals(file.getName())) {
+            return;
+        }
         // Check if already processed directory
         final File dir;
         try {
