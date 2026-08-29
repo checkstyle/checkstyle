@@ -54,7 +54,7 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of outer types allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>5.0</td>
             </tr>

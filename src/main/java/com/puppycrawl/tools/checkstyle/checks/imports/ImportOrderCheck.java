@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <li>
  * arrange static imports: ensures the relative order between type imports and static imports
  * (see
- * <a href="https://checkstyle.org/property_types.html#ImportOrderOption">ImportOrderOption</a>)
+ * <a href="https://checkstyle.org/property-types.html#ImportOrderOption">ImportOrderOption</a>)
  * </li>
  * </ul>
  *

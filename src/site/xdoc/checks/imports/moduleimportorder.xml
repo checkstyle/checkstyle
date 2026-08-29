@@ -75,14 +75,14 @@
             <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on the position of module imports relative to type and static imports.</td>
-              <td><a href="../../property_types.html#ModuleImportOrderOption">ModuleImportOrderOption</a></td>
+              <td><a href="../../property-types.html#ModuleImportOrderOption">ModuleImportOrderOption</a></td>
               <td><code>top</code></td>
               <td>14.1.0</td>
             </tr>
             <tr>
               <td><a id="separated"/><a href="#separated">separated</a></td>
               <td>Control whether the module import block should be separated from type and static imports by, at least, one blank line or comment.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>14.1.0</td>
             </tr>
