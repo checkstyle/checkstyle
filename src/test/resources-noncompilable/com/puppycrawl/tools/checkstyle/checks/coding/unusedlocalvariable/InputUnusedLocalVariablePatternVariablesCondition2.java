@@ -21,7 +21,8 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
     }
 
     public void patternVariableNegatedNestedRecordOneUnused(Object o) {
-        if (!(o instanceof Rectangle(ColoredPoint ul, ColoredPoint lr))) { // violation 'lr'
+        // violation below 'Unused local variable 'lr'.'
+        if (!(o instanceof Rectangle(ColoredPoint ul, ColoredPoint lr))) {
             System.out.println("not a rectangle");
         } else {
             System.out.println(ul);
@@ -41,7 +42,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
     }
 
     public void patternVariableUnusedWithNestedBlock(Object o) {
-        if (o instanceof String s) { // violation, unused local variable 's'
+        if (o instanceof String s) { // violation 'Unused local variable 's'.'
             System.out.println("it is a string");
             if (o.hashCode() > 0) {
                 System.out.println("positive hash");
@@ -56,7 +57,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
     }
 
     public void patternVariableMixedUsage(Object o1, Object o2) {
-        if (o1 instanceof String s1) { // violation, unused local variable 's1'
+        if (o1 instanceof String s1) { // violation 'Unused local variable 's1'.'
             System.out.println("string 1");
         }
         if (o2 instanceof Integer i2) {
@@ -77,7 +78,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
    void namedloops() {
         int[] orderIDs = {34, 45, 23, 27, 15};
         int total = 0;
-        for (int id : orderIDs) { // violation 'Unused local variable'
+        for (int id : orderIDs) { // violation 'Unused local variable 'id'.'
             total++;
         }
         System.out.println("Total: " + total);
@@ -86,7 +87,7 @@ public class InputUnusedLocalVariablePatternVariablesCondition2 {
    void unnamedloops() {
         int[] orderIDs = {34, 45, 23, 27, 15};
         int total = 0;
-        for (int _ : orderIDs) { // violation, unused named local variable '_'
+        for (int _ : orderIDs) { // violation 'Unused local variable '_'.'
             total++;
         }
         System.out.println("Total: " + total);
