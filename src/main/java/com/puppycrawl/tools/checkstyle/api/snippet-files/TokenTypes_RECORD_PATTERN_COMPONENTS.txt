@@ -1,0 +1,70 @@
+|--RECORD_DEF -> RECORD_DEF
+|   |--MODIFIERS -> MODIFIERS
+|   |--LITERAL_RECORD -> record
+|   |--IDENT -> R
+|   |--LPAREN -> (
+|   |--RECORD_COMPONENTS -> RECORD_COMPONENTS
+|   |   `--RECORD_COMPONENT_DEF -> RECORD_COMPONENT_DEF
+|   |       |--ANNOTATIONS -> ANNOTATIONS
+|   |       |--TYPE -> TYPE
+|   |       |   `--IDENT -> Object
+|   |       `--IDENT -> o
+|   |--RPAREN -> )
+|   `--OBJBLOCK -> OBJBLOCK
+|       |--LCURLY -> {
+|       `--RCURLY -> }
+|--LITERAL_IF -> if
+|   |--LPAREN -> (
+|   |--EXPR -> EXPR
+|   |   `--LITERAL_INSTANCEOF -> instanceof
+|   |       |--IDENT -> o
+|   |       `--RECORD_PATTERN_DEF -> RECORD_PATTERN_DEF
+|   |           |--MODIFIERS -> MODIFIERS
+|   |           |--TYPE -> TYPE
+|   |           |   `--IDENT -> R
+|   |           |--LPAREN -> (
+|   |           |--RECORD_PATTERN_COMPONENTS -> RECORD_PATTERN_COMPONENTS
+|   |           |   `--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
+|   |           |       |--MODIFIERS -> MODIFIERS
+|   |           |       |--TYPE -> TYPE
+|   |           |       |   `--IDENT -> String
+|   |           |       `--IDENT -> myComponent
+|   |           `--RPAREN -> )
+|   |--RPAREN -> )
+|   `--SLIST -> {
+|       `--RCURLY -> }
+|--LITERAL_SWITCH -> switch
+|   |--LPAREN -> (
+|   |--EXPR -> EXPR
+|   |   `--IDENT -> o
+|   |--RPAREN -> )
+|   |--LCURLY -> {
+|   |--SWITCH_RULE -> SWITCH_RULE
+|   |   |--LITERAL_CASE -> case
+|   |   |   `--PATTERN_DEF -> PATTERN_DEF
+|   |   |       `--LITERAL_WHEN -> when
+|   |   |           |--RECORD_PATTERN_DEF -> RECORD_PATTERN_DEF
+|   |   |           |   |--MODIFIERS -> MODIFIERS
+|   |   |           |   |--TYPE -> TYPE
+|   |   |           |   |   `--IDENT -> R
+|   |   |           |   |--LPAREN -> (
+|   |   |           |   |--RECORD_PATTERN_COMPONENTS -> RECORD_PATTERN_COMPONENTS
+|   |   |           |   |   `--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
+|   |   |           |   |       |--MODIFIERS -> MODIFIERS
+|   |   |           |   |       |--TYPE -> TYPE
+|   |   |           |   |       |   `--IDENT -> String
+|   |   |           |   |       `--IDENT -> myComponent
+|   |   |           |   `--RPAREN -> )
+|   |   |           `--METHOD_CALL -> (
+|   |   |               |--DOT -> .
+|   |   |               |   |--STRING_LITERAL -> "component"
+|   |   |               |   `--IDENT -> equalsIgnoreCase
+|   |   |               |--ELIST -> ELIST
+|   |   |               |   `--EXPR -> EXPR
+|   |   |               |       `--IDENT -> myComponent
+|   |   |               `--RPAREN -> )
+|   |   |--LAMBDA -> ->
+|   |   `--SLIST -> {
+|   |       `--RCURLY -> }
+|   `--RCURLY -> }
+`--RCURLY -> }
