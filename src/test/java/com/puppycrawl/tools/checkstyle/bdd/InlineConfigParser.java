@@ -306,9 +306,7 @@ public final class InlineConfigParser {
             "checks/coding/noclone/Example1.java",
             "checks/coding/unusedlocalvariable/Example1.java",
             "checks/sizes/recordcomponentnumber/Example2.java",
-            "checks/whitespace/separatorwrap/Example1.java",
-            "com/google/checkstyle/test/chapter5naming/rule53camelcase/"
-                    + "InputUnderscoreUsedInNames.java"
+            "checks/whitespace/separatorwrap/Example1.java"
     );
 
     /**
