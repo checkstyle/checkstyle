@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>InappropriateJavadocBlockTagsOnField</title>
+  </head>
+  <body>
+    <section name="InappropriateJavadocBlockTagsOnField">
+      <p>Since Checkstyle 14.1.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#InappropriateJavadocBlockTagsOnField_Description">Description</a></li>
+          <li><a href="#InappropriateJavadocBlockTagsOnField_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#InappropriateJavadocBlockTagsOnField_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#InappropriateJavadocBlockTagsOnField_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#InappropriateJavadocBlockTagsOnField_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#InappropriateJavadocBlockTagsOnField_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#InappropriateJavadocBlockTagsOnField_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="InappropriateJavadocBlockTagsOnField_Description">
+        <div>
+          Checks that Javadoc block tags for field declarations do not contain tags that
+          are semantically invalid for fields. Specifically, <code>@author</code>, <code>@version</code>,
+          <code>@param</code>, <code>@return</code>, <code>@throws</code>/<code>@exception</code>, <code>@uses</code>,
+          and <code>@provides</code> tags are meaningless on field declarations.
+        </div>
+
+        <p>
+          Field declarations do not have parameters, return types, or throw declarations,
+          and module/type-level tags like <code>@author</code>, <code>@version</code>, <code>@uses</code>,
+          and <code>@provides</code> are inappropriate on field declarations. Therefore, such
+          Javadoc block tags are considered inappropriate and should be removed.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="InappropriateJavadocBlockTagsOnField_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.1.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="InappropriateJavadocBlockTagsOnField_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InappropriateJavadocBlockTagsOnField"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  /**
+   * Valid Javadoc on field with appropriate tags.
+   *
+   * @since 1.0
+   * @deprecated for testing
+   * @see Object
+   * @serial field description
+   */
+  private String field1;
+
+  /**
+   * Inappropriate tags on class field.
+   *
+   * @author Author Name
+   * @version 1.0
+   * @param BAD Invalid tag for field.
+   * @return Invalid tag for field.
+   * @throws Exception Invalid tag for field.
+   * @exception Exception Invalid tag for field.
+   * @uses Service Invalid tag for field.
+   * @provides Service Invalid tag for field.
+   */
+  private String field2;
+  // 8 violations above:
+  // 'Invalid '@author' tag for 'field2'.'
+  // 'Invalid '@exception' tag for 'field2'.'
+  // 'Invalid '@param' tag for 'field2'.'
+  // 'Invalid '@provides' tag for 'field2'.'
+  // 'Invalid '@return' tag for 'field2'.'
+  // 'Invalid '@throws' tag for 'field2'.'
+  // 'Invalid '@uses' tag for 'field2'.'
+  // 'Invalid '@version' tag for 'field2'.'
+
+  interface MyInterface {
+    /**
+     * Inappropriate tags on interface field.
+     *
+     * @param BAD Invalid tag for field.
+     * @return Invalid tag for field.
+     */
+    int INT_FIELD = 0;
+    // 2 violations above:
+    // 'Invalid '@param' tag for 'INT_FIELD'.'
+    // 'Invalid '@return' tag for 'INT_FIELD'.'
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage"
+        id="InappropriateJavadocBlockTagsOnField_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InappropriateJavadocBlockTagsOnField">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+        id="InappropriateJavadocBlockTagsOnField_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.inappropriate.tag%22">
+              javadoc.inappropriate.tag
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="InappropriateJavadocBlockTagsOnField_Fully_Qualified_Name">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnFieldCheck
+        </p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="InappropriateJavadocBlockTagsOnField_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
