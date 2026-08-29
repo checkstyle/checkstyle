@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck
 
 import java.io.File;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -146,6 +147,27 @@ public class JavadocPackageCheckTest
         verifyWithInlineConfigParser(
                 getPath("annotation" + File.separator + "package-info.java"),
                 expected);
+    }
+
+    @Test
+    public void testModuleInfoFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module-info/default/module-info.java"),
+                expected);
+    }
+
+    @Test
+    public void testModuleInfoDoesNotSkipSiblingJavaFile() throws Exception {
+        final List<String> expectedFromModuleInfo = List.of();
+        final List<String> expectedFromSibling = List.of(
+                "1: " + getCheckMessage(MSG_PACKAGE_INFO));
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module-info/withfile/module-info.java"),
+                getNonCompilablePath(
+                        "module-info/withfile/InputJavadocPackageModuleInfoWithFile.java"),
+                expectedFromModuleInfo,
+                expectedFromSibling);
     }
 
 }
