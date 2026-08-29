@@ -24,9 +24,15 @@
               <li><a href="#Example2-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members from class <code>java.lang.Math</code> are allowed</a></li>
               <li><a href="#Example3-config" class="toc-sublink">So that star imports from all packages are allowed</a></li>
               <li><a href="#Example4-config" class="toc-sublink">So that starred static member imports from all packages are allowed</a></li>
-              <li><a href="#Example5-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> are allowed</a></li>
-              <li><a href="#Example6-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members imports from all packages are allowed</a></li>
               <li><a href="#Example7-config" class="toc-sublink">According to OpenJDK guidelines, where at most one star import is allowed per file</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#AvoidStarImport_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> are allowed</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">So that star imports from packages <code>java.io and java.net</code> as well as static members imports from all packages are allowed</a></li>
             </ul>
           </li>
           <li><a href="#AvoidStarImport_Example_of_Usage">Example of Usage</a></li>
@@ -189,55 +195,6 @@ import static java.lang.Math.*;
 import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
 import java.net.*; // violation 'Using the '.*' form of import should be avoided.'
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure the check so that star imports from packages
-          <code>java.io and java.net</code> are allowed:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="AvoidStarImport"&gt;
-      &lt;property name="allowClassImports" value="true"/&gt;
-      &lt;property name="excludes" value="java.io,java.net"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.util.Scanner;
-import java.io.*;
-import static java.lang.Math.*; // violation 'form of import should be avoided.'
-import java.util.*;
-import java.net.*;
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
-          To configure the check so that star imports from packages
-          <code>java.io and java.net</code> as well as static members imports
-          from all packages are allowed:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="AvoidStarImport"&gt;
-      &lt;property name="allowStaticMemberImports" value="true"/&gt;
-      &lt;property name="excludes" value="java.io,java.net"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example6-code">
-          Example:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.util.Scanner;
-import java.io.*;
-import static java.lang.Math.*;
-import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
-import java.net.*;
-</code></pre></div><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check according to
           <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
@@ -262,6 +219,58 @@ import java.io.*;
 import static java.lang.Math.*; // violation 'Only '1' star import is allowed per file.'
 import java.util.*; // violation 'Only '1' star import is allowed per file.'
 import java.net.*; // violation 'Only '1' star import is allowed per file.'
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AvoidStarImport_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="allowClassImports" value="true"/&gt;
+      &lt;property name="excludes" value="java.io,java.net"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*; // violation 'form of import should be avoided.'
+import java.util.*;
+import java.net.*;
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> as well as static members imports
+          from all packages are allowed:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AvoidStarImport"&gt;
+      &lt;property name="allowStaticMemberImports" value="true"/&gt;
+      &lt;property name="excludes" value="java.io,java.net"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.util.Scanner;
+import java.io.*;
+import static java.lang.Math.*;
+import java.util.*; // violation 'Using the '.*' form of import should be avoided.'
+import java.net.*;
 </code></pre></div>
       </subsection>
 

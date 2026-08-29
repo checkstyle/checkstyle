@@ -127,7 +127,7 @@
 
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
-    files="avoidstarimport/Example[1-6].java"/>
+    files="avoidstarimport/(Example|UseCase)[1-9].java"/>
 
   <suppress checks="CommentsIndentation"
     files="singlespaceseparator/Example[12].java"/>

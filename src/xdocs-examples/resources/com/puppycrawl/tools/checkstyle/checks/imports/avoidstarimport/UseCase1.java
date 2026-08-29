@@ -19,4 +19,4 @@ import java.util.*;
 import java.net.*;
 // xdoc section - end
 
-class Example5 {}
+class UseCase1 {}
