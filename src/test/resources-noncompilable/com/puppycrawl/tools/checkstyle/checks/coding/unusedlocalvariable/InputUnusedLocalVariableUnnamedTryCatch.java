@@ -25,7 +25,7 @@ public class InputUnusedLocalVariableUnnamedTryCatch {
         var winners = new ArrayList<Caller>();
         try {
             while (prizes > 0) {
-                Caller _ = q.remove(); // violation, unused local variable '_'
+                Caller _ = q.remove(); // violation 'Unused local variable '_'.'
                 winners.add(q.remove());
                 prizes--;
             }
