@@ -1,0 +1,12 @@
+|--LITERAL_SYNCHRONIZED -> synchronized
+|   |--LPAREN -> (
+|   |--EXPR -> EXPR
+|   |   `--LITERAL_THIS -> this
+|   |--RPAREN -> )
+|   `--SLIST -> {
+|       |--EXPR -> EXPR
+|       |   `--POST_INC -> ++
+|       |       `--IDENT -> x
+|       |--SEMI -> ;
+|       `--RCURLY -> }
+`--RCURLY -> }
