@@ -308,10 +308,7 @@ public final class InlineConfigParser {
             "checks/sizes/recordcomponentnumber/Example2.java",
             "checks/whitespace/separatorwrap/Example1.java",
             "com/google/checkstyle/test/chapter5naming/rule53camelcase/"
-                    + "InputUnderscoreUsedInNames.java",
-            "com/openjdk/checkstyle/test/chapterformatting/"
-                    + "ruleorderofconstructorsandoverloadedmethods/"
-                    + "InputOrderOfConstructorsAndOverloadedMethodsOne.java"
+                    + "InputUnderscoreUsedInNames.java"
     );
 
     /**
