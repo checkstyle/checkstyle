@@ -5701,7 +5701,7 @@ public final class TokenTypes {
      * {@snippet :
      * --BLOCK_COMMENT_BEGIN -> /*
      *    |--COMMENT_CONTENT ->  Comment content\r\n
-     *    `--BLOCK_COMMENT_END -> *
+     *    `--BLOCK_COMMENT_END -> * /
      * }
      */
     public static final int BLOCK_COMMENT_BEGIN =
@@ -5712,15 +5712,14 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>{@code
-     * /*comment
-     *  * /
+     * /*comment* /
      * }</pre>
      *
      * <p>parses as:</p>
      * {@snippet :
      * BLOCK_COMMENT_BEGIN -> /*
      *  |--COMMENT_CONTENT -> comment
-     *  `--BLOCK_COMMENT_END -> *
+     *  `--BLOCK_COMMENT_END -> * /
      * }
      *
      */
@@ -5745,7 +5744,7 @@ public final class TokenTypes {
      * |   `--COMMENT_CONTENT -> this is single-line comment\n
      * |--BLOCK_COMMENT_BEGIN -> /*
      * |   |--COMMENT_CONTENT -> \n\t\t\tthis is multiline comment\n\t\t
-     * |   `--BLOCK_COMMENT_END -> *
+     * |   `--BLOCK_COMMENT_END -> * /
      * }
      *
      */
