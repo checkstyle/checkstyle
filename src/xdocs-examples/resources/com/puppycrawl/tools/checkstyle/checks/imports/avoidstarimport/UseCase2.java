@@ -19,4 +19,4 @@ import java.util.*; // violation 'Using the '.*' form of import should be avoide
 import java.net.*;
 // xdoc section - end
 
-class Example6 {}
+class UseCase2 {}

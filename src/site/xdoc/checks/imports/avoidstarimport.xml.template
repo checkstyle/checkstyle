@@ -107,41 +107,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure the check so that star imports from packages
-          <code>java.io and java.net</code> are allowed:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example6-config">
-          To configure the check so that star imports from packages
-          <code>java.io and java.net</code> as well as static members imports
-          from all packages are allowed:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example6-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example6.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
         <p id="Example7-config">
           To configure the check according to
           <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
@@ -159,6 +124,44 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="AvoidStarImport_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> are allowed:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check so that star imports from packages
+          <code>java.io and java.net</code> as well as static members imports
+          from all packages are allowed:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/avoidstarimport/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
