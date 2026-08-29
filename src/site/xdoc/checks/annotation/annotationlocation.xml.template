@@ -100,7 +100,8 @@
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          Use the following configuration to forbid multiple annotations on the same line:
+          Use the following configuration to forbid single parameterless
+          annotation on the same line:
         </p>
         <macro name="example">
           <param name="path"
