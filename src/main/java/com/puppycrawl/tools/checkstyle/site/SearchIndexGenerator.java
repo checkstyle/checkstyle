@@ -182,9 +182,6 @@ public final class SearchIndexGenerator {
     /** Constant for the filefilters directory. */
     private static final String FILEFILTERS_DIR = "filefilters";
 
-    /** Constant for the index file name. */
-    private static final String INDEX_HTML = "index.html";
-
     /** String literal for Content. */
     private static final String CONTENT = "Content";
 
@@ -205,9 +202,6 @@ public final class SearchIndexGenerator {
 
     /** String literal for anchor separator. */
     private static final String ANCHOR_SEPARATOR = "#";
-
-    /** String literal for path separator in URLs. */
-    private static final String PATH_SEPARATOR = "/";
 
     /** String literal for the Properties subsection name fragment. */
     private static final String PROPERTIES_FRAGMENT = "propert";
@@ -252,13 +246,6 @@ public final class SearchIndexGenerator {
      */
     private static final Pattern DOC_EXTENSION =
             Pattern.compile("\\.xml$|\\.xml\\.vm$|\\.xml\\.template$");
-
-    /**
-     * Matches {@code config_<category>.xml} files that redirect to check category pages.
-     * Captures the category name (e.g. "metrics" from "config-metrics.xml") in group 1.
-     */
-    private static final Pattern CONFIG_CATEGORY =
-          Pattern.compile("^config_(.+)\\.xml$");
 
     /**
      * Matches an example paragraph {@code id} attribute that has a suffix of
@@ -600,7 +587,7 @@ public final class SearchIndexGenerator {
         final Document doc = parseXml(xmlFile);
         final Element body = requireBody(doc, xmlFile.toString());
         final NodeList sections = body.getElementsByTagName(SECTION);
-        final String pageUrl = resolvePageUrl(xmlFile, xmlFile.getParentFile());
+        final String pageUrl = buildUrl(xmlFile, xmlFile.getParentFile());
         final String pageTitle = derivePageTitle(doc, xmlFile);
         final int generalWeight = getWeightForType(GENERAL);
 
@@ -1135,30 +1122,6 @@ public final class SearchIndexGenerator {
                 .toString()
                 .replace(File.separatorChar, '/')
                 .replaceFirst(DOC_EXTENSION.pattern(), ".html");
-    }
-
-    /**
-     * Resolves the correct URL for a general page file. For {@code config_<category>.xml} files
-     * that redirect to check category pages, maps to {@code checks/<category>/index.html} instead
-     * of the file path.
-     *
-     * @param xmlFile  the source XDoc file
-     * @param xdocsDir the xdocs root directory
-     * @return the resolved URL
-     */
-    private static String resolvePageUrl(File xmlFile, File xdocsDir) {
-        String url = buildUrl(xmlFile, xdocsDir);
-        final Matcher matcher = CONFIG_CATEGORY.matcher(xmlFile.getName());
-        if (matcher.find()) {
-            final String category = matcher.group(1);
-            if (CHECKS_CATEGORY_DISPLAY_NAMES.containsKey(category)) {
-                url = CHECKS + PATH_SEPARATOR + category + PATH_SEPARATOR + INDEX_HTML;
-            }
-            else if (FILTERS_DIR.equals(category) || FILEFILTERS_DIR.equals(category)) {
-                url = category + PATH_SEPARATOR + INDEX_HTML;
-            }
-        }
-        return url;
     }
 
     /**

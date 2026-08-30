@@ -19,7 +19,7 @@ window.addEventListener("load", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     const url = new URL(window.location.href);
-    if (!url.pathname.endsWith("/releasenotes.html")
+    if (!url.pathname.endsWith("/release-notes.html")
             || !url.hash.startsWith("#Release_")
             || document.getElementById(url.hash.replace("#", ""))) {
         return;
@@ -45,73 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     else if (major >= 8 && major <= 10) {
         window.location.replace(`./release-notes-old-8-35-10-26.html${url.hash}`);
-    }
-});
-
-window.addEventListener("load", function () {
-    const currentUrl = window.location.href;
-
-    if (currentUrl.endsWith("/checks/") || currentUrl.endsWith("/checks/index.html")) {
-        window.location.replace("../checks.html");
-    }
-    else if (document.title.startsWith("Redirecting to checks")) {
-        const urlObj = new URL(currentUrl);
-        const pathSegments = urlObj.pathname.split("/");
-        const configHtmlFile = pathSegments[pathSegments.length - 1];
-        const checkType = /config_([a-z]+).html/.exec(configHtmlFile)[1];
-        const checkName = urlObj.hash.substring(1).toLowerCase();
-
-        if (checkName) {
-            if (checkType !== "filters" && checkType !== "filefilters") {
-                window.location.replace(`./checks/${checkType}/${checkName}.html`);
-            }
-            else {
-                window.location.replace(`./${checkType}/${checkName}.html`);
-            }
-        }
-        else {
-            if (checkType !== "filters" && checkType !== "filefilters") {
-                window.location.replace(`./checks/${checkType}`);
-            }
-            else {
-                window.location.replace(`./${checkType}`);
-            }
-        }
-    }
-    else if (document.title.startsWith("Redirecting")) {
-        const urlObj = new URL(currentUrl);
-        const pathSegments = urlObj.pathname.split("/");
-        const oldHtmlFile = pathSegments[pathSegments.length - 1];
-
-        const redirectMap = {
-            "google_style.html": "google-style.html",
-            "openjdk_style.html": "openjdk-style.html",
-            "sun_style.html": "sun-style.html",
-            "property_types.html": "property-types.html",
-            "releasenotes.html": "release-notes.html",
-            "report_issue.html": "report-issue.html",
-            "result_reports.html": "result-reports.html",
-            "style_configs.html": "style-configs.html",
-            "writingchecks.html": "writing-checks.html",
-            "writingfilefilters.html": "writing-filefilters.html",
-            "writingfilters.html": "writing-filters.html",
-            "writingjavadocchecks.html": "writing-javadoc-checks.html",
-            "writinglisteners.html": "writing-listeners.html",
-            "anttask.html": "ant-task.html",
-            "beginning_development.html": "beginning-development.html",
-            "doc_comments_style.html": "doc-comments-style.html"
-        };
-
-        if (redirectMap[oldHtmlFile]) {
-            const newUrl = `./${redirectMap[oldHtmlFile]}${urlObj.hash}`;
-
-            const section = document.querySelector("section[name='Redirecting'] p");
-            if (section) {
-                section.innerHTML = `Redirecting to <a href="${newUrl}">${redirectMap[oldHtmlFile]}</a>`;
-            }
-
-            window.location.replace(newUrl);
-        }
     }
 });
 
