@@ -23,7 +23,13 @@
               <li><a href="#Example1-config" class="toc-sublink">Enforce LF (Unix-style) line endings</a></li>
               <li><a href="#Example2-config" class="toc-sublink">Enforce CRLF (Windows-style) line endings</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Enforce CR line endings for Java files only</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">Enforce CR line endings for TXT files only</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LineEnding_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Enforce CR line endings for TXT files only</a></li>
             </ul>
           </li>
           <li><a href="#LineEnding_Example_of_Usage">Example of Usage</a></li>
@@ -135,9 +141,11 @@ public class Example3 {  // ␊ // violation 'Expected line ending for file is C
     int x = 1; // ␊           // violation 'Expected line ending for file is CR, but LF is detected.'
   } // ␊                      // violation 'Expected line ending for file is CR, but LF is detected.'
 } // ␊                        // violation 'Expected line ending for file is CR, but LF is detected.'
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
 
-        <p id="Example4-config">
+      <subsection name="Use Cases" id="LineEnding_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to enforce CR line endings for TXT files only:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -148,11 +156,11 @@ public class Example3 {  // ␊ // violation 'Expected line ending for file is C
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
           Example (Java file with LF line endings - no violations, as only TXT files are checked):
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {  // ␊ // ok, only .txt files are checked
+public class UseCase1 {  // ␊ // ok, only .txt files are checked
   public void method() { // ␊ // ok, only .txt files are checked
     int x = 1; // ␊           // ok, only .txt files are checked
   } // ␊                      // ok, only .txt files are checked

@@ -85,11 +85,11 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("Example4.java"), expected
+                getPath("UseCase1.java"), expected
         );
     }
 

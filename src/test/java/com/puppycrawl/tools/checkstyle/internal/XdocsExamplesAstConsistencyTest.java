@@ -169,7 +169,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/javadoc/atclauseorder",
             "checks/javadoc/javadocblocktaglocation",
             "checks/javadoc/javadocpackage",
-            "checks/lineending",
             "checks/sizes/linelength",
             "checks/whitespace/emptylineseparator",
             "filters/suppresswarningsfilter"
