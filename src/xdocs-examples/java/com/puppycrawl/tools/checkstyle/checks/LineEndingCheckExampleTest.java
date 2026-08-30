@@ -55,7 +55,7 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
@@ -80,16 +80,16 @@ public class LineEndingCheckExampleTest extends AbstractExamplesModuleTestSuppor
         checkConfig.addProperty("fileExtensions", "java");
 
         verify(checkConfig,
-                getPath("Example3.java"), expected
+                getPath("UseCase1.java"), expected
         );
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getPath("Example4.java"), expected
+                getPath("Example3.java"), expected
         );
     }
 
