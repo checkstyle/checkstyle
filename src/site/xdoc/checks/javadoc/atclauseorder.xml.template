@@ -79,23 +79,26 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="AtclauseOrder_Use_Cases">
+        <p id="UseCase1-config">
             To configure the check such that it targets only classes, with a
             custom tag order:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
           Results in the following violation, as only the class-level javadoc is
           checked and its tags do not follow the custom order:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/atclauseorder/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

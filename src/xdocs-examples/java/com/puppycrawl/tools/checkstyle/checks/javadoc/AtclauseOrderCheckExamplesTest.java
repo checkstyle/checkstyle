@@ -76,7 +76,7 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String tagOrder = "[@version, @author, @param, @return"
             + ", @throws, @exception,"
             + " @see, @since, @serial, @serialField, @serialData]";
@@ -85,7 +85,7 @@ public class AtclauseOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
             "23: " + getCheckMessage(MSG_KEY, tagOrder),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
