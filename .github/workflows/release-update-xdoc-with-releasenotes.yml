@@ -1,5 +1,5 @@
 #############################################################################
-# GitHub Action to Commit and Push Release Notes to releasenotes.xml File.
+# GitHub Action to Commit and Push Release Notes to release-notes.xml File.
 #
 #############################################################################
 name: "R: Update xdoc with Release Notes"
