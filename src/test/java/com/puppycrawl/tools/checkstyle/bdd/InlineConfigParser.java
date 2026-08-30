@@ -304,7 +304,6 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
             "checks/coding/equalshashcode/Example1.java",
             "checks/coding/noclone/Example1.java",
-            "checks/coding/unusedlocalvariable/Example1.java",
             "checks/sizes/recordcomponentnumber/Example2.java",
             "checks/whitespace/separatorwrap/Example1.java"
     );
