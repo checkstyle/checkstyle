@@ -70,7 +70,7 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "11: " + getCheckMessage(MSG_KEY, 60, 64),
             "17: " + getCheckMessage(MSG_KEY, 60, 84),
@@ -79,15 +79,15 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
             "33: " + getCheckMessage(MSG_KEY, 60, 89),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "29: " + getCheckMessage(MSG_KEY, 84, 92),
         };
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
 }
