@@ -1974,7 +1974,7 @@
                 <exclude>src/test/resources/**</exclude>
                 <exclude>src/xdocs-examples/resources/**</exclude>
                 <!-- Generated files -->
-                <exclude>src/site/xdoc/releasenotes.xml</exclude>
+                <exclude>src/site/xdoc/release-notes.xml</exclude>
                 <exclude>src/site/xdoc/releasenotes_old*.xml</exclude>
                 <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**</exclude>
               </excludes>
