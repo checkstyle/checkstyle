@@ -23,7 +23,13 @@
               <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
               <li><a href="#Example2-config" class="toc-sublink">Such that it checks in the custom order</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Such that it targets only enums</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">Such that it targets only classes, with a custom tag order</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#AtclauseOrder_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Such that it targets only classes, with a custom tag order</a></li>
             </ul>
           </li>
           <li><a href="#AtclauseOrder_Example_of_Usage">Example of Usage</a></li>
@@ -274,8 +280,11 @@ public class Example3 {
   }
 
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AtclauseOrder_Use_Cases">
+        <p id="UseCase1-config">
             To configure the check such that it targets only classes, with a
             custom tag order:
         </p>
@@ -292,7 +301,7 @@ public class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
           Results in the following violation, as only the class-level javadoc is
           checked and its tags do not follow the custom order:
         </p>
@@ -313,7 +322,7 @@ public class Example3 {
 * @serialField field Object Field description.
 * @serialData
 */
-public class Example4 {
+public class UseCase1 {
   class Valid implements Serializable {}
 
   // ok below, ENUM_DEF is not checked because target is CLASS_DEF

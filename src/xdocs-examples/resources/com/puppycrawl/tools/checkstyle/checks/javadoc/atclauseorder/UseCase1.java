@@ -31,7 +31,7 @@ import java.io.Serializable;
 * @serialField field Object Field description.
 * @serialData
 */
-public class Example4 {
+public class UseCase1 {
   class Valid implements Serializable {}
 
   // ok below, ENUM_DEF is not checked because target is CLASS_DEF
