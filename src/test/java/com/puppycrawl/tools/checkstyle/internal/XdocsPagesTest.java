@@ -290,23 +290,7 @@ public class XdocsPagesTest {
         "config.xml",
         "report-issue.xml",
         "result-reports.xml",
-        "xpath.xml",
-        "google_style.xml",
-        "openjdk_style.xml",
-        "sun_style.xml",
-        "property_types.xml",
-        "releasenotes.xml",
-        "report_issue.xml",
-        "result_reports.xml",
-        "style_configs.xml",
-        "writingchecks.xml",
-        "writingfilefilters.xml",
-        "writingfilters.xml",
-        "writingjavadocchecks.xml",
-        "writinglisteners.xml",
-        "anttask.xml",
-        "beginning_development.xml",
-        "doc_comments_style.xml"
+        "xpath.xml"
     );
 
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
@@ -342,31 +326,10 @@ public class XdocsPagesTest {
                     .replace(".xml", ".html")
                     .replaceAll("\\\\", "/")
                     .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "");
-            final boolean isConfigHtmlFile = Pattern.matches("config_[a-z]+.html", expectedFile);
-            final boolean isChecksIndexHtmlFile = "checks/index.html".equals(expectedFile);
             final boolean isOldReleaseNotes = path.toString().contains("release-notes-");
             final boolean isInnerPage = "report-issue.html".equals(expectedFile);
-            final boolean isRedirectStub = Set.of(
-                    "google_style.html",
-                    "openjdk_style.html",
-                    "sun_style.html",
-                    "property_types.html",
-                    "releasenotes.html",
-                    "report_issue.html",
-                    "result_reports.html",
-                    "style_configs.html",
-                    "writingchecks.html",
-                    "writingfilefilters.html",
-                    "writingfilters.html",
-                    "writingjavadocchecks.html",
-                    "writinglisteners.html",
-                    "anttask.html",
-                    "beginning_development.html",
-                    "doc_comments_style.html"
-            ).contains(expectedFile);
 
-            if (!isConfigHtmlFile && !isChecksIndexHtmlFile
-                && !isOldReleaseNotes && !isInnerPage && !isRedirectStub) {
+            if (!isOldReleaseNotes && !isInnerPage) {
                 final String expectedLink = String.format(Locale.ROOT, "href=\"%s\"", expectedFile);
                 assertWithMessage("Expected to find link to '%s' in %s", expectedLink, SITE_PATH)
                         .that(siteContent)

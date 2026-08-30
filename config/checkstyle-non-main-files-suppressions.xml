@@ -441,11 +441,6 @@
   <!-- If files names are wrapped then they through error at time of report generation -->
   <suppress id="lineLength" files="config/list-of-projects.yml"/>
 
-  <!-- files used for redirection to not break old links -->
-  <suppress id="siteXmlFileNaming"
-    files="src/site/xdoc/config_.*\.xml"/>
-  <suppress id="siteXmlFileNaming"
-    files="src/site/xdoc/.*_.*\.(xml|html)"/>
   <!-- file name uses underscores instead of hyphens -->
   <suppress id="siteXmlFileNaming"
     files="src/site/resources/files/suppressions_none\.xml"/>
