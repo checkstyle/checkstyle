@@ -17,7 +17,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
 // xdoc section - start
-class Example3 {
+class UseCase1 {
   /**
    * Escaped tag &#64;version (OK)
    * Plain text with {@code @see} (OK)

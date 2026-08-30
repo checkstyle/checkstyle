@@ -22,7 +22,13 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
               <li><a href="#Example2-config" class="toc-sublink">Verify tags from JEP 8068562 only</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">Verify all default tags and some custom tags in addition</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#JavadocBlockTagLocation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Verify all default tags and some custom tags in addition</a></li>
             </ul>
           </li>
           <li><a href="#JavadocBlockTagLocation_Example_of_Usage">Example of Usage</a></li>
@@ -163,8 +169,11 @@ class Example2 {
     return 0;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="JavadocBlockTagLocation_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -182,9 +191,9 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   /**
    * Escaped tag &amp;#64;version (OK)
    * Plain text with {@code @see} (OK)
