@@ -29,7 +29,7 @@ public class Example1 {
   }
 
   String convertValue(String newValue) {
-    String s = newValue.toLowerCase(); // violation 'Unused named local variable 's'.'
+    String s = newValue.toLowerCase(); // violation 'Unused named local variable 's''
     String _ = newValue.toLowerCase(); // ok, '_' is unnamed variable
     return newValue.toLowerCase();
   }
