@@ -20,7 +20,7 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
  * This is a short Javadoc comment.
  * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
  */
-class Example6 {
+class UseCase2 {
 
   void testMethod(String str) {
     str = MSG_KEY;
