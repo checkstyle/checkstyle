@@ -202,7 +202,7 @@
 
   <!-- Can't add violations to another lines because of design of the check. -->
   <suppress checks="LineLength"
-            files="lineending/UseCase1.java"/>
+            files="lineending/Example3.java"/>
   <suppress checks="LineLength"
             files="overloadmethodsdeclarationorder/Example2.java"/>
 
