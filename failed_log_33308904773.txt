@@ -1,0 +1,1406 @@
+test (indentation)	UNKNOWN STEP	﻿2026-08-30T11:26:52.3444725Z Current runner version: '2.336.0'
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3472653Z ##[group]Runner Image Provisioner
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3473698Z Hosted Compute Agent
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3474641Z Version: 20260819.586
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3475410Z Commit: 3cc4a88dfa507ef76119ad1bb3eccc6378bb2b76
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3476380Z Build Date: 2026-08-18T23:20:18Z
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3477257Z Worker ID: {439ae354-0440-4143-84ec-93dc7393de29}
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3478316Z Azure Region: northcentralus
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3479273Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3480845Z ##[group]Operating System
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3481724Z Ubuntu
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3482378Z 24.04.4
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3483002Z LTS
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3483818Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3484648Z ##[group]Runner Image
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3485451Z Image: ubuntu-24.04
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3486241Z Version: 20260823.283.1
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3487809Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260823.283/images/ubuntu/Ubuntu2404-Readme.md
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3489916Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260823.283
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3491298Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3492748Z ##[group]GITHUB_TOKEN Permissions
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3495056Z Contents: read
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3495553Z Metadata: read
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3496002Z Packages: read
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3496515Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3498270Z Secret source: None
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3499388Z Prepare workflow directory
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3802125Z Prepare all required actions
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.3855542Z Getting action download info
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:52.5937518Z Download action repository 'actions/setup-java@v6.0.0' (SHA:dd06d9cba3e5552c54d9f8ea23572deb30010f7c)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.1774835Z Download action repository 'actions/cache@v6' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.3274428Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.3565524Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5195810Z Complete job name: test (indentation)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5877486Z ##[group]Run actions/setup-java@v6.0.0
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5878210Z with:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5878580Z   java-version: 21
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5878982Z   distribution: temurin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5879382Z   java-package: jdk
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5879767Z   check-latest: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5880167Z   force-download: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5880569Z   set-default: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5880950Z   server-id: github
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5881364Z   mvn-repositories-include-central: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5881897Z   mvn-repositories-prioritize-central: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5882425Z   overwrite-settings: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5882855Z   cache-read-only: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5883264Z   job-status: success
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5886918Z   token: ***
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5887323Z   show-download-progress: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5887805Z   problem-matcher: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.5888383Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6596386Z ##[group]Installed distributions
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6680793Z Resolved Java 21.0.12+1 from tool-cache
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6681727Z Setting Java 21.0.12+1 as the default
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6687199Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6687455Z Java configuration:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6688087Z   Distribution: temurin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6688740Z   Version: 21.0.12+1
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6689572Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6690054Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6690588Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6784649Z Creating settings.xml with server-id: github
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6785369Z Creating toolchains.xml for JDK version 21 from temurin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6785972Z Writing to /home/runner/.m2/settings.xml
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6786501Z Writing to /home/runner/.m2/toolchains.xml
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6787550Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6894354Z ##[group]Run curl --fail-with-body -s "https://get.sdkman.io" | bash
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6895226Z [36;1mcurl --fail-with-body -s "https://get.sdkman.io" | bash[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6896016Z [36;1msource "$HOME/.sdkman/bin/sdkman-init.sh"[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6896546Z [36;1msdk install groovy[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6897143Z [36;1mecho "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6897810Z [36;1mgroovy --version[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6935391Z shell: /usr/bin/bash -e {0}
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6935855Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6936377Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6937214Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6937908Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:53.6938288Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1480125Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1481914Z                                 -+syyyyyyys:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1483531Z                             `/yho:`       -yd.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1484730Z                          `/yh/`             +m.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1486085Z                        .oho.                 hy                          .`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1487384Z                      .sh/`                   :N`                `-/o`  `+dyyo:.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1488754Z                    .yh:`                     `M-          `-/osysoym  :hs` `-+sys:      hhyssssssssy+
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1490146Z                  .sh:`                       `N:          ms/-``  yy.yh-      -hy.    `.N-````````+N.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1491563Z                `od/`                         `N-       -/oM-      ddd+`     `sd:     hNNm        -N:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1492972Z               :do`                           .M.       dMMM-     `ms.      /d+`     `NMMs       `do
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1494631Z             .yy-                             :N`    ```mMMM.      -      -hy.       /MMM:       yh
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1496323Z           `+d+`           `:/oo/`       `-/osyh/ossssssdNMM`           .sh:         yMMN`      /m.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1498060Z          -dh-           :ymNMMMMy  `-/shmNm-`:N/-.``   `.sN            /N-         `NMMy      .m/
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1499917Z        `oNs`          -hysosmMMMMydmNmds+-.:ohm           :             sd`        :MMM/      yy
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1501720Z       .hN+           /d:    -MMMmhs/-.`   .MMMh   .ss+-                 `yy`       sMMN`     :N.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1503395Z      :mN/           `N/     `o/-`         :MMMo   +MMMN-         .`      `ds       mMMh      do
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1505116Z     /NN/            `N+....--:/+oooosooo+:sMMM:   hMMMM:        `my       .m+     -MMM+     :N.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1506573Z    /NMo              -+ooooo+/:-....`...:+hNMN.  `NMMMd`        .MM/       -m:    oMMN.     hs
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1508000Z   -NMd`                                    :mm   -MMMm- .s/     -MMm.       /m-   mMMd     -N.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1509257Z  `mMM/                                      .-   /MMh. -dMo     -MMMy        od. .MMMs..---yh
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1510482Z  +MMM.                                           sNo`.sNMM+     :MMMM/        sh`+MMMNmNm+++-
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1511767Z  mMMM-                                           /--ohmMMM+     :MMMMm.       `hyymmmdddo
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1513038Z  MMMMh.                  ````                  `-+yy/`yMMM/     :MMMMMy       -sm:.``..-:-.`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1514874Z  dMMMMmo-.``````..-:/osyhddddho.           `+shdh+.   hMMM:     :MmMMMM/   ./yy/` `:sys+/+sh/
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1517080Z  .dMMMMMMmdddddmmNMMMNNNNNMMMMMs           sNdo-      dMMM-  `-/yd/MMMMm-:sy+.   :hs-      /N`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1519398Z   `/ymNNNNNNNmmdys+/::----/dMMm:          +m-         mMMM+ohmo/.` sMMMMdo-    .om:       `sh
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1521397Z      `.-----+/.`       `.-+hh/`         `od.          NMMNmds/     `mmy:`     +mMy      `:yy.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1523774Z            /moyso+//+ossso:.           .yy`          `dy+:`         ..       :MMMN+---/oys:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1525643Z          /+m:  `.-:::-`               /d+                                    +MMMMMMMNh:`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1527208Z         +MN/                        -yh.                                     `+hddhy+.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1528591Z        /MM+                       .sh:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1529817Z       :NMo                      -sh/
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1531015Z      -NMs                    `/yy:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1532309Z     .NMy                  `:sh+.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1533734Z    `mMm`               ./yds-
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1535287Z   `dMMMmyo:-.````.-:oymNy:`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1536455Z   +NMMMMMMMMMMMMMMMMms:`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1537575Z     -+shmNMMMNmdy+:`
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1538130Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1538145Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1538767Z                                                                  Now attempting installation...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1539783Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1539792Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1540347Z Looking for a previous installation of SDKMAN...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1541634Z Checking Bash version...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1542652Z Looking for unzip...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1543613Z Looking for zip...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1544723Z Looking for tar...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1545630Z Looking for find...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1546550Z Looking for curl...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1547432Z Looking for sed...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1548344Z Installing SDKMAN scripts...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1549389Z Create distribution directories...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.1591115Z Getting available candidates...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.4607602Z Prime platform file...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.4638420Z Prime the config file...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.4656344Z Installing script cli archive...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.4657766Z * Downloading...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.7244780Z #=#=#                                                                          
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8290081Z ##O#-#                                                                         
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8332272Z ##O=#  #                                                                       
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8333269Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8333784Z ######################################################################## 100.0%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8361451Z * Checking archive integrity...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8393554Z * Extracting archive...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8423226Z * Copying archive contents...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8445117Z * Cleaning up...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8467730Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8476583Z Installing script cli archive...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:54.8478039Z * Downloading...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.0261786Z #=#=#                                                                          
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.0262973Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.0263790Z ######################################################################## 100.0%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.0292566Z * Checking archive integrity...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.0654794Z * Extracting archive...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1021650Z * Copying archive contents...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1048153Z * Cleaning up...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1072184Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1072988Z Set version to 5.23.0 ...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1074653Z Set native version to 0.7.34 ...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1080681Z Attempt update of interactive bash profile on regular UNIX...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1148401Z Added sdkman init snippet to /home/runner/.bashrc
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1150039Z Attempt update of zsh profile...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1150945Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1151051Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1151074Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1151528Z All done!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1152097Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1152115Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1152704Z You are subscribed to the STABLE channel.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1153702Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1154764Z Please open a new terminal, or run the following in the existing one:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1156221Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1156850Z     source "/home/runner/.sdkman/bin/sdkman-init.sh"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1157935Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1158310Z Then issue the following command:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1159020Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1159346Z     sdk help
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1159747Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.1160092Z Enjoy!!!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.7799138Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.7800163Z Downloading: groovy 5.1.1
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.7800485Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.7800626Z In progress...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:55.7800808Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.0309504Z #=#=#                                                                          
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.1352391Z ##O#-#                                                                         
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.2589027Z ##O=#  #                                                                       
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.2589359Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.3588737Z                                                                            0.0%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.4593786Z ######                                                                     9.1%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.5610693Z #######################                                                   32.2%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.6615756Z #######################################                                   55.1%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.7409833Z #########################################################                 80.1%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:56.7410336Z ######################################################################## 100.0%
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:58.4370338Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:26:58.4371143Z [1;32mInstalling: groovy 5.1.1[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:00.2748306Z [1;32mDone installing![0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:00.2748591Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:00.2748616Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:00.2748823Z [1;32mSetting groovy 5.1.1 as default.[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3288067Z Groovy Version: 5.1.1 JVM: 21.0.12.1 Vendor: Eclipse Adoptium OS: Linux
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3816006Z ##[group]Run actions/cache@v6
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3816249Z with:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3816419Z   path: ~/.m2/repository
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3816620Z   key: checkstyle-maven-cache-
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3816848Z   enableCrossOsArchive: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3817048Z   fail-on-cache-miss: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3817247Z   lookup-only: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3817448Z   save-always: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3817620Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3817864Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3818338Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3818673Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.3818950Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:03.5660100Z Cache hit for: checkstyle-maven-cache-
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.4573253Z Received 87198168 of 87198168 (100.0%), 113.1 MBs/sec
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.4574424Z Cache Size: ~83 MB (87198168 B)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.4607743Z [command]/usr/bin/tar -xf /home/runner/work/_temp/6d07e067-7277-44ab-9216-fab9786d4c53/cache.tzst -P -C /home/runner/work/checkstyle/checkstyle --use-compress-program unzstd
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6344844Z Cache restored successfully
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6442717Z Cache restored from key: checkstyle-maven-cache-
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6589360Z ##[group]Run actions/checkout@v7
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6589582Z with:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6589758Z   repository: checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6591870Z   token: ***
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6592042Z   ssh-strict: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6592215Z   ssh-user: git
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6592402Z   persist-credentials: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6592596Z   clean: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6592774Z   sparse-checkout-cone-mode: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6592983Z   fetch-depth: 1
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6593161Z   fetch-tags: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6593341Z   show-progress: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6593519Z   lfs: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6593677Z   submodules: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6593851Z   set-safe-directory: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6594296Z   allow-unsafe-pr-checkout: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6594504Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6594746Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6595321Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6595634Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.6595812Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7222759Z Syncing repository: checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7223267Z ##[group]Getting Git version info
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7223664Z Working directory is '/home/runner/work/checkstyle/checkstyle'
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7248277Z [command]/usr/bin/git version
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7327505Z git version 2.55.0
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7373086Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7381316Z Temporarily overriding HOME='/home/runner/work/_temp/08a93247-48a4-48ac-9216-7b1d805f0234' before making global git config changes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7382318Z Adding repository directory to the temporary git global config as a safe directory
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7385700Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7421141Z Deleting the contents of '/home/runner/work/checkstyle/checkstyle'
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7449044Z ##[group]Determining repository object format
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7449672Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7450038Z ##[group]Initializing the repository
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7450369Z [command]/usr/bin/git init /home/runner/work/checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7491248Z hint: Using 'master' as the name for the initial branch. This default branch name
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7491727Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7494342Z hint: to use in all of your new repositories, which will suppress this warning,
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7494874Z hint: call:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7495125Z hint:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7495482Z hint: 	git config --global init.defaultBranch <name>
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7495888Z hint:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7496282Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7496924Z hint: 'development'. The just-created branch can be renamed via this command:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7497427Z hint:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7497691Z hint: 	git branch -m <name>
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7497996Z hint:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7498420Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7499143Z Initialized empty Git repository in /home/runner/work/checkstyle/checkstyle/.git/
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7502539Z [command]/usr/bin/git remote add origin https://github.com/checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7535607Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7536114Z ##[group]Disabling automatic garbage collection
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7538969Z [command]/usr/bin/git config --local gc.auto 0
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7562426Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7562829Z ##[group]Setting up auth
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7563168Z Removing SSH command configuration
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7567292Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7591830Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7841534Z Removing HTTP extra header
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7845112Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.7868563Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8045477Z Removing includeIf entries pointing to credentials config files
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8049498Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8079507Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8262387Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8290766Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path /home/runner/work/_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8316318Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8341816Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8367313Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8387965Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8388337Z ##[group]Fetching the repository
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:04.8393040Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e5fe518e795a6947933bdd63ff1642af2c3ee045:refs/remotes/pull/21280/merge
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6508429Z From https://github.com/checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6509032Z  * [new ref]         e5fe518e795a6947933bdd63ff1642af2c3ee045 -> pull/21280/merge
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6513314Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6514287Z ##[group]Determining the checkout info
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6515022Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6518881Z [command]/usr/bin/git sparse-checkout disable
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6555893Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6580735Z ##[group]Checking out the ref
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:05.6581093Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/21280/merge
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0449041Z Note: switching to 'refs/remotes/pull/21280/merge'.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0449401Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0449679Z You are in 'detached HEAD' state. You can look around, make experimental
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0450156Z changes and commit them, and you can discard any commits you make in this
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0450543Z state without impacting any branches by switching back to a branch.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0450763Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0450923Z If you want to create a new branch to retain commits you create, you may
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0451294Z do so (now or later) by using -c with the switch command. Example:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0451509Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0451609Z   git switch -c <new-branch-name>
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0451748Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0451844Z Or undo this operation with:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0451982Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0452060Z   git switch -
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0452168Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0452348Z Turn off this advice by setting config variable advice.detachedHead to false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0452585Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0453076Z HEAD is now at e5fe518 Merge 7cbbbb2c1ce2544caf0830369dec2c5c9d942d08 into 47b4b774648d2229c40e78572e37def1e1b26c45
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0472913Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0511348Z [command]/usr/bin/git log -1 --format=%H
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0532071Z e5fe518e795a6947933bdd63ff1642af2c3ee045
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0634548Z ##[group]Run ./.ci/pitest.sh "pitest-indentation"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0634946Z [36;1m./.ci/pitest.sh "pitest-indentation"[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0667759Z shell: /usr/bin/bash -e {0}
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0667972Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0668233Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0668634Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0668941Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0669133Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0783280Z Generation of pitest report:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:06.0784175Z ./mvnw -e --no-transfer-progress -Ppitest-indentation clean test-compile                 org.pitest:pitest-maven:mutationCoverage
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.6366200Z [INFO] Error stacktraces are turned on.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.6752520Z [INFO] Scanning for projects...
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9495121Z [INFO] Inspecting build with total of 1 modules
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9597868Z [INFO] Installing Central Publishing features
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9781228Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9782026Z [INFO] ------------------< com.puppycrawl.tools:checkstyle >-------------------
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9782669Z [INFO] Building checkstyle 14.1.0-SNAPSHOT
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9783098Z [INFO]   from pom.xml
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:07.9783605Z [INFO] --------------------------------[ jar ]---------------------------------
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.2485074Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.2504873Z [INFO] --- clean:3.5.0:clean (default-clean) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.2955055Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.2986947Z [INFO] --- tidy:1.4.0:check (validate) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.5034477Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.5063217Z [INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6045051Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6074903Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6075505Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6184795Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6200405Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6332170Z [INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6359236Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:08.6374759Z [INFO] --- xml:1.2.1:check-format (default) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:09.1500425Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:09.1501160Z [INFO] --- antlr4:4.13.2:antlr4 (default) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:09.2013188Z [INFO] ANTLR 4: Processing source directory /home/runner/work/checkstyle/checkstyle/src/main/resources
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:09.3800806Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer.g4
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:09.6185125Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageParser.g4
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:09.9794596Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocCommentsLexer.g4
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.0469762Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocCommentsParser.g4
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.1368941Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.1395473Z [INFO] --- build-helper:3.6.1:add-source (add-source) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.1695890Z [INFO] Source directory: /home/runner/work/checkstyle/checkstyle/target/generated-sources/antlr added.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.1725180Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.1733462Z [INFO] --- resources:3.5.0:resources (default-resources) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2222042Z [INFO] Copying 449 resources from src/main/resources to target/classes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2763478Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2764509Z [INFO] --- build-helper:3.6.1:add-test-source (add-test-source) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2784734Z [INFO] Skipping plugin execution!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2785282Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2786307Z [INFO] --- build-helper:3.6.1:add-test-source (add-it-test-source) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2790487Z [INFO] Test Source directory: /home/runner/work/checkstyle/checkstyle/src/it/java added.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2790972Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2791406Z [INFO] --- build-helper:3.6.1:add-test-source (add-it-test-resource) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2795126Z [INFO] Skipping plugin execution!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2795721Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2796213Z [INFO] --- build-helper:3.6.1:add-test-source (add-xdocs-examples-source) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2802745Z [INFO] Test Source directory: /home/runner/work/checkstyle/checkstyle/src/xdocs-examples/java added.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2812621Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2813277Z [INFO] --- build-helper:3.6.1:add-test-source (add-xdocs-examples-resource) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2814224Z [INFO] Skipping plugin execution!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2814561Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.2814940Z [INFO] --- compiler:3.15.0:compile (default-compile) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.4344800Z [INFO] Recompiling the module because of changed source code.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:10.4487586Z [INFO] Compiling 492 source files with javac [debug release 21] to target/classes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:15.9973796Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java: Some input files use or override a deprecated API.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:15.9996777Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java: Recompile with -Xlint:deprecation for details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:16.0006083Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java: /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java uses unchecked or unsafe operations.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:16.0008479Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java: Recompile with -Xlint:unchecked for details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:16.0009682Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:16.0010220Z [INFO] --- exec:3.6.3:java (default) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:18.4240010Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:18.4255061Z [INFO] --- exec:3.6.3:exec (run-checkstyle-files-generator) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:35.8305337Z SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:35.8306443Z SLF4J: Defaulting to no-operation (NOP) logger implementation
+test (indentation)	UNKNOWN STEP	2026-08-30T11:27:35.8307311Z SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.2398408Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.2398764Z [INFO] --- exec:3.6.3:java (generate-search-index) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.6447814Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.6478739Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.7015022Z [INFO] Copying 3835 resources from src/test/resources to target/test-classes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.9434592Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.9435190Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:06.9931940Z [INFO] Recompiling the module because of changed dependency.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:07.0334494Z [INFO] Compiling 979 source files with javac [debug release 21] to target/test-classes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8195054Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/DefaultLoggerTest.java: Some input files use or override a deprecated API.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8215642Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/DefaultLoggerTest.java: Recompile with -Xlint:deprecation for details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8225497Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/AbstractGuiTestSupport.java: Some input files use unchecked or unsafe operations.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8227647Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/AbstractGuiTestSupport.java: Recompile with -Xlint:unchecked for details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8228878Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8229552Z [INFO] --- jacoco:0.8.15:instrument (default-instrument) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8575332Z [INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8576042Z [INFO] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:11.8576658Z [INFO] --- pitest:1.25.9:mutationCoverage (default-cli) @ checkstyle ---
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1418245Z [INFO] Root dir is : /home/runner/work/checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1635016Z [INFO] Found plugin : Default csv report plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1664710Z [INFO] Found plugin : Default xml report plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1665616Z [INFO] Found plugin : Log progress during mutation analysis
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1676830Z [INFO] Found plugin : Default html report plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1677504Z [INFO] Found plugin : Acceleration support
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1678166Z [INFO] Found plugin : Static initializer code detector plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1684902Z [INFO] Found plugin : Excluded annotations plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1685579Z [INFO] Found plugin : Try with resources filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1686232Z [INFO] Found plugin : Inlined finally block filter plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1686866Z [INFO] Found plugin : Implicit null check filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1687494Z [INFO] Found plugin : Method reference null check filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1688105Z [INFO] Found plugin : For each loop filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1688648Z [INFO] Found plugin : Enum junk filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1689198Z [INFO] Found plugin : Record junk mutation filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1689778Z [INFO] Found plugin : String switch filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1690496Z [INFO] Found plugin : Assertions filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1691013Z [INFO] Found plugin : Enum switch filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1691603Z [INFO] Found plugin : Logging calls filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1692158Z [INFO] Found plugin : Infinite for loop filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1692759Z [INFO] Found plugin : Long running iterator loop filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1693353Z [INFO] Found plugin : For loop counter filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1693922Z [INFO] Found plugin : Kotlin junk mutations filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1694661Z [INFO] Found plugin : Groovy junk mutations filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1695262Z [INFO] Found plugin : Max mutations per class limit
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1695909Z [INFO] Found plugin : Equals shortcut equivalent mutant filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1696604Z [INFO] Found plugin : Trivial return vals equivalence filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1697270Z [INFO] Found plugin : Filters mutants with line number <= 1
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1697910Z [INFO] Found plugin : Division by one equivalent mutant filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1698570Z [INFO] Found plugin : Lombok junk mutations filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1699468Z [INFO] Found plugin : Filter mutations to defensive wrappers such as unmodifiableCollection on return or field write
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1700469Z [INFO] Found plugin : Final field null assignment equivalent mutant filter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1701178Z [INFO] Found plugin : Mutant export plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1701895Z [INFO] Found plugin : Auto add java.awt.headless=true to keep keyboard focus on Mac OS
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1702700Z [INFO] Found plugin : Auto set number of threads based on machine
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1703472Z [INFO] Found plugin : Automatically add -ea to launch args to enable assertions
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1704348Z [INFO] Found plugin : Default build verifier
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1704891Z [INFO] Found plugin : Detect missing JUnit5 plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1705291Z [INFO] Found plugin : Detect missing TestNG plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1705667Z [INFO] Found plugin : Detect missing kotlin plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1706067Z [INFO] Found plugin : Detect missing spring plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1706469Z [INFO] Found plugin : Default coverage exporter
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1706835Z [INFO] Found plugin : Basic test statistics
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1707490Z [INFO] Found shared classpath plugin : Default mutation engine
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1707986Z [INFO] Found shared classpath plugin : Test accelerator
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1708506Z [INFO] Found shared classpath plugin : JUnit 5 test framework support
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1709013Z [INFO] Found shared classpath plugin : JUnit plugin
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1709572Z [INFO] Found shared classpath plugin : Support for mocking frameworks using javassist
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1710150Z [INFO] Found shared classpath plugin : Disable JaCoCo
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1710649Z [INFO] Found shared classpath plugin : Normalise record attributes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1711207Z [INFO] Found shared classpath plugin : Reset environment for javassist
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1713771Z [INFO] Available mutators : EXPERIMENTAL_ARGUMENT_PROPAGATION,FALSE_RETURNS,TRUE_RETURNS,CONDITIONALS_BOUNDARY,CONSTRUCTOR_CALLS,EMPTY_RETURNS,INCREMENTS,INLINE_CONSTS,INVERT_NEGS,MATH,NEGATE_CONDITIONALS,NON_VOID_METHOD_CALLS,NULL_RETURNS,PRIMITIVE_RETURNS,REMOVE_CONDITIONALS_EQUAL_IF,REMOVE_CONDITIONALS_EQUAL_ELSE,REMOVE_CONDITIONALS_ORDER_IF,REMOVE_CONDITIONALS_ORDER_ELSE,VOID_METHOD_CALLS,EXPERIMENTAL_BIG_DECIMAL,EXPERIMENTAL_BIG_INTEGER,EXPERIMENTAL_MEMBER_VARIABLE,EXPERIMENTAL_NAKED_RECEIVER,REMOVE_INCREMENTS,EXPERIMENTAL_SWITCH
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1716548Z [INFO] Adding com.groupcdg.pitest:pitest-accelerator-junit5 to SUT classpath
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1716939Z [INFO] Adding org.pitest:pitest-junit5-plugin to SUT classpath
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1717259Z [INFO] Adding org.pitest:pitest to SUT classpath
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1717598Z [INFO] Mutating from /home/runner/work/checkstyle/checkstyle/target/classes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1725917Z [INFO] Replacing properties in argLine --add-exports=java.desktop/java.awt=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1726779Z             --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1727295Z             --add-exports=java.desktop/sun.awt.image=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1727779Z             --add-exports=java.desktop/sun.java2d=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1728266Z             --add-exports=java.desktop/java.awt.dnd.peer=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1728739Z             --add-exports=java.desktop/sun.awt=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1729041Z             --add-exports=java.desktop/sun.awt.event=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1729377Z             --add-exports=java.desktop/sun.awt.datatransfer=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1729707Z             --add-exports=java.base/sun.security.action=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1730014Z             --add-opens=java.base/java.util=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1730290Z             --add-opens=java.desktop/java.awt=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1730573Z             --add-opens=java.desktop/sun.java2d=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1730872Z             --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1731158Z             -XX:+EnableDynamicAgentLoading
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.1731388Z             -Xshare:off
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3051837Z 11:28:12 AM PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3330723Z 11:28:12 AM PIT >> INFO : 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3354846Z >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3370929Z Licenced for use in the development of open source software only.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3384990Z Expires: 2027-07-14
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3385567Z For use with packages: com.puppycrawl.tools.checkstyle.*
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3386297Z See https://www.arcmutate.com
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3386987Z >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.3387487Z 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:12.4526093Z 11:28:12 AM PIT >> INFO : Created 38 mutation test units in pre scan
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:13.3089852Z 11:28:13 AM PIT >> INFO : Sending 45 test classes to minion
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:13.3115741Z 11:28:13 AM PIT >> INFO : Sent tests to minion
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.0416130Z 11:28:17 AM PIT >> SEVERE : Description [testClass=com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest, name=testModuleInfoAnnotations] did not pass without mutation.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4462170Z 11:28:17 AM PIT >> INFO : Calculated coverage in 4 seconds.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4490825Z 11:28:17 AM PIT >> INFO : 0 tests took longer than 2000 ms
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4492870Z /-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|[INFO] ------------------------------------------------------------------------
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4495836Z 11:28:17 AM PIT >> INFO : Slowest test (testCheckOnlyBlockCommentsOne) took 276 ms
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4496648Z 11:28:17 AM PIT >> INFO : Largest test (testTryResourcesNotStrict1) covered 1582 blocks
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4497500Z 11:28:17 AM PIT >> SEVERE : Tests failing without mutation: 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4498410Z Description [testClass=com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest, name=testModuleInfoAnnotations]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4514979Z [INFO] BUILD FAILURE
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4515550Z [INFO] ------------------------------------------------------------------------
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4516234Z [INFO] Total time:  01:09 min
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4516768Z [INFO] Finished at: 2026-08-30T11:28:17Z
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4517385Z [INFO] ------------------------------------------------------------------------
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4519395Z [ERROR] Failed to execute goal org.pitest:pitest-maven:1.25.9:mutationCoverage (default-cli) on project checkstyle: Execution default-cli of goal org.pitest:pitest-maven:1.25.9:mutationCoverage failed: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4521178Z [ERROR] See https://pitest.org for more details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4521712Z [ERROR] -> [Help 1]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4523515Z org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.pitest:pitest-maven:1.25.9:mutationCoverage (default-cli) on project checkstyle: Execution default-cli of goal org.pitest:pitest-maven:1.25.9:mutationCoverage failed: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4525541Z See https://pitest.org for more details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4526345Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:333)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4527311Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4528217Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4529128Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4530095Z     at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4531001Z     at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4532079Z     at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4533171Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4534612Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4535860Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4537380Z     at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4538632Z     at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4539499Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4540773Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4541539Z     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4542450Z     at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4542988Z     at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4543477Z     at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4544566Z     at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4545410Z     at java.lang.reflect.Method.invoke (Method.java:580)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4546089Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4546754Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4547252Z     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4547755Z     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4548665Z Caused by: org.apache.maven.plugin.PluginExecutionException: Execution default-cli of goal org.pitest:pitest-maven:1.25.9:mutationCoverage failed: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4549493Z See https://pitest.org for more details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4549932Z     at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:133)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4550498Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4550988Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4551460Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4551916Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4552378Z     at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4552841Z     at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4553375Z     at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4553927Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4554839Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4555479Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4556165Z     at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4556799Z     at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4557242Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4557610Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4557968Z     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4558324Z     at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4558661Z     at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4558984Z     at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4559552Z     at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4560001Z     at java.lang.reflect.Method.invoke (Method.java:580)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4560425Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4560907Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4561387Z     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4561860Z     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4562464Z Caused by: org.pitest.help.PitHelpError: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4563079Z See https://pitest.org for more details.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4563611Z     at org.pitest.coverage.execute.DefaultCoverageGenerator.verifyBuildSuitableForMutationTesting (DefaultCoverageGenerator.java:138)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4564481Z     at org.pitest.coverage.execute.DefaultCoverageGenerator.calculateCoverage (DefaultCoverageGenerator.java:120)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4565128Z     at org.pitest.coverage.execute.DefaultCoverageGenerator.calculateCoverage (DefaultCoverageGenerator.java:54)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4565738Z     at org.pitest.mutationtest.tooling.MutationCoverage.runAnalysis (MutationCoverage.java:162)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4566250Z     at org.pitest.mutationtest.tooling.MutationCoverage.runReport (MutationCoverage.java:149)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4566721Z     at org.pitest.mutationtest.tooling.EntryPoint.execute (EntryPoint.java:139)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4567166Z     at org.pitest.mutationtest.tooling.EntryPoint.execute (EntryPoint.java:65)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4567586Z     at org.pitest.maven.RunPitStrategy.execute (RunPitStrategy.java:35)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4567934Z     at org.pitest.maven.PitMojo.analyse (PitMojo.java:600)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4568240Z     at org.pitest.maven.PitMojo.execute (PitMojo.java:495)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4568687Z     at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4569220Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4569704Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4570169Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4570617Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4571073Z     at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4571531Z     at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4572078Z     at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4572612Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4573161Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4573788Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4574610Z     at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4575245Z     at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4575684Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4576051Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4576400Z     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4576865Z     at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4577201Z     at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4577516Z     at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4577948Z     at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4578385Z     at java.lang.reflect.Method.invoke (Method.java:580)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4578805Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4579287Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4579790Z     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4580390Z     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4580715Z [ERROR] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4580983Z [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4581268Z [ERROR] 
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4581611Z [ERROR] For more information about the errors and possible solutions, please read the following articles:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4582147Z [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4855915Z Execution of comparison of suppressed mutations survivals and current survivals:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:17.4856372Z groovy ./.ci/pitest-survival-check-xml.groovy pitest-indentation
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1014263Z Caught: java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem()" because "path" is null
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1027324Z java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem()" because "path" is null
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1028545Z 	at pitest_survival_check_xml.checkPitestReport(pitest-survival-check-xml.groovy:93)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1029565Z 	at pitest_survival_check_xml.parseArgumentAndExecute(pitest-survival-check-xml.groovy:34)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1030479Z 	at pitest_survival_check_xml.run(pitest-survival-check-xml.groovy:17)
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1237868Z ##[error]Process completed with exit code 1.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1279774Z ##[group]Run ./.ci/print-diff-as-patch.sh target/pitest-indentation.patch
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1280213Z [36;1m./.ci/print-diff-as-patch.sh target/pitest-indentation.patch[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1311969Z shell: /usr/bin/bash -e {0}
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1312181Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1312452Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1312845Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1313156Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1313351Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.1371997Z git diff > target/pitest-indentation.patch
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2251236Z The file 'target/pitest-indentation.patch' is empty or does not exist.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2293405Z ##[group]Run mkdir staging && cp -r target/pit-reports/ staging
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2293783Z [36;1mmkdir staging && cp -r target/pit-reports/ staging[0m
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2324930Z shell: /usr/bin/bash -e {0}
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2325143Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2325405Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2325792Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2326104Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2326283Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2431593Z ##[group]Run actions/upload-artifact@v7
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2431832Z with:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2432020Z   name: pitest-indentation-coverage-report
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2432299Z   path: staging
+test (indentation)	UNKNOWN STEP	target/pitest-indentation.patch
+test (indentation)	UNKNOWN STEP	
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2432559Z   retention-days: 7
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2432738Z   if-no-files-found: warn
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2432942Z   compression-level: 6
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2433135Z   overwrite: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2433318Z   include-hidden-files: false
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2433525Z   archive: true
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2433689Z env:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2433937Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2434606Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2434911Z   MAVEN_ARGS: -ntp
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.2435086Z ##[endgroup]
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.3497670Z Multiple search paths detected. Calculating the least common ancestor of all paths
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.3499372Z The least common ancestor is /home/runner/work/checkstyle/checkstyle. This will be the root directory of the artifact
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.3500167Z With the provided path, there will be 1 file uploaded
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.3503520Z Artifact name is valid!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.3503884Z Root directory input is valid!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.5723351Z Uploading artifact: pitest-indentation-coverage-report.zip
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.5757473Z Beginning upload of artifact content to blob storage
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.6937449Z Uploaded bytes 178
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.7309087Z Finished uploading artifact content to blob storage!
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.7310093Z SHA256 digest of uploaded artifact is 85e2e93fab525a6d18dd8ec7923d69bdf79be29e99210db7ac18e75ebb57ddec
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:19.7310775Z Finalizing artifact upload
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.0153487Z Artifact pitest-indentation-coverage-report successfully finalized. Artifact ID 9731383755
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.0154852Z Artifact pitest-indentation-coverage-report has been successfully uploaded! Final size is 178 bytes. Artifact ID is 9731383755
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.0157480Z Artifact download URL: https://github.com/checkstyle/checkstyle/actions/runs/33308904773/artifacts/9731383755
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.0300309Z Post job cleanup.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.0961228Z [command]/usr/bin/git version
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.0996884Z git version 2.55.0
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1021937Z Temporarily overriding HOME='/home/runner/work/_temp/54194c80-03c1-422c-8fb3-c75efa24a4a2' before making global git config changes
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1022889Z Adding repository directory to the temporary git global config as a safe directory
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1025893Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/checkstyle/checkstyle
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1051014Z Removing SSH command configuration
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1056033Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1083033Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1281000Z Removing HTTP extra header
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1284654Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1312264Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1508002Z Removing includeIf entries pointing to credentials config files
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1512589Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1535406Z includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1536129Z includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1536720Z includeif.gitdir:/github/workspace/.git.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1537197Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1541481Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1560188Z /home/runner/work/_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1567791Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-ad9a4a14\-dc94\-4ece\-9527\-e64eec997d4c\.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1595941Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1614440Z /home/runner/work/_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1628009Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-ad9a4a14\-dc94\-4ece\-9527\-e64eec997d4c\.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1653265Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1670714Z /github/runner_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1676315Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-ad9a4a14\-dc94\-4ece\-9527\-e64eec997d4c\.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1701152Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1718514Z /github/runner_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1725370Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-ad9a4a14\-dc94\-4ece\-9527\-e64eec997d4c\.config
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1751384Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.1945583Z Removing credentials config '/home/runner/work/_temp/git-credentials-ad9a4a14-dc94-4ece-9527-e64eec997d4c.config'
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.2089617Z Post job cleanup.
+test (indentation)	UNKNOWN STEP	2026-08-30T11:28:20.2750175Z Cleaning up orphan processes
+test (tree-walker)	UNKNOWN STEP	﻿2026-08-30T11:35:15.1497761Z Current runner version: '2.336.0'
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1532135Z ##[group]Runner Image Provisioner
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1533559Z Hosted Compute Agent
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1534569Z Version: 20260819.586
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1535712Z Commit: 3cc4a88dfa507ef76119ad1bb3eccc6378bb2b76
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1536992Z Build Date: 2026-08-18T23:20:18Z
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1538126Z Worker ID: {151e34b6-e531-4e40-beda-b6fa62c725ec}
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1539415Z Azure Region: eastus
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1540445Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1543176Z ##[group]Operating System
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1544229Z Ubuntu
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1545053Z 24.04.4
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1545962Z LTS
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1546862Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1547865Z ##[group]Runner Image
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1548863Z Image: ubuntu-24.04
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1549774Z Version: 20260823.283.1
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1552373Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260823.283/images/ubuntu/Ubuntu2404-Readme.md
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1555148Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260823.283
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1556891Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1558994Z ##[group]GITHUB_TOKEN Permissions
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1561911Z Contents: read
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1562933Z Metadata: read
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1563947Z Packages: read
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1564862Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1567870Z Secret source: None
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.1569476Z Prepare workflow directory
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.2043208Z Prepare all required actions
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.2113109Z Getting action download info
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.4321975Z Download action repository 'actions/setup-java@v6.0.0' (SHA:dd06d9cba3e5552c54d9f8ea23572deb30010f7c)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:15.8785694Z Download action repository 'actions/cache@v6' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.2074376Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.2637804Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.5260364Z Complete job name: test (tree-walker)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6126174Z ##[group]Run actions/setup-java@v6.0.0
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6127392Z with:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6128076Z   java-version: 21
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6128789Z   distribution: temurin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6129531Z   java-package: jdk
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6130247Z   check-latest: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6131249Z   force-download: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6131977Z   set-default: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6132674Z   server-id: github
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6133409Z   mvn-repositories-include-central: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6134336Z   mvn-repositories-prioritize-central: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6135222Z   overwrite-settings: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6135991Z   cache-read-only: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6136738Z   job-status: success
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6141270Z   token: ***
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6142000Z   show-download-progress: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6142825Z   problem-matcher: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.6143849Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7015688Z ##[group]Installed distributions
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7218057Z Resolved Java 21.0.12+1 from tool-cache
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7219188Z Setting Java 21.0.12+1 as the default
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7226899Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7227625Z Java configuration:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7228995Z   Distribution: temurin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7230274Z   Version: 21.0.12+1
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7231680Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7232562Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7233563Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7351024Z Creating settings.xml with server-id: github
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7352149Z Creating toolchains.xml for JDK version 21 from temurin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7353145Z Writing to /home/runner/.m2/settings.xml
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7354030Z Writing to /home/runner/.m2/toolchains.xml
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7355619Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7497249Z ##[group]Run curl --fail-with-body -s "https://get.sdkman.io" | bash
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7498564Z [36;1mcurl --fail-with-body -s "https://get.sdkman.io" | bash[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7499626Z [36;1msource "$HOME/.sdkman/bin/sdkman-init.sh"[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7500796Z [36;1msdk install groovy[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7501806Z [36;1mecho "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7502862Z [36;1mgroovy --version[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7547864Z shell: /usr/bin/bash -e {0}
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7548667Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7549543Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7551168Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7552240Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.7552929Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8991395Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8992395Z                                 -+syyyyyyys:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8994411Z                             `/yho:`       -yd.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8995621Z                          `/yh/`             +m.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8996837Z                        .oho.                 hy                          .`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8997991Z                      .sh/`                   :N`                `-/o`  `+dyyo:.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.8999581Z                    .yh:`                     `M-          `-/osysoym  :hs` `-+sys:      hhyssssssssy+
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9001888Z                  .sh:`                       `N:          ms/-``  yy.yh-      -hy.    `.N-````````+N.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9003375Z                `od/`                         `N-       -/oM-      ddd+`     `sd:     hNNm        -N:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9004802Z               :do`                           .M.       dMMM-     `ms.      /d+`     `NMMs       `do
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9006145Z             .yy-                             :N`    ```mMMM.      -      -hy.       /MMM:       yh
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9007870Z           `+d+`           `:/oo/`       `-/osyh/ossssssdNMM`           .sh:         yMMN`      /m.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9009492Z          -dh-           :ymNMMMMy  `-/shmNm-`:N/-.``   `.sN            /N-         `NMMy      .m/
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9011760Z        `oNs`          -hysosmMMMMydmNmds+-.:ohm           :             sd`        :MMM/      yy
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9013928Z       .hN+           /d:    -MMMmhs/-.`   .MMMh   .ss+-                 `yy`       sMMN`     :N.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9015963Z      :mN/           `N/     `o/-`         :MMMo   +MMMN-         .`      `ds       mMMh      do
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9017768Z     /NN/            `N+....--:/+oooosooo+:sMMM:   hMMMM:        `my       .m+     -MMM+     :N.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9019049Z    /NMo              -+ooooo+/:-....`...:+hNMN.  `NMMMd`        .MM/       -m:    oMMN.     hs
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9020245Z   -NMd`                                    :mm   -MMMm- .s/     -MMm.       /m-   mMMd     -N.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9022257Z  `mMM/                                      .-   /MMh. -dMo     -MMMy        od. .MMMs..---yh
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9023683Z  +MMM.                                           sNo`.sNMM+     :MMMM/        sh`+MMMNmNm+++-
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9025025Z  mMMM-                                           /--ohmMMM+     :MMMMm.       `hyymmmdddo
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9026129Z  MMMMh.                  ````                  `-+yy/`yMMM/     :MMMMMy       -sm:.``..-:-.`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9027712Z  dMMMMmo-.``````..-:/osyhddddho.           `+shdh+.   hMMM:     :MmMMMM/   ./yy/` `:sys+/+sh/
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9029168Z  .dMMMMMMmdddddmmNMMMNNNNNMMMMMs           sNdo-      dMMM-  `-/yd/MMMMm-:sy+.   :hs-      /N`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9031041Z   `/ymNNNNNNNmmdys+/::----/dMMm:          +m-         mMMM+ohmo/.` sMMMMdo-    .om:       `sh
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9032426Z      `.-----+/.`       `.-+hh/`         `od.          NMMNmds/     `mmy:`     +mMy      `:yy.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9034242Z            /moyso+//+ossso:.           .yy`          `dy+:`         ..       :MMMN+---/oys:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9035663Z          /+m:  `.-:::-`               /d+                                    +MMMMMMMNh:`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9036863Z         +MN/                        -yh.                                     `+hddhy+.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9038139Z        /MM+                       .sh:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9038950Z       :NMo                      -sh/
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9039993Z      -NMs                    `/yy:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9041443Z     .NMy                  `:sh+.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9042433Z    `mMm`               ./yds-
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9043185Z   `dMMMmyo:-.````.-:oymNy:`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9043933Z   +NMMMMMMMMMMMMMMMMms:`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9044669Z     -+shmNMMMNmdy+:`
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9045060Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9045073Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9045536Z                                                                  Now attempting installation...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9046225Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9046239Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9046651Z Looking for a previous installation of SDKMAN...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9048014Z Checking Bash version...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9048763Z Looking for unzip...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9049465Z Looking for zip...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9050146Z Looking for tar...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9051121Z Looking for find...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9051811Z Looking for curl...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9052540Z Looking for sed...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9053623Z Installing SDKMAN scripts...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9054819Z Create distribution directories...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:16.9116820Z Getting available candidates...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.0419264Z Prime platform file...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.0455383Z Prime the config file...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.0475994Z Installing script cli archive...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.0477580Z * Downloading...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2551732Z #=#=#                                                                          
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2553391Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2554201Z ######################################################################## 100.0%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2581722Z * Checking archive integrity...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2776799Z * Extracting archive...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2812780Z * Copying archive contents...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2839505Z * Cleaning up...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2866679Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2875313Z Installing script cli archive...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.2877565Z * Downloading...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.3926115Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.4107115Z                                                                            0.7%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.4109478Z ######################################################################## 100.0%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.4138949Z * Checking archive integrity...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.4560366Z * Extracting archive...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.4996668Z * Copying archive contents...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5033270Z * Cleaning up...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5058814Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5059983Z Set version to 5.23.0 ...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5062867Z Set native version to 0.7.34 ...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5071510Z Attempt update of interactive bash profile on regular UNIX...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5155935Z Added sdkman init snippet to /home/runner/.bashrc
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5159491Z Attempt update of zsh profile...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5162041Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5162340Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5162468Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5163188Z All done!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5164143Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5164159Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5164865Z You are subscribed to the STABLE channel.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5166057Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5167650Z Please open a new terminal, or run the following in the existing one:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5170876Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5172211Z     source "/home/runner/.sdkman/bin/sdkman-init.sh"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5174004Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5174634Z Then issue the following command:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5175692Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5176212Z     sdk help
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5176891Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.5177436Z Enjoy!!!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.9044043Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.9044866Z Downloading: groovy 5.1.1
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.9046458Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.9046755Z In progress...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:17.9047165Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.1226331Z #=#=#                                                                          
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.2449646Z ##O#-#                                                                         
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.4337788Z ##O=#  #                                                                       
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.5343207Z #=#=-#  #                                                                      
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.5344633Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.6342595Z                                                                            0.4%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.7348235Z ###                                                                        4.7%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.8354220Z ######                                                                     9.7%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:18.9521011Z ###################                                                       27.7%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.0536736Z ##########################                                                37.1%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.1542983Z ###############################                                           43.7%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.2547909Z #######################################                                   54.5%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.3574149Z #############################################                             63.8%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.4604817Z ######################################################                    76.3%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.5263356Z ##################################################################        92.0%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:19.5264283Z ######################################################################## 100.0%
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:21.2133566Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:21.2134592Z [1;32mInstalling: groovy 5.1.1[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:23.4842390Z [1;32mDone installing![0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:23.4842838Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:23.4842888Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:23.4843277Z [1;32mSetting groovy 5.1.1 as default.[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.3861316Z Groovy Version: 5.1.1 JVM: 21.0.12.1 Vendor: Eclipse Adoptium OS: Linux
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4554402Z ##[group]Run actions/cache@v6
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4554739Z with:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4554979Z   path: ~/.m2/repository
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4555274Z   key: checkstyle-maven-cache-
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4555589Z   enableCrossOsArchive: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4555890Z   fail-on-cache-miss: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4556173Z   lookup-only: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4556425Z   save-always: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4556662Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4557056Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4557661Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4558129Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.4558373Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:29.6716983Z Cache hit for: checkstyle-maven-cache-
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.2366107Z Received 87198168 of 87198168 (100.0%), 165.3 MBs/sec
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.2371689Z Cache Size: ~83 MB (87198168 B)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.2447868Z [command]/usr/bin/tar -xf /home/runner/work/_temp/b5e4516d-0976-457e-b356-d5fc6632ec35/cache.tzst -P -C /home/runner/work/checkstyle/checkstyle --use-compress-program unzstd
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.4957185Z Cache restored successfully
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5078197Z Cache restored from key: checkstyle-maven-cache-
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5279005Z ##[group]Run actions/checkout@v7
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5279301Z with:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5279515Z   repository: checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5282219Z   token: ***
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5282436Z   ssh-strict: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5282648Z   ssh-user: git
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5282867Z   persist-credentials: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5283108Z   clean: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5283324Z   sparse-checkout-cone-mode: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5283583Z   fetch-depth: 1
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5283791Z   fetch-tags: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5284210Z   show-progress: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5284423Z   lfs: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5284618Z   submodules: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5284836Z   set-safe-directory: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5285091Z   allow-unsafe-pr-checkout: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5285337Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5285632Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5286155Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5286542Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.5286744Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6122787Z Syncing repository: checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6123531Z ##[group]Getting Git version info
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6125479Z Working directory is '/home/runner/work/checkstyle/checkstyle'
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6163415Z [command]/usr/bin/git version
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6268040Z git version 2.55.0
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6288949Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6299557Z Temporarily overriding HOME='/home/runner/work/_temp/a46acb6e-9c35-4f23-abe9-31d1acc49c81' before making global git config changes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6301839Z Adding repository directory to the temporary git global config as a safe directory
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6304643Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6352604Z Deleting the contents of '/home/runner/work/checkstyle/checkstyle'
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6355804Z ##[group]Determining repository object format
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6388346Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6389049Z ##[group]Initializing the repository
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6389699Z [command]/usr/bin/git init /home/runner/work/checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6460293Z hint: Using 'master' as the name for the initial branch. This default branch name
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6461684Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6462858Z hint: to use in all of your new repositories, which will suppress this warning,
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6463792Z hint: call:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6464234Z hint:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6464870Z hint: 	git config --global init.defaultBranch <name>
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6465611Z hint:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6466265Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6467156Z hint: 'development'. The just-created branch can be renamed via this command:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6467981Z hint:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6468277Z hint: 	git branch -m <name>
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6468741Z hint:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6469580Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6471025Z Initialized empty Git repository in /home/runner/work/checkstyle/checkstyle/.git/
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6475264Z [command]/usr/bin/git remote add origin https://github.com/checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6519337Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6519868Z ##[group]Disabling automatic garbage collection
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6523136Z [command]/usr/bin/git config --local gc.auto 0
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6551394Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6551879Z ##[group]Setting up auth
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6552450Z Removing SSH command configuration
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6558213Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6588901Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6922028Z Removing HTTP extra header
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6926713Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.6958847Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7169752Z Removing includeIf entries pointing to credentials config files
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7176010Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7212334Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7436790Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7474561Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path /home/runner/work/_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7505674Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7539287Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7570951Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7597472Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7598157Z ##[group]Fetching the repository
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:30.7604785Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e5fe518e795a6947933bdd63ff1642af2c3ee045:refs/remotes/pull/21280/merge
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3175825Z From https://github.com/checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3176883Z  * [new ref]         e5fe518e795a6947933bdd63ff1642af2c3ee045 -> pull/21280/merge
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3181706Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3182280Z ##[group]Determining the checkout info
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3182950Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3188332Z [command]/usr/bin/git sparse-checkout disable
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3237238Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3266545Z ##[group]Checking out the ref
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.3270166Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/21280/merge
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8511589Z Note: switching to 'refs/remotes/pull/21280/merge'.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8512111Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8512541Z You are in 'detached HEAD' state. You can look around, make experimental
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8513500Z changes and commit them, and you can discard any commits you make in this
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8514439Z state without impacting any branches by switching back to a branch.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8514936Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8515289Z If you want to create a new branch to retain commits you create, you may
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8516176Z do so (now or later) by using -c with the switch command. Example:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8516700Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8516915Z   git switch -c <new-branch-name>
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8517205Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8517402Z Or undo this operation with:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8517724Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8517878Z   git switch -
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8518108Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8518557Z Turn off this advice by setting config variable advice.detachedHead to false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8519173Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8520216Z HEAD is now at e5fe518 Merge 7cbbbb2c1ce2544caf0830369dec2c5c9d942d08 into 47b4b774648d2229c40e78572e37def1e1b26c45
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8536377Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8582477Z [command]/usr/bin/git log -1 --format=%H
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8607017Z e5fe518e795a6947933bdd63ff1642af2c3ee045
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8734377Z ##[group]Run ./.ci/pitest.sh "pitest-tree-walker"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8734919Z [36;1m./.ci/pitest.sh "pitest-tree-walker"[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8775017Z shell: /usr/bin/bash -e {0}
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8775368Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8775799Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8776683Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8777258Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8777565Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8921688Z Generation of pitest report:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:31.8922741Z ./mvnw -e --no-transfer-progress -Ppitest-tree-walker clean test-compile                 org.pitest:pitest-maven:mutationCoverage
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:33.7141735Z [INFO] Error stacktraces are turned on.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:33.7698378Z [INFO] Scanning for projects...
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1372475Z [INFO] Inspecting build with total of 1 modules
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1526258Z [INFO] Installing Central Publishing features
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1798999Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1800793Z [INFO] ------------------< com.puppycrawl.tools:checkstyle >-------------------
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1802440Z [INFO] Building checkstyle 14.1.0-SNAPSHOT
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1804124Z [INFO]   from pom.xml
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.1806292Z [INFO] --------------------------------[ jar ]---------------------------------
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.5182015Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.5231686Z [INFO] --- clean:3.5.0:clean (default-clean) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.5733506Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.5741871Z [INFO] --- tidy:1.4.0:check (validate) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.7985147Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.7998528Z [INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9231751Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9255079Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9261815Z [INFO] --- enforcer:3.6.3:enforce (enforce-versions) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9368776Z [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9377725Z [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9563167Z [INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9564462Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:34.9565249Z [INFO] --- xml:1.2.1:check-format (default) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:35.5391574Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:35.5431439Z [INFO] --- antlr4:4.13.2:antlr4 (default) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:35.5969643Z [INFO] ANTLR 4: Processing source directory /home/runner/work/checkstyle/checkstyle/src/main/resources
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:35.8353245Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer.g4
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.1502038Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageParser.g4
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.6330172Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocCommentsLexer.g4
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.7143077Z [INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocCommentsParser.g4
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.8110136Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.8139786Z [INFO] --- build-helper:3.6.1:add-source (add-source) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.8542278Z [INFO] Source directory: /home/runner/work/checkstyle/checkstyle/target/generated-sources/antlr added.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.8571233Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.8572213Z [INFO] --- resources:3.5.0:resources (default-resources) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9152355Z [INFO] Copying 449 resources from src/main/resources to target/classes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9806260Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9807300Z [INFO] --- build-helper:3.6.1:add-test-source (add-test-source) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9826692Z [INFO] Skipping plugin execution!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9827528Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9828994Z [INFO] --- build-helper:3.6.1:add-test-source (add-it-test-source) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9835266Z [INFO] Test Source directory: /home/runner/work/checkstyle/checkstyle/src/it/java added.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9836361Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9837325Z [INFO] --- build-helper:3.6.1:add-test-source (add-it-test-resource) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9843159Z [INFO] Skipping plugin execution!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9844131Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9845366Z [INFO] --- build-helper:3.6.1:add-test-source (add-xdocs-examples-source) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9859383Z [INFO] Test Source directory: /home/runner/work/checkstyle/checkstyle/src/xdocs-examples/java added.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9862572Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9863481Z [INFO] --- build-helper:3.6.1:add-test-source (add-xdocs-examples-resource) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9869819Z [INFO] Skipping plugin execution!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9870803Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:36.9871597Z [INFO] --- compiler:3.15.0:compile (default-compile) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:37.1591515Z [INFO] Recompiling the module because of changed source code.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:37.1741452Z [INFO] Compiling 492 source files with javac [debug release 21] to target/classes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:44.6202530Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java: Some input files use or override a deprecated API.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:44.6222190Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java: Recompile with -Xlint:deprecation for details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:44.6225225Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java: /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java uses unchecked or unsafe operations.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:44.6228244Z [INFO] /home/runner/work/checkstyle/checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java: Recompile with -Xlint:unchecked for details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:44.6229567Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:44.6229992Z [INFO] --- exec:3.6.3:java (default) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:47.3534582Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:35:47.3552107Z [INFO] --- exec:3.6.3:exec (run-checkstyle-files-generator) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:08.3133551Z SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:08.3134614Z SLF4J: Defaulting to no-operation (NOP) logger implementation
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:08.3135867Z SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:47.6967366Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:47.6968768Z [INFO] --- exec:3.6.3:java (generate-search-index) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.3398454Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.3399669Z [INFO] --- resources:3.5.0:testResources (default-testResources) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.4225491Z [INFO] Copying 3835 resources from src/test/resources to target/test-classes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.8122838Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.8126727Z [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.8692909Z [INFO] Recompiling the module because of changed dependency.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:48.9099492Z [INFO] Compiling 979 source files with javac [debug release 21] to target/test-classes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.1755409Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/DefaultLoggerTest.java: Some input files use or override a deprecated API.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.1758236Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/DefaultLoggerTest.java: Recompile with -Xlint:deprecation for details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.1761425Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/AbstractGuiTestSupport.java: Some input files use unchecked or unsafe operations.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.1764778Z [INFO] /home/runner/work/checkstyle/checkstyle/src/test/java/com/puppycrawl/tools/checkstyle/AbstractGuiTestSupport.java: Recompile with -Xlint:unchecked for details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.1766484Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.1767314Z [INFO] --- jacoco:0.8.15:instrument (default-instrument) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.2152594Z [INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.2154199Z [INFO] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.2156330Z [INFO] --- pitest:1.25.9:mutationCoverage (default-cli) @ checkstyle ---
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5428368Z [INFO] Root dir is : /home/runner/work/checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5665192Z [INFO] Found plugin : Default csv report plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5691357Z [INFO] Found plugin : Default xml report plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5709236Z [INFO] Found plugin : Log progress during mutation analysis
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5710083Z [INFO] Found plugin : Default html report plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5711184Z [INFO] Found plugin : Acceleration support
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5712117Z [INFO] Found plugin : Static initializer code detector plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5713026Z [INFO] Found plugin : Excluded annotations plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5713895Z [INFO] Found plugin : Try with resources filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5714773Z [INFO] Found plugin : Inlined finally block filter plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5715684Z [INFO] Found plugin : Implicit null check filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5716588Z [INFO] Found plugin : Method reference null check filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5717479Z [INFO] Found plugin : For each loop filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5718208Z [INFO] Found plugin : Enum junk filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5719008Z [INFO] Found plugin : Record junk mutation filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5719806Z [INFO] Found plugin : String switch filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5720739Z [INFO] Found plugin : Assertions filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5721497Z [INFO] Found plugin : Enum switch filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5734407Z [INFO] Found plugin : Logging calls filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5735487Z [INFO] Found plugin : Infinite for loop filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5736464Z [INFO] Found plugin : Long running iterator loop filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5737449Z [INFO] Found plugin : For loop counter filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5738331Z [INFO] Found plugin : Kotlin junk mutations filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5739218Z [INFO] Found plugin : Groovy junk mutations filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5740100Z [INFO] Found plugin : Max mutations per class limit
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5741391Z [INFO] Found plugin : Equals shortcut equivalent mutant filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5742410Z [INFO] Found plugin : Trivial return vals equivalence filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5743386Z [INFO] Found plugin : Filters mutants with line number <= 1
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5744371Z [INFO] Found plugin : Division by one equivalent mutant filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5745336Z [INFO] Found plugin : Lombok junk mutations filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5746582Z [INFO] Found plugin : Filter mutations to defensive wrappers such as unmodifiableCollection on return or field write
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5747965Z [INFO] Found plugin : Final field null assignment equivalent mutant filter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5748883Z [INFO] Found plugin : Mutant export plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5749902Z [INFO] Found plugin : Auto add java.awt.headless=true to keep keyboard focus on Mac OS
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5751373Z [INFO] Found plugin : Auto set number of threads based on machine
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5752544Z [INFO] Found plugin : Automatically add -ea to launch args to enable assertions
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5753607Z [INFO] Found plugin : Default build verifier
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5754470Z [INFO] Found plugin : Detect missing JUnit5 plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5755343Z [INFO] Found plugin : Detect missing TestNG plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5756129Z [INFO] Found plugin : Detect missing kotlin plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5757025Z [INFO] Found plugin : Detect missing spring plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5757932Z [INFO] Found plugin : Default coverage exporter
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5758835Z [INFO] Found plugin : Basic test statistics
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5760210Z [INFO] Found shared classpath plugin : Default mutation engine
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5761498Z [INFO] Found shared classpath plugin : Test accelerator
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5762541Z [INFO] Found shared classpath plugin : JUnit 5 test framework support
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5763521Z [INFO] Found shared classpath plugin : JUnit plugin
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5764959Z [INFO] Found shared classpath plugin : Support for mocking frameworks using javassist
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5766040Z [INFO] Found shared classpath plugin : Disable JaCoCo
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5766955Z [INFO] Found shared classpath plugin : Normalise record attributes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5768068Z [INFO] Found shared classpath plugin : Reset environment for javassist
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5772812Z [INFO] Available mutators : EXPERIMENTAL_ARGUMENT_PROPAGATION,FALSE_RETURNS,TRUE_RETURNS,CONDITIONALS_BOUNDARY,CONSTRUCTOR_CALLS,EMPTY_RETURNS,INCREMENTS,INLINE_CONSTS,INVERT_NEGS,MATH,NEGATE_CONDITIONALS,NON_VOID_METHOD_CALLS,NULL_RETURNS,PRIMITIVE_RETURNS,REMOVE_CONDITIONALS_EQUAL_IF,REMOVE_CONDITIONALS_EQUAL_ELSE,REMOVE_CONDITIONALS_ORDER_IF,REMOVE_CONDITIONALS_ORDER_ELSE,VOID_METHOD_CALLS,EXPERIMENTAL_BIG_DECIMAL,EXPERIMENTAL_BIG_INTEGER,EXPERIMENTAL_MEMBER_VARIABLE,EXPERIMENTAL_NAKED_RECEIVER,REMOVE_INCREMENTS,EXPERIMENTAL_SWITCH
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5777251Z [INFO] Adding com.groupcdg.pitest:pitest-accelerator-junit5 to SUT classpath
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5778502Z [INFO] Adding org.pitest:pitest-junit5-plugin to SUT classpath
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5779568Z [INFO] Adding org.pitest:pitest to SUT classpath
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5780975Z [INFO] Mutating from /home/runner/work/checkstyle/checkstyle/target/classes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5797044Z [INFO] Replacing properties in argLine --add-exports=java.desktop/java.awt=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5803629Z             --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5804720Z             --add-exports=java.desktop/sun.awt.image=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5805777Z             --add-exports=java.desktop/sun.java2d=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5806800Z             --add-exports=java.desktop/java.awt.dnd.peer=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5807807Z             --add-exports=java.desktop/sun.awt=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5808750Z             --add-exports=java.desktop/sun.awt.event=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5809761Z             --add-exports=java.desktop/sun.awt.datatransfer=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5811126Z             --add-exports=java.base/sun.security.action=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5812167Z             --add-opens=java.base/java.util=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5812981Z             --add-opens=java.desktop/java.awt=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5813761Z             --add-opens=java.desktop/sun.java2d=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5814570Z             --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5815423Z             -XX:+EnableDynamicAgentLoading
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.5816193Z             -Xshare:off
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.7596322Z 11:36:54 AM PIT >> INFO : Verbose logging is disabled. If you encounter a problem, please enable it before reporting an issue.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8067424Z 11:36:54 AM PIT >> INFO : 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8111460Z >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8112258Z Licenced for use in the development of open source software only.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8112938Z Expires: 2027-07-14
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8113451Z For use with packages: com.puppycrawl.tools.checkstyle.*
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8114093Z See https://www.arcmutate.com
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8114640Z >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.8115060Z 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:54.9387684Z 11:36:54 AM PIT >> INFO : Created 11 mutation test units in pre scan
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:55.7514748Z 11:36:55 AM PIT >> INFO : Sending 160 test classes to minion
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:36:55.7531970Z 11:36:55 AM PIT >> INFO : Sent tests to minion
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:03.6333835Z 11:37:03 AM PIT >> SEVERE : Description [testClass=com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest, name=testModuleInfoAnnotations] did not pass without mutation.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5922468Z 11:37:07 AM PIT >> INFO : Calculated coverage in 12 seconds.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5956021Z 11:37:07 AM PIT >> INFO : 0 tests took longer than 2000 ms
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5965503Z /-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\|/-\[INFO] ------------------------------------------------------------------------
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5973921Z 11:37:07 AM PIT >> INFO : Slowest test ([engine:junit-jupiter]/[class:com.puppycrawl.tools.checkstyle.TreeWalkerTest]/[method:testNoAuditEventsWithoutFilters()]) took 783 ms
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5976804Z 11:37:07 AM PIT >> INFO : Largest test ([engine:junit-jupiter]/[class:com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest]/[method:testNoWsBeforeDescriptionInJavadocTags()]) covered 235 blocks
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5980934Z 11:37:07 AM PIT >> SEVERE : Tests failing without mutation: 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5982310Z Description [testClass=com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest, name=testModuleInfoAnnotations]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5983523Z [INFO] BUILD FAILURE
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5984104Z [INFO] ------------------------------------------------------------------------
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5984796Z [INFO] Total time:  01:33 min
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5985287Z [INFO] Finished at: 2026-08-30T11:37:07Z
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5985929Z [INFO] ------------------------------------------------------------------------
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5989931Z [ERROR] Failed to execute goal org.pitest:pitest-maven:1.25.9:mutationCoverage (default-cli) on project checkstyle: Execution default-cli of goal org.pitest:pitest-maven:1.25.9:mutationCoverage failed: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5992584Z [ERROR] See https://pitest.org for more details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5993102Z [ERROR] -> [Help 1]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5995740Z org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.pitest:pitest-maven:1.25.9:mutationCoverage (default-cli) on project checkstyle: Execution default-cli of goal org.pitest:pitest-maven:1.25.9:mutationCoverage failed: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5998298Z See https://pitest.org for more details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.5999145Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:333)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6000318Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6001749Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6002848Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6003942Z     at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6005033Z     at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6006302Z     at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6007637Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6008970Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6010699Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6012688Z     at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6014279Z     at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6015429Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6016303Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6017156Z     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6017972Z     at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6018742Z     at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6019508Z     at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6020805Z     at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6021881Z     at java.lang.reflect.Method.invoke (Method.java:580)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6022887Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6024100Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6025381Z     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6026630Z     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6028920Z Caused by: org.apache.maven.plugin.PluginExecutionException: Execution default-cli of goal org.pitest:pitest-maven:1.25.9:mutationCoverage failed: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6031204Z See https://pitest.org for more details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6032267Z     at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:133)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6033907Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6035130Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6036315Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6037670Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6038842Z     at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6039982Z     at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6042138Z     at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6043510Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6044864Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6046413Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6048057Z     at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6049568Z     at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6050835Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6051692Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6052514Z     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6053305Z     at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6054071Z     at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6054871Z     at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6055893Z     at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6056907Z     at java.lang.reflect.Method.invoke (Method.java:580)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6057825Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6058956Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6060099Z     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6061400Z     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6062848Z Caused by: org.pitest.help.PitHelpError: 1 tests did not pass without mutation when calculating line coverage. Mutation testing requires a green suite.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6064054Z See https://pitest.org for more details.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6065305Z     at org.pitest.coverage.execute.DefaultCoverageGenerator.verifyBuildSuitableForMutationTesting (DefaultCoverageGenerator.java:138)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6067072Z     at org.pitest.coverage.execute.DefaultCoverageGenerator.calculateCoverage (DefaultCoverageGenerator.java:120)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6068639Z     at org.pitest.coverage.execute.DefaultCoverageGenerator.calculateCoverage (DefaultCoverageGenerator.java:54)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6070004Z     at org.pitest.mutationtest.tooling.MutationCoverage.runAnalysis (MutationCoverage.java:162)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6072833Z     at org.pitest.mutationtest.tooling.MutationCoverage.runReport (MutationCoverage.java:149)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6074014Z     at org.pitest.mutationtest.tooling.EntryPoint.execute (EntryPoint.java:139)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6075043Z     at org.pitest.mutationtest.tooling.EntryPoint.execute (EntryPoint.java:65)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6075974Z     at org.pitest.maven.RunPitStrategy.execute (RunPitStrategy.java:35)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6076972Z     at org.pitest.maven.PitMojo.analyse (PitMojo.java:600)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6077669Z     at org.pitest.maven.PitMojo.execute (PitMojo.java:495)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6078727Z     at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6080013Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6081569Z     at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6082697Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6083779Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6084869Z     at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6085930Z     at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6087250Z     at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6088568Z     at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6089916Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6091695Z     at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6093346Z     at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6094909Z     at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6095979Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6096825Z     at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6097655Z     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6098441Z     at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6099193Z     at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6099929Z     at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6101248Z     at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6102269Z     at java.lang.reflect.Method.invoke (Method.java:580)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6103192Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6104295Z     at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6105425Z     at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:362)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6106552Z     at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6107285Z [ERROR] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6107839Z [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6108464Z [ERROR] 
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6109239Z [ERROR] For more information about the errors and possible solutions, please read the following articles:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6110654Z [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6549259Z Execution of comparison of suppressed mutations survivals and current survivals:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:07.6551043Z groovy ./.ci/pitest-survival-check-xml.groovy pitest-tree-walker
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.8803334Z Caught: java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem()" because "path" is null
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.8818503Z java.lang.NullPointerException: Cannot invoke "java.nio.file.Path.getFileSystem()" because "path" is null
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.8820242Z 	at pitest_survival_check_xml.checkPitestReport(pitest-survival-check-xml.groovy:93)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.8822625Z 	at pitest_survival_check_xml.parseArgumentAndExecute(pitest-survival-check-xml.groovy:34)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.8824173Z 	at pitest_survival_check_xml.run(pitest-survival-check-xml.groovy:17)
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9181842Z ##[error]Process completed with exit code 1.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9242582Z ##[group]Run ./.ci/print-diff-as-patch.sh target/pitest-tree-walker.patch
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9243486Z [36;1m./.ci/print-diff-as-patch.sh target/pitest-tree-walker.patch[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9283260Z shell: /usr/bin/bash -e {0}
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9283604Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9284058Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9284805Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9285384Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9285697Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:09.9373037Z git diff > target/pitest-tree-walker.patch
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4862411Z The file 'target/pitest-tree-walker.patch' is empty or does not exist.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4905235Z ##[group]Run mkdir staging && cp -r target/pit-reports/ staging
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4905837Z [36;1mmkdir staging && cp -r target/pit-reports/ staging[0m
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4942980Z shell: /usr/bin/bash -e {0}
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4943319Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4943744Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4944483Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4945060Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.4945356Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5089491Z ##[group]Run actions/upload-artifact@v7
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5089842Z with:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5090109Z   name: pitest-tree-walker-coverage-report
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5090803Z   path: staging
+test (tree-walker)	UNKNOWN STEP	target/pitest-tree-walker.patch
+test (tree-walker)	UNKNOWN STEP	
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5091191Z   retention-days: 7
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5091449Z   if-no-files-found: warn
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5091730Z   compression-level: 6
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5091995Z   overwrite: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5092253Z   include-hidden-files: false
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5092558Z   archive: true
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5092791Z env:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5093145Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5093743Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5094240Z   MAVEN_ARGS: -ntp
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.5094487Z ##[endgroup]
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.6578693Z Multiple search paths detected. Calculating the least common ancestor of all paths
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.6582247Z The least common ancestor is /home/runner/work/checkstyle/checkstyle. This will be the root directory of the artifact
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.6584132Z With the provided path, there will be 1 file uploaded
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.6590010Z Artifact name is valid!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.6590907Z Root directory input is valid!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.8599049Z Uploading artifact: pitest-tree-walker-coverage-report.zip
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.8646446Z Beginning upload of artifact content to blob storage
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.9229857Z Uploaded bytes 178
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.9366790Z Finished uploading artifact content to blob storage!
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.9368222Z SHA256 digest of uploaded artifact is e205011d41f88f901dfcf53d75790e5cde3ecaea2f950ee220a7fc9ec04018f1
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:10.9371126Z Finalizing artifact upload
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.2640367Z Artifact pitest-tree-walker-coverage-report successfully finalized. Artifact ID 9731493575
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.2643775Z Artifact pitest-tree-walker-coverage-report has been successfully uploaded! Final size is 178 bytes. Artifact ID is 9731493575
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.2646500Z Artifact download URL: https://github.com/checkstyle/checkstyle/actions/runs/33308904773/artifacts/9731493575
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.2831410Z Post job cleanup.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3652262Z [command]/usr/bin/git version
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3730596Z git version 2.55.0
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3767065Z Temporarily overriding HOME='/home/runner/work/_temp/6c88332a-d7ea-4843-8c01-ca04d6e9ceac' before making global git config changes
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3769598Z Adding repository directory to the temporary git global config as a safe directory
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3771944Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/checkstyle/checkstyle
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3803995Z Removing SSH command configuration
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3810063Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.3844879Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4085608Z Removing HTTP extra header
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4091696Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4123918Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4361535Z Removing includeIf entries pointing to credentials config files
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4367774Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4393910Z includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4394817Z includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4395609Z includeif.gitdir:/github/workspace/.git.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4396209Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4402458Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4424710Z /home/runner/work/_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4435004Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-1d1339ea\-28fa\-450b\-84f3\-095634a22aed\.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4470236Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4493732Z /home/runner/work/_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4503063Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-1d1339ea\-28fa\-450b\-84f3\-095634a22aed\.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4541413Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4562935Z /github/runner_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4571612Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-1d1339ea\-28fa\-450b\-84f3\-095634a22aed\.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4601896Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4622130Z /github/runner_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4631132Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-1d1339ea\-28fa\-450b\-84f3\-095634a22aed\.config
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4665164Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.4903715Z Removing credentials config '/home/runner/work/_temp/git-credentials-1d1339ea-28fa-450b-84f3-095634a22aed.config'
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.5163987Z Post job cleanup.
+test (tree-walker)	UNKNOWN STEP	2026-08-30T11:37:11.5978363Z Cleaning up orphan processes

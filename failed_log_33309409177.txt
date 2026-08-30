@@ -1,0 +1,389 @@
+no-exception-openjdk20	UNKNOWN STEP	﻿2026-08-30T11:38:14.7514673Z Current runner version: '2.336.0'
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7528699Z ##[group]Runner Image Provisioner
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7529226Z Hosted Compute Agent
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7529565Z Version: 20260819.586
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7529965Z Commit: 3cc4a88dfa507ef76119ad1bb3eccc6378bb2b76
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7530377Z Build Date: 2026-08-18T23:20:18Z
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7530821Z Worker ID: {643309e0-c49f-4682-86b7-fb6cb89125b7}
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7531256Z Azure Region: westus2
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7531582Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7532524Z ##[group]Operating System
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7532869Z Ubuntu
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7533160Z 24.04.4
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7533536Z LTS
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7533836Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7534170Z ##[group]Runner Image
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7534538Z Image: ubuntu-24.04
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7534852Z Version: 20260823.283.1
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7535595Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260823.283/images/ubuntu/Ubuntu2404-Readme.md
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7536446Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260823.283
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7537010Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7537677Z ##[group]GITHUB_TOKEN Permissions
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7538804Z Contents: read
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7539120Z Metadata: read
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7539498Z Packages: read
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7539816Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7541014Z Secret source: None
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7541594Z Prepare workflow directory
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7727654Z Prepare all required actions
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:14.7756200Z Getting action download info
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.0822236Z Download action repository 'actions/setup-java@v6.0.0' (SHA:dd06d9cba3e5552c54d9f8ea23572deb30010f7c)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.5769444Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7448665Z Complete job name: no-exception-openjdk20
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7892971Z ##[group]Run actions/setup-java@v6.0.0
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7893380Z with:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7893601Z   java-version: 21
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7893835Z   distribution: temurin
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7894080Z   java-package: jdk
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7894313Z   check-latest: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7894554Z   force-download: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7894798Z   set-default: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7895027Z   server-id: github
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7895283Z   mvn-repositories-include-central: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7895601Z   mvn-repositories-prioritize-central: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7895906Z   overwrite-settings: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7896162Z   cache-read-only: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7896409Z   job-status: success
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7898516Z   token: ***
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7898766Z   show-download-progress: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7899037Z   problem-matcher: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.7899362Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8416436Z ##[group]Installed distributions
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8450668Z Resolved Java 21.0.12+1 from tool-cache
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8451008Z Setting Java 21.0.12+1 as the default
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8455406Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8455673Z Java configuration:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8456102Z   Distribution: temurin
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8456482Z   Version: 21.0.12+1
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8456986Z   Path: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8457422Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8457908Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8537620Z Creating settings.xml with server-id: github
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8538256Z Creating toolchains.xml for JDK version 21 from temurin
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8538819Z Writing to /home/runner/.m2/settings.xml
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8539300Z Writing to /home/runner/.m2/toolchains.xml
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8540290Z Configured MAVEN_ARGS to include -ntp to suppress Maven transfer progress logs. Set 'show-download-progress: true' to keep the download progress output.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8624412Z ##[group]Run curl --fail-with-body -s "https://get.sdkman.io" | bash
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8624916Z [36;1mcurl --fail-with-body -s "https://get.sdkman.io" | bash[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8625586Z [36;1msource "$HOME/.sdkman/bin/sdkman-init.sh"[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8625906Z [36;1msdk install groovy[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8626272Z [36;1mecho "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8626667Z [36;1mgroovy --version[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8658401Z shell: /usr/bin/bash -e {0}
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8658673Z env:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8658987Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8659468Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8659855Z   MAVEN_ARGS: -ntp
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:15.8660081Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3328536Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3329011Z                                 -+syyyyyyys:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3352584Z                             `/yho:`       -yd.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3382699Z                          `/yh/`             +m.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3383258Z                        .oho.                 hy                          .`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3383842Z                      .sh/`                   :N`                `-/o`  `+dyyo:.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3384483Z                    .yh:`                     `M-          `-/osysoym  :hs` `-+sys:      hhyssssssssy+
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3385176Z                  .sh:`                       `N:          ms/-``  yy.yh-      -hy.    `.N-````````+N.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3385824Z                `od/`                         `N-       -/oM-      ddd+`     `sd:     hNNm        -N:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3386497Z               :do`                           .M.       dMMM-     `ms.      /d+`     `NMMs       `do
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3387169Z             .yy-                             :N`    ```mMMM.      -      -hy.       /MMM:       yh
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3387782Z           `+d+`           `:/oo/`       `-/osyh/ossssssdNMM`           .sh:         yMMN`      /m.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3388268Z          -dh-           :ymNMMMMy  `-/shmNm-`:N/-.``   `.sN            /N-         `NMMy      .m/
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3388782Z        `oNs`          -hysosmMMMMydmNmds+-.:ohm           :             sd`        :MMM/      yy
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3389402Z       .hN+           /d:    -MMMmhs/-.`   .MMMh   .ss+-                 `yy`       sMMN`     :N.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3390140Z      :mN/           `N/     `o/-`         :MMMo   +MMMN-         .`      `ds       mMMh      do
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3390879Z     /NN/            `N+....--:/+oooosooo+:sMMM:   hMMMM:        `my       .m+     -MMM+     :N.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3391632Z    /NMo              -+ooooo+/:-....`...:+hNMN.  `NMMMd`        .MM/       -m:    oMMN.     hs
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3392600Z   -NMd`                                    :mm   -MMMm- .s/     -MMm.       /m-   mMMd     -N.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3393281Z  `mMM/                                      .-   /MMh. -dMo     -MMMy        od. .MMMs..---yh
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3393949Z  +MMM.                                           sNo`.sNMM+     :MMMM/        sh`+MMMNmNm+++-
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3394598Z  mMMM-                                           /--ohmMMM+     :MMMMm.       `hyymmmdddo
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3395282Z  MMMMh.                  ````                  `-+yy/`yMMM/     :MMMMMy       -sm:.``..-:-.`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3398071Z  dMMMMmo-.``````..-:/osyhddddho.           `+shdh+.   hMMM:     :MmMMMM/   ./yy/` `:sys+/+sh/
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3398869Z  .dMMMMMMmdddddmmNMMMNNNNNMMMMMs           sNdo-      dMMM-  `-/yd/MMMMm-:sy+.   :hs-      /N`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3399491Z   `/ymNNNNNNNmmdys+/::----/dMMm:          +m-         mMMM+ohmo/.` sMMMMdo-    .om:       `sh
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3400040Z      `.-----+/.`       `.-+hh/`         `od.          NMMNmds/     `mmy:`     +mMy      `:yy.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3400944Z            /moyso+//+ossso:.           .yy`          `dy+:`         ..       :MMMN+---/oys:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3453469Z          /+m:  `.-:::-`               /d+                                    +MMMMMMMNh:`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3454525Z         +MN/                        -yh.                                     `+hddhy+.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3455178Z        /MM+                       .sh:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3455709Z       :NMo                      -sh/
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3456146Z      -NMs                    `/yy:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3456561Z     .NMy                  `:sh+.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3456966Z    `mMm`               ./yds-
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3457299Z   `dMMMmyo:-.````.-:oymNy:`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3457565Z   +NMMMMMMMMMMMMMMMMms:`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3457822Z     -+shmNMMMNmdy+:`
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3457968Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3457977Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3458162Z                                                                  Now attempting installation...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3458438Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3458443Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3458589Z Looking for a previous installation of SDKMAN...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3458915Z Checking Bash version...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3459178Z Looking for unzip...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3459424Z Looking for zip...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3459654Z Looking for tar...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3459882Z Looking for find...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3460113Z Looking for curl...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3460345Z Looking for sed...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3460584Z Installing SDKMAN scripts...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3460861Z Create distribution directories...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.3461181Z Getting available candidates...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.8878411Z Prime platform file...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.8905209Z Prime the config file...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.8919226Z Installing script cli archive...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:16.8919869Z * Downloading...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.1512530Z #=#=#                                                                          
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.2849189Z ##O#-#                                                                         
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.3985168Z ##O=#  #                                                                       
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.5965998Z #=#=-#  #                                                                      
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6249982Z -#O#- #   #                                                                    
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6250206Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6250336Z ######################################################################## 100.0%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6271130Z * Checking archive integrity...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6301558Z * Extracting archive...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6326952Z * Copying archive contents...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6345930Z * Cleaning up...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6366505Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6371543Z Installing script cli archive...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.6371980Z * Downloading...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:17.8745135Z #=#=#                                                                          
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.0116627Z ##O#-#                                                                         
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.1645517Z ##O=#  #                                                                       
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.2541271Z #=#=-#  #                                                                      
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.2541456Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.2541575Z ######################################################################## 100.0%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.2563338Z * Checking archive integrity...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.2872498Z * Extracting archive...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3186049Z * Copying archive contents...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3210473Z * Cleaning up...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3233218Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3233427Z Set version to 5.23.0 ...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3234372Z Set native version to 0.7.34 ...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3239105Z Attempt update of interactive bash profile on regular UNIX...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3262736Z Added sdkman init snippet to /home/runner/.bashrc
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3263100Z Attempt update of zsh profile...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3264930Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3264939Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3265216Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3265295Z All done!
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3265385Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3265391Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3265544Z You are subscribed to the STABLE channel.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3265875Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3266160Z Please open a new terminal, or run the following in the existing one:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3266384Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3270422Z     source "/home/runner/.sdkman/bin/sdkman-init.sh"
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3270605Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3270701Z Then issue the following command:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3270845Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3270914Z     sdk help
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3271015Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:18.3271085Z Enjoy!!!
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.4190681Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.4190932Z Downloading: groovy 5.1.1
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.4191059Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.4191122Z In progress...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.4191195Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.6659208Z #=#=#                                                                          
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.8125509Z ##O#-#                                                                         
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:19.9548173Z ##O=#  #                                                                       
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.0674654Z #=#=-#  #                                                                      
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.1790156Z -#O#- #   #                                                                    
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.2796097Z -=#=#   #   #                                                                  
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.2796350Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.3796914Z                                                                            0.0%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.4798816Z ############                                                              16.8%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.5789943Z ############################                                              39.8%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.6791023Z ###############################################                           65.5%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.7182479Z #################################################################         91.1%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:20.7182843Z ######################################################################## 100.0%
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:22.1687193Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:22.1687642Z [1;32mInstalling: groovy 5.1.1[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:23.8282819Z [1;32mDone installing![0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:23.8283038Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:23.8283101Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:23.8283241Z [1;32mSetting groovy 5.1.1 as default.[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8658612Z Groovy Version: 5.1.1 JVM: 21.0.12.1 Vendor: Eclipse Adoptium OS: Linux
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8772285Z ##[group]Run actions/checkout@v7
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8772430Z with:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8772550Z   repository: checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8773883Z   token: ***
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8773989Z   ssh-strict: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774103Z   ssh-user: git
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774218Z   persist-credentials: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774341Z   clean: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774458Z   sparse-checkout-cone-mode: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774592Z   fetch-depth: 1
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774697Z   fetch-tags: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774808Z   show-progress: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8774918Z   lfs: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8775033Z   submodules: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8775144Z   set-safe-directory: true
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8775276Z   allow-unsafe-pr-checkout: false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8775406Z env:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8775562Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8775837Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8776036Z   MAVEN_ARGS: -ntp
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.8776147Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9291265Z Syncing repository: checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9292059Z ##[group]Getting Git version info
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9292451Z Working directory is '/home/runner/work/checkstyle/checkstyle'
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9312275Z [command]/usr/bin/git version
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9437993Z git version 2.55.0
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9447898Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9453466Z Temporarily overriding HOME='/home/runner/work/_temp/3265bd7a-9811-4f30-8ee9-da3ad8a0ce9e' before making global git config changes
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9454359Z Adding repository directory to the temporary git global config as a safe directory
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9456330Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9537170Z Deleting the contents of '/home/runner/work/checkstyle/checkstyle'
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9539157Z ##[group]Determining repository object format
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9540052Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9540358Z ##[group]Initializing the repository
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9543009Z [command]/usr/bin/git init /home/runner/work/checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9614225Z hint: Using 'master' as the name for the initial branch. This default branch name
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9614644Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9615024Z hint: to use in all of your new repositories, which will suppress this warning,
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9615222Z hint: call:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9615337Z hint:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9615489Z hint: 	git config --global init.defaultBranch <name>
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9615653Z hint:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9615808Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9616064Z hint: 'development'. The just-created branch can be renamed via this command:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9616254Z hint:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9616423Z hint: 	git branch -m <name>
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9616560Z hint:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9616728Z hint: Disable this message with "git config set advice.defaultBranchName false"
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9618539Z Initialized empty Git repository in /home/runner/work/checkstyle/checkstyle/.git/
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9624429Z [command]/usr/bin/git remote add origin https://github.com/checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9657986Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9658253Z ##[group]Disabling automatic garbage collection
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9660171Z [command]/usr/bin/git config --local gc.auto 0
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9679558Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9679825Z ##[group]Setting up auth
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9680062Z Removing SSH command configuration
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9683201Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9704518Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9979770Z Removing HTTP extra header
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:24.9982721Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0003371Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0154223Z Removing includeIf entries pointing to credentials config files
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0157137Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0182249Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0338346Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0362659Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path /home/runner/work/_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0383371Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0406637Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0427375Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0446096Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0446388Z ##[group]Fetching the repository
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:25.0449886Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1fad43bc407015ad88dedc2eeec296748e189220:refs/remotes/pull/21280/merge
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1635372Z From https://github.com/checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1635685Z  * [new ref]         1fad43bc407015ad88dedc2eeec296748e189220 -> pull/21280/merge
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1639471Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1639816Z ##[group]Determining the checkout info
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1640235Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1644524Z [command]/usr/bin/git sparse-checkout disable
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1678940Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1698659Z ##[group]Checking out the ref
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.1709873Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/21280/merge
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5103019Z Note: switching to 'refs/remotes/pull/21280/merge'.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5103274Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5103450Z You are in 'detached HEAD' state. You can look around, make experimental
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5103708Z changes and commit them, and you can discard any commits you make in this
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5103952Z state without impacting any branches by switching back to a branch.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104096Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104194Z If you want to create a new branch to retain commits you create, you may
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104435Z do so (now or later) by using -c with the switch command. Example:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104567Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104631Z   git switch -c <new-branch-name>
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104721Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104782Z Or undo this operation with:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104875Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104927Z   git switch -
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5104992Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5105103Z Turn off this advice by setting config variable advice.detachedHead to false
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5105262Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.5105602Z HEAD is now at 1fad43b Merge 9cf9efa5347e7f414a52b6f04ec8c906171333b7 into 47b4b774648d2229c40e78572e37def1e1b26c45
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6549827Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6584097Z [command]/usr/bin/git log -1 --format=%H
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6601996Z 1fad43bc407015ad88dedc2eeec296748e189220
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6695443Z ##[group]Run .ci/no-exception-test.sh openjdk20-with-checks-nonjavadoc-error
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6695732Z [36;1m.ci/no-exception-test.sh openjdk20-with-checks-nonjavadoc-error[0m
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6725191Z shell: /usr/bin/bash -e {0}
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6725325Z env:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6725483Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6725749Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6725950Z   MAVEN_ARGS: -ntp
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6726063Z ##[endgroup]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:27.6826328Z Cloning into 'contribution'...
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4780239Z org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4781072Z General error during conversion: Error grabbing Grapes -- [unresolved dependency: info.picocli#picocli;4.2.0: not found]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4781661Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4782420Z java.lang.RuntimeException: Error grabbing Grapes -- [unresolved dependency: info.picocli#picocli;4.2.0: not found]
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4783659Z 	at groovy.grape.GrapeIvy.getDependencies(GrapeIvy.groovy:490)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4784021Z 	at groovy.grape.GrapeIvy.resolve(GrapeIvy.groovy:651)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4784318Z 	at groovy.grape.GrapeIvy.resolve(GrapeIvy.groovy:627)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4784605Z 	at groovy.grape.GrapeIvy.grab(GrapeIvy.groovy:291)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4785143Z 	at groovy.grape.Grape$1.run(Grape.java:172)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4785409Z 	at groovy.grape.Grape$1.run(Grape.java:158)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4785742Z 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:319)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4786082Z 	at groovy.grape.Grape.grab(Grape.java:158)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4786437Z 	at groovy.grape.GrabAnnotationTransformation.visit(GrabAnnotationTransformation.java:379)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4786988Z 	at org.codehaus.groovy.transform.ASTTransformationVisitor.lambda$addPhaseOperationsForGlobalTransforms$5(ASTTransformationVisitor.java:375)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4787576Z 	at org.codehaus.groovy.control.CompilationUnit$ISourceUnitOperation.doPhaseOperation(CompilationUnit.java:881)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4788066Z 	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:668)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4788498Z 	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:642)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4788880Z 	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:399)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4789265Z 	at groovy.lang.GroovyClassLoader.lambda$parseClass$5(GroovyClassLoader.java:345)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4789710Z 	at org.codehaus.groovy.runtime.memoize.ConcurrentCommonCache.getAndPut(ConcurrentCommonCache.java:138)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4790204Z 	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:345)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4790707Z 	at groovy.lang.GroovyShell.parseClass(GroovyShell.java:601)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4791016Z 	at groovy.lang.GroovyShell.run(GroovyShell.java:421)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4791373Z 	at groovy.lang.GroovyShell.run(GroovyShell.java:411)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4791669Z 	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:649)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4792120Z 	at groovy.ui.GroovyMain.run(GroovyMain.java:389)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4792431Z 	at groovy.ui.GroovyMain$GroovyCommand.process(GroovyMain.java:313)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4792760Z 	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:141)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4793080Z 	at groovy.ui.GroovyMain.main(GroovyMain.java:114)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4793529Z 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4794015Z 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4794419Z 	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:115)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4794787Z 	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:37)
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4794942Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4794989Z 1 error
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4795211Z 
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4885215Z ##[error]Process completed with exit code 1.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.4983028Z Post job cleanup.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5494988Z [command]/usr/bin/git version
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5523366Z git version 2.55.0
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5541991Z Temporarily overriding HOME='/home/runner/work/_temp/b99e4028-c93d-40e3-92bd-74a8da260193' before making global git config changes
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5542643Z Adding repository directory to the temporary git global config as a safe directory
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5544744Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/checkstyle/checkstyle
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5565940Z Removing SSH command configuration
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5569511Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5592524Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5761665Z Removing HTTP extra header
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5764804Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5786704Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5951298Z Removing includeIf entries pointing to credentials config files
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5955225Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5975234Z includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5975658Z includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5976025Z includeif.gitdir:/github/workspace/.git.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5976320Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5981604Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.5997224Z /home/runner/work/_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6003405Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-d07ec542\-72ee\-4299\-8424\-d9bf582fa288\.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6025536Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6040770Z /home/runner/work/_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6052071Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/checkstyle/checkstyle/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-d07ec542\-72ee\-4299\-8424\-d9bf582fa288\.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6073978Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6088588Z /github/runner_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6092940Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-d07ec542\-72ee\-4299\-8424\-d9bf582fa288\.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6113513Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6129261Z /github/runner_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6133189Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-d07ec542\-72ee\-4299\-8424\-d9bf582fa288\.config
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6156235Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6317483Z Removing credentials config '/home/runner/work/_temp/git-credentials-d07ec542-72ee-4299-8424-d9bf582fa288.config'
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6460054Z Post job cleanup.
+no-exception-openjdk20	UNKNOWN STEP	2026-08-30T11:38:30.6948117Z Cleaning up orphan processes
