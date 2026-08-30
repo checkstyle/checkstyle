@@ -49,13 +49,13 @@ public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesMo
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "25: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "version"),
             "30: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "noinspection"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
 }
