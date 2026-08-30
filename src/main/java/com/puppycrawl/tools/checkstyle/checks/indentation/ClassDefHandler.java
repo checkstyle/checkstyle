@@ -47,12 +47,14 @@ public class ClassDefHandler extends BlockParentHandler {
 
     @Override
     protected DetailAST getLeftCurly() {
-        return getListChild().findFirstToken(TokenTypes.LCURLY);
+        return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
+            .findFirstToken(TokenTypes.LCURLY);
     }
 
     @Override
     protected DetailAST getRightCurly() {
-        return getListChild().findFirstToken(TokenTypes.RCURLY);
+        return getMainAst().findFirstToken(TokenTypes.OBJBLOCK)
+            .findFirstToken(TokenTypes.RCURLY);
     }
 
     @Override
@@ -63,25 +65,26 @@ public class ClassDefHandler extends BlockParentHandler {
 
     @Override
     protected DetailAST getListChild() {
-        final DetailAST listChild;
-        if (getMainAst().getType() == TokenTypes.MODULE_DEF) {
-            listChild = getMainAst().findFirstToken(TokenTypes.DIRECTIVE_BLOCK);
-        }
-        else {
-            listChild = getMainAst().findFirstToken(TokenTypes.OBJBLOCK);
-        }
-        return listChild;
+        return getMainAst().findFirstToken(TokenTypes.OBJBLOCK);
     }
 
     @Override
     public void checkIndentation() {
         final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers != null && modifiers.hasChildren()) {
+        if (modifiers.hasChildren()) {
             checkModifiers();
         }
         else {
             if (getMainAst().getType() != TokenTypes.ANNOTATION_DEF) {
-                checkIdent();
+                final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
+                DetailAST tokenToCheck = getMainAst();
+                if (ident.getLineNo() == getMainAst().getLineNo()) {
+                    tokenToCheck = ident;
+                }
+                final int lineStart = getLineStart(tokenToCheck);
+                if (!getIndent().isAcceptable(lineStart)) {
+                    logError(tokenToCheck, "ident", lineStart);
+                }
             }
         }
         if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
@@ -96,28 +99,6 @@ public class ClassDefHandler extends BlockParentHandler {
             checkWrappingIndentation(getMainAst(), getListChild());
         }
         super.checkIndentation();
-    }
-
-    /**
-     * Checks indentation of identifier token.
-     */
-    private void checkIdent() {
-        final DetailAST ident;
-        if (getMainAst().getType() == TokenTypes.MODULE_DEF) {
-            ident = getMainAst().findFirstToken(TokenTypes.LITERAL_MODULE);
-        }
-        else {
-            ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-        }
-
-        DetailAST tokenToCheck = getMainAst();
-        if (ident.getLineNo() == getMainAst().getLineNo()) {
-            tokenToCheck = ident;
-        }
-        final int lineStart = getLineStart(tokenToCheck);
-        if (!getIndent().isAcceptable(lineStart)) {
-            logError(tokenToCheck, "ident", lineStart);
-        }
     }
 
     @Override

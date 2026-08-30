@@ -244,6 +244,26 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testModuleInfoAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "3:5: " + getCheckMessage(MSG_ERROR, "ident", 4, 0),
+            "5:3: " + getCheckMessage(MSG_ERROR, "module def rcurly", 2, 0),
+        };
+        verifyWarns(checkConfig,
+                getNonCompilablePath("module-info/annotation/module-info.java"),
+                expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final IndentationCheck checkObj = new IndentationCheck();
         final int[] requiredTokens = checkObj.getRequiredTokens();
