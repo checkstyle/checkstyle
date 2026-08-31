@@ -22,32 +22,53 @@ public class InputUnderscoreUsedInNames {
   private String gradle851;
 
   class InnerBad {
-    // violation below ''guava_33_4_7' .* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'guava_33_4_7' must start lowercase,
+    //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+    //  contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int guava_33_4_7;
     int guava33_4_7;
 
-    // violation below ''guava33_4_8_' .* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'guava33_4_8_' must start lowercase,
+    //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+    //  contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int guava33_4_8_;
     int guava33_4_8;
 
-    // violation below ''jdk_8_90' .* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'jdk_8_90' must start lowercase,
+    //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+    //  contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int jdk_8_90;
     int jdk8_90;
 
-    // violation below ''jdk8_91_' .* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'jdk8_91_' must start lowercase,
+    //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+    //  contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int jdk8_91_;
     int jdk8_91;
 
-    // violation below ''kotlin_1_9_24' .* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'kotlin_1_9_24' must start lowercase,
+    //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+    //  contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int kotlin_1_9_24;
     int kotlin1_9_24;
 
-    // violation below ''kotlin_version1_9_24'.* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'kotlin_version1_9_24'
+    //  must start lowercase, be at least 2 chars, avoid single lowercase letter
+    //  followed by uppercase, contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int kotlin_version1_9_24;
 
     int kotlinVersion1_9_24;
 
-    // violation below ''kotlin1_9_25_' .* underscores allowed only between adjacent digits.'
+    // violation 4 lines below """Non-constant field name 'kotlin1_9_25_' must start lowercase,
+    //  be at least 2 chars, avoid single lowercase letter followed by uppercase,
+    //  contain only letters, digits or underscores,
+    //  with underscores allowed only between adjacent digits."""
     int kotlin1_9_25_;
     int kotlin1_9_25;
   }
