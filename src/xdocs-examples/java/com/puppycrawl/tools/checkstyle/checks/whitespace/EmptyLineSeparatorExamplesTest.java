@@ -60,7 +60,10 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
             "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -68,28 +71,6 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-            "21:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
-            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
-            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
-            "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
-    }
-
-    @Test
-    public void testExample6() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
             "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -100,11 +81,11 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
             "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testExample5() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
             "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -114,7 +95,26 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
             "30:17: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testUseCase2() throws Exception {
+        final String[] expected = {
+            "21:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
 
 }
