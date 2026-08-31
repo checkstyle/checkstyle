@@ -2139,18 +2139,17 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * {@snippet :
-     * |--LITERAL_SYNCHRONIZED -> synchronized
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--LITERAL_THIS -> this
-     * |   |--RPAREN -> )
-     * |   `--SLIST -> {
-     * |       |--EXPR -> EXPR
-     * |       |   `--POST_INC -> ++
-     * |       |       `--IDENT -> x
-     * |       |--SEMI -> ;
-     * |       `--RCURLY -> }
-     * `--RCURLY -> }
+     * LITERAL_SYNCHRONIZED -> synchronized
+     *     |--LPAREN -> (
+     *     |--EXPR -> EXPR
+     *     |   `--LITERAL_THIS -> this
+     *     |--RPAREN -> )
+     *     `--SLIST -> {
+     *         |--EXPR -> EXPR
+     *         |   `--POST_INC -> ++
+     *         |       `--IDENT -> x
+     *         |--SEMI -> ;
+     *         `--RCURLY -> }
      * }
      *
      * @see #MODIFIERS
@@ -6358,45 +6357,44 @@ public final class TokenTypes {
      * <p>parses as:</p>
      * {@snippet :
      * LITERAL_SWITCH -> switch
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--IDENT -> o
-     * |   |--RPAREN -> )
-     * |   |--LCURLY -> {
-     * |   |--CASE_GROUP -> CASE_GROUP
-     * |   |   |--LITERAL_CASE -> case
-     * |   |   |   |--PATTERN_DEF -> PATTERN_DEF
-     * |   |   |   |   `--LITERAL_WHEN -> when
-     * |   |   |   |       |--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |   |   |       |   |--MODIFIERS -> MODIFIERS
-     * |   |   |   |       |   |--TYPE -> TYPE
-     * |   |   |   |       |   |   `--IDENT -> String
-     * |   |   |   |       |   `--IDENT -> s
-     * |   |   |   |       `--GT -> >
-     * |   |   |   |           |--METHOD_CALL -> (
-     * |   |   |   |           |   |--DOT -> .
-     * |   |   |   |           |   |   |--IDENT -> s
-     * |   |   |   |           |   |   `--IDENT -> length
-     * |   |   |   |           |   |--ELIST -> ELIST
-     * |   |   |   |           |   `--RPAREN -> )
-     * |   |   |   |           `--NUM_INT -> 4
-     * |   |   |   `--COLON -> :
-     * |   |   `--SLIST -> SLIST
-     * |   |       `--LITERAL_BREAK -> break
-     * |   |           `--SEMI -> ;
-     * |   |--CASE_GROUP -> CASE_GROUP
-     * |   |   |--LITERAL_CASE -> case
-     * |   |   |   |--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |   |   |   |--MODIFIERS -> MODIFIERS
-     * |   |   |   |   |--TYPE -> TYPE
-     * |   |   |   |   |   `--IDENT -> String
-     * |   |   |   |   `--IDENT -> s
-     * |   |   |   `--COLON -> :
-     * |   |   `--SLIST -> SLIST
-     * |   |       `--LITERAL_BREAK -> break
-     * |   |           `--SEMI -> ;
-     * |   `--RCURLY -> }
-     * `--RCURLY -> }
+     *     |--LPAREN -> (
+     *     |--EXPR -> EXPR
+     *     |   `--IDENT -> o
+     *     |--RPAREN -> )
+     *     |--LCURLY -> {
+     *     |--CASE_GROUP -> CASE_GROUP
+     *     |   |--LITERAL_CASE -> case
+     *     |   |   |--PATTERN_DEF -> PATTERN_DEF
+     *     |   |   |   `--LITERAL_WHEN -> when
+     *     |   |   |       |--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
+     *     |   |   |       |   |--MODIFIERS -> MODIFIERS
+     *     |   |   |       |   |--TYPE -> TYPE
+     *     |   |   |       |   |   `--IDENT -> String
+     *     |   |   |       |   `--IDENT -> s
+     *     |   |   |       `--GT -> >
+     *     |   |   |           |--METHOD_CALL -> (
+     *     |   |   |           |   |--DOT -> .
+     *     |   |   |           |   |   |--IDENT -> s
+     *     |   |   |           |   |   `--IDENT -> length
+     *     |   |   |           |   |--ELIST -> ELIST
+     *     |   |   |           |   `--RPAREN -> )
+     *     |   |   |           `--NUM_INT -> 4
+     *     |   |   `--COLON -> :
+     *     |   `--SLIST -> SLIST
+     *     |       `--LITERAL_BREAK -> break
+     *     |           `--SEMI -> ;
+     *     |--CASE_GROUP -> CASE_GROUP
+     *     |   |--LITERAL_CASE -> case
+     *     |   |   |--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
+     *     |   |   |   |--MODIFIERS -> MODIFIERS
+     *     |   |   |   |--TYPE -> TYPE
+     *     |   |   |   |   `--IDENT -> String
+     *     |   |   |   `--IDENT -> s
+     *     |   |   `--COLON -> :
+     *     |   `--SLIST -> SLIST
+     *     |       `--LITERAL_BREAK -> break
+     *     |           `--SEMI -> ;
+     *     `--RCURLY -> }
      * }
      *
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
@@ -6546,7 +6544,6 @@ public final class TokenTypes {
      * |   |   `--SLIST -> {
      * |   |       `--RCURLY -> }
      * |   `--RCURLY -> }
-     * `--RCURLY -> }
      * }
      *
      * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
@@ -6644,7 +6641,6 @@ public final class TokenTypes {
      * |   |   `--SLIST -> {
      * |   |       `--RCURLY -> }
      * |   `--RCURLY -> }
-     * `--RCURLY -> }
      * }
      *
      * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
