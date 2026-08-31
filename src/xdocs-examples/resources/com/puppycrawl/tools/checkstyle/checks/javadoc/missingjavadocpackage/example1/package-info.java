@@ -9,5 +9,5 @@
 /**
  * Provides API classes
  */
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.example1;
 // xdoc section - end
