@@ -167,7 +167,6 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
             "checks/javadoc/javadocpackage",
-            "checks/whitespace/emptylineseparator",
             "filters/suppresswarningsfilter"
     );
 
