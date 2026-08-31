@@ -16,7 +16,7 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_K
  * This is a short Javadoc comment.
  * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
  */
-class Example5 {
+class UseCase1 {
   // violation 3 lines above 'Line is longer'
   void testMethod(String str) {
     str = MSG_KEY;

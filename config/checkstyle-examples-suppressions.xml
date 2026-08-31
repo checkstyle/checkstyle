@@ -182,7 +182,7 @@
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter/UseCase1.java"/>
   <suppress checks="LineLength"
-    files="linelength/Example\d+.*"/>
+    files="linelength/(Example|UseCase)\d+.*"/>
   <!-- it prints user regexp -->
   <suppress checks="LineLength"
             files="regexponfilename/Example[2].java"/>
