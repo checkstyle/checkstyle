@@ -2741,8 +2741,18 @@ public class XdocsPagesTest {
             final String paramValue = item.getAttributes()
                     .getNamedItem("value").getTextContent();
             if ("path".equals(paramName)) {
-                exampleName = paramValue.substring(paramValue.lastIndexOf('/') + 1,
-                        paramValue.lastIndexOf('.'));
+                final int lastSlash = paramValue.lastIndexOf('/');
+                final int lastDot = paramValue.lastIndexOf('.');
+                exampleName = paramValue.substring(lastSlash + 1, lastDot);
+                // package-info.java always has that filename; prefer ExampleN/UseCaseN
+                // parent folder so TOC ids stay UseCase3-config (not UseCase3-package-info-config).
+                if ("package-info".equals(exampleName) && lastSlash > 0) {
+                    final int prevSlash = paramValue.lastIndexOf('/', lastSlash - 1);
+                    final String parentDir = paramValue.substring(prevSlash + 1, lastSlash);
+                    if (EXAMPLE_ID_PATTERN.matcher(parentDir + "-config").matches()) {
+                        exampleName = parentDir;
+                    }
+                }
             }
             else if ("type".equals(paramName)) {
                 exampleType = paramValue;

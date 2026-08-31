@@ -11,9 +11,9 @@
 //HEADER
 ///////////////////////////////////////////////////
 
-// single-line comment before package
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example11;
-// violation above ''package' should be separated from previous line'
+/** OK: Javadoc before PACKAGE_DEF */
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase4;
 
+// import is present so PACKAGE_DEF is not the last token
 import java.lang.System;
 // xdoc section - end
