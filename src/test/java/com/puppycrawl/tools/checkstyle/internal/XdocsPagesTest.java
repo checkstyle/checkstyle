@@ -2981,6 +2981,71 @@ public class XdocsPagesTest {
                 .isEmpty();
     }
 
+    @Test
+    public void testAllExamplesPresentInGeneratedToc() throws Exception {
+        final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
+
+        assertWithMessage("Expected to find at least one xdoc template under src/site")
+                .that(templates)
+                .isNotEmpty();
+
+        final List<String> failures = new ArrayList<>();
+
+        for (final Path template : templates) {
+            final String content = Files.readString(template);
+            final String fileName = template.getFileName().toString();
+
+            failures.addAll(validateTocMacroCanExtractAllExamples(fileName, content));
+        }
+
+        assertWithMessage("TOC macro failed to extract all examples:\n%s",
+                String.join("\n", failures))
+                .that(failures)
+                .isEmpty();
+    }
+
+    /**
+     * Validates that the TocMacro can extract all Example/UseCase ids from the
+     * template. This uses the same ANCHOR_PATTERN as TocMacro to detect cases
+     * where the macro would silently fail to extract some examples.
+     *
+     * @param fileName the file name, for failure messages.
+     * @param content the full template source text.
+     * @return the list of failure messages.
+     */
+    private static List<String> validateTocMacroCanExtractAllExamples(String fileName,
+            String content) throws Exception {
+        final List<String> failures = new ArrayList<>();
+
+        final Pattern anchorPattern = Pattern.compile(
+                "<p\\s+id=\"((?:Example|UseCase)\\d+)-(config|raw)\"[^>]*>\\s*(.*?)\\s*</p>",
+                Pattern.DOTALL);
+
+        final Set<String> exampleIdsInContent = findAllExampleAndUseCaseIds(content);
+        final Set<String> exampleIdsExtractedByMacro = new TreeSet<>();
+
+        final Matcher matcher = anchorPattern.matcher(content);
+        while (matcher.find()) {
+            final String anchorId = matcher.group(1);
+            exampleIdsExtractedByMacro.add(anchorId);
+        }
+
+        final Set<String> missingFromMacro = new TreeSet<>(exampleIdsInContent);
+        missingFromMacro.removeAll(exampleIdsExtractedByMacro);
+
+        if (!missingFromMacro.isEmpty()) {
+            failures.add(String.format(Locale.ROOT,
+                    "%s: TOC macro failed to extract the following examples: %s. "
+                            + "The ToC macro could not match these example IDs "
+                            + "with its ANCHOR_PATTERN. "
+                            + "Check that each example has a <p id=\"ExampleN-config\"> or "
+                            + "<p id=\"UseCaseN-config\"> paragraph with proper formatting.",
+                    fileName, missingFromMacro));
+        }
+
+        return failures;
+    }
+
     /**
      * Validates that every Example/UseCase id found in the template has a
      * matching descriptive paragraph immediately before its example macro,
@@ -3052,8 +3117,8 @@ public class XdocsPagesTest {
 
     /**
      * Finds every {@code ExampleN}/{@code UseCaseN} id declared via a
-     * {@code -config} paragraph anywhere in the template, regardless of
-     * whether it matches the extraction pattern -- used to detect ids that
+     * {@code -config} or {@code -package-info-config} paragraph anywhere in the template,
+     * regardless of whether it matches the extraction pattern -- used to detect ids that
      * exist but silently fail extraction.
      *
      * @param content the full template source text.
@@ -3065,9 +3130,12 @@ public class XdocsPagesTest {
         final Set<String> result = new TreeSet<>();
         final NodeList paragraphs = doc.getElementsByTagName("p");
 
+        final Pattern idPattern = Pattern.compile(
+                "^((?:Example|UseCase)\\d+)(?:-package-info)?-config$");
+
         for (int index = 0; index < paragraphs.getLength(); index++) {
             final Element paragraph = (Element) paragraphs.item(index);
-            final Matcher idMatcher = EXAMPLE_ID_PATTERN.matcher(paragraph.getAttribute("id"));
+            final Matcher idMatcher = idPattern.matcher(paragraph.getAttribute("id"));
             if (idMatcher.matches()) {
                 result.add(idMatcher.group(1));
             }
