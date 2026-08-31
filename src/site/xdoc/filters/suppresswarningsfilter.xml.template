@@ -40,7 +40,8 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
-        <hr class="example-separator"/>
+      </subsection>
+      <subsection name="Use Cases" id="SuppressWarningsFilter_Use_Cases">
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip
@@ -48,16 +49,16 @@
           just <code>@SuppressWarnings("&lt;ID&gt;")</code> annotation, where ID is the ID of checks
           you want to suppress.
         </p>
-        <p id="Example2-config">Example of suppression by prefix "checkstyle:":</p>
+        <p id="UseCase1-config">Example of suppression by prefix "checkstyle:":</p>
         <macro name="example">
           <param name="path"
-               value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example2.java"/>
+               value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example2-code">Java code:</p>
+        <p id="UseCase1-code">Java code:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
