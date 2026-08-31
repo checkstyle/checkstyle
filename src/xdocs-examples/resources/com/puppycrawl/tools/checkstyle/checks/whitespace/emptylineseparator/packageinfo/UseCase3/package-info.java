@@ -11,9 +11,9 @@
 //HEADER
 ///////////////////////////////////////////////////
 
-/*
- * Block comment is not a Javadoc
- */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example12;
-// violation above ''package' should be separated from previous line'
+/* OK: annotation before PACKAGE_DEF */
+@Deprecated
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase3;
+
+import java.lang.Deprecated;
 // xdoc section - end

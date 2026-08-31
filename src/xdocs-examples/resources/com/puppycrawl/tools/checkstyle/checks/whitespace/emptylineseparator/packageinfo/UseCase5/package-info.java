@@ -13,6 +13,6 @@
 /*
  * configuration block comment
  */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example10;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase5;
 // violation above ''package' should be separated from previous line'
 // xdoc section - end
