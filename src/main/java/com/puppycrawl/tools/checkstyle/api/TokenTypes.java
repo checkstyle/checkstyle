@@ -2138,20 +2138,20 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      *
-     * {@snippet :
-     * |--LITERAL_SYNCHRONIZED -> synchronized
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--LITERAL_THIS -> this
-     * |   |--RPAREN -> )
-     * |   `--SLIST -> {
-     * |       |--EXPR -> EXPR
-     * |       |   `--POST_INC -> ++
-     * |       |       `--IDENT -> x
-     * |       |--SEMI -> ;
-     * |       `--RCURLY -> }
-     * `--RCURLY -> }
-     * }
+     * <pre>
+     * |--LITERAL_SYNCHRONIZED -&gt; synchronized
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_THIS -&gt; this
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       |--EXPR -&gt; EXPR
+     * |       |   `--POST_INC -&gt; ++
+     * |       |       `--IDENT -&gt; x
+     * |       |--SEMI -&gt; ;
+     * |       `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #MODIFIERS
      * @see #LPAREN
@@ -6356,48 +6356,48 @@ public final class TokenTypes {
      * }
      *
      * <p>parses as:</p>
-     * {@snippet :
-     * LITERAL_SWITCH -> switch
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--IDENT -> o
-     * |   |--RPAREN -> )
-     * |   |--LCURLY -> {
-     * |   |--CASE_GROUP -> CASE_GROUP
-     * |   |   |--LITERAL_CASE -> case
-     * |   |   |   |--PATTERN_DEF -> PATTERN_DEF
-     * |   |   |   |   `--LITERAL_WHEN -> when
-     * |   |   |   |       |--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |   |   |       |   |--MODIFIERS -> MODIFIERS
-     * |   |   |   |       |   |--TYPE -> TYPE
-     * |   |   |   |       |   |   `--IDENT -> String
-     * |   |   |   |       |   `--IDENT -> s
-     * |   |   |   |       `--GT -> >
-     * |   |   |   |           |--METHOD_CALL -> (
-     * |   |   |   |           |   |--DOT -> .
-     * |   |   |   |           |   |   |--IDENT -> s
-     * |   |   |   |           |   |   `--IDENT -> length
-     * |   |   |   |           |   |--ELIST -> ELIST
-     * |   |   |   |           |   `--RPAREN -> )
-     * |   |   |   |           `--NUM_INT -> 4
-     * |   |   |   `--COLON -> :
-     * |   |   `--SLIST -> SLIST
-     * |   |       `--LITERAL_BREAK -> break
-     * |   |           `--SEMI -> ;
-     * |   |--CASE_GROUP -> CASE_GROUP
-     * |   |   |--LITERAL_CASE -> case
-     * |   |   |   |--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |   |   |   |--MODIFIERS -> MODIFIERS
-     * |   |   |   |   |--TYPE -> TYPE
-     * |   |   |   |   |   `--IDENT -> String
-     * |   |   |   |   `--IDENT -> s
-     * |   |   |   `--COLON -> :
-     * |   |   `--SLIST -> SLIST
-     * |   |       `--LITERAL_BREAK -> break
-     * |   |           `--SEMI -> ;
-     * |   `--RCURLY -> }
-     * `--RCURLY -> }
-     * }
+     * <pre>
+     * LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_DEF -&gt; PATTERN_DEF
+     * |   |   |   |   `--LITERAL_WHEN -&gt; when
+     * |   |   |   |       |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |       |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |       |   |--TYPE -&gt; TYPE
+     * |   |   |   |       |   |   `--IDENT -&gt; String
+     * |   |   |   |       |   `--IDENT -&gt; s
+     * |   |   |   |       `--GT -&gt; &gt;
+     * |   |   |   |           |--METHOD_CALL -&gt; (
+     * |   |   |   |           |   |--DOT -&gt; .
+     * |   |   |   |           |   |   |--IDENT -&gt; s
+     * |   |   |   |           |   |   `--IDENT -&gt; length
+     * |   |   |   |           |   |--ELIST -&gt; ELIST
+     * |   |   |   |           |   `--RPAREN -&gt; )
+     * |   |   |   |           `--NUM_INT -&gt; 4
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   |--CASE_GROUP -&gt; CASE_GROUP
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   |--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |   |   |--TYPE -&gt; TYPE
+     * |   |   |   |   |   `--IDENT -&gt; String
+     * |   |   |   |   `--IDENT -&gt; s
+     * |   |   |   `--COLON -&gt; :
+     * |   |   `--SLIST -&gt; SLIST
+     * |   |       `--LITERAL_BREAK -&gt; break
+     * |   |           `--SEMI -&gt; ;
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
      *
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
      *     Java Language Specification, &sect;14.30</a>
@@ -6484,70 +6484,70 @@ public final class TokenTypes {
      * }
      *
      * <p>parses as:</p>
-     * {@snippet :
-     * |--RECORD_DEF -> RECORD_DEF
-     * |   |--MODIFIERS -> MODIFIERS
-     * |   |--LITERAL_RECORD -> record
-     * |   |--IDENT -> R
-     * |   |--LPAREN -> (
-     * |   |--RECORD_COMPONENTS -> RECORD_COMPONENTS
-     * |   |   `--RECORD_COMPONENT_DEF -> RECORD_COMPONENT_DEF
-     * |   |       |--ANNOTATIONS -> ANNOTATIONS
-     * |   |       |--TYPE -> TYPE
-     * |   |       |   `--IDENT -> Object
-     * |   |       `--IDENT -> o
-     * |   |--RPAREN -> )
-     * |   `--OBJBLOCK -> OBJBLOCK
-     * |       |--LCURLY -> {
-     * |       `--RCURLY -> }
-     * |--LITERAL_IF -> if
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--LITERAL_INSTANCEOF -> instanceof
-     * |   |       |--IDENT -> o
-     * |   |       `--RECORD_PATTERN_DEF -> RECORD_PATTERN_DEF
-     * |   |           |--MODIFIERS -> MODIFIERS
-     * |   |           |--TYPE -> TYPE
-     * |   |           |   `--IDENT -> R
-     * |   |           |--LPAREN -> (
-     * |   |           |--RECORD_PATTERN_COMPONENTS -> RECORD_PATTERN_COMPONENTS
-     * |   |           |   `--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |           |       |--MODIFIERS -> MODIFIERS
-     * |   |           |       |--TYPE -> TYPE
-     * |   |           |       |   `--IDENT -> String
-     * |   |           |       `--IDENT -> s
-     * |   |           |--RPAREN -> )
-     * |   |           `--IDENT -> myRecord
-     * |   |--RPAREN -> )
-     * |   `--SLIST -> {
-     * |       `--RCURLY -> }
-     * |--LITERAL_SWITCH -> switch
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--IDENT -> o
-     * |   |--RPAREN -> )
-     * |   |--LCURLY -> {
-     * |   |--SWITCH_RULE -> SWITCH_RULE
-     * |   |   |--LITERAL_CASE -> case
-     * |   |   |   `--RECORD_PATTERN_DEF -> RECORD_PATTERN_DEF
-     * |   |   |       |--MODIFIERS -> MODIFIERS
-     * |   |   |       |--TYPE -> TYPE
-     * |   |   |       |   `--IDENT -> R
-     * |   |   |       |--LPAREN -> (
-     * |   |   |       |--RECORD_PATTERN_COMPONENTS -> RECORD_PATTERN_COMPONENTS
-     * |   |   |       |   `--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |   |       |       |--MODIFIERS -> MODIFIERS
-     * |   |   |       |       |--TYPE -> TYPE
-     * |   |   |       |       |   `--IDENT -> String
-     * |   |   |       |       `--IDENT -> s
-     * |   |   |       |--RPAREN -> )
-     * |   |   |       `--IDENT -> myRecord
-     * |   |   |--LAMBDA -> ->
-     * |   |   `--SLIST -> {
-     * |   |       `--RCURLY -> }
-     * |   `--RCURLY -> }
-     * `--RCURLY -> }
-     * }
+     * <pre>
+     * |--RECORD_DEF -&gt; RECORD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_RECORD -&gt; record
+     * |   |--IDENT -&gt; R
+     * |   |--LPAREN -&gt; (
+     * |   |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |   |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |   |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--IDENT -&gt; Object
+     * |   |       `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   `--OBJBLOCK -&gt; OBJBLOCK
+     * |       |--LCURLY -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_IF -&gt; if
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |   |       |--IDENT -&gt; o
+     * |   |       `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |           |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |--TYPE -&gt; TYPE
+     * |   |           |   `--IDENT -&gt; R
+     * |   |           |--LPAREN -&gt; (
+     * |   |           |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |           |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |           |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |       |--TYPE -&gt; TYPE
+     * |   |           |       |   `--IDENT -&gt; String
+     * |   |           |       `--IDENT -&gt; s
+     * |   |           |--RPAREN -&gt; )
+     * |   |           `--IDENT -&gt; myRecord
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--SWITCH_RULE -&gt; SWITCH_RULE
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |       |--TYPE -&gt; TYPE
+     * |   |   |       |   `--IDENT -&gt; R
+     * |   |   |       |--LPAREN -&gt; (
+     * |   |   |       |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |   |       |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |       |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |       |       |--TYPE -&gt; TYPE
+     * |   |   |       |       |   `--IDENT -&gt; String
+     * |   |   |       |       `--IDENT -&gt; s
+     * |   |   |       |--RPAREN -&gt; )
+     * |   |   |       `--IDENT -&gt; myRecord
+     * |   |   |--LAMBDA -&gt; -&gt;
+     * |   |   `--SLIST -&gt; {
+     * |   |       `--RCURLY -&gt; }
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
      *
      * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
      * @see #LITERAL_WHEN
@@ -6574,78 +6574,78 @@ public final class TokenTypes {
      * }
      *
      * <p>parses as:</p>
-     * {@snippet :
-     * |--RECORD_DEF -> RECORD_DEF
-     * |   |--MODIFIERS -> MODIFIERS
-     * |   |--LITERAL_RECORD -> record
-     * |   |--IDENT -> R
-     * |   |--LPAREN -> (
-     * |   |--RECORD_COMPONENTS -> RECORD_COMPONENTS
-     * |   |   `--RECORD_COMPONENT_DEF -> RECORD_COMPONENT_DEF
-     * |   |       |--ANNOTATIONS -> ANNOTATIONS
-     * |   |       |--TYPE -> TYPE
-     * |   |       |   `--IDENT -> Object
-     * |   |       `--IDENT -> o
-     * |   |--RPAREN -> )
-     * |   `--OBJBLOCK -> OBJBLOCK
-     * |       |--LCURLY -> {
-     * |       `--RCURLY -> }
-     * |--LITERAL_IF -> if
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--LITERAL_INSTANCEOF -> instanceof
-     * |   |       |--IDENT -> o
-     * |   |       `--RECORD_PATTERN_DEF -> RECORD_PATTERN_DEF
-     * |   |           |--MODIFIERS -> MODIFIERS
-     * |   |           |--TYPE -> TYPE
-     * |   |           |   `--IDENT -> R
-     * |   |           |--LPAREN -> (
-     * |   |           |--RECORD_PATTERN_COMPONENTS -> RECORD_PATTERN_COMPONENTS
-     * |   |           |   `--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |           |       |--MODIFIERS -> MODIFIERS
-     * |   |           |       |--TYPE -> TYPE
-     * |   |           |       |   `--IDENT -> String
-     * |   |           |       `--IDENT -> myComponent
-     * |   |           `--RPAREN -> )
-     * |   |--RPAREN -> )
-     * |   `--SLIST -> {
-     * |       `--RCURLY -> }
-     * |--LITERAL_SWITCH -> switch
-     * |   |--LPAREN -> (
-     * |   |--EXPR -> EXPR
-     * |   |   `--IDENT -> o
-     * |   |--RPAREN -> )
-     * |   |--LCURLY -> {
-     * |   |--SWITCH_RULE -> SWITCH_RULE
-     * |   |   |--LITERAL_CASE -> case
-     * |   |   |   `--PATTERN_DEF -> PATTERN_DEF
-     * |   |   |       `--LITERAL_WHEN -> when
-     * |   |   |           |--RECORD_PATTERN_DEF -> RECORD_PATTERN_DEF
-     * |   |   |           |   |--MODIFIERS -> MODIFIERS
-     * |   |   |           |   |--TYPE -> TYPE
-     * |   |   |           |   |   `--IDENT -> R
-     * |   |   |           |   |--LPAREN -> (
-     * |   |   |           |   |--RECORD_PATTERN_COMPONENTS -> RECORD_PATTERN_COMPONENTS
-     * |   |   |           |   |   `--PATTERN_VARIABLE_DEF -> PATTERN_VARIABLE_DEF
-     * |   |   |           |   |       |--MODIFIERS -> MODIFIERS
-     * |   |   |           |   |       |--TYPE -> TYPE
-     * |   |   |           |   |       |   `--IDENT -> String
-     * |   |   |           |   |       `--IDENT -> myComponent
-     * |   |   |           |   `--RPAREN -> )
-     * |   |   |           `--METHOD_CALL -> (
-     * |   |   |               |--DOT -> .
-     * |   |   |               |   |--STRING_LITERAL -> "component"
-     * |   |   |               |   `--IDENT -> equalsIgnoreCase
-     * |   |   |               |--ELIST -> ELIST
-     * |   |   |               |   `--EXPR -> EXPR
-     * |   |   |               |       `--IDENT -> myComponent
-     * |   |   |               `--RPAREN -> )
-     * |   |   |--LAMBDA -> ->
-     * |   |   `--SLIST -> {
-     * |   |       `--RCURLY -> }
-     * |   `--RCURLY -> }
-     * `--RCURLY -> }
-     * }
+     * <pre>
+     * |--RECORD_DEF -&gt; RECORD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_RECORD -&gt; record
+     * |   |--IDENT -&gt; R
+     * |   |--LPAREN -&gt; (
+     * |   |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |   |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |   |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |   |       |--TYPE -&gt; TYPE
+     * |   |       |   `--IDENT -&gt; Object
+     * |   |       `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   `--OBJBLOCK -&gt; OBJBLOCK
+     * |       |--LCURLY -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_IF -&gt; if
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |   |       |--IDENT -&gt; o
+     * |   |       `--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |           |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |--TYPE -&gt; TYPE
+     * |   |           |   `--IDENT -&gt; R
+     * |   |           |--LPAREN -&gt; (
+     * |   |           |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |           |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |           |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |           |       |--TYPE -&gt; TYPE
+     * |   |           |       |   `--IDENT -&gt; String
+     * |   |           |       `--IDENT -&gt; myComponent
+     * |   |           `--RPAREN -&gt; )
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       `--RCURLY -&gt; }
+     * |--LITERAL_SWITCH -&gt; switch
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--IDENT -&gt; o
+     * |   |--RPAREN -&gt; )
+     * |   |--LCURLY -&gt; {
+     * |   |--SWITCH_RULE -&gt; SWITCH_RULE
+     * |   |   |--LITERAL_CASE -&gt; case
+     * |   |   |   `--PATTERN_DEF -&gt; PATTERN_DEF
+     * |   |   |       `--LITERAL_WHEN -&gt; when
+     * |   |   |           |--RECORD_PATTERN_DEF -&gt; RECORD_PATTERN_DEF
+     * |   |   |           |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |           |   |--TYPE -&gt; TYPE
+     * |   |   |           |   |   `--IDENT -&gt; R
+     * |   |   |           |   |--LPAREN -&gt; (
+     * |   |   |           |   |--RECORD_PATTERN_COMPONENTS -&gt; RECORD_PATTERN_COMPONENTS
+     * |   |   |           |   |   `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     * |   |   |           |   |       |--MODIFIERS -&gt; MODIFIERS
+     * |   |   |           |   |       |--TYPE -&gt; TYPE
+     * |   |   |           |   |       |   `--IDENT -&gt; String
+     * |   |   |           |   |       `--IDENT -&gt; myComponent
+     * |   |   |           |   `--RPAREN -&gt; )
+     * |   |   |           `--METHOD_CALL -&gt; (
+     * |   |   |               |--DOT -&gt; .
+     * |   |   |               |   |--STRING_LITERAL -&gt; "component"
+     * |   |   |               |   `--IDENT -&gt; equalsIgnoreCase
+     * |   |   |               |--ELIST -&gt; ELIST
+     * |   |   |               |   `--EXPR -&gt; EXPR
+     * |   |   |               |       `--IDENT -&gt; myComponent
+     * |   |   |               `--RPAREN -&gt; )
+     * |   |   |--LAMBDA -&gt; -&gt;
+     * |   |   `--SLIST -&gt; {
+     * |   |       `--RCURLY -&gt; }
+     * |   `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
+     * </pre>
      *
      * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
      * @see #LITERAL_WHEN
