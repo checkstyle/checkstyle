@@ -56,8 +56,9 @@ public class InputAnnotationLocationRecordsAndCompactCtors {
      * @return
      */
     public record MyRecord7() {
+        // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
         record MyInnerRecord () {@SuppressWarnings("Annotation")public MyInnerRecord {
-            } // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
+            }
         }
     }
 }
