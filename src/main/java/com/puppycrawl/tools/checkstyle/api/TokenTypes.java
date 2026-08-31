@@ -2150,7 +2150,6 @@ public final class TokenTypes {
      * |       |       `--IDENT -> x
      * |       |--SEMI -> ;
      * |       `--RCURLY -> }
-     * `--RCURLY -> }
      * }
      *
      * @see #MODIFIERS
@@ -6396,7 +6395,6 @@ public final class TokenTypes {
      * |   |       `--LITERAL_BREAK -> break
      * |   |           `--SEMI -> ;
      * |   `--RCURLY -> }
-     * `--RCURLY -> }
      * }
      *
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se17/html/jls-14.html#jls-14.30">
@@ -6546,7 +6544,6 @@ public final class TokenTypes {
      * |   |   `--SLIST -> {
      * |   |       `--RCURLY -> }
      * |   `--RCURLY -> }
-     * `--RCURLY -> }
      * }
      *
      * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
@@ -6644,7 +6641,6 @@ public final class TokenTypes {
      * |   |   `--SLIST -> {
      * |   |       `--RCURLY -> }
      * |   `--RCURLY -> }
-     * `--RCURLY -> }
      * }
      *
      * @see <a href="https://openjdk.org/jeps/405">JEP 405: Record Patterns</a>
