@@ -50,13 +50,13 @@ public class JavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestS
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
 
         };
 
-        verifyWithInlineConfigParser(getPath("legacywithboth/Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("legacywithboth/UseCase1.java"), expected);
     }
 
     @Test
