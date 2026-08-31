@@ -69,6 +69,7 @@ public class HandlerFactory {
         register(TokenTypes.OBJBLOCK, ObjectBlockHandler.class);
         register(TokenTypes.INTERFACE_DEF, ClassDefHandler.class);
         register(TokenTypes.IMPORT, ImportHandler.class);
+        register(TokenTypes.MODULE_DEF, ModuleDefHandler.class);
         register(TokenTypes.MODULE_IMPORT, ImportHandler.class);
         register(TokenTypes.ARRAY_INIT, ArrayInitHandler.class);
         register(TokenTypes.ANNOTATION_ARRAY_INIT, AnnotationArrayInitHandler.class);
@@ -87,6 +88,11 @@ public class HandlerFactory {
         register(TokenTypes.ANNOTATION_FIELD_DEF, MethodDefHandler.class);
         register(TokenTypes.SWITCH_RULE, SwitchRuleHandler.class);
         register(TokenTypes.LITERAL_YIELD, YieldHandler.class);
+        register(TokenTypes.REQUIRES, ModuleDirectiveHandler.class);
+        register(TokenTypes.EXPORTS, ModuleDirectiveHandler.class);
+        register(TokenTypes.OPENS, ModuleDirectiveHandler.class);
+        register(TokenTypes.USES, ModuleDirectiveHandler.class);
+        register(TokenTypes.PROVIDES, ModuleDirectiveHandler.class);
         register(TokenTypes.RECORD_DEF, ClassDefHandler.class);
         register(TokenTypes.COMPACT_CTOR_DEF, MethodDefHandler.class);
     }
