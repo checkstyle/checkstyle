@@ -7,9 +7,10 @@ tokens = BLOCK_COMMENT_END
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
+// violation 3 lines below 'Using '\*\/' is not allowed'
 /**
  * Test for illegal tokens
- */ // violation 'Using '\*\/' is not allowed'
+ */
 public class InputIllegalTokensCheckBlockCommentEnd
 {
     public void methodWithPreviouslyIllegalTokens()
