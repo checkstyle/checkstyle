@@ -60,7 +60,7 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expectedWithoutFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
             "32: Dont use System.out/err, use SLF4J instead.",
@@ -72,7 +72,7 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
             "36: Dont use System.out/err, use SLF4J instead.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
 
