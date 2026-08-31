@@ -89,9 +89,12 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-structure">
-          Directory structure with no package-info.java file in directory:<br/><br/>
-          Example1.java
+          Directory structure with no package-info.java file in directory:
         </p>
+        <source>
+directory
+|-- Example1.java
+        </source>
         <p id="Example1-code">
           The following violation is raised in default when
           package-info.java file is missing from directory.
@@ -112,10 +115,13 @@ public class Example1 { }
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example2-structure">
-          Directory structure with with package.html file in same directory:<br/><br/>
-          Example2.java<br/><br/>
-          package.html
+          Directory structure with package.html file in same directory:
         </p>
+        <source>
+directory
+|-- Example2.java
+|-- package.html
+        </source>
         <p id="Example2-code">
           The legacy configuration (allowLegacy=true) allows the use of the legacy package.html
           file as an alternative to package-info.java removing violation
@@ -136,10 +142,13 @@ public class Example2 { } // ok, package.html file is present in directory
 </code></pre></div>
         <p id="Example4-structure">
           Directory structure with only a <code>.properties</code> file and no
-          <code>package-info.java</code>:<br/><br/>
-          Example4.java<br/><br/>
-          example.properties
+          <code>package-info.java</code>:
         </p>
+        <source>
+directory
+|-- Example4.java
+|-- example.properties
+        </source>
         <p id="Example4-code">
           Since <code>fileExtensions</code> is set to <code>properties</code>,
           the <code>.java</code> file is ignored, and the <code>.properties</code>
@@ -165,11 +174,14 @@ public class Example4 { } // ok, .java file is not checked
 </code></pre></div>
         <p id="UseCase1-structure">
           Directory structure with both package-info.java and package.html
-          file in same directory:<br/><br/>
-          UseCase1.java<br/><br/>
-          package.html<br/><br/>
-          package-info.java
+          file in same directory:
         </p>
+        <source>
+directory
+|-- UseCase1.java
+|-- package.html
+|-- package-info.java
+        </source>
         <p id="UseCase1-code">
           The legacy configuration (allowLegacy=true) allows the use of package.html files
           in place of package-info.java but still enforces that only one file
