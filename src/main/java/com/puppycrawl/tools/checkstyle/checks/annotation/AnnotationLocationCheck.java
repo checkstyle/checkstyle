@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -196,12 +197,26 @@ public class AnnotationLocationCheck extends AbstractCheck {
         if (ast.getType() != TokenTypes.VARIABLE_DEF
                 || ast.getParent().getType() == TokenTypes.OBJBLOCK
                 || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
-            DetailAST node = ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (node == null) {
-                node = ast.findFirstToken(TokenTypes.ANNOTATIONS);
-            }
+            final DetailAST node = getAnnotationParent(ast);
             checkAnnotations(node, getExpectedAnnotationIndentation(node));
         }
+    }
+
+    /**
+     * Returns the node holding the annotations of the given ast.
+     *
+     * @param annotatableAst node being visited.
+     * @return the MODIFIERS node, or, if absent, the ANNOTATIONS node.
+     *
+     * @notNull because  absence of MODIFIERS on such a token means it is a package declaration,
+     *                 which by grammar always carries an ANNOTATIONS node.
+     */
+    private static DetailAST getAnnotationParent(DetailAST annotatableAst) {
+        DetailAST node = annotatableAst.findFirstToken(TokenTypes.MODIFIERS);
+        if (node == null) {
+            node = NullUtil.notNull(annotatableAst.findFirstToken(TokenTypes.ANNOTATIONS));
+        }
+        return node;
     }
 
     /**
@@ -220,11 +235,11 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * 1) Checks whether the annotations locations are correct.
      * 2) Checks whether the annotations have the valid indentation level.
      *
-     * @param modifierNode modifiers node.
+     * @param annotationParent node.
      * @param correctIndentation correct indentation of the annotation.
      */
-    private void checkAnnotations(DetailAST modifierNode, int correctIndentation) {
-        DetailAST annotation = modifierNode.getFirstChild();
+    private void checkAnnotations(DetailAST annotationParent, int correctIndentation) {
+        DetailAST annotation = annotationParent.getFirstChild();
 
         while (annotation != null && annotation.getType() == TokenTypes.ANNOTATION) {
             final boolean hasParameters = isParameterized(annotation);
@@ -259,11 +274,16 @@ public class AnnotationLocationCheck extends AbstractCheck {
      *
      * @param annotation annotation node.
      * @return annotation name.
+     *
+     * @notNull because method operates only on annotation ast nodes;
+     *          absence of IDENT as a direct child of the annotation means
+     *          it has a fully qualified name expressed via DOT and IDENT.
      */
     private static String getAnnotationName(DetailAST annotation) {
         DetailAST identNode = annotation.findFirstToken(TokenTypes.IDENT);
         if (identNode == null) {
-            identNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);
+            final DetailAST dotNode = NullUtil.notNull(annotation.findFirstToken(TokenTypes.DOT));
+            identNode = NullUtil.notNull(dotNode.findFirstToken(TokenTypes.IDENT));
         }
         return identNode.getText();
     }

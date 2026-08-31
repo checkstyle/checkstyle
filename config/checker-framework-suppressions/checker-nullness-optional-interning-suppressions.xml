@@ -1489,42 +1489,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter modifierNode of AnnotationLocationCheck.checkAnnotations.</message>
-    <lineContent>checkAnnotations(node, getExpectedAnnotationIndentation(node));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter node of AnnotationLocationCheck.getExpectedAnnotationIndentation.</message>
-    <lineContent>checkAnnotations(node, getExpectedAnnotationIndentation(node));</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference annotation.findFirstToken(TokenTypes.DOT)</message>
-    <lineContent>identNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference identNode</message>
-    <lineContent>return identNode.getText();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationOnSameLineCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference annotation.findFirstToken(TokenTypes.DOT)</message>
