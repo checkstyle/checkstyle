@@ -602,6 +602,11 @@
                 <placement>X</placement>
                 <head>propertySince</head>
               </tag>
+              <tag>
+                <name>notNull</name>
+                <placement>X</placement>
+                <head>notNull</head>
+              </tag>
             </tags>
           </configuration>
         </plugin>
