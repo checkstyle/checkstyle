@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -115,6 +116,52 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
         };
 
         verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
+    }
+
+    @Test
+    public void testUseCase3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/usecase3/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/usecase4/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase5() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/usecase5/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase6() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/usecase6/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase7() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/usecase7/package-info.java"), expected);
     }
 
 }

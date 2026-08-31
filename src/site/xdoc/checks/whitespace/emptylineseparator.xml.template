@@ -129,51 +129,6 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example5.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example8-package-info-code">
-          Example of <code>package-info.java</code> with annotation before
-          <code>PACKAGE_DEF</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example8/package-info.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example9-package-info-code">
-          Example of <code>package-info.java</code> with Javadoc before
-          <code>PACKAGE_DEF</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example9/package-info.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example10-package-info-code">
-          Example of violation when a configuration block comment precedes
-          <code>PACKAGE_DEF</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example10/package-info.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example11-package-info-code">
-          Example of violation when single-line comment precedes
-          <code>PACKAGE_DEF</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example11/package-info.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example12-package-info-code">
-          Example of violation when block comment precedes
-          <code>PACKAGE_DEF</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example12/package-info.java"/>
-          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -210,6 +165,81 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase3-package-info-config">
+          Example of <code>package-info.java</code> with annotation before
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase3/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-package-info-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase3/package-info.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase4-package-info-config">
+          Example of <code>package-info.java</code> with Javadoc before
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase4/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase4-package-info-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase4/package-info.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase5-package-info-config">
+          Example of violation when a configuration block comment precedes
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase5/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase5-package-info-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase5/package-info.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase6-package-info-config">
+          Example of violation when single-line comment precedes
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase6/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase6-package-info-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase6/package-info.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase7-package-info-config">
+          Example of violation when block comment precedes
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase7/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase7-package-info-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/usecase7/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

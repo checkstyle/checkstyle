@@ -11,9 +11,8 @@
 //HEADER
 ///////////////////////////////////////////////////
 
-/*
- * Block comment is not a Javadoc
- */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example12;
-// violation above ''package' should be separated from previous line'
+// single-line comment before package
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.usecase6; // violation ''package' should be separated from previous line'
+
+import java.lang.System;
 // xdoc section - end
