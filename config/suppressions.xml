@@ -197,6 +197,12 @@
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
 
+  <!-- few exceptions where parse-tree examples contain a bunch of "}" that get
+       miscounted as closing braces, ending the snippet block early; kept as <pre> instead -->
+  <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
+            files="TokenTypes.java"
+            message="Use snippet inline tag instead of .* tag\."/>
+
   <!-- until https://github.com/checkstyle/checkstyle/issues/21288 -->
   <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
             files=".*\.java"
