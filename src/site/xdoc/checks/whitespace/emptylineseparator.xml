@@ -459,7 +459,7 @@ class Example7 { // violation above ''import' should be separated from previous 
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-package-info-code">
+        <p id="Example8-code">
           Example of <code>package-info.java</code> with annotation before
           <code>PACKAGE_DEF</code>:
         </p>
@@ -474,7 +474,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
 
 import java.lang.Deprecated;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-package-info-code">
+        <p id="Example9-code">
           Example of <code>package-info.java</code> with Javadoc before
           <code>PACKAGE_DEF</code>:
         </p>
@@ -489,7 +489,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
 // import is present so PACKAGE_DEF is not the last token
 import java.lang.System;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example10-package-info-code">
+        <p id="Example10-code">
           Example of violation when a configuration block comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
@@ -503,7 +503,7 @@ import java.lang.System;
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example10;
 // violation above ''package' should be separated from previous line'
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example11-package-info-code">
+        <p id="Example11-code">
           Example of violation when single-line comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
@@ -518,7 +518,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.pac
 
 import java.lang.System;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example12-package-info-code">
+        <p id="Example12-code">
           Example of violation when block comment precedes
           <code>PACKAGE_DEF</code>:
         </p>

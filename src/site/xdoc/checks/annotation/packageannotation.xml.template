@@ -42,7 +42,8 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="package-info-code">Example of validating package-info.java:</p>
+        <hr class="example-separator"/>
+        <p id="Example3-code">Example of validating package-info.java:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/packageannotation/example3/package-info.java"/>

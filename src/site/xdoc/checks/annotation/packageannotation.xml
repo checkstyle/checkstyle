@@ -75,7 +75,8 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
 class Example2 {}
 </code></pre></div>
-        <p id="package-info-code">Example of validating package-info.java:</p>
+        <hr class="example-separator"/>
+        <p id="Example3-code">Example of validating package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.example3;

@@ -2741,8 +2741,18 @@ public class XdocsPagesTest {
             final String paramValue = item.getAttributes()
                     .getNamedItem("value").getTextContent();
             if ("path".equals(paramName)) {
-                exampleName = paramValue.substring(paramValue.lastIndexOf('/') + 1,
-                        paramValue.lastIndexOf('.'));
+                final int lastSlash = paramValue.lastIndexOf('/');
+                final int lastDot = paramValue.lastIndexOf('.');
+                exampleName = paramValue.substring(lastSlash + 1, lastDot);
+                if ("package-info".equals(exampleName)) {
+                    final int prevSlash = paramValue.lastIndexOf('/', lastSlash - 1);
+                    final String parentDir = paramValue.substring(prevSlash + 1, lastSlash);
+                    if (parentDir.matches("(example|usecase)\\d+")) {
+                        exampleName = parentDir
+                                .replace("example", "Example")
+                                .replace("usecase", "UseCase");
+                    }
+                }
             }
             else if ("type".equals(paramName)) {
                 exampleType = paramValue;
@@ -2752,18 +2762,10 @@ public class XdocsPagesTest {
         final String id = idAttribute.getTextContent();
         final String expectedId = String.format(Locale.ROOT, "%s-%s", exampleName,
                 exampleType);
-        if (expectedId.startsWith("package-info")) {
-            assertWithMessage(
-                "%s: paragraph before example macro should have the expected id value", fileName)
-                .that(id)
-                .endsWith(expectedId);
-        }
-        else {
-            assertWithMessage(
-                "%s: paragraph before example macro should have the expected id value", fileName)
-                .that(id)
-                .isEqualTo(expectedId);
-        }
+        assertWithMessage(
+            "%s: paragraph before example macro should have the expected id value", fileName)
+            .that(id)
+            .isEqualTo(expectedId);
     }
 
     private static Node getPrecedingParagraph(Node macro) {

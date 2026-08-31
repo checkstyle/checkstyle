@@ -23,24 +23,35 @@
       </subsection>
 
       <subsection name="Examples" id="MissingJavadocPackage_Examples">
-        <p id="javadoc-package-info-config">
+        <p id="Example1-config">
             To configure the check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/javadoc/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/example1/package-info.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="javadoc-package-info-code">Example1 of package-info.java:</p>
+        <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/javadoc/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/example1/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="nojavadoc-package-info-code">Example2 of package-info.java:</p>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocPackage_Use_Cases">
+        <p id="UseCase1-config">
+            To catch block comments:
+        </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/nojavadoc/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/usecase1/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/usecase1/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
