@@ -64,8 +64,9 @@ class InputRightCurlyOther {
     boolean flag = true;
     if (flag) {
       System.identityHashCode("heh");
-      // 2 violations 3 lines below:
+      // 3 violations 4 lines below:
       //  ''}' at column 21 should have line break before.'
+      // 'Only one statement per line allowed.'
       //  ''method def' child has incorrect indentation level 6, expected level should be 4.'
       flag = !flag; } System
       .identityHashCode("Xe-xe");

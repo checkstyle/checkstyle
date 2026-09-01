@@ -11,13 +11,14 @@ public class InputOneStatementPerLine2 {
    * may be considered as two empty statements on the same line
    * and rises violation.
    */
-  ;; // violation 'Only one statement per line allowed.'
+  ;;
   static {
     List<Integer> ints = new LinkedList<Integer>();
     ints.stream().map(t -> { return t * 2; }).filter(t -> { return false; });
     // 2 violations above:
     //  ''{' at column 28 should have line break after.'
     //  ''{' at column 59 should have line break after.'
+
     ints.stream().map(t -> { int m = t * 2; return m; });
     // 2 violations above:
     //  ''{' at column 28 should have line break after.'
