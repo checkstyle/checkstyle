@@ -18,7 +18,8 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberRecordsDefault {
-    @anno(6) // violation ''6' is a magic number'
+    // violation below ''6' is a magic number'
+    @anno(6)
     public record MyRecord() {
         private static int myInt = 7; // violation ''7' is a magic number'
 
