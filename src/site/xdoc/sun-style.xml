@@ -567,8 +567,34 @@
                     6.3 Placement
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/coding/hiddenfield.html#HiddenField">
+                    HiddenField
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+                    config
+                  </a>)
+                  <br/>
+                  <br/>
+                  The rule to avoid local declarations that hide a higher-level
+                  declaration is covered above.
+                  <br/>
+                  <br/>
+                  The rule that declarations should be placed only at the
+                  beginning of blocks is a subjective style preference, contrary
+                  to modern Java guidance (delaying declaration until first use
+                  is in fact flagged by Checkstyle's own
+                  <a href="checks/coding/variabledeclarationusagedistance.html#VariableDeclarationUsageDistance">
+                    VariableDeclarationUsageDistance</a> check), so no
+                  Checkstyle check is provided for it.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter6declarations/rule63placement">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
