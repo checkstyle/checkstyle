@@ -507,7 +507,7 @@ public final class DetailAstImpl implements DetailAST {
      * @return list of comment tokens
      */
     public List<Token> getHiddenBefore() {
-        List<Token> returnList = null;
+        List<Token> returnList = List.of();
         if (hiddenBefore != null) {
             returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenBefore);
         }
@@ -521,7 +521,7 @@ public final class DetailAstImpl implements DetailAST {
      * @return list of comment tokens
      */
     public List<Token> getHiddenAfter() {
-        List<Token> returnList = null;
+        List<Token> returnList = List.of();
         if (hiddenAfter != null) {
             returnList = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
         }
