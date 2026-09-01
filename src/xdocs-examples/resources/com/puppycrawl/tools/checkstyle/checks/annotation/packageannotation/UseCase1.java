@@ -9,5 +9,5 @@
 // xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
-class Example2 {}
+class UseCase1 {}
 // xdoc section - end
