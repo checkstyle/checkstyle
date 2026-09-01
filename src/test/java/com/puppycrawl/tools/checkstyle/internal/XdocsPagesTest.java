@@ -3119,7 +3119,7 @@ public class XdocsPagesTest {
 
     /**
      * Finds every {@code ExampleN}/{@code UseCaseN} id declared via a
-     * {@code -config} or {@code -package-info-config} paragraph anywhere in the template,
+     * {@code -config} paragraph anywhere in the template,
      * regardless of whether it matches the extraction pattern -- used to detect ids that
      * exist but silently fail extraction.
      *
@@ -3133,7 +3133,7 @@ public class XdocsPagesTest {
         final NodeList paragraphs = doc.getElementsByTagName("p");
 
         final Pattern idPattern = Pattern.compile(
-                "^((?:Example|UseCase)\\d+)(?:-package-info)?-config$");
+                "^((?:Example|UseCase)\\d+)-config$");
 
         for (int index = 0; index < paragraphs.getLength(); index++) {
             final Element paragraph = (Element) paragraphs.item(index);
