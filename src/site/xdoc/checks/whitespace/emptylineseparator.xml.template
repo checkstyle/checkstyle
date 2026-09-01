@@ -65,27 +65,23 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To check empty line for
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                  IMPORT</a>:
+          To allow no empty line between fields:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">Example:</p>
+        <p id="Example3-code">
+          Example:
+        </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To check empty line for
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a> and
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>:
+          To disallow multiple empty lines between class members:
         </p>
         <macro name="example">
           <param name="path"
@@ -98,44 +94,13 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-
         <p id="Example5-config">
-          To allow no empty line between fields:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example6-config">
-          To disallow multiple empty lines between class members:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example6.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example6-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example6.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example7-config">
           To disallow multiple empty lines inside constructor,
             initialization block and method:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
 
@@ -157,57 +122,124 @@
                 CTOR_DEF</a>
           .
         </p>
-        <p id="Example7-code">
+        <p id="Example5-code">
           Example of declarations with multiple empty lines inside method:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="EmptyLineSeparator_Use_Cases">
+        <p id="UseCase1-config">
+          To check empty line for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                  IMPORT</a>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example8-code">
+        <p id="UseCase2-config">
+          To check empty line for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a> and
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase3-config">
           Example of <code>package-info.java</code> with annotation before
           <code>PACKAGE_DEF</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example8/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase3/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase3/package-info.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example9-code">
+        <p id="UseCase4-config">
           Example of <code>package-info.java</code> with Javadoc before
           <code>PACKAGE_DEF</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example9/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase4/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase4/package-info.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example10-code">
+        <p id="UseCase5-config">
           Example of violation when a configuration block comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example10/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase5/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase5/package-info.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example11-code">
+        <p id="UseCase6-config">
           Example of violation when single-line comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example11/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase6/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase6/package-info.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example12-code">
+        <p id="UseCase7-config">
           Example of violation when block comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/example12/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase7/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/packageinfo/UseCase7/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

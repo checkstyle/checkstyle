@@ -22,11 +22,22 @@
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
               <li><a href="#Example2-config" class="toc-sublink">To check empty line for PACKAGE_DEF</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">To check empty line for IMPORT</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">To check empty line for VARIABLE_DEF and METHOD_DEF</a></li>
-              <li><a href="#Example5-config" class="toc-sublink">To allow no empty line between fields</a></li>
-              <li><a href="#Example6-config" class="toc-sublink">To disallow multiple empty lines between class members</a></li>
-              <li><a href="#Example7-config" class="toc-sublink">To disallow multiple empty lines inside constructor, initialization block and method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">To allow no empty line between fields</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">To disallow multiple empty lines between class members</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">To disallow multiple empty lines inside constructor, initialization block and method</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#EmptyLineSeparator_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">To check empty line for IMPORT</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">To check empty line for VARIABLE_DEF and METHOD_DEF</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Example of <code>package-info.java</code> with annotation before <code>PACKAGE_DEF</code></a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Example of <code>package-info.java</code> with Javadoc before <code>PACKAGE_DEF</code></a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Example of violation when a configuration block comment precedes <code>PACKAGE_DEF</code></a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">Example of violation when single-line comment precedes <code>PACKAGE_DEF</code></a></li>
+              <li><a href="#UseCase7-config" class="toc-sublink">Example of violation when block comment precedes <code>PACKAGE_DEF</code></a></li>
             </ul>
           </li>
           <li><a href="#EmptyLineSeparator_Example_of_Usage">Example of Usage</a></li>
@@ -243,87 +254,6 @@ class Example2 { // violation above ''import' should be separated from previous 
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To check empty line for
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                  IMPORT</a>:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="EmptyLineSeparator"&gt;
-      &lt;property name="tokens" value="IMPORT"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example3-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-///////////////////////////////////////////////////
-//HEADER
-///////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-class Example3 {
-  // violation above ''CLASS_DEF' should be separated from previous line'
-  int var1 = 1;
-  int var2 = 2;
-
-
-  int var3 = 3;
-
-
-  void method1() {}
-  void method2() {
-    int var4 = 4;
-
-
-    int var5 = 5;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          To check empty line for
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a> and
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="EmptyLineSeparator"&gt;
-      &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-///////////////////////////////////////////////////
-//HEADER
-///////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-class Example4 {
-
-  int var1 = 1;
-  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
-
-
-  int var3 = 3;
-
-
-  void method1() {}
-  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
-    int var4 = 4;
-
-
-    int var5 = 5;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example5-config">
           To allow no empty line between fields:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -335,7 +265,7 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="Example3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -344,7 +274,7 @@ class Example4 {
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable; // violation above ''package' should be separated from previous line'
-class Example5 { // violation above ''import' should be separated from previous line'
+class Example3 { // violation above ''import' should be separated from previous line'
   // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2;
@@ -362,7 +292,7 @@ class Example5 { // violation above ''import' should be separated from previous 
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example4-config">
           To disallow multiple empty lines between class members:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -374,14 +304,14 @@ class Example5 { // violation above ''import' should be separated from previous 
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable; // violation above ''package' should be separated from previous line'
-class Example6 { // violation above ''import' should be separated from previous line'
+class Example4 { // violation above ''import' should be separated from previous line'
   // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
@@ -399,7 +329,7 @@ class Example6 { // violation above ''import' should be separated from previous 
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="Example5-config">
           To disallow multiple empty lines inside constructor,
             initialization block and method:
         </p>
@@ -432,7 +362,7 @@ class Example6 { // violation above ''import' should be separated from previous 
                 CTOR_DEF</a>
           .
         </p>
-        <p id="Example7-code">
+        <p id="Example5-code">
           Example of declarations with multiple empty lines inside method:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -441,7 +371,7 @@ class Example6 { // violation above ''import' should be separated from previous 
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable; // violation above ''package' should be separated from previous line'
-class Example7 { // violation above ''import' should be separated from previous line'
+class Example5 { // violation above ''import' should be separated from previous line'
   // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
@@ -458,11 +388,102 @@ class Example7 { // violation above ''import' should be separated from previous 
     int var5 = 5;
   }
 }
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="EmptyLineSeparator_Use_Cases">
+        <p id="UseCase1-config">
+          To check empty line for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                  IMPORT</a>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"&gt;
+      &lt;property name="tokens" value="IMPORT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+class UseCase1 {
+  // violation above ''CLASS_DEF' should be separated from previous line'
+  int var1 = 1;
+  int var2 = 2;
+
+
+  int var3 = 3;
+
+
+  void method1() {}
+  void method2() {
+    int var4 = 4;
+
+
+    int var5 = 5;
+  }
+}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-code">
+        <p id="UseCase2-config">
+          To check empty line for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a> and
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+class UseCase2 {
+
+  int var1 = 1;
+  int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
+
+
+  int var3 = 3;
+
+
+  void method1() {}
+  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+    int var4 = 4;
+
+
+    int var5 = 5;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-config">
           Example of <code>package-info.java</code> with annotation before
           <code>PACKAGE_DEF</code>:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
@@ -470,29 +491,45 @@ class Example7 { // violation above ''import' should be separated from previous 
 
 /* OK: annotation before PACKAGE_DEF */
 @Deprecated
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example8;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase3;
 
 import java.lang.Deprecated;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-code">
+        <p id="UseCase4-config">
           Example of <code>package-info.java</code> with Javadoc before
           <code>PACKAGE_DEF</code>:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
 
 /** OK: Javadoc before PACKAGE_DEF */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example9;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase4;
 
 // import is present so PACKAGE_DEF is not the last token
 import java.lang.System;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example10-code">
+        <p id="UseCase5-config">
           Example of violation when a configuration block comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
@@ -500,28 +537,43 @@ import java.lang.System;
 /*
  * configuration block comment
  */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example10;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase5;
 // violation above ''package' should be separated from previous line'
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example11-code">
+        <p id="UseCase6-config">
           Example of violation when single-line comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
 
 // single-line comment before package
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example11;
-// violation above ''package' should be separated from previous line'
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase6; // violation ''package' should be separated from previous line'
 
 import java.lang.System;
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example12-code">
+        <p id="UseCase7-config">
           Example of violation when block comment precedes
           <code>PACKAGE_DEF</code>:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
@@ -530,7 +582,7 @@ import java.lang.System;
 /*
  * Block comment is not a Javadoc
  */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example12;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase7;
 // violation above ''package' should be separated from previous line'
 </code></pre></div>
       </subsection>

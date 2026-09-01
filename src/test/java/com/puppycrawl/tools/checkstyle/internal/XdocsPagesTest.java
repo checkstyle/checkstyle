@@ -2744,10 +2744,16 @@ public class XdocsPagesTest {
                 final int lastSlash = paramValue.lastIndexOf('/');
                 final int lastDot = paramValue.lastIndexOf('.');
                 exampleName = paramValue.substring(lastSlash + 1, lastDot);
-                if ("package-info".equals(exampleName)) {
+                // package-info.java always has that filename; prefer ExampleN/UseCaseN
+                // parent folder so TOC ids stay UseCase3-config (not package-info-config).
+                // Also accept lowercase exampleN/usecaseN dirs used by some modules.
+                if (lastSlash > 0 && "package-info".equals(exampleName)) {
                     final int prevSlash = paramValue.lastIndexOf('/', lastSlash - 1);
                     final String parentDir = paramValue.substring(prevSlash + 1, lastSlash);
-                    if (parentDir.matches("(example|usecase)\\d+")) {
+                    if (EXAMPLE_ID_PATTERN.matcher(parentDir + "-config").matches()) {
+                        exampleName = parentDir;
+                    }
+                    else if (parentDir.matches("(example|usecase)\\d+")) {
                         exampleName = parentDir
                                 .replace("example", "Example")
                                 .replace("usecase", "UseCase");

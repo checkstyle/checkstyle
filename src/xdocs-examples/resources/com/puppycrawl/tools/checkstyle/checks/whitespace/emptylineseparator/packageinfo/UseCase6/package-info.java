@@ -11,9 +11,8 @@
 //HEADER
 ///////////////////////////////////////////////////
 
-/* OK: annotation before PACKAGE_DEF */
-@Deprecated
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example8;
+// single-line comment before package
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.UseCase6; // violation ''package' should be separated from previous line'
 
-import java.lang.Deprecated;
+import java.lang.System;
 // xdoc section - end
