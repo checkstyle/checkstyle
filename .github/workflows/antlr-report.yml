@@ -15,11 +15,24 @@ name: ANTLR-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
-  USER_LOGIN: ${{ github.event.issue.user.login }}
+  PULL_REQUEST_URL: >-
+    ${{ github.event.issue.pull_request.url
+        || format('https://api.github.com/repos/checkstyle/checkstyle/pulls/{0}',
+                  inputs.pr-number) }}
 
 on:
   issue_comment:
     types: [ created, edited ]
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'PR number'
+        required: true
+        type: string
+      trigger-phrase:
+        description: 'Comment phrase that normally triggers this workflow'
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -32,14 +45,16 @@ concurrency:
 
 jobs:
   make_report:
-    if: github.event.issue.pull_request != null
-        && (github.event.comment.body == 'GitHub, generate ANTLR report'
-            || startsWith(github.event.comment.body, 'GitHub, generate ANTLR report for '))
+    if: (github.event.issue.pull_request != null || inputs.pr-number != '')
+        && ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate ANTLR report'
+            || startsWith(inputs.trigger-phrase || github.event.comment.body,
+                          'GitHub, generate ANTLR report for '))
     runs-on: ubuntu-latest
     outputs:
       commit_sha: ${{ steps.branch.outputs.commit_sha }}
     steps:
       - name: React to comment
+        if: github.event_name == 'issue_comment'
         uses: actions/github-script@v9
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
@@ -57,7 +72,7 @@ jobs:
       - name: Resolve PR branch and SHA
         id: branch
         env:
-          PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
+          PULL_REQUEST_URL: ${{ env.PULL_REQUEST_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p .ci-temp
@@ -68,14 +83,16 @@ jobs:
 
           BRANCH=$(jq --raw-output .head.ref .ci-temp/info.json)
           FULL_SHA=$(jq --raw-output .head.sha .ci-temp/info.json)
+          USER_LOGIN=$(jq --raw-output .head.repo.owner.login .ci-temp/info.json)
           ./.ci/append-to-github-output.sh "ref" "$BRANCH"
           ./.ci/append-to-github-output.sh "full_sha" "$FULL_SHA"
           ./.ci/append-to-github-output.sh "commit_sha" "$(echo "$FULL_SHA" | cut -c 1-7)"
+          ./.ci/append-to-github-output.sh "user_login" "$USER_LOGIN"
 
       - name: Parse project from comment
         id: project
         env:
-          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_BODY: ${{ inputs.trigger-phrase || github.event.comment.body }}
         run: |
           PATTERN='^GitHub, generate ANTLR report for ([a-zA-Z0-9-]+)[[:space:]]*$'
           if [ "$COMMENT_BODY" = 'GitHub, generate ANTLR report' ]; then
@@ -89,11 +106,13 @@ jobs:
           ./.ci/append-to-github-output.sh "name" "$PROJECT"
 
       - name: Set upstream and forked remotes
+        env:
+          FORK_REPO_OWNER: ${{ steps.branch.outputs.user_login }}
         run: |
           MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
           git remote add upstream "$MAIN_REPO_GIT_URL"
           git fetch upstream
-          FORK_REPO_GIT_URL="https://github.com/$USER_LOGIN/checkstyle.git"
+          FORK_REPO_GIT_URL="https://github.com/$FORK_REPO_OWNER/checkstyle.git"
           git remote add forked "$FORK_REPO_GIT_URL"
           git fetch forked
 
@@ -125,6 +144,7 @@ jobs:
           BRANCH: ${{ steps.branch.outputs.ref }}
           FULL_SHA: ${{ steps.branch.outputs.full_sha }}
           PROJECT_NAME: ${{ steps.project.outputs.name }}
+          FORK_REPO_OWNER: ${{ steps.branch.outputs.user_login }}
         run: |
           cd .ci-temp/contribution/checkstyle-tester
 
@@ -152,7 +172,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/launch_diff"
 
           if [ "$PROJECT_NAME" = "checkstyle" ]; then
-            echo "checkstyle|git|https://github.com/$USER_LOGIN/checkstyle.git|$FULL_SHA||" \
+            echo "checkstyle|git|https://github.com/$FORK_REPO_OWNER/checkstyle.git|$FULL_SHA||" \
               > projects-to-test-on.properties
           else
             CONFIGS_DIR="$GITHUB_WORKSPACE/config/projects-to-test"
