@@ -165,9 +165,7 @@ public class XdocsExamplesAstConsistencyTest {
      * to be fixed in a follow-up issue.
      * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21229">...</a>
      */
-    private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
-            "checks/whitespace/emptylineseparator"
-    );
+    private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of();
 
     /**
      * Tests that examples with same code structure maintain consistency.
