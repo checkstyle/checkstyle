@@ -325,6 +325,10 @@
     <module name="LeftCurly"/>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="LeftCurly"/>
+      <!-- one phrase per translation of the 'line.break.after' message, see
+           checks/blocks/messages*.properties -->
+      <property name="message"
+                value="line break after|Zeilenumbruch|salto de línea|rivinvaihdon|saut de ligne|改行|quebra de linha|перевод строки|satır sonu|换行"/>
       <property name="query"
                 value="//METHOD_DEF/SLIST[LITERAL_RETURN
                         or EXPR[following-sibling::SEMI[following-sibling::*[self::RCURLY]]]]"/>

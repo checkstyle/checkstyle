@@ -556,15 +556,6 @@
                   <a href="https://github.com/checkstyle/checkstyle/issues/7541">
                     #7541
                   </a>
-                  <br />
-                  <br />
-                  <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt="" />
-                  </span>
-                  False positive present regarding to LeftCurly:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/20636">
-                    #20636
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/openjdk/checkstyle/test/chapterformatting/rulebraces">
