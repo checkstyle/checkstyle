@@ -195,7 +195,7 @@ clazz
 clemens
 Clickable
 Cloneable
-clss
+cls
 cmdline
 cmp
 cmt
@@ -1132,6 +1132,7 @@ Postgresql
 prebuilts
 prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
+prefs
 PRESIZE
 prettyprint
 printf
