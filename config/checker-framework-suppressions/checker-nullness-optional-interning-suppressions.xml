@@ -8223,17 +8223,6 @@
     <message>incompatible types in return.</message>
     <lineContent>return result;</lineContent>
     <details>
-      type of expression: @Initialized @Nullable List&lt;@Initialized @NonNull String&gt;
-      method return type: @Initialized @NonNull List&lt;@Initialized @NonNull String&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
       type of expression: @Initialized @Nullable ModuleDetails
       method return type: @Initialized @NonNull ModuleDetails
     </details>

@@ -221,4 +221,18 @@
                     //MethodDeclaration[@Name='loadFilterSet']"/>
     </properties>
   </rule>
+
+  <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull">
+    <properties>
+      <!-- MainTest#testListFilesDirectoryWithNull intentionally overrides
+           File#listFiles() to return null, simulating the real JDK contract
+           (File#listFiles() returns null on I/O error). This is required to
+           test Main#listFiles' null-handling branch and must not be changed
+           to an empty array. -->
+      <property name="violationSuppressXPath"
+               value="//ClassDeclaration[@SimpleName='MainTest']
+                        //MethodDeclaration[@Name='testListFilesDirectoryWithNull']
+                        //MethodDeclaration[@Name='listFiles']"/>
+    </properties>
+  </rule>
 </ruleset>

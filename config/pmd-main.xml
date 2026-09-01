@@ -74,4 +74,15 @@
                    //MethodDeclaration[@Name='visitToken']"/>
     </properties>
   </rule>
+
+  <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull">
+    <properties>
+      <!-- DetailAstImpl#getHiddenBefore/getHiddenAfter if we convert it to List.of, it
+             prevents us from reaching full Pit mutant coverage which we value
+               more than list.of. -->
+      <property name="violationSuppressXPath"
+               value="//ClassDeclaration[@SimpleName='DetailAstImpl']
+                        //MethodDeclaration[@Name='getHiddenBefore' or @Name='getHiddenAfter']"/>
+    </properties>
+  </rule>
 </ruleset>
