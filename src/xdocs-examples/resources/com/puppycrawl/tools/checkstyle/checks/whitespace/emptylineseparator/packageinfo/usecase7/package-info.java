@@ -9,10 +9,11 @@
 // xdoc section - start
 ///////////////////////////////////////////////////
 //HEADER
-//////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
 /*
- * configuration block comment
+ * Block comment is not a Javadoc
  */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example10;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.usecase7;
 // violation above ''package' should be separated from previous line'
 // xdoc section - end

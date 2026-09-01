@@ -13,7 +13,7 @@
 
 /* OK: annotation before PACKAGE_DEF */
 @Deprecated
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.example8;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.usecase3;
 
 import java.lang.Deprecated;
 // xdoc section - end

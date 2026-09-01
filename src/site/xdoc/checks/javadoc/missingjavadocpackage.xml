@@ -18,6 +18,16 @@
           <li>
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MissingJavadocPackage_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#MissingJavadocPackage_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">To catch block comments</a></li>
+            </ul>
           </li>
           <li><a href="#MissingJavadocPackage_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#MissingJavadocPackage_Violation_Messages">Violation Messages</a></li>
@@ -46,7 +56,7 @@
       </subsection>
 
       <subsection name="Examples" id="MissingJavadocPackage_Examples">
-        <p id="javadoc-package-info-config">
+        <p id="Example1-config">
             To configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -56,19 +66,32 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="javadoc-package-info-code">Example1 of package-info.java:</p>
+        <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /**
  * Provides API classes
  */
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.javadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.example1;
 </code></pre></div>
-        <p id="nojavadoc-package-info-code">Example2 of package-info.java:</p>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocPackage_Use_Cases">
+        <p id="UseCase1-config">
+            To catch block comments:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingJavadocPackage"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /*
  * Block comment is not a javadoc
  */
-package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.nojavadoc;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocpackage.usecase1;
 // violation above 'Missing javadoc for package-info.java file'
 </code></pre></div>
       </subsection>
