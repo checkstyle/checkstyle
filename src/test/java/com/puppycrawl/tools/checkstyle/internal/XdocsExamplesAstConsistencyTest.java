@@ -160,16 +160,6 @@ public class XdocsExamplesAstConsistencyTest {
     );
 
     /**
-     * Modules whose example count does not exactly match property count + 1.
-     * These modules have extra examples beyond the expected count and need
-     * to be fixed in a follow-up issue.
-     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21229">...</a>
-     */
-    private static final Set<String> EXAMPLE_COUNT_SUPPRESSED_MODULES = Set.of(
-            "checks/whitespace/emptylineseparator"
-    );
-
-    /**
      * Tests that examples with same code structure maintain consistency.
      *
      * @throws IOException if an I/O error occurs
@@ -800,8 +790,7 @@ public class XdocsExamplesAstConsistencyTest {
         String result = null;
         final int propertyCount = resolvePropertyCount(dir);
 
-        if (propertyCount >= 0 && regularExamples.size() > 1
-                && !EXAMPLE_COUNT_SUPPRESSED_MODULES.contains(relativePath)) {
+        if (propertyCount >= 0 && regularExamples.size() > 1) {
             final List<Path> parseableExamples = new ArrayList<>();
             for (Path example : regularExamples) {
                 if (isActuallyParseable(example)) {
