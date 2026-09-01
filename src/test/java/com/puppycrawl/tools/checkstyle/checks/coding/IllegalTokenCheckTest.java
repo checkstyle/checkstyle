@@ -100,7 +100,7 @@ public class IllegalTokenCheckTest
 
         final String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, "*/"),
-            "12:2: " + getCheckMessage(MSG_KEY, "*/"),
+            "13:2: " + getCheckMessage(MSG_KEY, "*/"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokensCheckBlockCommentEnd.java"), expected);

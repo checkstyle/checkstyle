@@ -16,7 +16,7 @@
 // xdoc section - start
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 // violation 9 lines above 'use SLF4J instead.'
-public class Example2 {
+public class UseCase1 {
 
   @SuppressWarnings("memberName")
   int J;

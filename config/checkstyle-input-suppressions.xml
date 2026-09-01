@@ -107,10 +107,6 @@
             files="/filters/suppresswithnearbytextfilter/InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/annotationlocation/InputAnnotationLocationRecordsAndCompactCtors\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/annotationlocation/inputs/package-info\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsCompact2\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsCompact3\.java"/>
@@ -314,20 +310,6 @@
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/InputSuppressWarningsSingle1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/coding/illegalthrows/InputIllegalThrowsNotIgnoreOverriddenMethod\.java"/>
-  <suppress id="violationBetweenJavadocAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/illegaltoken/InputIllegalTokensCheckBlockCommentEnd\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/InputMagicNumberDefault3\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/InputMagicNumberIgnoreFieldDeclaration3\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/InputMagicNumberIgnoreFieldDeclarationRecords\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/InputMagicNumberIgnoreFieldDeclarationWithAnnotation\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/InputMagicNumberRecordsDefault\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/coding/magicnumber/InputMagicNumberWaiverParentToken3\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/design/designforextension/InputDesignForExtensionIgnoredAnnotations\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
