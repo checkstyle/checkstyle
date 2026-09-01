@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -60,7 +61,10 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
             "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -68,28 +72,6 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-            "21:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
-            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
-    }
-
-    @Test
-    public void testExample5() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
-            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
-            "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
-            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
-    }
-
-    @Test
-    public void testExample6() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
             "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -100,11 +82,11 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
             "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testExample5() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
             "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -114,7 +96,72 @@ public class EmptyLineSeparatorExamplesTest extends AbstractExamplesModuleTestSu
             "30:17: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
         };
 
-        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testUseCase2() throws Exception {
+        final String[] expected = {
+            "21:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "28:3: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
+    }
+
+    @Test
+    public void testUseCase3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/UseCase3/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/UseCase4/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase5() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/UseCase5/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase6() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/UseCase6/package-info.java"), expected);
+    }
+
+    @Test
+    public void testUseCase7() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("packageinfo/UseCase7/package-info.java"), expected);
     }
 
 }
