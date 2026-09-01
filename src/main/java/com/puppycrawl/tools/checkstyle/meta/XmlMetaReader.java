@@ -209,7 +209,7 @@ public final class XmlMetaReader {
     private static List<String> getListContentByAttribute(Element element, String listParent,
                                                          String listOption, String attribute) {
         final List<Element> children = getDirectChildsByTag(element, listParent);
-        List<String> result = null;
+        List<String> result = List.of();
         if (!children.isEmpty()) {
             final NodeList nodeList = children.getFirst().getElementsByTagName(listOption);
             final int nodeListLength = nodeList.getLength();
