@@ -79,7 +79,8 @@ public class SlistHandler extends BlockParentHandler {
         if (getParent() instanceof BlockParentHandler
                 && !(getParent() instanceof SlistHandler)
             || child instanceof SlistHandler
-                && getParent() instanceof CaseHandler) {
+                && getParent() instanceof CaseHandler
+            || isSameLineDoubleBraceInit()) {
             result = getParent().getSuggestedChildIndent(child);
         }
         else {
@@ -122,7 +123,7 @@ public class SlistHandler extends BlockParentHandler {
     public void checkIndentation() {
         // only need to check this if parent is not
         // an if, else, while, do, ctor, method
-        if (!hasBlockParent() && !isSameLineCaseGroup()) {
+        if (!hasBlockParent() && !isSameLineCaseGroup() && !isSameLineDoubleBraceInit()) {
             super.checkIndentation();
         }
     }
@@ -136,6 +137,39 @@ public class SlistHandler extends BlockParentHandler {
         final DetailAST parentNode = getMainAst().getParent();
         return parentNode.getType() == TokenTypes.CASE_GROUP
             && TokenUtil.areOnSameLine(getMainAst(), parentNode);
+    }
+
+    /**
+     * Checks if this handler is part of a double-brace initialization whose
+     * instance initializer brace is on the same line as the anonymous class
+     * brace, such as {@code new HashMap<>() {{ put(...); }}}.
+     *
+     * @return true if this is a same-line double-brace instance initializer
+     */
+    private boolean isSameLineDoubleBraceInit() {
+        final DetailAST ast = getMainAst();
+        DetailAST instanceInit = null;
+        DetailAST slist = null;
+        if (ast.getType() == TokenTypes.INSTANCE_INIT) {
+            instanceInit = ast;
+            slist = ast.findFirstToken(TokenTypes.SLIST);
+        }
+        else if (ast.getType() == TokenTypes.SLIST
+                && ast.getParent().getType() == TokenTypes.INSTANCE_INIT) {
+            instanceInit = ast.getParent();
+            slist = ast;
+        }
+        boolean result = false;
+        if (slist != null) {
+            final DetailAST objBlock = instanceInit.getParent();
+            if (objBlock.getType() == TokenTypes.OBJBLOCK
+                    && objBlock.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                final DetailAST objBlockLcurly = objBlock.findFirstToken(TokenTypes.LCURLY);
+                result = objBlockLcurly != null
+                        && TokenUtil.areOnSameLine(slist, objBlockLcurly);
+            }
+        }
+        return result;
     }
 
 }
