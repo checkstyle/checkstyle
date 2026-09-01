@@ -23,6 +23,13 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
             </ul>
           </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#PackageAnnotation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Show a class without violation</a></li>
+            </ul>
+          </li>
           <li><a href="#PackageAnnotation_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#PackageAnnotation_Violation_Messages">Violation Messages</a></li>
           <li><a href="#PackageAnnotation_Fully_Qualified_Name">Fully Qualified Name</a></li>
@@ -69,13 +76,25 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-code">Example of class without violation:</p>
+      </subsection>
+
+      <subsection name="Use Cases" id="PackageAnnotation_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to show a class without violation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PackageAnnotation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example of class without violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
-class Example2 {}
-</code></pre></div>
-        <hr class="example-separator"/>
+class UseCase1 {}
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-code">Example of validating package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated
