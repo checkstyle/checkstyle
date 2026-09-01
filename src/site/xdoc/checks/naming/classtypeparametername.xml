@@ -113,7 +113,7 @@ class Example2 {
       <subsection name="Use Cases" id="ClassTypeParameterName_Use_Cases">
         <p id="UseCase1-config">
           To configure the check for names that are camel case word with T as suffix
-          (<a href="../../styleguides/google-java-style-20250426/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
+          (<a href="../../styleguides/google-java-style-20260409/javaguide.html#s5.2.8-type-variable-names">Google Style</a>):
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
