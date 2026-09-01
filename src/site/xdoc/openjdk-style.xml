@@ -526,7 +526,7 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt=""/>
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
                   <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
@@ -555,15 +555,6 @@
                   Closing braces rule can not be covered until:
                   <a href="https://github.com/checkstyle/checkstyle/issues/7541">
                     #7541
-                  </a>
-                  <br />
-                  <br />
-                  <span class="wrapper inline">
-                    <img src="images/ban_red.png" alt="" />
-                  </span>
-                  False positive present regarding to LeftCurly:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/20636">
-                    #20636
                   </a>
                 </td>
                 <td>
