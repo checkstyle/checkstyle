@@ -22,6 +22,10 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
             </ul>
           </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#OuterTypeFilename_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+          </li>
           <li><a href="#OuterTypeFilename_Example_of_Usage">Example of Usage</a></li>
           <li><a href="#OuterTypeFilename_Violation_Messages">Violation Messages</a></li>
           <li><a href="#OuterTypeFilename_Fully_Qualified_Name">Fully Qualified Name</a></li>
@@ -59,27 +63,23 @@ public class Example1 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
 class Example2ButNotSameName {}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-code">
-          Example file content with name of file Example3.java
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="OuterTypeFilename_Use_Cases">
+        <p id="UseCase1-code">
+          An example of the check applied to an interface:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
-interface Example3ButNotSameName {}
+interface UseCase1ButNotSameName {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-code">
-          Example file content with name of file Example4.java
+        <p id="UseCase2-code">
+          An example of the check applied to an enum:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // violation below 'The name of the outer type and the file do not match.'
-enum Example4ButNotSameName {}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-code">
-          Example file content with name of file Example5.java
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below 'The name of the outer type and the file do not match.'
-class Example5ButNotSameName {}
+enum UseCase2ButNotSameName {}
 </code></pre></div>
       </subsection>
 

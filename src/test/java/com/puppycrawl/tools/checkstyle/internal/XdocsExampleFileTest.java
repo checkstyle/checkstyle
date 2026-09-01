@@ -106,7 +106,6 @@ public class XdocsExampleFileTest {
         "checks/javadoc/missingjavadoctype/",
         "checks/naming/illegalidentifiername/",
         "checks/naming/patternvariablename/",
-        "checks/outertypefilename/",
         "checks/regexp/regexpmultiline/",
         "checks/regexp/regexpsingleline/"
     );
