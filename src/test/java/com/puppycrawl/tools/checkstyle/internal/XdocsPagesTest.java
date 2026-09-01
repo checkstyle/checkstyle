@@ -1706,7 +1706,7 @@ public class XdocsPagesTest {
     }
 
     private static Set<String> getListById(Node subSection, String id) {
-        Set<String> result = null;
+        Set<String> result = Set.of();
         final Node node = XmlUtil.findChildElementById(subSection, id);
         if (node != null) {
             result = XmlUtil.getChildrenElements(node)

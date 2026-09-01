@@ -157,7 +157,7 @@ public final class JavaParser {
             lastNode = curNode;
 
             final List<Token> hiddenBefore = ((DetailAstImpl) curNode).getHiddenBefore();
-            if (hiddenBefore != null) {
+            if (!hiddenBefore.isEmpty()) {
                 DetailAST currentSibling = curNode;
 
                 final ListIterator<Token> reverseCommentsIterator =
@@ -182,7 +182,7 @@ public final class JavaParser {
         }
         if (lastNode != null) {
             final List<Token> hiddenAfter = ((DetailAstImpl) lastNode).getHiddenAfter();
-            if (hiddenAfter != null) {
+            if (!hiddenAfter.isEmpty()) {
                 DetailAST currentSibling = lastNode;
                 for (Token token : hiddenAfter) {
                     final DetailAST newCommentNode =
