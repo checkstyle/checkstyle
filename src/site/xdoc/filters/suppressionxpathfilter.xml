@@ -23,6 +23,7 @@
               <li><a href="#Example1-config" class="toc-sublink">For example #1, the following configuration demonstrates the <code>optional</code> property. The <code>file</code> property points to a non-existent suppressions file and <code>optional</code> is set to <code>true</code>, so suppressions are skipped and violations are reported</a></li>
               <li><a href="#Example2-config" class="toc-sublink">For example #2, the following configuration demonstrates the <code>optional</code> property set to <code>false</code>. The <code>file</code> property points to a suppressions file that exists but does not suppress the violation, so violations are reported</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For example #3, the following configuration demonstrates the <code>optional</code> property set to <code>false</code>. The <code>file</code> property points to a suppressions file that exists but does not suppress the violation, so violations are reported</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">The following example demonstrates the default configuration (no properties) that does not suppress</a></li>
             </ul>
           </li>
           <li>
@@ -511,6 +512,58 @@ public class Example3 {
   public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">The following example demonstrates the default
+        configuration (no properties) that does not suppress:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"/&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="3"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() { // violation 'Cyclomatic Complexity is 4'
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div>
         </subsection>
         <subsection name="Use Cases" id="SuppressionXpathFilter_Use_Cases">
         <p>
