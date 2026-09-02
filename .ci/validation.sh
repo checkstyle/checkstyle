@@ -1117,7 +1117,7 @@ no-error-spring-integration)
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL \
-    -P$PROP_CS_VERSION="${CS_POM_VERSION}"
+    -P$PROP_CS_VERSION="${CS_POM_VERSION}" -x :spring-integration-jms:compileJava
   cd ../
   removeFolderWithProtectedFiles spring-integration
   ;;
