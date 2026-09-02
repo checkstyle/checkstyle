@@ -192,7 +192,6 @@ public class XdocsPagesTest {
             "FinalClass",
             "FinalParameters",
             "GenericWhitespace",
-            "HiddenField",
             "HideUtilityClassConstructor",
             "IllegalImport",
             "IllegalInstantiation",
