@@ -43,9 +43,26 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample1() throws Exception {
-        final String messages = getPath("Example1/messages.properties");
-        final String messagesFr = getPath("Example1/messages_fr.properties");
-        final String messagesEs = getPath("Example1/messages_es.properties");
+        final File[] propertyFiles = {
+            new File(getPath("Example1/messages_de.properties")),
+        };
+        final Map<String, List<String>> expected = new HashMap<>();
+        expected.put(getPath("Example1"),
+                List.of("1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
+                        "messages.properties")));
+        final String configFile = getPath("Example1.java");
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(configFile);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        verify(createChecker(parsedConfig), propertyFiles, expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String messages = getPath("Example2/messages.properties");
+        final String messagesFr = getPath("Example2/messages_fr.properties");
+        final String messagesEs = getPath("Example2/messages_es.properties");
         final File[] propertyFiles = {
             new File(messages),
             new File(messagesFr),
@@ -64,7 +81,7 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
                 List.of("1: " + getCheckMessage(MSG_KEY, "age"),
                 "1: " + getCheckMessage(MSG_KEY, "name"),
                 "1: " + getCheckMessage(MSG_KEY, "greeting")));
-        final String configFile = getPath("Example1.java");
+        final String configFile = getPath("Example2.java");
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFile);
         final DefaultConfiguration parsedConfig =
@@ -73,7 +90,7 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testExample3() throws Exception {
         final String buttonLabels = getPath("ButtonLabels.properties");
         final String buttonLabelsFr = getPath("ButtonLabels_fr.properties");
         final File[] propertyFiles = {
@@ -85,7 +102,7 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
                 List.of("1: " + getCheckMessage(MSG_KEY, "cancel")));
         expected.put(buttonLabels,
                 List.of("1: " + getCheckMessage(MSG_KEY, "name")));
-        final String configFile = getPath("Example2.java");
+        final String configFile = getPath("Example3.java");
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFile);
         final DefaultConfiguration parsedConfig =
@@ -94,7 +111,7 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testExample4() throws Exception {
         final File[] propertyFiles = {
             new File(getPath("messages_home.properties")),
             new File(getPath("messages_home.translations")),
@@ -105,29 +122,12 @@ public class TranslationCheckExamplesTest extends AbstractExamplesModuleTestSupp
             "1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
                     "messages_home_fr.translations"),
         };
-        final String configFile = getPath("Example3.java");
-        final TestInputConfiguration testInputConfiguration =
-                InlineConfigParser.parse(configFile);
-        final DefaultConfiguration parsedConfig =
-                testInputConfiguration.createConfiguration();
-        verify(createChecker(parsedConfig), propertyFiles, getPath(""), expectedMessages);
-    }
-
-    @Test
-    public void testExample4() throws Exception {
-        final File[] propertyFiles = {
-            new File(getPath("Example4/messages_de.properties")),
-        };
-        final Map<String, List<String>> expected = new HashMap<>();
-        expected.put(getPath("Example4"),
-                List.of("1: " + getCheckMessage(MSG_KEY_MISSING_TRANSLATION_FILE,
-                        "messages.properties")));
         final String configFile = getPath("Example4.java");
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFile);
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration.createConfiguration();
-        verify(createChecker(parsedConfig), propertyFiles, expected);
+        verify(createChecker(parsedConfig), propertyFiles, getPath(""), expectedMessages);
     }
 
 }

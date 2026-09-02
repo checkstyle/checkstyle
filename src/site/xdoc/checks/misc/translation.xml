@@ -20,10 +20,10 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Translation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">Check existence of Japanese and French translations</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to validate only bundles which base names start with &quot;ButtonLabels&quot;</a></li>
-              <li><a href="#Example3-config" class="toc-sublink">Check only files which have '.properties' and '.translations' extensions</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">With default settings (only the existence of the default translation file is checked)</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">With default settings (only the existence of the default translation file is checked)</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check existence of Japanese and French translations</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to validate only bundles which base names start with &quot;ButtonLabels&quot;</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check only files which have '.properties' and '.translations' extensions</a></li>
             </ul>
           </li>
           <li><a href="#Translation_Example_of_Usage">Example of Usage</a></li>
@@ -117,6 +117,29 @@
           extensions will be considered as files that belong to different resource bundles.
         </p>
         <p id="Example1-config">
+          To configure the check with default settings (only the existence of the
+          default translation file is checked):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="Translation"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-file">Example1 (target folder structure, missing default translation file):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        messages_de.properties
+        </code></pre></div>
+        <p id="messages_de-raw">Contents of messages_de.properties file:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
+hello=Hallo
+</code></pre></div>
+        <p id="Example1-code">Validation for Example1:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+messages_de.properties
+// violation above 'Properties file 'messages.properties' missing.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
           To configure the check to check existence of Japanese and French translations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -126,7 +149,7 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-file">Example1 (target folder structure):</p>
+        <p id="Example2-file">Example2 (target folder structure):</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages.properties
 messages_fr.properties
@@ -147,13 +170,13 @@ age=Edad
 greeting=Bonjour
 name=Nom
 </code></pre></div>
-        <p id="Example1-code">Validation for Example1:</p>
+        <p id="Example2-code">Validation for Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages.properties     // violation 'Key 'age', 'name' and 'greeting' missing.'
 messages_fr.properties  // violation 'Key 'age', 'cancel' and 'hello' missing.'
 messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="Example3-config">
           An example of how to configure the check to validate only bundles which base names
           start with &quot;ButtonLabels&quot;:
         </p>
@@ -165,7 +188,7 @@ messages_es.properties  // violation 'Key 'cancel', 'name' and 'hello' missing.'
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-file">Example2 (target folder structure):</p>
+        <p id="Example3-file">Example3 (target folder structure):</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ButtonLabels.properties
 ButtonLabels_fr.properties
@@ -180,12 +203,12 @@ cancel=Cancel
 hello=Bonjour
 name=Nom
 </code></pre></div>
-        <p id="Example2-code">Validation for Example2:</p>
+        <p id="Example3-code">Validation for Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ButtonLabels.properties     // violation 'Key 'name' is missing.'
 ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example4-config">
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
         </p>
@@ -198,7 +221,7 @@ ButtonLabels_fr.properties  // violation 'Key 'cancel' is missing.'
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-file">Example3 no messages_home_fr.* files (target folder structure):</p>
+        <p id="Example4-file">Example4 no messages_home_fr.* files (target folder structure):</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages_home.properties
 messages_home.translations
@@ -213,35 +236,12 @@ cancel=Cancel
 hello=Hallo
 ok=OK
 </code></pre></div>
-        <p id="Example3-code">Validation for Example3:</p>
+        <p id="Example4-code">Validation for Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 messages_home.properties
 // violation above 'Properties file 'messages_home_fr.properties' missing.'
 messages_home.translations
 // violation above 'Properties file 'messages_home_fr.translations' missing.'
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-          To configure the check with default settings (only the existence of the
-          default translation file is checked):
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="Translation"/&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-file">Example4 (target folder structure, missing default translation file):
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-        messages_de.properties
-        </code></pre></div>
-        <p id="messages_de-raw">Contents of messages_de.properties file:</p>
-        <div class="wrapper"><pre class="prettyprint"><code>
-hello=Hallo
-</code></pre></div>
-        <p id="Example4-code">Validation for Example4:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-messages_de.properties
-// violation above 'Properties file 'messages.properties' missing.'
 </code></pre></div>
       </subsection>
 
