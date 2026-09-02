@@ -20,7 +20,7 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionSingleFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">A filter to suppress violations of <code>NoWhitespaceAfter</code> and <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges using <code>SuppressionSingleFilter</code></a></li>
+              <li><a href="#Example1-config" class="toc-sublink">The following example demonstrates the default configuration (no properties) that suppresses all violations</a></li>
               <li><a href="#Example2-config" class="toc-sublink">A filter to suppress violations of <code>NoWhitespaceAfter</code> on a specific column in <code>Example2.java</code> using <code>SuppressionSingleFilter</code></a></li>
               <li><a href="#Example3-config" class="toc-sublink">A filter to suppress violations of <code>RegexpSinglelineCheck</code> in <code>Example3.java</code> using <code>SuppressionSingleFilter</code></a></li>
               <li><a href="#Example4-config" class="toc-sublink">A filter to suppress violations of <code>NoWhitespaceAfter</code> in <code>Example4.java</code> using <code>SuppressionSingleFilter</code></a></li>
@@ -119,11 +119,8 @@
         </div>
       </subsection>
       <subsection name="Examples" id="SuppressionSingleFilter_Examples">
-        <p id="Example1-config">
-          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code> and
-          <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
-          using <code>SuppressionSingleFilter</code>:
-        </p>
+        <p id="Example1-config">The following example demonstrates the default
+        configuration (no properties) that suppresses all violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -131,12 +128,6 @@
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="checks" value="NoWhitespaceAfter|MagicNumber"/&gt;
-    &lt;property name="files" value="Example1.java"/&gt;
-    &lt;property name="lines" value="1,5-100"/&gt;
-  &lt;/module&gt;
-  &lt;module name="SuppressionSingleFilter"&gt;
-    &lt;property name="message" value="Missing a Javadoc comment for"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>

@@ -5,12 +5,6 @@
     <module name="MagicNumber"/>
   </module>
   <module name="SuppressionSingleFilter">
-    <property name="checks" value="NoWhitespaceAfter|MagicNumber"/>
-    <property name="files" value="Example1.java"/>
-    <property name="lines" value="1,5-100"/>
-  </module>
-  <module name="SuppressionSingleFilter">
-    <property name="message" value="Missing a Javadoc comment for"/>
   </module>
 </module>
 */
