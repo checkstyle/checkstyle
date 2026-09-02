@@ -140,6 +140,20 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example3.java"/>
           <param name="type" value="code"/>
          </macro><hr class="example-separator"/>
+        <p id="Example4-config">The following example demonstrates the default
+        configuration (no properties) that does not suppress:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
         </subsection>
         <subsection name="Use Cases" id="SuppressionXpathFilter_Use_Cases">
         <p>
