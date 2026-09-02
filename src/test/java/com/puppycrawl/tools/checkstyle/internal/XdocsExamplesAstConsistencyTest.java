@@ -156,7 +156,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken",
             "checks/imports/importcontrol",
             "filters/severitymatchfilter",
-            "filters/suppressionsinglefilter",
             "filters/suppressionxpathfilter",
             "filters/suppresswithplaintextcommentfilter"
     );
