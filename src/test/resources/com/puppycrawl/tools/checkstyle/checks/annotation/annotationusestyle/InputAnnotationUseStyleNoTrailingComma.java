@@ -9,10 +9,12 @@ trailingArrayComma = ALWAYS
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-@SuppressWarnings({}) // violation 'Annotation array values must contain trailing comma'
+// violation below 'Annotation array values must contain trailing comma'
+@SuppressWarnings({})
 public class InputAnnotationUseStyleNoTrailingComma
 {
-  @SuppressWarnings({"common"}) // violation 'Annotation array values must contain trailing comma'
+  // violation below 'Annotation array values must contain trailing comma'
+  @SuppressWarnings({"common"})
   public void foo() {
 
       /** Suppress warnings */
@@ -32,13 +34,13 @@ public class InputAnnotationUseStyleNoTrailingComma
           }
       };
   }
-  // 2 violations 3 lines below:
+  // 2 violations 6 lines below:
+  // 'Annotation array values must contain trailing comma.'
+  // 'Annotation array values must contain trailing comma.'
+  // 2 violations 4 lines below:
   // 'Annotation array values must contain trailing comma.'
   // 'Annotation array values must contain trailing comma.'
   @Test2(value={"foo"}, more={"bar"})
-  // 2 violations 3 lines below:
-  // 'Annotation array values must contain trailing comma.'
-  // 'Annotation array values must contain trailing comma.'
   @Pooches2(tokens={},other={})
   enum P {
       // 2 violations 3 lines below:
