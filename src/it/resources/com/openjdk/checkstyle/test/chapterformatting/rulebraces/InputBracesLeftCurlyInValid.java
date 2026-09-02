@@ -90,4 +90,9 @@ public class InputBracesLeftCurlyInValid {
         } // violation 'should be on the same line'
         while (i > 0);
     }
+
+    public boolean method4()
+    { // violation ''{' at column 5 should be on the previous line.'
+        return true;
+    }
 }
