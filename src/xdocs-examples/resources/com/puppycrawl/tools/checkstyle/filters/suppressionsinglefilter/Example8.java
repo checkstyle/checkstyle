@@ -5,18 +5,12 @@
     <module name="MagicNumber"/>
   </module>
   <module name="SuppressionSingleFilter">
-    <property name="checks" value="NoWhitespaceAfter|MagicNumber"/>
-    <property name="files" value="Example1.java"/>
-    <property name="lines" value="1,5-100"/>
-  </module>
-  <module name="SuppressionSingleFilter">
-    <property name="message" value="Missing a Javadoc comment for"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section - start
-public class Example1 {
+public class Example8 {
   // filtered violation below ''5' is a magic number'
   private int MyVariable = 5;
 

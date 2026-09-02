@@ -141,7 +141,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9"
+            "checks/imports/importorder/Example9",
+            // extra default-config example beyond propertyCount + 1
+            "filters/suppressionsinglefilter/Example8"
     );
 
     /**
