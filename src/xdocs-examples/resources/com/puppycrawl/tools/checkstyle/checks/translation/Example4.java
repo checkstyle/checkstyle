@@ -1,15 +1,21 @@
 /*xml
 <module name="Checker">
-  <module name="Translation"/>
+  <module name="Translation">
+    <property name="fileExtensions" value="properties"/>
+    <property name="fileExtensions" value="translations"/>
+    <property name="requiredTranslations" value="fr"/>
+  </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.translation;
+
 
 /*
 // xdoc section - start
-messages_de.properties
-// violation above 'Properties file 'messages.properties' missing.'
+messages_home.properties
+// violation above 'Properties file 'messages_home_fr.properties' missing.'
+messages_home.translations
+// violation above 'Properties file 'messages_home_fr.translations' missing.'
 // xdoc section - end
 */
 public class Example4 {}
