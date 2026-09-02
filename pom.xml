@@ -217,7 +217,7 @@
       10.4
     </sevntu-checkstyle-check.checkstyle.version>
     <versions.plugin.version>2.21.0</versions.plugin.version>
-    <compiler.plugin.version>3.15.0</compiler.plugin.version>
+    <compiler.plugin.version>3.16.0</compiler.plugin.version>
     <checkstyle.skipCompileInputResources>false</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0</checkstyle.openrewrite.version>
     <java.version>21</java.version>
