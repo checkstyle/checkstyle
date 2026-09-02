@@ -290,16 +290,6 @@
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/InputAnnotationLocationIncorrectOne\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationonsameline/InputAnnotationOnSameLineCheckTokensOnMethodAndVar\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/InputAnnotationUseStyleCompactNoArray\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/InputAnnotationUseStyleDifferentStyles\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/InputAnnotationUseStyleExpanded\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/InputAnnotationUseStyleNoTrailingComma\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle/InputAnnotationUseStyleWithTrailingCommaIgnore\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedBadDeprecated\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
