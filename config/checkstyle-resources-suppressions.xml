@@ -321,8 +321,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline/InputRegexpMultilineSemantic\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexponfilename/InputRegexpOnFilenameSemantic\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/InputRegexpSinglelineSemantic3\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline/InputRegexpSinglelineSemantic2\.java"/>
