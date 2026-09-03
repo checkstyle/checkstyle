@@ -919,7 +919,8 @@ public class XdocsPagesTest {
     }
 
     private static void validateCheckSection(ModuleFactory moduleFactory, String fileName,
-            String sectionName, Node section) throws Exception {
+            String sectionName, Node section)
+                    throws Exception {
         final Object instance;
 
         try {
@@ -1039,7 +1040,8 @@ public class XdocsPagesTest {
     }
 
     private static void validatePropertySection(String fileName, String sectionName,
-            Node subSection, Object instance) throws Exception {
+            Node subSection, Object instance)
+                    throws Exception {
         final Set<String> properties = getProperties(instance.getClass());
         final Class<?> clss = instance.getClass();
 
@@ -1191,7 +1193,8 @@ public class XdocsPagesTest {
     }
 
     private static void validatePropertySectionProperties(String fileName, String sectionName,
-            Node table, Object instance, Set<String> properties) throws Exception {
+            Node table, Object instance, Set<String> properties)
+                    throws Exception {
         boolean skip = true;
         boolean didJavadocTokens = false;
         boolean didTokens = false;
@@ -1275,7 +1278,8 @@ public class XdocsPagesTest {
     }
 
     private static void validatePropertySectionPropertyEx(String fileName, String sectionName,
-            Object instance, List<Node> columns, String propertyName) throws Exception {
+            Object instance, List<Node> columns, String propertyName)
+                    throws Exception {
         assertWithMessage("%s section '%s' should have a description for %s",
                         fileName, sectionName, propertyName)
                 .that(columns.get(1).getTextContent().trim())
@@ -1447,7 +1451,8 @@ public class XdocsPagesTest {
      *      from XML files requires giant if/else statement
      */
     private static String getModulePropertyExpectedValue(String sectionName, String propertyName,
-            Field field, Class<?> fieldClass, Object instance) throws Exception {
+            Field field, Class<?> fieldClass, Object instance)
+                    throws Exception {
         String result = null;
 
         if (field != null) {
@@ -1664,7 +1669,8 @@ public class XdocsPagesTest {
     }
 
     private static Class<?> getFieldClass(String fileName, String sectionName, Object instance,
-            Field field, String propertyName) throws Exception {
+            Field field, String propertyName)
+                    throws Exception {
         Class<?> result = null;
 
         if (PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD.contains(sectionName + "." + propertyName)) {
@@ -1719,7 +1725,8 @@ public class XdocsPagesTest {
 
     private static void validateViolationSection(String fileName, String sectionName,
                                                  Node subSection,
-                                                 Object instance) throws Exception {
+                                                 Object instance)
+            throws Exception {
         final Class<?> clss = instance.getClass();
         final Set<Field> fields = CheckUtil.getCheckMessagesWithDeepScan(clss);
         final Set<String> list = new TreeSet<>();
@@ -3016,7 +3023,8 @@ public class XdocsPagesTest {
      * @return the list of failure messages.
      */
     private static List<String> validateTocMacroCanExtractAllExamples(String fileName,
-            String content) throws Exception {
+            String content)
+                    throws Exception {
         final List<String> failures = new ArrayList<>();
 
         final Pattern anchorPattern = Pattern.compile(
@@ -3060,7 +3068,8 @@ public class XdocsPagesTest {
      * @throws Exception if the content cannot be parsed as XML.
      */
     private static List<String> validateTocExtractableDescriptions(String fileName,
-            String content) throws Exception {
+            String content)
+                    throws Exception {
         final Document doc = parseXml(content);
         final Set<String> matchedIds = new HashSet<>();
         final List<String> failures = new ArrayList<>();

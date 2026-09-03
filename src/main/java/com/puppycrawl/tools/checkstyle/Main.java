@@ -579,7 +579,8 @@ public final class Main {
          */
         /* package */ AuditListener createListener(
             OutputStream out,
-            OutputStreamOptions options) throws IOException {
+            OutputStreamOptions options)
+                    throws IOException {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);

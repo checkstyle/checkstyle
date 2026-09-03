@@ -121,7 +121,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testNoDestfileSpecified(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         JavadocPropertiesGenerator.main(getPath("InputMain.java"));
 
         final String expected = String.format(Locale.ROOT,
@@ -136,7 +137,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testNoInputSpecified(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         JavadocPropertiesGenerator.main("--destfile", DESTFILE_ABSOLUTE_PATH);
 
         final String expected = String.format(Locale.ROOT,
@@ -192,7 +194,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testInvalidDestinationSpecified(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         // Passing a folder name will cause the FileNotFoundException.
         final CheckstyleException exc =
                 getExpectedThrowable(CheckstyleException.class, () -> {
@@ -346,7 +349,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetFirstJavadocSentence(@SysErr Capturable systemErr,
-                                            @SysOut Capturable systemOut) throws Exception {
+                                            @SysOut Capturable systemOut)
+            throws Exception {
         final String expectedContent = "EOF1=First Javadoc Sentence.";
 
         JavadocPropertiesGenerator.main(

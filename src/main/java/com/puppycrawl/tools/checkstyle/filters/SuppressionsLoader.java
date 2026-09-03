@@ -245,7 +245,7 @@ public final class SuppressionsLoader
      */
     private static FilterSet loadSuppressions(
             InputSource source, String sourceName)
-            throws CheckstyleException {
+                    throws CheckstyleException {
         return getSuppressionLoader(source, sourceName).filterChain;
     }
 
@@ -271,7 +271,7 @@ public final class SuppressionsLoader
      */
     private static Set<TreeWalkerFilter> loadXpathSuppressions(
             InputSource source, String sourceName)
-            throws CheckstyleException {
+                    throws CheckstyleException {
         return getSuppressionLoader(source, sourceName).treeWalkerFilters;
     }
 

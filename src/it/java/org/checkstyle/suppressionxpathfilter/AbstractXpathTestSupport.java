@@ -153,7 +153,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * @throws Exception can throw exceptions when creating config.
      */
     private DefaultConfiguration createSuppressionXpathFilter(String checkName,
-                                           List<String> xpathQueries) throws Exception {
+                                           List<String> xpathQueries)
+            throws Exception {
         final DefaultConfiguration suppressionXpathFilterConfig =
                 createModuleConfig(SuppressionXpathFilter.class);
         suppressionXpathFilterConfig.addProperty("file",
@@ -199,7 +200,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     protected void runVerifications(DefaultConfiguration moduleConfig,
                                   File fileToProcess,
                                   String[] expectedViolation,
-                                  List<String> expectedXpathQueries) throws Exception {
+                                  List<String> expectedXpathQueries)
+            throws Exception {
         if (expectedViolation.length != 1) {
             throw new IllegalArgumentException(
                     "Expected violations should contain exactly one element."
