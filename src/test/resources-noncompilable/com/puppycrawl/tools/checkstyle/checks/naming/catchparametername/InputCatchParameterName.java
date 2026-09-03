@@ -1,6 +1,6 @@
 /*
 CatchParameterName
-format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$
+format = (default)^(e|t|[a-z][a-z][a-zA-Z]+|_)$
 
 
 */
@@ -13,7 +13,7 @@ public class InputCatchParameterName {
         } catch (Exception e) {
         }
         try {
-        } catch (Exception ex) {
+        } catch (Exception ex) { // violation 'Name 'ex' must match pattern'
         }
         try {
         } catch (Error | Exception err) {

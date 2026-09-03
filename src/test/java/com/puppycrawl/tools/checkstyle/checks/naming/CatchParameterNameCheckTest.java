@@ -66,9 +66,10 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfigurationOnFileWithViolations() throws Exception {
-        final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
+        final String defaultFormat = "^(e|t|[a-z][a-z][a-zA-Z]+|_)$";
 
         final String[] expected = {
+            "16:28: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", defaultFormat),
             "25:28: " + getCheckMessage(MSG_INVALID_PATTERN, "exception1", defaultFormat),
             "35:39: " + getCheckMessage(MSG_INVALID_PATTERN, "ie", defaultFormat),
             "38:28: " + getCheckMessage(MSG_INVALID_PATTERN, "iException", defaultFormat),
@@ -106,7 +107,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCatchParameterNameUnnamed() throws Exception {
-        final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
+        final String defaultFormat = "^(e|t|[a-z][a-z][a-zA-Z]+|_)$";
 
         final String[] expected = {
             "18:28: " + getCheckMessage(MSG_INVALID_PATTERN, "__", defaultFormat),

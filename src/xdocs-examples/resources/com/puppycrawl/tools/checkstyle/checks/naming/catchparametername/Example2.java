@@ -18,6 +18,7 @@ public class Example2 {
     } catch (ArithmeticException e) {
       // violation above 'Name 'e' must match pattern'
     } catch (ArrayIndexOutOfBoundsException ex) {
+
     } catch (IndexOutOfBoundsException e123) {
 
     } catch (NullPointerException ab) {

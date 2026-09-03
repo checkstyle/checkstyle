@@ -15,7 +15,6 @@
  &lt;li&gt;allows names beginning with two lowercase letters followed by at least one uppercase or
  lowercase letter&lt;/li&gt;
  &lt;li&gt;allows &lt;code&gt;e&lt;/code&gt; abbreviation (suitable for exceptions end errors)&lt;/li&gt;
- &lt;li&gt;allows &lt;code&gt;ex&lt;/code&gt; abbreviation (suitable for exceptions)&lt;/li&gt;
  &lt;li&gt;allows &lt;code&gt;t&lt;/code&gt; abbreviation (suitable for throwables)&lt;/li&gt;
  &lt;li&gt;allows &lt;code&gt;_&lt;/code&gt; for unnamed catch parameters&lt;/li&gt;
  &lt;li&gt;prohibits numbered abbreviations like &lt;code&gt;e1&lt;/code&gt; or &lt;code&gt;t2&lt;/code&gt;&lt;/li&gt;
@@ -24,7 +23,7 @@
  &lt;li&gt;prohibits any other characters than letters&lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
-            <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
+            <property default-value="^(e|t|[a-z][a-z][a-zA-Z]+|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Sets the pattern to match valid identifiers.</description>
