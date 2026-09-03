@@ -1,12 +1,10 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="MagicNumber">
-      <property name="id" value="customMagicNumber"/>
-    </module>
+    <module name="MagicNumber"/>
   </module>
   <module name="SuppressionSingleFilter">
-    <property name="id" value="customMagicNumber"/>
+    <property name="lines" value="1,5-100"/>
   </module>
 </module>
 */
