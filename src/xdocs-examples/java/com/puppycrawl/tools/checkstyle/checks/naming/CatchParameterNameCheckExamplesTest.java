@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
-    private static final String CATCH_PARAM_NAME_PATTERN_1 = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
+    private static final String CATCH_PARAM_NAME_PATTERN_1 = "^(e|t|[a-z][a-z][a-zA-Z]+|_)$";
     private static final String CATCH_PARAM_NAME_PATTERN_2 = "^[a-z][a-zA-Z0-9]+$";
 
     @Override
@@ -38,13 +38,15 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
+            "18:45: " + getCheckMessage(MSG_INVALID_PATTERN, "ex",
                     CATCH_PARAM_NAME_PATTERN_1),
-            "21:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
+            "20:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
                     CATCH_PARAM_NAME_PATTERN_1),
-            "24:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
+            "22:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
                     CATCH_PARAM_NAME_PATTERN_1),
-            "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+            "25:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
+                    CATCH_PARAM_NAME_PATTERN_1),
+            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
                     CATCH_PARAM_NAME_PATTERN_1),
         };
 
@@ -56,9 +58,9 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "18:34: " + getCheckMessage(MSG_INVALID_PATTERN, "e",
                     CATCH_PARAM_NAME_PATTERN_2),
-            "29:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+            "30:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
                     CATCH_PARAM_NAME_PATTERN_2),
-            "31:24: " + getCheckMessage(MSG_INVALID_PATTERN, "t",
+            "32:24: " + getCheckMessage(MSG_INVALID_PATTERN, "t",
                     CATCH_PARAM_NAME_PATTERN_2),
         };
 
