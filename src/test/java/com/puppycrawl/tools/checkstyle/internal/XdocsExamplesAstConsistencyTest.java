@@ -113,7 +113,6 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Examples that have independent code structure and should not be compared.
      * Format: "directory/ExampleN" where the example has unique code.
-     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/19891">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
@@ -147,14 +146,12 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Modules with no example demonstrating the default configuration. Most require
      * at least one property to be meaningful; others are documentation gaps.
-     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21137">...</a>
      */
     private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
             "checks/coding/returncount",
             "checks/descendanttoken",
             "checks/imports/importcontrol",
             "filters/severitymatchfilter",
-            "filters/suppressionxpathfilter",
             "filters/suppresswithplaintextcommentfilter"
     );
 
