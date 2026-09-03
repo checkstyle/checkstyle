@@ -36,11 +36,8 @@
         </div>
       </subsection>
       <subsection name="Examples" id="SuppressionSingleFilter_Examples">
-        <p id="Example1-config">
-          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code> and
-          <code>MagicNumber</code> checks in <code>Example1.java</code> for specific line ranges
-          using <code>SuppressionSingleFilter</code>:
-        </p>
+        <p id="Example1-config">The following example demonstrates the default
+        configuration (no properties) that suppresses all violations:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example1.java"/>
@@ -54,9 +51,9 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
-          on a specific column in <code>Example2.java</code> using
-          <code>SuppressionSingleFilter</code>:
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code> and
+          <code>MagicNumber</code> checks in <code>Example2.java</code> for specific line ranges
+          using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -71,8 +68,9 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure a filter to suppress violations of <code>RegexpSinglelineCheck</code>
-          in <code>Example3.java</code> using <code>SuppressionSingleFilter</code>:
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
+          on a specific column in <code>Example3.java</code> using
+          <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -87,7 +85,7 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
+          To configure a filter to suppress violations of <code>RegexpSinglelineCheck</code>
           in <code>Example4.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
@@ -103,8 +101,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure a filter to suppress <code>MagicNumber</code> violations
-          whose message matches <code>100</code> using <code>SuppressionSingleFilter</code>:
+          To configure a filter to suppress violations of <code>NoWhitespaceAfter</code>
+          in <code>Example5.java</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -120,7 +118,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example6-config">
           To configure a filter to suppress <code>MagicNumber</code> violations
-          on specific line ranges using the <code>lines</code> property:
+          whose message matches <code>100</code> using <code>SuppressionSingleFilter</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -136,7 +134,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example7-config">
           To configure a filter to suppress <code>MagicNumber</code> violations
-          using the <code>id</code> property:
+          on specific line ranges using the <code>lines</code> property:
         </p>
         <macro name="example">
           <param name="path"
@@ -148,6 +146,24 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+      <subsection name="Use Cases" id="SuppressionSingleFilter_Use_Cases">
+        <p id="UseCase1-config">
+          To configure a filter to suppress <code>MagicNumber</code> violations
+          using the <code>id</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionsinglefilter/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
