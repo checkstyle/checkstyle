@@ -1,10 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="SuppressionXpathFilter">
-      <property name="file" value="${config.folder}/non-existent-suppressions.xml"/>
-      <property name="optional" value="true"/>
-    </module>
+    <module name="SuppressionXpathFilter"/>
     <module name="CyclomaticComplexity">
       <property name="max" value="3"/>
     </module>

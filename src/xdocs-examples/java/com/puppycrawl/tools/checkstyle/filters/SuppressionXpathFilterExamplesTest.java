@@ -45,12 +45,12 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
@@ -85,12 +85,12 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
@@ -105,12 +105,12 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample4() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
