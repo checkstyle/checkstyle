@@ -34,7 +34,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>allows names beginning with two lowercase letters followed by at least one uppercase or
  * lowercase letter</li>
  * <li>allows {@code e} abbreviation (suitable for exceptions end errors)</li>
- * <li>allows {@code ex} abbreviation (suitable for exceptions)</li>
  * <li>allows {@code t} abbreviation (suitable for throwables)</li>
  * <li>allows {@code _} for unnamed catch parameters</li>
  * <li>prohibits numbered abbreviations like {@code e1} or {@code t2}</li>
@@ -51,7 +50,7 @@ public class CatchParameterNameCheck extends AbstractNameCheck {
      * Creates a new {@code CatchParameterNameCheck} instance.
      */
     public CatchParameterNameCheck() {
-        super("^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
+        super("^(e|t|[a-z][a-z][a-zA-Z]+|_)$");
     }
 
     @Override

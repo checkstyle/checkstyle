@@ -43,7 +43,6 @@
         <li>allows names beginning with two lowercase letters followed by at least one uppercase or
           lowercase letter</li>
         <li>allows <code>e</code> abbreviation (suitable for exceptions end errors)</li>
-        <li>allows <code>ex</code> abbreviation (suitable for exceptions)</li>
         <li>allows <code>t</code> abbreviation (suitable for throwables)</li>
         <li>allows <code>_</code> for unnamed catch parameters</li>
         <li>prohibits numbered abbreviations like <code>e1</code> or <code>t2</code></li>
@@ -67,7 +66,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property-types.html#Pattern">Pattern</a></td>
-              <td><code>^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$</code></td>
+              <td><code>^(e|t|[a-z][a-z][a-zA-Z]+|_)$</code></td>
               <td>6.14</td>
             </tr>
           </table>
@@ -95,6 +94,7 @@ public class Example1 {
     } catch (ArithmeticException e) {
 
     } catch (ArrayIndexOutOfBoundsException ex) {
+      // violation above 'Name 'ex' must match pattern'
     } catch (IndexOutOfBoundsException e123) {
       // violation above 'Name 'e123' must match pattern'
     } catch (NullPointerException ab) {
@@ -134,6 +134,7 @@ public class Example2 {
     } catch (ArithmeticException e) {
       // violation above 'Name 'e' must match pattern'
     } catch (ArrayIndexOutOfBoundsException ex) {
+
     } catch (IndexOutOfBoundsException e123) {
 
     } catch (NullPointerException ab) {
