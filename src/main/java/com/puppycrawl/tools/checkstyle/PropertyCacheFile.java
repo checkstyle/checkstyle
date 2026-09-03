@@ -237,7 +237,8 @@ public final class PropertyCacheFile {
      * @throws IOException if an error occurs
      */
     private static void serialize(Serializable object,
-                                  OutputStream outputStream) throws IOException {
+                                  OutputStream outputStream)
+            throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(outputStream)) {
             oos.writeObject(object);
         }

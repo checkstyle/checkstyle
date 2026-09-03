@@ -415,7 +415,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,
             Configuration configuration, Map<String, Set<String>> tokensToIgnore,
-            boolean defaultTokensMustBeExplicit) throws Exception {
+            boolean defaultTokensMustBeExplicit)
+                    throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
 
@@ -702,7 +703,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     private static void verifyCheckstyleMessage(Map<String, List<String>> usedMessages,
-            Class<?> module, Field message) throws Exception {
+            Class<?> module, Field message)
+                    throws Exception {
         final String messageString = message.get(null).toString();
         final String packageName = module.getPackage().getName();
         final List<String> packageMessages =

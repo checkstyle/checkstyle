@@ -380,7 +380,8 @@ public class AllChecksCompactSourceCoverageTest {
      * @throws Exception if an input file cannot be parsed.
      */
     private static List<Set<String>> collectNonDefaultPropertiesPerInput(
-            Path folder, String checkClassName) throws Exception {
+            Path folder, String checkClassName)
+                    throws Exception {
         final List<Set<String>> nonDefaultsPerInput = new ArrayList<>();
         final List<Path> inputs;
         try (Stream<Path> files = Files.list(folder)) {

@@ -152,7 +152,8 @@ public class LocalizedMessage {
 
         @Override
         public ResourceBundle newBundle(String baseName, Locale locale, String format,
-                 ClassLoader loader, boolean reload) throws IOException {
+                ClassLoader loader, boolean reload)
+                        throws IOException {
             // The below is a copy of the default implementation.
             final String bundleName = toBundleName(baseName, locale);
             final String resourceName = toResourceName(bundleName, "properties");

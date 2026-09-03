@@ -423,7 +423,8 @@ public final class InlineConfigParser {
      * @throws Exception if unable to read file or file not formatted properly.
      */
     private static TestInputConfiguration parse(String inputFilePath,
-                                                boolean setFilteredViolations) throws Exception {
+                                                boolean setFilteredViolations)
+            throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
         final Path filePath = Path.of(inputFilePath);
@@ -936,7 +937,8 @@ public final class InlineConfigParser {
     }
 
     private static void validateProperties(Map<String, String> propertiesWithMissingDefaultTag,
-            List<String> unusedProperties) throws CheckstyleException {
+            List<String> unusedProperties)
+                    throws CheckstyleException {
 
         if (!propertiesWithMissingDefaultTag.isEmpty()) {
 
@@ -962,7 +964,8 @@ public final class InlineConfigParser {
 
     private static void validateDefaultProperties(
         Map<Object, Object> actualProperties,
-        Map<String, String> defaultProperties) throws CheckstyleException {
+        Map<String, String> defaultProperties)
+                throws CheckstyleException {
 
         final Map<String, String> propertiesWithMissingDefaultTag = actualProperties
                 .entrySet().stream()
@@ -1244,7 +1247,7 @@ public final class InlineConfigParser {
             TestInputConfiguration.Builder inputConfigBuilder,
             List<String> lines, boolean useFilteredViolations,
             int lineNo, boolean specifyViolationMessage)
-            throws CheckstyleException {
+                    throws CheckstyleException {
         final String line = lines.get(lineNo);
 
         boolean matched = isRelativeLineViolationProcessed(inputConfigBuilder, lines, line, lineNo,
@@ -1273,7 +1276,8 @@ public final class InlineConfigParser {
 
     private static boolean isRelativeLineViolationProcessed(
             TestInputConfiguration.Builder inputConfigBuilder, List<String> lines,
-            String line, int lineNo, boolean specifyViolationMessage) throws CheckstyleException {
+            String line, int lineNo, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final Matcher violationsAboveMatcherWithMessages =
                 VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(line);
         final Matcher violationsSomeLinesAboveMatcher =
@@ -1308,7 +1312,8 @@ public final class InlineConfigParser {
 
     private static boolean isMultipleViolationProcessed(
             TestInputConfiguration.Builder inputConfigBuilder, String line,
-            int lineNo, boolean specifyViolationMessage) throws CheckstyleException {
+            int lineNo, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final Matcher multipleViolationsMatcher = MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
         final Matcher multipleViolationsAboveMatcher =
                 MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
@@ -1350,7 +1355,8 @@ public final class InlineConfigParser {
 
     private static List<TestInputViolation> getExpectedViolationsForSpecificLine(
             List<String> lines, int lineNo, int violationLineNum,
-            Matcher matcher, boolean specifyViolationMessage) throws CheckstyleException {
+            Matcher matcher, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final List<TestInputViolation> results = new ArrayList<>();
 
         final int expectedMessageCount =
@@ -1549,7 +1555,8 @@ public final class InlineConfigParser {
      * @throws CheckstyleException if violation message is not specified
      */
     private static void checkWhetherViolationSpecified(boolean shouldViolationMsgBeSpecified,
-            String violationMessage, int lineNum) throws CheckstyleException {
+            String violationMessage, int lineNum)
+                    throws CheckstyleException {
         if (shouldViolationMsgBeSpecified && violationMessage == null) {
             throw new CheckstyleException(
                     "Violation message should be specified on line " + lineNum);
