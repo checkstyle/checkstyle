@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="SuppressionXpathFilter">
       <property name="file" value="${config.folder}/suppressions0.xml"/>
+      <property name="optional" value="false"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="max" value="3"/>
