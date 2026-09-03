@@ -58,7 +58,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     private Configuration loadConfiguration(
-        String name, Properties props) throws Exception {
+        String name, Properties props)
+                throws Exception {
         final String fName = getPath(name);
 
         return ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(props));
@@ -75,7 +76,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     private static String invokeReplacePropertiesMethod(
             Object internalLoader, String value, String defaultValue)
-            throws ReflectiveOperationException {
+                    throws ReflectiveOperationException {
         return TestUtil.invokeMethod(internalLoader, "replaceProperties",
                 String.class, value, defaultValue);
     }
@@ -85,7 +86,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             String value,
             Collection<String> fragments,
             Collection<String> propertyRefs)
-            throws ReflectiveOperationException {
+                    throws ReflectiveOperationException {
         TestUtil.invokeVoidMethod(
                 internalLoader, "parsePropertyString", value, fragments, propertyRefs);
     }
@@ -440,7 +441,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     private static void verifyConfigNode(
         DefaultConfiguration config, String name, int childrenLength,
-        Properties atts) throws Exception {
+        Properties atts)
+                throws Exception {
         assertWithMessage("name.")
             .that(config.getName())
             .isEqualTo(name);

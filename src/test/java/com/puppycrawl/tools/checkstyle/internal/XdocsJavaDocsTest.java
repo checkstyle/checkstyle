@@ -118,7 +118,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     private static void assertCheckSection(ModuleFactory moduleFactory, String fileName,
-            String sectionName) throws Exception {
+            String sectionName)
+                    throws Exception {
         final Object instance;
 
         try {

@@ -61,7 +61,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     private static IndentComment[] getLinesWithWarnAndCheckComments(String fileName,
             final int tabWidth)
-            throws IOException {
+                    throws IOException {
         final List<IndentComment> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(Path.of(fileName))) {
             int lineNumber = 1;
@@ -196,7 +196,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     private void verifyWarns(Configuration config, String filePath,
                     String... expected)
-                    throws Exception {
+                            throws Exception {
         final int tabWidth = Integer.parseInt(config.getProperty("tabWidth"));
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
@@ -208,7 +208,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     private void verify(Configuration config, String filePath, String[] expected,
-            final IndentComment... linesWithWarn) throws Exception {
+            final IndentComment... linesWithWarn)
+                    throws Exception {
         final Checker checker = createChecker(config);
         checker.addListener(new IndentAudit(linesWithWarn));
         verify(checker, filePath, expected);

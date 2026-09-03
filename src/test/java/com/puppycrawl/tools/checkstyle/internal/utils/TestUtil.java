@@ -196,7 +196,8 @@ public final class TestUtil {
      */
     public static boolean isStatefulFieldClearedDuringLocalSetup(
             TreeWalkerFilter filter, TreeWalkerAuditEvent event,
-            String fieldName, Predicate<Object> isClear) throws Exception {
+            String fieldName, Predicate<Object> isClear)
+                    throws Exception {
         filter.accept(event);
         invokeVoidMethod(filter, "finishLocalSetup");
         final Field resultField = getClassDeclaredField(filter.getClass(), fieldName);
@@ -554,7 +555,8 @@ public final class TestUtil {
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static Set<String> invokeMethodSet(Object instance, String methodToExecute,
-                                       Object... arguments) throws ReflectiveOperationException {
+                                       Object... arguments)
+            throws ReflectiveOperationException {
         return (Set<String>) invokeMethod(instance, methodToExecute, Set.class, arguments);
     }
 
@@ -571,7 +573,7 @@ public final class TestUtil {
      */
     public static <T> T invokeStaticMethod(Class<?> ownerClass,
             String methodToExecute, Class<T> resultClass, Object... arguments)
-            throws ReflectiveOperationException {
+                    throws ReflectiveOperationException {
         final Method method = getClassDeclaredMethod(ownerClass, methodToExecute, arguments.length);
         return resultClass.cast(method.invoke(null, arguments));
     }

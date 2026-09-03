@@ -55,7 +55,8 @@ public final class ModuleReflectionUtil {
      * @see #isCheckstyleModule(Class)
      */
     public static Set<Class<?>> getCheckstyleModules(
-            Collection<String> packages, ClassLoader loader) throws IOException {
+            Collection<String> packages, ClassLoader loader)
+                    throws IOException {
         final ClassPath classPath = ClassPath.from(loader);
         return packages.stream()
                 .flatMap(pkg -> classPath.getTopLevelClasses(pkg).stream())

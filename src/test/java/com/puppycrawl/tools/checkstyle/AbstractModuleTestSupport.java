@@ -282,7 +282,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             String configPath,
             String filePath,
             String... expected)
-            throws Exception {
+                    throws Exception {
         final Configuration config =
                 ConfigurationLoader.loadConfiguration(
                         configPath,
@@ -762,7 +762,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     private static void verifyContent(
             String expectedOutputFile,
-            ByteArrayOutputStream outputStream) throws IOException {
+            ByteArrayOutputStream outputStream)
+                    throws IOException {
         final String expectedContent = readFile(expectedOutputFile);
         final String actualContent =
                 toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
@@ -793,7 +794,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static void verifyCleanedMessageContent(
             String expectedOutputFile,
             ByteArrayOutputStream outputStream,
-            String basePath) throws IOException {
+            String basePath)
+                    throws IOException {
         final String expectedContent = readFile(expectedOutputFile);
         final String rawActualContent =
                 toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
@@ -822,7 +824,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @throws Exception if exception occurs during verification process.
      */
     private List<String> getActualViolationsForFile(Configuration config,
-                                                    String file) throws Exception {
+                                                    String file)
+            throws Exception {
         stream.flush();
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));

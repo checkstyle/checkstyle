@@ -296,7 +296,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava,
-            JavaParser.Options withComments) throws Exception {
+            JavaParser.Options withComments)
+                    throws Exception {
         final File expectedFile = new File(expectedTextPrintFileName);
         final String expectedContents = new FileText(expectedFile, System.getProperty(
                 "file.encoding", StandardCharsets.UTF_8.name()))

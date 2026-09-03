@@ -154,7 +154,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
-            @SysErr Capturable systemErr) throws Exception {
+            @SysErr Capturable systemErr)
+                    throws Exception {
         final String[] expectedMessagesForFile1 = {
             "11: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 5,
                     "mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
