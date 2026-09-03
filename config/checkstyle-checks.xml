@@ -875,6 +875,7 @@
        -->
       <property name="severity" value="ignore"/>
     </module>
+    <module name="OpenjdkMethodThrowsAlignment"/>
     <module name="OuterTypeFilename"/>
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />
