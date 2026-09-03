@@ -169,7 +169,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws CheckstyleException if there is an error with the config.
      */
     protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
-            String... moduleIds) throws CheckstyleException {
+            String... moduleIds)
+                    throws CheckstyleException {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
@@ -387,7 +388,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
-            Integer... warnsExpected) throws Exception {
+            Integer... warnsExpected)
+                    throws Exception {
         verify(createChecker(config),
                 new File[] {new File(fileName)},
                 fileName, expected, warnsExpected);
@@ -409,7 +411,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             String messageFileName,
             String[] expected,
             Integer... warnsExpected)
-            throws Exception {
+                    throws Exception {
         stream.flush();
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
@@ -484,7 +486,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     private List<String> getActualViolationsForFile(Configuration config,
-          String file) throws Exception {
+            String file)
+                    throws Exception {
         stream.flush();
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
@@ -566,7 +569,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected static String getCheckMessage(
             Class<? extends AbstractViolationReporter> reporterClass, String messageKey,
-            Object... arguments) throws IOException {
+            Object... arguments)
+                    throws IOException {
         final Properties pr = new Properties();
         pr.load(reporterClass.getResourceAsStream("messages.properties"));
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),

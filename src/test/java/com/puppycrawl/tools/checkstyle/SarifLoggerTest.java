@@ -611,7 +611,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     private static void verifyContent(
             String expectedOutputFile,
-            ByteArrayOutputStream actualOutputStream) throws IOException {
+            ByteArrayOutputStream actualOutputStream)
+                    throws IOException {
         final String expectedContent = readFile(expectedOutputFile);
         final String actualContent =
                 toLfLineEnding(actualOutputStream.toString(StandardCharsets.UTF_8));

@@ -415,7 +415,8 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     private static List<Path> collectFilesWithinModule(Path dir,
-                   Predicate<Path> fileFilter) throws IOException {
+                   Predicate<Path> fileFilter)
+            throws IOException {
         final List<Path> result = new ArrayList<>();
 
         try (Stream<Path> pathStream = Files.list(dir)) {
@@ -783,7 +784,8 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     private static String validateExampleCount(Path dir, String relativePath,
-                                                List<Path> regularExamples) throws IOException {
+                                                List<Path> regularExamples)
+            throws IOException {
         String result = null;
         final int propertyCount = resolvePropertyCount(dir);
 
@@ -868,7 +870,8 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     private static String checkPropertyCoverageFallback(Path dir, String relativePath,
-                    List<Path> examples, int propertyCount) throws IOException {
+                    List<Path> examples, int propertyCount)
+            throws IOException {
         String result = null;
 
         final Set<String> documentedProperties = resolveDocumentedPropertyNames(dir);

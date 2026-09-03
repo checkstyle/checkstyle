@@ -155,7 +155,8 @@ public class XpathFileGeneratorAstFilterTest {
     }
 
     private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName,
-            Violation violation) throws Exception {
+            Violation violation)
+                    throws Exception {
         final File file = new File(getPath(fileName));
         final FileText fileText = new FileText(file.getAbsoluteFile(), System.getProperty(
                 "file.encoding", StandardCharsets.UTF_8.name()));

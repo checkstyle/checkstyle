@@ -67,7 +67,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      *     version don't match.
      */
     protected static void verifyXml(String expectedOutputFile,
-            ByteArrayOutputStream actualOutputStream, String... messages) throws Exception {
+            ByteArrayOutputStream actualOutputStream, String... messages)
+                    throws Exception {
         verifyXml(expectedOutputFile, actualOutputStream, null, messages);
     }
 
@@ -83,7 +84,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      */
     protected static void verifyXml(String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream,
-            BiPredicate<Node, Node> ordered, String... messages) throws Exception {
+            BiPredicate<Node, Node> ordered, String... messages)
+                    throws Exception {
         String expectedContents = readFile(expectedOutputFile);
 
         for (int i = 0; i < messages.length; i++) {
@@ -276,7 +278,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * @throws Exception if an error occurs
      */
     protected final void verifyWithInlineConfigParserAndXmlLogger(
-            String filePath, String expectedXmlReportPath) throws Exception {
+            String filePath, String expectedXmlReportPath)
+                    throws Exception {
         final String configFilePath = getPath(filePath);
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFilePath);
@@ -308,7 +311,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      */
     protected final void verifyWithInlineConfigParserAndXmlLogger(
             String inputFileWithConfig, String expectedXmlReportPath,
-            List<String> targetFilePaths) throws Exception {
+            List<String> targetFilePaths)
+                    throws Exception {
         final String configFilePath = getPath(inputFileWithConfig);
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFilePath);

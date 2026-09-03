@@ -329,7 +329,7 @@ public class XdocsExampleFileTest {
 
     private static void scanFile(Path testFile, Path examplesResources, Path examplesNonCompilable,
             List<String> failures)
-            throws IOException {
+                    throws IOException {
         final String testContent = Files.readString(testFile);
 
         final String className = Path.of("src/xdocs-examples/java").toAbsolutePath()
@@ -354,7 +354,8 @@ public class XdocsExampleFileTest {
     }
 
     private static void scanExampleDirectory(Path exampleDir, String testContent,
-            Path testFile, List<String> failures) throws IOException {
+            Path testFile, List<String> failures)
+                    throws IOException {
         if (Files.exists(exampleDir) && Files.isDirectory(exampleDir)) {
             try (Stream<Path> exampleFiles = Files.list(exampleDir)) {
                 exampleFiles
@@ -376,7 +377,8 @@ public class XdocsExampleFileTest {
     }
 
     private static void checkUniquenessForModule(Path testFile, Path examplesResources,
-             Path examplesNonCompilable, List<String> failures) throws IOException {
+            Path examplesNonCompilable, List<String> failures)
+                    throws IOException {
         final String className = Path.of("src/xdocs-examples/java").toAbsolutePath()
                 .relativize(testFile.toAbsolutePath()).toString()
                 .replace(File.separator, ".")
@@ -418,7 +420,8 @@ public class XdocsExampleFileTest {
     }
 
     private static Map<String, List<String>> collectSignatures(Path exampleDir,
-               boolean suppressed, List<String> failures) throws IOException {
+                boolean suppressed, List<String> failures)
+                        throws IOException {
         final Map<String, List<String>> signatureToExamples = new HashMap<>();
 
         try (Stream<Path> exampleFiles = Files.list(exampleDir)) {
@@ -616,7 +619,7 @@ public class XdocsExampleFileTest {
      */
     private static void checkDefaultConfigExampleOrder(List<Path> examples,
             String xmlModuleName, String relativePath, List<String> violations)
-            throws IOException, ParserConfigurationException, SAXException {
+                    throws IOException, ParserConfigurationException, SAXException {
         final Path firstExample = examples.stream()
             .filter(example -> {
                 return example.getFileName().toString()

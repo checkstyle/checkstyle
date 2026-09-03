@@ -63,7 +63,8 @@ public final class SuppressionsStringPrinter {
      * @throws IllegalStateException if suppressionLineColumnNumber is not of a valid format.
      */
     public static String printSuppressions(File file, String suppressionLineColumnNumber,
-                                           int tabWidth) throws IOException, CheckstyleException {
+                                           int tabWidth)
+            throws IOException, CheckstyleException {
         final Matcher matcher =
                 VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX.matcher(suppressionLineColumnNumber);
         if (!matcher.matches()) {
