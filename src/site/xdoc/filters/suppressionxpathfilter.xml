@@ -20,8 +20,8 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionXpathFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">For example #1, the following configuration demonstrates the <code>optional</code> property. The <code>file</code> property points to a non-existent suppressions file and <code>optional</code> is set to <code>true</code>, so suppressions are skipped and violations are reported</a></li>
-              <li><a href="#Example2-config" class="toc-sublink">For example #2, the following configuration demonstrates the <code>optional</code> property set to <code>false</code>. The <code>file</code> property points to a suppressions file that exists but does not suppress the violation, so violations are reported</a></li>
+              <li><a href="#Example1-config" class="toc-sublink">The following example demonstrates the default configuration (no properties) that does not suppress</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For example #2, the following configuration demonstrates the <code>optional</code> property. The <code>file</code> property points to a non-existent suppressions file and <code>optional</code> is set to <code>true</code>, so suppressions are skipped and violations are reported</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For example #3, the following configuration demonstrates the <code>optional</code> property set to <code>false</code>. The <code>file</code> property points to a suppressions file that exists but does not suppress the violation, so violations are reported</a></li>
             </ul>
           </li>
@@ -42,6 +42,7 @@
               <li><a href="#UseCase11-config" class="toc-sublink">For UseCase #11, to configure the check</a></li>
               <li><a href="#UseCase12-config" class="toc-sublink">For UseCase #12, to configure the check</a></li>
               <li><a href="#UseCase13-config" class="toc-sublink">For UseCase #13, to configure the check</a></li>
+              <li><a href="#UseCase14-config" class="toc-sublink">For UseCase #14, to configure the check</a></li>
             </ul>
           </li>
           <li><a href="#SuppressionXpathFilter_Example_of_Usage">Example of Usage</a></li>
@@ -293,19 +294,12 @@
       </subsection>
       <subsection name="Examples" id="SuppressionXpathFilter_Examples">
 
-        <p id="Example1-config">
-          For example #1, the following configuration demonstrates the
-          <code>optional</code> property. The <code>file</code> property points to a
-          non-existent suppressions file and <code>optional</code> is set to <code>true</code>,
-          so suppressions are skipped and violations are reported:
-        </p>
+        <p id="Example1-config">The following example demonstrates the default
+        configuration (no properties) that does not suppress:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/non-existent-suppressions.xml"/&gt;
-      &lt;property name="optional" value="true"/&gt;
-    &lt;/module&gt;
+    &lt;module name="SuppressionXpathFilter"/&gt;
     &lt;module name="CyclomaticComplexity"&gt;
       &lt;property name="max" value="3"/&gt;
     &lt;/module&gt;
@@ -313,7 +307,6 @@
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example1-code">
-          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
@@ -356,58 +349,22 @@ public class Example1 {
 
         <p id="Example2-config">
           For example #2, the following configuration demonstrates the
-          <code>optional</code> property set to <code>false</code>.
-          The <code>file</code> property points to a
-          suppressions file that exists but does not suppress the violation,
-          so violations are reported:
+          <code>optional</code> property. The <code>file</code> property points to a
+          non-existent suppressions file and <code>optional</code> is set to <code>true</code>,
+          so suppressions are skipped and violations are reported:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionXpathFilter"&gt;
-      &lt;property name="file" value="${config.folder}/suppressions0.xml"/&gt;
-      &lt;property name="optional" value="false"/&gt;
+      &lt;property name="file" value="${config.folder}/non-existent-suppressions.xml"/&gt;
+      &lt;property name="optional" value="true"/&gt;
     &lt;/module&gt;
     &lt;module name="CyclomaticComplexity"&gt;
       &lt;property name="max" value="3"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p>
-          The following suppressions XML document directs
-          a <code>SuppressionXpathFilter</code> to
-          reject <code>CyclomaticComplexity</code> violations for
-          all methods with name <i>sayHelloWorld</i> inside <i>Example2</i>
-          and <i>Test</i> files.
-          The <code>optional</code> property is set to <code>false</code>,
-          which means the suppressions file must exist, otherwise checkstyle ends with error.
-        </p>
-        <p id="suppressions0-raw">
-          Currently, xpath queries support one type of attribute <code>@text</code>.
-          <code>@text</code> - addresses to the text value of the node. For example: variable name,
-          annotation name, text content, etc.
-          Only the following token types support <code>@text</code> attribute:
-          <code>TokenTypes.IDENT</code>, <code>TokenTypes.STRING_LITERAL</code>,
-          <code>TokenTypes.CHAR_LITERAL</code>, <code>TokenTypes.NUM_LONG</code>,
-          <code>TokenTypes.NUM_INT</code>, <code>TokenTypes.NUM_DOUBLE</code>,
-          <code>TokenTypes.NUM_FLOAT</code>.
-          These token types were selected because only their text values are different in content
-          from token type and represent text value from file and can be used in xpath queries for
-          more accurate results.
-          Other token types always have constant values.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;?xml version="1.0"?&gt;
-&lt;!DOCTYPE suppressions PUBLIC
-"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
-"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
-
-&lt;suppressions&gt;
-  &lt;suppress-xpath checks="CyclomaticComplexity"
-  files="Example0.java|Test.java"
-  query="//METHOD_DEF[./IDENT[@text='sayHelloWorld']]"/&gt;
-&lt;/suppressions&gt;
 </code></pre></div>
         <p id="Example2-code">
           Results:
@@ -463,12 +420,48 @@ public class Example2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="SuppressionXpathFilter"&gt;
       &lt;property name="file" value="${config.folder}/suppressions0.xml"/&gt;
+      &lt;property name="optional" value="false"/&gt;
     &lt;/module&gt;
     &lt;module name="CyclomaticComplexity"&gt;
       &lt;property name="max" value="3"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p>
+          The following suppressions XML document directs
+          a <code>SuppressionXpathFilter</code> to
+          reject <code>CyclomaticComplexity</code> violations for
+          all methods with name <i>sayHelloWorld</i> inside <i>Example3</i>
+          and <i>Test</i> files.
+          The <code>optional</code> property is set to <code>false</code>,
+          which means the suppressions file must exist, otherwise checkstyle ends with error.
+        </p>
+        <p id="suppressions0-raw">
+          Currently, xpath queries support one type of attribute <code>@text</code>.
+          <code>@text</code> - addresses to the text value of the node. For example: variable name,
+          annotation name, text content, etc.
+          Only the following token types support <code>@text</code> attribute:
+          <code>TokenTypes.IDENT</code>, <code>TokenTypes.STRING_LITERAL</code>,
+          <code>TokenTypes.CHAR_LITERAL</code>, <code>TokenTypes.NUM_LONG</code>,
+          <code>TokenTypes.NUM_INT</code>, <code>TokenTypes.NUM_DOUBLE</code>,
+          <code>TokenTypes.NUM_FLOAT</code>.
+          These token types were selected because only their text values are different in content
+          from token type and represent text value from file and can be used in xpath queries for
+          more accurate results.
+          Other token types always have constant values.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks="CyclomaticComplexity"
+  files="Example0.java|Test.java"
+  query="//METHOD_DEF[./IDENT[@text='sayHelloWorld']]"/&gt;
+&lt;/suppressions&gt;
 </code></pre></div>
         <p id="Example3-code">
           Results:
@@ -1530,6 +1523,63 @@ public class UseCase13 {
   }
 
   public void sayHelloWorld() {
+    if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
+      System.out.println("Hello");
+    }
+    else if (age &lt; 0) {
+      System.out.println("World");
+    }
+  }
+
+  @Generated("first")
+  public void Test1() {}
+
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="UseCase14-config">
+          For UseCase #14, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions0.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="3"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase14-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase14 {
+  int age = 23;
+  private int wordCount = 11;
+  public void SetSomeVar() {}
+  public void DoMATH() {}
+
+  public void throwsMethod() throws RuntimeException {}
+
+  final public void legacyMethod() {
+    strictfp abstract class Legacy {}
+  }
+
+  public void changeAge() {
+    age = 24;
+  }
+
+  public void testMethod() {
+    int TestVariable;
+    int WeirdName;
+  }
+
+  public void sayHelloWorld() { // violation 'Cyclomatic Complexity is 4'
     if (age &gt; 0 &amp;&amp; wordCount &gt; 0) {
       System.out.println("Hello");
     }
