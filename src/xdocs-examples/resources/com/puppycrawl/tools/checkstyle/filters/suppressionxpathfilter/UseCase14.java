@@ -1,7 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="SuppressionXpathFilter"/>
+    <module name="SuppressionXpathFilter">
+      <property name="file" value="${config.folder}/suppressions0.xml"/>
+    </module>
     <module name="CyclomaticComplexity">
       <property name="max" value="3"/>
     </module>
@@ -14,7 +16,7 @@ import javax.annotation.processing.Generated;
 
 // xdoc section - start
 
-public class Example1 {
+public class UseCase14 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
