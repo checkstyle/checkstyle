@@ -579,10 +579,9 @@
                   </a>)
                   <br/>
                   <br/>
-                  The rule to avoid local declarations that hide a higher-level
-                  declaration is covered above.
-                  <br/>
-                  <br/>
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
                   The rule that declarations should be placed only at the
                   beginning of blocks is a subjective style preference, contrary
                   to modern Java guidance (delaying declaration until first use
