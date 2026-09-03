@@ -244,12 +244,23 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
                     FileTabCharacter</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
                   config</a>)
+                  <br />
+                  <br />
+                  Not covered:
+                  <br />
+                  All whitespace characters other than the ASCII horizontal space (0x20)
+                  and the line terminator sequence must be escaped in char and string
+                  literals and in text blocks.
+                  Until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/21446">
+                    #21446
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule231filetab">
@@ -390,10 +401,13 @@
                     config</a>)
                   <br />
                   <br />
+                  Not covered:
+                  <br />
                   Every source file must have a package declaration.
-                  Compact Source Files should not be used, will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/21428">
-                    #21428
+                  Compact Source Files should not be used.
+                  Until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/21444">
+                    #21444
                   </a>
                 </td>
                 <td>
@@ -454,7 +468,12 @@
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s3.3.1.1-module-imports">
                     3.3.1.1 No module imports</a>
                 </td>
-                <td>???</td>
+                <td>
+                  Not covered until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/21445">
+                    #21445
+                  </a>
+                </td>
                 <td/>
               </tr>
               <tr>
@@ -625,6 +644,14 @@
                     ConstructorsDeclarationGrouping</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
                   config</a>)
+                  <br />
+                  <br />
+                  Missing samples for overloaded methods and constructors that differ in
+                  modifiers, such as <code>static</code> or <code>private</code>.
+                  Until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/21447">
+                    #21447
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit">
@@ -843,12 +870,22 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/coding/onestatementperline.html#OneStatementPerLine">
                     OneStatementPerLine</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
                   config</a>)
+                  <br />
+                  <br />
+                  Not covered:
+                  <br />
+                  False negative for multiple resource declarations on the same line
+                  in a try-with-resources statement.
+                  Until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/21454">
+                    #21454
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule43onestatement">
@@ -2170,26 +2207,32 @@
                   config</a>)
                   <br/>
                 </td>
-                <tr>
-                  <td><a name="a5.2.9"/>
-                    <a href="#5.2.9">
-                      <span class="wrapper inline">
-                        <img src="images/anchor.png" alt=""/>
-                      </span>
-                    </a>
-                  </td>
-                  <td>
-                    <a href="styleguides/google-java-style-20260409/javaguide.html#s5.2.9-unnamed-variables">
-                      5.2.9 Unnamed variables</a>
-                  </td>
-                  <td>???</td>
-                  <td/>
-                </tr>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule528typevariablenames">
                     samples</a>
                   <br />
                 </td>
+              </tr>
+              <tr>
+                <td><a name="a5.2.9"/>
+                  <a href="#5.2.9">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20260409/javaguide.html#s5.2.9-unnamed-variables">
+                    5.2.9 Unnamed variables
+                  </a>
+                </td>
+                <td>
+                 To be updated at:
+                 <a href="https://github.com/checkstyle/checkstyle/issues/21449">
+                   #21449
+                 </a>
+                </td>
+                <td/>
               </tr>
               <tr>
                 <td><a name="a5.3"/>
@@ -2310,6 +2353,13 @@
                   <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
                   config</a>)
+                  <br />
+                  <br />
+                  Missing samples for empty catch block with unnamed parameter.
+                  Until:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/21450">
+                    #21450
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions">
