@@ -1,22 +1,24 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="MagicNumber"/>
+    <module name="MemberName">
+      <property name="id" value="customMemberName"/>
+    </module>
   </module>
   <module name="SuppressionSingleFilter">
-    <property name="checks" value="MagicNumber"/>
-    <property name="message" value="100"/>
+    <property name="files" value="Example5.java"/>
+    <property name="id" value="customMemberName"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section - start
 public class Example5 {
-  // violation below ''5' is a magic number'
+  // filtered violation below 'Name 'MyVariable' must match pattern'
   private int MyVariable = 5;
 
   public void exampleMethod(int a, int b) {
-    int value = 100; // filtered violation ''100' is a magic number'
+    int value = 100;
 
     Integer. parseInt("3");
   }

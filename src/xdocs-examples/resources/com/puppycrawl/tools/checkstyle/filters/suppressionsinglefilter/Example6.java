@@ -4,14 +4,15 @@
     <module name="MagicNumber"/>
   </module>
   <module name="SuppressionSingleFilter">
-    <property name="lines" value="1,5-100"/>
+    <property name="checks" value="MagicNumber"/>
+    <property name="message" value="100"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section - start
 public class Example6 {
-  // filtered violation below ''5' is a magic number'
+  // violation below ''5' is a magic number'
   private int MyVariable = 5;
 
   public void exampleMethod(int a, int b) {
