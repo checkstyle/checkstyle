@@ -20,6 +20,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ModifierOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With custom modifiers order</a></li>
             </ul>
           </li>
           <li><a href="#ModifierOrder_Example_of_Usage">Example of Usage</a></li>
@@ -31,11 +32,12 @@
 </div>
       <subsection name="Description" id="ModifierOrder_Description">
         <div>
-          Checks that the order of modifiers conforms to the suggestions in the
+          Validates that the modifiers appear in the correct, standard order.
+          By default the order of modifiers conforms to the suggestions in the
           <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
           Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
-          The correct order is:
+          The default order is:
         </div>
 
         <ol>
@@ -56,7 +58,7 @@
         </ol>
 
         <p>
-          In additional, modifiers are checked to ensure all annotations
+          Additionally, modifiers are checked to ensure all annotations
           are declared before all other modifiers.
         </p>
 
@@ -87,7 +89,39 @@ public class Example1 {
   public static final int MAX_VALUE = 100;
 
   // violation below "'private' modifier out of order with the JLS suggestions"
-  final private String example = "Example";
+  final private String exampleOne = "ExampleOne";
+
+  // violation below "'private' modifier out of order with the JLS suggestions"
+  static private int exampleTwo;
+
+  private static void method() {}
+
+  // violation below 'annotation modifier does not precede non-annotation modifiers'
+  public @Deprecated class Example {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config"> To configure the check with custom modifiers order: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ModifierOrder"&gt;
+      &lt;property name="modifiersOrder" value="static, final, public, private"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code"> Code: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  public static final int MAX_VALUE = 100;
+  // violation above 'static' modifier out of order with the defined modifier order.
+
+  final private String exampleOne = "ExampleOne";
+
+  static private int exampleTwo;
+
+  // violation below 'static' modifier out of order with the defined modifier order.
+  private static void method() {}
 
   // violation below 'annotation modifier does not precede non-annotation modifiers'
   public @Deprecated class Example {}
@@ -117,6 +151,11 @@ public class Example1 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.order%22">
               annotation.order
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22mod.custom.order%22">
+              mod.custom.order
             </a>
           </li>
           <li>
