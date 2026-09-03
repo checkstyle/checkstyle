@@ -1808,7 +1808,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.6</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
@@ -1819,6 +1818,7 @@
             </java.awt.graphicsenv>
           </systemPropertyVariables>
           <argLine>
+            -Dfile.encoding=UTF-8 ${surefire.options}
             --add-exports=java.desktop/java.awt=ALL-UNNAMED
             --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
             --add-exports=java.desktop/sun.awt.image=ALL-UNNAMED
