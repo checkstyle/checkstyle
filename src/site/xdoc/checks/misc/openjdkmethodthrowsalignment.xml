@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OpenjdkMethodThrowsAlignment</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="OpenjdkMethodThrowsAlignment">
+      <p>Since Checkstyle 14.2.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OpenjdkMethodThrowsAlignment_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OpenjdkMethodThrowsAlignment_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Follow openjdk guidelines for throws clause alignment</a></li>
+            </ul>
+          </li>
+          <li><a href="#OpenjdkMethodThrowsAlignment_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OpenjdkMethodThrowsAlignment_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OpenjdkMethodThrowsAlignment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OpenjdkMethodThrowsAlignment_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="OpenjdkMethodThrowsAlignment_Description">
+        <div>
+          Checks that the <code>throws</code> clause of a wrapped method or constructor declaration
+          is properly aligned according to the
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-method-declarations">
+          OpenJDK Java Style Guide</a>.
+        </div>
+
+        <p>
+          This check only applies when the method or constructor declaration is
+          <em>wrapped</em>, that is, the parameter list spans more than one line.
+          Single-line declarations are not in scope.
+        </p>
+
+        <p>
+          The two rules enforced are:
+        </p>
+        <ol>
+        <li>The <code>throws</code> keyword must start on a <em>new line</em>, it must not share
+          the line with the closing <code>)</code> of the parameter list.</li>
+        <li>The <code>throws</code> keyword must <em>stand out</em> from the parameter list by
+          being indented 8 columns relative to <em>either</em>:
+        <ul>
+        <li>the column of the method/constructor declaration (i.e. the indentation of the
+          line containing the declaration keyword)</li>
+        <li>the indentation (first non-whitespace column) of the source line immediately
+          above the line where <code>throws</code> appears</li>
+        </ul>
+        </li>
+        </ol>
+      </subsection>
+
+      <subsection name="Examples" id="OpenjdkMethodThrowsAlignment_Examples">
+        <p id="Example1-config">
+          To configure the check to follow openjdk guidelines for throws clause alignment:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OpenjdkMethodThrowsAlignment"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+    public void valid(int a) throws Exception {
+    }
+
+    public void sameLine(int first,
+        int second) throws Exception {
+        // violation above """The 'throws' clause should be on a new line when
+        // the method declaration is wrapped."""
+    }
+    
+    public void incorrectIndentation(int first,
+                                    int second)
+        throws Exception {
+        // violation above """The 'throws' clause should be indented 8 spaces relative to the
+        // method declaration or the previous line and should not align with the previous line."""
+    }
+
+    public void declarationRelative(int first,
+                                    int second)
+            throws Exception {
+    }
+
+    public void previousLineRelative(int first,
+                            int second)
+                                    throws Exception {
+    }
+
+    public void alignedWithPreviousLine(int first,
+            int second)
+            throws Exception {
+        // violation above """The 'throws' clause should be indented 8 spaces relative to the
+        // method declaration or the previous line and should not align with the previous line."""
+    }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="OpenjdkMethodThrowsAlignment_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkMethodThrowsAlignment">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkMethodThrowsAlignment">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="OpenjdkMethodThrowsAlignment_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22openjdk.throws.indentation%22">
+              openjdk.throws.indentation
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22openjdk.throws.new.line%22">
+              openjdk.throws.new.line
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                  id="OpenjdkMethodThrowsAlignment_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkMethodThrowsAlignmentCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="OpenjdkMethodThrowsAlignment_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
