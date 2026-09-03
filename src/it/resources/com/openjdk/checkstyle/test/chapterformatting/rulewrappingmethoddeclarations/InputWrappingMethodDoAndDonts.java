@@ -46,17 +46,20 @@ public class InputWrappingMethodDoAndDonts {
                        double aDouble) {
         }
 
-        // not covered until https://github.com/checkstyle/checkstyle/issues/20639
         public void someMethod2(String aString,
                        List<Map<Integer, StringBuffer>> aListOfMaps,
                        Map<String, String> aMap) throws InterruptedException {
+            // violation above """The 'throws' clause should be on a new line when the
+            // method declaration is wrapped."""
         }
 
-        // not covered until https://github.com/checkstyle/checkstyle/issues/20639
         public void someMethod3(String aString,
                        List<Integer> aList,
                        Map<String, String> aMap)
                        throws IllegalArgumentException {
+            // violation above """The 'throws' clause should be indented 8 spaces relative
+            // to the method declaration or the previous line and should not align with the
+            // previous line."""
         }
 
     }
