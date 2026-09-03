@@ -102,7 +102,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase14() throws Exception {
 
         final String[] expectedWithoutFilter = {
             "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
@@ -116,7 +116,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
                 + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase14.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }

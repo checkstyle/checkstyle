@@ -16,7 +16,7 @@ import javax.annotation.processing.Generated;
 
 // xdoc section - start
 
-public class Example4 {
+public class UseCase14 {
   int age = 23;
   private int wordCount = 11;
   public void SetSomeVar() {}
