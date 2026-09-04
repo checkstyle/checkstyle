@@ -381,8 +381,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20260409/javaguide.html#s3.2-package-statement">
-                    3.2 Package statement</a>
+                  <a href="styleguides/google-java-style-20260409/javaguide.html#s3.2-package-declaration">
+                    3.2 Package declaration</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -425,7 +425,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s3.3-import-statements">
-                    3.3 Import statements
+                    3.3 Imports
                   </a>
                 </td>
                 <td>↓</td>
@@ -1045,7 +1045,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s4.6.1-vertical-whitespace">
-                    4.6.1 Vertical Whitespace: Blank Lines</a>
+                    4.6.1 Vertical Whitespace (blank lines)</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
