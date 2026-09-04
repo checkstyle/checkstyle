@@ -467,8 +467,8 @@
     <lineContent>Stream.iterate(startNode.getLastChild(), Objects::nonNull,</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
-      use of T from Stream.iterate(startNode.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
-      From complementary bound.: Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
+      From complementary bound: use of T from Stream.iterate(startNode.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
       From: Argument constraint
     </details>
   </checkerFrameworkError>
@@ -507,8 +507,8 @@
     <lineContent>result = Stream.iterate(nonCommentAst.getPreviousSibling(),</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
-      use of T from Stream.iterate(nonCommentAst.getPreviousSibling(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
-      From complementary bound.: Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
+      From complementary bound: use of T from Stream.iterate(nonCommentAst.getPreviousSibling(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
       From: Argument constraint
     </details>
   </checkerFrameworkError>
@@ -541,6 +541,13 @@
       is not a valid method reference for method in @GuardedBy Set&lt;@GuardedBy String&gt;
       @GuardedBy boolean contains(@GuardSatisfied Set&lt;@GuardedBy String&gt; this, @GuardSatisfied Object p0)
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -624,8 +631,8 @@
     <lineContent>.collect(Collectors.joining(&quot;, &quot;)),</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy String &lt;: @GuardSatisfied Object
-      use of R from missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;)) &lt;: @GuardSatisfied Object
-      From complementary bound.: use of R from missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;)) -&gt; @GuardSatisfied Object
+      From complementary bound: use of R from missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;)) &lt;: @GuardSatisfied Object
+      use of R from missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;)) -&gt; @GuardSatisfied Object
       From: Constraint between method call type and target type for method call:missingRequiredTokenNames.stream().map(String::valueOf).collect(Collectors.joining(&quot;, &quot;))
     </details>
   </checkerFrameworkError>
@@ -733,8 +740,8 @@
     <lineContent>Stream.iterate(</lineContent>
     <details>
       unsatisfiable constraint: @GuardedBy DetailAST &lt;: @GuardSatisfied Object
-      use of T from Stream.iterate(node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
-      From complementary bound.: Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
+      From complementary bound: use of T from Stream.iterate(node.getLastChild(), Objects::nonNull, DetailAST::getPreviousSibling) &lt;: @GuardSatisfied Object
+      Objects::nonNull -&gt; inference type: java.util.function.Predicate&lt;? super T&gt;
       From: Argument constraint
     </details>
   </checkerFrameworkError>
