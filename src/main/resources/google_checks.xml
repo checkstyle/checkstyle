@@ -78,6 +78,14 @@
     <property name="onCommentFormat" value='.'/>
   </module>
   <module name="TreeWalker">
+    <module name="IllegalTokenText">
+      <property name="id" value="whitespaceCharactersMustBeEscaped"/>
+      <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL, TEXT_BLOCK_CONTENT"/>
+      <property name="format"
+        value="[\u0009\u000B\u000C\u0085\u00A0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]"/>
+      <property name="message"
+                value="Whitespace other than the ASCII space must be escaped."/>
+    </module>
     <module name="OuterTypeFilename"/>
     <module name="MatchXpath">
       <property name="id" value="singleLineCommentStartWithSpace"/>

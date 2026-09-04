@@ -40,4 +40,9 @@ public class WhitespaceCharactersTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceCharacters.java"));
     }
 
+    @Test
+    public void testNonEscapedWhitespaceCharacters() throws Exception {
+        verifyWithWholeConfig(getPath("InputNonEscapedWhitespaceCharacters.java"));
+    }
+
 }
