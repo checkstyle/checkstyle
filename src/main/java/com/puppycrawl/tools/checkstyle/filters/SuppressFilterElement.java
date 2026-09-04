@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  *   <li>(optionally) the event's line is in the filter's line CSV; and</li>
  *   <li>(optionally) the check's columns is in the filter's column CSV.</li>
  * </ul>
+ * If none of the criteria are configured, the element accepts all events.
  *
  */
 public class SuppressFilterElement
@@ -138,9 +139,23 @@ public class SuppressFilterElement
 
     @Override
     public boolean accept(AuditEvent event) {
-        return !isFileNameAndModuleNameMatching(event)
+        return isNotConfigured()
+                || !isFileNameAndModuleNameMatching(event)
                 || !isMessageNameMatching(event)
                 || !isLineAndColumnMatching(event);
+    }
+
+    /**
+     * Checks whether none of the suppression criteria have been configured. With every
+     * criterion unset, each individual matching check trivially reports a match, which would
+     * otherwise make {@link #accept(AuditEvent)} reject every event. An element with nothing
+     * to match against must instead accept all events.
+     *
+     * @return true if no suppression criteria are set
+     */
+    private boolean isNotConfigured() {
+        return fileRegexp == null && checkRegexp == null && messageRegexp == null
+                && moduleId == null && lineFilter == null && columnFilter == null;
     }
 
     /**

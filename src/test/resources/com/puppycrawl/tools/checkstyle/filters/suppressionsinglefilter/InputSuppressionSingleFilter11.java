@@ -9,7 +9,7 @@ fileExtensions = (default)(null)
 
 
 SuppressionSingleFilter
-files = (default)(null)
+files = InputSuppressionSingleFilter11
 checks = (default)(null)
 message = (default)(null)
 id = (default)(null)
@@ -21,6 +21,6 @@ columns = (default)(null)
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 
-public class InputSuppressionSingleFilter2 { // violation below 'illegal pattern'
+public class InputSuppressionSingleFilter11 { // filtered violation below 'illegal pattern'
     // TODO
 }

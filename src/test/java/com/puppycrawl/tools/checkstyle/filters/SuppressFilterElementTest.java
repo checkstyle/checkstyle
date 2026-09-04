@@ -119,6 +119,66 @@ public class SuppressFilterElementTest {
     }
 
     @Test
+    public void testDecideByNoCriteriaConfigured() {
+        final Violation violation =
+                new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement unconfigured =
+                new SuppressFilterElement((String) null, null, null, null, null, null);
+        assertWithMessage("Unconfigured filter should accept all events")
+                .that(unconfigured.accept(ev))
+                .isTrue();
+    }
+
+    @Test
+    public void testDecideByCheckRegExpOnlyConfigured() {
+        final Violation matchingViolation =
+                new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent matchingEvent = new AuditEvent(this, "ATest.java", matchingViolation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, getClass().getCanonicalName(),
+                        null, null, null, null);
+        assertWithMessage("Event matching only the check should be suppressed")
+                .that(myFilter.accept(matchingEvent))
+                .isFalse();
+    }
+    @Test
+    public void testDecideByModuleIdOnlyConfigured() {
+        final Violation matchingViolation =
+                new Violation(1, 0, "", "", null, "MyModule", getClass(), null);
+        final AuditEvent matchingEvent = new AuditEvent(this, "ATest.java", matchingViolation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, "MyModule", null, null);
+        assertWithMessage("Event matching only the module id should be suppressed")
+                .that(myFilter.accept(matchingEvent))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByLineOnlyConfigured() {
+        final Violation violation =
+                new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, null, "1-10", null);
+        assertWithMessage("Event matching only line range should be suppressed")
+                .that(myFilter.accept(ev))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByColumnOnlyConfigured() {
+        final Violation violation =
+                new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, null, null, "1-10");
+        assertWithMessage("Event matching only column range should be suppressed")
+                .that(myFilter.accept(ev))
+                .isFalse();
+    }
+
+    @Test
     public void testDecideByFileNameAndModuleMatchingFileNameNull() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
