@@ -8,5 +8,7 @@ fileExtensions = (default)(null)
 
 */
 
-this=bad
-// violation first line 'File match folder pattern'
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+
+class InputRegexpOnFilenameDefaultConfigurationOnValidInput {
+}
