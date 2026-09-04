@@ -170,6 +170,16 @@
           </tr>
           <tr>
             <td>
+              <a href="finalpatternvariable.html#FinalPatternVariable">
+                FinalPatternVariable
+              </a>
+            </td>
+            <td>
+              Checks that pattern variables that never have their values changed are declared final.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="hiddenfield.html#HiddenField">
                 HiddenField
               </a>
