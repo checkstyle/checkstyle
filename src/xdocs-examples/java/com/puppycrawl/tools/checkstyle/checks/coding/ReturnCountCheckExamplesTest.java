@@ -65,7 +65,8 @@ public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, 4, 3),
+            "27:5: " + getCheckMessage(MSG_KEY, 4, 3),
+            "43:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
