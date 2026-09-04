@@ -101,11 +101,9 @@ public class XdocsExampleFileTest {
     private static final Set<String> SUPPRESSED_UNIQUENESS_CHECK_MODULES = Set.of(
         "checks/coding/hiddenfield/",
         "checks/coding/returncount/",
-        "checks/imports/avoidstarimport/",
         "checks/javadoc/javadocvariable/",
         "checks/javadoc/missingjavadoctype/",
         "checks/naming/illegalidentifiername/",
-        "checks/naming/patternvariablename/",
         "checks/outertypefilename/",
         "checks/regexp/regexpmultiline/",
         "checks/regexp/regexpsingleline/"
