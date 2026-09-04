@@ -40,17 +40,16 @@ public class SuppressionSingleFilterExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expectedWithoutFilter = {
-            "15:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "5"),
-            "18:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
-            "20:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "16:28: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "5"),
+            "19:17: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "100"),
+            "21:12: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
-            "24:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
+            "25:9: " + getCheckMessage(NoWhitespaceAfterCheck.class,
                     NoWhitespaceAfterCheck.MSG_KEY, "int"),
         };
-        final String[] expectedWithFilter = {};
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
-                expectedWithoutFilter, expectedWithFilter);
+                expectedWithoutFilter, expectedWithoutFilter);
     }
 
     @Test
