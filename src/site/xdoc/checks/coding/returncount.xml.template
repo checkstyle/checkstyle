@@ -87,7 +87,8 @@
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that it doesn't allow more than three
-          return statements per method for all methods:
+          return statements per method, ignoring the <code>signB()</code>
+          method:
         </p>
         <macro name="example">
           <param name="path"
