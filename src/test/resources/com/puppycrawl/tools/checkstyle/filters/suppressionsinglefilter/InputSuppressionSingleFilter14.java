@@ -14,13 +14,13 @@ checks = (default)(null)
 message = (default)(null)
 id = (default)(null)
 lines = (default)(null)
-columns = (default)(null)
+columns = 0-50
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 
-public class InputSuppressionSingleFilter2 { // violation below 'illegal pattern'
+public class InputSuppressionSingleFilter14 { // filtered violation below 'illegal pattern'
     // TODO
 }
