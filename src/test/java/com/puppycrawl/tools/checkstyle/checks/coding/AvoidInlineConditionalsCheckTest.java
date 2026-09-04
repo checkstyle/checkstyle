@@ -60,4 +60,15 @@ public class AvoidInlineConditionalsCheckTest
                 .isNotNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:28: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAvoidInlineConditionalsCompactSourceFile.java"),
+                expected);
+    }
+
 }
