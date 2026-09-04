@@ -41,9 +41,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefault() throws Exception {
-        final String[] suppressed = {
-            "25: " + MESSAGE,
-        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter2.java"), suppressed);
     }
 
@@ -65,6 +63,38 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     public void testNonMatchingColumnNumber() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter5.java"), suppressed);
+    }
+
+    @Test
+    public void testFilesOnlyConfigured() throws Exception {
+        final String[] suppressed = {
+                "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter11.java"), suppressed);
+    }
+
+    @Test
+    public void testChecksOnlyConfigured() throws Exception {
+        final String[] suppressed = {
+                "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter12.java"), suppressed);
+    }
+
+    @Test
+    public void testLinesOnlyConfigured() throws Exception {
+        final String[] suppressed = {
+                "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter13.java"), suppressed);
+    }
+
+    @Test
+    public void testColumnsOnlyConfigured() throws Exception {
+        final String[] suppressed = {
+                "25: " + MESSAGE,
+        };
+        verifySuppressedWithParser(getPath("InputSuppressionSingleFilter14.java"), suppressed);
     }
 
     @Test
