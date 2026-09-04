@@ -876,16 +876,6 @@
                     OneStatementPerLine</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
                   config</a>)
-                  <br />
-                  <br />
-                  Not covered:
-                  <br />
-                  False negative for multiple resource declarations on the same line
-                  in a try-with-resources statement.
-                  Until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/21454">
-                    #21454
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule43onestatement">
