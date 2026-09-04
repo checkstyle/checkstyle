@@ -1051,7 +1051,6 @@ Osgi
 oss
 OSX
 otechie
-otherinputfolder
 outertypefilename
 outertypenumber
 overloadmethodsdeclarationorder
@@ -1419,7 +1418,6 @@ technotes
 temurin
 testattr
 Testik
-testinputfolder
 testmodules
 testname
 textblock
