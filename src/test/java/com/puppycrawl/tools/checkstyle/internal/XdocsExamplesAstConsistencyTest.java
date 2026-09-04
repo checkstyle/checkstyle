@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
+import com.puppycrawl.tools.checkstyle.utils.InlineConfigUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -152,8 +153,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/coding/returncount",
             "checks/descendanttoken",
             "checks/imports/importcontrol",
-            "filters/severitymatchfilter",
-            "filters/suppresswithplaintextcommentfilter"
+            "filters/severitymatchfilter"
     );
 
     /**
@@ -678,14 +678,29 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Extracts embedded XML configuration block from example file.
      *
+     * <p>Supports the XML config delimiter conventions recognized by
+     * {@link InlineConfigUtils}.
+     *
      * @param file the example file to read
      * @return the XML content between the markers, or null if no such block is present
      * @throws IOException if an I/O error occurs
      */
     public static String extractXmlConfigBlock(Path file) throws IOException {
-        final String content = Files.readString(file);
-        String result = null;
+        String result = extractJavaCommentXmlConfigBlock(Files.readString(file));
+        if (result == null) {
+            result = extractNonJavaXmlConfigBlock(file);
+        }
+        return result;
+    }
 
+    /**
+     * Extracts a {@code /*xml ... *}{@code /} configuration block from file content.
+     *
+     * @param content the file content
+     * @return the XML content between the markers, or null if no such block is present
+     */
+    private static String extractJavaCommentXmlConfigBlock(String content) {
+        String result = null;
         final int startMarker = content.indexOf("/*xml");
         if (startMarker >= 0) {
             final int contentStart = startMarker + "/*xml".length();
@@ -694,7 +709,60 @@ public class XdocsExamplesAstConsistencyTest {
                 result = content.substring(contentStart, endMarker).strip();
             }
         }
+        return result;
+    }
 
+    /**
+     * Extracts an XML configuration block using non-Java delimiter conventions.
+     *
+     * @param file the example file to read
+     * @return the XML content, or null if no XML-style config block is present
+     * @throws IOException if an I/O error occurs
+     */
+    private static String extractNonJavaXmlConfigBlock(Path file) throws IOException {
+        final List<String> lines = Files.readAllLines(file);
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, file.toString());
+        String result = null;
+        if (matched != null && matched.xmlStyleConfig()) {
+            result = extractXmlFromMatchedConfig(file, lines, matched);
+        }
+        return result;
+    }
+
+    /**
+     * Builds XML from a delimiter match, stripping {@code #} prefixes for properties files.
+     *
+     * @param file the example file
+     * @param lines the file lines
+     * @param matched the matched delimiter convention
+     * @return the XML content if it is a {@code <module>} block, otherwise null
+     */
+    private static String extractXmlFromMatchedConfig(Path file, List<String> lines,
+            InlineConfigUtils.MatchedDelimiter matched) {
+        final int endIndex = InlineConfigUtils.getConfigEndIndex(lines, matched);
+        final int startIndex;
+        if (matched.end() == null) {
+            startIndex = 0;
+        }
+        else {
+            startIndex = 1;
+        }
+        String result = null;
+        if (startIndex < endIndex) {
+            final List<String> rawConfigLines = lines.subList(startIndex, endIndex);
+            final List<String> configLines;
+            if (file.toString().endsWith(".properties")) {
+                configLines = InlineConfigUtils.stripPropertiesCommentPrefix(rawConfigLines);
+            }
+            else {
+                configLines = rawConfigLines;
+            }
+            final String xml = String.join("\n", configLines).strip();
+            if (xml.startsWith("<module")) {
+                result = xml;
+            }
+        }
         return result;
     }
 
@@ -1194,11 +1262,11 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Gets all Example* files from a directory (and its own subdirectories) that
-     * contain an embedded {@code /*xml ... *}{@code /} config block, regardless
-     * of file extension. Used only for property-coverage checking
-     * ({@link #testEveryPropertyHasAnExample}), which inspects the embedded block
-     * rather than parsing the file as Java. Files matching the {@code Example<N>}
-     * pattern without a config block are excluded.
+     * contain an embedded XML config block, regardless of file extension. Used
+     * only for property-coverage checking ({@link #testEveryPropertyHasAnExample}),
+     * which inspects the embedded block rather than parsing the file as Java.
+     * Files matching the {@code Example<N>} pattern without a config block are
+     * excluded.
      *
      * @param dir the module directory to search
      * @return list of example file paths containing an XML config block
@@ -1215,8 +1283,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks whether a file contains an embedded {@code /*xml ... *}{@code /}
-     * configuration block.
+     * Checks whether a file contains an embedded XML configuration block.
      *
      * @param file the file to check
      * @return true if an XML config block is present
