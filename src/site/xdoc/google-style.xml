@@ -244,7 +244,7 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/whitespace/filetabcharacter.html#FileTabCharacter">
                     FileTabCharacter</a>
@@ -252,15 +252,12 @@
                   config</a>)
                   <br />
                   <br />
-                  Not covered:
-                  <br />
-                  All whitespace characters other than the ASCII horizontal space (0x20)
-                  and the line terminator sequence must be escaped in char and string
-                  literals and in text blocks.
-                  Until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/21446">
-                    #21446
-                  </a>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/illegaltokentext.html#IllegalTokenText">IllegalTokenText</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText+whitespaceCharactersMustBeEscaped">
+                  config</a>)
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule231filetab">
