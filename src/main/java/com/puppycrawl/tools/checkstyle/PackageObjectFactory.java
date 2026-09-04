@@ -521,6 +521,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.FallThroughCheck");
         NAME_TO_FULL_MODULE_NAME.put("FinalLocalVariableCheck",
                 BASE_PACKAGE + ".checks.coding.FinalLocalVariableCheck");
+        NAME_TO_FULL_MODULE_NAME.put("FinalPatternVariableCheck",
+                BASE_PACKAGE + ".checks.coding.FinalPatternVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("HiddenFieldCheck",
                 BASE_PACKAGE + ".checks.coding.HiddenFieldCheck");
         NAME_TO_FULL_MODULE_NAME.put("IllegalCatchCheck",
