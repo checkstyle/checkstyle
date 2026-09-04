@@ -209,7 +209,9 @@
     </module>
     <module name="ArrayBracketNoWhitespace"/>
     <module name="SingleSpaceSeparator"/>
-    <module name="OneStatementPerLine"/>
+    <module name="OneStatementPerLine">
+      <property name="treatTryResourcesAsStatement" value="true"/>
+    </module>
     <module name="MultipleVariableDeclarations"/>
     <module name="ArrayTypeStyle"/>
     <module name="JavadocLeadingAsteriskAlign"/>
