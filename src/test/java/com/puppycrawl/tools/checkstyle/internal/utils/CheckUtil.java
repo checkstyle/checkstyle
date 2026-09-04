@@ -188,7 +188,8 @@ public final class CheckUtil {
      * @see ModuleReflectionUtil#isCheckstyleModule(Class)
      */
     private static Set<Class<?>> getCheckstyleModulesRecursive(
-            String packageName, ClassLoader loader) throws IOException {
+            String packageName, ClassLoader loader)
+                    throws IOException {
         final ClassPath classPath = ClassPath.from(loader);
         return classPath.getTopLevelClassesRecursive(packageName).stream()
                 .map(ClassPath.ClassInfo::load)

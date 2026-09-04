@@ -197,7 +197,8 @@ public final class ConfigurationLoader {
      * @throws CheckstyleException if an error occurs
      */
     public static Configuration loadConfiguration(String config,
-            PropertyResolver overridePropsResolver) throws CheckstyleException {
+            PropertyResolver overridePropsResolver)
+                    throws CheckstyleException {
         return loadConfiguration(config, overridePropsResolver, IgnoredModulesOptions.EXECUTE);
     }
 
@@ -212,7 +213,7 @@ public final class ConfigurationLoader {
      */
     public static Configuration loadConfiguration(String config,
             PropertyResolver overridePropsResolver, ThreadModeSettings threadModeSettings)
-            throws CheckstyleException {
+                    throws CheckstyleException {
         return loadConfiguration(config, overridePropsResolver,
                 IgnoredModulesOptions.EXECUTE, threadModeSettings);
     }
@@ -377,7 +378,7 @@ public final class ConfigurationLoader {
          */
         private String replaceProperties(
                 String value, String defaultValue)
-                throws CheckstyleException {
+                        throws CheckstyleException {
 
             final List<String> fragments = new ArrayList<>();
             final List<String> propertyRefs = new ArrayList<>();
@@ -546,7 +547,8 @@ public final class ConfigurationLoader {
         @Override
         public void endElement(String uri,
                                String localName,
-                               String qName) throws SAXException {
+                               String qName)
+                throws SAXException {
             if (MODULE.equals(qName)) {
                 final Configuration recentModule =
                     configStack.pop();

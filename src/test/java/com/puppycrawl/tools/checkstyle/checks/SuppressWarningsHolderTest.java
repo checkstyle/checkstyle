@@ -414,7 +414,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     private static void populateHolder(String checkName, int firstLine,
                                                          int firstColumn, int lastLine,
-                                                         int lastColumn) throws Exception {
+                                                         int lastColumn)
+            throws Exception {
         final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
 

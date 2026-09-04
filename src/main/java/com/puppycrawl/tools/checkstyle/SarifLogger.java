@@ -173,7 +173,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      */
     public SarifLogger(
         OutputStream outputStream,
-        AutomaticBean.OutputStreamOptions outputStreamOptions) throws IOException {
+        AutomaticBean.OutputStreamOptions outputStreamOptions)
+                throws IOException {
         this(outputStream, OutputStreamOptions.valueOf(outputStreamOptions.name()));
     }
 
@@ -187,7 +188,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      */
     public SarifLogger(
         OutputStream outputStream,
-        OutputStreamOptions outputStreamOptions) throws IOException {
+        OutputStreamOptions outputStreamOptions)
+                throws IOException {
         if (outputStreamOptions == null) {
             throw new IllegalArgumentException("Parameter outputStreamOptions can not be null");
         }
