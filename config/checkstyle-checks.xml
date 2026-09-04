@@ -941,7 +941,7 @@
       <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="CatchParameterName">
-      <property name="format" value="^[a-z][a-z][a-zA-Z]+$"/>
+      <property name="format" value="^(e|t|[a-z][a-z][a-zA-Z]+|_)$"/>
     </module>
     <module name="StaticVariableName">
       <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
