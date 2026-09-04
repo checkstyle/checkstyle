@@ -381,8 +381,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20260409/javaguide.html#s3.2-package-statement">
-                    3.2 Package statement</a>
+                  <a href="styleguides/google-java-style-20260409/javaguide.html#s3.2-package-declaration">
+                    3.2 Package declaration</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -425,7 +425,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s3.3-import-statements">
-                    3.3 Import statements
+                    3.3 Imports
                   </a>
                 </td>
                 <td>↓</td>
@@ -609,8 +609,8 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20260409/javaguide.html#s3.4.2-class-member-ordering">
-                    3.4.2 Class member ordering</a>
+                  <a href="styleguides/google-java-style-20260409/javaguide.html#s3.4.2-ordering-class-contents">
+                    3.4.2 Ordering of class contents</a>
                 </td>
                 <td>--</td>
                 <td/>
@@ -1045,7 +1045,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s4.6.1-vertical-whitespace">
-                    4.6.1 Vertical Whitespace: Blank Lines</a>
+                    4.6.1 Vertical Whitespace (blank lines)</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -1574,7 +1574,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s4.8.5.3-method-annotation-style">
-                    4.8.5.3 Methods And Constructors Annotations</a>
+                    4.8.5.3 Method and constructor annotations</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -1609,7 +1609,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s4.8.5.4-field-annotation-style">
-                    4.8.5.4 Field Annotations</a>
+                    4.8.5.4 Field annotations</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
@@ -1643,7 +1643,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20260409/javaguide.html#s4.8.5.5-local-parameter-annotation-style  ">
+                  <a href="styleguides/google-java-style-20260409/javaguide.html#s4.8.5.5-local-parameter-annotation-style">
                     4.8.5.5 Parameter and local variable annotations
                   </a>
                 </td>
@@ -2582,7 +2582,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="styleguides/google-java-style-20260409/javaguide.html#s7.1.3-javadoc-at-clauses">
+                  <a href="styleguides/google-java-style-20260409/javaguide.html#s7.1.3-javadoc-block-tags">
                     7.1.3 Block tags</a>
                 </td>
                 <td>
