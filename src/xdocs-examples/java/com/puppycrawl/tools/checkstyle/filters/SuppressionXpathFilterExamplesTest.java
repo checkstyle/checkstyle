@@ -45,12 +45,12 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
@@ -85,6 +85,26 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
+        };
+
+        final String[] expectedWithFilter = {
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+                + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase14() throws Exception {
+
+        final String[] expectedWithoutFilter = {
             "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
                     CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
@@ -96,7 +116,7 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
                 + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase14.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
