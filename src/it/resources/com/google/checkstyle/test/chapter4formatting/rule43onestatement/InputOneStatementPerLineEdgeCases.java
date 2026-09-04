@@ -1,5 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PipedOutputStream;
 import java.util.function.Consumer;
 
 /** Some javadoc. */
@@ -49,6 +52,19 @@ public class InputOneStatementPerLineEdgeCases {
         Consumer<String> c1 = s -> foo(); Consumer<String>
               c2 = s -> foo(); } };
     // violation above ''}' at column 32 should be alone on a line.'
+  }
+
+  /** Some javadoc. */
+  public void tryResources() throws IOException {
+    // violation below 'Only one statement per line allowed.'
+    try (OutputStream s1 = new PipedOutputStream(); OutputStream s2 = new PipedOutputStream()) {
+      s1.flush();
+    }
+
+    try (OutputStream s3 = new PipedOutputStream();
+        OutputStream s4 = new PipedOutputStream()) {
+      s3.flush();
+    }
   }
 
   void foo() {}
