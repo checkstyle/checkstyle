@@ -3,7 +3,8 @@
   <module name="TreeWalker">
     <module name="ReturnCount">
       <property name="max" value="3"/>
-      <property name="format" value="^$"/>
+      <property name="maxForVoid" value="0"/>
+      <property name="format" value="^Example4$"/>
     </module>
   </module>
 </module>
@@ -15,7 +16,7 @@ import java.util.function.Predicate;
 // xdoc section - start
 public class Example4 {
     public Example4() {}
-    // ok below, because default void restriction is 1
+    // ok below, because 'format' excludes constructors named 'Example4'
     public Example4(int i) { return; }
 
     public int signA(int x) {
@@ -38,7 +39,7 @@ public class Example4 {
     final Predicate<Integer> lambdaB = i -> { return i > 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    // violation below 'max allowed for void methods/constructors/lambdas is 0'
     public void methodB(int x) { return; }
 }
 // xdoc section - end

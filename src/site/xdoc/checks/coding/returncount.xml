@@ -23,7 +23,7 @@
               <li><a href="#Example1-config" class="toc-sublink">So that it doesn't allow more than three return statements per method (ignoring the <code>equals()</code> method)</a></li>
               <li><a href="#Example2-config" class="toc-sublink">So that it doesn't allow any return statements per void method</a></li>
               <li><a href="#Example3-config" class="toc-sublink">So that it doesn't allow more than 2 return statements per method (ignoring the <code>equals()</code> method) and more than 1 return statements per void method</a></li>
-              <li><a href="#Example4-config" class="toc-sublink">So that it doesn't allow more than three return statements per method for all methods</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it doesn't allow more than three return statements per non-void method and no return statements per void method, except for methods and constructors named <code>Example4</code></a></li>
               <li><a href="#Example5-config" class="toc-sublink">So that it doesn't allow any return statements in constructors, more than one return statement in all lambda expressions and more than two return statements in methods</a></li>
             </ul>
           </li>
@@ -262,14 +262,17 @@ public class Example3 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           To configure the check so that it doesn't allow more than three
-          return statements per method for all methods:
+          return statements per non-void method and no return statements
+          per void method, except for methods and constructors named
+          <code>Example4</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="ReturnCount"&gt;
       &lt;property name="max" value="3"/&gt;
-      &lt;property name="format" value="^$"/&gt;
+      &lt;property name="maxForVoid" value="0"/&gt;
+      &lt;property name="format" value="^Example4$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -280,7 +283,7 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
     public Example4() {}
-    // ok below, because default void restriction is 1
+    // ok below, because 'format' excludes constructors named 'Example4'
     public Example4(int i) { return; }
 
     public int signA(int x) {
@@ -303,7 +306,7 @@ public class Example4 {
     final Predicate&lt;Integer&gt; lambdaB = i -&gt; { return i &gt; 5; };
 
     public void methodA(int x) {}
-    // ok below, because default void restriction is 1
+    // violation below 'max allowed for void methods/constructors/lambdas is 0'
     public void methodB(int x) { return; }
 }
 </code></pre></div><hr class="example-separator"/>
