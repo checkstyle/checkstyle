@@ -2,11 +2,13 @@
 RegexpOnFilename
 match = (default)true
 fileNamePattern = (default)null
-folderPattern = (default)null
+folderPattern = BAD.*
 ignoreFileNameExtensions = (default)false
 fileExtensions = (default)(null)
 
 */
 
-this=bad
-// violation first line 'File match folder pattern'
+package com.puppycrawl.tools.checkstyle.checks.regexp.regexponfilename;
+
+class InputRegexpOnFilenameMatchFolderNotMatches {
+}
