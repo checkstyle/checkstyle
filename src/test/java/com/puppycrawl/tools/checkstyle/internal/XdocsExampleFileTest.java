@@ -109,14 +109,6 @@ public class XdocsExampleFileTest {
         "checks/regexp/regexpsingleline/"
     );
 
-    /**
-     * Modules whose numerically-first example (Example1) is not the default-config
-     * example, temporarily suppressed pending reordering or renumbering of examples.
-     *
-     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/21207">...</a>
-     */
-    private static final Set<String> MODULES_WITHOUT_DEFAULT_FIRST_EXAMPLE = Set.of();
-
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
@@ -587,12 +579,11 @@ public class XdocsExampleFileTest {
 
             final String moduleName = XdocsExamplesAstConsistencyTest
                 .toModuleClassSimpleName(dir.getFileName().toString());
-            final String relativePath = XdocsExamplesAstConsistencyTest.XDOCS_ROOT
-                .relativize(dir).toString().replace(File.separatorChar, '/');
 
             if (moduleName != null && !examples.isEmpty()
-                && !XdocsExamplesAstConsistencyTest.isModuleWithNoProperties(examples)
-                && !MODULES_WITHOUT_DEFAULT_FIRST_EXAMPLE.contains(relativePath)) {
+                && !XdocsExamplesAstConsistencyTest.isModuleWithNoProperties(examples)) {
+                final String relativePath = XdocsExamplesAstConsistencyTest.XDOCS_ROOT
+                    .relativize(dir).toString().replace(File.separatorChar, '/');
                 final String xmlModuleName =
                     XdocsExamplesAstConsistencyTest.stripCheckSuffix(moduleName);
                 checkDefaultConfigExampleOrder(examples, xmlModuleName,
