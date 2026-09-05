@@ -469,6 +469,7 @@ finalclass
 finalizer
 finallocalvariable
 finalparameters
+finalpatternvariable
 findbugs
 Findentation
 findstr
