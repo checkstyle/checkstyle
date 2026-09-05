@@ -59,6 +59,38 @@ public class InputSpecialEscapeSequences {
     String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
   }
 
+  /** Some javadoc. */
+  public void twoDigitOctalWithWarn() {
+    String r1 = "\10"; // violation 'Consider using special escape sequence .*'
+    String r2 = "\11"; // violation 'Consider using special escape sequence .*'
+    String r3 = "\12"; // violation 'Consider using special escape sequence .*'
+    String r4 = "\14"; // violation 'Consider using special escape sequence .*'
+    String r5 = "\15"; // violation 'Consider using special escape sequence .*'
+    String r6 = "\40"; // violation 'Consider using special escape sequence .*'
+    String r7 = "\42"; // violation 'Consider using special escape sequence .*'
+    String r8 = "\47"; // violation 'Consider using special escape sequence .*'
+    char r9 = '\12'; // violation 'Consider using special escape sequence .*'
+  }
+
+  /** Some javadoc. */
+  public void octalEscapeFollowedByNonOctalDigitWithWarn() {
+    String r1 = "\128"; // violation 'Consider using special escape sequence .*'
+    String r2 = "\409"; // violation 'Consider using special escape sequence .*'
+    String r3 = "\0121"; // violation 'Consider using special escape sequence .*'
+    String r4 = "\1345"; // violation 'Consider using special escape sequence .*'
+  }
+
+  /** Octal escapes of ordinary characters have no special escape sequence to suggest. */
+  public void octalEscapeOfOrdinaryCharWithoutWarn() {
+    String r1 = "\101";
+    String r2 = "\110";
+    String r3 = "\127";
+    String r4 = "\147";
+    String r5 = "\157";
+    String r6 = "\0447";
+    String r7 = "\1234";
+  }
+
   class Inner {
     public String wrongEscapeSequences() {
       final String r1 = "\u0008"; // violation 'Consider using special escape sequence'
