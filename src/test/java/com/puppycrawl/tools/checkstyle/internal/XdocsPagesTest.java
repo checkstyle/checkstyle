@@ -219,7 +219,6 @@ public class XdocsPagesTest {
             "NoWhitespaceAfter",
             "NoWhitespaceBefore",
             "OperatorWrap",
-            "PackageName",
             "ParameterName",
             "ParameterNumber",
             "ParenPad",
