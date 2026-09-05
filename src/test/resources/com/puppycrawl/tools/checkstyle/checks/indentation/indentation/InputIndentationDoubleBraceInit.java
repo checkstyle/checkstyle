@@ -1,8 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
 import java.util.HashMap;                                               //indent:0 exp:0
-import java.util.HashSet;                                               //indent:0 exp:0
-import java.util.ArrayList;                                             //indent:0 exp:0
 import java.util.Map;                                                   //indent:0 exp:0
 
 /**                                                                     //indent:0 exp:0
@@ -21,26 +19,30 @@ import java.util.Map;                                                   //indent
 public class InputIndentationDoubleBraceInit {                          //indent:0 exp:0
 
     private final FluentCallChain configLog = new FluentCallChain();    //indent:4 exp:4
-    // behavior until #19415                                            //indent:4 exp:4
+
+    {                                                                   //indent:4 exp:4
+        configLog.readToEnd();                                          //indent:8 exp:8
+    }                                                                   //indent:4 exp:4
+
     void test() {                                                       //indent:4 exp:4
         var map = new HashMap<>() {{                                    //indent:8 exp:8
-            put("KEY1", "VALUE1");                                      //indent:12 exp:16,20 warn
-            put("KEY2", "VALUE2");                                      //indent:12 exp:16,20 warn
-        }};                                                             //indent:8 exp:12,16 warn
+            put("KEY1", "VALUE1");                                      //indent:12 exp:12
+            put("KEY2", "VALUE2");                                      //indent:12 exp:12
+        }};                                                             //indent:8 exp:8
     }                                                                   //indent:4 exp:4
 
     void testNestedInIf() {                                             //indent:4 exp:4
         if (true) {                                                     //indent:8 exp:8
             var map = new HashMap<>() {{                                //indent:12 exp:12
-                put("KEY1", "VALUE1");                                  //indent:16 exp:20,24 warn
-            }};                                                         //indent:12 exp:16,20 warn
+                put("KEY1", "VALUE1");                                  //indent:16 exp:16
+            }};                                                         //indent:12 exp:12
         }                                                               //indent:8 exp:8
     }                                                                   //indent:4 exp:4
 
     Map<String, String> testReturnDoubleBrace() {                       //indent:4 exp:4
         return new HashMap<>() {{                                       //indent:8 exp:8
-            put("KEY1", "VALUE1");                                      //indent:12 exp:16,20 warn
-        }};                                                             //indent:8 exp:12,16 warn
+            put("KEY1", "VALUE1");                                      //indent:12 exp:12
+        }};                                                             //indent:8 exp:8
     }                                                                   //indent:4 exp:4
 
     void testSeparateLineInit() {                                       //indent:4 exp:4
@@ -53,16 +55,16 @@ public class InputIndentationDoubleBraceInit {                          //indent
 
     void testMethodArgDoubleBrace() {                                   //indent:4 exp:4
         System.out.println(new HashMap<>() {{                           //indent:8 exp:8
-            put("KEY1", "VALUE1");                                      //indent:12 exp:16,20 warn
-        }});                                                            //indent:8 exp:12,16 warn
+            put("KEY1", "VALUE1");                                      //indent:12 exp:12
+        }});                                                            //indent:8 exp:8
     }                                                                   //indent:4 exp:4
 
     void testWrappedMethodArgDoubleBrace() {                            //indent:4 exp:4
         accept("first",                                                 //indent:8 exp:8
             new HashMap<>() {{                                          //indent:12 exp:12
-                put("KEY1", "VALUE1");                                  //indent:16 exp:20,24 warn
-                put("KEY2", "VALUE2");                                  //indent:16 exp:20,24 warn
-            }});                                                        //indent:12 exp:16,20 warn
+                put("KEY1", "VALUE1");                                  //indent:16 exp:16
+                put("KEY2", "VALUE2");                                  //indent:16 exp:16
+            }});                                                        //indent:12 exp:12
     }                                                                   //indent:4 exp:4
 
     void testNestedMethodArgDoubleBrace() {                             //indent:4 exp:4
@@ -101,7 +103,6 @@ public class InputIndentationDoubleBraceInit {                          //indent
     }                                                                   //indent:4 exp:4
 
     private static final class FluentCallChain {                        //indent:4 exp:4
-
         private FluentCallChain accept(Map<String, String> values) {    //indent:8 exp:8
             return this;                                                //indent:12 exp:12
         }                                                               //indent:8 exp:8
