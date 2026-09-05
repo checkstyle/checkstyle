@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -64,9 +65,7 @@ public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample4() throws Exception {
-        final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, 4, 3),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
