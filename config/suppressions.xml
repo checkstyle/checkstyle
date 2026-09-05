@@ -206,4 +206,7 @@
   <suppress checks="PreferCodeOrSnippetJavadocInlineTag"
             files="JavadocEndCommentDelimiterCheck.java"
             message="Use code or snippet inline tags instead of 'code' tag\."/>
+
+  <!-- until https://github.com/checkstyle/checkstyle/issues/10970 -->
+  <suppress checks="FinalPatternVariable" files=".*\.java"/>
 </suppressions>
