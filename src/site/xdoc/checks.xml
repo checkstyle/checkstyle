@@ -1632,6 +1632,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/openjdkmethodthrowsalignment.html#OpenjdkMethodThrowsAlignment">
+                OpenjdkMethodThrowsAlignment
+              </a>
+            </td>
+            <td>
+              Checks that the <code>throws</code> clause of a wrapped method or constructor
+              declaration is properly aligned according to the <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-method-declarations">
+              OpenJDK Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/operatorwrap.html#OperatorWrap">
                 OperatorWrap
               </a>
