@@ -573,6 +573,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/finalpatternvariable.html#FinalPatternVariable">
+                FinalPatternVariable
+              </a>
+            </td>
+            <td>
+              Checks that pattern variables that never have their values changed are declared final.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/genericwhitespace.html#GenericWhitespace">
                 GenericWhitespace
               </a>
