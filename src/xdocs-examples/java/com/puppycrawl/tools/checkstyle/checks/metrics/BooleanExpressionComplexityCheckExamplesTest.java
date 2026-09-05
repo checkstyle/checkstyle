@@ -38,6 +38,7 @@ public class BooleanExpressionComplexityCheckExamplesTest
         final String[] expected = {
             "20:15: " + getCheckMessage(MSG_KEY, 5, 3),
             "23:15: " + getCheckMessage(MSG_KEY, 6, 3),
+            "30:5: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -56,9 +57,20 @@ public class BooleanExpressionComplexityCheckExamplesTest
     public void testExample3() throws Exception {
         final String[] expected = {
             "25:15: " + getCheckMessage(MSG_KEY, 4, 3),
+            "32:5: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:15: " + getCheckMessage(MSG_KEY, 5, 3),
+            "25:15: " + getCheckMessage(MSG_KEY, 6, 3),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
 }
