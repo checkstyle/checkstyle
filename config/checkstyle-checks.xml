@@ -440,6 +440,7 @@
     <module name="ExpressionOverBlockLambda"/>
     <module name="FallThrough"/>
     <module name="FinalLocalVariable"/>
+    <module name="FinalPatternVariable"/>
     <module name="HiddenField">
       <property name="ignoreConstructorParameter" value="true"/>
       <property name="ignoreSetter" value="true"/>
