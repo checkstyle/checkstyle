@@ -270,8 +270,31 @@
                     3.1.2 Package and Import Statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
+                  <a href="checks/naming/packagename.html#PackageName">PackageName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
+                    config</a>)
+                  <br/>
+                  <br/>
+                  The rule that the first component of a package name is
+                  all-lowercase ASCII is covered above, but the specific
+                  requirement that it be a top-level domain (com, edu, gov,
+                  mil, net, org) or an ISO 3166 country code is not checked.
+                  <br/>
+                  <br/>
+                  The requirement that a package statement, when present,
+                  must be the first statement in the file and be followed
+                  only by import statements is already enforced by the Java
+                  language grammar, so no additional Checkstyle check is
+                  needed for it.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter3fileorganization/rule312packageandimportstatements">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td>
