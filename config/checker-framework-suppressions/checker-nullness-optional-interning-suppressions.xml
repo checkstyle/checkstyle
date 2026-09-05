@@ -5896,7 +5896,6 @@
     </details>
   </checkerFrameworkError>
 
-
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnFieldCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
@@ -8195,17 +8194,6 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference getDirectChildsByTag(prop, XML_TAG_DESCRIPTION).getFirst().getFirstChild()</message>
     <lineContent>.getFirst().getFirstChild().getNodeValue());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable List&lt;@Initialized @NonNull String&gt;
-      method return type: @Initialized @NonNull List&lt;@Initialized @NonNull String&gt;
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

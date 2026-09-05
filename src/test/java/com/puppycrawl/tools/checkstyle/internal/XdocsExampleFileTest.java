@@ -553,7 +553,7 @@ public class XdocsExampleFileTest {
             }
         }
 
-        int[] result = null;
+        int[] result = new int[0];
         if (startLine != -1 && endLine != -1) {
             result = new int[] {startLine, endLine};
         }
