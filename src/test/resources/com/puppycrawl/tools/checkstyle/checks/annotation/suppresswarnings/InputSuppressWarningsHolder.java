@@ -34,11 +34,13 @@ com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.InputSuppress
     int h;
     @SuppressWarnings((String) "UN_U")
     int i;
+    @SuppressWarnings(true ? "un" + "used" : "unchecked")
+    int j;
     // violation below 'The warning '' cannot be suppressed at this location'
     @SuppressWarnings({})
-    int j;
-    @SuppressWarnings({UN_U})
     int k;
+    @SuppressWarnings({UN_U})
+    int l;
 }
 
 class CustomSuppressWarnings {

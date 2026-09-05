@@ -298,10 +298,13 @@ public class SuppressWarningsCheck extends AbstractCheck {
                 condStack.push(getCondRight(currentCond));
                 condStack.push(getCondLeft(currentCond));
             }
-            else {
+            else if (currentCond.getType() == TokenTypes.STRING_LITERAL) {
                 final String warningText = removeQuotes(currentCond.getText());
                 logMatch(currentCond, warningText);
             }
+            // else: unsupported forms inside a ternary branch (string concatenation,
+            // casts, constant references, etc.) cannot be resolved to a literal value.
+            // These are silently skipped.
         }
     }
 
