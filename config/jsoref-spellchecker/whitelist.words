@@ -195,7 +195,7 @@ clazz
 clemens
 Clickable
 Cloneable
-cls
+clss
 cmdline
 cmp
 cmt
@@ -469,6 +469,7 @@ finalclass
 finalizer
 finallocalvariable
 finalparameters
+finalpatternvariable
 findbugs
 Findentation
 findstr
@@ -911,6 +912,7 @@ Multiset
 multithreading
 musl
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -1130,7 +1132,6 @@ Postgresql
 prebuilts
 prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
-prefs
 PRESIZE
 prettyprint
 printf
