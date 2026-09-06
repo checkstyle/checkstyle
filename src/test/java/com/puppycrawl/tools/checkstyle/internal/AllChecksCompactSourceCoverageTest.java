@@ -187,7 +187,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ModifiedControlVariableCheck",
         "ModifierOrderCheck",
         "MultipleStringLiteralsCheck",
-        "MultipleVariableDeclarationsCheck",
         "MutableExceptionCheck",
         "NPathComplexityCheck",
         "NestedForDepthCheck",
