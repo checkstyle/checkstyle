@@ -36,7 +36,8 @@ public class InputOneStatementPerLineEdgeCases {
 
     Object outerA = new Object() {
         Object innerA = new Object() { void foo() { int a; int b; } }; };
-    // 4 violations above:
+    // 5 violations above:
+    // ''{' at column 38 should have line break after.'
     // ''{' at column 51 should have line break after.'
     // 'Only one variable definition per line allowed.'
     // 'Only one statement per line allowed.'
