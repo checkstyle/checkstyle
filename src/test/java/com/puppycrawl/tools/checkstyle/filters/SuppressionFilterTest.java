@@ -31,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -242,7 +243,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
                         attemptCount++;
                         available = false;
                         // wait for bad / disconnection time to pass
-                        Thread.sleep(1000);
+                        TimeUnit.SECONDS.sleep(1);
                     }
                     else {
                         throw exc;
