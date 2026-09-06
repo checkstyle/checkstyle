@@ -528,4 +528,6 @@
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
   <suppress id="resourceFileName"
     files=".*/sariflogger/InputSarifLogger Space\.java"/>
+  <suppress checks="PackageDeclaration"
+    files="/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement/InputMissingPackageDeclaration.java"/>
 </suppressions>
