@@ -158,6 +158,7 @@ public class AllChecksCompactSourceCoverageTest {
         "JavadocMissingLeadingAsteriskCheck",
         "JavadocMissingWhitespaceAfterAsteriskCheck",
         "JavadocParagraphCheck",
+        "JavadocSeeTagOrderCheck",
         "JavadocStyleCheck",
         "JavadocTagContinuationIndentationCheck",
         "JavadocTypeCheck",
