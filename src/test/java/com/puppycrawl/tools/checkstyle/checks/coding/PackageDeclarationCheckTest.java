@@ -142,6 +142,12 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input file has to stay
+     * empty to cover the case of a file without any content. Inline config parser
+     * requires a config comment as the first line of the input file, and adding it
+     * would make the file non-empty.
+     */
     @SuppressForbidden
     @Test
     public void testEmptyFile() throws Exception {
