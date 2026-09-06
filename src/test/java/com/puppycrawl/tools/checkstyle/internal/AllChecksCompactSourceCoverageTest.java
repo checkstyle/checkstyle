@@ -144,7 +144,6 @@ public class AllChecksCompactSourceCoverageTest {
         "ImportControlCheck",
         "ImportOrderCheck",
         "IndentationCheck",
-        "InnerAssignmentCheck",
         "InterfaceIsTypeCheck",
         "InterfaceMemberImpliedModifierCheck",
         "InterfaceTypeParameterNameCheck",
