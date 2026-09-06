@@ -49,6 +49,16 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:44: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputInnerAssignmentCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testMethod() throws Exception {
         final String[] expected = {
             "73:22: " + getCheckMessage(MSG_KEY),
