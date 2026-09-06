@@ -335,8 +335,22 @@
                     4.1 Line Length
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/sizes/linelength.html#LineLength">
+                    LineLength
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter4indentation/rule41linelength">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
