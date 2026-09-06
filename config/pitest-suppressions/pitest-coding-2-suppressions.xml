@@ -1,3 +1,317 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>addBodyBranch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/util/Optional::orElse with argument</description>
+    <lineContent>.orElse(scopeRoot);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>addBodyBranch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Collection::add</description>
+    <lineContent>branches.add(scopeRoot);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>addBodyBranch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (scopeRoot.getType() == TokenTypes.LITERAL_IF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>addBodyBranch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>if (scopeRoot.getType() == TokenTypes.LITERAL_IF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>addBodyBranch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (scopeRoot.getType() == TokenTypes.LITERAL_IF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>addBodyBranch</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (scopeRoot.getType() == TokenTypes.LITERAL_IF) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>checkIfShouldBeFinal</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>final boolean isFinal = modifiers != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>collectRecordPatternIdents</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (ident != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>collectRecordPatternIdents</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (recordPatternDef != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>collectRecordPatternIdents</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>innerPatternVariable.getNextSibling()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>expandReassignmentScopes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::addAll</description>
+    <lineContent>branches.addAll(getStatementsInExtendedScope(scopeRoot));</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>findReassignmentScopeRoot</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>for (DetailAST node = ast; node != null &amp;&amp; result == null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>findReassignmentScopeRoot</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (type == TokenTypes.LITERAL_IF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>findReassignmentScopeRoot</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (type == TokenTypes.LITERAL_IF</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getAcceptableTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck::getRequiredTokens</description>
+    <lineContent>return getRequiredTokens();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getAcceptableTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck::getAcceptableTokens</description>
+    <lineContent>return getRequiredTokens();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getPatternVariableIdents</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (ident != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getReassignedVariableIdents</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (scopeRoot != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>DetailAST nextSibling = conditionalStatement.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>DetailAST nextSibling = conditionalStatement.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>final int type = nextSibling.getType();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (type != TokenTypes.SEMI) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (type != TokenTypes.SEMI) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (type != TokenTypes.SEMI) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (type == TokenTypes.EXPR || type == TokenTypes.LITERAL_RETURN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (type == TokenTypes.EXPR || type == TokenTypes.LITERAL_RETURN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (type == TokenTypes.EXPR || type == TokenTypes.LITERAL_RETURN</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+    <lineContent>nextSibling = nextSibling.getNextSibling();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.EmptyObjectReturnValsMutator</mutator>
+    <description>replaced return value with Collections.emptyList for com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck::getStatementsInExtendedScope</description>
+    <lineContent>return statements;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/List::add</description>
+    <lineContent>statements.add(nextSibling);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>while (nextSibling != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>while (nextSibling != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>while (nextSibling != null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>lambda$addBodyBranch$0</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>scopeRoot, node -&gt; node.getType() == TokenTypes.RPAREN)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalPatternVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalPatternVariableCheck</mutatedClass>
+    <mutatedMethod>lambda$addBodyBranch$0</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>scopeRoot, node -&gt; node.getType() == TokenTypes.RPAREN)</lineContent>
+  </mutation>
 </suppressedMutations>
