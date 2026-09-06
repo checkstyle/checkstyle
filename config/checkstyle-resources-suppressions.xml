@@ -252,6 +252,8 @@
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
             files="/InputAstTreeStringPrinterTextBlocksEscapesAreOneChar\.java"/>
+  <suppress checks="PackageDeclaration"
+            files="/it/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement/InputMissingPackageDeclaration\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="FileLength"

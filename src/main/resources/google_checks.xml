@@ -107,6 +107,12 @@
       <property name="allowByTailComment" value="true"/>
       <property name="allowNonPrintableEscapes" value="true"/>
     </module>
+    <module name="PackageDeclaration"/>
+    <module name="MatchXpath">
+      <property name="id" value="CompactSourceFileNotAllowed"/>
+      <property name="query" value="/COMPACT_COMPILATION_UNIT"/>
+      <message key="matchxpath.match" value="Compact source file is not allowed."/>
+    </module>
     <module name="AvoidStarImport"/>
     <module name="OneTopLevelClass"/>
     <module name="NoLineWrap">
