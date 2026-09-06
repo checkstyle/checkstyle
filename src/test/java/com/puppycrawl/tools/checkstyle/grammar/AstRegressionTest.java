@@ -137,24 +137,81 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCustomAstTree() throws Exception {
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\t");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\n");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\n");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\r");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\u000c\f");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \n",
-                JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r",
-                JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r\n",
-                JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \n */",
-                JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r\n */",
-                JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
-                JavaParser.Options.WITH_COMMENTS);
+        final File expectedFile = new File(getPath("ExpectedRegressionEmptyAst.txt"));
+        final String expectedContents = new FileText(expectedFile, System.getProperty(
+                "file.encoding", StandardCharsets.UTF_8.name()))
+                .getFullText().toString().replace("\r", "");
+
+        assertWithMessage("Unexpected AST for \\t")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("\t".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITHOUT_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for \\r\\n")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("\r\n".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITHOUT_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for \\n")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("\n".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITHOUT_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for \\r\\r")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("\r\r".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITHOUT_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for \\r")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("\r".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITHOUT_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for \\u000c\\f")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("\u000c\f".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITHOUT_COMMENTS))
+            .isEqualTo(expectedContents);
+    }
+
+    @Test
+    public void testCustomAstTreeWithComments() throws Exception {
+        final File expectedFile = new File(getPath("ExpectedRegressionEmptyAst.txt"));
+        final String expectedContents = new FileText(expectedFile, System.getProperty(
+                "file.encoding", StandardCharsets.UTF_8.name()))
+                .getFullText().toString().replace("\r", "");
+
+        assertWithMessage("Unexpected AST for // \\n")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("// \n".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITH_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for // \\r")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("// \r".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITH_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for // \\r\\n")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("// \r\n".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITH_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for /* \\n */")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("/* \n */".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITH_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for /* \\r\\n */")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""), Arrays.asList("/* \r\n */".split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITH_COMMENTS))
+            .isEqualTo(expectedContents);
+        assertWithMessage("Unexpected AST for /* \\r\\u0000\\u0000 */")
+            .that(AstTreeStringPrinter.printAst(
+                    new FileText(new File(""),
+                            Arrays.asList(("/* \r" + "\u0000\u0000" + " */").split("\\n|\\r\\n?"))),
+                    JavaParser.Options.WITH_COMMENTS))
+            .isEqualTo(expectedContents);
     }
 
     @Test
@@ -288,29 +345,6 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     public void testAnnotationsOnBinding() throws Exception {
         verifyAst(getPath("ExpectedPatternsAnnotationsOnBinding.txt"),
                 getPath("InputPatternsAnnotationsOnBinding.java"));
-    }
-
-    private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava)
-            throws Exception {
-        verifyAstRaw(expectedTextPrintFileName, actualJava, JavaParser.Options.WITHOUT_COMMENTS);
-    }
-
-    private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava,
-            JavaParser.Options withComments)
-                    throws Exception {
-        final File expectedFile = new File(expectedTextPrintFileName);
-        final String expectedContents = new FileText(expectedFile, System.getProperty(
-                "file.encoding", StandardCharsets.UTF_8.name()))
-                .getFullText().toString().replace("\r", "");
-
-        final FileText actualFileContents = new FileText(new File(""),
-                Arrays.asList(actualJava.split("\\n|\\r\\n?")));
-        final String actualContents = AstTreeStringPrinter.printAst(actualFileContents,
-                withComments);
-
-        assertWithMessage("Generated AST from Java code should match pre-defined AST")
-            .that(actualContents)
-            .isEqualTo(expectedContents);
     }
 
 }

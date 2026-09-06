@@ -70,6 +70,13 @@ public class PkgImportControlTest {
         icRootRegexpParent.addChild(icBootRegexpParen);
     }
 
+    private static void assertAccess(PkgImportControl control, String forPkg, String forClass,
+            String forImport, AccessResult expected) {
+        assertWithMessage("Unexpected access result for %s", forImport)
+            .that(control.checkAccess(forPkg, forClass, forImport))
+            .isEqualTo(expected);
+    }
+
     @Test
     public void testDotMetaCharacter() {
         assertWithMessage("Unexpected response")
@@ -102,36 +109,18 @@ public class PkgImportControlTest {
 
     @Test
     public void testCheckAccess() {
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "org.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon
-                .checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.apache.commons.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "org.apache.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "org.hibernate.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommon.checkAccess(
-                "com.kazgroup.courtlink.common", "MyClass",
-                "com.badpackage.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icRoot.checkAccess(
-                "com.kazgroup.courtlink", "MyClass",
-                "org.hibernate.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+                "org.springframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+                "org.apache.commons.something", AccessResult.ALLOWED);
+        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+                "org.apache.commons", AccessResult.DISALLOWED);
+        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+                "org.hibernate.something", AccessResult.ALLOWED);
+        assertAccess(icCommon, "com.kazgroup.courtlink.common", "MyClass",
+                "com.badpackage.something", AccessResult.DISALLOWED);
+        assertAccess(icRoot, "com.kazgroup.courtlink", "MyClass",
+                "org.hibernate.something", AccessResult.DISALLOWED);
     }
 
     @Test
@@ -156,50 +145,32 @@ public class PkgImportControlTest {
 
     @Test
     public void testRegExpChildCheckAccess() {
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.luiframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "de.springframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                "de.luiframework.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.apache.commons.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.lui.commons.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.apache.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.lui.commons"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "org.hibernate.something"))
-            .isEqualTo(AccessResult.ALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icCommonRegexpChild.checkAccess("com.kazgroup.courtlink.common", "MyClass",
-                        "com.badpackage.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
-        assertWithMessage("Unexpected access result")
-            .that(icRootRegexpChild.checkAccess("com.kazgroup.courtlink", "MyClass",
-                        "org.hibernate.something"))
-            .isEqualTo(AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.springframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.luiframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "de.springframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "de.luiframework.something", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.apache.commons.something", AccessResult.ALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.lui.commons.something", AccessResult.ALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.apache.commons", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.lui.commons", AccessResult.DISALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "org.hibernate.something", AccessResult.ALLOWED);
+        assertAccess(icCommonRegexpChild, "com.kazgroup.courtlink.common", "MyClass",
+                "com.badpackage.something", AccessResult.DISALLOWED);
+    }
+
+    @Test
+    public void testRegExpParentCheckAccess() {
+        assertAccess(icRootRegexpChild, "com.kazgroup.courtlink", "MyClass",
+                "org.hibernate.something", AccessResult.DISALLOWED);
     }
 
     @Test
