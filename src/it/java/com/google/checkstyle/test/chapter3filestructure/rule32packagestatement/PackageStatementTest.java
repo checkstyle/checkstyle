@@ -35,4 +35,14 @@ public class PackageStatementTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputPackageStatement.java"));
     }
 
+    @Test
+    public void testMissingPackageDeclaration() throws Exception {
+        verifyWithWholeConfig(getPath("InputMissingPackageDeclaration.java"));
+    }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputCompactSourceFile.java"));
+    }
+
 }
