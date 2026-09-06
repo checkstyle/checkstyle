@@ -71,6 +71,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "JavadocParagraph",
                     "JavadocParamOrder",
                     "JavadocRegexp",
+                    "JavadocSeeTagOrder",
                     "JavadocTagContinuationIndentation",
                     "JavadocThrowsOrder",
                     "JavadocType",
