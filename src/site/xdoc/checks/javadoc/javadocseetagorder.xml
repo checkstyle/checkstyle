@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocSeeTagOrder</title>
+  </head>
+  <body>
+    <section name="JavadocSeeTagOrder">
+      <p>Since Checkstyle 14.1.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocSeeTagOrder_Description">Description</a></li>
+          <li><a href="#JavadocSeeTagOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocSeeTagOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocSeeTagOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocSeeTagOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocSeeTagOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocSeeTagOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="JavadocSeeTagOrder_Description">
+        <div>
+          Checks that multiple <code>@see</code> tags are ordered in a predictable way,
+          roughly following the order in which their arguments are searched for by javadoc,
+          from nearest to farthest access, from least-qualified to fully-qualified.
+        </div>
+
+        <p>The order of <code>@see</code> tags should be:</p>
+        <ol>
+        <li>local members first</li>
+        <li>simple class references after local members</li>
+        <li>simple class member references after simple class references</li>
+        <li>qualified class references after simple class member references</li>
+        <li>qualified class member references after qualified class references</li>
+        <li>package references last</li>
+        </ol>
+
+        <p>Inside each member group, fields come first and members with parameters
+          (constructors and methods) come after. Overloaded constructors and methods
+          with the same name must be grouped together and ordered by the number of
+          parameters, with the fewest parameters first.</p>
+
+        <p>References that are not in a recognizable structured form (for example
+          <code>@see String</code>, or an HTML anchor) are ignored for ordering purposes,
+          so the check only reports violations when it is confident about the correct
+          order.</p>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocSeeTagOrder_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.1.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocSeeTagOrder_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocSeeTagOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  // violation 9 lines below """@see tag '#method()' should be placed before
+  //  '#method(java.lang.String)'."""
+  private String field;
+
+  /**
+   * Incorrect order: local method first, then constructor, and overloaded
+   * methods not in telescoping order.
+   *
+   * @see #method(java.lang.String)
+   * @see #method()
+   * @see #Test()
+   */
+  Example1() {
+  }
+
+  private void method() {
+  }
+
+  private void method(String value) {
+  }
+
+  // ok, local member before simple class before qualified class
+  /**
+   * Correct order of {@code @see} tags.
+   *
+   * @see #field
+   * @see #method()
+   * @see OtherClass
+   * @see java.util.List
+   */
+  void validSeeTags() {
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="JavadocSeeTagOrder_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocSeeTagOrder">
+              Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocSeeTagOrder">
+              Documentation Comments Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavadocSeeTagOrder_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.seeTagOrder%22">
+              javadoc.seeTagOrder
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="JavadocSeeTagOrder_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocSeeTagOrderCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocSeeTagOrder_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
