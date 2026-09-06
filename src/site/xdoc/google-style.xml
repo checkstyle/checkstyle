@@ -391,21 +391,27 @@
                   <br />
                   <br />
                   <span class="wrapper inline">
-                    <img src="images/ok_blue.png" alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoLineWrap">
                     config</a>)
                   <br />
                   <br />
-                  Not covered:
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/packagedeclaration.html#PackageDeclaration">PackageDeclaration</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
+                  config</a>)
                   <br />
-                  Every source file must have a package declaration.
-                  Compact Source Files should not be used.
-                  Until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/21444">
-                    #21444
-                  </a>
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/matchxpath.html#MatchXpath">MatchXpath</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath+CompactSourceFileNotAllowed">
+                  config</a>)
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement">
