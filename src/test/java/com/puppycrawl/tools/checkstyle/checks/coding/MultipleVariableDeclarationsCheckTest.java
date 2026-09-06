@@ -96,4 +96,17 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
                expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "14:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "15:5: " + getCheckMessage(MSG_MULTIPLE),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputMultipleVariableDeclarationsCompactSourceFile.java"),
+                expected);
+    }
+
 }
