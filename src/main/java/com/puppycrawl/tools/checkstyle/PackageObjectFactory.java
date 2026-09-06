@@ -749,6 +749,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.JavadocParamOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocRegexpCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocRegexpCheck");
+        NAME_TO_FULL_MODULE_NAME.put("JavadocSeeTagOrderCheck",
+                BASE_PACKAGE + ".checks.javadoc.JavadocSeeTagOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocTagContinuationIndentationCheck",
                 BASE_PACKAGE + ".checks.javadoc.JavadocTagContinuationIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("JavadocThrowsOrderCheck",

@@ -1038,6 +1038,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocseetagorder.html#JavadocSeeTagOrder">
+                JavadocSeeTagOrder
+              </a>
+            </td>
+            <td>
+              Checks that multiple <code>@see</code> tags are ordered in a predictable way, roughly
+              following the order in which their arguments are searched for by javadoc, from nearest
+              to farthest access, from least-qualified to fully-qualified.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadoctagcontinuationindentation.html#JavadocTagContinuationIndentation">
                 JavadocTagContinuationIndentation
               </a>
