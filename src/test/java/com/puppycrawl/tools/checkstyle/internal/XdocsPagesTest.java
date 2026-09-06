@@ -1711,13 +1711,16 @@ public class XdocsPagesTest {
     }
 
     private static Set<String> getListById(Node subSection, String id) {
-        Set<String> result = null;
+        final Set<String> result;
         final Node node = XmlUtil.findChildElementById(subSection, id);
         if (node != null) {
             result = XmlUtil.getChildrenElements(node)
                     .stream()
                     .map(Node::getTextContent)
                     .collect(Collectors.toUnmodifiableSet());
+        }
+        else {
+            result = Set.of();
         }
         return result;
     }
