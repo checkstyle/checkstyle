@@ -24,5 +24,20 @@ public class Example1
     // violation above 'Boolean expression complexity is 6 (max allowed is 3)'
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&) + 1(|) = 6
   }
+
+  public static boolean isType(int type)
+  {// violation below 'Boolean expression complexity is 4 (max allowed is 3)'
+    return type == 1
+            || type == 2
+            || type == 3
+            || type == 4
+            || type == 5;
+  }
+
+  public static boolean isValid(boolean a, boolean b, boolean c, boolean d)
+  {
+    return a && b && c && d;
+  }
+
 }
 // xdoc section - end
