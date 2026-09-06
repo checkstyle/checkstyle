@@ -105,4 +105,25 @@ public class ArrayTypeStyleCheckTest
                 .isEqualTo(expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:16: " + getCheckMessage(MSG_KEY),
+            "18:19: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputArrayTypeStyleCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCstyle() throws Exception {
+        final String[] expected = {
+            "10:4: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputArrayTypeStyleCompactSourceFileCstyle.java"),
+                expected);
+    }
+
 }
