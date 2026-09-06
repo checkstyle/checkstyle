@@ -693,8 +693,8 @@
     <lineContent>.collect(Collectors.groupingBy(Class::getSimpleName,</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable String &lt;: @Initialized @NonNull String
-      @Initialized @Nullable String &lt;: use of U from Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))
-      From complementary bound.: @Initialized @Nullable String -&gt; use of U from Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))
+      From complementary bound: @Initialized @Nullable String &lt;: use of U from Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))
+      @Initialized @Nullable String -&gt; use of U from Collectors.mapping(Class::getCanonicalName, Collectors.toCollection(HashSet::new))
       Class::getCanonicalName -&gt; inference type: java.util.function.Function&lt;? super java.lang.Class&lt;?&gt;,? extends U&gt;
       From: Argument constraint
     </details>
@@ -2650,6 +2650,27 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: ignoreStringsRegexp</message>
     <lineContent>public MultipleStringLiteralsCheck() {</lineContent>
@@ -3879,8 +3900,8 @@
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable DetailAST &lt;: @Initialized @NonNull DetailAST
-      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) = @Initialized @NonNull DetailAST
-      From complementary bound.: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
+      From complementary bound: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) = @Initialized @NonNull DetailAST
+      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; &lt;: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       From: Constraint between method call type and target type for method call:new SimpleEntry&lt;&gt;(variableUsageAst, dist)
@@ -3894,8 +3915,8 @@
     <lineContent>return new SimpleEntry&lt;&gt;(variableUsageAst, dist);</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @Nullable DetailAST &lt;: @Initialized @NonNull DetailAST
-      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) = @Initialized @NonNull DetailAST
-      From complementary bound.: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
+      From complementary bound: use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) = @Initialized @NonNull DetailAST
+      use of K from new SimpleEntry&lt;&gt;(variableUsageAst, dist) &lt;= @Initialized @NonNull DetailAST
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; &lt;: @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       inference type: java.util.AbstractMap.SimpleEntry&lt;K,V&gt; -&gt; @Initialized @NonNull Entry&lt;@Initialized @NonNull DetailAST, @Initialized @NonNull Integer&gt;
       From: Constraint between method call type and target type for method call:new SimpleEntry&lt;&gt;(variableUsageAst, dist)
@@ -5895,7 +5916,6 @@
       required: [extends @Initialized @Nullable Object super null (NullType)]
     </details>
   </checkerFrameworkError>
-
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InappropriateJavadocBlockTagsOnFieldCheck.java</fileName>

@@ -103,6 +103,27 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
