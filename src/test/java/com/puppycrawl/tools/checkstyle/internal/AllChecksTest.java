@@ -387,12 +387,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
         moduleNames.removeAll(INTERNAL_MODULES);
-        moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
-            .forEach(check -> {
-                final String errorMessage = String.format(Locale.ROOT,
-                    "%s is not referenced in checkstyle-checks.xml", check);
-                assertWithMessage(errorMessage).fail();
-            });
+
+        final Set<String> notReferenced = moduleNames.stream()
+                .filter(check -> !modulesReferencedInConfig.contains(check))
+                .collect(Collectors.toUnmodifiableSet());
+
+        assertWithMessage("Modules are not referenced in checkstyle-checks.xml")
+                .that(notReferenced)
+                .isEmpty();
     }
 
     @Test
@@ -400,7 +402,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Configuration configuration = ConfigurationUtil
                 .loadConfiguration("config/checkstyle-checks.xml");
 
-        validateAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
+        assertAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
                 CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE, false);
     }
 
@@ -409,11 +411,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Configuration configuration = ConfigurationUtil
                 .loadConfiguration("src/main/resources/google_checks.xml");
 
-        validateAllCheckTokensAreReferencedInConfigFile("google", configuration,
+        assertAllCheckTokensAreReferencedInConfigFile("google", configuration,
                 GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE, true);
     }
 
-    private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,
+    private static void assertAllCheckTokensAreReferencedInConfigFile(String configName,
             Configuration configuration, Map<String, Set<String>> tokensToIgnore,
             boolean defaultTokensMustBeExplicit)
                     throws Exception {
@@ -519,14 +521,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         checkstyleModulesNames.remove("Checker");
         // temporarily hosted in test folder
         checkstyleModulesNames.removeAll(INTERNAL_MODULES);
-        checkstyleModulesNames.stream()
-            .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
-            .forEach(moduleName -> {
-                final String missingModuleMessage = String.format(Locale.ROOT,
-                    "Module %s does not have xdoc documentation.",
-                    moduleName);
-                assertWithMessage(missingModuleMessage).fail();
-            });
+
+        final Set<String> missingXdocs = checkstyleModulesNames.stream()
+                .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
+                .collect(Collectors.toUnmodifiableSet());
+
+        assertWithMessage("Modules do not have xdoc documentation")
+                .that(missingXdocs)
+                .isEmpty();
     }
 
     @Test

@@ -137,23 +137,27 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCustomAstTree() throws Exception {
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\t");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\n");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\n");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\r");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\u000c\f");
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \n",
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\t");
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\n");
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\n");
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\r");
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r");
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\u000c\f");
+    }
+
+    @Test
+    public void testCustomAstTreeWithComments() throws Exception {
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \n",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r",
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r\n",
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r\n",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \n */",
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \n */",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r\n */",
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r\n */",
                 JavaParser.Options.WITH_COMMENTS);
-        verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
+        assertAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "/* \r" + "\u0000\u0000" + " */",
                 JavaParser.Options.WITH_COMMENTS);
     }
 
@@ -290,12 +294,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
                 getPath("InputPatternsAnnotationsOnBinding.java"));
     }
 
-    private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava)
+    private static void assertAstRaw(String expectedTextPrintFileName, String actualJava)
             throws Exception {
-        verifyAstRaw(expectedTextPrintFileName, actualJava, JavaParser.Options.WITHOUT_COMMENTS);
+        assertAstRaw(expectedTextPrintFileName, actualJava, JavaParser.Options.WITHOUT_COMMENTS);
     }
 
-    private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava,
+    private static void assertAstRaw(String expectedTextPrintFileName, String actualJava,
             JavaParser.Options withComments)
                     throws Exception {
         final File expectedFile = new File(expectedTextPrintFileName);
