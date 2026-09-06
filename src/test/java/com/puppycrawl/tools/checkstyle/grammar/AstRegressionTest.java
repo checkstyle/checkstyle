@@ -143,6 +143,10 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r\r");
         verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\r");
         verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "\u000c\f");
+    }
+
+    @Test
+    public void testCustomAstTreeWithComments() throws Exception {
         verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \n",
                 JavaParser.Options.WITH_COMMENTS);
         verifyAstRaw(getPath("ExpectedRegressionEmptyAst.txt"), "// \r",

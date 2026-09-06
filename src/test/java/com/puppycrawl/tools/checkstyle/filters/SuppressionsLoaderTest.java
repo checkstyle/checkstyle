@@ -29,6 +29,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 import org.xml.sax.InputSource;
@@ -193,7 +194,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                             .contains("Unable to read")) {
                         attemptCount++;
                         // wait for bad/disconnection time to pass
-                        Thread.sleep(1000);
+                        TimeUnit.SECONDS.sleep(1);
                     }
                     else {
                         throw exc;
