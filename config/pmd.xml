@@ -9,8 +9,6 @@
   </description>
 
   <rule ref="category/java/bestpractices.xml">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/20776 -->
-    <exclude name="ExhaustiveSwitchHasDefault"/>
     <!-- Clashes with CommentDefaultAccessModifier. We do not like package and protected
          visibility, they are HACK in design and illusion of protection of method from outside.
          Keeping them public is ok. -->

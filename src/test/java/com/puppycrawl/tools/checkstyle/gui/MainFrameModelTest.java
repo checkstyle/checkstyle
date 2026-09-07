@@ -59,21 +59,14 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     @Test
     public void testParseModeEnum() {
         for (final ParseMode parseMode : ParseMode.values()) {
-            switch (parseMode) {
-                case PLAIN_JAVA -> assertWithMessage("Invalid toString result")
-                        .that(parseMode.toString())
-                        .isEqualTo("Plain Java");
-
-                case JAVA_WITH_COMMENTS -> assertWithMessage("Invalid toString result")
-                        .that(parseMode.toString())
-                        .isEqualTo("Java with comments");
-
-                case JAVA_WITH_JAVADOC_AND_COMMENTS -> assertWithMessage("Invalid toString result")
-                        .that(parseMode.toString())
-                        .isEqualTo("Java with comments and Javadocs");
-
-                default -> assertWithMessage("Unexpected enum value").fail();
-            }
+            final String expected = switch (parseMode) {
+                case PLAIN_JAVA -> "Plain Java";
+                case JAVA_WITH_COMMENTS -> "Java with comments";
+                case JAVA_WITH_JAVADOC_AND_COMMENTS -> "Java with comments and Javadocs";
+            };
+            assertWithMessage("Invalid toString result")
+                    .that(parseMode.toString())
+                    .isEqualTo(expected);
         }
     }
 
