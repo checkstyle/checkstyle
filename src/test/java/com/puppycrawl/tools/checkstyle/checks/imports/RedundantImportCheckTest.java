@@ -24,15 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportChec
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_LANG;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -61,7 +58,6 @@ public class RedundantImportCheckTest
     @Test
     public void testStateIsClearedOnBeginTree1()
             throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
         final String inputWithWarnings = getPath("InputRedundantImportCheckClearState.java");
         final String inputWithoutWarnings = getPath("InputRedundantImportWithoutWarnings.java");
         final List<String> expectedFirstInput = Arrays.asList(
@@ -69,11 +65,9 @@ public class RedundantImportCheckTest
             "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.util.List")
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
-        final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            inputWithWarnings, expectedFirstInput,
-            inputWithoutWarnings, expectedSecondInput));
+        verifyWithInlineConfigParser(
+                inputWithWarnings, inputWithoutWarnings,
+                expectedFirstInput, expectedSecondInput);
     }
 
     @Test
