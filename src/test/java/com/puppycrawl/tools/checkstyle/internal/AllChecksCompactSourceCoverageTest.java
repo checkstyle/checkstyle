@@ -201,7 +201,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NoWhitespaceBeforeCheck",
         "NonEmptyAtclauseDescriptionCheck",
         "NumericalPrefixesInfixesSuffixesCharacterCaseCheck",
-        "OneStatementPerLineCheck",
         "OneTopLevelClassCheck",
         "OperatorWrapCheck",
         "OuterTypeNumberCheck",
