@@ -23,15 +23,12 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck.MSG_KEY_UNCLOSED_HTML_TAG;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -47,7 +44,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testReferencedStateIsCleared() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String inputWithoutWarnings = getPath("InputUnusedImportsWithoutWarnings.java");
         final String inputWithWarnings = getPath("InputUnusedImportsCheckClearState.java");
         final List<String> expectedFirstInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
@@ -56,17 +52,10 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
                 "12:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
         );
-        final File[] inputsWithWarningsFirst =
-            {new File(inputWithWarnings), new File(inputWithoutWarnings)};
-        final File[] inputsWithoutWarningFirst =
-            {new File(inputWithoutWarnings), new File(inputWithWarnings)};
-
-        verify(createChecker(checkConfig), inputsWithWarningsFirst, ImmutableMap.of(
-                inputWithoutWarnings, expectedFirstInput,
-                inputWithWarnings, expectedSecondInput));
-        verify(createChecker(checkConfig), inputsWithoutWarningFirst, ImmutableMap.of(
-                inputWithoutWarnings, expectedFirstInput,
-                inputWithWarnings, expectedSecondInput));
+        verifyWithInlineConfigParser(inputWithWarnings, inputWithoutWarnings,
+                expectedSecondInput, expectedFirstInput);
+        verifyWithInlineConfigParser(inputWithoutWarnings, inputWithWarnings,
+                expectedFirstInput, expectedSecondInput);
     }
 
     @Test
