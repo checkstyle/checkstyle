@@ -395,4 +395,38 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
                 getPath("InputOneStatementPerLineSwitch.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "10:24: " + getCheckMessage(MSG_KEY),
+            "12:17: " + getCheckMessage(MSG_KEY),
+            "17:19: " + getCheckMessage(MSG_KEY),
+            "19:18: " + getCheckMessage(MSG_KEY),
+            "21:19: " + getCheckMessage(MSG_KEY),
+            "24:16: " + getCheckMessage(MSG_KEY),
+            "25:10: " + getCheckMessage(MSG_KEY),
+            "30:36: " + getCheckMessage(MSG_KEY),
+            "31:73: " + getCheckMessage(MSG_KEY),
+            "35:21: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputOneStatementPerLineCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileTryResources() throws Exception {
+        final String[] expected = {
+            "14:49: " + getCheckMessage(MSG_KEY),
+            "15:19: " + getCheckMessage(MSG_KEY),
+            "23:39: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputOneStatementPerLineCompactSourceFileTryResources.java"),
+                expected);
+    }
+
 }
