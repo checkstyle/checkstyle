@@ -420,4 +420,21 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
                 getPath("InputCommentsIndentationStartOfMethodCallChainNpe.java"), expected);
     }
 
+    @Test
+    public void testCommentsInSwitchWithWhenGuards() throws Exception {
+        final String[] expected = {
+            "15:20: " + getCheckMessage(MSG_KEY_SINGLE, 16, 19, 20),
+            "17:18: " + getCheckMessage(MSG_KEY_SINGLE, 18, 17, 16),
+            "21:22: " + getCheckMessage(MSG_KEY_BLOCK, 24, 21, 12),
+            "25:14: " + getCheckMessage(MSG_KEY_SINGLE, 26, 13, 12),
+            "34:20: " + getCheckMessage(MSG_KEY_SINGLE, 35, 19, 20),
+            "36:29: " + getCheckMessage(MSG_KEY_SINGLE, 37, 28, 20),
+            "40:22: " + getCheckMessage(MSG_KEY_BLOCK, 43, 21, 12),
+            "44:14: " + getCheckMessage(MSG_KEY_SINGLE, "43, 45", 13, "12, 12"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputCommentsIndentationSwitchWhen.java"),
+            expected);
+    }
+
 }
