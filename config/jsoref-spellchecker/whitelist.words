@@ -970,6 +970,7 @@ noinspection
 noinspectionreason
 nojavadoc
 nolinewrap
+nomoduleimports
 nonascii
 noncompilable
 nonconstantfieldnames

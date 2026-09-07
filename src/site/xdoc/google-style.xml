@@ -472,12 +472,17 @@
                     3.3.1.1 No module imports</a>
                 </td>
                 <td>
-                  Not covered until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/21445">
-                    #21445
-                  </a>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/imports/avoidmoduleimport.html#AvoidModuleImport">AvoidModuleImport</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidModuleImport">
+                  config</a>)
                 </td>
-                <td/>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources-noncompilable/com/google/checkstyle/test/chapter3filestructure/rule3311nomoduleimports">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td><a name="a3.3.2"/>
