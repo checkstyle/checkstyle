@@ -684,4 +684,18 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
                 getPath("InputLeftCurlySwitchMutation.java"), expected);
     }
 
+    @Test
+    public void testSwitchWhen() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "22:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "28:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "40:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "49:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "52:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlySwitchWhen.java"), expected);
+    }
+
 }
