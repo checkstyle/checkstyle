@@ -373,6 +373,26 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testGetFileExtensionInDottedDirectory() {
+        assertWithMessage("Parent directory must not supply the file extension")
+            .that(CommonUtil.getFileExtension("config.d/filename"))
+            .isEmpty();
+        assertWithMessage("Parent directory must not change the file extension")
+            .that(CommonUtil.getFileExtension("config.d/filename.properties"))
+            .isEqualTo("properties");
+    }
+
+    @Test
+    public void testGetFileExtensionInRelativeDirectory() {
+        assertWithMessage("Current directory must not supply the file extension")
+            .that(CommonUtil.getFileExtension("./filename"))
+            .isEmpty();
+        assertWithMessage("Parent directory must not supply the file extension")
+            .that(CommonUtil.getFileExtension("../filename"))
+            .isEmpty();
+    }
+
+    @Test
     public void testIsIdentifier() {
         assertWithMessage("Should return true when valid identifier is passed")
                 .that(CommonUtil.isIdentifier("aValidIdentifier"))
