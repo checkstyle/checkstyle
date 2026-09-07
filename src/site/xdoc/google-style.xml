@@ -2230,10 +2230,8 @@
                   </a>
                 </td>
                 <td>
-                 To be updated at:
-                 <a href="https://github.com/checkstyle/checkstyle/issues/21449">
-                   #21449
-                 </a>
+                  Covered at <a href="#a5.2.6">5.2.6 Parameter names</a>
+                  and <a href="#a5.2.7">5.2.7 Local variable names</a>.
                 </td>
                 <td/>
               </tr>
