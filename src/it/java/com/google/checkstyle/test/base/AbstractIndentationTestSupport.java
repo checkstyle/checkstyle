@@ -146,7 +146,6 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
      * @return true if comment is consistent based on expected indent level, actual indent level
      *     and if comment is a warn comment else it returns false.
      * @throws IllegalArgumentException if comment type is unknown and cannot determine consistency.
-     * @throws IllegalStateException if cannot determine that comment is consistent(default case).
      */
     private static boolean isCommentConsistent(String comment) {
         final int indentInComment = getIndentFromComment(comment);
@@ -161,8 +160,6 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
                 isNonStrictCommentConsistent(comment, indentInComment, isWarnComment);
             case UNKNOWN ->
                     throw new IllegalArgumentException("Cannot determine comment consistent");
-            default ->
-                    throw new IllegalStateException("Cannot determine comment is consistent");
         };
     }
 

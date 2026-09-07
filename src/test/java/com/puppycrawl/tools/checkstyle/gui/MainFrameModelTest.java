@@ -71,8 +71,6 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                 case JAVA_WITH_JAVADOC_AND_COMMENTS -> assertWithMessage("Invalid toString result")
                         .that(parseMode.toString())
                         .isEqualTo("Java with comments and Javadocs");
-
-                default -> assertWithMessage("Unexpected enum value").fail();
             }
         }
     }
