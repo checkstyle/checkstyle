@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -328,10 +330,16 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if a line is inside a nested type or anonymous class
      */
     private static boolean isLineInsideNestedTypeOrAnonymousClass(DetailAST ast, int lineNo) {
-        boolean result = false;
+        final Deque<DetailAST> nodesToCheck = new ArrayDeque<>();
         for (DetailAST child = ast.getFirstChild();
              child != null;
              child = child.getNextSibling()) {
+            nodesToCheck.push(child);
+        }
+
+        boolean result = false;
+        while (!nodesToCheck.isEmpty() && !result) {
+            final DetailAST child = nodesToCheck.pop();
             final int childType = child.getType();
             final DetailAST objBlock = child.findFirstToken(TokenTypes.OBJBLOCK);
             if (objBlock != null
@@ -341,10 +349,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                         && lineNo < objBlock.getLastChild().getLineNo();
             }
             else {
-                result = isLineInsideNestedTypeOrAnonymousClass(child, lineNo);
-            }
-            if (result) {
-                break;
+                for (DetailAST grandChild = child.getFirstChild();
+                     grandChild != null;
+                     grandChild = grandChild.getNextSibling()) {
+                    nodesToCheck.push(grandChild);
+                }
             }
         }
         return result;
