@@ -9,6 +9,7 @@ if [[ -z $1 ]]; then
 fi
 
 JAR_PATH="$1"
+ARG="$2"
 
 NONFORMATTED_LIST=(
   config/google-java-format/excluded/compilable-input-paths.txt
@@ -27,6 +28,12 @@ is_suppressed() {
   fi
   return 1
 }
+
+if [[ ! -f "$JAR_PATH" || -z "$ARG" ]]; then
+  echo "Error: jar path does not exist or mode is not set"
+  echo "Usage: $BASH_SOURCE <path to jar> <java21|java25>"
+  exit 1
+fi
 
 echo "Checking that all excluded java files in this script have matching InputFormatted* file:"
 NOT_FOUND_CONTENT=$(cat "${NONFORMATTED_LIST[@]}" \
@@ -78,15 +85,17 @@ done
 
 echo "All excluded java files have same size as matching InputFormatted* file"
 
+if [[ "$ARG" == "java25" ]]; then
+  MARKER_FLAG="-li"
+else
+  MARKER_FLAG="-Li"
+fi
+
 echo "Formatting all Input files file at src/it/resources/com/google/checkstyle/test :"
 COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -name "Input*.java" \
-  | grep -v -x -f config/google-java-format/excluded/compilable-input-paths.txt
+  | grep -v -x -f config/google-java-format/excluded/compilable-input-paths.txt \
+  | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true
   ))
-
-if [ ! -f "$JAR_PATH" ]; then
-    echo "Error: $JAR_PATH does not exist."
-    exit 1
-fi
 
 for INPUT_PATH in "${COMPILABLE_INPUT_PATHS[@]}"; do
   java -jar "$JAR_PATH" --replace "$INPUT_PATH"
@@ -94,7 +103,8 @@ done
 
 echo "Formatting all Non-compilable Input files file at src/it/resources-noncompilable/com/google/checkstyle/test :"
 NON_COMPILABLE_INPUT_PATHS=($(find src/it/resources-noncompilable/com/google/checkstyle/test/ -name "Input*.java" \
-  | grep -v -x -f config/google-java-format/excluded/noncompilable-input-paths.txt
+  | grep -v -x -f config/google-java-format/excluded/noncompilable-input-paths.txt \
+  | xargs -r grep "$MARKER_FLAG" ': Compilable with Java25' || true
   ))
 
 for INPUT_PATH in "${NON_COMPILABLE_INPUT_PATHS[@]}"; do
