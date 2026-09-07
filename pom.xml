@@ -336,7 +336,7 @@
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy-agent</artifactId>
-        <version>1.18.12</version>
+        <version>1.18.13</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
