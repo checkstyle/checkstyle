@@ -75,8 +75,13 @@ public class SlistHandler extends BlockParentHandler {
         //  preceded by a switch
 
         final IndentLevel result;
+        // Same-line double-brace init shares the anonymous class indent so
+        // the inner SLIST does not add another basicOffset on top of it.
+        if (isSameLineDoubleBraceInit()) {
+            result = getParent().getIndent();
+        }
         // if our parent is a block handler we want to be transparent
-        if (getParent() instanceof BlockParentHandler
+        else if (getParent() instanceof BlockParentHandler
                 && !(getParent() instanceof SlistHandler)
             || child instanceof SlistHandler
                 && getParent() instanceof CaseHandler) {
@@ -136,6 +141,21 @@ public class SlistHandler extends BlockParentHandler {
         final DetailAST parentNode = getMainAst().getParent();
         return parentNode.getType() == TokenTypes.CASE_GROUP
             && TokenUtil.areOnSameLine(getMainAst(), parentNode);
+    }
+
+    /**
+     * Checks if this handler is the instance initializer of a double-brace
+     * initialization whose brace is on the same line as the anonymous class
+     * brace, such as {@code new HashMap<>() {{ put(...); }}}.
+     *
+     * @return true if this is a same-line double-brace instance initializer
+     */
+    private boolean isSameLineDoubleBraceInit() {
+        final DetailAST ast = getMainAst();
+        final DetailAST objBlock = ast.getParent();
+        return ast.getType() == TokenTypes.INSTANCE_INIT
+                && objBlock.getParent().getType() == TokenTypes.LITERAL_NEW
+                && TokenUtil.areOnSameLine(ast, objBlock);
     }
 
 }
