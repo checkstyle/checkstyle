@@ -515,6 +515,21 @@
         </div>
       </subsection>
 
+      <subsection name="Auto Fix" id="Additional_Information_Auto_Fix">
+        <p>
+          Some Checkstyle violations can be fixed automatically using
+          <a href="https://github.com/checkstyle/checkstyle-openrewrite-recipes">
+            checkstyle-openrewrite-recipes
+          </a>.
+        </p>
+        <p>
+          See also
+          <a href="https://docs.openrewrite.org/running-recipes/popular-recipe-guides/automatically-fix-checkstyle-violations">
+            OpenRewrite's guide to automatically fixing Checkstyle violations
+          </a>.
+        </p>
+      </subsection>
+
       <subsection name="Related Tools" id="Additional_Information_Related_Tools">
         <p>
           Checkstyle is most useful if you integrate it into your build process or
