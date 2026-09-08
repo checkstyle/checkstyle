@@ -54,6 +54,18 @@ public class LineWrappingHandler {
     }
 
     /**
+     * The list of token types that open an indentation scope of their own. A node
+     * separated from a call by one of them, such as a statement in the body of a
+     * lambda passed as an argument, is not wrapped relative to that call.
+     *
+     * @see #getWrappedChainLinkOfArgument(DetailAST)
+     */
+    private static final int[] SCOPE_BOUNDARY_LIST = {
+        TokenTypes.SLIST,
+        TokenTypes.OBJBLOCK,
+    };
+
+    /**
      * The list of ignored token types for being checked by lineWrapping indentation
      * inside {@code checkIndentation()} as these tokens are checked for lineWrapping
      * inside their dedicated handlers.
@@ -156,9 +168,64 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                final DetailAST chainLink = getWrappedChainLinkOfArgument(node);
+                if (chainLink == null) {
+                    logWarningMessage(node, currentIndent);
+                }
+                else {
+                    logWarningMessage(node, new IndentLevel(
+                            new IndentLevel(getLineStart(chainLink)),
+                            indentCheck.getBasicOffset(), indentLevel));
+                }
             }
         }
+    }
+
+    /**
+     * Returns the {@code DOT} of the innermost chained method call whose argument list
+     * contains the given node, provided that call is wrapped onto a line of its own and
+     * starts before the node. A call sharing a line with the expression it is invoked
+     * on is not a chain link in this sense, as its arguments are already wrapped
+     * relative to the right line.
+     *
+     * <p>Arguments of such a link are wrapped relative to the line the link starts on,
+     * not relative to the first line of the whole expression:</p>
+     * {@code
+     *     new Chainable()
+     *             .foo(1
+     *                     + 1)
+     *             .foo(1 + 1);
+     * }
+     *
+     * <p>Here {@code + 1} continues the arguments of the call on the {@code .foo(1}
+     * line, so it is wrapped from that line rather than from the
+     * {@code new Chainable()} one.</p>
+     *
+     * @param node the node to find the enclosing chain link of.
+     * @return the {@code DOT} of the chain link, or {@code null} if there is none.
+     */
+    private DetailAST getWrappedChainLinkOfArgument(DetailAST node) {
+        DetailAST result = null;
+        DetailAST child = node;
+        DetailAST parent = node.getParent();
+        while (parent != null) {
+            if (TokenUtil.isOfType(parent.getType(), SCOPE_BOUNDARY_LIST)) {
+                break;
+            }
+            if (child.getType() == TokenTypes.ELIST
+                    && parent.getType() == TokenTypes.METHOD_CALL) {
+                final DetailAST dot = parent.getFirstChild();
+                if (dot.getType() == TokenTypes.DOT
+                        && dot.getLineNo() < node.getLineNo()
+                        && expandedTabsColumnNo(dot) == getLineStart(dot)) {
+                    result = dot;
+                }
+                break;
+            }
+            child = parent;
+            parent = parent.getParent();
+        }
+        return result;
     }
 
     /**
@@ -414,6 +481,33 @@ public class LineWrappingHandler {
             index++;
         }
         return CommonUtil.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
+    }
+
+    /**
+     * Logs warning message if indentation is incorrect.
+     *
+     * @param currentNode
+     *            current node which probably invoked a violation.
+     * @param currentIndent
+     *            correct indentation.
+     */
+    private void logWarningMessage(DetailAST currentNode, IndentLevel currentIndent) {
+        final int columnNo = expandedTabsColumnNo(currentNode);
+        final boolean isViolation;
+        if (indentCheck.isForceStrictCondition()) {
+            isViolation = !currentIndent.isAcceptable(columnNo);
+        }
+        else {
+            isViolation = currentIndent.isGreaterThan(columnNo);
+        }
+        if (isViolation) {
+            String messageKey = IndentationCheck.MSG_ERROR;
+            if (currentIndent.isMultiLevel()) {
+                messageKey = IndentationCheck.MSG_ERROR_MULTI;
+            }
+            indentCheck.indentationLog(currentNode, messageKey,
+                    currentNode.getText(), columnNo, currentIndent);
+        }
     }
 
     /**
