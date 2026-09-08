@@ -52,6 +52,15 @@ RESULT_FILE=target/eclipse/report.txt
 echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
 echo "java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1  ..."
 
+# ECJ compiles whole directories against a plain classpath (-cp), where a
+# module-info.java cannot be resolved. Move it aside for the duration of the run.
+# Parked in .ci-temp: unlike target/ it is not wiped by "mvn clean", and a leftover
+# after an aborted run is reported by the ci-temp-check job instead of lost.
+MODULE_INFO="src/main/java/module-info.java"
+mkdir -p .ci-temp
+mv "$MODULE_INFO" ".ci-temp/module-info.java"
+trap 'mv ".ci-temp/module-info.java" "$MODULE_INFO"' EXIT
+
 set +e
 java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -encoding UTF-8 -cp "$1" \
         -d target/eclipse-compile \
