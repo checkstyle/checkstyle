@@ -208,7 +208,7 @@
     <pmd.version>7.27.0</pmd.version>
     <jacoco.plugin.version>0.8.15</jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
-    <slf4j.version>2.0.18</slf4j.version>
+    <slf4j.version>2.0.19</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
     <checkstyle-files-generator.version>1.0.3</checkstyle-files-generator.version>
@@ -330,13 +330,13 @@
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy</artifactId>
-        <version>1.18.12</version>
+        <version>1.18.13</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy-agent</artifactId>
-        <version>1.18.12</version>
+        <version>1.18.13</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -388,7 +388,7 @@
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.10.17</version>
+      <version>1.10.18</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -613,7 +613,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>3.10.1</version>
+          <version>3.10.2</version>
           <configuration>
             <java>
               <includes>
