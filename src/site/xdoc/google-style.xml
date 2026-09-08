@@ -688,18 +688,17 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img
-                        src="images/ban_red.png"
-                        alt="" />
+                    <img src="images/ok_green.png" alt="" />
                   </span>
-                  Checkstyle currently does not have a Parser to support
-                  <code>module-info.java</code> file Grammar. For more information,
-                  see the discussion at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17170#issuecomment-2944237497">
-                    #17170
-                  </a>
+                  <a href="checks/modules/moduledirectiveorder.html#ModuleDirectiveOrder">
+                    ModuleDirectiveOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ModuleDirectiveOrder">
+                  config</a>)
                 </td>
-                <td/>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule35moduledeclaration">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td><a name="a4"/>

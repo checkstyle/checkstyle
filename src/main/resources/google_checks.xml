@@ -23,11 +23,6 @@
   <property name="severity" value="${org.checkstyle.google.severity}" default="warning"/>
 
   <property name="fileExtensions" value="java, properties, xml"/>
-  <!-- Excludes all 'module-info.java' files              -->
-  <!-- See https://checkstyle.org/filefilters/index.html -->
-  <module name="BeforeExecutionExclusionFileFilter">
-    <property name="fileNamePattern" value="module\-info\.java$"/>
-  </module>
 
   <module name="SuppressWarningsFilter"/>
 
@@ -119,6 +114,10 @@
     <module name="NoLineWrap">
       <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
     </module>
+
+    <!-- Modules -->
+    <module name="ModuleDirectiveOrder"/>
+
     <module name="NeedBraces">
       <property name="tokens"
                value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
