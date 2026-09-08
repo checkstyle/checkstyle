@@ -216,25 +216,26 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
 
         // Prepare to start
-        fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
+        final int errorCount;
+        try (AuditCompletion auditCompletion = new AuditCompletion()) {
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fsc.beginProcessing(charset);
+            }
+
+            final List<File> targetFiles = files.stream()
+                    .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                    .toList();
+            processFiles(targetFiles);
+
+            // Finish up
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::finishProcessing);
+
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::destroy);
+
+            errorCount = counter.getCount();
         }
-
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .toList();
-        processFiles(targetFiles);
-
-        // Finish up
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
-        fireAuditFinished();
         return errorCount;
     }
 
@@ -255,7 +256,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             .collect(Collectors.toUnmodifiableSet());
     }
 
-    /** Notify all listeners about the audit start. */
+    /**
+     * Notify all listeners about the audit start.
+     *
+     * @noinspection MethodOnlyUsedFromInnerClass
+     * @noinspectionreason MethodOnlyUsedFromInnerClass - notification methods are also
+     *      tested directly through reflection in CheckerTest.
+     */
     private void fireAuditStarted() {
         final AuditEvent event = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
@@ -263,7 +270,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
     }
 
-    /** Notify all listeners about the audit end. */
+    /**
+     * Notify all listeners about the audit end.
+     *
+     * @noinspection MethodOnlyUsedFromInnerClass
+     * @noinspectionreason MethodOnlyUsedFromInnerClass - notification methods are also
+     *      tested directly through reflection in CheckerTest.
+     */
     private void fireAuditFinished() {
         final AuditEvent event = new AuditEvent(this);
         for (final AuditListener listener : listeners) {
@@ -296,10 +309,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 if (cacheFile != null) {
                     cacheFile.put(fileName, timestamp);
                 }
-                fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
-                fireFileFinished(fileName);
+                try (FileAuditCompletion completion = new FileAuditCompletion(fileName)) {
+                    final SortedSet<Violation> fileMessages = processFile(file);
+                    fireErrors(fileName, fileMessages);
+                }
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
@@ -665,6 +678,44 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throw new IllegalStateException(
                 getLocalizedMessage("general.relativizePath",
                         fileName, basedir), exception);
+        }
+    }
+
+    /** Starts the audit and completes it when processing ends. */
+    private final class AuditCompletion implements AutoCloseable {
+
+        /** Starts the audit. */
+        private AuditCompletion() {
+            fireAuditStarted();
+        }
+
+        /** Completes the audit. */
+        @Override
+        public void close() {
+            fireAuditFinished();
+        }
+    }
+
+    /** Starts the file audit and completes it when processing ends. */
+    private final class FileAuditCompletion implements AutoCloseable {
+
+        /** Name of the file being audited. */
+        private final String fileName;
+
+        /**
+         * Starts auditing the file.
+         *
+         * @param fileName the name of the file to audit
+         */
+        private FileAuditCompletion(String fileName) {
+            this.fileName = fileName;
+            fireFileStarted(fileName);
+        }
+
+        /** Completes the file audit. */
+        @Override
+        public void close() {
+            fireFileFinished(fileName);
         }
     }
 
