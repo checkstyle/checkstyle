@@ -3079,7 +3079,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"), expected);
     }
 
-    // until #19415
     @Test
     public void testDoubleBraceInit() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -3091,18 +3090,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         checkConfig.addProperty("arrayInitIndent", "4");
         final String[] expected = {
-            "27:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 12, "16, 20"),
-            "28:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 12, "16, 20"),
-            "29:9: " + getCheckMessage(MSG_ERROR_MULTI, "block rcurly", 8, "12, 16"),
-            "35:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 16, "20, 24"),
-            "36:13: " + getCheckMessage(MSG_ERROR_MULTI, "block rcurly", 12, "16, 20"),
-            "42:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 12, "16, 20"),
-            "43:9: " + getCheckMessage(MSG_ERROR_MULTI, "block rcurly", 8, "12, 16"),
-            "56:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 12, "16, 20"),
-            "57:9: " + getCheckMessage(MSG_ERROR_MULTI, "block rcurly", 8, "12, 16"),
-            "63:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 16, "20, 24"),
-            "64:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 16, "20, 24"),
-            "65:13: " + getCheckMessage(MSG_ERROR_MULTI, "block rcurly", 12, "16, 20"),
+            "97:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 6, "12, 16"),
+            "98:29: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "block", 28, "12, 16"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationDoubleBraceInit.java"), expected);
     }
