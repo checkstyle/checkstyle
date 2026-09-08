@@ -216,25 +216,26 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
 
         // Prepare to start
-        fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
+        final int errorCount;
+        try (AuditCompletion auditCompletion = new AuditCompletion()) {
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fsc.beginProcessing(charset);
+            }
+
+            final List<File> targetFiles = files.stream()
+                    .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                    .toList();
+            processFiles(targetFiles);
+
+            // Finish up
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::finishProcessing);
+
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::destroy);
+
+            errorCount = counter.getCount();
         }
-
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .toList();
-        processFiles(targetFiles);
-
-        // Finish up
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
-        fireAuditFinished();
         return errorCount;
     }
 
@@ -286,8 +287,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         for (final File file : files) {
             String fileName = null;
             final String filePath = file.getPath();
-            try {
-                fileName = file.getAbsolutePath();
+            try (FileAuditCompletion completion = new FileAuditCompletion(file)) {
+                fileName = completion.fileName;
                 final long timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
                         || !acceptFileStarted(fileName)) {
@@ -296,10 +297,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 if (cacheFile != null) {
                     cacheFile.put(fileName, timestamp);
                 }
-                fireFileStarted(fileName);
+                completion.start();
                 final SortedSet<Violation> fileMessages = processFile(file);
                 fireErrors(fileName, fileMessages);
-                fireFileFinished(fileName);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
@@ -665,6 +665,54 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throw new IllegalStateException(
                 getLocalizedMessage("general.relativizePath",
                         fileName, basedir), exception);
+        }
+    }
+
+    /** Starts the audit and completes it when processing ends. */
+    private final class AuditCompletion implements AutoCloseable {
+
+        /** Starts the audit. */
+        private AuditCompletion() {
+            fireAuditStarted();
+        }
+
+        /** Completes the audit. */
+        @Override
+        public void close() {
+            fireAuditFinished();
+        }
+    }
+
+    /** Completes file notifications only when the file audit has started. */
+    private final class FileAuditCompletion implements AutoCloseable {
+
+        /** Name of the file being audited. */
+        private final String fileName;
+
+        /** Whether all file-start notifications were sent. */
+        private boolean started;
+
+        /**
+         * Creates a completion resource for a file audit that has not started.
+         *
+         * @param file the file to audit
+         */
+        private FileAuditCompletion(File file) {
+            fileName = file.getAbsolutePath();
+        }
+
+        /** Starts auditing the file. */
+        private void start() {
+            fireFileStarted(fileName);
+            started = true;
+        }
+
+        /** Completes the file audit if it was started. */
+        @Override
+        public void close() {
+            if (started) {
+                fireFileFinished(fileName);
+            }
         }
     }
 
