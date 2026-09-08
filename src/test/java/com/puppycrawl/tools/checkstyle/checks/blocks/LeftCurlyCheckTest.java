@@ -73,6 +73,14 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnicodeNl() throws Exception {
+        final String[] expected = {
+            "17:22: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 22),
+        };
+        verifyWithInlineConfigParser(getPath("InputLeftCurlyUnicodeNl.java"), expected);
+    }
+
+    @Test
     public void testNl() throws Exception {
         final String[] expected = {
             "36:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
