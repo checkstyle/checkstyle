@@ -217,24 +217,29 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         // Prepare to start
         fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
+        final int errorCount;
+        try {
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fsc.beginProcessing(charset);
+            }
+
+            final List<File> targetFiles = files.stream()
+                    .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                    .toList();
+            processFiles(targetFiles);
+
+            // Finish up
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::finishProcessing);
+
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::destroy);
+
+            errorCount = counter.getCount();
         }
-
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .toList();
-        processFiles(targetFiles);
-
-        // Finish up
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
-        fireAuditFinished();
+        finally {
+            fireAuditFinished();
+        }
         return errorCount;
     }
 
@@ -297,9 +302,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     cacheFile.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
-                fireFileFinished(fileName);
+                try {
+                    final SortedSet<Violation> fileMessages = processFile(file);
+                    fireErrors(fileName, fileMessages);
+                }
+                finally {
+                    fireFileFinished(fileName);
+                }
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
