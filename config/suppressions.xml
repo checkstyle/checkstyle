@@ -103,6 +103,7 @@
   <suppress checks="ClassDataAbstractionCoupling"
              files="XpathFileGeneratorAuditListenerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="/Main\.java"/>
+  <suppress checks="ClassFanOutComplexity" files="MainTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="CheckerTest\.java"/>
   <suppress checks="ClassFanOutComplexity" files="Checker\.java"/>
   <suppress checks="ClassFanOutComplexity" files="AbstractAutomaticBean\.java"/>
