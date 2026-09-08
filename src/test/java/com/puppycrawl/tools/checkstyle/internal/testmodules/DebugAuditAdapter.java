@@ -30,6 +30,12 @@ public final class DebugAuditAdapter implements AuditListener {
     /** Keeps track whether this {@code AuditListener} was given {@code AuditEvent}. */
     private boolean passedEvent;
 
+    /** The event received when the audit started. */
+    private AuditEvent auditStartedEvent;
+
+    /** The event received when the audit finished. */
+    private AuditEvent auditFinishedEvent;
+
     /** Keeps track of the number of files started. */
     private int numFilesStarted;
 
@@ -50,6 +56,14 @@ public final class DebugAuditAdapter implements AuditListener {
 
     public boolean wasEventPassed() {
         return passedEvent;
+    }
+
+    public AuditEvent getAuditStartedEvent() {
+        return auditStartedEvent;
+    }
+
+    public AuditEvent getAuditFinishedEvent() {
+        return auditFinishedEvent;
     }
 
     public void resetListener() {
@@ -75,6 +89,7 @@ public final class DebugAuditAdapter implements AuditListener {
 
     @Override
     public void auditStarted(AuditEvent event) {
+        auditStartedEvent = event;
         called = true;
         if (event != null) {
             passedEvent = true;
@@ -92,6 +107,7 @@ public final class DebugAuditAdapter implements AuditListener {
 
     @Override
     public void auditFinished(AuditEvent event) {
+        auditFinishedEvent = event;
         called = true;
         if (event != null) {
             passedEvent = true;
