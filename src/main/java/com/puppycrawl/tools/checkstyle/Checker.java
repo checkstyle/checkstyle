@@ -217,24 +217,26 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
 
         // Prepare to start
         fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
+        final int errorCount;
+        try (AuditCompletion completion = this::fireAuditFinished) {
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fsc.beginProcessing(charset);
+            }
+
+            final List<File> targetFiles = files.stream()
+                    .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                    .toList();
+            processFiles(targetFiles);
+
+            // Finish up
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::finishProcessing);
+
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::destroy);
+
+            errorCount = counter.getCount();
         }
-
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .toList();
-        processFiles(targetFiles);
-
-        // Finish up
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
-        fireAuditFinished();
         return errorCount;
     }
 
@@ -296,10 +298,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 if (cacheFile != null) {
                     cacheFile.put(fileName, timestamp);
                 }
-                fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
-                fireFileFinished(fileName);
+                processFileWithEvents(file, fileName);
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
@@ -320,6 +319,21 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 // We need to catch all errors to put a reason failure (file name) in error
                 throw new Error(getLocalizedMessage("Checker.error", filePath), error);
             }
+        }
+    }
+
+    /**
+     * Processes a file and completes its audit notifications even when processing fails.
+     *
+     * @param file the file to process
+     * @param fileName the absolute file name
+     * @throws CheckstyleException if processing fails
+     */
+    private void processFileWithEvents(File file, String fileName) throws CheckstyleException {
+        fireFileStarted(fileName);
+        try (AuditCompletion completion = () -> fireFileFinished(fileName)) {
+            final SortedSet<Violation> fileMessages = processFile(file);
+            fireErrors(fileName, fileMessages);
         }
     }
 
@@ -666,6 +680,15 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 getLocalizedMessage("general.relativizePath",
                         fileName, basedir), exception);
         }
+    }
+
+    /** Completion notification that preserves processing failures during resource cleanup. */
+    @FunctionalInterface
+    private interface AuditCompletion extends AutoCloseable {
+
+        /** Sends the completion notification. */
+        @Override
+        void close();
     }
 
 }
