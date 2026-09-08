@@ -366,8 +366,7 @@ public final class CheckUtil {
     /**
      * Returns the access modifier of the surrounding "block".
      *
-     * @param node method, constructor, annotation field, or compact constructor declaration
-     *        to return the surrounding access modifier for
+     * @param node the node to return the access modifier for
      * @return the access modifier of the surrounding block
      */
     public static Optional<AccessModifierOption> getSurroundingAccessModifier(DetailAST node) {
@@ -381,8 +380,7 @@ public final class CheckUtil {
                     TokenTypes.INTERFACE_DEF,
                     TokenTypes.ANNOTATION_DEF,
                     TokenTypes.ENUM_DEF)) {
-                returnValue = Optional.ofNullable(
-                        getAccessModifierFromModifiersToken(token));
+                returnValue = Optional.ofNullable(getAccessModifierFromModifiersToken(token));
             }
             else if (type == TokenTypes.LITERAL_NEW) {
                 break;
