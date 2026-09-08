@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -260,7 +262,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
             for (Integer lineNo : emptyLinesToLog) {
-                log(getLastElementBeforeEmptyLines(ast, lineNo), MSG_MULTIPLE_LINES_INSIDE);
+                if (!isLineInsideNestedTypeOrAnonymousClass(ast, lineNo)) {
+                    final DetailAST elementBeforeEmptyLines = getLastElementBeforeEmptyLines(ast,
+                            lineNo);
+                    log(elementBeforeEmptyLines, MSG_MULTIPLE_LINES_INSIDE);
+                }
             }
         }
     }
@@ -313,6 +319,43 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             result = postFixAst;
         }
 
+        return result;
+    }
+
+    /**
+     * Checks whether a line is inside a nested type or anonymous class.
+     *
+     * @param ast AST to check
+     * @param lineNo line number to check
+     * @return true if a line is inside a nested type or anonymous class
+     */
+    private static boolean isLineInsideNestedTypeOrAnonymousClass(DetailAST ast, int lineNo) {
+        final Deque<DetailAST> nodesToCheck = new ArrayDeque<>();
+        for (DetailAST child = ast.getFirstChild();
+             child != null;
+             child = child.getNextSibling()) {
+            nodesToCheck.push(child);
+        }
+
+        boolean result = false;
+        while (!result && !nodesToCheck.isEmpty()) {
+            final DetailAST child = nodesToCheck.pop();
+            final int childType = child.getType();
+            final DetailAST objBlock = child.findFirstToken(TokenTypes.OBJBLOCK);
+            final boolean isAnonymousClass = childType == TokenTypes.LITERAL_NEW
+                    && objBlock != null;
+            if (isAnonymousClass || TokenUtil.isTypeDeclaration(childType)) {
+                result = child.getLineNo() <= lineNo
+                        && lineNo < objBlock.getLastChild().getLineNo();
+            }
+            else {
+                for (DetailAST grandChild = child.getFirstChild();
+                     grandChild != null;
+                     grandChild = grandChild.getNextSibling()) {
+                    nodesToCheck.push(grandChild);
+                }
+            }
+        }
         return result;
     }
 
