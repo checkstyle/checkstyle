@@ -16,6 +16,36 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>void close();</lineContent>
+    <details>
+      found   : @GuardedBy AuditCompletion
+      required: @GuardSatisfied AutoCloseable
+      Consequence: method in @GuardedBy AuditCompletion
+      void close(@GuardedBy AuditCompletion this)
+      cannot override method in @GuardedBy AutoCloseable
+      void close(@GuardSatisfied AutoCloseable this) throws @GuardedBy Exception
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/Checker.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public void close() {</lineContent>
+    <details>
+      found   : @GuardedBy Checker.@GuardedBy FileAuditCompletion
+      required: @GuardSatisfied AutoCloseable
+      Consequence: method in @GuardedBy Checker.@GuardedBy FileAuditCompletion
+      void close(@GuardedBy Checker.@GuardedBy FileAuditCompletion this)
+      cannot override method in @GuardedBy AutoCloseable
+      void close(@GuardSatisfied AutoCloseable this) throws @GuardedBy Exception
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>method toString is @SideEffectFree but calls getColumnNo which is @ReleasesNoLocks (weaker side effect guarantee)</message>
