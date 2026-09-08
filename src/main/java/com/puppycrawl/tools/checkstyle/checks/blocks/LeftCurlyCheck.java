@@ -313,7 +313,7 @@ public class LeftCurlyCheck
 
     /**
      * Verifies that a specified left curly brace is placed correctly
-     * according to policy.
+     * according to policy, using the code points of the line containing the brace.
      *
      * @param brace token for left curly brace
      * @param startToken token for start of expression
@@ -343,7 +343,7 @@ public class LeftCurlyCheck
      * Validate EOL case.
      *
      * @param brace brace AST
-     * @param braceLine line content
+     * @param braceLine code points of the line containing the brace
      */
     private void validateEol(DetailAST brace, int... braceLine) {
         if (CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
@@ -359,7 +359,7 @@ public class LeftCurlyCheck
      *
      * @param brace brace AST
      * @param startToken start Token
-     * @param braceLine content of line with Brace
+     * @param braceLine code points of the line containing the brace
      */
     private void validateNewLinePosition(DetailAST brace, DetailAST startToken, int... braceLine) {
         // not on the same line
