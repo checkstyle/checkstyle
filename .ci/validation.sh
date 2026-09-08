@@ -332,6 +332,7 @@ no-error-pmd)
   cd pmd
   mvn -e --no-transfer-progress verify --show-version --errors --batch-mode \
                 -DskipTests \
+                -DskipITs=true \
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
                 -Dpmd.skip=true \
