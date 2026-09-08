@@ -337,7 +337,6 @@ no-error-pmd)
                 -Dpmd.skip=true \
                 -Dcpd.skip=true \
                 -Djapicmp.skip=true \
-                -Dcyclonedx.skip=true \
                 -Ddokka.skip=true \
                 -Dcheckstyle.skip=false \
                 -Dpmd.build-tools.version="${PMD_BUILD_TOOLS_VERSION}" \
