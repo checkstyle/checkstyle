@@ -2,8 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="ReturnCount">
-      <property name="max" value="2"/>
-      <property name="maxForVoid" value="1"/>
+      <property name="max" value="3"/>
+      <property name="format" value="^signB$"/>
     </module>
   </module>
 </module>
@@ -22,14 +22,14 @@ public class Example3 {
         if (x < -2) { return -1; }
         return 0;
     }
-    // violation below 'max allowed for non-void methods/lambdas is 2'
+    // ok below, because 'signB' is ignored by 'format'
     public int signB(int x) {
         if (x < -2) { return -1; }
         if (x == 0) { return 0; }
         if (x > 2) { return 2; }
         return 1;
     }
-    // ok below, because non-void restriction is 2
+    // ok below, because non-void restriction is 3
     final Predicate<Integer> lambdaA = i -> {
         if (i > 5) { return true; }
         return false;
