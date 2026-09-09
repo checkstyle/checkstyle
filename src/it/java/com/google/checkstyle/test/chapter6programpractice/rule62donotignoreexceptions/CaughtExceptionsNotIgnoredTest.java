@@ -35,4 +35,10 @@ public class CaughtExceptionsNotIgnoredTest extends AbstractGoogleModuleTestSupp
         verifyWithWholeConfig(getPath("InputEmptyFinallyBlock.java"));
     }
 
+    @Test
+    public void testUnnamedCatchParameter() throws Exception {
+        verifyWithWholeConfig(
+                getNonCompilablePath("InputDoNotIgnoreExceptionUnnamedCatchParameter.java"));
+    }
+
 }
