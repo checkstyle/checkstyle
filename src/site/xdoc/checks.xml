@@ -1632,6 +1632,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/openjdkmethodparameteralignment.html#OpenjdkMethodParameterAlignment">
+                OpenjdkMethodParameterAlignment
+              </a>
+            </td>
+            <td>
+              Checks that the parameters of a wrapped method declaration follow one of the two forms
+              allowed by the OpenJDK style guidelines.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/operatorwrap.html#OperatorWrap">
                 OperatorWrap
               </a>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.OpenjdkMethodParameterAlignmentCheck"
+             name="OpenjdkMethodParameterAlignment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that the parameters of a wrapped method declaration follow one of the two forms
+ allowed by the OpenJDK style guidelines.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ The
+ &lt;a href="https://checkstyle.org/styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-method-declarations"&gt;
+ OpenJDK Java Style Guidelines&lt;/a&gt; allow a wrapped method declaration to be formatted
+ either by listing the parameters vertically, one per line, or by breaking the line and
+ indenting the continuation by eight extra spaces. This check validates a wrapped
+ declaration against those two forms:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ when every parameter that starts a new line is indented eight spaces past the declaration,
+ the declaration uses the eight extra spaces form and any number of parameters may share a
+ line;
+ &lt;/li&gt;
+ &lt;li&gt;
+ otherwise the parameters are expected to be listed vertically, that is, every parameter that
+ starts a new line is aligned with the first parameter and each line holds exactly one
+ parameter.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Declarations whose parameters all fit on a single line are ignored.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="METHOD_DEF,CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="method.parameter.alignment"/>
+            <message-key key="method.parameter.wrap"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

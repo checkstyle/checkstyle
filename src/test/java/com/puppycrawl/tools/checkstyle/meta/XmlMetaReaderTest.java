@@ -81,6 +81,11 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void test() {
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny()).hasSize(235);
+    }
+
+    @Test
     public void testDuplicatePackage() {
         final List<ModuleDetails> actual = XmlMetaReader
                 .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta");
@@ -91,6 +96,9 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
         assertWithMessage("Rescanning a scanned package should not change the modules")
                 .that(fullNames(actual))
                 .containsExactlyElementsIn(fullNames(ALL_MODULES));
+        assertThat(XmlMetaReader
+                .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta"))
+                .hasSize(235);
     }
 
     @Test
@@ -104,6 +112,8 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
         assertWithMessage("A nonexistent third party package should not change the modules")
                 .that(fullNames(actual))
                 .containsExactlyElementsIn(fullNames(ALL_MODULES));
+        assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny("DOES.NOT.EXIST"))
+                .hasSize(235);
     }
 
     @Test
