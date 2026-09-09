@@ -40,4 +40,9 @@ public class OverloadsNeverSplitTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputOverloadsNeverSplitRecords.java"));
     }
 
+    @Test
+    public void testOverloadDifferentModifiers() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverloadsNeverSplitDifferentModifier.java"));
+    }
+
 }
