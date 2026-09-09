@@ -203,7 +203,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <site.plugin.version>3.22.0</site.plugin.version>
-    <spotbugs.plugin.version>4.10.4.0</spotbugs.plugin.version>
+    <spotbugs.plugin.version>4.10.4.1</spotbugs.plugin.version>
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
     <pmd.version>7.27.0</pmd.version>
     <jacoco.plugin.version>0.8.15</jacoco.plugin.version>
@@ -1813,7 +1813,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.6.0</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8 ${surefire.options}</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
             <!-- Virtual AWT driver for GUI unit tests -->
@@ -1824,6 +1823,7 @@
             </java.awt.graphicsenv>
           </systemPropertyVariables>
           <argLine>
+            -Dfile.encoding=UTF-8 ${surefire.options}
             --add-exports=java.desktop/java.awt=ALL-UNNAMED
             --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
             --add-exports=java.desktop/sun.awt.image=ALL-UNNAMED

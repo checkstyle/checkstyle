@@ -64,4 +64,15 @@ public class NoCloneCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY),
+            "19:5: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoCloneCompactSourceFile.java"),
+                expected);
+    }
+
 }

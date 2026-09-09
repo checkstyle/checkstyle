@@ -57,6 +57,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.junitpioneer.jupiter.DefaultLocale;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -68,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecke
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 
+@DefaultLocale("en")
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
 public class MainTest {
 
