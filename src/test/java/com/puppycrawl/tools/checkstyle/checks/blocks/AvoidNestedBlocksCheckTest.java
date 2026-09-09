@@ -80,4 +80,29 @@ public class AvoidNestedBlocksCheckTest
                 .isEqualTo(expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "20:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputAvoidNestedBlocksCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileAllowInSwitchCase() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "20:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAvoidNestedBlocksCompactSourceFileAllowInSwitchCase.java"),
+                expected);
+    }
+
 }
