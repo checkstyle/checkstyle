@@ -2456,6 +2456,7 @@
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
+        <skipITs>true</skipITs>
         <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
