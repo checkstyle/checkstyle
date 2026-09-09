@@ -652,14 +652,6 @@
                     ConstructorsDeclarationGrouping</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ConstructorsDeclarationGrouping">
                   config</a>)
-                  <br />
-                  <br />
-                  Missing samples for overloaded methods and constructors that differ in
-                  modifiers, such as <code>static</code> or <code>private</code>.
-                  Until:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/21447">
-                    #21447
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit">
