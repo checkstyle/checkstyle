@@ -28,13 +28,12 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
-import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -364,21 +363,12 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBeginTreeClear() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(CustomImportOrderCheck.class);
-        checkConfig.addProperty("specialImportsRegExp", "com");
-        checkConfig.addProperty("separateLineBetweenGroups", "false");
-        checkConfig.addProperty("customImportOrderRules",
-            "STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final Checker checker = createChecker(checkConfig);
-        final String fileName1 = getPath("InputCustomImportOrderImportsContainingJava.java");
-        final String fileName2 = getPath("InputCustomImportOrderNoValid.java");
-        final File[] files = {
-            new File(fileName1),
-            new File(fileName2),
-        };
-        verify(checker, files, fileName1, expected);
+        final String fileName1 = getPath("InputCustomImportOrderBeginTreeClear.java");
+        final String fileName2 = getPath("InputCustomImportOrderBeginTreeClear2.java");
+        final List<String> expectedFirstInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParser(fileName1, fileName2,
+                expectedFirstInput, expectedSecondInput);
     }
 
     @Test
