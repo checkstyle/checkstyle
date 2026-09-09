@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_CUSTOM_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
 
 import org.junit.jupiter.api.Test;
@@ -49,12 +50,12 @@ public class ModifierOrderCheckTest
     @Test
     public void testItOne() throws Exception {
         final String[] expected = {
-            "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
-            "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "25:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "35:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
-            "40:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
-            "50:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
+            "17:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
+            "21:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "27:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "37:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
+            "42:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation2"),
+            "52:35: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MyAnnotation4"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderItOne.java"), expected);
@@ -64,8 +65,8 @@ public class ModifierOrderCheckTest
     public void testItTwo() throws Exception {
         final String[] expected = {
 
-            "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
-            "57:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
+            "17:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
+            "59:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "default"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderItTwo.java"), expected);
@@ -130,7 +131,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testSkipTypeAnnotationsOne() throws Exception {
         final String[] expected = {
-            "101:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
+            "103:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderTypeAnnotationsOne.java"),
@@ -148,7 +149,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testAnnotationOnAnnotationDeclaration() throws Exception {
         final String[] expected = {
-            "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
+            "11:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
@@ -157,12 +158,12 @@ public class ModifierOrderCheckTest
     @Test
     public void testModifierOrderSealedAndNonSealed() throws Exception {
         final String[] expected = {
-            "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "27:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "45:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
-            "51:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "54:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
-            "59:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
+            "12:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "29:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "47:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
+            "53:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "56:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+            "61:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderSealedAndNonSealed.java"), expected);
@@ -173,6 +174,31 @@ public class ModifierOrderCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderSealedAndNonSealedNoViolation.java"),
+                expected);
+    }
+
+    @Test
+    public void testModifierCustomOrder() throws Exception {
+        final String[] expected = {
+            "14:12: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "public"),
+            "17:12: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "private"),
+            "20:12: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "protected"),
+            "23:19: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "abstract"),
+            "26:22: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "transient"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderCustomOrder.java"),
+                expected);
+    }
+
+    @Test
+    public void testModifierCustomOrderTwo() throws Exception {
+        final String[] expected = {
+            "13:12: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@Deprecated"),
+            "19:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodsAnnotation"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputModifierOrderCustomOrderTwo.java"),
                 expected);
     }
 
