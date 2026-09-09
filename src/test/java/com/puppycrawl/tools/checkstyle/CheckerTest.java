@@ -26,6 +26,9 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAG
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -1067,6 +1070,54 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testXmlReportFinishedOnProcessingException() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CheckWhichThrowsError.class);
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(checkConfig);
+        final Checker checker = createChecker(createRootConfig(treewalkerConfig));
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+        checker.addListener(new XMLLogger(output, OutputStreamOptions.NONE));
+        final String filePath = getPath("InputChecker.java");
+
+        final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
+                () -> checker.process(List.of(new File(filePath))), "Exception is expected");
+
+        assertWithMessage("Processing failure must still be propagated")
+                .that(exception).hasCauseThat().isInstanceOf(IndexOutOfBoundsException.class);
+        assertWithMessage("XML report must close the file and audit after a failure")
+                .that(output.toString(StandardCharsets.UTF_8))
+                .endsWith("</file>" + System.lineSeparator()
+                        + "</checkstyle>" + System.lineSeparator());
+        checker.destroy();
+    }
+
+    @Test
+    public void testProcessingExceptionPreservedWhenCompletionFails() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CheckWhichThrowsError.class);
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(checkConfig);
+        final Checker checker = createChecker(createRootConfig(treewalkerConfig));
+        final AuditListener listener = mock();
+        final IllegalStateException fileFailure = new IllegalStateException("file completion");
+        final IllegalStateException auditFailure = new IllegalStateException("audit completion");
+        doThrow(fileFailure).when(listener).fileFinished(any());
+        doThrow(auditFailure).when(listener).auditFinished(any());
+        checker.addListener(listener);
+
+        final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
+                () -> checker.process(List.of(new File(getPath("InputChecker.java")))),
+                "Processing exception is expected");
+
+        assertWithMessage("Processing failure must remain the primary cause")
+                .that(exception).hasCauseThat().isInstanceOf(IndexOutOfBoundsException.class);
+        assertWithMessage("File completion failure must be suppressed")
+                .that(exception.getCause().getSuppressed()).asList().containsExactly(fileFailure);
+        assertWithMessage("Audit completion failure must be suppressed")
+                .that(exception.getSuppressed()).asList().containsExactly(auditFailure);
+        checker.destroy();
+    }
+
+    @Test
     public void testHaltOnException() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CheckWhichThrowsError.class);
@@ -1166,6 +1217,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+        checker.addListener(new XMLLogger(output, OutputStreamOptions.NONE));
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         final Error error =
@@ -1184,6 +1237,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // destroy is called by Main
         checker.destroy();
+
+        assertWithMessage("XML report must close the file and audit after an error")
+                .that(output.toString(StandardCharsets.UTF_8))
+                .endsWith("</file>" + System.lineSeparator()
+                        + "</checkstyle>" + System.lineSeparator());
 
         final Properties cache = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
