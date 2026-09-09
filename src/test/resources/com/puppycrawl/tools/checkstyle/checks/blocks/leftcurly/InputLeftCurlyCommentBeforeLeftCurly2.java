@@ -25,9 +25,11 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     private long[] countList;
 
     void method1() /* comment
-    comment */ { // ok until #11410
+    comment */ {
     }
+    // violation 2 lines above ''{' at column 16 should be on the previous line'
 
+    // violation 2 lines below ''{' at column 16 should be on the previous line'
     void method2() /********
     comment */ {
         if (!Arrays.equals(this.countList, countList)
@@ -36,13 +38,14 @@ public class InputLeftCurlyCommentBeforeLeftCurly2 {
     }
 
     void method3() /*****
-    ********/ { } // ok until #11410
-
+    ********/ { }
+    // violation above ''{' at column 15 should be on the previous line'
 
     InputLeftCurlyCommentBeforeLeftCurly2() /**************/ { }
 
     InputLeftCurlyCommentBeforeLeftCurly2(int data) /*
-     ****** comment *********/ { } // ok until #11410
+     ****** comment *********/ { }
+    // violation above ''{' at column 32 should be on the previous line'
 }
 
 class Class {
