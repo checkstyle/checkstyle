@@ -28,9 +28,9 @@ public class InputTryCatchIfElse2 {
 
     if (after) {
       System.out.println("after");
-    } else if (after) {} else if (after) {
+    } else if (after) {} else if (after) { // violation '.*'
       System.out.println("before");
-    } else if (!after) { /* foo */ } else {
+    } else if (!after) { /* foo */ } else { // violation '.*'
       System.out.println("before");
     }
 
