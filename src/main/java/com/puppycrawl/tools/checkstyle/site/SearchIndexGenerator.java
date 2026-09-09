@@ -47,6 +47,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.ParameterException;
+import picocli.CommandLine.Parameters;
+
 /**
  * Generates {@code search-index.json} from the Checkstyle XDoc source files.
  *
@@ -346,25 +351,29 @@ public final class SearchIndexGenerator {
      * @noinspectionreason UseOfSystemOutOrSystemErr - main method of a CLI utility
      */
     public static void main(String... args) throws IOException {
-        new SearchIndexGenerator().execute(args);
+        final CliOptions cliOptions = new CliOptions();
+        final CommandLine cmd = new CommandLine(cliOptions);
+        try {
+            cmd.parseArgs(args);
+            new SearchIndexGenerator().execute(cliOptions);
+        }
+        catch (ParameterException exc) {
+            throw new IllegalArgumentException(
+                    "Usage: SearchIndexGenerator <xdocsDir> <outputFilePath>", exc);
+        }
     }
 
     /**
      * Internal execution method to avoid static context for the logger.
      *
-     * @param args args[0] = path to src/xdocs, args[1] = output file path
+     * @param cliOptions with path to src/xdocs and output file path
      * @throws IOException on file write failure
-     * @throws IllegalArgumentException if args are missing
      * @throws IllegalStateException if xdocsDir is missing
      */
-    private void execute(String... args) throws IOException {
-        if (args.length < 2) {
-            throw new IllegalArgumentException(
-                    "Usage: SearchIndexGenerator <xdocsDir> <outputFilePath>");
-        }
+    private void execute(CliOptions cliOptions) throws IOException {
 
-        final Path xdocsPath = Path.of(args[0]);
-        final Path outputFilePath = Path.of(args[1]);
+        final Path xdocsPath = Path.of(cliOptions.xdocPath);
+        final Path outputFilePath = Path.of(cliOptions.outputFilePath);
         final File xdocsDir = xdocsPath.toFile();
 
         if (!Files.exists(xdocsPath)) {
@@ -1285,6 +1294,32 @@ public final class SearchIndexGenerator {
             result = Character.toUpperCase(input.charAt(0)) + input.substring(1);
         }
         return result;
+    }
+
+    /**
+     * Helper class encapsulating the command line positional parameters.
+     */
+    @Command(name = "java com.puppycrawl.tools.checkstyle.site.SearchIndexGenerator")
+    private static final class CliOptions {
+
+        /**
+         * The command line positional parameter to specify the path to src/xdocs.
+         */
+        @Parameters(index = "0", description = "Path to src/xdocs.")
+        private String xdocPath;
+
+        /**
+         * The command line positional parameter to specify the path to target/site.
+         */
+        @Parameters(index = "1", description = "Path to target/site.")
+        private String outputFilePath;
+
+        /**
+         * Creates a new instance.
+         */
+        private CliOptions() {
+            // no code by default
+        }
     }
 
 }
