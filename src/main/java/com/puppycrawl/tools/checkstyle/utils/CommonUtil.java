@@ -127,13 +127,13 @@ public final class CommonUtil {
         else {
             // normalize extensions so all of them have a leading dot
             final String[] withDotExtensions = new String[fileExtensions.length];
-            for (int i = 0; i < fileExtensions.length; i++) {
-                final String extension = fileExtensions[i];
+            for (int index = 0; index < fileExtensions.length; index++) {
+                final String extension = fileExtensions[index];
                 if (extension.startsWith(EXTENSION_SEPARATOR)) {
-                    withDotExtensions[i] = extension;
+                    withDotExtensions[index] = extension;
                 }
                 else {
-                    withDotExtensions[i] = EXTENSION_SEPARATOR + extension;
+                    withDotExtensions[index] = EXTENSION_SEPARATOR + extension;
                 }
             }
 
@@ -160,8 +160,8 @@ public final class CommonUtil {
      */
     public static boolean hasWhitespaceBefore(int index, String line) {
         boolean result = true;
-        for (int i = 0; i < index; i++) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+        for (int charIndex = 0; charIndex < index; charIndex++) {
+            if (!Character.isWhitespace(line.charAt(charIndex))) {
                 result = false;
                 break;
             }
@@ -180,8 +180,8 @@ public final class CommonUtil {
      */
     public static int lengthMinusTrailingWhitespace(String line) {
         int len = line.length();
-        for (int i = len - 1; i >= 0; i--) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+        for (int index = len - 1; index >= 0; index--) {
+            if (!Character.isWhitespace(line.charAt(index))) {
                 break;
             }
             len--;
@@ -467,11 +467,11 @@ public final class CommonUtil {
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
-            for (int i = 0; i <= matcher.groupCount(); i++) {
-                final String group = matcher.group(i);
+            for (int index = 0; index <= matcher.groupCount(); index++) {
+                final String group = matcher.group(index);
                 if (group != null) {
                     // $n expands comment match like in Pattern.subst().
-                    result = result.replaceAll("\\$" + i, Matcher.quoteReplacement(group));
+                    result = result.replaceAll("\\$" + index, Matcher.quoteReplacement(group));
                 }
             }
         }
@@ -531,12 +531,12 @@ public final class CommonUtil {
     public static boolean isIdentifier(String str) {
         boolean isIdentifier = !str.isEmpty();
 
-        for (int i = 0; isIdentifier && i < str.length(); i++) {
-            if (i == 0) {
+        for (int index = 0; isIdentifier && index < str.length(); index++) {
+            if (index == 0) {
                 isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));
             }
             else {
-                isIdentifier = Character.isJavaIdentifierPart(str.charAt(i));
+                isIdentifier = Character.isJavaIdentifierPart(str.charAt(index));
             }
         }
 

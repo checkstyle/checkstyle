@@ -693,16 +693,16 @@ public class ImportOrderCheck
 
         // find out what group this belongs in
         // loop over patterns and get index
-        for (int i = 0; i < patterns.length; i++) {
-            final Matcher matcher = patterns[i].matcher(name);
+        for (int index = 0; index < patterns.length; index++) {
+            final Matcher matcher = patterns[index].matcher(name);
             if (matcher.find()) {
                 if (matcher.start() < bestPos) {
-                    bestIndex = i;
+                    bestIndex = index;
                     bestEnd = matcher.end();
                     bestPos = matcher.start();
                 }
                 else if (matcher.start() == bestPos && matcher.end() > bestEnd) {
-                    bestIndex = i;
+                    bestIndex = index;
                     bestEnd = matcher.end();
                 }
             }
@@ -746,8 +746,8 @@ public class ImportOrderCheck
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
-        for (int i = 0; i < packageGroups.length; i++) {
-            String pkg = packageGroups[i];
+        for (int index = 0; index < packageGroups.length; index++) {
+            String pkg = packageGroups[index];
             final Pattern grp;
 
             // if the pkg name is the wildcard, make it match zero chars
@@ -771,7 +771,7 @@ public class ImportOrderCheck
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));
             }
 
-            patterns[i] = grp;
+            patterns[index] = grp;
         }
         return patterns;
     }
