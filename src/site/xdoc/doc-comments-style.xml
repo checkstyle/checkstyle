@@ -797,13 +797,12 @@
                   config</a>)
                   <br/>
                   <span class="wrapper inline">
-                    <img
-                        src="images/ban_red.png"
-                        alt="" />
+                    <img src="images/ok_green.png" alt=""/>
                   </span>
-                  Guideline that multiple <code>@see</code> tags should be ordered by Javadoc
-                    search order is not covered until:
-                    <a href="https://github.com/checkstyle/checkstyle/issues/19949">#19949</a>.
+                  <a href="checks/javadoc/javadocseetagorder.html#JavadocSeeTagOrder">
+                    JavadocSeeTagOrder</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocSeeTagOrder">
+                  config</a>)
                   <br/>
                   <span class="wrapper inline">
                     <img
