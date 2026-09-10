@@ -90,13 +90,13 @@ public class LineLengthCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        for (int i = 0; i < fileText.size(); i++) {
-            final String line = fileText.get(i);
+        for (int index = 0; index < fileText.size(); index++) {
+            final String line = fileText.get(index);
             final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.codePointCount(0, line.length()), getTabWidth());
 
             if (realLength > max && !ignorePattern.matcher(line).find()) {
-                log(i + 1, MSG_KEY, max, realLength);
+                log(index + 1, MSG_KEY, max, realLength);
             }
         }
     }

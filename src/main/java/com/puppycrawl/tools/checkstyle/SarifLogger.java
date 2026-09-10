@@ -499,8 +499,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     public static String escape(String value) {
         final int length = value.length();
         final StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            final char chr = value.charAt(i);
+        for (int index = 0; index < length; index++) {
+            final char chr = value.charAt(index);
             final String replacement = switch (chr) {
                 case '"' -> "\\\"";
                 case '\\' -> TWO_BACKSLASHES;

@@ -407,9 +407,9 @@ public class ScopeUtilTest
     private static DetailAstImpl getNode(int... nodeTypes) {
         DetailAstImpl ast = new DetailAstImpl();
         ast.setType(nodeTypes[0]);
-        for (int i = 1; i < nodeTypes.length; i++) {
+        for (int index = 1; index < nodeTypes.length; index++) {
             final DetailAstImpl astChild = new DetailAstImpl();
-            astChild.setType(nodeTypes[i]);
+            astChild.setType(nodeTypes[index]);
             ast.addChild(astChild);
             ast = astChild;
         }

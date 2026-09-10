@@ -95,9 +95,9 @@ public class BaseCellEditor implements CellEditor {
         final Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == CellEditorListener.class) {
-                ((CellEditorListener) listeners[i + 1]).editingStopped(new ChangeEvent(this));
+        for (int index = listeners.length - 2; index >= 0; index -= 2) {
+            if (listeners[index] == CellEditorListener.class) {
+                ((CellEditorListener) listeners[index + 1]).editingStopped(new ChangeEvent(this));
             }
         }
     }
@@ -113,9 +113,9 @@ public class BaseCellEditor implements CellEditor {
         final Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == CellEditorListener.class) {
-                ((CellEditorListener) listeners[i + 1]).editingCanceled(new ChangeEvent(this));
+        for (int index = listeners.length - 2; index >= 0; index -= 2) {
+            if (listeners[index] == CellEditorListener.class) {
+                ((CellEditorListener) listeners[index + 1]).editingCanceled(new ChangeEvent(this));
             }
         }
     }
