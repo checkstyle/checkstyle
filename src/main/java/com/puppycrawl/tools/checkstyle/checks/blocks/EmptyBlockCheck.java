@@ -209,8 +209,8 @@ public class EmptyBlockCheck
      */
     private boolean checkIsAllLinesAreWhitespace(int lineFrom, int lineTo) {
         boolean result = true;
-        for (int i = lineFrom; i < lineTo - 1; i++) {
-            if (!CodePointUtil.isBlank(getLineCodePoints(i))) {
+        for (int index = lineFrom; index < lineTo - 1; index++) {
+            if (!CodePointUtil.isBlank(getLineCodePoints(index))) {
                 result = false;
                 break;
             }

@@ -40,10 +40,10 @@ public class ReverseListIteratorTest {
                 new TestNode());
 
         try (ReverseListIterator iterator = new ReverseListIterator(nodes)) {
-            for (int i = nodes.size() - 1; i >= 0; i--) {
+            for (int index = nodes.size() - 1; index >= 0; index--) {
                 assertWithMessage("Invalid node")
                         .that(iterator.next())
-                        .isEqualTo(nodes.get(i));
+                        .isEqualTo(nodes.get(index));
             }
             assertWithMessage("Node should be null")
                     .that(iterator.next())

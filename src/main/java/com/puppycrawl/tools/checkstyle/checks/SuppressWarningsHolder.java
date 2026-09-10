@@ -404,7 +404,7 @@ public class SuppressWarningsHolder
      */
     private static DetailAST getNthChild(DetailAST ast, int index) {
         DetailAST child = ast.getFirstChild();
-        for (int i = 0; i < index && child != null; i++) {
+        for (int childIndex = 0; childIndex < index && child != null; childIndex++) {
             child = child.getNextSibling();
         }
         return child;

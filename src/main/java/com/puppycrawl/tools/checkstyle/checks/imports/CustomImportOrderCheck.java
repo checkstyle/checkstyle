@@ -662,9 +662,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
         final String separator = DOMAIN_SEPARATOR;
         final String[] import1Tokens = import1.split(separator, -1);
         final String[] import2Tokens = import2.split(separator, -1);
-        for (int i = 0; i != import1Tokens.length && i != import2Tokens.length; i++) {
-            final String import1Token = import1Tokens[i];
-            final String import2Token = import2Tokens[i];
+        for (int index = 0; index != import1Tokens.length && index != import2Tokens.length; index++) {
+            final String import1Token = import1Tokens[index];
+            final String import2Token = import2Tokens[index];
             result = import1Token.compareTo(import2Token);
             if (result != 0) {
                 break;
@@ -690,9 +690,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
         int result = 0;
         final String[] lines = getLines();
 
-        for (int i = fromLineNo + 1; i <= toLineNo - 1; i++) {
+        for (int index = fromLineNo + 1; index <= toLineNo - 1; index++) {
             // "- 1" because the numbering is one-based
-            if (CommonUtil.isBlank(lines[i - 1])) {
+            if (CommonUtil.isBlank(lines[index - 1])) {
                 result++;
             }
         }

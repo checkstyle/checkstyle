@@ -88,8 +88,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     throws Exception {
         String expectedContents = readFile(expectedOutputFile);
 
-        for (int i = 0; i < messages.length; i++) {
-            expectedContents = expectedContents.replace("$" + i, messages[i]);
+        for (int index = 0; index < messages.length; index++) {
+            expectedContents = expectedContents.replace("$" + index, messages[index]);
         }
 
         final Document expectedDocument = XmlUtil.getRawXml("audit output", expectedContents,
@@ -231,8 +231,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     .that(actual)
                     .isNotNull();
 
-            for (int i = 0; i < expected.getLength(); i++) {
-                verifyXmlAttribute(expected.item(i), actual.item(i), path);
+            for (int index = 0; index < expected.getLength(); index++) {
+                verifyXmlAttribute(expected.item(index), actual.item(index), path);
             }
 
             assertThat(actual.getLength())
