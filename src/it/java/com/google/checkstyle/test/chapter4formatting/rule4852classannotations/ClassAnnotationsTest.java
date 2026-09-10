@@ -122,4 +122,14 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedAnnotationOnAnnotationField.java"));
     }
 
+    @Test
+    public void testModuleAnnotationValid() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("module-info/valid/module-info.java"));
+    }
+
+    @Test
+    public void testModuleAnnotationViolation() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("module-info/violation/module-info.java"));
+    }
+
 }
