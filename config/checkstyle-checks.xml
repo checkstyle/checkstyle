@@ -296,6 +296,7 @@
       <property name="tokens" value="CTOR_DEF"/>
       <property name="tokens" value="RECORD_DEF"/>
       <property name="tokens" value="COMPACT_CTOR_DEF"/>
+      <property name="tokens" value="MODULE_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
     </module>
     <module name="AnnotationOnSameLine">

@@ -146,6 +146,8 @@ public String getNameIfPresent() { ... }
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
                   .
               </td>
               <td>
@@ -169,6 +171,8 @@ public String getNameIfPresent() { ... }
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
                   .
               </td>
               <td>6.0</td>
