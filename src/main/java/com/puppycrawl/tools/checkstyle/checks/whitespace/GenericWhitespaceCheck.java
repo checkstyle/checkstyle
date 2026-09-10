@@ -357,8 +357,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, int... line) {
         boolean result = true;
-        for (int i = fromIndex; i < toIndex; i++) {
-            if (!CommonUtil.isCodePointWhitespace(line, i)) {
+        for (int index = fromIndex; index < toIndex; index++) {
+            if (!CommonUtil.isCodePointWhitespace(line, index)) {
                 result = false;
                 break;
             }

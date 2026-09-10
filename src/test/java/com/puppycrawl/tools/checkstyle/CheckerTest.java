@@ -1607,10 +1607,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .toList();
             Arrays.sort(expected);
 
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = "[ERROR] " + path + ":" + expected[i];
-                assertWithMessage("error message %s", i)
-                        .that(actual.get(i))
+            for (int index = 0; index < expected.length; index++) {
+                final String expectedResult = "[ERROR] " + path + ":" + expected[index];
+                assertWithMessage("error message %s", index)
+                        .that(actual.get(index))
                         .isEqualTo(expectedResult);
             }
 

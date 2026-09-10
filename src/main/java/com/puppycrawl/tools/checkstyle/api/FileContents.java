@@ -184,8 +184,8 @@ public final class FileContents implements CommentListener {
         else {
             returnValue = new String[endLineNo - startLineNo + 1];
             returnValue[0] = line(startLineNo - 1).substring(startColNo);
-            for (int i = startLineNo; i < endLineNo; i++) {
-                returnValue[i - startLineNo + 1] = line(i);
+            for (int index = startLineNo; index < endLineNo; index++) {
+                returnValue[index - startLineNo + 1] = line(index);
             }
             returnValue[returnValue.length - 1] = line(endLineNo - 1).substring(0,
                     endColNo + 1);
