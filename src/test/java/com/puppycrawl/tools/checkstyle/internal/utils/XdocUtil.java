@@ -216,8 +216,8 @@ public final class XdocUtil {
 
             final NodeList nodeList = document.getElementsByTagName("section");
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                final Node currentNode = nodeList.item(i);
+            for (int index = 0; index < nodeList.getLength(); index++) {
+                final Node currentNode = nodeList.item(index);
                 if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                     final Element module = (Element) currentNode;
                     final String moduleName = module.getAttribute("name");

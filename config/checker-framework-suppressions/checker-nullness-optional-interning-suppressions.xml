@@ -337,28 +337,28 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>else if (ctx.children.get(i) == expression) {</lineContent>
+    <lineContent>else if (ctx.children.get(index) == expression) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>else if (ctx.children.get(i) == expression) {</lineContent>
+    <lineContent>else if (ctx.children.get(index) == expression) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (ctx.children.get(i) == rbrack) {</lineContent>
+    <lineContent>if (ctx.children.get(index) == rbrack) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (ctx.children.get(i) == rbrack) {</lineContent>
+    <lineContent>if (ctx.children.get(index) == rbrack) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -8146,7 +8146,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter element of XmlMetaReader.getAttributeValue.</message>
-    <lineContent>listContent.add(getAttributeValue((Element) nodeList.item(j), attribute));</lineContent>
+    <lineContent>listContent.add(getAttributeValue((Element) nodeList.item(index), attribute));</lineContent>
     <details>
       found   : @Initialized @Nullable Element
       required: @Initialized @NonNull Element
@@ -8178,15 +8178,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference children.item(i)</message>
-    <lineContent>if (children.item(i).getParentNode().equals(element)) {</lineContent>
+    <message>dereference of possibly-null reference children.item(index)</message>
+    <lineContent>if (children.item(index).getParentNode().equals(element)) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference children.item(i).getParentNode()</message>
-    <lineContent>if (children.item(i).getParentNode().equals(element)) {</lineContent>
+    <message>dereference of possibly-null reference children.item(index).getParentNode()</message>
+    <lineContent>if (children.item(index).getParentNode().equals(element)) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

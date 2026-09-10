@@ -441,8 +441,8 @@ public class CheckstyleAntTask extends Task {
         }
 
         // override with properties specified in subelements
-        for (Property p : overrideProps) {
-            returnValue.setProperty(p.getKey(), p.getValue());
+        for (Property property : overrideProps) {
+            returnValue.setProperty(property.getKey(), property.getValue());
         }
 
         return returnValue;
@@ -468,9 +468,9 @@ public class CheckstyleAntTask extends Task {
                         err, OutputStreamOptions.CLOSE);
             }
             else {
-                for (int i = 0; i < formatterCount; i++) {
-                    final Formatter formatter = formatters.get(i);
-                    listeners[i] = formatter.createListener(this);
+                for (int index = 0; index < formatterCount; index++) {
+                    final Formatter formatter = formatters.get(index);
+                    listeners[index] = formatter.createListener(this);
                 }
             }
         }
@@ -514,9 +514,9 @@ public class CheckstyleAntTask extends Task {
     private List<Path> scanPaths() {
         final List<Path> allFiles = new ArrayList<>();
 
-        for (int i = 0; i < paths.size(); i++) {
-            final org.apache.tools.ant.types.Path currentPath = paths.get(i);
-            final List<Path> pathFiles = scanPath(currentPath, i + 1);
+        for (int index = 0; index < paths.size(); index++) {
+            final org.apache.tools.ant.types.Path currentPath = paths.get(index);
+            final List<Path> pathFiles = scanPath(currentPath, index + 1);
             allFiles.addAll(pathFiles);
         }
 
@@ -567,10 +567,10 @@ public class CheckstyleAntTask extends Task {
     protected List<File> scanFileSets() {
         final List<Path> allFiles = new ArrayList<>();
 
-        for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fileSet = fileSets.get(i);
+        for (int index = 0; index < fileSets.size(); index++) {
+            final FileSet fileSet = fileSets.get(index);
             final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, i);
+            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, index);
             allFiles.addAll(scannedFiles);
         }
 

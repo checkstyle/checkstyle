@@ -193,8 +193,8 @@ public class JavadocContentLocationCheck extends AbstractCheck {
     private static int findIndexOfFirstNonBlankLine(String commentContent) {
         int lineNo = 0;
         boolean noContent = true;
-        for (int i = 0; i < commentContent.length(); i++) {
-            final char character = commentContent.charAt(i);
+        for (int index = 0; index < commentContent.length(); index++) {
+            final char character = commentContent.charAt(index);
             if (character == '\n') {
                 ++lineNo;
             }

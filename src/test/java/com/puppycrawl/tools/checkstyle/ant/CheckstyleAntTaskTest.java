@@ -652,11 +652,11 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> expected = readWholeFile(
             new File(getPath("ExpectedCheckstyleAntTaskXmlOutput.xml")));
         final List<String> actual = readWholeFile(outputFile);
-        for (int i = 0; i < expected.size(); i++) {
-            final String line = expected.get(i);
+        for (int index = 0; index < expected.size(); index++) {
+            final String line = expected.get(index);
             if (!line.startsWith("<checkstyle version") && !line.startsWith("<file")) {
                 assertWithMessage("Content of file with violations differs from expected")
-                        .that(actual.get(i))
+                        .that(actual.get(index))
                         .isEqualTo(line);
             }
         }
@@ -939,9 +939,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(loggedMessages)
                 .hasSize(expectedList.size());
 
-        for (int i = 0; i < expectedList.size(); i++) {
-            final MessageLevelPair expected = expectedList.get(i);
-            final MessageLevelPair actual = loggedMessages.get(i);
+        for (int index = 0; index < expectedList.size(); index++) {
+            final MessageLevelPair expected = expectedList.get(index);
+            final MessageLevelPair actual = loggedMessages.get(index);
             assertWithMessage("Log messages should match")
                     .that(actual.getMsg())
                     .matches(expected.getMsg());

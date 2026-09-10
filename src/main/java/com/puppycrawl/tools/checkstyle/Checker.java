@@ -537,13 +537,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     public final void setFileExtensions(String... extensions) {
         if (extensions != null) {
             fileExtensions = new String[extensions.length];
-            for (int i = 0; i < extensions.length; i++) {
-                final String extension = extensions[i];
+            for (int index = 0; index < extensions.length; index++) {
+                final String extension = extensions[index];
                 if (extension.startsWith(EXTENSION_SEPARATOR)) {
-                    fileExtensions[i] = extension;
+                    fileExtensions[index] = extension;
                 }
                 else {
-                    fileExtensions[i] = EXTENSION_SEPARATOR + extension;
+                    fileExtensions[index] = EXTENSION_SEPARATOR + extension;
                 }
             }
         }
