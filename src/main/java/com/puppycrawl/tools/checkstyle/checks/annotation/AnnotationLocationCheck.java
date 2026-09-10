@@ -165,6 +165,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.MODULE_DEF,
         };
     }
 
@@ -183,6 +184,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.MODULE_DEF,
         };
     }
 
