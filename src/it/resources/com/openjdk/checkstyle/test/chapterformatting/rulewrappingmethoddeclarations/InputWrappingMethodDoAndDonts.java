@@ -46,13 +46,13 @@ public class InputWrappingMethodDoAndDonts {
                        double aDouble) {
         }
 
-        // not covered until https://github.com/checkstyle/checkstyle/issues/20639
+        // not covered until https://github.com/checkstyle/checkstyle/issues/21547
         public void someMethod2(String aString,
                        List<Map<Integer, StringBuffer>> aListOfMaps,
                        Map<String, String> aMap) throws InterruptedException {
         }
 
-        // not covered until https://github.com/checkstyle/checkstyle/issues/20639
+        // not covered until https://github.com/checkstyle/checkstyle/issues/21547
         public void someMethod3(String aString,
                        List<Integer> aList,
                        Map<String, String> aMap)
