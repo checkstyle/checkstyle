@@ -310,6 +310,8 @@
           <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
           <item name="NumericalPrefixesInfixesSuffixesCharacterCase"
                 href="checks/misc/numericalprefixesinfixessuffixescharactercase.html"/>
+          <item name="OpenjdkMethodThrowsAlignmentCheck"
+                href="checks/misc/openjdkmethodthrowsalignment.html"/>
           <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
           <item name="OuterTypeFilename" href="checks/misc/outertypefilename.html"/>
           <item name="TodoComment" href="checks/misc/todocomment.html"/>
