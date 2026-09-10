@@ -48,9 +48,9 @@ public class IndentLevel {
      */
     public IndentLevel(IndentLevel base, int... offsets) {
         final BitSet src = base.levels;
-        for (int i = src.nextSetBit(0); i >= 0; i = src.nextSetBit(i + 1)) {
+        for (int index = src.nextSetBit(0); index >= 0; index = src.nextSetBit(index + 1)) {
             for (int offset : offsets) {
-                levels.set(i + offset);
+                levels.set(index + offset);
             }
         }
     }
@@ -150,12 +150,12 @@ public class IndentLevel {
         }
         else {
             final StringBuilder sb = new StringBuilder(50);
-            for (int i = levels.nextSetBit(0); i >= 0;
-                 i = levels.nextSetBit(i + 1)) {
+            for (int index = levels.nextSetBit(0); index >= 0;
+                 index = levels.nextSetBit(index + 1)) {
                 if (!sb.isEmpty()) {
                     sb.append(", ");
                 }
-                sb.append(i);
+                sb.append(index);
             }
             result = sb.toString();
         }

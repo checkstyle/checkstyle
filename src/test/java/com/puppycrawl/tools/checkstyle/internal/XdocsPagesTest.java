@@ -1556,8 +1556,8 @@ public class XdocsPagesTest {
         if (value != null && Array.getLength(value) > 0) {
             final String[] newArray = new String[Array.getLength(value)];
 
-            for (int i = 0; i < newArray.length; i++) {
-                newArray[i] = ((Pattern) Array.get(value, i)).pattern();
+            for (int index = 0; index < newArray.length; index++) {
+                newArray[index] = ((Pattern) Array.get(value, index)).pattern();
             }
 
             result = Arrays.toString(newArray).replace("[", "").replace("]", "");
@@ -1741,8 +1741,8 @@ public class XdocsPagesTest {
 
         final StringBuilder expectedText = new StringBuilder(120);
 
-        for (String s : list) {
-            expectedText.append(s)
+        for (String message : list) {
+            expectedText.append(message)
                     .append('\n');
         }
 
@@ -1952,9 +1952,9 @@ public class XdocsPagesTest {
         final Set<String> result = new TreeSet<>();
         final PropertyDescriptor[] map = PropertyUtils.getPropertyDescriptors(clss);
 
-        for (PropertyDescriptor p : map) {
-            if (p.getWriteMethod() != null) {
-                result.add(p.getName());
+        for (PropertyDescriptor descriptor : map) {
+            if (descriptor.getWriteMethod() != null) {
+                result.add(descriptor.getName());
             }
         }
 

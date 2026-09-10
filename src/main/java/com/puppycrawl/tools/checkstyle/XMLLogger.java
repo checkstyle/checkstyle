@@ -265,8 +265,8 @@ public final class XMLLogger
      */
     public static String encode(String value) {
         final StringBuilder sb = new StringBuilder(256);
-        for (int i = 0; i < value.length(); i++) {
-            final char chr = value.charAt(i);
+        for (int index = 0; index < value.length(); index++) {
+            final char chr = value.charAt(index);
             switch (chr) {
                 case '<' -> sb.append("&lt;");
                 case '>' -> sb.append("&gt;");

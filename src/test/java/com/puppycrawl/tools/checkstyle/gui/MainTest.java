@@ -48,8 +48,8 @@ public class MainTest extends AbstractGuiTestSupport {
     @ValueSource(strings = {";", "InputMain.java"})
     public void testMain(String argList) throws Exception {
         final String[] args = argList.split(";");
-        for (int i = 0; i < args.length; i++) {
-            args[i] = getPath(args[i]);
+        for (int index = 0; index < args.length; index++) {
+            args[index] = getPath(args[index]);
         }
 
         // Create the main window

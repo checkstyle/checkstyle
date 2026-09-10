@@ -299,8 +299,8 @@ public class SuppressionCommentFilter
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());
-            for (int i = 1; i < text.length; i++) {
-                tagCommentLine(text[i], startLineNo + i, 0);
+            for (int index = 1; index < text.length; index++) {
+                tagCommentLine(text[index], startLineNo + index, 0);
             }
         }
     }
