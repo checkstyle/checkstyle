@@ -10,6 +10,16 @@ name: "Linkcheck on Comment"
 on:
   issue_comment:
     types: [ created ]
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: 'PR number'
+        required: true
+        type: string
+      trigger-phrase:
+        description: 'Comment phrase that normally triggers this workflow'
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -17,24 +27,25 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.issue.number || github.ref }}
+  group: ${{ github.workflow }}-${{ inputs.pr-number || github.event.issue.number || github.ref }}
   cancel-in-progress: false
 
 jobs:
   run_linkcheck:
     if: >-
       github.repository == 'checkstyle/checkstyle'
-      && github.event.issue.pull_request != null
-      && (contains(github.event.comment.body, 'Github, validate links')
-          || contains(github.event.comment.body, 'GitHub, validate links'))
-      && contains(fromJson('["OWNER","MEMBER","COLLABORATOR"]'),
-                  github.event.comment.author_association)
+      && (github.event.issue.pull_request != null || inputs.pr-number != '')
+      && (contains(inputs.trigger-phrase || github.event.comment.body, 'Github, validate links')
+          || contains(inputs.trigger-phrase || github.event.comment.body, 'GitHub, validate links'))
+      && (github.event_name == 'workflow_dispatch'
+          || contains(fromJson('["OWNER","MEMBER","COLLABORATOR"]'),
+                      github.event.comment.author_association))
     runs-on: ubuntu-24.04
     steps:
       - name: Download checkstyle for PR
         uses: actions/checkout@v7
         with:
-          ref: refs/pull/${{ github.event.issue.number }}/head
+          ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
 
       - name: Set up JDK 21
         uses: actions/setup-java@v6.0.0
@@ -85,7 +96,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
-          issue-number: ${{ github.event.issue.number }}
+          issue-number: ${{ inputs.pr-number || github.event.issue.number }}
           body-path: .ci-temp/message
 
       - name: Fail if linkcheck failed
