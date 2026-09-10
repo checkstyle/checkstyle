@@ -264,10 +264,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static String getAttributeText(String nodeName, NamedNodeMap attributes) {
         final StringBuilder result = new StringBuilder(20);
 
-        for (int i = 0; i < attributes.getLength(); i++) {
+        for (int index = 0; index < attributes.getLength(); index++) {
             result.append(' ');
 
-            final Node attribute = attributes.item(i);
+            final Node attribute = attributes.item(index);
             final String attrName = attribute.getNodeName();
             final String attrValue;
 

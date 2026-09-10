@@ -266,8 +266,8 @@ public class SuppressWithNearbyCommentFilter
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo);
-            for (int i = 1; i < text.length; i++) {
-                tagCommentLine(text[i], startLineNo + i);
+            for (int index = 1; index < text.length; index++) {
+                tagCommentLine(text[index], startLineNo + index);
             }
         }
     }

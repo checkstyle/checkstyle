@@ -134,8 +134,8 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
     private static int getLastLeadingAsteriskPosition(String text) {
         int index = -1;
 
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) != '*') {
+        for (int charIndex = 0; charIndex < text.length(); charIndex++) {
+            if (text.charAt(charIndex) != '*') {
                 break;
             }
             index++;

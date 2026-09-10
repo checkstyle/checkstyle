@@ -1718,10 +1718,10 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeCastParameters(
             JavaLanguageParser.TypeCastParametersContext ctx) {
         final DetailAstImpl typeType = visit(ctx.typeType(0));
-        for (int i = 0; i < ctx.BAND().size(); i++) {
+        for (int index = 0; index < ctx.BAND().size(); index++) {
             addLastSibling(typeType, create(TokenTypes.TYPE_EXTENSION_AND,
-                                (Token) ctx.BAND(i).getPayload()));
-            addLastSibling(typeType, visit(ctx.typeType(i + 1)));
+                                (Token) ctx.BAND(index).getPayload()));
+            addLastSibling(typeType, visit(ctx.typeType(index + 1)));
         }
         return typeType;
     }
@@ -1756,9 +1756,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl parameters = createImaginary(TokenTypes.PARAMETERS);
         parameters.addChild(createLambdaParameter(ctx.id(0)));
 
-        for (int i = 0; i < ctx.COMMA().size(); i++) {
-            parameters.addChild(create(ctx.COMMA(i)));
-            parameters.addChild(createLambdaParameter(ctx.id(i + 1)));
+        for (int index = 0; index < ctx.COMMA().size(); index++) {
+            parameters.addChild(create(ctx.COMMA(index)));
+            parameters.addChild(createLambdaParameter(ctx.id(index + 1)));
         }
         return parameters;
     }
@@ -1861,16 +1861,16 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final JavaLanguageParser.ExpressionContext expression = ctx.expression();
         final TerminalNode rbrack = ctx.RBRACK();
         // child[0] is LBRACK
-        for (int i = 1; i < ctx.children.size(); i++) {
-            if (ctx.children.get(i) == rbrack) {
+        for (int index = 1; index < ctx.children.size(); index++) {
+            if (ctx.children.get(index) == rbrack) {
                 arrayDeclarator.addChild(create(rbrack));
             }
-            else if (ctx.children.get(i) == expression) {
+            else if (ctx.children.get(index) == expression) {
                 // Handle '[8]', etc.
                 arrayDeclarator.addChild(visit(expression));
             }
             else {
-                addLastSibling(arrayDeclarator, visit(ctx.children.get(i)));
+                addLastSibling(arrayDeclarator, visit(ctx.children.get(index)));
             }
         }
         return arrayDeclarator;
@@ -1938,9 +1938,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl firstTypeArgument = createImaginary(TokenTypes.TYPE_ARGUMENT);
         firstTypeArgument.addChild(firstIdent);
 
-        for (int i = 0; i < ctx.COMMA().size(); i++) {
-            addLastSibling(firstTypeArgument, create(ctx.COMMA(i)));
-            final DetailAstImpl ident = visit(ctx.typeType(i + 1));
+        for (int index = 0; index < ctx.COMMA().size(); index++) {
+            addLastSibling(firstTypeArgument, create(ctx.COMMA(index)));
+            final DetailAstImpl ident = visit(ctx.typeType(index + 1));
             final DetailAstImpl typeArgument = createImaginary(TokenTypes.TYPE_ARGUMENT);
             typeArgument.addChild(ident);
             addLastSibling(firstTypeArgument, typeArgument);

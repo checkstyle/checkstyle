@@ -339,7 +339,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * @param count Count of variables to be popped from currentVariables
      */
     private void popCurrentVariables(int count) {
-        for (int i = 0; i < count; i++) {
+        for (int index = 0; index < count; index++) {
             getCurrentVariables().pop();
         }
     }
