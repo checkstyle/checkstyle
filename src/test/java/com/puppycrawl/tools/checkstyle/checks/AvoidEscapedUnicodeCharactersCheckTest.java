@@ -580,10 +580,10 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         }
 
         // Replacing duplications like "\\uF{3}9" with "\\uFFF9"
-        for (int i = 4; i > 1; i--) {
-            final String regex = "([A-F])\\{" + i + "}";
-            String replacement = "$1$1{" + (i - 1) + "}";
-            if (i == 2) {
+        for (int index = 4; index > 1; index--) {
+            final String regex = "([A-F])\\{" + index + "}";
+            String replacement = "$1$1{" + (index - 1) + "}";
+            if (index == 2) {
                 replacement = "$1$1";
             }
             expression = expression.replaceAll(regex, replacement);
@@ -593,11 +593,11 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final List<String> expressionParts = Splitter.on("|").splitToList(expression);
         final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[\\dA-F]{4}$");
         String lastChar = null;
-        for (int i = 0; i < expressionParts.size(); i++) {
-            final String currentChar = expressionParts.get(i);
+        for (int index = 0; index < expressionParts.size(); index++) {
+            final String currentChar = expressionParts.get(index);
             final Matcher matcher = unicodeCharPattern.matcher(currentChar);
             if (!matcher.matches()) {
-                final String message = "Character '" + currentChar + "' (at position " + i
+                final String message = "Character '" + currentChar + "' (at position " + index
                         + ") doesn't match the pattern";
                 assertWithMessage(message)
                         .that(matcher.matches())
@@ -605,7 +605,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             }
             if (lastChar != null) {
                 final String message = "Character '" + lastChar + "' should be after '"
-                        + currentChar + "', position: " + i;
+                        + currentChar + "', position: " + index;
                 assertWithMessage(message)
                         .that(lastChar.compareTo(currentChar) < 0)
                         .isTrue();

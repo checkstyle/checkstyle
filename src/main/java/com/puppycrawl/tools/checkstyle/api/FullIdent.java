@@ -190,7 +190,7 @@ public final class FullIdent {
     private static void appendBrackets(FullIdent full, DetailAST ast) {
         final int bracketCount =
                 ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
-        for (int i = 0; i < bracketCount; i++) {
+        for (int index = 0; index < bracketCount; index++) {
             full.append("[]");
         }
     }
