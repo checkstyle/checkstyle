@@ -49,6 +49,16 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "10:26: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoArrayTrailingCommaCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final NoArrayTrailingCommaCheck check = new NoArrayTrailingCommaCheck();
         assertWithMessage("Acceptable tokens should not be null")
