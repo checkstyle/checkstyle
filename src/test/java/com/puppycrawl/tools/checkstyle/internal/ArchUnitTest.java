@@ -42,34 +42,50 @@ public class ArchUnitTest {
      * has been omitted as line number can change with modifications to the file.
      */
     private static final List<String> API_PACKAGE_SUPPRESSION_DETAILS = List.of(
-        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang"
-            + ".String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
-            + ".EMPTY_STRING_ARRAY>",
-        "Constructor <com.puppycrawl.tools.checkstyle.api.Violation.<init>(int, int, int, int,"
-            + " java.lang.String, java.lang.String, [Ljava.lang.Object;,"
-            + " com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String,"
-            + " java.lang.Class, java.lang.String)> calls method"
-            + " <com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil.copyOfArray"
-            + "([Ljava.lang.Object;, int)>",
-        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
-            + ".List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
-            + ".EMPTY_STRING_ARRAY>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools"
-            + ".checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method "
-            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang"
-            + ".String, int, int)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang"
-            + ".String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang"
-            + ".String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, "
-            + "com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools"
-            + ".checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang"
-            + ".String;)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
-            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
+        """
+        Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang\
+        .String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil\
+        .EMPTY_STRING_ARRAY>\
+        """,
+        """
+        Constructor <com.puppycrawl.tools.checkstyle.api.Violation.<init>(int, int, int, int,\
+         java.lang.String, java.lang.String, [Ljava.lang.Object;,\
+         com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String,\
+         java.lang.Class, java.lang.String)> calls method\
+         <com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil.copyOfArray\
+        ([Ljava.lang.Object;, int)>\
+        """,
+        """
+        Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util\
+        .List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil\
+        .EMPTY_STRING_ARRAY>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools\
+        .checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method \
+        <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang\
+        .String, int, int)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang\
+        .String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils\
+        .CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang\
+        .String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils\
+        .CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, \
+        com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools\
+        .checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang\
+        .String;)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method \
+        <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>\
+        """
     );
 
     /**
