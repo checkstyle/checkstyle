@@ -694,8 +694,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                     */
                     """);
             bw.write("class C {\n");
-            for (int i = 0; i <= 30000; i++) {
-                bw.write("// " + i + "\n");
+            for (int index = 0; index <= 30000; index++) {
+                bw.write("// " + index + "\n");
             }
             bw.write("}\n");
         }

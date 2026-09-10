@@ -56,9 +56,9 @@ public final class BlockTagUtil {
     public static List<TagInfo> extractBlockTags(String... lines) {
         final List<TagInfo> tags = new ArrayList<>();
 
-        for (int i = 0; i < lines.length; i++) {
+        for (int index = 0; index < lines.length; index++) {
             // Starting lines of a comment have a different first line pattern.
-            final boolean isFirstLine = i == 0;
+            final boolean isFirstLine = index == 0;
             final Pattern pattern;
             if (isFirstLine) {
                 pattern = BLOCK_TAG_PATTERN_FIRST_LINE;
@@ -67,7 +67,7 @@ public final class BlockTagUtil {
                 pattern = BLOCK_TAG_PATTERN;
             }
 
-            final String line = lines[i];
+            final String line = lines[index];
             final Matcher tagMatcher = pattern.matcher(line);
 
             if (tagMatcher.find()) {
@@ -75,7 +75,7 @@ public final class BlockTagUtil {
 
                 // offset of one for the @ character
                 final int colNum = tagMatcher.start(1) - 1;
-                final int lineNum = i + 1;
+                final int lineNum = index + 1;
 
                 final String remainder = line.substring(tagMatcher.end(1));
                 String tagValue = remainder.trim();

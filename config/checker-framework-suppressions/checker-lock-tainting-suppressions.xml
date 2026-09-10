@@ -606,7 +606,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentLevel.java</fileName>
     <specifier>method.guarantee.violated</specifier>
     <message>method toString is @SideEffectFree but calls append which is @ReleasesNoLocks (weaker side effect guarantee)</message>
-    <lineContent>sb.append(i);</lineContent>
+    <lineContent>sb.append(index);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

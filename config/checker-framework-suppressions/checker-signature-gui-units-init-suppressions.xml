@@ -84,14 +84,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>((CellEditorListener) listeners[i + 1]).editingCanceled(new ChangeEvent(this));</lineContent>
+    <lineContent>((CellEditorListener) listeners[index + 1]).editingCanceled(new ChangeEvent(this));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>((CellEditorListener) listeners[i + 1]).editingStopped(new ChangeEvent(this));</lineContent>
+    <lineContent>((CellEditorListener) listeners[index + 1]).editingStopped(new ChangeEvent(this));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -644,7 +644,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTableModel.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>((TreeModelListener) listeners[i + 1]).treeStructureChanged(event);</lineContent>
+    <lineContent>((TreeModelListener) listeners[index + 1]).treeStructureChanged(event);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
