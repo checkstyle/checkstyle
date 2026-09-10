@@ -22,7 +22,6 @@
                   query="//CLASS_DEF[./IDENT[@text='XmlMetaReader']]
                         //METHOD_DEF[./IDENT[@text='read']]/LITERAL_THROWS"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/11522 -->
   <suppress-xpath
           files="AbstractFileSetCheck.java"
           checks="LocalVariableNameCheck"
