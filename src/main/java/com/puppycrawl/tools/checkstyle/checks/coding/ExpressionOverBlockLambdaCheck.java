@@ -92,13 +92,14 @@ public class ExpressionOverBlockLambdaCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the lambda is a switch rule lambda.
+     * Checks if the lambda node is the arrow token of a switch rule.
      *
      * @param lambda the lambda AST node
-     * @return true if the lambda is part of a switch rule
+     * @return true if the lambda is the arrow token of a switch rule
      */
     private static boolean isSwitchRuleLambda(DetailAST lambda) {
-        return lambda.getParent().getType() == TokenTypes.SWITCH_RULE;
+        return lambda.getParent().getType() == TokenTypes.SWITCH_RULE
+                && lambda.getLastChild() == null;
     }
 
     /**
