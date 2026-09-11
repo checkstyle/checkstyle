@@ -725,16 +725,6 @@
               </td>
             </tr>
             <tr>
-              <td><a href="https://netbeans.apache.org/front/main/index.html">NetBeans</a></td>
-              <td>SQE Team</td>
-              <td>
-                <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>
-              </td>
-              <td>Provides a comprehensive suite of quality assurance tools,
-                  including Checkstyle integration.
-              </td>
-            </tr>
-            <tr>
               <td><a href="https://www.sonarsource.com/products/sonarqube/">SonarQube</a></td>
               <td>Freddy Mallet (initial author)</td>
               <td><a href="https://github.com/checkstyle/sonar-checkstyle">
@@ -847,6 +837,16 @@
                 <td><a href="https://qalab.sourceforge.net">QALab Home Page</a></td>
                 <td>Supports tracking Checkstyle statistics over time.</td>
               </tr>
+              <tr>
+              <td><a href="https://netbeans.apache.org/front/main/index.html">NetBeans</a></td>
+              <td>SQE Team</td>
+              <td>
+                <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>
+              </td>
+              <td>Provides a comprehensive suite of quality assurance tools,
+                  including Checkstyle integration.
+              </td>
+            </tr>
             </table>
           </div>
         </subsection>
