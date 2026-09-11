@@ -2239,7 +2239,7 @@
       <plugin>
         <groupId>io.fluxzero</groupId>
         <artifactId>lychee-maven-plugin</artifactId>
-        <version>0.2.10</version>
+        <version>0.2.15</version>
         <executions>
           <execution>
             <id>lychee-check</id>
