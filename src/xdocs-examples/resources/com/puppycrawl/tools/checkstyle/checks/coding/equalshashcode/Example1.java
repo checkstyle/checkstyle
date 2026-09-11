@@ -8,14 +8,14 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 // xdoc section - start
 class Example1 {
-  public int hashCode() { // violation, no valid 'equals'
+  public int hashCode() { // violation 'Definition of 'hashCode()' without corresponding definition of 'equals()'.'
     return 0;
   }
   public boolean equals(String o) { return false; }
 }
 
 class ExampleNoHashCode {
-  public boolean equals(Object o) { // violation, no 'hashCode'
+  public boolean equals(Object o) { // violation 'Definition of 'equals()' without corresponding definition of 'hashCode()'.'
     return false;
   }
   public boolean equals(String o) { return false; }
@@ -38,13 +38,13 @@ class ExampleBothMethods2 {
 
 class ExampleNoValidHashCode {
   public static int hashCode(int i) { return 0; }
-  public boolean equals(Object o) { // violation, no valid 'hashCode'
+  public boolean equals(Object o) { // violation 'Definition of 'equals()' without corresponding definition of 'hashCode()'.'
     return false;
   }
 }
 
 class ExampleNoValidEquals {
-  public int hashCode() { // violation, no valid 'equals'
+  public int hashCode() { // violation 'Definition of 'hashCode()' without corresponding definition of 'equals()'.'
     return 0;
   }
   public static boolean equals(Object o, Object o2) { return false; }
