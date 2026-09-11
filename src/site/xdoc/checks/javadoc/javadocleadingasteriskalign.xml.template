@@ -47,6 +47,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example1.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to align leading asterisks under the slash ( / )
+          of the opening javadoc tag:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocleadingasteriskalign/Example2.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
