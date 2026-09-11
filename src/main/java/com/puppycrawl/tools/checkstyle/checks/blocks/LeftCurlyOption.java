@@ -71,4 +71,28 @@ public enum LeftCurlyOption {
      */
     NL,
 
+    /**
+     * Represents the policy that if the whole block fits on a single line,
+     * then apply the {@code EOL} rule.
+     * Otherwise apply the {@code NL} rule.
+     *
+     * <p>Checkstyle will allow a block that opens and closes on one line:
+     *
+     * <pre>
+     * if (condition) { doSomething(); }
+     * </pre>
+     *
+     * <p>But for a block spanning multiple lines, Checkstyle will enforce:
+     *
+     * <pre>
+     * if (condition)
+     * {
+     *     ...
+     * }
+     * </pre>
+     *
+     * @since 14.1.0
+     */
+    NL_OR_SINGLELINE,
+
 }

@@ -332,10 +332,46 @@ public class LeftCurlyCheck
             else if (option == LeftCurlyOption.EOL) {
                 validateEol(brace, braceLine);
             }
+            else if (option == LeftCurlyOption.NL_OR_SINGLELINE) {
+                validateNlOrSingleline(brace, braceLine);
+            }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
             }
         }
+    }
+
+    /**
+     * Validate NL_OR_SINGLELINE case. A brace that opens a block which ends on
+     * the same line is allowed to stay at the end of that line, otherwise the
+     * NL rule is applied.
+     *
+     * @param brace brace AST
+     * @param braceLine line content
+     */
+    private void validateNlOrSingleline(DetailAST brace, String braceLine) {
+        if (!isSingleLineBlock(brace)
+                && !CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+        }
+    }
+
+    /**
+     * Checks whether the block opened by the given left curly brace ends on the
+     * same line, that is, its matching right curly brace is on that same line.
+     *
+     * @param brace token for left curly brace
+     * @return true if the whole block fits on a single line
+     */
+    private static boolean isSingleLineBlock(DetailAST brace) {
+        final DetailAST block;
+        if (brace.getType() == TokenTypes.LCURLY) {
+            block = brace.getParent();
+        }
+        else {
+            block = brace;
+        }
+        return TokenUtil.areOnSameLine(brace, block.getLastChild());
     }
 
     /**

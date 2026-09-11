@@ -31,6 +31,7 @@
             <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LeftCurly_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#UseCase1-config" class="toc-sublink">Apply the <code>nlow</code> policy to type blocks</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Apply the <code>nl_or_singleline</code> policy, allowing blocks that open and close on one line</a></li>
             </ul>
           </li>
           <li><a href="#LeftCurly_Example_of_Usage">Example of Usage</a></li>
@@ -344,6 +345,38 @@ class UseCase1
     BLUE,
     GREEN;
   }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase2-config">
+          To configure the check to apply the <code>nl_or_singleline</code>
+          policy, allowing blocks that open and close on one line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="LeftCurly"&gt;
+      &lt;property name="option" value="nl_or_singleline"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">Example: </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase2
+{
+  void singleLine() { doNothing(); }
+
+  void multiLine()
+  {
+    doNothing();
+  }
+
+  // violation below ''{' at column 28 should be on a new line.'
+  void trailingLeftCurly() {
+    doNothing();
+  }
+
+  void doNothing() { }
 }
 </code></pre></div>
       </subsection>
