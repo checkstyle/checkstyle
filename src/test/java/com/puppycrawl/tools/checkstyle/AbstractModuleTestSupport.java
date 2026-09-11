@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.google.common.truth.Correspondence;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -241,7 +242,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<TestInputViolation> violationsWithoutFilters =
                 new ArrayList<>(testInputConfiguration.violations());
         violationsWithoutFilters.addAll(testInputConfiguration.filteredViolations());
-        Collections.sort(violationsWithoutFilters);
         verifyViolations(configWithoutFilters, filePath, violationsWithoutFilters);
         verify(configWithoutFilters, filePath, expectedUnfiltered);
         final DefaultConfiguration configWithFilters =
@@ -739,7 +739,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     * Performs verification of violation lines.
+     * Verifies violation lines and message patterns independently of their order.
      *
      * @param config parsed config.
      * @param file file path.
@@ -751,48 +751,27 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                   List<TestInputViolation> testInputViolations)
             throws Exception {
         final List<String> actualViolations = getActualViolationsForFile(config, file);
-        final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .toList();
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .toList();
-        assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
-            assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
-        }
+        verifyViolations(file, testInputViolations, actualViolations);
     }
 
     /**
-     * Performs verification of violation lines.
+     * Verifies violation lines and message patterns independently of their order.
      *
      * @param file file path.
      * @param testInputViolations List of TestInputViolation objects.
      * @param actualViolations for a file
      */
     private static void verifyViolations(String file,
-                                  List<TestInputViolation> testInputViolations,
-                                  List<String> actualViolations) {
-        final List<Integer> actualViolationLines = actualViolations.stream()
-                .map(violation -> violation.substring(0, violation.indexOf(':')))
-                .map(Integer::valueOf)
-                .toList();
-        final List<Integer> expectedViolationLines = testInputViolations.stream()
-                .map(TestInputViolation::getLineNo)
-                .toList();
-        assertWithMessage("Violation lines for %s differ.", file)
-                .that(actualViolationLines)
-                .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
-            assertWithMessage("Actual and expected violations differ.")
-                    .that(actualViolations.get(index))
-                    .matches(testInputViolations.get(index).toRegex());
-        }
+                                         List<TestInputViolation> testInputViolations,
+                                         List<String> actualViolations) {
+        assertWithMessage("Actual and expected violations for %s differ.", file)
+                .that(actualViolations)
+                .comparingElementsUsing(Correspondence.from(
+                    (String actual, TestInputViolation expected) -> {
+                        return actual.matches(expected.toRegex());
+                    },
+                    "matches the expected violation pattern"))
+                .containsExactlyElementsIn(testInputViolations);
     }
 
     /**
