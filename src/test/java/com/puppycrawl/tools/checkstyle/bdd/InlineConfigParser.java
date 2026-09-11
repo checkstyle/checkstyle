@@ -267,7 +267,6 @@ public final class InlineConfigParser {
      * are updated with proper violation messages.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck",
             "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
