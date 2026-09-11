@@ -195,7 +195,7 @@ clazz
 clemens
 Clickable
 Cloneable
-cls
+clss
 cmdline
 cmp
 cmt
@@ -219,13 +219,13 @@ commentsindentation
 commitish
 commonutil
 Compat
+compatability
 compilermsgs
 Comspace
 concat
 config
 configurationloader
 Connell's
-connrefused
 constantname
 constructorsdeclarationgrouping
 CONTACTSERVER
@@ -1133,7 +1133,6 @@ Postgresql
 prebuilts
 prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
-prefs
 PRESIZE
 prettyprint
 printf
