@@ -168,7 +168,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @throws IOException if there is reading errors.
      * @throws IllegalArgumentException if outputStreamOptions is null
      * @noinspection deprecation
-     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     * @noinspectionreason We are forced to keep AutomaticBean compatibility
      *     because of maven-checkstyle-plugin. Until #12873.
      */
     public SarifLogger(
