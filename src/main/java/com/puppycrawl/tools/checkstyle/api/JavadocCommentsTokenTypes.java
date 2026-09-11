@@ -1080,9 +1080,11 @@ public final class JavadocCommentsTokenTypes {
      * code snippets directly inside a Javadoc sentence.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{ @code * Example showing { @snippet :java
+     * {@snippet :
+     * {@code * Example showing {@snippet :java
      * System.out.println("hello");
-     * }}</pre>
+     * }}
+     * }
      *
      * <b>Tree:</b>
      * {@snippet lang="text" :
