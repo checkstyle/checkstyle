@@ -76,7 +76,7 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
      * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
      * @noinspection deprecation
-     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     * @noinspectionreason We are forced to keep AutomaticBean compatibility
      *     because of maven-checkstyle-plugin. Until #12873.
      */
     public DefaultLogger(OutputStream outputStream,
