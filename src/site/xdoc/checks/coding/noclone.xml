@@ -156,7 +156,7 @@ System.out.println(s2 instanceof Square); //true
         <p id="Example1-code">Example: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  public Example1 clone() {return null;} // violation, overrides the clone method
+  public Example1 clone() {return null;} // violation 'Avoid using clone method.'
   public static Object clone(Object o) {return null;}
   public static Example1 clone(Example1 same) {return null;}
 }
