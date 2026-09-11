@@ -11,6 +11,9 @@
 *.jpg binary
 *.png binary
 
+# Large text dictionary: force diff/linguist to treat as text, not binary
+/config/jsoref-spellchecker/english.words text diff linguist-generated
+
 # Test resources that need specific eol
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf2.java eol=crlf
