@@ -301,12 +301,7 @@ public final class InlineConfigParser {
      * violation messages. Remove entries here as their input files are fixed.
      * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
-    private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of(
-            "checks/coding/equalshashcode/Example1.java",
-            "checks/coding/noclone/Example1.java",
-            "checks/sizes/recordcomponentnumber/Example2.java",
-            "checks/whitespace/separatorwrap/Example1.java"
-    );
+    private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of();
 
     /**
      * Input files where default values for properties are intentionally not specified.
