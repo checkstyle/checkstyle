@@ -80,7 +80,7 @@ public final class XMLLogger
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
      * @throws IllegalArgumentException if outputStreamOptions is null.
      * @noinspection deprecation
-     * @noinspectionreason We are forced to keep AutomaticBean compatability
+     * @noinspectionreason We are forced to keep AutomaticBean compatibility
      *     because of maven-checkstyle-plugin. Until #12873.
      */
     public XMLLogger(OutputStream outputStream,
