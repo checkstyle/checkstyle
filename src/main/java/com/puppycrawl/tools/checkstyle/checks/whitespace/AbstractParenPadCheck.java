@@ -37,44 +37,41 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public abstract class AbstractParenPadCheck
     extends AbstractCheck {
 
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_WS_FOLLOWED = "ws.followed";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_WS_PRECEDED = "ws.preceded";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
-
     /** Open parenthesis literal. */
     private static final char OPEN_PARENTHESIS = '(';
 
     /** Close parenthesis literal. */
     private static final char CLOSE_PARENTHESIS = ')';
 
+    /** Message key for followed whitespace. */
+    private final String msgWsFollowed;
+
+    /** Message key for not followed whitespace. */
+    private final String msgWsNotFollowed;
+
+    /** Message key for preceded whitespace. */
+    private final String msgWsPreceded;
+
+    /** Message key for not preceded whitespace. */
+    private final String msgWsNotPreceded;
+
     /** The policy to enforce. */
     private PadOption option = PadOption.NOSPACE;
 
     /**
      * Creates a new {@code AbstractParenPadCheck} instance.
+     *
+     * @param msgWsFollowed message key for followed whitespace
+     * @param msgWsNotFollowed message key for not followed whitespace
+     * @param msgWsPreceded message key for preceded whitespace
+     * @param msgWsNotPreceded message key for not preceded whitespace
      */
-    protected AbstractParenPadCheck() {
-        // no code by default
+    protected AbstractParenPadCheck(String msgWsFollowed, String msgWsNotFollowed,
+                                    String msgWsPreceded, String msgWsNotPreceded) {
+        this.msgWsFollowed = msgWsFollowed;
+        this.msgWsNotFollowed = msgWsNotFollowed;
+        this.msgWsPreceded = msgWsPreceded;
+        this.msgWsNotPreceded = msgWsNotPreceded;
     }
 
     /**
@@ -100,11 +97,11 @@ public abstract class AbstractParenPadCheck
             final boolean hasWhitespaceAfter =
                     CommonUtil.isCodePointWhitespace(line, after);
             if (option == PadOption.NOSPACE && hasWhitespaceAfter) {
-                log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
+                log(ast, msgWsFollowed, OPEN_PARENTHESIS);
             }
             else if (option == PadOption.SPACE && !hasWhitespaceAfter
                      && line[after] != CLOSE_PARENTHESIS) {
-                log(ast, MSG_WS_NOT_FOLLOWED, OPEN_PARENTHESIS);
+                log(ast, msgWsNotFollowed, OPEN_PARENTHESIS);
             }
         }
     }
@@ -123,11 +120,11 @@ public abstract class AbstractParenPadCheck
 
             if (option == PadOption.NOSPACE && hasPrecedingWhitespace
                 && !CodePointUtil.hasWhitespaceBefore(before, line)) {
-                log(ast, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
+                log(ast, msgWsPreceded, CLOSE_PARENTHESIS);
             }
             else if (option == PadOption.SPACE && !hasPrecedingWhitespace
                 && line[before] != OPEN_PARENTHESIS) {
-                log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
+                log(ast, msgWsNotPreceded, CLOSE_PARENTHESIS);
             }
         }
     }

@@ -47,7 +47,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -109,7 +108,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "21:23: "
                     + getCheckMessage(TypecastParenPadCheck.class,
-                            AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+                            TypecastParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder6.java"), expected);
