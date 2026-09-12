@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_PRECEDED;
 
 import org.junit.jupiter.api.Test;
 
