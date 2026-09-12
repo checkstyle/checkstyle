@@ -187,7 +187,6 @@ public class AllChecksCompactSourceCoverageTest {
         "NestedIfDepthCheck",
         "NestedTryDepthCheck",
         "NoCodeInFileCheck",
-        "NoEnumTrailingCommaCheck",
         "NoLineWrapCheck",
         "NoWhitespaceAfterCheck",
         "NoWhitespaceBeforeCaseDefaultColonCheck",
