@@ -41,25 +41,25 @@ public abstract class AbstractParenPadCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_WS_FOLLOWED = "ws.followed";
+    private static final String MSG_WS_FOLLOWED = "ws.followed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
+    private static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_WS_PRECEDED = "ws.preceded";
+    private static final String MSG_WS_PRECEDED = "ws.preceded";
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
+    private static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
 
     /** Open parenthesis literal. */
     private static final char OPEN_PARENTHESIS = '(';
