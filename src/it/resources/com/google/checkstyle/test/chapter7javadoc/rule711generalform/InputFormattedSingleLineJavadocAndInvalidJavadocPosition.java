@@ -215,8 +215,8 @@ ExtraInputInvalidJavadocPosition5 {}
 class ExtraInputInvalidJavadocPosition6
 /** Invalid javadoc. */
 {}
-/** Invalid javadoc. */
-// 2 violations 2 lines above:
+// 2 violations above:
 //  ''class def lcurly' has incorrect indentation level 0, expected level should be 2.'
 //  ''}' at column 2 should be alone on a line.'
-// violation 4 lines above 'Javadoc comment is placed in the wrong location.'
+// violation below 'Javadoc comment is placed in the wrong location.'
+/** Invalid javadoc. */

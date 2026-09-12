@@ -14,24 +14,24 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 public class InputJavadocMethodMissingJavadocTagsDefault {
+    // violation 7 lines below '@return tag should be present and have description.'
     /**
      * Missing return.
      *
      * @param number to return
      * @throws ThreadDeath sometimes
      */
-    // violation below '@return tag should be present and have description.'
     int missingReturn(int number) throws ThreadDeath {
         return number;
     }
 
+    // violation 7 lines below 'Expected @param tag for 'number'.'
     /**
      * Missing param.
      *
      * @return number
      * @throws ThreadDeath sometimes
      */
-    // violation below 'Expected @param tag for 'number'.'
     int missingParam(int number) throws ThreadDeath {
         return number;
     }
