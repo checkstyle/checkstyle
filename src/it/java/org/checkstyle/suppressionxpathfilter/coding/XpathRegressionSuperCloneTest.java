@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck;
 
 public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
@@ -51,7 +50,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
+            "6:23: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -74,7 +73,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
-            "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
+            "6:23: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -97,7 +96,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
                 createModuleConfig(SuperCloneCheck.class);
 
         final String[] expectedViolation = {
-            "4:19: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
+            "4:19: " + getCheckMessage(SuperCloneCheck.class, SuperCloneCheck.MSG_KEY, "clone"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
