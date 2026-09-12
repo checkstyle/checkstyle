@@ -42,7 +42,7 @@ public abstract class AbstractSuperCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "missing.super.call";
+    private static final String MSG_KEY = "missing.super.call";
 
     /** Stack of methods. */
     private final Deque<MethodNode> methodStack = new ArrayDeque<>();
