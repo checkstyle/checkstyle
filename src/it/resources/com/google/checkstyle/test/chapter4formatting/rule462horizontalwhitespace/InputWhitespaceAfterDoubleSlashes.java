@@ -9,18 +9,18 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 /** Some javadoc. */
 public class InputWhitespaceAfterDoubleSlashes {
   String googleCheck = "Google"; //google
-  // violation above ''//' must be followed by a whitespace.'
+  // violation above ''//' is not followed by whitespace.'
 
   /** Somejavadoc. */
   public void foo1() {
     int pro1 = 0; //the main variable
-    // violation above ''//' must be followed by a whitespace.'
+    // violation above ''//' is not followed by whitespace.'
 
     // violation below '';' is not followed by whitespace.'
     int pro2 = 1;// the secondary variable
 
     int[] pro3 = {1, 2}; //[] should be preceded by datatype
-    // violation above ''//' must be followed by a whitespace.'
+    // violation above ''//' is not followed by whitespace.'
 
     String pro4 = "Multiple whitespaces"; //         multiple whitespaces
 
