@@ -1784,7 +1784,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
-    <lineContent>log(nameAST, MSG_KEY, nameAST.getText());</lineContent>
+    <lineContent>log(nameAST, messageKey, nameAST.getText());</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
@@ -1809,7 +1809,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference nameAST</message>
-    <lineContent>log(nameAST, MSG_KEY, nameAST.getText());</lineContent>
+    <lineContent>log(nameAST, messageKey, nameAST.getText());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
