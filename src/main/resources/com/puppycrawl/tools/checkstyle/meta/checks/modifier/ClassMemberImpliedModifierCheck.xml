@@ -33,7 +33,7 @@
  Enum, interface, and record declarations in a compact source file are members of the
  implicitly declared class, so they are also implicitly &lt;code&gt;static&lt;/code&gt;.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  enum Age {  // violation
    CHILD, ADULT
  }

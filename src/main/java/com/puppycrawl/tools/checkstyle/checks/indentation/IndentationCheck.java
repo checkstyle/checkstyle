@@ -58,17 +58,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <p>
  * Example:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * if ((condition1 &amp;&amp; condition2)
- *         || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
- *         ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
+ * {@snippet :
+ * if ((condition1 && condition2)
+ *         || (condition3 && condition4)    // line wrap with bigger indentation
+ *         ||!(condition5 && condition6)) { // line wrap with bigger indentation
  *   field.doSomething()                    // basic offset
  *       .doSomething()                     // line wrap
- *       .doSomething( c -&gt; {               // line wrap
+ *       .doSomething( c -> {               // line wrap
  *         return c.doSome();               // basic offset
  *       });
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.1
  * @noinspection ThisEscapedInObjectConstruction
