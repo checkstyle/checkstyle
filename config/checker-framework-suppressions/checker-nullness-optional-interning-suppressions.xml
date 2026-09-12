@@ -5736,6 +5736,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/OpenjdkMethodThrowsAlignmentCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.LPAREN)</message>
+    <lineContent>final int lparenLineNo = ast.findFirstToken(TokenTypes.LPAREN).getLineNo();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/OpenjdkMethodThrowsAlignmentCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.RPAREN)</message>
+    <lineContent>final int rparenLineNo = ast.findFirstToken(TokenTypes.RPAREN).getLineNo();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PackageDefHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter lastNode of AbstractExpressionHandler.checkWrappingIndentation.</message>
