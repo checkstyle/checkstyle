@@ -56,13 +56,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Enum, interface, and record declarations in a compact source file are members of the
  * implicitly declared class, so they are also implicitly {@code static}.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * enum Age {  // violation
  *   CHILD, ADULT
  * }
  *
  * void main() {}
- * </code></pre></div>
+ * }
  *
  * <p>
  * Rationale for this check: Nested enums, interfaces, and records are treated differently from

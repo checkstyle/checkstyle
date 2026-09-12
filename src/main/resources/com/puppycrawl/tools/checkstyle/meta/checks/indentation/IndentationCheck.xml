@@ -33,7 +33,7 @@
  &lt;p&gt;
  Example:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  if ((condition1 &amp;amp;&amp;amp; condition2)
          || (condition3 &amp;amp;&amp;amp; condition4)    // line wrap with bigger indentation
          ||!(condition5 &amp;amp;&amp;amp; condition6)) { // line wrap with bigger indentation
