@@ -49,7 +49,10 @@ class InputLeftCurlyTestLineBreakAfter
             finally { break; } // violation ''{' at column 21 should have line break after'
         }
 
-        synchronized (this) { do { x = 2; } while (x == 2); } // 2 violations
+        synchronized (this) { do { x = 2; } while (x == 2); }
+        // 2 violations above:
+        // ''{' at column 29 should have line break after'
+        // ''{' at column 34 should have line break after'
 
         synchronized (this) {
             do {} while (x == 2);
