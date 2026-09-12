@@ -33,46 +33,65 @@
     <property name="maximum" value="2"/>
   </module>
 
+  <!--
+    '[^/]' after the opening '/**' used to swallow the third asterisk of an empty
+    '/***/' Javadoc, so the trailing '/' no longer closed it. The pattern then ran on
+    and paired the next Javadoc's '*/' with any '// ... violation ...' line in between,
+    reporting comments that are not inside a Javadoc at all. A negative lookahead keeps
+    '/**/' from opening a Javadoc without consuming anything, so '*/' still terminates.
+    See https://github.com/checkstyle/checkstyle/issues/19764
+  -->
   <module name="RegexpMultiline">
     <property name="id" value="noViolationCommentsInJavadoc"/>
     <property name="matchAcrossLines" value="true"/>
     <property name="format"
-              value="\/\*\*[^\/](?:[^*]|\*(?!\/))*?(\/\/[^\n]+violation[^\n]+)\n(?:[^*]|\*(?!\/))*?\*\/"/>
+              value="\/\*\*(?!\/)(?:[^*]|\*(?!\/))*?(\/\/[^\n]+violation[^\n]+)\n(?:[^*]|\*(?!\/))*?\*\/"/>
     <property name="message" value="Violation comments should not be placed inside Javadoc."/>
   </module>
 
-  <module name="TreeWalker">
-    <module name="MatchXpath">
-      <property name="id" value="violationBetweenAnnotationAndMethod"/>
-      <property name="query"
-                value="//*[self::METHOD_DEF or self::CTOR_DEF
-                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
-                              or self::INTERFACE_DEF or self::ENUM_DEF
-                              or self::ANNOTATION_DEF or self::RECORD_DEF
-                              or self::ANNOTATION_FIELD_DEF
-                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
-                       ./COMMENT_CONTENT[contains(@text, 'violation')]
-                       and preceding-sibling::ANNOTATION]"/>
-      <message key="matchxpath.match"
-               value="Violation comment must not be placed between an annotation and its target.
+  <!--
+    These two rules used to be MatchXpath queries anchored on MODIFIERS. That was wrong
+    twice over, see https://github.com/checkstyle/checkstyle/issues/21552
+
+    1) Missed violations. A comment is attached to the AST as the previous sibling of the
+       node built from the next real token, so where it lands depends on what follows it:
+       a modifier keyword puts it under MODIFIERS, but a bare return type puts it under
+       TYPE, 'class'/'record'/a ctor IDENT puts it directly under the declaration, and
+       'module' puts it under MODULE_DEF (whose annotation holder is ANNOTATIONS, not
+       MODIFIERS). Anchoring on MODIFIERS only ever caught the first of those.
+
+    2) False positives that no XPath widening can fix. A correctly placed trailing
+       comment, '/** javadoc. */ // violation ...', produces an AST identical to the
+       misplaced form except for line numbers, and ElementNode exposes only @text to
+       XPath - no line information. So MatchXpath cannot tell the two apart.
+
+    A line-oriented RegexpMultiline expresses the rule directly: an annotation-only line,
+    or a Javadoc block whose closing '*' '/' ends its line, immediately followed by a line
+    that is just a '// ... violation ...' comment. Trailing comments are excluded because
+    the comment must start its own line, and lines such as '@Annotation int x;' or
+    '@interface Foo {}' are excluded because they are complete declarations rather than
+    annotation-only lines.
+  -->
+  <module name="RegexpMultiline">
+    <property name="id" value="violationBetweenAnnotationAndMethod"/>
+    <property name="matchAcrossLines" value="true"/>
+    <property name="format"
+              value="(?m)^[ \t]*(?:@[A-Za-z][\w.]*(?:\([^\n]*\))?[ \t]*)+\n[ \t]*//[^\n]*violation"/>
+    <property name="message"
+              value="Violation comment must not be placed between an annotation and its target.
 Place it before the annotation block instead."/>
-    </module>
-    <module name="MatchXpath">
-      <property name="id" value="violationBetweenJavadocAndMethod"/>
-      <property name="query"
-                value="//*[self::METHOD_DEF or self::CTOR_DEF
-                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
-                              or self::INTERFACE_DEF or self::ENUM_DEF
-                              or self::ANNOTATION_DEF or self::RECORD_DEF
-                              or self::ANNOTATION_FIELD_DEF
-                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
-                       ./COMMENT_CONTENT[contains(@text, 'violation')]
-                       and preceding-sibling::BLOCK_COMMENT_BEGIN[
-                       ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>
-      <message key="matchxpath.match"
-               value="Violation comment must not be placed between a Javadoc block and its target.
+  </module>
+  <module name="RegexpMultiline">
+    <property name="id" value="violationBetweenJavadocAndMethod"/>
+    <property name="matchAcrossLines" value="true"/>
+    <property name="format"
+              value="/\*\*(?:[^*]|\*(?!/))*+\*/[ \t]*\n[ \t]*//[^\n]*violation"/>
+    <property name="message"
+              value="Violation comment must not be placed between a Javadoc block and its target.
 Place it before the Javadoc block instead."/>
-    </module>
+  </module>
+
+  <module name="TreeWalker">
     <module name="Regexp">
       <property name="id" value="UnnecessaryOkComment"/>
       <property name="format"

@@ -237,8 +237,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaAlwaysViolationsNonCompilable() throws Exception {
         final String[] expected = {
-            "15:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
-            "15:65: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "18:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
+            "18:65: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
         verifyWithInlineConfigParser(

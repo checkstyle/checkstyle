@@ -19,22 +19,22 @@ public class InputAbstractJavadocNonTightHtmlTagsOne {
     /** <p> <p> paraception </p> */ // violation 'Unclosed HTML tag found: p'
     private int field1;
 
+    // violation below 'Unclosed HTML tag found: li'
     /**<li> paraTags should be opened list isn't nested in parse tree */
-    // violation above 'Unclosed HTML tag found: li'
     private int field2;
 
+    // violation 3 lines below 'Unclosed HTML tag found: p'
     /**
      * <p> this paragraph is closed and would be nested in javadoc tree </p>
      * <li> list has an <p> unclosed para, but still the list would get nested </li>
      */
-    // violation 2 lines above 'Unclosed HTML tag found: p'
     private int field3;
 
+    // violation 3 lines below 'Unclosed HTML tag found: tr'
     /**
      * <li> Complete <p> nesting </p> </li>
      * <tr> Zero <p> </p> nesting despite `tr` is closed
      */
-    // violation 2 lines above 'Unclosed HTML tag found: tr'
 
     int getField1() {return field1;}
 
@@ -48,12 +48,12 @@ public class InputAbstractJavadocNonTightHtmlTagsOne {
      */
     void setField1(int field1) {this.field1 = field1;}
 
+    // violation 4 lines below 'Unclosed HTML tag found: p'
     /**
      * <p>This is a setter method.
      * And paraTag shall be nested in parse tree </p>
      * @param field2 <p> setter
      */
-    // violation 2 lines above 'Unclosed HTML tag found: p'
     void setField2(int field2) {this.field2 = field2;}
 
     // violation 6 lines below 'Unclosed HTML tag found: tr'
