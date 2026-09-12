@@ -53,12 +53,12 @@
           To suppress violation for snippet inline tag:
         </p>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-    &lt;module name="SuppressionSingleFilter"&gt;
-      &lt;property name="checks" value="PreferCodeOrSnippetJavadocInlineTag"/&gt;
-      &lt;property name="files" value="file-name"/&gt;
-      &lt;property name="message" value="Use snippet inline tag instead of.*"/&gt;
-    &lt;/module&gt;
+        <div class="wrapper"><pre class="prettyprint"><code>
+&lt;module name="SuppressionSingleFilter"&gt;
+  &lt;property name="checks" value="PreferCodeOrSnippetJavadocInlineTag"/&gt;
+  &lt;property name="files" value="file-name"/&gt;
+  &lt;property name="message" value="Use snippet inline tag instead of.*"/&gt;
+&lt;/module&gt;
         </code></pre></div>
 
           <b>Not Flagged :</b>
