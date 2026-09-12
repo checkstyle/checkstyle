@@ -159,8 +159,8 @@ public class EmptyBlockCheckTest
             "26:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "33:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "35:37: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "36:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "36:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "39:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "39:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyBlockCase2.java"), expected);

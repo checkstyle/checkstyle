@@ -33,7 +33,10 @@ class InputEmptyBlockCase2
         switch(c) { case 0: {} method1(1); }    // violation 'Must have at least one statement'
         switch(c) { case 0: method1(0); {} }
         switch(c) { case 0: case 1: {} }    // violation 'Must have at least one statement'
-        switch(c) { case 0: {} case 1: {    // 2 violations
+        // 2 violations 3 lines below:
+        // 'Must have at least one statement'
+        // 'Must have at least one statement'
+        switch(c) { case 0: {} case 1: {
         }
         }
     }
