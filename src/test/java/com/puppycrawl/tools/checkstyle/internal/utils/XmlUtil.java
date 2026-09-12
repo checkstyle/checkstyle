@@ -21,9 +21,11 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedHashSet;
+import java.util.Properties;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -36,7 +38,13 @@ import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.XmlLoader;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * XmlUtil.
@@ -162,6 +170,71 @@ public final class XmlUtil {
                 .replaceAll("\\s+", " ")
                 .replace("<", "&lt;")
                 .replace(">", "&gt;");
+    }
+
+    /**
+     * Validates whether the given XML code is a valid Checkstyle configuration.
+     *
+     * @param fileName the file name for error reporting
+     * @param code the XML code to validate
+     * @param unserializedSource the original source for error reporting
+     * @return true if valid
+     * @throws CheckstyleException if the XML is invalid
+     * @throws IOException if an I/O error occurs
+     */
+    public static boolean isValidCheckstyleXml(String fileName, String code,
+                                                String unserializedSource)
+            throws IOException, CheckstyleException {
+        // can't process non-existent examples, or out of context snippets
+        if (!code.contains("com.mycompany") && !code.contains("checkstyle-packages")
+                && !code.contains("MethodLimit") && !code.contains("<suppress ")
+                && !code.contains("<suppress-xpath ")
+                && !code.contains("<import-control ")
+                && !unserializedSource.startsWith("<property ")
+                && !unserializedSource.startsWith("<taskdef ")) {
+            // validate checkstyle structure and contents
+            try {
+                final Properties properties = new Properties();
+
+                properties.setProperty("checkstyle.header.file",
+                        new File("config/java.header").getCanonicalPath());
+                properties.setProperty("config.folder",
+                        new File("config").getCanonicalPath());
+
+                final PropertiesExpander expander = new PropertiesExpander(properties);
+                final Configuration config = ConfigurationLoader.loadConfiguration(new InputSource(
+                        new StringReader(code)), expander, IgnoredModulesOptions.EXECUTE);
+                final Checker checker = new Checker();
+
+                try {
+                    final ClassLoader moduleClassLoader = Checker.class.getClassLoader();
+                    checker.setModuleClassLoader(moduleClassLoader);
+                    checker.configure(config);
+                }
+                finally {
+                    checker.destroy();
+                }
+            }
+            catch (CheckstyleException exc) {
+                throw new CheckstyleException(fileName + " has invalid Checkstyle xml: "
+                        + unserializedSource, exc);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Parses the given xdoc source text into a DOM {@link Document}.
+     *
+     * @param content the full template source text.
+     * @return the parsed document.
+     * @throws Exception if parsing fails.
+     */
+    public static Document parseXml(String content) throws Exception {
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(false);
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(new InputSource(new StringReader(content)));
     }
 
 }
