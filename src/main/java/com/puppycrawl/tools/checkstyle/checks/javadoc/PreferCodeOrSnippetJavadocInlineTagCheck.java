@@ -54,13 +54,13 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * To suppress violation for snippet inline tag:
  * </p>
  *
- * <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
- *     &lt;module name="SuppressionSingleFilter"&gt;
- *       &lt;property name="checks" value="PreferCodeOrSnippetJavadocInlineTag"/&gt;
- *       &lt;property name="files" value="file-name"/&gt;
- *       &lt;property name="message" value="Use snippet inline tag instead of.*"/&gt;
- *     &lt;/module&gt;
- * </code></pre></div>
+ * {@snippet lang="xml" :
+ * <module name="SuppressionSingleFilter">
+ *   <property name="checks" value="PreferCodeOrSnippetJavadocInlineTag"/>
+ *   <property name="files" value="file-name"/>
+ *   <property name="message" value="Use snippet inline tag instead of.*"/>
+ * </module>
+ * }
  *
  * <b>Not Flagged :</b>
  * <ul>
@@ -70,6 +70,10 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </ul>
  *
  * @since 14.1.0
+ * @noinspection EmptyClass, ForwardCompatibility
+ * @noinspectionreason EmptyClass - example is an XML configuration snippet, not Java
+ * @noinspectionreason ForwardCompatibility - 'value' is used here as an XML attribute
+ *      name, not a Java class name
  */
 @StatelessCheck
 public class PreferCodeOrSnippetJavadocInlineTagCheck extends AbstractJavadocCheck {
