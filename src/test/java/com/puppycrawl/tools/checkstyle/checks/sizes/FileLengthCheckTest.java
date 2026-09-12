@@ -41,7 +41,7 @@ public class FileLengthCheckTest
     @Test
     public void testAlarm() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY, 228, 20),
+            "1: " + getCheckMessage(MSG_KEY, 38, 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputFileLength.java"), expected);
