@@ -94,7 +94,6 @@ public class AllChecksCompactSourceCoverageTest {
         "AnonInnerLengthCheck",
         "ArrayTrailingCommaCheck",
         "AtclauseOrderCheck",
-        "AvoidDoubleBraceInitializationCheck",
         "AvoidEscapedUnicodeCharactersCheck",
         "AvoidStarImportCheck",
         "BooleanExpressionComplexityCheck",

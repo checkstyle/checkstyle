@@ -57,6 +57,21 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "15:47: " + getCheckMessage(MSG_KEY),
+            "23:50: " + getCheckMessage(MSG_KEY),
+            "36:36: " + getCheckMessage(MSG_KEY),
+            "44:36: " + getCheckMessage(MSG_KEY),
+            "53:40: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "compact/InputAvoidDoubleBraceInitializationCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final AvoidDoubleBraceInitializationCheck check =
             new AvoidDoubleBraceInitializationCheck();
