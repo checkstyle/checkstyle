@@ -10,17 +10,20 @@
       <property name="severity" value="warning"/>
     </module>
   </module>
-  <module name="SeverityMatchFilter"/>
+  <module name="SeverityMatchFilter">
+    <property name="severity" value="warning"/>
+    <property name="acceptOnMatch" value="false"/>
+  </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.severitymatchfilter;
 
 // xdoc section - start
-public class Example1 {
+public class Example3 {
   // filtered violation below 'must be private'
   int field1;
 
-  // filtered violation below 'must match pattern'
+  // violation below 'must match pattern'
   public void method1(int V1){}
 
   // violation below 'must match pattern'
