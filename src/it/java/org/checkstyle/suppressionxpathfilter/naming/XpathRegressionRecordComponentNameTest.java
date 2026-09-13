@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.RecordComponentNameCheck;
 
 public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSupport {
@@ -54,7 +53,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:56: " + getCheckMessage(RecordComponentNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN,
+                RecordComponentNameCheck.MSG_INVALID_PATTERN,
                     "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
 
@@ -78,7 +77,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "9:32: " + getCheckMessage(RecordComponentNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN,
+                RecordComponentNameCheck.MSG_INVALID_PATTERN,
                     "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
         };
 
@@ -103,7 +102,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "8:36: " + getCheckMessage(RecordComponentNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN,
+                RecordComponentNameCheck.MSG_INVALID_PATTERN,
                     "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
 

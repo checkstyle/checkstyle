@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
