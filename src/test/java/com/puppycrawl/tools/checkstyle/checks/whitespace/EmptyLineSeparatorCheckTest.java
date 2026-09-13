@@ -157,6 +157,21 @@ public class EmptyLineSeparatorCheckTest
                 getPath("InputEmptyLineSeparatorMethodInAnonymousClass.java"), expected);
     }
 
+    @Test
+    public void testMultipleEmptyLinesInsideAnonymousClass() throws Exception {
+        final String[] expected = {
+            "21:13: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "}"),
+            "33:13: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "}"),
+            "44:13: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "}"),
+            "51:22: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "58:13: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "}"),
+            "61:9: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorAnonymousClassMembers.java"), expected);
+    }
+
     /**
      * Config is defined in the method because strictly the file with one line
      * is required to be tested.
