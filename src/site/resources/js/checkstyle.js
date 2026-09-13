@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const version = url.hash.split('_')[1];
     const versionParts = version.split(".");
-    if (!versionParts.length >= 2) {
+    if (versionParts.length < 2) {
         return;
     }
 
