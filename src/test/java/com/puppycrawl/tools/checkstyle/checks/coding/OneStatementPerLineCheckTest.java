@@ -27,7 +27,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
@@ -148,20 +147,17 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllTheCodeInSingleLine() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneStatementPerLineCheck.class);
-
         final String[] expected = {
-            "5:76: " + getCheckMessage(MSG_KEY),
-            "5:104: " + getCheckMessage(MSG_KEY),
-            "5:133: " + getCheckMessage(MSG_KEY),
-            "5:167: " + getCheckMessage(MSG_KEY),
-            "5:207: " + getCheckMessage(MSG_KEY),
-            "5:404: " + getCheckMessage(MSG_KEY),
-            "5:392: " + getCheckMessage(MSG_KEY),
+            "6:76: " + getCheckMessage(MSG_KEY),
+            "6:104: " + getCheckMessage(MSG_KEY),
+            "6:133: " + getCheckMessage(MSG_KEY),
+            "6:167: " + getCheckMessage(MSG_KEY),
+            "6:207: " + getCheckMessage(MSG_KEY),
+            "6:404: " + getCheckMessage(MSG_KEY),
+            "6:392: " + getCheckMessage(MSG_KEY),
         };
 
-        verify(checkConfig, getPath("InputOneStatementPerLine.java"),
+        verifyWithInlineConfigParser(getPath("InputOneStatementPerLine.java"),
                 expected);
     }
 
