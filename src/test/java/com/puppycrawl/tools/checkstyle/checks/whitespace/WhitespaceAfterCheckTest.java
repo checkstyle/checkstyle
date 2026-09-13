@@ -414,4 +414,13 @@ public class WhitespaceAfterCheckTest
             getPath("example2/package-info.java"), expected);
     }
 
+    @Test
+    public void testSingleLineComment() throws Exception {
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterSingleLineComment.java"), expected);
+    }
+
 }
