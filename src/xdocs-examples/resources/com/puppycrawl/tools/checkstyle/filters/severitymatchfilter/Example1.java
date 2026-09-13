@@ -6,10 +6,7 @@
     </module>
     <module name="MethodName"/>
   </module>
-  <module name="SeverityMatchFilter">
-    <property name="severity" value="info"/>
-    <property name="acceptOnMatch" value="false"/>
-  </module>
+  <module name="SeverityMatchFilter"/>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.severitymatchfilter;

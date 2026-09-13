@@ -39,20 +39,62 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expectedWithoutFilter = {
-            "20:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
-                    "V1", pattern),
-            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
-                    "Method2", pattern),
+            "17:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                        "V1", pattern),
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                        "Method2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
-                    "Method2", pattern),
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                        "Method2", pattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expectedWithoutFilter = {
+            "19:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                       "V1", pattern),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                       "Method2", pattern),
+        };
+
+        final String[] expectedWithFilter = {
+            "19:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                       "V1", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+               expectedWithoutFilter,
+               expectedWithFilter);
+    }
+
+    @Test
+   public void testExample3() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expectedWithoutFilter = {
+            "19:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                       "V1", pattern),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                       "Method2", pattern),
+        };
+
+        final String[] expectedWithFilter = {
+            "19:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                       "V1", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+               expectedWithoutFilter,
+               expectedWithFilter);
     }
 
 }
