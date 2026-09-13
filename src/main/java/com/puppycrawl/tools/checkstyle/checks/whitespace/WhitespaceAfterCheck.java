@@ -109,6 +109,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LAMBDA,
             TokenTypes.LITERAL_WHEN,
             TokenTypes.ANNOTATIONS,
+            TokenTypes.SINGLE_LINE_COMMENT,
         };
     }
 
@@ -118,15 +119,21 @@ public class WhitespaceAfterCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.TYPECAST) {
+        final int type = ast.getType();
+        if (type == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
             final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST, MSG_WS_TYPECAST);
             }
         }
-        else if (ast.getType() == TokenTypes.ANNOTATIONS) {
+        else if (type == TokenTypes.ANNOTATIONS) {
             if (ast.getFirstChild() != null) {
                 DetailAST targetAST = ast.getFirstChild().getLastChild();
                 if (targetAST.getType() == TokenTypes.DOT) {
@@ -139,6 +146,11 @@ public class WhitespaceAfterCheck
                 }
             }
         }
+        else if (type == TokenTypes.SINGLE_LINE_COMMENT) {
+            if (!isCommentFollowedByWhitespace(ast)) {
+                log(ast, MSG_WS_NOT_FOLLOWED, ast.getText());
+            }
+        }
         else {
             final int[] line = getLineCodePoints(ast.getLineNo() - 1);
             if (!isFollowedByWhitespace(ast, line)) {
@@ -146,6 +158,24 @@ public class WhitespaceAfterCheck
                 log(ast, MSG_WS_NOT_FOLLOWED, message);
             }
         }
+    }
+
+    /**
+     * Checks whether a single-line comment is followed by whitespace.
+     *
+     * @param ast AST token representing the single-line comment.
+     * @return {@code true} if the comment content is empty or is
+     *         followed by whitespace after any leading slashes.
+     */
+    private static boolean isCommentFollowedByWhitespace(DetailAST ast) {
+        final DetailAST commentContent = ast.findFirstToken(TokenTypes.COMMENT_CONTENT);
+        final String commentText = commentContent.getText();
+        int index = 0;
+        while (commentText.charAt(index) == '/') {
+            index++;
+        }
+        final int codePoint = commentText.codePointAt(index);
+        return Character.isWhitespace(codePoint);
     }
 
     /**
