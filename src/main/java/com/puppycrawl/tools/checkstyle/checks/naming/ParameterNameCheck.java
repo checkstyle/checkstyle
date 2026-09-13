@@ -50,6 +50,12 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 public class ParameterNameCheck extends AbstractNameCheck {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Allows to skip methods with Override annotation from validation.
      */
     private boolean ignoreOverridden;
@@ -66,7 +72,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * Creates a new {@code ParameterNameCheck} instance.
      */
     public ParameterNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z0-9]*$", MSG_INVALID_PATTERN);
     }
 
     /**

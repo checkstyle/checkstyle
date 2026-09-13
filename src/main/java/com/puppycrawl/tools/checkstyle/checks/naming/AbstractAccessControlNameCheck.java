@@ -68,6 +68,18 @@ public abstract class AbstractAccessControlNameCheck
         super(format);
     }
 
+    /**
+     * Creates a new {@code AbstractAccessControlNameCheck} instance.
+     *
+     * @param format
+     *                format to check with
+     * @param messageKey
+     *                the key for the message
+     */
+    protected AbstractAccessControlNameCheck(String format, String messageKey) {
+        super(format, messageKey);
+    }
+
     @Override
     protected boolean mustCheckName(DetailAST ast) {
         return shouldCheckInScope(ast.findFirstToken(TokenTypes.MODIFIERS));
