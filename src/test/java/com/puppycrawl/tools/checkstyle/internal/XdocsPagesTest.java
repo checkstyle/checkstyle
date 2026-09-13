@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
@@ -947,18 +948,8 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            // optional sections that can be skipped if they have nothing to report
-            if (subSectionPos == 1 && !"Properties".equals(subSectionName)) {
-                validatePropertySection(fileName, sectionName, null, instance);
-                subSectionPos++;
-            }
-            if (subSectionPos == 3 && !"Use Cases".equals(subSectionName)) {
-                subSectionPos++;
-            }
-            if (subSectionPos == 5 && !"Violation Messages".equals(subSectionName)) {
-                validateViolationSection(fileName, sectionName, null, instance);
-                subSectionPos++;
-            }
+            subSectionPos = handleOptionalSubSections(subSectionPos, subSectionName, fileName,
+                    sectionName, instance);
 
             assertWithMessage("%s section '%s' should be in order", fileName, sectionName)
                 .that(subSectionName)
@@ -992,6 +983,37 @@ public class XdocsPagesTest {
                     .that(subSectionPos)
                     .isGreaterThan(7);
         }
+    }
+
+    /**
+     * Handles optional subsections that can be skipped if they have nothing to report.
+     *
+     * @param subSectionPos the current subsection position
+     * @param subSectionName the subsection name
+     * @param fileName the file name for error messages
+     * @param sectionName the section name for error messages
+     * @param instance the module instance
+     * @return the updated subsection position
+     * @throws Exception if validation fails
+     */
+    private static int handleOptionalSubSections(int subSectionPos, String subSectionName,
+            String fileName, String sectionName, Object instance)
+                    throws Exception {
+        int resultPos = subSectionPos;
+
+        if (resultPos == 1 && !"Properties".equals(subSectionName)) {
+            validatePropertySection(fileName, sectionName, null, instance);
+            resultPos++;
+        }
+        if (resultPos == 3 && !"Use Cases".equals(subSectionName)) {
+            resultPos++;
+        }
+        if (resultPos == 5 && !"Violation Messages".equals(subSectionName)) {
+            validateViolationSection(fileName, sectionName, null, instance);
+            resultPos++;
+        }
+
+        return resultPos;
     }
 
     private static void validateSinceDescriptionSection(String fileName, String sectionName,
@@ -1444,9 +1466,6 @@ public class XdocsPagesTest {
      * @param fieldClass The bean property's type
      * @param instance The class instance to work with
      * @return String form of property's default value
-     * @noinspection IfStatementWithTooManyBranches
-     * @noinspectionreason IfStatementWithTooManyBranches - complex nature of getting properties
-     *      from XML files requires giant if/else statement
      */
     private static String getModulePropertyExpectedValue(String sectionName, String propertyName,
             Field field, Class<?> fieldClass, Object instance)
@@ -1454,73 +1473,154 @@ public class XdocsPagesTest {
         String result = null;
 
         if (field != null) {
-            final Object value = field.get(instance);
+            result = getSpecialPropertyExpectedValue(sectionName, propertyName, fieldClass);
 
-            if ("Checker".equals(sectionName) && "localeCountry".equals(propertyName)) {
-                result = "default locale country for the Java Virtual Machine";
-            }
-            else if ("Checker".equals(sectionName) && "localeLanguage".equals(propertyName)) {
-                result = "default locale language for the Java Virtual Machine";
-            }
-            else if ("Checker".equals(sectionName) && "charset".equals(propertyName)) {
-                result = "UTF-8";
-            }
-            else if ("charset".equals(propertyName)) {
-                result = "the charset property of the parent"
-                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
-            }
-            else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
-                result = "null (no cache file)";
-            }
-            else if (fieldClass == boolean.class) {
-                result = value.toString();
-            }
-            else if (fieldClass == int.class) {
-                result = value.toString();
-            }
-            else if (fieldClass == int[].class) {
-                result = getIntArrayPropertyValue(value);
-            }
-            else if (fieldClass == double[].class) {
-                result = Arrays.toString((double[]) value).replace("[", "").replace("]", "")
-                        .replace(".0", "");
-                if (result.isEmpty()) {
-                    result = "{}";
-                }
-            }
-            else if (fieldClass == String[].class) {
-                final boolean preserveOrder = hasPreserveOrderAnnotation(field);
-                result = getStringArrayPropertyValue(propertyName, value, preserveOrder);
-            }
-            else if (fieldClass == URI.class || fieldClass == String.class) {
-                if (value != null) {
-                    result = value.toString();
-                }
-            }
-            else if (fieldClass == Pattern.class) {
-                if (value != null) {
-                    result = value.toString().replace("\n", "\\n").replace("\t", "\\t")
-                            .replace("\r", "\\r").replace("\f", "\\f");
-                }
-            }
-            else if (fieldClass == Pattern[].class) {
-                result = getPatternArrayPropertyValue(value);
-            }
-            else if (fieldClass.isEnum()) {
-                if (value != null) {
-                    result = value.toString().toLowerCase(Locale.ENGLISH);
-                }
-            }
-            else if (fieldClass == AccessModifierOption[].class) {
-                result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
-            }
-            else {
-                assertWithMessage("Unknown property type: %s", fieldClass.getSimpleName()).fail();
+            if (result == null) {
+                result = getPropertyExpectedValueByType(propertyName, field, fieldClass,
+                        field.get(instance));
             }
 
             if (result == null) {
                 result = "null";
             }
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the default value of properties that are documented in a special way and
+     * can not be derived from the property's type.
+     *
+     * @param sectionName The name of the section/module being worked on
+     * @param propertyName The property name to work with
+     * @param fieldClass The bean property's type
+     * @return String form of property's default value, or {@code null} if the property
+     *      is not a special case
+     */
+    private static String getSpecialPropertyExpectedValue(String sectionName, String propertyName,
+            Class<?> fieldClass) {
+        String result = null;
+
+        if ("Checker".equals(sectionName)) {
+            if ("localeCountry".equals(propertyName)) {
+                result = "default locale country for the Java Virtual Machine";
+            }
+            else if ("localeLanguage".equals(propertyName)) {
+                result = "default locale language for the Java Virtual Machine";
+            }
+            else if ("charset".equals(propertyName)) {
+                result = "UTF-8";
+            }
+        }
+        else if ("charset".equals(propertyName)) {
+            result = "the charset property of the parent"
+                + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
+        }
+
+        if (result == null && "PropertyCacheFile".equals(fieldClass.getSimpleName())) {
+            result = "null (no cache file)";
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the name of the bean property's default value based on the property's type.
+     *
+     * @param propertyName The property name to work with
+     * @param field The bean property's field
+     * @param fieldClass The bean property's type
+     * @param value The bean property's value
+     * @return String form of property's default value
+     * @noinspection IfStatementWithTooManyBranches
+     * @noinspectionreason IfStatementWithTooManyBranches - complex nature of getting properties
+     *      from XML files requires giant if/else statement
+     */
+    private static String getPropertyExpectedValueByType(String propertyName, Field field,
+            Class<?> fieldClass, Object value) {
+        String result = null;
+
+        if (fieldClass == boolean.class || fieldClass == int.class) {
+            result = value.toString();
+        }
+        else if (fieldClass == int[].class) {
+            result = getIntArrayPropertyValue(value);
+        }
+        else if (fieldClass == double[].class) {
+            result = getDoubleArrayPropertyValue(value);
+        }
+        else if (fieldClass == String[].class) {
+            result = getStringArrayPropertyValue(propertyName, value,
+                    hasPreserveOrderAnnotation(field));
+        }
+        else if (fieldClass == URI.class || fieldClass == String.class) {
+            result = Objects.toString(value, null);
+        }
+        else if (fieldClass == Pattern.class) {
+            result = getPatternPropertyValue(value);
+        }
+        else if (fieldClass == Pattern[].class) {
+            result = getPatternArrayPropertyValue(value);
+        }
+        else if (fieldClass.isEnum()) {
+            result = getEnumPropertyValue(value);
+        }
+        else if (fieldClass == AccessModifierOption[].class) {
+            result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
+        }
+        else {
+            assertWithMessage("Unknown property type: %s", fieldClass.getSimpleName()).fail();
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the name of the bean property's default value for the double array class.
+     *
+     * @param value The bean property's value
+     * @return String form of property's default value
+     */
+    private static String getDoubleArrayPropertyValue(Object value) {
+        String result = Arrays.toString((double[]) value).replace("[", "").replace("]", "")
+                .replace(".0", "");
+
+        if (result.isEmpty()) {
+            result = "{}";
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the name of the bean property's default value for the Pattern class.
+     *
+     * @param value The bean property's value
+     * @return String form of property's default value, or {@code null} if there is no value
+     */
+    private static String getPatternPropertyValue(Object value) {
+        String result = null;
+
+        if (value != null) {
+            result = value.toString().replace("\n", "\\n").replace("\t", "\\t")
+                    .replace("\r", "\\r").replace("\f", "\\f");
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the name of the bean property's default value for an enum class.
+     *
+     * @param value The bean property's value
+     * @return String form of property's default value, or {@code null} if there is no value
+     */
+    private static String getEnumPropertyValue(Object value) {
+        String result = null;
+
+        if (value != null) {
+            result = value.toString().toLowerCase(Locale.ENGLISH);
         }
 
         return result;
@@ -2787,58 +2887,109 @@ public class XdocsPagesTest {
     @Test
     public void validateExampleSectionSeparation() throws Exception {
         final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
+        assertWithMessage("Expected to find at least one XML template file")
+            .that(templates)
+            .isNotEmpty();
 
         for (final Path template : templates) {
-            final Document doc = parseXmlToDomDocument(template);
-            final NodeList subsectionList = doc.getElementsByTagName("subsection");
+            processTemplateForExampleSeparation(template);
+        }
+    }
 
-            for (int index = 0; index < subsectionList.getLength(); index++) {
-                final Element subsection = (Element) subsectionList.item(index);
-                final String subSectionName = subsection.getAttribute("name");
+    /**
+     * Processes a single template file to validate example section separation.
+     *
+     * @param template the template file path
+     * @throws Exception if parsing or validation fails
+     */
+    private static void processTemplateForExampleSeparation(Path template) throws Exception {
+        final Document doc = parseXmlToDomDocument(template);
+        final NodeList subsectionList = doc.getElementsByTagName("subsection");
 
-                if (!"Examples".equals(subSectionName) && !"Use Cases".equals(subSectionName)) {
-                    continue;
-                }
+        for (int index = 0; index < subsectionList.getLength(); index++) {
+            final Element subsection = (Element) subsectionList.item(index);
+            final String subSectionName = subsection.getAttribute("name");
 
-                final NodeList children = subsection.getChildNodes();
-                String lastExampleIdPrefix = null;
-                boolean separatorSeen = false;
+            if (isExampleOrUseCasesSection(subSectionName)) {
+                validateSubSectionExampleSeparation(template, subsection);
+            }
+        }
+    }
 
-                for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
-                    final Node child = children.item(childIndex);
-                    if (child.getNodeType() != Node.ELEMENT_NODE) {
-                        continue;
+    /**
+     * Checks if the subsection is an Examples or Use Cases section.
+     *
+     * @param subSectionName the subsection name
+     * @return true if it's an Examples or Use Cases section
+     */
+    private static boolean isExampleOrUseCasesSection(String subSectionName) {
+        return "Examples".equals(subSectionName) || "Use Cases".equals(subSectionName);
+    }
+
+    /**
+     * Validates example separation within a subsection.
+     *
+     * @param template the template file path
+     * @param subsection the subsection element
+     */
+    private static void validateSubSectionExampleSeparation(Path template, Element subsection) {
+        final NodeList children = subsection.getChildNodes();
+        String lastExampleIdPrefix = null;
+        boolean separatorSeen = false;
+
+        for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
+            final Node child = children.item(childIndex);
+            if (child.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+
+            final Element element = (Element) child;
+            if (isExampleSeparator(element)) {
+                separatorSeen = true;
+            }
+            else {
+                final String currentId = element.getAttribute("id");
+                if (isExampleElement(currentId)) {
+                    final String currentExPrefix = getExamplePrefix(currentId);
+                    if (lastExampleIdPrefix != null
+                            && !lastExampleIdPrefix.equals(currentExPrefix)) {
+                        final boolean isSeparated = separatorSeen
+                                || isSeparatorSuppressed(template, lastExampleIdPrefix,
+                                        currentExPrefix);
+                        assertWithMessage(
+                            "Missing <hr class=\"example-separator\"/> "
+                                + "between %s and %s in file: %s",
+                                lastExampleIdPrefix, currentExPrefix, template)
+                                .that(isSeparated)
+                                .isTrue();
+                        separatorSeen = false;
                     }
-
-                    final Element element = (Element) child;
-                    if ("hr".equals(element.getTagName())
-                            && "example-separator".equals(element.getAttribute("class"))) {
-                        separatorSeen = true;
-                        continue;
-                    }
-
-                    final String currentId = element.getAttribute("id");
-                    if (currentId != null && (currentId.startsWith("Example")
-                        || currentId.startsWith("UseCase"))) {
-                        final String currentExPrefix = getExamplePrefix(currentId);
-                        if (lastExampleIdPrefix != null
-                                && !lastExampleIdPrefix.equals(currentExPrefix)) {
-                            final boolean isSeparated = separatorSeen
-                                    || isSeparatorSuppressed(template, lastExampleIdPrefix,
-                                            currentExPrefix);
-                            assertWithMessage(
-                                "Missing <hr class=\"example-separator\"/> "
-                                    + "between %s and %s in file: %s",
-                                    lastExampleIdPrefix, currentExPrefix, template)
-                                    .that(isSeparated)
-                                    .isTrue();
-                            separatorSeen = false;
-                        }
-                        lastExampleIdPrefix = currentExPrefix;
-                    }
+                    lastExampleIdPrefix = currentExPrefix;
                 }
             }
         }
+    }
+
+    /**
+     * Checks if an element is an example separator.
+     *
+     * @param element the element to check
+     * @return true if it's an example separator
+     */
+    private static boolean isExampleSeparator(Element element) {
+        return "hr".equals(element.getTagName())
+                && "example-separator".equals(element.getAttribute("class"));
+    }
+
+    /**
+     * Checks if an element ID represents an example element.
+     *
+     * @param currentId the element ID
+     * @return true if it's an example element
+     */
+    private static boolean isExampleElement(String currentId) {
+        return currentId != null
+                && (currentId.startsWith("Example") || currentId.startsWith("UseCase"));
     }
 
     /**
