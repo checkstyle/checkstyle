@@ -431,10 +431,6 @@
   <rule ref="category/java/design.xml/CognitiveComplexity">
     <properties>
       <property name="reportLevel" value="22"/>
-      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">
