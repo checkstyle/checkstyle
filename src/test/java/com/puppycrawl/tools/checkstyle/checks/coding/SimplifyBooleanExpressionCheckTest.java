@@ -73,6 +73,17 @@ public class SimplifyBooleanExpressionCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "11:19: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputSimplifyBooleanExpressionCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
         assertWithMessage("Acceptable tokens should not be null")

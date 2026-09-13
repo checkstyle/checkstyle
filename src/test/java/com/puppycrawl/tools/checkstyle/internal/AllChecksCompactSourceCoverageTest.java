@@ -219,7 +219,6 @@ public class AllChecksCompactSourceCoverageTest {
         "RightCurlyCheck",
         "SealedShouldHavePermitsListCheck",
         "SeparatorWrapCheck",
-        "SimplifyBooleanExpressionCheck",
         "SimplifyBooleanReturnCheck",
         "SingleLineJavadocCheck",
         "SingleSpaceSeparatorCheck",
