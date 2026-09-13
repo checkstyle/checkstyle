@@ -31,9 +31,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class PatternVariableNameCheck extends AbstractNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates a new {@code PatternVariableNameCheck} instance. */
     public PatternVariableNameCheck() {
-        super("^([a-z][a-zA-Z0-9]*|_)$");
+        super("^([a-z][a-zA-Z0-9]*|_)$", MSG_INVALID_PATTERN);
     }
 
     @Override

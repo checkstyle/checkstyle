@@ -19,7 +19,7 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
 import java.util.Collections;

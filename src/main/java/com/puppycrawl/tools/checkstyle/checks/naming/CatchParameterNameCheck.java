@@ -48,10 +48,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class CatchParameterNameCheck extends AbstractNameCheck {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Creates a new {@code CatchParameterNameCheck} instance.
      */
     public CatchParameterNameCheck() {
-        super("^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$");
+        super("^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$", MSG_INVALID_PATTERN);
     }
 
     @Override

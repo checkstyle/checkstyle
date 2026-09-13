@@ -32,9 +32,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ClassTypeParameterNameCheck
     extends AbstractNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates a new {@code ClassTypeParameterNameCheck} instance. */
     public ClassTypeParameterNameCheck() {
-        super("^[A-Z]$");
+        super("^[A-Z]$", MSG_INVALID_PATTERN);
     }
 
     @Override
