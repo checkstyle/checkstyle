@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
+import com.puppycrawl.tools.checkstyle.utils.InlineConfigUtils;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -151,15 +152,16 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
             "checks/descendanttoken",
             "checks/imports/importcontrol",
-            "filters/severitymatchfilter",
-            "filters/suppresswithplaintextcommentfilter"
-    );
-
+            "filters/suppresswithplaintextcommentfilter",
+            "filters/suppressionsinglefilter",
+            "filters/suppressionxpathfilter"
+            );
     /**
      * Tests that examples with same code structure maintain consistency.
      *
      * @throws IOException if an I/O error occurs
      */
+
     @Test
     public void testExamplesDifferOnlyByComments() throws IOException {
         final List<Violation> violations = new ArrayList<>();
@@ -683,15 +685,34 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     public static String extractXmlConfigBlock(Path file) throws IOException {
-        final String content = Files.readString(file);
+        final List<String> lines = Files.readAllLines(file);
+        final String filePath = file.toString();
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, filePath);
         String result = null;
 
-        final int startMarker = content.indexOf("/*xml");
-        if (startMarker >= 0) {
-            final int contentStart = startMarker + "/*xml".length();
-            final int endMarker = content.indexOf("*/", contentStart);
-            if (endMarker >= 0) {
-                result = content.substring(contentStart, endMarker).strip();
+        if (matched != null && matched.xmlStyleConfig()) {
+            final int endIndex = InlineConfigUtils.getConfigEndIndex(lines, matched);
+            if (endIndex != -1) {
+                final int startIndex;
+                if (matched.end() == null) {
+                    startIndex = 0;
+                }
+                else {
+                    startIndex = 1;
+                }
+                final List<String> rawConfigLines = lines.subList(startIndex, endIndex);
+                final List<String> configLines;
+                if (filePath.endsWith(".properties")) {
+                    configLines = InlineConfigUtils.stripPropertiesCommentPrefix(rawConfigLines);
+                }
+                else {
+                    configLines = rawConfigLines;
+                }
+                final String candidate = String.join("\n", configLines).strip();
+                if (candidate.startsWith("<")) {
+                    result = candidate;
+                }
             }
         }
 
