@@ -693,7 +693,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationQualified() throws Exception {
         final String[] expected = {
-            "19:19: " + getCheckMessage(MSG_VARIABLE, "CONTAINER", ""),
+            "20:19: " + getCheckMessage(MSG_VARIABLE, "CONTAINER", ""),
         };
 
         verifyWithInlineConfigParser(

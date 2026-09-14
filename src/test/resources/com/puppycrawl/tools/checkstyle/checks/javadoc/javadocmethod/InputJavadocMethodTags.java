@@ -84,11 +84,11 @@ class WrongException extends RuntimeException
 }
 
 @interface InputInterfaceTest {
+    // violation 3 lines below 'Duplicate @return tag.'
     /** @return
      * nothing
      * @return
      * oops */
-    // violation 2 lines above 'Duplicate @return tag.'
     String[] results() default {};
 }
 class MoreExamples {

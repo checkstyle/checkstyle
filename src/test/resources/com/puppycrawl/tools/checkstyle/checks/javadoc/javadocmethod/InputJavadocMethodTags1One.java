@@ -26,8 +26,8 @@ public class InputJavadocMethodTags1One {
     {
     }
 
+    // violation below 'Unused @param tag for 'unused'.'
     /** @param unused asd **/
-    // violation above 'Unused @param tag for 'unused'.'
     void method2()
     {
     }
@@ -80,27 +80,27 @@ public class InputJavadocMethodTags1One {
     {
     }
 
+    // violation below 'Unused @param tag for 'WrongParam'.'
     /** @param WrongParam problem **/
-    // violation above 'Unused @param tag for 'WrongParam'.'
     void method10(int aOne, int aTwo) // 2 violations
     {
     }
 
-    // violation 2 lines below 'Unused @param tag for 'Unneeded'.'
+    // violation 3 lines below 'Unused @param tag for 'Unneeded'.'
+    // violation 3 lines below 'Unused Javadoc tag.'
     /**
      * @param Unneeded parameter
      * @return also unneeded
      **/
-    // violation 2 lines above 'Unused Javadoc tag.'
     void method11()
     {
     }
 
+    // violation 3 lines below 'Duplicate @return tag.'
     /**
      * @return first one
      * @return duplicate
      **/
-    // violation 2 lines above 'Duplicate @return tag.'
     int method12()
     {
         return 0;

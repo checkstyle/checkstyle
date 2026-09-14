@@ -12,10 +12,10 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleNoTrailingComma
 {
+  // 2 violations 3 lines below:
+  // 'Annotation array values must contain trailing comma.'
+  // 'Annotation array values must contain trailing comma.'
   @Test2(value={(false) ? "" : "foo"}, more={(true) ? "" : "bar"})
-  // 2 violations above:
-  // 'Annotation array values must contain trailing comma.'
-  // 'Annotation array values must contain trailing comma.'
   enum P {
       L,
       Y;

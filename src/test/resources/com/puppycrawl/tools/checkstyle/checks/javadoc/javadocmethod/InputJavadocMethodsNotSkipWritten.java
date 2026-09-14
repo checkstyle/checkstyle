@@ -14,24 +14,24 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 public class InputJavadocMethodsNotSkipWritten {
+    // violation 4 lines below 'Unused @param tag for 'BAD'.'
     /**
      * Description.
      *
      * @param BAD
      *            This param doesn't exist.
      */
-    // violation 3 lines above 'Unused @param tag for 'BAD'.'
     @MyAnnotation
     public void InputJavadocMethodsNotSkipWritten() {
     }
 
+    // violation 4 lines below 'Unused @param tag for 'BAD'.'
     /**
      * Description.
      *
      * @param BAD
      *            This param doesn't exist.
      */
-    // violation 3 lines above 'Unused @param tag for 'BAD'.'
     @MyAnnotation
     public void test() {
     }

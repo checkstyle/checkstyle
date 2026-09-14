@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 /** Odd javadoc */
 /** Valid javadoc. */
 class InputInvalidJavadocPosition {
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
 }
 
 /** Valid javadoc. */
@@ -98,9 +98,9 @@ class InputInvalidJavadocPosition2 {
     int variable;
   }
 
+  // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   @Deprecated
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
   class InputInvalidJavadocPosition3 {}
 
   /** Valid javadoc. */
@@ -117,6 +117,6 @@ class InputInvalidJavadocPosition2 {
   class InputInvalidJavadocPosition6
     /** Odd javadoc */
     {} // violation ''}' at column 6 should be alone on a line.'
+  // violation below 'Javadoc comment is placed in the wrong location.'
   /** Odd javadoc */
-  // violation above 'Javadoc comment is placed in the wrong location.'
 }
