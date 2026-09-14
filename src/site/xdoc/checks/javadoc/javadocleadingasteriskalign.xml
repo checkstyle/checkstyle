@@ -21,6 +21,7 @@
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocLeadingAsteriskAlign_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Align leading asterisks under the slash ( / ) of the opening javadoc tag</a></li>
             </ul>
           </li>
           <li><a href="#JavadocLeadingAsteriskAlign_Example_of_Usage">Example of Usage</a></li>
@@ -35,7 +36,9 @@
           Checks the alignment of
           <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
           leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
-          are aligned vertically under the first asterisk ( &#42; )
+          are aligned vertically at the number of columns to the right of the slash ( / ) of the
+          opening Javadoc tag that is specified by the <code>indentation</code> property. By default
+          they are aligned under the first asterisk ( &#42; )
           of opening Javadoc tag. The alignment of closing Javadoc tag ( &#42;/ ) is also checked.
           If a closing Javadoc tag contains non-whitespace character before it
           then it's alignment will be ignored.
@@ -58,6 +61,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="indentation"/><a href="#indentation">indentation</a></td>
+              <td>Specify the number of columns between the slash ( / ) of the opening javadoc tag and the leading asterisks.</td>
+              <td><a href="../../property_types.html#int">int</a></td>
+              <td><code>1</code></td>
+              <td>13.11.0</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
@@ -85,12 +95,12 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 2 lines below '1, expected is 2.'
+// violation 2 lines below '0, expected is 1.'
 /**
 * Javadoc for class.
  */
 public class Example1 {
-  // violation 2 lines below '5, expected is 4.'
+  // violation 2 lines below '2, expected is 1.'
   /**
     * Javadoc for instance variable, over-indented.
    */
@@ -100,17 +110,17 @@ public class Example1 {
    * Javadoc for instance variable, correctly aligned.
    */
   private int goodIndentField;
-  // violation 2 lines below '3, expected is 4.'
+  // violation 2 lines below '0, expected is 1.'
   /**
   *  Javadoc for method, under-indented.
   */
   private void wrongIndentMethod() {}
-  // violation 2 lines above '3, expected is 4.'
+  // violation 2 lines above '0, expected is 1.'
   /**
    * Javadoc for method, correctly aligned.
    */
   private void goodIndentMethod() {}
-  // violation 3 lines below '1, expected is 4.'
+  // violation 3 lines below '-2, expected is 1.'
   /**
    Javadoc for constructor, missing leading asterisk alignment on closing tag.
 */
@@ -122,7 +132,7 @@ public class Example1 {
   public Example1(int value) {}
 
   private enum indentedEnum {
-    // violation 2 lines below '5, expected is 6.'
+    // violation 2 lines below '0, expected is 1.'
     /**
     *  Wrong alignment for enum constant.
      */
@@ -131,6 +141,72 @@ public class Example1 {
     /**
      * Correct alignment for enum constant.
      */
+    GOOD
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to align leading asterisks under the slash ( / )
+          of the opening javadoc tag:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocLeadingAsteriskAlign"&gt;
+      &lt;property name="indentation" value="0"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+* Javadoc for class.
+ */ // violation '1, expected is 0.'
+public class Example2 {
+
+  /**
+    * Javadoc for instance variable, over-indented. // violation '2, expected is 0.'
+   */ // violation '1, expected is 0.'
+  private int wrongIndentField;
+
+  /**
+   * Javadoc for instance variable, correctly aligned. // violation '1, expected is 0.'
+   */ // violation '1, expected is 0.'
+  private int goodIndentField;
+
+  /**
+  *  Javadoc for method, under-indented.
+  */
+  private void wrongIndentMethod() {}
+
+  /**
+   * Javadoc for method, correctly aligned. // violation '1, expected is 0.'
+   */ // violation '1, expected is 0.'
+  private void goodIndentMethod() {}
+
+  /**
+   Javadoc for constructor, missing leading asterisk alignment on closing tag.
+*/ // violation '-2, expected is 0.'
+  private Example2() {}
+
+  /**
+   * Javadoc for constructor, correctly aligned. // violation '1, expected is 0.'
+   */ // violation '1, expected is 0.'
+  public Example2(int value) {}
+
+  private enum indentedEnum {
+
+    /**
+    *  Wrong alignment for enum constant.
+     */ // violation '1, expected is 0.'
+    WRONG,
+
+    /**
+     * Correct alignment for enum constant. // violation '1, expected is 0.'
+     */ // violation '1, expected is 0.'
     GOOD
   }
 }
