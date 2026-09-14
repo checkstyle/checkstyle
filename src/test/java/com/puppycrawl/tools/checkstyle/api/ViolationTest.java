@@ -368,9 +368,9 @@ public class ViolationTest {
     }
 
     private static Violation createSampleViolationWithColumn(int column) {
-        return new Violation(1, column,
+        return new Violation(1, column, 1, TokenTypes.CLASS_DEF,
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
-                EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
+                EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, "module", Violation.class, null);
     }
 
 }
