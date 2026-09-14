@@ -275,8 +275,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                         generateMessageStrings(module));
             }
             result.add(rule
-                    .replace(RULE_ID_PLACEHOLDER, ruleKey.toRuleId())
-                    .replace("${shortDescription}", shortDescription)
+                    .replace(RULE_ID_PLACEHOLDER, escape(ruleKey.toRuleId()))
+                    .replace("${shortDescription}", escape(shortDescription))
                     .replace("${fullDescription}", escape(fullDescription))
                     .replace("${messageStrings}", messageStringsFragment));
         }
@@ -355,7 +355,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()),
                 LINE_PLACEHOLDER, Integer.toString(event.getLine()),
                 MESSAGE_PLACEHOLDER, message,
-                RULE_ID_PLACEHOLDER, ruleKey.toRuleId())));
+                RULE_ID_PLACEHOLDER, escape(ruleKey.toRuleId()))));
         }
         else {
             results.add(fillTemplate(resultLineOnly, Map.of(
@@ -363,7 +363,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 URI_PLACEHOLDER, renderFileNameUri(event.getFileName()),
                 LINE_PLACEHOLDER, Integer.toString(event.getLine()),
                 MESSAGE_PLACEHOLDER, message,
-                RULE_ID_PLACEHOLDER, ruleKey.toRuleId())));
+                RULE_ID_PLACEHOLDER, escape(ruleKey.toRuleId()))));
         }
     }
 
@@ -394,7 +394,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         final String result;
         if (module != null && module.getViolationMessageKeys().contains(violationKey)) {
             result = messageWithId
-                    .replace(MESSAGE_ID_PLACEHOLDER, violationKey)
+                    .replace(MESSAGE_ID_PLACEHOLDER, escape(violationKey))
                     .replace(MESSAGE_TEXT_PLACEHOLDER, escape(event.getMessage()));
         }
         else {
@@ -471,7 +471,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         if (WINDOWS_DRIVE_LETTER_PATTERN.matcher(normalized).find()) {
             normalized = '/' + normalized;
         }
-        return "file:" + normalized;
+        return "file:" + escapeControlCharacters(normalized);
     }
 
     /**
@@ -520,6 +520,28 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
             sb.append(replacement);
         }
 
+        return sb.toString();
+    }
+
+    /**
+     * Escape the characters between 0x00 and 0x1F in a value that is not run through
+     * {@link #escape}. JSON forbids them unescaped inside a string, and a file name is
+     * allowed to contain them.
+     *
+     * @param value the value to escape.
+     * @return the value with any control character escaped.
+     */
+    private static String escapeControlCharacters(String value) {
+        final StringBuilder sb = new StringBuilder(value.length());
+        for (int index = 0; index < value.length(); index++) {
+            final char chr = value.charAt(index);
+            if (chr <= UNICODE_ESCAPE_UPPER_LIMIT) {
+                sb.append(escapeUnicode1F(chr));
+            }
+            else {
+                sb.append(chr);
+            }
+        }
         return sb.toString();
     }
 
