@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkFirstOccurrenceCheck.MSG_KEY;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,16 +98,13 @@ public class JavadocLinkFirstOccurrenceCheckTest extends AbstractModuleTestSuppo
 
     @Test
     public void testClearStateBetweenFiles() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocLinkFirstOccurrenceCheck.class);
+        final String pathFile1 = getPath("InputJavadocLinkFirstOccurrenceClearState1.java");
         final String pathFile2 = getPath("InputJavadocLinkFirstOccurrenceClearState2.java");
-        final String[] expected = {
-            "6:36: " + getCheckMessage(MSG_KEY, "String"),
-        };
-        verify(createChecker(checkConfig), new File[] {
-            new File(getPath("InputJavadocLinkFirstOccurrenceClearState1.java")),
-            new File(pathFile2),
-        }, pathFile2, expected);
+        final List<String> expectedFile1 = Collections.emptyList();
+        final List<String> expectedFile2 = List.of(
+            "12:36: " + getCheckMessage(MSG_KEY, "String")
+        );
+        verifyWithInlineConfigParser(pathFile1, pathFile2, expectedFile1, expectedFile2);
     }
 
 }
