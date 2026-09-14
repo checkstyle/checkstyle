@@ -46,6 +46,14 @@ public class WhitespaceAfterCheckTest
     }
 
     @Test
+    public void testIsCommentNodesRequired() {
+        final WhitespaceAfterCheck checkObj = new WhitespaceAfterCheck();
+        assertWithMessage("WhitespaceAfterCheck should require comment nodes")
+                .that(checkObj.isCommentNodesRequired())
+                .isTrue();
+    }
+
+    @Test
     public void testDefault() throws Exception {
         final String[] expected = {
             "45:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
@@ -412,6 +420,18 @@ public class WhitespaceAfterCheckTest
         };
         verifyWithInlineConfigParser(
             getPath("example2/package-info.java"), expected);
+    }
+
+    @Test
+    public void testSingleLineCommentToken() throws Exception {
+        final String[] expected = {
+            "13:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+            "15:47: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+            "17:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+            "19:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterSingleLineComment.java"), expected);
     }
 
 }
