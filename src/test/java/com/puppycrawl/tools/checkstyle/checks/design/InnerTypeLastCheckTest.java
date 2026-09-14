@@ -22,12 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck.MSG_KEY;
 
-import java.io.File;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
@@ -84,18 +81,14 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIfRootClassChecked3() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(InnerTypeLastCheck.class);
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY),
             "23:5: " + getCheckMessage(MSG_KEY),
             "20:5: " + getCheckMessage(MSG_KEY),
             "23:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(createChecker(checkConfig), new File[] {
-            new File(getPath("InputInnerTypeLastClassRootClass.java")),
-            new File(getPath("InputInnerTypeLastClassRootClass.java")),
-        }, getPath("InputInnerTypeLastClassRootClass.java"), expected);
+        final String input = getPath("InputInnerTypeLastClassRootClass.java");
+        verifyWithInlineConfigParser(input, input, expected);
     }
 
     @Test
