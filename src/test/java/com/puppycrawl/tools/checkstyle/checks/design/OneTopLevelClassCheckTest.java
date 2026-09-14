@@ -22,15 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck.MSG_KEY;
 
-import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -52,26 +48,18 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClearState() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(OneTopLevelClassCheck.class);
         final String firstInputFilePath = getPath("InputOneTopLevelClassDeclarationOrder.java");
         final String secondInputFilePath = getPath("InputOneTopLevelClassInterface2.java");
 
-        final File[] inputs = {
-            new File(firstInputFilePath),
-            new File(secondInputFilePath),
-        };
-
-        final List<String> expectedFirstInput = Arrays.asList(
+        final List<String> expectedFirstInput = List.of(
             "17:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
             "28:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation"));
-        final List<String> expectedSecondInput = Arrays.asList(
+        final List<String> expectedSecondInput = List.of(
             "10:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner1"),
             "19:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner2"));
 
-        verify(createChecker(checkConfig), inputs,
-            ImmutableMap.of(firstInputFilePath, expectedFirstInput,
-                secondInputFilePath, expectedSecondInput));
+        verifyWithInlineConfigParser(firstInputFilePath, secondInputFilePath,
+                expectedFirstInput, expectedSecondInput);
     }
 
     @Test
