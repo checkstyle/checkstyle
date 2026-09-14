@@ -684,7 +684,7 @@ public class JavadocMethodCheck extends AbstractJavadocCheck {
                 continue;
             }
             // backtrack to parent if last child, stopping at root
-            while (curNode.getNextSibling() == null) {
+            while (!curNode.equals(root) && curNode.getNextSibling() == null) {
                 curNode = curNode.getParent();
             }
             // explore siblings if not root
