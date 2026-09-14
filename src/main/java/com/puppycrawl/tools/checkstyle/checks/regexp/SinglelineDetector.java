@@ -89,8 +89,7 @@ public class SinglelineDetector {
      * @param matcher       the matcher to use
      */
     private void checkLine(int lineNo, Matcher matcher) {
-        int startPosition = 0;
-        while (matcher.find(startPosition)) {
+        while (matcher.find()) {
             // match is found, check for intersection with comment
             final int startCol = matcher.start(0);
             final int endCol = matcher.end(0);
@@ -98,24 +97,24 @@ public class SinglelineDetector {
             // last matched character, but shouldSuppress()
             // needs column number of the last character.
             // So we need to use (endCol - 1) here.
+            // Using Matcher.find() here avoids looping forever when a suppressed
+            // zero-width match produces no advancement.
 
             if (options.getSuppressor()
                     .shouldSuppress(lineNo, startCol, lineNo, endCol - 1)) {
-                startPosition = endCol;
+                continue;
             }
-            else {
-                currentMatches++;
-                if (currentMatches > options.getMaximum()) {
-                    if (options.getMessage().isEmpty()) {
-                        options.getReporter().log(lineNo, exceededMessage,
-                                matcher.pattern().toString());
-                    }
-                    else {
-                        options.getReporter().log(lineNo, options.getMessage());
-                    }
+            currentMatches++;
+            if (currentMatches > options.getMaximum()) {
+                if (options.getMessage().isEmpty()) {
+                    options.getReporter().log(lineNo, exceededMessage,
+                            matcher.pattern().toString());
                 }
-                break;
+                else {
+                    options.getReporter().log(lineNo, options.getMessage());
+                }
             }
+            break;
         }
     }
 
