@@ -26,6 +26,7 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJava
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
@@ -176,6 +177,19 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment11.java"), expected);
+    }
+
+    @Test
+    public void testIgnoreCommentsZeroWidthMatch() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(RegexpSinglelineJavaCheck.class);
+        checkConfig.addProperty("format", "(?=TODO)");
+        checkConfig.addProperty("ignoreComments", "true");
+
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(?=TODO)"),
+        };
+        verify(checkConfig, getPath("InputRegexpSinglelineJavaZeroWidthMatch.java"), expected);
     }
 
     @Test
