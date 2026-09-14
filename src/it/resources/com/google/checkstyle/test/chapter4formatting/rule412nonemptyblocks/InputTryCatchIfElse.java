@@ -18,7 +18,7 @@ public class InputTryCatchIfElse {
 
     if (a == 45) {}
 
-    if (a == 9) {} else {}
+    if (a == 9) {} else {} // violation ''}' at column .* should be alone on a line.'
 
     if (a == 99) {
       System.out.println("test");
@@ -34,15 +34,17 @@ public class InputTryCatchIfElse {
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // 3 violations above:
+    // 4 violations above:
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should be alone on a line.'
     //                    'Empty catch block'
     //                    ''}' at column 74 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 4 violations above:
+    // 5 violations above:
     //                    'Empty blocks should have no spaces.'
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should be alone on a line.'
     //                    'Empty catch block'
     //                    ''}' at column 75 should be alone on a line.'
 
