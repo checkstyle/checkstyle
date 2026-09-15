@@ -217,7 +217,6 @@ public class XdocsPagesTest {
             "NewlineAtEndOfFile",
             "NoWhitespaceAfter",
             "NoWhitespaceBefore",
-            "OperatorWrap",
             "PackageName",
             "ParameterName",
             "ParameterNumber",
