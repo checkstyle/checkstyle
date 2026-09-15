@@ -7237,6 +7237,13 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference commentContent</message>
+    <lineContent>final String commentText = commentContent.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference targetAST</message>
     <lineContent>final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);</lineContent>
   </checkerFrameworkError>
