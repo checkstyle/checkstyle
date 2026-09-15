@@ -171,7 +171,6 @@ public class AllChecksCompactSourceCoverageTest {
         "MethodNameCheck",
         "MethodParamPadCheck",
         "MethodTypeParameterNameCheck",
-        "MissingCtorCheck",
         "MissingDeprecatedCheck",
         "MissingJavadocMethodCheck",
         "MissingJavadocPackageCheck",
