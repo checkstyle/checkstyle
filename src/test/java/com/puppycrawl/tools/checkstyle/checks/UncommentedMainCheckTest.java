@@ -163,7 +163,6 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testStateIsClearedOnBeginTree() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String file1 = getPath(
                 "InputUncommentedMainRecords2.java");
         final String file2 = getPath(
@@ -173,13 +172,9 @@ public class UncommentedMainCheckTest
                 "21:24: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(
-                "13:13: " + getCheckMessage(MSG_KEY)
+                "14:13: " + getCheckMessage(MSG_KEY)
         );
-        final File[] inputs = {new File(file1), new File(file2)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            file1, expectedFirstInput,
-            file2, expectedSecondInput));
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
     @Test
