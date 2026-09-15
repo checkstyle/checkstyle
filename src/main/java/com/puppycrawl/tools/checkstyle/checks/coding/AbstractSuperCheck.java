@@ -42,7 +42,7 @@ public abstract class AbstractSuperCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "missing.super.call";
+    private static final String MESSAGE_KEY = "missing.super.call";
 
     /** Stack of methods. */
     private final Deque<MethodNode> methodStack = new ArrayDeque<>();
@@ -172,7 +172,7 @@ public abstract class AbstractSuperCheck
                 final DetailAST methodAST = methodNode.getMethod();
                 final DetailAST nameAST =
                     methodAST.findFirstToken(TokenTypes.IDENT);
-                log(nameAST, MSG_KEY, nameAST.getText());
+                log(nameAST, MESSAGE_KEY, nameAST.getText());
             }
         }
     }
