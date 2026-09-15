@@ -42,9 +42,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class LocalFinalVariableNameCheck
     extends AbstractNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates a new {@code LocalFinalVariableNameCheck} instance. */
     public LocalFinalVariableNameCheck() {
-        super("^([a-z][a-zA-Z0-9]*|_)$");
+        super("^([a-z][a-zA-Z0-9]*|_)$", MSG_INVALID_PATTERN);
     }
 
     @Override

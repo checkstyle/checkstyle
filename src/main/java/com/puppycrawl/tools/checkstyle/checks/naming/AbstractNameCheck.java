@@ -35,10 +35,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public abstract class AbstractNameCheck
     extends AbstractCheck {
 
-    /**
-     * Message key for invalid pattern violation.
-     */
-    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+    /** The key for the message. */
+    private final String messageKey;
 
     /** The regexp to match against. */
     private Pattern format;
@@ -49,7 +47,18 @@ public abstract class AbstractNameCheck
      * @param format format to check with
      */
     protected AbstractNameCheck(String format) {
+        this(format, "name.invalidPattern");
+    }
+
+    /**
+     * Creates a new {@code AbstractNameCheck} instance.
+     *
+     * @param format format to check with
+     * @param messageKey the key for the message
+     */
+    protected AbstractNameCheck(String format, String messageKey) {
         this.format = CommonUtil.createPattern(format);
+        this.messageKey = messageKey;
     }
 
     /**
@@ -77,7 +86,7 @@ public abstract class AbstractNameCheck
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (!format.matcher(nameAST.getText()).find()) {
                 log(nameAST,
-                    MSG_INVALID_PATTERN,
+                    messageKey,
                     nameAST.getText(),
                     format.pattern());
             }

@@ -49,6 +49,30 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_FOLLOWED = "ws.followed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_PRECEDED = "ws.preceded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
+
+    /**
      * Tokens that this check handles.
      */
     private final BitSet acceptableTokens;
