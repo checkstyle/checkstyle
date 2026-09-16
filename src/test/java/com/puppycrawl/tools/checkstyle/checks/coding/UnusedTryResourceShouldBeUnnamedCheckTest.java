@@ -49,6 +49,7 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
         final int[] expected = {
             TokenTypes.LITERAL_TRY,
             TokenTypes.IDENT,
+            TokenTypes.SLIST,
         };
         assertWithMessage("Default required tokens are invalid")
             .that(checkObj.getRequiredTokens())
@@ -195,6 +196,20 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
                             return ((Collection<?>) tryResources).isEmpty();
                         }))
                 .isTrue();
+    }
+
+    @Test
+    public void testHandlers() throws Exception {
+        final String[] expected = {
+            "15:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "24:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "34:31: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "46:31: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "57:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputUnusedTryResourceShouldBeUnnamedHandlers.java"),
+            expected);
     }
 
 }

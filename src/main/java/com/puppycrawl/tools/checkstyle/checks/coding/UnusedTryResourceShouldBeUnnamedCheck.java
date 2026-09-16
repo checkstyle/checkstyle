@@ -121,6 +121,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.LITERAL_TRY,
             TokenTypes.IDENT,
+            TokenTypes.SLIST,
         };
     }
 
@@ -134,7 +135,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         if (ast.getType() == TokenTypes.LITERAL_TRY) {
             tryResources.push(collectTrackedResources(ast));
         }
-        else if (isResourceUsageCandidate(ast)
+        else if (ast.getType() == TokenTypes.IDENT && isResourceUsageCandidate(ast)
                 && !isShadowedByCatchParameter(ast)) {
             tryResources.stream()
                 .flatMap(Deque::stream)
@@ -146,7 +147,8 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_TRY) {
+        if (ast.getType() == TokenTypes.SLIST
+                && ast.getParent().getType() == TokenTypes.LITERAL_TRY) {
             final Deque<TryResourceDetails> resources = tryResources.peek();
             for (TryResourceDetails resource : resources) {
                 if (!resource.isUsed()) {
