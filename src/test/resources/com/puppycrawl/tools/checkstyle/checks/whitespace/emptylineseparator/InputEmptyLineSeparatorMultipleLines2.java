@@ -13,4 +13,14 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT, CLASS_DEF, 
 package com.puppycrawl.tools.checkstyle.checks.whitespace
 .emptylineseparator; import java.util.function.Supplier;
 public class // violation ''CLASS_DEF' should be separated from previous line.'
-InputEmptyLineSeparatorMultipleLines2 {}
+InputEmptyLineSeparatorMultipleLines2 {
+        void a() {
+    }
+
+
+    /** Javadoc. */
+    @Deprecated
+    void b() {
+    }
+
+}
