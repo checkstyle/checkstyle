@@ -33,7 +33,13 @@
                | //ClassDeclaration[@SimpleName='MainFrameTest']
                         //MethodDeclaration[@Name='testOpenFileButton']
                | //ClassDeclaration[@SimpleName='ConfigurationLoaderTest']
-                        //MethodDeclaration[@Name='testConfigWithIgnoreExceptionalAttributes']"/>
+                        //MethodDeclaration[@Name='testConfigWithIgnoreExceptionalAttributes']
+               | //ClassDeclaration[@SimpleName='Checker']
+                        //MethodDeclaration[@Name='process']
+                        //LocalVariableDeclaration//VariableDeclarator[@Name='auditCompletion']
+               | //ClassDeclaration[@SimpleName='Checker']
+                        //MethodDeclaration[@Name='processFiles']
+                        //LocalVariableDeclaration//VariableDeclarator[@Name='completion']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
