@@ -40,4 +40,9 @@ public class MultipleTagsTest extends AbstractDocCommentsModuleTestSupport {
         verifyWithWholeConfig(getPath("InputJavadocThrowsOrder.java"));
     }
 
+    @Test
+    public void testJavadocSeeTagOrder() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocSeeTagOrder.java"));
+    }
+
 }
