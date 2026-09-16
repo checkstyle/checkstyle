@@ -21,14 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLinkFirstOccurrenceCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocLinkFirstOccurrenceCheckTest extends AbstractModuleTestSupport {
@@ -88,12 +86,9 @@ public class JavadocLinkFirstOccurrenceCheckTest extends AbstractModuleTestSuppo
 
     @Test
     public void testEmptyFile() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(JavadocLinkFirstOccurrenceCheck.class);
-        final String path = getPath("InputJavadocLinkFirstOccurrenceEmptyFile.java");
-        verify(createChecker(checkConfig), new File[] {
-            new File(path),
-        }, path, CommonUtil.EMPTY_STRING_ARRAY);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocLinkFirstOccurrenceEmptyFile.java"), expected);
     }
 
     @Test
