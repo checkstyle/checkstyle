@@ -116,16 +116,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
         return Files.createFile(temporaryFolder.toPath().resolve(name)).toFile();
     }
 
-    private static void invokeFireAuditFinished(Checker checker)
-            throws ReflectiveOperationException {
-        TestUtil.invokeVoidMethod(checker, "fireAuditFinished");
-    }
-
-    private static void invokeFireAuditStartedMethod(Checker checker)
-            throws ReflectiveOperationException {
-        TestUtil.invokeVoidMethod(checker, "fireAuditStarted");
-    }
-
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checker";
@@ -181,23 +171,13 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
         checker.addListener(auditAdapter);
 
-        // Let's try fire some events
-        invokeFireAuditStartedMethod(checker);
-        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
-                .that(auditAdapter.wasCalled())
-                .isTrue();
-        assertWithMessage("Checker.fireAuditStarted() doesn't pass event")
-                .that(auditAdapter.wasEventPassed())
-                .isTrue();
-
-        auditAdapter.resetListener();
-        invokeFireAuditFinished(checker);
-        assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
-                .that(auditAdapter.wasCalled())
-                .isTrue();
-        assertWithMessage("Checker.fireAuditFinished() doesn't pass event")
-                .that(auditAdapter.wasEventPassed())
-                .isTrue();
+        checker.process(List.of());
+        assertWithMessage("Audit start event should identify the checker")
+                .that(auditAdapter.getAuditStartedEvent().getSource())
+                .isSameInstanceAs(checker);
+        assertWithMessage("Audit finish event should identify the checker")
+                .that(auditAdapter.getAuditFinishedEvent().getSource())
+                .isSameInstanceAs(checker);
 
         auditAdapter.resetListener();
         checker.fireFileStarted("Some File Name");
@@ -239,23 +219,19 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(aa2);
         checker.removeListener(auditAdapter);
 
-        // Let's try fire some events
-        invokeFireAuditStartedMethod(checker);
-        assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
-                .that(aa2.wasCalled())
-                .isTrue();
-        assertWithMessage("Checker.fireAuditStarted() does call removed listener")
-                .that(auditAdapter.wasCalled())
-                .isFalse();
-
-        aa2.resetListener();
-        invokeFireAuditFinished(checker);
-        assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
-                .that(aa2.wasCalled())
-                .isTrue();
-        assertWithMessage("Checker.fireAuditFinished() does call removed listener")
-                .that(auditAdapter.wasCalled())
-                .isFalse();
+        checker.process(List.of());
+        assertWithMessage("Remaining listener should receive the audit start event")
+                .that(aa2.getAuditStartedEvent().getSource())
+                .isSameInstanceAs(checker);
+        assertWithMessage("Removed listener should not receive the audit start event")
+                .that(auditAdapter.getAuditStartedEvent())
+                .isNull();
+        assertWithMessage("Remaining listener should receive the audit finish event")
+                .that(aa2.getAuditFinishedEvent().getSource())
+                .isSameInstanceAs(checker);
+        assertWithMessage("Removed listener should not receive the audit finish event")
+                .that(auditAdapter.getAuditFinishedEvent())
+                .isNull();
 
         aa2.resetListener();
         checker.fireFileStarted("Some File Name");
@@ -1067,6 +1043,62 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testXmlReportFinishedOnProcessingException() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CheckWhichThrowsError.class);
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(checkConfig);
+        final Checker checker = createChecker(createRootConfig(treewalkerConfig));
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+        checker.addListener(new XMLLogger(output, OutputStreamOptions.NONE));
+        final String filePath = getPath("InputChecker.java");
+
+        final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
+                () -> checker.process(List.of(new File(filePath))), "Exception is expected");
+
+        assertWithMessage("Processing failure must still be propagated")
+                .that(exception).hasCauseThat().isInstanceOf(IndexOutOfBoundsException.class);
+        assertWithMessage("XML report must close the file and audit after a failure")
+                .that(output.toString(StandardCharsets.UTF_8))
+                .endsWith("</file>" + System.lineSeparator()
+                        + "</checkstyle>" + System.lineSeparator());
+        checker.destroy();
+    }
+
+    @Test
+    public void testProcessingExceptionPreservedWhenCompletionFails() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CheckWhichThrowsError.class);
+        final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
+        treewalkerConfig.addChild(checkConfig);
+        final Checker checker = createChecker(createRootConfig(treewalkerConfig));
+        final IllegalStateException fileFailure = new IllegalStateException("file completion");
+        final IllegalStateException auditFailure = new IllegalStateException("audit completion");
+        checker.addListener(new DefaultLogger(new ByteArrayOutputStream(),
+                OutputStreamOptions.NONE) {
+            @Override
+            public void fileFinished(AuditEvent event) {
+                throw fileFailure;
+            }
+
+            @Override
+            public void auditFinished(AuditEvent event) {
+                throw auditFailure;
+            }
+        });
+
+        final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
+                () -> checker.process(List.of(new File(getPath("InputChecker.java")))),
+                "Processing exception is expected");
+
+        assertWithMessage("Processing failure must remain the primary cause")
+                .that(exception).hasCauseThat().isInstanceOf(IndexOutOfBoundsException.class);
+        assertWithMessage("File completion failure must be suppressed")
+                .that(exception.getCause().getSuppressed()).asList().containsExactly(fileFailure);
+        assertWithMessage("Audit completion failure must be suppressed")
+                .that(exception.getSuppressed()).asList().containsExactly(auditFailure);
+        checker.destroy();
+    }
+
+    @Test
     public void testHaltOnException() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CheckWhichThrowsError.class);
@@ -1166,6 +1198,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
         checker.configure(checkerConfig);
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+        checker.addListener(new XMLLogger(output, OutputStreamOptions.NONE));
         final List<File> filesToProcess = new ArrayList<>();
         filesToProcess.add(mock);
         final Error error =
@@ -1184,6 +1218,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // destroy is called by Main
         checker.destroy();
+
+        assertWithMessage("XML report must close the file and audit after an error")
+                .that(output.toString(StandardCharsets.UTF_8))
+                .endsWith("</file>" + System.lineSeparator()
+                        + "</checkstyle>" + System.lineSeparator());
 
         final Properties cache = new Properties();
         try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
@@ -1641,6 +1680,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cached file should not be processed twice")
             .that(loggerWithCounter.fileStartedCount)
             .isEqualTo(1);
+        assertWithMessage("Cached file should not receive a second completion event")
+            .that(loggerWithCounter.fileFinishedCount)
+            .isEqualTo(1);
 
         checker.destroy();
     }
@@ -1779,6 +1821,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public static class DefaultLoggerWithCounter extends DefaultLogger {
 
         private int fileStartedCount;
+        private int fileFinishedCount;
 
         public DefaultLoggerWithCounter(OutputStream infoStream,
                                         OutputStreamOptions infoStreamOptions,
@@ -1790,6 +1833,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
         @Override
         public void fileStarted(AuditEvent event) {
             fileStartedCount++;
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            fileFinishedCount++;
         }
     }
 
