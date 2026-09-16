@@ -104,18 +104,6 @@ public class InputExpressionOverBlockLambdaValid {
             case 1 -> () -> "one";
             case 2 -> { yield () -> "two"; }
             case 3 -> () -> {
-                return "three";
-            };
-            case 4 -> () -> { int y = 1; return "four" + y; };
-            default -> () -> "d";
-        };
-    }
-
-    public Supplier<String> testSwitchRuleValidCases(int x) {
-        return switch (x) {
-            case 1 -> () -> "one";
-            case 2 -> { yield () -> "two"; }
-            case 3 -> () -> {
                 return "three"; };
             case 4 -> () -> { int y = 1; return "four" + y; };
             default -> () -> "d";
