@@ -565,6 +565,32 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
+     * Returns the line on which token starts, a comment preceding its first annotation.
+     *
+     * @param token token to process.
+     * @return line number of token, or of its annotation's leading comment.
+     */
+    private int getStartLineNo(DetailAST token) {
+        int lineNo = token.getLineNo();
+        final DetailAST modifiers = token.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers != null) {
+            final DetailAST firstModifier = modifiers.getFirstChild();
+            if (firstModifier != null && firstModifier.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST comment = firstModifier.getFirstChild();
+                if (isCommentInBeginningOfLine(comment)) {
+                    final DetailAST afterComment = comment.getNextSibling();
+                    final DetailAST lastCommentLine =
+                            comment.getLastChild();
+                    if (afterComment.getLineNo() - lastCommentLine.getLineNo() <= 1) {
+                        lineNo = comment.getLineNo();
+                    }
+                }
+            }
+        }
+        return lineNo;
+    }
+
+    /**
      * Checks if a token has empty pre-previous line.
      *
      * @param token DetailAST token.
@@ -572,7 +598,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isPrePreviousLineEmpty(DetailAST token) {
         boolean result = false;
-        final int lineNo = token.getLineNo();
+        final int lineNo = getStartLineNo(token);
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
         if (lineNo >= number) {
