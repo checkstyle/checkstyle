@@ -216,25 +216,26 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
 
         // Prepare to start
-        fireAuditStarted();
-        for (final FileSetCheck fsc : fileSetChecks) {
-            fsc.beginProcessing(charset);
+        final int errorCount;
+        try (AuditCompletion auditCompletion = new AuditCompletion()) {
+            for (final FileSetCheck fsc : fileSetChecks) {
+                fsc.beginProcessing(charset);
+            }
+
+            final List<File> targetFiles = files.stream()
+                    .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
+                    .toList();
+            processFiles(targetFiles);
+
+            // Finish up
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::finishProcessing);
+
+            // It may also log!!!
+            fileSetChecks.forEach(FileSetCheck::destroy);
+
+            errorCount = counter.getCount();
         }
-
-        final List<File> targetFiles = files.stream()
-                .filter(file -> CommonUtil.matchesFileExtension(file, fileExtensions))
-                .toList();
-        processFiles(targetFiles);
-
-        // Finish up
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
-
-        // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::destroy);
-
-        final int errorCount = counter.getCount();
-        fireAuditFinished();
         return errorCount;
     }
 
@@ -255,31 +256,20 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             .collect(Collectors.toUnmodifiableSet());
     }
 
-    /** Notify all listeners about the audit start. */
-    private void fireAuditStarted() {
-        final AuditEvent event = new AuditEvent(this);
-        for (final AuditListener listener : listeners) {
-            listener.auditStarted(event);
-        }
-    }
-
-    /** Notify all listeners about the audit end. */
-    private void fireAuditFinished() {
-        final AuditEvent event = new AuditEvent(this);
-        for (final AuditListener listener : listeners) {
-            listener.auditFinished(event);
-        }
-    }
-
     /**
      * Processes a list of files with all FileSetChecks.
      *
      * @param files a list of files to process.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @throws Error wraps any java.lang.Error happened during execution
-     * @noinspection ProhibitedExceptionThrown
-     * @noinspectionreason ProhibitedExceptionThrown - There is no other way to
-     *      deliver filename that was under processing.
+     * @noinspection NestedTryStatement, ProhibitedExceptionThrown
+     * @noinspectionreason NestedTryStatement - false positive: the inner try-with-resources
+     *      has no catch or finally to merge. Remove this suppression when the inspection is fixed.
+     *      See <a href="https://youtrack.jetbrains.com/issue/IDEA-393895">IDEA-393895</a>.
+     *      It completes file notifications before the outer handlers remove failed files from
+     *      the cache and wrap failures.
+     * @noinspectionreason ProhibitedExceptionThrown - preserve Error propagation while adding
+     *      the name of the file that was being processed.
      */
     // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
@@ -296,10 +286,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 if (cacheFile != null) {
                     cacheFile.put(fileName, timestamp);
                 }
-                fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
-                fireErrors(fileName, fileMessages);
-                fireFileFinished(fileName);
+                try (FileAuditCompletion completion = new FileAuditCompletion(fileName)) {
+                    final SortedSet<Violation> fileMessages = processFile(file);
+                    fireErrors(fileName, fileMessages);
+                }
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
@@ -665,6 +655,50 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throw new IllegalStateException(
                 getLocalizedMessage("general.relativizePath",
                         fileName, basedir), exception);
+        }
+    }
+
+    /** Starts the audit and completes it when processing ends. */
+    private final class AuditCompletion implements AutoCloseable {
+
+        /** Starts the audit. */
+        private AuditCompletion() {
+            final AuditEvent event = new AuditEvent(Checker.this);
+            for (final AuditListener listener : listeners) {
+                listener.auditStarted(event);
+            }
+        }
+
+        /** Completes the audit. */
+        @Override
+        public void close() {
+            final AuditEvent event = new AuditEvent(Checker.this);
+            for (final AuditListener listener : listeners) {
+                listener.auditFinished(event);
+            }
+        }
+    }
+
+    /** Starts the file audit and completes it when processing ends. */
+    private final class FileAuditCompletion implements AutoCloseable {
+
+        /** Name of the file being audited. */
+        private final String fileName;
+
+        /**
+         * Starts auditing the file.
+         *
+         * @param fileName the name of the file to audit
+         */
+        private FileAuditCompletion(String fileName) {
+            this.fileName = fileName;
+            fireFileStarted(fileName);
+        }
+
+        /** Completes the file audit. */
+        @Override
+        public void close() {
+            fireFileFinished(fileName);
         }
     }
 
