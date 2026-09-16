@@ -16,4 +16,13 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace
 import java.util.function.Supplier;
 
 public class InputEmptyLineSeparatorMultipleLines {
+    void a() {
+    }
+
+
+    /** Javadoc. */ // violation below ''METHOD_DEF' has more than 1 empty lines before.'
+    @Deprecated
+    void b() {
+    }
+
 }
