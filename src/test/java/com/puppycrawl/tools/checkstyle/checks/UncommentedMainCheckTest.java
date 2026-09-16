@@ -23,15 +23,12 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
-import java.io.File;
 import java.util.List;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -179,23 +176,16 @@ public class UncommentedMainCheckTest
 
     @Test
     public void testStateIsClearedOnBeginTree2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
-        checkConfig.addProperty("excludedClasses",
-                "uncommentedmain\\.InputUncommentedMainBeginTreePackage2");
         final String file1 = getPath(
                 "InputUncommentedMainBeginTreePackage1.java");
         final String file2 = getPath(
                 "InputUncommentedMainBeginTreePackage2.java");
         final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         final List<String> expectedSecondInput = List.of(
-                "3:5: " + getCheckMessage(MSG_KEY),
-                "12:5: " + getCheckMessage(MSG_KEY)
+                "10:5: " + getCheckMessage(MSG_KEY),
+                "19:5: " + getCheckMessage(MSG_KEY)
         );
-        final File[] inputs = {new File(file1), new File(file2)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            file1, expectedFirstInput,
-            file2, expectedSecondInput));
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
 }
