@@ -195,7 +195,7 @@ clazz
 clemens
 Clickable
 Cloneable
-cls
+clss
 cmdline
 cmp
 cmt
@@ -469,6 +469,7 @@ finalclass
 finalizer
 finallocalvariable
 finalparameters
+finalpatternvariable
 findbugs
 Findentation
 findstr
@@ -1134,7 +1135,6 @@ Postgresql
 prebuilts
 prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
-prefs
 PRESIZE
 prettyprint
 printf
