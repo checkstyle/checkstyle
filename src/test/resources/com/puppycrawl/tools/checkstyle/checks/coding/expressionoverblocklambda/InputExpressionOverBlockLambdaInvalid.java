@@ -9,6 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.expressionoverblocklambda;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Test input for expression lambda preferred over single-line block lambda.
@@ -57,6 +58,18 @@ public class InputExpressionOverBlockLambdaInvalid {
             // violation above 'Expression lambdas are preferred over single-line block lambdas.'
             .forEach(s -> { System.out.println(s); });
         // violation above 'Expression lambdas are preferred over single-line block lambdas.'
+    }
+
+    /**
+     * Block lambda used as switch rule value.
+     */
+    public Supplier<String> testSwitchRuleLambda(int x) {
+        return switch (x) {
+            // violation below 'Expression lambdas are preferred over single-line block lambdas.'
+            case 1 -> () -> { return "one"; };
+            // violation below 'Expression lambdas are preferred over single-line block lambdas.'
+            default -> () -> { return "other"; };
+        };
     }
 
 }
