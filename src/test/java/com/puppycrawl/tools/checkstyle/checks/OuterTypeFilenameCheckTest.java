@@ -187,18 +187,13 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStateIsClearedOnBeginTree2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
         final String file1 = getPath(
                 "InputOuterTypeFilenameBeginTree1.java");
         final String file2 = getPath(
                 "InputOuterTypeFilenameBeginTree2.java");
         final List<String> expectedFirstInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
-        final File[] inputs = {new File(file1), new File(file2)};
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            file1, expectedFirstInput,
-            file2, expectedSecondInput));
+        verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
 
     @Test
