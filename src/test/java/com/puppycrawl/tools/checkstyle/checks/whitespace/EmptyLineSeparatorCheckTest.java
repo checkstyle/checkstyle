@@ -814,7 +814,9 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testMultipleLines() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines.java"),
                 expected);
