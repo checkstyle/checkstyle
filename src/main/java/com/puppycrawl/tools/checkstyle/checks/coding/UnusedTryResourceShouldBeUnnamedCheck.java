@@ -121,6 +121,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.LITERAL_TRY,
             TokenTypes.IDENT,
+            TokenTypes.SLIST,
         };
     }
 
@@ -131,22 +132,26 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_TRY) {
-            tryResources.push(collectTrackedResources(ast));
-        }
-        else if (isResourceUsageCandidate(ast)
-                && !isShadowedByCatchParameter(ast)) {
-            tryResources.stream()
-                .flatMap(Deque::stream)
-                .filter(resource -> resource.getName().equals(ast.getText()))
-                .findFirst()
-                .ifPresent(TryResourceDetails::registerAsUsed);
+        switch (ast.getType()) {
+            case TokenTypes.LITERAL_TRY -> tryResources.push(collectTrackedResources(ast));
+            case TokenTypes.IDENT -> {
+                if (isResourceUsageCandidate(ast)) {
+                    tryResources.stream()
+                        .flatMap(Deque::stream)
+                        .filter(resource -> resource.getName().equals(ast.getText()))
+                        .findFirst()
+                        .ifPresent(TryResourceDetails::registerAsUsed);
+                }
+            }
+            default -> {
+                // SLIST is needed only when leaving the try body.
+            }
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.LITERAL_TRY) {
+        if (ast.getParent().getType() == TokenTypes.LITERAL_TRY) {
             final Deque<TryResourceDetails> resources = tryResources.peek();
             for (TryResourceDetails resource : resources) {
                 if (!resource.isUsed()) {
@@ -199,30 +204,6 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         return !isResourceDeclarationIdent(identAst)
                 && (!TokenUtil.isOfType(identAst.getParent(), INVALID_RESOURCE_IDENT_PARENTS)
                         || isObjectReferenceInDot(identAst));
-    }
-
-    /**
-     * Returns {@code true} when {@code identAst} is shadowed by a catch parameter
-     * of an immediately enclosing {@link TokenTypes#LITERAL_CATCH} block.
-     *
-     * @param identAst the {@link TokenTypes#IDENT} token to inspect
-     * @return {@code true} if a catch parameter with the same name is in scope
-     */
-    private static boolean isShadowedByCatchParameter(DetailAST identAst) {
-        boolean shadowed = false;
-        DetailAST ancestor = identAst;
-        while (ancestor != null) {
-            if (ancestor.getType() == TokenTypes.LITERAL_CATCH) {
-                final DetailAST paramDef =
-                        ancestor.findFirstToken(TokenTypes.PARAMETER_DEF);
-                final DetailAST paramIdent =
-                        paramDef.findFirstToken(TokenTypes.IDENT);
-                shadowed = paramIdent.getText().equals(identAst.getText());
-                break;
-            }
-            ancestor = ancestor.getParent();
-        }
-        return shadowed;
     }
 
     /**
