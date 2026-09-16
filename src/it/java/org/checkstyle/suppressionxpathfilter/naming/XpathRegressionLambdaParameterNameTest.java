@@ -28,7 +28,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck;
 
 public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSupport {
@@ -56,7 +55,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "7:44: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,7 +82,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "7:45: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -132,7 +131,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:40: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

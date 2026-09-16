@@ -33,6 +33,12 @@ public class TypeNameCheck
     extends AbstractAccessControlNameCheck {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Default pattern for type name.
      */
     public static final String DEFAULT_PATTERN = "^[A-Z][a-zA-Z0-9]*$";
@@ -41,7 +47,7 @@ public class TypeNameCheck
      * Creates a new {@code TypeNameCheck} instance.
      */
     public TypeNameCheck() {
-        super(DEFAULT_PATTERN);
+        super(DEFAULT_PATTERN, MSG_INVALID_PATTERN);
     }
 
     @Override

@@ -33,9 +33,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class StaticVariableNameCheck
     extends AbstractAccessControlNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates a new {@code StaticVariableNameCheck} instance. */
     public StaticVariableNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z0-9]*$", MSG_INVALID_PATTERN);
     }
 
     @Override
