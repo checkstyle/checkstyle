@@ -2,14 +2,13 @@
 WriteTag
 tag = @incomplete
 tagFormat = \\S
-tagSeverity = error
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-// violation 4 lines below 'Javadoc tag @incomplete=This class needs more code...'
 /**
  * Testing tag writing
  * @author Daniel Grenner

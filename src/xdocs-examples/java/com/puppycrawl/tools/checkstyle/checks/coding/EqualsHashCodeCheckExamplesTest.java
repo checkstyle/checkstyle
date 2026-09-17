@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EqualsHashCodeCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/equalshashcode";
@@ -43,4 +44,5 @@ public class EqualsHashCodeCheckExamplesTest extends AbstractExamplesModuleTestS
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

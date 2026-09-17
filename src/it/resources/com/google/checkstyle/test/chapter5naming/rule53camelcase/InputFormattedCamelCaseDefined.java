@@ -10,15 +10,21 @@ class InputFormattedCamelCaseDefined {
 
   void XmlHttpRequest() {}
 
-  // violation 2 lines above 'Method name 'XmlHttpRequest' must match pattern'
+  // violation 2 lines above """Method name 'XmlHttpRequest' must be more
+  // than a character, start lowercase, and not have a single lowercase
+  // followed by uppercase, or consecutive uppercase."""
 
   void YouTubeImporter() {}
 
-  // violation 2 lines above 'Method name 'YouTubeImporter' must match pattern'
+  // violation 2 lines above """Method name 'YouTubeImporter' must be more
+  // than a character, start lowercase, and not have a single lowercase
+  // followed by uppercase, or consecutive uppercase."""
 
   void YoutubeImporter() {}
 
-  // violation 2 lines above 'Method name 'YoutubeImporter' must match pattern'
+  // violation 2 lines above """Method name 'YoutubeImporter' must be more than
+  // a character, start lowercase, and not have a single lowercase followed by
+  // uppercase, or consecutive uppercase."""
 
   class InnerGood {
 
@@ -30,18 +36,24 @@ class InputFormattedCamelCaseDefined {
 
     void XmlHttpRequest() {}
 
-    // violation 2 lines above 'Method name 'XmlHttpRequest' must match pattern'
+    // violation 2 lines above """Method name 'XmlHttpRequest' must be more than
+    // a character, start lowercase, and not have a single lowercase followed by
+    // uppercase, or consecutive uppercase."""
 
     void YouTubeImporter() {}
 
-    // violation 2 lines above 'Method name 'YouTubeImporter' must match pattern'
+    // violation 2 lines above """Method name 'YouTubeImporter' must be more than
+    // a character, start lowercase, and not have a single lowercase followed by
+    // uppercase, or consecutive uppercase."""
 
     void YoutubeImporter() {}
-    // violation above 'Method name 'YoutubeImporter' must match pattern'
+    // violation above """Method name 'YoutubeImporter' must be more than
+    // a character, start lowercase, and not have a single lowercase followed by
+    // uppercase, or consecutive uppercase."""
   }
 
-  InputFormattedCamelCaseDefined anonymousGood =
-      new InputFormattedCamelCaseDefined() {
+  InputCamelCaseDefined anonymousGood =
+      new InputCamelCaseDefined() {
 
         int newCustomerId;
 
@@ -51,14 +63,20 @@ class InputFormattedCamelCaseDefined {
 
         void XmlHttpRequest() {}
 
-        // violation 2 lines above 'Method name 'XmlHttpRequest' must match pattern'
+        // violation 2 lines above """Method name 'XmlHttpRequest' must be more than
+        // a character, start lowercase, and not have a single lowercase followed by
+        // uppercase, or consecutive uppercase."""
 
         void YouTubeImporter() {}
 
-        // violation 2 lines above 'Method name 'YouTubeImporter' must match pattern'
+        // violation 2 lines above """Method name 'YouTubeImporter' must be more than
+        // a character, start lowercase, and not have a single lowercase followed by
+        // uppercase, or consecutive uppercase."""
 
         void YoutubeImporter() {}
-        // violation above 'Method name 'YoutubeImporter' must match pattern'
+        // violation above """Method name 'YoutubeImporter' must be more than
+        // a character, start lowercase, and not have a single lowercase followed by
+        // uppercase, or consecutive uppercase."""
       };
 
   class AbbreviationsIncorrect {
@@ -70,11 +88,12 @@ class InputFormattedCamelCaseDefined {
 
     // violation 2 lines above 'supportsIPv6OnIOS.* more than '1' .* capital letters.'
 
+    // violation below 'XMLHTTPRequest.* more than '1' .* capital letters.'
     void XMLHTTPRequest() {}
 
-    // 2 violations 2 lines above:
-    //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-    //  'Method name 'XMLHTTPRequest' must match pattern'
+    // violation 2 lines above """Method name 'XMLHTTPRequest' must be more than
+    // a character, start lowercase, and not have a single lowercase followed by
+    // uppercase, or consecutive uppercase."""
 
     class InnerBad {
 
@@ -85,14 +104,15 @@ class InputFormattedCamelCaseDefined {
 
       // violation 2 lines above 'supportsIPv6OnIOS.* more than '1' .* capital letters.'
 
+      // violation below 'XMLHTTPRequest.* more than '1' .* capital letters.'
       void XMLHTTPRequest() {}
-      // 2 violations above:
-      //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-      //  'Method name 'XMLHTTPRequest' must match pattern'
+      // violation above """Method name 'XMLHTTPRequest' must be more than
+      // a character, start lowercase, and not have a single lowercase followed by
+      // uppercase, or consecutive uppercase."""
     }
 
-    InputFormattedCamelCaseDefined anonymousBad =
-        new InputFormattedCamelCaseDefined() {
+    InputCamelCaseDefined anonymousBad =
+        new InputCamelCaseDefined() {
 
           int newCustomerID;
           // violation above 'newCustomerID.* more than '1' .* capital letters.'
@@ -101,10 +121,11 @@ class InputFormattedCamelCaseDefined {
 
           // violation 2 lines above 'supportsIPv6OnIOS.* more than '1' .* capital letters.'
 
+          // violation below 'XMLHTTPRequest.* more than '1' .* capital letters.'
           void XMLHTTPRequest() {}
-          // 2 violations above:
-          //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-          //  'Method name 'XMLHTTPRequest' must match pattern'
+          // violation above """Method name 'XMLHTTPRequest' must be more than
+          // a character, start lowercase, and not have a single lowercase followed by
+          // uppercase, or consecutive uppercase."""
         };
   }
 }

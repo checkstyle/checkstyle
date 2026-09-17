@@ -129,4 +129,5 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

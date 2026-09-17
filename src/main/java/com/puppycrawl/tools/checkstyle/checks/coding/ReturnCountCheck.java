@@ -82,6 +82,13 @@ public final class ReturnCountCheck extends AbstractCheck {
     /** Current method context. */
     private Context context;
 
+    /**
+     * Creates a new {@code ReturnCountCheck} instance.
+     */
+    public ReturnCountCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

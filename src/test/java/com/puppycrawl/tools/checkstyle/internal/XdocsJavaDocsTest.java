@@ -53,7 +53,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -83,8 +82,12 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
-        final List<Path> templatesWithPropertiesMacro =
-                SiteUtil.getTemplatesThatContainPropertiesMacro();
+        final List<Path> templatesWithPropertiesMacro = new ArrayList<>();
+        for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
+            if (Files.readString(path).contains("<macro name=\"properties\">")) {
+                templatesWithPropertiesMacro.add(path);
+            }
+        }
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             currentXdocPath = path;
@@ -104,7 +107,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final Node section = sources.item(position);
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
-                if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
+                if ("Content".equals(sectionName) || "Overview".equals(sectionName)
+                        || "Redirecting".equals(sectionName)) {
                     continue;
                 }
 
@@ -114,7 +118,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     private static void assertCheckSection(ModuleFactory moduleFactory, String fileName,
-            String sectionName) throws Exception {
+            String sectionName)
+                    throws Exception {
         final Object instance;
 
         try {
@@ -259,10 +264,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static String getAttributeText(String nodeName, NamedNodeMap attributes) {
         final StringBuilder result = new StringBuilder(20);
 
-        for (int i = 0; i < attributes.getLength(); i++) {
+        for (int index = 0; index < attributes.getLength(); index++) {
             result.append(' ');
 
-            final Node attribute = attributes.item(i);
+            final Node attribute = attributes.item(index);
             final String attrName = attribute.getNodeName();
             final String attrValue;
 
@@ -468,4 +473,5 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             return Character.toLowerCase(str.charAt(0)) + str.substring(1);
         }
     }
+
 }

@@ -8,6 +8,39 @@
   <body>
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#VariableDeclarationUsageDistance_Description">Description</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#VariableDeclarationUsageDistance_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default config</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Set allowed distance</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Ignore certain variables</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Force validation between scopes</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Check final variables</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#VariableDeclarationUsageDistance_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Configure the check to default</a></li>
+            </ul>
+          </li>
+          <li><a href="#VariableDeclarationUsageDistance_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#VariableDeclarationUsageDistance_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
         <div>
           Checks the distance between declaration of variable and its first usage.
@@ -29,28 +62,28 @@
             <tr>
               <td><a id="allowedDistance"/><a href="#allowedDistance">allowedDistance</a></td>
               <td>Specify the maximum distance between a variable's declaration and its first usage. Value should be greater than 0.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreFinal"/><a href="#ignoreFinal">ignoreFinal</a></td>
               <td>Allow to ignore variables with a 'final' modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreVariablePattern"/><a href="#ignoreVariablePattern">ignoreVariablePattern</a></td>
               <td>Define RegExp to ignore distance calculation for variables listed in this pattern.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code/></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="validateBetweenScopes"/><a href="#validateBetweenScopes">validateBetweenScopes</a></td>
               <td>Allow to calculate the distance between a variable's declaration and its first usage across different scopes.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -74,7 +107,7 @@
 public class Example1 {
 
   public void foo1() {
-    // violation below, 'variable 'num' declaration and its first usage is 4.'
+    // violation below 'variable 'num' declaration and its first usage is 4.'
     int num;
 
     final double PI;   // ok, final variables not checked
@@ -109,7 +142,7 @@ public class Example1 {
           declaration of this variable and its usage.
         </p>
         <hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example2-config">
             To configure the check to set allowed distance:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -121,9 +154,9 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class Example2 {
 
   public void foo1() {
 
@@ -151,7 +184,7 @@ public class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example3-config">
             To configure the check to ignore certain variables:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -166,9 +199,9 @@ public class Example3 {
         <p>
             This configuration ignores variables named &quot;num&quot;.
         </p>
-        <p id="Example4-code">Example:</p>
+        <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class Example3 {
 
   public void foo1() {
 
@@ -196,7 +229,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
             To configure the check to force validation between scopes:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -208,12 +241,12 @@ public class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class Example4 {
 
   public void foo1() {
-    // violation below, 'variable 'num' declaration and its first usage is 4.'
+    // violation below 'variable 'num' declaration and its first usage is 4.'
     int num;
 
     final double PI;   // ok, final variables not checked
@@ -228,7 +261,7 @@ public class Example5 {
     int a;          // ok, distance = 2
     int b;          // ok, distance = 3
     int count = 0;
-    // violation above, 'variable 'count' declaration and its first usage is 4.'
+    // violation above 'variable 'count' declaration and its first usage is 4.'
     {
       System.out.println("Inside inner scope");
       a = 1;
@@ -238,7 +271,7 @@ public class Example5 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example5-config">
             To configure the check to check final variables:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -250,14 +283,14 @@ public class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class Example5 {
 
   public void foo1() {
-    // violation below, 'variable 'num' declaration and its first usage is 4.'
+    // violation below 'variable 'num' declaration and its first usage is 4.'
     int num;
-    // violation below, 'variable 'PI' declaration and its first usage is 5.'
+    // violation below 'variable 'PI' declaration and its first usage is 5.'
     final double PI;
     System.out.println("Statement 1");
     System.out.println("Statement 2");
@@ -279,13 +312,16 @@ public class Example6 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="VariableDeclarationUsageDistance_Use_Cases">
         <p>
           Check is able to detect a block of initialization methods, as a single point for distance.
           If a variable is used in such a block and there are no other statements after
           variable declaration, then distance = 1.
         </p>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
           Configure the check to default:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -295,12 +331,12 @@ public class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
 
   public void case1(long timeNow, int hh, int min) {
-    int minutes = min + 5; // ok, No violation reported
+    int minutes = min + 5;
     Calendar cal = Calendar.getInstance();
     cal.setTimeInMillis(timeNow);
     cal.set(Calendar.SECOND, 0);
@@ -310,7 +346,7 @@ public class Example2 {
   }
 
   public void case2(long timeNow, int hh, int min){
-    // violation below, 'variable 'minutes' declaration and its first usage is 6.'
+    // violation below 'variable 'minutes' declaration and its first usage is 6.'
     int minutes = min + 5000;
     Calendar cal = Calendar.getInstance();
     cal.setTimeInMillis(timeNow);

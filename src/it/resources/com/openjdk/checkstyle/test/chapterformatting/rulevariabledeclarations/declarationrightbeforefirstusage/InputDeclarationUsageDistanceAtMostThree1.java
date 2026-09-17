@@ -1,8 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+// violation first line 'Header mismatch'
 
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree1 {
@@ -40,10 +38,10 @@ public class InputDeclarationUsageDistanceAtMostThree1 {
     }
 
     /** Some javadoc. */
-    public InputDeclarationUsageDistanceAtMostThree1(int test1) {
+    public InputDeclarationUsageDistanceAtMostThree1(int test2) {
         int temp = -1;
-        this.test1 = test1;
-        temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
+        this.test1 = test2;
+        temp = test2; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
     }
 
     /** Some javadoc. */

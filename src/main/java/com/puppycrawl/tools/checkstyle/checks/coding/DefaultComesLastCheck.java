@@ -55,6 +55,13 @@ public class DefaultComesLastCheck extends AbstractCheck {
     /** Control whether to allow {@code default} along with {@code case} if they are not last. */
     private boolean skipIfLastAndSharedWithCase;
 
+    /**
+     * Creates a new {@code DefaultComesLastCheck} instance.
+     */
+    public DefaultComesLastCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getAcceptableTokens() {
         return getRequiredTokens();

@@ -98,6 +98,13 @@ public class ModifierOrderCheck
         "synchronized", "native", "strictfp",
     };
 
+    /**
+     * Creates a new {@code ModifierOrderCheck} instance.
+     */
+    public ModifierOrderCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

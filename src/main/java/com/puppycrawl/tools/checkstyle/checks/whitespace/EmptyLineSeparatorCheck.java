@@ -109,6 +109,13 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean allowMultipleEmptyLinesInsideClassMembers = true;
 
     /**
+     * Creates a new {@code EmptyLineSeparatorCheck} instance.
+     */
+    public EmptyLineSeparatorCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to allow no empty line between fields.
      *
      * @param allow
@@ -487,8 +494,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
+                && detailAST.getType() != TokenTypes.COMMA
                 && (!allowNoEmptyLineBetweenFields
-                    || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
+                    || detailAST.getType() != TokenTypes.VARIABLE_DEF);
     }
 
     /**

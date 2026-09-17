@@ -88,28 +88,31 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
-        // Check if already processed directory
-        final File dir;
-        try {
-            dir = file.getCanonicalFile().getParentFile();
-        }
-        catch (IOException exc) {
-            throw new CheckstyleException(
-                    "Exception while getting canonical path to file " + file.getPath(), exc);
-        }
-        final boolean isDirChecked = !directoriesChecked.add(dir);
-        if (!isDirChecked) {
-            // Check for the preferred file.
-            final Path packageInfo = Path.of(dir.getPath(), "package-info.java");
-            final Path packageHtml = Path.of(dir.getPath(), "package.html");
-
-            if (Files.exists(packageInfo)) {
-                if (Files.exists(packageHtml)) {
-                    log(1, MSG_LEGACY_PACKAGE_HTML);
-                }
+        // module-info.java is not a package member.
+        if (!"module-info.java".equals(file.getName())) {
+            // Check if already processed directory
+            final File dir;
+            try {
+                dir = file.getCanonicalFile().getParentFile();
             }
-            else if (!allowLegacy || !Files.exists(packageHtml)) {
-                log(1, MSG_PACKAGE_INFO);
+            catch (IOException exc) {
+                throw new CheckstyleException(
+                        "Exception while getting canonical path to file " + file.getPath(), exc);
+            }
+            final boolean isDirChecked = !directoriesChecked.add(dir);
+            if (!isDirChecked) {
+                // Check for the preferred file.
+                final Path packageInfo = Path.of(dir.getPath(), "package-info.java");
+                final Path packageHtml = Path.of(dir.getPath(), "package.html");
+
+                if (Files.exists(packageInfo)) {
+                    if (Files.exists(packageHtml)) {
+                        log(1, MSG_LEGACY_PACKAGE_HTML);
+                    }
+                }
+                else if (!allowLegacy || !Files.exists(packageHtml)) {
+                    log(1, MSG_PACKAGE_INFO);
+                }
             }
         }
     }

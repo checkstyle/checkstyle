@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
+      </macro>
       <subsection name="Description" id="RequireThis_Description">
         <macro name="description">
           <param name="modulePath"
@@ -53,21 +57,6 @@
           because methods cannot be overlapped in java.
         </p>
         <hr class="example-separator"/>
-        <p id="Example4-config">
-            To configure the check demand methods and fields to have 'this.'
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example4-code">Example:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
-          <param name="type" value="code"/>
-        </macro>
-        <hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check demand fields only to have 'this.'
         </p>
@@ -98,29 +87,61 @@
           <param name="type" value="code"/>
         </macro>
         <hr class="example-separator"/>
+        <p id="Example4-config">
+            To configure the check demand methods and fields to have 'this.'
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="RequireThis_Use_Cases">
         <p>
           Please, be aware of the following logic, which is implemented in the check:
         </p>
-        <p id="Example5-code">
+        <p id="UseCase1-config">
           1) If you arrange 'this' in your code on your own, the check will not raise violation for
           variables which use 'this' to reference a class field, for example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
         <hr class="example-separator"/>
-        <p id="Example6-code">
+        <p id="UseCase2-config">
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/requirethis/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="RequireThis_Example_of_Usage">

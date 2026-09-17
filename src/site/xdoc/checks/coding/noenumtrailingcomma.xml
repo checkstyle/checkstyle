@@ -8,6 +8,27 @@
   <body>
     <section name="NoEnumTrailingComma">
       <p>Since Checkstyle 8.29</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NoEnumTrailingComma_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NoEnumTrailingComma_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#NoEnumTrailingComma_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NoEnumTrailingComma_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NoEnumTrailingComma_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NoEnumTrailingComma_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NoEnumTrailingComma_Description">
         <div>
           Checks that enum definition does not contain a trailing comma.
@@ -15,7 +36,7 @@
           them in other locations. To unify the coding style, the use of trailing commas should
           be prohibited.
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 enum Foo1 {
   FOO,
   BAR;
@@ -26,7 +47,7 @@ enum Foo1 {
           The check demands that there should not be any comma after last constant in
           enum definition.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 enum Foo1 {
   FOO,
   BAR, // violation
@@ -60,18 +81,18 @@ class Example1 {
   }
   enum Foo3 {
     FOO,
-    BAR, // violation, 'Enum should not contain trailing comma'
+    BAR, // violation 'Enum should not contain trailing comma'
   }
   enum Foo4 {
     FOO,
-    BAR,; // violation, 'Enum should not contain trailing comma'
+    BAR,; // violation 'Enum should not contain trailing comma'
   }
   enum Foo5 {
     FOO,
-    BAR,; // violation, 'Enum should not contain trailing comma'
+    BAR,; // violation 'Enum should not contain trailing comma'
   }
-  enum Foo6 { FOO, BAR,; } // violation, 'Enum should not contain trailing comma'
-  enum Foo7 { FOO, BAR, } // violation, 'Enum should not contain trailing comma'
+  enum Foo6 { FOO, BAR,; } // violation 'Enum should not contain trailing comma'
+  enum Foo7 { FOO, BAR, } // violation 'Enum should not contain trailing comma'
   enum Foo8 {
     FOO,
     BAR;

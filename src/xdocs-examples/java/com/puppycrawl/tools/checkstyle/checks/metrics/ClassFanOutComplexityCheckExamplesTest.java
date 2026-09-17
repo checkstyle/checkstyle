@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ClassFanOutComplexityCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/classfanoutcomplexity";
@@ -70,11 +71,12 @@ public class ClassFanOutComplexityCheckExamplesTest
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "24:1: " + getCheckMessage(ClassFanOutComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

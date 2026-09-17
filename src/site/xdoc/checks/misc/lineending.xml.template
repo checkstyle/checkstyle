@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/LineEndingCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/LineEndingCheck.java"/>
+      </macro>
       <subsection name="Description" id="LineEnding_Description">
         <macro name="description">
           <param name="modulePath"
@@ -66,7 +70,7 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
-          To configure the check to enforce CR line endings:
+          To configure the check to enforce CR line endings for Java files only:
         </p>
         <macro name="example">
           <param name="path"
@@ -77,6 +81,25 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="LineEnding_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to enforce CR line endings for TXT files only:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/lineending/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example (Java file with LF line endings - no violations, as only TXT files are checked):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/lineending/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

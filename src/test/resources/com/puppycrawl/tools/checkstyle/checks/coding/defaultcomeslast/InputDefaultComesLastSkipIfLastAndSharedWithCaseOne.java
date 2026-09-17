@@ -12,7 +12,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCaseOne
     void method(int i) {
         switch (i) {
             case 1:
-            default: // No violation with the new option is expected
+            default: // ok, new option
                 break;
             case 2:
                 break;
@@ -44,12 +44,12 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCaseOne
         }
 
         switch (i) {
-            case 1: default: break; case 2: break;  // No violation with the new option is expected
+            case 1: default: break; case 2: break;  // ok, new option
         }
 
         switch (i) {
             case 1:
-            default: // No violation with the new option is expected
+            default: // ok, new option
                 break;
             case 2:
                 break;
@@ -71,7 +71,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCaseOne
             case 1:
                 break;
             case 2:
-            default: // No violation with the new option is expected
+            default: // ok, new option
                 break;
             case 3:
                 break;

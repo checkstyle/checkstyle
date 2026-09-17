@@ -194,9 +194,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * This property only considers features from officially released
      * Java versions as supported. Features introduced in preview releases
      * are not considered supported until they are included in a non-preview release.
-     * Before JDK 22, named pattern variables in switch labels cannot be replaced
-     * with {@code _}, so violations on them are suppressed when jdkVersion is set
-     * below 22.
+     * Before JDK 22, named pattern variables in switch labels and instanceof
+     * record Destructuring cannot be replaced with {@code _}, so violations
+     * on them are suppressed when jdkVersion is set below 22.
      */
     private int jdkVersion = JDK_22;
 
@@ -209,6 +209,13 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Depth at which a type declaration is nested, 0 for top level type declarations.
      */
     private int depth;
+
+    /**
+     * Creates a new {@code UnusedLocalVariableCheck} instance.
+     */
+    public UnusedLocalVariableCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to allow variables named with a single underscore
@@ -229,9 +236,9 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * This property only considers features from officially released
      * Java versions as supported. Features introduced in preview releases
      * are not considered supported until they are included in a non-preview release.
-     * Before JDK 22, named pattern variables in switch labels cannot be replaced
-     * with {@code _}, so violations on them are suppressed when jdkVersion is set
-     * below 22.
+     * Before JDK 22, named pattern variables in switch labels and instanceof
+     * record Destructuring cannot be replaced with {@code _}, so violations
+     * on them are suppressed when jdkVersion is set below 22.
      *
      * @param jdkVersion the Java version.
      * @since 13.7.0
@@ -442,25 +449,20 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST ident = patternVarDefAst.findFirstToken(TokenTypes.IDENT);
         final DetailAST scope = findScopeOfPatternVariable(patternVarDefAst);
         final VariableDesc desc = new VariableDesc(ident.getText(), ident, scope);
-        if (isSwitchCasePatternVariable(patternVarDefAst)) {
+        if (isForcedNamePatternVariable(patternVarDefAst)) {
             desc.registerAsNamedPatternVar();
         }
         variablesStack.push(desc);
     }
 
     /**
-     * Checks whether the pattern variable is declared in a switch labels.
+     * Checks whether the pattern variable is declared in a switch labels and instanceof.
      *
      * @param patternVarDefAst ast of type {@link TokenTypes#PATTERN_VARIABLE_DEF}
-     * @return true if the pattern variable is declared in a switch label
+     * @return true if the pattern variable is in a forced-name context
      */
-    private static boolean isSwitchCasePatternVariable(DetailAST patternVarDefAst) {
-        DetailAST current = patternVarDefAst;
-        while (current != null
-                && current.getType() != TokenTypes.LITERAL_CASE) {
-            current = current.getParent();
-        }
-        return current != null;
+    private static boolean isForcedNamePatternVariable(DetailAST patternVarDefAst) {
+        return patternVarDefAst.getParent().getType() != TokenTypes.LITERAL_INSTANCEOF;
     }
 
     /**
@@ -485,7 +487,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Whether ast node of type {@link TokenTypes#LITERAL_NEW} is a part of a local
      * anonymous inner class.
      *
-     * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
+     * @param literalNewAst ast node of type {@code TokenTypes#LITERAL_NEW}
      * @return true if variableDefAst is an instance variable in local anonymous inner class
      */
     private static boolean isInsideLocalAnonInnerClass(DetailAST literalNewAst) {
@@ -493,7 +495,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         final DetailAST lastChild = literalNewAst.getLastChild();
         if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
             DetailAST currentAst = literalNewAst;
-            while (!TokenUtil.isTypeDeclaration(currentAst.getType())) {
+            while (currentAst != null
+                    && !TokenUtil.isTypeDeclaration(currentAst.getType())) {
                 if (currentAst.getType() == TokenTypes.SLIST) {
                     result = true;
                     break;
@@ -649,7 +652,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Get the {@link TypeDeclDesc} of the super class of anonymous inner class.
      *
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
-     * @return {@link TypeDeclDesc} of the super class of anonymous inner class
+     * @return {@code TypeDeclDesc} of the super class of anonymous inner class
      */
     private TypeDeclDesc getSuperClassOfAnonInnerClass(DetailAST literalNewAst) {
         TypeDeclDesc obtainedClass = null;
@@ -947,7 +950,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * value if it is used as the left operand of an assignment or as an
      * operand of a stand-alone increment or decrement.
      *
-     * @param identAst ast of type {@link TokenTypes#IDENT}
+     * @param identAst ast of type {@code TokenTypes#IDENT}
      * @return true if identAst is used as a left-hand side value
      */
     private static boolean isLeftHandSideValue(DetailAST identAst) {
@@ -961,7 +964,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * Checks whether the ast of type {@link TokenTypes#IDENT} is used as
      * an operand of a stand-alone increment or decrement.
      *
-     * @param identAst ast of type {@link TokenTypes#IDENT}
+     * @param identAst ast of type {@code TokenTypes#IDENT}
      * @return true if identAst is used as an operand of stand-alone
      *         increment or decrement
      */
@@ -1071,7 +1074,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         /**
          * Get the associated ast node of type {@link TokenTypes#TYPE}.
          *
-         * @return the associated ast node of type {@link TokenTypes#TYPE}
+         * @return the associated ast node of type {@code TokenTypes#TYPE}
          */
         /* package */ DetailAST getTypeAst() {
             return typeAst;
@@ -1104,8 +1107,8 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Register the variable as a named pattern variable
-         * declared in a switch label.
+         * Register the variable as a forced-name pattern variable declared
+         * in a switch label or instanceof record Destructuring.
          */
         /* package */ void registerAsNamedPatternVar() {
             namedPatternVar = true;
@@ -1130,11 +1133,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         }
 
         /**
-         * Is a named pattern variable from a switch label.
+         * Is a forced-name pattern variable from a switch label or
+         * instanceof record Destructuring.
          *
-         * @return true if this variable was declared via a
-         *         {@link TokenTypes#PATTERN_VARIABLE_DEF} with a non-underscore name
-         *         in a switch label
+         * @return true if this variable was declared in a context where
+         *         pre-JDK 22 forces a name to be given even when unused
          */
         /* package */ boolean isNamedPatternVar() {
             return namedPatternVar;
@@ -1239,4 +1242,5 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
             instanceAndClassVarStack.push(variableDesc);
         }
     }
+
 }

@@ -10,7 +10,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.util.Collections.*;
@@ -21,8 +21,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.*;
 import javax.net.*;
 
-import org.apache.commons.io.FileUtils; // violation, 'wrong order'
-// xdoc section -- end
+import org.apache.commons.io.FileUtils; // violation 'wrong order'
+// xdoc section - end
 
 public class Example5 {
 }

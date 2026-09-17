@@ -20,10 +20,10 @@ public class InputParenPadLambdaOnly {
         //           '')' is preceded with whitespace.'
 
         java.util.function.Consumer d = (o ) -> { o.toString(); };
-        // violation above, '')' is preceded with whitespace.'
+        // violation above '')' is preceded with whitespace.'
 
         java.util.function.Consumer e = ( o) -> { o.toString(); };
-        // violation above, ''(' is followed by whitespace.'
+        // violation above ''(' is followed by whitespace.'
 
         java.util.stream.Stream.of().forEach(( o ) -> o.toString());
         // 2 violations above:

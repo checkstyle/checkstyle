@@ -16,7 +16,7 @@
 
 <module name="Checker">
 
-  <property name="severity" value="error"/>
+  <property name="severity" value="${org.checkstyle.doc.comments.severity}" default="error"/>
   <property name="fileExtensions" value="java, properties, xml"/>
 
   <!-- Excludes all 'module-info.java' files              -->
@@ -27,21 +27,75 @@
 
   <!-- https://checkstyle.org/filters/suppressionfilter.html -->
   <module name="SuppressionFilter">
-    <property name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
+    <property name="file" value="${org.checkstyle.doc.comments.suppressionfilter.config}"
               default="checkstyle-suppressions.xml" />
     <property name="optional" value="true"/>
   </module>
 
+  <module name="SuppressWarningsFilter"/>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+              value="CHECKSTYLE.SUPPRESS\: (\w+) for ([+-]\d+) lines"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+
   <!-- Add documentation comments checks here based on the style guide -->
+
+  <!-- Format of a Doc Comment: Notes -->
+  <module name="LineLength">
+    <property name="max" value="80"/>
+    <property name="ignorePattern" value="^(?!\s*\*).*$"/>
+  </module>
+
+  <!-- Package-Level Comments -->
+  <module name="JavadocPackage">
+    <property name="allowLegacy" value="true"/>
+  </module>
 
   <module name="TreeWalker">
     <!-- Add TreeWalker checks based on documents comments style guide -->
+
+    <!-- Package-Level Comments -->
+    <module name="MissingJavadocPackage"/>
+
+    <!-- Format of a Doc Comment -->
+    <module name="InvalidJavadocPosition"/>
+    <module name="JavadocVariable"/>
+    <module name="MissingJavadocMethod">
+      <property name="scope" value="private"/>
+      <property name="allowedAnnotations" value=""/>
+    </module>
+    <module name="MissingJavadocType">
+      <property name="scope" value="private"/>
+      <property name="skipAnnotations" value=""/>
+    </module>
+    <module name="CommentsIndentation"/>
+    <module name="JavadocLeadingAsteriskAlign"/>
+    <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+    <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocEndCommentDelimiter"/>
+
     <!-- Tag conventions -->
     <module name="AtclauseOrder"/>
+    <module name="JavadocParamOrder"/>
+    <module name="JavadocThrowsOrder"/>
+    <module name="JavadocSeeTagOrder"/>
+    <module name="JavadocNoErrorInThrowsTag"/>
+    <module name="NonEmptyAtclauseDescription"/>
+    <module name="MissingDeprecated"/>
+    <module name="JavadocRegexp">
+      <property name="format"
+                value="(?m)^\s*\*\s*@param\s+\S+\s*[-:,](?=\s|$)"/>
+      <message key="javadoc.regexp.match"
+               value="Punctuation should not be inserted before the description of the parameter"/>
+    </module>
 
-    <!-- Required Tags -->
+    <!-- Required Tags --> <!-- @param --> <!-- @return --> <!-- @throws -->
     <module name="JavadocMethod">
       <property name="allowedAnnotations" value=""/>
+      <property name="allowInlineReturn" value="true"/>
+      <property name="validateThrows" value="true"/>
     </module>
 
     <!-- Documenting default constructors -->
@@ -54,11 +108,34 @@
     <!-- First Sentence -->
     <module name="SummaryJavadoc"/>
 
+    <!-- Avoid Latin -->
+    <module name="JavadocRegexp">
+      <property name="format"
+                value="(^|\W)(aka|i\.e\.|e\.g\.|viz\.)(\W|$)"/>
+      <property name="ignoreCase" value="true"/>
+      <property name="ignoreMarkup" value="true"/>
+    </module>
+    <!-- Inline Links -->
+    <module name="JavadocLinkWellKnownApi"/>
+    <module name="JavadocLinkFirstOccurrence"/>
+
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
-      <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
+      <property name="file" value="${org.checkstyle.doc.comments.suppressionxpathfilter.config}"
                 default="checkstyle-xpath-suppressions.xml" />
       <property name="optional" value="true"/>
+    </module>
+    <module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)" />
+      <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)" />
+      <property name="checkFormat" value="$1" />
+    </module>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="CHECKSTYLE.SUPPRESS\: ([\w\|]+)"/>
+      <!-- $1 refers to the first match group in the regex defined in commentFormat -->
+      <property name="checkFormat" value="$1"/>
+      <!-- The check is suppressed in the next line of code after the comment -->
+      <property name="influenceFormat" value="1"/>
     </module>
 
   </module>

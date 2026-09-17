@@ -46,6 +46,13 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      */
     public static final String MSG_UNNECESSARY_NULLCHECK = "unnecessary.nullcheck.with.instanceof";
 
+    /**
+     * Creates a new {@code UnnecessaryNullCheckWithInstanceOfCheck} instance.
+     */
+    public UnnecessaryNullCheckWithInstanceOfCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -294,4 +301,5 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
                     || isNullLiteral(nullCheckNode.getFirstChild()))
                 && instanceOfIdent.getText().equals(nullCheckIdent.getText());
     }
+
 }

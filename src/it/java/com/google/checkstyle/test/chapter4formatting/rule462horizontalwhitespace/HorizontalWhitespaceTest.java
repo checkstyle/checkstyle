@@ -211,6 +211,16 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceTrailingWhitespace() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceTrailingWhitespace.java"));
+    }
+
+    @Test
+    public void testWhitespaceTrailingWhitespaceFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceTrailingWhitespace.java"));
+    }
+
+    @Test
     public void testWhitespaceBeforeLeftCurlyOfEmptyBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
@@ -219,4 +229,20 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     public void testWhitespaceBeforeLeftCurlyOfEmptyBlocksFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
+
+    @Test
+    public void testSingleSpaceSeparatorReservedWords() throws Exception {
+        verifyWithWholeConfig(getPath("InputSingleSpaceSeparatorReservedWords.java"));
+    }
+
+    @Test
+    public void testArrayBracketNoWhitespace() throws Exception {
+        verifyWithWholeConfig(getPath("InputArrayBracketNoWhitespace.java"));
+    }
+
+    @Test
+    public void testArrayBracketNoWhitespaceFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedArrayBracketNoWhitespace.java"));
+    }
+
 }

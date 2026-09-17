@@ -9,7 +9,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
-// xdoc section -- start
+// xdoc section - start
 /**
  * This file is copyrighted under CC.
  */
@@ -20,10 +20,10 @@ public class Example2 {
       doSomething();
       System.exit(0);
     } catch (Exception e) {
-      System.exit(1); // violation, as there are more than one occurrence.
+      System.exit(1); // violation 'Line matches the illegal pattern'
     }
   }
 
   void doSomething() {}
 }
-// xdoc section -- end
+// xdoc section - end

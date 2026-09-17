@@ -10,24 +10,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonafteroutertypedeclaration;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   class Nested {
 
   }; // ok, nested type declarations are ignored
 
-}; // violation 'Unnecessary semicolon'
+};   // violation 'Unnecessary semicolon'
 
-interface T {
-
-};
-
-enum U {
+interface ExampleTwo {
 
 };
-
-@interface V {
-
-};
-// xdoc section -- end
-
+// xdoc section - end

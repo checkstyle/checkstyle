@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 class InputJavadocVariableTagsMethods1
 {
     // Invalid - should be Javadoc
-    private int mMissingJavadoc; // violation, 'Missing a Javadoc comment'
+    private int mMissingJavadoc; // violation 'Missing a Javadoc comment'
 
     // Invalid - should be Javadoc
     void method1()

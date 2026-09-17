@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnusedLambdaParameterShouldBeUnnamedCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unusedlambdaparametershouldbeunnamed";
@@ -42,4 +43,5 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckExamplesTest
                 getNonCompilablePath("Example1.java"),
                 expected);
     }
+
 }

@@ -8,6 +8,33 @@
   <body>
     <section name="IllegalImport">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalImport_Description">Description</a></li>
+          <li><a href="#IllegalImport_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalImport_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it rejects packages <code>java.io.*</code> and <code>java.sql.*</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it rejects classes <code>java.util.Date</code> and <code>java.sql.Connection</code></a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it rejects packages not satisfying to regular expression <code>java\.util</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">So that it rejects class names not satisfying to regular expression <code>^java\.util\.(List|Arrays)</code> and <code>^java\.sql\.Connection</code></a></li>
+              <li><a href="#Example6-config" class="toc-sublink">So that it rejects modules <code>java.base</code> and <code>java.logging</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalImport_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalImport_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalImport_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalImport_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalImport_Description">
         <div>
           Checks for imports from a set of illegal packages and modules.
@@ -37,28 +64,28 @@
             <tr>
               <td><a id="illegalClasses"/><a href="#illegalClasses">illegalClasses</a></td>
               <td>Specify class names to reject, if <b>regexp</b> property is not set, checks if import equals class name. If <b>regexp</b> property is set, then list of class names will be interpreted as regular expressions. Note, all properties for match will be used.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.8</td>
             </tr>
             <tr>
               <td><a id="illegalModules"/><a href="#illegalModules">illegalModules</a></td>
               <td>Specify module names to reject, if <b>regexp</b> property is not set, checks if import equals module name. If <b>regexp</b> property is set, then list of module names will be interpreted as regular expressions. Note, all properties for match will be used.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>12.3.0</td>
             </tr>
             <tr>
               <td><a id="illegalPkgs"/><a href="#illegalPkgs">illegalPkgs</a></td>
               <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import is the part of package. If <b>regexp</b> property is set, then list of packages will be interpreted as regular expressions. Note, all properties for match will be used.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>sun</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="regexp"/><a href="#regexp">regexp</a></td>
               <td>Control whether the <code>illegalPkgs</code>, <code>illegalClasses</code> and <code>illegalModules</code> should be interpreted as regular expressions.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
             </tr>
@@ -88,7 +115,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.misc.*; // violation, 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
@@ -113,9 +140,9 @@ public class Example1 {}
           <li><b>java.sql.Connection</b> is inside java.sql package</li>
         </ul>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import java.io.*; // violation, 'Illegal import'
+import java.io.*; // violation 'Illegal import'
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
@@ -148,12 +175,12 @@ public class Example2 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
-import java.util.Date; // violation, 'Illegal import'
-import sun.misc.*; // violation, 'Illegal import'
+import java.util.Date; // violation 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example3 {}
 </code></pre></div><hr class="example-separator"/>
@@ -187,10 +214,10 @@ public class Example3 {}
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
-import java.util.List; // violation, 'Illegal import'
-import java.util.Enumeration; // violation, 'Illegal import'
-import java.util.Arrays; // violation, 'Illegal import'
-import java.util.Date; // violation, 'Illegal import'
+import java.util.List; // violation 'Illegal import'
+import java.util.Enumeration; // violation 'Illegal import'
+import java.util.Arrays; // violation 'Illegal import'
+import java.util.Date; // violation 'Illegal import'
 import sun.misc.*;
 
 public class Example4 {}
@@ -222,12 +249,12 @@ public class Example4 {}
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.io.*;
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
-import java.util.List; // violation, 'Illegal import'
+import java.sql.Connection; // violation 'Illegal import'
+import java.util.List; // violation 'Illegal import'
 import java.util.Enumeration;
-import java.util.Arrays; // violation, 'Illegal import'
+import java.util.Arrays; // violation 'Illegal import'
 import java.util.Date;
-import sun.misc.*; // violation, 'Illegal import'
+import sun.misc.*; // violation 'Illegal import'
 
 public class Example5 {}
 </code></pre></div>
@@ -253,10 +280,10 @@ public class Example5 {}
             </ul>
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import module java.base; // violation, 'Illegal import'
+import module java.base; // violation 'Illegal import'
 import module java.xml;
 import module java.sql;
-import module java.logging; // violation, 'Illegal import'
+import module java.logging; // violation 'Illegal import'
 import module java.naming;
 
 public class Example6 {}

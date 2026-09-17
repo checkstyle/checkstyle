@@ -21,21 +21,37 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -43,143 +59,62 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
- * Ensures xdocs Java examples for the same check differ only by comments.
- *
- * <p>This test validates that examples with the same code structure maintain
- * consistency. Examples are grouped explicitly - either all examples must match,
- * or specific examples can be marked as independent.
- *
- * <p>Only code between {@code // xdoc section -- start} and
- * {@code // xdoc section -- end} markers is compared. Helper code outside
- * these markers (like interface definitions) can differ between examples.
- *
- * <p>Line numbers within the extracted xdoc section are also compared, ensuring
- * that structurally identical statements appear on the same relative lines across
- * examples. Because {@code parseContent} re-parses only the extracted section
- * (starting at line 1), line numbers are always section-relative and are safe
- * to compare directly between examples.
- *
- * <p>Single-line comments starting with {@code ok}, {@code violation}, or
- * {@code xdoc section} are excluded from comparison as they are documentation
- * markers. All other single-line comments, as well as Javadoc and block comments,
- * are included in the structural comparison.
- *
- * <p>Block comments used as {@code ok} or {@code violation} markers
- * (e.g. {@code /* ok, allowMissingReturnTag is true *}{@code /}) are forbidden;
- * use single-line {@code //} comments instead. The
- * {@link #testNoBlockCommentMarkers()} test enforces this.
- *
+ * Ensures xdocs Java examples for a check differ only by comments, and that
+ * example count matches documented property count.
  */
 public class XdocsExamplesAstConsistencyTest {
 
-    private static final Path XDOCS_ROOT = Path.of(
+    public static final String XDOC_START_MARKER = "// xdoc section - start";
+    public static final String XDOC_END_MARKER = "// xdoc section - end";
+
+    public static final Path XDOCS_ROOT = Path.of(
             "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle"
     );
-    private static final String XDOC_START_MARKER = "// xdoc section -- start";
-    private static final String XDOC_END_MARKER = "// xdoc section -- end";
+
+    private static final Path XDOCS_NONCOMPILABLE_ROOT = Path.of(
+            "src/xdocs-examples/resources-noncompilable/com/puppycrawl/tools/checkstyle"
+    );
+
+    private static final Pattern BLOCK_COMMENT_PATTERN = Pattern.compile("(?s)/\\*.*?\\*/");
 
     /**
      * Examples that cannot be parsed as valid Java.
-     * These files are intentionally non-compilable for documentation purposes.
-     *
      */
     private static final Set<String> UNPARSEABLE_EXAMPLES = Set.of(
             "checks/regexp/regexponfilename/Example1",
             "checks/translation/Example1",
-            "filters/suppressionxpathsinglefilter/Example14"
+            "filters/suppressionxpathsinglefilter/Example7"
     );
 
     /**
+     * Properties intentionally never demonstrated in an example.
+     */
+    private static final Set<String> IGNORED_PROPERTIES_FOR_COVERAGE = Set.of(
+        "violateExecutionOnNonTightHtml"
+    );
+
+    /**
+     * Cache for module property counts.
+     */
+    private static final ConcurrentMap<String, Integer> PROPERTY_COUNT_CACHE =
+        new ConcurrentHashMap<>();
+
+    /**
+     * Cache mapping a lower-cased xdocs directory name to the check's simple class name.
+     */
+    private static final ConcurrentMap<String, String> MODULE_SIMPLE_NAME_CACHE =
+        buildModuleSimpleNameIndex();
+
+    /**
      * Examples that have independent code structure and should not be compared.
-     * These represent different use cases or configurations with different code.
-     *
-     * <p>Format: "directory/ExampleN" where the example has unique code.
-     *
-     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
+     * Format: "directory/ExampleN" where the example has unique code.
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
-            "checks/coding/onestatementperline/Example2",
-            "checks/coding/packagedeclaration/Example2",
-            "checks/coding/unnecessarysemicolonafteroutertypedeclaration/Example2",
-            "checks/imports/importcontrol/filters/Example9",
-            "checks/indentation/indentation/Example7",
-            "checks/javadoc/javadoccontentlocation/Example2",
-            "checks/javadoc/javadocleadingasteriskalign/Example2",
-            "checks/javadoc/javadocleadingasteriskalign/Example3",
-            "checks/javadoc/javadocpackage/legacywithboth/Example3",
-            "checks/javadoc/javadocpackage/nonlegacy/Example1",
-            "checks/javadoc/javadoctagcontinuationindentation/Example3",
-            "checks/javadoc/javadocvariable/Example5",
-            "checks/metrics/classdataabstractioncoupling/Example2",
-            "checks/metrics/classdataabstractioncoupling/Example3",
-            "checks/metrics/classdataabstractioncoupling/ignore/Example7",
-            "checks/metrics/classdataabstractioncoupling/ignore/Example8",
-            "checks/metrics/classdataabstractioncoupling/ignore/Example9",
-            "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example5",
-            "checks/metrics/classdataabstractioncoupling/ignore/deeper/Example6",
-            "checks/modifier/redundantmodifier/Example2",
-            "checks/naming/abstractclassname/Example3",
-            "checks/naming/abstractclassname/Example4",
-            "checks/naming/catchparametername/Example2",
-            "checks/naming/methodname/Example4",
-            "checks/naming/packagename/Example2",
-            "checks/naming/patternvariablename/Example2",
-            "checks/naming/patternvariablename/Example3",
-            "checks/naming/patternvariablename/Example4",
-            "checks/regexp/regexp/Example7",
-            "checks/regexp/regexpmultiline/Example5",
-            "checks/regexp/regexpsinglelinejava/Example2",
-            "checks/regexp/regexpsinglelinejava/Example3",
-            "checks/regexp/regexpsinglelinejava/Example4",
-            "checks/regexp/regexpsinglelinejava/Example5",
-            "checks/sizes/lambdabodylength/Example2",
-            "checks/sizes/methodlength/Example3",
-            "checks/sizes/outertypenumber/Example2",
-            "checks/whitespace/singlespaceseparator/Example2",
-            "checks/whitespace/typecastparenpad/Example2",
-            "checks/whitespace/whitespaceafter/Example2",
-            "checks/todocomment/Example2",
-            "checks/todocomment/Example3",
-            "checks/uncommentedmain/Example2",
-            "checks/uniqueproperties/Example2",
-            "checks/whitespace/emptyforiteratorpad/Example2",
-            "checks/whitespace/parenpad/Example2",
-            "filters/suppressionxpathfilter/Example10",
-            "filters/suppressionxpathfilter/Example11",
-            "filters/suppressionxpathfilter/Example12",
-            "filters/suppressionxpathfilter/Example13",
-            "filters/suppressionxpathfilter/Example14",
-            "filters/suppressionxpathfilter/Example2",
-            "filters/suppressionxpathfilter/Example3",
-            "filters/suppressionxpathfilter/Example4",
-            "filters/suppressionxpathfilter/Example5",
-            "filters/suppressionxpathfilter/Example6",
-            "filters/suppressionxpathfilter/Example7",
-            "filters/suppressionxpathfilter/Example8",
-            "filters/suppressionxpathfilter/Example9",
-            "filters/suppressionxpathsinglefilter/Example10",
-            "filters/suppressionxpathsinglefilter/Example11",
-            "filters/suppressionxpathsinglefilter/Example12",
-            "filters/suppressionxpathsinglefilter/Example13",
-            "filters/suppressionxpathsinglefilter/Example2",
-            "filters/suppressionxpathsinglefilter/Example3",
-            "filters/suppressionxpathsinglefilter/Example4",
-            "filters/suppressionxpathsinglefilter/Example5",
-            "filters/suppressionxpathsinglefilter/Example6",
-            "filters/suppressionxpathsinglefilter/Example7",
-            "filters/suppressionxpathsinglefilter/Example8",
-            "filters/suppressionxpathsinglefilter/Example9",
-            "filters/suppresswarningsfilter/Example2",
-            "filters/suppresswithnearbycommentfilter/Example2",
-            "filters/suppresswithnearbycommentfilter/Example3",
-            "filters/suppresswithnearbycommentfilter/Example4",
-            "filters/suppresswithnearbycommentfilter/Example5",
-            "filters/suppresswithnearbycommentfilter/Example6",
-            "filters/suppresswithnearbycommentfilter/Example7",
-            "filters/suppresswithnearbycommentfilter/Example8",
             // Note: customImport/ImportOrder changes import group ORDER affecting AST structure
             "checks/imports/customimportorder/Example10",
             "checks/imports/customimportorder/Example11",
@@ -205,107 +140,23 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9",
-            // until https://github.com/checkstyle/checkstyle/issues/19891
-            "checks/blocks/leftcurly/Example3",
-            "checks/whitespace/parenpad/Example3",
-            "checks/javadoc/missingjavadoctype/Example5",
-            "checks/indentation/commentsindentation/Example3",
-            "checks/indentation/commentsindentation/Example4",
-            "checks/indentation/commentsindentation/Example5",
-            "checks/indentation/commentsindentation/Example6",
-            "checks/indentation/commentsindentation/Example7",
-            "checks/indentation/commentsindentation/Example8",
-            "checks/coding/equalsavoidnull/Example2",
-            "checks/blocks/needbraces/Example4",
-            "checks/blocks/needbraces/Example6",
-            "checks/metrics/classfanoutcomplexity/Example6",
-            "checks/whitespace/separatorwrap/Example2",
-            "checks/regexp/regexp/Example2",
-            "checks/regexp/regexp/Example3",
-            "checks/regexp/regexp/Example4",
-            "checks/regexp/regexp/Example5",
-            "checks/regexp/regexp/Example8",
-            "checks/blocks/rightcurly/Example3",
-            "checks/blocks/rightcurly/Example5",
-            "checks/regexp/regexp/Example9",
-            "checks/regexp/regexp/Example11",
-            "checks/regexp/regexp/Example10",
-            "checks/regexp/regexp/Example6",
-            "checks/regexp/regexpsingleline/Example3",
-            "checks/regexp/regexpsingleline/Example5",
-            "checks/javadoc/writetag/Example5",
-            "checks/coding/illegalinstantiation/Example3",
-            "checks/annotation/suppresswarningsholder/Example3",
-            "checks/annotation/suppresswarningsholder/Example4",
-            "checks/coding/matchxpath/Example2",
-            "checks/coding/matchxpath/Example3",
-            "checks/coding/matchxpath/Example4",
-            "checks/coding/matchxpath/Example5",
-            "checks/coding/matchxpath/Example6",
-            "filters/suppresswithnearbytextfilter/Example2",
-            "filters/suppresswithnearbytextfilter/Example6",
-            "filters/suppresswithnearbytextfilter/Example7",
-            "filters/suppresswithnearbytextfilter/Example8",
-            "checks/coding/illegaltokentext/Example3",
-            "checks/coding/illegaltokentext/Example4",
-            "filters/suppresswithplaintextcommentfilter/Example9",
-            "checks/design/visibilitymodifier/Example7",
-            "checks/design/visibilitymodifier/Example9",
-            "checks/design/visibilitymodifier/Example10",
-            "checks/design/visibilitymodifier/Example11",
-            "checks/coding/variabledeclarationusagedistance/Example2",
-            "checks/indentation/indentation/Example4",
-            "filters/suppressionfilter/Example2",
-            "filters/suppressionfilter/Example3",
-            "filters/suppressionfilter/Example4",
-            "checks/trailingcomment/Example4",
-            "checks/trailingcomment/Example5",
-            "checks/trailingcomment/Example6",
-            "checks/imports/importcontrol/filters/Example3.java",
-            "checks/imports/importcontrol/newdomain/dao/Example4.java",
-            "checks/imports/importcontrol/Example5",
-            "checks/imports/importcontrol/someImports/Example6.java",
-            "checks/imports/importcontrol/someImports/Example7.java",
-            "checks/imports/importcontrol/gui/Example8.java",
-            "checks/imports/importcontrol/filters/Example9.java",
-            "checks/imports/importcontrol/someImports/Example10.java",
-            "checks/imports/importcontrol/someImports/Example11.java",
-            "checks/imports/importcontrol/Example12",
-            "checks/coding/requirethis/Example5",
-            "checks/coding/requirethis/Example6",
-            "checks/whitespace/nolinewrap/Example3",
-            "checks/naming/abbreviationaswordinname/Example4",
-            "checks/naming/abbreviationaswordinname/Example6",
-            "checks/naming/abbreviationaswordinname/Example7",
-            "checks/naming/localvariablename/Example3",
-            "checks/naming/localvariablename/Example5",
-            "checks/coding/unnecessaryparentheses/Example3",
-            "checks/whitespace/nowhitespacebefore/Example4",
-            "checks/whitespace/whitespacearound/Example2",
-            "checks/naming/localfinalvariablename/Example2",
-            "checks/blocks/emptycatchblock/Example4",
-            "checks/blocks/emptycatchblock/Example5",
-            "checks/naming/parametername/Example4",
-            "checks/coding/illegalsymbol/Example3",
-            "checks/coding/illegalsymbol/Example5",
-            "checks/descendanttoken/Example5",
-            "checks/descendanttoken/Example8",
-            "checks/descendanttoken/Example9",
-            "checks/descendanttoken/Example10",
-            "checks/descendanttoken/Example11",
-            "checks/descendanttoken/Example13",
-            "checks/descendanttoken/Example15",
-            "checks/descendanttoken/Example16",
-            "filters/suppressioncommentfilter/Example4",
-            "filters/suppressioncommentfilter/Example5",
-            "filters/suppressioncommentfilter/Example7"
-            );
+            "checks/imports/importorder/Example9"
+    );
 
     /**
-     * Tests that examples with the same code structure maintain consistency.
-     * Examples not marked as independent must have identical AST structure,
-     * including the line numbers of each node within the xdoc section.
+     * Modules with no example demonstrating the default configuration. Most require
+     * at least one property to be meaningful; others are documentation gaps.
+     * Until: <a href="https://github.com/checkstyle/checkstyle/issues/21137">...</a>
+     */
+    private static final Set<String> EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES = Set.of(
+            "checks/descendanttoken",
+            "checks/imports/importcontrol",
+            "filters/severitymatchfilter",
+            "filters/suppresswithplaintextcommentfilter"
+    );
+
+    /**
+     * Tests that examples with same code structure maintain consistency.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -316,6 +167,7 @@ public class XdocsExamplesAstConsistencyTest {
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
             final List<Path> exampleDirs = pathStream
                     .filter(Files::isDirectory)
+                    .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
                     .filter(XdocsExamplesAstConsistencyTest::containsMultipleExamples)
                     .toList();
 
@@ -342,8 +194,12 @@ public class XdocsExamplesAstConsistencyTest {
                         .append("\n\n");
             }
 
-            builder.append("If these examples have different code intent, "
-                    + "add them to SUPPRESSED_EXAMPLES:\n");
+            builder.append(
+                    """
+                    Note: a mismatch reason of "line numbers differ only" usually means \
+                    an example has an extra/missing blank line or shifted code relative to its \
+                    reference - fix the line alignment before considering suppression.
+                    """);
 
             for (Violation violation : violations) {
                 final String pattern = violation.getSuppressionPattern();
@@ -359,13 +215,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Tests that no example file uses block comments as {@code ok} or
-     * {@code violation} markers. All such markers must use single-line
-     * comments instead. For example:
-     * <pre>
-     *   BAD:  &#47;* ok, allowMissingReturnTag is true *&#47;
-     *   GOOD: // ok, allowMissingReturnTag is true
-     * </pre>
+     * Tests that no example uses block comments as {@code ok} or {@code violation} markers.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -407,7 +257,828 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Formats the violation message for block comment markers.
+     * Tests that AST-consistent example count matches property count + 1.
+     *
+     * @throws IOException if an I/O error occurs
+     */
+    @Test
+    public void testExampleCountMatchesPropertyCount() throws IOException {
+        final List<String> violations = Collections.synchronizedList(new ArrayList<>());
+
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                .filter(Files::isDirectory)
+                .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
+                .parallel()
+                .forEach(dir -> processDirectory(dir, violations));
+        }
+
+        final String message = formatViolationsMessage(violations);
+
+        assertWithMessage(message)
+            .that(violations)
+            .isEmpty();
+    }
+
+    /**
+     * Tests that every documented property is configured by at least one example.
+     *
+     * @throws IOException if an I/O error occurs
+     */
+    @Test
+    public void testEveryPropertyHasAnExample() throws IOException {
+        final List<String> violations = Collections.synchronizedList(new ArrayList<>());
+
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                .filter(Files::isDirectory)
+                .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
+                .parallel()
+                .forEach(dir -> processDirectoryForPropertyCoverage(dir, violations));
+        }
+
+        final String message = formatPropertyCoverageViolationsMessage(violations);
+
+        assertWithMessage(message)
+            .that(violations)
+            .isEmpty();
+    }
+
+    @Test
+    public void testEveryModuleHasDefaultConfigExample() throws IOException {
+        final List<String> violations = Collections.synchronizedList(new ArrayList<>());
+
+        try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {
+            pathStream
+                    .filter(Files::isDirectory)
+                    .filter(XdocsExamplesAstConsistencyTest::isModuleDirectory)
+                    .parallel()
+                    .forEach(dir -> processDirectoryForDefaultConfigCheck(dir, violations));
+        }
+
+        final String message = formatDefaultConfigViolationsMessage(violations);
+
+        assertWithMessage(message)
+                .that(violations)
+                .isEmpty();
+    }
+
+    /**
+     * Processes directory to check for default config example.
+     *
+     * @param dir the directory to check
+     * @param violations a thread-safe list to collect any discovered violations
+     */
+    private static void processDirectoryForDefaultConfigCheck(Path dir, List<String> violations) {
+        try {
+            final List<Path> examples = new ArrayList<>(getExamplePropertyCoverageFiles(dir));
+            examples.addAll(getNonCompilableExamplePropertyCoverageFiles(dir));
+
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+            final String relativePath = getRelativePath(dir);
+
+            if (moduleName != null && !examples.isEmpty() && !isModuleWithNoProperties(examples)
+                    && !EXAMPLE_DEFAULT_CONFIG_SUPPRESSED_MODULES.contains(relativePath)) {
+                final String xmlModuleName = stripCheckSuffix(moduleName);
+                boolean hasDefaultConfig = false;
+
+                for (Path example : examples) {
+                    if (hasExampleDefaultConfig(example, xmlModuleName)) {
+                        hasDefaultConfig = true;
+                        break;
+                    }
+                }
+
+                if (!hasDefaultConfig) {
+                    violations.add("Directory: " + relativePath
+                            + "\nNo example uses the default configuration "
+                            + "(module element with zero configured properties).");
+                }
+            }
+        }
+        catch (IOException | ParserConfigurationException | SAXException exception) {
+            throw new IllegalStateException("Failed processing directory: " + dir, exception);
+        }
+    }
+
+    /**
+     * Checks if example demonstrates module's default configuration.
+     *
+     * @param example the example file to check
+     * @param xmlModuleName the module's simple name as it appears in embedded XML
+     * @return true if the example's config block has a module element with no properties
+     * @throws IOException if an I/O error occurs
+     * @throws ParserConfigurationException if a document builder cannot be created
+     * @throws SAXException if the XML content is malformed
+     */
+    private static boolean hasExampleDefaultConfig(Path example, String xmlModuleName)
+            throws IOException, ParserConfigurationException, SAXException {
+        final String xmlBlock = extractXmlConfigBlock(example);
+        final Element moduleElement;
+        if (xmlBlock == null) {
+            moduleElement = null;
+        }
+        else {
+            moduleElement = parseConfigModuleElement(xmlBlock, xmlModuleName);
+        }
+        return moduleElement != null && collectPropertyNames(moduleElement).isEmpty();
+    }
+
+    /**
+     * Formats default-config violations into a readable error message.
+     *
+     * @param violations the list of violation strings
+     * @return a formatted string detailing all found gaps
+     */
+    private static String formatDefaultConfigViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        if (!violations.isEmpty()) {
+            builder.append(String.format(Locale.ROOT,
+                    "Found %d modules with no example demonstrating the default"
+                            + "configuration.%n%n",
+                    violations.size()));
+
+            violations.stream()
+                    .sorted()
+                    .forEach(violation -> builder.append(violation).append("\n\n"));
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Collects files from {@code dir} and its subdirectories.
+     *
+     * @param dir the directory to search
+     * @param fileFilter predicate selecting which regular files to collect
+     * @return the collected files, in no particular order
+     * @throws IOException if an I/O error occurs
+     */
+    private static List<Path> collectFilesWithinModule(Path dir,
+                   Predicate<Path> fileFilter)
+            throws IOException {
+        final List<Path> result = new ArrayList<>();
+
+        try (Stream<Path> pathStream = Files.list(dir)) {
+            for (Path entry : pathStream.toList()) {
+                if (Files.isDirectory(entry)) {
+                    if (!isModuleDirectory(entry)) {
+                        result.addAll(collectFilesWithinModule(entry, fileFilter));
+                    }
+                }
+                else if (fileFilter.test(entry)) {
+                    result.add(entry);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks if directory resolves to a checkstyle module.
+     *
+     * @param dir the directory to check
+     * @return true if the directory name resolves to a known module
+     */
+    public static boolean isModuleDirectory(Path dir) {
+        return toModuleClassSimpleName(dir.getFileName().toString()) != null;
+    }
+
+    private static void processDirectoryForPropertyCoverage(Path dir, List<String> violations) {
+        try {
+            final List<Path> examples = new ArrayList<>(getExamplePropertyCoverageFiles(dir));
+            examples.addAll(getNonCompilableExamplePropertyCoverageFiles(dir));
+
+            if (examples.size() > 1) {
+                final String violation = checkPropertyCoverage(dir, examples);
+                if (violation != null) {
+                    violations.add(violation);
+                }
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed processing directory: " + dir, exception);
+        }
+    }
+
+    /**
+     * Gets Example* files with embedded XML config from non-compilable directory.
+     *
+     * @param dir the compilable xdocs directory
+     * @return list of example file paths from the non-compilable sibling directory
+     * @throws IOException if an I/O error occurs
+     */
+    public static List<Path> getNonCompilableExamplePropertyCoverageFiles(Path dir)
+            throws IOException {
+        final String relativePath = getRelativePath(dir);
+        final Path nonCompilableDir = XDOCS_NONCOMPILABLE_ROOT.resolve(relativePath);
+
+        List<Path> examples = List.of();
+        if (Files.isDirectory(nonCompilableDir)) {
+            examples = getExamplePropertyCoverageFiles(nonCompilableDir);
+        }
+        return examples;
+    }
+
+    /**
+     * Formats property-coverage violations into a readable error message.
+     *
+     * @param violations the list of violation strings
+     * @return a formatted string detailing all found gaps
+     */
+    private static String formatPropertyCoverageViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        if (!violations.isEmpty()) {
+            builder.append("Found ").append(violations.size())
+                .append(" module(s) with a documented property not covered by any example.\n\n");
+
+            violations.stream()
+                .sorted()
+                .forEach(violation -> builder.append(violation).append("\n\n"));
+
+            builder.append("If intentional add to EXAMPLE_PROPERTY_COVERAGE_SUPPRESSED_MODULES.\n");
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Checks module directory: compares configured vs documented properties.
+     *
+     * @param dir the directory to check
+     * @param examples the list of pre-fetched example files
+     * @return a violation message, or null if every property is covered / not applicable
+     * @throws IOException if an I/O error occurs
+     */
+    private static String checkPropertyCoverage(Path dir, List<Path> examples)
+            throws IOException {
+        String result = null;
+
+        if (!isModuleWithNoProperties(examples)) {
+
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+
+            if (moduleName != null) {
+                final Set<String> documentedProperties = resolveDocumentedPropertyNames(dir);
+
+                if (!documentedProperties.isEmpty()) {
+                    final String xmlModuleName = stripCheckSuffix(moduleName);
+
+                    final Set<String> configuredProperties = new HashSet<>();
+                    for (Path example : examples) {
+                        configuredProperties.addAll(
+                                extractConfiguredPropertyNames(example,
+                                        xmlModuleName));
+                    }
+
+                    final Set<String> uncoveredProperties = new HashSet<>(documentedProperties);
+                    uncoveredProperties.removeAll(configuredProperties);
+                    uncoveredProperties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
+
+                    if (!uncoveredProperties.isEmpty()) {
+                        final String relativePath = getRelativePath(dir);
+                        result = "Directory: " + relativePath
+                                + "\nDocumented properties: " + documentedProperties
+                                + "\nProperties with no covering example: " + uncoveredProperties;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Resolves full set of documented property names for the module.
+     *
+     * @param dir the example directory
+     * @return the set of documented property names, or an empty set
+     */
+    private static Set<String> resolveDocumentedPropertyNames(Path dir) {
+        final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+        Set<String> result = Set.of();
+
+        if (moduleName != null) {
+            result = XdocUtil.getDocumentedProperties(moduleName);
+        }
+
+        return result;
+    }
+
+    /**
+     * Extracts property names configured for {@code moduleName} in example's XML.
+     *
+     * @param example the example file
+     * @param moduleName the module's simple name as it appears in the embedded XML
+     * @return the set of property names configured for that module in this example
+     * @throws IOException if reading the file fails
+     */
+    private static Set<String> extractConfiguredPropertyNames(Path example, String moduleName)
+            throws IOException {
+        Set<String> result = Set.of();
+        final String xmlBlock = extractXmlConfigBlock(example);
+
+        if (xmlBlock != null) {
+            try {
+                final Element moduleElement = parseConfigModuleElement(xmlBlock, moduleName);
+                if (moduleElement != null) {
+                    result = collectPropertyNames(moduleElement);
+                }
+            }
+            catch (ParserConfigurationException | SAXException exception) {
+                throw new IllegalStateException(
+                    "Failed to parse example config XML: " + example, exception);
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Parses XML config fragment and finds the {@code <module>} element.
+     *
+     * @param xmlBlock the raw XML content, rooted at {@code <module name="Checker">}
+     * @param moduleName the module simple name to find
+     * @return the matching module {@link Element}, or null if not found
+     * @throws ParserConfigurationException if a document builder cannot be created
+     * @throws SAXException if the XML content is malformed
+     */
+    public static Element parseConfigModuleElement(String xmlBlock, String moduleName)
+            throws ParserConfigurationException, SAXException {
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(false);
+        factory.setNamespaceAware(false);
+        factory.setFeature(
+            "http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+        factory.setFeature(
+            "http://xml.org/sax/features/external-general-entities", false);
+        factory.setFeature(
+            "http://xml.org/sax/features/external-parameter-entities", false);
+
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        final Document document;
+        try {
+            document = builder.parse(
+                new ByteArrayInputStream(xmlBlock.getBytes(StandardCharsets.UTF_8)));
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to parse in-memory XML block", exception);
+        }
+
+        return findModuleElement(document.getDocumentElement(), moduleName);
+    }
+
+    /**
+     * Recursively searches XML {@link Element} tree for {@code <module>} element.
+     *
+     * @param element the element to search from
+     * @param moduleName the module simple name to find
+     * @return the matching element, or null if not found
+     */
+    private static Element findModuleElement(Element element, String moduleName) {
+        Element result = null;
+
+        if (moduleName.equals(element.getAttribute("name"))) {
+            result = element;
+        }
+        else {
+            final NodeList children = element.getChildNodes();
+            for (int index = 0; result == null && index < children.getLength(); index++) {
+                final Node node = children.item(index);
+                if (node instanceof Element childElement
+                    && "module".equals(node.getNodeName())) {
+                    result = findModuleElement(childElement, moduleName);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Collects {@code name} attribute of every direct {@code <property>} child.
+     *
+     * @param moduleElement the module element to read properties from
+     * @return the set of configured property names
+     */
+    public static Set<String> collectPropertyNames(Element moduleElement) {
+        final Set<String> names = new HashSet<>();
+        final NodeList children = moduleElement.getChildNodes();
+
+        for (int index = 0; index < children.getLength(); index++) {
+            final Node node = children.item(index);
+            if (node instanceof Element childElement
+                && "property".equals(node.getNodeName())) {
+                names.add(childElement.getAttribute("name"));
+            }
+        }
+
+        return names;
+    }
+
+    /**
+     * Extracts embedded XML configuration block from example file.
+     *
+     * @param file the example file to read
+     * @return the XML content between the markers, or null if no such block is present
+     * @throws IOException if an I/O error occurs
+     */
+    public static String extractXmlConfigBlock(Path file) throws IOException {
+        final String content = Files.readString(file);
+        String result = null;
+
+        final int startMarker = content.indexOf("/*xml");
+        if (startMarker >= 0) {
+            final int contentStart = startMarker + "/*xml".length();
+            final int endMarker = content.indexOf("*/", contentStart);
+            if (endMarker >= 0) {
+                result = content.substring(contentStart, endMarker).strip();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Processes a directory to identify example-count-vs-property-count violations.
+     */
+    private static void processDirectory(Path dir, List<String> violations) {
+        try {
+            final List<Path> examples = getExampleFiles(dir);
+            if (examples.size() > 1) {
+                final String violation = checkExampleCount(dir, examples);
+                if (violation != null) {
+                    violations.add(violation);
+                }
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed processing directory: " + dir, exception);
+        }
+    }
+
+    /**
+     * Formats violations into a readable error message.
+     *
+     * @param violations the list of violation strings
+     * @return a formatted string detailing all found inconsistencies
+     */
+    private static String formatViolationsMessage(List<String> violations) {
+        final StringBuilder builder = new StringBuilder(1024);
+        if (!violations.isEmpty()) {
+            builder.append("Found ").append(violations.size())
+                .append(" module(s) whose example count does not match property count + 1.\n\n");
+
+            violations.stream()
+                .sorted()
+                .forEach(violation -> builder.append(violation).append("\n\n"));
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Checks module directory: compares documented property count vs AST-matching examples.
+     *
+     * @param dir the directory to check
+     * @param examples the list of pre-fetched example files
+     * @return a violation message, or null if consistent / not applicable
+     * @throws IOException if an I/O error occurs
+     */
+    private static String checkExampleCount(Path dir, List<Path> examples) throws IOException {
+        String result = null;
+
+        if (!isModuleWithNoProperties(examples)) {
+            final String relativePath = getRelativePath(dir);
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+            final String xmlModuleName;
+            if (moduleName == null) {
+                xmlModuleName = null;
+            }
+            else {
+                xmlModuleName = stripCheckSuffix(moduleName);
+            }
+
+            final List<Path> regularExamples = examples.stream()
+                    .filter(example -> {
+                        return !isExampleIndependent(
+                                relativePath, example.getFileName().toString());
+                    })
+                    .filter(example -> {
+                        return xmlModuleName == null
+                                || !hasConfiguresOnlyIgnoredProperties(example, xmlModuleName);
+                    })
+                    .toList();
+
+            result = validateExampleCount(dir, relativePath, regularExamples);
+        }
+        return result;
+    }
+
+    /**
+     * Validates example count against property count.
+     *
+     * @param dir the directory to check
+     * @param relativePath the relative path of the module
+     * @param regularExamples the list of regular example files
+     * @return a violation message, or null if consistent
+     * @throws IOException if an I/O error occurs
+     */
+    private static String validateExampleCount(Path dir, String relativePath,
+                                                List<Path> regularExamples)
+            throws IOException {
+        String result = null;
+        final int propertyCount = resolvePropertyCount(dir);
+
+        if (propertyCount >= 0 && regularExamples.size() > 1) {
+            final List<Path> parseableExamples = new ArrayList<>();
+            for (Path example : regularExamples) {
+                if (isActuallyParseable(example)) {
+                    parseableExamples.add(example);
+                }
+            }
+
+            if (parseableExamples.isEmpty()) {
+                result = checkPropertyCoverageFallback(dir, relativePath,
+                        regularExamples, propertyCount);
+            }
+            else {
+                final int largestAstGroupSize =
+                        findLargestAstMatchingGroupSize(parseableExamples);
+                final int expected = propertyCount + 1;
+
+                if (largestAstGroupSize != expected) {
+                    result = "Directory: " + relativePath
+                            + "\nProperties: " + propertyCount
+                            + "\nExpected AST-matching examples: " + expected
+                            + "\nActual largest AST-matching group: " + largestAstGroupSize
+                            + " (of " + parseableExamples.size() + " total example files)";
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks if an example's config only contains ignored properties.
+     * Such examples are default-config and shouldn't count as demonstrating real properties.
+     *
+     * @param example the example file
+     * @param xmlModuleName the module's simple name as it appears in the embedded XML
+     * @return true if the example's only configured properties (if any) are ignored ones
+     */
+    private static boolean hasConfiguresOnlyIgnoredProperties(Path example, String xmlModuleName) {
+        final boolean result;
+        try {
+            final Set<String> configured = new HashSet<>(
+                    extractConfiguredPropertyNames(example, xmlModuleName));
+            result = !configured.isEmpty()
+                    && IGNORED_PROPERTIES_FOR_COVERAGE.containsAll(configured);
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to read example: " + example, exception);
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether an example's xdoc section actually parses as valid Java.
+     *
+     * @param example the example file path
+     * @return true if the xdoc section parses successfully as Java
+     * @throws IOException if an I/O error occurs
+     */
+    private static boolean isActuallyParseable(Path example) throws IOException {
+        final String xdocSection = extractXdocSection(example);
+        boolean result;
+        try {
+            result = parseContent(xdocSection) != null;
+        }
+        catch (CheckstyleException exception) {
+            result = false;
+        }
+        return result;
+    }
+
+    /**
+     * Fallback validation for pseudo-path modules whose examples cannot be parsed.
+     *
+     * @param dir the directory being checked
+     * @param relativePath the directory's relative path, for messaging
+     * @param examples the regular (non-suppressed) examples in this directory
+     * @param propertyCount the documented property count, for context in the message
+     * @return a violation message, or null if every property is covered
+     * @throws IOException if an I/O error occurs
+     */
+    private static String checkPropertyCoverageFallback(Path dir, String relativePath,
+                    List<Path> examples, int propertyCount)
+            throws IOException {
+        String result = null;
+
+        final Set<String> documentedProperties = resolveDocumentedPropertyNames(dir);
+        if (!documentedProperties.isEmpty()) {
+            final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+            final String xmlModuleName = stripCheckSuffix(moduleName);
+
+            final Set<String> configuredProperties = new HashSet<>();
+            for (Path example : examples) {
+                configuredProperties.addAll(
+                        extractConfiguredPropertyNames(example, xmlModuleName));
+            }
+
+            final Set<String> uncoveredProperties = new HashSet<>(documentedProperties);
+            uncoveredProperties.removeAll(configuredProperties);
+            uncoveredProperties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
+
+            if (uncoveredProperties.isEmpty()) {
+                final int expected = propertyCount + 1;
+                if (examples.size() < expected) {
+                    result = "Directory: " + relativePath
+                            + "\nProperties: " + propertyCount
+                            + "\nExpected examples (at least, including a baseline): " + expected
+                            + "\nActual example count: " + examples.size();
+                }
+            }
+            else {
+                result = "Directory: " + relativePath
+                        + "\nProperties: " + propertyCount
+                        + "\nProperties with no covering example (pseudo-path format): "
+                        + uncoveredProperties;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Groups examples by structural AST equality and returns largest group size.
+     * Examples are pre-split by constructor presence.
+     *
+     * @param examples candidate example files (already filtered for suppression)
+     * @return size of the largest AST-identical group, or 0 if none parse
+     * @throws IOException if reading a file fails
+     */
+    private static int findLargestAstMatchingGroupSize(List<Path> examples) throws IOException {
+        final List<Path> ctorExamples = new ArrayList<>();
+        final List<Path> nonCtorExamples = new ArrayList<>();
+
+        for (Path example : examples) {
+            if (containsConstructorDefinition(example)) {
+                ctorExamples.add(example);
+            }
+            else {
+                nonCtorExamples.add(example);
+            }
+        }
+
+        return Math.max(
+            largestGroupWithinSubset(nonCtorExamples),
+            largestGroupWithinSubset(ctorExamples)
+        );
+    }
+
+    /**
+     * Finds size of largest group of structurally-identical ASTs within example subset.
+     *
+     * @param examples the subset of examples to group
+     * @return size of the largest AST-identical group, or 0 if none parse
+     * @throws IOException if reading a file fails
+     */
+    private static int largestGroupWithinSubset(List<Path> examples) throws IOException {
+        final List<StructuralAstNode> asts = new ArrayList<>();
+
+        for (Path example : examples) {
+            try {
+                final String xdocSection = extractXdocSection(example);
+                final DetailAST detailAst = parseContent(xdocSection);
+                if (detailAst != null) {
+                    asts.add(toStructuralAst(detailAst));
+                }
+            }
+            catch (CheckstyleException exception) {
+                // unparseable excluded from grouping, handled by UNPARSEABLE_EXAMPLES elsewhere
+            }
+        }
+
+        int best = 0;
+        for (StructuralAstNode candidate : asts) {
+            int count = 0;
+            for (StructuralAstNode other : asts) {
+                if (candidate.equals(other)) {
+                    count++;
+                }
+            }
+            best = Math.max(best, count);
+        }
+        return best;
+    }
+
+    /**
+     * Checks if examples in this directory define any module properties.
+     *
+     * @param examples the list of example files in the directory
+     * @return true if no example file contains a {@code <property} element in its XML config
+     * @throws IOException if an I/O error occurs reading an example file
+     */
+    public static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
+        boolean noProperties = true;
+
+        for (Path example : examples) {
+            final String content = Files.readString(example);
+
+            if (content.contains("<property ")) {
+                noProperties = false;
+                break;
+            }
+        }
+
+        return noProperties;
+    }
+
+    /**
+     * Retrieves documented property count for a module using cache to optimize performance.
+     *
+     * @param dir the directory path associated with the module
+     * @return the number of properties, or -1 if the module cannot be resolved
+     */
+    private static int resolvePropertyCount(Path dir) {
+        final String moduleName = toModuleClassSimpleName(dir.getFileName().toString());
+        int result = -1;
+
+        if (moduleName != null) {
+            result = PROPERTY_COUNT_CACHE.computeIfAbsent(moduleName,
+                XdocsExamplesAstConsistencyTest::loadPropertyCount);
+        }
+
+        return result;
+    }
+
+    /**
+     * Helper method to load property count via reflection.
+     *
+     * @param moduleName the simple class name of the check
+     * @return the property count, or -1 on failure
+     */
+    private static int loadPropertyCount(String moduleName) {
+        final Set<String> properties = new HashSet<>(
+                XdocUtil.getDocumentedProperties(moduleName));
+        properties.removeAll(IGNORED_PROPERTIES_FOR_COVERAGE);
+        return properties.size();
+    }
+
+    /**
+     * Converts a lower-cased directory name (e.g. {@code declarationorder}) into
+     * the check's simple class name (e.g. {@code DeclarationOrderCheck}) as expected by
+     * the generated documentation, using an index built once from all known Checkstyle
+     * module classes.
+     *
+     * @param dirName the last path segment of the example directory
+     * @return the resolved module simple name, or null if no matching module class was found
+     */
+    public static String toModuleClassSimpleName(String dirName) {
+        return MODULE_SIMPLE_NAME_CACHE.get(dirName.toLowerCase(Locale.ROOT));
+    }
+
+    /**
+     * Builds a one-time index mapping lower-cased simple class name stem
+     * (i.e. class simple name with any trailing {@code Check} removed, lower-cased)
+     * to the actual module simple class name.
+     * Built once to avoid repeating an expensive classpath scan per directory.
+     *
+     * @return the populated index
+     */
+    private static ConcurrentMap<String, String> buildModuleSimpleNameIndex() {
+        final ConcurrentMap<String, String> index = new ConcurrentHashMap<>();
+
+        try {
+            for (Class<?> moduleClass : CheckUtil.getCheckstyleModules()) {
+                final String simpleName = moduleClass.getSimpleName();
+                final String stem = stripCheckSuffix(simpleName);
+                index.putIfAbsent(stem.toLowerCase(Locale.ROOT), simpleName);
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to build module simple name index",
+                exception);
+        }
+
+        return index;
+    }
+
+    /**
+     * Removes trailing {@code Check} suffix from class simple name, if present.
+     *
+     * @param simpleName the class simple name
+     * @return the name with any trailing {@code Check} removed
+     */
+    public static String stripCheckSuffix(String simpleName) {
+        String result = simpleName;
+        if (simpleName.endsWith("Check")) {
+            result = simpleName.substring(0, simpleName.length() - "Check".length());
+        }
+        return result;
+    }
+
+    /**
+     * Formats violation message for block comment markers.
      *
      * @param violations the list of violations
      * @return formatted message
@@ -433,7 +1104,7 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks a single example file for block comments used as ok/violation markers.
+     * Checks example file for block comments used as ok/violation markers.
      *
      * @param file the example file to check
      * @return the list of violation messages
@@ -443,8 +1114,7 @@ public class XdocsExamplesAstConsistencyTest {
             throws IOException {
         final List<String> fileViolations = new ArrayList<>();
         final String content = Files.readString(file);
-        final Pattern blockCommentPattern = Pattern.compile("(?s)/\\*.*?\\*/");
-        final Matcher matcher = blockCommentPattern.matcher(content);
+        final Matcher matcher = BLOCK_COMMENT_PATTERN.matcher(content);
 
         while (matcher.find()) {
             final String block = matcher.group();
@@ -470,43 +1140,23 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks if a directory contains multiple example files.
+     * Checks if directory contains multiple example files, including any
+     * contained in its own non-module subdirectories.
      *
      * @param dir the directory to check
-     * @return true if the directory contains 2 or more Example*.java files
+     * @return true if the directory (recursively, stopping at nested module
+     *         boundaries) contains 2 or more Example*.java files
      */
     private static boolean containsMultipleExamples(Path dir) {
-        try (Stream<Path> pathStream = Files.list(dir)) {
-            return pathStream
-                    .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
-                    .count() > 1;
+        try {
+            return collectFilesWithinModule(dir,
+                    path -> path.getFileName().toString().matches("Example\\d+\\.java"))
+                    .size() > 1;
         }
         catch (IOException exception) {
             throw new IllegalStateException("Failed to list files in directory: " + dir,
-                    exception);
+                exception);
         }
-    }
-
-    /**
-     * Checks whether none of the examples in this directory define any module properties.
-     * When a module has no configurable properties, its examples may intentionally use
-     * very different code to demonstrate different behaviours, so consistency checking
-     * is not meaningful.
-     *
-     * @param examples the list of example files in the directory
-     * @return true if no example file contains a {@code <property} element in its XML config
-     * @throws IOException if an I/O error occurs reading an example file
-     */
-    private static boolean isModuleWithNoProperties(List<Path> examples) throws IOException {
-        boolean result = true;
-        for (Path example : examples) {
-            final String content = Files.readString(example);
-            if (content.contains("<property ")) {
-                result = false;
-                break;
-            }
-        }
-        return result;
     }
 
     /**
@@ -528,21 +1178,60 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Gets all Example*.java files from a directory.
+     * Gets all Example*.java files from a directory, including those in its own
+     * subdirectories. The walk stops at nested module directory boundaries via
+     * {@link #collectFilesWithinModule}, so it never crosses into sibling modules.
      *
-     * @param dir the directory to search
+     * @param dir the module directory to search
      * @return list of example file paths
      * @throws IOException if an I/O error occurs
      */
     private static List<Path> getExampleFiles(Path dir) throws IOException {
-        final List<Path> examples;
-        try (Stream<Path> pathStream = Files.list(dir)) {
-            examples = pathStream
-                    .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
-                    .sorted(Comparator.comparing(Path::toString))
-                    .toList();
+        final List<Path> examples = collectFilesWithinModule(dir,
+                path -> path.getFileName().toString().matches("Example\\d+\\.java"));
+        return examples.stream()
+                .sorted(Comparator.comparing(Path::toString))
+                .toList();
+    }
+
+    /**
+     * Gets all Example* files from a directory (and its own subdirectories) that
+     * contain an embedded {@code /*xml ... *}{@code /} config block, regardless
+     * of file extension. Used only for property-coverage checking
+     * ({@link #testEveryPropertyHasAnExample}), which inspects the embedded block
+     * rather than parsing the file as Java. Files matching the {@code Example<N>}
+     * pattern without a config block are excluded.
+     *
+     * @param dir the module directory to search
+     * @return list of example file paths containing an XML config block
+     * @throws IOException if an I/O error occurs
+     */
+    public static List<Path> getExamplePropertyCoverageFiles(Path dir) throws IOException {
+        final List<Path> examples = collectFilesWithinModule(dir, path -> {
+            return path.getFileName().toString().matches("Example\\d+(\\..+)?")
+                    && hasXmlConfigBlock(path);
+        });
+        return examples.stream()
+                .sorted(Comparator.comparing(Path::toString))
+                .toList();
+    }
+
+    /**
+     * Checks whether a file contains an embedded {@code /*xml ... *}{@code /}
+     * configuration block.
+     *
+     * @param file the file to check
+     * @return true if an XML config block is present
+     */
+    private static boolean hasXmlConfigBlock(Path file) {
+        final boolean result;
+        try {
+            result = extractXmlConfigBlock(file) != null;
         }
-        return examples;
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to read file: " + file, exception);
+        }
+        return result;
     }
 
     /**
@@ -732,19 +1421,17 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts content between xdoc section markers from a file.
-     *
-     * <p>The extracted lines are re-joined and parsed fresh by {@link #parseContent}, so
-     * AST line numbers are always relative to the start of the extracted section (line 1).
-     * This makes line-number comparisons between examples independent of any difference in
-     * header length (license block, imports, etc.) above the marker.
+     * Extracts content between xdoc section markers from a file. The extracted
+     * lines are re-joined and parsed fresh by {@link #parseContent}, so AST line
+     * numbers are relative to the start of the section, independent of header
+     * length above the marker.
      *
      * @param file the file to read
      * @return the content between markers, or entire file if no markers
      * @throws IOException if an I/O error occurs
      */
     private static String extractXdocSection(Path file) throws IOException {
-        final List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
+        final List<String> lines = Files.readAllLines(file);
         int startIndex = -1;
         int endIndex = -1;
 
@@ -833,6 +1520,12 @@ public class XdocsExamplesAstConsistencyTest {
                 result = new Violation(relativePath, reference.getFileName().toString(),
                         example.getFileName().toString(), "Comments mismatch");
             }
+            else if (referenceAst.equalsIgnoringLineNumbers(ast)) {
+                result = new Violation(relativePath, reference.getFileName().toString(),
+                    example.getFileName().toString(),
+                    "AST structure mismatch (line numbers differ only - "
+                        + "check for added/removed blank lines or shifted code)");
+            }
             else {
                 result = new Violation(relativePath, reference.getFileName().toString(),
                         example.getFileName().toString(), "AST structure mismatch");
@@ -845,15 +1538,14 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Converts a DetailAST into a structural representation that excludes only
      * {@code ok}, {@code violation}, and {@code xdoc section} single-line comments.
-     * All other single-line comments, as well as Javadoc and block comments, are
-     * included in the comparison.
      *
      * @param ast the AST to convert
      * @return structural representation of the AST, or null if the node is a
      *         skippable comment
      */
     private static StructuralAstNode toStructuralAst(DetailAST ast) {
-        final boolean ignoreName = isClassOrConstructorName(ast)
+        final boolean ignoreName = isTypeName(ast)
+                || isConstructorName(ast)
                 || isExtendsAnExampleClass(ast);
         final StructuralAstNode node = new StructuralAstNode(
                 ast.getType(), ast.getText(), ignoreName, ast.getLineNo(), ignoreName
@@ -871,18 +1563,33 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Checks if an AST node is an identifier representing class or constructor name.
+     * Checks if an AST node is an identifier representing a type name.
      *
      * @param ast the AST node to check
-     * @return true if the node is a class or constructor name identifier
+     * @return true if the node is a type name identifier
      */
-    private static boolean isClassOrConstructorName(DetailAST ast) {
+    private static boolean isTypeName(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         return parent != null
                 && ast.getType() == TokenTypes.IDENT
                 && (parent.getType() == TokenTypes.CLASS_DEF
                     || parent.getType() == TokenTypes.INTERFACE_DEF
-                    || parent.getType() == TokenTypes.CTOR_DEF);
+                    || parent.getType() == TokenTypes.ENUM_DEF
+                    || parent.getType() == TokenTypes.RECORD_DEF
+                    || parent.getType() == TokenTypes.ANNOTATION_DEF);
+    }
+
+    /**
+     * Checks if an AST node is an identifier representing a constructor name.
+     *
+     * @param ast the AST node to check
+     * @return true if the node is a constructor name identifier
+     */
+    private static boolean isConstructorName(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return parent != null
+                && ast.getType() == TokenTypes.IDENT
+                && parent.getType() == TokenTypes.CTOR_DEF;
     }
 
     /**
@@ -909,20 +1616,10 @@ public class XdocsExamplesAstConsistencyTest {
 
     /**
      * Checks whether a comment is a documentation marker that should be
-     * excluded from structural comparison.
-     *
-     * <p>Skipped prefixes:
-     * <ul>
-     *   <li>{@code ok} - suppressed-violation marker</li>
-     *   <li>{@code violation} - violation marker (including {@code filtered violation})</li>
-     *   <li>{@code xdoc section} - section boundary marker</li>
-     *   <li>{@code N violation(s)} - count-style marker, e.g. {@code 3 violations}</li>
-     *   <li>A single-quoted string starting and ending with a single-quote character
-     *       continuation line, e.g. {@code //    'Expected }&#64;{@code param tag for p1.'}.
-     *       These lines appear below a count-style or
-     *       {@code violation above} marker and may be separated from it by a blank line,
-     *       so they cannot be reliably caught by the continuation-chain logic alone.</li>
-     * </ul>
+     * excluded from structural comparison. Skipped prefixes include
+     * {@code ok}, {@code violation} (including {@code filtered violation}),
+     * {@code xdoc section}, count-style {@code N violation(s)}, and
+     * single-quoted continuation lines.
      *
      * @param comment the stripped comment text (everything after {@code //})
      * @return true if the comment is a marker that should be ignored
@@ -939,28 +1636,85 @@ public class XdocsExamplesAstConsistencyTest {
     }
 
     /**
-     * Extracts comments that participate in comparison.
-     *
-     * <p>The following comments are ignored:
-     * <ul>
-     *   <li>{@code ok}</li>
-     *   <li>{@code violation} (including {@code filtered violation}
-     *       and count-style {@code N violations})</li>
-     *   <li>xdoc section markers</li>
-     *   <li>standalone continuation lines immediately following a skipped marker —
-     *       e.g. <code>// no space after '{'</code> after {@code // 3 violations}</li>
-     * </ul>
-     *
-     * <p>A standalone continuation line is one where there is no code before the
-     * double-slash on that line, and the previous comment line was a skipped marker.
-     * Inline trailing comments on code lines are always evaluated independently.
-     *
-     * <p>All other comments are included in comparison.
+     * Extracts comments that participate in comparison. Ignored comments are
+     * {@code ok}, {@code violation} (including count-style {@code N violations}),
+     * xdoc section markers, and standalone continuation lines immediately
+     * following a skipped marker. All other comments, including javadoc, are
+     * included; inline marker comments within javadoc are excluded per
+     * {@link #isIgnoredComment}.
      *
      * @param content example content
      * @return comments participating in comparison
      */
     private static List<String> extractComments(String content) {
+        final List<String> comments = new ArrayList<>();
+        comments.addAll(extractJavadocComments(content));
+        comments.addAll(extractSingleLineComments(content));
+        return comments;
+    }
+
+    /**
+     * Extracts javadoc comments, stripping any trailing inline marker comment
+     * (ok/violation/etc., per {@link #isIgnoredComment}) from each line rather
+     * than dropping the whole line. Javadocs that become empty after stripping
+     * are excluded entirely.
+     *
+     * @param content example content
+     * @return filtered javadoc comments, excluding any that become empty
+     */
+    private static List<String> extractJavadocComments(String content) {
+        final List<String> javadocComments = new ArrayList<>();
+        final Matcher javadocMatcher = Pattern.compile("/\\*\\*[\\s\\S]*?\\*/").matcher(content);
+
+        while (javadocMatcher.find()) {
+            final String originalJavadoc = javadocMatcher.group().strip();
+            final StringBuilder filteredJavadoc = new StringBuilder(256);
+
+            for (String line : originalJavadoc.lines().toList()) {
+                filteredJavadoc.append(stripInlineMarkers(line)).append('\n');
+            }
+
+            final String filteredJavadocStr = filteredJavadoc.toString().strip();
+            if (!filteredJavadocStr.isEmpty()) {
+                javadocComments.add(filteredJavadocStr);
+            }
+        }
+
+        return javadocComments;
+    }
+
+    /**
+     * Removes a trailing inline marker comment (ok/violation/filtered violation/
+     * N violations/etc., per {@link #isIgnoredComment}) from a single line,
+     * keeping the code (or whitespace) that precedes it. Lines whose trailing
+     * {@code //} comment is not a recognized marker are returned unchanged.
+     *
+     * @param line the line to strip
+     * @return the line with any trailing marker comment removed
+     */
+    private static String stripInlineMarkers(String line) {
+        String result = line;
+        final int commentIndex = findCommentStart(line);
+
+        if (commentIndex >= 0) {
+            final String comment = line.substring(commentIndex + 2).strip();
+            if (isIgnoredComment(comment)) {
+                result = line.substring(0, commentIndex).stripTrailing();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Extracts single-line ({@code //}) comments that participate in comparison,
+     * skipping ok/violation/xdoc-section markers and standalone continuation
+     * lines that immediately follow such a marker.
+     *
+     * @param content example content
+     * @return single-line comments participating in comparison
+     */
+    private static List<String> extractSingleLineComments(String content) {
         final List<String> comments = new ArrayList<>();
         boolean prevLineWasMarker = false;
 
@@ -972,10 +1726,8 @@ public class XdocsExamplesAstConsistencyTest {
                 continue;
             }
 
-            final String comment =
-                    line.substring(commentIndex + 2).strip();
-            final boolean isCodeBefore =
-                    !line.substring(0, commentIndex).isBlank();
+            final String comment = line.substring(commentIndex + 2).strip();
+            final boolean isCodeBefore = !line.substring(0, commentIndex).isBlank();
 
             if (isIgnoredComment(comment)) {
                 prevLineWasMarker = true;
@@ -1125,6 +1877,32 @@ public class XdocsExamplesAstConsistencyTest {
             final boolean lineNoMatch = Objects.equals(lineNo, other.lineNo);
             final boolean childrenMatch = children.equals(other.children);
             return typeMatch && textMatch && lineNoMatch && childrenMatch;
+        }
+
+        /**
+         * Compares this node against another, ignoring line-number differences.
+         * Used to distinguish a genuine structural mismatch from one caused purely
+         * by a shift in line numbers (e.g. an added or removed blank line), so the
+         * violation message can point reviewers toward the right kind of fix.
+         *
+         * @param other the node to compare against
+         * @return true if the two nodes (and their children) are structurally
+         *         identical except possibly for line numbers
+         */
+        private boolean equalsIgnoringLineNumbers(StructuralAstNode other) {
+            final boolean typeMatch = type == other.type;
+            final boolean textMatch = Objects.equals(text, other.text);
+            boolean childrenMatch = children.size() == other.children.size();
+            if (childrenMatch) {
+                for (int index = 0; index < children.size(); index++) {
+                    if (!children.get(index)
+                        .equalsIgnoringLineNumbers(other.children.get(index))) {
+                        childrenMatch = false;
+                        break;
+                    }
+                }
+            }
+            return typeMatch && textMatch && childrenMatch;
         }
 
         @Override

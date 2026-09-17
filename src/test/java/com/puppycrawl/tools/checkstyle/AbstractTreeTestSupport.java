@@ -87,7 +87,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      * @throws Exception if exception occurs during verification.
      */
     protected static void verifyJavaAndJavadocAst(String expectedTextPrintFilename,
-                                                  String actualJavaFilename) throws Exception {
+                                                  String actualJavaFilename)
+            throws Exception {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = toLfLineEnding(AstTreeStringPrinter.printJavaAndJavadocTree(
@@ -107,7 +108,8 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      * @throws Exception if exception occurs during verification.
      */
     protected static void verifyJavadocTree(String expectedTextPrintFilename,
-                                            String actualJavadocFilename) throws Exception {
+                                            String actualJavadocFilename)
+            throws Exception {
         final String expectedContents = readFile(expectedTextPrintFilename);
 
         final String actualContents = toLfLineEnding(DetailNodeTreeStringPrinter.printFileAst(

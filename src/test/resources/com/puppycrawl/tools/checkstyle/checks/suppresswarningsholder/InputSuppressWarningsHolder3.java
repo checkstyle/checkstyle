@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
-aliasList = (default)
+aliasList = (default)(null)
 
 
 */

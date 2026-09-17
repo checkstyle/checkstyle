@@ -8,6 +8,30 @@
   <body>
     <section name="FallThrough">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#FallThrough_Description">Description</a></li>
+          <li><a href="#FallThrough_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#FallThrough_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enable check for last case group</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With custom relief pattern</a></li>
+            </ul>
+          </li>
+          <li><a href="#FallThrough_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#FallThrough_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#FallThrough_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#FallThrough_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="FallThrough_Description">
         <div>
           Checks for fall-through in <code>switch</code> statements.
@@ -28,7 +52,14 @@
         </p>
 
         <p>
-          Note: The check assumes that there is no unreachable code in the <code>case</code>.
+          Note:
+          The check assumes that there is no unreachable code in the <code>case</code>.
+        </p>
+
+        <p>
+          A <code>case</code> whose code ends in an infinite loop is not flagged, e.g.
+          <code>while (true) {}</code>, <code>for (;;) {}</code>, <code>for (;true;) {}</code>
+          or <code>do {} while (true);</code>.
         </p>
       </subsection>
 
@@ -45,14 +76,14 @@
             <tr>
               <td><a id="checkLastCaseGroup"/><a href="#checkLastCaseGroup">checkLastCaseGroup</a></td>
               <td>Control whether the last case group must be checked.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td><a id="reliefPattern"/><a href="#reliefPattern">reliefPattern</a></td>
               <td>Define the RegExp to match the relief comment that suppresses the warning about a fall through.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>falls?[ -]?thr(u|ough)</code></td>
               <td>4.0</td>
             </tr>
@@ -202,6 +233,10 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+FallThrough">

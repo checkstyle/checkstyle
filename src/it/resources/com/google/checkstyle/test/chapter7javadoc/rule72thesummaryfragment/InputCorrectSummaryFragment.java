@@ -57,6 +57,11 @@ class InputCorrectSummaryFragment {
 
     /** An especially short (int... A) bit of Javadoc. This method returns. */
     void foo6() {}
+
+    /** {@return the customer ID} */
+    int customerId() {
+      return 0;
+    }
   }
 
   /**

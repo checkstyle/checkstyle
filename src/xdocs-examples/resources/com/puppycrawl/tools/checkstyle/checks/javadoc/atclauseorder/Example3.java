@@ -14,8 +14,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
 import java.io.Serializable;
+// xdoc section - start
 
-// xdoc section -- start
 /**
 * Some javadoc.
 *
@@ -28,33 +28,32 @@ import java.io.Serializable;
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example3 {
-  class Valid implements Serializable {
-  }
-
+  class Valid implements Serializable {}
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
   /**
    * Some javadoc.
    *
+   * @author max
    * @version Some javadoc.
    * @see Some javadoc.
    * @since Some javadoc.
    * @deprecated
    */
-  class Invalid implements Serializable {
-  }
-
+  enum Test {}
   /**
    * Some javadoc.
    *
-   * @author Some javadoc.
-   * @version Some javadoc.
-   * @see Some javadoc.
-   * @since Some javadoc. // violation
-   * @deprecated // violation
+   * @return Some javadoc.
+   * @param a Some javadoc.
    */
-  enum Test {}
+  public int foo(int a) {
+    return a;
+  }
+
 }
-// xdoc section -- end
+// xdoc section - end

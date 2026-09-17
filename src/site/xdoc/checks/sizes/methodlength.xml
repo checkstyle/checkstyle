@@ -8,6 +8,31 @@
   <body>
     <section name="MethodLength">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodLength_Description">Description</a></li>
+          <li><a href="#MethodLength_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MethodLength_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default settings, so that it accepts methods with at most 150 lines</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it accepts at most 4 lines</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it accepts methods with at most 4 lines</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it accepts methods with at most 4 lines, not counting empty lines and comments</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodLength_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodLength_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodLength_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MethodLength_Description">
         <div>
           Checks for long methods and constructors.
@@ -33,14 +58,14 @@
             <tr>
               <td><a id="countEmpty"/><a href="#countEmpty">countEmpty</a></td>
               <td>Control whether to count empty lines and comments.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>150</code></td>
               <td>3.0</td>
             </tr>
@@ -73,6 +98,63 @@
 
       <subsection name="Examples" id="MethodLength_Examples">
         <p id="Example1-config">
+          To configure the check with default settings, so that it accepts
+          methods with at most 150 lines:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodLength"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  // ok, default max is 150 lines
+  public Example1() {
+    int var1 = 2;
+    int var2 = 4;
+    int sum = var1 + var2;
+  }
+
+  // ok, default max is 150 lines
+  public Example1(int a)  {
+    int var1 = 2;
+    int sum = var1 + a;
+  }
+
+  // ok, default max is 150 lines
+  public void firstMethod() {
+    int index = 0;
+    if (index &lt; 5) {
+      index++;
+    }
+  }
+
+  public void secondMethod() {
+
+    System.out.println("line 3");
+  }
+
+  public void thirdMethod() {
+
+    // ok, empty line above is counted by default, just like this comment
+    System.out.println("line 4");
+  }
+
+  record MyBadRecord() {
+
+    public MyBadRecord {
+
+      System.out.println("line3");
+      System.out.println("line4");
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
           To configure the check so that it accepts at most 4
           lines:
         </p>
@@ -85,85 +167,24 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+public class Example2 {
 
-  // violation below, 'Method Example1 length is 5 lines (max allowed is 4)'
-  public Example1() {
+  // violation below 'Method Example2 length is 5 lines (max allowed is 4)'
+  public Example2() {
     int var1 = 2;
     int var2 = 4;
     int sum = var1 + var2;
   }
 
   // ok, as it is less than 4 lines
-  public Example1(int a)  {
-    int var1 = 2;
-    int sum = var1 + a;
-  }
-
-  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
-  public void firstMethod() {
-    int index = 0;
-    if (index &lt; 5) {
-      index++;
-    }
-  }
-
-  public void secondMethod() {
-    // comments are counted by default
-    System.out.println("line 3");
-  }
-
-  // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
-  public void thirdMethod() {
-
-    // empty line above is counted by default,just like this comment
-    System.out.println("line 4");
-  }
-
-  record MyBadRecord() {
-    // violation below, 'Method MyBadRecord length is 5 lines (max allowed is 4)'
-    public MyBadRecord {
-
-      System.out.println("line3");
-      System.out.println("line4");
-    }
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
-          To configure the check so that it accepts methods with at most 4
-          lines:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MethodLength"&gt;
-      &lt;property name="tokens" value="METHOD_DEF"/&gt;
-      &lt;property name="max" value="4"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
-
-  // ok, CTOR_DEF is not in configured tokens
-  public Example2()  {
-    int var1 = 2;
-    int var2 = 4;
-    int sum = var1 + var2;
-  }
-
-  // ok, CTOR_DEF is not in configured tokens
   public Example2(int a)  {
     int var1 = 2;
     int sum = var1 + a;
   }
 
-  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  // violation below 'Method firstMethod length is 6 lines (max allowed is 4)'
   public void firstMethod() {
     int index = 0;
     if (index &lt; 5) {
@@ -172,19 +193,18 @@ public class Example2 {
   }
 
   public void secondMethod() {
-    // comments are counted by default
+
     System.out.println("line 3");
   }
-
-  // violation below, 'Method thirdMethod length is 5 lines (max allowed is 4)'
+  // violation below 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
-    // empty line above is counted by default,just like this comment
+    // ok, empty line above is counted by default,just like this comment
     System.out.println("line 4");
   }
 
   record MyBadRecord() {
-    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    // violation below 'Method MyBadRecord length is 5 lines (max allowed is 4)'
     public MyBadRecord {
 
       System.out.println("line3");
@@ -195,7 +215,7 @@ public class Example2 {
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           To configure the check so that it accepts methods with at most 4
-          lines, not counting empty lines and comments:
+          lines:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -203,7 +223,6 @@ public class Example2 {
     &lt;module name="MethodLength"&gt;
       &lt;property name="tokens" value="METHOD_DEF"/&gt;
       &lt;property name="max" value="4"/&gt;
-      &lt;property name="countEmpty" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -225,7 +244,7 @@ public class Example3 {
     int sum = var1 + a;
   }
 
-  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  // violation below 'Method firstMethod length is 6 lines (max allowed is 4)'
   public void firstMethod() {
     int index = 0;
     if (index &lt; 5) {
@@ -234,13 +253,74 @@ public class Example3 {
   }
 
   public void secondMethod() {
-    // countEmpty property is false,so this line doesn't count
+
+    System.out.println("line 3");
+  }
+  // violation below 'Method thirdMethod length is 5 lines (max allowed is 4)'
+  public void thirdMethod() {
+
+    // ok, empty line above is counted by default,just like this comment
+    System.out.println("line 4");
+  }
+
+  record MyBadRecord() {
+    // ok, COMPACT_CTOR_DEF is not in configured tokens
+    public MyBadRecord {
+
+      System.out.println("line3");
+      System.out.println("line4");
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check so that it accepts methods with at most 4
+          lines, not counting empty lines and comments:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodLength"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="max" value="4"/&gt;
+      &lt;property name="countEmpty" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+
+  // ok, CTOR_DEF is not in configured tokens
+  public Example4()  {
+    int var1 = 2;
+    int var2 = 4;
+    int sum = var1 + var2;
+  }
+
+  // ok, CTOR_DEF is not in configured tokens
+  public Example4(int a)  {
+    int var1 = 2;
+    int sum = var1 + a;
+  }
+
+  // violation below 'Method firstMethod length is 6 lines (max allowed is 4)'
+  public void firstMethod() {
+    int index = 0;
+    if (index &lt; 5) {
+      index++;
+    }
+  }
+
+  public void secondMethod() {
+    // ok, countEmpty property is false,so this line doesn't count
     System.out.println("line 3");
   }
 
   public void thirdMethod() {
 
-    // countEmpty property is false,so this line and the line above don't count
+    // ok, countEmpty property is false,so this line and the line above don't count
     System.out.println("line 4");
   }
 
@@ -261,6 +341,10 @@ public class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodLength">

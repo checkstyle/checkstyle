@@ -2,7 +2,7 @@
 AnnotationUseStyle
 elementStyle = ignore
 closingParens = ignore
-trailingArrayComma = NEVER
+trailingArrayComma = (default)NEVER
 
 
 */

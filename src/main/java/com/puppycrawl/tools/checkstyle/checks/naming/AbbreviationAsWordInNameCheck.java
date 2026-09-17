@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <div>
  * Validates abbreviations (consecutive capital letters) length in
  * identifier name, it also allows to enforce camel case naming. Please read more at
- * <a href="https://checkstyle.org/styleguides/google-java-style-20250426/javaguide.html#s5.3-camel-case">
+ * <a href="https://checkstyle.org/styleguides/google-java-style-20260409/javaguide.html#s5.3-camel-case">
  * Google Style Guide</a> to get to know how to avoid long abbreviations in names.
  * </div>
  *
@@ -105,6 +105,13 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * usually mean inherited name).
      */
     private boolean ignoreOverriddenMethods = true;
+
+    /**
+     * Creates a new {@code AbbreviationAsWordInNameCheck} instance.
+     */
+    public AbbreviationAsWordInNameCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to allow to skip variables with {@code final} modifier.
@@ -289,11 +296,14 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;
         final DetailAST astBlock = variableDefAst.getParent();
-        final DetailAST astParent2 = astBlock.getParent();
 
-        if (astParent2.getType() == TokenTypes.INTERFACE_DEF
-                || astParent2.getType() == TokenTypes.ANNOTATION_DEF) {
-            result = true;
+        if (astBlock.getType() != TokenTypes.COMPACT_COMPILATION_UNIT) {
+            final DetailAST astParent2 = astBlock.getParent();
+
+            if (astParent2.getType() == TokenTypes.INTERFACE_DEF
+                    || astParent2.getType() == TokenTypes.ANNOTATION_DEF) {
+                result = true;
+            }
         }
         return result;
     }

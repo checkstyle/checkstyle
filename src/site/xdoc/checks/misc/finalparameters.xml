@@ -8,6 +8,31 @@
   <body>
     <section name="FinalParameters">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#FinalParameters_Description">Description</a></li>
+          <li><a href="#FinalParameters_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#FinalParameters_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Enforce final parameters for methods and constructors</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce final parameters only for constructors</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow ignoring primitive datatypes as parameters</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Enforce final parameters for catch and for-each blocks while ignoring unnamed parameters</a></li>
+            </ul>
+          </li>
+          <li><a href="#FinalParameters_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#FinalParameters_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#FinalParameters_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#FinalParameters_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="FinalParameters_Description">
         <div>
           Checks that parameters for methods, constructors, catch and for-each blocks are final.
@@ -36,7 +61,7 @@
             <tr>
               <td><a id="ignorePrimitiveTypes"/><a href="#ignorePrimitiveTypes">ignorePrimitiveTypes</a></td>
               <td>Ignore primitive types as parameters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
             </tr>
@@ -44,7 +69,7 @@
               <td><a id="ignoreUnnamedParameters"/><a href="#ignoreUnnamedParameters">ignoreUnnamedParameters</a></td>
               <td>Ignore <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed parameters</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>10.18.0</td>
             </tr>
@@ -96,10 +121,10 @@
 public class Example1 {
   public Example1() { }
   public Example1(final int m) { }
-  public Example1(final int m, int n) { } // violation, 'n should be final'
+  public Example1(final int m, int n) { } // violation 'n should be final'
   public void methodOne(final int x) { }
-  public void methodTwo(int x) { } // violation, 'x should be final'
-  public static void main(String[] args) { } // violation, 'args should be final'
+  public void methodTwo(int x) { } // violation 'x should be final'
+  public static void main(String[] args) { } // violation 'args should be final'
 
   void testCatchParameters() {
     try { } catch (Exception e) { }
@@ -133,7 +158,7 @@ public class Example1 {
 public class Example2 {
   public Example2() { }
   public Example2(final int m) { }
-  public Example2(final int m, int n) { } // violation, 'n should be final'
+  public Example2(final int m, int n) { } // violation 'n should be final'
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
   public static void main(String[] args) { }
@@ -174,7 +199,7 @@ public class Example3 {
   public Example3(final int m, int n) { }
   public void methodOne(final int x) { }
   public void methodTwo(int x) { }
-  public static void main(String[] args) { } // violation, 'args should be final'
+  public static void main(String[] args) { } // violation 'args should be final'
 
   void testCatchParameters() {
     try { } catch (Exception e) { }
@@ -215,13 +240,13 @@ public class Example4 {
   public static void main(String[] args) { }
 
   void testCatchParameters() {
-    try { } catch (Exception e) { } // violation, 'e should be final'
+    try { } catch (Exception e) { } // violation 'e should be final'
     try { } catch (Exception _) { } // ok, unnamed catch parameter
     try { } catch (final Exception _) { }
   }
 
   void testForEachParameters() {
-    for (int number: new int[] {1, 2, 3}) { } // violation, 'number should be final'
+    for (int number: new int[] {1, 2, 3}) { } // violation 'number should be final'
     for (int _: new int[] {1, 2, 3}) { }
   }
 }

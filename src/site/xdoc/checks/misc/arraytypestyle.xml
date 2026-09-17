@@ -8,6 +8,29 @@
   <body>
     <section name="ArrayTypeStyle">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ArrayTypeStyle_Description">Description</a></li>
+          <li><a href="#ArrayTypeStyle_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ArrayTypeStyle_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Enforce Java style</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce C style</a></li>
+            </ul>
+          </li>
+          <li><a href="#ArrayTypeStyle_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ArrayTypeStyle_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ArrayTypeStyle_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ArrayTypeStyle_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ArrayTypeStyle_Description">
         <div>
           Checks the style of array type definitions.
@@ -39,7 +62,7 @@
             <tr>
               <td><a id="javaStyle"/><a href="#javaStyle">javaStyle</a></td>
               <td>Control whether to enforce Java style (true) or C style (false).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.1</td>
             </tr>
@@ -64,13 +87,13 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   int[] nums; // ok since default format checks for Java style
-  String strings[]; // violation, 'Array brackets at illegal position'
+  String strings[]; // violation 'Array brackets at illegal position'
 
   char[] toCharArray() {
     return null;
   }
 
-  byte getData()[] { // violation, 'Array brackets at illegal position'
+  byte getData()[] { // violation 'Array brackets at illegal position'
     return null;
   }
 }
@@ -92,14 +115,14 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  int[] nums; // violation, 'Array brackets at illegal position'
+  int[] nums; // violation 'Array brackets at illegal position'
   String strings[]; // ok as follows C style since 'javaStyle' set to false
 
   char[] toCharArray() {
     return null;
   }
 
-  byte getData()[] { // violation, 'Array brackets at illegal position'
+  byte getData()[] { // violation 'Array brackets at illegal position'
     return null;
   }
 }

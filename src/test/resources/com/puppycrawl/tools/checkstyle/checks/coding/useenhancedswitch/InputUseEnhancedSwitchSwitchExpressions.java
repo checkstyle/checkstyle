@@ -11,7 +11,7 @@ public class InputUseEnhancedSwitchSwitchExpressions {
     }
 
     void test(Color c) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         int y = switch (c) {
             case RED:
                 yield 1;
@@ -29,7 +29,7 @@ public class InputUseEnhancedSwitchSwitchExpressions {
     }
 
     void testDefault(int x) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         int y = switch (x) {
             case 1: {
                 yield 10;

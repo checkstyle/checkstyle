@@ -8,6 +8,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.uniqueproperties;
 
+// xdoc section - start
 public class Example2 { }
-// xdoc section -- start
-// xdoc section -- end
+// xdoc section - end

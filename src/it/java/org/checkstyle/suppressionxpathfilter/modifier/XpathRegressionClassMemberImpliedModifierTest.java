@@ -130,4 +130,5 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

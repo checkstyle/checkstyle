@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.modifier.interfacememberimpliedmo
 
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 public interface Example4 {
 
   public static final String UNKNOWN = "Unknown";
@@ -38,4 +38,4 @@ public interface Example4 {
 
   }
 }
-// xdoc section -- end
+// xdoc section - end

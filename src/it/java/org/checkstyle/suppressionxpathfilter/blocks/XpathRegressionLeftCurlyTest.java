@@ -116,4 +116,5 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

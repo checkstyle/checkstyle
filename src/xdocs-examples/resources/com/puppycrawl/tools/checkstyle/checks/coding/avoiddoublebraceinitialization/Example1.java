@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   // violation below 'Avoid double brace initialization.'
   List<Integer> list1 = new ArrayList<>() {
@@ -35,4 +35,4 @@ class Example1 {
     }
   };
 }
-// xdoc section -- end
+// xdoc section - end

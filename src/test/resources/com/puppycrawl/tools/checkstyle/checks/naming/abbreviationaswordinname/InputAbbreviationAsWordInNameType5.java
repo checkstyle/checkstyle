@@ -43,15 +43,20 @@ class Class1Factory15 {
 }
 
 abstract class AbstractClassName35 {
-    class AbstractINNERSClass { // violation
+    // violation below 'Abbreviation in name 'AbstractINNERSClass''
+    class AbstractINNERSClass {
     }
 }
 
 abstract class Class3Factory5 {
-    class WellNamedFACTORY { // violation
-        public void systematicMETHODName() { // violation
-            int systematicVARIABLEName = 2; // violation
-            int SYSTEMATICVariableName = 1; // violation
+    // violation below 'Abbreviation in name 'WellNamedFACTORY''
+    class WellNamedFACTORY {
+        // violation below 'Abbreviation in name 'systematicMETHODName''
+        public void systematicMETHODName() {
+            // violation below 'Abbreviation in name 'systematicVARIABLEName''
+            int systematicVARIABLEName = 2;
+            // violation below 'Abbreviation in name 'SYSTEMATICVariableName''
+            int SYSTEMATICVariableName = 1;
         }
     }
 }

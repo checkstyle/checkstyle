@@ -12,6 +12,6 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 public class InputLineLengthUnicodeChars {
     String aaaaaaa = "1234567890123456789012345678901234567890" + "1234567890123456789012345" + "_";
     String aaaaaab = "1234567890123456789012345678901234567890" + "1234567890123456789012345" + "💩";
-    String aaaaaac = "This line is too long, and will be reported by checkstyle.  This line is 137 characters long, excluding unicode."; // violation, 'Line is longer than 100 characters (found 200).'
-    String aaaaaad = "This line is too long, and will be reported by checkstyle.💩💩This line is 137 characters long, including unicode."; // violation, 'Line is longer than 100 characters (found 200).'
+    String aaaaaac = "This line is too long, and will be reported by checkstyle.  This line is 137 characters long, excluding unicode."; // violation 'Line is longer than 100 characters (found 199).'
+    String aaaaaad = "This line is too long, and will be reported by checkstyle.💩💩This line is 137 characters long, including unicode."; // violation 'Line is longer than 100 characters (found 199).'
 }

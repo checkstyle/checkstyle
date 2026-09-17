@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
@@ -139,4 +139,5 @@ public class PatternVariableNameCheckTest
                         "InputPatternVariableNameRecordPattern.java"),
                 expected);
     }
+
 }

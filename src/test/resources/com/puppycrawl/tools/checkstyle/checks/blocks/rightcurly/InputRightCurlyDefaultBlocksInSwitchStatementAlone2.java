@@ -67,7 +67,7 @@ public class InputRightCurlyDefaultBlocksInSwitchStatementAlone2 {
     }
 
     public static void test15() {
-        int mode = 0; // violation below, '}' at column 35 should be alone on a line'
+        int mode = 0; // violation below '}' at column 35 should be alone on a line'
         switch (mode) {default: { } case 1: {  } }
     }
 

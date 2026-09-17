@@ -2,24 +2,28 @@
 
 set -e
 
-# Get the baseline seconds and config file from arguments
-if [ "$#" -ne 2 ]; then
+# Get the config file from arguments
+if [ "$#" -ne 1 ]; then
   echo "Missing arguments!"
-  echo "Usage: $0 BASELINE_SECONDS CONFIG_FILE"
+  echo "Usage: $0 CONFIG_FILE"
   exit 1
 fi
 
-BASELINE_SECONDS=$1
-CONFIG_FILE=$2
+CONFIG_FILE=$1
 
 # max difference tolerance in %
 THRESHOLD_PERCENTAGE=10
 # JDK version
 JDK_VERSION=25
-# sample project path
-SAMPLE_PROJECT="./.ci-temp/jdk$JDK_VERSION"
+# sample project path: only a subset of the sample project is benchmarked so that
+# building and running master on the same runner (for a dynamic baseline) stays cheap
+SAMPLE_PROJECT="./.ci-temp/jdk$JDK_VERSION/src/java.base"
 # suppression file
 SUPPRESSION_FILE="./config/projects-to-test/openjdk$JDK_VERSION-excluded.files"
+# number of timed executions per jar
+NUM_EXECUTIONS=3
+# working tree used to build master without disturbing the patch checkout
+MASTER_WORKTREE="../checkstyle-perf-master"
 
 # execute a command and time it
 # $TEST_COMMAND: command being timed
@@ -30,7 +34,14 @@ time_command() {
   cat time.temp
 }
 
-# execute the benchmark a few times to calculate the average metrics
+# package the checkstyle all-in-one jar in the current working tree
+# echoes the absolute path of the produced jar
+package_jar() {
+  ./mvnw -e --no-transfer-progress -Passembly,no-validations package 1>&2
+  find "$PWD/target/" -type f -name "checkstyle-*-all.jar"
+}
+
+# execute the benchmark a few times to calculate the average execution time
 # $JAR_PATH: path of the jar file being benchmarked
 execute_benchmark() {
   local JAR_PATH=$1
@@ -40,33 +51,27 @@ execute_benchmark() {
   fi
 
   local TOTAL_SECONDS=0
-  local NUM_EXECUTIONS=3
-
-  [ ! -d "$SAMPLE_PROJECT" ] &&
-    echo "Directory $SAMPLE_PROJECT DOES NOT exist." | exit 1
-
-  # add suppressions to config file
-  sed -i "/  <!-- Filters -->/r $SUPPRESSION_FILE" \
-        "$CONFIG_FILE"
 
   for ((i = 0; i < NUM_EXECUTIONS; i++)); do
     local CMD=(java -jar "$JAR_PATH" -c "$CONFIG_FILE" \
       -x .git -x module-info.java "$SAMPLE_PROJECT")
     local BENCHMARK=($(time_command "${CMD[@]}"))
+    echo "  Run $((i + 1))/$NUM_EXECUTIONS ($JAR_PATH): ${BENCHMARK}s" 1>&2
     TOTAL_SECONDS=$(echo "$TOTAL_SECONDS + $BENCHMARK" | bc)
   done
 
-  # average execution time in patch
-  local AVERAGE_IN_SECONDS=$(echo "scale=2; $TOTAL_SECONDS / $NUM_EXECUTIONS" | bc)
-  echo "$AVERAGE_IN_SECONDS"
+  # average execution time
+  echo "scale=2; $TOTAL_SECONDS / $NUM_EXECUTIONS" | bc
 }
 
 # compare baseline and patch benchmarks
+# $BASELINE_SECONDS execution time of master
 # $EXECUTION_TIME_SECONDS execution time of the patch
 compare_results() {
-  local EXECUTION_TIME_SECONDS=$1
-  if [ -z "$EXECUTION_TIME_SECONDS" ]; then
-        echo "Missing EXECUTION_TIME_SECONDS as an argument."
+  local BASELINE_SECONDS=$1
+  local EXECUTION_TIME_SECONDS=$2
+  if [ -z "$BASELINE_SECONDS" ] || [ -z "$EXECUTION_TIME_SECONDS" ]; then
+        echo "Missing BASELINE_SECONDS or EXECUTION_TIME_SECONDS as an argument."
         return 1
     fi
   # Calculate absolute percentage difference for execution time
@@ -89,12 +94,30 @@ compare_results() {
   fi
 }
 
-# package patch
-./mvnw -e --no-transfer-progress -Passembly,no-validations package
+[ ! -d "$SAMPLE_PROJECT" ] &&
+  { echo "Directory $SAMPLE_PROJECT DOES NOT exist." ; exit 1 ; }
 
-# start benchmark
+# add suppressions to config file once; both jars are benchmarked with the same config
+sed -i "/  <!-- Filters -->/r $SUPPRESSION_FILE" \
+      "$CONFIG_FILE"
+
+# package patch (current checkout)
+echo "Packaging patch..."
+cp "$(package_jar)" patch-all.jar
+
+# package master in a separate worktree so the patch config and sample stay untouched
+echo "Packaging master..."
+git fetch --no-tags --depth=1 origin master
+git worktree add --detach "$MASTER_WORKTREE" FETCH_HEAD
+cp "$(cd "$MASTER_WORKTREE" && package_jar)" base-all.jar
+git worktree remove --force "$MASTER_WORKTREE"
+
+# start benchmark, measuring both on the same runner
 echo "Benchmark launching..."
-AVERAGE_IN_SECONDS="$(execute_benchmark "$(find "./target/" -type f -name "checkstyle-*-all.jar")")"
+echo "Benchmarking master (baseline)..."
+BASELINE_SECONDS="$(execute_benchmark base-all.jar)"
+echo "Benchmarking patch..."
+AVERAGE_IN_SECONDS="$(execute_benchmark patch-all.jar)"
 
 # print the command execution result
 echo "================ MOST RECENT COMMAND RESULT ================="
@@ -105,7 +128,7 @@ echo "Execution Time Baseline: ${BASELINE_SECONDS} s"
 echo "Average Execution Time: ${AVERAGE_IN_SECONDS} s"
 echo "============================================================"
 
-# compare result with baseline
-compare_results "$AVERAGE_IN_SECONDS"
+# compare result with dynamic master baseline
+compare_results "$BASELINE_SECONDS" "$AVERAGE_IN_SECONDS"
 
 exit $?

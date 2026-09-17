@@ -16,8 +16,10 @@ public enum InputInnerTypeLastClassRootClass {
         public static final int NO = 4;
     }
 
+    // violation below 'Init blocks, constructors, fields and methods should be before inner types.'
     private final int bits;
 
+    // violation below 'Init blocks, constructors, fields and methods should be before inner types.'
     private InputInnerTypeLastClassRootClass(int bits) {
         this.bits = bits;
     }

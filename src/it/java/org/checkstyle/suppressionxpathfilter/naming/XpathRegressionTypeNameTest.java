@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
 public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
@@ -55,7 +54,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(TypeNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName_", pattern),
+                        TypeNameCheck.MSG_INVALID_PATTERN, "SecondName_", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -81,7 +80,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "6:15: " + getCheckMessage(TypeNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "SecondName", pattern),
+                        TypeNameCheck.MSG_INVALID_PATTERN, "SecondName", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -107,7 +106,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "7:21: " + getCheckMessage(TypeNameCheck.class,
-                        AbstractNameCheck.MSG_INVALID_PATTERN, "ThirdName", pattern),
+                        TypeNameCheck.MSG_INVALID_PATTERN, "ThirdName", pattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Example of code that cause violation as it is designed for extension:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public abstract class Plant {
  *   private String roots;
  *   private String trunk;
@@ -132,7 +132,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public class Tree extends Plant {
  *   private List leaves;
  *
- *   &#64;Overrides
+ *   @Overrides
  *   protected void validate() {
  *     super.validate();
  *     if (leaves == null) throw new IllegalArgumentException("No leaves!");
@@ -142,12 +142,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     validate();
  *   }
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * Example of code without violation:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public abstract class Plant {
  *   private String roots;
  *   private String trunk;
@@ -162,7 +162,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public abstract void grow();
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.1
  */
@@ -186,6 +186,13 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Supports multi-line regex.
      */
     private Pattern requiredJavadocPhrase = Pattern.compile(".*");
+
+    /**
+     * Creates a new {@code DesignForExtensionCheck} instance.
+     */
+    public DesignForExtensionCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify annotations which allow the check to skip the method from validation.

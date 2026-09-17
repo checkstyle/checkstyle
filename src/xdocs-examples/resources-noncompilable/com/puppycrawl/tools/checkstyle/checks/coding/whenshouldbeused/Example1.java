@@ -9,12 +9,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.whenshouldbeused;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   void testNoGuard(Object o) {
     switch (o) {
-      // violation below,  ''when' expression should be used*.'
+      // violation below  ''when' expression should be used*.'
       case String s -> {
         if (s.isEmpty()) {
           System.out.println("empty string");
@@ -45,4 +45,4 @@ public class Example1 {
   }
 
 }
-// xdoc section -- end
+// xdoc section - end

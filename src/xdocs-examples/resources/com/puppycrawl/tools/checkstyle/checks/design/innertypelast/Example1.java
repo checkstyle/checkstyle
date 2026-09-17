@@ -7,17 +7,19 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.design.innertypelast;
 
-// xdoc section -- start
+// xdoc section - start
 class Test1 {
   private String s;
   class InnerTest1 {}
-  public void test() {} // violation
+  // violation below 'fields and methods should be before inner types'
+  public void test() {}
 }
 
 class Test2 {
   static {};
   class InnerTest1 {}
-  public Test2() {} // violation
+  // violation below 'fields and methods should be before inner types'
+  public Test2() {}
 }
 
 class Example1 {
@@ -25,4 +27,4 @@ class Example1 {
   public void test() {}
   class InnerTest1 {}
 }
-// xdoc section -- end
+// xdoc section - end

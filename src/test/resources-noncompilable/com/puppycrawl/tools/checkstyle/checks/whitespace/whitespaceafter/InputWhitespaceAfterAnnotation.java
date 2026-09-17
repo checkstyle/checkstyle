@@ -5,7 +5,7 @@ tokens = COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_WHILE, \
 
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: Annotation types  do not specify explicit target element
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespaceafter;
 

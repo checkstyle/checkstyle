@@ -96,4 +96,5 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             .that(check.getRequiredTokens())
             .isEqualTo(CommonUtil.EMPTY_INT_ARRAY);
     }
+
 }

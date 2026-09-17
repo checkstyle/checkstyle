@@ -116,6 +116,37 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
+    public void testCompactSourceFileOverloads() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY, 8),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactSourceFile.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileValid() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactSourceFileValid.java"),
+            expected);
+    }
+
+    @Test
+    public void testCompactSourceFileFirstMethodOverload() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY, 8),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath(
+                "InputOverloadMethodsDeclarationOrderCompactSourceFileFirstMethodOverload.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();

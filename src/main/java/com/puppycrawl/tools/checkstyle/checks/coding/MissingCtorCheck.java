@@ -56,6 +56,13 @@ public class MissingCtorCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "missing.ctor";
 
+    /**
+     * Creates a new {@code MissingCtorCheck} instance.
+     */
+    public MissingCtorCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

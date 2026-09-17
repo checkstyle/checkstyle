@@ -22,6 +22,50 @@
           </tr>
           <tr>
             <td>
+              <a href="illegalblocktag.html#IllegalBlockTag">
+                IllegalBlockTag
+              </a>
+            </td>
+            <td>
+              Detects a user-defined Javadoc block tag and reports a violation when the tag is
+              present with text that does not match <code>tagTextPattern</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="inappropriatejavadocblocktagsonfield.html#InappropriateJavadocBlockTagsOnField">
+                InappropriateJavadocBlockTagsOnField
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for field declarations do not contain tags that are
+              semantically invalid for fields.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="inappropriatejavadocblocktagsonpackage.html#InappropriateJavadocBlockTagsOnPackage">
+                InappropriateJavadocBlockTagsOnPackage
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for package definitions do not contain tags that are
+              semantically invalid for packages.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="inappropriatejavadocblocktagsontype.html#InappropriateJavadocBlockTagsOnType">
+                InappropriateJavadocBlockTagsOnType
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for type definitions (class, interface, enum, record,
+              annotation) do not contain tags that are semantically invalid for types.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="invalidjavadocposition.html#InvalidJavadocPosition">
                 InvalidJavadocPosition
               </a>
@@ -55,6 +99,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocendcommentdelimiter.html#JavadocEndCommentDelimiter">
+                JavadocEndCommentDelimiter
+              </a>
+            </td>
+            <td>
+              Checks that the Javadoc closing delimiter contains exactly one asterisk before the
+              slash.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
                 JavadocLeadingAsteriskAlign
               </a>
@@ -62,6 +117,28 @@
             <td>
               Checks the alignment of <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
               leading asterisks</a> in a Javadoc comment.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javadoclinkfirstoccurrence.html#JavadocLinkFirstOccurrence">
+                JavadocLinkFirstOccurrence
+              </a>
+            </td>
+            <td>
+              Checks that in Javadoc comments, each API name is linked with <code>{@link}</code> or
+              <code>{@linkplain}</code> only on its first occurrence.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javadoclinkwellknownapi.html#JavadocLinkWellKnownApi">
+                JavadocLinkWellKnownApi
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments avoid unnecessary <code>{@link}</code> and
+              <code>{@linkplain}</code> tags for APIs that are considered well-known.
             </td>
           </tr>
           <tr>
@@ -97,6 +174,17 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocnoerrorinthrowstag.html#JavadocNoErrorInThrowsTag">
+                JavadocNoErrorInThrowsTag
+              </a>
+            </td>
+            <td>
+              Checks that <code>Error</code> types are not documented in <code>@throws</code> or
+              <code>@exception</code> Javadoc tags.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocpackage.html#JavadocPackage">
                 JavadocPackage
               </a>
@@ -117,12 +205,35 @@
           </tr>
           <tr>
             <td>
-              <a href="javadocstyle.html#JavadocStyle">
-                JavadocStyle
+              <a href="javadocparamorder.html#JavadocParamOrder">
+                JavadocParamOrder
               </a>
             </td>
             <td>
-              Validates Javadoc comments to help ensure they are well formed.
+              Checks that <code>@param</code> tags in Javadoc comments are in the same order as the
+              parameters in the declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javadocregexp.html#JavadocRegexp">
+                JavadocRegexp
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments do not match a configured regular expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javadocseetagorder.html#JavadocSeeTagOrder">
+                JavadocSeeTagOrder
+              </a>
+            </td>
+            <td>
+              Checks that multiple <code>@see</code> tags are ordered in a predictable way, roughly
+              following the order in which their arguments are searched for by javadoc, from nearest
+              to farthest access, from least-qualified to fully-qualified.
             </td>
           </tr>
           <tr>
@@ -133,6 +244,17 @@
             </td>
             <td>
               Checks the indentation of the continuation lines in block tags.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="javadocthrowsorder.html#JavadocThrowsOrder">
+                JavadocThrowsOrder
+              </a>
+            </td>
+            <td>
+              Checks that multiple <code>@throws</code> and <code>@exception</code> Javadoc tags are
+              listed alphabetically by exception name.
             </td>
           </tr>
           <tr>
@@ -194,6 +316,28 @@
             </td>
             <td>
               Checks that the block tag is followed by description.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="prefercodeorsnippetjavadocinlinetag.html#PreferCodeOrSnippetJavadocInlineTag">
+                PreferCodeOrSnippetJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags <code>{@code ...}</code> and <code>{@snippet
+              ...}</code> are preferred over HTML tags <code>&lt;code&gt;</code> and
+              <code>&lt;pre&gt;</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="preferliteraljavadocinlinetag.html#PreferLiteralJavadocInlineTag">
+                PreferLiteralJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags are preferred over escaping entities.
             </td>
           </tr>
           <tr>

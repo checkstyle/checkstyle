@@ -1,6 +1,7 @@
 /*
 NoLineWrap
 tokens = RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF
+skipAnnotations = (default)true
 
 
 */

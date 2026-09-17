@@ -105,4 +105,5 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -146,6 +146,13 @@ public class SuppressionCommentFilter
     /** Specify check ID pattern to suppress. */
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
+
+    /**
+     * Creates a new {@code SuppressionCommentFilter} instance.
+     */
+    public SuppressionCommentFilter() {
+        // no code by default
+    }
 
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
@@ -278,7 +285,7 @@ public class SuppressionCommentFilter
                     .getBlockComments().values();
             cComments.forEach(this::tagSuppressions);
         }
-        Collections.sort(tags);
+        tags.sort(Comparator.naturalOrder());
     }
 
     /**
@@ -292,8 +299,8 @@ public class SuppressionCommentFilter
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());
-            for (int i = 1; i < text.length; i++) {
-                tagCommentLine(text[i], startLineNo + i, 0);
+            for (int index = 1; index < text.length; index++) {
+                tagCommentLine(text[index], startLineNo + index, 0);
             }
         }
     }
@@ -514,8 +521,8 @@ public class SuppressionCommentFilter
         /**
          * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} source name matches the check format.
          */
         private boolean isCheckMatch(TreeWalkerAuditEvent event) {
             final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
@@ -525,8 +532,8 @@ public class SuppressionCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
@@ -545,8 +552,8 @@ public class SuppressionCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
             boolean match = true;

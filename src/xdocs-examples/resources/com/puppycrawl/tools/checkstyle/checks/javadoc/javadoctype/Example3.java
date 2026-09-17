@@ -8,8 +8,8 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
-
-// xdoc section -- start
+import javax.annotation.processing.Generated;
+// xdoc section - start
 /**
  * @author a
  * @version $Revision1$
@@ -41,7 +41,7 @@ public class Example3 {
   private class ClassF<T> {} // violation, as param tag for <T> is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG<T> {}
 }
-// xdoc section -- end
+// xdoc section - end

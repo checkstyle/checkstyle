@@ -9,6 +9,36 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
       <p>Since Checkstyle 5.7</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWarningsHolder_Description">Description</a></li>
+          <li><a href="#SuppressWarningsHolder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWarningsHolder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">To use default module configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">If <code>aliasList</code> property was provided you can use your own names e.g. below code will work if there was provided a <code> com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck=paramcounter</code> in the <code>aliasList</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressWarningsHolder_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">You can also use simple check name like <code>ParameterNumberCheck=paramcounter</code> instead to use fully qualified name of check in the <code>aliasList</code></a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">The check can also be used without suffix of &quot;Check&quot; like <code>ParameterNumber=paramcounter</code> in the <code>aliasList</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWarningsHolder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWarningsHolder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWarningsHolder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressWarningsHolder_Description">
         <div>
           Maintains a set of check suppressions from <code>@SuppressWarnings</code> annotations.
@@ -34,7 +64,7 @@
             <tr>
               <td><a id="aliasList"/><a href="#aliasList">aliasList</a></td>
               <td>Specify aliases for check names that can be used in code within <code>SuppressWarnings</code> in a format of comma separated attribute=value entries. The attribute is the fully qualified name of the Check and value is its alias.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.7</td>
             </tr>
@@ -61,18 +91,18 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  private int K; // violation, 'Name 'K' must match pattern'
+  private int K; // violation 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
-  private int J; // violation suppressed
+  private int J;
 
   @SuppressWarnings("ParamListShouldBeShort")
-    public void needsLotsOfParameters1 (int a, // violation suppressed
+    public void needsLotsOfParameters1 (int a,
      int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
-  // violation above, 'Name 'ARR' must match pattern'
+  // violation above 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
-  private int [] ARRAY; // violation suppressed
+  private int [] ARRAY;
   // violation 2 lines below 'More than 7 parameters (found 8)'
   @SuppressWarnings("paramcounter")
     public void needsLotsOfParameters2 (int a,
@@ -111,25 +141,28 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  private int K; // violation, 'Name 'K' must match pattern'
+  private int K; // violation 'Name 'K' must match pattern'
   @SuppressWarnings({"membername"})
-  private int J; // violation suppressed
+  private int J;
 
   @SuppressWarnings("ParamListShouldBeShort")
   public void needsLotsOfParameters1 (int a,
     int b, int c, int d, int e, int f, int g, int h) {}
 
   private int [] ARR; // violation ''int' is followed by whitespace'
-  // violation above, 'Name 'ARR' must match pattern'
+  // violation above 'Name 'ARR' must match pattern'
   @SuppressWarnings("all")
-  private int [] ARRAY; // violation suppressed
+  private int [] ARRAY;
 
   @SuppressWarnings("paramcounter")
-  public void needsLotsOfParameters2 (int a, // violation suppressed
+  public void needsLotsOfParameters2 (int a,
     int b, int c, int d, int e, int f, int g, int h) {}
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="SuppressWarningsHolder_Use_Cases">
+        <p id="UseCase1-config">
           You can also use simple check name like <code>ParameterNumberCheck=paramcounter</code>
           instead to use fully qualified name of check in the <code>aliasList</code>:
         </p>
@@ -144,9 +177,9 @@ class Example2 {
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
 
   private int K;
 
@@ -158,7 +191,7 @@ public class Example3 {
   @SuppressWarnings("checkstyle:constantname")
   private static final int m = 0;
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters(
           int a, int b, int c, int d,
           int e, int f, int g, int h) {}
@@ -172,7 +205,7 @@ public class Example3 {
   @SuppressWarnings("paramcounter")
   public void needsLotsOfParameters2(
           int a, int b, int c, int d,
-          int e, int f, int g, int h) {} // violation suppressed
+          int e, int f, int g, int h) {}
 
   private int [] ARR;
 
@@ -180,7 +213,7 @@ public class Example3 {
   private int [] ARRAY;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           The check can also be used without suffix of &quot;Check&quot; like
           <code>ParameterNumber=paramcounter</code> in the <code>aliasList</code>:
         </p>
@@ -195,9 +228,9 @@ public class Example3 {
   &lt;module name="SuppressWarningsFilter"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
 
   private int K;
 
@@ -209,7 +242,7 @@ public class Example4 {
   @SuppressWarnings("checkstyle:constantname")
   private static final int m = 0;
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters(
           int a, int b, int c, int d,
           int e, int f, int g, int h) {}
@@ -223,7 +256,7 @@ public class Example4 {
   @SuppressWarnings("paramcounter")
   public void needsLotsOfParameters2(
           int a, int b, int c, int d,
-          int e, int f, int g, int h) {} // violation suppressed
+          int e, int f, int g, int h) {}
 
   private int [] ARR;
 
@@ -231,7 +264,6 @@ public class Example4 {
   private int [] ARRAY;
 }
 </code></pre></div>
-
       </subsection>
 
       <subsection name="Example of Usage" id="SuppressWarningsHolder_Example_of_Usage">

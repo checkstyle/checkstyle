@@ -8,9 +8,9 @@ legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
 memberModifiers = (default)
-tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
-         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, IMPORT, INTERFACE_DEF, METHOD_CALL, \
+         METHOD_DEF, METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -25,7 +25,7 @@ public class InputIllegalTypeTestAbstractClassNamesTrue {
     }
 
     class MyNonAbstractClass extends AbstractClass {
-        // violation above, 'Usage of type 'AbstractClass' is not allowed'
+        // violation above 'Usage of type 'AbstractClass' is not allowed'
 
         boolean perfect = true;
 
@@ -43,15 +43,15 @@ public class InputIllegalTypeTestAbstractClassNamesTrue {
     }
 
     AbstractClass a = new MyNonAbstractClass();
-    // violation above, 'Usage of type 'AbstractClass' is not allowed'
+    // violation above 'Usage of type 'AbstractClass' is not allowed'
 
     public String getInnerClassInfo(AbstractClass clazz) {
-        // violation above, 'Usage of type 'AbstractClass' is not allowed'
+        // violation above 'Usage of type 'AbstractClass' is not allowed'
         return clazz.getClassInfo();
     }
 
     public AbstractClass newInnerClassInstance() {
-        // violation above, 'Usage of type 'AbstractClass' is not allowed'
+        // violation above 'Usage of type 'AbstractClass' is not allowed'
         return new MyNonAbstractClass();
     }
 }

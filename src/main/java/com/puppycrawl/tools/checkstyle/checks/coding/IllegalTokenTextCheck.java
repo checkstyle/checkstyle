@@ -61,6 +61,13 @@ public class IllegalTokenTextCheck
     /** Control whether to ignore case when matching. */
     private boolean ignoreCase;
 
+    /**
+     * Creates a new {@code IllegalTokenTextCheck} instance.
+     */
+    public IllegalTokenTextCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;

@@ -26,7 +26,7 @@ public class InputUnusedLocalVariableDepthOfClasses {
     }
 
     void method() {
-        int r = 1; // violation, 'Unused local variable'
+        int r = 1; // violation 'Unused local variable'
         n obj = new n() {
             void method() {
                 r += 12;
@@ -47,7 +47,7 @@ public class InputUnusedLocalVariableDepthOfClasses {
                 int a = 13;
 
                 void method() {
-                    int a = 1; // violation, 'Unused local variable'
+                    int a = 1; // violation 'Unused local variable'
                     int s = 1;
                     r.k obj = new r().new k() {
                         void method() {
@@ -62,7 +62,7 @@ public class InputUnusedLocalVariableDepthOfClasses {
 
     class P {
         void method() {
-            int a = 1; // violation, 'Unused local variable'
+            int a = 1; // violation 'Unused local variable'
             Q obj = new Q() {
                 void method() {
                     a += 1;
@@ -92,7 +92,7 @@ class anotherClass {
 
 class Clazz {
     void method() {
-        int variable = 1; // violation, 'Unused local variable'
+        int variable = 1; // violation 'Unused local variable'
         InputUnusedLocalVariableDepthOfClasses obj = new InputUnusedLocalVariableDepthOfClasses() {
             void method() {
                 variable += 1;

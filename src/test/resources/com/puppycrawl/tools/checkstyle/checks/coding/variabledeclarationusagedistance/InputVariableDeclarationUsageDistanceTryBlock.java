@@ -50,7 +50,7 @@ public class InputVariableDeclarationUsageDistanceTryBlock {
         }
     }
 
-    // no violation - distance is within allowed limit
+    // ok, distance is within allowed limit
     void tryWithinAllowedDistance() {
         int a = 1;
         System.lineSeparator();
@@ -62,7 +62,7 @@ public class InputVariableDeclarationUsageDistanceTryBlock {
         }
     }
 
-    // no violation - usage immediately in try
+    // ok, usage immediately in try
     void tryImmediateUsage() {
         int a = 1;
         try {

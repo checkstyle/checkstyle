@@ -80,6 +80,16 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNoEnumTrailingCommaCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final NoEnumTrailingCommaCheck check = new NoEnumTrailingCommaCheck();
         assertWithMessage("Acceptable tokens should not be null")

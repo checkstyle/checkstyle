@@ -23,7 +23,7 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
         return x;
     }
 
-    // This should still be a violation, since switch rules are not subject to fall through
+    // switch rules are not subject to fall through
     public int method2(int i) {
         int x = 7;
         switch (i) {
@@ -41,7 +41,7 @@ public class InputDefaultComesLastSwitchExpressionsSkipIfLast {
         return x;
     }
 
-    // This should still be a violation, since switch rules are not subject to fall through
+    // switch rules are not subject to fall through
     public int method3(int i) {
         return switch (i) {
             case 1 -> 8;

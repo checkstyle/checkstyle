@@ -3,13 +3,14 @@ MissingNullCaseInSwitch
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 public class InputMissingNullCaseInSwitchWithPattern {
 
     void testSwitchRule(Object obj) {
-        switch (obj) { // violation, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
+        switch (obj) {
             case Integer i when i > 0 -> {}
             case String s when s.length() > 0 -> {}
             default -> {}
@@ -28,7 +29,8 @@ public class InputMissingNullCaseInSwitchWithPattern {
 
     }
     void testSwitchStatments(Object obj) {
-        switch (obj) {  // violation, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
+        switch (obj) {
             case Integer i when i > 10 : {}break;
             case String s: {}break;
             default: {}
@@ -47,7 +49,7 @@ public class InputMissingNullCaseInSwitchWithPattern {
 
     int testSwitchExpression(Object obj, int x) {
         if (x == 1) {
-            // violation below, 'Switch using reference types should have a null case.'
+            // violation below 'Switch using reference types should have a null case.'
             return switch (obj) {
                 case Integer i -> 1;
                 case String s -> 2;
@@ -64,7 +66,7 @@ public class InputMissingNullCaseInSwitchWithPattern {
     }
     int testSwitchExpression2(Object obj, int x) {
         if (x == 1) {
-            // violation below, 'Switch using reference types should have a null case.'
+            // violation below 'Switch using reference types should have a null case.'
             return switch (obj) {
                 case Integer i : yield 1;
                 case String s : yield 2;
@@ -84,7 +86,7 @@ public class InputMissingNullCaseInSwitchWithPattern {
             case Integer i -> {}
             case null, default -> {}
         }
-        // violation below, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
         int x = switch (obj) {
             case Integer i -> 1;
             case String s -> 2;
@@ -100,7 +102,6 @@ public class InputMissingNullCaseInSwitchWithPattern {
             case null, default : {}
         }
     }
-
     public void testCaseNullInCaseGroup(Object obj) {
          switch (obj) {
             case Integer _:

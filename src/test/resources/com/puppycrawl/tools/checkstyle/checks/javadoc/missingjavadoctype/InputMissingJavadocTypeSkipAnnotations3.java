@@ -16,7 +16,7 @@ class InputMissingJavadocTypeSkipAnnotations3 {
 }
 
 @com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.ThisIsOk3
-class InputJavadocTypeSkipAnnotationsFQN3 {
+class InputJavadocTypeSkipAnnotationsFullyQualifiedName3 {
 }
 
 @Generated3(value = "some code generator")

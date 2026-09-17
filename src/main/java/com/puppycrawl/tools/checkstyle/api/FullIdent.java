@@ -37,10 +37,10 @@ import java.util.List;
  *
  * @see TokenTypes#DOT
  * @see TokenTypes#IDENT
- **/
+ */
 public final class FullIdent {
 
-    /** The list holding subsequent elements of identifier. **/
+    /** The list holding subsequent elements of identifier. */
     private final List<String> elements = new ArrayList<>();
     /** The topmost and leftmost AST of the full identifier. */
     private DetailAST detailAst;
@@ -190,7 +190,7 @@ public final class FullIdent {
     private static void appendBrackets(FullIdent full, DetailAST ast) {
         final int bracketCount =
                 ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
-        for (int i = 0; i < bracketCount; i++) {
+        for (int index = 0; index < bracketCount; index++) {
             full.append("[]");
         }
     }

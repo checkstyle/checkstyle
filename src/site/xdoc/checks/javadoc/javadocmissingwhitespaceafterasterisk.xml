@@ -8,6 +8,28 @@
   <body>
     <section name="JavadocMissingWhitespaceAfterAsterisk">
       <p>Since Checkstyle 8.32</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocMissingWhitespaceAfterAsterisk_Description">Description</a></li>
+          <li><a href="#JavadocMissingWhitespaceAfterAsterisk_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocMissingWhitespaceAfterAsterisk_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocMissingWhitespaceAfterAsterisk_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocMissingWhitespaceAfterAsterisk_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocMissingWhitespaceAfterAsterisk_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocMissingWhitespaceAfterAsterisk_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocMissingWhitespaceAfterAsterisk_Description">
         <div>
           Checks that there is at least one whitespace after the leading asterisk.
@@ -30,7 +52,7 @@
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.32</td>
             </tr>
@@ -57,7 +79,7 @@
 class Example1 {
   /**
    *This is invalid Javadoc.
-   */ // violation above, 'Missing a whitespace after the leading asterisk'
+   */ // violation above 'Missing a whitespace after the leading asterisk'
   int invalidJavaDoc;
   /**
    * This is valid Javadoc.
@@ -65,7 +87,7 @@ class Example1 {
   void validJavaDocMethod() {
   }
   /**This is invalid single-line Javadoc. */
-  // violation above, 'Missing a whitespace after the leading asterisk'
+  // violation above 'Missing a whitespace after the leading asterisk'
   void invalidSingleLineJavaDocMethod() {
   }
   /** This is valid single-line Javadoc. */

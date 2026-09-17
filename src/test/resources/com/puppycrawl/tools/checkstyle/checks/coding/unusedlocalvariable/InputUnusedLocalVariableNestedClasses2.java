@@ -27,8 +27,8 @@ public class InputUnusedLocalVariableNestedClasses2 {
 class d {
     void testLocalClasses() {
         int a = 12;
-        int q = 13; // violation, 'Unused local variable'
-        InputUnusedLocalVariableNestedClasses2.A.B.C obj = // violation, 'Unused local variable'
+        int q = 13; // violation 'Unused local variable'
+        InputUnusedLocalVariableNestedClasses2.A.B.C obj = // violation 'Unused local variable'
                 new InputUnusedLocalVariableNestedClasses2.A.B().new C() {
             void method() {
                 q += a;
@@ -44,7 +44,7 @@ class InputUnusedLocalVariableSameNameLen1 {
                 int b = 12;
 
                 void method() {
-                    int b = 12; // violation, 'Unused local variable'
+                    int b = 12; // violation 'Unused local variable'
                     int a = 12;
                     C obj = new C() {
                         void method() {
@@ -55,7 +55,7 @@ class InputUnusedLocalVariableSameNameLen1 {
                 }
 
                 void anotherMethod() {
-                    int b = 12; // violation, 'Unused local variable'
+                    int b = 12; // violation 'Unused local variable'
                     InputUnusedLocalVariableSameNameLen1.A.B.C obj =
                             new com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable
                                     .InputUnusedLocalVariableSameNameLen1()
@@ -107,7 +107,7 @@ class InputUnusedLocalVariableSameNameLen1 {
                         exec((final Integer x) -> new Tester() {
                             public void test() {
                                 int s = Integer.valueOf(x + n2 + N1 + N2 + N3);
-                                // violation above, 'Unused local variable'
+                                // violation above 'Unused local variable'
                             }
                         }.test(), 30);
                     }

@@ -8,6 +8,29 @@
   <body>
     <section name="DefaultComesLast">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#DefaultComesLast_Description">Description</a></li>
+          <li><a href="#DefaultComesLast_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#DefaultComesLast_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow default label to be not last if it is shared with case</a></li>
+            </ul>
+          </li>
+          <li><a href="#DefaultComesLast_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#DefaultComesLast_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#DefaultComesLast_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#DefaultComesLast_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="DefaultComesLast_Description">
         <div>
           Check that the <code>default</code> is after all the cases in a <code>switch</code> statement.
@@ -31,7 +54,7 @@
             <tr>
               <td><a id="skipIfLastAndSharedWithCase"/><a href="#skipIfLastAndSharedWithCase">skipIfLastAndSharedWithCase</a></td>
               <td>Control whether to allow <code>default</code> along with <code>case</code> if they are not last.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.7</td>
             </tr>
@@ -76,7 +99,7 @@ public class Example1 {
     switch (i) {
       case 1:
         break;
-      default: // violation, 'Default should be last label in the switch'
+      default: // violation 'Default should be last label in the switch'
         break;
       case 2:
         break;
@@ -92,7 +115,7 @@ public class Example1 {
 
     switch (i) {
       case 1: x = 9;
-      default: x = 10; // violation, 'Default should be last label in the switch'
+      default: x = 10; // violation 'Default should be last label in the switch'
       case 2: x = 32;
     }
   }
@@ -137,7 +160,7 @@ public class Example2 {
     switch (i) {
       case 1:
         break;
-      default: // violation, 'Default should be last label in the switch'
+      default: // violation 'Default should be last label in the switch'
         break;
       case 2:
         break;
@@ -146,14 +169,14 @@ public class Example2 {
     switch (i) {
       case 1:
         break;
-      default: // violation, 'Default should be last label in the case group'
+      default: // violation 'Default should be last label in the case group'
       case 2:
         break;
     }
 
     switch (i) {
       case 1: x = 9;
-      default: x = 10; // violation, 'Default should be last label in the switch'
+      default: x = 10; // violation 'Default should be last label in the switch'
       case 2: x = 32;
     }
   }

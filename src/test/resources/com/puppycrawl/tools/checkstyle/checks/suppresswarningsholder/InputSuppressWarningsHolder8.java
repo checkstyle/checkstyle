@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder
-aliasList = (default)
+aliasList = (default)(null)
 
 com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
@@ -20,5 +20,5 @@ public class InputSuppressWarningsHolder8 {
 
    // violation below 'Name 'K' must match pattern'
    private int K;   @SuppressWarnings("membername")
-   private int J; // violation suppressed
+   private int J;
 }

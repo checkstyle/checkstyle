@@ -8,6 +8,29 @@
   <body>
     <section name="HideUtilityClassConstructor">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#HideUtilityClassConstructor_Description">Description</a></li>
+          <li><a href="#HideUtilityClassConstructor_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#HideUtilityClassConstructor_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Ignore classes annotated with <code>SpringBootApplication</code> or <code>java.lang.Deprecated</code>.</a></li>
+            </ul>
+          </li>
+          <li><a href="#HideUtilityClassConstructor_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#HideUtilityClassConstructor_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#HideUtilityClassConstructor_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#HideUtilityClassConstructor_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="HideUtilityClassConstructor_Description">
         <div>
           Makes sure that utility classes (classes that contain only static methods or fields in their API)
@@ -52,7 +75,7 @@ public class StringUtils // not final to allow subclassing
             <tr>
               <td><a id="ignoreAnnotatedBy"/><a href="#ignoreAnnotatedBy">ignoreAnnotatedBy</a></td>
               <td>Ignore classes annotated with the specified annotation(s). Annotation names provided in this property must exactly match the annotation names on the classes. If the target class has annotations specified with their fully qualified names (including package), the annotations in this property should also be specified with their fully qualified names. Similarly, if the target class has annotations specified with their simple names, this property should contain the annotations with the same simple names.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>10.20.0</td>
             </tr>
@@ -73,7 +96,7 @@ public class StringUtils // not final to allow subclassing
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation below, 'should not have a public or default constructor'
+// violation below 'should not have a public or default constructor'
 @java.lang.Deprecated
 class Example1 {
 
@@ -100,12 +123,12 @@ class Bar {
   }
 }
 
-@Deprecated // violation, 'should not have a public or default constructor'
+@Deprecated // violation 'should not have a public or default constructor'
 class UtilityClass {
 
   static float f;
 }
-// violation below, 'should not have a public or default constructor'
+// violation below 'should not have a public or default constructor'
 @SpringBootApplication
 class Application1 {
 
@@ -156,7 +179,7 @@ class Bar2 {
   }
 }
 
-@Deprecated // violation, 'should not have a public or default constructor'
+@Deprecated // violation 'should not have a public or default constructor'
 class UtilityClass2 {
 
   static float f;

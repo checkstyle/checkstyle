@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck;
 
 public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport {
+
     @Override
     protected String getCheckName() {
         return EqualsHashCodeCheck.class.getSimpleName();
@@ -124,4 +125,5 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

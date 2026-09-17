@@ -96,7 +96,7 @@ public class InputRequireThisLocalTypeDefsInsideLambdas {
 
                 InnerSubscriber(int index) {
                     index = index;
-                    // violation above, 'Reference to instance variable 'index' needs "this.".'
+                    // violation above 'Reference to instance variable 'index' needs "this.".'
                 }
             }
         });
@@ -108,7 +108,7 @@ public class InputRequireThisLocalTypeDefsInsideLambdas {
                 int index;
 
                 void useIndex() {
-                    // violation below, 'Reference to instance variable 'index' needs "this.".'
+                    // violation below 'Reference to instance variable 'index' needs "this.".'
                     int x = index;
                 }
             }

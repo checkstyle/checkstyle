@@ -12,7 +12,7 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.separatorwrap;
-// xdoc section -- start
+// xdoc section - start
 import java.io.
         IOException;
 
@@ -20,10 +20,10 @@ class Example3 {
   String s;
 
   int a,
-          b; // violation above, ',' should be on a new line
+          b; // violation above ',' should be on a new line
 
   void foo(int x,
-           int y) { // violation above, ',' should be on a new line
+           int y) { // violation above ',' should be on a new line
   }
 
   void bar(int p
@@ -33,4 +33,4 @@ class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

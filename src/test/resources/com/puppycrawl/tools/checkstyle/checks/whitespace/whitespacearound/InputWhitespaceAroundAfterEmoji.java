@@ -25,7 +25,23 @@ public class InputWhitespaceAroundAfterEmoji {
     String a = "🎄❤️😂" + "🎅🔥😊🎁";
     String b = "🎄❤️😂"+ "🎅🔥😊🎁"; // violation ''\+' is not preceded with whitespace'
     String c = "🎄❤️😂" +"🎅🔥😊🎁"; // violation ''\+' is not followed by whitespace'
-    String d = "🎄❤️😂"+"🎅🔥😊🎁"; // 2 violations
+    String d = "🎄❤️😂"+"🎅🔥😊🎁";
+    // 2 violations above:
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
     String e = "🎄" + "❤" + "️😂" + "🎅" + "🔥" + "😊" + "🎁";
-    String f = "🎄"+"❤"+"️😂"+"🎅"+"🔥"+"😊"+"🎁"; // 12 violations
+    String f = "🎄"+"❤"+"️😂"+"🎅"+"🔥"+"😊"+"🎁";
+    // 12 violations above:
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
+    // ''\+' is not followed by whitespace.'
+    // ''\+' is not preceded with whitespace.'
 }

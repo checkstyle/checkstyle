@@ -2,14 +2,16 @@ name: "Check PR Description"
 
 on:
   pull_request:
+    types: [ opened, synchronize, reopened, closed ]
     branches: [ master ]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   analyze:
+    if: github.event.action != 'closed'
     name: Analyze
     runs-on: ubuntu-24.04
 

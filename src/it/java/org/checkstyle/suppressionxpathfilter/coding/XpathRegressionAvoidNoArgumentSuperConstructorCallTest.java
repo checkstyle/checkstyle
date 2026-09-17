@@ -118,4 +118,5 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

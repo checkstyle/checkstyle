@@ -11,7 +11,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example6 {
   private int field1;
   private int field2;
@@ -27,7 +27,7 @@ class Example6 {
     }
 
     try { }
-    catch (Exception e) {  // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+    catch (Exception e) {  // violation 'Count of 1 for 'LITERAL_CATCH' descendant'
       try { }
       catch (Exception ex) { }
       return -1;
@@ -50,4 +50,4 @@ class Example6 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

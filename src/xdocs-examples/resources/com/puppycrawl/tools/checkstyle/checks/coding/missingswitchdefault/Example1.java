@@ -7,10 +7,10 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void Example1(int i) {
-    switch (i) { // violation, 'switch without "default" clause'
+    switch (i) { // violation 'switch without "default" clause'
       case 1:
         break;
       case 2:
@@ -19,7 +19,7 @@ class Example1 {
   }
   enum Status {ACTIVE, DISABLED}
   void testEnum(Status status) {
-    switch (status) { // violation, 'switch without "default" clause'
+    switch (status) { // violation 'switch without "default" clause'
       case ACTIVE:
         System.out.println(0);
         break;
@@ -29,4 +29,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

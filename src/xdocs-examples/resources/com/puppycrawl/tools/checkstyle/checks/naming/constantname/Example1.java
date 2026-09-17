@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   public final static int FIRST_CONSTANT1 = 10;
   protected final static int SECOND_CONSTANT2 = 100;
@@ -22,4 +22,4 @@ class Example1 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1; // violation 'must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

@@ -1,21 +1,17 @@
 /*xml
 <module name="Checker">
   <module name="RegexpSingleline">
-    <property name="format" value="^[ ]*\* This file is copyrighted"/>
-    <property name="minimum" value="1"/>
-    <!--  Need to specify a maximum, so 10 times is more than enough. -->
-    <property name="maximum" value="10"/>
-    <property name="message"
-              value="File must contain copyright statement"/>
+    <property name="format" value="COPYRIGHTED"/>
+    <property name="maximum" value="1"/>
+    <property name="ignoreCase" value="true"/>
   </module>
 </module>
 */
-
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
-// xdoc section -- start
+// xdoc section - start
 /**
- * MyClass as a configuration example.
- */
+ * This file is copyrighted under CC.
+ */ // violation above 'Line matches the illegal pattern'
 public class Example5 {
 
   void myFunction() {
@@ -29,5 +25,4 @@ public class Example5 {
 
   void doSomething() {}
 }
-// xdoc section -- end
-// violation first line 'File must contain copyright statement'
+// xdoc section - end

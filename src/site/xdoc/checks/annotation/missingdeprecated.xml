@@ -9,6 +9,29 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingDeprecated">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MissingDeprecated_Description">Description</a></li>
+          <li><a href="#MissingDeprecated_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MissingDeprecated_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Such that it prints violation messages if tight HTML rules are not obeyed</a></li>
+            </ul>
+          </li>
+          <li><a href="#MissingDeprecated_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MissingDeprecated_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MissingDeprecated_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MissingDeprecated_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MissingDeprecated_Description">
         <div>
           Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
@@ -40,7 +63,7 @@
           these files until the javadoc tool faithfully supports it. An example config
           using SuppressionSingleFilter is:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <div class="wrapper"><pre class="prettyprint"><code>
 &lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&gt;
 &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="checks" value="MissingDeprecatedCheck"/&gt;
@@ -61,7 +84,7 @@
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
             </tr>
@@ -96,12 +119,12 @@ class Example1 {
    * &lt;p&gt;&lt;/p&gt;
    */
   @Deprecated
-    public static final int NUM = 123456;
+  public static final int NUM = 123456;
 
   /**
    * @deprecated
-   *  &lt;p&gt;
-   */
+   * &lt;p&gt;
+  */
   @Deprecated
   public static final int CONST = 12;
 }
@@ -140,7 +163,7 @@ class Example2 {
 
   /**
    * @deprecated
-   * &lt;p&gt; // violation, 'Unclosed HTML tag found: p'
+   * &lt;p&gt; // violation 'Unclosed HTML tag found: p'
   */
   @Deprecated
   public static final int CONST = 12;
@@ -153,6 +176,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

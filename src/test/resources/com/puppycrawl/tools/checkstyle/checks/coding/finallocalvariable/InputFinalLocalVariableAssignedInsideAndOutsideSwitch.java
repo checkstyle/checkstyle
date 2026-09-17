@@ -2,10 +2,10 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class InputFinalLocalVariableAssignedInsideAndOutsideSwitch {
     private static void foo2(final int[][] m, final int x, final int y,
                                 final int d, final int[] regionSizes) {
         final int a = m[y][x] & 1;
-        int b; // violation, "Variable 'b' should be declared final"
+        int b; // violation "Variable 'b' should be declared final"
         switch (d) {
             case 1:
                 break;

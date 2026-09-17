@@ -28,34 +28,27 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  */
 public class SinglelineDetector {
 
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
-
-    /**
-     * The detection options to use.
-     */
+    /** The detection options to use. */
     private final DetectorOptions options;
-    /**
-     * Tracks the number of matches.
-     */
+    /** The message key for exceeded matches. */
+    private final String exceededMessage;
+    /** The message key for minimum matches not met. */
+    private final String minimumMessage;
+    /** Tracks the number of matches. */
     private int currentMatches;
 
     /**
      * Creates an instance.
      *
      * @param options the options to use.
+     * @param exceededMessage the message key for exceeded matches.
+     * @param minimumMessage the message key for minimum matches not met.
      */
-    /* package */ SinglelineDetector(DetectorOptions options) {
+    /* package */ SinglelineDetector(DetectorOptions options,
+            String exceededMessage, String minimumMessage) {
         this.options = options;
+        this.exceededMessage = exceededMessage;
+        this.minimumMessage = minimumMessage;
     }
 
     /**
@@ -80,7 +73,7 @@ public class SinglelineDetector {
     private void finish() {
         if (currentMatches < options.getMinimum()) {
             if (options.getMessage().isEmpty()) {
-                options.getReporter().log(1, MSG_REGEXP_MINIMUM,
+                options.getReporter().log(1, minimumMessage,
                         options.getMinimum(), options.getFormat());
             }
             else {
@@ -114,7 +107,7 @@ public class SinglelineDetector {
                 currentMatches++;
                 if (currentMatches > options.getMaximum()) {
                     if (options.getMessage().isEmpty()) {
-                        options.getReporter().log(lineNo, MSG_REGEXP_EXCEEDED,
+                        options.getReporter().log(lineNo, exceededMessage,
                                 matcher.pattern().toString());
                     }
                     else {
@@ -125,4 +118,5 @@ public class SinglelineDetector {
             }
         }
     }
+
 }

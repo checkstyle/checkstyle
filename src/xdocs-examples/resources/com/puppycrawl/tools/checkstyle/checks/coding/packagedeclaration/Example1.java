@@ -6,8 +6,9 @@
 </module>
 */
 
-// xdoc section -- start
-public class Example1{ // violation, 'Missing package declaration'
+// xdoc section - start
+package com.nonexistent.packages;
+public class Example1{ // violation above 'Package name is not same as directory'
   String str = "Some Content";
 }
-// xdoc section -- end
+// xdoc section - end

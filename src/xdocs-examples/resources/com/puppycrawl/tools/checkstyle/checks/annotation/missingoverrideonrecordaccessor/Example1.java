@@ -8,10 +8,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverrideonrecordaccessor;
 
-// xdoc section -- start
+// xdoc section - start
 record Person(String name, int age) {
 
-  // violation below, 'method must include @java.lang.Override annotation.'
+  // violation below 'method must include @java.lang.Override annotation.'
   public String name() {
     return name.toUpperCase();
   }
@@ -29,6 +29,6 @@ record Person(String name, int age) {
     return value;
   }
 }
-// xdoc section -- end
+// xdoc section - end
 
 class Example1 {}

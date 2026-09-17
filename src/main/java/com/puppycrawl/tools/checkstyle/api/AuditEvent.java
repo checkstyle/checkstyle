@@ -42,9 +42,9 @@ public final class AuditEvent {
 
     /** The object on which the Event initially occurred. */
     private final Object source;
-    /** Filename event associated with. **/
+    /** Filename event associated with. */
     private final String fileName;
-    /** Violation associated with the event. **/
+    /** Violation associated with the event. */
     private final Violation violation;
 
     /**

@@ -12,7 +12,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   private int field1;
   private int field2;
@@ -20,7 +20,7 @@ class Example2 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation, 'Count of 2 for 'LITERAL_SWITCH' descendant'
+    switch (x) { // violation 'Count of 2 for 'LITERAL_SWITCH' descendant'
       case 1:
         break;
       case 2:
@@ -51,4 +51,4 @@ class Example2 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

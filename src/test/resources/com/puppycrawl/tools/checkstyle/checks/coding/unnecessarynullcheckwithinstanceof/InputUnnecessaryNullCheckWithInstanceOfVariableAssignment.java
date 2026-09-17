@@ -8,14 +8,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 public class InputUnnecessaryNullCheckWithInstanceOfVariableAssignment {
     public void variableAssignments(Object obj) {
 
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         boolean isValid = obj != null && obj instanceof String;
         if (isValid) {
             String str = (String) obj;
         }
         boolean isString = obj instanceof String;
 
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         boolean isValidMultiLine = obj != null
                                 && obj instanceof String;
     }

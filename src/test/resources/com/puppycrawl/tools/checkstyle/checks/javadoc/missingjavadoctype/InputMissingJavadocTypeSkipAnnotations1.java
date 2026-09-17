@@ -11,15 +11,18 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-@ThisIsOk1 // violation
+// violation below 'Missing a Javadoc comment.'
+@ThisIsOk1
 class InputMissingJavadocTypeSkipAnnotations1 {
 }
 
-@com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.ThisIsOk1 // violation
-class InputJavadocTypeSkipAnnotationsFQN1 {
+// violation below 'Missing a Javadoc comment.'
+@com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype.ThisIsOk1
+class InputJavadocTypeSkipAnnotationsFullyQualifiedName1 {
 }
 
-@Generated1(value = "some code generator") // violation
+// violation below 'Missing a Javadoc comment.'
+@Generated1(value = "some code generator")
 class InputJavadocTypeAllowedAnnotationByDefault1 {
 }
 

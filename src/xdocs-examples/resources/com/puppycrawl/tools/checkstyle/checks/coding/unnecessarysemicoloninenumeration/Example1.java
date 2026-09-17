@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicoloninenumeration;
 
-// xdoc section -- start
+// xdoc section - start
 enum One {
     A,B; // violation 'Unnecessary semicolon'
 }
@@ -26,4 +26,4 @@ enum Five {
     B
     ; // violation 'Unnecessary semicolon'
 }
-// xdoc section -- end
+// xdoc section - end

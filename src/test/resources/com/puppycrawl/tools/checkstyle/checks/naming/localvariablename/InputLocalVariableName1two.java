@@ -37,7 +37,7 @@ final class InputLocalVariableName1two
     {
         // normal decl
         int abc = 0;
-        int ABC = 0; // violation, 'Name 'ABC' must match pattern*'
+        int ABC = 0; // violation 'Name 'ABC' must match pattern*'
 
         // final decls
         final int cde = 0;
@@ -48,10 +48,10 @@ final class InputLocalVariableName1two
         {
             String innerBlockVariable = "";
         }
-        for (int I = 0; I < 1; I++) // violation, 'Name 'I' must match pattern*'
+        for (int I = 0; I < 1; I++) // violation 'Name 'I' must match pattern*'
         {
             String InnerBlockVariable = "";
-            // violation above, 'Name 'InnerBlockVariable' must match pattern*'
+            // violation above 'Name 'InnerBlockVariable' must match pattern*'
         }
     }
 

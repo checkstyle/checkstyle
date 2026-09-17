@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final int DEFAULT_EXPECTED_CAPITAL_COUNT = 4;
 
     @Override
@@ -76,6 +77,62 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
 
     @Test
     public void testExample4() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "24:21: " + getCheckMessage(MSG_KEY, "stringsFOUND", expectedCapitalCount),
+            "31:13: " + getCheckMessage(MSG_KEY, "TOTAL", expectedCapitalCount),
+            "46:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", expectedCapitalCount),
+            "48:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final int expectedCapitalCount = 3;
+
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "46:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", expectedCapitalCount),
+            "48:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "46:8: " + getCheckMessage(MSG_KEY, "incrementCOUNTER", expectedCapitalCount),
+            "48:15: " + getCheckMessage(MSG_KEY, "incrementGLOBAL", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final int expectedCapitalCount = 2;
+
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_KEY, "CURRENT_COUNTER", expectedCapitalCount),
+            "28:7: " + getCheckMessage(MSG_KEY, "secondNUM", expectedCapitalCount),
+            "31:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
+            "32:10: " + getCheckMessage(MSG_KEY, "firstURL", expectedCapitalCount),
+            "35:7: " + getCheckMessage(MSG_KEY, "nextXYZ", expectedCapitalCount),
+            "43:8: " + getCheckMessage(MSG_KEY, "OAUth2", expectedCapitalCount),
+        };
+
+        verifyWithInlineXmlConfig(getPath("Example8.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
         final int expectedCapitalCount = 2;
 
         final String[] expected = {
@@ -84,7 +141,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "26:10: " + getCheckMessage(MSG_KEY, "firstXML", expectedCapitalCount),
         };
 
-        verifyWithInlineXmlConfig(getPath("Example4.java"), expected);
+        verifyWithInlineXmlConfig(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -109,7 +166,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase2() throws Exception {
         final int expectedCapitalCount = 1;
 
         final String[] expected = {
@@ -118,13 +175,14 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
             "26:20: " + getCheckMessage(MSG_KEY, "MAX_ALLOWED", expectedCapitalCount),
         };
 
-        verifyWithInlineXmlConfig(getPath("Example6.java"), expected);
+        verifyWithInlineXmlConfig(getPath("UseCase2.java"), expected);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineXmlConfig(getPath("Example7.java"), expected);
+        verifyWithInlineXmlConfig(getPath("UseCase3.java"), expected);
     }
+
 }

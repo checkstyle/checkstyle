@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class NonEmptyAtclauseDescriptionCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc"
@@ -40,6 +41,7 @@ public class NonEmptyAtclauseDescriptionCheckExamplesTest
             "18: " + getCheckMessage(MSG_KEY),
             "19: " + getCheckMessage(MSG_KEY),
             "20: " + getCheckMessage(MSG_KEY),
+            "21: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -54,4 +56,5 @@ public class NonEmptyAtclauseDescriptionCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

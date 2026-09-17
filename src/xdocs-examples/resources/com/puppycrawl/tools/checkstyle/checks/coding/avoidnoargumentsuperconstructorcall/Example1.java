@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.avoidnoargumentsuperconstructorcall;
 
-// xdoc section -- start
+// xdoc section - start
 class SuperClass {
   public SuperClass() {}
   public SuperClass(int arg) {}
@@ -26,4 +26,4 @@ class Example1 extends SuperClass {
     // ok, no explicit constructor invocation
   }
 }
-// xdoc section -- end
+// xdoc section - end

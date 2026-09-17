@@ -8,37 +8,33 @@
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
-
   void test() {
-    // violation below, 'Redundant 'final' modifier'
+    // violation below 'Redundant 'final' modifier'
     try (final var a = lock()) {
 
     } catch (Exception e) {
 
     }
   }
-
-  // violation below, 'Redundant 'abstract' modifier'
+  // violation below 'Redundant 'abstract' modifier'
   abstract interface I {
     public abstract void m();
     // 2 violations above:
     //    'Redundant 'public' modifier'
     //    'Redundant 'abstract' modifier'
-    public int x = 0; // violation, 'Redundant 'public' modifier'
+    public int x = 0; // violation 'Redundant 'public' modifier'
   }
 
-  static enum E { // violation, 'Redundant 'static' modifier'
-        A, B, C
+  static enum E { // violation 'Redundant 'static' modifier'
+    A, B, C
   }
-
-  // violation below, 'Redundant 'strictfp' modifier'
+  // violation below 'Redundant 'strictfp' modifier'
   public strictfp class Test { }
 
   AutoCloseable lock() {
     return null;
   }
-
 }
-// xdoc section -- end
+// xdoc section - end

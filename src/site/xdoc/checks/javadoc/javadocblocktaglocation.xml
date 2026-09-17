@@ -8,6 +8,36 @@
   <body>
     <section name="JavadocBlockTagLocation">
       <p>Since Checkstyle 8.24</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocBlockTagLocation_Description">Description</a></li>
+          <li><a href="#JavadocBlockTagLocation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocBlockTagLocation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Verify tags from JEP 8068562 only</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#JavadocBlockTagLocation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Verify all default tags and some custom tags in addition</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocBlockTagLocation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocBlockTagLocation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocBlockTagLocation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocBlockTagLocation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocBlockTagLocation_Description">
         <div>
           Checks that a
@@ -53,14 +83,14 @@
             <tr>
               <td><a id="tags"/><a href="#tags">tags</a></td>
               <td>Specify the javadoc tags to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version</code></td>
               <td>8.24</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
             </tr>
@@ -81,12 +111,27 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * Escaped tag &amp;#64;version (OK)
- * Plain text with {@code @see} (OK)
- * A @custom tag (OK)
- *
- */
+class Example1 {
+  /**
+   * Escaped tag &amp;#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+  // violation 3 lines above 'block tag '@version' should be placed at the beginning'
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
+}
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check to verify tags from
@@ -100,8 +145,35 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  /**
+   * Escaped tag &amp;#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="JavadocBlockTagLocation_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to verify all default tags and some custom tags in addition:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -118,6 +190,30 @@
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+  /**
+   * Escaped tag &amp;#64;version (OK)
+   * Plain text with {@code @see} (OK)
+   * A @custom tag (OK)
+   * Some text with misplaced @version tag
+   */
+  void foo1() {}
+  // violation 3 lines above 'block tag '@version' should be placed at the beginning'
+  /**
+   * Another misplaced tag: text @noinspection here
+   */
+  void foo2() {}
+  // violation 3 lines above 'should be placed at the beginning'
+  /**
+   * @return properly placed tag (OK)
+   */
+  int foo3() {
+    return 0;
+  }
+}
 </code></pre></div>
       </subsection>
 

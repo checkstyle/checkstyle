@@ -75,7 +75,7 @@ public final class JavadocPropertiesGenerator {
      *
      * @param args the command line arguments
      * @throws CheckstyleException if parser or lexer failed or if there is an IO problem
-     **/
+     */
     public static void main(String... args) throws CheckstyleException {
         final CliOptions cliOptions = new CliOptions();
         final CommandLine cmd = new CommandLine(cliOptions);
@@ -342,5 +342,13 @@ public final class JavadocPropertiesGenerator {
          */
         @Parameters(index = "0", description = "The input file.")
         private File inputFile;
+
+        /**
+         * Creates a new {@code CliOptions} instance.
+         */
+        private CliOptions() {
+            // no code by default
+        }
     }
+
 }

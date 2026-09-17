@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   void testMethod() {
     /*
@@ -34,4 +34,4 @@ public class Example2 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-// xdoc section -- end
+// xdoc section - end

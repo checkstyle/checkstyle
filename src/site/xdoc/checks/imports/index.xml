@@ -11,6 +11,16 @@
         <table>
           <tr>
             <td>
+              <a href="avoidmoduleimport.html#AvoidModuleImport">
+                AvoidModuleImport
+              </a>
+            </td>
+            <td>
+              Checks that there are no module imports.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="avoidstarimport.html#AvoidStarImport">
                 AvoidStarImport
               </a>
@@ -72,12 +82,33 @@
           </tr>
           <tr>
             <td>
+              <a href="moduleimportorder.html#ModuleImportOrder">
+                ModuleImportOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering and placement of module import declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="redundantimport.html#RedundantImport">
                 RedundantImport
               </a>
             </td>
             <td>
               Checks for redundant import statements.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessaryfullyqualifiedtype.html#UnnecessaryFullyQualifiedType">
+                UnnecessaryFullyQualifiedType
+              </a>
+            </td>
+            <td>
+              Checks for fully qualified type references that are unnecessary because the type could
+              simply be imported and referenced by its simple name.
             </td>
           </tr>
           <tr>

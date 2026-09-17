@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
  * Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
  * name and import name are identical:
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * package java.util.concurrent.locks;
  *
  * import java.io.File;
@@ -63,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import java.util.concurrent.locks.LockSupport; //#6
  * import java.util.regex.Pattern; //#7
  * import java.util.regex.Matcher; //#8
- * </code></pre></div>
+ * }
  * If we have SAME_PACKAGE(3) on configuration file, imports #4-6 will be considered as
  * a SAME_PACKAGE group (java.util.concurrent.*, java.util.concurrent.AbstractExecutorService,
  * java.util.concurrent.locks.LockSupport). SAME_PACKAGE(2) will include #1-8.
@@ -128,10 +127,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * 1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
- * </code></pre></div>
+ * }
  *
  * <p>
  * Result: imports will be assigned to SPECIAL_IMPORTS, because matching substring length is 16.
@@ -141,9 +140,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * 2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
- * </code></pre></div>
+ * }
  *
  * <p>
  * Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both
@@ -212,6 +211,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
 
+    /** Domain Separator. */
+    private static final String DOMAIN_SEPARATOR = "\\.";
+
     /** Specify ordered list of import groups. */
     private final List<String> customImportOrderRules = new ArrayList<>();
 
@@ -241,6 +243,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /** Number of first domains for SAME_PACKAGE group. */
     private int samePackageMatchingDepth;
+
+    /**
+     * Creates a new {@code CustomImportOrderCheck} instance.
+     */
+    public CustomImportOrderCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify RegExp for STANDARD_JAVA_PACKAGE group imports.
@@ -650,12 +659,14 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private static int compareImports(String import1, String import2) {
         int result = 0;
-        final String separator = "\\.";
+        final String separator = DOMAIN_SEPARATOR;
         final String[] import1Tokens = import1.split(separator, -1);
         final String[] import2Tokens = import2.split(separator, -1);
-        for (int i = 0; i != import1Tokens.length && i != import2Tokens.length; i++) {
-            final String import1Token = import1Tokens[i];
-            final String import2Token = import2Tokens[i];
+        for (int index = 0;
+                index != import1Tokens.length && index != import2Tokens.length;
+                index++) {
+            final String import1Token = import1Tokens[index];
+            final String import2Token = import2Tokens[index];
             result = import1Token.compareTo(import2Token);
             if (result != 0) {
                 break;
@@ -681,9 +692,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
         int result = 0;
         final String[] lines = getLines();
 
-        for (int i = fromLineNo + 1; i <= toLineNo - 1; i++) {
+        for (int index = fromLineNo + 1; index <= toLineNo - 1; index++) {
             // "- 1" because the numbering is one-based
-            if (CommonUtil.isBlank(lines[i - 1])) {
+            if (CommonUtil.isBlank(lines[index - 1])) {
                 result++;
             }
         }
@@ -763,11 +774,14 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static String getFirstDomainsFromIdent(
             final int firstPackageDomainsCount, final String packageFullPath) {
         final StringBuilder builder = new StringBuilder(256);
-        final StringTokenizer tokens = new StringTokenizer(packageFullPath, ".");
+        final String[] tokens = packageFullPath.split(DOMAIN_SEPARATOR, -1);
         int count = firstPackageDomainsCount;
 
-        while (count > 0 && tokens.hasMoreTokens()) {
-            builder.append(tokens.nextToken());
+        for (String token : tokens) {
+            if (count <= 0) {
+                break;
+            }
+            builder.append(token);
             count--;
         }
         return builder.toString();

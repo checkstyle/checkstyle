@@ -114,7 +114,7 @@ public final class XpathIteratorUtil {
      * @param lineNo line number
      * @param columnNo column number
      *
-     * @return {@link DetailAstImpl} object.
+     * @return {@code DetailAstImpl} object.
      */
     private static DetailAstImpl createNode(int tokenType, int lineNo, int columnNo) {
         final DetailAstImpl result = new DetailAstImpl();
@@ -132,7 +132,7 @@ public final class XpathIteratorUtil {
      * @param lineNo line number
      * @param columnNo column number
      *
-     * @return {@link DetailAstImpl} object.
+     * @return {@code DetailAstImpl} object.
      */
     private static DetailAstImpl createNode(DetailAstImpl parent, int tokenType, int lineNo,
                                             int columnNo) {
@@ -140,4 +140,5 @@ public final class XpathIteratorUtil {
         parent.addChild(result);
         return result;
     }
+
 }

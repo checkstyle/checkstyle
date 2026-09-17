@@ -80,7 +80,10 @@ public class InputRightCurlyCaseBlocksWithSwitchRuleAlone {
         switch (mode) {
             case 0 -> {
                 int x = 1;
-            } case 1 -> {int x = 2;}  // 2 violations
+            } case 1 -> {int x = 2;}
+            // 2 violations above:
+            // ''}' at column 13 should be alone on a line.'
+            // ''}' at column 36 should be alone on a line.'
         }
     }
 

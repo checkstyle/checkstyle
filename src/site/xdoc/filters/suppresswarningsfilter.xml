@@ -8,6 +8,33 @@
   <body>
     <section name="SuppressWarningsFilter">
       <p>Since Checkstyle 5.7</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWarningsFilter_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWarningsFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Example of suppression by name of Check in annotation</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressWarningsFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Example of suppression by prefix "checkstyle:"</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWarningsFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWarningsFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWarningsFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressWarningsFilter_Description">
         <div>
           Filter <code>SuppressWarningsFilter</code> uses annotation
@@ -52,7 +79,10 @@
 </code></pre></div>
         <p id="Example1-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
+
 public class Example1 {
+
   @SuppressWarnings("memberName")
   int J; // filtered violation 'must match pattern'
   int JJ; // violation 'must match pattern'
@@ -60,12 +90,20 @@ public class Example1 {
   @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
   int [] ARRAY; // filtered violation
   // filtered violation above
-
   int [] ARRAY2; // violation
   // violation above
+  @SuppressWarnings("checkstyle:systemout")
+  public static void foo() {
+    System.out.println("Debug info.");
+  }
+
+  public static void boo() {
+    System.out.println("Some info.");
+  }
 }
 </code></pre></div>
-        <hr class="example-separator"/>
+      </subsection>
+      <subsection name="Use Cases" id="SuppressWarningsFilter_Use_Cases">
         <p>
           It is possible to specify an ID of checks, so that it can be leveraged by the
           SuppressWarningsFilter to skip validations. The following examples show how to skip
@@ -73,7 +111,7 @@ public class Example1 {
           just <code>@SuppressWarnings(&quot;&lt;ID&gt;&quot;)</code> annotation, where ID is the ID of checks
           you want to suppress.
         </p>
-        <p id="Example2-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
+        <p id="UseCase1-config">Example of suppression by prefix &quot;checkstyle:&quot;:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -88,15 +126,26 @@ public class Example1 {
   &lt;module name="SuppressWarningsFilter" /&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Java code:</p>
+        <p id="UseCase1-code">Java code:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 // violation 9 lines above 'use SLF4J instead.'
-public class Example2 {
+public class UseCase1 {
+
+  @SuppressWarnings("memberName")
+  int J;
+  int JJ;
+
+  @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
+  int [] ARRAY;
+
+  int [] ARRAY2;
+
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
     System.out.println("Debug info."); // filtered violation 'use SLF4J instead.'
   }
+
   public static void boo() {
     System.out.println("Some info."); // violation 'use SLF4J instead.'
   }
@@ -112,6 +161,14 @@ public class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

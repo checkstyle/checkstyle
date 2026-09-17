@@ -8,6 +8,31 @@
   <body>
     <section name="CyclomaticComplexity">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#CyclomaticComplexity_Description">Description</a></li>
+          <li><a href="#CyclomaticComplexity_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#CyclomaticComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a threshold of 4 and check only for while and do-while loops</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Consider switch-case block as one decision point.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">With a threshold of 12</a></li>
+            </ul>
+          </li>
+          <li><a href="#CyclomaticComplexity_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#CyclomaticComplexity_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#CyclomaticComplexity_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#CyclomaticComplexity_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="CyclomaticComplexity_Description">
         <div>
           Checks cyclomatic complexity against a specified limit. It is a measure of
@@ -66,14 +91,14 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>10</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="switchBlockAsSingleDecisionPoint"/><a href="#switchBlockAsSingleDecisionPoint">switchBlockAsSingleDecisionPoint</a></td>
               <td>Control whether to treat the whole switch block as a single decision point.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.11</td>
             </tr>
@@ -171,7 +196,7 @@ class Example1 {
       } while (a==d);
     }
   }
-  // violation below, 'Cyclomatic Complexity is 13 (max allowed is 10)'
+  // violation below 'Cyclomatic Complexity is 13 (max allowed is 10)'
   public void testMethod2() {
     if (a == b) {
       fun1();
@@ -227,7 +252,7 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   int a, b, c, d, e, n;
-  // violation below, 'Cyclomatic Complexity is 5 (max allowed is 4)'
+  // violation below 'Cyclomatic Complexity is 5 (max allowed is 4)'
   public void testMethod1() { // 1, function declaration
     while (a &lt; b &amp;&amp; a &gt; c) { // 2, while
       fun1();
@@ -318,7 +343,7 @@ class Example3 {
       } while (a==d);
     }
   }
-  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
+  // violation below 'Cyclomatic Complexity is 11 (max allowed is 10)'
   public void testMethod2() {
     if (a == b) {
       fun1();
@@ -329,6 +354,79 @@ class Example3 {
       }
     } else if (a == c
       || a == d) {
+      fun1();
+    } else if (d == e) {
+      try {
+        fun1();
+      } catch (Exception e) {
+      }
+    } else {
+      switch(n) {
+        case 1:
+          fun1();
+          break;
+        case 2:
+          fun1();
+          break;
+        case 3:
+          fun1();
+          break;
+        default:
+          break;
+      }
+    }
+    a = a &gt; 0 ? b : c;
+  }
+  private void fun1() {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check with a threshold of 12:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="12"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  int a, b, c, d, e, n;
+
+  public void testMethod1() { // 1, function declaration
+    while (a &lt; b &amp;&amp; a &gt; c) { // 2, while
+      fun1();
+    }
+    if (a == b) {
+      do { // 3, do
+        fun1();
+      } while (d==a);
+    } else if (c == d) {
+      while (c &gt; 0) { // 4, while
+        fun1();
+      }
+      do { // 5, do-while
+        fun1();
+      } while (a==d);
+    }
+  }
+  // violation below 'Cyclomatic Complexity is 13 (max allowed is 12)'
+  public void testMethod2() {
+    if (a == b) {
+      fun1();
+    } else if (a == 0
+            &amp;&amp; b == c) {
+      if (c == -1) {
+        fun1();
+      }
+    } else if (a == c
+            || a == d) {
       fun1();
     } else if (d == e) {
       try {

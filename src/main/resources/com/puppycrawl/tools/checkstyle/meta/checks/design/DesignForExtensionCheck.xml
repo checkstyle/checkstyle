@@ -82,7 +82,7 @@
  &lt;p&gt;
  Example of code that cause violation as it is designed for extension:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public abstract class Plant {
    private String roots;
    private String trunk;
@@ -98,7 +98,7 @@
  public class Tree extends Plant {
    private List leaves;
 
-   &amp;#64;Overrides
+   @Overrides
    protected void validate() {
      super.validate();
      if (leaves == null) throw new IllegalArgumentException("No leaves!");
@@ -113,7 +113,7 @@
  &lt;p&gt;
  Example of code without violation:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public abstract class Plant {
    private String roots;
    private String trunk;

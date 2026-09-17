@@ -9,14 +9,19 @@
   </head>
 
   <body>
-    <section name="Content">
-      <macro name="toc">
-        <param name="fromDepth" value="1"/>
-        <param name="toDepth" value="1"/>
-      </macro>
-    </section>
-
     <section name="Import Checkstyle Project">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Import_Checkstyle_Project">Import Checkstyle Project</a></li>
+            <li><a href="#Debug">Debug</a></li>
+            <li><a href="#Organize_Imports">Organize Imports</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         Select File > New Project > Maven > Project with existing POM<br/><br/>
         <span class="wrapper block">

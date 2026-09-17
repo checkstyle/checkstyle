@@ -11,7 +11,7 @@ record Pair<T, U>(T first, U second) {}
 public class InputUnnecessaryNullCheckWithInstanceOfPair {
 
     public void basicIfStatements(Object obj) {
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         if (obj instanceof Pair(String s, String t) && obj != null) {
             Pair<String, String> pairObj = (Pair<String, String>) obj;
             String firstValue = s;

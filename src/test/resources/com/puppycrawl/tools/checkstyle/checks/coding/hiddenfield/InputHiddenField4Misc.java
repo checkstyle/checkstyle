@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = true
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -18,7 +18,7 @@ class InputHiddenField4Misc {
     abstract static class InputHiddenFieldBug10845124 {
         String x;
 
-        public abstract void methodA(String x); // violation, ''x' hides a field'
+        public abstract void methodA(String x); // violation ''x' hides a field'
     }
 
     static class Bug33709464 {
@@ -41,7 +41,7 @@ class InputHiddenField4Misc {
          * if setterCanReturnItsClass == true then
          *     success as it is then considered to be a setter
          */
-        public PropertySetter34 setProp(int prop) // violation, ''prop' hides a field'
+        public PropertySetter34 setProp(int prop) // violation ''prop' hides a field'
         {
             this.prop = prop;
             return this;
@@ -66,7 +66,7 @@ class InputHiddenField4Misc {
          * if setterCanReturnItsClass == true then
          *     success as it is then considered to be a setter
          */
-        public PropertySetter44 setProp2(int prop2) // violation, ''prop2' hides a field'
+        public PropertySetter44 setProp2(int prop2) // violation ''prop2' hides a field'
         {
             this.prop2 = prop2;
             return this;

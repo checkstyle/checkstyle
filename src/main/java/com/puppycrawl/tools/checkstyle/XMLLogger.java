@@ -257,15 +257,16 @@ public final class XMLLogger
     }
 
     /**
-     * Escape {@literal <}, {@literal >} &amp; &#39; and &quot; as their entities.
+     * Escape {@literal <}, {@literal >}, {@literal &}, {@literal '} and {@literal "}
+     * as their entities.
      *
      * @param value the value to escape.
      * @return the escaped value if necessary.
      */
     public static String encode(String value) {
         final StringBuilder sb = new StringBuilder(256);
-        for (int i = 0; i < value.length(); i++) {
-            final char chr = value.charAt(i);
+        for (int index = 0; index < value.length(); index++) {
+            final char chr = value.charAt(index);
             switch (chr) {
                 case '<' -> sb.append("&lt;");
                 case '>' -> sb.append("&gt;");
@@ -345,6 +346,13 @@ public final class XMLLogger
 
         /** The file exceptions. */
         private final List<Throwable> exceptions = new ArrayList<>();
+
+        /**
+         * Creates a new {@code FileMessages} instance.
+         */
+        private FileMessages() {
+            // no code by default
+        }
 
         /**
          * Returns the file error events.

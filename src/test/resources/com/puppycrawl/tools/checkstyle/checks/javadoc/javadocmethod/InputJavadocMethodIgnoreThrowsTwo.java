@@ -32,7 +32,7 @@ public class InputJavadocMethodIgnoreThrowsTwo {
             System.out.println(s);
             if (s.length() == 0) {
                 // false negative, unable to tell what was caught
-                throw new IllegalArgumentException("empty input"); // no violation
+                throw new IllegalArgumentException("empty input");
             }
             else {
                 throw new IOException(); // ok, exception was caught

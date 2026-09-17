@@ -68,11 +68,11 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
 
     }
 
+    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC
+    // violation 2 lines below 'Javadoc comment at column 32 has parse error.'
     /**
      * @see #objectStreamField1-description
      */
-    // violation 2 lines above 'Javadoc comment at column 32 has parse error.'
-    // Details: mismatched input '-' expecting <EOF> while parsing JAVADOC
     private static void method4() {
 
     }
@@ -84,18 +84,18 @@ public class InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags implements S
 
     }
 
+    // Details: no viable alternative at input '-' while parsing JAVADOC_INLINE_TAG
+    // violation 2 lines below 'Javadoc comment at column 34 has parse error.'
     /**
      * {@link #objectStreamField2-description}
      */
-    // violation 2 lines above 'Javadoc comment at column 34 has parse error.'
-    // Details: no viable alternative at input '-' while parsing JAVADOC_INLINE_TAG
     private static void method5() {
     }
+    // Details: no viable alternative at input '-' while parsing JAVADOC_INLINE_TAG
+    // violation 2 lines below 'Javadoc comment at column 39 has parse error.'
     /**
      * {@linkplain #objectStreamField3-description}
      */
-    // violation 2 lines above 'Javadoc comment at column 39 has parse error.'
-    // Details: no viable alternative at input '-' while parsing JAVADOC_INLINE_TAG
     private static void method6() {
 
     }

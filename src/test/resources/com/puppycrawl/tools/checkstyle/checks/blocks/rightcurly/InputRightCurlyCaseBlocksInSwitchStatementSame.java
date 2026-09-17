@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = SAME
+option = (default)SAME
 tokens = LITERAL_CASE
 
 */

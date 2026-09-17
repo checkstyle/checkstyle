@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck;
 
 public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathTestSupport {
+
     private final String checkName = PatternVariableAssignmentCheck.class.getSimpleName();
 
     @Override

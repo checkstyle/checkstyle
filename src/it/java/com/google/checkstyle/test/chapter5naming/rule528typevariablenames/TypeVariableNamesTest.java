@@ -49,4 +49,5 @@ public class TypeVariableNamesTest extends AbstractGoogleModuleTestSupport {
     public void testRecordDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputRecordTypeParameterNameOne.java"));
     }
+
 }

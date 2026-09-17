@@ -10,11 +10,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4
-{ // violation, ''{' at column 1 should be on the previous line.'
+{ // violation ''{' at column 1 should be on the previous line.'
   private interface TestInterface
-  { // violation, ''{' at column 3 should be on the previous line.'
+  { // violation ''{' at column 3 should be on the previous line.'
   }
 
   private
@@ -22,9 +22,9 @@ class Example4
     MyClass {
   }
 
-  enum Colors {RED, // violation, ''{' at column 15 should have line break after.'
+  enum Colors {RED, // violation ''{' at column 15 should have line break after.'
     BLUE,
     GREEN;
   }
 }
-// xdoc section -- end
+// xdoc section - end

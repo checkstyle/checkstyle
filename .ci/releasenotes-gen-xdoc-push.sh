@@ -51,7 +51,7 @@ java -jar contribution/releasenotes-builder/target/releasenotes-builder-1.0-all.
      -xdocTemplate $BUILDER_RESOURCE_DIR/templates/xdoc_freemarker.template
 
 cd ../
-sed -i '12r .ci-temp/xdoc.xml' src/site/xdoc/releasenotes.xml
+sed -i '12r .ci-temp/xdoc.xml' src/site/xdoc/release-notes.xml
 
-echo "releasenotes.xml:"
-head "src/site/xdoc/releasenotes.xml" -n 100
+echo "release-notes.xml:"
+head "src/site/xdoc/release-notes.xml" -n 100

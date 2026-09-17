@@ -2,7 +2,7 @@
 NonEmptyAtclauseDescription
 violateExecutionOnNonTightHtml = (default)false
 javadocTokens = (default)PARAM_BLOCK_TAG, RETURN_BLOCK_TAG, THROWS_BLOCK_TAG, \
-                EXCEPTION_BLOCK_TAG, DEPRECATED_BLOCK_TAG
+                EXCEPTION_BLOCK_TAG, DEPRECATED_BLOCK_TAG, SINCE_BLOCK_TAG
 
 
 */
@@ -83,21 +83,4 @@ public class InputNonEmptyAtclauseDescriptionTwo
                 return 1;
         }
 
-    /**
-     *
-     * @param
-     *
-     */ // violation 2 lines above 'At-clause should have a non-empty description'
-        public int foo8(int a)
-        {
-                return 1;
-        }
-
-    /**
-     * @throws
-     */ // violation above 'At-clause should have a non-empty description'
-        public int foo9(String a) throws Exception
-        {
-            return 1;
-        }
 }

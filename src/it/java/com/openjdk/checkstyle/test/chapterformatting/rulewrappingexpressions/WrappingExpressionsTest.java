@@ -40,4 +40,19 @@ public class WrappingExpressionsTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputWrappingExpressionsValid.java"));
     }
 
+    @Test
+    public void testWrappingExpressionsMethodChainInvalid() throws Exception {
+        verifyWithWholeConfig(getPath("InputWrappingExpressionsMethodChainInvalid.java"));
+    }
+
+    @Test
+    public void testWrappingExpressionsMethodChainValid() throws Exception {
+        verifyWithWholeConfig(getPath("InputWrappingExpressionsMethodChainValid.java"));
+    }
+
+    @Test
+    public void testWrappingExpressionsDoAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputWrappingExpressionsDoAndDonts.java"));
+    }
+
 }

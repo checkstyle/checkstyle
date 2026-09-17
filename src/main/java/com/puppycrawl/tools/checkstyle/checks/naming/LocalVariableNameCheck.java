@@ -41,6 +41,12 @@ public class LocalVariableNameCheck
     extends AbstractNameCheck {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Allow one character variable name in
      * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
      * initialization expressions</a>
@@ -50,7 +56,7 @@ public class LocalVariableNameCheck
 
     /** Creates a new {@code LocalVariableNameCheck} instance. */
     public LocalVariableNameCheck() {
-        super("^([a-z][a-zA-Z0-9]*|_)$");
+        super("^([a-z][a-zA-Z0-9]*|_)$", MSG_INVALID_PATTERN);
     }
 
     /**

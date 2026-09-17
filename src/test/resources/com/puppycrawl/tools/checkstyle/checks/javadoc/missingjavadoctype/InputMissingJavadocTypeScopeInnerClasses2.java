@@ -20,7 +20,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
  */
 public class InputMissingJavadocTypeScopeInnerClasses2
 {
-    public class InnerPublic // violation
+    // violation below 'Missing a Javadoc comment.'
+    public class InnerPublic
     {
         protected class InnerProtected
         {

@@ -42,49 +42,50 @@ public class ArchUnitTest {
      * has been omitted as line number can change with modifications to the file.
      */
     private static final List<String> API_PACKAGE_SUPPRESSION_DETAILS = List.of(
-        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang"
-            + ".String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
-            + ".EMPTY_STRING_ARRAY>",
-        "Constructor <com.puppycrawl.tools.checkstyle.api.Violation.<init>(int, int, int, int,"
-            + " java.lang.String, java.lang.String, [Ljava.lang.Object;,"
-            + " com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String,"
-            + " java.lang.Class, java.lang.String)> calls method"
-            + " <com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil.copyOfArray"
-            + "([Ljava.lang.Object;, int)>",
-        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
-            + ".List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
-            + ".EMPTY_STRING_ARRAY>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools"
-            + ".checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method "
-            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang"
-            + ".String, int, int)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang"
-            + ".String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang"
-            + ".String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, "
-            + "com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools"
-            + ".checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang"
-            + ".String;)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.setFileExtensions"
-            + "([Ljava.lang.String;)> calls method <com.puppycrawl.tools.checkstyle.utils"
-            + ".CommonUtil.startsWithChar(java.lang.String, char)>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$PatternConverter"
-            + ".convert(java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools"
-            + ".checkstyle.utils.CommonUtil.createPattern(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$RelaxedStringArray"
-            + "Converter.convert(java.lang.Class, java.lang.Object)> gets field <com.puppycrawl"
-            + ".tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$UriConverter.convert("
-            + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
-            + ".utils.CommonUtil.getUriByFilename(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.AbstractAutomaticBean$UriConverter.convert("
-            + "java.lang.Class, java.lang.Object)> calls method <com.puppycrawl.tools.checkstyle"
-            + ".utils.CommonUtil.isBlank(java.lang.String)>",
-        "Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method "
-            + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>"
+        """
+        Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.lang\
+        .String)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil\
+        .EMPTY_STRING_ARRAY>\
+        """,
+        """
+        Constructor <com.puppycrawl.tools.checkstyle.api.Violation.<init>(int, int, int, int,\
+         java.lang.String, java.lang.String, [Ljava.lang.Object;,\
+         com.puppycrawl.tools.checkstyle.api.SeverityLevel, java.lang.String,\
+         java.lang.Class, java.lang.String)> calls method\
+         <com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil.copyOfArray\
+        ([Ljava.lang.Object;, int)>\
+        """,
+        """
+        Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util\
+        .List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil\
+        .EMPTY_STRING_ARRAY>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools\
+        .checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method \
+        <com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang\
+        .String, int, int)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(int, int, java.lang\
+        .String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils\
+        .CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.log(int, int, java.lang\
+        .String, [Ljava.lang.Object;)> calls method <com.puppycrawl.tools.checkstyle.utils\
+        .CommonUtil.lengthExpandedTabs(java.lang.String, int, int)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.process(java.io.File, \
+        com.puppycrawl.tools.checkstyle.api.FileText)> calls method <com.puppycrawl.tools\
+        .checkstyle.utils.CommonUtil.matchesFileExtension(java.io.File, [Ljava.lang\
+        .String;)>\
+        """,
+        """
+        Method <com.puppycrawl.tools.checkstyle.api.FileContents.lineIsBlank(int)> calls method \
+        <com.puppycrawl.tools.checkstyle.utils.CommonUtil.isBlank(java.lang.String)>\
+        """
     );
 
     /**
@@ -142,6 +143,19 @@ public class ArchUnitTest {
             .resideInAnyPackage(utilPackages);
 
         final EvaluationResult result = classShouldNotDependOnUtilPackages.evaluate(apiPackage);
+
+        final List<String> allDescriptions = result.getFailureReport().getDetails();
+        final List<String> outdatedSuppressions = API_PACKAGE_SUPPRESSION_DETAILS.stream()
+                .filter(suppression -> {
+                    return allDescriptions.stream()
+                            .noneMatch(description -> description.startsWith(suppression));
+                })
+                .toList();
+
+        assertWithMessage("Outdated suppressions (can be removed)")
+                .that(outdatedSuppressions)
+                .isEmpty();
+
         final EvaluationResult filtered = result.filterDescriptionsMatching(description -> {
             return API_PACKAGE_SUPPRESSION_DETAILS.stream()
                 .noneMatch(description::startsWith);

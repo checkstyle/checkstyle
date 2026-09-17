@@ -1,0 +1,11 @@
+* Multi-asterisk block tags for references and services.
+**** @see java.lang.String#length()
+***@see <a href="https://example.com">External Resource</a>
+** @hidden hidden description
+****@uses java.lang.Runnable
+*** @provides java.util.List with java.util.ArrayList
+**@serial serial description
+**** @serialData serial data description
+***@serialField name int field description
+** @customTag custom description
+****@spec https://docs.oracle.com/javase/specs/jls/se25/html/index.html Java Language Specification

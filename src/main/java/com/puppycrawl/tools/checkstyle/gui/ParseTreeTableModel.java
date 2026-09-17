@@ -179,14 +179,14 @@ public class ParseTreeTableModel implements TreeModel {
         TreeModelEvent event = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == TreeModelListener.class) {
+        for (int index = listeners.length - 2; index >= 0; index -= 2) {
+            if (listeners[index] == TreeModelListener.class) {
                 // Lazily create the event:
                 if (event == null) {
                     event = new TreeModelEvent(source, path,
                         childIndices, children);
                 }
-                ((TreeModelListener) listeners[i + 1]).treeStructureChanged(event);
+                ((TreeModelListener) listeners[index + 1]).treeStructureChanged(event);
             }
         }
     }

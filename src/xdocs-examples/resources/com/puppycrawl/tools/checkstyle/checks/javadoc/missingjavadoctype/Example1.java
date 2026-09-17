@@ -7,14 +7,14 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-// xdoc section -- start
+// xdoc section - start
 /** Documented. */
-class Example1 {
+public class Example1 {
   /** Javadoc. */
   public class A {}
-  /** Javadoc. */
+
   private class B {}
-  /** Javadoc. */
+
   protected class C {}
   /** Javadoc. */
   class D {}
@@ -26,5 +26,9 @@ class Example1 {
   private class Config {}
   /** Javadoc. */
   private class E {}
+
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
+  /** Javadoc. */
+  public interface G {}
 }
-// xdoc section -- end
+// xdoc section - end

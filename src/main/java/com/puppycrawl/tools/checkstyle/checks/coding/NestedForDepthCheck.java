@@ -46,6 +46,13 @@ public final class NestedForDepthCheck extends AbstractCheck {
     private int depth;
 
     /**
+     * Creates a new {@code NestedForDepthCheck} instance.
+     */
+    public NestedForDepthCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify maximum allowed nesting depth.
      *
      * @param max maximum allowed nesting depth.

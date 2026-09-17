@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnnecessarySemicolonInTryWithResourcesCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks"
@@ -53,4 +54,5 @@ public class UnnecessarySemicolonInTryWithResourcesCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

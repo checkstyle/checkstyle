@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.filters;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck;
+import com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressWithPlainTextCommentFilterExamplesTest
@@ -34,171 +37,151 @@ public class SuppressWithPlainTextCommentFilterExamplesTest
 
     @Test
     public void testExample1() throws Exception {
-        final String fileWithConfig = getPath("Example1.java");
-        final String targetFile = getPath("Example1.properties");
-
         final String[] expectedWithoutFilter = {
-            "2: Duplicated property 'keyB' (2 occurrence(s)).",
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "11: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "15: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         final String[] expectedWithFilter = {
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "15: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example1.properties"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String fileWithConfig = getPath("Example2.java");
-        final String targetFile = getPath("Example2.properties");
-
         final String[] expectedWithoutFilter = {
-            "2: Duplicated property 'keyB' (2 occurrence(s)).",
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "15: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "19: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         final String[] expectedWithFilter = {
-            "6: Duplicated property 'keyC' (2 occurrence(s)).",
+            "19: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example2.properties"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample3() throws Exception {
-        final String fileWithConfig = getPath("Example3.java");
-        final String targetFile = getPath("Example3.properties");
-
         final String[] expectedWithoutFilter = {
-            "3: Duplicated property 'keyB' (2 occurrence(s)).",
-            "6: Property key 'keyA' is not in the right order with previous property 'keyB'.",
-            "9: Duplicated property 'keyC' (2 occurrence(s)).",
+            "18: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "21: " + getCheckMessage(OrderedPropertiesCheck.class, OrderedPropertiesCheck.MSG_KEY,
+                    "keyA", "keyB"),
+            "24: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
         final String[] expectedWithFilter = {
-            "6: Property key 'keyA' is not in the right order with previous property 'keyB'.",
-            "9: Duplicated property 'keyC' (2 occurrence(s)).",
+            "21: " + getCheckMessage(OrderedPropertiesCheck.class, OrderedPropertiesCheck.MSG_KEY,
+                    "keyA", "keyB"),
+            "24: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example3.properties"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample4() throws Exception {
-        final String fileWithConfig = getPath("Example4.java");
-        final String targetFile = getPath("Example4.xml");
-
         final String[] expectedWithoutFilter = {
-            "6: Type code is not allowed. Use type raw instead.",
-            "13: Type code is not allowed. Use type raw instead.",
+            "26: Type code is not allowed. Use type raw instead.",
+            "33: Type code is not allowed. Use type raw instead.",
         };
 
         final String[] expectedWithFilter = {
-            "13: Type code is not allowed. Use type raw instead.",
+            "33: Type code is not allowed. Use type raw instead.",
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example4.xml"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample5() throws Exception {
-        final String fileWithConfig = getPath("Example5.java");
-        final String targetFile = getPath("Example5.xml");
-
         final String[] expectedWithoutFilter = {
-            "6: Type code is not allowed. Use type raw instead.",
-            "13: Type code is not allowed. Use type raw instead.",
+            "26: Type code is not allowed. Use type raw instead.",
+            "33: Type code is not allowed. Use type raw instead.",
         };
 
         final String[] expectedWithFilter = {
-            "6: Type code is not allowed. Use type raw instead.",
-            "13: Type code is not allowed. Use type raw instead.",
+            "26: Type code is not allowed. Use type raw instead.",
+            "33: Type code is not allowed. Use type raw instead.",
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example5.xml"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample6() throws Exception {
-        final String fileWithConfig = getPath("Example6.java");
-        final String targetFile = getPath("Example6.xml");
-
         final String[] expectedWithoutFilter = {
-            "6: Type config is not allowed in this file.",
-            "12: Type code is not allowed. Use type raw instead.",
+            "33: Type config is not allowed in this file.",
+            "39: Type code is not allowed. Use type raw instead.",
         };
 
         final String[] expectedWithFilter = {
-            "6: Type config is not allowed in this file.",
+            "33: Type config is not allowed in this file.",
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example6.xml"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample7() throws Exception {
-        final String fileWithConfig = getPath("Example7.java");
-        final String targetFile = getPath("Example7.xml");
-
         final String[] expectedWithoutFilter = {
-            "6: Type config is not allowed in this file.",
-            "12: Type code is not allowed. Use type raw instead.",
+            "34: Type config is not allowed in this file.",
+            "40: Type code is not allowed. Use type raw instead.",
         };
 
         final String[] expectedWithFilter = {
-            "6: Type config is not allowed in this file.",
+            "34: Type config is not allowed in this file.",
         };
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example7.xml"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample8() throws Exception {
-        final String fileWithConfig = getPath("Example8.java");
-        final String targetFile = getPath("Example8.sql");
-
         final String[] expectedWithoutFilter = {
-            "7: Line is longer than 60 characters (found 66).",
+            "29: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 60, 66),
         };
 
         final String[] expectedWithFilter = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(fileWithConfig, targetFile,
-                expectedWithoutFilter,
-                expectedWithFilter);
+        verifyFilterWithInlineConfigParser(getPath("Example8.sql"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "23: Line is longer than 100 characters (found 147).",
-            "24: Line is longer than 100 characters (found 133).",
-            "25: Line is longer than 100 characters (found 116).",
-            "32: Line is longer than 100 characters (found 183).",
+            "23: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 147),
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 133),
+            "25: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 116),
+            "32: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 183),
         };
 
         final String[] expectedWithFilter = {
-            "32: Line is longer than 100 characters (found 183).",
+            "32: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 100, 183),
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

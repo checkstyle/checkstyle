@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline";
@@ -80,9 +81,45 @@ public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTest
         final String[] expected = {
             "30: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
             "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
-            "41: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "30: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+            "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test.*string"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "15: Avoid using System.out/err for printing.",
+            "17: Avoid using System.out/err for printing.",
+            "30: Avoid using System.out/err for printing.",
+            "32: Avoid using System.out/err for printing.",
+            "34: Avoid using System.out/err for printing.",
+            "37: Avoid using System.out/err for printing.",
+            "39: Avoid using System.out/err for printing.",
+            "41: Avoid using System.out/err for printing.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+            "39: " + getCheckMessage(MSG_ILLEGAL_REGEXP, "Test #[0-9]+:[A-Za-z ]+"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+    }
+
 }

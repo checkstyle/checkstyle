@@ -33,6 +33,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -101,8 +102,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Creates a default module configuration {@link DefaultConfiguration} for a given object
      * of type {@link Class}.
      *
-     * @param clazz a {@link Class} type object.
-     * @return default module configuration for the given {@link Class} instance.
+     * @param clazz a {@code Class} type object.
+     * @return default module configuration for the given {@code Class} instance.
      */
     protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
@@ -115,7 +116,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @param masterConfig The master configuration to examine.
      * @param moduleName module name.
      * @param moduleId module id.
-     * @return {@link Configuration} instance for the given module name.
+     * @return {@code Configuration} instance for the given module name.
      * @throws IllegalStateException if there is a problem retrieving the module
      *         or config.
      */
@@ -164,11 +165,12 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      *
      * @param masterConfig The master configuration to pull results from.
      * @param moduleIds module IDs.
-     * @return List of {@link Configuration} instances.
+     * @return List of {@code Configuration} instances.
      * @throws CheckstyleException if there is an error with the config.
      */
     protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
-            String... moduleIds) throws CheckstyleException {
+            String... moduleIds)
+                    throws CheckstyleException {
         final List<Configuration> result = new ArrayList<>();
         for (Configuration currentConfig : masterConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
@@ -234,7 +236,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      *
      * @param masterConfig The master configuration to examine.
      * @param moduleName module name.
-     * @return {@link Configuration} instance for the given module name.
+     * @return {@code Configuration} instance for the given module name.
      */
     private static List<Configuration> getModuleConfigs(Configuration masterConfig,
             String moduleName) {
@@ -257,8 +259,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
-     * @param moduleConfig {@link Configuration} instance.
-     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     * @param moduleConfig {@code Configuration} instance.
+     * @return {@code Checker} instance based on the given {@code Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig)
@@ -271,10 +273,10 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
      *
-     * @param moduleConfig {@link Configuration} instance.
+     * @param moduleConfig {@code Configuration} instance.
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
-     *                                                  under {@link TreeWalker}.
-     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     *                                                  under {@code TreeWalker}.
+     * @return {@code Checker} instance based on the given {@code Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
      */
     protected final Checker createChecker(Configuration moduleConfig,
@@ -308,9 +310,9 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Creates {@link DefaultConfiguration} for the {@link TreeWalker}
      * based on the given {@link Configuration} instance.
      *
-     * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the {@link TreeWalker}
-     *     based on the given {@link Configuration} instance.
+     * @param config {@code Configuration} instance.
+     * @return {@code DefaultConfiguration} for the {@code TreeWalker}
+     *     based on the given {@code Configuration} instance.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration rootConfig =
@@ -327,8 +329,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Creates {@link DefaultConfiguration} or the Checker.
      * based on the the list of {@link Configuration}.
      *
-     * @param configs list of {@link Configuration} instances.
-     * @return {@link DefaultConfiguration} for the Checker.
+     * @param configs list of {@code Configuration} instances.
+     * @return {@code DefaultConfiguration} for the Checker.
      */
     protected static DefaultConfiguration createTreeWalkerConfig(
             List<Configuration> configs) {
@@ -349,8 +351,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link DefaultConfiguration} for the given {@link Configuration} instance.
      *
-     * @param config {@link Configuration} instance.
-     * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     * @param config {@code Configuration} instance.
+     * @return {@code DefaultConfiguration} for the given {@code Configuration} instance.
      */
     protected static DefaultConfiguration createRootConfig(Configuration config) {
         final DefaultConfiguration rootConfig = new DefaultConfiguration(ROOT_MODULE_NAME);
@@ -386,7 +388,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
-            Integer... warnsExpected) throws Exception {
+            Integer... warnsExpected)
+                    throws Exception {
         verify(createChecker(config),
                 new File[] {new File(fileName)},
                 fileName, expected, warnsExpected);
@@ -396,7 +399,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Performs verification of files.
      * Uses provided {@link Checker} instance.
      *
-     * @param checker {@link Checker} instance.
+     * @param checker {@code Checker} instance.
      * @param processedFiles files to process.
      * @param messageFileName message file name.
      * @param expected an array of expected messages.
@@ -408,13 +411,13 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             String messageFileName,
             String[] expected,
             Integer... warnsExpected)
-            throws Exception {
+                    throws Exception {
         stream.flush();
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final List<Integer> theWarnings = new ArrayList<>();
-        Collections.addAll(theWarnings, warnsExpected);
+        final List<Integer> expectedWarnings = Arrays.asList(warnsExpected);
+        final List<Integer> actualWarnings = new ArrayList<>();
         final int errs = checker.process(theFiles);
 
         // process each of the lines
@@ -422,7 +425,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            int previousLineNumber = 0;
+            Integer previousLineNumber = 0;
             for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
@@ -434,22 +437,26 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
-                final int lineNumber = Integer.parseInt(parseInt);
-                assertWithMessage(
-                        "input file is expected to have a warning comment on line number %s",
-                        lineNumber)
-                    .that(previousLineNumber == lineNumber
-                            || theWarnings.remove((Integer) lineNumber))
-                    .isTrue();
+                final Integer lineNumber = Integer.parseInt(parseInt);
+                if (!previousLineNumber.equals(lineNumber)) {
+                    assertWithMessage(
+                            "input file is expected to have a warning comment on line number %s",
+                            lineNumber)
+                        .that(expectedWarnings.contains(lineNumber))
+                        .isTrue();
+
+                    actualWarnings.add(lineNumber);
+                }
                 previousLineNumber = lineNumber;
             }
 
             assertWithMessage("unexpected output: %s", lnr.readLine())
                 .that(errs)
                 .isEqualTo(expected.length);
-            assertWithMessage("unexpected warnings %s", theWarnings)
-                .that(theWarnings)
-                .isEmpty();
+            assertWithMessage("warning line numbers should match expected")
+                .that(actualWarnings)
+                .containsExactlyElementsIn(expectedWarnings)
+                .inOrder();
         }
 
         checker.destroy();
@@ -479,7 +486,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @throws Exception if exception occurs during verification process.
      */
     private List<String> getActualViolationsForFile(Configuration config,
-          String file) throws Exception {
+            String file)
+                    throws Exception {
         stream.flush();
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
@@ -495,7 +503,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * Each file is mapped to their corresponding violation messages. Reads input stream for these
      * messages using instance of {@link InputStreamReader}.
      *
-     * @param errorCount count of errors after checking set of files against {@link Checker}.
+     * @param errorCount count of errors after checking set of files against {@code Checker}.
      * @return a {@link Map} object containing file names and the corresponding violation messages.
      * @throws IOException exception can occur when reading input stream.
      */
@@ -561,7 +569,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected static String getCheckMessage(
             Class<? extends AbstractViolationReporter> reporterClass, String messageKey,
-            Object... arguments) throws IOException {
+            Object... arguments)
+                    throws IOException {
         final Properties pr = new Properties();
         pr.load(reporterClass.getResourceAsStream("messages.properties"));
         final MessageFormat formatter = new MessageFormat(pr.getProperty(messageKey),

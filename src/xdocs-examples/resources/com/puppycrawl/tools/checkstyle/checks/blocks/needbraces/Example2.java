@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   String obj = new String();
   String value = new String();
@@ -20,11 +20,11 @@ class Example2 {
   String o = "O";
   public boolean test() {
     if (obj.equals(num)) return true;
-    // violation above, ''if' construct must use '{}'s.'
+    // violation above ''if' construct must use '{}'s.'
     if (true) {
       count = 2;
     } else
-        // violation above, ''else' construct must use '{}'s.'
+        // violation above ''else' construct must use '{}'s.'
         return false;
     for (int i = 0; i < 5; i++) {
       ++count;}
@@ -47,4 +47,4 @@ class Example2 {
     return true;
   }
 }
-// xdoc section -- end
+// xdoc section - end

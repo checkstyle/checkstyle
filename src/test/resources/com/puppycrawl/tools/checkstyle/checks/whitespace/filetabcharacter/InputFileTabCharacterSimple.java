@@ -1,7 +1,7 @@
 /*
 FileTabCharacter
 eachLine = (default)false
-fileExtensions = (default)
+fileExtensions = (default)(null)
 
 
 */

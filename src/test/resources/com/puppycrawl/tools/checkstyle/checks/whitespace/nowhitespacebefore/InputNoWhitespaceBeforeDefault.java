@@ -301,7 +301,7 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
     }
 
     public void foo() {
-        label2: // no violation
+        label2:
         while (true) {}
     }
 }

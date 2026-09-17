@@ -12,9 +12,10 @@ my @excludes=qw(
   ^src/site/resources/css/
   ^src/site/resources/js/
   ^src/test/resources-noncompilable/
+  ^src/test/resources-with-javadoc-error/
   /messages.*_..\.properties$
-  /releasenotes_old.*\.xml$
-  /releasenotes\.xml$
+  /release-notes-old.*\.xml$
+  /release-notes\.xml$
   /.*_..\.translation[^/]*$
   ^cdg-pitest-licence.txt$
   ^.teamcity/

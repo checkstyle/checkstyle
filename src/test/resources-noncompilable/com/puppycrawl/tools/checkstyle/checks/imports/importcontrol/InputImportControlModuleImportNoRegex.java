@@ -6,7 +6,7 @@ path = (default).*
 
 */
 
-// non-compiled with javac: reference to non-existent module javaXlogging
+// non-compiled with javac: reference to non existent module javaXlogging
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
 import module java.sql; // violation 'Disallowed import - java.sql.'

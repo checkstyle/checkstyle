@@ -5,6 +5,6 @@ matchDirectoryStructure = (default)true
 
 */
 
-// comment
+// non-compiled with javac: missing package. Used for Testing purpose.
 class InputPackageDeclarationNoPackage { // violation 'Missing package declaration.'
 }

@@ -110,10 +110,17 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Whether to execute ignored modules - some modules may log above
-     * their severity depending on their configuration (e.g. WriteTag) so
-     * need to be included
+     * their severity depending on their configuration so
+     * need to be included.
      */
     private boolean executeIgnoredModules;
+
+    /**
+     * Creates a new {@code CheckstyleAntTask} instance.
+     */
+    public CheckstyleAntTask() {
+        // no code by default
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Setters for ANT specific attributes
@@ -434,8 +441,8 @@ public class CheckstyleAntTask extends Task {
         }
 
         // override with properties specified in subelements
-        for (Property p : overrideProps) {
-            returnValue.setProperty(p.getKey(), p.getValue());
+        for (Property property : overrideProps) {
+            returnValue.setProperty(property.getKey(), property.getValue());
         }
 
         return returnValue;
@@ -461,9 +468,9 @@ public class CheckstyleAntTask extends Task {
                         err, OutputStreamOptions.CLOSE);
             }
             else {
-                for (int i = 0; i < formatterCount; i++) {
-                    final Formatter formatter = formatters.get(i);
-                    listeners[i] = formatter.createListener(this);
+                for (int index = 0; index < formatterCount; index++) {
+                    final Formatter formatter = formatters.get(index);
+                    listeners[index] = formatter.createListener(this);
                 }
             }
         }
@@ -507,9 +514,9 @@ public class CheckstyleAntTask extends Task {
     private List<Path> scanPaths() {
         final List<Path> allFiles = new ArrayList<>();
 
-        for (int i = 0; i < paths.size(); i++) {
-            final org.apache.tools.ant.types.Path currentPath = paths.get(i);
-            final List<Path> pathFiles = scanPath(currentPath, i + 1);
+        for (int index = 0; index < paths.size(); index++) {
+            final org.apache.tools.ant.types.Path currentPath = paths.get(index);
+            final List<Path> pathFiles = scanPath(currentPath, index + 1);
             allFiles.addAll(pathFiles);
         }
 
@@ -560,10 +567,10 @@ public class CheckstyleAntTask extends Task {
     protected List<File> scanFileSets() {
         final List<Path> allFiles = new ArrayList<>();
 
-        for (int i = 0; i < fileSets.size(); i++) {
-            final FileSet fileSet = fileSets.get(i);
+        for (int index = 0; index < fileSets.size(); index++) {
+            final FileSet fileSet = fileSets.get(index);
             final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
-            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, i);
+            final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, index);
             allFiles.addAll(scannedFiles);
         }
 
@@ -598,6 +605,13 @@ public class CheckstyleAntTask extends Task {
         /** My possible values. */
         private static final String[] VALUES = {E_XML, E_PLAIN, E_SARIF};
 
+        /**
+         * Creates a new {@code FormatterType} instance.
+         */
+        public FormatterType() {
+            // no code by default
+        }
+
         @Override
         public String[] getValues() {
             return VALUES.clone();
@@ -616,6 +630,13 @@ public class CheckstyleAntTask extends Task {
         private File toFile;
         /** Whether or not to write to the named file. */
         private boolean useFile = true;
+
+        /**
+         * Creates a new {@code Formatter} instance.
+         */
+        public Formatter() {
+            // no code by default
+        }
 
         /**
          * Set the type of the formatter.
@@ -745,6 +766,13 @@ public class CheckstyleAntTask extends Task {
         private String key;
         /** The property value. */
         private String value;
+
+        /**
+         * Creates a new {@code Property} instance.
+         */
+        public Property() {
+            // no code by default
+        }
 
         /**
          * Gets key.

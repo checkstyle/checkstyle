@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SimplifyBooleanReturnCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/simplifybooleanreturn";
@@ -38,4 +39,5 @@ public class SimplifyBooleanReturnCheckExamplesTest extends AbstractExamplesModu
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

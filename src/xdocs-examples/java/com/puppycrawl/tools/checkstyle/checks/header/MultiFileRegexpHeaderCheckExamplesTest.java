@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/header/multifileregexpheader";
@@ -82,5 +83,6 @@ public class MultiFileRegexpHeaderCheckExamplesTest extends AbstractExamplesModu
                                     getPath("Example4.java"),
                                      expected);
     }
+
 }
 

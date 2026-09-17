@@ -39,4 +39,5 @@ public class Java14RecordsTest extends AbstractModuleTestSupport {
                 getPath("InputJava14Records.java"),
                 expected);
     }
+
 }

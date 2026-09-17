@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnusedTryResourceShouldBeUnnamed_Description">
         <macro name="description">
             <param name="modulePath"
@@ -23,7 +27,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unusedtryresourceshouldbeunnamed/Example1.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedtryresourceshouldbeunnamed/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -31,7 +35,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/unusedtryresourceshouldbeunnamed/Example1.java"/>
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/unusedtryresourceshouldbeunnamed/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -54,7 +58,8 @@
           to learn how to.
         </p>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+               id="UnusedTryResourceShouldBeUnnamed_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

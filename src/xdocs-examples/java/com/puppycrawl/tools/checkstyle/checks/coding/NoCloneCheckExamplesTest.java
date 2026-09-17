@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class NoCloneCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/noclone";
@@ -37,4 +38,5 @@ public class NoCloneCheckExamplesTest extends AbstractExamplesModuleTestSupport 
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

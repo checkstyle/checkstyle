@@ -8,6 +8,30 @@
   <body>
     <section name="JavadocTagContinuationIndentation">
       <p>Since Checkstyle 6.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocTagContinuationIndentation_Description">Description</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocTagContinuationIndentation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With two spaces indentation</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Show violations for Tight-HTML Rules</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocTagContinuationIndentation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocTagContinuationIndentation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocTagContinuationIndentation_Description">
         <div>
           Checks the indentation of the continuation lines in block tags. That is whether the continued
@@ -39,14 +63,14 @@
             <tr>
               <td><a id="offset"/><a href="#offset">offset</a></td>
               <td>Specify how many spaces to use for new indentation level.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
             </tr>
@@ -200,7 +224,6 @@ class Example2 {
    */
 class Example3 {
   // violation 3 lines above 'Unclosed HTML tag found: a'
-
   /**
    * @param input comment with
    *     indentation spacing for the tag
@@ -254,6 +277,10 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocTagContinuationIndentation">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

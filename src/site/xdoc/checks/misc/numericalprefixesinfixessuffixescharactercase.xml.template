@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NumericalPrefixesInfixesSuffixesCharacterCaseCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NumericalPrefixesInfixesSuffixesCharacterCaseCheck.java"/>
+      </macro>
       <subsection name="Description" id="NumericalPrefixesInfixesSuffixesCharacterCase_Description">
         <macro name="description">
           <param name="modulePath"

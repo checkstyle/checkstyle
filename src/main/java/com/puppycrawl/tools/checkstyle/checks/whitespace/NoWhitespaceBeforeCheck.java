@@ -51,6 +51,13 @@ public class NoWhitespaceBeforeCheck
     /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks;
 
+    /**
+     * Creates a new {@code NoWhitespaceBeforeCheck} instance.
+     */
+    public NoWhitespaceBeforeCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

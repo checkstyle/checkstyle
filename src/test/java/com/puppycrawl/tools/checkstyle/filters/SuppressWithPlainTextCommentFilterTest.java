@@ -770,7 +770,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,
-                                  Configuration... childConfigs) throws Exception {
+                                  Configuration... childConfigs)
+            throws Exception {
         final DefaultConfiguration checkerConfig = createRootConfig(null);
 
         Arrays.stream(childConfigs).forEach(checkerConfig::addChild);

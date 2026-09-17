@@ -72,6 +72,13 @@ public class RightCurlyCheck extends AbstractCheck {
     private RightCurlyOption option = RightCurlyOption.SAME;
 
     /**
+     * Creates a new {@code RightCurlyCheck} instance.
+     */
+    public RightCurlyCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
      *
      * @param optionStr string to decode option from
@@ -254,12 +261,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * <i>Please do note though that the line should not contain anything other than the following
      * right curly and the semi following it or else violations will be raised.</i>
      * Only the kind of double brace initializations shown in the following example code will be
-     * skipped over:<br>
-     * <pre>
-     *     {@code Map<String, String> map = new LinkedHashMap<>() {{
+     * skipped over:
+     * {@snippet lang="text" :
+     *     Map<String, String> map = new LinkedHashMap<>() {{
      *           put("alpha", "man");
-     *       }}; // no violation}
-     * </pre>
+     *     }}; // no violation
+     * }
      *
      * @param details {@link Details} object containing the details relevant to the rcurly
      * @return if the double brace initialization rcurly should be skipped over by the check
@@ -267,12 +274,14 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean skipDoubleBraceInstInit(Details details) {
         boolean skipDoubleBraceInstInit = false;
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken());
-        if (tokenAfterNextToken != null) {
+        if (TokenUtil.isOfType(tokenAfterNextToken, TokenTypes.SEMI)) {
             final DetailAST rcurly = details.rcurly();
-            skipDoubleBraceInstInit = rcurly.getParent().getParent()
+            final DetailAST tokenAfterSemi = Details.getNextToken(tokenAfterNextToken);
+            skipDoubleBraceInstInit = tokenAfterSemi != null
+                    && rcurly.getParent().getParent()
                     .getType() == TokenTypes.INSTANCE_INIT
                     && details.nextToken().getType() == TokenTypes.RCURLY
-                    && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
+                    && !TokenUtil.areOnSameLine(rcurly, tokenAfterSemi);
         }
         return skipDoubleBraceInstInit;
     }
@@ -577,4 +586,5 @@ public class RightCurlyCheck extends AbstractCheck {
             return next;
         }
     }
+
 }

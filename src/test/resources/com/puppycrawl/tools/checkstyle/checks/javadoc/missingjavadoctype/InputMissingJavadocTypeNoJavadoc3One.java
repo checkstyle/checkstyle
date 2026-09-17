@@ -35,7 +35,8 @@ public class InputMissingJavadocTypeNoJavadoc3One
         private void foo4() {}
     }
 
-    class PackageInner { // violation
+    // violation below 'Missing a Javadoc comment.'
+    class PackageInner {
         public int i1;
         protected int i2;
         int i3;
@@ -47,7 +48,8 @@ public class InputMissingJavadocTypeNoJavadoc3One
         private void foo4() {}
     }
 
-    private class PrivateInner { // violation
+    // violation below 'Missing a Javadoc comment.'
+    private class PrivateInner {
         public int i1;
         protected int i2;
         int i3;

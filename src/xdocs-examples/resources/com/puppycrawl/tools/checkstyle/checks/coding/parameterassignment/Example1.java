@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntPredicate;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   int methodOne(int parameter) {
     if (parameter <= 0 ) {
@@ -43,4 +43,4 @@ class Example1 {
     return ++b == 12;
   };
 }
-// xdoc section -- end
+// xdoc section - end

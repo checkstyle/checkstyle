@@ -8,6 +8,31 @@
   <body>
     <section name="Header">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#Header_Description">Description</a></li>
+          <li><a href="#Header_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Header_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-raw" class="toc-sublink">Such that no violations arise. Default values of properties are used.</a></li>
+              <li><a href="#Example2-raw" class="toc-sublink">Use header file <code>"java.header"</code> and ignore lines <code>2</code>, <code>3</code>, and <code> 4</code> and only process Java files. 'ignoreLines' property is very useful for supporting headers that contain copyright dates or other content that slightly different in some files</a></li>
+              <li><a href="#Example3-raw" class="toc-sublink">Without the need for an external header file</a></li>
+              <li><a href="#Example4-raw" class="toc-sublink">In case target file is less in size than header file</a></li>
+            </ul>
+          </li>
+          <li><a href="#Header_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#Header_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#Header_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#Header_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="Header_Description">
         <div>
           Checks that a source file begins with a specified header.
@@ -37,35 +62,35 @@
             <tr>
               <td><a id="charset"/><a href="#charset">charset</a></td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="header"/><a href="#header">header</a></td>
               <td>Specify the required header specified inline. Individual header lines must be separated by the string <code>"\n"</code>(even on platforms with a different line separator).</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="headerFile"/><a href="#headerFile">headerFile</a></td>
               <td>Specify the name of the file containing the required header.</td>
-              <td><a href="../../property_types.html#URI">URI</a></td>
+              <td><a href="../../property-types.html#URI">URI</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="ignoreLines"/><a href="#ignoreLines">ignoreLines</a></td>
               <td>Specifies the line numbers to ignore when matching lines in a content of headerFile.</td>
-              <td><a href="../../property_types.html#int.5B.5D">int[]</a></td>
+              <td><a href="../../property-types.html#int.5B.5D">int[]</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>

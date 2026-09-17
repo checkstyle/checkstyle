@@ -2,10 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="RegexpSinglelineJava">
-      <property name="format" value="private"/>
-      <property name="minimum" value="2"/>
-      <property name="message" value="private member found"/>
-      <property name="ignoreComments" value="true"/>
+      <property name="format" value="public"/>
+      <property name="minimum" value="1"/>
     </module>
   </module>
 </module>
@@ -16,17 +14,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
-
-// xdoc section -- start
+// violation 12 lines above 'Line matches the illegal pattern'
+// xdoc section - start
 class Example7 {
-  // violation below, 'private member found'
+
   private void testMethod1() {
     int debug = 0;
     System.out.println("");
     System.out.
-    println("");
+            println("");
   }
-  // violation below, 'private member found'
+
   private void testMethod2() throws IOException {
     FileReader in = new FileReader("path/to/input");
     int ch = in.read();
@@ -39,8 +37,8 @@ class Example7 {
     out.write("something");
   }
 
-  public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+  public void testMethod3(){ // violation 'Line matches the illegal pattern'
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -48,4 +46,4 @@ class Example7 {
     logger.info("fifth");
   }
 }
-// xdoc section -- end
+// xdoc section - end

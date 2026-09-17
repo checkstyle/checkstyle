@@ -8,9 +8,9 @@ legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
 memberModifiers = (default)
-tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
-         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, IMPORT, INTERFACE_DEF, METHOD_CALL, \
+         METHOD_DEF, METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -42,7 +42,7 @@ public class InputIllegalTypeRecordsWithMemberModifiersDefault
     }
 
     public record IdentifiersPair2(
-        HashSet x, // violation, 'Usage of type HashSet is not allowed'.
+        HashSet x, // violation "Usage of type 'HashSet' is not allowed."
         String identifier
     )
     {
@@ -50,7 +50,7 @@ public class InputIllegalTypeRecordsWithMemberModifiersDefault
     }
 
     public class IdentifiersPairEquivalent2 {
-        private final HashSet x; // violation, 'Usage of type HashSet is not allowed'.
+        private final HashSet x; // violation "Usage of type 'HashSet' is not allowed."
         private final String identifier;
 
         public IdentifiersPairEquivalent2(Set x, String identifier) {

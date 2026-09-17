@@ -37,9 +37,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class ConstantNameCheck
     extends AbstractAccessControlNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates a new {@code ConstantNameCheck} instance. */
     public ConstantNameCheck() {
-        super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$");
+        super("^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$", MSG_INVALID_PATTERN);
     }
 
     @Override

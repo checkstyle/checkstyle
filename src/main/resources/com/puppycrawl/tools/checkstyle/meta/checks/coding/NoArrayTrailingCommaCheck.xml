@@ -10,7 +10,7 @@
  them in other locations. To unify the coding style, the use of trailing commas should
  be prohibited.
  &lt;/div&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  int[] foo = new int[] {
    1,
    2
@@ -20,7 +20,7 @@
  &lt;p&gt;
  The check demands that there should not be any comma after the last element of an array.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  String[] foo = new String[] {
    "FOO",
    "BAR", // violation

@@ -16,7 +16,7 @@
  &lt;p&gt;
  A method is recognized as a setter if it is in the following form
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-text"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  ${returnType} set${Name}(${anyType} ${name}) { ... }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -26,8 +26,8 @@
  capitalized form that appears in the method name. By default, it is expected
  that setter returns void, i.e. ${returnType} is 'void'. For example
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
- void setTime(long time) { ... }
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ void setTime(long time) {  }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
@@ -36,9 +36,9 @@
  definition of a setter is expanded, so that setter return type can also be
  a class in which setter is declared. For example
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  class PageBuilder {
-   PageBuilder setName(String name) { ... }
+   PageBuilder setName(String name) {  }
  }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 

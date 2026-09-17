@@ -74,6 +74,13 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     public static final String MSG_TEXT_BLOCK_CONTENT = "textblock.indentation";
 
+    /**
+     * Creates a new {@code TextBlockGoogleStyleFormattingCheck} instance.
+     */
+    public TextBlockGoogleStyleFormattingCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -140,33 +147,20 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @return true if the opening quotes are on the new line.
      */
     private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
-        DetailAST parent = openingQuotes;
-        boolean quotesAreNotPreceded = true;
-        while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
-                || parent.getType() == TokenTypes.EXPR) {
-
-            parent = parent.getParent();
-
+        final DetailAST previousSibling = openingQuotes.getPreviousSibling();
+        boolean quotesAreNotPreceded = previousSibling == null
+                || !TokenUtil.areOnSameLine(openingQuotes, previousSibling);
+        for (DetailAST parent = openingQuotes.getParent(); parent != null;
+             parent = parent.getParent()) {
+            if (!quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
+                    || parent.getType() == TokenTypes.EXPR) {
+                continue;
+            }
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 quotesAreNotPreceded = !quotesArePrecededWithComma(openingQuotes);
             }
-            else if (parent.getType() == TokenTypes.QUESTION
-                    && openingQuotes.getPreviousSibling() != null) {
-                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes,
-                        openingQuotes.getPreviousSibling());
-            }
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
-            }
-
-            if (TokenUtil.isOfType(parent.getType(),
-                    TokenTypes.LITERAL_RETURN,
-                    TokenTypes.VARIABLE_DEF,
-                    TokenTypes.METHOD_DEF,
-                    TokenTypes.CTOR_DEF,
-                    TokenTypes.ENUM_DEF,
-                    TokenTypes.CLASS_DEF)) {
-                break;
             }
         }
         return quotesAreNotPreceded;
@@ -229,4 +223,5 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
         return result;
     }
+
 }

@@ -81,10 +81,19 @@ class InputTypecastParenPadWhitespaceTestSpace
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // 2 violations
-        o = (Object)o; // 2 violations
+        Object o = (Object) new Object();
+        // 2 violations above:
+        // ''(' is not followed by whitespace.'
+        // '')' is not preceded with whitespace.'
+        o = (Object)o;
+        // 2 violations above:
+        // ''(' is not followed by whitespace.'
+        // '')' is not preceded with whitespace.'
         o = ( Object ) o;
-        o = (Object) // 2 violations
+        // 2 violations 3 lines below:
+        // ''(' is not followed by whitespace.'
+        // '')' is not preceded with whitespace.'
+        o = (Object)
             o;
     }
 
@@ -235,7 +244,10 @@ class SpecialCasesInForLoop_TypecastParenPad2
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // 2 violations
+        int i = (int) ( 2 / 3 );
+        // 2 violations above:
+        // ''(' is not followed by whitespace.'
+        // '')' is not preceded with whitespace.'
         return null;
     }
 

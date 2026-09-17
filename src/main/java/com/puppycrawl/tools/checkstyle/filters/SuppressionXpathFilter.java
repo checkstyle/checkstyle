@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -78,9 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocParagraph
- * </li>
- * <li>
- * JavadocStyle
  * </li>
  * <li>
  * JavadocTagContinuationIndentation
@@ -192,31 +188,32 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <ul>
  * <li>
  * {@code files} -
- * a <a href="../property_types.html#Pattern">Pattern</a>
+ * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit
- * event. It is optional.
+ * event. It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
  * {@code checks} -
- * a <a href="../property_types.html#Pattern">Pattern</a>
+ * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the name of the check associated with an audit
  * event. Optional as long as {@code id} or {@code message} is specified.
  * </li>
  * <li>
  * {@code message} -
- * a <a href="../property_types.html#Pattern">Pattern</a>
+ * a <a href="https://checkstyle.org/property-types.html#Pattern">Pattern</a>
  * matched against the message of the check associated with an audit
  * event. Optional as long as {@code checks} or {@code id} is specified.
  * </li>
  * <li>
  * {@code id} -
- * a <a href="../property_types.html#String">String</a>
+ * a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * matched against the ID of the check associated with an audit
  * event. Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>
  * {@code query} -
- * a <a href="../property_types.html#String">String</a>
+ * a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * xpath query. It is optional.
  * </li>
  * </ul>
@@ -250,6 +247,13 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
      * the filter accepts all audit events.
      */
     private boolean optional;
+
+    /**
+     * Creates a new {@code SuppressionXpathFilter} instance.
+     */
+    public SuppressionXpathFilter() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
@@ -305,7 +309,7 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        return Collections.singleton(file);
+        return Set.of(file);
     }
 
     @Override

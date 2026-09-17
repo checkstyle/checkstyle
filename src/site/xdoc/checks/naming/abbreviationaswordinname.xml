@@ -8,11 +8,49 @@
   <body>
     <section name="AbbreviationAsWordInName">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AbbreviationAsWordInName_Description">Description</a></li>
+          <li><a href="#AbbreviationAsWordInName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AbbreviationAsWordInName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Include static variables and methods tagged with <code>@Override</code> annotation.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Check all variables and identifiers (including ones with the static modifier) and enforce no abbreviations (essentially camel case) except for words like 'XML' and 'URL'.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check variables, enforcing no abbreviations except for variables that are both static and final.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Allow abbreviations up to 2 consecutive capital letters.</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Check only method names.</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Allow abbreviations up to 1 consecutive capital letter, allow specific abbreviations, and check overridden methods.</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Check variables, enforcing no abbreviations except for variables that are both static and final.</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#AbbreviationAsWordInName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Check variables, excluding fields with the static modifier, and allow abbreviations up to 2 consecutive capital letters ignoring the longer word 'CSV'.</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Check variables, enforcing no abbreviations and ignoring static (but non-final) variables only.</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Check variables, enforce no abbreviations (essentially camel case) except for words like 'ALLOWED'.</a></li>
+            </ul>
+          </li>
+          <li><a href="#AbbreviationAsWordInName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AbbreviationAsWordInName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AbbreviationAsWordInName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AbbreviationAsWordInName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AbbreviationAsWordInName_Description">
         <div>
           Validates abbreviations (consecutive capital letters) length in
           identifier name, it also allows to enforce camel case naming. Please read more at
-          <a href="https://checkstyle.org/styleguides/google-java-style-20250426/javaguide.html#s5.3-camel-case">
+          <a href="https://checkstyle.org/styleguides/google-java-style-20260409/javaguide.html#s5.3-camel-case">
           Google Style Guide</a> to get to know how to avoid long abbreviations in names.
         </div>
 
@@ -52,42 +90,42 @@
             <tr>
               <td><a id="allowedAbbreviationLength"/><a href="#allowedAbbreviationLength">allowedAbbreviationLength</a></td>
               <td>Indicate the number of consecutive capital letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables and methods names, ... ).</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="allowedAbbreviations"/><a href="#allowedAbbreviations">allowedAbbreviations</a></td>
               <td>Specify abbreviations that must be skipped for checking.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreFinal"/><a href="#ignoreFinal">ignoreFinal</a></td>
               <td>Allow to skip variables with <code>final</code> modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreOverriddenMethods"/><a href="#ignoreOverriddenMethods">ignoreOverriddenMethods</a></td>
               <td>Allow to ignore methods tagged with <code>@Override</code> annotation (that usually mean inherited name).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreStatic"/><a href="#ignoreStatic">ignoreStatic</a></td>
               <td>Allow to skip variables with <code>static</code> modifier.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="ignoreStaticFinal"/><a href="#ignoreStaticFinal">ignoreStaticFinal</a></td>
               <td>Allow to skip variables with both <code>static</code> and <code>final</code> modifiers.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.32</td>
             </tr>
@@ -301,41 +339,56 @@ class Example3 extends SuperClass {
 </code></pre></div>
         <hr class="example-separator"/>
         <p>
-          To configure to check variables, excluding fields with
-          the static modifier, and allow abbreviations up to 2
-          consecutive capital letters ignoring the longer word 'CSV'.
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
         </p>
         <p id="Example4-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="AbbreviationAsWordInName"&gt;
-      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
-      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
-      &lt;property name="ignoreStatic" value="true"/&gt;
-      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+      &lt;property name="ignoreFinal" value="false"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 { // ok, ignore checking the class name
-  int firstNum; // ok, abbreviation "N" is of allowed length 1
-  int secondNUm;
-  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
-  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
-  static int fourthNUM; // ok, variables with static modifier would be ignored
-  String firstCSV; // ok, CSV abbreviation is allowed
-  String firstXML; // violation 'no more than '2' consecutive capital letters'
-  final int TOTAL = 5; // ok, final is ignored
-  static final int LIMIT = 10; // ok, static final is ignored
+class Example4 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // violation 'no more than '4' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, static is ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;();
+  int firstNum;
+  int secondNUM;
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;
+  String firstURL;
+  final int TOTAL = 5;  // violation 'no more than '4' consecutive capital letters'
+  static final int LIMIT = 10;      // ok, static final is ignored
+  int nextXYZ = 1;
+  final int countID = 2;            // ok, final is checked but run is short
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {}     // ok, overridden method is ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {}
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {}
 }
 </code></pre></div>
         <hr class="example-separator"/>
         <p>
-          To configure to check variables, enforcing no abbreviations
-          except for variables that are both static and final.
+          To configure to allow abbreviations up to 2 consecutive capital letters.
         </p>
         <p id="Example5-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -387,10 +440,193 @@ class Example5 extends SuperClass {
 </code></pre></div>
         <hr class="example-separator"/>
         <p>
+          To configure to check only method names.
+        </p>
+        <p id="Example6-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="2"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // violation 'no more than '3' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, static is ignored
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
+  int firstNum;
+  int secondNUM;         // ok, run of 3 capitals is allowed
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;       // ok, run of 3 capitals is allowed
+  String firstURL;       // ok, run of 3 capitals is allowed
+  final int TOTAL = 5;               // ok, final is ignored
+  static final int LIMIT = 10;       // ok, static final is ignored
+  int nextXYZ = 1;        // ok, run of 3 capitals is allowed
+  final int countID = 2;             // ok, final is ignored
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4;  // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}          // ok, run of 3 capitals is allowed
+
+  @Override
+  public void printCOUNTER() {}     // ok, overridden method is ignored
+  // violation below 'no more than '3' consecutive capital letters'
+  void incrementCOUNTER() {}
+  // violation below 'no more than '3' consecutive capital letters'
+  static void incrementGLOBAL() {}
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          To configure to allow abbreviations up to 1 consecutive capital letter,
+          allow specific abbreviations, and check overridden methods.
+        </p>
+        <p id="Example7-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // ok, only METHOD_DEF is checked
+
+  static int GLOBAL_COUNTER;        // ok, only METHOD_DEF is checked
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, only METHOD_DEF is checked
+  int firstNum;
+  int secondNUM;
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;
+  String firstURL;
+  final int TOTAL = 5;              // ok, only METHOD_DEF is checked
+  static final int LIMIT = 10;      // ok, only METHOD_DEF is checked
+  int nextXYZ = 1;
+  final int countID = 2;
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4; // ok, only METHOD_DEF is checked
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}
+
+  @Override
+  public void printCOUNTER() {}     // ok, overridden method is ignored
+  // violation below 'no more than '4' consecutive capital letters'
+  void incrementCOUNTER() {}
+  // violation below 'no more than '4' consecutive capital letters'
+  static void incrementGLOBAL() {}
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
+        </p>
+        <p id="Example8-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+      &lt;property name="allowedAbbreviations" value="COUNTER,GLOBAL"/&gt;
+      &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 extends SuperClass { // ok, camel case
+  int CURRENT_COUNTER;  // violation 'no more than '2' consecutive capital letters'
+
+  static int GLOBAL_COUNTER;        // ok, GLOBAL and COUNTER are allowed
+
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // ok, final is ignored
+  int firstNum;
+  int secondNUM;         // violation 'no more than '2' consecutive capital letters'
+  static int thirdNum;
+  static int fourthNUm;
+  String firstXML;       // violation 'no more than '2' consecutive capital letters'
+  String firstURL;       // violation 'no more than '2' consecutive capital letters'
+  final int TOTAL = 5;               // ok, final is ignored
+  static final int LIMIT = 10;       // ok, static final is ignored
+  int nextXYZ = 1;        // violation 'no more than '2' consecutive capital letters'
+  final int countID = 2;             // ok, final is ignored
+
+  static int nextID = 3;
+  static final int MAX_ALLOWED = 4;  // ok, static final is ignored
+
+  void newOAuth2Client() {}
+  void OAuth2() {}
+  void OAUth2() {}        // violation 'no more than '2' consecutive capital letters'
+
+  @Override
+  public void printCOUNTER() {}     // ok, COUNTER is allowed
+
+  void incrementCOUNTER() {}        // ok, COUNTER is allowed
+
+  static void incrementGLOBAL() {}  // ok, GLOBAL is allowed
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AbbreviationAsWordInName_Use_Cases">
+        <p>
+          To configure to check variables, excluding fields with
+          the static modifier, and allow abbreviations up to 2
+          consecutive capital letters ignoring the longer word 'CSV'.
+        </p>
+        <p id="UseCase1-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AbbreviationAsWordInName"&gt;
+      &lt;property name="allowedAbbreviationLength" value="1"/&gt;
+      &lt;property name="allowedAbbreviations" value="CSV"/&gt;
+      &lt;property name="ignoreStatic" value="true"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 { // ok, ignore checking the class name
+  int firstNum; // ok, abbreviation "N" is of allowed length 1
+  int secondNUm;
+  int secondMYNum; // violation 'no more than '2' consecutive capital letters'
+  int thirdNUM; // violation 'no more than '2' consecutive capital letters'
+  static int fourthNUM; // ok, variables with static modifier would be ignored
+  String firstCSV; // ok, CSV abbreviation is allowed
+  String firstXML; // violation 'no more than '2' consecutive capital letters'
+  final int TOTAL = 5; // ok, final is ignored
+  static final int LIMIT = 10; // ok, static final is ignored
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p>
           To configure to check variables, enforcing no abbreviations
           and ignoring static (but non-final) variables only.
         </p>
-        <p id="Example6-config">Configuration:</p>
+        <p id="UseCase2-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -404,9 +640,9 @@ class Example5 extends SuperClass {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   int counterXYZ = 1; // violation 'no more than '1' consecutive capital letters'
   // violation below 'no more than '1' consecutive capital letters'
   final int customerID = 2;
@@ -421,7 +657,7 @@ class Example6 {
           no abbreviations (essentially camel case) except for
           words like 'ALLOWED'.
         </p>
-        <p id="Example7-config">Configuration:</p>
+        <p id="UseCase3-config">Configuration:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
@@ -432,9 +668,9 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase3 {
   int counterXYZ = 1;
   final int customerID = 2;
   static int nextID = 3;

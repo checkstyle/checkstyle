@@ -6,7 +6,8 @@ OneTopLevelClass
 
 package com.puppycrawl.tools.checkstyle.checks.design.onetoplevelclass;
 
-enum InputOneTopLevelClassEnum2inner1 { // violation
+// violation below 'Top-level class Input.* has to reside in its own source file.'
+enum InputOneTopLevelClassEnum2inner1 {
     VALUE1, VALUE2;
 }
 
@@ -14,6 +15,7 @@ public enum InputOneTopLevelClassEnum2 {
     VALUE1, VALUE2;
 }
 
-enum InputOneTopLevelClassEnum2inner2 { // violation
+// violation below 'Top-level class Input.* has to reside in its own source file.'
+enum InputOneTopLevelClassEnum2inner2 {
     VALUE1, VALUE2;
 }

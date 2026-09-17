@@ -14,7 +14,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1
 {
   static int foo(int x, int y) {
@@ -29,7 +29,7 @@ class Example1
     for (String i : args) {
       System.out.println(i);
     }
-    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
+    int result=foo(1,2); // violation 'Variable 'result' should be declared final'
   }
 }
-// xdoc section -- end
+// xdoc section - end

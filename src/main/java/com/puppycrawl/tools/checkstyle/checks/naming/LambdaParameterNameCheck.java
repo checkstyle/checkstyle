@@ -34,9 +34,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public class LambdaParameterNameCheck extends AbstractNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates new instance of {@code LambdaParameterNameCheck}. */
     public LambdaParameterNameCheck() {
-        super("^([a-z][a-zA-Z0-9]*|_)$");
+        super("^([a-z][a-zA-Z0-9]*|_)$", MSG_INVALID_PATTERN);
     }
 
     @Override

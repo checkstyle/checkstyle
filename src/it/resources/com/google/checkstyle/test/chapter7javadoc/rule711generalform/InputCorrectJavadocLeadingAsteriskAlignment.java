@@ -26,15 +26,15 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   public InputCorrectJavadocLeadingAsteriskAlignment() {}
 
-  // violation 3 lines below "Summary javadoc is missing."
-  // violation 3 lines below "Javadoc tag '@param' should be preceded with an empty line."
+  // violation 2 lines below "Summary javadoc is missing."
   // False negative for below javadoc, until #18271
   /***
    * @param a testing....
    */
   public InputCorrectJavadocLeadingAsteriskAlignment(int a) {}
 
-  // violation below "Comment uses box-like repetitive character pattern."
+  // violation 2 lines below "Comment uses box-like repetitive character pattern."
+  // violation below "Summary javadoc is missing."
   /*************************************************
    *** @param str testing.....
    **********************************/

@@ -85,7 +85,7 @@ public class InputFallThroughLabeledBreak {
                     while (true) {
                         continue loop_inner;
                     }
-                case 10:  // violation 'Fall through from previous branch of the switch statement.'
+                case 10:
                     inner1:
                     {
                         switch (a) {
@@ -97,6 +97,16 @@ public class InputFallThroughLabeledBreak {
                     }
                 case 11:
                     return 1;
+                case 12: {
+                    int i = 1;
+                    while (i < 10) {
+                        i++;
+                        continue loop_outer;
+                    }
+                }
+                default: {
+                    return 1;
+                }
             }
         }
         return -1;

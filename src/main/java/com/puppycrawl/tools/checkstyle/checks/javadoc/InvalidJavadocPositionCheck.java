@@ -47,6 +47,13 @@ public class InvalidJavadocPositionCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "invalid.position";
 
+    /**
+     * Creates a new {@code InvalidJavadocPositionCheck} instance.
+     */
+    public InvalidJavadocPositionCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

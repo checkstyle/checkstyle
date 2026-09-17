@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   public void foo() {
     String nullString = null;
@@ -25,4 +25,4 @@ public class Example2 {
     "My_Sweet_String".equalsIgnoreCase(nullString);
   }
 }
-// xdoc section -- end
+// xdoc section - end

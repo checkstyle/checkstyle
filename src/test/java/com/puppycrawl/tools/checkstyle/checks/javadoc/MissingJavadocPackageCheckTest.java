@@ -159,4 +159,5 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
                 .that(check.getRequiredTokens())
                 .isEqualTo(expected);
     }
+
 }

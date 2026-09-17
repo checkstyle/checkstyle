@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class StringLiteralEqualityCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/stringliteralequality";
@@ -39,4 +40,5 @@ public class StringLiteralEqualityCheckExamplesTest extends AbstractExamplesModu
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

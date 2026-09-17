@@ -12,7 +12,7 @@ public class InputOverloadMethodsDeclarationOrderMisc {
 
     void foo() {}
 
-    // violation : because overloads never split
+    // because overloads never split
     // violation below 'All overloaded methods should be placed next to each other.'
     void test(int a, int b) {}
 

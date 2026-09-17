@@ -9,14 +9,22 @@
   </head>
 
   <body>
-    <section name="Content">
-      <macro name="toc">
-        <param name="fromDepth" value="1"/>
-        <param name="toDepth" value="1"/>
-      </macro>
-    </section>
-
     <section name="Download Eclipse">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Download_Eclipse">Download Eclipse</a></li>
+            <li><a href="#Import_Checkstyle_Project">Import Checkstyle Project</a></li>
+            <li><a href="#Setup_Maven_plugin_connectors">Setup Maven plugin connectors</a></li>
+            <li><a href="#Suppress_Eclipse_warnings">Suppress Eclipse warnings</a></li>
+            <li><a href="#Organize_Imports">Organize Imports</a></li>
+            <li><a href="#Debug">Debug</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         Please visit Eclipse IDE <a href="https://www.eclipse.org/"> official web site</a>,
         download and install the latest version of Eclipse IDE for Java Developers.

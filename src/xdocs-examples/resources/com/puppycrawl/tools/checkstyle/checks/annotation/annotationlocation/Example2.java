@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 import javax.annotation.Nonnull;
 import org.mockito.Mock;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   @Nonnull
   private boolean field1;
@@ -37,4 +37,4 @@ class Example2 {
   @Nonnull @Mock DataLoader loader3;
   // ok above as 'allowSamelineMultipleAnnotations' set to true
 }
-// xdoc section -- end
+// xdoc section - end

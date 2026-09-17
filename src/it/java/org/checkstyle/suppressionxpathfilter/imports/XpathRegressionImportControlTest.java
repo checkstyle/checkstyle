@@ -133,4 +133,5 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

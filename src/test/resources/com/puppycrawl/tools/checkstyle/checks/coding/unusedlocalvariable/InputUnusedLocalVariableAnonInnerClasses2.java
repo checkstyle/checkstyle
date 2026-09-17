@@ -18,7 +18,7 @@ public class InputUnusedLocalVariableAnonInnerClasses2 {
     static class j {
         static void method() {
             int a = 1000;
-            int s = 13; // violation, 'Unused local variable'
+            int s = 13; // violation 'Unused local variable'
             int q = 14;
             m.h obj = new m.h() {
                 @Override

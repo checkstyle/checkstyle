@@ -11,11 +11,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-// xdoc section -- start
+// xdoc section - start
 import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import com.sun.security.auth.UserPrincipal;
-// xdoc section -- end
+// xdoc section - end
 
 public class Example11 { }

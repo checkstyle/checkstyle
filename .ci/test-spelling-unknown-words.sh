@@ -19,7 +19,8 @@ if [ ! -e "$dict" ]; then
   # english.words is taken from rpm:
   # https://rpmfind.net/linux/fedora/linux/development/rawhide/Everything/aarch64/os/Packages/w/"
   # "words-.*.noarch.rpm"
-  curl --fail-with-body -k https://checkstyle.sourceforge.io/reports/english.words -o $dict
+  curl --fail-with-body -k --retry 5 --retry-connrefused \
+    https://checkstyle.sourceforge.io/reports/english.words -o $dict
 fi
 
 if [ ! -e "$word_splitter" ]; then

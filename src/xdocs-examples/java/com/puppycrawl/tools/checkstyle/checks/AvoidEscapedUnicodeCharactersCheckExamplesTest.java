@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class AvoidEscapedUnicodeCharactersCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters";
@@ -91,4 +92,5 @@ public class AvoidEscapedUnicodeCharactersCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
 }

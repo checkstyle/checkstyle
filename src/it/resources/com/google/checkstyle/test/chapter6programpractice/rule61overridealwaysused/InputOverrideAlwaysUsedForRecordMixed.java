@@ -6,7 +6,7 @@ import java.util.Locale;
 public record InputOverrideAlwaysUsedForRecordMixed(String name, int age) {
 
   /** Some javadoc. */
-  // violation below, 'method must include @java.lang.Override annotation.'
+  // violation below 'method must include @java.lang.Override annotation.'
   public String name() {
     return name.toUpperCase(Locale.ROOT);
   }

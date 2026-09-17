@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/redundantmodifier";
@@ -34,13 +35,13 @@ public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:10: " + getCheckMessage(MSG_KEY, "final"),
-            "24:3: " + getCheckMessage(MSG_KEY, "abstract"),
-            "25:5: " + getCheckMessage(MSG_KEY, "public"),
-            "25:12: " + getCheckMessage(MSG_KEY, "abstract"),
-            "29:5: " + getCheckMessage(MSG_KEY, "public"),
-            "32:3: " + getCheckMessage(MSG_KEY, "static"),
-            "37:10: " + getCheckMessage(MSG_KEY, "strictfp"),
+            "15:10: " + getCheckMessage(MSG_KEY, "final"),
+            "22:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "23:5: " + getCheckMessage(MSG_KEY, "public"),
+            "23:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "27:5: " + getCheckMessage(MSG_KEY, "public"),
+            "30:3: " + getCheckMessage(MSG_KEY, "static"),
+            "34:10: " + getCheckMessage(MSG_KEY, "strictfp"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -59,14 +60,15 @@ public class RedundantModifierCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "18:10: " + getCheckMessage(MSG_KEY, "final"),
-            "26:3: " + getCheckMessage(MSG_KEY, "abstract"),
-            "27:5: " + getCheckMessage(MSG_KEY, "public"),
-            "27:12: " + getCheckMessage(MSG_KEY, "abstract"),
-            "31:5: " + getCheckMessage(MSG_KEY, "public"),
-            "34:3: " + getCheckMessage(MSG_KEY, "static"),
+            "17:10: " + getCheckMessage(MSG_KEY, "final"),
+            "24:3: " + getCheckMessage(MSG_KEY, "abstract"),
+            "25:5: " + getCheckMessage(MSG_KEY, "public"),
+            "25:12: " + getCheckMessage(MSG_KEY, "abstract"),
+            "29:5: " + getCheckMessage(MSG_KEY, "public"),
+            "32:3: " + getCheckMessage(MSG_KEY, "static"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

@@ -22,7 +22,7 @@ public class InputOneStatementPerLineTryWithResources {
         OutputStream s2 = new PipedOutputStream();
         try (s1; s2; OutputStream s3 = new PipedOutputStream();) {
         }
-        try (s1; OutputStream s4 = new PipedOutputStream(); s2;) {
+        try (s1; OutputStream s4 = new PipedOutputStream(); s2) {
         }
         try (s1; s2; OutputStream s5 = new PipedOutputStream()) {
         }

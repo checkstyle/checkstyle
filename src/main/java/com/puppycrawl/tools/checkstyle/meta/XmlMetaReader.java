@@ -116,8 +116,8 @@ public final class XmlMetaReader {
      * @param moduleMetadataStream input stream object of a module's metadata file
      * @param moduleType type of module
      * @return module detail object extracted from the XML metadata file
-     * @throws ParserConfigurationException if a parser configuration exception occurs
      * @throws IOException if a IO exception occurs
+     * @throws ParserConfigurationException if a parser configuration exception occurs
      * @throws SAXException if a SAX exception occurs during parsing the XML file
      */
     public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
@@ -176,9 +176,9 @@ public final class XmlMetaReader {
         final NodeList propertyList = properties.getElementsByTagName("property");
         final int propertyListLength = propertyList.getLength();
         final List<ModulePropertyDetails> result = new ArrayList<>(propertyListLength);
-        for (int i = 0; i < propertyListLength; i++) {
+        for (int index = 0; index < propertyListLength; index++) {
             final ModulePropertyDetails propertyDetails = new ModulePropertyDetails();
-            final Element prop = (Element) propertyList.item(i);
+            final Element prop = (Element) propertyList.item(index);
             propertyDetails.setName(getAttributeValue(prop, XML_TAG_NAME));
             propertyDetails.setType(getAttributeValue(prop, "type"));
             final String defaultValueTag = "default-value";
@@ -209,13 +209,16 @@ public final class XmlMetaReader {
     private static List<String> getListContentByAttribute(Element element, String listParent,
                                                          String listOption, String attribute) {
         final List<Element> children = getDirectChildsByTag(element, listParent);
-        List<String> result = null;
-        if (!children.isEmpty()) {
+        final List<String> result;
+        if (children.isEmpty()) {
+            result = List.of();
+        }
+        else {
             final NodeList nodeList = children.getFirst().getElementsByTagName(listOption);
             final int nodeListLength = nodeList.getLength();
             final List<String> listContent = new ArrayList<>(nodeListLength);
-            for (int j = 0; j < nodeListLength; j++) {
-                listContent.add(getAttributeValue((Element) nodeList.item(j), attribute));
+            for (int index = 0; index < nodeListLength; index++) {
+                listContent.add(getAttributeValue((Element) nodeList.item(index), attribute));
             }
             result = listContent;
         }
@@ -232,9 +235,9 @@ public final class XmlMetaReader {
     private static List<Element> getDirectChildsByTag(Element element, String tagName) {
         final NodeList children = element.getElementsByTagName(tagName);
         final List<Element> res = new ArrayList<>();
-        for (int i = 0; i < children.getLength(); i++) {
-            if (children.item(i).getParentNode().equals(element)) {
-                res.add((Element) children.item(i));
+        for (int index = 0; index < children.getLength(); index++) {
+            if (children.item(index).getParentNode().equals(element)) {
+                res.add((Element) children.item(index));
             }
         }
         return res;

@@ -20,7 +20,7 @@ import java.util.Date;
 
 // Fan-out count: Date, Time, Place
 // Total = 3
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   Set set = new HashSet();   // ok, Set and HashSet are ignored
   Map map = new HashMap();   // ok, Map and HashMap are ignored
@@ -35,4 +35,4 @@ class Example5 {
     var result = "result";   // ok, var is ignored
   }
 }
-// xdoc section -- end
+// xdoc section - end

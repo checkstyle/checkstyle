@@ -10,7 +10,8 @@
 */
 
 package com.puppycrawl.tools.checkstyle.sariflogger;
-// violation SINGLE_EXCEPTION_TRIGGER
+// comment with SINGLE_EXCEPTION_TRIGGER
+// violation above 'found an error'
 public class InputSarifLoggerSingleException {
 
 }

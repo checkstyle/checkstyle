@@ -1,8 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+// violation first line 'Header mismatch'
 
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree2 {
@@ -36,10 +34,10 @@ public class InputDeclarationUsageDistanceAtMostThree2 {
     public boolean testMethod7(int a) {
         boolean res;
         switch (a) {
-            case 1:
+            case 1: // violation ''case' construct must use '{}'s.'
                 res = true;
                 break;
-            default:
+            default: // violation ''default' construct must use '{}'s.'
                 res = false;
         }
         return res;

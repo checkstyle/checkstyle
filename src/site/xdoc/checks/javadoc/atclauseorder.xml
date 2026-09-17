@@ -8,6 +8,37 @@
   <body>
     <section name="AtclauseOrder">
       <p>Since Checkstyle 6.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AtclauseOrder_Description">Description</a></li>
+          <li><a href="#AtclauseOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AtclauseOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Such that it checks in the custom order</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Such that it targets only enums</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#AtclauseOrder_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Such that it targets only classes, with a custom tag order</a></li>
+            </ul>
+          </li>
+          <li><a href="#AtclauseOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AtclauseOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AtclauseOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AtclauseOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AtclauseOrder_Description">
         <div>
           Checks the order of
@@ -33,7 +64,7 @@
             <tr>
               <td><a id="tagOrder"/><a href="#tagOrder">tagOrder</a></td>
               <td>Specify the order by tags.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>@author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated</code></td>
               <td>6.0</td>
             </tr>
@@ -64,7 +95,7 @@
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
             </tr>
@@ -99,24 +130,13 @@
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example1 {
-  class Valid implements Serializable {
-  }
+  class Valid implements Serializable {}
 
-  /**
-   * Some javadoc.
-   *
-   * @version Some javadoc.
-   * @see Some javadoc.
-   * @since Some javadoc.
-   * @deprecated
-   */
-  class Invalid implements Serializable {
-  }
-
+  // ok below 'Block tags have to appear in the order'
   /**
    * Some javadoc.
    *
@@ -127,6 +147,16 @@ public class Example1 {
    * @deprecated
    */
   enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -148,6 +178,7 @@ public class Example1 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 11 lines below 'Block tags have to appear in the order'
 /**
 * Some javadoc.
 *
@@ -158,36 +189,35 @@ public class Example1 {
 * @throws Some javadoc.
 * @exception Some javadoc.
 * @see Some javadoc.
-* @since Some javadoc. // violation
+* @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example2 {
-  class Valid implements Serializable {
-  }
-
-  /**
-   * Some javadoc.
-   *
-   * @version Some javadoc.
-   * @see Some javadoc.
-   * @since Some javadoc. // violation
-   * @deprecated  // violation
-   */
-  class Invalid implements Serializable {
-  }
-
+  class Valid implements Serializable {}
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
   /**
    * Some javadoc.
    *
    * @author max
    * @version Some javadoc.
    * @see Some javadoc.
-   * @since Some javadoc. // violation
-   * @deprecated // violation
+   * @since Some javadoc.
+   * @deprecated
    */
   enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // violation 5 lines above 'Block tags have to appear in the order'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -222,34 +252,100 @@ public class Example2 {
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField Field description.
+* @serialField field Object Field description.
 * @serialData
 */
 public class Example3 {
-  class Valid implements Serializable {
-  }
-
+  class Valid implements Serializable {}
+  // violation 8 lines below 'Block tags have to appear in the order'
+  // violation 8 lines below 'Block tags have to appear in the order'
   /**
    * Some javadoc.
    *
+   * @author max
    * @version Some javadoc.
    * @see Some javadoc.
    * @since Some javadoc.
    * @deprecated
    */
-  class Invalid implements Serializable {
-  }
-
+  enum Test {}
   /**
    * Some javadoc.
    *
-   * @author Some javadoc.
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="AtclauseOrder_Use_Cases">
+        <p id="UseCase1-config">
+            To configure the check such that it targets only classes, with a
+            custom tag order:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AtclauseOrder"&gt;
+      &lt;property name="target" value="CLASS_DEF"/&gt;
+      &lt;property name="tagOrder"
+                value="@version, @author, @param, @return,
+                       @throws, @exception, @see, @since,
+                       @serial, @serialField, @serialData"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Results in the following violation, as only the class-level javadoc is
+          checked and its tags do not follow the custom order:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation 5 lines below 'Block tags have to appear in the order'
+/**
+* Some javadoc.
+*
+* @author Some javadoc.
+* @version Some javadoc.
+* @param Some javadoc.
+* @return Some javadoc.
+* @throws Some javadoc.
+* @exception Some javadoc.
+* @see Some javadoc.
+* @since Some javadoc.
+* @serial Some javadoc.
+* @serialField field Object Field description.
+* @serialData
+*/
+public class UseCase1 {
+  class Valid implements Serializable {}
+
+  // ok below, ENUM_DEF is not checked because target is CLASS_DEF
+  /**
+   * Some javadoc.
+   *
+   * @author max
    * @version Some javadoc.
    * @see Some javadoc.
-   * @since Some javadoc. // violation
-   * @deprecated // violation
+   * @since Some javadoc.
+   * @deprecated
    */
   enum Test {}
+  /**
+   * Some javadoc.
+   *
+   * @return Some javadoc.
+   * @param a Some javadoc.
+   */
+  public int foo(int a) {
+    return a;
+  }
+  // ok above, METHOD_DEF is not checked because target is CLASS_DEF
 }
 </code></pre></div>
       </subsection>

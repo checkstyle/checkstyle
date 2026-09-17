@@ -143,6 +143,13 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetTypeParameterNamesFromNonGenericClass() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputCheckUtilJavadocTypeNonGenericClass.java"), expected);
+    }
+
+    @Test
     public void testGetTypeParameters() throws Exception {
         final DetailAST parameterizedClassNode = getNodeFromFile(TokenTypes.CLASS_DEF);
         final DetailAST firstTypeParameter =
@@ -416,9 +423,9 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     /**
      * Retrieves the AST node from a specific file based on the specified token type.
      *
+     * @param filePath The file from which the AST node should be retrieved.
      * @param type The token type to search for in the file.
      *             This parameter determines the type of AST node to retrieve.
-     * @param filePath The file from which the AST node should be retrieved.
      * @return The AST node associated with the specified token type from the given file.
      * @throws Exception If there's an issue reading or parsing the file.
      */
@@ -447,10 +454,16 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfo() {
-        final boolean result = CheckUtil.isPackageInfo("/");
-
         assertWithMessage("Expected isPackageInfo() to return false for ('/')")
-                .that(result)
+                .that(CheckUtil.isPackageInfo("/"))
+                .isFalse();
+
+        assertWithMessage("Expected isPackageInfo() to return true for package-info.java file")
+                .that(CheckUtil.isPackageInfo("src/main/java/com/example/package-info.java"))
+                .isTrue();
+
+        assertWithMessage("Expected isPackageInfo() to return false for regular Java file")
+                .that(CheckUtil.isPackageInfo("src/main/java/com/example/SomeClass.java"))
                 .isFalse();
     }
 

@@ -1,18 +1,17 @@
 /*xml
 <module name="Checker">
   <module name="RegexpSingleline">
-    <property name="format" value="System.exit\("/>
-    <!-- next line not required as 0 is the default -->
-    <property name="minimum" value="0"/>
-    <property name="maximum" value="1"/>
+    <property name="format" value="COPYRIGHTED"/>
+    <property name="ignoreCase" value="true"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
-// xdoc section -- start
+// violation 6 lines above 'Line matches the illegal pattern'
+// xdoc section - start
 /**
  * This file is copyrighted under CC.
- */
+ */ // violation above 'Line matches the illegal pattern'
 public class Example3 {
 
   void myFunction() {
@@ -20,10 +19,10 @@ public class Example3 {
       doSomething();
       System.exit(0);
     } catch (Exception e) {
-      System.exit(1); // violation, as there are more than one occurrence.
+      System.exit(1);
     }
   }
 
   void doSomething() {}
 }
-// xdoc section -- end
+// xdoc section - end

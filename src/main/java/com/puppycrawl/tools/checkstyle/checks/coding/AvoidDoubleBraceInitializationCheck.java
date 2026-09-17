@@ -70,6 +70,13 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
         TokenTypes.RCURLY
     );
 
+    /**
+     * Creates a new {@code AvoidDoubleBraceInitializationCheck} instance.
+     */
+    public AvoidDoubleBraceInitializationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -116,4 +123,5 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     private static boolean hasMember(DetailAST token) {
         return !IGNORED_TYPES.get(token.getType());
     }
+
 }

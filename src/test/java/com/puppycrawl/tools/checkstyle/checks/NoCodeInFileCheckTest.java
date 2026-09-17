@@ -93,4 +93,5 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputNoCodeInFile5.java"), expected);
     }
+
 }

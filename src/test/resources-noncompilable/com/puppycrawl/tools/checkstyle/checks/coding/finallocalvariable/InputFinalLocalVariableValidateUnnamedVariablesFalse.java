@@ -2,11 +2,11 @@
 FinalLocalVariable
 validateUnnamedVariables = (default)false
 validateEnhancedForLoopVariable = true
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
-
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.PriorityQueue;
@@ -18,13 +18,13 @@ public class InputFinalLocalVariableValidateUnnamedVariablesFalse {
         final Queue<Integer> q = new PriorityQueue<>();
         q.add(1);
         q.add(2);
-        for (Integer i : q) {  // violation,'Variable 'i' should be declared final'
+        for (Integer i : q) {  // violation 'Variable 'i' should be declared final'
             var _ = q.poll();
-            var __ = q.poll(); // violation,'Variable '__' should be declared final'
+            var __ = q.poll(); // violation 'Variable '__' should be declared final'
         }
         final int _ = sideEffect();
         int _ = sideEffect();
-        int _result = sideEffect(); // violation,'Variable '_result' should be declared final'
+        int _result = sideEffect(); // violation 'Variable '_result' should be declared final'
     }
 
     static
@@ -47,7 +47,7 @@ public class InputFinalLocalVariableValidateUnnamedVariablesFalse {
         for (final int _ : squares) {
 
         }
-        for (int __ : squares) { // violation,'Variable '__' should be declared final'
+        for (int __ : squares) { // violation 'Variable '__' should be declared final'
 
         }
     }

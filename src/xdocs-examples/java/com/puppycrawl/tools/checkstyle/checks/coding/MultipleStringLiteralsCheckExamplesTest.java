@@ -74,4 +74,5 @@ public class MultipleStringLiteralsCheckExamplesTest extends AbstractExamplesMod
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

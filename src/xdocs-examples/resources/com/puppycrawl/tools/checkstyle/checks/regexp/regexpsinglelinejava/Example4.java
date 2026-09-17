@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
 
   private void testMethod1() {
@@ -27,18 +27,18 @@ class Example4 {
 
   private void testMethod2() throws IOException {
     FileReader in = new FileReader("path/to/input");
-    int ch = in.read(); // violation, 'IO found'
+    int ch = in.read(); // violation 'IO found'
     while(ch != -1) {
       System.out.print((char)ch);
-      ch = in.read(); // violation, 'IO found'
+      ch = in.read(); // violation 'IO found'
     }
 
     FileWriter out = new FileWriter("path/to/output");
-    out.write("something"); // violation, 'IO found'
+    out.write("something"); // violation 'IO found'
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example3.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -46,4 +46,4 @@ class Example4 {
     logger.info("fifth");
   }
 }
-// xdoc section -- end
+// xdoc section - end

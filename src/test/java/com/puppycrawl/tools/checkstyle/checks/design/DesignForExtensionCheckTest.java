@@ -48,8 +48,8 @@ public class DesignForExtensionCheckTest
     @Test
     public void testIt() throws Exception {
         final String[] expected = {
-            "50:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
-            "104:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
+            "51:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
+            "106:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtension.java"), expected);
@@ -67,25 +67,25 @@ public class DesignForExtensionCheckTest
     @Test
     public void testOverridableMethods() throws Exception {
         final String[] expected = {
-            "14:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
-            "38:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
-            "43:9: " + getCheckMessage(MSG_KEY, "A", "foo9"),
-            "50:9: " + getCheckMessage(MSG_KEY, "A", "foo10"),
-            "57:9: " + getCheckMessage(MSG_KEY, "A", "foo11"),
-            "62:9: " + getCheckMessage(MSG_KEY, "A", "foo12"),
-            "69:9: " + getCheckMessage(MSG_KEY, "A", "foo13"),
-            "76:9: " + getCheckMessage(MSG_KEY, "A", "foo14"),
-            "98:9: " + getCheckMessage(MSG_KEY, "A", "foo22"),
-            "104:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
-            "113:9: " + getCheckMessage(MSG_KEY, "A", "foo25"),
-            "118:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
-            "125:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
-            "137:9: " + getCheckMessage(MSG_KEY, "A", "foo29"),
-            "159:9: " + getCheckMessage(MSG_KEY, "A", "foo31"),
-            "170:9: " + getCheckMessage(MSG_KEY, "A", "foo33"),
-            "176:9: " + getCheckMessage(MSG_KEY, "A", "foo34"),
-            "198:9: " + getCheckMessage(MSG_KEY, "A", "foo39"),
-            "205:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
+            "15:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
+            "40:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
+            "46:9: " + getCheckMessage(MSG_KEY, "A", "foo9"),
+            "54:9: " + getCheckMessage(MSG_KEY, "A", "foo10"),
+            "62:9: " + getCheckMessage(MSG_KEY, "A", "foo11"),
+            "68:9: " + getCheckMessage(MSG_KEY, "A", "foo12"),
+            "76:9: " + getCheckMessage(MSG_KEY, "A", "foo13"),
+            "84:9: " + getCheckMessage(MSG_KEY, "A", "foo14"),
+            "107:9: " + getCheckMessage(MSG_KEY, "A", "foo22"),
+            "114:9: " + getCheckMessage(MSG_KEY, "A", "foo23"),
+            "124:9: " + getCheckMessage(MSG_KEY, "A", "foo25"),
+            "130:9: " + getCheckMessage(MSG_KEY, "A", "foo26"),
+            "138:9: " + getCheckMessage(MSG_KEY, "A", "foo27"),
+            "151:9: " + getCheckMessage(MSG_KEY, "A", "foo29"),
+            "174:9: " + getCheckMessage(MSG_KEY, "A", "foo31"),
+            "186:9: " + getCheckMessage(MSG_KEY, "A", "foo33"),
+            "193:9: " + getCheckMessage(MSG_KEY, "A", "foo34"),
+            "216:9: " + getCheckMessage(MSG_KEY, "A", "foo39"),
+            "224:9: " + getCheckMessage(MSG_KEY, "A", "foo41"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionOverridableMethods.java"), expected);
@@ -94,15 +94,15 @@ public class DesignForExtensionCheckTest
     @Test
     public void testIgnoredAnnotationsOption() throws Exception {
         final String[] expected = {
-            "39:5: "
+            "40:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
-            "149:5: "
+            "151:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo21"),
-            "154:5: "
+            "157:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "setAge"),
-            "169:5: "
+            "173:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo24"),
-            "176:5: "
+            "181:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "dontUse4"),
         };
         verifyWithInlineConfigParser(
@@ -119,8 +119,8 @@ public class DesignForExtensionCheckTest
     @Test
     public void testNativeMethods() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
-            "32:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo6"),
+            "14:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
+            "31:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo6"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionNativeMethods.java"), expected);
@@ -139,10 +139,10 @@ public class DesignForExtensionCheckTest
     public void testRequiredJavadocPhrase() throws Exception {
         final String className = "InputDesignForExtensionRequiredJavadocPhrase";
         final String[] expected = {
-            "41:5: " + getCheckMessage(MSG_KEY, className, "foo5"),
-            "48:5: " + getCheckMessage(MSG_KEY, className, "foo8"),
-            "51:5: " + getCheckMessage(MSG_KEY, className, "foo9"),
-            "67:5: " + getCheckMessage(MSG_KEY, className, "foo12"),
+            "42:5: " + getCheckMessage(MSG_KEY, className, "foo5"),
+            "50:5: " + getCheckMessage(MSG_KEY, className, "foo8"),
+            "54:5: " + getCheckMessage(MSG_KEY, className, "foo9"),
+            "71:5: " + getCheckMessage(MSG_KEY, className, "foo12"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionRequiredJavadocPhrase.java"), expected);
@@ -152,7 +152,7 @@ public class DesignForExtensionCheckTest
     public void testRequiredJavadocPhraseMultiLine() throws Exception {
         final String className = "InputDesignForExtensionRequiredJavadocPhraseMultiLine";
         final String[] expected = {
-            "23:5: " + getCheckMessage(MSG_KEY, className, "foo2"),
+            "24:5: " + getCheckMessage(MSG_KEY, className, "foo2"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionRequiredJavadocPhraseMultiLine.java"),
@@ -162,7 +162,7 @@ public class DesignForExtensionCheckTest
     @Test
     public void testInterfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
+            "16:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionInterfaceMemberScopeIsPublic.java"),

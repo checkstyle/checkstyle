@@ -14,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebefore;
 
 import com.google.common.collect.Lists;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   int foo = 5;
   int[][] array = { { 1, 2 }
@@ -57,4 +57,4 @@ class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

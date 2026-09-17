@@ -19,9 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck;
+import com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck;
+import com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck;
 
 public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
@@ -34,13 +45,17 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "21:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        final String[] expectedWithFilter = {};
+        final String[] expectedWithFilter = {
+            "38:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
+        };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
+                + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
@@ -50,12 +65,13 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "14:1: 'package' should be separated from previous line.",
-            "15:1: 'CLASS_DEF' should be separated from previous line.",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "15:1: 'CLASS_DEF' should be separated from previous line.",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
@@ -69,222 +85,401 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     public void testExample3() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "21:31: '{' at column 31 should be on a new line.",
-            "26:31: '{' at column 31 should be on a new line.",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "26:31: '{' at column 31 should be on a new line.",
+            "41:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
+                + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase14() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
-            "18:3: 'METHOD_DEF' should be separated from previous line.",
+            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         final String[] expectedWithFilter = {
-            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
+            "40:3: " + getCheckMessage(CyclomaticComplexityCheck.class,
+                    CyclomaticComplexityCheck.MSG_KEY, 4, 3),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("UseCase14.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase4() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "19:15: Name 'TestMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "13:1: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "package"),
+            "21:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "22:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "23:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         final String[] expectedWithFilter = {
-            "19:15: Name 'TestMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "21:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "22:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "23:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase4.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample6() throws Exception {
+    public void testUseCase5() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "19:9: Name 'TestVariable' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
-            "21:9: Name 'WeirdName' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
+            "19:23: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
+            "27:36: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 36),
+            "31:27: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 27),
+            "35:28: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 28),
+            "40:31: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 31),
+            "41:35: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 35),
+            "44:23: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
         };
 
         final String[] expectedWithFilter = {
-            "21:9: Name 'WeirdName' must match pattern '^([a-z][a-zA-Z0-9]*|_)$'.",
+            "27:36: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 36),
+            "31:27: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 27),
+            "35:28: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 28),
+            "40:31: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 31),
+            "41:35: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 35),
+            "44:23: " + getCheckMessage(LeftCurlyCheck.class,
+                    LeftCurlyCheck.MSG_KEY_LINE_NEW, "{", 23),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example6.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase5.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample7() throws Exception {
+    public void testUseCase6() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "17:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "18:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:19: '11' is a magic number.",
-            "23:8: Name 'FOO' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "20:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "21:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "22:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
 
         final String[] expectedWithFilter = {
-            "18:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:19: '11' is a magic number.",
+            "20:3: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase6.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase7() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expectedWithoutFilter = {
-            "22:5: Reference to instance variable 'age' needs \"this.\".",
-            "26:12: Reference to instance variable 'age' needs \"this.\".",
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "48:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "51:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "26:12: Reference to instance variable 'age' needs \"this.\".",
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "48:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "51:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase7.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample9() throws Exception {
+    public void testUseCase8() throws Exception {
+
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expectedWithoutFilter = {
-            "17:37: Throwing 'RuntimeException' is not allowed.",
-            "21:37: Throwing 'RuntimeException' is not allowed.",
+            "34:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+                    "TestVariable", pattern),
+            "35:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+                    "WeirdName", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "21:37: Throwing 'RuntimeException' is not allowed.",
+            "35:9: " + getCheckMessage(LocalVariableNameCheck.class, MSG_INVALID_PATTERN,
+                    "WeirdName", pattern),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase8.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample10() throws Exception {
+    public void testUseCase9() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expectedWithoutFilter = {
-            "17:9: 'public' modifier out of order with the JLS suggestions.",
-            "18:14: 'abstract' modifier out of order with the JLS suggestions.",
-            "23:14: 'abstract' modifier out of order with the JLS suggestions.",
+            "19:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "20:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "31:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
+            "49:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "52:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
+            "56:19: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "57:8: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "FOO", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "23:14: 'abstract' modifier out of order with the JLS suggestions.",
+            "19:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "20:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "21:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "31:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
+            "49:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "52:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
+            "56:19: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example10.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase9.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample11() throws Exception {
+    public void testUseCase10() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "16:27: '11' is a magic number.",
+            "32:5: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+            "41:9: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+            "41:20: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "wordCount", ""),
+            "44:14: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+        };
+
+        final String[] expectedWithFilter = {
+            "41:9: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+            "41:20: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "wordCount", ""),
+            "44:14: " + getCheckMessage(RequireThisCheck.class, RequireThisCheck.MSG_VARIABLE,
+                    "age", ""),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("UseCase10.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase11() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "23:37: " + getCheckMessage(IllegalThrowsCheck.class, IllegalThrowsCheck.MSG_KEY,
+                    "RuntimeException"),
         };
 
         final String[] expectedWithFilter = {};
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example11.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase11.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample12() throws Exception {
+    public void testUseCase12() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "16:27: '11' is a magic number.",
+            "25:9: " + getCheckMessage(ModifierOrderCheck.class,
+                    ModifierOrderCheck.MSG_MODIFIER_ORDER, "public"),
+            "26:14: " + getCheckMessage(ModifierOrderCheck.class,
+                    ModifierOrderCheck.MSG_MODIFIER_ORDER, "abstract"),
         };
 
         final String[] expectedWithFilter = {};
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example12.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase12.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample13() throws Exception {
-
+    public void testUseCase13() throws Exception {
         final String[] expectedWithoutFilter = {
-            "18:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-        };
-
-        final String[] expectedWithFilter = {};
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example13.java"),
-                expectedWithoutFilter,
-                expectedWithFilter);
-    }
-
-    @Test
-    public void testExample14() throws Exception {
-
-        final String[] expectedWithoutFilter = {
-            "18:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "19:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
         final String[] expectedWithFilter = {
-            "18:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example14.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase13.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "19:27: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "11"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
+        };
+
+        final String[] expectedWithFilter = {
+            "18:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "23"),
+            "30:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "24"),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase2() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expectedWithoutFilter = {
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "47:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "50:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
+        };
+
+        final String[] expectedWithFilter = {
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("UseCase2.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase3() throws Exception {
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expectedWithoutFilter = {
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "47:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+            "50:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test2", pattern),
+        };
+
+        final String[] expectedWithFilter = {
+            "19:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "SetSomeVar", pattern),
+            "20:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "DoMATH", pattern),
+            "47:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Test1", pattern),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }

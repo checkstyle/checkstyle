@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
+import com.puppycrawl.tools.checkstyle.utils.InlineConfigUtils;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -105,15 +106,15 @@ public final class InlineConfigParser {
      * </p>
      */
     private static final Pattern VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*violation,?\\s*(?:['\"](.*)['\"])?$");
+            .compile(".*//\\s*violation\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation above". */
     private static final Pattern VIOLATION_ABOVE_PATTERN = Pattern
-            .compile(".*//\\s*violation above,?\\s*(?:['\"](.*))?$");
+            .compile(".*//\\s*violation above\\s*(?:['\"](.*))?$");
 
     /** A pattern to find the string: "// violation below". */
     private static final Pattern VIOLATION_BELOW_PATTERN = Pattern
-            .compile(".*//\\s*violation below,?\\s*(?:['\"](.*))?$");
+            .compile(".*//\\s*violation below\\s*(?:['\"](.*))?$");
 
     /** A pattern to find the string: "// violation above, explanation". */
     private static final Pattern VIOLATION_ABOVE_WITH_EXPLANATION_PATTERN = Pattern
@@ -222,7 +223,7 @@ public final class InlineConfigParser {
 
     /** A pattern that matches any comment by default. */
     private static final Pattern VIOLATION_DEFAULT = Pattern
-            .compile("//.*violation.*");
+            .compile(".*//.*violation.*");
 
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
@@ -259,326 +260,56 @@ public final class InlineConfigParser {
     );
 
     /**
-     *  Checks in which violation message is not specified in input files.
-     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
+     * Checks in which violation message is not yet fully specified in all input files.
+     * Temporary suppression until
+     * <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+     * is fully resolved for these checks. Remove entries here as their input files
+     * are updated with proper violation messages.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck",
-
-            "com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc."
-                    + "AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc"
-                    + ".RequireEmptyLineBeforeBlockTagGroupCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
-
-            "com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck",
-
-            "com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
-            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck",
-            "com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
-            "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
-            "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
+            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpressionCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
+            "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"
     );
 
     /**
-     * Input files where violation messages are intentionally not specified,
-     * because they would be too big or impractical to maintain.
+     * Input files where violation messages are not yet fully specified with quoted
+     * messages. Temporary suppression until these files are updated with proper
+     * violation messages. Remove entries here as their input files are fixed.
+     * <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
      */
-    private static final Set<String> SUPPRESSED_FILES = Set.of(
-            "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"
-    );
+    private static final Set<String> SUPPRESSED_VALIDATE_MESSAGE_FILES = Set.of();
 
     /**
      * Input files where default values for properties are intentionally not specified.
-     * The second part of the list (everything below
-     * {@code // until https://github.com/checkstyle/checkstyle/issues/16807}) are files
-     * missing default property mentions. These must be fixed and removed from the list.
+     * This two required for pitest coverage in javadoc and util profiles:
+     * checks/javadoc/abstractjavadoc/InputAbstractJavadocTokensPass.java
      */
     private static final Set<String> SUPPRESSED_VALIDATE_DEFAULT_FILES = Set.of(
         "checks/coding/matchxpath/InputMatchXpath2.java",
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocTokensFail.java",
-        "checkstyle/checks/imports/importcontrol/InputImportControlFileNameNoExtension",
-        "checks/imports/importorder/InputImportOrder_Top1.java",
-        // until https://github.com/checkstyle/checkstyle/issues/16807
-        "api/fullident/InputFullIdent.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompact1.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompact2.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompact3.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompact5.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompact6.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompact7.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant1.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant2.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant4.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant5.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsCompactNonConstant6.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsConstants.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpanded1.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpanded2.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpanded3.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpanded5.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpanded6.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpanded7.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant1.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant2.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant3.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant5.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant6.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant7.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsHolder.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsHolderNonConstant.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsRecords.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsSingle1.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsSingle2.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsSingle3.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsSingle5.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsSingle6.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsSingle7.java",
-        "checks/annotation/suppresswarnings/InputSuppressWarningsValuePair.java",
-        "checks/blocks/leftcurly/InputLeftCurlyCommentBeforeLeftCurly.java",
-        "checks/blocks/leftcurly/InputLeftCurlyCommentBeforeLeftCurly2.java",
-        "checks/blocks/leftcurly/InputLeftCurlyDefaultTestNl.java",
-        "checks/blocks/leftcurly/InputLeftCurlyDefaultTestNlow.java",
-        "checks/blocks/leftcurly/InputLeftCurlyIgnoreEnumsOptFalse.java",
-        "checks/blocks/leftcurly/InputLeftCurlyIgnoreEnumsOptTrue.java",
-        "checks/blocks/leftcurly/InputLeftCurlyMethod.java",
-        "checks/blocks/leftcurly/InputLeftCurlyMethodTestNewLine2.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestCoverageIncrease.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefault.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefault3Basic.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefault3Empty.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefault3Enum.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefault3Initializer.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefault3Misc.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefaultLambda.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestDefaultWithAnnotations.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestEolSwitch.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestFirstLine.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestInvalidOption.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestLineBreakAfter.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestMissingBracesConditional.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestMissingBracesLoop.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestMissingBracesMisc.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNewLine3Basic.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNewLine3Empty.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNewLine3Enum.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNewLine3Initializer.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNewLine3Misc.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNewLineOptionWithLambda.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNlSwitch.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNlWithAnnotations.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNlowSwitch.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestNlowWithAnnotations.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestRecordsAndCompactCtors.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestSwitchExpressions.java",
-        "checks/blocks/leftcurly/InputLeftCurlyTestSwitchExpressionsNewLine.java",
-        "checks/blocks/leftcurly/InputLeftCurlyWithEmoji.java",
-        "checks/blocks/leftcurly/InputLeftCurlyWithEmojiNl.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariable3.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableAnonymousClass.java",
-        "checks/coding/finallocalvariable/"
-            + "InputFinalLocalVariableAssignedInsideAndOutsideSwitch.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableAssignedMultipleTimes.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableBreak.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckRecords.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchAssignment.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchExpressionsA.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchExpressionsB.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCheckSwitchExpressionsC.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableCompactSourceFile.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableFalsePositives.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableFive.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableFour.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableLeavingSlistToken.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableMultipleAndNestedConditions.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableOne.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableSwitchStatement.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableThree.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableTwo.java",
-        "checks/coding/finallocalvariable/"
-            + "InputFinalLocalVariableValidateUnnamedVariablesFalse.java",
-        "checks/coding/finallocalvariable/InputFinalLocalVariableValidateUnnamedVariablesTrue.java",
-        "checks/coding/hiddenfield/InputHiddenField2Basic.java",
-        "checks/coding/hiddenfield/InputHiddenField2Enum.java",
-        "checks/coding/hiddenfield/InputHiddenField2Interface.java",
-        "checks/coding/hiddenfield/InputHiddenField2Misc.java",
-        "checks/coding/hiddenfield/InputHiddenField2PropertySetter.java",
-        "checks/coding/hiddenfield/InputHiddenField2Static.java",
-        "checks/coding/hiddenfield/InputHiddenField3Basic.java",
-        "checks/coding/hiddenfield/InputHiddenField3Enum.java",
-        "checks/coding/hiddenfield/InputHiddenField3Interface.java",
-        "checks/coding/hiddenfield/InputHiddenField3Misc.java",
-        "checks/coding/hiddenfield/InputHiddenField3PropertySetter.java",
-        "checks/coding/hiddenfield/InputHiddenField3Static.java",
-        "checks/coding/hiddenfield/InputHiddenField4Basic.java",
-        "checks/coding/hiddenfield/InputHiddenField4Enum.java",
-        "checks/coding/hiddenfield/InputHiddenField4Interface.java",
-        "checks/coding/hiddenfield/InputHiddenField4Misc.java",
-        "checks/coding/hiddenfield/InputHiddenField4PropertySetter.java",
-        "checks/coding/hiddenfield/InputHiddenField4Static.java",
-        "checks/coding/hiddenfield/InputHiddenField5Basic.java",
-        "checks/coding/hiddenfield/InputHiddenField5Enum.java",
-        "checks/coding/hiddenfield/InputHiddenField5Interface.java",
-        "checks/coding/hiddenfield/InputHiddenField5Misc.java",
-        "checks/coding/hiddenfield/InputHiddenField5PropertySetter.java",
-        "checks/coding/hiddenfield/InputHiddenField5Static.java",
-        "checks/coding/hiddenfield/InputHiddenField6.java",
-        "checks/coding/hiddenfield/InputHiddenField7.java",
-        "checks/coding/hiddenfield/InputHiddenFieldClassNestedInRecord.java",
-        "checks/coding/hiddenfield/InputHiddenFieldInnerRecordsImplicitlyStatic.java",
-        "checks/coding/hiddenfield/InputHiddenFieldLambdas.java",
-        "checks/coding/hiddenfield/InputHiddenFieldLambdas2.java",
-        "checks/coding/hiddenfield/InputHiddenFieldReceiver.java",
-        "checks/coding/hiddenfield/InputHiddenFieldRecordPattern.java",
-        "checks/coding/hiddenfield/InputHiddenFieldRecords.java",
-        "checks/coding/hiddenfield/InputHiddenFieldRecordsImplicitlyStaticClassComparison.java",
-        "checks/coding/hiddenfield/InputHiddenFieldReorder.java",
-        "checks/coding/hiddenfield/InputHiddenFieldStaticVisibility.java",
-        "checks/coding/hiddenfield/InputHiddenFieldSwitchExpression.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiation.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationLang.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationLang2.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationLang3.java",
-        "checks/coding/illegalinstantiation/"
-            + "InputIllegalInstantiationNameSimilarToStandardClasses.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationNoPackage.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationSameClassNameJavaLang.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationSemantic1.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationSemantic2.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationSemantic21.java",
-        "checks/coding/illegalinstantiation/InputIllegalInstantiationSemantic22.java",
-        "checks/coding/illegaltype/InputIllegalTypeAbstractClassNameFormat.java",
-        "checks/coding/illegaltype/InputIllegalTypeArrays.java",
-        "checks/coding/illegaltype/InputIllegalTypeEmptyStringMemberModifiers.java",
-        "checks/coding/illegaltype/InputIllegalTypeInPermitsList.java",
-        "checks/coding/illegaltype/InputIllegalTypeNewArrayStructure.java",
-        "checks/coding/illegaltype/InputIllegalTypePackageClassName.java",
-        "checks/coding/illegaltype/InputIllegalTypeRecordsAndCompactCtors.java",
-        "checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersDefault.java",
-        "checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersFinal.java",
-        "checks/coding/illegaltype/InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java",
-        "checks/coding/illegaltype/"
-            + "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java",
-        "checks/coding/illegaltype/InputIllegalTypeSameFileNameFalsePositive.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestAbstractClassNamesFalse.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestAbstractClassNamesTrue.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestDefaults.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestEnhancedInstanceof.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestExtendsImplements.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestFormat.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestGenerics.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestIgnoreMethodNames.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestLegalAbstractClassNames.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestMemberModifiers.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestPlainAndArraysTypes.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestSameFileNameGeneral.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestStarImports.java",
-        "checks/coding/illegaltype/InputIllegalTypeTestStaticImports.java",
-        "checks/coding/illegaltype/InputIllegalTypeWhitespaceInConfig.java",
-        "checks/coding/illegaltype/InputIllegalTypeWithRecordPattern.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableBothForLoops.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableEnhancedForLoopVariable.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableEnhancedForLoopVariable2.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableEnhancedForLoopVariable3.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableRecordDecomposition.java",
-        "checks/coding/modifiedcontrolvariable/"
-            + "InputModifiedControlVariableTestVariousAssignments.java",
-        "checks/coding/returncount/InputReturnCountLambda.java",
-        "checks/coding/returncount/InputReturnCountSwitches.java",
-        "checks/coding/returncount/InputReturnCountSwitches2.java",
-        "checks/coding/returncount/InputReturnCountVoid.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParentheses15Extensions.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckPatterns.java",
-        "checks/coding/unnecessaryparentheses/"
-            + "InputUnnecessaryParenthesesCheckSwitchExpression.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesCheckTextBlocks.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesIdentifier.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesIfStatement.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesIfStatement2.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesOperator3.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesOperatorsAndCasts.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesReturnValue.java",
-        "checks/coding/unnecessaryparentheses/InputUnnecessaryParenthesesWhenExpressions.java",
-        "checks/imports/importorder/InputImportOrder1.java",
-        "checks/imports/importorder/InputImportOrder2.java",
-        "checks/imports/importorder/InputImportOrder3.java",
-        "checks/imports/importorder/InputImportOrder4.java",
-        "checks/imports/importorder/InputImportOrder6.java",
-        "checks/imports/importorder/InputImportOrderCaseInsensitive.java",
-        "checks/imports/importorder/InputImportOrderContainerOrdering.java",
-        "checks/imports/importorder/InputImportOrderEclipseStatic1.java",
-        "checks/imports/importorder/InputImportOrderEclipseStatic2.java",
-        "checks/imports/importorder/InputImportOrderEclipseStatic3.java",
-        "checks/imports/importorder/InputImportOrderEclipseStaticCaseSensitive.java",
-        "checks/imports/importorder/InputImportOrderEclipseStaticRepetition.java",
-        "checks/imports/importorder/InputImportOrderGetGroupNumber.java",
-        "checks/imports/importorder/InputImportOrderMultiline.java",
-        "checks/imports/importorder/InputImportOrderNoGapBetweenStaticImports.java",
-        "checks/imports/importorder/InputImportOrderNonStaticWrongSequence.java",
-        "checks/imports/importorder/InputImportOrderRepetition.java",
-        "checks/imports/importorder/InputImportOrderSimilarGroupPattern.java",
-        "checks/imports/importorder/InputImportOrderSortStaticImportsAlphabetically1.java",
-        "checks/imports/importorder/InputImportOrderSortStaticImportsAlphabetically2.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrder1.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrder2.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrderBottom1.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrderBottom2.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrderBottom3.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrderBottom_Negative1.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrderBottom_Negative2.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupOrderBottom_Negative3.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupSeparated.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsAbove.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsBottom.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsBottomSeparated.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsInflow.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsNegative.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsTop.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsTopSeparated.java",
-        "checks/imports/importorder/InputImportOrderStaticGroupsUnordered.java",
-        "checks/imports/importorder/InputImportOrderStaticOnDemandGroupOrder1.java",
-        "checks/imports/importorder/InputImportOrderStaticOnDemandGroupOrder2.java",
-        "checks/imports/importorder/InputImportOrderStaticOnDemandGroupOrderBottom1.java",
-        "checks/imports/importorder/InputImportOrderStaticOnDemandGroupOrderBottom2.java",
-        "checks/imports/importorder/InputImportOrderStaticOnDemandGroupOrderBottom3.java",
-        "checks/imports/importorder/InputImportOrderStaticRepetition1.java",
-        "checks/imports/importorder/InputImportOrderStaticRepetition2.java",
-        "checks/imports/importorder/InputImportOrderTestTrimInOption.java",
-        "checks/imports/importorder/InputImportOrder_Above.java",
-        "checks/imports/importorder/InputImportOrder_Bottom.java",
-        "checks/imports/importorder/InputImportOrder_DotPackageName.java",
-        "checks/imports/importorder/InputImportOrder_EclipseDefaultNegative.java",
-        "checks/imports/importorder/InputImportOrder_EclipseDefaultPositive.java",
-        "checks/imports/importorder/InputImportOrder_HonorsTokensProperty.java",
-        "checks/imports/importorder/InputImportOrder_InFlow.java",
-        "checks/imports/importorder/InputImportOrder_MultiplePatternMatches1.java",
-        "checks/imports/importorder/InputImportOrder_MultiplePatternMatches2.java",
-        "checks/imports/importorder/InputImportOrder_NoFailureForRedundantImports.java",
-        "checks/imports/importorder/InputImportOrder_Top2.java",
-        "checks/imports/importorder/InputImportOrder_Under.java",
-        "checks/imports/importorder/InputImportOrder_Wildcard.java",
-        "checks/imports/importorder/InputImportOrder_WildcardUnspecified.java",
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTags2.java",
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTags3.java",
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTagsOne.java",
@@ -586,193 +317,7 @@ public final class InlineConfigParser {
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTagsVisitCountOne.java",
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocNonTightHtmlTagsVisitCountTwo.java",
         "checks/javadoc/abstractjavadoc/InputAbstractJavadocTokensPass.java",
-        "checks/javadoc/javadoctype/InputJavadocType2.java",
-        "checks/javadoc/javadoctype/InputJavadocType4.java",
-        "checks/javadoc/javadoctype/InputJavadocTypeAboveComments.java",
-        "checks/javadoc/javadoctype/InputJavadocTypeParamDescriptionWithAngularTags.java",
-        "checks/javadoc/javadoctype/InputJavadocTypeRecordParamDescriptionWithAngularTags.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableAboveComment.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableInner.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableInner2.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableMethodInnerClass.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadoc2Package.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadoc2Public.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadoc3Package.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadoc3Public.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadoc5Package.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadoc5Public.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableNoJavadocNeededInLambda.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableOnIgnoredVariableNames.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableOnIgnoredVariableNames2.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableOnInnerClassFields.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableOnPublicInnerClassFields.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariablePublicOnly.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariablePublicOnly2.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableTagsEnums.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableTagsMethods1.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableTagsMethods2.java",
-        "checks/javadoc/javadocvariable/InputJavadocVariableTagsMethods3.java",
-        "checks/javadoc/missingjavadocmethod/InputMissingJavadocMethodBasic.java",
-        "checks/javadoc/nonemptyatclausedescription/InputNonEmptyAtclauseDescriptionOne.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexity.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexityLeaves.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexityNPE.java",
-        "checks/metrics/booleanexpressioncomplexity/"
-            + "InputBooleanExpressionComplexityRecordLeaves.java",
-        "checks/metrics/booleanexpressioncomplexity/"
-            + "InputBooleanExpressionComplexityRecordsAndCompactCtors.java",
-        "checks/metrics/booleanexpressioncomplexity/InputBooleanExpressionComplexitySmall.java",
-        "checks/metrics/booleanexpressioncomplexity/"
-            + "InputBooleanExpressionComplexityWhenExpression.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexity1.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexity2.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexityRecords1.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexityRecords2.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexitySwitchBlocks.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexitySwitchBlocks2.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexitySwitchBlocks3.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexitySwitchBlocks4.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexitySwitchBlocks5.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexitySwitchBlocks6.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexityWhenExpression.java",
-        "checks/metrics/cyclomaticcomplexity/InputCyclomaticComplexityWhenSwitchAsSinglePoint.java",
-        "checks/sizes/executablestatementcount/InputExecutableStatementCountDefaultConfig.java",
-        "checks/sizes/executablestatementcount/InputExecutableStatementCountMaxZero.java",
-        "checks/sizes/executablestatementcount/InputExecutableStatementCountRecords.java",
-        "checks/sizes/methodcount/InputMethodCount1One.java",
-        "checks/sizes/methodcount/InputMethodCount1Two.java",
-        "checks/sizes/methodcount/InputMethodCount2.java",
-        "checks/sizes/methodcount/InputMethodCount3.java",
-        "checks/sizes/methodcount/InputMethodCount4.java",
-        "checks/sizes/methodcount/InputMethodCount5.java",
-        "checks/sizes/methodcount/InputMethodCountDefaultsAllModifiers.java",
-        "checks/sizes/methodcount/InputMethodCountDefaultsInnerClass.java",
-        "checks/sizes/methodcount/InputMethodCountDefaultsInnerInterface.java",
-        "checks/sizes/methodcount/InputMethodCountRecords.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparator.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparator2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparator3.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorAnnotations.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorBlockCommentUnderPackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorClassDefinitionAndCommentNotSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorCompactSourceFile.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorCompactSourceFileMultipleEmptyLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorEnumMembers.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorFormerException.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorHeader.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorImportSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorImports.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorInsideClassMembers.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorInterfaceFields.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMethodInAnonymousClass.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorModifierUnderPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleEmptyLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleEmptyLinesInside.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorMultipleEmptyLinesInside2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleFieldsInClass.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleImportEmptyClass.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleLines2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorMultipleLines3.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorNewMethodDef.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorNoViolationOnEmptyLineBeforeComments.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorNonPackageInfoWithJavadocBeforePackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorPackageImportClassInOneLine.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorPostFixCornerCases.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorPreviousLineEmptiness.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorRecordsAndCompactCtors.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorRecursive.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorSingleCommentSeparatedFromPackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorSingleCommentUnderPackage.java",
-        "checks/whitespace/emptylineseparator/"
-            + "InputEmptyLineSeparatorSingleLineCommentAfterPackage.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorSingleTypeVariables.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorStaticImport.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithComments2.java",
-        "checks/whitespace/emptylineseparator/InputEmptyLineSeparatorWithEmoji.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test1/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test2/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test3/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test4/package-info.java",
-        "checks/whitespace/emptylineseparator/packageinfo/test5/package-info.java",
-        "checks/whitespace/nolinewrap/InputNoLineWrapBad.java",
-        "checks/whitespace/nolinewrap/InputNoLineWrapGood.java",
-        "checks/whitespace/parenpad/InputParenPadCheckEmoji.java",
-        "checks/whitespace/parenpad/InputParenPadCheckRecords.java",
-        "checks/whitespace/parenpad/InputParenPadCheckRecordsSpace.java",
-        "checks/whitespace/parenpad/InputParenPadCheckWhenExpression.java",
-        "checks/whitespace/parenpad/InputParenPadForWhitespace.java",
-        "checks/whitespace/parenpad/InputParenPadForWhitespace2.java",
-        "checks/whitespace/parenpad/InputParenPadLambda.java",
-        "checks/whitespace/parenpad/InputParenPadLambdaWithSpace.java",
-        "checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace1.java",
-        "checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace3.java",
-        "checks/whitespace/parenpad/InputParenPadNoStackoverflowError.java",
-        "checks/whitespace/parenpad/InputParenPadStartOfTheLine.java",
-        "checks/whitespace/parenpad/InputParenPadToCheckTrimFunctionInOptionProperty.java",
-        "checks/whitespace/parenpad/InputParenPadTryWithResources.java",
-        "checks/whitespace/parenpad/InputParenPadTryWithResourcesAndSuppression.java",
-        "checks/whitespace/parenpad/InputParenPadWhitespace.java",
-        "checks/whitespace/parenpad/InputParenPadWhitespace2.java",
-        "checks/whitespace/parenpad/InputParenPadWithSpace.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAround1.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAround2.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAround3.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundAfterPermitsList.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyCompactCtors.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyLambdaExpressions.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundAllowEmptyLambdaExpressions2.java",
-        "checks/whitespace/whitespacearound/"
-            + "InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses.java",
-        "checks/whitespace/whitespacearound/"
-            + "InputWhitespaceAroundAllowEmptyTypesAndNonEmptyClasses2.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundBraces2Part1.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundBraces2Part2.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundBracesPart1.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundBracesPart2.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundCatch.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundDoWhile.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundDoubleBraceInitialization.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundEmptyTypesAndCycles.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundEmptyTypesAndCycles2.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundGenerics.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundKeywordsAndOperators.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundLambda.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundRecords.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundRecordsAllowEmptyTypes.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundSimplePart1.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundSimplePart2.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundSimplePart3.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundStartOfTheLine.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundSwitch.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundSwitchCasesParens.java",
-        "checks/whitespace/whitespacearound/"
-            + "InputWhitespaceAroundSwitchCasesParensWithAllowEmptySwitchBlockStatements.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundSwitchExpressions.java",
-        "checks/whitespace/whitespacearound/InputWhitespaceAroundUnnamedPattern.java",
-        "filefilters/beforeexecutionexclusionfilefilter/"
-            + "InputBeforeExecutionExclusionFileFilter.java",
-        "filters/suppressionxpathsinglefilter/InputSuppressionXpathSingleFilterComplexQuery.java",
-        "filters/suppressionxpathsinglefilter/"
-            + "InputSuppressionXpathSingleFilterDecideByMessage.java",
-        "filters/suppresswithnearbytextfilter/"
-            + "InputSuppressWithNearbyTextFilterNearbyTextPatternCompactVariableCheckPattern.java",
-        "treewalker/InputTreeWalkerSuppressionCommentFilter.java",
-        "treewalker/InputTreeWalkerSuppressionXpathFilterAbsolute.java"
+        "checkstyle/checks/imports/importcontrol/InputImportControlFileNameNoExtension"
     );
 
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
@@ -798,6 +343,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.GoogleNonConstantFieldNameCheck");
         MODULE_MAPPINGS.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
+        MODULE_MAPPINGS.put("GoogleMethodName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.GoogleMethodNameCheck");
         MODULE_MAPPINGS.put("ParameterName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
         MODULE_MAPPINGS.put("RegexpOnFilename",
@@ -844,8 +391,6 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck");
         MODULE_MAPPINGS.put("EqualsAvoidNull",
                 "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
-        MODULE_MAPPINGS.put("JavadocStyle",
-                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
         MODULE_MAPPINGS.put("CyclomaticComplexity",
                 "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
         MODULE_MAPPINGS.put("EmptyLineSeparator",
@@ -856,7 +401,7 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck");
     }
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private InlineConfigParser() {
     }
 
@@ -872,7 +417,8 @@ public final class InlineConfigParser {
      * @throws Exception if unable to read file or file not formatted properly.
      */
     private static TestInputConfiguration parse(String inputFilePath,
-                                                boolean setFilteredViolations) throws Exception {
+                                                boolean setFilteredViolations)
+            throws Exception {
         final TestInputConfiguration.Builder testInputConfigBuilder =
                 new TestInputConfiguration.Builder();
         final Path filePath = Path.of(inputFilePath);
@@ -909,7 +455,7 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
-        return testInputConfigBuilder.build().getViolations();
+        return testInputConfigBuilder.build().violations();
     }
 
     public static List<TestInputViolation> getFilteredViolationsFromInputFile(String inputFilePath)
@@ -928,7 +474,7 @@ public final class InlineConfigParser {
             throw new CheckstyleException("Failed to set violations in " + inputFilePath, exc);
         }
 
-        return testInputConfigBuilder.build().getFilteredViolations();
+        return testInputConfigBuilder.build().filteredViolations();
     }
 
     public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath)
@@ -947,11 +493,13 @@ public final class InlineConfigParser {
 
         final Path filePath = Path.of(inputFilePath);
         final List<String> lines = readFile(filePath);
-        if (!checkIsXmlConfig(lines)) {
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, inputFilePath);
+        if (matched == null || !matched.xmlStyleConfig()) {
             throw new CheckstyleException("Config cannot be parsed as xml.");
         }
 
-        final List<String> inlineConfig = getInlineConfig(lines);
+        final List<String> inlineConfig = getInlineConfig(lines, inputFilePath, matched);
         final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
         final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
         final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
@@ -976,31 +524,25 @@ public final class InlineConfigParser {
         return testInputConfigBuilder.buildWithXmlConfiguration();
     }
 
-    /**
-     * Check whether a file provides xml configuration.
-     *
-     * @param lines lines of the file
-     * @return true if a file provides xml configuration, otherwise false.
-     */
-    private static boolean checkIsXmlConfig(List<String> lines) {
-        return "/*xml".equals(lines.getFirst());
-    }
-
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.getFirst().startsWith("/*")) {
-            throw new CheckstyleException("Config not specified on top."
-                + "Please see other inputs for examples of what is required.");
+        final InlineConfigUtils.MatchedDelimiter matched =
+                InlineConfigUtils.matchDelimiter(lines, inputFilePath);
+        if (matched == null) {
+            throw new CheckstyleException("Config not specified on top. Expected "
+                    + InlineConfigUtils.describeExpectedDelimiters(inputFilePath)
+                    + " as the first line. Please see other inputs for examples of what"
+                    + " is required.");
         }
 
-        final List<String> inlineConfig = getInlineConfig(lines);
+        final List<String> inlineConfig = getInlineConfig(lines, inputFilePath, matched);
 
-        if (checkIsXmlConfig(lines)) {
+        if (matched.xmlStyleConfig()) {
             final String stringXmlConfig = LATEST_DTD + String.join("", inlineConfig);
             final InputSource inputSource = new InputSource(new StringReader(stringXmlConfig));
             final Configuration xmlConfig = ConfigurationLoader.loadConfiguration(
-                inputSource, new PropertiesExpander(System.getProperties()),
+                    inputSource, new PropertiesExpander(System.getProperties()),
                     ConfigurationLoader.IgnoredModulesOptions.EXECUTE
             );
             final String configName = xmlConfig.getName();
@@ -1015,11 +557,37 @@ public final class InlineConfigParser {
         }
     }
 
-    private static List<String> getInlineConfig(List<String> lines) {
-        return lines.stream()
-                .skip(1)
-                .takeWhile(line -> !line.startsWith("*/"))
-                .toList();
+    /**
+     * Extracts the raw config lines (between the start and end delimiter) for the given
+     * file, stripping the leading {@code #} comment marker from each line when the target
+     * file is a {@code .properties} file (since every config line there must itself be a
+     * valid properties-file comment).
+     *
+     * @param lines all lines of the file.
+     * @param inputFilePath the input file path, used to select the delimiter and
+     *     line-prefix-stripping behavior.
+     * @return the inline config lines, ready to be parsed as XML or key-value pairs.
+     */
+    private static List<String> getInlineConfig(List<String> lines, String inputFilePath,
+                                                InlineConfigUtils.MatchedDelimiter matched) {
+        final int endIndex = InlineConfigUtils.getConfigEndIndex(lines, matched);
+        final int startIndex;
+        if (matched.end() == null) {
+            startIndex = 0;
+        }
+        else {
+            startIndex = 1;
+        }
+        final List<String> rawConfigLines = lines.subList(startIndex, endIndex);
+
+        final List<String> result;
+        if (inputFilePath.endsWith(".properties")) {
+            result = InlineConfigUtils.stripPropertiesCommentPrefix(rawConfigLines);
+        }
+        else {
+            result = rawConfigLines;
+        }
+        return result;
     }
 
     private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,
@@ -1363,7 +931,8 @@ public final class InlineConfigParser {
     }
 
     private static void validateProperties(Map<String, String> propertiesWithMissingDefaultTag,
-            List<String> unusedProperties) throws CheckstyleException {
+            List<String> unusedProperties)
+                    throws CheckstyleException {
 
         if (!propertiesWithMissingDefaultTag.isEmpty()) {
 
@@ -1389,7 +958,8 @@ public final class InlineConfigParser {
 
     private static void validateDefaultProperties(
         Map<Object, Object> actualProperties,
-        Map<String, String> defaultProperties) throws CheckstyleException {
+        Map<String, String> defaultProperties)
+                throws CheckstyleException {
 
         final Map<String, String> propertiesWithMissingDefaultTag = actualProperties
                 .entrySet().stream()
@@ -1495,24 +1065,22 @@ public final class InlineConfigParser {
     }
 
     private static boolean shouldSpecifyViolationMessage(
-            TestInputConfiguration.Builder inputConfigBuilder,
-            String inputFilePath) {
+            TestInputConfiguration.Builder inputConfigBuilder, String inputFilePath) {
 
         boolean result = false;
 
         final List<ModuleInputConfiguration> moduleLists =
                 inputConfigBuilder.getChildrenModules();
 
-        if (moduleLists.size() == 1) {
+        final boolean isSuppressedFile = SUPPRESSED_VALIDATE_MESSAGE_FILES.stream()
+                .anyMatch(Path.of(inputFilePath)::endsWith);
+
+        if (!isSuppressedFile && moduleLists.size() == 1) {
             final String moduleName = moduleLists.getFirst().getModuleName();
 
             if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
                     && !SUPPRESSED_CHECKS.contains(moduleName)) {
-
-                final String fileName = Path.of(inputFilePath).getFileName().toString();
-                if (!SUPPRESSED_FILES.contains(fileName)) {
-                    result = true;
-                }
+                result = true;
             }
         }
 
@@ -1618,6 +1186,7 @@ public final class InlineConfigParser {
         }
         else if (violationWithExplanationMatcher.matches()) {
             final int violationLineNum = lineNo + 1;
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, null);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
@@ -1672,73 +1241,116 @@ public final class InlineConfigParser {
             TestInputConfiguration.Builder inputConfigBuilder,
             List<String> lines, boolean useFilteredViolations,
             int lineNo, boolean specifyViolationMessage)
-            throws CheckstyleException {
+                    throws CheckstyleException {
         final String line = lines.get(lineNo);
-        final Matcher multipleViolationsMatcher =
-                MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
-        final Matcher multipleViolationsAboveMatcher =
-                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
-        final Matcher multipleViolationsBelowMatcher =
-                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(line);
+
+        boolean matched = isRelativeLineViolationProcessed(inputConfigBuilder, lines, line, lineNo,
+                specifyViolationMessage);
+
+        if (!matched) {
+            matched = isMultipleViolationProcessed(inputConfigBuilder, line, lineNo,
+                    specifyViolationMessage);
+        }
+
+        if (!matched) {
+            if (useFilteredViolations) {
+                setFilteredViolation(inputConfigBuilder, lineNo + 1,
+                        lines, lineNo, specifyViolationMessage);
+            }
+            else if (!isFilteredViolationComment(line)) {
+                final Matcher violationsDefault = VIOLATION_DEFAULT.matcher(line);
+                if (violationsDefault.matches()) {
+                    final int violationLineNum = lineNo + 1;
+                    checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
+                    inputConfigBuilder.addViolation(violationLineNum, null);
+                }
+            }
+        }
+    }
+
+    private static boolean isRelativeLineViolationProcessed(
+            TestInputConfiguration.Builder inputConfigBuilder, List<String> lines,
+            String line, int lineNo, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final Matcher violationsAboveMatcherWithMessages =
                 VIOLATIONS_ABOVE_PATTERN_WITH_MESSAGES.matcher(line);
         final Matcher violationsSomeLinesAboveMatcher =
                 VIOLATIONS_SOME_LINES_ABOVE_PATTERN.matcher(line);
         final Matcher violationsSomeLinesBelowMatcher =
                 VIOLATIONS_SOME_LINES_BELOW_PATTERN.matcher(line);
-        final Matcher violationsDefault =
-                VIOLATION_DEFAULT.matcher(line);
 
+        boolean processed = true;
         if (violationsAboveMatcherWithMessages.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolationsForSpecificLine(
-                    lines, lineNo, lineNo, violationsAboveMatcherWithMessages));
+                    getExpectedViolationsForSpecificLine(
+                            lines, lineNo, lineNo, violationsAboveMatcherWithMessages,
+                            specifyViolationMessage));
         }
         else if (violationsSomeLinesAboveMatcher.matches()) {
             inputConfigBuilder.addViolations(
-                getExpectedViolations(
-                    lines, lineNo, violationsSomeLinesAboveMatcher, true));
+                    getExpectedViolations(
+                            lines, lineNo, violationsSomeLinesAboveMatcher, true,
+                            specifyViolationMessage));
         }
         else if (violationsSomeLinesBelowMatcher.matches()) {
             inputConfigBuilder.addViolations(
                     getExpectedViolations(
-                            lines, lineNo, violationsSomeLinesBelowMatcher, false));
+                            lines, lineNo, violationsSomeLinesBelowMatcher, false,
+                            specifyViolationMessage));
         }
-        else if (multipleViolationsMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
+        else {
+            processed = false;
+        }
+        return processed;
+    }
+
+    private static boolean isMultipleViolationProcessed(
+            TestInputConfiguration.Builder inputConfigBuilder, String line,
+            int lineNo, boolean specifyViolationMessage)
+                    throws CheckstyleException {
+        final Matcher multipleViolationsMatcher = MULTIPLE_VIOLATIONS_PATTERN.matcher(line);
+        final Matcher multipleViolationsAboveMatcher =
+                MULTIPLE_VIOLATIONS_ABOVE_PATTERN.matcher(line);
+        final Matcher multipleViolationsBelowMatcher =
+                MULTIPLE_VIOLATIONS_BELOW_PATTERN.matcher(line);
+
+        boolean processed = true;
+        if (multipleViolationsMatcher.matches()) {
+            final int violationLineNum = lineNo + 1;
+            final int count = Integer.parseInt(multipleViolationsMatcher.group(1));
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
+            Collections.nCopies(count, violationLineNum)
                     .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
         else if (multipleViolationsAboveMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
+            final int count = Integer.parseInt(multipleViolationsAboveMatcher.group(1));
+            checkWhetherViolationSpecified(specifyViolationMessage, null, lineNo);
+            Collections.nCopies(count, lineNo)
                     .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
         else if (multipleViolationsBelowMatcher.matches()) {
-            Collections
-                    .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
-                            lineNo + 2)
+            final int violationLineNum = lineNo + 2;
+            final int count = Integer.parseInt(multipleViolationsBelowMatcher.group(1));
+            checkWhetherViolationSpecified(specifyViolationMessage, null, violationLineNum);
+            Collections.nCopies(count, violationLineNum)
                     .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
-        else if (useFilteredViolations) {
-            setFilteredViolation(inputConfigBuilder, lineNo + 1,
-                    lines, lineNo, specifyViolationMessage);
+        else {
+            processed = false;
         }
-        else if (violationsDefault.matches()) {
-            final int violationLineNum = lineNo + 1;
-            inputConfigBuilder.addViolation(violationLineNum, null);
-        }
+        return processed;
     }
 
     private static List<TestInputViolation> getExpectedViolationsForSpecificLine(
-                                              List<String> lines, int lineNo, int violationLineNum,
-                                              Matcher matcher) {
+            List<String> lines, int lineNo, int violationLineNum,
+            Matcher matcher, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final List<TestInputViolation> results = new ArrayList<>();
 
         final int expectedMessageCount =
@@ -1748,6 +1360,8 @@ public final class InlineConfigParser {
             final Matcher messageMatcher = VIOLATION_MESSAGE_PATTERN.matcher(lineWithMessage);
             if (messageMatcher.find()) {
                 final String violationMessage = messageMatcher.group(1);
+                checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                        violationLineNum);
                 results.add(new TestInputViolation(violationLineNum, violationMessage));
             }
         }
@@ -1761,8 +1375,9 @@ public final class InlineConfigParser {
     }
 
     private static List<TestInputViolation> getExpectedViolations(
-                                              List<String> lines, int lineNo,
-                                              Matcher matcher, boolean isAbove) {
+            List<String> lines, int lineNo,
+            Matcher matcher, boolean isAbove, boolean specifyViolationMessage)
+                    throws CheckstyleException {
         final int violationLine =
             Integer.parseInt(matcher.group(2));
         final int violationLineNum;
@@ -1773,7 +1388,7 @@ public final class InlineConfigParser {
             violationLineNum = lineNo + violationLine + 1;
         }
         return getExpectedViolationsForSpecificLine(lines,
-            lineNo, violationLineNum, matcher);
+            lineNo, violationLineNum, matcher, specifyViolationMessage);
     }
 
     private static void setFilteredViolation(TestInputConfiguration.Builder inputConfigBuilder,
@@ -1842,7 +1457,22 @@ public final class InlineConfigParser {
                 || VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line).matches()
                 || VIOLATION_FIRST_LINE_PATTERN.matcher(line).matches()
                 || VIOLATION_LAST_LINE_PATTERN.matcher(line).matches()
-                || FILTERED_VIOLATION_PATTERN.matcher(line).matches();
+                || isFilteredViolationComment(line);
+    }
+
+    /**
+     * Checks whether the given line is a well-formed "filtered violation" comment,
+     * in any of its recognized forms (bare, above, below, N-lines-above, N-lines-below).
+     *
+     * @param line the line to check.
+     * @return true if the line matches any filtered-violation comment pattern.
+     */
+    private static boolean isFilteredViolationComment(String line) {
+        return FILTERED_VIOLATION_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_ABOVE_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_BELOW_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line).matches()
+                || FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line).matches();
     }
 
     private static String assembleTripleQuoteMessage(String firstPart,
@@ -1919,7 +1549,8 @@ public final class InlineConfigParser {
      * @throws CheckstyleException if violation message is not specified
      */
     private static void checkWhetherViolationSpecified(boolean shouldViolationMsgBeSpecified,
-            String violationMessage, int lineNum) throws CheckstyleException {
+            String violationMessage, int lineNum)
+                    throws CheckstyleException {
         if (shouldViolationMsgBeSpecified && violationMessage == null) {
             throw new CheckstyleException(
                     "Violation message should be specified on line " + lineNum);

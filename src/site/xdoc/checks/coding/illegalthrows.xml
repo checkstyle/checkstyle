@@ -8,6 +8,31 @@
   <body>
     <section name="IllegalThrows">
       <p>Since Checkstyle 4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalThrows_Description">Description</a></li>
+          <li><a href="#IllegalThrows_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalThrows_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Rejecting throws NullPointerException from methods</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Ignoring method named &quot;func1()&quot;</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Warn on overridden methods</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalThrows_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalThrows_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalThrows_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalThrows_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalThrows_Description">
         <div>
           Checks that specified types are not declared to be thrown.
@@ -29,21 +54,21 @@
             <tr>
               <td><a id="ignoreOverriddenMethods"/><a href="#ignoreOverriddenMethods">ignoreOverriddenMethods</a></td>
               <td>Allow to ignore checking overridden methods (marked with <code>Override</code> or <code>java.lang.Override</code> annotation).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td><a id="ignoredMethodNames"/><a href="#ignoredMethodNames">ignoredMethodNames</a></td>
               <td>Specify names of methods to ignore.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>finalize</code></td>
               <td>5.4</td>
             </tr>
             <tr>
               <td><a id="illegalClassNames"/><a href="#illegalClassNames">illegalClassNames</a></td>
               <td>Specify throw class names to reject.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>Error, RuntimeException, Throwable, java.lang.Error, java.lang.RuntimeException, java.lang.Throwable</code></td>
               <td>4.0</td>
             </tr>
@@ -65,11 +90,11 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // violation below, 'Throwing 'RuntimeException' is not allowed'
+  // violation below 'Throwing 'RuntimeException' is not allowed'
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
-  void f3() throws Error {}  // violation, 'Throwing 'Error' is not allowed'
-  void f4() throws Throwable {} // violation, 'Throwing 'Throwable' is not allowed'
+  void f3() throws Error {}  // violation 'Throwing 'Error' is not allowed'
+  void f4() throws Throwable {} // violation 'Throwing 'Throwable' is not allowed'
 
   void f5() throws NullPointerException {}
   @Override
@@ -99,7 +124,7 @@ public class Example2 {
   void f2() throws Exception {}
   void f3() throws Error {}
   void f4() throws Throwable {}
-  // violation below, 'Throwing 'NullPointerException' is not allowed'
+  // violation below 'Throwing 'NullPointerException' is not allowed'
   void f5() throws NullPointerException {}
   @Override
   public String toString() throws Error {
@@ -126,8 +151,8 @@ public class Example3 {
 
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
-  void f3() throws Error {} // violation, 'Throwing 'Error' is not allowed'
-  void f4() throws Throwable {} // violation, 'Throwing 'Throwable' is not allowed'
+  void f3() throws Error {} // violation 'Throwing 'Error' is not allowed'
+  void f4() throws Throwable {} // violation 'Throwing 'Throwable' is not allowed'
 
   void f5() throws NullPointerException {}
   @Override
@@ -152,14 +177,14 @@ public class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  // violation below, 'Throwing 'RuntimeException' is not allowed'
+  // violation below 'Throwing 'RuntimeException' is not allowed'
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
-  void f3() throws Error {}  // violation, 'Throwing 'Error' is not allowed'
-  void f4() throws Throwable {} // violation, 'Throwing 'Throwable' is not allowed'
+  void f3() throws Error {}  // violation 'Throwing 'Error' is not allowed'
+  void f4() throws Throwable {} // violation 'Throwing 'Throwable' is not allowed'
 
   void f5() throws NullPointerException {}
-  @Override // violation below, 'Throwing 'Error' is not allowed'
+  @Override // violation below 'Throwing 'Error' is not allowed'
   public String toString() throws Error {
     String str = "";
     return str;

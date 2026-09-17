@@ -50,6 +50,17 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_CTOR),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputAvoidNoArgumentSuperConstructorCallCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokens() {
         final AvoidNoArgumentSuperConstructorCallCheck check =
             new AvoidNoArgumentSuperConstructorCallCheck();
@@ -66,4 +77,5 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
                 .that(check.getRequiredTokens())
                 .isEqualTo(expected);
     }
+
 }

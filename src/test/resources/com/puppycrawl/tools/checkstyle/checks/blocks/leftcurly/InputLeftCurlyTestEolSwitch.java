@@ -2,11 +2,11 @@
 LeftCurly
 option = (default)EOL
 ignoreEnums = (default)true
-tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
-         ENUM_DEF, INTERFACE_DEF, LAMBDA, LITERAL_CASE, LITERAL_CATCH, \
-         LITERAL_DEFAULT, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, \
-         LITERAL_IF, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, \
-         METHOD_DEF, OBJBLOCK, STATIC_INIT, RECORD_DEF, COMPACT_CTOR_DEF
+tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, \
+         INTERFACE_DEF, LAMBDA, LITERAL_CASE, LITERAL_CATCH, LITERAL_DEFAULT, \
+         LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, METHOD_DEF, \
+         OBJBLOCK, STATIC_INIT, RECORD_DEF, COMPACT_CTOR_DEF, SWITCH_RULE
 
 
 */
@@ -60,6 +60,16 @@ public class InputLeftCurlyTestEolSwitch {
             default:
                 // do nothing
         }
+    }
+
+    public void method() {
+        int expression = 2;
+        switch (expression)
+        { case 1 -> { Runnable result1 = () -> System.out.println("r1");  } }
+        // 3 violations above:
+        // ''{' at column 9 should be on the previous line'
+        // ''{' at column 9 should have line break after'
+        // ''{' at column 21 should have line break after'
     }
 
     public @interface SomeAnnotation {

@@ -8,6 +8,40 @@
   <body>
     <section name="IllegalTokenText">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalTokenText_Description">Description</a></li>
+          <li><a href="#IllegalTokenText_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalTokenText_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default properties</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Forbid String literals containing <code>"a href"</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Forbid String literals containing <code>"a href"</code> for the ignoreCase mode</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Forbid comment content containing <code>"a href"</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">With a custom violation message using the <code>message</code> property</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#IllegalTokenText_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Forbid string literal text blocks containing <code>"</code></a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Forbid leading zeros in an integer literal, other than zero and a hex literal</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalTokenText_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalTokenText_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalTokenText_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalTokenText_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalTokenText_Description">
         <div>
           Checks specified tokens text for matching an illegal pattern.
@@ -28,21 +62,21 @@
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Define the RegExp for illegal pattern.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^$</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="ignoreCase"/><a href="#ignoreCase">ignoreCase</a></td>
               <td>Control whether to ignore case when matching.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="message"/><a href="#message">message</a></td>
               <td>Define the message which is used to notify about violations; if empty then the default message is used.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code/></td>
               <td>3.2</td>
             </tr>
@@ -79,6 +113,36 @@
 
       <subsection name="Examples" id="IllegalTokenText_Examples">
         <p id="Example1-config">
+          To configure the check with default properties:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  public void myTest() {
+
+    String test  = "a href";
+
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
           To configure the check to forbid String literals containing
           <code>&quot;a href&quot;</code>:
         </p>
@@ -92,9 +156,9 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+public class Example2 {
   public void myTest() {
     // violation below 'Token text matches the illegal pattern 'a href'.'
     String test  = "a href";
@@ -112,7 +176,7 @@ public class Example1 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="Example3-config">
           To configure the check to forbid String literals containing
           <code>&quot;a href&quot;</code> for the ignoreCase mode:
         </p>
@@ -127,13 +191,48 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class Example3 {
   public void myTest() {
     // violation below 'Token text matches the illegal pattern 'a href'.'
     String test  = "a href";
     // violation below 'Token text matches the illegal pattern 'a href'.'
+    String test2 = "A href";
+    String link = "href";
+    final String quote = """
+            \"""";
+    int num1 = 0;
+    int num2 = 0x111;
+    int num3 = 0X111;
+    int num4 = 010;
+    long num5 = 0L;
+    long num6 = 010L;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to forbid comment content containing
+          <code>&quot;a href&quot;</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="COMMENT_CONTENT"/&gt;
+      &lt;property name="format" value="a href"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation first line 'Token text matches the illegal pattern 'a href''
+public class Example4 { // violation above 'Token text matches the illegal pattern'
+  public void myTest() {
+
+    String test  = "a href";
+
     String test2 = "A href";
     String link = "href";
     final String quote = """
@@ -181,8 +280,11 @@ public class Example5 {
     long num6 = 010L;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalTokenText_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to forbid string literal text blocks containing
           <code>&quot;</code>:
         </p>
@@ -196,9 +298,9 @@ public class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
   public void myTest() {
 
     String test  = "a href";
@@ -216,7 +318,7 @@ public class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           To configure the check to forbid leading zeros in an integer
           literal, other than zero and a hex literal:
         </p>
@@ -231,9 +333,9 @@ public class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
   public void myTest() {
 
     String test  = "a href";

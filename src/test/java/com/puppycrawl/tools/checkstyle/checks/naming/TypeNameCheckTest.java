@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAULT_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 

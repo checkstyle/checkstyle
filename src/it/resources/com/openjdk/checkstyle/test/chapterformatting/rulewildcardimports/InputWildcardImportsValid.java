@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewildcardimports;
 
+// violation first line 'Header mismatch'
+
 import java.util.*;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +12,8 @@ public class InputWildcardImportsValid {
 
     private final List<String> items;
 
-    public InputWildcardImportsValid(List<String> items) {
-        this.items = items;
+    public InputWildcardImportsValid(List<String> item) {
+        this.items = item;
     }
 
     public Map<String, String> getItems() {

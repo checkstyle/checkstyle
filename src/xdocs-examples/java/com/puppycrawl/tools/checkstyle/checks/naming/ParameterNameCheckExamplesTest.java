@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/parametername";
@@ -62,18 +63,18 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_INVALID_PATTERN, "v", "^[a-z][a-zA-Z0-9]+$"),
             "17:20: " + getCheckMessage(MSG_INVALID_PATTERN, "V2", "^[a-z][a-zA-Z0-9]+$"),
             "19:32: " + getCheckMessage(MSG_INVALID_PATTERN, "V3", "^[a-z][a-zA-Z0-9]+$"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testExample4() throws Exception {
         final String[] expected = {
             "26:20: Parameter name 'V2' must match pattern "
                 + "'^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'",
@@ -81,6 +82,7 @@ public class ParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSu
                 + "'^[a-z][a-z0-9][a-zA-Z0-9]*$'",
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
 }

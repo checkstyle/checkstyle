@@ -9,30 +9,34 @@ trailingArrayComma = ignore
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
+// violation 3 lines below 'Annotation style must be 'EXPANDED''
 @Deprecated
 @SomeArraysDiffStyle(pooches={DOGS.LEO})
-@SuppressWarnings({""}) // violation 'Annotation style must be 'EXPANDED''
+@SuppressWarnings({""})
 public class InputAnnotationUseStyleExpanded
 {
 
 }
 
+// violation 2 lines below 'Annotation style must be 'EXPANDED''
 @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={}, duh={"ignore"})
-@SuppressWarnings("") //compact_no_array // violation 'Annotation style must be 'EXPANDED''
+@SuppressWarnings("") //compact_no_array
 @Deprecated()
 class Dep4 {
 
 }
 
+// violation 3 lines below 'Annotation style must be 'EXPANDED''
 @Deprecated
 @SomeArraysDiffStyle(pooches={DOGS.LEO})
-@SuppressWarnings({""}) // violation 'Annotation style must be 'EXPANDED''
+@SuppressWarnings({""})
 enum SON4 {
 
+    // violation 4 lines below 'Annotation style must be 'EXPANDED''
     @Deprecated
     @SomeArraysDiffStyle(pooches={DOGS.LEO}, um={""}, duh={"ignore"})
     @APooch(dog=DOGS.HERBIE)
-    @Another("") //compact_no_array // violation 'Annotation style must be 'EXPANDED''
+    @Another("") //compact_no_array
     ETHAN
 }
 
@@ -45,9 +49,11 @@ enum DOGS4 {
 }
 
 @interface SomeArrays4 {
-    @Another("") //compact // violation 'Annotation style must be 'EXPANDED''
+    // violation below 'Annotation style must be 'EXPANDED''
+    @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // violation 'Annotation style must be 'EXPANDED''
+    // violation below 'Annotation style must be 'EXPANDED''
+    @Another({""}) //compact
     String[] duh() default {};
     @Another(value={""}) //expanded
     DOGS[] pooches();
@@ -64,12 +70,14 @@ enum E4 {
 
 @interface Another4 {
     String[] value() default {};
-    @Another({"foo", "bar"}) //compact style // violation 'Annotation style must be 'EXPANDED''
+    // violation below 'Annotation style must be 'EXPANDED''
+    @Another({"foo", "bar"}) //compact style
     String value1() default "";
 }
 
+// violation 2 lines below 'Annotation style must be 'EXPANDED''
 @SomeArraysDiffStyle(pooches = {})
-@Another({}) // violation 'Annotation style must be 'EXPANDED''
+@Another({})
 class Closing4 {
     static final String UN_U = "UN_U";
 
@@ -77,11 +85,13 @@ class Closing4 {
     int d;
 }
 
-@AnnotationWithAnnotationValue(@Another) // violation 'Annotation style must be 'EXPANDED''
+// violation below 'Annotation style must be 'EXPANDED''
+@AnnotationWithAnnotationValue(@Another)
 class Example13 {}
 @AnnotationWithAnnotationValue(value = @Another)
 class Example14 {}
-@AnnotationWithAnnotationValue(@Another()) // violation 'Annotation style must be 'EXPANDED''
+// violation below 'Annotation style must be 'EXPANDED''
+@AnnotationWithAnnotationValue(@Another())
 class Example15 {}
 @AnnotationWithAnnotationValue(value = @Another())
 class Example16 {}

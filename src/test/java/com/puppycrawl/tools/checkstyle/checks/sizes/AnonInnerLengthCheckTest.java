@@ -61,7 +61,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultOne() throws Exception {
         final String[] expected = {
-            "52:35: " + getCheckMessage(MSG_KEY, 21, 20),
+            "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLengthPartOne.java"), expected);
@@ -70,7 +70,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultTwo() throws Exception {
         final String[] expected = {
-            "21:35: " + getCheckMessage(MSG_KEY, 21, 20),
+            "22:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
 
         verifyWithInlineConfigParser(
@@ -80,7 +80,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonDefaultOne() throws Exception {
         final String[] expected = {
-            "52:35: " + getCheckMessage(MSG_KEY, 21, 6),
+            "53:35: " + getCheckMessage(MSG_KEY, 21, 6),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLength2PartOne.java"), expected);
@@ -89,7 +89,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNonDefaultTwo() throws Exception {
         final String[] expected = {
-            "22:35: " + getCheckMessage(MSG_KEY, 20, 6),
+            "23:35: " + getCheckMessage(MSG_KEY, 20, 6),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAnonInnerLength2PartTwo.java"), expected);

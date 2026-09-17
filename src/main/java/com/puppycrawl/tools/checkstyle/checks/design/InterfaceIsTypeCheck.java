@@ -58,6 +58,13 @@ public final class InterfaceIsTypeCheck
     /** Control whether marker interfaces like Serializable are allowed. */
     private boolean allowMarkerInterfaces = true;
 
+    /**
+     * Creates a new {@code InterfaceIsTypeCheck} instance.
+     */
+    public InterfaceIsTypeCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

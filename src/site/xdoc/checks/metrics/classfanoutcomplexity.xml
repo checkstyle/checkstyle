@@ -8,6 +8,39 @@
   <body>
     <section name="ClassFanOutComplexity">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ClassFanOutComplexity_Description">Description</a></li>
+          <li><a href="#ClassFanOutComplexity_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassFanOutComplexity_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a threshold of 2</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">With three excluded classes <code>HashMap</code>, <code>HashSet</code> and <code>Place3</code></a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Exclude classes with a regular expression <code>.*Reader$</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">With an excluded package <code>java.io</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ClassFanOutComplexity_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Also note, that checkstyle will not exclude classes within the same file even if it was listed in the <code>excludedPackages</code> parameter. For example, assuming the config is</a></li>
+            </ul>
+          </li>
+          <li><a href="#ClassFanOutComplexity_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ClassFanOutComplexity_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ClassFanOutComplexity_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ClassFanOutComplexity_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ClassFanOutComplexity_Description">
         <div>
           Checks the number of other types a given class/record/interface/enum/annotation
@@ -48,28 +81,28 @@
             <tr>
               <td><a id="excludeClassesRegexps"/><a href="#excludeClassesRegexps">excludeClassesRegexps</a></td>
               <td>Specify user-configured regular expressions to ignore classes.</td>
-              <td><a href="../../property_types.html#Pattern.5B.5D">Pattern[]</a></td>
+              <td><a href="../../property-types.html#Pattern.5B.5D">Pattern[]</a></td>
               <td><code>^$</code></td>
               <td>7.7</td>
             </tr>
             <tr>
               <td><a id="excludedClasses"/><a href="#excludedClasses">excludedClasses</a></td>
               <td>Specify user-configured class names to ignore.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception, Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List, Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt, OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double, float, int, long, short, var, void</code></td>
               <td>5.7</td>
             </tr>
             <tr>
               <td><a id="excludedPackages"/><a href="#excludedPackages">excludedPackages</a></td>
               <td>Specify user-configured packages to ignore.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.7</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>20</code></td>
               <td>3.4</td>
             </tr>
@@ -129,7 +162,7 @@ class Example1 {
           The check results in a violation in the following:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 { // violation, 'Class Fan-Out Complexity is 5 (max allowed is 2)'
+class Example2 { // violation 'Class Fan-Out Complexity is 5 (max allowed is 2)'
   Set set = new HashSet();   // ok, Set and HashSet are ignored
   Map map = new HashMap();   // ok, Map and HashMap are ignored
   Date date = new Date();
@@ -253,7 +286,9 @@ class Example5 {
   }
 }
 </code></pre></div>
-        <hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Use Cases" id="ClassFanOutComplexity_Use_Cases">
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -280,7 +315,7 @@ class Example5 {
           wildcard (e.g. <code>import java.math.*</code>). Instead of wildcard import you should
           use direct import (e.g. <code>import java.math.BigDecimal</code>).
         </p>
-        <p id="Example6-config">
+        <p id="UseCase1-config">
           Also note, that checkstyle will not exclude classes within the same file
           even if it was listed in the <code>excludedPackages</code> parameter. For example,
           assuming the config is
@@ -296,13 +331,13 @@ class Example5 {
 &lt;/module&gt;
 </code></pre></div>
         <p>
-          Example6:
+          UseCase1:
         </p>
-        <p id="Example6-code">
+        <p id="UseCase1-code">
           And the file is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
+class UseCase1 { // violation 'Class Fan-Out Complexity is 4 (max allowed is 3)'
   Set set = new HashSet();   // ok, Set and HashSet are ignored
   Map map = new HashMap();   // ok, Map and HashMap are ignored
   Date date = new Date();    // ok, java.util package is ignored

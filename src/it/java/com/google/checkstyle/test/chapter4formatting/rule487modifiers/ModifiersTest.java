@@ -59,4 +59,5 @@ public class ModifiersTest extends AbstractGoogleModuleTestSupport {
     public void testModifierOrderNonSealedFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedModifierOrderNonSealed.java"));
     }
+
 }

@@ -3,13 +3,14 @@ MissingNullCaseInSwitch
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 public class InputMissingNullCaseInSwitchWithRecordPattern {
 
     void testSwitchRule(Object obj) {
-        switch (obj) {   // violation, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
+        switch (obj) {
             case Rectangle(ColoredPoint _, ColoredPoint _) -> {}
             case ColoredPoint(int x, int _ ,String _) when x > 0 -> {}
             default -> {}
@@ -29,7 +30,8 @@ public class InputMissingNullCaseInSwitchWithRecordPattern {
     }
 
     void testSwitchStatments(Object obj) {
-        switch (obj) {  // violation, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
+        switch (obj) {
             case Rectangle(ColoredPoint(int _, int _, String _), ColoredPoint lc): {}break;
             default: {}
         }
@@ -48,7 +50,7 @@ public class InputMissingNullCaseInSwitchWithRecordPattern {
 
     int testSwitchExpression(Object obj, int x) {
         if (x == 1) {
-            // violation below, 'Switch using reference types should have a null case.'
+            // violation below 'Switch using reference types should have a null case.'
             return switch (obj) {
                 case Rectangle(ColoredPoint(int _, int _, String _), ColoredPoint lc) -> 1;
                 case ColoredPoint(int z, int y, String c) -> 2;
@@ -65,7 +67,7 @@ public class InputMissingNullCaseInSwitchWithRecordPattern {
     }
     int testSwitchExpression2(Object obj, int x) {
         if (x == 1) {
-            // violation below, 'Switch using reference types should have a null case.'
+            // violation below 'Switch using reference types should have a null case.'
             return switch (obj) {
                 case Rectangle(ColoredPoint(int _, int _, String _), ColoredPoint lc): yield 1;
                 case ColoredPoint(int z, int y, String c): yield 2;
@@ -86,7 +88,7 @@ public class InputMissingNullCaseInSwitchWithRecordPattern {
             case ColoredPoint(_,_,_) -> {}
             case null, default -> {}
         }
-        // violation below, 'Switch using reference types should have a null case.'
+        // violation below 'Switch using reference types should have a null case.'
         int x = switch (obj) {
             case ColoredPoint(_,_,_) -> 1;
             default -> 3;

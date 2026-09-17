@@ -8,6 +8,31 @@
   <body>
     <section name="UnusedLocalVariable">
       <p>Since Checkstyle 9.3</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnusedLocalVariable_Description">Description</a></li>
+          <li><a href="#UnusedLocalVariable_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnusedLocalVariable_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Violate variables named with a single underscore if they are not used</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Example with pattern variable</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Not allow unnamed variables with JDK 21 for pattern variable detection</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnusedLocalVariable_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnusedLocalVariable_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnusedLocalVariable_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnusedLocalVariable_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="UnusedLocalVariable_Description">
         <div>
           Checks that a local variable is declared and/or assigned, but not used.
@@ -36,14 +61,14 @@
               <td><a id="allowUnnamedVariables"/><a href="#allowUnnamedVariables">allowUnnamedVariables</a></td>
               <td>Allow variables named with a single underscore (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed variables</a> in Java 21+).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>10.18.0</td>
             </tr>
             <tr>
               <td><a id="jdkVersion"/><a href="#jdkVersion">jdkVersion</a></td>
-              <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release. Before JDK 22, named pattern variables in switch labels cannot be replaced with <code>_</code>, so violations on them are suppressed when jdkVersion is set below 22.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td>Set the JDK version that you are using. Old JDK version numbering is supported (e.g. 1.8 for Java 8) as well as just the major JDK version alone (e.g. 8) is supported. This property only considers features from officially released Java versions as supported. Features introduced in preview releases are not considered supported until they are included in a non-preview release. Before JDK 22, named pattern variables in switch labels and instanceof record Destructuring cannot be replaced with <code>_</code>, so violations on them are suppressed when jdkVersion is set below 22.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>22</code></td>
               <td>13.7.0</td>
             </tr>
@@ -69,7 +94,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   {
-    int k = 12; // violation, assign and update but never use 'k'
+    int k = 12; // violation 'Unused named local variable 'k'.'
     k++;
   }
 
@@ -79,20 +104,20 @@ public class Example1 {
   }
 
   void method(int b) {
-    int[] arr = {1, 2, 3};  // violation, unused named local variable 'arr'
+    int[] arr = {1, 2, 3};  // violation 'Unused named local variable 'arr'.'
     int[] anotherArr = {1}; // ok, 'anotherArr' is accessed
     anotherArr[0] = 4;
   }
 
   String convertValue(String newValue) {
-    String s = newValue.toLowerCase(); // violation, unused named local variable 's'
+    String s = newValue.toLowerCase(); // violation 'Unused named local variable 's''
     String _ = newValue.toLowerCase(); // ok, '_' is unnamed variable
     return newValue.toLowerCase();
   }
 
   void read() throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    String s; // violation, unused named local variable 's'
+    String s; // violation 'Unused named local variable 's'.'
     while ((s = reader.readLine()) != null) {}
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader("abc.txt"))) {}
@@ -102,7 +127,7 @@ public class Example1 {
 
   void loops() {
     int j = 12;
-    for (int i = 0; j &lt; 11; i++)  // violation, unused named local variable 'i'
+    for (int i = 0; j &lt; 11; i++)  // violation 'Unused named local variable 'i'.'
       for (int p = 0; j &lt; 11; p++) p /= 2;    // ok, 'p' is used
     for (Integer _ : new  int[0]) { } // ok, '_' is unnamed variable
   }
@@ -132,7 +157,7 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   {
-    int k = 12; // violation, assign and update but never use 'k'
+    int k = 12; // violation 'Unused local variable 'k'.'
     k++;
   }
 
@@ -142,20 +167,20 @@ public class Example2 {
   }
 
   void method(int b) {
-    int[] arr = {1, 2, 3};  // violation, unused local variable 'arr'
+    int[] arr = {1, 2, 3};  // violation 'Unused local variable 'arr'.'
     int[] anotherArr = {1}; // ok, 'anotherArr' is accessed
     anotherArr[0] = 4;
   }
 
   String convertValue(String newValue) {
-    String s = newValue.toLowerCase(); // violation, unused local variable 's'
-    String _ = newValue.toLowerCase(); // violation, unused local variable '_'
+    String s = newValue.toLowerCase(); // violation 'Unused local variable 's'.'
+    String _ = newValue.toLowerCase(); // violation 'Unused local variable '_'.'
     return newValue.toLowerCase();
   }
 
   void read() throws IOException {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    String s; // violation, unused local variable 's'
+    String s; // violation 'Unused local variable 's'.'
     while ((s = reader.readLine()) != null) {}
     try (BufferedReader reader1 = // ok, 'reader1' is a resource
                  new BufferedReader(new FileReader("abc.txt"))) {}
@@ -165,9 +190,9 @@ public class Example2 {
 
   void loops() {
     int j = 12;
-    for (int i = 0; j &lt; 11; i++)  // violation, unused local variable 'i'
+    for (int i = 0; j &lt; 11; i++)  // violation 'Unused local variable 'i'.'
       for (int p = 0; j &lt; 11; p++) p /= 2;   // ok, 'p' is used
-    for (Integer _ : new  int[0]) { } // violation, unused local variable '_'
+    for (Integer _ : new  int[0]) { } // violation 'Unused local variable '_'.'
   }
 
   void lambdas() {
@@ -213,7 +238,8 @@ public class Example3 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
-           Example:
+           To configure the check to not allow unnamed variables with JDK 21
+           for pattern variable detection:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -234,7 +260,7 @@ public class Example4 {
   static final class Circle extends Shape {}
   static final class Rect extends Shape {}
   void patternVariables(Object obj, Shape s) {
-    if (obj instanceof String str) { // violation, unused local variable 'str'
+    if (obj instanceof String str) { // violation 'Unused local variable 'str'.'
       System.out.println("string");
     }
     if (obj instanceof String t) { // ok, 't' is used

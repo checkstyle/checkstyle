@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/RecordComponentNumberCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/RecordComponentNumberCheck.java"/>
+      </macro>
       <subsection name="Description" id="RecordComponentNumber_Description">
         <macro name="description">
             <param name="modulePath"

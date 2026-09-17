@@ -29,6 +29,7 @@
                includes="**/*"
                excludes="**/it/resources/**/*,**/it/resources-noncompilable/**/*,
                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,
+               ,**/test/resources-with-javadoc-error/**/*,
                ,**/xdocs-examples/resources/**/*,**/xdocs-examples/resources-noncompilable/**/*,
                ,**/gen/**"/>
       <formatter type="plain"/>

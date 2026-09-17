@@ -19,7 +19,8 @@ public class InputRedundantModifierFinalInEnumStaticMethods {
          };
 
         public void someMethodToOverride() { }
-        public static final void someStaticMethod() { }    // violation
+        // violation below 'Redundant 'final' modifier.'
+        public static final void someStaticMethod() { }
         public static void someMethod() { }
     }
 }

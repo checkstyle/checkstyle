@@ -2,7 +2,7 @@
 IllegalImport
 illegalPkgs = java\\.util
 illegalClasses = ^java\\.awt\\..*
-illegalModules = (default)
+illegalModules = (default)(null)
 regexp = true
 
 

@@ -44,12 +44,24 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * compiler does not require the {@code static} modifier. This check provides the ability to enforce
  * that the {@code static} modifier is explicitly coded and not implicitly added by the compiler.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public final class Person {
  *   enum Age {  // violation
  *     CHILD, ADULT
  *   }
  * }
+ * }
+ *
+ * <p>
+ * Enum, interface, and record declarations in a compact source file are members of the
+ * implicitly declared class, so they are also implicitly {@code static}.
+ * </p>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * enum Age {  // violation
+ *   CHILD, ADULT
+ * }
+ *
+ * void main() {}
  * </code></pre></div>
  *
  * <p>
@@ -90,6 +102,13 @@ public class ClassMemberImpliedModifierCheck
      * on nested records in classes and records.
      */
     private boolean violateImpliedStaticOnNestedRecord = true;
+
+    /**
+     * Creates a new {@code ClassMemberImpliedModifierCheck} instance.
+     */
+    public ClassMemberImpliedModifierCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to control whether to enforce that {@code static} is explicitly coded
@@ -178,16 +197,19 @@ public class ClassMemberImpliedModifierCheck
     }
 
     /**
-     * Checks if ast is in a class, enum, anon class or record block.
+     * Checks if ast is in a class, enum, anon class or record block, including the
+     * implicitly declared class of a compact source file.
      *
      * @param ast the current ast
-     * @return true if ast is in a class, enum, anon class or record
+     * @return true if ast is in a class, enum, anon class or record, including
+     *         the implicitly declared class of a compact source file
      */
     private static boolean isInTypeBlock(DetailAST ast) {
         return ScopeUtil.isInScope(ast, Scope.ANONINNER)
                 || ScopeUtil.isInClassBlock(ast)
                 || ScopeUtil.isInEnumBlock(ast)
-                || ScopeUtil.isInRecordBlock(ast);
+                || ScopeUtil.isInRecordBlock(ast)
+                || ast.getParent().getType() == TokenTypes.COMPACT_COMPILATION_UNIT;
     }
 
 }

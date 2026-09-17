@@ -8,6 +8,31 @@
   <body>
     <section name="RegexpHeader">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RegexpHeader_Description">Description</a></li>
+          <li><a href="#RegexpHeader_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RegexpHeader_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-raw" class="toc-sublink">Such that no violations arise. Default values of properties are used.</a></li>
+              <li><a href="#Example2-raw" class="toc-sublink">Use header file <code>"java.header"</code> and <code>10</code> and <code>13</code> multi-lines</a></li>
+              <li><a href="#Example3-raw" class="toc-sublink">Verify that each file starts with the header</a></li>
+              <li><a href="#Example4-raw" class="toc-sublink">For regex containing <code>".*"</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#RegexpHeader_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RegexpHeader_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RegexpHeader_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RegexpHeader_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RegexpHeader_Description">
         <div>
           Checks the header of a source file against a header that contains a
@@ -29,35 +54,35 @@
             <tr>
               <td><a id="charset"/><a href="#charset">charset</a></td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>the charset property of the parent &lt;a href=&quot;https://checkstyle.org/config.html#Checker&quot;&gt;Checker&lt;/a&gt; module</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="header"/><a href="#header">header</a></td>
               <td>Define the required header specified inline. Individual header lines must be separated by the string <code>"\n"</code> (even on platforms with a different line separator). For header lines containing <code>"\n\n"</code> checkstyle will forcefully expect an empty line to exist. See examples below. Regular expressions must not span multiple lines.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="headerFile"/><a href="#headerFile">headerFile</a></td>
               <td>Specify the name of the file containing the required header.</td>
-              <td><a href="../../property_types.html#URI">URI</a></td>
+              <td><a href="../../property-types.html#URI">URI</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="multiLines"/><a href="#multiLines">multiLines</a></td>
               <td>Specify the line numbers to repeat (zero or more times).</td>
-              <td><a href="../../property_types.html#int.5B.5D">int[]</a></td>
+              <td><a href="../../property-types.html#int.5B.5D">int[]</a></td>
               <td><code>{}</code></td>
               <td>3.4</td>
             </tr>

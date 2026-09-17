@@ -25,11 +25,11 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
@@ -48,8 +48,8 @@ public class JavadocVariableCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
     /**
      * Specify the set of access modifiers used to determine which fields should be checked.
      *  This includes both explicitly declared modifiers and implicit ones, such as package-private
@@ -68,6 +68,13 @@ public class JavadocVariableCheck
 
     /** Specify the regexp to define variable names to ignore. */
     private Pattern ignoreNamePattern;
+
+    /**
+     * Creates a new {@code JavadocVariableCheck} instance.
+     */
+    public JavadocVariableCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the set of access modifiers used to determine which fields should be
@@ -97,6 +104,11 @@ public class JavadocVariableCheck
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
     }
@@ -120,17 +132,14 @@ public class JavadocVariableCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/19147
     @Override
-    @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
-            final FileContents contents = getFileContents();
-            final TextBlock textBlock =
-                contents.getJavadocBefore(ast.getLineNo());
-
-            if (textBlock == null) {
-                log(ast, MSG_JAVADOC_MISSING);
+            final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
+            if (blockCommentNode == null) {
+                final String name = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT))
+                    .getText();
+                log(ast, MSG_JAVADOC_MISSING, name);
             }
         }
     }
@@ -142,7 +151,8 @@ public class JavadocVariableCheck
      * @return true if the variable name of ast is in the ignore list.
      */
     private boolean isIgnored(DetailAST ast) {
-        final String name = ast.findFirstToken(TokenTypes.IDENT).getText();
+        final String name = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT))
+            .getText();
         return ignoreNamePattern != null && ignoreNamePattern.matcher(name).matches()
             || "serialVersionUID".equals(name);
     }
@@ -202,4 +212,5 @@ public class JavadocVariableCheck
 
         return CheckUtil.getAccessModifierFromModifiersToken(selectedAst);
     }
+
 }

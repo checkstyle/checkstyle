@@ -14,15 +14,15 @@ public class InputUnnecessaryNullCheckWithInstanceOfLambda {
     private final List<Object> objects = new ArrayList<>();
     public void simpleLambdas() {
         objects.forEach(obj -> {
-            if (obj != null && obj instanceof String) { // violation, 'Unnecessary nullity check'
+            if (obj != null && obj instanceof String) { // violation 'Unnecessary nullity check'
                 String str = (String) obj;
             }
         });
 
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         Predicate<Object> isString = obj -> obj != null && obj instanceof String;
 
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         objects.removeIf(obj -> obj != null && obj instanceof Integer);
     }
     public void validLambdas() {

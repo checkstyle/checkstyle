@@ -20,11 +20,15 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck.MSG_INAPPROPRIATE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_EXPECTED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck.MSG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -32,13 +36,21 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.LineColumn;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.InappropriateJavadocBlockTagsOnPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
 public class JavadocUtilTest extends AbstractModuleTestSupport {
 
@@ -57,7 +69,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 4, text[3].length());
         final JavadocTags allTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
+            getJavadocTags(comment, JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
             .that(allTags.validTags())
             .hasSize(5);
@@ -71,7 +83,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 4, text[1].length());
         final JavadocTags allTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
+            getJavadocTags(comment, JavadocTagType.ALL);
         assertWithMessage("Invalid valid tags size")
             .that(allTags.validTags())
             .hasSize(1);
@@ -85,9 +97,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 2, text[1].length());
         final JavadocTags blockTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.BLOCK);
+            getJavadocTags(comment, JavadocTagType.BLOCK);
         final JavadocTags inlineTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.INLINE);
+            getJavadocTags(comment, JavadocTagType.INLINE);
         assertWithMessage("Invalid valid tags size")
             .that(blockTags.validTags())
             .hasSize(1);
@@ -102,8 +114,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             "/** {@link List link text }",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.ALL).validTags();
         assertWithMessage("Invalid first arg")
             .that(tags.getFirst().getFirstArg())
             .isEqualTo("List link text");
@@ -115,8 +127,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             "/** {@link List#add(Object)}",
         };
         final Comment comment = new Comment(text, 1, 1, text[0].length());
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.ALL).validTags();
         assertWithMessage("Invalid first arg")
             .that(tags.getFirst().getFirstArg())
             .isEqualTo("List#add(Object)");
@@ -130,17 +142,17 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 2, text[1].length());
 
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.ALL).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.ALL).validTags();
 
         assertWithMessage("Invalid tags size")
             .that(tags)
             .hasSize(2);
 
         final JavadocTag seeTag = tags.getFirst();
-        assertWithMessage("Invalid tag name")
-            .that(seeTag.getTagName())
-            .isEqualTo(JavadocTagInfo.SEE.getName());
+        assertWithMessage("Invalid first argument")
+            .that(seeTag.getFirstArg())
+            .isEqualTo("elsewhere");
         assertWithMessage("Invalid line number")
             .that(seeTag.getLineNo())
             .isEqualTo(1);
@@ -149,9 +161,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
             .isEqualTo(4);
 
         final JavadocTag linkTag = tags.get(1);
-        assertWithMessage("Invalid tag name")
-            .that(linkTag.getTagName())
-            .isEqualTo(JavadocTagInfo.LINK.getName());
+        assertWithMessage("Invalid first argument")
+            .that(linkTag.getFirstArg())
+            .isEqualTo("Name value");
         assertWithMessage("Invalid line number")
             .that(linkTag.getLineNo())
             .isEqualTo(2);
@@ -165,8 +177,8 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         final String[] text = {"/** Also {@link Name value} */"};
         final Comment comment = new Comment(text, 1, 0, text[0].length());
 
-        final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
-            comment, JavadocUtil.JavadocTagType.INLINE).validTags();
+        final List<JavadocTag> tags =
+            getJavadocTags(comment, JavadocTagType.INLINE).validTags();
 
         assertWithMessage("Invalid tags size")
             .that(tags)
@@ -190,7 +202,7 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         };
         final Comment comment = new Comment(text, 1, 3, text[2].length());
         final JavadocTags allTags =
-            JavadocUtil.getJavadocTags(comment, JavadocUtil.JavadocTagType.ALL);
+            getJavadocTags(comment, JavadocTagType.ALL);
         assertWithMessage("Unexpected invalid tags size")
             .that(allTags.invalidTags())
             .hasSize(2);
@@ -340,6 +352,53 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testGetAllNodesOfTypeForNoChildren() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+
+        final List<DetailNode> nodes = JavadocUtil.getAllNodesOfType(parent,
+                JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid nodes")
+            .that(nodes)
+            .isEmpty();
+    }
+
+    @Test
+    public void testGetAllNodesOfTypeForNoMatches() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        parent.addChild(createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME));
+        parent.addChild(createJavadocNode(JavadocCommentsTokenTypes.EQUALS));
+
+        final List<DetailNode> nodes = JavadocUtil.getAllNodesOfType(parent,
+                JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid nodes")
+            .that(nodes)
+            .isEmpty();
+    }
+
+    @Test
+    public void testGetAllNodesOfType() {
+        final JavadocNodeImpl parent = new JavadocNodeImpl();
+        final JavadocNodeImpl firstTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl tagNameNode = createJavadocNode(JavadocCommentsTokenTypes.TAG_NAME);
+        final JavadocNodeImpl secondTextNode = createJavadocNode(JavadocCommentsTokenTypes.TEXT);
+        tagNameNode.addChild(createJavadocNode(JavadocCommentsTokenTypes.TEXT));
+
+        parent.addChild(firstTextNode);
+        parent.addChild(tagNameNode);
+        parent.addChild(secondTextNode);
+
+        final List<DetailNode> nodes = JavadocUtil.getAllNodesOfType(parent,
+                JavadocCommentsTokenTypes.TEXT);
+
+        assertWithMessage("Invalid nodes")
+            .that(nodes)
+            .containsExactly(firstTextNode, secondTextNode)
+            .inOrder();
+    }
+
+    @Test
     public void testGetJavadocCommentContent() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         final DetailAstImpl javadoc = new DetailAstImpl();
@@ -394,9 +453,15 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         assertWithMessage("%s first arg", message)
             .that(actual.getFirstArg())
             .isEqualTo(expected.getFirstArg());
-        assertWithMessage("%s tag name", message)
-            .that(actual.getTagName())
-            .isEqualTo(expected.getTagName());
+        assertWithMessage("%s string", message)
+            .that(actual.toString())
+            .isEqualTo(expected.toString());
+    }
+
+    private static JavadocNodeImpl createJavadocNode(int tokenType) {
+        final JavadocNodeImpl result = new JavadocNodeImpl();
+        result.setType(tokenType);
+        return result;
     }
 
     @Test
@@ -460,4 +525,137 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilCompactCtorDefComments.java"), expected);
     }
+
+    @Test
+    public void testGetAttachedJavadocCommentForVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "17:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "modifierPath"),
+            "20:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "annotationPath"),
+            "24:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "noJavadoc"),
+            "32:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "initializerCommentOnly"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilVariableDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForEnumConstantDefinitions()
+            throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "BODY"),
+            "28:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "NO_JAVADOC"),
+            "31:5: " + getCheckMessage(JavadocVariableCheck.class,
+                    MSG_JAVADOC_MISSING, "REAL"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilEnumConstantDefComments.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageDirectSibling() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnPackageCheck.class,
+                    MSG_INAPPROPRIATE_TAG, "return", "package"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilPackageDirectSibling.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageNoComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilPackageNoComment.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageNonJavadocComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilPackageNonJavadocComment.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageNonJavadocComment2() throws Exception {
+        final String[] expected = {
+            "7:1: " + getCheckMessage(MissingJavadocPackageCheck.class, MSG_PKG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("nonjavadoc/package-info.java"), expected);
+    }
+
+    @Test
+    public void testGetAttachedJavadocCommentForPackageViaAnnotation() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(InappropriateJavadocBlockTagsOnPackageCheck.class,
+                    MSG_INAPPROPRIATE_TAG, "return", "package"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("annotation/package-info.java"), expected);
+    }
+
+    @Test
+    public void testMissingJavadocPackage() throws Exception {
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MissingJavadocPackageCheck.class, MSG_PKG_JAVADOC_MISSING),
+        };
+        verifyWithInlineConfigParser(
+                getPath("annotationnojavadoc/package-info.java"), expected);
+    }
+
+    private static JavadocTags getJavadocTags(TextBlock textBlock, JavadocTagType tagType) {
+        final String[] text = textBlock.getText();
+        final List<TagInfo> tags = new ArrayList<>();
+        final boolean isBlockTags = tagType == JavadocTagType.ALL
+                || tagType == JavadocTagType.BLOCK;
+        if (isBlockTags) {
+            tags.addAll(BlockTagUtil.extractBlockTags(text));
+        }
+        final boolean isInlineTags = tagType == JavadocTagType.ALL
+                || tagType == JavadocTagType.INLINE;
+        if (isInlineTags) {
+            tags.addAll(InlineTagUtil.extractInlineTags(text));
+        }
+
+        final List<JavadocTag> validTags = new ArrayList<>();
+        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
+
+        for (TagInfo tag : tags) {
+            final LineColumn position = tag.getPosition();
+            final int col = position.getColumn();
+            // Add the starting line of the comment to the line number to get the actual line number
+            // in the source.
+            // Lines are one-indexed, so need an off-by-one correction.
+            final int line = textBlock.getStartLineNo() + position.getLine() - 1;
+
+            final String tagName = tag.getName();
+            try {
+                validTags.add(new JavadocTag(line, col, tagName, tag.getValue()));
+            }
+            catch (IllegalArgumentException ignored) {
+                invalidTags.add(new InvalidJavadocTag(line, col, tagName));
+            }
+        }
+
+        return new JavadocTags(List.copyOf(validTags), List.copyOf(invalidTags));
+    }
+
+    private record JavadocTags(List<JavadocTag> validTags,
+                               List<InvalidJavadocTag> invalidTags) {
+    }
+
+    private enum JavadocTagType {
+
+        BLOCK,
+        INLINE,
+        ALL,
+
+    }
+
 }

@@ -32,4 +32,5 @@ public class CodePointUtilTest {
                 .that(isUtilsClassHasPrivateConstructor(CodePointUtil.class))
                 .isTrue();
     }
+
 }

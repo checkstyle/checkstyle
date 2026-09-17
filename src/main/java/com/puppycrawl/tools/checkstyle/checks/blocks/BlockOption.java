@@ -29,11 +29,11 @@ public enum BlockOption {
     /**
      * Represents the policy that there is some text in the block. For example:
      *
-     * <pre>
+     * {@snippet lang="text" :
      * catch (Exception ex) {
      *     // This is a bad coding practice
      * }
-     * </pre>
+     * }
      */
     TEXT,
 
@@ -41,11 +41,11 @@ public enum BlockOption {
      * Represents the policy that there is a statement in the block. For
      * example:
      *
-     * <pre>
+     * {@snippet lang="text" :
      * finally {
      *     lock.release();
      * }
-     * </pre>
+     * }
      */
     STATEMENT,
 

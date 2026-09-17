@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -14,24 +14,24 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
  */
 class InputJavadocVariableInner
 {
-    // Ignore - two violations
+
     class InnerInner2
     {
         // Ignore
-        public int fData; // violation, 'Missing a Javadoc comment'
+        public int fData; // violation 'Missing a Javadoc comment'
     }
 
-    // Ignore - 2 violations
+
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc"; // violation, 'Missing a Javadoc comment'
+        String data = "zxzc"; // violation 'Missing a Javadoc comment'
 
         // Ignore
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData; // violation, 'Missing a Javadoc comment'
+            public int rData; // violation 'Missing a Javadoc comment'
 
             /** needs to be made private unless allowProtected. */
             protected int protectedVariable;

@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforinitializerpad;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   int i = 0;
   void example() {
@@ -22,4 +22,4 @@ class Example1 {
           ; i < 2; i++ );
   }
 }
-// xdoc section -- end
+// xdoc section - end

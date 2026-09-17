@@ -5,7 +5,7 @@
 
 <import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol">
   <subpackage name="gui" strategyOnMismatch="allowed">
-    <file name=".*(Panel|View|Example).*" regex="true">
+    <file name=".*(Panel|View|UseCase).*" regex="true">
       <disallow pkg="com.mycompany.dao"/>
       <disallow pkg=".*\.sql" regex="true"/>
     </file>

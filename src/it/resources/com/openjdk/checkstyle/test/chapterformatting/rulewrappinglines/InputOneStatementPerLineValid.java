@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewrappinglines;
 
+// violation first line 'Header mismatch'
+
 /**
  * Test input for valid one statement per line.
  */
@@ -56,7 +58,6 @@ public final class InputOneStatementPerLineValid {
 
         do {
             two++;
-        }
-        while (two < 2);
+        } while (two < 2);
     }
 }

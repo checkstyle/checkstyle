@@ -49,7 +49,14 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  *
  * <p>
- * Note: The check assumes that there is no unreachable code in the {@code case}.
+ * Note:
+ * The check assumes that there is no unreachable code in the {@code case}.
+ * </p>
+ *
+ * <p>
+ *  A {@code case} whose code ends in an infinite loop is not flagged, e.g.
+ * {@code while (true) {}}, {@code for (;;) {}}, {@code for (;true;) {}}
+ * or {@code do {} while (true);}.
  * </p>
  *
  * @since 3.4
@@ -77,6 +84,13 @@ public class FallThroughCheck extends AbstractCheck {
      * the warning about a fall through.
      */
     private Pattern reliefPattern = Pattern.compile("falls?[ -]?thr(u|ough)");
+
+    /**
+     * Creates a new {@code FallThroughCheck} instance.
+     */
+    public FallThroughCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

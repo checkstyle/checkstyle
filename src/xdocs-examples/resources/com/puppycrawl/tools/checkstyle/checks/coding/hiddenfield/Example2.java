@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.hiddenfield;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 
   private String field;
@@ -18,7 +18,7 @@ class Example2 {
   Example2(String testField) { // ok, because PARAMETER_DEF not configured
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;
@@ -30,4 +30,4 @@ class Example2 {
     abstract int method(String field); // ok, because PARAMETER_DEF not configured
   }
 }
-// xdoc section -- end
+// xdoc section - end

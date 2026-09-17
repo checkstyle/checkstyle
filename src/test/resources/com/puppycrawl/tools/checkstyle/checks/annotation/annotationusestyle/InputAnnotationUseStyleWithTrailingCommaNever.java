@@ -2,7 +2,7 @@
 AnnotationUseStyle
 elementStyle = ignore
 closingParens = ignore
-trailingArrayComma = NEVER
+trailingArrayComma = (default)NEVER
 
 
 */
@@ -33,14 +33,18 @@ public class InputAnnotationUseStyleWithTrailingCommaNever
             }
         };
     }
-
-    @Test4(value={"foo",}, more={"bar",}) // 2 violations
+    // 2 violations 3 lines below:
+    // 'Annotation array values cannot contain trailing comma.'
+    // 'Annotation array values cannot contain trailing comma.'
+    @Test4(value={"foo",}, more={"bar",})
     /**
 
     */
     enum P {
-
-        @Pooches4(tokens={Pooches4.class,},other={1,}) // 2 violations
+        // 2 violations 3 lines below:
+        // 'Annotation array values cannot contain trailing comma.'
+        // 'Annotation array values cannot contain trailing comma.'
+        @Pooches4(tokens={Pooches4.class,},other={1,})
         L,
 
         /**

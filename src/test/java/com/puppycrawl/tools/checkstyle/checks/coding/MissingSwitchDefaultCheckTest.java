@@ -126,4 +126,16 @@ public class MissingSwitchDefaultCheckTest
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "29:5: " + getCheckMessage(MSG_KEY),
+            "74:9: " + getCheckMessage(MSG_KEY),
+            "82:13: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingSwitchDefaultCompactSourceFile.java"),
+                expected);
+    }
+
 }

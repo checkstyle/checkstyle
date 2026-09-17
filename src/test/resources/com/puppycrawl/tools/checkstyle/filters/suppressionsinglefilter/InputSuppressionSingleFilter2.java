@@ -21,6 +21,6 @@ columns = (default)(null)
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 
-public class InputSuppressionSingleFilter2 { // filtered violation below 'illegal pattern'
+public class InputSuppressionSingleFilter2 { // violation below 'illegal pattern'
     // TODO
 }

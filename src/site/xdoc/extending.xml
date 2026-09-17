@@ -16,11 +16,11 @@
       </p>
 
       <ul>
-        <li><a href="writingchecks.html">Writing Checks</a>;</li>
-        <li><a href="writingjavadocchecks.html">Writing Javadoc Checks</a>;</li>
-        <li><a href="writingfilters.html">Writing Filters</a>;</li>
-        <li><a href="writingfilefilters.html">Writing File Filters</a>;</li>
-        <li><a href="writinglisteners.html">Writing Listeners</a>.</li>
+        <li><a href="writing-checks.html">Writing Checks</a>;</li>
+        <li><a href="writing-javadoc-checks.html">Writing Javadoc Checks</a>;</li>
+        <li><a href="writing-filters.html">Writing Filters</a>;</li>
+        <li><a href="writing-filefilters.html">Writing File Filters</a>;</li>
+        <li><a href="writing-listeners.html">Writing Listeners</a>.</li>
       </ul>
     </section>
   </body>

@@ -424,4 +424,5 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         // Content header is conflicting with Input inline header
         verify(checkConfig, path, expected);
     }
+
 }

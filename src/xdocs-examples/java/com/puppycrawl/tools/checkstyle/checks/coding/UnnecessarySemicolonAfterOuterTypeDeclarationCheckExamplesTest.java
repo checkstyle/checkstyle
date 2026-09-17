@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks"
@@ -38,8 +39,6 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckExamplesTest
         final String[] expected = {
             "17:2: " + getCheckMessage(MSG_SEMI),
             "21:2: " + getCheckMessage(MSG_SEMI),
-            "25:2: " + getCheckMessage(MSG_SEMI),
-            "29:2: " + getCheckMessage(MSG_SEMI),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -52,4 +51,5 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

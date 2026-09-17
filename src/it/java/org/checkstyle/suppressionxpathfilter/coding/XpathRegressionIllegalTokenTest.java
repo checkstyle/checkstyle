@@ -116,4 +116,5 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -2,19 +2,19 @@
 CyclomaticComplexity
 max = 0
 switchBlockAsSingleDecisionPoint = (default)false
-tokens = (default)LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, \
-         LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, LITERAL_WHEN
-
+tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, LITERAL_WHILE, LITERAL_DO, \
+           LITERAL_FOR, LITERAL_IF, \
+         LITERAL_SWITCH, LITERAL_CASE, LITERAL_CATCH, QUESTION, LAND, LOR, COMPACT_CTOR_DEF, LITER \
+          AL_WHEN
 
 */
-
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
 public class InputCyclomaticComplexityRecords2 {
 
     record MyRecord2(boolean t, boolean f) {
-        public MyRecord2 { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
+        public MyRecord2 { // violation 'Cyclomatic Complexity is 11 (max allowed is 0).'
             int a = 1;
             int b = 1;
             int c = 1;
@@ -46,7 +46,7 @@ public class InputCyclomaticComplexityRecords2 {
     }
 
     record MyRecord4(boolean a, boolean b) {
-        public Record foo() { // violation, 'Cyclomatic Complexity is 11 (max allowed is 0).'
+        public Record foo() { // violation 'Cyclomatic Complexity is 11 (max allowed is 0).'
             int a = 1;
             int b = 1;
             int c = 1;

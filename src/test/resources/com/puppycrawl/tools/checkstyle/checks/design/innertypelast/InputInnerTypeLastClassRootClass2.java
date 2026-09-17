@@ -21,6 +21,7 @@ enum InputInnerTypeLastClassRootClass2a
     {
     }
 
+    // violation below 'Init blocks, constructors, fields and methods should be before inner types.'
     private int mFoo = 0;
 
     class AsyncProcess {

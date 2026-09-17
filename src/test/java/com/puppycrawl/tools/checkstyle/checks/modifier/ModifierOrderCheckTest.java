@@ -176,4 +176,15 @@ public class ModifierOrderCheckTest
                 expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "13:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "20:7: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@Deprecated"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputModifierOrderCompactSourceFile.java"),
+                expected);
+    }
+
 }

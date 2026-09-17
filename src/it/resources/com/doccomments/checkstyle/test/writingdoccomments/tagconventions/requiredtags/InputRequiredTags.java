@@ -5,6 +5,7 @@ package com.doccomments.checkstyle.test.writingdoccomments.tagconventions.requir
  */
 public class InputRequiredTags {
 
+    /** Stored name. */
     private final String name;
 
     /**
@@ -49,6 +50,7 @@ public class InputRequiredTags {
      *
      * @param value value to validate
      * @return validated value
+     * @throws IllegalArgumentException if value is negative
      */
     public int validate(int value) throws IllegalArgumentException {
         if (value < 0) {

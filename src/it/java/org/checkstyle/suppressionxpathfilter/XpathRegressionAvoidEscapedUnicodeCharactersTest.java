@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
 public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXpathTestSupport {
+
     private final String checkName = AvoidEscapedUnicodeCharactersCheck.class.getSimpleName();
 
     @Override
@@ -185,4 +186,5 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

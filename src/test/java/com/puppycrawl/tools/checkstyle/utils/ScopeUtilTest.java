@@ -26,12 +26,19 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ScopeUtilTest {
+public class ScopeUtilTest
+    extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/scopeutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -114,6 +121,9 @@ public class ScopeUtilTest {
                 .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.CLASS_DEF)))
                 .isFalse();
         assertWithMessage("invalid result")
+                .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.METHOD_DEF)))
+                .isFalse();
+        assertWithMessage("invalid result")
                 .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.ASSIGN, TokenTypes.VARIABLE_DEF)))
                 .isFalse();
         assertWithMessage("invalid result")
@@ -132,6 +142,13 @@ public class ScopeUtilTest {
         assertWithMessage("invalid result")
                 .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.LAMBDA, TokenTypes.ASSIGN)))
                 .isTrue();
+    }
+
+    @Test
+    public void testIsInCodeBlockWithCompactCtor() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputScopeUtilJavadocVariableCompactCtor.java"), expected);
     }
 
     @Test
@@ -328,6 +345,16 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testGetScopeOfEnumConstantIsPublic() {
+        final Scope scope = ScopeUtil.getScope(
+                getNode(TokenTypes.ENUM_DEF, TokenTypes.OBJBLOCK, TokenTypes.ENUM_CONSTANT_DEF));
+
+        assertWithMessage("Invalid enum constant scope")
+                .that(scope)
+                .isEqualTo(Scope.PUBLIC);
+    }
+
+    @Test
     public void testIsInInterfaceBlock() {
         final DetailAST ast = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS);
@@ -380,9 +407,9 @@ public class ScopeUtilTest {
     private static DetailAstImpl getNode(int... nodeTypes) {
         DetailAstImpl ast = new DetailAstImpl();
         ast.setType(nodeTypes[0]);
-        for (int i = 1; i < nodeTypes.length; i++) {
+        for (int index = 1; index < nodeTypes.length; index++) {
             final DetailAstImpl astChild = new DetailAstImpl();
-            astChild.setType(nodeTypes[i]);
+            astChild.setType(nodeTypes[index]);
             ast.addChild(astChild);
             ast = astChild;
         }

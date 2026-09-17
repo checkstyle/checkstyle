@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
   void testMethod1() {
 
@@ -36,10 +36,10 @@ class Example4 {
     int i = 5;
 
     System.out.println("Value of i: " + i);
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEst #5: This is a test string");
   }
 }
-// xdoc section -- end
+// xdoc section - end

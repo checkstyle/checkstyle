@@ -1,5 +1,7 @@
 package com.sun.checkstyle.test.chapter7statements.rule78switchstatements;
 
+// violation first line 'Header mismatch'
+
 /**
  * Test input for fall through with default violations.
  */

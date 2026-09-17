@@ -3,6 +3,7 @@ package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+// non-compiled with javac: Compilable with Java25
 /** Some javadoc. */
 public class InputLambdaParameterName {
 

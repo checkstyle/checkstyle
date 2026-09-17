@@ -54,26 +54,26 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Counts only go towards the main type declaration parent, and are kept separate
  * from it's children's inner types.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public class ExampleClass {
  *   public enum Colors {
  *     RED, GREEN, YELLOW;
  *
- *     public String getRGB() { ... } // NOT counted towards ExampleClass
+ *     public String getRGB() {  } // NOT counted towards ExampleClass
  *   }
  *
  *   public void example() { // counted towards ExampleClass
  *     Runnable r = (new Runnable() {
- *       public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
+ *       public void run() {  } // NOT counted towards ExampleClass, won't produce any violations
  *     });
  *   }
  *
  *   public static class InnerExampleClass {
- *     protected void example2() { ... } // NOT counted towards ExampleClass,
+ *     protected void example2() {  } // NOT counted towards ExampleClass,
  *                                    // but counted towards InnerExampleClass
  *   }
  * }
- * </code></pre></div>
+ * }
  *
  * @since 5.3
  */
@@ -127,6 +127,13 @@ public final class MethodCountCheck extends AbstractCheck {
     /** Specify the maximum number of methods allowed at all scope levels. */
     private int maxTotal = DEFAULT_MAX_METHODS;
 
+    /**
+     * Creates a new {@code MethodCountCheck} instance.
+     */
+    public MethodCountCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -142,6 +149,7 @@ public final class MethodCountCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -185,8 +193,16 @@ public final class MethodCountCheck extends AbstractCheck {
 
         if (!counters.isEmpty()) {
             final DetailAST latestDefinition = counters.peek().getScopeDefinition();
+            final DetailAST methodParent = methodDef.getParent();
+            final DetailAST scopeDefinition;
+            if (methodParent.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+                scopeDefinition = methodParent;
+            }
+            else {
+                scopeDefinition = methodParent.getParent();
+            }
 
-            result = latestDefinition == methodDef.getParent().getParent();
+            result = latestDefinition == scopeDefinition;
         }
 
         return result;

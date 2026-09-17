@@ -1,39 +1,33 @@
 /*xml
 <module name="Checker">
   <module name="SuppressionFilter">
-    <property name="file" value="suppressionexample2.xml"/>
+    <property name="file" value="suppressionexample1.xml"/>
     <property name="optional" value="false"/>
   </module>
   <module name="TreeWalker">
-    <module name="EqualsAvoidNull">
-      <property name="ignoreEqualsIgnoreCase" value="false"/>
-      <property name="id" value="stringEqual"/>
-    </module>
-    <module name="LineLength">
-      <property name="id" value="lineLength"/>
-    </module>
+    <module name="MemberName"/>
+    <module name="MagicNumber"/>
+    <module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/>
   </module>
 </module>
 */
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionfilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
-  // violation below, 'Line is longer than 80 characters'
-  String line = "This line is long and exceeds the default limit of 80 characters.";
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
 
-  public void foo() {
+  int a = 10; // filtered violation ''10' is a magic number.'
 
-    String nullString = null;
+  public void exampleMethod() {
 
-    // filtered violation below 'expressions should be on the left side'
-    nullString.equals("My_Sweet_String");
-    "My_Sweet_String".equals(nullString);
+    int num = 100; // filtered violation ''100' is a magic number.'
 
-    // filtered violation below 'expressions should be on the left side'
-    nullString.equalsIgnoreCase("My_Sweet_String");
-    "My_Sweet_String".equalsIgnoreCase(nullString);
+    if (true) {
+      // violation above 'Must have at least one statement.'
+    }
   }
 }
-// xdoc section -- end
+// xdoc section - end

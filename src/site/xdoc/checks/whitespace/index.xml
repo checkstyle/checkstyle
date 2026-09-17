@@ -11,6 +11,19 @@
         <table>
           <tr>
             <td>
+              <a href="arraybracketnowhitespace.html#ArrayBracketNoWhitespace">
+                ArrayBracketNoWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around square-bracket tokens <code>[</code> and
+              <code>]</code> follows the Google Java Style Guide requirements for array
+              declarations, array creation, and array indexing as described in <a href="https://google.github.io/styleguide/javaguide.html#s4.6.2-horizontal-whitespace">
+              Section 4.6.2: Horizontal Whitespace</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="emptyforinitializerpad.html#EmptyForInitializerPad">
                 EmptyForInitializerPad
               </a>
@@ -159,6 +172,17 @@
           </tr>
           <tr>
             <td>
+              <a href="typebodypadding.html#TypeBodyPadding">
+                TypeBodyPadding
+              </a>
+            </td>
+            <td>
+              Checks the padding of the body of type definitions (classes, interfaces, enums,
+              records).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="typecastparenpad.html#TypecastParenPad">
                 TypecastParenPad
               </a>
@@ -186,6 +210,16 @@
             </td>
             <td>
               Checks that a token is surrounded by whitespace.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="whitespacebeforeemptybody.html#WhitespaceBeforeEmptyBody">
+                WhitespaceBeforeEmptyBody
+              </a>
+            </td>
+            <td>
+              Checks that a whitespace is present before the opening brace of an empty body.
             </td>
           </tr>
         </table>

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 // -@cs[AbbreviationAsWordInName] Test should be named as its main class.
 public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/metrics/javancss";
@@ -78,4 +79,5 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
 }

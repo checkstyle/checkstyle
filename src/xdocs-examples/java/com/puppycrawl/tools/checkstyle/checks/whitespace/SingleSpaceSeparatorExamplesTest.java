@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SingleSpaceSeparatorExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/singlespaceseparator";
@@ -36,7 +37,7 @@ public class SingleSpaceSeparatorExamplesTest extends AbstractExamplesModuleTest
         final String[] expected = {
             "15:15: " + getCheckMessage(MSG_KEY),
             "16:13: " + getCheckMessage(MSG_KEY),
-            "21:9: " + getCheckMessage(MSG_KEY),
+            "23:9: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -45,12 +46,15 @@ public class SingleSpaceSeparatorExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:19: " + getCheckMessage(MSG_KEY),
-            "20:28: " + getCheckMessage(MSG_KEY),
-            "22:47: " + getCheckMessage(MSG_KEY),
-            "28:8: " + getCheckMessage(MSG_KEY),
+            "17:15: " + getCheckMessage(MSG_KEY),
+            "18:13: " + getCheckMessage(MSG_KEY),
+            "25:9: " + getCheckMessage(MSG_KEY),
+            "25:29: " + getCheckMessage(MSG_KEY),
+            "27:47: " + getCheckMessage(MSG_KEY),
+            "33:8: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2
 {
   public static void main(String ... args)
@@ -23,8 +23,8 @@ public class Example2
     // ok above, 1(&) + 1(|) + 1(^) + 1(|) + 1(^) = 5
 
     boolean e = a ^ (a || b) ^ (b || a) & (a | b);
-    // violation above, 'Boolean expression complexity is 6 (max allowed is 5)'
+    // violation above 'Boolean expression complexity is 6 (max allowed is 5)'
     // 1(^) + 1(||) + 1(^) + 1(||) + 1(&) + 1(|) = 6
   }
 }
-// xdoc section -- end
+// xdoc section - end

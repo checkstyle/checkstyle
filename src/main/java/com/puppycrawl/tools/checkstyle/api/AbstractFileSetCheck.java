@@ -66,6 +66,13 @@ public abstract class AbstractFileSetCheck
     private int tabWidth;
 
     /**
+     * Creates a new {@code AbstractFileSetCheck} instance.
+     */
+    protected AbstractFileSetCheck() {
+        // no code by default
+    }
+
+    /**
      * Called to process a file that matches the specified file extensions.
      *
      * @param file the file to be processed
@@ -128,7 +135,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link Violation}.
+     * @return the sorted set of {@code Violation}.
      */
     public SortedSet<Violation> getViolations() {
         return new TreeSet<>(context.get().violations);
@@ -175,13 +182,13 @@ public abstract class AbstractFileSetCheck
         }
 
         fileExtensions = new String[extensions.length];
-        for (int i = 0; i < extensions.length; i++) {
-            final String extension = extensions[i];
+        for (int index = 0; index < extensions.length; index++) {
+            final String extension = extensions[index];
             if (extension.startsWith(EXTENSION_SEPARATOR)) {
-                fileExtensions[i] = extension;
+                fileExtensions[index] = extension;
             }
             else {
-                fileExtensions[i] = EXTENSION_SEPARATOR + extension;
+                fileExtensions[index] = EXTENSION_SEPARATOR + extension;
             }
         }
     }
@@ -207,7 +214,7 @@ public abstract class AbstractFileSetCheck
     /**
      * Adds the sorted set of {@link Violation} to the message collector.
      *
-     * @param violations the sorted set of {@link Violation}.
+     * @param violations the sorted set of {@code Violation}.
      */
     protected void addViolations(SortedSet<Violation> violations) {
         context.get().violations.addAll(violations);
@@ -262,13 +269,18 @@ public abstract class AbstractFileSetCheck
      * The actual context holder.
      */
     private static final class FileContext {
-
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }

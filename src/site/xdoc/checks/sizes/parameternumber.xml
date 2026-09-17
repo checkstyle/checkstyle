@@ -8,6 +8,32 @@
   <body>
     <section name="ParameterNumber">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ParameterNumber_Description">Description</a></li>
+          <li><a href="#ParameterNumber_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ParameterNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow 10 parameters for a method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Rationale: developer may need to override method with many parameters from 3-rd party library. In this case developer has no control over number of parameters.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Ignore methods and constructors annotated with <code>JsonCreator</code> annotation</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Allow 6 parameters for a method, while ignoring methods with <code>@Override</code> or <code>@java.lang.Override</code> annotation</a></li>
+            </ul>
+          </li>
+          <li><a href="#ParameterNumber_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ParameterNumber_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ParameterNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ParameterNumber_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ParameterNumber_Description">
         <div>
           Checks the number of parameters of a method or constructor.
@@ -27,21 +53,21 @@
             <tr>
               <td><a id="ignoreAnnotatedBy"/><a href="#ignoreAnnotatedBy">ignoreAnnotatedBy</a></td>
               <td>Ignore methods and constructors annotated with the specified annotation(s).</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>10.15.0</td>
             </tr>
             <tr>
               <td><a id="ignoreOverriddenMethods"/><a href="#ignoreOverriddenMethods">ignoreOverriddenMethods</a></td>
               <td>Ignore number of parameters for methods with <code>@Override</code> annotation.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of parameters allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>7</code></td>
               <td>3.0</td>
             </tr>
@@ -87,7 +113,7 @@ class Example1 extends ExternalService1 {
   Example1(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
   // violation 2 lines above 'More than 7 parameters (found 8)'
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   Example1(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
@@ -99,7 +125,7 @@ class Example1 extends ExternalService1 {
 
 class ExternalService1 {
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 
@@ -171,7 +197,7 @@ class Example3 extends ExternalService3 {
   Example3(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   Example3(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
@@ -183,7 +209,7 @@ class Example3 extends ExternalService3 {
 
 class ExternalService3 {
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 
@@ -210,7 +236,7 @@ class Example4 extends ExternalService4 {
   Example4(int a, int b, int c, int d,
            int e, int f, int g, int h) {}
   // ok above, constructor annotated with JsonCreator annotation is ignored
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
   Example4(String a, String b, String c, String d,
            String e, String f, String g, String h) {}
 
@@ -222,7 +248,47 @@ class Example4 extends ExternalService4 {
 
 class ExternalService4 {
 
-  // violation below, 'More than 7 parameters (found 8)'
+  // violation below 'More than 7 parameters (found 8)'
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to allow 6 parameters for a method, while ignoring
+          methods with <code>@Override</code> or <code>@java.lang.Override</code> annotation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterNumber"&gt;
+      &lt;property name="max" value="6"/&gt;
+      &lt;property name="ignoreOverriddenMethods" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 extends ExternalService5 {
+
+  @JsonCreator
+  Example5(int a, int b, int c, int d,
+           int e, int f, int g, int h) {}
+  // violation 2 lines above 'More than 6 parameters (found 8)'
+  // violation below 'More than 6 parameters (found 8)'
+  Example5(String a, String b, String c, String d,
+           String e, String f, String g, String h) {}
+
+  @Override
+  public void processData(String a, String b, String c, String d,
+                          String e, String f, String g, String h) {}
+
+}
+
+class ExternalService5 {
+
+  // violation below 'More than 6 parameters (found 8)'
   public void processData(String a, String b, String c, String d,
                           String e, String f, String g, String h) {}
 

@@ -11,17 +11,17 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.recordcomponentnumber;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2{
   public record MyRecord1(int x, int y, String str) {}
 
-  public record MyRecord2(int x, int y, double d, // violation, 6 components
+  public record MyRecord2(int x, int y, double d, // violation 'components is 6'
                     String str, char c, float f) {}
 
-  record MyRecord3(int x, int y, int z, double d, // violation, 9 components
+  record MyRecord3(int x, int y, int z, double d, // violation 'components is 9'
                     String str1, String str2, char c, float f, String location) {}
 
   private record MyRecord4(int x, int y,
                            String str, double d) {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,14 +8,14 @@ tokens = (default)CTOR_DEF, CTOR_CALL, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUP
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 public class InputMethodParamPadCheckRecordPattern {
 
     void test(Object obj) {
 
-        // violation below, ''(' is preceded with whitespace'
+        // violation below ''(' is preceded with whitespace'
         if (obj instanceof ColoredPoint (Point p, String s)) {
         }
 
@@ -32,7 +32,7 @@ public class InputMethodParamPadCheckRecordPattern {
             // 2 violations above:
             //              ''(' is preceded with whitespace'
             //              ''(' is preceded with whitespace'
-            // violation below, ''(' is preceded with whitespace'
+            // violation below ''(' is preceded with whitespace'
             case ColoredPoint (Point p, String s) -> {}
             case Point(int x, int y) -> {}
             default -> {}

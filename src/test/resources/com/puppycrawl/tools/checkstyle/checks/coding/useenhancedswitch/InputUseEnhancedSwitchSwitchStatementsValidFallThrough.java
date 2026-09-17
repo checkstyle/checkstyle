@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.useenhancedswitch;
 
 public class InputUseEnhancedSwitchSwitchStatementsValidFallThrough {
     void testValidFallthrough(int x) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         switch (x) {
             case 1:
             case 2:
@@ -23,7 +23,7 @@ public class InputUseEnhancedSwitchSwitchStatementsValidFallThrough {
             case 3 -> System.out.println("Three");
         }
 
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         switch (x) {
             case 1, 2:
                 System.out.println("One or Two");

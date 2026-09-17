@@ -8,7 +8,7 @@
  Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  specified using the &lt;code&gt;Scope&lt;/code&gt; class and defaults to &lt;code&gt;Scope.PUBLIC&lt;/code&gt;. To verify
  another scope, set property scope to a different
- &lt;a href="https://checkstyle.org/property_types.html#Scope"&gt;scope&lt;/a&gt;.
+ &lt;a href="https://checkstyle.org/property-types.html#Scope"&gt;scope&lt;/a&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -22,7 +22,7 @@
  For getters and setters for the property &lt;code&gt;allowMissingPropertyJavadoc&lt;/code&gt;, the methods must
  match exactly the structures below.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public void setNumber(final int number)
  {
      mNumber = number;
@@ -71,7 +71,7 @@
             </property>
          </properties>
          <message-keys>
-            <message-key key="javadoc.missing"/>
+            <message-key key="javadoc.missing.named"/>
          </message-keys>
       </check>
    </module>

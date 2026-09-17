@@ -9,11 +9,16 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexp;
-
-// xdoc section -- start
-// violation first line 'missing in file.'
-/*
- * Some Copyright
- */
-public class Example2 {}
-// xdoc section -- end
+// xdoc section - start
+// (c) MyCompany
+// (c) MyCompany
+// This code is copyrighted.
+public class Example2 {
+  private void foo() {
+    System.out.println("");
+    // System.out.println("debug");
+    // fix me.
+    // fix me.
+  }
+}
+// xdoc section - end

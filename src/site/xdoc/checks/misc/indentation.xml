@@ -8,6 +8,42 @@
   <body>
     <section name="Indentation">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#Indentation_Description">Description</a></li>
+          <li><a href="#Indentation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#Indentation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce the indentation style recommended by Oracle</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Enforce strict condition in line-wrapping validation.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">With custom basicOffset (2 spaces instead of default 4)</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">With custom lineWrappingIndentation (8 spaces instead of default 4)</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">With custom throwsIndent (8 spaces instead of default 4)</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">With custom arrayInitIndent (2 spaces instead of default 4)</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">With custom braceAdjustment (2 spaces instead of default 0)</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#Indentation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">But if forceStrictCondition = false, this code is valid</a></li>
+            </ul>
+          </li>
+          <li><a href="#Indentation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#Indentation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#Indentation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#Indentation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="Indentation_Description">
         <div>
           Checks correct indentation of Java code.
@@ -64,49 +100,49 @@ if ((condition1 &amp;&amp; condition2)
             <tr>
               <td><a id="arrayInitIndent"/><a href="#arrayInitIndent">arrayInitIndent</a></td>
               <td>Specify how far an array initialization should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="basicOffset"/><a href="#basicOffset">basicOffset</a></td>
               <td>Specify how far new indentation level should be indented when on the next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="braceAdjustment"/><a href="#braceAdjustment">braceAdjustment</a></td>
               <td>Specify how far a braces should be indented when on the next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="caseIndent"/><a href="#caseIndent">caseIndent</a></td>
               <td>Specify how far a case label should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="forceStrictCondition"/><a href="#forceStrictCondition">forceStrictCondition</a></td>
               <td>Force strict indent level in line wrapping case. If value is true, line wrap indent have to be same as lineWrappingIndentation parameter. If value is false, line wrap indent could be bigger on any value user would like.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.3</td>
             </tr>
             <tr>
               <td><a id="lineWrappingIndentation"/><a href="#lineWrappingIndentation">lineWrappingIndentation</a></td>
               <td>Specify how far continuation line should be indented when line-wrapping is present.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>5.9</td>
             </tr>
             <tr>
               <td><a id="throwsIndent"/><a href="#throwsIndent">throwsIndent</a></td>
               <td>Specify how far a throws clause should be indented when on next line.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>5.7</td>
             </tr>
@@ -138,7 +174,7 @@ class Example1 {
         1, 2, 3                 // ok, arrayInitIndent = 4
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -203,16 +239,16 @@ class Example2 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
         throws Exception {
         switch (a) {
-            case 1:             // violation, 'level 12, expected level should be 8'
-                break;          // violation, 'level 16, expected level should be 12'
-            case 2:             // violation, 'level 12, expected level should be 8'
-                break;          // violation, 'level 16, expected level should be 12'
+            case 1:             // violation 'level 12, expected level should be 8'
+                break;          // violation 'level 16, expected level should be 12'
+            case 2:             // violation 'level 12, expected level should be 8'
+                break;          // violation 'level 16, expected level should be 12'
         }
     }
     void method3(int a,
@@ -266,7 +302,7 @@ class Example3 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -279,9 +315,9 @@ class Example3 {
         }
     }
     void method3(int a,
-                 int b) {       // violation, 'level 17, expected level should be 8'
+                 int b) {       // violation 'level 17, expected level should be 8'
         if (x
-                &amp;&amp; y) {         // violation, 'level 16, expected level should be 12'
+                &amp;&amp; y) {         // violation 'level 16, expected level should be 12'
             method3(a, b);
         }
     }
@@ -293,7 +329,7 @@ class Example3 {
 
         cond1=cond2=cond3=cond4=cond5=cond6=false;
         if (cond1
-                || cond2) { // violation, 'level 16, expected level should be 12'
+                || cond2) { // violation 'level 16, expected level should be 12'
             field = field.toUpperCase()
                     .concat(" TASK");
         }
@@ -304,20 +340,7 @@ class Example3 {
     }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-code">
-          But if forceStrictCondition = false, this code is valid:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-      int a;               // violation, 'level 6, expected level should be 4'
-
-    void method() {
-        int b = 0;
-          int c = 1;       // violation, 'level 10, expected level should be 8'
-    }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
           To configure the check with custom basicOffset (2 spaces instead of default 4):
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -329,37 +352,37 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="Example4-code">
           Example of code with basicOffset set to 2:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-    int a;             // violation, 'level 4, expected level should be 2'
-    boolean x, y;      // violation, 'level 4, expected level should be 2'
-    String field = "example"; // violation, 'level 4, expected level should be 2'
-    int[] values = {   // violation, 'level 4, expected level should be 2'
+class Example4 {
+    int a;             // violation 'level 4, expected level should be 2'
+    boolean x, y;      // violation 'level 4, expected level should be 2'
+    String field = "example"; // violation 'level 4, expected level should be 2'
+    int[] values = {   // violation 'level 4, expected level should be 2'
         1, 2, 3
     };
-    int[] values2 = {  // violation, 'level 4, expected level should be 2'
-  10 // violation,'level 2, expected level should be one of the following: 8, 23, 24'
+    int[] values2 = {  // violation 'level 4, expected level should be 2'
+  10 // violation 'level 2, expected level should be one of the following: 8, 23, 24'
     };
 
-    void method2()     // violation, 'level 4, expected level should be 2'
+    void method2()     // violation 'level 4, expected level should be 2'
         throws Exception {
-        switch (a) {   // violation, 'level 8, expected level should be 4'
-            case 1:    // violation, 'level 12, expected level should be 8'
-                break; // violation, 'level 16, expected level should be 10'
-            case 2:    // violation, 'level 12, expected level should be 8'
-                break; // violation, 'level 16, expected level should be 10'
-        }              // violation, 'level 8, expected level should be 4'
-    }                  // violation, 'level 4, expected level should be 2'
-    void method3(int a,  // violation, 'level 4, expected level should be 2'
+        switch (a) {   // violation 'level 8, expected level should be 4'
+            case 1:    // violation 'level 12, expected level should be 8'
+                break; // violation 'level 16, expected level should be 10'
+            case 2:    // violation 'level 12, expected level should be 8'
+                break; // violation 'level 16, expected level should be 10'
+        }              // violation 'level 8, expected level should be 4'
+    }                  // violation 'level 4, expected level should be 2'
+    void method3(int a,  // violation 'level 4, expected level should be 2'
                  int b) {
-        if (x            // violation, 'level 8, expected level should be 4'
+        if (x            // violation 'level 8, expected level should be 4'
                 &amp;&amp; y) {
-            method3(a, b); // violation, 'level 12, expected level should be 6'
-        }                  // violation, 'level 8, expected level should be 4'
-    }                      // violation, 'level 4, expected level should be 2'
+            method3(a, b); // violation 'level 12, expected level should be 6'
+        }                  // violation 'level 8, expected level should be 4'
+    }                      // violation 'level 4, expected level should be 2'
                            // violation below 'level 4, expected level should be 2'
     void handleValue(String aFooString,
                      int aFooInt) {
@@ -367,19 +390,19 @@ class Example5 {
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
         // violation below 'level 8, expected level should be 4'
         cond1=cond2=cond3=cond4=cond5=cond6=false;
-        if (cond1        // violation, 'level 8, expected level should be 4'
+        if (cond1        // violation 'level 8, expected level should be 4'
                 || cond2) { // violation below 'level 12, expected level should be 6'
             field = field.toUpperCase()
                     .concat(" TASK");
-        }                // violation, 'level 8, expected level should be 4'
-    }                    // violation, 'level 4, expected level should be 2'
+        }                // violation 'level 8, expected level should be 4'
+    }                    // violation 'level 4, expected level should be 2'
 
-    void methodBrace()   // violation, 'level 4, expected level should be 2'
-    {                    // violation, 'level 4, expected level should be 2'
-    }                    // violation, 'level 4, expected level should be 2'
+    void methodBrace()   // violation 'level 4, expected level should be 2'
+    {                    // violation 'level 4, expected level should be 2'
+    }                    // violation 'level 4, expected level should be 2'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example5-config">
           To configure the check with custom lineWrappingIndentation
           (8 spaces instead of default 4):
         </p>
@@ -392,11 +415,11 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">
+        <p id="Example5-code">
           Example of code with lineWrappingIndentation set to 8:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class Example5 {
     int a;
     boolean x, y;
     String field = "example";
@@ -404,7 +427,7 @@ class Example6 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be one of the following: 8, 12'
+  10 // violation 'level 2, expected level should be one of the following: 8, 12'
     };
 
     void method2()
@@ -442,7 +465,7 @@ class Example6 {
     }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="Example6-config">
           To configure the check with custom throwsIndent (8 spaces instead of default 4):
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -454,14 +477,14 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">
+        <p id="Example6-code">
           Example of code with throwsIndent set to 8.
           Method 'processValues' has throws on a new line with only 4-space indent,
           which violates the configured 8-space throwsIndent.
           Method 'demonstrateSwitch' has throws on a new line with correct 8-space indent:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class Example6 {
     int a;
     boolean x, y;
     String field = "example";
@@ -469,11 +492,11 @@ class Example7 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
-        throws Exception {   // violation, 'level 8, expected level should be 12'
+        throws Exception {   // violation 'level 8, expected level should be 12'
         switch (a) {
             case 1:
                 break;
@@ -490,7 +513,7 @@ class Example7 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {             // indent:8 ; expected: &gt; 4;
+                     int aFooInt) {
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
 
@@ -507,7 +530,7 @@ class Example7 {
     }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
+        <p id="Example7-config">
           To configure the check with custom arrayInitIndent (2 spaces instead of default 4):
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -519,11 +542,11 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example8-code">
+        <p id="Example7-code">
           Example of code with arrayInitIndent set to 2:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
+class Example7 {
     int a;
     boolean x, y;
     String field = "example";
@@ -531,7 +554,7 @@ class Example8 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be one of'
+  10 // violation 'level 2, expected level should be one of'
     };
 
     void method2()
@@ -569,7 +592,7 @@ class Example8 {
     }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="Example8-config">
           To configure the check with custom braceAdjustment (2 spaces instead of default 0):
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -581,11 +604,11 @@ class Example8 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="Example8-code">
           Example of code with braceAdjustment set to 2:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
+class Example8 {
     int a;
     boolean x, y;
     String field = "example";
@@ -593,7 +616,7 @@ class Example9 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -627,8 +650,34 @@ class Example9 {
     }
 
     void methodBrace()
-    {                       // violation, 'level 4, expected level should be 6'
-    }                       // violation, 'level 4, expected level should be 6'
+    {                       // violation 'level 4, expected level should be 6'
+    }                       // violation 'level 4, expected level should be 6'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="Indentation_Use_Cases">
+        <p id="UseCase1-config">
+          But if forceStrictCondition = false, this code is valid:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="Indentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class UseCase1 {
+      int a;               // violation 'level 6, expected level should be 4'
+
+    void method() {
+        int b = 0;
+          int c = 1;       // violation 'level 10, expected level should be 8'
+    }
 }
 </code></pre></div>
       </subsection>

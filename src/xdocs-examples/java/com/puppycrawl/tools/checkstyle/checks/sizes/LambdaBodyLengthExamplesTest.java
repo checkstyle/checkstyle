@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final int DEFAULT_MAX = 10;
 
     @Override
@@ -36,8 +37,8 @@ public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "26:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
-            "38:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
+            "21:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
+            "33:20: " + getCheckMessage(MSG_KEY, 11, DEFAULT_MAX),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -48,10 +49,11 @@ public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupp
         final int max = 5;
 
         final String[] expected = {
-            "23:20: " + getCheckMessage(MSG_KEY, 6, max),
-            "30:20: " + getCheckMessage(MSG_KEY, 6, max),
+            "23:20: " + getCheckMessage(MSG_KEY, 11, max),
+            "35:20: " + getCheckMessage(MSG_KEY, 11, max),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

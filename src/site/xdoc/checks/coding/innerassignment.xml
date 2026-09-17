@@ -8,6 +8,27 @@
   <body>
     <section name="InnerAssignment">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#InnerAssignment_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#InnerAssignment_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#InnerAssignment_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#InnerAssignment_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#InnerAssignment_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#InnerAssignment_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="InnerAssignment_Description">
         <div>
           Checks for assignments in subexpressions, such as in
@@ -24,7 +45,7 @@
         <p>
           Note: Check allows usage of the popular assignments in loops:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 String line;
 while ((line = bufferedReader.readLine()) != null) { // OK
   // process the line
@@ -63,8 +84,8 @@ while ((line = bufferedReader.readLine()) != null); // OK
 public class Example1 {
   void foo() throws IOException {
     int a, b;
-    a = b = 5; // violation, 'Inner assignments should be avoided'
-    a = b += 5; // violation, 'Inner assignments should be avoided'
+    a = b = 5; // violation 'Inner assignments should be avoided'
+    a = b += 5; // violation 'Inner assignments should be avoided'
 
     a = 5;
     b = 5;
@@ -72,21 +93,21 @@ public class Example1 {
 
     double myDouble;
     double[] doubleArray = new double[] {myDouble = 4.5, 15.5};
-    // violation above, 'Inner assignments should be avoided'
+    // violation above 'Inner assignments should be avoided'
     String nameOne;
     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
-    myList.add(nameOne = "tom"); // violation, 'Inner assignments should be avoided'
+    myList.add(nameOne = "tom"); // violation 'Inner assignments should be avoided'
 
     for (int k = 0; k &lt; 10; k = k + 2) {
         // some code
     }
 
     boolean someVal;
-    if (someVal = true) { // violation, 'Inner assignments should be avoided'
+    if (someVal = true) { // violation 'Inner assignments should be avoided'
         // some code
     }
 
-    while (someVal = false) {} // violation, 'Inner assignments should be avoided'
+    while (someVal = false) {} // violation 'Inner assignments should be avoided'
 
     InputStream is = new FileInputStream("textFile.txt");
     while ((b = is.read()) != -1) { // ok, this is a common idiom
@@ -96,7 +117,7 @@ public class Example1 {
 
   boolean testMethod() {
     boolean val;
-    return val = true; // violation, 'Inner assignments should be avoided'
+    return val = true; // violation 'Inner assignments should be avoided'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -106,11 +127,11 @@ public class Example2 {
   public void test1(int mode) {
     int x = 0;
     x = switch (mode) {
-      case 1 -&gt; x = 1;  // violation, 'Inner assignments should be avoided'
+      case 1 -&gt; x = 1;  // violation 'Inner assignments should be avoided'
       case 2 -&gt; {
-        yield x = 2; // violation, 'Inner assignments should be avoided'
+        yield x = 2; // violation 'Inner assignments should be avoided'
       }
-      default -&gt; x = 0; // violation, 'Inner assignments should be avoided'
+      default -&gt; x = 0; // violation 'Inner assignments should be avoided'
     };
   }
   public void test2(int mode) {
@@ -127,7 +148,7 @@ public class Example2 {
     switch(mode) {
       case 1:
       case 2: {
-        x = y = 2; // violation, 'Inner assignments should be avoided'
+        x = y = 2; // violation 'Inner assignments should be avoided'
       }
       case 4:
       case 5:

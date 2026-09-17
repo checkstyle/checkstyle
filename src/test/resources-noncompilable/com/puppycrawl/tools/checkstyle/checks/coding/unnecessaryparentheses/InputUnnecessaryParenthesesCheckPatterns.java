@@ -6,12 +6,12 @@ tokens = (default)EXPR, IDENT, NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG, \
          MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, \
          LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND, LITERAL_INSTANCEOF, GT, LT, GE, \
          LE, EQUAL, NOT_EQUAL, UNARY_MINUS, UNARY_PLUS, INC, DEC, LNOT, BNOT, \
-         POST_INC, POST_DEC
+         POST_INC, POST_DEC, INDEX_OP, DOT, LOR, TYPECAST
 
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 public class InputUnnecessaryParenthesesCheckPatterns {
@@ -22,14 +22,14 @@ public class InputUnnecessaryParenthesesCheckPatterns {
                 (o instanceof String x) : (!(o instanceof String y));
 
         boolean f =  (o instanceof String x);
-        // violation above, 'Unnecessary parentheses around assignment right-hand side.'
+        // violation above 'Unnecessary parentheses around assignment right-hand side.'
 
         boolean b = (!(o instanceof Rectangle(_, _)));
-        // violation above, 'Unnecessary parentheses around assignment right-hand side.'
+        // violation above 'Unnecessary parentheses around assignment right-hand side.'
         boolean c = !(o instanceof Rectangle(_, _));
 
         if ((!(o instanceof Rectangle(_, _)))) {}
-        // violation above, 'Unnecessary parentheses around expression.'
+        // violation above 'Unnecessary parentheses around expression.'
         if (!(o instanceof Rectangle( _, _))) {}
 
     }

@@ -50,7 +50,7 @@ public class InputJavaNCSSRecordsAndCompactCtors {  // violation '.* is 54 (max 
 
     } // 6
 
-    //should give an ncss of 8 , violation for method
+    //should give an ncss of 8
     private void testMethod() { // violation 'NCSS for this method is 8 (max allowed is 7).'
 
       for (int i=0; i<10; i++) {

@@ -109,4 +109,5 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             .that(exc.getMessage())
             .isEqualTo(expected);
     }
+
 }

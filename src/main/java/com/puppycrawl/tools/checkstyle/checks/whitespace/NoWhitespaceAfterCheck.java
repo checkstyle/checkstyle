@@ -78,6 +78,13 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     /** Control whether whitespace is allowed if the token is at a linebreak. */
     private boolean allowLineBreaks = true;
 
+    /**
+     * Creates a new {@code NoWhitespaceAfterCheck} instance.
+     */
+    public NoWhitespaceAfterCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -110,8 +117,13 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             TokenTypes.TYPECAST,
             TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.INDEX_OP,
+            TokenTypes.DO_WHILE,
+            TokenTypes.LITERAL_IF,
             TokenTypes.LITERAL_SYNCHRONIZED,
             TokenTypes.METHOD_REF,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_CATCH,
         };
     }
 
@@ -230,7 +242,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * RBRACK}, {@link TokenTypes#IDENT IDENT} or an array type definition (literal).
      *
      * @param ast
-     *        , {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
+     *        , {@code TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
      * @return previous node by text order.
      * @throws IllegalStateException if an unexpected token type is encountered.
      */
@@ -311,7 +323,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * getArrayDeclaratorPreviousElement method.
      *
      * @param ast
-     *        , {@link TokenTypes#INDEX_OP INDEX_OP} node.
+     *        , {@code TokenTypes#INDEX_OP INDEX_OP} node.
      * @return previous node by text order.
      */
     private static DetailAST getIndexOpPreviousElement(DetailAST ast) {
@@ -467,4 +479,5 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         return classDot;
     }
+
 }

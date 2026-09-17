@@ -56,6 +56,13 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
      */
     public static final String MSG_MULTIPLE_COMMA = "multiple.variable.declarations.comma";
 
+    /**
+     * Creates a new {@code MultipleVariableDeclarationsCheck} instance.
+     */
+    public MultipleVariableDeclarationsCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getAcceptableTokens() {
         return getRequiredTokens();

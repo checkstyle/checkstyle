@@ -63,9 +63,9 @@ public class InputJavadocMethodParamsTags {
 
   }
 
+  // violation below 'Unused @param tag for 't'.'
   /** @param t
    */
-  // violation 2 lines above 'Unused @param tag for 't'.'
   public void setPathRef4(Object w) { // violation 'Expected @param tag for 'w'.'
 
   }
@@ -75,8 +75,8 @@ public class InputJavadocMethodParamsTags {
 
   }
 
+  // violation below 'Unused @param tag for 'x'.'
   /** @param x*/
-  // violation above 'Unused @param tag for 'x'.'
   public void setPathRef6(Object y) { // violation 'Expected @param tag for 'y'.'
 
   }

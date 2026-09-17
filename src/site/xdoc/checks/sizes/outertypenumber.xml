@@ -8,6 +8,29 @@
   <body>
     <section name="OuterTypeNumber">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OuterTypeNumber_Description">Description</a></li>
+          <li><a href="#OuterTypeNumber_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OuterTypeNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Accept 1 outer type per file</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept 2 outer types per file</a></li>
+            </ul>
+          </li>
+          <li><a href="#OuterTypeNumber_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OuterTypeNumber_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OuterTypeNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OuterTypeNumber_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="OuterTypeNumber_Description">
         <div>
           Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.
@@ -31,7 +54,7 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of outer types allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>5.0</td>
             </tr>
@@ -52,16 +75,15 @@
 </code></pre></div>
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-// violation 2 lines above 'Outer types defined is 3 (max allowed is 1)'
-
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+// violation above 'Outer types defined is 2 (max allowed is 1)'
 public class Example1 {
+  enum outer {
+  }
 }
 
-class Example {
+class ExampleOne {
   void exampleMethod() {}
-}
-
-enum outer {
 }
 </code></pre></div><hr class="example-separator"/>
 
@@ -79,14 +101,15 @@ enum outer {
 </code></pre></div>
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.sizes.outertypenumber;
+
 public class Example2 {
+  enum outer {
+  }
 }
 
-class Examples {
+class ExampleTwo {
   void exampleMethod() {}
-}
-
-enum outer1 {
 }
 </code></pre></div>
 

@@ -15,7 +15,8 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
-@InputMagicNumberIntMethodAnnotation(3) // violation ''3' is a magic number'
+// violation below ''3' is a magic number'
+@InputMagicNumberIntMethodAnnotation(3)
 public class InputMagicNumberIgnoreFieldDeclarationWithAnnotation {
     public void createEvents(Double d, String s) {
         if ((d != null)  && (s != null && s.equalsIgnoreCase("Fiit"))) {

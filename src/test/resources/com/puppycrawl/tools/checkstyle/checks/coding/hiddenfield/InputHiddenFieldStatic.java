@@ -19,21 +19,21 @@ class InputHiddenFieldStatic
 
     public static void staticMethod()
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     public void method()
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     static
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 }
 

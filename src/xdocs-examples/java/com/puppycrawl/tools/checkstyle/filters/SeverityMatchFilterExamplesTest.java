@@ -19,13 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
 
 public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/severitymatchfilter";
@@ -36,16 +39,20 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expectedWithoutFilter = {
-            "20:27: Name 'V1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
+            "20:27: " + getCheckMessage(ParameterNameCheck.class, MSG_INVALID_PATTERN,
+                    "V1", pattern),
+            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Method2", pattern),
         };
 
         final String[] expectedWithFilter = {
-            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
+            "22:15: " + getCheckMessage(MethodNameCheck.class, MSG_INVALID_PATTERN,
+                    "Method2", pattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
+
 }

@@ -24,30 +24,30 @@ public class InputPatternVariableAssignmentCheck1 {
             System.out.println(obj);
         }
         if (obj instanceof String s) {
-            s = "hello"; // violation, "Assignment of pattern variable 's' is not allowed."
+            s = "hello"; // violation "Assignment of pattern variable 's' is not allowed."
             System.out.println(s);
         }
         if (obj instanceof Rectangle(ColoredPoint x, ColoredPoint y)) {
             x = new ColoredPoint(1, 2, "red");
-            // violation above, "Assignment of pattern variable 'x' is not allowed."
+            // violation above "Assignment of pattern variable 'x' is not allowed."
             y = new ColoredPoint(3, 4, "blue");
-            // violation above, "Assignment of pattern variable 'y' is not allowed."
+            // violation above "Assignment of pattern variable 'y' is not allowed."
         }
         if (obj instanceof Rectangle(ColoredPoint(Integer x1,Integer x2,String c), Integer x)) {
-            c = "red";   // violation, "Assignment of pattern variable 'c' is not allowed."
+            c = "red";   // violation "Assignment of pattern variable 'c' is not allowed."
         }
         if (obj instanceof Rectangle(ColoredPoint(Integer x1, ColoredPoint(Integer y1,Integer y2,
                                                               String d), String c), Integer x)) {
-            c = "red";   // violation, "Assignment of pattern variable 'c' is not allowed."
+            c = "red";   // violation "Assignment of pattern variable 'c' is not allowed."
         }
         if (obj instanceof Rectangle(ColoredPoint(Integer x1,Integer x2,String c),
                                      ColoredPoint(Integer y1,Integer y2, String d))) {
-            c = "red";   // violation, "Assignment of pattern variable 'c' is not allowed."
+            c = "red";   // violation "Assignment of pattern variable 'c' is not allowed."
         }
         if (obj instanceof Integer d) {
             for (int i = 0; i < 1; i++) {
                 if (d > 5) {
-                    d -= 3; // violation, "Assignment of pattern variable 'd' is not allowed."
+                    d -= 3; // violation "Assignment of pattern variable 'd' is not allowed."
                 }
             }
         }
@@ -64,7 +64,7 @@ public class InputPatternVariableAssignmentCheck1 {
         }
 
         Rectangle antiFigure = obj instanceof Rectangle f
-           ? f = null // violation, "Assignment of pattern variable 'f' is not allowed."
+           ? f = null // violation "Assignment of pattern variable 'f' is not allowed."
            : new Rectangle(40, 40);
 
         if (obj instanceof String rectName) {

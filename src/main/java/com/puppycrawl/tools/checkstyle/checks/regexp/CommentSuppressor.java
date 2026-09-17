@@ -35,7 +35,7 @@ class CommentSuppressor implements MatchSuppressor {
      *
      * @param currentContents
      *            content of checked file.
-     **/
+     */
     /* package */ CommentSuppressor(FileContents currentContents) {
         this.currentContents = currentContents;
     }

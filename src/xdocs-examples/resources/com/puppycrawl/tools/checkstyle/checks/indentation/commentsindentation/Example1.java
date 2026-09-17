@@ -7,14 +7,14 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.indentation.commentsindentation;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   void testMethod() {
     /*
      * it is Ok
      */
     boolean bool = true;
-      // violation below, 'Block comment has incorrect indentation level 6'
+      // violation below 'Block comment has incorrect indentation level 6'
       /*
        * It is not okay
        */
@@ -32,4 +32,4 @@ public class Example1 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-// xdoc section -- end
+// xdoc section - end

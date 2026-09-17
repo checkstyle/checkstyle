@@ -7,7 +7,7 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example5 {
@@ -29,7 +29,7 @@ class Example5 {
     }
   }
 
-  // violation below, 'NCSS for this record is 6 (max allowed is 5)'
+  // violation below 'NCSS for this record is 6 (max allowed is 5)'
   record InvalidRecord(int x, int y) {
     public InvalidRecord {
       System.out.println("Line 1");
@@ -39,4 +39,4 @@ class Example5 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

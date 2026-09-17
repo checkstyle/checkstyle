@@ -3,23 +3,25 @@
   <module name="TreeWalker">
     <module name="MatchXpath">
       <property name="query"
-           value="//CTOR_DEF[count(./PARAMETERS/*) > 0]"/>
+           value="//METHOD_DEF[.//LITERAL_PRIVATE
+                  and following-sibling::METHOD_DEF[.//LITERAL_PUBLIC]]"/>
       <message key="matchxpath.match"
-           value="Parameterized constructors are not allowed"/>
+           value="Private methods must appear after public methods"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 
-import java.util.HashMap;
-
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
-  // violation below 'Parameterized constructors are not allowed'
-  public Example2(Object c) { }
-  // violation below 'Parameterized constructors are not allowed'
-  public Example2(int a, HashMap<String, Integer> b) { }
-  public Example2() { }
+  public void method1() { }
+  // violation below 'Private methods must appear after public methods'
+  private void method2() { }
+  public void method3() { }
+  // violation below 'Private methods must appear after public methods'
+  private void method4() { }
+  public void method5() { }
+  private void method6() { }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -15,10 +15,10 @@ import org.junit.Before;
 
 import javax.annotation.Nullable;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
 
-  // violation below, "should be on the same line with its target."
+  // violation below "should be on the same line with its target."
   @SuppressWarnings("deprecation")
   public Example2() {
   }
@@ -27,7 +27,7 @@ class Example2 {
 
   public void fun1() {}
 
-  // violation below, "should be on the same line with its target."
+  // violation below "should be on the same line with its target."
   @Nullable
   String s;
 }
@@ -47,4 +47,4 @@ class Example2 {
   }
 
 }
-// xdoc section -- end
+// xdoc section - end

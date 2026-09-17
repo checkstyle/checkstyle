@@ -8,6 +8,37 @@
   <body>
     <section name="NewlineAtEndOfFile">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NewlineAtEndOfFile_Description">Description</a></li>
+          <li><a href="#NewlineAtEndOfFile_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NewlineAtEndOfFile_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Always use Unix-style line separators</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Work only on Java, XML and Cpp files</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#NewlineAtEndOfFile_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Special message if line separator is defined</a></li>
+            </ul>
+          </li>
+          <li><a href="#NewlineAtEndOfFile_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NewlineAtEndOfFile_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NewlineAtEndOfFile_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NewlineAtEndOfFile_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NewlineAtEndOfFile_Description">
         <div>
           Checks whether files end with a line separator.
@@ -22,8 +53,8 @@
         <p>
           Example (the line with 'No newline at end of file' should not be in the diff):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-&#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
+        <div class="wrapper"><pre class="prettyprint"><code>
+@@ -32,4 +32,5 @@ ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
 PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
 
 StaticMethodCandidateCheck.name = Static Method Candidate
@@ -81,14 +112,14 @@ StaticMethodCandidateCheck.name = Static Method Candidate
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="lineSeparator"/><a href="#lineSeparator">lineSeparator</a></td>
               <td>Specify the type of line separator.</td>
-              <td><a href="../../property_types.html#LineSeparatorOption">LineSeparatorOption</a></td>
+              <td><a href="../../property-types.html#LineSeparatorOption">LineSeparatorOption</a></td>
               <td><code>lf_cr_crlf</code></td>
               <td>3.1</td>
             </tr>
@@ -151,18 +182,28 @@ public class Example3 { // ⤶
 int main() { // ⤶
     return 0;// ⤶
 } // violation first line 'File does not end with a newline.'
-</code></pre></div><hr class="example-separator"/>
-
-        <p id="Example5-code">Java file <code>Example5.java</code>:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 { // ⤶
-// ⤶
-} // violation first line 'File does not end with a newline.'
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
 
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 Sample txt file. // ok, this file is not specified in the config.
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NewlineAtEndOfFile_Use_Cases">
+        <p id="UseCase1-config">Special message if line separator is defined:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="NewlineAtEndOfFile"&gt;
+    &lt;property name="lineSeparator" value="crlf"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 { // ⤶
+// ⤶
+} // violation first line 'File does not end with a newline 'crlf'.'
 </code></pre></div>
       </subsection>
 
@@ -184,6 +225,11 @@ Sample txt file. // ok, this file is not specified in the config.
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22noNewlineAtEOF%22">
               noNewlineAtEOF
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22noNewlineAtEofWithSeparator%22">
+              noNewlineAtEofWithSeparator
             </a>
           </li>
           <li>

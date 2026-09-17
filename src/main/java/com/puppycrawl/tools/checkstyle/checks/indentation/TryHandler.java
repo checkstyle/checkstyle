@@ -160,7 +160,7 @@ public class TryHandler extends BlockParentHandler {
                         nextSibling,
                         getIndentCheck().getLineWrappingIndentation(),
                         expectedResourceIndent.getFirstIndentLevel(),
-                        true);
+                        LineWrappingHandler.LineWrappingOptions.IGNORE_FIRST_LINE);
                 }
                 else {
                     checkWrappingIndentation(resourceAst, nextSibling);

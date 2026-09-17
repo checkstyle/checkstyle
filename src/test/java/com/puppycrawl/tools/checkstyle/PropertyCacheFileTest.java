@@ -541,16 +541,16 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             final int numberOfRuns = messages.size();
             final String[] configHashes = new String[numberOfRuns];
             final String[] externalResourceHashes = new String[numberOfRuns];
-            for (int i = 0; i < numberOfRuns; i++) {
+            for (int index = 0; index < numberOfRuns; index++) {
                 commonUtil.when(() -> CommonUtil.getUriByFilename(any(String.class)))
-                        .thenThrow(new CheckstyleException(messages.get(i)));
+                        .thenThrow(new CheckstyleException(messages.get(index)));
                 final Configuration config = new DefaultConfiguration("myConfig");
                 final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
                 cache.load();
 
-                configHashes[i] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
+                configHashes[index] = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
                 assertWithMessage("Config hash key should not be null")
-                        .that(configHashes[i])
+                        .that(configHashes[index])
                         .isNotNull();
 
                 final Set<String> nonExistentExternalResources = new HashSet<>();
@@ -558,10 +558,11 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 nonExistentExternalResources.add(externalResourceFileName);
                 cache.putExternalResources(nonExistentExternalResources);
 
-                externalResourceHashes[i] = cache.get(PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
-                        + externalResourceFileName);
+                externalResourceHashes[index] = cache.get(
+                        PropertyCacheFile.EXTERNAL_RESOURCE_KEY_PREFIX
+                                + externalResourceFileName);
                 assertWithMessage("External resource hashes should not be null")
-                        .that(externalResourceHashes[i])
+                        .that(externalResourceHashes[index])
                         .isNotNull();
 
                 cache.persist();

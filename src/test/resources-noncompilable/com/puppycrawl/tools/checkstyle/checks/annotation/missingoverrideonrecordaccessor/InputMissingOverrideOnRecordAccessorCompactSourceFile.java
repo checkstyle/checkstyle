@@ -7,7 +7,7 @@ MissingOverrideOnRecordAccessor
 
 record Point(int x, int y) {
 
-    // violation below, 'Record component accessor method must include @java.lang.Override'
+    // violation below 'Record component accessor method must include @java.lang.Override'
     public int x() {
         return x;
     }

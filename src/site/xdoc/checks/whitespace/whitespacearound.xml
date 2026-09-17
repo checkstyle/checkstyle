@@ -8,12 +8,50 @@
   <body>
     <section name="WhitespaceAround">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#WhitespaceAround_Description">Description</a></li>
+          <li><a href="#WhitespaceAround_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#WhitespaceAround_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For whitespace only around curly braces: Note: '{' can be parsed either to LCURLY or SLIST.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow empty method bodies</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Allow empty constructor bodies</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Allow empty type bodies</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Allow empty loop bodies</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Allow empty lambda bodies</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Allow empty catch bodies</a></li>
+              <li><a href="#Example9-config" class="toc-sublink">Ignore the colon</a></li>
+              <li><a href="#Example10-config" class="toc-sublink">Allow empty switch block statements</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#WhitespaceAround_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">For whitespace only around assignment operators</a></li>
+            </ul>
+          </li>
+          <li><a href="#WhitespaceAround_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#WhitespaceAround_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#WhitespaceAround_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#WhitespaceAround_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="WhitespaceAround_Description">
         <div>
           Checks that a token is surrounded by whitespace. Empty constructor,
           method, class, enum, interface, loop bodies (blocks), lambdas of the form
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public MyClass() {}      // empty constructor
 public void func() {}    // empty method
 public interface Foo {} // empty interface
@@ -37,7 +75,7 @@ public @interface Beta {} // empty annotation type
         <p>
           This check does not flag as violation double brace initialization like:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 new Properties() {{
     setProperty("key", "value");
 }};
@@ -48,7 +86,7 @@ new Properties() {{
           contains SLIST to check if beginning of block is surrounded by whitespace
           and catch block is empty, for example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 try {
     k = 5 / i;
 } catch (ArithmeticException ex) {}
@@ -79,49 +117,49 @@ try {
             <tr>
               <td><a id="allowEmptyCatches"/><a href="#allowEmptyCatches">allowEmptyCatches</a></td>
               <td>Allow empty catch bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.6</td>
             </tr>
             <tr>
               <td><a id="allowEmptyConstructors"/><a href="#allowEmptyConstructors">allowEmptyConstructors</a></td>
               <td>Allow empty constructor bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td><a id="allowEmptyLambdas"/><a href="#allowEmptyLambdas">allowEmptyLambdas</a></td>
               <td>Allow empty lambda bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.14</td>
             </tr>
             <tr>
               <td><a id="allowEmptyLoops"/><a href="#allowEmptyLoops">allowEmptyLoops</a></td>
               <td>Allow empty loop bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="allowEmptyMethods"/><a href="#allowEmptyMethods">allowEmptyMethods</a></td>
               <td>Allow empty method bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td><a id="allowEmptySwitchBlockStatements"/><a href="#allowEmptySwitchBlockStatements">allowEmptySwitchBlockStatements</a></td>
               <td>Allow empty switch blocks and block statements.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>10.19.0</td>
             </tr>
             <tr>
               <td><a id="allowEmptyTypes"/><a href="#allowEmptyTypes">allowEmptyTypes</a></td>
               <td>Allow empty class, interface and enum bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -129,7 +167,7 @@ try {
               <td><a id="ignoreEnhancedForColon"/><a href="#ignoreEnhancedForColon">ignoreEnhancedForColon</a></td>
               <td>Ignore whitespace around colon in <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  enhanced for</a> loop.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.5</td>
             </tr>
@@ -380,84 +418,79 @@ try {
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  public Example1(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example1() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="Example2-config">
           To configure the check for whitespace only around curly braces:
+          Note: '{' can be parsed either to LCURLY or SLIST.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="WhitespaceAround"&gt;
-      &lt;property name="tokens" value="LCURLY, RCURLY"/&gt;
+      &lt;property name="tokens" value="LCURLY, RCURLY, SLIST"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
-  public Example3(){} // violation ''}' is not preceded with whitespace'
-
+class Example2 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example2() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // violation ''}' is not preceded with whitespace'
+    Runnable noop = () -&gt;{ };
+    // violation above ''{' is not preceded with whitespace'
 
+    // ok '-&gt;', '(' and ')' not configured
     try { }
-    catch (Exception e){} // violation ''}' is not preceded with whitespace'
-
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){}
-    // violation above ''}' is not preceded with whitespace'
-    do {} while (y == 1); // violation ''}' is not preceded with whitespace'
-
-    int i = 0;
-    switch (i) {
-      case 1: {} // violation ''}' is not preceded with whitespace'
-
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4;
-
   }
-
-  void myFunction() {} // violation ''}' is not preceded with whitespace'
-
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example3-config">
           To configure the check to allow empty method bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -469,41 +502,38 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  public Example4(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example3 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example3() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {}
-
-  void myFunction2() { }
+  void myFunction(){ }
+  // ok, allowEmptyMethods is true
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
           To configure the check to allow empty constructor bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -515,41 +545,38 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-  public Example5(){} // violation, no space after ')'
+class Example4 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example4() {}
+
+  // ok, allowEmptyConstructors is true
 
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="Example5-config">
           To configure the check to allow empty type bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -561,41 +588,38 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Example:</p>
+        <p id="Example5-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
-  public Example6(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example5 {
+  interface Empty{ }
+  // ok, allowEmptyTypes is true
+  public Example5() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="Example6-config">
           To configure the check to allow empty loop bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -607,41 +631,38 @@ class Example6 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">Example:</p>
+        <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
-  public Example7(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example6 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example6() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){}
-
-    do {} while (y == 1);
-
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // ok, allowEmptyLoops is true
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
+        <p id="Example7-config">
           To configure the check to allow empty lambda bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -653,41 +674,38 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example8-code">Example:</p>
+        <p id="Example7-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
-  public Example8(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example7 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example7() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // violation, no space after '-&gt;'
-
+    Runnable noop = () -&gt;{ };
+    // violation above ''-&gt;' is not followed by whitespace'
+    // ok, allowEmptyLambdas
+    // is true above
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="Example8-config">
           To configure the check to allow empty catch bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -699,38 +717,35 @@ class Example8 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">Example:</p>
+        <p id="Example8-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
-  public Example9(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example8 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example8() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){}
-
+    catch (Exception e){ }
+    // ok, allowEmptyCatches is true above
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div>
         <p>
@@ -738,7 +753,7 @@ class Example9 {
           The colon in an enhanced for loop is ignored by default.
         </p>
         <hr class="example-separator"/>
-        <p id="Example10-config">
+        <p id="Example9-config">
           To configure the check to ignore the colon:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -750,42 +765,39 @@ class Example9 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example10-code">Example:</p>
+        <p id="Example9-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example10 {
-  public Example10(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example9 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example9() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { } // violation '':' is not preceded with whitespace'
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
 </code></pre></div>
         <hr class="example-separator"/>
-        <p id="Example11-config">
+        <p id="Example10-config">
           To configure the check to allow empty switch block statements:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -797,41 +809,41 @@ class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">Example:</p>
+        <p id="Example10-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example11 {
-  public Example11(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+class Example10 {
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example10() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () -&gt;{}; // 4 violations
-    // no space after '-&gt;' and '{', no space before '{' and '}'
+    Runnable noop = () -&gt;{ };
+    // 2 violations above:
+    //  ''-&gt;' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // violation above ''{' is not preceded with whitespace'
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i &gt; 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {}
-
+    for (int i = 0; i &lt; 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // ok, allowEmptySwitchBlockStatements is true
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="WhitespaceAround_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for whitespace only around assignment operators:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -846,33 +858,45 @@ class Example11 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example2 {
+class UseCase1 {
   void example() {
-    int b=10; // 2 violations
-    // no space before and after'='
+    int b=10;
+    // 2 violations above:
+    // ''=' is not followed by whitespace'
+    // ''=' is not preceded with whitespace'
     int c = 10;
-    b+=10; // 2 violations
-    // no space before and after'+='
     b += 10;
-    c*=10; // 2 violations
-    // no space before and after'*='
+    c*=10;
+    // 2 violations above:
+    // ''*=' is not followed by whitespace'
+    // ''*=' is not preceded with whitespace'
     c *= 10;
-    c-=5; // 2 violations
-    // no space before and after'-='
+    c-=5;
+    // 2 violations above:
+    // ''-=' is not followed by whitespace'
+    // ''-=' is not preceded with whitespace'
     c -= 5;
-    c/=2; // 2 violations
-    // no space before and after'/='
+    c/=2;
+    // 2 violations above:
+    // ''/=' is not followed by whitespace'
+    // ''/=' is not preceded with whitespace'
     c /= 2;
-    c%=1; // 2 violations
-    // no space before and after'%='
+    c%=1;
+    // 2 violations above:
+    // ''%=' is not followed by whitespace'
+    // ''%=' is not preceded with whitespace'
     c %= 1;
-    c&gt;&gt;=1; // 2 violations
-    // no space before and after'&gt;&gt;='
+    c&gt;&gt;=1;
+    // 2 violations above:
+    // ''&gt;&gt;=' is not followed by whitespace'
+    // ''&gt;&gt;=' is not preceded with whitespace'
     c &gt;&gt;= 1;
-    c&gt;&gt;&gt;=1; // 2 violations
-    // no space before and after'&gt;&gt;&gt;='
+    c&gt;&gt;&gt;=1;
+    // 2 violations above:
+    // ''&gt;&gt;&gt;=' is not followed by whitespace'
+    // ''&gt;&gt;&gt;=' is not preceded with whitespace'
     c &gt;&gt;&gt;= 1;
   }
 }
@@ -884,6 +908,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAround">

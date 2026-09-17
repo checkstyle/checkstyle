@@ -81,15 +81,22 @@ public class LineLengthCheck extends AbstractFileSetCheck {
     /** Specify pattern for lines to ignore. */
     private Pattern ignorePattern = Pattern.compile("^(package|import) .*");
 
+    /**
+     * Creates a new {@code LineLengthCheck} instance.
+     */
+    public LineLengthCheck() {
+        // no code by default
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        for (int i = 0; i < fileText.size(); i++) {
-            final String line = fileText.get(i);
+        for (int index = 0; index < fileText.size(); index++) {
+            final String line = fileText.get(index);
             final int realLength = CommonUtil.lengthExpandedTabs(
                 line, line.codePointCount(0, line.length()), getTabWidth());
 
             if (realLength > max && !ignorePattern.matcher(line).find()) {
-                log(i + 1, MSG_KEY, max, realLength);
+                log(index + 1, MSG_KEY, max, realLength);
             }
         }
     }

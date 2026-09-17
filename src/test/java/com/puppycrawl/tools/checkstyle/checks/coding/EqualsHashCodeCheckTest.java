@@ -130,4 +130,15 @@ public class EqualsHashCodeCheckTest
             .isNotNull();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "18:5: " + getCheckMessage(MSG_KEY_EQUALS),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputEqualsHashCodeCompactSourceFile.java"),
+                expected);
+    }
+
 }

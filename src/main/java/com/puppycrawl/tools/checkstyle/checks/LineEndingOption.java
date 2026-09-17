@@ -28,13 +28,13 @@ import java.nio.charset.StandardCharsets;
  */
 public enum LineEndingOption {
 
-    /** Unix-style line ending. **/
+    /** Unix-style line ending. */
     LF("\n"),
 
-    /** Windows-style line ending. **/
+    /** Windows-style line ending. */
     CRLF("\r\n"),
 
-    /** Mac-style line ending. **/
+    /** Mac-style line ending. */
     CR("\r");
 
     /** The line ending representation. */

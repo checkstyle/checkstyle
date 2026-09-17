@@ -8,6 +8,33 @@
   <body>
     <section name="MemberName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MemberName_Description">Description</a></li>
+          <li><a href="#MemberName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MemberName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with <code>"m"</code>, followed by an upper case letter, and then letters and digits. Also, suppress the check from being applied to protected and package-private member</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to suppress the check which is applied to public and private member</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to suppress the check which is applied to public and protected member</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to suppress the check which is applied to package-private member</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">An example of how to suppress the check which is applied to private member</a></li>
+            </ul>
+          </li>
+          <li><a href="#MemberName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MemberName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MemberName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MemberName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MemberName_Description">
         <div>
           Checks that instance variable names conform to a specified pattern.
@@ -27,35 +54,35 @@
             <tr>
               <td><a id="applyToPackage"/><a href="#applyToPackage">applyToPackage</a></td>
               <td>Control if check should apply to package-private members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="applyToPrivate"/><a href="#applyToPrivate">applyToPrivate</a></td>
               <td>Control if check should apply to private members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="applyToProtected"/><a href="#applyToProtected">applyToProtected</a></td>
               <td>Control if check should apply to protected members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="applyToPublic"/><a href="#applyToPublic">applyToPublic</a></td>
               <td>Control if check should apply to public members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
               <td>3.0</td>
             </tr>
@@ -147,6 +174,88 @@ class Example3 {
   int NUM3;           // violation 'Name 'NUM3' must match pattern'
   private int NUM4;
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to suppress the check which is applied to
+          public and protected member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPublic" value="false"/&gt;
+      &lt;property name="applyToProtected" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;
+  protected int NUM2;
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check which is applied to
+          package-private member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;
+  private int NUM4;   // violation 'Name 'NUM4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check which is applied to
+          private member:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public int num1;
+  protected int num2;
+  int num3;
+  private int num4;
+
+  public int NUM1;    // violation 'Name 'NUM1' must match pattern'
+  protected int NUM2; // violation 'Name 'NUM2' must match pattern'
+  int NUM3;           // violation 'Name 'NUM3' must match pattern'
+  private int NUM4;
+}
 </code></pre></div>
       </subsection>
 
@@ -155,6 +264,11 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MemberName">

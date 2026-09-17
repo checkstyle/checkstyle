@@ -19,11 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 
 public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswarningsfilter";
@@ -31,19 +35,24 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample1() throws Exception {
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
         final String[] expectedWithoutFilter = {
-            "16:7: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "20:7: 'int' is followed by whitespace.",
-            "20:10: Name 'ARRAY' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "17:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "J", pattern),
+            "18:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "JJ", pattern),
+            "21:7: 'int' is followed by whitespace.",
+            "21:10: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "ARRAY",
+                    pattern),
             "23:7: 'int' is followed by whitespace.",
-            "23:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "23:10: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "ARRAY2",
+                    pattern),
         };
 
         final String[] expectedWithFilter = {
-            "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "JJ", pattern),
             "23:7: 'int' is followed by whitespace.",
-            "23:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "23:10: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN, "ARRAY2",
+                    pattern),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
@@ -51,19 +60,20 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expectedWithoutFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
-            "22: Dont use System.out/err, use SLF4J instead.",
-            "25: Dont use System.out/err, use SLF4J instead.",
+            "32: Dont use System.out/err, use SLF4J instead.",
+            "36: Dont use System.out/err, use SLF4J instead.",
         };
 
         final String[] expectedWithFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
-            "25: Dont use System.out/err, use SLF4J instead.",
+            "36: Dont use System.out/err, use SLF4J instead.",
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

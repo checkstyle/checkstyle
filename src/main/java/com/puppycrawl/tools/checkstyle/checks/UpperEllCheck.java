@@ -47,6 +47,13 @@ public class UpperEllCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "upperEll";
 
+    /**
+     * Creates a new {@code UpperEllCheck} instance.
+     */
+    public UpperEllCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

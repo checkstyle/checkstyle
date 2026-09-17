@@ -21,7 +21,7 @@ fileExtensions = (default)null
 package com.puppycrawl.tools.checkstyle.checks.suppresswarningsholder;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
-// violation above, 'Line is longer than 80 characters'
+// violation above 'Line is longer than 80 characters'
 
 
 public class InputSuppressWarningsHolderAlias6 {
@@ -40,11 +40,10 @@ public class InputSuppressWarningsHolderAlias6 {
     void testMethod2(String str) {
         str = MSG_KEY;
         System.out.println("This is a short line.");
-
+        // filtered violation below 'Line is longer than 75 characters'
         System.out.println("This line is long and exceeds the default limit of 80 characters.");
-        // filtered 2 violations above:
-        //  'Line is longer than 75 characters'
-        //  'Line is longer than 80 characters'
+        // filtered violation above 'Line is longer than 80 characters'
+
     }
 
     @SuppressWarnings("LIne")
@@ -53,7 +52,7 @@ public class InputSuppressWarningsHolderAlias6 {
         System.out.println("This is a short line.");
 
         System.out.println("This line exceeds the limit of 75 characters.");
-        // filtered violation above, 'Line is longer than 75 characters'
+        // filtered violation above 'Line is longer than 75 characters'
     }
 
     void testMethod4(String str) {
@@ -61,7 +60,7 @@ public class InputSuppressWarningsHolderAlias6 {
         System.out.println("This is a short line.");
 
         System.out.println("This line exceeds the limit of 75 characters.");
-        // violation above, 'Line is longer than 75 characters'
+        // violation above 'Line is longer than 75 characters'
     }
 
     // violation 3 lines below 'Line is longer than 75 characters'
@@ -75,11 +74,10 @@ public class InputSuppressWarningsHolderAlias6 {
     }
 
     @SuppressWarnings("LINE")
-    // filtered violation 3 lines below, 'Line is longer than 75 characters'
     /**
     * This is a short Javadoc comment.
     * ThisJavadocCommentIsAReallyLongWordThatExceedsDefaultLineLimitOfEightyCharacters.
-    */
+    */ // filtered violation above 'Line is longer than 75 characters'
     void testMethod6(String str) {
         str = MSG_KEY;
         System.out.println("This is a short line.");

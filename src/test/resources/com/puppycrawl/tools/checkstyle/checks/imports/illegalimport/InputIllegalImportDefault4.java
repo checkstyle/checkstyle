@@ -2,7 +2,7 @@
 IllegalImport
 illegalPkgs = org.junit.jupiter.api
 illegalClasses = java.io.*
-illegalModules = (default)
+illegalModules = (default)(null)
 regexp = (default)false
 
 

@@ -86,4 +86,5 @@ public class TodoCommentCheckTest
         verifyWithInlineConfigParser(
                 getPath("InputTodoCommentDefault.java"), expected);
     }
+
 }

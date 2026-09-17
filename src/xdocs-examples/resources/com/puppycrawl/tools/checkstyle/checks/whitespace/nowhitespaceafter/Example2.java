@@ -13,7 +13,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   public void lineBreak(String x) {
     Integer.
@@ -36,4 +36,4 @@ class Example2 {
     a = ~a;
   }
 }
-// xdoc section -- end
+// xdoc section - end

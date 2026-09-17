@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck.MSG_WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck.MSG_WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck.MSG_WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck.MSG_WS_PRECEDED;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,12 +56,12 @@ public class TypecastParenPadCheckTest
         final String[] expected = {
             "84:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "84:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "85:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "85:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "87:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "87:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
-            "238:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
-            "238:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "88:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "88:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "96:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "96:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "247:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "247:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputTypecastParenPadWhitespaceTestSpace.java"), expected);

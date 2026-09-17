@@ -20,8 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
-import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck.MSG_REGEXP_MINIMUM;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +55,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIt() throws Exception {
         final String[] expected = {
-            "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
+            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic.java"), expected);
@@ -65,7 +65,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     public void testMessageProperty()
             throws Exception {
         final String[] expected = {
-            "78: " + "Bad line :(",
+            "79: " + "Bad line :(",
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic2.java"), expected);
@@ -74,7 +74,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCaseTrue() throws Exception {
         final String[] expected = {
-            "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
+            "79: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic3.java"), expected);
@@ -99,7 +99,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     public void testIgnoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\suse trailing comments"),
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\suse trailing comments"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment2.java"), expected);
@@ -116,7 +116,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCommentsFalseBlockStyle() throws Exception {
         final String[] expected = {
-            "31: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "c-style\\s1"),
+            "32: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "c-style\\s1"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment4.java"), expected);
@@ -147,7 +147,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCommentsInlineEnd() throws Exception {
         final String[] expected = {
-            "34: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int z"),
+            "35: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int z"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment8.java"), expected);
@@ -156,7 +156,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreCommentsInlineMiddle() throws Exception {
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
+            "36: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment9.java"), expected);
@@ -207,4 +207,5 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic8.java"), expected);
     }
+
 }

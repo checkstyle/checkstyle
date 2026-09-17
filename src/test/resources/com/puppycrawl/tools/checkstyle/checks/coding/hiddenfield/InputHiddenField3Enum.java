@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -27,7 +27,7 @@ enum InputHiddenField3Enum
         public void doSomething()
         {
             //Should be flagged as hiding enum constant member
-            int hidden = 0; // violation, ''hidden' hides a field'
+            int hidden = 0; // violation ''hidden' hides a field'
         }
     };
 
@@ -37,19 +37,19 @@ enum InputHiddenField3Enum
     /**
      * ctor parameter hides member
      */
-    InputHiddenField3Enum(int hidden) // violation, ''hidden' hides a field'
+    InputHiddenField3Enum(int hidden) // violation ''hidden' hides a field'
     {
     }
 
     public void doSomething()
     {
         //Should be flagged as hiding static member
-        int hidden = 0; // violation, ''hidden' hides a field'
+        int hidden = 0; // violation ''hidden' hides a field'
     }
 
     public static void doSomethingStatic()
     {
         //Should be flagged as hiding static member
-        int hiddenStatic = 0; // violation, ''hiddenStatic' hides a field'
+        int hiddenStatic = 0; // violation ''hiddenStatic' hides a field'
     }
 }

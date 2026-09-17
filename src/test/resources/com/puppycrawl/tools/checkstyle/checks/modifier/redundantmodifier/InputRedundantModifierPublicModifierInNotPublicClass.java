@@ -21,7 +21,7 @@ public class InputRedundantModifierPublicModifierInNotPublicClass {
 }
 
 class PackagePrivateClass {
-    public PackagePrivateClass() {} // violation
+    public PackagePrivateClass() {} // violation 'Redundant 'public' modifier.'
 }
 
 class PackagePrivateClassWithNotRedundantConstructor {

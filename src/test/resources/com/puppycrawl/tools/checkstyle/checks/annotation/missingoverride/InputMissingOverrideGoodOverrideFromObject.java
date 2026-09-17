@@ -17,18 +17,6 @@ public class InputMissingOverrideGoodOverrideFromObject
         return false;
     }
 
-    /**
-     * {@inheritDoc no violation}
-     *
-     * @inheritDocs}
-     *
-     * {@inheritDoc
-     */
-    @Override
-    public int hashCode() {
-        return 1;
-    }
-
     class Junk {
 
         /**

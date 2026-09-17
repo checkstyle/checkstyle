@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <div>
  * Checks that there are no
  * <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
- * &quot;magic numbers&quot;</a> where a magic
+ * {@code "magic number"}</a> where a magic
  * number is a numeric literal that is not defined as a constant.
  * By default, -1, 0, 1, and 2 are not considered to be magic numbers.
  * </div>
@@ -45,14 +45,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Constant definition is any variable/field that has 'final' modifier.
  * It is fine to have one constant defining multiple numeric literals within one expression:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * static final int SECONDS_PER_DAY = 24 * 60 * 60;
  * static final double SPECIAL_RATIO = 4.0 / 3.0;
  * static final double SPECIAL_SUM = 1 + Math.E;
  * static final double SPECIAL_DIFFERENCE = 4 - Math.PI;
  * static final Border STANDARD_BORDER = BorderFactory.createEmptyBorder(3, 3, 3, 3);
  * static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
- * </code></pre></div>
+ * }
  *
  * @since 3.1
  */
@@ -116,6 +116,13 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /** Ignore magic numbers in annotation elements defaults. */
     private boolean ignoreAnnotationElementDefaults = true;
+
+    /**
+     * Creates a new {@code MagicNumberCheck} instance.
+     */
+    public MagicNumberCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

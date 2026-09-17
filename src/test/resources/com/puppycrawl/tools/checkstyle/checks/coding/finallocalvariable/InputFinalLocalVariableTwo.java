@@ -2,10 +2,10 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public class InputFinalLocalVariableTwo {
@@ -21,9 +21,9 @@ public class InputFinalLocalVariableTwo {
 
         int l = 0;
         {
-            int weird = 0; // violation, "Variable 'weird' should be declared final"
-            int j = 0; // violation, "Variable 'j' should be declared final"
-            int k = 0; // violation, "Variable 'k' should be declared final"
+            int weird = 0; // violation "Variable 'weird' should be declared final"
+            int j = 0; // violation "Variable 'j' should be declared final"
+            int k = 0; // violation "Variable 'k' should be declared final"
             {
                 l++;
             }

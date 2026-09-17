@@ -279,7 +279,8 @@ public final class ImportControlLoader extends XmlLoader {
      * @throws CheckstyleException if an error occurs.
      */
     private static PkgImportControl load(InputSource source,
-        URI uri) throws CheckstyleException {
+        URI uri)
+                throws CheckstyleException {
         try {
             final ImportControlLoader loader = new ImportControlLoader();
             loader.parseInputSource(source);

@@ -12,11 +12,11 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   // filtered violation below ''42' is a magic number'
   int a = 42;  // SUPPRESS CHECKSTYLE because I want to
-  int b = 43;  // violation, "'43' is a magic number."
+  int b = 43;  // violation "'43' is a magic number."
 
   String a_really_long_variable_name = "A sentence greater than 70 chars";
   // violation above 'Line is longer ...'
@@ -30,4 +30,4 @@ public class Example1 {
    */
   public static final boolean SOME_FLAG = false;
 }
-// xdoc section -- end
+// xdoc section - end

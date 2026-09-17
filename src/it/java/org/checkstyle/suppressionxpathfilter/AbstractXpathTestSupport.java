@@ -123,8 +123,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         final String uniqueFileName =
                 "suppressions_xpath_config_" + UUID.randomUUID() + ".xml";
         final File suppressionsXpathConfigPath = new File(temporaryFolder, uniqueFileName);
-        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath(),
-                StandardCharsets.UTF_8)) {
+        try (Writer bw = Files.newBufferedWriter(suppressionsXpathConfigPath.toPath())) {
             bw.write("<?xml version=\"1.0\"?>\n");
             bw.write("<!DOCTYPE suppressions PUBLIC\n");
             bw.write("    \"-//Checkstyle//DTD SuppressionXpathFilter ");
@@ -154,7 +153,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * @throws Exception can throw exceptions when creating config.
      */
     private DefaultConfiguration createSuppressionXpathFilter(String checkName,
-                                           List<String> xpathQueries) throws Exception {
+                                           List<String> xpathQueries)
+            throws Exception {
         final DefaultConfiguration suppressionXpathFilterConfig =
                 createModuleConfig(SuppressionXpathFilter.class);
         suppressionXpathFilterConfig.addProperty("file",
@@ -200,7 +200,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     protected void runVerifications(DefaultConfiguration moduleConfig,
                                   File fileToProcess,
                                   String[] expectedViolation,
-                                  List<String> expectedXpathQueries) throws Exception {
+                                  List<String> expectedXpathQueries)
+            throws Exception {
         if (expectedViolation.length != 1) {
             throw new IllegalArgumentException(
                     "Expected violations should contain exactly one element."
@@ -235,4 +236,5 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         private ViolationPosition {
         }
     }
+
 }

@@ -9,8 +9,6 @@
   </description>
 
   <rule ref="category/java/bestpractices.xml">
-    <!-- until https://github.com/pmd/pmd/issues/5514 -->
-    <exclude name="ExhaustiveSwitchHasDefault"/>
     <!-- Clashes with CommentDefaultAccessModifier. We do not like package and protected
          visibility, they are HACK in design and illusion of protection of method from outside.
          Keeping them public is ok. -->
@@ -287,6 +285,9 @@
     <exclude name="LawOfDemeter"/>
     <!-- We use our ImportControl to control imports in packages and classes. -->
     <exclude name="LoosePackageCoupling"/>
+    <!-- Nested classes are potential candidates to be become top public,
+         so should define what is public from start -->
+    <exclude name="PublicMemberInNonPublicType"/>
   </rule>
   <rule ref="category/java/errorprone.xml/AvoidCatchingGenericException">
     <properties>
@@ -320,8 +321,7 @@
   </rule>
   <rule ref="category/java/design.xml/CouplingBetweenObjects">
     <properties>
-      <!-- SiteUtil and HandlerFactory are utility/factory classes that
-           work with many different classes by design.
+      <!-- HandlerFactory is a factory class that works with many different classes by design.
            Checker, Main, TreeWalker, and CheckstyleAntTask are framework
            orchestrators that coordinate multiple subsystems.
            JavaAstVisitor and JavadocCommentsAstVisitor are parser visitors
@@ -332,7 +332,7 @@
            refactoring that would damage readability and maintainability. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='HandlerFactory'
-                or @SimpleName='SiteUtil' or @SimpleName='Checker' or @SimpleName='JavaAstVisitor'
+                or @SimpleName='Checker' or @SimpleName='JavaAstVisitor'
                 or @SimpleName='Main' or @SimpleName='TreeWalker' or @SimpleName='CheckstyleAntTask'
                 or @SimpleName='TranslationCheck' or @SimpleName='JavadocMethodCheck'
                 or @SimpleName='JavadocCommentsAstVisitor']"/>
@@ -351,13 +351,10 @@
              AbstractElementNode.iterateAxis,
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
              are also huge switches, they had to be monolithic.
-           SuppressFilterElement is a single constructor and can't be split easily
-           Splitting PropertiesMacro.getDefaultValue will damage readability
-           Splitting SiteUtil.getDefaultValue would not make it more readable -->
+           SuppressFilterElement is a single constructor and can't be split easily -->
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
            RequireThisCheck has to work with and identify many frames.
-           JavadocMethodCheck is in the process of being rewritten.
-           SiteUtil provides a lot of functionality to generate documentation. -->
+           JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
@@ -381,13 +378,9 @@
              //MethodDeclaration[@Name='iterateAxis']
       | //ClassDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
-      | //ClassDeclaration[@SimpleName='PropertiesMacro']
-             //MethodDeclaration[@Name='getDefaultValue']
-      | //ClassDeclaration[@SimpleName='SiteUtil']
-               //MethodDeclaration[@Name='getDefaultValue']
       | //ClassDeclaration[@SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
         or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
-        or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
+        or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">
@@ -408,7 +401,7 @@
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='JavaAstVisitor'
-                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor'
+                    or @SimpleName='JavadocCommentsAstVisitor'
                     or @SimpleName='RequireThisCheck'
                     or @SimpleName='UnusedLocalVariableCheck']"/>
 
@@ -427,28 +420,17 @@
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
            TranslationCheck uses a lot of imports for it's logic and custom violations.
-           SiteUtil uses a lot of imports to provide logic for generating documentation.
-           MetadataGeneratorUtil uses a lot of imports to provide logic for generating data.
             -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
-        or @SimpleName='AbstractAutomaticBean'
-        or @SimpleName='SiteUtil'
-        or @SimpleName='MetadataGeneratorUtil']"/>
+        or @SimpleName='AbstractAutomaticBean']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">
     <properties>
       <property name="reportLevel" value="22"/>
-      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064
-           Splitting SiteUtil's methods will damage readability -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                    |  //ClassDeclaration[@SimpleName='SiteUtil']
-                    //MethodDeclaration[@Name='getDefaultValue']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">
@@ -482,30 +464,11 @@
     <exclude name="UseStringBufferForStringAppends"/>
   </rule>
 
-  <rule ref="category/java/performance.xml/UseArraysAsList">
-    <properties>
-      <!-- False positive, getFirstJavadocParagraphNodes traverses a linked
-           node tree, not an array, Arrays.asList() cannot replace this. -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='SiteUtil']
-                        //MethodDeclaration[@Name='getFirstJavadocParagraphNodes"/>
-    </properties>
-  </rule>
-
   <rule ref="category/java/design.xml/ExcessivePublicCount">
     <properties>
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
                     or @SimpleName='JavadocCommentsAstVisitor']"/>
-    </properties>
-  </rule>
-
-  <rule ref="category/java/design.xml/NPathComplexity">
-    <properties>
-      <!-- Splitting SiteUtil.getDescriptionFromJavadocForXdoc will damage readability -->
-      <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='SiteUtil']
-                      //MethodDeclaration[@Name='getDescriptionFromJavadocForXdoc']"/>
     </properties>
   </rule>
 
@@ -556,6 +519,18 @@
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
                                             or @Name='setJavadocTokens']
                       | //ClassDeclaration[@SimpleName='JavadocMethodCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
+                                            or @Name='setJavadocTokens']
+                      | //ClassDeclaration[@SimpleName='WriteTagCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      | //ClassDeclaration[@SimpleName='InappropriateJavadocBlockTagsOnFieldCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
+                                            or @Name='setJavadocTokens']
+                      | //ClassDeclaration[@SimpleName='JavadocTypeCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      | //ClassDeclaration[@SimpleName='IllegalBlockTagCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      | //ClassDeclaration[@SimpleName='InappropriateJavadocBlockTagsOnTypeCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>

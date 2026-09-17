@@ -13,7 +13,7 @@ fi
 TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
-CURRENT_VERSION=$(getCheckstylePomVersionWithoutSnapshot) \
+CURRENT_VERSION=$(getPomVersionWithoutSnapshot) \
   || { echo "Failed to get Checkstyle POM version."; exit 1; }
 echo CURRENT_VERSION="$CURRENT_VERSION"
 

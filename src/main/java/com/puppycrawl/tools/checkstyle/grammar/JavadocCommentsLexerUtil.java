@@ -58,7 +58,7 @@ public final class JavadocCommentsLexerUtil {
      * </p>
      *
      * @param openTagNameTokens  a deque of {@link Token} instances representing open tag names
-     * @param closeTagNameTokens a deque of {@link Token} instances representing close tag names
+     * @param closeTagNameTokens a deque of {@code Token} instances representing close tag names
      * @return a set of {@link SimpleToken} instances representing unclosed tag names
      */
     public static Set<SimpleToken> getUnclosedTagNameTokens(

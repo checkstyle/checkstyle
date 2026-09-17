@@ -181,6 +181,25 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRegexInKey() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_KEY, "some.key[a-b-c]", "some.key[index-with-dash]"),
+            "3: " + getCheckMessage(MSG_KEY, "array[0-1]", "some.key[a-b-c]"),
+        };
+        verify(checkConfig, getPath("InputOrderedPropertiesRegex.properties"), expected);
+    }
+
+    @Test
+    public void testSpacesInKey() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
+        final String[] expected = {
+            "2: " + getCheckMessage(MSG_KEY, "key with spaces", "key2"),
+        };
+        verify(checkConfig, getPath("InputOrderedPropertiesSpaces.properties"), expected);
+    }
+
+    @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
@@ -204,4 +223,5 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
             return exc.getLocalizedMessage();
         }
     }
+
 }

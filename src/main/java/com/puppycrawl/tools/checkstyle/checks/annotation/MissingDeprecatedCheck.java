@@ -62,13 +62,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * these files until the javadoc tool faithfully supports it. An example config
  * using SuppressionSingleFilter is:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
- * &lt;!-- required till https://bugs.openjdk.org/browse/JDK-8160601 --&gt;
- * &lt;module name="SuppressionSingleFilter"&gt;
- *     &lt;property name="checks" value="MissingDeprecatedCheck"/&gt;
- *     &lt;property name="files" value="package-info\.java"/&gt;
- * &lt;/module&gt;
- * </code></pre></div>
+ * {@snippet lang="text" :
+ * <!-- required till https://bugs.openjdk.org/browse/JDK-8160601 -->
+ * <module name="SuppressionSingleFilter">
+ *     <property name="checks" value="MissingDeprecatedCheck"/>
+ *     <property name="files" value="package-info\.java"/>
+ * </module>
+ * }
  *
  * @since 5.0
  */
@@ -101,6 +101,13 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
             TokenTypes.ANNOTATIONS, TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.TYPE_PARAMETERS, TokenTypes.DOT);
 
+    /**
+     * Creates a new {@code MissingDeprecatedCheck} instance.
+     */
+    public MissingDeprecatedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return getRequiredJavadocTokens();
@@ -116,7 +123,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     /**
      * Setter to control when to print violations if the Javadoc being examined by this check
      * violates the tight html rules defined at
-     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight-HTML Rules</a>.
      *
      * @param shouldReportViolation value to which the field shall be set to

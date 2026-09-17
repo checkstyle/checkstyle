@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = true
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -19,21 +19,21 @@ class InputHiddenField4Static
 
     public static void staticMethod()
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     public void method()
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     static
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 
     {
-        int hidden; // violation, ''hidden' hides a field'
+        int hidden; // violation ''hidden' hides a field'
     }
 }
 
@@ -60,7 +60,7 @@ class StaticMethods4
         void useX(int x) {
             x++;
         }
-        void useY(int y) { // violation, ''y' hides a field'
+        void useY(int y) { // violation ''y' hides a field'
             y++;
         }
     }

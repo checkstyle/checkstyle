@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingleadingasterisk;
 
-// xdoc section -- start
+// xdoc section - start
 /**
  * Valid Java-style comment.
  *
@@ -32,18 +32,18 @@ class SingleLine {}
 
 /**
 
- */ // violation above, 'Javadoc line should start with leading asterisk'
+ */ // violation above 'Javadoc line should start with leading asterisk'
 class BlankLine {}
 
 /** Wrapped
     single-line comment */
-// violation above, 'Javadoc line should start with leading asterisk'
+// violation above 'Javadoc line should start with leading asterisk'
 class Wrapped {}
 
 /**
   * <pre>
-    int value; // violation, 'Javadoc line should start with leading asterisk'
+    int value; // violation 'Javadoc line should start with leading asterisk'
   * </pre>
   */
 class Example1 {}
-// xdoc section -- end
+// xdoc section - end

@@ -22,13 +22,13 @@ public class InputAnnotationOnSameLineCheckPrivateAndDeprecatedVar {
 
     @Ann private List<String> names2 = new ArrayList<>();
 
-    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
+    // violation below "Annotation 'SuppressWarnings' should be on the same line with its target."
     @SuppressWarnings("deprecation")
     @Ann Integer x;
 
-    // violation below, "Annotation 'SuppressWarnings' should be on the same line with its target."
+    // violation below "Annotation 'SuppressWarnings' should be on the same line with its target."
     @SuppressWarnings("deprecation")
-    // violation below, "Annotation 'Ann' should be on the same line with its target."
+    // violation below "Annotation 'Ann' should be on the same line with its target."
     @Ann
     Integer x2;
 

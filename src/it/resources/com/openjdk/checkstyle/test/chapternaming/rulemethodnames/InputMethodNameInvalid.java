@@ -1,5 +1,7 @@
 package com.openjdk.checkstyle.test.chapternaming.rulemethodnames;
 
+// violation first line 'Header is missing'
+
 /** Invalid method names for OpenJDK style section 4.3. */
 public class InputMethodNameInvalid {
 

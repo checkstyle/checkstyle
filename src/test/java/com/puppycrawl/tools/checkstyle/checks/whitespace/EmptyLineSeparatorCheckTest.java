@@ -199,6 +199,14 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEmptyLineSeparatorException() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorException.java"), expected);
+    }
+
+    @Test
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
 
         final String[] expected = {
@@ -251,6 +259,23 @@ public class EmptyLineSeparatorCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
+    }
+
+    @Test
+    public void testMultiVariableDeclaration() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultiVariableDeclaration.java"), expected);
+    }
+
+    @Test
+    public void testMultiVariableDeclarationAllowNoEmptyLine() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultiVariableDeclarationAllowNoEmptyLine.java"),
+                expected);
     }
 
     @Test

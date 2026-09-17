@@ -37,7 +37,6 @@ jobs:
           echo "$SF_SSH_KEY" > ~/.ssh/private_sourceforge_key
           chmod 400 ~/.ssh/private_sourceforge_key
           ssh-add ~/.ssh/private_sourceforge_key
-          ssh-keyscan -t ed25519 shell.sourceforge.net >> ~/.ssh/known_hosts
           ssh-keyscan -t ed25519 web.sourceforge.net >> ~/.ssh/known_hosts
 
       - name: Run Shell Script

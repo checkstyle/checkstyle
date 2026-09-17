@@ -1,14 +1,21 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="AbstractClassName"/>
-    <module name="MethodName"/>
+    <module name="IllegalIdentifierName">
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*$"/>
+      <property name="tokens" value="CLASS_DEF"/>
+    </module>
     <module name="SuppressionXpathSingleFilter">
-      <property name="checks" value=".*"/>
-      <property name="query"
-                value="(//CLASS_DEF[./IDENT[@text='Example7']])|
-                (//CLASS_DEF[./IDENT[@text='Example7']]/OBJBLOCK/METHOD_DEF
-                /IDENT[@text='MyMethod'])"/>
+      <property name="files" value="[\\/]src[\\/]test[\\/]java[\\/]"/>
+      <property name="checks" value="IllegalIdentifierName"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files" value=".*Tests\.java"/>
+      <property name="checks" value="IllegalIdentifierName"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files" value="generated-sources"/>
+      <property name="checks" value="[a-zA-Z0-9]*"/>
     </module>
   </module>
 </module>
@@ -16,16 +23,12 @@
 
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
-// filtered violation below 'Name 'Example7' must match pattern'
-abstract class Example7 {
-  public void MyMethod() {}
-  // filtered violation above 'Name 'MyMethod' must match pattern'
-}
+public class Example7 {}
 
-// violation below, 'Name 'AnotherClass' must match pattern'
-abstract class AnotherClass {
-  public void MyMethod() {}
-  // violation above, 'Name 'MyMethod' must match pattern'
-}
-// xdoc section -- end
+/*
+// xdoc section - start
+.../src/myApplication.java // violation, Name 'myApplication' must match pattern.
+.../src/myApplicationTests.java // filtered violation 'must match pattern'
+.../src/test/java/insidePackage.java // filtered violation 'must match pattern'
+// xdoc section - end
+*/

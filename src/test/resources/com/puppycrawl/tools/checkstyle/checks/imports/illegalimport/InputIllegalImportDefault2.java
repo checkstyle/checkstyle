@@ -1,8 +1,8 @@
 /*
 IllegalImport
 illegalPkgs = (default)sun
-illegalClasses = (default)
-illegalModules = (default)
+illegalClasses = (default)(null)
+illegalModules = (default)(null)
 regexp = (default)false
 
 

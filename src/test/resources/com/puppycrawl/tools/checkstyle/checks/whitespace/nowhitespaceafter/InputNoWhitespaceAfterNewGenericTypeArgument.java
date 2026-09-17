@@ -60,9 +60,9 @@ public class InputNoWhitespaceAfterNewGenericTypeArgument {
             // 2 violations above:
             //          ''i' is followed by whitespace.'
             //          ''j' is followed by whitespace.'
-        SomeInterface u []; // violation, ''u' is followed by whitespace.'
-        SomeInterface v[] [] = null; // violation, '']' is followed by whitespace.'
-        AnotherInterface w []; // violation, ''w' is followed by whitespace.'
+        SomeInterface u []; // violation ''u' is followed by whitespace.'
+        SomeInterface v[] [] = null; // violation '']' is followed by whitespace.'
+        AnotherInterface w []; // violation ''w' is followed by whitespace.'
         SomeClass x [] [];
             // 2 violations above:
             //          ''x' is followed by whitespace.'
@@ -90,7 +90,7 @@ public class InputNoWhitespaceAfterNewGenericTypeArgument {
             errorAlert(out, 10);
 
         w = (AnotherInterface []) x[1];
-            // violation above, ''AnotherInterface' is followed by whitespace.'
+            // violation above ''AnotherInterface' is followed by whitespace.'
 
         return errorStatus;
     }

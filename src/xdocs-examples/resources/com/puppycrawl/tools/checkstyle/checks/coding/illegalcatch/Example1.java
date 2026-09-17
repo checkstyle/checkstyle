@@ -7,13 +7,13 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalcatch;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void exampleMethod1() {
     try {
       // some code here
     } catch (Exception e) {
-      // violation above, 'Catching 'Exception' is not allowed'
+      // violation above 'Catching 'Exception' is not allowed'
     }
   }
 
@@ -23,7 +23,7 @@ class Example1 {
     } catch (ArithmeticException e) {
 
     } catch (Exception e) {
-      // violation above, 'Catching 'Exception' is not allowed'
+      // violation above 'Catching 'Exception' is not allowed'
     }
   }
 
@@ -52,4 +52,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

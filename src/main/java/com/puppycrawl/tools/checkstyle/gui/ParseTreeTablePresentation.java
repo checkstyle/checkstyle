@@ -231,9 +231,9 @@ public class ParseTreeTablePresentation {
      */
     public int getIndexOfChild(Object parent, Object child) {
         int index = -1;
-        for (int i = 0; i < getChildCount(parent); i++) {
-            if (getChild(parent, i).equals(child)) {
-                index = i;
+        for (int childIndex = 0; childIndex < getChildCount(parent); childIndex++) {
+            if (getChild(parent, childIndex).equals(child)) {
+                index = childIndex;
                 break;
             }
         }

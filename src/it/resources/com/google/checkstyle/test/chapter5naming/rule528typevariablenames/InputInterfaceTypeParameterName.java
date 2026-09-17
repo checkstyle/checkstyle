@@ -94,5 +94,11 @@ interface FooInterface8<TRequest> {
   Input foo();
 }
 
+interface FooInterface9<REQUEST> {
+  // 2 violations above:
+  //  'Top-level class FooInterface9 has to reside in its own source file.'
+  //  'Interface type name 'REQUEST' must match pattern'
+}
+
 // violation below 'Top-level class Input has to reside in its own source file.'
 class Input {}

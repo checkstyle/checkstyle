@@ -23,12 +23,12 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck.MSG_KEY_MISSING;
 
-import java.io.File;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import de.thetaphi.forbiddenapis.SuppressForbidden;
@@ -142,6 +142,12 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input file has to stay
+     * empty to cover the case of a file without any content. Inline config parser
+     * requires a config comment as the first line of the input file, and adding it
+     * would make the file non-empty.
+     */
     @SuppressForbidden
     @Test
     public void testEmptyFile() throws Exception {
@@ -163,6 +169,14 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testModuleInfoFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("module-info/default/module-info.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final PackageDeclarationCheck check = new PackageDeclarationCheck();
         assertWithMessage("Acceptable tokens should not be null")
@@ -178,18 +192,13 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBeginTreeClear() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(PackageDeclarationCheck.class);
-        final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY_MISSING),
-        };
-        final Checker checker = createChecker(checkConfig);
         final String fileName1 = getPath("InputPackageDeclarationPlain.java");
         final String fileName2 = getPath("InputPackageDeclarationNoPackage.java");
-        final File[] files = {
-            new File(fileName1),
-            new File(fileName2),
-        };
-        verify(checker, files, fileName2, expected);
+        final List<String> expected1 = Collections.emptyList();
+        final List<String> expected2 = List.of(
+            "8:1: " + getCheckMessage(MSG_KEY_MISSING));
+
+        verifyWithInlineConfigParser(fileName1, fileName2, expected1, expected2);
     }
+
 }

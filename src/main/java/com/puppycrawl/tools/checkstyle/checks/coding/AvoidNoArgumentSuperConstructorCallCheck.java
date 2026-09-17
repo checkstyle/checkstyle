@@ -44,6 +44,13 @@ public final class AvoidNoArgumentSuperConstructorCallCheck extends AbstractChec
      */
     public static final String MSG_CTOR = "super.constructor.call";
 
+    /**
+     * Creates a new {@code AvoidNoArgumentSuperConstructorCallCheck} instance.
+     */
+    public AvoidNoArgumentSuperConstructorCallCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -68,4 +75,5 @@ public final class AvoidNoArgumentSuperConstructorCallCheck extends AbstractChec
             log(ast, MSG_CTOR);
         }
     }
+
 }

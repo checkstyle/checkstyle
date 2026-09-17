@@ -354,6 +354,36 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testLiteralToken() throws Exception {
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_KEY, "catch"),
+            "26:11: " + getCheckMessage(MSG_KEY, "while"),
+            "34:9: " + getCheckMessage(MSG_KEY, "for"),
+            "44:9: " + getCheckMessage(MSG_KEY, "if"),
+            "55:9: " + getCheckMessage(MSG_KEY, "while"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfter.java"), expected);
+    }
+
+    @Test
+    public void testLiteralTokenFalse() throws Exception {
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_KEY, "catch"),
+            "26:11: " + getCheckMessage(MSG_KEY, "while"),
+            "29:11: " + getCheckMessage(MSG_KEY, "while"),
+            "34:9: " + getCheckMessage(MSG_KEY, "for"),
+            "44:9: " + getCheckMessage(MSG_KEY, "if"),
+            "47:9: " + getCheckMessage(MSG_KEY, "if"),
+            "55:9: " + getCheckMessage(MSG_KEY, "while"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputNoWhitespaceAfterTwo.java"), expected);
+    }
+
+    @Test
     public void testNoWhitespaceAfterSynchronized() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "synchronized"),

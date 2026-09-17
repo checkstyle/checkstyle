@@ -7,10 +7,10 @@ illegalClassNames = (default)HashMap, HashSet, LinkedHashMap, LinkedHashSet, Tre
 legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
-memberModifiers =
-tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
-         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+memberModifiers =(default)
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, IMPORT, INTERFACE_DEF, METHOD_CALL, \
+         METHOD_DEF, METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -32,8 +32,8 @@ public class InputIllegalTypeEmptyStringMemberModifiers implements InputIllegalT
     private class NotAnAbstractClass {}
 
     private java.util.TreeSet table1() { return null; }
-    // violation above, 'Usage of type 'java.util.TreeSet' is not allowed'
-    private TreeSet table2() { return null; } // violation, 'Usage of type TreeSet is not allowed'.
+    // violation above "Usage of type 'java.util.TreeSet' is not allowed."
+    private TreeSet table2() { return null; } // violation "Usage of type 'TreeSet' is not allowed."
     static class SomeStaticClass {
 
     }
@@ -58,9 +58,9 @@ public class InputIllegalTypeEmptyStringMemberModifiers implements InputIllegalT
 }
 
 interface InputIllegalTypeSuperEmptyStringMemberModifiers {
-    void foo(HashMap<?, ?> buffer); // violation, 'Usage of type TreeSet is not allowed'.
+    void foo(HashMap<?, ?> buffer); // violation "Usage of type 'HashMap' is not allowed."
 
-    HashMap<?, ?> foo(); // violation, 'Usage of type TreeSet is not allowed'.
+    HashMap<?, ?> foo(); // violation "Usage of type 'HashMap' is not allowed."
 
     Object bar();
 }

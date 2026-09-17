@@ -8,6 +8,39 @@
   <body>
     <section name="JavadocVariable">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocVariable_Description">Description</a></li>
+          <li><a href="#JavadocVariable_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocVariable_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink"><code>public</code> access modifier</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For <code>VARIABLE_DEF</code> tokens only</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">To ignore absence of Javadoc comments for fields with names <code>log</code> or <code>logger</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#JavadocVariable_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">For fields which are in <code>private</code> or <code>package</code> access modifier</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">For fields which are in <code>public</code>, <code>protected</code>, <code>package</code> or <code>private</code> access modifier</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocVariable_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocVariable_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocVariable_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocVariable_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocVariable_Description">
         <div>
           Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code> fields.
@@ -27,14 +60,14 @@
             <tr>
               <td><a id="accessModifiers"/><a href="#accessModifiers">accessModifiers</a></td>
               <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants, or where the nesting types accessibility is more restrictive and hides the nested field. Only fields matching the specified modifiers will be analyzed.</td>
-              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><a href="../../property-types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>10.22.0</td>
             </tr>
             <tr>
               <td><a id="ignoreNamePattern"/><a href="#ignoreNamePattern">ignoreNamePattern</a></td>
               <td>Specify the regexp to define variable names to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>5.8</td>
             </tr>
@@ -74,22 +107,22 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  private int a; // violation, 'Missing a Javadoc comment'
+  private int a; // violation 'Missing a Javadoc comment for 'a'.'
 
   /**
    * Some description here
    */
   private int b;
-  protected int c; // violation, 'Missing a Javadoc comment'
-  public int d; // violation, 'Missing a Javadoc comment'
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  protected int c; // violation 'Missing a Javadoc comment for 'c'.'
+  public int d; // violation 'Missing a Javadoc comment for 'd'.'
+  /*package*/ int e; // violation 'Missing a Javadoc comment for 'e'.'
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -120,11 +153,11 @@ public class Example2 {
    */
   private int b;
   protected int c;
-  public int d; // violation, 'Missing a Javadoc comment'
+  public int d; // violation 'Missing a Javadoc comment for 'd'.'
   /*package*/ int e;
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 
   private enum PrivateEnum {
@@ -133,41 +166,38 @@ public class Example2 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
-          To configure the check for fields which are in <code>private</code> or
-          <code>package</code> access modifier:
+          To configure the check for <code>VARIABLE_DEF</code> tokens only:
         </p>
-
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="JavadocVariable"&gt;
-      &lt;property name="accessModifiers" value="private,package"/&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">
-          This setting will report a violation if there is no
-          javadoc for <code>private</code>  or <code>package</code> field.
+          Example3:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  private int a; // violation, 'Missing a Javadoc comment'
+  private int a;     // violation 'Missing a Javadoc comment for 'a'.'
 
   /**
    * Some description here
    */
   private int b;
-  protected int c;
-  public int d;
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  protected int c;   // violation 'Missing a Javadoc comment for 'c'.'
+  public int d;      // violation 'Missing a Javadoc comment for 'd'.'
+  /*package*/ int e; // violation 'Missing a Javadoc comment for 'e'.'
 
   public enum PublicEnum {
     CONSTANT
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -192,43 +222,102 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  private int a; // violation, 'Missing a Javadoc comment'
+  private int a; // violation 'Missing a Javadoc comment for 'a'.'
 
   /**
    * Some description here
-  */
+   */
   private int b;
-  protected int c; // violation, 'Missing a Javadoc comment'
-  public int d; // violation, 'Missing a Javadoc comment'
-  /*package*/ int e; // violation, 'Missing a Javadoc comment'
+  protected int c; // violation 'Missing a Javadoc comment for 'c'.'
+  public int d; // violation 'Missing a Javadoc comment for 'd'.'
+  /*package*/ int e; // violation 'Missing a Javadoc comment for 'e'.'
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="JavadocVariable_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check for fields which are in <code>private</code> or
+          <code>package</code> access modifier:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocVariable"&gt;
+      &lt;property name="accessModifiers" value="private,package"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          This setting will report a violation if there is no
+          javadoc for <code>private</code>  or <code>package</code> field.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {
+  private int a; // violation 'Missing a Javadoc comment for 'a'.'
+
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c;
+  public int d;
+  /*package*/ int e; // violation 'Missing a Javadoc comment for 'e'.'
+
+  public enum PublicEnum {
+    CONSTANT
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
-
-        <p id="Example5-code">
+        <p id="UseCase2-config">
+          To configure the check for fields which are in <code>public</code>,
+          <code>protected</code>, <code>package</code> or <code>private</code>
+          access modifier:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocVariable"&gt;
+      &lt;property name="accessModifiers" value="public,protected,package,private"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
           This check will not report a violation for local and
            anonymous inner classes with any configuration.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
-  public int variablePublic; // violation, 'Missing a Javadoc comment'
-  protected int variableProtected; // violation, 'Missing a Javadoc comment'
-  int variablePackage; // violation, 'Missing a Javadoc comment'
-  private int variablePrivate; // violation, 'Missing a Javadoc comment'
+public class UseCase2 {
+  // violation below 'Missing a Javadoc comment for 'variablePublic'.'
+  public int variablePublic;
+  // violation below 'Missing a Javadoc comment for 'variableProtected'.'
+  protected int variableProtected;
+  // violation below 'Missing a Javadoc comment for 'variablePackage'.'
+  int variablePackage;
+  // violation below 'Missing a Javadoc comment for 'variablePrivate'.'
+  private int variablePrivate;
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 
   private enum PrivateEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 
   public void testMethodInnerClass() {
@@ -267,14 +356,18 @@ public class Example5 {
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
             Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocVariable">
+            Documentation Comments Style</a>
+          </li>
         </ul>
       </subsection>
 
       <subsection name="Violation Messages" id="JavadocVariable_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">
-              javadoc.missing
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.named%22">
+              javadoc.missing.named
             </a>
           </li>
         </ul>

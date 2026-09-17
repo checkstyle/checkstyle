@@ -68,6 +68,13 @@ public class LineEndingCheck extends AbstractFileSetCheck {
     private LineEndingOption lineEnding = LineEndingOption.LF;
 
     /**
+     * Creates a new {@code LineEndingCheck} instance.
+     */
+    public LineEndingCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to set lineEnding.
      *
      * @param ending string of value LF or CRLF

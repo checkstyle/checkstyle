@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   public void method() {
@@ -31,7 +31,7 @@ public class Example1 {
     switch (i) {
       case 1:
         break;
-      default: // violation, 'Default should be last label in the switch'
+      default: // violation 'Default should be last label in the switch'
         break;
       case 2:
         break;
@@ -47,9 +47,9 @@ public class Example1 {
 
     switch (i) {
       case 1: x = 9;
-      default: x = 10; // violation, 'Default should be last label in the switch'
+      default: x = 10; // violation 'Default should be last label in the switch'
       case 2: x = 32;
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

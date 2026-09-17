@@ -12,7 +12,8 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleWithTrailingCommaIgnore
 {
-    @SuppressWarnings({"common",}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @SuppressWarnings({"common",})
     public void foo() {
 
 

@@ -67,7 +67,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      *     version don't match.
      */
     protected static void verifyXml(String expectedOutputFile,
-            ByteArrayOutputStream actualOutputStream, String... messages) throws Exception {
+            ByteArrayOutputStream actualOutputStream, String... messages)
+                    throws Exception {
         verifyXml(expectedOutputFile, actualOutputStream, null, messages);
     }
 
@@ -83,11 +84,12 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      */
     protected static void verifyXml(String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream,
-            BiPredicate<Node, Node> ordered, String... messages) throws Exception {
+            BiPredicate<Node, Node> ordered, String... messages)
+                    throws Exception {
         String expectedContents = readFile(expectedOutputFile);
 
-        for (int i = 0; i < messages.length; i++) {
-            expectedContents = expectedContents.replace("$" + i, messages[i]);
+        for (int index = 0; index < messages.length; index++) {
+            expectedContents = expectedContents.replace("$" + index, messages[index]);
         }
 
         final Document expectedDocument = XmlUtil.getRawXml("audit output", expectedContents,
@@ -108,8 +110,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
     /**
      * Verifies if xml nodes in actual xml document and expected xml document match or not.
      *
-     * @param expected the expected xml node. A {@link Node} interface.
-     * @param actual the actual xml node. A {@link Node} interface.
+     * @param expected the expected xml node. A {@code Node} interface.
+     * @param actual the actual xml node. A {@code Node} interface.
      * @param path the path to the current xml node that are compared.
      * @param ordered an ordered predicate for xml nodes.
      */
@@ -177,8 +179,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * Verifies if a xml node in actual xml document and expected xml document match or not based on
      * their name, type, and attributes.
      *
-     * @param expected the expected xml node. A {@link Node} interface.
-     * @param actual the actual xml node. A {@link Node} interface.
+     * @param expected the expected xml node. A {@code Node} interface.
+     * @param actual the actual xml node. A {@code Node} interface.
      * @param path the path to the current xml nodes that are compared.
      * @param ordered an ordered predicate for xml nodes.
      */
@@ -213,8 +215,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * Verifies xml attributes of collection of actual nodes by comparing with collection
      * of expected node attributes.
      *
-     * @param expected collection of expected nodes. A {@link NamedNodeMap} interface.
-     * @param actual collection of actual nodes. A {@link NamedNodeMap} interface.
+     * @param expected collection of expected nodes. A {@code NamedNodeMap} interface.
+     * @param actual collection of actual nodes. A {@code NamedNodeMap} interface.
      * @param path the path to these xml nodes that are compared.
      */
     private static void verifyXmlAttributes(NamedNodeMap expected, NamedNodeMap actual,
@@ -229,8 +231,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     .that(actual)
                     .isNotNull();
 
-            for (int i = 0; i < expected.getLength(); i++) {
-                verifyXmlAttribute(expected.item(i), actual.item(i), path);
+            for (int index = 0; index < expected.getLength(); index++) {
+                verifyXmlAttribute(expected.item(index), actual.item(index), path);
             }
 
             assertThat(actual.getLength())
@@ -245,8 +247,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * Verifies xml attributes of actual node (like name, and node value) by comparing with
      * expected node attributes.
      *
-     * @param expected the expected xml node. A {@link Node} interface.
-     * @param actual the actual xml node. A {@link Node} interface.
+     * @param expected the expected xml node. A {@code Node} interface.
+     * @param actual the actual xml node. A {@code Node} interface.
      * @param path the path to the current xml nodes that are compared.
      */
     private static void verifyXmlAttribute(Node expected, Node actual, String path) {
@@ -276,7 +278,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      * @throws Exception if an error occurs
      */
     protected final void verifyWithInlineConfigParserAndXmlLogger(
-            String filePath, String expectedXmlReportPath) throws Exception {
+            String filePath, String expectedXmlReportPath)
+                    throws Exception {
         final String configFilePath = getPath(filePath);
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFilePath);
@@ -308,7 +311,8 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
      */
     protected final void verifyWithInlineConfigParserAndXmlLogger(
             String inputFileWithConfig, String expectedXmlReportPath,
-            List<String> targetFilePaths) throws Exception {
+            List<String> targetFilePaths)
+                    throws Exception {
         final String configFilePath = getPath(inputFileWithConfig);
         final TestInputConfiguration testInputConfiguration =
                 InlineConfigParser.parse(configFilePath);
@@ -329,4 +333,5 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         checker.process(filesToCheck);
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
     }
+
 }

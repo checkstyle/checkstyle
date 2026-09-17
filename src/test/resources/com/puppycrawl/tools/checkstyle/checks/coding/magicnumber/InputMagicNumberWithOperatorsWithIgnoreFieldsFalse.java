@@ -51,13 +51,13 @@ public class InputMagicNumberWithOperatorsWithIgnoreFieldsFalse {
         final int BIT6 = 1 | 3;
         final int BIT7 = ~3;
 
-        int bit0 = 1 << 3; // violation, ''3' is a magic number'
-        int bit1 = 1 >> 3; // violation, ''3' is a magic number'
-        int bit2 = 1 >>> 3; // violation, ''3' is a magic number'
-        int bit3 = 1 | 3; // violation, ''3' is a magic number'
-        int bit4 = 1 & 3; // violation, ''3' is a magic number'
-        int bit5 = 1 ^ 3; // violation, ''3' is a magic number'
-        int bit6 = 1 | 3; // violation, ''3' is a magic number'
-        int bit7 = ~3; // violation, ''3' is a magic number'
+        int bit0 = 1 << 3; // violation ''3' is a magic number'
+        int bit1 = 1 >> 3; // violation ''3' is a magic number'
+        int bit2 = 1 >>> 3; // violation ''3' is a magic number'
+        int bit3 = 1 | 3; // violation ''3' is a magic number'
+        int bit4 = 1 & 3; // violation ''3' is a magic number'
+        int bit5 = 1 ^ 3; // violation ''3' is a magic number'
+        int bit6 = 1 | 3; // violation ''3' is a magic number'
+        int bit7 = ~3; // violation ''3' is a magic number'
     }
 }

@@ -67,13 +67,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * forward references </a> from validation due to the fact that we have Checkstyle's limitations
  * to clearly detect user intention of fields location and grouping. For example:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public class A {
  *   private double x = 1.0;
  *   private double y = 2.0;
  *   public double slope = x / y; // will be skipped from validation due to forward reference
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.2
  */
@@ -129,6 +129,13 @@ public class DeclarationOrderCheck extends AbstractCheck {
     private boolean ignoreConstructors;
     /** Control whether to ignore modifiers (fields, ...). */
     private boolean ignoreModifiers;
+
+    /**
+     * Creates a new {@code DeclarationOrderCheck} instance.
+     */
+    public DeclarationOrderCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -384,6 +391,12 @@ public class DeclarationOrderCheck extends AbstractCheck {
         /** The sub-state the check is in. */
         private Scope declarationAccess = Scope.PUBLIC;
 
+        /**
+         * Creates a new {@code ScopeState} instance.
+         */
+        private ScopeState() {
+            // no code by default
+        }
     }
 
 }

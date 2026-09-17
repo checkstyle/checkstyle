@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -50,7 +50,7 @@ public class InputJavadocTypeScopeInnerClasses
         }
     }
     /** */
-    protected class InnerPublic2<T> // violation 'missing @param <T> tag.'
+    protected class InnerPublic2<T> // violation 'missing @param '<T>' tag.'
     {
     }
 }

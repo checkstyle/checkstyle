@@ -15,11 +15,11 @@ public class InputIllegalTokensCheckSwitchAndPostIncDec
     public void methodWithPreviouslyIllegalTokens()
     {
         int i = 0;
-        switch (i) // violation, 'Using 'switch' is not allowed'
+        switch (i) // violation 'Using 'switch' is not allowed'
         {
             default:
-                i--; // violation, 'Using '--' is not allowed'
-                i++; // violation, 'Using '\+\+' is not allowed'
+                i--; // violation 'Using '--' is not allowed'
+                i++; // violation 'Using '\+\+' is not allowed'
                 break;
         }
     }

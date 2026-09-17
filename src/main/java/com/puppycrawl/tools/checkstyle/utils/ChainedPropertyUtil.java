@@ -130,4 +130,5 @@ public final class ChainedPropertyUtil {
     private static boolean allChainedPropertiesAreResolved(String propertyValue) {
         return !PROPERTY_VARIABLE_PATTERN.matcher(propertyValue).find();
     }
+
 }

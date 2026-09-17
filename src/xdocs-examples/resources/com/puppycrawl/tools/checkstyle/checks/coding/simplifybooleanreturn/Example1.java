@@ -7,14 +7,14 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanreturn;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
 
   boolean cond;
   int a,b;
 
   boolean check1() {
-    if (cond) { // violation, 'Conditional logic can be removed
+    if (cond) { // violation 'Conditional logic can be removed.'
       return true;
     } else {
       return false;
@@ -26,7 +26,7 @@ class Example1 {
   }
 
   boolean check2() {
-    if (cond == true) { // violation, 'Conditional logic can be removed'
+    if (cond == true) { // violation 'Conditional logic can be removed.'
       return false;
     } else {
       return true;
@@ -46,4 +46,4 @@ class Example1 {
     return cond ? a: b;
   }
 }
-// xdoc section -- end
+// xdoc section - end

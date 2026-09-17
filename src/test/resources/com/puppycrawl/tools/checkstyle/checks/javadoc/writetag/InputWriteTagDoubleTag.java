@@ -2,15 +2,13 @@
 WriteTag
 tag = @doubletag
 tagFormat = \\S
-tagSeverity = error
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+violateExecutionOnNonTightHtml = (default)false
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
-// violation 6 lines below 'Javadoc tag @doubletag=first text'
-// violation 6 lines below 'Javadoc tag @doubletag=second text'
 /**
  * Testing tag writing
  * @author Daniel Grenner

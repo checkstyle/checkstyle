@@ -8,6 +8,37 @@
   <body>
     <section name="SeparatorWrap">
       <p>Since Checkstyle 5.8</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SeparatorWrap_Description">Description</a></li>
+          <li><a href="#SeparatorWrap_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SeparatorWrap_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For separator at the new line</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For comma at the new line</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SeparatorWrap_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">For METHOD_REF at new line</a></li>
+            </ul>
+          </li>
+          <li><a href="#SeparatorWrap_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SeparatorWrap_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#SeparatorWrap_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SeparatorWrap_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SeparatorWrap_Description">
         <div>
           Checks line wrapping with separators.
@@ -27,7 +58,7 @@
             <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to wrap lines.</td>
-              <td><a href="../../property_types.html#WrapOption">WrapOption</a></td>
+              <td><a href="../../property-types.html#WrapOption">WrapOption</a></td>
               <td><code>eol</code></td>
               <td>5.8</td>
             </tr>
@@ -99,9 +130,46 @@ class Example1 {
   }
 
   void bar(int p
-          , int q) { // violation, ',' should be on the previous line
+          , int q) { // violation "',' should be on the previous line."
     if (s
-            .isEmpty()) { // violation, '.' should be on the previous line
+            .isEmpty()) { // violation "'.' should be on the previous line."
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check for separator at the new line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SeparatorWrap"&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import java.io.
+        IOException; // violation above '.' should be on a new line
+
+class Example2 {
+  String s;
+
+  int a,
+          b;         // violation above ',' should be on a new line
+
+  void foo(int x,
+           int y) {  // violation above ',' should be on a new line
+  }
+
+  void bar(int p
+          , int q) {      // ok, ',' is on a new line
+    if (s
+            .isEmpty()) { // ok, '.' is on a new line
     }
   }
 }
@@ -130,10 +198,10 @@ class Example3 {
   String s;
 
   int a,
-          b; // violation above, ',' should be on a new line
+          b; // violation above ',' should be on a new line
 
   void foo(int x,
-           int y) { // violation above, ',' should be on a new line
+           int y) { // violation above ',' should be on a new line
   }
 
   void bar(int p
@@ -143,8 +211,11 @@ class Example3 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="SeparatorWrap_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check for
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
             METHOD_REF</a> at new line:
@@ -159,13 +230,13 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.util.Arrays;
 
-class Example2 {
+class UseCase1 {
   String[] stringArray = {"foo", "bar"};
 
   void fun() {
@@ -184,6 +255,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SeparatorWrap">

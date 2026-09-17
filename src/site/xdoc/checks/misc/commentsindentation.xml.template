@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java"/>
+      </macro>
       <subsection name="Description" id="CommentsIndentation_Description">
         <macro name="description">
             <param name="modulePath"
@@ -62,18 +66,29 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example2.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="CommentsIndentation_Use_Cases">
         <p>Please take a look at the following examples to understand how the check works:</p>
-        <p id="Example3-code">
-          Example #3: Comment is used as a single-line border to separate groups of methods.
+        <p id="UseCase1-config">
+          Comment is used as a single-line border to separate groups of methods.
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-code">
-          Example #4: Single line block comment is placed within an empty code block.
+        <p id="UseCase2-config">
+          Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
           only case we can assume as a violation is when a single-line comment within the empty
@@ -82,10 +97,18 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
+        <p id="UseCase3-config">'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
            clearly detect user intention of explanation target - above or below.
@@ -95,29 +118,61 @@
           token.</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example6.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example7-code">
-          Example #7: Single line block comment has previous and next statement.
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-code">
+          Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example7.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example8-code">
-          Example #8: Comment within the block tries to describe the next code block.
+        <p id="UseCase4-config">Comment is placed within a distributed statement.</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase4-code">
+          Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/Example8.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase5-config">
+          Single line block comment has previous and next statement.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase5-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase6-config">
+          Comment within the block tries to describe the next code block.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase6-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/indentation/commentsindentation/UseCase6.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -131,6 +186,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

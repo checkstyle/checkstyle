@@ -9,6 +9,34 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PackageAnnotation">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#PackageAnnotation_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#PackageAnnotation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#PackageAnnotation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Show a class without violation</a></li>
+            </ul>
+          </li>
+          <li><a href="#PackageAnnotation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#PackageAnnotation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#PackageAnnotation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#PackageAnnotation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="PackageAnnotation_Description">
         <div>
           Checks that all package annotations are in the package-info.java file.
@@ -44,17 +72,30 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
-// violation above, 'Package annotations must be in the package-info.java info.'
+// violation above 'Package annotations must be in the package-info.java info.'
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-code">Example of class without violation:</p>
+      </subsection>
+
+      <subsection name="Use Cases" id="PackageAnnotation_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to show a class without violation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="PackageAnnotation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">Example of class without violation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
-class Example2 {}
-</code></pre></div>
-        <p id="package-info-code">Example of validating package-info.java:</p>
+class UseCase1 {}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-code">Example of validating package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.example3;

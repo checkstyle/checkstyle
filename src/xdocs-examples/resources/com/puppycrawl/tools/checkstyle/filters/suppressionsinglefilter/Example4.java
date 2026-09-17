@@ -1,22 +1,21 @@
 /*xml
 <module name="Checker">
-  <module name="TreeWalker">
-    <module name="MemberName">
-      <property name="id" value="customMemberName"/>
-    </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="example"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="files" value="Example4.java"/>
-    <property name="id" value="customMemberName"/>
+    <property name="checks" value="RegexpSinglelineCheck"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
-// xdoc section -- start
+// filtered violation 9 lines above 'Line matches the illegal pattern'
+// xdoc section - start
 public class Example4 {
-  // filtered violation below 'Name 'MyVariable' must match pattern'
-  private int MyVariable = 5;
 
+  private int MyVariable = 5;
+  // filtered violation below 'Line matches the illegal pattern'
   public void exampleMethod(int a, int b) {
     int value = 100;
 
@@ -26,8 +25,8 @@ public class Example4 {
   public void printExample() {
     int [] x;
     System.out.println(
-            "example"
+            "example" // filtered violation 'Line matches the illegal pattern'
     );
   }
 }
-// xdoc section -- end
+// xdoc section - end

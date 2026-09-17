@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/localfinalvariablename";
@@ -34,8 +35,10 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR1", "^[a-z][a-zA-Z0-9]*$"),
-            "25:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR2", "^[a-z][a-zA-Z0-9]*$"),
+            "18:17: " + getCheckMessage(
+                    MSG_INVALID_PATTERN, "VAR1", "^([a-z][a-zA-Z0-9]*|_)$"),
+            "23:17: " + getCheckMessage(
+                    MSG_INVALID_PATTERN, "VAR2", "^([a-z][a-zA-Z0-9]*|_)$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -44,10 +47,16 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
-            "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var1", "^[A-Z][A-Z0-9]*$"),
-            "23:28: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", "^[A-Z][A-Z0-9]*$"),
-            "26:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var2", "^[A-Z][A-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR1",
+                    "^[a-z][a-zA-Z0-9]{4,}$"),
+            "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var1",
+                    "^[a-z][a-zA-Z0-9]{4,}$"),
+            "23:28: " + getCheckMessage(MSG_INVALID_PATTERN, "ex",
+                    "^[a-z][a-zA-Z0-9]{4,}$"),
+            "25:17: " + getCheckMessage(MSG_INVALID_PATTERN, "VAR2",
+                    "^[a-z][a-zA-Z0-9]{4,}$"),
+            "26:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var2",
+                    "^[a-z][a-zA-Z0-9]{4,}$"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -62,4 +71,17 @@ public class LocalFinalVariableNameCheckExamplesTest extends AbstractExamplesMod
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "18:18: " + getCheckMessage(MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
+            "21:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var1", "^[A-Z][A-Z0-9]*$"),
+            "23:28: " + getCheckMessage(MSG_INVALID_PATTERN, "ex", "^[A-Z][A-Z0-9]*$"),
+            "26:17: " + getCheckMessage(MSG_INVALID_PATTERN, "var2", "^[A-Z][A-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
 }

@@ -4,7 +4,6 @@
     <module name="MethodLength">
       <property name="tokens" value="METHOD_DEF"/>
       <property name="max" value="4"/>
-      <property name="countEmpty" value="false"/>
     </module>
   </module>
 </module>
@@ -13,7 +12,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
 
   // ok, CTOR_DEF is not in configured tokens
@@ -29,7 +28,7 @@ public class Example3 {
     int sum = var1 + a;
   }
 
-  // violation below, 'Method firstMethod length is 6 lines (max allowed is 4)'
+  // violation below 'Method firstMethod length is 6 lines (max allowed is 4)'
   public void firstMethod() {
     int index = 0;
     if (index < 5) {
@@ -38,13 +37,13 @@ public class Example3 {
   }
 
   public void secondMethod() {
-    // countEmpty property is false,so this line doesn't count
+
     System.out.println("line 3");
   }
-
+  // violation below 'Method thirdMethod length is 5 lines (max allowed is 4)'
   public void thirdMethod() {
 
-    // countEmpty property is false,so this line and the line above don't count
+    // ok, empty line above is counted by default,just like this comment
     System.out.println("line 4");
   }
 
@@ -57,4 +56,4 @@ public class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

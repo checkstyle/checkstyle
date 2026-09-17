@@ -119,6 +119,67 @@ public class SuppressFilterElementTest {
     }
 
     @Test
+    public void testDecideByNoCriteriaConfigured() {
+        final Violation violation =
+                new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, null, null, null);
+        assertWithMessage("filter should accept all events")
+                .that(myFilter.accept(ev))
+                .isTrue();
+    }
+
+    @Test
+    public void testDecideByCheckRegExpOnlyConfigured() {
+        final Violation matchingViolation =
+                new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent matchingEvent = new AuditEvent(this, "ATest.java", matchingViolation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement(null, getClass().getCanonicalName(),
+                        null, null, null, null);
+        assertWithMessage("Event matching only the check should be suppressed")
+                .that(myFilter.accept(matchingEvent))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByModuleIdOnlyConfigured() {
+        final Violation matchingViolation =
+                new Violation(1, 0, "", "", null, "MyModule", getClass(), null);
+        final AuditEvent matchingEvent = new AuditEvent(this, "ATest.java", matchingViolation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, "MyModule", null, null);
+        assertWithMessage("Event matching only the module id should be suppressed")
+                .that(myFilter.accept(matchingEvent))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByLineOnlyConfigured() {
+        final Violation violation =
+                new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, null, "1-10", null);
+        assertWithMessage("Event matching only line range should be suppressed")
+                .that(myFilter.accept(ev))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByColumnOnlyConfigured() {
+        final Violation violation =
+                new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement myFilter =
+                new SuppressFilterElement((String) null, null, null, null, null, "1-10");
+        assertWithMessage("Event matching only column range should be suppressed")
+                .that(myFilter.accept(ev))
+                .isFalse();
+    }
+
+    @Test
     public void testDecideByFileNameAndModuleMatchingFileNameNull() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
@@ -292,6 +353,53 @@ public class SuppressFilterElementTest {
         assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
+    }
+
+    /**
+     * We cannot use standard Input files for this test because we need to explicitly
+     * simulate a Windows path separator ('\') to verify the fallback logic. If we used
+     * real Input files, the path separator would be '/' when tests run on Linux CI.
+     */
+    @Test
+    public void testWindowsPathSeparatorFallback() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "/src/main/java/MyClass\\.java", null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "C:\\src\\main\\java\\MyClass.java", violation);
+
+        assertWithMessage("Windows file path should match Unix-style regex")
+                .that(testFilter.accept(event))
+                .isFalse();
+    }
+
+    @Test
+    public void testWindowsPathSeparatorFallbackNoMatch() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "/src/main/java/MyClass\\.java", null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "C:\\src\\main\\java\\OtherClass.java", violation);
+
+        assertWithMessage("Windows file path should not match regex for different file")
+                .that(testFilter.accept(event))
+                .isTrue();
+    }
+
+    @Test
+    public void testWindowsPathSeparatorFallbackWithBackslashesInRegex() {
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                "\\\\MyClass\\.java", null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "\\MyClass.java", violation);
+
+        assertWithMessage("Path with backslash should match regex with backslash")
+                .that(testFilter.accept(event))
+                .isFalse();
     }
 
 }

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ParameterAssignmentCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/parameterassignment";
@@ -42,4 +43,5 @@ public class ParameterAssignmentCheckExamplesTest extends AbstractExamplesModule
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

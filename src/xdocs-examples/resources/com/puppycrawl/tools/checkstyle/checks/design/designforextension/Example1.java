@@ -7,13 +7,15 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
-// xdoc section -- start
+// xdoc section - start
 public abstract class Example1 {
   private int bar;
 
-  public int m1() {return 2;}  // violation
+  // violation below ''m1' does not have javadoc that explains how to do that safely'
+  public int m1() {return 2;}
 
-  public int m2() {return 8;}  // violation
+  // violation below ''m2' does not have javadoc that explains how to do that safely'
+  public int m2() {return 8;}
 
   private void m3() {m4();}  // ok, Private method.
 
@@ -37,10 +39,10 @@ public abstract class Example1 {
    * implementation ...
    */
   public int m8() {return 2;}  // ok, Have javadoc on overridable method.
-
-  @Override                   // violation
+  // violation below ''toString' does not have javadoc that explains
+  @Override
   public String toString() {
     return "";
   }
 }
-// xdoc section -- end
+// xdoc section - end

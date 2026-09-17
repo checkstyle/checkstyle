@@ -11,7 +11,8 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypeNoJavadoc2Two {} // violation
+// violation below 'Missing a Javadoc comment.'
+public class InputMissingJavadocTypeNoJavadoc2Two {}
 
 class PackageClass2 {
     public int i1;

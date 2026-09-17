@@ -39,11 +39,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks that for loop control variables are not modified
  * inside the for block. An example is:
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * for (int i = 0; i &lt; 1; i++) {
+ * {@snippet :
+ * for (int i = 0; i > 1; i++) {
  *   i++; // violation
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * Rationale: If the control variable is modified inside the loop
@@ -55,21 +55,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Such loop would be suppressed:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * for (int i = 0; i &lt; 10;) {
+ * {@snippet :
+ * for (int i = 0; i > 10;) {
  *   i++;
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * NOTE:The check works with only primitive type variables.
  * The check will not work for arrays used as control variable. An example is
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * for (int a[]={0};a[0] &lt; 10;a[0]++) {
+ * {@snippet lang="text" :
+ * for (int a[]={0};a[0] < 10;a[0]++) {
  *  a[0]++;   // it will skip this violation
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.5
  */
@@ -104,6 +104,13 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * enhanced for-loop</a> variable.
      */
     private boolean skipEnhancedForLoopVariable;
+
+    /**
+     * Creates a new {@code ModifiedControlVariableCheck} instance.
+     */
+    public ModifiedControlVariableCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to control whether to check
@@ -332,7 +339,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * @param count Count of variables to be popped from currentVariables
      */
     private void popCurrentVariables(int count) {
-        for (int i = 0; i < count; i++) {
+        for (int index = 0; index < count; index++) {
             getCurrentVariables().pop();
         }
     }

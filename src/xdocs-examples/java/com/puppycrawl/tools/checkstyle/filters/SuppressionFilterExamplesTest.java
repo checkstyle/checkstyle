@@ -19,11 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck;
+import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
+import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 
 public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressionfilter";
@@ -31,35 +41,34 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
 
     @Test
     public void testExample1() throws Exception {
-
-        final String[] expectedWithoutFilter = {
-            "20: First sentence should end with a period.",
-            "23:11: '10' is a magic number.",
-            "27:15: '100' is a magic number.",
-            "29:15: Must have at least one statement.",
-        };
-
-        final String[] expectedWithFilter = {
-            "29:15: Must have at least one statement.",
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyVariable", "^[a-z][a-zA-Z0-9]*$"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "10"),
+            "26:15: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "100"),
+            "28:15: " + getCheckMessage(EmptyBlockCheck.class,
+                    "block.noStatement"),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example1.java"),
-                expectedWithoutFilter,
-                expectedWithFilter);
+                expected, expected);
     }
 
     @Test
     public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "24: Line is longer than 80 characters (found 84).",
-            "31:22: String literal expressions should be on the left side of an equals comparison.",
-            "35:32: String literal expressions should be on the left side of "
-                    + "an equalsIgnoreCase comparison.",
+            "20:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyVariable", "^[a-z][a-zA-Z0-9]*$"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "10"),
+            "26:15: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "100"),
+            "28:15: " + getCheckMessage(EmptyBlockCheck.class,
+                    EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
 
         final String[] expectedWithFilter = {
-            "24: Line is longer than 80 characters (found 84).",
+            "28:15: " + getCheckMessage(EmptyBlockCheck.class,
+                    EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT),
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
@@ -69,37 +78,79 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
 
     @Test
     public void testExample3() throws Exception {
-
-        final String[] expectedWithoutFilter = {
-            "1: Duplicated property 'keyB' (2 occurrence(s)).",
-            "4: Duplicated property 'keyC' (2 occurrence(s)).",
+        final String[] expected = {
+            "20:7: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "MyVariable", "^[a-z][a-zA-Z0-9]*$"),
+            "22:11: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "10"),
+            "26:15: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "100"),
+            "28:15: " + getCheckMessage(EmptyBlockCheck.class, "block.noStatement"),
         };
 
-        final String[] expectedWithFilter = {};
+        verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+                expected, expected);
+    }
 
-        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
-                getPath("Example3.java"),
-                getPath(".hidden/hidden.properties"),
+    @Test
+    public void testUseCase1() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 80, 84),
+            "31:22: " + getCheckMessage(EqualsAvoidNullCheck.class,
+                    EqualsAvoidNullCheck.MSG_EQUALS_AVOID_NULL),
+            "35:32: " + getCheckMessage(EqualsAvoidNullCheck.class,
+                    EqualsAvoidNullCheck.MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+        };
+
+        final String[] expectedWithFilter = {
+            "24: " + getCheckMessage(LineLengthCheck.class, LineLengthCheck.MSG_KEY, 80, 84),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("UseCase1.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testUseCase2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "20:14: Name 'log' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "23:14: Name 'constant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "29:27: Name 'log' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "32:30: Name 'line' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "11: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyB", 2),
+            "14: " + getCheckMessage(UniquePropertiesCheck.class, UniquePropertiesCheck.MSG_KEY,
+                    "keyC", 2),
+        };
+
+        final String[] expectedWithFilter = {};
+
+        verifyFilterWithInlineConfigParser(getPath(".hidden/UseCase2.properties"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
+
+    @Test
+    public void testUseCase3() throws Exception {
+        final String memberPattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+        final String constantPattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
+
+        final String[] expectedWithoutFilter = {
+            "20:14: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "log", memberPattern),
+            "23:14: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "constant", memberPattern),
+            "29:27: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "log", constantPattern),
+            "32:30: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "line", constantPattern),
         };
 
         final String[] expectedWithFilter = {
-            "23:14: Name 'constant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
-            "32:30: Name 'line' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "23:14: " + getCheckMessage(MemberNameCheck.class, MSG_INVALID_PATTERN,
+                    "constant", memberPattern),
+            "32:30: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
+                    "line", constantPattern),
         };
 
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+        verifyFilterWithInlineConfigParser(getPath("UseCase3.java"),
                 expectedWithoutFilter, expectedWithFilter);
     }
+
 }

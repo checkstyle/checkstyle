@@ -1,10 +1,10 @@
 /*
 ParenPad
 option = SPACE
-tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
-         ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
-         LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
-         METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF
+tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, ENUM_CONSTANT_DEF, \
+         EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, METHOD_DEF, QUESTION, \
+         RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -193,10 +193,10 @@ class InputParenPadWhitespace2
             //           ''(' is not followed by whitespace.'
             //           '')' is not preceded with whitespace.'
     {
-        donBradman(new Runnable() { // violation,''(' is not followed by whitespace.'
+        donBradman(new Runnable() { // violation ''(' is not followed by whitespace.'
             public void run() {
             }
-        }); // violation,'')' is not preceded with whitespace.'
+        }); // violation '')' is not preceded with whitespace.'
 
         final Runnable r = new Runnable() {
             public void run() {
@@ -259,7 +259,7 @@ class SpecialCasesInForLoop2
     void forIterator()
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
-        for (int i = 0; i++ < 5;) { // violation,''(' is not followed by whitespace.'
+        for (int i = 0; i++ < 5;) { // violation ''(' is not followed by whitespace.'
         //                  ^ no whitespace
     }
 

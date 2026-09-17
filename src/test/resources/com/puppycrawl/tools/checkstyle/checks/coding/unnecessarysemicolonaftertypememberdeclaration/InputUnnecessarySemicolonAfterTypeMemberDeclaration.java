@@ -10,28 +10,28 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonaftertypememberdeclaration;
 
 public class InputUnnecessarySemicolonAfterTypeMemberDeclaration {
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 
-    {/*init block*/}; // violation, 'Unnecessary semicolon.'
+    {/*init block*/}; // violation 'Unnecessary semicolon.'
 
-    static {}; // violation, 'Unnecessary semicolon.'
+    static {}; // violation 'Unnecessary semicolon.'
 
-    InputUnnecessarySemicolonAfterTypeMemberDeclaration(){}; // violation, 'Unnecessary semicolon.'
+    InputUnnecessarySemicolonAfterTypeMemberDeclaration(){}; // violation 'Unnecessary semicolon.'
 
-    class B{}; // violation, 'Unnecessary semicolon.'
+    class B{}; // violation 'Unnecessary semicolon.'
 
-    void method(){}; // violation, 'Unnecessary semicolon.'
+    void method(){}; // violation 'Unnecessary semicolon.'
 
-    interface aa{}; // violation, 'Unnecessary semicolon.'
+    interface aa{}; // violation 'Unnecessary semicolon.'
 
-    enum aa1{}; // violation, 'Unnecessary semicolon.'
+    enum aa1{}; // violation 'Unnecessary semicolon.'
 
-    @interface anno {}; // violation, 'Unnecessary semicolon.'
+    @interface anno {}; // violation 'Unnecessary semicolon.'
 
-    int field;; // violation, 'Unnecessary semicolon.'
+    int field;; // violation 'Unnecessary semicolon.'
 
     enum c{
-        B,C;; // violation, 'Unnecessary semicolon.'
+        B,C;; // violation 'Unnecessary semicolon.'
     }
 
     void ignoreEmptyStatements(){
@@ -43,13 +43,13 @@ enum e {
     int enumField;
 };
 @interface an {
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 };
 interface i {
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 };
 @interface annotation {
-    String value();; // violation, 'Unnecessary semicolon.'
+    String value();; // violation 'Unnecessary semicolon.'
 }
 enum e1 {}
 enum e2 {;}

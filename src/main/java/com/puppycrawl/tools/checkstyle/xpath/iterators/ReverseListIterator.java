@@ -30,6 +30,7 @@ import net.sf.saxon.tree.iter.AxisIterator;
  * Iterates list in backward direction.
  */
 public class ReverseListIterator implements AxisIterator {
+
     /**
      * List of nodes.
      */
@@ -66,4 +67,5 @@ public class ReverseListIterator implements AxisIterator {
         }
         return result;
     }
+
 }

@@ -8,6 +8,37 @@
   <body>
     <section name="ParenPad">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ParenPad_Description">Description</a></li>
+          <li><a href="#ParenPad_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ParenPad_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For selected tokens</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Require spaces inside parentheses</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#ParenPad_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">When the check is configured with default settings</a></li>
+            </ul>
+          </li>
+          <li><a href="#ParenPad_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ParenPad_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ParenPad_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ParenPad_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ParenPad_Description">
         <div>
           Checks the policy on the padding of parentheses; that is whether a space is required
@@ -40,7 +71,7 @@
             <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to pad parentheses.</td>
-              <td><a href="../../property_types.html#PadOption">PadOption</a></td>
+              <td><a href="../../property-types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.0</td>
             </tr>
@@ -168,17 +199,15 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
   int x;
-  public Example1(int n) {
-  }
+  public Example1(int n) {}
 
   public void fun() {
     try {
       throw new IOException();
-    }
-    catch( IOException e) { // violation 'is followed by whitespace'
-    }
+    } catch( IOException e) {} // violation 'is followed by whitespace'
     catch(Exception e ) {}  // violation 'is preceded with whitespace'
-    for ( int i = 0; i &lt; x; i++ ) { // 2 violations
+    for ( int i = 0; i &lt; x; i++ ) {
+      // 2 violations above:
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
     }
@@ -193,12 +222,13 @@ class Example1 {
     }
   }
 
-  class Bar extends Example1 {
-    public Bar() {
+  class Example3 extends Example1 {
+    public Example3() {
       super(1 ); // violation '')' is preceded with whitespace'
     }
-    public Bar(int k) {
-      super( k ); // 2 violations
+    public Example3(int k) {
+      super( k );
+      // 2 violations above:
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
       for ( int i = 0; i &lt; k; i++) { // violation ''(' is followed by whitespace'
@@ -208,8 +238,7 @@ class Example1 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To configure the check to require spaces for the parentheses of
-          constructor, method, and super constructor calls:
+          To configure the check for selected tokens:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -217,7 +246,6 @@ class Example1 {
     &lt;module name="ParenPad"&gt;
       &lt;property name="tokens"
                 value="LITERAL_FOR, LITERAL_CATCH, SUPER_CTOR_CALL"/&gt;
-      &lt;property name="option" value="space"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -228,19 +256,17 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   int x;
-  public Example2(int n) {
-  }
+  public Example2(int n) {}
 
   public void fun() {
     try {
       throw new IOException();
-    }
-    catch( IOException e) { // violation 'not preceded with whitespace'
-    }
-    catch(Exception e ) {}
+    } catch( IOException e) {} // violation 'is followed by whitespace'
+    catch(Exception e ) {}  // violation 'is preceded with whitespace'
     for ( int i = 0; i &lt; x; i++ ) {
-    // violation 2 lines above 'not followed by whitespace'
-
+      // 2 violations above:
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
     }
   }
 
@@ -253,12 +279,70 @@ class Example2 {
     }
   }
 
-  class Bar extends Example2 {
-    public Bar() {
+  class Example3 extends Example2 {
+    public Example3() {
+      super(1 ); // violation '')' is preceded with whitespace'
+    }
+    public Example3(int k) {
+      super( k );
+      // 2 violations above:
+      // ''(' is followed by whitespace'
+      // '')' is preceded with whitespace'
+      for ( int i = 0; i &lt; k; i++) { // violation ''(' is followed by whitespace'
+      }
+    }
+  }
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to require spaces inside parentheses:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParenPad"&gt;
+      &lt;property name="option" value="space"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  int x;
+  public Example3( int n) {} // violation '')' is not preceded with whitespace'
+
+  public void fun() {
+    try {
+      throw new IOException();
+    } catch( IOException e) {} // violation 'not preceded with whitespace'
+    catch(Exception e ) {} // violation 'not followed by whitespace'
+    for ( int i = 0; i &lt; x; i++ ) {
+
+
+
+    }
+  }
+
+  public void fun2() {
+    switch( x) { // violation 'not preceded with whitespace'
+      case 2:
+        break;
+      default:
+        break;
+    }
+  }
+
+  class Example4 extends Example3 {
+    public Example4() {
       super(1 ); // violation 'not followed by whitespace'
     }
-    public Bar(int k) {
+    public Example4( int k) { // violation '')' is not preceded with whitespace'
       super( k );
+
 
       // violation below 'not preceded with whitespace'
       for ( int i = 0; i &lt; k; i++) {
@@ -266,8 +350,11 @@ class Example2 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="ParenPad_Use_Cases">
+        <p id="UseCase1-config">
           When the check is configured with default settings:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -277,7 +364,7 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">
+        <p id="UseCase1-code">
           The following cases are intentionally not checked. No check occurs at
           the right parenthesis after an empty for iterator, at the left
           parenthesis before an empty for initialization, or at the right
@@ -285,7 +372,7 @@ class Example2 {
           last resource variable has a trailing semicolon:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   void m(int i, int j, Iterator xs, Closeable resource) throws Exception {
     for ( ; i &lt; j; i++, j--) {}               // ok, no check after left '('
     for (Iterator it = xs; it.hasNext(); ) {} // ok, no check before right ')'
@@ -304,6 +391,10 @@ class Example3 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParenPad">

@@ -102,7 +102,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
     @Test
     public void testDifferentPaths() throws Exception {
         final File file = new File(temporaryFolder, "messages_test_de.properties");
-        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        try (Writer writer = Files.newBufferedWriter(file.toPath())) {
             final String content = "hello=Hello\ncancel=Cancel";
             writer.write(content);
         }

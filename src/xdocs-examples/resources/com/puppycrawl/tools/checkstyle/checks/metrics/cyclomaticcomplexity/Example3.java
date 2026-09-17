@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   int a, b, c, d, e, n;
 
@@ -30,7 +30,7 @@ class Example3 {
       } while (a==d);
     }
   }
-  // violation below, 'Cyclomatic Complexity is 11 (max allowed is 10)'
+  // violation below 'Cyclomatic Complexity is 11 (max allowed is 10)'
   public void testMethod2() {
     if (a == b) {
       fun1();
@@ -66,4 +66,4 @@ class Example3 {
   }
   private void fun1() {}
 }
-// xdoc section -- end
+// xdoc section - end

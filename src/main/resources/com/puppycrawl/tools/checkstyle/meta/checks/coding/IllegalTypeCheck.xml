@@ -28,7 +28,7 @@
  This helps to avoid ambiguous cases, e.g.: &lt;code&gt;java.awt.List&lt;/code&gt; was set as
  illegal class name, then, code like:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  import java.util.List;
  ...
  List list; //No violation here
@@ -50,7 +50,7 @@
  &lt;/ul&gt;
 
  &lt;p&gt;
- as methods that are differ from interface methods are rarely used, so in most cases user will
+ as methods that differ from interface methods are rarely used, so in most cases user will
  benefit from checking for them.
  &lt;/p&gt;</description>
          <properties>

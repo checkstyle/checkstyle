@@ -57,6 +57,13 @@ public class TodoCommentCheck
      */
     private Pattern format = Pattern.compile("TODO:");
 
+    /**
+     * Creates a new {@code TodoCommentCheck} instance.
+     */
+    public TodoCommentCheck() {
+        // no code by default
+    }
+
     @Override
     public boolean isCommentNodesRequired() {
         return true;

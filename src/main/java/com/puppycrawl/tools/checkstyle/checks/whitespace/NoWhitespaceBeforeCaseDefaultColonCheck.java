@@ -42,6 +42,13 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
      */
     public static final String MSG_KEY = "ws.preceded";
 
+    /**
+     * Creates a new {@code NoWhitespaceBeforeCaseDefaultColonCheck} instance.
+     */
+    public NoWhitespaceBeforeCaseDefaultColonCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

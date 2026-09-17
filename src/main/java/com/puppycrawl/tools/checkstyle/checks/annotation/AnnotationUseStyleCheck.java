@@ -95,7 +95,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>
  * According to the JLS, it is legal to include a trailing comma
- * in arrays used in annotations but Sun's Java 5 &amp; 6 compilers will not
+ * in arrays used in annotations but Sun's Java 5 {@literal &} 6 compilers will not
  * compile with this syntax. This may in be a bug in Sun's compilers
  * since eclipse 3.4's built-in compiler does allow this syntax as
  * defined in the JLS. Note: this was tested with compilers included with
@@ -118,25 +118,21 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     public enum ElementStyleOption {
 
         /**
-         * Expanded example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
+         * Expanded example: {@code @SuppressWarnings(value={"unchecked","unused",})}.
          */
         EXPANDED,
 
         /**
          * Compact example
-         *
-         * <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+         * <br>
+         * {@code @SuppressWarnings({"unchecked","unused",})}
          * <br>or<br>
-         * <pre>@SuppressWarnings("unchecked")</pre>.
+         * {@code @SuppressWarnings("unchecked")}.
          */
         COMPACT,
 
         /**
-         * Compact example
-         *
-         * <pre>@SuppressWarnings("unchecked")</pre>.
+         * Compact example: {@code @SuppressWarnings("unchecked")}.
          */
         COMPACT_NO_ARRAY,
 
@@ -155,16 +151,12 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     public enum TrailingArrayCommaOption {
 
         /**
-         * With comma example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>.
+         * With comma example: {@code @SuppressWarnings(value={"unchecked","unused",})}.
          */
         ALWAYS,
 
         /**
-         * Without comma example
-         *
-         * <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>.
+         * Without comma example: {@code @SuppressWarnings(value={"unchecked","unused"})}.
          */
         NEVER,
 
@@ -183,16 +175,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     public enum ClosingParensOption {
 
         /**
-         * With parens example
-         *
-         * <pre>@Deprecated()</pre>.
+         * With parens example :
+         * {@code @Deprecated()}.
          */
         ALWAYS,
 
         /**
-         * Without parens example
-         *
-         * <pre>@Deprecated</pre>.
+         * Without parens example: {@code @Deprecated}.
          */
         NEVER,
 
@@ -262,6 +251,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     private ClosingParensOption closingParens = ClosingParensOption.NEVER;
 
     /**
+     * Creates a new {@code AnnotationUseStyleCheck} instance.
+     */
+    public AnnotationUseStyleCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to define the annotation element styles.
      *
      * @param style string representation
@@ -292,7 +288,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     }
 
     /**
-     * Retrieves an {@link Enum Enum} type from a {@link String String}.
+     * Retrieves an {@code Enum} type from a {@code String}.
      *
      * @param <T> the enum type
      * @param enumClass the enum class

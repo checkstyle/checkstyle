@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SuperCloneCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SuperCloneCheck.java"/>
+      </macro>
       <subsection name="Description" id="SuperClone_Description">
         <macro name="description">
             <param name="modulePath"

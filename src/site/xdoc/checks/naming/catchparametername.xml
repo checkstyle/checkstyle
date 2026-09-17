@@ -8,6 +8,29 @@
   <body>
     <section name="CatchParameterName">
       <p>Since Checkstyle 6.14</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#CatchParameterName_Description">Description</a></li>
+          <li><a href="#CatchParameterName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#CatchParameterName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by any letters or digits is</a></li>
+            </ul>
+          </li>
+          <li><a href="#CatchParameterName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#CatchParameterName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#CatchParameterName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#CatchParameterName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="CatchParameterName_Description">
         <div>
           Checks that <code>catch</code> parameter names conform to a specified pattern.
@@ -43,7 +66,7 @@
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$</code></td>
               <td>6.14</td>
             </tr>
@@ -70,18 +93,20 @@ public class Example1 {
     try {
       throw new InterruptedException();
     } catch (ArithmeticException e) {
+
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
-      // violation above, 'Name 'e123' must match pattern'
+      // violation above 'Name 'e123' must match pattern'
     } catch (NullPointerException ab) {
-      // violation above, 'Name 'ab' must match pattern'
+      // violation above 'Name 'ab' must match pattern'
     } catch (ArrayStoreException abc) {
     } catch (InterruptedException aBC) {
-      // violation above, 'Name 'aBC' must match pattern'
+      // violation above 'Name 'aBC' must match pattern'
     } catch (RuntimeException abC) {
     } catch (Exception EighthException) {
-      // violation above, 'Name 'EighthException' must match pattern'
+      // violation above 'Name 'EighthException' must match pattern'
     } catch (Throwable t) {
+
     }
   }
 }
@@ -107,17 +132,20 @@ public class Example2 {
     try {
       throw new InterruptedException();
     } catch (ArithmeticException e) {
-      // violation above, 'Name 'e' must match pattern'
+      // violation above 'Name 'e' must match pattern'
     } catch (ArrayIndexOutOfBoundsException ex) {
     } catch (IndexOutOfBoundsException e123) {
+
     } catch (NullPointerException ab) {
+
     } catch (ArrayStoreException abc) {
     } catch (InterruptedException aBC) {
+
     } catch (RuntimeException abC) {
     } catch (Exception EighthException) {
-      // violation above, 'Name 'EighthException' must match pattern'
+      // violation above 'Name 'EighthException' must match pattern'
     } catch (Throwable t) {
-      // violation above, 'Name 't' must match pattern'
+      // violation above 'Name 't' must match pattern'
     }
   }
 }
@@ -129,6 +157,11 @@ public class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
               Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CatchParameterName">
+              OpenJDK Style
             </a>
           </li>
           <li>

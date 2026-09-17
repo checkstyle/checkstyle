@@ -8,6 +8,27 @@
   <body>
     <section name="UnnecessaryNullCheckWithInstanceOf">
       <p>Since Checkstyle 10.25.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnnecessaryNullCheckWithInstanceOf_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnnecessaryNullCheckWithInstanceOf_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnnecessaryNullCheckWithInstanceOf_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnnecessaryNullCheckWithInstanceOf_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnnecessaryNullCheckWithInstanceOf_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnnecessaryNullCheckWithInstanceOf_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="UnnecessaryNullCheckWithInstanceOf_Description">
         <div>
           Checks for redundant null checks with the instanceof operator.
@@ -37,14 +58,14 @@
 public class Example1 {
 
   public void methodWithUnnecessaryNullCheck1(Object obj) {
-    // violation below, 'Unnecessary nullity check'
+    // violation below 'Unnecessary nullity check'
     if (obj != null &amp;&amp; obj instanceof String) {
       String str = (String) obj;
     }
     if (obj instanceof String) {
       String str = (String) obj;
     }
-    // violation below, 'Unnecessary nullity check'
+    // violation below 'Unnecessary nullity check'
     boolean isInvalid = obj != null &amp;&amp; obj instanceof String;
 
     boolean isValid = obj instanceof String;
@@ -56,7 +77,7 @@ public class Example1 {
     Validator v = new Validator() {
       @Override
       public boolean validate(Object obj) {
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         return obj != null &amp;&amp; obj instanceof String;
       }
     };
@@ -64,7 +85,7 @@ public class Example1 {
   private final List&lt;Object&gt; objects = new ArrayList&lt;&gt;();
 
   public String basicTernary(Object obj) {
-    // violation below, 'Unnecessary nullity check'
+    // violation below 'Unnecessary nullity check'
     return obj != null &amp;&amp; obj instanceof String ? ((String) obj) : "";
   }
 

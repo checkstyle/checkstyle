@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ModifierOrderCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ModifierOrderCheck.java"/>
+      </macro>
       <subsection name="Description" id="ModifierOrder_Description">
         <macro name="description">
             <param name="modulePath"

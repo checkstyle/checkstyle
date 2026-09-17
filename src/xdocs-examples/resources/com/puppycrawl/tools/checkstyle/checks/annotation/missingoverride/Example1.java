@@ -20,7 +20,7 @@ interface InterfaceB {
   void test();
 }
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 extends ParentClass1 {
 
   /** {@inheritDoc} */
@@ -54,4 +54,4 @@ class Example1Impl implements InterfaceB {
   //  '@inheritDoc' Javadoc tag exists."""
   public void test() {}
 }
-// xdoc section -- end
+// xdoc section - end

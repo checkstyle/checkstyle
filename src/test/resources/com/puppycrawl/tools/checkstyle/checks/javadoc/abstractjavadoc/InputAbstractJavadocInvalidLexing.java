@@ -6,11 +6,11 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$ParseJav
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 class InputAbstractJavadocInvalidLexing {
+    // Details: token recognition error at: '-' while parsing Fieldname
+    // violation 2 lines below 'Javadoc comment at column 29 has parse error.'
     /**
      * @serialField fieldName-fieldtype-fielddescription
      */
-    // violation 2 lines above 'Javadoc comment at column 29 has parse error.'
-    // Details: token recognition error at: '-' while parsing Fieldname
     void testLexerError() {
     }
 }

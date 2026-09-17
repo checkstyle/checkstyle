@@ -15,7 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
 
   private void testMethod1() {
@@ -38,12 +38,12 @@ class Example5 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example5.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
-    logger.info("second"); // violation, 'Line matches the illegal pattern'
-    logger.info("third");  // violation, 'Line matches the illegal pattern'
+    logger.info("second"); // violation 'Line matches the illegal pattern'
+    logger.info("third");  // violation 'Line matches the illegal pattern'
     System.out.println("fourth");
-    logger.info("fifth");  // violation, 'Line matches the illegal pattern'
+    logger.info("fifth");  // violation 'Line matches the illegal pattern'
   }
 }
-// xdoc section -- end
+// xdoc section - end

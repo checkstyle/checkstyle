@@ -53,6 +53,13 @@ public class FileLengthCheck extends AbstractFileSetCheck {
     /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX_LINES;
 
+    /**
+     * Creates a new {@code FileLengthCheck} instance.
+     */
+    public FileLengthCheck() {
+        // no code by default
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
         if (fileText.size() > max) {

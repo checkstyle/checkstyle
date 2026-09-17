@@ -18,8 +18,8 @@ public class InputUnusedLocalVariableAllowNamedPatternVariablesTrue {
     }
 
     void method(Object object) {
-        int x = 10; // violation, 'Unused local variable'
-        if (object instanceof String ignored) { // violation, 'Unused local variable'
+        int x = 10; // violation 'Unused local variable'
+        if (object instanceof String ignored) { // violation 'Unused local variable'
             System.out.println("string");
         }
     }
@@ -27,7 +27,7 @@ public class InputUnusedLocalVariableAllowNamedPatternVariablesTrue {
     void whatClassTraditional(Object object) {
         switch (object) {
             case String ignored:
-                if (object instanceof String s){ // violation, 'Unused local variable'
+                if (object instanceof String s){ // violation 'Unused local variable'
                     System.out.println("S");
                 }
                 System.out.println("String");

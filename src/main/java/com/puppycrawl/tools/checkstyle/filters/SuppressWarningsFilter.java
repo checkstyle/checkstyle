@@ -60,6 +60,13 @@ public class SuppressWarningsFilter
     extends AbstractAutomaticBean
     implements Filter {
 
+    /**
+     * Creates a new {@code SuppressWarningsFilter} instance.
+     */
+    public SuppressWarningsFilter() {
+        // no code by default
+    }
+
     @Override
     protected void finishLocalSetup() {
         // No code by default

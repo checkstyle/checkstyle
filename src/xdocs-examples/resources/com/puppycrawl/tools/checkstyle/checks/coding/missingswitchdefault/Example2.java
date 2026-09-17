@@ -8,7 +8,7 @@
 // Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   Example2(int i){
     switch (i) {
@@ -33,4 +33,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

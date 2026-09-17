@@ -9,9 +9,11 @@ trailingArrayComma = ignore
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
 @Deprecated
-@SomeArraysDiffStyle(pooches={DOGS.LEO}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
-@SuppressWarnings({""}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
+@SuppressWarnings({""})
 public class InputAnnotationUseStyleCompactNoArray
 {
 
@@ -25,9 +27,11 @@ class Dep6 {
 
 }
 
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
 @Deprecated
-@SomeArraysDiffStyle(pooches={DOGS.LEO}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
-@SuppressWarnings({""}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
+@SuppressWarnings({""})
 enum SON6 {
 
     // violation 2 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
@@ -49,13 +53,16 @@ enum DOGS6 {
 @interface SomeArrays6 {
     @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@Another(value={""}) //expanded
 enum E6 {
 
 }

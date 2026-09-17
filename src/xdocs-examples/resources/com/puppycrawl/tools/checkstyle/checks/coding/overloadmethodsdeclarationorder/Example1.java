@@ -9,7 +9,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethodsdeclarationorder;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void same(int i) {}
   void same(String s, int i, int k) {}
@@ -42,4 +42,4 @@ class Example1 {
 
   }
 }
-// xdoc section -- end
+// xdoc section - end

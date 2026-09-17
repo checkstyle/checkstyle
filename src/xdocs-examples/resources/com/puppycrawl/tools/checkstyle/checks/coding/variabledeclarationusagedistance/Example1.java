@@ -9,11 +9,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   public void foo1() {
-    // violation below, 'variable 'num' declaration and its first usage is 4.'
+    // violation below 'variable 'num' declaration and its first usage is 4.'
     int num;
 
     final double PI;   // ok, final variables not checked
@@ -37,4 +37,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

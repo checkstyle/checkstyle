@@ -10,7 +10,7 @@ idFormat = $1
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 id = ignore
 format = .*[a-zA-Z][0-9].*
-message = (default)
+message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0
@@ -20,7 +20,7 @@ fileExtensions = (default)(null)
 com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck
 id = (null)
 eachLine = true
-fileExtensions = (default)
+fileExtensions = (default)(null)
 
 
 */

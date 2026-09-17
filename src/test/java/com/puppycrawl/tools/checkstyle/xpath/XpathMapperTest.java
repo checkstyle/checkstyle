@@ -46,9 +46,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//METHOD_DEF/SLIST/*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        for (int i = 1; i < nodes.size(); i++) {
-            final NodeInfo curr = nodes.get(i);
-            final NodeInfo prev = nodes.get(i - 1);
+        for (int index = 1; index < nodes.size(); index++) {
+            final NodeInfo curr = nodes.get(index);
+            final NodeInfo prev = nodes.get(index - 1);
 
             if (curr.getLineNumber() == prev.getLineNumber()) {
                 assertWithMessage("Column number is not in document order")
@@ -1255,9 +1255,9 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     private static DetailAST[] convertToArray(List<NodeInfo> nodes) {
         final DetailAST[] result = new DetailAST[nodes.size()];
-        for (int i = 0; i < nodes.size(); i++) {
-            final ElementNode abstractNode = (ElementNode) nodes.get(i);
-            result[i] = abstractNode.getUnderlyingNode();
+        for (int index = 0; index < nodes.size(); index++) {
+            final ElementNode abstractNode = (ElementNode) nodes.get(index);
+            result[index] = abstractNode.getUnderlyingNode();
         }
         return result;
     }

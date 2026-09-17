@@ -44,19 +44,23 @@ class InputMagicNumberIgnoreFieldDeclaration3 {
         int z=101; // violation ''101' is a magic number'
     }
 
-    @InputMagicNumberIntMethodAnnotation(42) // violation ''42' is a magic number'
+    // violation below ''42' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(42)
     public void another() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=43) // violation ''43' is a magic number'
+    // violation below ''43' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(value=43)
     public void another2() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(-44) // violation ''-44' is a magic number'
+    // violation below ''-44' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(-44)
     public void anotherNegative() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=-45) // violation ''-45' is a magic number'
+    // violation below ''-45' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(value=-45)
     public void anotherNegative2() {
     }
 }

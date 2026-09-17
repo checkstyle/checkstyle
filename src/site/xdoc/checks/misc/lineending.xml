@@ -8,6 +8,37 @@
   <body>
     <section name="LineEnding">
       <p>Since Checkstyle 13.3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#LineEnding_Description">Description</a></li>
+          <li><a href="#LineEnding_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LineEnding_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Enforce LF (Unix-style) line endings</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Enforce CRLF (Windows-style) line endings</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Enforce CR line endings for Java files only</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LineEnding_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Enforce CR line endings for TXT files only</a></li>
+            </ul>
+          </li>
+          <li><a href="#LineEnding_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#LineEnding_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#LineEnding_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#LineEnding_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="LineEnding_Description">
         <div>
           Checks whether file uses a specific line-ending sequence
@@ -40,14 +71,14 @@
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>13.3.0</td>
             </tr>
             <tr>
               <td><a id="lineEnding"/><a href="#lineEnding">lineEnding</a></td>
               <td>Set lineEnding.</td>
-              <td><a href="../../property_types.html#LineEndingOption">LineEndingOption</a></td>
+              <td><a href="../../property-types.html#LineEndingOption">LineEndingOption</a></td>
               <td><code>lf</code></td>
               <td>13.3.0</td>
             </tr>
@@ -93,12 +124,13 @@ public class Example2 { // ␍␊  // ok line ending is CRLF
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example3-config">
-          To configure the check to enforce CR line endings:
+          To configure the check to enforce CR line endings for Java files only:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="LineEnding"&gt;
     &lt;property name="lineEnding" value="cr"/&gt;
+    &lt;property name="fileExtensions" value="java"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -109,6 +141,30 @@ public class Example3 {  // ␊ // violation 'Expected line ending for file is C
     int x = 1; // ␊           // violation 'Expected line ending for file is CR, but LF is detected.'
   } // ␊                      // violation 'Expected line ending for file is CR, but LF is detected.'
 } // ␊                        // violation 'Expected line ending for file is CR, but LF is detected.'
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="LineEnding_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to enforce CR line endings for TXT files only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineEnding"&gt;
+    &lt;property name="lineEnding" value="cr"/&gt;
+    &lt;property name="fileExtensions" value="txt"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example (Java file with LF line endings - no violations, as only TXT files are checked):
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class UseCase1 {  // ␊ // ok, only .txt files are checked
+  public void method() { // ␊ // ok, only .txt files are checked
+    int x = 1; // ␊           // ok, only .txt files are checked
+  } // ␊                      // ok, only .txt files are checked
+} // ␊                        // ok, only .txt files are checked
 </code></pre></div>
       </subsection>
 

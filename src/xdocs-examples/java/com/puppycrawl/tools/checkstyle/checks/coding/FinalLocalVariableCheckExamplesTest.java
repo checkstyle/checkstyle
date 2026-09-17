@@ -66,9 +66,7 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "18:22: " + getCheckMessage(MSG_KEY, "x"),
-            "18:29: " + getCheckMessage(MSG_KEY, "y"),
-            "26:37: " + getCheckMessage(MSG_KEY, "args"),
+            "22:9: " + getCheckMessage(MSG_KEY, "_"),
             "32:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 

@@ -3,23 +3,27 @@
   <module name="TreeWalker">
     <module name="MethodName"/>
     <module name="SuppressionXpathSingleFilter">
+      <property name="files" value="Example(8|3)\.java"/>
       <property name="checks" value="MethodName"/>
-      <property name="query" value="//CLASS_DEF[./IDENT[@text='Example8']]/OBJBLOCK/
-                METHOD_DEF/IDENT[@text='MyMethod1' or @text='MyMethod2']"/>
+      <property name="query" value="(//CLASS_DEF[./IDENT[@text='Example8']]
+                /OBJBLOCK/METHOD_DEF/IDENT[@text='MyMethod'])|
+                (//CLASS_DEF[./IDENT[@text='Example3']]/OBJBLOCK
+                /METHOD_DEF/IDENT[@text='MyMethod'])"/>
     </module>
   </module>
 </module>
 */
 
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
-// xdoc section -- start
-class Example8 {
-  // filtered violation below 'Name 'MyMethod1' must match pattern'
-  public void MyMethod1() {}
-  // filtered violation below 'Name 'MyMethod2' must match pattern'
+public class Example8 {
+  // filtered violation below 'Name 'MyMethod' must match pattern'
+  public void MyMethod() {}
+  // violation below 'Name 'MyMethod2' must match pattern'
   public void MyMethod2() {}
-  // violation below, 'Name 'MyMethod3' must match pattern'
-  public void MyMethod3() {}
+  // violation below 'Name 'MyMethodA' must match pattern'
+  public void MyMethodA() {}
+  private int field = 177;
 }
-// xdoc section -- end
+// xdoc section - end

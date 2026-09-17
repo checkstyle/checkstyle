@@ -127,4 +127,5 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

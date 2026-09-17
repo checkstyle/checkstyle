@@ -9,5 +9,5 @@ tokens = (default)COMMENT_CONTENT
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalsymbol;
 
 public class InputIllegalSymbolOverlap {
-    int x = 1; // 😀 //violation 'Illegal symbol detected: '😀''
+    int x = 1; // 😀 // violation 'Illegal symbol detected: '😀''
 }

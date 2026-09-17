@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The check to ensure that lines with code do not end with comment.
  * For the case of {@code //} comments that means that the only thing that should precede
  * it is whitespace. It doesn't check comments if they do not end a line; for example,
- * it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
+ * it accepts the following: {@code Thread.sleep( 10 /*some comment here* / );}
  * Format property is intended to deal with the <code>} // while</code> example.
  * </div>
  *
@@ -43,10 +43,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * comments are a bad practice. An end line comment would be one that is on
  * the same line as actual code. For example:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * a = b + c;      // Some insightful comment
- * d = e / f;      /* Some insightful block comment &#42;/
- * </code></pre></div>
+ * d = e / f;      /* Some insightful block comment * /
+ * }
  *
  * <p>
  * Quoting <cite>Code Complete</cite> for the justification:
@@ -86,9 +86,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * are even more important in the age of automated refactorings.
  * </p>
  *
- * @noinspection HtmlTagCanBeJavadocTag
- * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
- *      when replaced with Javadoc tag
  * @since 3.4
  */
 @StatelessCheck
@@ -111,6 +108,13 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     /** Specify pattern for strings allowed before the comment. */
     private Pattern format = Pattern.compile("^[\\s});]*$");
+
+    /**
+     * Creates a new {@code TrailingCommentCheck} instance.
+     */
+    public TrailingCommentCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to define pattern for text allowed in trailing comments.
@@ -226,4 +230,5 @@ public class TrailingCommentCheck extends AbstractCheck {
     private boolean isLegalCommentContent(String commentContent) {
         return legalComment != null && legalComment.matcher(commentContent).find();
     }
+
 }

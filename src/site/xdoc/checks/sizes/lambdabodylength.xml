@@ -8,6 +8,29 @@
   <body>
     <section name="LambdaBodyLength">
       <p>Since Checkstyle 8.37</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#LambdaBodyLength_Description">Description</a></li>
+          <li><a href="#LambdaBodyLength_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LambdaBodyLength_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Accept lambda bodies with up to 10 lines</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept lambda bodies with max 5 lines</a></li>
+            </ul>
+          </li>
+          <li><a href="#LambdaBodyLength_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#LambdaBodyLength_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#LambdaBodyLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#LambdaBodyLength_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="LambdaBodyLength_Description">
         <div>
           Checks lambda body length.
@@ -34,7 +57,7 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>10</code></td>
               <td>8.37</td>
             </tr>
@@ -58,16 +81,11 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  Runnable r = () -&gt; { // ok, length is 10
-    System.out.println(2); // line 2 of lambda
+  Runnable r = () -&gt; { // ok, length is 5
+    System.out.println(2);
     System.out.println(3);
     System.out.println(4);
-    System.out.println(5);
-    System.out.println(6);
-    System.out.println(7);
-    System.out.println(8);
-    System.out.println(9);
-  }; // line 10
+  };
   // violation below 'Lambda body length is 11 lines (max allowed is 10).'
   Runnable r2 = () -&gt; {
     System.out.println(2); // line 2 of lambda
@@ -117,21 +135,31 @@ class Example2 {
     System.out.println(3);
     System.out.println(4);
   };
-  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  // violation below 'Lambda body length is 11 lines (max allowed is 5).'
   Runnable r2 = () -&gt; {
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
     System.out.println(5);
-  };
-  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+    System.out.println(6);
+    System.out.println(7);
+    System.out.println(8);
+    System.out.println(9);
+    System.out.println(10);
+  }; // line 11
+  // violation below 'Lambda body length is 11 lines (max allowed is 5).'
   Runnable r3 = () -&gt;
-    "someString".concat("1")
+    "someString".concat("1") // line 1 of lambda
                 .concat("2")
                 .concat("3")
                 .concat("4")
                 .concat("5")
-                .concat("6");
+                .concat("6")
+                .concat("7")
+                .concat("8")
+                .concat("9")
+                .concat("10")
+                .concat("11"); // line 11
 }
 </code></pre></div>
       </subsection>

@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanexpression;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void InvalidExample() {
     boolean a=true;
@@ -28,4 +28,4 @@ class Example1 {
     boolean f = c == null ? false : c.equals(d);
   }
 }
-// xdoc section -- end
+// xdoc section - end

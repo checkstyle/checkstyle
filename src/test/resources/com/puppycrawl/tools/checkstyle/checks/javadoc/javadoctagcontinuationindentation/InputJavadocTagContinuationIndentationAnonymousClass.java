@@ -11,13 +11,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationind
 class InputJavadocTagContinuationIndentationAnonymousClass {
     Object anon = new Object()
     {
+        // violation 6 lines below 'Line continuation .* expected level should be 4'
+        // violation 7 lines below 'Line continuation .* expected level should be 4'
         /**
          * Some text.
          * @throws Exception Some text.
          * @param aString Some text.
-         *   Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *   Some javadoc.
          * @serialData Some javadoc.
-         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *    Some javadoc.
          * @see Some text.
          * @return Some text.
          */
@@ -75,16 +77,19 @@ class InputJavadocTagContinuationIndentationAnonymousClass {
             return "null";
         }
 
+        // violation 7 lines below 'Line continuation .* expected level should be 4'
+        // violation 9 lines below 'Line continuation .* expected level should be 4'
+        // violation 10 lines below 'Line continuation .* expected level should be 4'
         /**
          * Some text.
          *       Some javadoc.
          * @param aString Some text.
-         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *    Some javadoc.
          * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *    Some javadoc.
          * @throws Exception Some text.
-         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *    Some javadoc.
          * @param aBoolean Some text.
          * @see Some text.
          */

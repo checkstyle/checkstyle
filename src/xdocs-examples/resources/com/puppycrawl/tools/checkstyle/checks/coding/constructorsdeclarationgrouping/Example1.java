@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.constructorsdeclarationgrouping;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   int x;
   Example1() {}
@@ -51,4 +51,4 @@ public class Example1 {
     InputWithOrderedCtors(String s, int x) {}
   }
 }
-// xdoc section -- end
+// xdoc section - end

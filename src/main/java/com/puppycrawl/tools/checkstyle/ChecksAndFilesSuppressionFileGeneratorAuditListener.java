@@ -255,4 +255,5 @@ public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
     protected void finishLocalSetup() {
         // No code by default
     }
+
 }

@@ -157,4 +157,5 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

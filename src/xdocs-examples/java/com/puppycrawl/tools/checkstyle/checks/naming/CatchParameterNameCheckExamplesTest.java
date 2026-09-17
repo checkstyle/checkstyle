@@ -38,13 +38,13 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
+            "19:40: " + getCheckMessage(MSG_INVALID_PATTERN, "e123",
                     CATCH_PARAM_NAME_PATTERN_1),
-            "20:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
+            "21:35: " + getCheckMessage(MSG_INVALID_PATTERN, "ab",
                     CATCH_PARAM_NAME_PATTERN_1),
-            "23:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
+            "24:35: " + getCheckMessage(MSG_INVALID_PATTERN, "aBC",
                     CATCH_PARAM_NAME_PATTERN_1),
-            "26:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+            "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
                     CATCH_PARAM_NAME_PATTERN_1),
         };
 
@@ -56,12 +56,13 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "18:34: " + getCheckMessage(MSG_INVALID_PATTERN, "e",
                     CATCH_PARAM_NAME_PATTERN_2),
-            "26:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
+            "29:24: " + getCheckMessage(MSG_INVALID_PATTERN, "EighthException",
                     CATCH_PARAM_NAME_PATTERN_2),
-            "28:24: " + getCheckMessage(MSG_INVALID_PATTERN, "t",
+            "31:24: " + getCheckMessage(MSG_INVALID_PATTERN, "t",
                     CATCH_PARAM_NAME_PATTERN_2),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

@@ -336,8 +336,8 @@ public final class CheckUtil {
      * Returns {@link AccessModifierOption} based on the information about access modifier
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
      *
-     * @param modifiersToken token of type {@link TokenTypes#MODIFIERS}.
-     * @return {@link AccessModifierOption}.
+     * @param modifiersToken token of type {@code TokenTypes#MODIFIERS}.
+     * @return {@code AccessModifierOption}.
      * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'
      */
     private static AccessModifierOption getAccessModifierFromModifiersTokenDirectly(
@@ -490,9 +490,12 @@ public final class CheckUtil {
                                                        String classToBeMatched) {
         final int length = Math.min(classToBeMatched.length(), patternClass.length());
         int result = 0;
-        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
-            if (patternClass.charAt(i) == PACKAGE_SEPARATOR) {
-                result = i;
+        for (int index = 0;
+                index < length
+                    && patternClass.charAt(index) == classToBeMatched.charAt(index);
+                index++) {
+            if (patternClass.charAt(index) == PACKAGE_SEPARATOR) {
+                result = index;
             }
         }
         return result;
@@ -541,10 +544,10 @@ public final class CheckUtil {
     /**
      * Get the short name of super class of anonymous inner class.
      * Example:
-     * <pre>
+     * {@snippet lang="text" :
      * TestClass.NestedClass obj = new Test().new NestedClass() {};
      * // Short name will be Test.NestedClass
-     * </pre>
+     * }
      *
      * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
      * @return short name of base class of anonymous inner class
@@ -680,11 +683,22 @@ public final class CheckUtil {
                                    boolean useContinue, Set<String> labels) {
         final DetailAST thenStmt = getNextNonCommentAst(ast.findFirstToken(TokenTypes.RPAREN));
 
-        final DetailAST elseStmt = getNextNonCommentAst(thenStmt);
+        final DetailAST elseStmt = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
 
-        return elseStmt != null
-                && isTerminated(thenStmt, useBreak, useContinue, labels)
-                && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+        final boolean isTerminated;
+
+        if (checkInfiniteLoop(ast.getParent().getParent())) {
+            isTerminated = isTerminated(thenStmt, useBreak, useContinue, labels)
+                    || elseStmt != null
+                    && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+        }
+        else {
+            isTerminated = elseStmt != null
+                    && isTerminated(thenStmt, useBreak, useContinue, labels)
+                    && isTerminated(elseStmt.getLastChild(), useBreak, useContinue, labels);
+        }
+
+        return isTerminated;
     }
 
     /**
@@ -720,7 +734,9 @@ public final class CheckUtil {
             final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
             loopBody = rparen.getNextSibling();
         }
-        return isTerminated(loopBody, false, false, labels);
+
+        return checkInfiniteLoop(ast) && !isTerminated(loopBody, true, false, labels)
+                || isTerminated(loopBody, false, false, labels);
     }
 
     /**
@@ -801,4 +817,47 @@ public final class CheckUtil {
         return isTerminated(
             synchronizedAst.findFirstToken(TokenTypes.SLIST), useBreak, useContinue, labels);
     }
+
+    /**
+     * Checks whether the given ast is an infinite loop.
+     *
+     * @param ast the token to check
+     * @return true if the token is an infinite, false otherwise
+     */
+    private static boolean checkInfiniteLoop(DetailAST ast) {
+        boolean isInfiniteLoop = false;
+        if (ast.getType() == TokenTypes.LITERAL_FOR) {
+            isInfiniteLoop = checkForLoop(ast);
+        }
+        else if (ast.getType() == TokenTypes.LITERAL_WHILE
+                || ast.getType() == TokenTypes.LITERAL_DO) {
+            final DetailAST lparen = NullUtil.notNull(ast.findFirstToken(TokenTypes.LPAREN));
+            final DetailAST expression = NullUtil.notNull(lparen.getNextSibling());
+            final DetailAST firstChild = NullUtil.notNull(expression.getFirstChild());
+            isInfiniteLoop = firstChild.getType() == TokenTypes.LITERAL_TRUE;
+        }
+        return isInfiniteLoop;
+    }
+
+    /**
+     * Checks if a for loop is infinite (empty or {@code true} condition).
+     *
+     * @param forLoop the for loop to check
+     * @return true if the for loop is infinite
+     */
+    private static boolean checkForLoop(DetailAST forLoop) {
+        boolean isInfiniteLoop = false;
+        if (forLoop.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
+            final DetailAST condition =
+                    NullUtil.notNull(forLoop.findFirstToken(TokenTypes.FOR_CONDITION));
+            DetailAST child = condition.getFirstChild();
+            if (child != null) {
+                // EXPR node always has child
+                child = NullUtil.notNull(child.getFirstChild());
+            }
+            isInfiniteLoop = child == null || child.getType() == TokenTypes.LITERAL_TRUE;
+        }
+        return isInfiniteLoop;
+    }
+
 }

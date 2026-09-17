@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  */
 public class LambdaHandler extends AbstractExpressionHandler {
+
     /**
      * Checks whether the lambda is correctly indented, this variable get its value from checking
      * the lambda handler's indentation, and it is being used in aligning the lambda's children.
@@ -209,10 +210,10 @@ public class LambdaHandler extends AbstractExpressionHandler {
      * when the statement is not on the same line as the lambda operator ({@code ->}).
      * This applies to single-statement switch rules without curly braces {@code {}}.
      * Example:
-     * <pre>
-     * case ONE {@code ->}
+     * {@snippet lang="text" :
+     * case ONE ->
      *     1;
-     * </pre>
+     * }
      *
      * @param isLambdaFirstInLine if {@code ->} is the first element on the line
      */
@@ -277,4 +278,5 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final IndentLevel baseLevel = new IndentLevel(enumConstIndent);
         return new IndentLevel(baseLevel, getIndentCheck().getLineWrappingIndentation());
     }
+
 }

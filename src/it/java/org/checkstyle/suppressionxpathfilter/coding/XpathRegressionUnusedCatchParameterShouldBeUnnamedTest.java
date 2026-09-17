@@ -169,4 +169,5 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

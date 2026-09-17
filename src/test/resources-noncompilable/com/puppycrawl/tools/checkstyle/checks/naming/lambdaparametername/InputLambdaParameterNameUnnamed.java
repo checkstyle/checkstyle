@@ -5,7 +5,7 @@ format = (default)^([a-z][a-zA-Z0-9]*|_)$
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.naming.lambdaparametername;
 
 import java.util.Arrays;
@@ -27,14 +27,14 @@ public class InputLambdaParameterNameUnnamed {
 
         System.out.println(
                 strings.stream().collect(Collectors.toMap(String::toUpperCase,
-                                   __ -> "NODATA"))); // violation, 'Name '__' must match.*'
+                                   __ -> "NODATA"))); // violation 'Name '__' must match.*'
 
         System.out.println(
                 strings.stream().collect(Collectors.toMap(String::toUpperCase,
-                                   _BAD -> "NODATA"))); // violation, 'Name '_BAD' must match.*'
+                                   _BAD -> "NODATA"))); // violation 'Name '_BAD' must match.*'
         System.out.println(
                 strings.stream().collect(Collectors.toMap(String::toUpperCase,
-                                   BAD_ -> "NODATA"))); // violation, 'Name 'BAD_' must match.*'
+                                   BAD_ -> "NODATA"))); // violation 'Name 'BAD_' must match.*'
 
         switch (o) {
             case Integer __ -> {} // ok, this is pattern variable not a lambda parameter

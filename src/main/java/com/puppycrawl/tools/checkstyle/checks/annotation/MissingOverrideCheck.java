@@ -95,6 +95,13 @@ public final class MissingOverrideCheck extends AbstractCheck {
     private boolean javaFiveCompatibility;
 
     /**
+     * Creates a new {@code MissingOverrideCheck} instance.
+     */
+    public MissingOverrideCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to enable java 5 compatibility mode.
      *
      * @param compatibility compatibility or not

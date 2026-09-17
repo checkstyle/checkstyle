@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/ThrowsCountCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/ThrowsCountCheck.java"/>
+      </macro>
       <subsection name="Description" id="ThrowsCount_Description">
         <macro name="description">
             <param name="modulePath"

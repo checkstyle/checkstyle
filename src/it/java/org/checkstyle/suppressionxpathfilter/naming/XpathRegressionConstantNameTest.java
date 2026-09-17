@@ -19,7 +19,7 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
 import java.util.Collections;
@@ -131,4 +131,5 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

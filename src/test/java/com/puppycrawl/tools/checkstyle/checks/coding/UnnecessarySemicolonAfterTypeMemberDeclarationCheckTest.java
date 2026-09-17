@@ -141,4 +141,5 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
                 getPath("InputUnnecessarySemicolonAfterTypeMemberDeclarationNullAst.java"),
                 expected);
     }
+
 }

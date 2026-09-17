@@ -56,23 +56,23 @@ public class IllegalSymbolCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "é"),
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example3.java"), expected);
+                getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_KEY, "😀"),
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example4.java"), expected);
+                getPath("Example3.java"), expected);
     }
 
     @Test
@@ -87,12 +87,13 @@ public class IllegalSymbolCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "16:5: Only ASCII characters are allowed.",
         };
 
         verifyWithInlineConfigParser(
-                getPath("Example5.java"), expected);
+                getPath("UseCase2.java"), expected);
     }
+
 }

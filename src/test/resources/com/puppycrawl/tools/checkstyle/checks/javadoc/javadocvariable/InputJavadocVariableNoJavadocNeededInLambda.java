@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 import java.util.function.Function;
 
 public class InputJavadocVariableNoJavadocNeededInLambda {
-    // violation below, 'Missing a Javadoc comment'
+    // violation below 'Missing a Javadoc comment'
     private static final Function<String, String> FUNCTION1 = (String it) -> {
         String stuff = it;
         return stuff + it;

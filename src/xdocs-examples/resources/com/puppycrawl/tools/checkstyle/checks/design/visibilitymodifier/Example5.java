@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   private int myPrivateField1;
 
@@ -70,4 +70,4 @@ class Example5 {
   // violation below, annotation not configured 'must be private'
   public final List list = null;
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
     int a;                      // ok, basicOffset = 4
     boolean x, y;
@@ -17,7 +17,7 @@ class Example1 {
         1, 2, 3                 // ok, arrayInitIndent = 4
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be 8'
     };
 
     void method2()
@@ -54,4 +54,4 @@ class Example1 {
     {
     }
 }
-// xdoc section -- end
+// xdoc section - end

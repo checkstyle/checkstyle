@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 extends ParentClass1 {
 
   /** {@inheritDoc} */
@@ -45,4 +45,4 @@ class Example2Impl implements InterfaceB {
 
   public void test() {}
 }
-// xdoc section -- end
+// xdoc section - end

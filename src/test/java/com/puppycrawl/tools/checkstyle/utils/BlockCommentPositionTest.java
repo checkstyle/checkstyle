@@ -159,4 +159,5 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
             return matchesNum;
         }
     }
+
 }

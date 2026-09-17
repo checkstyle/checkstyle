@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -12,14 +12,14 @@ import java.io.IOException;
 
 enum InputJavadocVariableTagsEnum
 {
-    CONSTANT_A, // violation, 'Missing a Javadoc comment
+    CONSTANT_A, // violation 'Missing a Javadoc comment
 
     /**
      *
      */
     CONSTANT_B,
 
-    CONSTANT_C // violation, 'Missing a Javadoc comment'
+    CONSTANT_C // violation 'Missing a Javadoc comment'
     {
         /**
          *
@@ -38,7 +38,7 @@ enum InputJavadocVariableTagsEnum
 @interface InputJavadocVariableTagsAnnotation
 {
     String someField();
-    int A_CONSTANT = 0; // violation, 'Missing a Javadoc comment'
+    int A_CONSTANT = 0; // violation 'Missing a Javadoc comment'
     /** Some javadoc. */
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */
@@ -69,6 +69,12 @@ public class InputJavadocVariableTagsEnums {
     {
         return null;
     }
+
+    // 2 violations 4 lines below:
+    //      'Missing a Javadoc comment'
+    //      'Missing a Javadoc comment'
+    /** Javadoc */
+    private static enum PathStatus { INVALID, CHECKED };
 }
 
 /**
@@ -77,4 +83,3 @@ public class InputJavadocVariableTagsEnums {
 class WrongException extends RuntimeException
 {
 }
-

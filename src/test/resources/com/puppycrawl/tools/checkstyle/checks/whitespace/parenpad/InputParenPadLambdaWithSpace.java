@@ -1,10 +1,10 @@
 /*
 ParenPad
 option = SPACE
-tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
-         ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
-         LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
-         METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF
+tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, ENUM_CONSTANT_DEF, \
+         EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, METHOD_DEF, QUESTION, \
+         RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -23,10 +23,10 @@ class InputParenPadLambdaWithSpace {
         //           '')' is not preceded with whitespace.'
 
         java.util.function.Consumer d = (o ) -> { o.toString(); };
-        // violation above, ''(' is not followed by whitespace.'
+        // violation above ''(' is not followed by whitespace.'
 
         java.util.function.Consumer e = ( o) -> { o.toString(); };
-        // violation above, '')' is not preceded with whitespace.'
+        // violation above '')' is not preceded with whitespace.'
 
         java.util.stream.Stream.of().forEach( (o) -> o.toString() );
         // 2 violations above:

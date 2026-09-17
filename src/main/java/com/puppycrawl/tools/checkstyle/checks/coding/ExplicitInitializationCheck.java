@@ -56,8 +56,15 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Control whether only explicit initializations made to null for objects should be checked.
-     **/
+     */
     private boolean onlyObjectReferences;
+
+    /**
+     * Creates a new {@code ExplicitInitializationCheck} instance.
+     */
+    public ExplicitInitializationCheck() {
+        // no code by default
+    }
 
     @Override
     public final int[] getDefaultTokens() {

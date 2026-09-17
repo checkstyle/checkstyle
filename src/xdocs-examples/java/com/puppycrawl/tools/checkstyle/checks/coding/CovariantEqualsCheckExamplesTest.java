@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CovariantEqualsCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/covariantequals";
@@ -49,4 +50,5 @@ public class CovariantEqualsCheckExamplesTest extends AbstractExamplesModuleTest
         verifyWithInlineConfigParser(
                 getPath("Example2.java"), expected);
     }
+
 }

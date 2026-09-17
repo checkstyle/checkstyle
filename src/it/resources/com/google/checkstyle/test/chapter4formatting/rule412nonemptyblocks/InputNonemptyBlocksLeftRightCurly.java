@@ -232,12 +232,12 @@ class InputRightCurlyOther2
       boolean flag = true;
       if (flag) {
         System.identityHashCode("heh");
-      // 2 violations 3 lines below:
+      // 3 violations 4 lines below:
       //  ''if' child has incorrect indentation level 6, expected level should be 8.'
       //  ''}' at column 21 should have line break before.'
+      //  'Only one statement per line allowed.'
       flag = !flag; } System
         .identityHashCode("Xe-xe");
-
       if (flag) { System.identityHashCode("some foo"); }
       // violation above ''{' at column 17 should have line break after.'
     }

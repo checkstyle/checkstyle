@@ -26,7 +26,8 @@ import java.util.ArrayList;
 import java.io.File;
 import java.util.Random;
 
-public class InputClassFanOutComplexityLambdaNew { // violation 'Complexity is 2'
+// violation below 'Class Fan-Out Complexity is 2 (max allowed is 0).'
+public class InputClassFanOutComplexityLambdaNew {
     public void testMethod(Map<String, List<String>> entry) {
         List<File> files = new ArrayList<>();
         String string = "";

@@ -5,7 +5,7 @@ tokens = RECORD_PATTERN_DEF
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadForRecordPatternWithSpaceOption {
@@ -16,7 +16,7 @@ public class InputParenPadForRecordPatternWithSpaceOption {
         //             ''(' is not followed by whitespace'
         //             '')' is not preceded with whitespace'
         if (obj instanceof ColoredPoint( Point p, String c)) {}
-        // violation above, '')' is not preceded with whitespace'
+        // violation above '')' is not preceded with whitespace'
         if (obj instanceof ColoredPoint( Point p, String c )) {}
 
 
@@ -31,7 +31,7 @@ public class InputParenPadForRecordPatternWithSpaceOption {
         //             '')' is not preceded with whitespace'
         //             '')' is not preceded with whitespace'
         if (obj instanceof ColoredPoint(Point( int x, int _ ), String c )) {}
-        // violation above, ''(' is not followed by whitespace'
+        // violation above ''(' is not followed by whitespace'
         if (obj instanceof ColoredPoint( Point( int x, int _ ), String c )) {}
 
     }
@@ -43,7 +43,7 @@ public class InputParenPadForRecordPatternWithSpaceOption {
             //             ''(' is not followed by whitespace'
             //             '')' is not preceded with whitespace'
             case Point( int x, int y) when x == 0 -> {}
-            // violation above, '')' is not preceded with whitespace'
+            // violation above '')' is not preceded with whitespace'
             case Point( int x, int y ) -> {}
             default -> {}
         }

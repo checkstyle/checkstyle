@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
 
@@ -59,11 +60,6 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
             "26:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "54:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "88:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "177:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "186:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "205:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "221:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "230:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyCatchBlockDefault2.java"), expected);
@@ -75,11 +71,6 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
             "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "53:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "87:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "176:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "185:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "204:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "220:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "229:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         final String originalLineSeparator = System.lineSeparator();
         try {
@@ -100,6 +91,60 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Default acceptable tokens are invalid")
                 .that(actual)
                 .isEqualTo(expected);
+    }
+
+    @Test
+    public void testNonEmptyCatch() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockNonEmptyCatch.java"), expected);
+    }
+
+    @Test
+    public void testCommentRecognition() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockCommentRecognition.java"), expected);
+    }
+
+    @Test
+    public void testNonEmptyCatch2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockNonEmptyCatch2.java"), expected);
+    }
+
+    @Test
+    public void testCommentRecognition2() throws Exception {
+        final String[] expected = {
+            "17:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "26:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "45:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "61:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "70:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockCommentRecognition2.java"), expected);
+    }
+
+    @Test
+    public void testNonEmptyCatchLf() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockNonEmptyCatchLF.java"), expected);
+    }
+
+    @Test
+    public void testCommentRecognitionLf() throws Exception {
+        final String[] expected = {
+            "17:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "26:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "45:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "61:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "70:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyCatchBlockCommentRecognitionLF.java"), expected);
     }
 
 }

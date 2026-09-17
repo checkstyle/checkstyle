@@ -19,11 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck.MSG_BLOCK_TAG_LOCATION;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/javadocblocktaglocation";
@@ -32,7 +35,7 @@ public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesMo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-
+            "17: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "version"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -40,19 +43,19 @@ public class JavadocBlockTagLocationCheckExamplesTest extends AbstractExamplesMo
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
-
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-
+            "25: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "version"),
+            "30: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "noinspection"),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
+
 }

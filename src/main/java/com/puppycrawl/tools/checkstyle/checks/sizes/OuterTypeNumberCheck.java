@@ -58,6 +58,13 @@ public class OuterTypeNumberCheck extends AbstractCheck {
      */
     private boolean isCompactSourceFile;
 
+    /**
+     * Creates a new {@code OuterTypeNumberCheck} instance.
+     */
+    public OuterTypeNumberCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

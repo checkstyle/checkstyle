@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.sizes.anoninnerlength;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   void testMethod() {
     Runnable shortAnonClass = new Runnable() {
@@ -19,7 +19,7 @@ class Example2 {
       }
     };
     shortAnonClass.run();
-    // violation below, 'Anonymous inner class length is 9 lines (max allowed is 7)'
+    // violation below 'Anonymous inner class length is 9 lines (max allowed is 7)'
     Runnable longAnonClass = new Runnable() {
       @Override
       public void run() {
@@ -32,4 +32,4 @@ class Example2 {
     longAnonClass.run();
   }
 }
-// xdoc section -- end
+// xdoc section - end

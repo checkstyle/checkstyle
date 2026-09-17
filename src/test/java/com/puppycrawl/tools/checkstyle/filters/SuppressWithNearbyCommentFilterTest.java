@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
@@ -349,6 +349,33 @@ public class SuppressWithNearbyCommentFilterTest
             getPath("InputSuppressWithNearbyCommentFilterVariableCheckOnVariableNumberOfLines"
                         + ".java"),
             suppressed);
+    }
+
+    @Test
+    public void testUnmatchedInfluenceGroup() {
+        final String[] violationAndSuppressedMessages = {
+            "33:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "InvalidIfName", "^[a-z][a-zA-Z0-9]*$"),
+            "34:16: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "InvalidElseName", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        final CheckstyleException exc = getExpectedThrowable(
+                CheckstyleException.class,
+                () -> {
+                    verifyFilterWithInlineConfigParser(
+                        getPath("InputSuppressWithNearbyCommentFilterUnmatchedInfluenceGroup.java"),
+                        violationAndSuppressedMessages
+                    );
+                });
+        assertWithMessage("Invalid exception message")
+            .that(exc)
+            .hasCauseThat()
+            .hasMessageThat()
+            .isEqualTo("unable to parse influence from "
+                    + "'-@csoff[MoveVariableInside(If|Else)](5) my comment text' using $3");
     }
 
     @Test
