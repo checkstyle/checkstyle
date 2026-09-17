@@ -814,7 +814,17 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testMultipleLines() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "29:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "30:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "38:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "50:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "59:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "75:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "82:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
+            "93:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines.java"),
                 expected);
@@ -824,6 +834,7 @@ public class EmptyLineSeparatorCheckTest
     public void testMultipleLines2() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "28:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines2.java"),
@@ -837,6 +848,17 @@ public class EmptyLineSeparatorCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorMultipleLines3.java"),
+                expected);
+    }
+
+    @Test
+    public void testMultipleLines4() throws Exception {
+        final String[] expected = {
+            "25:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "36:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorMultipleLines4.java"),
                 expected);
     }
 
