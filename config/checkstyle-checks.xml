@@ -22,9 +22,9 @@
 
   <property name="fileExtensions" value="java, properties, xml, vm, g, g4, dtd"/>
 
-  <!-- BeforeExecutionFileFilters is required for sources that are based on java9 -->
+  <!-- Test inputs are deliberately not compliant with this configuration. -->
   <module name="BeforeExecutionExclusionFileFilter">
-    <property name="fileNamePattern" value="module\-info\.java$" />
+    <property name="fileNamePattern" value="[\\/]InputJavaParser.java$"/>
   </module>
 
   <!-- Filters -->
