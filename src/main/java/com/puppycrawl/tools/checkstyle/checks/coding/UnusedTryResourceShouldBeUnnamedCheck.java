@@ -138,7 +138,8 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
                 && !isShadowedByCatchParameter(ast)) {
             tryResources.stream()
                 .flatMap(Deque::stream)
-                .filter(resource -> resource.getName().equals(ast.getText()))
+                .filter(resource -> resource.getName().equals(ast.getText())
+                        && isInResourceScope(ast, resource.getIdentToken()))
                 .findFirst()
                 .ifPresent(TryResourceDetails::registerAsUsed);
         }
@@ -250,6 +251,62 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         final DetailAST parent = identAst.getParent();
         return parent.getType() == TokenTypes.DOT
                 && identAst.equals(parent.getFirstChild());
+    }
+
+    /**
+     * Determines whether an {@code TokenTypes#IDENT} token is within the scope
+     * of a tracked try resource.
+     *
+     * @param identAst the {@code TokenTypes#IDENT} token to check
+     * @param resourceIdent the {@code TokenTypes#IDENT} token of the resource declaration
+     * @return {@code true} if the token is within the resource scope
+     */
+    private static boolean isInResourceScope(DetailAST identAst, DetailAST resourceIdent) {
+        final DetailAST tryAst = resourceIdent.getParent().getParent()
+                .getParent().getParent();
+        final DetailAST slist = tryAst.findFirstToken(TokenTypes.SLIST);
+        return isAncestor(slist, identAst) || isAfterResource(identAst, resourceIdent);
+    }
+
+    /**
+     * Determines whether an {@code TokenTypes#IDENT} token is inside a subsequent
+     * resource declaration of the same try statement.
+     *
+     * @param identAst the {@code TokenTypes#IDENT} token to check
+     * @param resourceIdent the {@code TokenTypes#IDENT} token of the resource declaration
+     * @return {@code true} if the token is in a subsequent resource
+     */
+    private static boolean isAfterResource(DetailAST identAst, DetailAST resourceIdent) {
+        boolean after = false;
+        DetailAST next = resourceIdent.getParent().getNextSibling();
+        while (next != null) {
+            if (isAncestor(next, identAst)) {
+                after = true;
+                break;
+            }
+            next = next.getNextSibling();
+        }
+        return after;
+    }
+
+    /**
+     * Checks whether a given node is an ancestor of another node.
+     *
+     * @param ancestor the potential ancestor node
+     * @param descendant the node to check
+     * @return {@code true} if {@code ancestor} is an ancestor of {@code descendant}
+     */
+    private static boolean isAncestor(DetailAST ancestor, DetailAST descendant) {
+        boolean result = false;
+        DetailAST current = descendant;
+        while (current != null) {
+            if (current == ancestor) {
+                result = true;
+                break;
+            }
+            current = current.getParent();
+        }
+        return result;
     }
 
     /**
