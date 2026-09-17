@@ -87,11 +87,16 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
 
-        final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
-        final List<DetailAST> reassignedVariableIdents = getReassignedVariableIdents(ast);
+        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
 
-        for (DetailAST patternVariableIdent : patternVariableIdents) {
-            checkForReassignment(patternVariableIdent, reassignedVariableIdents);
+        if (scopeRoot != null) {
+            final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
+            final List<DetailAST> reassignedVariableIdents =
+                    getReassignedVariableIdents(scopeRoot);
+
+            for (DetailAST patternVariableIdent : patternVariableIdents) {
+                checkForReassignment(patternVariableIdent, reassignedVariableIdents, scopeRoot);
+            }
         }
     }
 
@@ -148,31 +153,26 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     /**
      * Gets the list of AST branches of reassigned variable identifiers.
      *
-     * @param ast ast tree of checked instanceof statement
+     * @param scopeRoot the root AST node of the reassignment scope
      * @return list of AST identifiers that represent reassigned variables
      */
-    private static List<DetailAST> getReassignedVariableIdents(DetailAST ast) {
+    private static List<DetailAST> getReassignedVariableIdents(
+            final DetailAST scopeRoot) {
 
         final List<DetailAST> reassignedVariableIdents = new ArrayList<>();
-        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
+        final List<DetailAST> branches = expandReassignmentScopes(scopeRoot);
 
-        if (scopeRoot != null) {
+        for (DetailAST branch : branches) {
+            for (DetailAST expressionBranch = branch;
+                 expressionBranch != null;
+                 expressionBranch = shiftToNextTraversedBranch(
+                         expressionBranch, branch)) {
 
-            final List<DetailAST> branches =
-                    expandReassignmentScopes(scopeRoot);
+                final DetailAST assignToken =
+                        getMatchedAssignToken(expressionBranch);
 
-            for (DetailAST branch : branches) {
-                for (DetailAST expressionBranch = branch;
-                     expressionBranch != null;
-                     expressionBranch = shiftToNextTraversedBranch(
-                             expressionBranch, branch)) {
-
-                    final DetailAST assignToken =
-                            getMatchedAssignToken(expressionBranch);
-
-                    if (assignToken != null) {
-                        reassignedVariableIdents.add(assignToken.getFirstChild());
-                    }
+                if (assignToken != null) {
+                    reassignedVariableIdents.add(assignToken.getFirstChild());
                 }
             }
         }
@@ -259,20 +259,293 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a pattern variable is reassigned and logs a violation if so.
+     * Checks whether a pattern variable is reassigned and logs a violation.
      *
      * @param patternVariableIdent AST ident of the pattern variable
-     * @param reassignedVariableIdents list of AST idents that represent reassigned variables
+     * @param reassignedVariableIdents list of AST idents for reassigned variables
+     * @param scopeRoot the root AST node of the reassignment scope
      */
     private void checkForReassignment(
-            DetailAST patternVariableIdent,
-            Iterable<DetailAST> reassignedVariableIdents) {
+            final DetailAST patternVariableIdent,
+            final Iterable<DetailAST> reassignedVariableIdents,
+            final DetailAST scopeRoot) {
 
         for (DetailAST assignTokenIdent : reassignedVariableIdents) {
-            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
+            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())
+                    && !isShadowed(assignTokenIdent, patternVariableIdent,
+                            scopeRoot)) {
                 log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
             }
         }
+    }
+
+    /**
+     * Checks whether an identifier being assigned to is shadowed by an inner
+     * declaration within the reassignment scope.
+     *
+     * @param assignTokenIdent the identifier AST being assigned to
+     * @param patternVariableIdent AST ident of the pattern variable
+     * @param scopeRoot the root AST node of the reassignment scope
+     * @return true if the identifier is shadowed by an inner declaration
+     */
+    private static boolean isShadowed(final DetailAST assignTokenIdent,
+                                      final DetailAST patternVariableIdent,
+                                      final DetailAST scopeRoot) {
+        boolean shadowed = false;
+        final String varName = patternVariableIdent.getText();
+        final DetailAST boundary = scopeRoot.getParent();
+
+        for (DetailAST current = assignTokenIdent.getParent();
+             current != null && !current.equals(boundary);
+             current = current.getParent()) {
+            if (hasShadowingDeclaration(current, varName,
+                    patternVariableIdent)) {
+                shadowed = true;
+                break;
+            }
+        }
+
+        return shadowed;
+    }
+
+    /**
+     * Checks whether an AST node declares a variable that shadows pattern var.
+     *
+     * @param node the AST node to inspect
+     * @param varName the name of the pattern variable
+     * @param patternVariableIdent AST ident of the pattern variable
+     * @return true if the node declares a variable with the same name
+     */
+    private static boolean hasShadowingDeclaration(
+            final DetailAST node,
+            final String varName,
+            final DetailAST patternVariableIdent) {
+        return switch (node.getType()) {
+            case TokenTypes.OBJBLOCK -> isShadowedInObjBlock(node, varName);
+            case TokenTypes.METHOD_DEF,
+                 TokenTypes.CTOR_DEF -> hasMethodParameter(node, varName);
+            case TokenTypes.LAMBDA -> hasLambdaParameter(node, varName);
+            case TokenTypes.SLIST -> hasLocalVariable(node, varName);
+            case TokenTypes.LITERAL_CATCH -> hasCatchParameter(node, varName);
+            case TokenTypes.FOR_EACH_CLAUSE,
+                 TokenTypes.FOR_INIT -> hasForVariable(node, varName);
+            case TokenTypes.LITERAL_INSTANCEOF ->
+                hasNestedPatternVariable(node, varName, patternVariableIdent);
+            default -> false;
+        };
+    }
+
+    /**
+     * Checks whether an OBJBLOCK or its parent record declares a field or
+     * record component with the given name.
+     *
+     * @param objBlock the OBJBLOCK AST node
+     * @param varName the name to look for
+     * @return true if a field or component with the given name is found
+     */
+    private static boolean isShadowedInObjBlock(final DetailAST objBlock,
+                                                final String varName) {
+        boolean hasField = false;
+        for (DetailAST child = objBlock.getFirstChild(); child != null;
+             child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                if (ident != null && varName.equals(ident.getText())) {
+                    hasField = true;
+                    break;
+                }
+            }
+        }
+        if (!hasField
+                && objBlock.getParent().getType() == TokenTypes.RECORD_DEF) {
+            hasField = isShadowedInRecordComponents(objBlock.getParent(),
+                    varName);
+        }
+        return hasField;
+    }
+
+    /**
+     * Checks whether a record defines a component with the given name.
+     *
+     * @param recordDef the RECORD_DEF AST node
+     * @param varName the name to look for
+     * @return true if a record component with the given name is found
+     */
+    private static boolean isShadowedInRecordComponents(
+            final DetailAST recordDef,
+            final String varName) {
+        boolean hasComponent = false;
+        final DetailAST recordComponents =
+                recordDef.findFirstToken(TokenTypes.RECORD_COMPONENTS);
+        if (recordComponents != null) {
+            for (DetailAST comp = recordComponents.getFirstChild();
+                 comp != null;
+                 comp = comp.getNextSibling()) {
+                if (comp.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
+                    final DetailAST ident =
+                            comp.findFirstToken(TokenTypes.IDENT);
+                    if (ident != null && varName.equals(ident.getText())) {
+                        hasComponent = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return hasComponent;
+    }
+
+    /**
+     * Checks whether a method or constructor declares a parameter with name.
+     *
+     * @param methodDef the METHOD_DEF or CTOR_DEF AST node
+     * @param varName the name to look for
+     * @return true if a parameter with the given name is found
+     */
+    private static boolean hasMethodParameter(final DetailAST methodDef,
+                                              final String varName) {
+        boolean found = false;
+        final DetailAST parameters =
+                methodDef.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameters != null) {
+            for (DetailAST param = parameters.getFirstChild(); param != null;
+                 param = param.getNextSibling()) {
+                if (param.getType() == TokenTypes.PARAMETER_DEF) {
+                    final DetailAST ident =
+                            param.findFirstToken(TokenTypes.IDENT);
+                    if (ident != null && varName.equals(ident.getText())) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether a lambda expression declares a parameter with name.
+     *
+     * @param lambda the LAMBDA AST node
+     * @param varName the name to look for
+     * @return true if a lambda parameter with the given name is found
+     */
+    private static boolean hasLambdaParameter(final DetailAST lambda,
+                                              final String varName) {
+        boolean found = false;
+        final DetailAST parameters =
+                lambda.findFirstToken(TokenTypes.PARAMETERS);
+        if (parameters != null) {
+            for (DetailAST param = parameters.getFirstChild(); param != null;
+                 param = param.getNextSibling()) {
+                if (param.getType() == TokenTypes.PARAMETER_DEF) {
+                    final DetailAST ident =
+                            param.findFirstToken(TokenTypes.IDENT);
+                    if (ident != null && varName.equals(ident.getText())) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            final DetailAST firstChild = lambda.getFirstChild();
+            if (firstChild != null && firstChild.getType() == TokenTypes.IDENT
+                    && varName.equals(firstChild.getText())) {
+                found = true;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether an SLIST block declares a local variable with name.
+     *
+     * @param slist the SLIST AST node
+     * @param varName the name to look for
+     * @return true if a local variable with the given name is found
+     */
+    private static boolean hasLocalVariable(final DetailAST slist,
+                                            final String varName) {
+        boolean found = false;
+        for (DetailAST child = slist.getFirstChild(); child != null;
+             child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                if (ident != null && varName.equals(ident.getText())) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether a catch block declares a catch parameter with name.
+     *
+     * @param catchAst the LITERAL_CATCH AST node
+     * @param varName the name to look for
+     * @return true if a catch parameter with the given name is found
+     */
+    private static boolean hasCatchParameter(final DetailAST catchAst,
+                                             final String varName) {
+        boolean found = false;
+        final DetailAST paramDef =
+                catchAst.findFirstToken(TokenTypes.PARAMETER_DEF);
+        if (paramDef != null) {
+            final DetailAST ident = paramDef.findFirstToken(TokenTypes.IDENT);
+            if (ident != null && varName.equals(ident.getText())) {
+                found = true;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether a for loop header declares a control variable with name.
+     *
+     * @param forControl the FOR_EACH_CLAUSE or FOR_INIT AST node
+     * @param varName the name to look for
+     * @return true if a variable with the given name is found
+     */
+    private static boolean hasForVariable(final DetailAST forControl,
+                                          final String varName) {
+        boolean found = false;
+        for (DetailAST child = forControl.getFirstChild(); child != null;
+             child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                if (ident != null && varName.equals(ident.getText())) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Checks whether a nested instanceof declares a pattern variable with name.
+     *
+     * @param instanceofAst the LITERAL_INSTANCEOF AST node
+     * @param varName the name to look for
+     * @param patternVariableIdent the pattern variable AST ident being checked
+     * @return true if a different pattern variable with the name is found
+     */
+    private static boolean hasNestedPatternVariable(
+            final DetailAST instanceofAst,
+            final String varName,
+            final DetailAST patternVariableIdent) {
+        boolean found = false;
+        final List<DetailAST> idents = getPatternVariableIdents(instanceofAst);
+        for (DetailAST ident : idents) {
+            if (!ident.equals(patternVariableIdent)
+                    && varName.equals(ident.getText())) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 
     /**
