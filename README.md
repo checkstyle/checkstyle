@@ -22,6 +22,7 @@
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
 [![][milestone img]][milestone]
+[![][buildkite img]][buildkite]
 
 [![][mavenbadge img]][mavenbadge]
 
@@ -30,6 +31,8 @@ The latest release version can be found at
 or at [Maven repo](https://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
 Documentation is available in HTML format, see [Checkstyle checks][checks-docs].
+
+The latest deployed website from `master` is available [here][site-latest].
 
 ## Table of Contents
 
@@ -168,7 +171,7 @@ https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
 [maven-central]:
 https://mvnrepository.com/artifact/com.puppycrawl.tools/checkstyle
 [mavenbadge]:
-https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
+https://central.sonatype.com/artifact/com.puppycrawl.tools/checkstyle
 [mavenbadge img]:
 https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
@@ -262,8 +265,16 @@ https://github.com/checkstyle/checkstyle/actions/workflows/qodana.yml
 [qodana img]:
 https://github.com/checkstyle/checkstyle/actions/workflows/qodana.yml/badge.svg
 
+[buildkite]:
+https://buildkite.com/checkstyle/ci
+[buildkite img]:
+https://badge.buildkite.com/7b2915755b859543851a246ca6c9f281c46bb0c599a96f48f4.svg
+
 [checks-docs]:
 https://checkstyle.org/checks.html
 
 [build-instructions]:
 https://github.com/checkstyle/checkstyle/blob/master/docs/BEGINNING_DEVELOPMENT.md
+
+[site-latest]:
+https://checkstyle-diff-reports.s3.us-east-2.amazonaws.com/website/latest/index.html

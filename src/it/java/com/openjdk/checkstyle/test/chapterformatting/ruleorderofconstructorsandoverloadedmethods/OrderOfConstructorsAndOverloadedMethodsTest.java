@@ -41,4 +41,10 @@ public class OrderOfConstructorsAndOverloadedMethodsTest extends AbstractOpenJdk
         verifyWithWholeConfig(getPath("InputOrderOfConstructorsAndOverloadedMethodsTwo.java"));
     }
 
+    @Test
+    public void testOrderOfConstructorsAndOverloadedMethodsDoAndDonts() throws Exception {
+        verifyWithWholeConfig(
+                getPath("InputOrderOfConstructorsAndOverloadedMethodsDoAndDonts.java"));
+    }
+
 }

@@ -8,6 +8,36 @@
   <body>
     <section name="JavadocType">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocType_Description">Description</a></li>
+          <li><a href="#JavadocType_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocType_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For <code>public</code> scope</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For an <code>@author</code> tag</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">For a CVS revision version tag</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">For <code>private</code> classes only</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">That allows missing <code>@param</code> tags</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">That allows unknown tags</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">A check that allows skipping validation at all for classes annotated with <code>@unknownTag</code></a></li>
+              <li><a href="#Example9-config" class="toc-sublink">For <code>CLASS_DEF</code> tokens only</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocType_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocType_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocType_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocType_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocType_Description">
         <div>
           Checks the Javadoc comments for type definitions. By default, does
@@ -47,51 +77,58 @@
             <tr>
               <td><a id="allowMissingParamTags"/><a href="#allowMissingParamTags">allowMissingParamTags</a></td>
               <td>Control whether to ignore violations when a class has type parameters but does not have matching param tags in the Javadoc.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td><a id="allowUnknownTags"/><a href="#allowUnknownTags">allowUnknownTags</a></td>
               <td>Control whether to ignore violations when a Javadoc tag is not recognised.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
               <td>Specify annotations that allow skipping validation at all. Only short names are allowed, e.g. <code>Generated</code>.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>Generated</code></td>
               <td>8.15</td>
             </tr>
             <tr>
               <td><a id="authorFormat"/><a href="#authorFormat">authorFormat</a></td>
               <td>Specify the pattern for <code>@author</code> tag.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="excludeScope"/><a href="#excludeScope">excludeScope</a></td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><a href="../../property-types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#Scope">Scope</a></td>
+              <td><a href="../../property-types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="versionFormat"/><a href="#versionFormat">versionFormat</a></td>
               <td>Specify the pattern for <code>@version</code> tag.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.9.0</td>
             </tr>
             <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
@@ -172,7 +209,7 @@ public class Example1 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -221,7 +258,7 @@ public class Example2 {
   private class ClassF&lt;T&gt; {}
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -270,7 +307,7 @@ public class Example3 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -319,7 +356,7 @@ public class Example4 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -369,7 +406,7 @@ public class Example5 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -418,7 +455,7 @@ public class Example6 {
   private class ClassF&lt;T&gt; {}
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -467,7 +504,7 @@ public class Example7 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div><hr class="example-separator"/>
@@ -519,7 +556,58 @@ public class Example8 {
   private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
 
   /** */
-  @Generated // violation, 'Type Javadoc comment is missing @param &lt;T&gt; tag'
+  @Generated("tool") // violation 'Type Javadoc comment is missing @param '&lt;T&gt;' tag'
+  public class ClassG&lt;T&gt; {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check for <code>CLASS_DEF</code> tokens only:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocType"&gt;
+      &lt;property name="tokens" value="CLASS_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Example9:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * @author a
+ * @version $Revision1$
+ */
+public class Example9 {
+  /**
+   * @author a
+   * @version $Revision1$
+   */
+  public class ClassA {
+    /** */
+    private class ClassB {}
+  }
+
+  /**
+   * @author
+   * @version abc
+   * @unknownTag value
+   */
+  public class ClassC {}
+  // violation 3 lines above 'Unknown tag 'unknownTag''
+  /** */
+  public class ClassD {}
+
+  /** */
+  public class ClassE&lt;T&gt; {}  // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+
+  /** */
+  @Generated("tool")
   public class ClassG&lt;T&gt; {}
 }
 </code></pre></div>
@@ -541,6 +629,16 @@ public class Example8 {
       <subsection name="Violation Messages" id="JavadocType_Violation_Messages">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unknownTag%22">
               javadoc.unknownTag
             </a>
@@ -558,6 +656,11 @@ public class Example8 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTag%22">
               type.missingTag
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.missingTagWithQuotes%22">
+              type.missingTagWithQuotes
             </a>
           </li>
           <li>

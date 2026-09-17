@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedifdepth;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void Test() {
     if (true) {
@@ -17,15 +17,15 @@ class Example1 {
 
     if (true) {
       if (true) {
-        if (true) {} // violation, nested if-else depth is 2 (max allowed is 1)
-        else{}
+        if (true) {} // violation 'Nested if-else depth is 2 (max allowed is 1).'
+        else {}
       }
     }
 
     if (true) {
       if (true) {
-        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-          if (true) {} // violation, nested if-else depth is 2 (max allowed is 1)
+        if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1).'
+          if (true) {} // violation 'Nested if-else depth is 3 (max allowed is 1).'
           else {}
         }
       }
@@ -33,10 +33,10 @@ class Example1 {
 
     if (true) {
       if (true) {
-        if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-          if (true) { // violation, nested if-else depth is 2 (max allowed is 1)
-            if (true) { // violation, nested if-else depth is 4 (max allowed is 1)
-              if (true) {} // violation, nested if-else depth is 5 (max allowed is 1)
+        if (true) { // violation 'Nested if-else depth is 2 (max allowed is 1).'
+          if (true) { // violation 'Nested if-else depth is 3 (max allowed is 1).'
+            if (true) { // violation 'Nested if-else depth is 4 (max allowed is 1).'
+              if (true) {} // violation 'Nested if-else depth is 5'
               else {}
             }
           }
@@ -45,4 +45,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

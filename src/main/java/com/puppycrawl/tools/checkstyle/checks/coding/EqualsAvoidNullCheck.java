@@ -78,6 +78,13 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     /** Stack of sets of field names, one for each class of a set of nested classes. */
     private FieldFrame currentFrame;
 
+    /**
+     * Creates a new {@code EqualsAvoidNullCheck} instance.
+     */
+    public EqualsAvoidNullCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

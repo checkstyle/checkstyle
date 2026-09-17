@@ -3,7 +3,7 @@
   <module name="LineLength"/>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
@@ -17,7 +17,7 @@ class Example1 {
   void testMethod(String str) {
     str = MSG_KEY;
     System.out.println("This is a short line.");
-    // violation below, 'Line is longer than 80 characters'
+    // violation below 'Line is longer than 80 characters'
     System.out.println("This line is long and exceeds the default limit of 80 characters.");
 
     String str1 = """
@@ -30,4 +30,4 @@ class Example1 {
         """;  // violation above 'Line is longer than 80 characters'
   }
 }
-// xdoc section -- end
+// xdoc section - end

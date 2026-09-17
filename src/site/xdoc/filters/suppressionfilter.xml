@@ -8,6 +8,38 @@
   <body>
     <section name="SuppressionFilter">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressionFilter_Description">Description</a></li>
+          <li><a href="#SuppressionFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressionFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration does nothing</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Suppress certain checks by check name, file, and line number</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">To ignore a missing suppressions file</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressionFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Suppress certain checks by their module id</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Suppress all checks for hidden files and folders</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Suppress checks by violation message</a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressionFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressionFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressionFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressionFilter_Description">
         <div>
           Filter <code>SuppressionFilter</code> rejects audit events for Check violations according to a
@@ -24,35 +56,36 @@
         </p>
         <ul>
         <li>
-          <code>files</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
+          <code>files</code> - a <a href="https://checkstyle.org/property-types.html#Pattern">
           Pattern</a> matched against the file name associated with an audit event.
-          It is optional.
+          It is optional. If unmatched, all Unix path separators (/)
+          are converted to Windows separators (\) and retried.
         </li>
         <li>
-          <code>checks</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
+          <code>checks</code> - a <a href="https://checkstyle.org/property-types.html#Pattern">
           Pattern</a> matched against the name of the check associated with an audit event.
           Optional as long as <code>id</code> or <code>message</code> is specified.
         </li>
         <li>
-          <code>message</code> - a <a href="https://checkstyle.org/property_types.html#Pattern">
+          <code>message</code> - a <a href="https://checkstyle.org/property-types.html#Pattern">
           Pattern</a> matched against the message of the check associated with an audit event.
           Optional as long as <code>checks</code> or <code>id</code> is specified.
         </li>
         <li>
-          <code>id</code> - a <a href="https://checkstyle.org/property_types.html#String">String</a>
+          <code>id</code> - a <a href="https://checkstyle.org/property-types.html#String">String</a>
           matched against the <a href="https://checkstyle.org/config.html#Id">check id</a>
           associated with an audit event.
           Optional as long as <code>checks</code> or <code>message</code> is specified.
         </li>
         <li>
           <code>lines</code> - a comma-separated list of values, where each value is an
-          <a href="https://checkstyle.org/property_types.html#int">int</a>
+          <a href="https://checkstyle.org/property-types.html#int">int</a>
           or a range of integers denoted by integer-integer.
           It is optional.
         </li>
         <li>
           <code>columns</code> - a comma-separated list of values, where each value is an
-          <a href="https://checkstyle.org/property_types.html#int">int</a>
+          <a href="https://checkstyle.org/property-types.html#int">int</a>
           or a range of integers denoted by integer-integer.
           It is optional.
         </li>
@@ -106,14 +139,14 @@
             <tr>
               <td><a id="file"/><a href="#file">file</a></td>
               <td>Specify the location of the <em>suppressions XML document</em> file.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="optional"/><a href="#optional">optional</a></td>
               <td>Control what to do when the file is not existing. If <code>optional</code> is set to <code>false</code> the file must exist, or else it ends with error. On the other hand if optional is <code>true</code> and file is not found, the filter accept all audit events.</td>
-              <td><a href="../property_types.html#boolean">boolean</a></td>
+              <td><a href="../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.15</td>
             </tr>
@@ -122,6 +155,38 @@
       </subsection>
       <subsection name="Examples" id="SuppressionFilter_Examples">
         <p id="Example1-config">
+          Default configuration does nothing:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressionFilter"/&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  // violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
+
+  int a = 10; // violation ''10' is a magic number.'
+
+  public void exampleMethod() {
+
+    int num = 100; // violation ''100' is a magic number.'
+
+    if (true) {
+      // violation above 'Must have at least one statement.'
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
             Suppress certain checks by check name, file, and line number:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -131,7 +196,7 @@
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="MemberName"/&gt;
     &lt;module name="MagicNumber"/&gt;
     &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
   &lt;/module&gt;
@@ -140,12 +205,12 @@
         <p id="suppressionexample1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
-          reject <code>JavadocStyleCheck</code> violations for
-          line 4 of
-          file <code>Example1.java</code>,
+          reject <code>MemberNameCheck</code> violations for
+          line 20 of
+          file <code>Example2.java</code>,
           and <code>MagicNumberCheck</code> violations for lines
-          7 and 11 of file <code>Example1.java</code>,
-          and <code>'Missing a Javadoc comment'</code> violations
+          22 and 26 of file <code>Example2.java</code>,
+          and <code>'Missing a Javadoc comment for'</code> violations
           for all lines and files:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -156,23 +221,22 @@
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress checks="JavadocStyle"
-    files="Example1.java"
+  &lt;suppress checks="MemberName"
+    files="Example2.java"
     lines="20"/&gt;
   &lt;suppress checks="MagicNumber"
-    files="Example1.java"
-    lines="23,27"/&gt;
-  &lt;suppress message="Missing a Javadoc comment"/&gt;
+    files="Example2.java"
+    lines="22,26"/&gt;
+  &lt;suppress message="Missing a Javadoc comment for"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example1-code">Example:</p>
+        <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+public class Example2 {
 
-  // filtered violation below 'First sentence should end with a period.'
-  /**
-   * This field a is missing period
-   */
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
+
   int a = 10; // filtered violation ''10' is a magic number.'
 
   public void exampleMethod() {
@@ -185,13 +249,55 @@ public class Example1 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="Example3-config">
+          To ignore a missing suppressions file:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressionFilter"&gt;
+    &lt;property name="file" value="nonexisting.xml"/&gt;
+    &lt;property name="optional" value="true"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MemberName"/&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Code example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+
+  // violation below 'Name 'MyVariable' must match pattern'
+  int MyVariable;
+
+  int a = 10; // violation ''10' is a magic number.'
+
+  public void exampleMethod() {
+
+    int num = 100; // violation ''100' is a magic number.'
+
+    if (true) {
+      // violation above 'Must have at least one statement.'
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionFilter_Use_Cases">
+          <p>
+            The following use cases demonstrate how to suppress certain checks by their module id,
+            how to suppress all checks for hidden files and folders, and how to suppress checks by
+            violation message.
+          </p>
+        <p id="UseCase1-config">
             Suppress certain checks by their module id:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample2.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase1.xml"/&gt;
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
@@ -205,13 +311,13 @@ public class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample2-raw">
+        <p id="suppressionUseCase1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject <code>EqualsAvoidNullCheck</code> by
           <a href="../config.html#Id">module id</a>
           <code>stringEqual</code> violations for
-          all lines of file <code>Example2.java</code>:
+          all lines of file <code>UseCase1.java</code>:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;?xml version="1.0"?&gt;
@@ -221,14 +327,14 @@ public class Example1 {
   "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress id="stringEqual" files="Example2.java"/&gt;
+  &lt;suppress id="stringEqual" files="UseCase1.java"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
 
-  // violation below, 'Line is longer than 80 characters'
+  // violation below 'Line is longer than 80 characters'
   String line = "This line is long and exceeds the default limit of 80 characters.";
 
   public void foo() {
@@ -245,22 +351,19 @@ public class Example2 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+        <p id="UseCase2-config">
             Suppress all checks for hidden files and folders:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;property name="fileExtensions" value="properties"/&gt;
-
+        <div class="wrapper"><pre class="prettyprint"><code>
+&lt;property name="fileExtensions" value="properties"/&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample3.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase2.xml"/&gt;
   &lt;/module&gt;
-
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample3-raw">
+        <p id="suppressionUseCase2-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject all checks for hidden files and folders:
@@ -276,25 +379,21 @@ public class Example2 {
   &lt;suppress files="[/\\]\..+" checks=".*"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="hidden-raw">
-          Below Example is suppressed because
-          <code>hidden.properties</code> file inside
-          the <code>.hidden</code> folder:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <p id="UseCase2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code>
 keyB=value1 # // filtered violation 'Duplicated property 'keyB' (2 occurrence(s)).'
 keyB=value2
 # // filtered violation below 'Duplicated property 'keyC' (2 occurrence(s)).'
 keyC=value4
 keyC=value5
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase3-config">
             Suppress checks by violation message:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="SuppressionFilter"&gt;
-    &lt;property name="file" value="suppressionexample4.xml"/&gt;
+    &lt;property name="file" value="suppressionUseCase3.xml"/&gt;
     &lt;property name="optional" value="false"/&gt;
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
@@ -305,7 +404,7 @@ keyC=value5
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="suppressionexample4-raw">
+        <p id="suppressionUseCase3-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject violations on variable named
@@ -322,9 +421,9 @@ keyC=value5
   &lt;suppress message="Name 'log' must match pattern"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase3 {
 
   public int log;
   // filtered violation above 'Name 'log' must match pattern'
@@ -348,6 +447,13 @@ class Inner {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files=&quot;[/\\]target[/\\]&quot; checks=&quot;.*&quot;/&gt;
         </code></pre></div>
+        <p>
+          Suppress all checks for Maven-generated code
+          (compact form for 'files' that matches on Windows and Linux):
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        &lt;suppress files=&quot;/target/&quot; checks=&quot;.*&quot;/&gt;
+          </code></pre></div>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>

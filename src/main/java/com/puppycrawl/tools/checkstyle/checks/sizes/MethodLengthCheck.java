@@ -62,6 +62,13 @@ public class MethodLengthCheck extends AbstractCheck {
     /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX_LINES;
 
+    /**
+     * Creates a new {@code MethodLengthCheck} instance.
+     */
+    public MethodLengthCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();

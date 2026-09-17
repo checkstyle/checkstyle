@@ -55,13 +55,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * operator precedence but unaware about operator associativity.
  * It won't catch cases such as:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * int x = (a + b) + c; // 1st Case
  * boolean p = true; // 2nd Case
  * int q = 4;
  * int r = 3;
- * if (p == (q &lt;= r)) {}
- * </code></pre></div>
+ * if (p == (q <= r)) {}
+ * }
  *
  * <p>
  * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
@@ -77,26 +77,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * The partial support for operator precedence includes cases of the following type:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * boolean a = true, b = true;
  * boolean c = false, d = false;
- * if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
+ * if ((a && b) || c) { // violation, unnecessary paren
  * }
- * if (a &amp;&amp; (b || c)) { // ok
+ * if (a && (b || c)) { // ok
  * }
- * if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
+ * if ((a == b) && c) { // violation, unnecessary paren
  * }
- * String e = &quot;e&quot;;
- * if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
+ * String e = "e";
+ * if ((e instanceof String) && a || b) { // violation, unnecessary paren
  * }
  * int f = 0;
  * int g = 0;
- * if (!(f &gt;= g) // ok
- *         &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
+ * if (!(f >= g) // ok
+ *         && (g > f)) { // violation, unnecessary paren
  * }
- * if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
+ * if ((++f) > g && a) { // violation, unnecessary paren
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.4
  */
@@ -216,6 +216,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.POST_DEC,
     };
 
+    /** Types of tokens with higher priority than unary operators. */
+    private static final int[] ARRAY_AND_FIELD_ACCESS = {
+        TokenTypes.INDEX_OP,
+        TokenTypes.DOT,
+        TokenTypes.LITERAL_NEW,
+    };
+
     /** Token types for bitwise binary operator. */
     private static final int[] BITWISE_BINARY_OPERATORS = {
         TokenTypes.BXOR,
@@ -230,6 +237,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private DetailAST parentToSkip;
     /** Depth of nested assignments.  Normally this will be 0 or 1. */
     private int assignDepth;
+
+    /**
+     * Creates a new {@code UnnecessaryParenthesesCheck} instance.
+     */
+    public UnnecessaryParenthesesCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -275,6 +289,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.INDEX_OP,
+            TokenTypes.DOT,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -326,6 +343,10 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BOR,
             TokenTypes.BAND,
             TokenTypes.QUESTION,
+            TokenTypes.INDEX_OP,
+            TokenTypes.DOT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.TYPECAST,
         };
     }
 
@@ -349,7 +370,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
-            final boolean surrounded = isSurrounded(ast);
+            final boolean surrounded = isSurrounded(getSelfOrParentMethodCall(ast));
             // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
                 parentToSkip = ast.getParent();
@@ -358,22 +379,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             // A literal (numeric or string) surrounded by parentheses.
             else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
                 parentToSkip = ast.getParent();
-                if (type == TokenTypes.STRING_LITERAL) {
-                    log(ast, MSG_STRING,
-                        chopString(ast.getText()));
-                }
-                else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                    // Strip newline control characters to keep message as single-line, add
-                    // quotes to make string consistent with STRING_LITERAL
-                    final String logString = QUOTE
-                        + NEWLINE.matcher(
-                            ast.getFirstChild().getText()).replaceAll("\\\\n")
-                        + QUOTE;
-                    log(ast, MSG_STRING, chopString(logString));
-                }
-                else {
-                    log(ast, MSG_LITERAL, ast.getText());
-                }
+                logLiteral(ast, type);
             }
             // The rhs of an assignment surrounded by parentheses.
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
@@ -383,6 +389,56 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                     log(ast, MSG_ASSIGN);
                 }
             }
+            // A type cast surrounded by parentheses.
+            else if (surrounded && type == TokenTypes.TYPECAST) {
+                logUnnecessaryTypeCast(ast);
+            }
+        }
+    }
+
+    /**
+     * Logs the appropriate message for a parenthesized literal.
+     *
+     * @param ast the literal token
+     * @param type the token type
+     */
+    private void logLiteral(DetailAST ast, int type) {
+        if (type == TokenTypes.STRING_LITERAL) {
+            log(ast, MSG_STRING,
+                chopString(ast.getText()));
+        }
+        else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+            // Strip newline control characters to keep message as single-line, add
+            // quotes to make string consistent with STRING_LITERAL
+            final String logString = QUOTE
+                + NEWLINE.matcher(
+                    ast.getFirstChild().getText()).replaceAll("\\\\n")
+                + QUOTE;
+            log(ast, MSG_STRING, chopString(logString));
+        }
+        else {
+            log(ast, MSG_LITERAL, ast.getText());
+        }
+    }
+
+    /**
+     * Logs a warning for a surrounded TYPECAST when the outer parentheses are
+     * not required by member access, method reference, or another rule's report.
+     *
+     * @param ast the TYPECAST node
+     */
+    private void logUnnecessaryTypeCast(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        final int parentType = parent.getType();
+        final boolean isWrappedByOtherRule =
+                parentType == TokenTypes.EXPR
+                || TokenUtil.isOfType(parentType, ASSIGNMENTS);
+        final boolean isReceiverOfMemberAccess =
+                parentType == TokenTypes.DOT
+                || parentType == TokenTypes.INDEX_OP
+                || parentType == TokenTypes.METHOD_REF;
+        if (!isWrappedByOtherRule && !isReceiverOfMemberAccess) {
+            log(ast.getPreviousSibling(), MSG_EXPR);
         }
     }
 
@@ -394,16 +450,31 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         // shouldn't process assign in annotation pairs
         if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+            final DetailAST selfOrParentMethodCall = getSelfOrParentMethodCall(ast);
             if (type == TokenTypes.EXPR) {
                 checkExpression(ast);
             }
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-            else if (isSurrounded(ast) && unnecessaryParenAroundOperators(ast)) {
-                log(ast.getPreviousSibling(), MSG_EXPR);
+            else if (isSurrounded(selfOrParentMethodCall) && unnecessaryParenAroundOperators(ast)) {
+                log(selfOrParentMethodCall.getPreviousSibling(), MSG_EXPR);
             }
         }
+    }
+
+    /**
+     * Get the node itself ot its parent, if it's a method call.
+     *
+     * @param ast AST node
+     * @return node or its parent
+     */
+    private static DetailAST getSelfOrParentMethodCall(DetailAST ast) {
+        DetailAST selfOrParent = ast;
+        if (ast.getParent().getType() == TokenTypes.METHOD_CALL) {
+            selfOrParent = ast.getParent();
+        }
+        return selfOrParent;
     }
 
     /**
@@ -416,14 +487,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isSurrounded(DetailAST ast) {
         final DetailAST prev = ast.getPreviousSibling();
-        final DetailAST parent = ast.getParent();
-        final boolean isPreviousSiblingLeftParenthesis = prev != null
-                && prev.getType() == TokenTypes.LPAREN;
-        final boolean isMethodCallWithUnnecessaryParenthesis =
-                parent.getType() == TokenTypes.METHOD_CALL
-                && parent.getPreviousSibling() != null
-                && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
-        return isPreviousSiblingLeftParenthesis || isMethodCallWithUnnecessaryParenthesis;
+        return prev != null && prev.getType() == TokenTypes.LPAREN;
     }
 
     /**
@@ -482,11 +546,25 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         else if (isBitwise) {
             hasUnnecessaryParentheses = checkBitwiseBinaryOperator(ast);
         }
+        else if (TokenUtil.isOfType(type, ARRAY_AND_FIELD_ACCESS)) {
+            hasUnnecessaryParentheses = isNotFirstArgOfTernary(getSelfOrParentMethodCall(ast));
+        }
         else {
             hasUnnecessaryParentheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
                     && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
         }
         return hasUnnecessaryParentheses;
+    }
+
+    /**
+     * Check that an expression is not the first argument of a conditional ternary operator.
+     *
+     * @param ast expression
+     * @return whether the expression is not the first argument of a ternary operator
+     */
+    private static boolean isNotFirstArgOfTernary(DetailAST ast) {
+        return ast.getParent().getType() != TokenTypes.QUESTION
+                || !ast.equals(ast.getParent().getFirstChild().getNextSibling());
     }
 
     /**

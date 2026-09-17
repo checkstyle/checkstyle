@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Controls the indentation between comments and surrounding code.
  * Comments are indented at the same level as the surrounding code.
  * Detailed info about such convention can be found
- * <a href="https://checkstyle.org/styleguides/google-java-style-20250426/javaguide.html#s4.8.6.1-block-comment-style">
+ * <a href="https://checkstyle.org/styleguides/google-java-style-20260409/javaguide.html#s4.8.6.1-block-comment-style">
  * here</a>
  * </div>
  *
@@ -53,6 +53,13 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_KEY_BLOCK = "comments.indentation.block";
+
+    /**
+     * Creates a new {@code CommentsIndentationCheck} instance.
+     */
+    public CommentsIndentationCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

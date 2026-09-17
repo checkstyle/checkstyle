@@ -7,8 +7,8 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
-// xdoc section -- start
+// xdoc section - start
 public class Example3 { // ⤶
 // ⤶
 } // violation first line 'ending for file is LF(\\n), but CRLF(\\r\\n) is'
-// xdoc section -- end
+// xdoc section - end

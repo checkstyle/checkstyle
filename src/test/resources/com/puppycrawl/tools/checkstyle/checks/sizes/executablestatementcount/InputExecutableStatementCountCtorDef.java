@@ -9,7 +9,8 @@ tokens = CTOR_DEF
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountCtorDef {
-    public InputExecutableStatementCountCtorDef() // violation
+    // violation below 'Executable statement count is 2'
+    public InputExecutableStatementCountCtorDef()
     {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
@@ -18,8 +19,9 @@ public class InputExecutableStatementCountCtorDef {
         }
     }
 
+    // violation 2 lines below 'Executable statement count is 2'
     /** Inner */
-    public InputExecutableStatementCountCtorDef(int aParam) // violation
+    public InputExecutableStatementCountCtorDef(int aParam)
     {
         Runnable runnable = new Runnable() {
             public void run() {

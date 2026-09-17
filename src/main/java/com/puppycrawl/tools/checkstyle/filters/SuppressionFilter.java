@@ -46,35 +46,36 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * </p>
  * <ul>
  * <li>
- * {@code files} - a <a href="https://checkstyle.org/property_types.html#Pattern">
+ * {@code files} - a <a href="https://checkstyle.org/property-types.html#Pattern">
  * Pattern</a> matched against the file name associated with an audit event.
- * It is optional.
+ * It is optional. If unmatched, all Unix path separators (/)
+ * are converted to Windows separators (\) and retried.
  * </li>
  * <li>
- * {@code checks} - a <a href="https://checkstyle.org/property_types.html#Pattern">
+ * {@code checks} - a <a href="https://checkstyle.org/property-types.html#Pattern">
  * Pattern</a> matched against the name of the check associated with an audit event.
  * Optional as long as {@code id} or {@code message} is specified.
  * </li>
  * <li>
- * {@code message} - a <a href="https://checkstyle.org/property_types.html#Pattern">
+ * {@code message} - a <a href="https://checkstyle.org/property-types.html#Pattern">
  * Pattern</a> matched against the message of the check associated with an audit event.
  * Optional as long as {@code checks} or {@code id} is specified.
  * </li>
  * <li>
- * {@code id} - a <a href="https://checkstyle.org/property_types.html#String">String</a>
+ * {@code id} - a <a href="https://checkstyle.org/property-types.html#String">String</a>
  * matched against the <a href="https://checkstyle.org/config.html#Id">check id</a>
  * associated with an audit event.
  * Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>
  * {@code lines} - a comma-separated list of values, where each value is an
- * <a href="https://checkstyle.org/property_types.html#int">int</a>
+ * <a href="https://checkstyle.org/property-types.html#int">int</a>
  * or a range of integers denoted by integer-integer.
  * It is optional.
  * </li>
  * <li>
  * {@code columns} - a comma-separated list of values, where each value is an
- * <a href="https://checkstyle.org/property_types.html#int">int</a>
+ * <a href="https://checkstyle.org/property-types.html#int">int</a>
  * or a range of integers denoted by integer-integer.
  * It is optional.
  * </li>
@@ -132,6 +133,13 @@ public class SuppressionFilter
     private boolean optional;
     /** Set of individual suppresses. */
     private FilterSet filters = new FilterSet();
+
+    /**
+     * Creates a new {@code SuppressionFilter} instance.
+     */
+    public SuppressionFilter() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.

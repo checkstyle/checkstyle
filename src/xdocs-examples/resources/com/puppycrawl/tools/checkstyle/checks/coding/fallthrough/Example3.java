@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   public void foo() throws Exception {
     int i = 0;
@@ -42,4 +42,4 @@ class Example3 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

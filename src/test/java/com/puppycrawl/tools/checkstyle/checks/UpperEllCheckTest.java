@@ -67,4 +67,14 @@ public class UpperEllCheckTest
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "9:14: " + getCheckMessage(MSG_KEY),
+            "12:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputUpperEllCompactSourceFile.java"), expected);
+    }
+
 }

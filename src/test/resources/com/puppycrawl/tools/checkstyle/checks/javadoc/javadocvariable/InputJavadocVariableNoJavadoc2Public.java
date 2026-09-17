@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = public, protected
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -10,8 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 public class InputJavadocVariableNoJavadoc2Public //comment test
 {
-    public int i1; // violation, 'Missing a Javadoc comment'
-    protected int i2; // violation, 'Missing a Javadoc comment'
+    public int i1; // violation 'Missing a Javadoc comment'
+    protected int i2; // violation 'Missing a Javadoc comment'
     int i3;
     private int i4;
 
@@ -21,8 +21,8 @@ public class InputJavadocVariableNoJavadoc2Public //comment test
     private void foo4() {}
 
     protected class ProtectedInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -33,8 +33,8 @@ public class InputJavadocVariableNoJavadoc2Public //comment test
     }
 
     class PackageInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 
@@ -45,8 +45,8 @@ public class InputJavadocVariableNoJavadoc2Public //comment test
     }
 
     private class PrivateInner {
-        public int i1; // violation, 'Missing a Javadoc comment'
-        protected int i2; // violation, 'Missing a Javadoc comment'
+        public int i1; // violation 'Missing a Javadoc comment'
+        protected int i2; // violation 'Missing a Javadoc comment'
         int i3;
         private int i4;
 

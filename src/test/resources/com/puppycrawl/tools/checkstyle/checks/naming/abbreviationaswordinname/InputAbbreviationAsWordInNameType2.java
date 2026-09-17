@@ -19,10 +19,12 @@ abstract class InputAbbreviationAsWordInNameType2 {
 abstract class NonAAAAbstractClassName2 {
 }
 
-abstract class FactoryWithHARDName2 { // violation
+// violation below 'Abbreviation in name 'FactoryWithHARDName2''
+abstract class FactoryWithHARDName2 {
 }
 
-abstract class AbstractCLASSName2 { // violation
+// violation below 'Abbreviation in name 'AbstractCLASSName2''
+abstract class AbstractCLASSName2 {
     abstract class NonAbstractInnerClass {
     }
 }
@@ -42,12 +44,14 @@ class Class1Factory12 {
 }
 
 abstract class AbstractClassName32 {
-    class AbstractINNERSClass { // violation
+    // violation below 'Abbreviation in name 'AbstractINNERSClass''
+    class AbstractINNERSClass {
     }
 }
 
 abstract class Class3Factory2 {
-    class WellNamedFACTORY { // violation
+    // violation below 'Abbreviation in name 'WellNamedFACTORY''
+    class WellNamedFACTORY {
         public void systematicMETHODName() {
             int systematicVARIABLEName = 2;
             int SYSTEMATICVariableName = 1;

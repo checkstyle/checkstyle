@@ -2,46 +2,39 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="WhitespaceAround">
-      <property name="allowEmptyLambdas" value="true"/>
+      <property name="allowEmptyCatches" value="true"/>
     </module>
   </module>
 </module>
-
-
 */
-
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
-
-// xdoc section -- start
+// xdoc section - start
 class Example8 {
-  public Example8(){} // 3 violations
-  // no space after ')' and '{', no space before '}'
+  interface Empty{ }
+  // violation above ''{' is not preceded with whitespace'
+  public Example8() {}
+  // 2 violations above:
+  //  ''{' is not followed by whitespace'
+  //  ''}' is not preceded with whitespace'
   int y = 0;
-  int a = 4;
-
   void example() {
-    Runnable noop = () ->{}; // violation, no space after '->'
-
+    Runnable noop = () ->{ };
+    // 2 violations above:
+    //  ''->' is not followed by whitespace'
+    //  ''{' is not preceded with whitespace'
     try { }
-    catch (Exception e){} // 3 violations
-    // no space after ')' and '{', no space before '}'
+    catch (Exception e){ }
+    // ok, allowEmptyCatches is true above
     char[] vowels = {'a', 'e', 'i', 'o', 'u'};
     for (char item: vowels) { }
-    for (int i = 100;i > 10; i--){} // 3 violations
-    // no space before '{', no space after '{', no space before '}'
-    do {} while (y == 1); // 2 violations
-    // no space after '{', no space before '}'
-    int i = 0;
-    switch (i) {
-      case 1: {} // 2 violations
-      // no space after '{', no space before '}'
+    for (int i = 0; i < 10; i++){ }
+    // violation above ''{' is not preceded with whitespace'
+    switch (y) {
+      case 1:{ }
+      // violation above ''{' is not preceded with whitespace'
     }
-    int a=4; // 2 violations
-    // no space before '=', no space after '='
   }
-
-  void myFunction() {} // 2 violations
-  // no space after '{', no space before '}'
-  void myFunction2() { }
+  void myFunction(){ }
+  // violation above ''{' is not preceded with whitespace'
 }
-// xdoc section -- end
+// xdoc section - end

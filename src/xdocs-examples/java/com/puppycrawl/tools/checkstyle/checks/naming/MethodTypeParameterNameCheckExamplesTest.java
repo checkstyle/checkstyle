@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MethodTypeParameterNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MethodTypeParameterNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/methodtypeparametername";
@@ -49,4 +50,5 @@ public class MethodTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

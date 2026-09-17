@@ -25,6 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault";
@@ -53,4 +54,5 @@ public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModul
         verifyWithInlineConfigParser(
                 getPath("Example3.java"), expected);
     }
+
 }

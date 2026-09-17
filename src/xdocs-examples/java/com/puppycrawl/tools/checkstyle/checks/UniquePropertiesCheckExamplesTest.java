@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/uniqueproperties";
@@ -65,4 +66,5 @@ public class UniquePropertiesCheckExamplesTest extends AbstractExamplesModuleTes
         verifyWithInlineConfigParserSeparateConfigAndTarget(configFilePath,
                 propertyFilePath, expected);
     }
+
 }

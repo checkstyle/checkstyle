@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.      // ok, PACKAGE_DEF is not part of the tokens
   tools.checkstyle.checks.whitespace.nolinewrap;
 
@@ -25,5 +25,7 @@ class
     Example2() {}
   public void
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class FieldAnnotationsTest extends AbstractGoogleModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule4854fieldannotations";
@@ -38,4 +39,5 @@ public class FieldAnnotationsTest extends AbstractGoogleModuleTestSupport {
     public void testAnnotationsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedFieldAnnotations.java"));
     }
+
 }

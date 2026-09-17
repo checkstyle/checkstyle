@@ -111,4 +111,5 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

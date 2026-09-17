@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/blocks/rightcurly";
@@ -52,29 +53,30 @@ public class RightCurlyCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "48:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
             "50:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
             "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "29:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
         };
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "54:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

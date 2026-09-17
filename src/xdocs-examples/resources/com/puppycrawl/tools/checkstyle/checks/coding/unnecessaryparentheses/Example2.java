@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   int a = 10, b = 12;
   boolean x = true, y = false;
@@ -33,14 +33,14 @@ class Example2 {
 
   void method() {
     int x = 9, y = 8;
-    // violation below, 'Unnecessary parentheses around expression'
+    // violation below 'Unnecessary parentheses around expression'
     if (x >= 0 ^ (x <= 8 & y <= 11) ^ y >= 8) {
       return;
     }
     if (x >= 0 ^ x <= 8 & y <= 11 ^ y >= 8) {
       return;
     }
-    // violation below, 'Unnecessary parentheses around expression'
+    // violation below 'Unnecessary parentheses around expression'
     if (x >= 0 || (x <= 8 & y <= 11) && y >= 8) {
       return;
     }
@@ -49,4 +49,4 @@ class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

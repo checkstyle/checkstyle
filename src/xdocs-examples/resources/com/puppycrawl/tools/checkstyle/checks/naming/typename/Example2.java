@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.typename;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {                 // violation 'Name 'Example2' must match pattern'
   public interface firstName {}
   public class SecondName {}     // violation 'Name 'SecondName' must match pattern'
@@ -20,4 +20,4 @@ class Example2 {                 // violation 'Name 'Example2' must match patter
   private class FourthName_ {}
   enum Fifth_Name {}             // violation 'Name 'Fifth_Name' must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

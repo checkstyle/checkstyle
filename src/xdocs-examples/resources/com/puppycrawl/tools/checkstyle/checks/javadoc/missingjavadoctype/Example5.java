@@ -2,33 +2,35 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MissingJavadocType">
-      <property name="scope" value="private"/>
-      <property name="skipAnnotations" value="Annotation,MyClass.Annotation"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
+// xdoc section - start
 /** Documented. */
-@interface Annotation { }
+public class Example5 {
+  /** Javadoc. */
+  public class A {}
 
-/** Documented. */
-class MyClass {
-    /** Documented. */
-    @interface Annotation { }
+  private class B {}
+
+  protected class C {}
+  /** Javadoc. */
+  class D {}
+  /** Javadoc. */
+  @SpringBootApplication
+  private class App {}
+  /** Javadoc. */
+  @Configuration
+  private class Config {}
+  /** Javadoc. */
+  private class E {}
+
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
+  /** Javadoc. */
+  public interface G {}
 }
-
-// xdoc section -- start
-/** Documented. */
-class Example5 {
-  /** Javadoc.*/
-  @Annotation
-  private class Class1 { }
-
-  @MyClass.Annotation
-  private class Class2 { }
-
-  private class Class3 { } // violation, 'Missing a Javadoc comment'
-}
-// xdoc section -- end
+// xdoc section - end

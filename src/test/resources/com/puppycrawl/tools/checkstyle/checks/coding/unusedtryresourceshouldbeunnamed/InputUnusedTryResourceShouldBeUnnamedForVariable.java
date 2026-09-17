@@ -46,7 +46,7 @@ public class InputUnusedTryResourceShouldBeUnnamedForVariable implements AutoClo
        InputUnusedTryResourceShouldBeUnnamedForVariable i1 =
            new InputUnusedTryResourceShouldBeUnnamedForVariable();
        try (i1; InputUnusedTryResourceShouldBeUnnamedForVariable i2 =
-       // violation above, 'Unused try resource 'i2' should be unnamed'
+       // violation above 'Unused try resource 'i2' should be unnamed'
                new InputUnusedTryResourceShouldBeUnnamedForVariable(true)) {}
        catch (Exception e) {}
        assertCloseCount(7);
@@ -56,7 +56,7 @@ public class InputUnusedTryResourceShouldBeUnnamedForVariable implements AutoClo
              new InputUnusedTryResourceShouldBeUnnamedForVariable();
        try (m1; InputUnusedTryResourceShouldBeUnnamedForVariable m2 = m1;
           InputUnusedTryResourceShouldBeUnnamedForVariable m3 = m2;) {}
-       // violation above, 'Unused try resource 'm3' should be unnamed'
+       // violation above 'Unused try resource 'm3' should be unnamed'
        assertCloseCount(10);
 
        // aliasing of variables keeps equality (bugs 6911256 6964740)

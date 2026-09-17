@@ -99,6 +99,13 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
      */
     private final Deque<Deque<TryResourceDetails>> tryResources = new ArrayDeque<>();
 
+    /**
+     * Creates a new {@code UnusedTryResourceShouldBeUnnamedCheck} instance.
+     */
+    public UnusedTryResourceShouldBeUnnamedCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -186,7 +193,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
      * Determines whether an {@link TokenTypes#IDENT} token is a candidate for being
      * a <em>use</em> of a tracked try resource.
      *
-     * @param identAst the {@link TokenTypes#IDENT} token to inspect
+     * @param identAst the {@code TokenTypes#IDENT} token to inspect
      * @return {@code true} if the token could represent a reference to a resource variable
      */
     private static boolean isResourceUsageCandidate(DetailAST identAst) {
@@ -369,4 +376,5 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
             return used;
         }
     }
+
 }

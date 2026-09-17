@@ -9,7 +9,7 @@ tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadForRecordPattern {
@@ -17,7 +17,7 @@ public class InputParenPadForRecordPattern {
     void test(Object obj) {
         if (obj instanceof ColoredPoint(Point p, String c)) {}
         if (obj instanceof ColoredPoint( Point p, String c)) {}
-        // violation above, ''(' is followed by whitespace'
+        // violation above ''(' is followed by whitespace'
         if (obj instanceof ColoredPoint( Point p, String c )) {}
         // 2 violations above:
         //             ''(' is followed by whitespace'
@@ -45,7 +45,7 @@ public class InputParenPadForRecordPattern {
         switch (obj) {
             case ColoredPoint(Point p, String c) -> {}
             case Point( int x, int y) when x == 0 -> {}
-            // violation above, ''(' is followed by whitespace'
+            // violation above ''(' is followed by whitespace'
             case Point( int x, int y ) -> {}
             // 2 violations above:
             //             ''(' is followed by whitespace'

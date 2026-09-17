@@ -12,20 +12,18 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 import java.io.IOException;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   int x;
-  public Example1(int n) {
-  }
+  public Example1(int n) {}
 
   public void fun() {
     try {
       throw new IOException();
-    }
-    catch( IOException e) { // violation 'is followed by whitespace'
-    }
+    } catch( IOException e) {} // violation 'is followed by whitespace'
     catch(Exception e ) {}  // violation 'is preceded with whitespace'
-    for ( int i = 0; i < x; i++ ) { // 2 violations
+    for ( int i = 0; i < x; i++ ) {
+      // 2 violations above:
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
     }
@@ -40,12 +38,13 @@ class Example1 {
     }
   }
 
-  class Bar extends Example1 {
-    public Bar() {
+  class Example3 extends Example1 {
+    public Example3() {
       super(1 ); // violation '')' is preceded with whitespace'
     }
-    public Bar(int k) {
-      super( k ); // 2 violations
+    public Example3(int k) {
+      super( k );
+      // 2 violations above:
       // ''(' is followed by whitespace'
       // '')' is preceded with whitespace'
       for ( int i = 0; i < k; i++) { // violation ''(' is followed by whitespace'
@@ -53,4 +52,4 @@ class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

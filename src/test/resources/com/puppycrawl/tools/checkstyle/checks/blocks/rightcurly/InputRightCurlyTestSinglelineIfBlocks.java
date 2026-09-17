@@ -12,6 +12,9 @@ public class InputRightCurlyTestSinglelineIfBlocks {
     void foo1() {
         if (true) { int a = 5; } // violation ''}' at column 32 should be alone on a line'
 
-        if (true) { if (false) { int b = 6; } } // 2 violations
+        if (true) { if (false) { int b = 6; } }
+        // 2 violations above:
+        // ''}' at column 45 should be alone on a line.'
+        // ''}' at column 47 should be alone on a line.'
     }
 }

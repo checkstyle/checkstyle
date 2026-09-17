@@ -1,10 +1,13 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleimportstatements.importorder;
 
+// violation first line 'Header mismatch'
+
 import static java.lang.Math.PI;
 import static java.lang.Math.max;
 
 import java.util.Arrays;
-// violation above 'Import 'java.util.Arrays' violates the configured relative order between static and non-static imports.'
+// violation above """Import 'java.util.Arrays' violates the configured relative order
+// between static and non-static imports."""
 
 /**
  * Invalid: static imports appear before non-static imports.

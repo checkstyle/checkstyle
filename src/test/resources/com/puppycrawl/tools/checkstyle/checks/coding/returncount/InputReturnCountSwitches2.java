@@ -3,7 +3,7 @@ ReturnCount
 max = (default)2
 maxForVoid = (default)1
 format = ^$
-tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA
+tokens = (default)CTOR_DEF, METHOD_DEF, LAMBDA, LITERAL_RETURN
 
 
 */

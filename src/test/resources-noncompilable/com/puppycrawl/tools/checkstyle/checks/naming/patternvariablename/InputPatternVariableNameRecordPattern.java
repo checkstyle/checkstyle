@@ -5,7 +5,7 @@ format = (default)^([a-z][a-zA-Z0-9]*|_)$
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
 public class InputPatternVariableNameRecordPattern {
@@ -18,7 +18,7 @@ public class InputPatternVariableNameRecordPattern {
         //                'Name '__' must match pattern*.'
         if (o instanceof ColoredPoint(Point(int x, int yy), String color)) {}
         if (o instanceof ColoredPoint(_, String S)) {}
-        // violation above, 'Name 'S' must match pattern*.'
+        // violation above 'Name 'S' must match pattern*.'
     }
     void test2(Object o) {
         switch (o) {
@@ -29,7 +29,7 @@ public class InputPatternVariableNameRecordPattern {
             case Point(int x, int _) -> {}
             case ColoredPoint(Point(int x, int yy), String color) -> {}
             case ColoredPoint(_, String S) -> {}
-            // violation above, 'Name 'S' must match pattern*.'
+            // violation above 'Name 'S' must match pattern*.'
             default -> {}
         }
     }

@@ -11,7 +11,7 @@
 // non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
   public Example4() { }
   public Example4(final int m) { }
@@ -21,14 +21,14 @@ public class Example4 {
   public static void main(String[] args) { }
 
   void testCatchParameters() {
-    try { } catch (Exception e) { } // violation, 'e should be final'
+    try { } catch (Exception e) { } // violation 'e should be final'
     try { } catch (Exception _) { } // ok, unnamed catch parameter
     try { } catch (final Exception _) { }
   }
 
   void testForEachParameters() {
-    for (int number: new int[] {1, 2, 3}) { } // violation, 'number should be final'
+    for (int number: new int[] {1, 2, 3}) { } // violation 'number should be final'
     for (int _: new int[] {1, 2, 3}) { }
   }
 }
-// xdoc section -- end
+// xdoc section - end

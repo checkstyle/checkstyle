@@ -40,26 +40,17 @@ public enum AccessModifierOption {
 
     @Override
     public String toString() {
-        return getName();
-    }
-
-    /**
-     * Returns the access modifier name.
-     *
-     * @return the access modifier name
-     */
-    private String getName() {
         return name().toLowerCase(Locale.ENGLISH);
     }
 
     /**
      * Factory method which returns an AccessModifier instance that corresponds to the
-     * given access modifier name represented as a {@link String}.
+     * given access modifier name represented as a {@code String}.
      * The access modifier name can be formatted both as lower case or upper case string.
      * For example, passing PACKAGE or package as a modifier name
      * will return {@link AccessModifierOption#PACKAGE}.
      *
-     * @param modifierName access modifier name represented as a {@link String}.
+     * @param modifierName access modifier name represented as a {@code String}.
      * @return the AccessModifier associated with given access modifier name.
      */
     public static AccessModifierOption getInstance(String modifierName) {

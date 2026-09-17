@@ -1,4 +1,4 @@
-/* // violation, 'Using '\/\*' is not allowed'
+/* // violation 'Using '\/\*' is not allowed'
 IllegalToken
 tokens = BLOCK_COMMENT_BEGIN
 

@@ -5,8 +5,8 @@
 */
 
 package com.puppycrawl.tools.checkstyle.checks.newlineatendoffile;
-// xdoc section -- start
+// xdoc section - start
 public class Example2 { // ⤶
 // ⤶
 } // violation first line 'File does not end with a newline.'
-// xdoc section -- end
+// xdoc section - end

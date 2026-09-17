@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = true
 setterCanReturnItsClass = true
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -20,7 +20,7 @@ public class InputHiddenFieldClassNestedInRecord {
         class foo2 {
             int a, b;
 
-            foo setA(int a) { // violation, ''a' hides a field'
+            foo setA(int a) { // violation ''a' hides a field'
                 this.a = a;
                 return foo.this;
             }

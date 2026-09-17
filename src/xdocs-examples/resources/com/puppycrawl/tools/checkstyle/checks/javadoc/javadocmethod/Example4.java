@@ -11,15 +11,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.io.IOException;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
 
   /** */
   Example4(int x) {}
-  // violation above, 'Expected @param tag for 'x'.'
+  // violation above 'Expected @param tag for 'x'.'
   /** */
   public int m1(int p1) throws IOException {
-    // violation above, 'Expected @param tag for 'p1'.'
+    // violation above 'Expected @param tag for 'p1'.'
 
     // ok, allowMissingReturnTag is true
     throw new IOException();
@@ -35,7 +35,7 @@ public class Example4 {
 
   /** */
   void m3(int p1) {}
-  // violation above, 'Expected @param tag for 'p1'.'
+  // violation above 'Expected @param tag for 'p1'.'
   /**
    * {@return the foo}
    */
@@ -44,4 +44,4 @@ public class Example4 {
     return 0;
   }
 }
-// xdoc section -- end
+// xdoc section - end

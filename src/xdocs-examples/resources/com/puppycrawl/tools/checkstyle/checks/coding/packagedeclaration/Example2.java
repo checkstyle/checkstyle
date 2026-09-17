@@ -9,9 +9,9 @@
 */
 
 
-// xdoc section -- start
+// xdoc section - start
 package com.nonexistent.packages;
 public class Example2{
   String str = "Some Content";
 }
-// xdoc section -- end
+// xdoc section - end

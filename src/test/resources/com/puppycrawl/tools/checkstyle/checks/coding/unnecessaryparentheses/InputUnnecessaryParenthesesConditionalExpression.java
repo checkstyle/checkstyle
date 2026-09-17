@@ -17,16 +17,16 @@ public class InputUnnecessaryParenthesesConditionalExpression {
     void method() {
         int w = 5;
         int x = (w == 3) ? (3) : (4);
-        // 3 violations above
+        // 3 violations above:
         //  'Unnecessary parentheses around expression'
-        //  'Unnecessary parentheses around literal '3''.
-        //  'Unnecessary parentheses around literal '4''.
+        //  'Unnecessary parentheses around literal '3''
+        //  'Unnecessary parentheses around literal '4''
         int y = !(w>x) ? 3 : 4;
         int z1 = (!(y >= w)) ? 5 : 6; // violation 'Unnecessary parentheses around expression'
 
         int z2 = 5 > 3 ? 2 : 1;
         int z3 = (z2 > 0) ? 5 : (z2 < -10) ? 7 : 3;
-        // 2 violations above
+        // 2 violations above:
         //  'Unnecessary parentheses around expression'
         //  'Unnecessary parentheses around expression'
 
@@ -34,7 +34,7 @@ public class InputUnnecessaryParenthesesConditionalExpression {
         // violation below 'Unnecessary parentheses around expression'
         boolean result = (o instanceof String) ?
                 (o instanceof String) : (!(o instanceof String));
-        // 2 violations above
+        // 2 violations above:
         //  'Unnecessary parentheses around expression'
         //  'Unnecessary parentheses around expression'
 

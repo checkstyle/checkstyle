@@ -5,7 +5,7 @@ violateExecutionOnNonTightHtml = (default)false
 
 
 */
-// non-compiled with javac: no package by design of test
+// non-compiled with javac: missing package. Used for Testing purpose.
 
 import java.util.List;
 import java.util.List;

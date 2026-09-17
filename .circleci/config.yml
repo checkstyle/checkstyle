@@ -27,7 +27,7 @@ jobs:
       - restore_cache:
           name: Restore Maven repo and wrapper cache
           keys:
-            - mvn-cache-{{ checksum "pom.xml" }}
+            - mvn-cache-v2-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
           no_output_timeout: << parameters.no_output_timeout >>
@@ -37,10 +37,9 @@ jobs:
             ./.ci/validation.sh ci-temp-check
       - save_cache:
           name: Save Maven repo and wrapper cache
-          key: mvn-cache-{{ checksum "pom.xml" }}
+          key: mvn-cache-v2-{{ checksum "pom.xml" }}
           paths:
             - .m2
-            - .mvn/wrapper
 
   validate-with-script:
     description: Runs a non-maven script using the job name as the argument.
@@ -87,6 +86,31 @@ jobs:
       - run:
           name: Run yamllint
           command: yamllint -f parsable -c config/yamllint.yaml .
+
+  javadoc-tool-validate:
+    parameters:
+      image-name:
+        type: string
+        default: cimg/openjdk:25.0
+        description: docker image to use
+    docker:
+      - image: << parameters.image-name >>
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Maven repo and wrapper cache
+          keys:
+            - mvn-cache-v2-{{ checksum "pom.xml" }}
+      - run:
+          name: Validate Javadoc inputs with JDK javadoc
+          command: ./.ci/validation.sh javadoc-tool-validate
+      - store_artifacts:
+          path: .ci-temp/javadoc
+      - save_cache:
+          name: Save Maven repo and wrapper cache
+          key: mvn-cache-v2-{{ checksum "pom.xml" }}
+          paths:
+            - .m2
 
 workflows:
   #  sonarqube:
@@ -201,6 +225,10 @@ workflows:
           resource_class: medium+
           command: ./.ci/validation.sh spotbugs-and-pmd
       - validate-with-maven-script:
+          name: javadoc
+          image-name: *cs_img
+          command: ./.ci/validation.sh javadoc
+      - validate-with-maven-script:
           name: site
           image-name: *cs_img
           command: ./.ci/validation.sh site
@@ -295,19 +323,21 @@ workflows:
       - validate-with-script:
           name: javac21
           image-name: cimg/openjdk:21.0.6
-          command: ./.ci/validation.sh javac21
-      - validate-with-script:
-          name: java 21 test resources compile
-          image-name: cimg/openjdk:21.0.8
-          command: ./.ci/validation.sh compile-test-resources
-      - validate-with-script:
-          name: javac22
-          image-name: cimg/openjdk:22.0.2
-          command: ./.ci/validation.sh javac22
+          command: ./.ci/validation.sh javac21-exceptional
       - validate-with-script:
           name: javac25
           image-name: cimg/openjdk:25.0
           command: ./.ci/validation.sh javac25
+      - javadoc-tool-validate:
+          name: javadoc-tool-validate-jdk21
+          image-name: cimg/openjdk:21.0.6
+      - javadoc-tool-validate:
+          name: javadoc-tool-validate-jdk25
+          image-name: cimg/openjdk:25.0
+      - validate-with-maven-script:
+          name: jdeprscan
+          image-name: cimg/openjdk:25.0
+          command: ./.ci/validation.sh jdeprscan
   site-validation:
     jobs:
       - validate-with-maven-script:

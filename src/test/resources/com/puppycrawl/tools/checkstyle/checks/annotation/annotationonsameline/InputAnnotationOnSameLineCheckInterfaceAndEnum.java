@@ -26,9 +26,9 @@ public @Ann
 @Ann2 class InputAnnotationOnSameLineCheckInterfaceAndEnum implements @Ann
         @Ann2 TestInterface {
 
-    // violation below "Annotation 'Ann' should be on the same line with its target."
+    // violation 2 lines below "Annotation 'Ann' should be on the same line with its target."
+    // violation 2 lines below "Annotation 'Ann' should be on the same line with its target."
     @Ann
-    // violation below "Annotation 'Ann' should be on the same line with its target."
     @Ann2 private Integer x = new @Ann
             @Ann2 Integer(0);
 
@@ -46,9 +46,9 @@ public @Ann
     @Ann
     @Ann2 public InputAnnotationOnSameLineCheckInterfaceAndEnum() {}
 
-    // violation below "Annotation 'Ann' should be on the same line with its target."
+    // violation 2 lines below "Annotation 'Ann' should be on the same line with its target."
+    // violation 2 lines below "Annotation 'Ann' should be on the same line with its target."
     @Ann
-    // violation below "Annotation 'Ann' should be on the same line with its target."
     @Ann2 public void setX(@Ann
             // violation below "Annotation 'Ann' should be on the same line with its target."
             @Ann2 int x) throws @Ann

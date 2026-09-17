@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterTypeMemberDeclarationCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterTypeMemberDeclarationCheck.java"/>
+      </macro>
       <subsection name="Description"
             id="UnnecessarySemicolonAfterTypeMemberDeclaration_Description">
         <macro name="description">

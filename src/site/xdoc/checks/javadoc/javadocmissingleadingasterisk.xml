@@ -8,6 +8,28 @@
   <body>
     <section name="JavadocMissingLeadingAsterisk">
       <p>Since Checkstyle 8.38</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocMissingLeadingAsterisk_Description">Description</a></li>
+          <li><a href="#JavadocMissingLeadingAsterisk_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocMissingLeadingAsterisk_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocMissingLeadingAsterisk_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocMissingLeadingAsterisk_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocMissingLeadingAsterisk_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocMissingLeadingAsterisk_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocMissingLeadingAsterisk_Description">
         <div>
           Checks if the javadoc has
@@ -34,7 +56,7 @@
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.38</td>
             </tr>
@@ -79,17 +101,17 @@ class SingleLine {}
 
 /**
 
- */ // violation above, 'Javadoc line should start with leading asterisk'
+ */ // violation above 'Javadoc line should start with leading asterisk'
 class BlankLine {}
 
 /** Wrapped
     single-line comment */
-// violation above, 'Javadoc line should start with leading asterisk'
+// violation above 'Javadoc line should start with leading asterisk'
 class Wrapped {}
 
 /**
   * &lt;pre&gt;
-    int value; // violation, 'Javadoc line should start with leading asterisk'
+    int value; // violation 'Javadoc line should start with leading asterisk'
   * &lt;/pre&gt;
   */
 class Example1 {}

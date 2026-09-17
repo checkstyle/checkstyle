@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class JavadocMissingWhitespaceAfterAsteriskCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc"
@@ -42,4 +43,5 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckExamplesTest
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

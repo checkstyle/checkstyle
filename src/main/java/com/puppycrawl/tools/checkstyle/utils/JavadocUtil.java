@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
@@ -29,35 +30,12 @@ import javax.annotation.Nullable;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.LineColumn;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
 /**
  * Contains utility methods for working with Javadoc.
  */
 public final class JavadocUtil {
-
-    /**
-     * The type of Javadoc tag we want returned.
-     */
-    public enum JavadocTagType {
-
-        /** Block type. */
-        BLOCK,
-        /** Inline type. */
-        INLINE,
-        /** All validTags. */
-        ALL,
-
-    }
 
     /** Maps from a token name to value. */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
@@ -86,54 +64,6 @@ public final class JavadocUtil {
 
     /** Prevent instantiation. */
     private JavadocUtil() {
-    }
-
-    /**
-     * Gets validTags from a given piece of Javadoc.
-     *
-     * @param textBlock
-     *        the Javadoc comment to process.
-     * @param tagType
-     *        the type of validTags we're interested in
-     * @return all standalone validTags from the given javadoc.
-     */
-    public static JavadocTags getJavadocTags(TextBlock textBlock,
-            JavadocTagType tagType) {
-        final String[] text = textBlock.getText();
-        final List<TagInfo> tags = new ArrayList<>();
-        final boolean isBlockTags = tagType == JavadocTagType.ALL
-                                        || tagType == JavadocTagType.BLOCK;
-        if (isBlockTags) {
-            tags.addAll(BlockTagUtil.extractBlockTags(text));
-        }
-        final boolean isInlineTags = tagType == JavadocTagType.ALL
-                                        || tagType == JavadocTagType.INLINE;
-        if (isInlineTags) {
-            tags.addAll(InlineTagUtil.extractInlineTags(text));
-        }
-
-        final List<JavadocTag> validTags = new ArrayList<>();
-        final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
-
-        for (TagInfo tag : tags) {
-            final LineColumn position = tag.getPosition();
-            final int col = position.getColumn();
-            // Add the starting line of the comment to the line number to get the actual line number
-            // in the source.
-            // Lines are one-indexed, so need an off-by-one correction.
-            final int line = textBlock.getStartLineNo() + position.getLine() - 1;
-
-            final String tagName = tag.getName();
-            if (JavadocTagInfo.isValidName(tagName)) {
-                validTags.add(
-                    new JavadocTag(line, col, tagName, tag.getValue()));
-            }
-            else {
-                invalidTags.add(new InvalidJavadocTag(line, col, tagName));
-            }
-        }
-
-        return new JavadocTags(validTags, invalidTags);
     }
 
     /**
@@ -202,9 +132,47 @@ public final class JavadocUtil {
     public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
         DetailAST result = null;
         DetailAST child = ast.getFirstChild();
-        while (result == null && child != null && !isDeclarationBody(child)) {
+        while (result == null && child.getType() != TokenTypes.IDENT) {
             result = findJavadocComment(child);
             child = child.getNextSibling();
+        }
+        return result;
+    }
+
+    /**
+     * Returns the Javadoc block comment attached to the given package AST node.
+     * Because of <a href="https://github.com/checkstyle/checkstyle/issues/4392">parser bug</a>
+     * parser can place javadoc comment either as previous sibling of package definition
+     * or (if there is annotation between package def and javadoc) inside package definition tree.
+     * So we should look for javadoc in both places.
+     *
+     * @param ast the package declaration AST node
+     * @return the attached Javadoc block comment, or {@code null} if none is found
+     */
+    @Nullable
+    public static DetailAST getAttachedJavadocCommentForPackage(final DetailAST ast) {
+        DetailAST result = null;
+        final DetailAST prevSibling = ast.getPreviousSibling();
+        if (prevSibling != null
+                && prevSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                && isJavadocComment(prevSibling)) {
+            result = prevSibling;
+        }
+        else {
+            final Optional<DetailAST> firstAnnotationChild =
+                Optional.ofNullable(ast.getFirstChild())
+                    .map(DetailAST::getFirstChild)
+                    .map(DetailAST::getFirstChild);
+            if (firstAnnotationChild.isPresent()) {
+                for (DetailAST child = firstAnnotationChild.orElseThrow(); child != null;
+                     child = child.getNextSibling()) {
+                    if (child.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
+                            && isJavadocComment(child)) {
+                        result = child;
+                        break;
+                    }
+                }
+            }
         }
         return result;
     }
@@ -229,17 +197,6 @@ public final class JavadocUtil {
             }
         }
         return result;
-    }
-
-    /**
-     * Checks whether the node starts a declaration body.
-     *
-     * @param ast the AST node to check
-     * @return {@code true} when the node starts a declaration body
-     */
-    private static boolean isDeclarationBody(DetailAST ast) {
-        final int tokenType = ast.getType();
-        return tokenType == TokenTypes.SLIST;
     }
 
     /**
@@ -415,7 +372,8 @@ public final class JavadocUtil {
         return sibling == null
             && (BlockCommentPosition.isOnType(blockComment)
                 || BlockCommentPosition.isOnMember(blockComment)
-                || BlockCommentPosition.isOnPackage(blockComment));
+                || BlockCommentPosition.isOnPackage(blockComment)
+                || BlockCommentPosition.isOnModule(blockComment));
     }
 
 }

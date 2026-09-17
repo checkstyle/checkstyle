@@ -8,6 +8,29 @@
   <body>
     <section name="NestedTryDepth">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NestedTryDepth_Description">Description</a></li>
+          <li><a href="#NestedTryDepth_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NestedTryDepth_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow nesting depth 3</a></li>
+            </ul>
+          </li>
+          <li><a href="#NestedTryDepth_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NestedTryDepth_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NestedTryDepth_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NestedTryDepth_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NestedTryDepth_Description">
         <div>
           Restricts nested try-catch-finally blocks to a specified depth.
@@ -27,7 +50,7 @@
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify maximum allowed nesting depth.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>3.2</td>
             </tr>
@@ -59,16 +82,16 @@ public class Example1 {
 
     try {
       try {
-        try { // violation, current depth is 2, default max allowed depth is 1
+        try { // violation 'Nested try depth is 2 (max allowed is 1).'
         } catch (Exception e) {}
       } catch (Exception e) {}
     } catch (Exception e) {}
 
     try {
       try {
-        try { // violation, current depth is 2, default max allowed depth is 1
-          try { // violation, current depth is 3, default max allowed depth is 1
-            try { // violation, current depth is 4, default max allowed depth is 1
+        try { // violation 'Nested try depth is 2 (max allowed is 1).'
+          try { // violation 'Nested try depth is 3 (max allowed is 1).'
+            try { // violation 'Nested try depth is 4 (max allowed is 1).'
             } catch (Exception e) {}
           } catch (Exception e) {}
         } catch (Exception e) {}
@@ -111,7 +134,7 @@ public class Example2 {
       try {
         try { // ok, current depth is 2, max allowed depth is 3
           try { // ok, current depth is 3, max allowed depth is 3
-            try { // violation, current depth is 4, max allowed depth is 3
+            try { // violation 'Nested try depth is 4 (max allowed is 3).'
             } catch (Exception e) {}
           } catch (Exception e) {}
         } catch (Exception e) {}

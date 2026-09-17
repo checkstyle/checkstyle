@@ -322,4 +322,5 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("ExpectedAntlr4AstRegressionInterfaceRecordDef.txt"),
                 getPath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
     }
+
 }

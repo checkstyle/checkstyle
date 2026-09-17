@@ -61,6 +61,13 @@ public class HeaderCheck extends AbstractHeaderCheck {
     private BitSet ignoreLines = new BitSet();
 
     /**
+     * Creates a new {@code HeaderCheck} instance.
+     */
+    public HeaderCheck() {
+        // no code by default
+    }
+
+    /**
      * Returns true if lineNo is header lines or false.
      *
      * @param lineNo a line number
@@ -100,9 +107,9 @@ public class HeaderCheck extends AbstractHeaderCheck {
             log(1, MSG_MISSING);
         }
         else {
-            for (int i = 0; i < getHeaderLines().size(); i++) {
-                if (!isMatch(i, fileText.get(i))) {
-                    log(i + 1, MSG_MISMATCH, getHeaderLines().get(i));
+            for (int index = 0; index < getHeaderLines().size(); index++) {
+                if (!isMatch(index, fileText.get(index))) {
+                    log(index + 1, MSG_MISMATCH, getHeaderLines().get(index));
                     break;
                 }
             }

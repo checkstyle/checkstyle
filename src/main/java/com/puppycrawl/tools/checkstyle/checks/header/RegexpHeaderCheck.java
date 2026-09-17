@@ -55,10 +55,10 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      */
     public static final String MSG_HEADER_MISMATCH = "header.mismatch";
 
-    /** Regex pattern for a blank line. **/
+    /** Regex pattern for a blank line. */
     private static final String EMPTY_LINE_PATTERN = "^$";
 
-    /** Compiled regex pattern for a blank line. **/
+    /** Compiled regex pattern for a blank line. */
     private static final Pattern BLANK_LINE = Pattern.compile(EMPTY_LINE_PATTERN);
 
     /** The compiled regular expressions. */
@@ -66,6 +66,13 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /** Specify the line numbers to repeat (zero or more times). */
     private BitSet multiLines = new BitSet();
+
+    /**
+     * Creates a new {@code RegexpHeaderCheck} instance.
+     */
+    public RegexpHeaderCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the line numbers to repeat (zero or more times).

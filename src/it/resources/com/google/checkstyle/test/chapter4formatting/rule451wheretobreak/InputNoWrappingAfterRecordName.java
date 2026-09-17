@@ -26,8 +26,11 @@ public record InputNoWrappingAfterRecordName (String name) {
   }
 
   record Multi4 () { // violation ''(' is preceded with whitespace'
-    void foo (){} // violation ''(' is preceded with whitespace'
+    void foo (){}
   }
+  // 2 violations 2 lines above:
+  // ''(' is preceded with whitespace'
+  // ''{' is not preceded with whitespace'
 
   record Multi5() {
     private static final Multi obj =

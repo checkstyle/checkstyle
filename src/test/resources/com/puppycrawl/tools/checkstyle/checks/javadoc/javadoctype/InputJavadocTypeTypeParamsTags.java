@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = true
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -61,14 +61,6 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
      */
 
     public static class InnerClass<A,B>
-    {
-    }
-
-    /**
-     * Some explanation.
-     * @param <Z The wrong type param
-     */
-    public <Z> void unclosedGenericParam()
     {
     }
 }

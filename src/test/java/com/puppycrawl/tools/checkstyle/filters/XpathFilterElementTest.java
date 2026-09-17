@@ -22,18 +22,12 @@ package com.puppycrawl.tools.checkstyle.filters;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.sxpath.XPathExpression;
@@ -43,13 +37,10 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     private File file;
-    private FileContents fileContents;
 
     @BeforeEach
     public void setUp() throws Exception {
         file = new File(getPath("InputXpathFilterElementSuppressByXpath.java"));
-        fileContents = new FileContents(new FileText(file,
-                StandardCharsets.UTF_8.name()));
     }
 
     @Override
@@ -57,30 +48,11 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/filters/xpathfilterelement";
     }
 
-    @Test
-    public void testNonMatchingTokenType() throws Exception {
-        final String xpath = "//METHOD_DEF[./IDENT[@text='countTokens']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(4, 4,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
-    public void testNonMatchingColumnNumber() throws Exception {
-        final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathFilterElementSuppressByXpath']]";
-        final XpathFilterElement filter = new XpathFilterElement(
-                "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
-        final TreeWalkerAuditEvent ev = getEvent(3, 100,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
+    /**
+     * This test should remain as a low level pure unit test, purely for coverage.
+     * It tests defensive null-guard in {@link XpathFilterElement#accept} that can never
+     * be reached through the pipeline, as it always produces non-null filenames and violations.
+     */
     @Test
     public void testNullFileName() {
         final XpathFilterElement filter = new XpathFilterElement(
@@ -92,17 +64,11 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    @Test
-    public void testNonMatchingFileRegexp() throws Exception {
-        final XpathFilterElement filter =
-                new XpathFilterElement("NonMatchingRegexp", "Test", null, null, null);
-        final TreeWalkerAuditEvent ev = getEvent(3, 0,
-                TokenTypes.CLASS_DEF);
-        assertWithMessage("Event should be accepted")
-                .that(filter.accept(ev))
-                .isTrue();
-    }
-
+    /**
+     * This test should remain as a low level pure unit test, purely for coverage.
+     * It tests defensive null-guard in {@link XpathFilterElement#accept} that can never
+     * be reached through the pipeline, as it always produces non-null filenames and violations.
+     */
     @Test
     public void testNullViolation() {
         final XpathFilterElement filter = new XpathFilterElement(
@@ -111,22 +77,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 file.getName(), null, null);
         assertWithMessage("Event should be accepted")
                 .that(filter.accept(ev))
-                .isTrue();
-    }
-
-    @Test
-    public void testDecideByMessage() throws Exception {
-        final Violation message = new Violation(1, 0, TokenTypes.CLASS_DEF, "", "",
-                null, null, null, getClass(), "Test");
-        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
-                message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
-        final XpathFilterElement filter1 = new XpathFilterElement(null, null, "Test", null, null);
-        final XpathFilterElement filter2 = new XpathFilterElement(null, null, "Bad", null, null);
-        assertWithMessage("Message match")
-                .that(filter1.accept(ev))
-                .isFalse();
-        assertWithMessage("Message not match")
-                .that(filter2.accept(ev))
                 .isTrue();
     }
 
@@ -150,15 +100,6 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
-    }
-
-    private TreeWalkerAuditEvent getEvent(int line, int column, int tokenType)
-            throws Exception {
-        final Violation message =
-                new Violation(line, column, tokenType, "", "", null, null, null,
-                        getClass(), null);
-        return new TreeWalkerAuditEvent(fileContents, file.getName(), message,
-                JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
     }
 
 }

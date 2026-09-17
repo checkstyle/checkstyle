@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.emptystatement;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   public void foo() {
     int i = 5;
@@ -20,4 +20,4 @@ public class Example1 {
       i++;
   }
 }
-// xdoc section -- end
+// xdoc section - end

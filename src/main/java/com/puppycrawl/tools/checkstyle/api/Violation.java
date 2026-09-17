@@ -44,28 +44,28 @@ public final class Violation
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** The line number. **/
+    /** The line number. */
     private final int lineNo;
-    /** The column number. **/
+    /** The column number. */
     private final int columnNo;
-    /** The column char index. **/
+    /** The column char index. */
     private final int columnCharIndex;
-    /** The token type constant. See {@link TokenTypes}. **/
+    /** The token type constant. See {@link TokenTypes}. */
     private final int tokenType;
 
-    /** The severity level. **/
+    /** The severity level. */
     private final SeverityLevel severityLevel;
 
     /** The id of the module generating the violation. */
     private final String moduleId;
 
-    /** Key for the violation format. **/
+    /** Key for the violation format. */
     private final String key;
 
     /** Arguments for MessageFormat. */
     private final Object[] args;
 
-    /** Name of the resource bundle to get violations from. **/
+    /** Name of the resource bundle to get violations from. */
     private final String bundle;
 
     /** Class of the source for this Violation. */
@@ -388,44 +388,121 @@ public final class Violation
     // Interface Comparable methods
     ////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The same fields as in {@link #equals(Object)} take part in the
+     * comparison, so that a result of zero is consistent with equality, as the
+     * {@link Comparable} contract recommends. Line, column, module id, source
+     * class, and the rendered violation stay the leading criteria; the
+     * remaining fields only break a tie between violations that would
+     * otherwise be reported at the same place with the same text.
+     */
     @Override
     public int compareTo(Violation other) {
-        final int result;
-
-        if (lineNo == other.lineNo) {
-            if (columnNo == other.columnNo) {
-                if (Objects.equals(moduleId, other.moduleId)) {
-                    if (Objects.equals(sourceClass, other.sourceClass)) {
-                        result = getViolation().compareTo(other.getViolation());
-                    }
-                    else if (sourceClass == null) {
-                        result = -1;
-                    }
-                    else if (other.sourceClass == null) {
-                        result = 1;
-                    }
-                    else {
-                        result = sourceClass.getName().compareTo(other.sourceClass.getName());
-                    }
-                }
-                else if (moduleId == null) {
-                    result = -1;
-                }
-                else if (other.moduleId == null) {
-                    result = 1;
-                }
-                else {
-                    result = moduleId.compareTo(other.moduleId);
-                }
-            }
-            else {
-                result = Integer.compare(columnNo, other.columnNo);
-            }
-        }
-        else {
-            result = Integer.compare(lineNo, other.lineNo);
+        int result = compareLocation(other);
+        if (result == 0) {
+            result = compareContent(other);
         }
         return result;
+    }
+
+    /**
+     * Compares the place and the text a violation is reported with.
+     *
+     * @param other the violation to compare against
+     * @return the value {@code 0} if the violations are reported the same way
+     */
+    private int compareLocation(Violation other) {
+        int result = Integer.compare(lineNo, other.lineNo);
+        if (result == 0) {
+            result = Integer.compare(columnNo, other.columnNo);
+        }
+        if (result == 0) {
+            result = compareNullable(moduleId, other.moduleId);
+        }
+        if (result == 0) {
+            result = compareNullable(getSourceClassName(), other.getSourceClassName());
+        }
+        if (result == 0) {
+            result = getViolation().compareTo(other.getViolation());
+        }
+        return result;
+    }
+
+    /**
+     * Compares the fields that two violations reported at the same place with
+     * the same text can still differ in.
+     *
+     * @param other the violation to compare against
+     * @return the value {@code 0} if the violations carry the same content
+     */
+    private int compareContent(Violation other) {
+        int result = Integer.compare(columnCharIndex, other.columnCharIndex);
+        if (result == 0) {
+            result = Integer.compare(tokenType, other.tokenType);
+        }
+        if (result == 0) {
+            result = severityLevel.compareTo(other.severityLevel);
+        }
+        if (result == 0) {
+            result = compareNullable(key, other.key);
+        }
+        if (result == 0) {
+            result = compareNullable(bundle, other.bundle);
+        }
+        if (result == 0) {
+            result = compareNullable(customMessage, other.customMessage);
+        }
+        if (result == 0) {
+            result = Arrays.deepToString(args).compareTo(Arrays.deepToString(other.args));
+        }
+        return result;
+    }
+
+    /**
+     * Compares two values that may be {@code null}, ordering {@code null}
+     * before any other value.
+     *
+     * @param first the first value
+     * @param second the second value
+     * @return a negative integer, zero, or a positive integer as the first
+     *     value is less than, equal to, or greater than the second
+     */
+    private static int compareNullable(@Nullable String first, @Nullable String second) {
+        final int result;
+        if (first == null) {
+            if (second == null) {
+                result = 0;
+            }
+            else {
+                result = -1;
+            }
+        }
+        else if (second == null) {
+            result = 1;
+        }
+        else {
+            result = first.compareTo(second);
+        }
+        return result;
+    }
+
+    /**
+     * Gets the source class name or {@code null} when no source class is set.
+     *
+     * @return the source class name or {@code null}
+     */
+    @Nullable
+    private String getSourceClassName() {
+        final String name;
+        if (sourceClass == null) {
+            name = null;
+        }
+        else {
+            name = sourceClass.getName();
+        }
+        return name;
     }
 
     /**

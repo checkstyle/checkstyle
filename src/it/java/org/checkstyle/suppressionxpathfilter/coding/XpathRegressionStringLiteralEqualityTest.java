@@ -118,4 +118,5 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

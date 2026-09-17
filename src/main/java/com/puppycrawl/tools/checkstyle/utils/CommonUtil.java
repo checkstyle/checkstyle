@@ -72,7 +72,7 @@ public final class CommonUtil {
     /** The extension separator. */
     private static final String EXTENSION_SEPARATOR = ".";
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private CommonUtil() {
     }
 
@@ -84,7 +84,7 @@ public final class CommonUtil {
      * @return a created regexp object
      * @throws IllegalArgumentException
      *             if unable to create Pattern object.
-     **/
+     */
     public static Pattern createPattern(String pattern) {
         return createPattern(pattern, 0);
     }
@@ -99,7 +99,7 @@ public final class CommonUtil {
      * @return a created regexp object
      * @throws IllegalArgumentException
      *             if unable to create Pattern object.
-     **/
+     */
     public static Pattern createPattern(String pattern, int flags) {
         try {
             return Pattern.compile(pattern, flags);
@@ -127,13 +127,13 @@ public final class CommonUtil {
         else {
             // normalize extensions so all of them have a leading dot
             final String[] withDotExtensions = new String[fileExtensions.length];
-            for (int i = 0; i < fileExtensions.length; i++) {
-                final String extension = fileExtensions[i];
+            for (int index = 0; index < fileExtensions.length; index++) {
+                final String extension = fileExtensions[index];
                 if (extension.startsWith(EXTENSION_SEPARATOR)) {
-                    withDotExtensions[i] = extension;
+                    withDotExtensions[index] = extension;
                 }
                 else {
-                    withDotExtensions[i] = EXTENSION_SEPARATOR + extension;
+                    withDotExtensions[index] = EXTENSION_SEPARATOR + extension;
                 }
             }
 
@@ -160,8 +160,8 @@ public final class CommonUtil {
      */
     public static boolean hasWhitespaceBefore(int index, String line) {
         boolean result = true;
-        for (int i = 0; i < index; i++) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+        for (int charIndex = 0; charIndex < index; charIndex++) {
+            if (!Character.isWhitespace(line.charAt(charIndex))) {
                 result = false;
                 break;
             }
@@ -177,11 +177,11 @@ public final class CommonUtil {
      * @param line
      *            the string to process
      * @return the length of the string ignoring all trailing whitespace
-     **/
+     */
     public static int lengthMinusTrailingWhitespace(String line) {
         int len = line.length();
-        for (int i = len - 1; i >= 0; i--) {
-            if (!Character.isWhitespace(line.charAt(i))) {
+        for (int index = len - 1; index >= 0; index--) {
+            if (!Character.isWhitespace(line.charAt(index))) {
                 break;
             }
             len--;
@@ -467,9 +467,12 @@ public final class CommonUtil {
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
-            for (int i = 0; i <= matcher.groupCount(); i++) {
-                // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+            for (int index = 0; index <= matcher.groupCount(); index++) {
+                final String group = matcher.group(index);
+                if (group != null) {
+                    // $n expands comment match like in Pattern.subst().
+                    result = result.replaceAll("\\$" + index, Matcher.quoteReplacement(group));
+                }
             }
         }
         return result;
@@ -507,7 +510,7 @@ public final class CommonUtil {
      *         or empty string if file does not have an extension.
      */
     public static String getFileExtension(String fileNameWithExtension) {
-        final String fileName = Path.of(fileNameWithExtension).toString();
+        final String fileName = Path.of(fileNameWithExtension).toFile().getName();
         final int dotIndex = fileName.lastIndexOf('.');
         final String extension;
         if (dotIndex == -1) {
@@ -528,12 +531,12 @@ public final class CommonUtil {
     public static boolean isIdentifier(String str) {
         boolean isIdentifier = !str.isEmpty();
 
-        for (int i = 0; isIdentifier && i < str.length(); i++) {
-            if (i == 0) {
+        for (int index = 0; isIdentifier && index < str.length(); index++) {
+            if (index == 0) {
                 isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));
             }
             else {
-                isIdentifier = Character.isJavaIdentifierPart(str.charAt(i));
+                isIdentifier = Character.isJavaIdentifierPart(str.charAt(index));
             }
         }
 

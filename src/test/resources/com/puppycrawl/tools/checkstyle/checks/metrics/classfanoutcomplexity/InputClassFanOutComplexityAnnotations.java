@@ -26,7 +26,8 @@ import java.lang.annotation.Target;
 import java.util.Calendar;
 
 /* This input file is intended to be used on strict configuration: max=0 */
-public class InputClassFanOutComplexityAnnotations { // violation
+// violation below 'Class Fan-Out Complexity is 2 (max allowed is 0).'
+public class InputClassFanOutComplexityAnnotations {
 
     private int dayOfWeek = Calendar.MONDAY;
 
@@ -42,7 +43,8 @@ public class InputClassFanOutComplexityAnnotations { // violation
         return super.toString();
     }
 
-    @MyAnnotation // violation
+    // violation below 'Class Fan-Out Complexity is 2 (max allowed is 0).'
+    @MyAnnotation
     public class InnerClass {
 
         @MyAnnotation
@@ -51,7 +53,8 @@ public class InputClassFanOutComplexityAnnotations { // violation
 
     }
 
-    public class InnerClass2 { // violation
+    // violation below 'Class Fan-Out Complexity is 3 (max allowed is 0).'
+    public class InnerClass2 {
 
         @MethodAnnotation
         @MyAnnotation
@@ -61,7 +64,8 @@ public class InputClassFanOutComplexityAnnotations { // violation
 
     }
 
-    public class InnerClass3 { // violation
+    // violation below 'Class Fan-Out Complexity is 2 (max allowed is 0).'
+    public class InnerClass3 {
 
         @TypeAnnotation
         private final String warningsType = "boxing";
@@ -76,7 +80,8 @@ public class InputClassFanOutComplexityAnnotations { // violation
 
 }
 
-class OuterClass { // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+class OuterClass {
 
     private static final String name = "1";
 
@@ -96,10 +101,12 @@ class OuterClass { // violation
 @Target(ElementType.METHOD)
 @interface MethodAnnotation {}
 
-@MyAnnotation // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+@MyAnnotation
 class MyClass {}
 
-@MyAnnotation // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+@MyAnnotation
 interface MyInterface {}
 
 @interface MyAnnotation {}

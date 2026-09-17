@@ -8,11 +8,40 @@
   <body>
     <section name="MagicNumber">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MagicNumber_Description">Description</a></li>
+          <li><a href="#MagicNumber_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MagicNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it checks floating-point numbers that are not 0, 0.5, or 1</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it ignores magic numbers in field declarations</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Check annotation element defaults</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Config example of constantWaiverParentToken option</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Config example of ignoreHashCodeMethod option</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Config example of ignoreNumbers option</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Config example of ignoreAnnotation option</a></li>
+            </ul>
+          </li>
+          <li><a href="#MagicNumber_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MagicNumber_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MagicNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MagicNumber_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MagicNumber_Description">
         <div>
           Checks that there are no
           <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
-          &quot;magic numbers&quot;</a> where a magic
+          <code>"magic number"</code></a> where a magic
           number is a numeric literal that is not defined as a constant.
           By default, -1, 0, 1, and 2 are not considered to be magic numbers.
         </div>
@@ -20,7 +49,7 @@
         <p>Constant definition is any variable/field that has 'final' modifier.
           It is fine to have one constant defining multiple numeric literals within one expression:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 static final int SECONDS_PER_DAY = 24 * 60 * 60;
 static final double SPECIAL_RATIO = 4.0 / 3.0;
 static final double SPECIAL_SUM = 1 + Math.E;
@@ -109,35 +138,35 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             <tr>
               <td><a id="ignoreAnnotation"/><a href="#ignoreAnnotation">ignoreAnnotation</a></td>
               <td>Ignore magic numbers in annotation declarations.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.4</td>
             </tr>
             <tr>
               <td><a id="ignoreAnnotationElementDefaults"/><a href="#ignoreAnnotationElementDefaults">ignoreAnnotationElementDefaults</a></td>
               <td>Ignore magic numbers in annotation elements defaults.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.23</td>
             </tr>
             <tr>
               <td><a id="ignoreFieldDeclaration"/><a href="#ignoreFieldDeclaration">ignoreFieldDeclaration</a></td>
               <td>Ignore magic numbers in field declarations.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.6</td>
             </tr>
             <tr>
               <td><a id="ignoreHashCodeMethod"/><a href="#ignoreHashCodeMethod">ignoreHashCodeMethod</a></td>
               <td>Ignore magic numbers in hashCode methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td><a id="ignoreNumbers"/><a href="#ignoreNumbers">ignoreNumbers</a></td>
               <td>Specify non-magic numbers.</td>
-              <td><a href="../../property_types.html#double.5B.5D">double[]</a></td>
+              <td><a href="../../property-types.html#double.5B.5D">double[]</a></td>
               <td><code>-1, 0, 1, 2</code></td>
               <td>3.1</td>
             </tr>
@@ -187,13 +216,13 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
           results in the following violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example1 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -216,7 +245,7 @@ public class Example1 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;
@@ -303,13 +332,13 @@ public class Example2 {
           results in the following violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example3 {
   private int field = 7;
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -332,7 +361,7 @@ public class Example3 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;
@@ -359,13 +388,13 @@ public class Example3 {
           results in the following violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example4 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -388,11 +417,11 @@ public class Example4 {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
-    int value() default 10; // violation, ''10' is a magic number.'
-    int[] value2() default {10}; // violation, ''10' is a magic number.'
+    int value() default 10; // violation ''10' is a magic number.'
+    int[] value2() default {10}; // violation ''10' is a magic number.'
   }
   class TestClass {
     TestClass(int field) {}
@@ -414,36 +443,36 @@ public class Example4 {
 </code></pre></div>
         <p id="Example5-code">results in the following violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6)           // violation, ''6' is a magic number.'
+@Annotation(6)           // violation ''6' is a magic number.'
 public class Example5 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8;           // violation, ''8' is a magic number.'
+    int j = 8;           // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
-    // violation above, ''62' is a magic number.'
+    // violation above ''62' is a magic number.'
     final int a = 3;         // ok as waiver is ASSIGN
     final int[] b = {4, 5};  // ok as waiver is ARRAY_INIT
     final int c = -3;        // ok as waiver is UNARY_MINUS
     final int d = +4;        // ok as waiver is UNARY_PLUS
-    final int e = method3(10, 20); // violation, ''10' is a magic number.'
-    // violation above, ''20' is a magic number.'
-    final int f = 3 * 4;                 // violation, ''3' is a magic number.'
-    // violation above, ''4' is a magic number.'
+    final int e = method3(10, 20); // violation ''10' is a magic number.'
+    // violation above ''20' is a magic number.'
+    final int f = 3 * 4;                 // violation ''3' is a magic number.'
+    // violation above ''4' is a magic number.'
     final int g = 3 / 4;     // ok as waiver is DIV
     final int h = 3 + 4;     // ok as waiver is PLUS
-    final int i = 3 - 4;     // violation, ''3' is a magic number.'
-    // violation above, ''4' is a magic number.'
+    final int i = 3 - 4;     // violation ''3' is a magic number.'
+    // violation above ''4' is a magic number.'
     final int j = (int) 3.4; // ok as waiver is TYPECAST
   }
   private int method3(int a, int b) {
     return a + b;
   }
   public int hashCode() {
-    return 10; // violation, ''10' is a magic number.'
+    return 10; // violation ''10' is a magic number.'
   }
   @interface Annotation {
     int value() default 10;
@@ -468,13 +497,13 @@ public class Example5 {
 </code></pre></div>
         <p id="Example6-code">results in the following violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-@Annotation(6) // violation, ''6' is a magic number.'
+@Annotation(6) // violation ''6' is a magic number.'
 public class Example6 {
-  private int field = 7; // violation, ''7' is a magic number.'
+  private int field = 7; // violation ''7' is a magic number.'
 
   void method1() {
     int i = 1;
-    int j = 8; // violation, ''8' is a magic number.'
+    int j = 8; // violation ''8' is a magic number.'
   }
   public void method2() {
     final TestClass testObject = new TestClass(62);
@@ -507,8 +536,115 @@ public class Example6 {
     TestClass(int field) {}
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+        Config example of ignoreNumbers option:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="ignoreNumbers" value="0, 1, 8, 10"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
+        <p id="Example7-code">results in the following violations:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@Annotation(6) // violation ''6' is a magic number.'
+public class Example7 {
+  private int field = 7; // violation ''7' is a magic number.'
 
+  void method1() {
+    int i = 1;
+    int j = 8; // ok, as 8 is ignored
+  }
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+
+    final int f = 3 * 4;
+
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
+  public int hashCode() {
+    return 10; // ok, as 10 is ignored
+  }
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+        Config example of ignoreAnnotation option:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="ignoreAnnotation" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">results in the following violations:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+@Annotation(6) // ok, ignoreAnnotation is true
+public class Example8 {
+  private int field = 7; // violation ''7' is a magic number.'
+
+  void method1() {
+    int i = 1;
+    int j = 8; // violation ''8' is a magic number.'
+  }
+  public void method2() {
+    final TestClass testObject = new TestClass(62);
+
+    final int a = 3;
+    final int[] b = {4, 5};
+    final int c = -3;
+    final int d = +4;
+    final int e = method3(10, 20);
+
+    final int f = 3 * 4;
+
+    final int g = 3 / 4;
+    final int h = 3 + 4;
+    final int i = 3 - 4;
+
+    final int j = (int) 3.4;
+  }
+  private int method3(int a, int b) {
+    return a + b;
+  }
+  public int hashCode() {
+    return 10; // violation ''10' is a magic number.'
+  }
+  @interface Annotation {
+    int value() default 10;
+    int[] value2() default {10};
+  }
+  class TestClass {
+    TestClass(int field) {}
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="MagicNumber_Example_of_Usage">

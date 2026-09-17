@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
@@ -111,21 +111,21 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     /**
      * This test is needed for 100% coverage.
      * The Pitest reports some conditions as redundant, for example:
-     * <pre>
+     * {@snippet :
      *     if (!collection.isEmpty()) { // This may be omitted.
      *         Object value = doSomeHardJob();
      *         for (Item item : collection) {
      *             item.accept(value);
      *         }
      *     }
-     * </pre>
+     * }
      * But we really want to avoid calls to {@code doSomeHardJob} method.
      * To make this condition mandatory, we need to broke one branch.
      * In this case, mocking {@code TreeWalkerAuditEvent} will cause
      * {@code getFilteredViolations} to fail. This prevents the condition
-     * <pre>
+     * {@snippet lang="text" :
      *     if (filters.isEmpty())
-     * </pre>
+     * }
      * in {@link TreeWalker#processFiltered(File, FileText)} to survive with Pitest mutations.
      *
      * @throws Exception if an error occurs
@@ -401,7 +401,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final File file = new File(temporaryFolder, "file.java");
-        try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        try (Writer writer = Files.newBufferedWriter(file.toPath())) {
             final String configComment =
                     """
                     /*

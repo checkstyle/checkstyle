@@ -27,6 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingJavadocPackageCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage";
@@ -35,15 +36,16 @@ public class MissingJavadocPackageCheckExamplesTest extends AbstractExamplesModu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(getPath("javadoc/package-info.java"), expected);
+        verifyWithInlineConfigParser(getPath("example1/package-info.java"), expected);
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
 
-        verifyWithInlineConfigParser(getPath("nojavadoc/package-info.java"), expected);
+        verifyWithInlineConfigParser(getPath("usecase1/package-info.java"), expected);
     }
+
 }

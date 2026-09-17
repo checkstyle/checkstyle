@@ -76,6 +76,13 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "missing.switch.nullcase";
 
+    /**
+     * Creates a new {@code MissingNullCaseInSwitchCheck} instance.
+     */
+    public MissingNullCaseInSwitchCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -177,4 +184,5 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
         }
         return hasStringCaseLabel;
     }
+
 }

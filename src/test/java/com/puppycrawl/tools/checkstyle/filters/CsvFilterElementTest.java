@@ -20,13 +20,22 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck.MSG_REGEXP_EXCEEDED;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class CsvFilterElementTest {
+public class CsvFilterElementTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/filters/csvfilterelement";
+    }
 
     @Test
     public void testDecideSingle() {
@@ -137,6 +146,52 @@ public class CsvFilterElementTest {
         assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
+    }
+
+    @Test
+    public void testEmptyTokens() throws Exception {
+        final String[] expectedUnfiltered = {
+            "26: "
+                + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, "TODO$"),
+            "28: "
+                + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, "TODO$"),
+            "30: "
+                + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, "TODO$"),
+        };
+        final String[] expectedFiltered = {
+            "28: "
+                + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, "TODO$"),
+        };
+
+        verifyFilterWithInlineConfigParser(
+                getPath("InputCsvFilterElementEmptyTokens.java"),
+                expectedUnfiltered,
+                expectedFiltered);
+    }
+
+    @Test
+    public void testBlankToken() {
+        final String[] expectedViolation = {
+            "26: "
+                + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, "TODO$"),
+            "28: "
+                + getCheckMessage(RegexpSinglelineCheck.class,
+                    MSG_REGEXP_EXCEEDED, "TODO$"),
+        };
+
+        final NumberFormatException ex = getExpectedThrowable(NumberFormatException.class, () -> {
+            verifyFilterWithInlineConfigParser(
+                    getPath("InputCsvFilterElementBlankToken.java"),
+                    expectedViolation);
+        });
+        assertWithMessage("Invalid exception message")
+                .that(ex.getMessage())
+                .isEqualTo("For input string: \"\"");
     }
 
 }

@@ -1,10 +1,10 @@
 /*
 ParenPad
 option = SPACE
-tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
-         ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
-         LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
-         METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF
+tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, ENUM_CONSTANT_DEF, \
+         EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, METHOD_DEF, QUESTION, \
+         RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -27,22 +27,22 @@ class InputParenPadForWhitespace2
             //           '')' is not preceded with whitespace.'
         }
 
-        for (int i = 0; i < 1;i++ ) { // violation, ''(' is not followed by whitespace.'
+        for (int i = 0; i < 1;i++ ) { // violation ''(' is not followed by whitespace.'
         }
 
-        for (int i = 0; i < 1; i++ ) { // violation, ''(' is not followed by whitespace.'
+        for (int i = 0; i < 1; i++ ) { // violation ''(' is not followed by whitespace.'
         }
 
-        for (int i = 0; i < 1;) { // violation, ''(' is not followed by whitespace.'
+        for (int i = 0; i < 1;) { // violation ''(' is not followed by whitespace.'
             i++;
         }
 
-        for (int i = 0; i < 1; ) { // violation, ''(' is not followed by whitespace.'
+        for (int i = 0; i < 1; ) { // violation ''(' is not followed by whitespace.'
             i++;
         }
 
         // test eol, there is no space after second SEMI
-        for (int i = 0; i < 1; // violation, ''(' is not followed by whitespace.'
+        for (int i = 0; i < 1; // violation ''(' is not followed by whitespace.'
             ) {
             i++;
         }

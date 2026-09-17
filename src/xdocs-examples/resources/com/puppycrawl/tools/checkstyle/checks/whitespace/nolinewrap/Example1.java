@@ -6,7 +6,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.      // violation 'should not be line-wrapped'
   tools.checkstyle.checks.whitespace.nolinewrap;
 
@@ -16,12 +16,14 @@ import com.puppycrawl.tools. // violation 'should not be line-wrapped'
 import static java.math.     // violation 'should not be line-wrapped'
   BigInteger.ZERO;
 
-class                        // violation 'should not be line-wrapped'
+class
   Example1 {
 
-  public                     // violation 'should not be line-wrapped'
+  public
     Example1() {}
-  public void                // violation 'should not be line-wrapped'
+  public void
     doSomething() {}
+  @Deprecated
+  private void doNothing() {}
 }
-// xdoc section -- end
+// xdoc section - end

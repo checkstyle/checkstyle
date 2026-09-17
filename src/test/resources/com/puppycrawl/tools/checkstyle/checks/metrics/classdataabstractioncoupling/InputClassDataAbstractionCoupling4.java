@@ -19,9 +19,9 @@ import java.util.Set;
 
 import javax.naming.NamingException;
 
-// violation below, 'Class Data Abstraction Coupling is 4 (max allowed is 0)'
+// violation below 'Class Data Abstraction Coupling is 4 (max allowed is 0)'
 public class InputClassDataAbstractionCoupling4 {
-    // violation below, 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
+    // violation below 'Class Data Abstraction Coupling is 1 (max allowed is 0)'
     private class InnerClass {
         public List _list = new ArrayList();
     }
@@ -42,7 +42,7 @@ public class InputClassDataAbstractionCoupling4 {
 
 }
 
-enum InnerEnum4 { // violation, 'Class Data Abstraction Coupling is 2 (max allowed is 0)'
+enum InnerEnum4 { // violation 'Class Data Abstraction Coupling is 2 (max allowed is 0)'
     VALUE1;
 
     private InnerEnum4()

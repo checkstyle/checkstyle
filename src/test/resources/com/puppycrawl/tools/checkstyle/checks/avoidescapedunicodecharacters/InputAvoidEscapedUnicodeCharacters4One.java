@@ -15,18 +15,18 @@ import java.util.concurrent.TimeUnit;
 public class InputAvoidEscapedUnicodeCharacters4One {
 
         private String unitAbbrev2 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev3 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         private String unitAbbrev4 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
 
         public Object fooString() {
                 String unitAbbrev = "Î¼s";
                 String unitAbbrev2 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String unitAbbrev3 = "\u03bcs";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String fakeUnicode = "asd\tsasd";
                 String fakeUnicode2 = "\\u23\\u123i\\u";
                 String content = null;
@@ -35,22 +35,22 @@ public class InputAvoidEscapedUnicodeCharacters4One {
 
         public Object fooChar() {
                 char unitAbbrev2 = '\u03bc';
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 char unitAbbrev3 = '\u03bc';
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 char content = 0;
                 return '\ufeff' + content; // byte order mark
         }
 
         public void multiplyString() {
                 String unitAbbrev2 = "asd\u03bcsasd";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String unitAbbrev3 = "aBc\u03bcssdf\u03bc"; /* Greek letter mu, "s" */
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String unitAbbrev4 = "\u03bcaBc\u03bcssdf\u03bc";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
                 String allCharactersEscaped = "\u03bc\u03bc";
-                // violation above, 'Unicode escape(s) usage should be avoided.'
+                // violation above 'Unicode escape(s) usage should be avoided.'
         }
 
         private static String abbreviate(TimeUnit unit) {
@@ -58,7 +58,7 @@ public class InputAvoidEscapedUnicodeCharacters4One {
                 case NANOSECONDS:
                         return "ns";
                 case MICROSECONDS:
-                        return "\u03bcs"; // violation, 'Unicode escape(s) usage should be avoided.'
+                        return "\u03bcs"; // violation 'Unicode escape(s) usage should be avoided.'
                 case MILLISECONDS:
                         return "ms";
                 case SECONDS:

@@ -96,6 +96,13 @@ public class FinalClassCheck
     /** Full qualified name of the package. */
     private String packageName;
 
+    /**
+     * Creates a new {@code FinalClassCheck} instance.
+     */
+    public FinalClassCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -150,8 +157,12 @@ public class FinalClassCheck
             case TokenTypes.LITERAL_NEW -> {
                 if (ast.getFirstChild() != null
                         && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
-                    anonInnerClassToOuterTypeDecl
-                        .put(ast, typeDeclarations.peek().getQualifiedName());
+
+                    String outerTypeName = packageName;
+                    if (!typeDeclarations.isEmpty()) {
+                        outerTypeName = typeDeclarations.peek().getQualifiedName();
+                    }
+                    anonInnerClassToOuterTypeDecl.put(ast, outerTypeName);
                 }
             }
 
@@ -192,18 +203,18 @@ public class FinalClassCheck
         if (TokenUtil.isTypeDeclaration(ast.getType())) {
             typeDeclarations.pop();
         }
-        if (TokenUtil.isRootNode(ast.getParent())) {
-            anonInnerClassToOuterTypeDecl.forEach(this::registerAnonymousInnerClassToSuperClass);
-            // First pass: mark all classes that have derived inner classes
-            innerClasses.forEach(this::registerExtendedClass);
-            // Second pass: report violation for all classes that should be declared as final
-            innerClasses.forEach((qualifiedClassName, classDesc) -> {
-                if (shouldBeDeclaredAsFinal(classDesc)) {
-                    final String className = CommonUtil.baseClassName(qualifiedClassName);
-                    log(classDesc.getTypeDeclarationAst(), MSG_KEY, className);
-                }
-            });
-        }
+    }
+
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        anonInnerClassToOuterTypeDecl.forEach(this::registerAnonymousInnerClassToSuperClass);
+        innerClasses.forEach(this::registerExtendedClass);
+        innerClasses.forEach((qualifiedClassName, classDesc) -> {
+            if (shouldBeDeclaredAsFinal(classDesc)) {
+                final String className = CommonUtil.baseClassName(qualifiedClassName);
+                log(classDesc.getTypeDeclarationAst(), MSG_KEY, className);
+            }
+        });
     }
 
     /**
@@ -280,8 +291,7 @@ public class FinalClassCheck
      * <p>The parameter {@code countProvider} exists because if the class being searched is the
      * super class of anonymous inner class, the rules of evaluation are a bit different,
      * consider the following example-
-     * <pre>
-     * {@code
+     * {@snippet lang="text" :
      * public class Main {
      *     static class One {
      *         static class Two {
@@ -300,7 +310,6 @@ public class FinalClassCheck
      *     }
      * }
      * }
-     * </pre>
      * If the {@link Function} {@code countProvider} hadn't used
      * {@link FinalClassCheck#getAnonSuperTypeMatchingCount} to
      * calculate the matching count then the logic would have falsely evaluated
@@ -589,4 +598,5 @@ public class FinalClassCheck
             return declaredAsPrivate;
         }
     }
+
 }

@@ -18,7 +18,7 @@
 
   <module name="RegexpOnFilename">
     <property name="id" value="executablesLocation"/>
-    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
+    <property name="folderPattern" value="/.ci(/|$)"/>
     <property name="fileNamePattern" value="\.(bat|cmd|groovy|sh|md)$"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch"
@@ -26,7 +26,7 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="kebabCaseFileNamingInGithubWorkflowsFolder"/>
-    <property name="folderPattern" value="[\\/].github[\\/]workflows([\\/]|$)"/>
+    <property name="folderPattern" value="/.github/workflows(/|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions" value="sh, groovy, cmd, bat, yml"/>
@@ -35,7 +35,7 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="kebabCaseFileNamingInCiFolder"/>
-    <property name="folderPattern" value="[\\/].ci([\\/]|$)"/>
+    <property name="folderPattern" value="/.ci(/|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions" value="sh, cmd, bat, groovy"/>
@@ -44,13 +44,24 @@
   </module>
   <module name="RegexpOnFilename">
     <property name="id" value="kebabCaseFileNamingInConfigFolder"/>
-    <property name="folderPattern" value="[\\/]config([\\/]|$)"/>
+    <property name="folderPattern" value="/config(/|$)"/>
     <property name="fileNamePattern" value="^[a-z][a-z0-9]*(\-[a-z0-9\.]+)*\.[a-z]+$"/>
     <property name="match" value="false"/>
     <property name="fileExtensions"
               value="xml, xsd, config, words, files, properties, header, pl, yaml, txt, rb"/>
     <message key="regexp.filename.mismatch"
              value="Filename should be in kebab-case."/>
+  </module>
+  <module name="RegexpOnFilename">
+    <property name="id" value="siteXmlFileNaming"/>
+    <property name="folderPattern"
+              value="[\\/]src[\\/]site[\\/].*"/>
+    <property name="fileNamePattern"
+              value="^[a-z0-9]+(?:-[a-z0-9]+)*\.(?:xml|html)(?:\.vm)?$"/>
+    <property name="fileExtensions" value="xml, html"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch"
+           value="Site XML and HTML filenames should use lowercase kebab-case."/>
   </module>
 
   <module name="RegexpSingleline">
@@ -84,7 +95,7 @@
     <property name="maximum" value="9999"/>
     <property name="fileExtensions" value="java"/>
     <property name="message"
-             value="Three or more test cases are required for unit testing in Xpath "/>
+             value="At least three XPath regression tests are required, each covering a different AST path."/>
   </module>
 
   <!-- To restrict empty files -->
@@ -178,6 +189,14 @@
     <property name="minimum" value="1"/>
     <property name="maximum" value="1"/>
     <property name="message" value="Since macro usage is required in template files."/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="sitetocMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;sitetoc&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="TOC macro usage is required in template files."/>
   </module>
 
 </module>

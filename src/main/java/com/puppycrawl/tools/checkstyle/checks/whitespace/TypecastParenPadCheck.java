@@ -33,6 +33,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class TypecastParenPadCheck extends AbstractParenPadCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_FOLLOWED = "ws.followed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_PRECEDED = "ws.preceded";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_WS_NOT_PRECEDED = "ws.notPreceded";
+
+    /**
+     * Creates a new {@code TypecastParenPadCheck} instance.
+     */
+    public TypecastParenPadCheck() {
+        super(MSG_WS_FOLLOWED, MSG_WS_NOT_FOLLOWED, MSG_WS_PRECEDED, MSG_WS_NOT_PRECEDED);
+    }
+
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.RPAREN, TokenTypes.TYPECAST};

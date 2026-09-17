@@ -33,7 +33,7 @@ final class InputStaticVariableName1A
     public static final int MAX_ROWS = 2;
 
     /** Invalid format **/
-    private static int badStatic = 2; // violation, 'must match pattern'
+    private static int badStatic = 2; // violation 'must match pattern'
     /** Valid format **/
     private static int sNumCreated = 0;
 

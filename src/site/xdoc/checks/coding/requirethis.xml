@@ -8,6 +8,39 @@
   <body>
     <section name="RequireThis">
       <p>Since Checkstyle 3.4</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RequireThis_Description">Description</a></li>
+          <li><a href="#RequireThis_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RequireThis_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Demand fields only to have 'this.'</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Demand methods only to have 'this.'</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Demand methods and fields to have 'this.'</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#RequireThis_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">1) If you arrange 'this' in your code on your own, the check will not raise violation for variables which use 'this' to reference a class field, for</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">2) If method parameter is returned from the method, the check will not raise violation for returned variable/parameter, for</a></li>
+            </ul>
+          </li>
+          <li><a href="#RequireThis_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RequireThis_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RequireThis_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RequireThis_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RequireThis_Description">
         <div>
           Checks that references to instance variables and methods of the present
@@ -22,7 +55,7 @@
         <ol>
         <li>
           The same notation/habit for C++ and Java (C++ have global methods, so having
-          &quot;this.&quot; do make sense in it to distinguish call of method of class
+          <code>"this"</code>; do make sense in it to distinguish call of method of class
           instead of global).
         </li>
         <li>
@@ -54,21 +87,21 @@
             <tr>
               <td><a id="checkFields"/><a href="#checkFields">checkFields</a></td>
               <td>Control whether to check references to fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="checkMethods"/><a href="#checkMethods">checkMethods</a></td>
               <td>Control whether to check references to methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td><a id="validateOnlyOverlapping"/><a href="#validateOnlyOverlapping">validateOnlyOverlapping</a></td>
               <td>Control whether to check only overlapping by variables or arguments.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.17</td>
             </tr>
@@ -112,40 +145,6 @@ class Example1 {
           Note that method call <code>foo(5);</code> does not raise a violation
           because methods cannot be overlapped in java.
         </p>
-        <hr class="example-separator"/>
-        <p id="Example4-config">
-            To configure the check demand methods and fields to have 'this.'
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="RequireThis"&gt;
-      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  int field1,field2,field3;
-
-  Example4(int field1) {
-    this.field1 = field1;
-    field2 = 0; // violation, reference to instance variable "field2" requires "this"
-    foo(5); // violation, method call "foo(5)" requires "this"
-  }
-
-  void method2(int i) {
-    foo(i); // violation, 'Method call to 'foo' needs "this.".'
-  }
-
-  void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
-    field3 = field3;
-  }
-}
-</code></pre></div>
         <hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check demand fields only to have 'this.'
@@ -207,7 +206,7 @@ class Example3 {
   }
 
   void method2(int i) {
-    foo(i); // violation, 'Method call to 'foo' needs "this.".'
+    foo(i); // violation 'Method call to 'foo' needs "this.".'
   }
 
   void foo(int field3) {
@@ -217,15 +216,63 @@ class Example3 {
 }
 </code></pre></div>
         <hr class="example-separator"/>
+        <p id="Example4-config">
+            To configure the check demand methods and fields to have 'this.'
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  int field1,field2,field3;
+
+  Example4(int field1) {
+    this.field1 = field1;
+    field2 = 0; // violation, reference to instance variable "field2" requires "this"
+    foo(5); // violation, method call "foo(5)" requires "this"
+  }
+
+  void method2(int i) {
+    foo(i); // violation 'Method call to 'foo' needs "this.".'
+  }
+
+  void foo(int field3) {
+    // violation below, reference to instance variable "field3" requires "this"
+    field3 = field3;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="RequireThis_Use_Cases">
         <p>
           Please, be aware of the following logic, which is implemented in the check:
         </p>
-        <p id="Example5-code">
+        <p id="UseCase1-config">
           1) If you arrange 'this' in your code on your own, the check will not raise violation for
           variables which use 'this' to reference a class field, for example:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase1 {
   int field1,field2;
 
   public void foo(int field1) {
@@ -240,12 +287,24 @@ class Example5 {
 }
 </code></pre></div>
         <hr class="example-separator"/>
-        <p id="Example6-code">
+        <p id="UseCase2-config">
           2) If method parameter is returned from the method, the check will not raise violation for
              returned variable/parameter, for example:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   String prefix;
 
   String modifyPrefix(String prefix) {
@@ -254,7 +313,6 @@ class Example6 {
   }
 }
 </code></pre></div>
-        <hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="RequireThis_Example_of_Usage">

@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -28,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -69,6 +71,13 @@ public class LeftCurlyCheck
      * Specify the policy on placement of a left curly brace (<code>'{'</code>).
      */
     private LeftCurlyOption option = LeftCurlyOption.EOL;
+
+    /**
+     * Creates a new {@code LeftCurlyCheck} instance.
+     */
+    public LeftCurlyCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
@@ -170,12 +179,16 @@ public class LeftCurlyCheck
                 startToken = ast;
                 yield getBraceFromSwitchMember(ast);
             }
+            case TokenTypes.OBJBLOCK -> {
+                startToken = ast;
+                DetailAST braceToken = null;
+                if (ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+                    braceToken = ast;
+                }
+                yield braceToken;
+            }
             default -> {
-                // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
-                // TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO only.
-                // It has been done to improve coverage to 100%. I couldn't replace it with
-                // if-else-if block because code was ugly and didn't pass pmd check.
-
+                // only expected DEFAULT Token is LITERAL_SWITCH
                 startToken = ast;
                 yield ast.findFirstToken(TokenTypes.LCURLY);
             }
@@ -229,23 +242,25 @@ public class LeftCurlyCheck
      * Skip all {@code TokenTypes.ANNOTATION}s to the first non-annotation.
      *
      * @param ast {@code DetailAST}.
-     * @return {@code DetailAST}.
+     * @return {@code DetailAST} or null if there are no annotations.
      */
     private static DetailAST skipModifierAnnotations(DetailAST ast) {
         DetailAST resultNode = ast;
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
 
         if (modifiers != null) {
-            final DetailAST lastAnnotation = findLastAnnotation(modifiers);
-
-            if (lastAnnotation != null) {
-                if (lastAnnotation.getNextSibling() == null) {
-                    resultNode = modifiers.getNextSibling();
-                }
-                else {
-                    resultNode = lastAnnotation.getNextSibling();
-                }
-            }
+            resultNode = findLastAnnotation(modifiers)
+                    .map(annotation -> {
+                        final DetailAST nextNode;
+                        if (annotation.getNextSibling() == null) {
+                            nextNode = modifiers.getNextSibling();
+                        }
+                        else {
+                            nextNode = annotation.getNextSibling();
+                        }
+                        return nextNode;
+                    })
+                    .orElse(resultNode);
         }
         return resultNode;
     }
@@ -255,15 +270,15 @@ public class LeftCurlyCheck
      * under the given set of modifiers.
      *
      * @param modifiers {@code DetailAST}.
-     * @return {@code DetailAST} or null if there are no annotations.
+     * @return Optional containing the last annotation, if found.
      */
-    private static DetailAST findLastAnnotation(DetailAST modifiers) {
+    private static Optional<DetailAST> findLastAnnotation(DetailAST modifiers) {
         DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
         while (annotation != null && annotation.getNextSibling() != null
                && annotation.getNextSibling().getType() == TokenTypes.ANNOTATION) {
             annotation = annotation.getNextSibling();
         }
-        return annotation;
+        return Optional.ofNullable(annotation);
     }
 
     /**
@@ -286,7 +301,7 @@ public class LeftCurlyCheck
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(brace, braceLine);
+                validateEol(startToken, brace);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
@@ -297,14 +312,14 @@ public class LeftCurlyCheck
     /**
      * Validate EOL case.
      *
+     * @param startToken token for start of expression.
      * @param brace brace AST
-     * @param braceLine line content
      */
-    private void validateEol(DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+    private void validateEol(DetailAST startToken, DetailAST brace) {
+        if (!isOnLineWithBlockPreviousToken(brace)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
-        if (!hasLineBreakAfter(brace)) {
+        if (!hasLineBreakAfter(startToken, brace)) {
             log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
@@ -334,24 +349,50 @@ public class LeftCurlyCheck
     /**
      * Checks if left curly has line break after.
      *
-     * @param leftCurly
+     * @param startToken token for start of expression.
+     * @param curlyBrace
      *        Left curly token.
      * @return
      *        True, left curly has line break after.
      */
-    private boolean hasLineBreakAfter(DetailAST leftCurly) {
-        DetailAST nextToken = null;
-        if (leftCurly.getType() == TokenTypes.SLIST) {
-            nextToken = leftCurly.getFirstChild();
+    private boolean hasLineBreakAfter(DetailAST startToken, DetailAST curlyBrace) {
+        DetailAST nextToken = curlyBrace.getNextSibling();
+        if (curlyBrace.getType() == TokenTypes.OBJBLOCK
+                && (!ignoreEnums || startToken.getType() != TokenTypes.ENUM_DEF)) {
+            nextToken = NullUtil.notNull(curlyBrace.findFirstToken(TokenTypes.LCURLY))
+                    .getNextSibling();
+
         }
-        else {
-            if (!ignoreEnums
-                    && leftCurly.getParent().getParent().getType() == TokenTypes.ENUM_DEF) {
-                nextToken = leftCurly.getNextSibling();
-            }
+        else if (curlyBrace.getType() == TokenTypes.SLIST) {
+            nextToken = curlyBrace.getFirstChild();
+        }
+        if (nextToken != null && nextToken.getType() == TokenTypes.INSTANCE_INIT
+                && startToken.getType() == TokenTypes.OBJBLOCK) {
+            nextToken = null;
         }
         return nextToken == null
                 || nextToken.getType() == TokenTypes.RCURLY
-                || !TokenUtil.areOnSameLine(leftCurly, nextToken);
+                || !TokenUtil.areOnSameLine(curlyBrace, nextToken);
     }
+
+    /**
+     * Checks if the given brace is with a token of a block.
+     *
+     * @param brace the brace token to check
+     * @return true if the brace is on the same line as its previous token
+     */
+    private static boolean isOnLineWithBlockPreviousToken(DetailAST brace) {
+        DetailAST endToken = brace.getPreviousSibling();
+        if (brace.getParent().getType() == TokenTypes.SLIST) {
+            endToken = brace.getParent().getPreviousSibling();
+        }
+        while (endToken != null && endToken.hasChildren()) {
+            endToken = endToken.getLastChild();
+        }
+        if (endToken == null || brace.getParent().getType() == TokenTypes.LAMBDA) {
+            endToken = brace.getParent();
+        }
+        return TokenUtil.areOnSameLine(brace, endToken);
+    }
+
 }

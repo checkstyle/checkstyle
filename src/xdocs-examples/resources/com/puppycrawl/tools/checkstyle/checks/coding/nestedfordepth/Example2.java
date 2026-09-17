@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedfordepth;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   public void myTest() {
@@ -36,4 +36,4 @@ public class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

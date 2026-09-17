@@ -8,12 +8,35 @@
   <body>
     <section name="ArrayTrailingComma">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ArrayTrailingComma_Description">Description</a></li>
+          <li><a href="#ArrayTrailingComma_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ArrayTrailingComma_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Check to always validate trailing comma</a></li>
+            </ul>
+          </li>
+          <li><a href="#ArrayTrailingComma_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ArrayTrailingComma_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ArrayTrailingComma_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ArrayTrailingComma_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ArrayTrailingComma_Description">
         <div>
           Checks that array initialization contains a trailing comma.
         </div>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 int[] a = new int[]
 {
   1,
@@ -26,7 +49,7 @@ int[] a = new int[]
           By default, the check demands a comma at the end if neither left nor right curly braces
           are on the same line as the last element of the array.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 return new int[] { 0 };
 return new int[] { 0
   };
@@ -39,7 +62,7 @@ return new int[] {
           order of the elements or add new elements on the end. Main benefit of a trailing
           comma is that when you add new entry to an array, no surrounding lines are changed.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 {
   100000000000000000000,
   200000000000000000000, // OK
@@ -57,7 +80,7 @@ return new int[] {
           (as the check does not demand a certain location of curly braces the following
           two cases will not produce a violation):
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 {100000000000000000000,
  200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway
 
@@ -69,7 +92,7 @@ return new int[] {
         <p>
           If opening brace is on the same line as trailing comma there's also (more arguable) problem:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
 }
 
@@ -92,7 +115,7 @@ return new int[] {
             <tr>
               <td><a id="alwaysDemandTrailingComma"/><a href="#alwaysDemandTrailingComma">alwaysDemandTrailingComma</a></td>
               <td>Control whether to always check for a trailing comma, even when an array is inline.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.33</td>
             </tr>

@@ -11,7 +11,7 @@ public class InputUnusedTryResourceShouldBeUnnamedInsideAnonClass {
       Runnable runnable = new Runnable() {
         @Override
         public void run() {
-          // violation below, 'Unused try resource 'a' should be unnamed'
+          // violation below 'Unused try resource 'a' should be unnamed'
           try (AutoCloseable a = lock()) {}
           catch (Exception e) {
             System.out.println(e.getMessage());
@@ -21,12 +21,12 @@ public class InputUnusedTryResourceShouldBeUnnamedInsideAnonClass {
     }
 
     void testInsideAnonClass2() {
-      // violation below, 'Unused try resource 'a' should be unnamed'
+      // violation below 'Unused try resource 'a' should be unnamed'
       try (AutoCloseable a = lock()) {
         Runnable runnable = new Runnable() {
           @Override
           public void run() {
-            // violation below, 'Unused try resource 'b' should be unnamed'
+            // violation below 'Unused try resource 'b' should be unnamed'
             try (AutoCloseable b = lock()) {}
             catch (Exception e) {
                System.out.println(e.getMessage());

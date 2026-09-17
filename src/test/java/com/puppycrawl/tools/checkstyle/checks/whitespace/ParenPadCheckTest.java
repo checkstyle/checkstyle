@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_NOT_FOLLOWED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_NOT_PRECEDED;
+import static com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck.MSG_WS_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import org.junit.jupiter.api.Test;
@@ -450,7 +450,7 @@ public class ParenPadCheckTest
     public void testTryWithResourcesAndSuppression() throws Exception {
         final String[] expectedFiltered = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expectedUnfiltered = {
-            "23:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "27:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
         };
         verifyFilterWithInlineConfigParser(
                 getPath("InputParenPadTryWithResourcesAndSuppression.java"),

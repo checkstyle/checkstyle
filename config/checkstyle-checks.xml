@@ -46,6 +46,15 @@
     <property name="files"
               value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/].*(?&lt;!Support)\.java"/>
   </module>
+  <!-- WriteTag @since is required only on *Check.java types -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="files" value=".*(?&lt;!Check)\.java$"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="WriteTag"/>
+    <property name="files" value="Abstract\w*Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
+  </module>
   <module name="SuppressWarningsFilter"/>
   <module name="SuppressWithPlainTextCommentFilter">
     <!--
@@ -278,8 +287,16 @@
       <property name="tokens" value="ANNOTATION_DEF"/>
       <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
       <property name="tokens" value="PACKAGE_DEF"/>
+      <property name="tokens" value="ENUM_DEF"/>
       <property name="tokens" value="ENUM_CONSTANT_DEF"/>
       <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <property name="tokens" value="CTOR_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
+      <property name="tokens" value="MODULE_DEF"/>
       <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
     </module>
     <module name="AnnotationOnSameLine">
@@ -307,6 +324,7 @@
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
     <module name="MissingOverrideOnRecordAccessor"/>
+    <module name="OpenjdkAnnotationLocation"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
       <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource|InvalidInlineTag|UnrecognisedJavadocTag|InlineMeSuggester|OverlyComplexBooleanExpression|ReferenceEquality).)*$"/>
@@ -420,6 +438,7 @@
     <module name="EqualsAvoidNull"/>
     <module name="EqualsHashCode"/>
     <module name="ExplicitInitialization"/>
+    <module name="ExpressionOverBlockLambda"/>
     <module name="FallThrough"/>
     <module name="FinalLocalVariable"/>
     <module name="HiddenField">
@@ -538,19 +557,6 @@
                      '@noinspectionreason' tag, explaining why we suppressed inspection."/>
     </module>
     <module name="MatchXpath">
-      <property name="id" value="settersHaveSinceTag"/>
-      <property name="query"
-                value="//CLASS_DEF[./IDENT[ends-with(@text, 'Check') or ends-with(@text, 'Filter')]
-                and not (./MODIFIERS/ABSTRACT)]
-                /OBJBLOCK/METHOD_DEF[./IDENT[starts-with(@text, 'set')]
-                and ./MODIFIERS/LITERAL_PUBLIC
-                and ./TYPE/LITERAL_VOID
-                and ./MODIFIERS/BLOCK_COMMENT_BEGIN
-                /COMMENT_CONTENT[not(contains(@text, '@since'))]]"/>
-      <message key="matchxpath.match"
-               value="All property setters of a module should contain a '@since' tag."/>
-    </module>
-    <module name="MatchXpath">
       <property name="id" value="exampleTestsExtendAbstractExamplesModuleTestSupport"/>
       <property name="query"
                 value="//CLASS_DEF[./IDENT[ends-with(@text, 'ExamplesTest')]
@@ -559,13 +565,7 @@
       <message key="matchxpath.match"
                value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
     </module>
-    <module name="MissingCtor">
-      <!--
-        we will not use that fanatic validation, extra code is not good
-        But this Check will exist as it was created by community demand.
-      -->
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="MissingCtor"/>
     <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
@@ -616,13 +616,15 @@
                        BSR_ASSIGN, BXOR_ASSIGN, DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN,
                        SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND,
                        LOR, LITERAL_INSTANCEOF, GT, LT, GE, LE, EQUAL, NOT_EQUAL, UNARY_MINUS,
-                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, BOR, BXOR, BAND,
-                       QUESTION"/>
+                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, DOT, INDEX_OP,
+                       LITERAL_NEW, BOR, BXOR, BAND, QUESTION, TYPECAST"/>
     </module>
     <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
+    <module name="UnnecessaryTypeArgumentsWithRecordPattern"/>
+    <module name="UnusedPrivateField"/>
     <module name="UnusedCatchParameterShouldBeUnnamed">
       <!--
         Unnamed catch parameters will not compile on java versions between 9 and 21. As
@@ -691,6 +693,11 @@
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="WriteTag"/>
     </module>
+    <!-- Nested types inside *Check.java are not public Check APIs -->
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="WriteTag"/>
+      <property name="query" value="//CLASS_DEF[parent::OBJBLOCK]"/>
+    </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="files" value=".*[\\/]src[\\/](test|it|xdocs-examples)[\\/]"/>
       <property name="checks" value="MethodCount"/>
@@ -708,6 +715,7 @@
     </module>
 
     <!-- Imports -->
+    <module name="AvoidModuleImport"/>
     <module name="AvoidStarImport"/>
     <module name="AvoidStaticImport"/>
     <module name="CustomImportOrder">
@@ -737,11 +745,19 @@
       <property name="option" value="top"/>
       <property name="sortStaticImportsAlphabetically" value="true"/>
     </module>
+    <module name="ModuleImportOrder"/>
     <module name="RedundantImport"/>
+    <module name="UnnecessaryFullyQualifiedType"/>
     <module name="UnusedImports"/>
 
     <!-- Javadoc Comments -->
     <module name="AtclauseOrder"/>
+    <module name="IllegalBlockTag">
+      <property name="tag" value="@author"/>
+    </module>
+    <module name="InappropriateJavadocBlockTagsOnField"/>
+    <module name="InappropriateJavadocBlockTagsOnPackage"/>
+    <module name="InappropriateJavadocBlockTagsOnType"/>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation">
       <!-- default tags -->
@@ -752,21 +768,27 @@
       <property name="tags" value="noinspection"/>
     </module>
     <module name="JavadocContentLocation"/>
+    <module name="JavadocEndCommentDelimiter"/>
     <module name="JavadocMethod">
       <property name="validateThrows" value="true"/>
     </module>
-    <module name="JavadocMissingLeadingAsterisk"/>
+    <module name="JavadocLinkWellKnownApi"/>
     <module name="JavadocLeadingAsteriskAlign"/>
+    <module name="JavadocLinkFirstOccurrence"/>
+    <module name="JavadocMissingLeadingAsterisk"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+    <module name="JavadocNoErrorInThrowsTag"/>
     <module name="JavadocParagraph"/>
-    <module name="JavadocStyle">
-      <property name="scope" value="public"/>
-    </module>
+    <module name="JavadocParamOrder"/>
+    <module name="JavadocRegexp"/>
+    <module name="JavadocSeeTagOrder"/>
     <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocThrowsOrder"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
     </module>
+    <module name="PreferLiteralJavadocInlineTag"/>
     <module name="JavadocVariable"/>
     <module name="MissingJavadocMethod">
       <property name="scope" value="private"/>
@@ -776,8 +798,8 @@
       <property name="scope" value="private"/>
     </module>
     <module name="NonEmptyAtclauseDescription"/>
+    <module name="PreferCodeOrSnippetJavadocInlineTag"/>
     <module name="SingleLineJavadoc"/>
-    <module name="WriteTag"/>
     <module name="SummaryJavadoc"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
 
@@ -847,6 +869,15 @@
       <property name="caseIndent" value="4"/>
       <property name="throwsIndent" value="8"/>
     </module>
+    <module name="MultilineCommentLeadingAsteriskPresence">
+      <!--
+        check is Google style specific created to cover
+        https://google.github.io/styleguide/javaguide.html#s4.8.6-comments
+        For multi-line /* ... */ comments, subsequent lines must start with *
+       -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="OpenjdkMethodThrowsAlignment"/>
     <module name="OuterTypeFilename"/>
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />
@@ -872,6 +903,10 @@
     <module name="RedundantModifier">
       <property name="jdkVersion" value="${checkstyle.java.version}"/>
     </module>
+    <module name="AnnotatedDeclarationVisibility"/>
+
+    <!-- Modules -->
+    <module name="ModuleDirectiveOrder"/>
 
     <!-- Naming Conventions -->
     <module name="AbbreviationAsWordInName">
@@ -896,6 +931,9 @@
       <property name="format" value="^(?:id|[a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="MethodName"/>
+    <module name="GoogleMethodName">
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="MethodTypeParameterName"/>
     <module name="PackageName"/>
     <module name="ParameterName">
@@ -943,6 +981,7 @@
     <module name="RecordComponentNumber"/>
 
     <!-- Whitespace -->
+    <module name="ArrayBracketNoWhitespace"/>
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyForIteratorPad"/>
     <module name="EmptyLineSeparator">
@@ -1034,15 +1073,22 @@
     <module name="SingleSpaceSeparator">
       <property name="validateComments" value="false"/>
     </module>
+    <module name="TypeBodyPadding"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter">
       <property name="tokens"
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
                     LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,
                     LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,
-                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN, ANNOTATIONS"/>
+                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN, ANNOTATIONS, SINGLE_LINE_COMMENT"/>
     </module>
     <module name="WhitespaceAround"/>
+    <module name="WhitespaceBeforeEmptyBody"/>
+    <module name="WriteTag">
+      <property name="tag" value="@since"/>
+      <property name="tagFormat" value="\S"/>
+      <property name="tokens" value="CLASS_DEF"/>
+    </module>
 
   </module>
 

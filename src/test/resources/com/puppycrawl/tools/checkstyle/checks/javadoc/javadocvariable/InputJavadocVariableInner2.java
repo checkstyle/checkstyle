@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = public
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -19,11 +19,11 @@ class InputJavadocVariableInner2
         int fData;
     }
 
-    // Ignore - 1 violations
+
     interface InnerInterface2
     {
 
-        String data = "zxzc"; // violation, 'Missing a Javadoc comment'
+        String data = "zxzc"; // violation 'Missing a Javadoc comment'
 
         // Ignore
         class InnerInterfaceInnerClass

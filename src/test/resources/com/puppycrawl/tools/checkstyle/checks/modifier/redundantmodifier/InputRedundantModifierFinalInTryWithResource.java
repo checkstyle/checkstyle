@@ -5,7 +5,6 @@ tokens = (default)METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, INTERFACE_DEF,
          CTOR_DEF, CLASS_DEF, ENUM_DEF, RESOURCE, ANNOTATION_DEF, RECORD_DEF, \
          PATTERN_VARIABLE_DEF, LITERAL_CATCH, LAMBDA
 
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
@@ -37,13 +36,16 @@ public class InputRedundantModifierFinalInTryWithResource {
         catch (IOException e) {
         }
 
-        try (final BufferedReader br =  new BufferedReader(streamm)) { // violation
+        // violation below 'Redundant 'final' modifier.'
+        try (final BufferedReader br =  new BufferedReader(streamm)) {
         }
         catch (IOException e) {
         }
 
-        try (final BufferedReader br =  new BufferedReader(streamm); // violation
-                final BufferedReader br2 = new BufferedReader(streamm)) { // violation
+        // violation below 'Redundant 'final' modifier.'
+        try (final BufferedReader br =  new BufferedReader(streamm);
+                // violation below 'Redundant 'final' modifier.'
+                final BufferedReader br2 = new BufferedReader(streamm)) {
         }
         catch (IOException e) {
         }

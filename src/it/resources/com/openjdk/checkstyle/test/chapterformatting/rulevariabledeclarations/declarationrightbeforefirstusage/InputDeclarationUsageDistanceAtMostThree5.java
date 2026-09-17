@@ -1,8 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+// violation first line 'Header mismatch'
 
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree5 {
@@ -19,7 +17,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
                         // DECLARATION OF VARIABLE 'logLevel', SHOULD BE HERE (distance = 2)
                     }
                 });
-
         return result;
     }
 
@@ -51,8 +48,7 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
         final long intervalMs = 30 * 60000L;
         Object authCheckUrl = null;
         Object authInfo = null;
-        task =
-                new AuthUpdateTask(
+        task = new AuthUpdateTask(
                         authCheckUrl,
                         authInfo,
                         new IauthListener() {
@@ -61,7 +57,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
                                 fireAuthTokenChanged(cookie, token);
                             }
                         });
-
         Timer timer = new Timer("Auth Guard", true);
         timer.schedule(task, intervalMs / 2, intervalMs); // DECLARATION OF VARIABLE 'intervalMs'
         // SHOULD BE HERE (distance = 2)
@@ -73,11 +68,6 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
         for (int i = 0; i < 10; i++, filterCount++) {
             int abc = 0;
             System.identityHashCode(abc);
-
-            for (int j = 0; j < 10; j++) {
-                abc = filterCount;
-                System.identityHashCode(abc);
-            }
         }
     }
 
@@ -86,8 +76,10 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     void fireAuthTokenChanged(String s, String s1) {}
 
     class JmenuItem {
-        public JmenuItem(String string) {}
+        JmenuItem(String string) {}
+
         public void addActionListener(ActionListener actionListener) {}
+
         public void setMnemonic(char charAt) {}
     }
 
@@ -98,15 +90,19 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     class ActionEvent {}
 
     static class Color {
-        public Color(int red, int green, int blue, int alpha) {}
+        Color(int red, int green, int blue, int alpha) {}
+
         public double getRed() { return 0; }
+
         public int getAlpha() { return 0; }
+
         public double getBlue() { return 0; }
+
         public double getGreen() { return 0; }
     }
 
     class AuthUpdateTask {
-        public AuthUpdateTask(Object authCheckUrl, Object authInfo, IauthListener authListener) {}
+        AuthUpdateTask(Object authCheckUrl, Object authInfo, IauthListener authListener) {}
     }
 
     interface IauthListener {
@@ -114,7 +110,8 @@ public class InputDeclarationUsageDistanceAtMostThree5 {
     }
 
     class Timer {
-        public Timer(String string, boolean b) {}
+        Timer(String string, boolean b) {}
+
         public void schedule(AuthUpdateTask authUpdateTask, long l, long intervalMs) {}
     }
 }

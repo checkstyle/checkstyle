@@ -18,6 +18,9 @@ nb-configuration.xml
 target
 bin
 
+# JaCoCo offline instrumentation can write this to the repo root instead of target/
+/jacoco.exec
+
 # Maven Wrapper (modern setup — do not include jar/downloader)
 .mvn/wrapper/maven-wrapper.jar
 .mvn/wrapper/MavenWrapperDownloader.java

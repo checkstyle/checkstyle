@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   public void test() {
     boolean f = false;
@@ -37,9 +37,9 @@ public class Example2 {
   private void bar() {
   }
   public void testSingleLine()
-  { bar(); } // violation, 'should be alone on a line.'
+  { bar(); } // violation 'should be alone on a line.'
   public void violate()
-  { Object b = "b"; } // violation, 'should be alone on a line.'
+  { Object b = "b"; } // violation 'should be alone on a line.'
   public void method0() {
     int mode = 0;
     int x;
@@ -54,4 +54,4 @@ public class Example2 {
       default: x = 0; }
   }
 }
-// xdoc section -- end
+// xdoc section - end

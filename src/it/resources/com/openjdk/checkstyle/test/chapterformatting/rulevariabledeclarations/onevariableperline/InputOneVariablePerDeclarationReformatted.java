@@ -1,16 +1,12 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.onevariableperline;
 
+// violation first line 'Header mismatch'
+
 /** Some javadoc. */
 public class InputOneVariablePerDeclarationReformatted {
     int mnp, efg; // violation 'Each variable declaration must be in its own statement.'
     int i1;
     int j1;
-
-    void method1() {
-        String str, str1; // violation 'Each variable declaration must be in its own statement.'
-        java.lang.Object obj;
-        Object obj1;
-    }
 
     // second definition is wrapped
     // line of VARIABLE_DEF is not the same as first line of the definition
@@ -19,6 +15,12 @@ public class InputOneVariablePerDeclarationReformatted {
     // both definitions are wrapped
     java.lang.String string1;
     java.lang.String[] strings1;
+
+    void method1() {
+        String str, str1; // violation 'Each variable declaration must be in its own statement.'
+        java.lang.Object obj;
+        Object obj1;
+    }
 
     void method2() {
         for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
@@ -32,13 +34,6 @@ public class InputOneVariablePerDeclarationReformatted {
         int i1;
         int j1;
 
-        void method1() {
-            String str, str1;
-            // violation above 'Each variable declaration must be in its own statement.'
-            java.lang.Object obj;
-            Object obj1;
-        }
-
         // second definition is wrapped
         // line of VARIABLE_DEF is not the same as first line of the definition
         java.lang.String string;
@@ -47,26 +42,11 @@ public class InputOneVariablePerDeclarationReformatted {
         java.lang.String string1;
         java.lang.String[] strings1;
 
-        void method2() {
-            for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
-            }
-
-            for (int i = 0; i < 4; i++) {}
-        }
-
-        Inner anon =
-                new Inner() {
+        Inner anon = new Inner() {
                     int abc, pqr;
                     // violation above 'Each variable declaration must be in its own statement.'
                     int i1;
                     int j1;
-
-                    void method1() {
-                        String str, str1;
-                        // violation above 'Each variable declaration must be in its own statement.'
-                        java.lang.Object obj;
-                        Object obj1;
-                    }
 
                     // second definition is wrapped
                     // line of VARIABLE_DEF is not the same as first line of the definition
@@ -76,13 +56,32 @@ public class InputOneVariablePerDeclarationReformatted {
                     java.lang.String string1;
                     java.lang.String[] strings1;
 
+                    void method1() {
+                        String str, str1;
+                        // violation above 'Each variable declaration must be in its own statement.'
+                        java.lang.Object obj;
+                        Object obj1;
+                    }
+
                     void method2() {
                         for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
                         }
-
                         for (int i = 0; i < 4; i++) {}
                     }
                 };
+
+        void method2() {
+            for (int i = 0, j = 0; i < 10; i++, j--) { // ok, in for loop initializer
+            }
+            for (int i = 0; i < 4; i++) {}
+        }
+
+        void method1() {
+            String str, str1;
+            // violation above 'Each variable declaration must be in its own statement.'
+            java.lang.Object obj;
+            Object obj1;
+        }
     }
 
     class Suppress {

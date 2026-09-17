@@ -8,6 +8,27 @@
   <body>
     <section name="NoClone">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NoClone_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NoClone_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#NoClone_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NoClone_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NoClone_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NoClone_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NoClone_Description">
         <div>
           Checks that the clone method is not overridden from the
@@ -87,7 +108,7 @@
           limitation of a copy constructor (or static factory). Assume
           Square is a subclass for Shape.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 Shape s1 = new Square();
 System.out.println(s1 instanceof Square); //true
         </code></pre></div>
@@ -97,7 +118,7 @@ System.out.println(s1 instanceof Square); //true
           that's the beauty of polymorphism but the code wants to copy
           the Square which is declared as a Shape, its super type...
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 Shape s2 = new Shape(s1); //using the copy constructor
 System.out.println(s2 instanceof Square); //false
         </code></pre></div>
@@ -106,7 +127,7 @@ System.out.println(s2 instanceof Square); //false
           The working solution (without knowing about all subclasses and doing many
           casts) is to do the following (assuming correct clone implementation).
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 Shape s2 = s1.clone();
 System.out.println(s2 instanceof Square); //true
         </code></pre></div>
@@ -135,7 +156,7 @@ System.out.println(s2 instanceof Square); //true
         <p id="Example1-code">Example: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  public Example1 clone() {return null;} // violation, overrides the clone method
+  public Example1 clone() {return null;} // violation 'Avoid using clone method.'
   public static Object clone(Object o) {return null;}
   public static Example1 clone(Example1 same) {return null;}
 }

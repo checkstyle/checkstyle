@@ -140,11 +140,25 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter key of Properties.setProperty.</message>
-    <lineContent>returnValue.setProperty(p.getKey(), p.getValue());</lineContent>
+    <lineContent>returnValue.setProperty(property.getKey(), property.getValue());</lineContent>
     <details>
       found   : @UnknownPropertyKey String
       required: @PropertyKey String
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
+    <specifier>flowexpr.parse.index.too.big</specifier>
+    <message>the method has no parameter #1 (total 0 parameters)</message>
+    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

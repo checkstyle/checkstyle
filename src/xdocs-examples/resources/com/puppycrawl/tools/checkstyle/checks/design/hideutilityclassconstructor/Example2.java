@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.hideutilityclassconstructor;
 
-// xdoc section -- start
+// xdoc section - start
 // ok below, skipped by annotation
 @java.lang.Deprecated
 class Example2 {
@@ -39,7 +39,7 @@ class Bar2 {
   }
 }
 
-@Deprecated // violation, 'should not have a public or default constructor'
+@Deprecated // violation 'should not have a public or default constructor'
 class UtilityClass2 {
 
   static float f;
@@ -51,4 +51,4 @@ class Application2 {
   public static void main(String[] args) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

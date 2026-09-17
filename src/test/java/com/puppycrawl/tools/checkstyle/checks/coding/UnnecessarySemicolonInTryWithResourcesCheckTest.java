@@ -78,4 +78,5 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             .that(check.getRequiredTokens())
             .isEqualTo(expected);
     }
+
 }

@@ -27,17 +27,12 @@ function getMavenProperty {
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec
 }
 
-function getCheckstylePomVersion {
+function getPomVersion {
   getMavenProperty project.version
 }
 
-function getCheckstylePomVersionWithoutSnapshot {
-  getCheckstylePomVersion | sed "s/-SNAPSHOT//"
-}
-
-function getCheckstylePomVersionWithoutSnapshotWithXmlstarlet {
-  xmlstarlet sel -N pom=http://maven.apache.org/POM/4.0.0 \
-    -t -m pom:project -v pom:version pom.xml | sed "s/-SNAPSHOT//"
+function getPomVersionWithoutSnapshot {
+  getPomVersion | sed "s/-SNAPSHOT//"
 }
 
 function checkout_from {

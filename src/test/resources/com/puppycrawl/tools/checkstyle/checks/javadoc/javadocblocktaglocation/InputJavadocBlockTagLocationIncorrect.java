@@ -11,13 +11,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
 public class InputJavadocBlockTagLocationIncorrect {
 
-    // violation 8 lines below ''@author' should be placed at the beginning'
-    // violation 8 lines below ''@since' should be placed at the beginning'
-    // violation 8 lines below ''@param' should be placed at the beginning'
-    // violation 9 lines below ''@throws' should be placed at the beginning'
-    // violation 9 lines below ''@see' should be placed at the beginning'
-    // violation 9 lines below ''@return' should be placed at the beginning'
-    // violation 8 lines below ''@throws' should be placed at the beginning'
+    // violation 9 lines below 'The Javadoc block tag '@author' should be placed'
+    // violation 9 lines below 'The Javadoc block tag '@since' should be placed'
+    // violation 9 lines below 'The Javadoc block tag '@param' should be placed'
+    // violation 10 lines below 'The Javadoc block tag '@throws' should be placed'
+    // violation 10 lines below 'The Javadoc block tag '@see' should be placed'
+    // 2 violations 10 lines below:
+    //     'The Javadoc block tag '@return' should be placed'
+    //     'The Javadoc block tag '@throws' should be placed'
     /**
      * Summary. @author me
      * <p>Text</p> @since 1.0

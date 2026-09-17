@@ -71,6 +71,13 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
     private Pattern commentFormat = Pattern.compile(".*");
 
     /**
+     * Creates a new {@code EmptyCatchBlockCheck} instance.
+     */
+    public EmptyCatchBlockCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify the RegExp for the name of the variable associated with exception.
      * If check meets variable name matching specified value - empty block is suppressed.
      *

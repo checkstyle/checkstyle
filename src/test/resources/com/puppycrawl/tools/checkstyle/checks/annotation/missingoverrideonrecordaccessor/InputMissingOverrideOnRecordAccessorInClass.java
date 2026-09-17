@@ -12,7 +12,7 @@ public class InputMissingOverrideOnRecordAccessorInClass {
 
     public record InnerRecord(String value) {
         public String value() {
-// violation above, 'Record component accessor method must include @java.lang.Override annotation.'
+// violation above 'Record component accessor method must include @java.lang.Override annotation.'
             return value.trim();
         }
     }

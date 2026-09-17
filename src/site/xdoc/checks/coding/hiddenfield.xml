@@ -8,6 +8,34 @@
   <body>
     <section name="HiddenField">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#HiddenField_Description">Description</a></li>
+          <li><a href="#HiddenField_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#HiddenField_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it checks local variables but not parameters</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it ignores the variables and parameters named "test"</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it ignores constructor parameters</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">So that it ignores the parameter of setter methods</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">So that it ignores the parameter of setter methods recognizing setter as returning either <code>void</code> or a class in which it is declared</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">So that it ignores parameters of abstract methods</a></li>
+            </ul>
+          </li>
+          <li><a href="#HiddenField_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#HiddenField_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#HiddenField_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#HiddenField_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="HiddenField_Description">
         <div>
           Checks that a local variable or a parameter does not shadow
@@ -22,7 +50,7 @@
         <p>
           A method is recognized as a setter if it is in the following form
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-text">
+        <div class="wrapper"><pre class="prettyprint"><code>
 ${returnType} set${Name}(${anyType} ${name}) { ... }
         </code></pre></div>
 
@@ -32,8 +60,8 @@ ${returnType} set${Name}(${anyType} ${name}) { ... }
           capitalized form that appears in the method name. By default, it is expected
           that setter returns void, i.e. ${returnType} is 'void'. For example
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-void setTime(long time) { ... }
+        <div class="wrapper"><pre class="prettyprint"><code>
+void setTime(long time) {  }
         </code></pre></div>
 
         <p>
@@ -42,9 +70,9 @@ void setTime(long time) { ... }
           definition of a setter is expanded, so that setter return type can also be
           a class in which setter is declared. For example
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 class PageBuilder {
-  PageBuilder setName(String name) { ... }
+  PageBuilder setName(String name) {  }
 }
         </code></pre></div>
 
@@ -68,35 +96,35 @@ class PageBuilder {
             <tr>
               <td><a id="ignoreAbstractMethods"/><a href="#ignoreAbstractMethods">ignoreAbstractMethods</a></td>
               <td>Control whether to ignore parameters of abstract methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td><a id="ignoreConstructorParameter"/><a href="#ignoreConstructorParameter">ignoreConstructorParameter</a></td>
               <td>Control whether to ignore constructor parameters.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="ignoreFormat"/><a href="#ignoreFormat">ignoreFormat</a></td>
               <td>Define the RegExp for names of variables and parameters to ignore.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="ignoreSetter"/><a href="#ignoreSetter">ignoreSetter</a></td>
               <td>Allow to ignore the parameter of a property setter method.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="setterCanReturnItsClass"/><a href="#setterCanReturnItsClass">setterCanReturnItsClass</a></td>
               <td>Allow to expand the definition of a setter method to include methods that return the class' instance.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.3</td>
             </tr>
@@ -153,19 +181,19 @@ class Example1 {
   private String field;
   private String testField;
 
-  Example1(String testField) { // violation, 'field' hides a field
+  Example1(String testField) { // violation 'field' hides a field
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
-  void setTestField(String testField) { // violation, ''testField' hides a field'
+  void setTestField(String testField) { // violation ''testField' hides a field'
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -192,7 +220,7 @@ class Example2 {
   Example2(String testField) { // ok, because PARAMETER_DEF not configured
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because PARAMETER_DEF not configured
     this.field = field;
@@ -228,16 +256,16 @@ class Example3 {
   Example3(String testField) { // ok, because it match ignoreFormat
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because it match ignoreFormat
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -263,16 +291,16 @@ class Example4 {
   Example4(String testField) { // ok, because ignoreConstructorParameter is true
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field' field
+    String field = param; // violation ''field' hides a field' field
   }
-  void setTestField(String testField) { // violation, ''testField' hides a field'
+  void setTestField(String testField) { // violation ''testField' hides a field'
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -296,10 +324,10 @@ class Example5 {
   private String field;
   private String testField;
 
-  Example5(String testField) { // violation, ''testField' hides a field'
+  Example5(String testField) { // violation ''testField' hides a field'
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
@@ -308,7 +336,7 @@ class Example5 {
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -334,10 +362,10 @@ class Example6 {
   private String field;
   private String testField;
 
-  Example6(String testField) { // violation, ''testField' hides a field'
+  Example6(String testField) { // violation ''testField' hides a field'
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
   void setTestField(String testField) { // ok, because ignoreSetter is true
     this.field = field;
@@ -346,7 +374,7 @@ class Example6 {
     this.field = field;
   }
   abstract class Inner {
-    abstract int method(String field); // violation, ''field' hides a field'
+    abstract int method(String field); // violation ''field' hides a field'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -369,15 +397,15 @@ class Example7 {
   private String field;
   private String testField;
 
-  Example7(String testField) { // violation, ''field' hides a field
+  Example7(String testField) { // violation ''field' hides a field
   }
   void method(String param) {
-    String field = param; // violation, ''field' hides a field'
+    String field = param; // violation ''field' hides a field'
   }
-  void setTestField(String testField) { // violation, 'testField' hides a field'
+  void setTestField(String testField) { // violation 'testField' hides a field'
     this.field = field;
   }
-  void setField(String field) { // violation, ''field' hides a field'
+  void setField(String field) { // violation ''field' hides a field'
     this.field = field;
   }
   abstract class Inner {
@@ -392,6 +420,10 @@ class Example7 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+HiddenField">

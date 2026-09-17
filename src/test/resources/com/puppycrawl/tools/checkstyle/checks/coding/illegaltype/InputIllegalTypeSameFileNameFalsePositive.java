@@ -6,9 +6,9 @@ legalAbstractClassNames = (default)
 ignoredMethodNames = (default)getEnvironment, getInitialContext
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
 memberModifiers = (default)
-tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
-         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, IMPORT, INTERFACE_DEF, METHOD_CALL, \
+         METHOD_DEF, METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -25,7 +25,7 @@ public class InputIllegalTypeSameFileNameFalsePositive
 {
     InputIllegalTypeGregCal cal = AnObject.getInstance();
     Date date = null;
-    SubCal subCalendar = null; // violation, 'Usage of type SubCal is not allowed'.
+    SubCal subCalendar = null; // violation "Usage of type 'SubCal' is not allowed."
 
     private static class AnObject extends InputIllegalTypeGregCal {
 
@@ -41,7 +41,7 @@ public class InputIllegalTypeSameFileNameFalsePositive
         java.io.File file = null;
     }
     java.util.List<Integer> list = new ArrayList<>();
-    // violation above, 'Usage of type 'java.util.List' is not allowed'
+    // violation above 'Usage of type 'java.util.List' is not allowed'
     private ArrayList<String> values;
     private Boolean d;
     private Boolean[] d1;

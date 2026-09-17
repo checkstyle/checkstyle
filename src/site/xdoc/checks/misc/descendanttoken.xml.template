@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java"/>
+      </macro>
       <subsection name="Description" id="DescendantToken_Description">
         <macro name="description">
             <param name="modulePath"
@@ -99,6 +103,24 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
+        <p id="Example5-config">
+          To configure the check to produce a violation on a try statement
+          without a catch block:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p id="Example6-config">
           To configure the check to produce a violation on a return statement
           from within a catch or finally block:
@@ -135,81 +157,8 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example12-config">
-          To configure the check to produce a violation on an empty statement:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example12-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example12.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
-        <p id="Example14-config">
-          To configure the check to produce a violation on
-          comparing <code>this</code> with <code>null</code>:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example14-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example14.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
-        <p id="Example17-config">
-          To configure the check to produce a violation with a custom message
-          when the minimum count of descendants is not reached:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example17.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example17-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example17.java"/>
-          <param name="type" value="code"/>
-
-        </macro><hr class="example-separator"/>
-        <p id="Example5-config">
-          To configure the check to produce a violation on an initializer in
-          <code>for</code> performs no setup (where a <code>while</code>
-          statement could be used instead):
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
-          <param name="type" value="config"/>
-        </macro>
-        <p id="Example5-code">
-          Example:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
         <p id="Example8-config">
-          To configure the check to produce a violation on a method with
-          too many local variables:
+          To configure the check to produce a violation on an empty statement:
         </p>
         <macro name="example">
           <param name="path"
@@ -226,8 +175,8 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example9-config">
-          To configure the check to produce a violation on a method
-          with too many returns:
+          To configure the check to produce a violation on
+          comparing <code>this</code> with <code>null</code>:
         </p>
         <macro name="example">
           <param name="path"
@@ -244,8 +193,8 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example10-config">
-          To configure the check to produce a violation on a method
-          which throws too many exceptions:
+          To configure the check to produce a violation with a custom message
+          when the minimum count of descendants is not reached:
         </p>
         <macro name="example">
           <param name="path"
@@ -259,77 +208,153 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example10.java"/>
           <param name="type" value="code"/>
+
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="DescendantToken_Use_Cases">
+        <p id="UseCase1-config">
+          To configure the check to produce a violation on an initializer in
+          <code>for</code> performs no setup (where a <code>while</code>
+          statement could be used instead):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase1.java"/>
+          <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example11-config">
+        <p id="UseCase2-config">
+          To configure the check to produce a violation on a method with
+          too many local variables:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase2-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase3-config">
+          To configure the check to produce a violation on a method
+          with too many returns:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase3-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase4-config">
+          To configure the check to produce a violation on a method
+          which throws too many exceptions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase4-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="UseCase5-config">
           To configure the check to produce a violation on a method
           with too many expressions:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example11-code">
+        <p id="UseCase5-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example11.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase5.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example13-config">
+        <p id="UseCase6-config">
           To configure the check to produce a violation on a class or interface
           with too many fields:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase6.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example13-code">
+        <p id="UseCase6-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example13.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase6.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example15-config">
+        <p id="UseCase7-config">
           To configure the check to produce a violation on a <code>String</code>
           literal equality check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase7.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example15-code">
+        <p id="UseCase7-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example15.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase7.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example16-config">
+        <p id="UseCase8-config">
           To configure the check to produce a violation on an assert statement
           that may have side effects:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase8.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example16-code">
+        <p id="UseCase8-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/UseCase8.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

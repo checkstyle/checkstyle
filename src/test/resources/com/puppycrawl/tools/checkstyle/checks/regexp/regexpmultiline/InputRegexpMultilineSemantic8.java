@@ -1,4 +1,4 @@
-/* // violation, Empty (null) pattern.
+/*
 RegexpMultiline
 format =
 message = (default)(null)
@@ -10,7 +10,7 @@ fileExtensions = (default)""
 
 
 */
-
+// violation first line 'Empty (null) pattern.'
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
 import java.awt.Color;

@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/membername";
@@ -64,4 +65,37 @@ public class MemberNameCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+            "23:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "19:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM4", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "19:14: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM1", "^[a-z][a-zA-Z0-9]*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM2", "^[a-z][a-zA-Z0-9]*$"),
+            "21:7: " + getCheckMessage(MSG_INVALID_PATTERN, "NUM3", "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
 }

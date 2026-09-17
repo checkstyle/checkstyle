@@ -8,6 +8,42 @@
   <body>
     <section name="SuppressWithNearbyTextFilter">
       <p>Since Checkstyle 10.10.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#SuppressWithNearbyTextFilter_Description">Description</a></li>
+          <li><a href="#SuppressWithNearbyTextFilter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SuppressWithNearbyTextFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The filter to suppress audit events on the same line</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">The filter to suppress audit events for checks whose name matches the given pattern</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">The filter to suppress audit events whose check message contains the word <code>Line</code>. In this case, <code>LineLengthCheck</code>'s violation message contains it</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">The filter to suppress audit events only on a check whose id is <code>ignoreMe</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">The filter to suppress audit events for the current and next line</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">The filter to suppress <code>LineLength</code> violations for lines containing a URL</a></li>
+              <li><a href="#UseCase1-config" class="toc-sublink">The filter to suppress audit events on any line that contains <code>DO NOT CHECK THIS LINE</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#SuppressWithNearbyTextFilter_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase2-config" class="toc-sublink">The filter to suppress audit events for the current and previous line</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">The filter with a more compact <code>nearbyTextPattern</code> to accept variable <code>checkPattern</code></a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">The filter to accept variable <code>checkPattern</code> and <code>lineRange</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#SuppressWithNearbyTextFilter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#SuppressWithNearbyTextFilter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#SuppressWithNearbyTextFilter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="SuppressWithNearbyTextFilter_Description">
         <div>
           Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
@@ -35,35 +71,35 @@
             <tr>
               <td><a id="checkPattern"/><a href="#checkPattern">checkPattern</a></td>
               <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>. The pattern is matched against the fully qualified class name of the Check.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>.*</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
               <td><a id="idPattern"/><a href="#idPattern">idPattern</a></td>
               <td>Specify check ID pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
               <td><a id="lineRange"/><a href="#lineRange">lineRange</a></td>
               <td>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppressing nearby text. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
-              <td><a href="../property_types.html#String">String</a></td>
+              <td><a href="../property-types.html#String">String</a></td>
               <td><code>0</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
               <td><a id="messagePattern"/><a href="#messagePattern">messagePattern</a></td>
               <td>Specify check violation message pattern to suppress.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
               <td><a id="nearbyTextPattern"/><a href="#nearbyTextPattern">nearbyTextPattern</a></td>
               <td>Specify nearby text pattern to trigger filter to begin suppression.</td>
-              <td><a href="../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../property-types.html#Pattern">Pattern</a></td>
               <td><code>SUPPRESS CHECKSTYLE (\w+)</code></td>
               <td>10.10.0</td>
             </tr>
@@ -94,7 +130,48 @@
 public class Example1 {
   // filtered violation below ''42' is a magic number'
   int a = 42;  // SUPPRESS CHECKSTYLE because I want to
-  int b = 43;  // violation, "'43' is a magic number."
+  int b = 43;  // violation "'43' is a magic number."
+
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // violation above 'Line is longer ...'
+  String longText =
+          "This is a very very very very very very very very very very long string";
+  // violation above 'Line is longer ...'
+  /**
+   * Flag description.
+   * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // violation above 'Line is longer ...'
+   */
+  public static final boolean SOME_FLAG = false;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the filter to suppress audit events for checks whose
+          name matches the given pattern:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+    &lt;property name="checkPattern" value="LineLength"/&gt;
+  &lt;/module&gt;
+  &lt;module name="LineLength"&gt;
+    &lt;property name="max" value="55"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MagicNumber"&gt;
+      &lt;property name="id" value="magicConstants"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  // violation below ''42' is a magic number'
+  int a = 42; // SUPPRESS CHECKSTYLE because I want to
+  int b = 43; // violation ''43' is a magic number'
 
   String a_really_long_variable_name = "A sentence greater than 70 chars";
   // violation above 'Line is longer ...'
@@ -178,7 +255,7 @@ public class Example3 {
 public class Example4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // SUPPRESS CHECKSTYLE because I want to
-  int b = 43; // violation, "'43' is a magic number."
+  int b = 43; // violation "'43' is a magic number."
 
   String a_really_long_variable_name = "A sentence greater than 70 chars";
   // violation above 'Line is longer ...'
@@ -233,7 +310,7 @@ public class Example5 {
   public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="Example6-config">
           To configure the filter to suppress <code>LineLength</code>
           violations for lines containing a URL:
         </p>
@@ -254,11 +331,11 @@ public class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="Example6-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example9 {
+public class Example6 {
   // violation below ''42' is a magic number'
   int a = 42; // SUPPRESS CHECKSTYLE because I want to
   int b = 43; // violation ''43' is a magic number'
@@ -276,7 +353,7 @@ public class Example9 {
   public static final boolean SOME_FLAG = false;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example2-config">
+        <p id="UseCase1-config">
           To configure the filter to suppress audit events on any line that contains
           <code>DO NOT CHECK THIS LINE</code>:
         </p>
@@ -289,39 +366,40 @@ public class Example9 {
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example2-code">
+</code></pre></div><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressWithNearbyTextFilter_Use_Cases">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+public class UseCase1 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // DO NOT CHECK THIS LINE
-  int b = 43; // violation, "'43' is a magic number."
+  int b = 43; // violation "'43' is a magic number."
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the filter to suppress audit events for the current and previous line:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="SuppressWithNearbyTextFilter"&gt;
+        <div class="wrapper"><pre class="prettyprint"><code>
+&lt;module name="SuppressWithNearbyTextFilter"&gt;
     &lt;property name="lineRange" value="-1"/&gt;
   &lt;/module&gt;
   &lt;module name="UniqueProperties"/&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-raw">
+        <p id="UseCase2-code">
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 # // filtered violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=41 # ok as within line range
 key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
 key.two=44
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+        <p id="UseCase3-config">
           To configure the filter with a more compact <code>nearbyTextPattern</code>
           to accept variable <code>checkPattern</code>:
         </p>
@@ -336,18 +414,18 @@ key.two=44
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example7-code">
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
+public class UseCase3 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
+        <p id="UseCase4-config">
           To configure the filter to accept variable <code>checkPattern</code>
           and <code>lineRange</code>:
         </p>
@@ -363,12 +441,12 @@ public class Example7 {
     &lt;module name="MagicNumber"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code">
+</code></pre></div><hr class="example-separator"/>
+        <p id="UseCase4-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase4 {
   // filtered violation below ''42' is a magic number'
   int a = 42; // @cs-: MagicNumber for +3 lines
   int b = 43; // filtered violation ''43' is a magic number'
@@ -387,6 +465,14 @@ public class Example8 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+            OpenJDK Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

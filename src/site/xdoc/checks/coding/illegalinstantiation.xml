@@ -8,6 +8,36 @@
   <body>
     <section name="IllegalInstantiation">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalInstantiation_Description">Description</a></li>
+          <li><a href="#IllegalInstantiation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalInstantiation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Find instantiations of <code>java.lang.Boolean</code> and <code>java.lang.Integer</code></a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#IllegalInstantiation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Finally, there is a limitation that it is currently not possible to specify array classes</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalInstantiation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalInstantiation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalInstantiation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalInstantiation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalInstantiation_Description">
         <div>
           Checks for illegal instantiations where a factory method is preferred.
@@ -52,7 +82,7 @@
             <tr>
               <td><a id="classes"/><a href="#classes">classes</a></td>
               <td>Specify fully qualified class names that should not be instantiated.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>3.0</td>
             </tr>
@@ -124,14 +154,17 @@ class Example2 {
   Example2 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
-    // violation above, 'Instantiation of java.lang.Boolean should be avoided'
+    // violation above 'Instantiation of java.lang.Boolean should be avoided'
     Integer e = new Integer(b);
-    // violation above, 'Instantiation of java.lang.Integer should be avoided'
+    // violation above 'Instantiation of java.lang.Integer should be avoided'
     Integer f = Integer.valueOf(b);
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="IllegalInstantiation_Use_Cases">
+        <p id="UseCase1-config">
           Finally, there is a limitation that it is currently not possible to specify array classes:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -144,20 +177,20 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   class Boolean {
     boolean a;
     public Boolean (boolean a) { this.a = a; }
   }
 
-  Example3 () {
+  UseCase1 () {
     java.lang.Boolean[] newBoolArray = new java.lang.Boolean[]{true,true,false};
     Integer[] newIntArray = new Integer[]{1,2,3};
   }
 
-  Example3 (boolean a, int b) {
+  UseCase1 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
 

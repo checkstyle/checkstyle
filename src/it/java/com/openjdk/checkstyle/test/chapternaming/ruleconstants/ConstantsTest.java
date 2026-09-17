@@ -40,4 +40,9 @@ public class ConstantsTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputConstantsValid.java"));
     }
 
+    @Test
+    public void testConstantsDoAndDonts() throws Exception {
+        verifyWithWholeConfig(getPath("InputConstantsDoAndDonts.java"));
+    }
+
 }

@@ -1,14 +1,14 @@
 /*
 IllegalImport
 illegalPkgs = sun.reflect
-illegalClasses = (default)
-illegalModules = (default)
+illegalClasses = (default)(null)
+illegalModules = (default)(null)
 regexp = true
 
 
 */
 
-// non-compiled with javac: contains sun package so IDEA marks it as build problem
+// non-compiled with javac: contains specially crafted set of imports that requires classpath
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import java.io.*;

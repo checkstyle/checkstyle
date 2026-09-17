@@ -8,6 +8,30 @@
   <body>
     <section name="ThrowsCount">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ThrowsCount_Description">Description</a></li>
+          <li><a href="#ThrowsCount_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ThrowsCount_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it doesn't allow more than two throws per method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it doesn't skip private methods</a></li>
+            </ul>
+          </li>
+          <li><a href="#ThrowsCount_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ThrowsCount_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ThrowsCount_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ThrowsCount_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ThrowsCount_Description">
         <div>
           Restricts throws statements to a specified count.
@@ -52,14 +76,14 @@
             <tr>
               <td><a id="ignorePrivateMethods"/><a href="#ignorePrivateMethods">ignorePrivateMethods</a></td>
               <td>Allow private methods to be ignored.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.7</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify maximum allowed number of throws statements.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>3.2</td>
             </tr>
@@ -83,7 +107,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
@@ -126,14 +150,14 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  // violation below, 'Throws count is 5 (max allowed is 2)'
+  // violation below 'Throws count is 5 (max allowed is 2)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
                                 IllegalStateException,
                                 NullPointerException {
   }
-  // violation below, 'Throws count is 3 (max allowed is 2)'
+  // violation below 'Throws count is 3 (max allowed is 2)'
   public void myFunc() throws ArithmeticException,
                                 NumberFormatException,
                                 NullPointerException {
@@ -168,7 +192,7 @@ public class Example2 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   public void myFunction() throws CloneNotSupportedException,
                                 ArrayIndexOutOfBoundsException,
                                 StringIndexOutOfBoundsException,
@@ -180,7 +204,7 @@ public class Example3 {
                                 NumberFormatException,
                                 NullPointerException {
   }
-  // violation below, 'Throws count is 5 (max allowed is 4)'
+  // violation below 'Throws count is 5 (max allowed is 4)'
   private void privateFunc() throws CloneNotSupportedException,
                                 ClassNotFoundException,
                                 IllegalAccessException,

@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = true
 setterCanReturnItsClass = true
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -24,13 +24,13 @@ class InputHiddenField5PropertySetter
     }
 
     /** violation - incorrect method name */
-    public void setprop(int prop) // violation, ''prop' hides a field'
+    public void setprop(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - more than one parameter */
-    public void setProp(int prop, int extra) // violation, ''prop' hides a field'
+    public void setProp(int prop, int extra) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
@@ -42,7 +42,7 @@ class PropertySetter25
     private int prop;
 
     /** violation - not a void method */
-    public int setProp(int prop) // violation, ''prop' hides a field'
+    public int setProp(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
         return 0;

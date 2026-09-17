@@ -43,9 +43,9 @@ public final class DetailAstImpl implements DetailAST {
     /** Constant to indicate if not calculated the child count. */
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
-    /** The line number. **/
+    /** The line number. */
     private int lineNo = NOT_INITIALIZED;
-    /** The column number. **/
+    /** The column number. */
     private int columnNo = NOT_INITIALIZED;
 
     /** Number of children. */
@@ -85,6 +85,13 @@ public final class DetailAstImpl implements DetailAST {
      * if branchTokenTypes.get(x) is true.
      */
     private BitSet branchTokenTypes;
+
+    /**
+     * Creates a new {@code DetailAstImpl} instance.
+     */
+    public DetailAstImpl() {
+        // no code by default
+    }
 
     /**
      * Initializes this DetailAstImpl.
@@ -538,4 +545,5 @@ public final class DetailAstImpl implements DetailAST {
     public void setHiddenAfter(List<Token> hiddenAfter) {
         this.hiddenAfter = UnmodifiableCollectionUtil.unmodifiableList(hiddenAfter);
     }
+
 }

@@ -8,6 +8,27 @@
   <body>
     <section name="UnusedTryResourceShouldBeUnnamed">
       <p>Since Checkstyle 13.5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnusedTryResourceShouldBeUnnamed_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnusedTryResourceShouldBeUnnamed_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnusedTryResourceShouldBeUnnamed_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnusedTryResourceShouldBeUnnamed_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnusedTryResourceShouldBeUnnamed_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnusedTryResourceShouldBeUnnamed_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="UnusedTryResourceShouldBeUnnamed_Description">
         <div>
           Ensures that try-with-resources resource variables that are not used
@@ -70,12 +91,12 @@ public class Example1 {
   }
 
   void example() throws Exception {
-    // violation below, 'Unused try resource 'a' should be unnamed'
+    // violation below 'Unused try resource 'a' should be unnamed'
     try (var a = lock()) {
       System.out.println("locked");
     }
 
-    // violation below, 'Unused try resource 'res' should be unnamed'
+    // violation below 'Unused try resource 'res' should be unnamed'
     try (AutoCloseable res = lock()) {
       System.out.println("locked");
     }
@@ -116,7 +137,8 @@ public class Example1 {
           to learn how to.
         </p>
       </subsection>
-      <subsection name="Fully Qualified Name" id="Fully_Qualified_Name">
+      <subsection name="Fully Qualified Name"
+               id="UnusedTryResourceShouldBeUnnamed_Fully_Qualified_Name">
         <p>com.puppycrawl.tools.checkstyle.checks.coding.UnusedTryResourceShouldBeUnnamedCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is

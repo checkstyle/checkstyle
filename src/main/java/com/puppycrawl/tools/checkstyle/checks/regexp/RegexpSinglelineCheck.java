@@ -43,6 +43,12 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 @StatelessCheck
 public class RegexpSinglelineCheck extends AbstractFileSetCheck {
 
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
+
+    /** A key is pointing to the warning message text in "messages.properties" file. */
+    public static final String MSG_REGEXP_MINIMUM = "regexp.minimum";
+
     /** Specify the format of the regular expression to match. */
     @XdocsPropertyType(PropertyType.PATTERN)
     private String format = "$.";
@@ -61,6 +67,13 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
     /** The detector to use. */
     private SinglelineDetector detector;
 
+    /**
+     * Creates a new {@code RegexpSinglelineCheck} instance.
+     */
+    public RegexpSinglelineCheck() {
+        // no code by default
+    }
+
     @Override
     public void beginProcessing(String charset) {
         final DetectorOptions options = DetectorOptions.newBuilder()
@@ -71,7 +84,8 @@ public class RegexpSinglelineCheck extends AbstractFileSetCheck {
             .maximum(maximum)
             .ignoreCase(ignoreCase)
             .build();
-        detector = new SinglelineDetector(options);
+        detector = new SinglelineDetector(options,
+                MSG_REGEXP_EXCEEDED, MSG_REGEXP_MINIMUM);
     }
 
     @Override

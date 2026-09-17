@@ -28,10 +28,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <div>
  * Detects inline conditionals. Here is one example of an inline conditional:
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * String a = getParameter("a");
- * String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
- * </code></pre></div>
+ * String b = (a==null || a.length() > 1) ? null : a.substring(1);
+ * }
  *
  * <p>
  * Rationale: Some developers find inline conditionals hard to read, so
@@ -48,6 +48,13 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "inline.conditional.avoid";
+
+    /**
+     * Creates a new {@code AvoidInlineConditionalsCheck} instance.
+     */
+    public AvoidInlineConditionalsCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

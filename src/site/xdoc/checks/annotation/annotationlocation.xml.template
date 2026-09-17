@@ -12,6 +12,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java"/>
+      </macro>
       <subsection name="Description" id="AnnotationLocation_Description">
         <macro name="description">
             <param name="modulePath"
@@ -93,6 +97,21 @@
         <macro name="example">
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example4.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          Use the following configuration to forbid single parameterless
+          annotation on the same line:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example5.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>

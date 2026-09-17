@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -19,13 +19,13 @@ public class InputHiddenFieldStaticVisibility {
     static Object other = null;
     Object field = null;
 
-    static void method(Object field, Object other) { // violation, ''other' hides a field'
+    static void method(Object field, Object other) { // violation ''other' hides a field'
         // field 'field' can not be referenced form a static context
         // static field 'other' can be referenced from a static context
     }
 
     static class B {
-        void method(Object field, Object other) { // violation, ''other' hides a field'
+        void method(Object field, Object other) { // violation ''other' hides a field'
             // field 'field' can not be referenced form a static context
             // static field 'other' can be referenced from a static context
         }
@@ -33,7 +33,7 @@ public class InputHiddenFieldStaticVisibility {
 
     static Comparator<Object> COMP = new Comparator<Object>() {
         @Override
-        public int compare(Object field, Object other) { // violation, ''other' hides a field'
+        public int compare(Object field, Object other) { // violation ''other' hides a field'
             // field 'field' can not be referenced form a static context
             // static field 'other' can be referenced from a static context
             return 0;
@@ -43,7 +43,7 @@ public class InputHiddenFieldStaticVisibility {
     static Comparator<Object> createComp() {
         return new Comparator<Object>() {
             @Override
-            public int compare(Object field, Object other) { // violation, ''other' hides a field'
+            public int compare(Object field, Object other) { // violation ''other' hides a field'
                 // field 'field' can not be referenced form a static context
                 // static field 'other' can be referenced from a static context
                 return 0;
@@ -55,5 +55,5 @@ public class InputHiddenFieldStaticVisibility {
 
     void foo2(int a) {}
 
-    static void foo3(int someField) {} // violation, ''someField' hides a field'
+    static void foo3(int someField) {} // violation ''someField' hides a field'
 }

@@ -19,7 +19,7 @@ public class InputJavadocMethodDoNotAllowInlineReturn {
      * {@return the foo}
      */
     public int getFoo() { return 0; }
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
 
     /**
      * Returns the bar
@@ -31,12 +31,12 @@ public class InputJavadocMethodDoNotAllowInlineReturn {
      * Returns the fiz
      */
     public int getFiz() { return 0; }
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
 
     /**
      * Returns the baz
      * @see "getFoo"
      */
     public int getBaz() { return 0; }
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
 }

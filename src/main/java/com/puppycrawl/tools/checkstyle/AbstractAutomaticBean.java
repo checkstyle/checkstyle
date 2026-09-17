@@ -25,7 +25,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
@@ -85,6 +84,13 @@ public abstract class AbstractAutomaticBean
 
     /** The configuration of this bean. */
     private Configuration configuration;
+
+    /**
+     * Creates a new {@code AbstractAutomaticBean} instance.
+     */
+    protected AbstractAutomaticBean() {
+        // no code by default
+    }
 
     /**
      * Provides a hook to finish the part of this component's setup that
@@ -328,6 +334,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts a string to a pattern. */
     private static final class PatternConverter implements Converter {
+        /**
+         * Creates a new {@code PatternConverter} instance.
+         */
+        private PatternConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -339,16 +351,23 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts a comma-separated string into an array of patterns. */
     private static final class PatternArrayConverter implements Converter {
+        /**
+         * Creates a new {@code PatternArrayConverter} instance.
+         */
+        private PatternArrayConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            final StringTokenizer tokenizer = new StringTokenizer(
-                    value.toString(), COMMA_SEPARATOR);
+            final String[] tokens = value.toString().split(COMMA_SEPARATOR, -1);
             final List<Pattern> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : tokens) {
+                if (token.isEmpty()) {
+                    continue;
+                }
                 result.add(CommonUtil.createPattern(token.trim()));
             }
 
@@ -358,6 +377,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to severity level. */
     private static final class SeverityLevelConverter implements Converter {
+        /**
+         * Creates a new {@code SeverityLevelConverter} instance.
+         */
+        private SeverityLevelConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -369,6 +394,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to scope. */
     private static final class ScopeConverter implements Converter {
+        /**
+         * Creates a new {@code ScopeConverter} instance.
+         */
+        private ScopeConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
@@ -380,6 +411,12 @@ public abstract class AbstractAutomaticBean
 
     /** A converter that converts strings to uri. */
     private static final class UriConverter implements Converter {
+        /**
+         * Creates a new {@code UriConverter} instance.
+         */
+        private UriConverter() {
+            // no code by default
+        }
 
         @Nullable
         @Override
@@ -408,16 +445,23 @@ public abstract class AbstractAutomaticBean
      * with these characters.
      */
     private static final class RelaxedStringArrayConverter implements Converter {
+        /**
+         * Creates a new {@code RelaxedStringArrayConverter} instance.
+         */
+        private RelaxedStringArrayConverter() {
+            // no code by default
+        }
 
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
+            final String[] tokens = value.toString().trim().split(COMMA_SEPARATOR, -1);
             final List<String> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : tokens) {
+                if (token.isEmpty()) {
+                    continue;
+                }
                 result.add(token.trim());
             }
 
@@ -437,16 +481,23 @@ public abstract class AbstractAutomaticBean
         private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =
                 new AccessModifierOption[0];
 
+        /**
+         * Creates a new {@code RelaxedAccessModifierArrayConverter} instance.
+         */
+        private RelaxedAccessModifierArrayConverter() {
+            // no code by default
+        }
+
         @Override
         @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
-            // Converts to a String and trims it for the tokenizer.
-            final StringTokenizer tokenizer = new StringTokenizer(
-                value.toString().trim(), COMMA_SEPARATOR);
+            final String[] tokens = value.toString().trim().split(COMMA_SEPARATOR, -1);
             final List<AccessModifierOption> result = new ArrayList<>();
 
-            while (tokenizer.hasMoreTokens()) {
-                final String token = tokenizer.nextToken();
+            for (String token : tokens) {
+                if (token.isEmpty()) {
+                    continue;
+                }
                 result.add(AccessModifierOption.getInstance(token));
             }
 

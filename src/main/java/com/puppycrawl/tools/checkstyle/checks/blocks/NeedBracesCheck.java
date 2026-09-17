@@ -59,6 +59,13 @@ public class NeedBracesCheck extends AbstractCheck {
     private boolean allowEmptyLoopBody;
 
     /**
+     * Creates a new {@code NeedBracesCheck} instance.
+     */
+    public NeedBracesCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to allow single-line statements without braces.
      *
      * @param allowSingleLineStatement Check's option for skipping single-line statements

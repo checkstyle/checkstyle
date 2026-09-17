@@ -89,13 +89,13 @@
             createAnchor(anchorItem, link, name, relativePath, anchorItem);
         });
 
-        // Example sections
-        const exampleDivs = document.querySelectorAll('p[id^="Example"]');
-        [].forEach.call(exampleDivs, function (exampleDiv) {
-            const name = exampleDiv.id;
+        // Example and Use Case sections
+        const linkableDivs = document.querySelectorAll('p[id^="Example"], p[id^="UseCase"]');
+        [].forEach.call(linkableDivs, function (linkableDiv) {
+            const name = linkableDiv.id;
             const link = url + "#" + name;
 
-            createAnchor(exampleDiv, link, name, relativePath, exampleDiv);
+            createAnchor(linkableDiv, link, name, relativePath, linkableDiv);
         });
     });
 

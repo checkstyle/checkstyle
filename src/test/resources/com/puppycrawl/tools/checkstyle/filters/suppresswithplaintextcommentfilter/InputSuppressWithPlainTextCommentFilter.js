@@ -9,7 +9,7 @@ idFormat = (default)(null)
 
 com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck
 format = .*\\s===.*
-message = (default)
+message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
 maximum = (default)0

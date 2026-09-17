@@ -24,7 +24,7 @@ public class InputDefaultComesLastSkipIfLastAndSharedWithCaseTwo {
                 break;
             case 2:
                 break;
-            default: // No violation.
+            default:
                 break;
         }
     }

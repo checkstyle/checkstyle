@@ -11,7 +11,8 @@ class InputOneTopLevelClassNoPublic
 
 }
 
-class InputOneTopLevelClassNoPublic2 // violation
+// violation below 'Top-level class Input.* has to reside in its own source file.'
+class InputOneTopLevelClassNoPublic2
 {
 
 }

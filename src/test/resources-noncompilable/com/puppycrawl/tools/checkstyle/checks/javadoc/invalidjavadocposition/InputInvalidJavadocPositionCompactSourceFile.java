@@ -38,7 +38,7 @@ void method3() {
 void method5() {
 }
 
-// violation below, 'Javadoc .* placed in the wrong location.'
+// violation below 'Javadoc .* placed in the wrong location.'
 /** invalid, ignored because another Javadoc follows */
 /** valid, recognized on the top-level method */
 void method6() {
@@ -61,7 +61,7 @@ class Nested {
     /** valid - nested method */
     void nestedMethod() {
 
-        // violation below, 'Javadoc .* placed in the wrong location.'
+        // violation below 'Javadoc .* placed in the wrong location.'
         /** invalid - inside nested method body */
         int nestedLocal = 3;
         System.out.println(nestedLocal);

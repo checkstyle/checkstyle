@@ -14,6 +14,8 @@
     <property name="file"
              value="config/checkstyle-input-suppressions.xml"/>
   </module>
+  <!-- Miscellaneous -->
+  <module name="NewlineAtEndOfFile" />
 
   <module name="RegexpSingleline">
     <property name="id" value="noCheckstyleInInputs"/>
@@ -23,12 +25,12 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="presenceOfCompilationComment"/>
-    <property name="format" value="^// non-compiled with javac: Compilable with Java(\d+)"/>
+    <property name="format" value="^// non-compiled with javac: (Compilable with Java(\d+)|(contains specially crafted set of imports)|(but was compiled on jdk before)|(missing package)|(package statement is different than folder)|(reference to non existent))"/>
     <property name="message"
               value="Missing compilation comment"/>
     <property name="fileExtensions" value="java"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="1"/>
+    <property name="maximum" value="2"/>
   </module>
 
   <module name="RegexpMultiline">
@@ -43,7 +45,12 @@
     <module name="MatchXpath">
       <property name="id" value="violationBetweenAnnotationAndMethod"/>
       <property name="query"
-                value="//MODIFIERS/SINGLE_LINE_COMMENT[
+                value="//*[self::METHOD_DEF or self::CTOR_DEF
+                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
+                              or self::INTERFACE_DEF or self::ENUM_DEF
+                              or self::ANNOTATION_DEF or self::RECORD_DEF
+                              or self::ANNOTATION_FIELD_DEF
+                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
                        and preceding-sibling::ANNOTATION]"/>
       <message key="matchxpath.match"
@@ -53,7 +60,12 @@ Place it before the annotation block instead."/>
     <module name="MatchXpath">
       <property name="id" value="violationBetweenJavadocAndMethod"/>
       <property name="query"
-                value="//MODIFIERS/SINGLE_LINE_COMMENT[
+                value="//*[self::METHOD_DEF or self::CTOR_DEF
+                              or self::COMPACT_CTOR_DEF or self::CLASS_DEF
+                              or self::INTERFACE_DEF or self::ENUM_DEF
+                              or self::ANNOTATION_DEF or self::RECORD_DEF
+                              or self::ANNOTATION_FIELD_DEF
+                              or self::ENUM_CONSTANT_DEF]/MODIFIERS/SINGLE_LINE_COMMENT[
                        ./COMMENT_CONTENT[contains(@text, 'violation')]
                        and preceding-sibling::BLOCK_COMMENT_BEGIN[
                        ./COMMENT_CONTENT[starts-with(@text, '*')]]]"/>

@@ -44,19 +44,23 @@ public class InputMagicNumberDefault3 {
         int z=101; // violation ''101' is a magic number'
     }
 
-    @InputMagicNumberIntMethodAnnotation(42) // violation ''42' is a magic number'
+    // violation below ''42' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(42)
     public void another() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=43) // violation ''43' is a magic number'
+    // violation below ''43' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(value=43)
     public void another2() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(-44) // violation ''-44' is a magic number'
+    // violation below ''-44' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(-44)
     public void anotherNegative() {
     }
 
-    @InputMagicNumberIntMethodAnnotation(value=-45) // violation ''-45' is a magic number'
+    // violation below ''-45' is a magic number'
+    @InputMagicNumberIntMethodAnnotation(value=-45)
     public void anotherNegative2() {
     }
 }
@@ -75,7 +79,7 @@ class TestMethodCallDefault3 {
 class BinaryDefault3 {
     int intValue = 0b101; // violation ''0b101' is a magic number'
     long l = 0b1010000101000101101000010100010110100001010001011010000101000101L;
-    // violation above, ''0b1010000101000101101000010100010110100001010001011010000101000101L'
+    // violation above ''0b1010000101000101101000010100010110100001010001011010000101000101L'
     // is a magic number'
 }
 @interface AnnotationWithDefaultValueDefault3 {

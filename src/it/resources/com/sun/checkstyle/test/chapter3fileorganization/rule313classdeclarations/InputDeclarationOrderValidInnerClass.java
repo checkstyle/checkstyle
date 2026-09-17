@@ -1,5 +1,7 @@
 package com.sun.checkstyle.test.chapter3fileorganization.rule313classdeclarations;
 
+// violation first line 'Header mismatch'
+
 /**
  * Test input for valid declaration order with inner class.
  */

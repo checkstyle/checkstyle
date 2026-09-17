@@ -1,6 +1,7 @@
 /*
 NoLineWrap
 tokens = IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF
+skipAnnotations = (default)true
 
 
 */

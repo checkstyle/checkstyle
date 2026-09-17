@@ -8,6 +8,30 @@
   <body>
     <section name="FileLength">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#FileLength_Description">Description</a></li>
+          <li><a href="#FileLength_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#FileLength_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Accept files with up to 2000 lines</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Accept files with up to 5 lines</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Accept files with up to 5 lines and with txt extension only</a></li>
+            </ul>
+          </li>
+          <li><a href="#FileLength_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#FileLength_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#FileLength_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#FileLength_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="FileLength_Description">
         <div>
           Checks for long source files.
@@ -33,14 +57,14 @@
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>2000</code></td>
               <td>3.2</td>
             </tr>
@@ -102,7 +126,7 @@ public class Example2 {
 public class Example3 {
   public void myTest() {
     // small class with more than 5 lines less than 2000 lines
-    String test = "Some content"; // ok, no violation as only txt file validated
+    String test = "Some content"; // ok, as only txt file validated
   }
 }
 </code></pre></div>

@@ -1,9 +1,18 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.arraysquarebracketsattype;
 
+// violation first line 'Header mismatch'
+
 /** Test case for ArrayTypeStyle (Java vs C). */
 public class InputArraySquareBracketsAtType {
     private int[] javastyle = new int[0];
     private int cstyle[] = new int[0]; // violation 'Array brackets at illegal position.'
+
+    int[] array[] = new int[2][2]; // violation 'Array brackets at illegal position.'
+    int array2[][][] = new int[3][3][3];
+    // 3 violations above:
+    //                    'Array brackets at illegal position.'
+    //                    'Array brackets at illegal position.'
+    //                    'Array brackets at illegal position.'
 
     /** Some javadoc. */
     public static void mainJava(String[] javastyle) {}
@@ -54,10 +63,4 @@ public class InputArraySquareBracketsAtType {
         }
     }
 
-    int[] array[] = new int[2][2]; // violation 'Array brackets at illegal position.'
-    int array2[][][] = new int[3][3][3];
-    // 3 violations above:
-    //                    'Array brackets at illegal position.'
-    //                    'Array brackets at illegal position.'
-    //                    'Array brackets at illegal position.'
 }

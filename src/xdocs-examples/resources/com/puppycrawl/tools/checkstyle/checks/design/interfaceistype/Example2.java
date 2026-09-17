@@ -10,14 +10,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.interfaceistype;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
-  // violation below, 'interfaces should describe a type and hence have methods.'
+  // violation below 'interfaces should describe a type and hence have methods.'
   interface Test1 {
     int a = 3;
   }
 
-  // violation below, 'interfaces should describe a type and hence have methods.'
+  // violation below 'interfaces should describe a type and hence have methods.'
   interface Test2 {
 
   }
@@ -27,4 +27,4 @@ class Example2 {
     void test();
   }
 }
-// xdoc section -- end
+// xdoc section - end

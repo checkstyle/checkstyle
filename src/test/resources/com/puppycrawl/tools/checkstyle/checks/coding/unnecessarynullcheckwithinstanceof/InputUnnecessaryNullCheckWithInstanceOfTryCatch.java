@@ -8,7 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 public class InputUnnecessaryNullCheckWithInstanceOfTryCatch {
     public void basicTryCatch(Object obj) {
         try {
-            if (obj != null && obj instanceof String) { // violation, 'Unnecessary nullity check'
+            if (obj != null && obj instanceof String) { // violation 'Unnecessary nullity check'
                 String str = (String) obj;
             }
         } catch (Exception e) {}
@@ -19,7 +19,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfTryCatch {
             String str = (String) obj;
         }
         catch (Exception e) {
-            // violation below, 'Unnecessary nullity check'
+            // violation below 'Unnecessary nullity check'
             if (e != null && e instanceof RuntimeException) {
                 throw (RuntimeException) e;
             }
@@ -29,7 +29,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfTryCatch {
         try {
             String str = (String) obj;
         } finally {
-            // violation below, 'Unnecessary nullity check'
+            // violation below 'Unnecessary nullity check'
             if (obj != null && obj instanceof AutoCloseable) {
                 try {
                     ((AutoCloseable) obj).close();

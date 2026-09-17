@@ -123,6 +123,13 @@ public class SuppressWithNearbyCommentFilter
     private String influenceFormat = DEFAULT_INFLUENCE_FORMAT;
 
     /**
+     * Creates a new {@code SuppressWithNearbyCommentFilter} instance.
+     */
+    public SuppressWithNearbyCommentFilter() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
@@ -217,8 +224,8 @@ public class SuppressWithNearbyCommentFilter
     /**
      * Whether current event matches any tag from {@link #tags}.
      *
-     * @param event TreeWalkerAuditEvent to test match on {@link #tags}.
-     * @return true if event matches any tag from {@link #tags}, false otherwise.
+     * @param event TreeWalkerAuditEvent to test match on {@code #tags}.
+     * @return true if event matches any tag from {@code #tags}, false otherwise.
      */
     private boolean matchesTag(TreeWalkerAuditEvent event) {
         boolean result = false;
@@ -259,8 +266,8 @@ public class SuppressWithNearbyCommentFilter
             final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo);
-            for (int i = 1; i < text.length; i++) {
-                tagCommentLine(text[i], startLineNo + i);
+            for (int index = 1; index < text.length; index++) {
+                tagCommentLine(text[index], startLineNo + index);
             }
         }
     }
@@ -426,8 +433,8 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} is in the scope of the suppression.
          */
         private boolean isInScopeOfSuppression(TreeWalkerAuditEvent event) {
             final int line = event.getLine();
@@ -437,8 +444,8 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} source name matches the check format.
          */
         private boolean isCheckMatch(TreeWalkerAuditEvent event) {
             final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
@@ -448,8 +455,8 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
@@ -468,8 +475,8 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
          *
-         * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
+         * @param event {@code TreeWalkerAuditEvent} instance.
+         * @return true if the {@code TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
             boolean match = true;

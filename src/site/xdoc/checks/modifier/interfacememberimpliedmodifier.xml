@@ -8,6 +8,35 @@
   <body>
     <section name="InterfaceMemberImpliedModifier">
       <p>Since Checkstyle 8.12</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#InterfaceMemberImpliedModifier_Description">Description</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#InterfaceMemberImpliedModifier_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">So that it checks that all implicit modifiers on methods, fields and nested types are explicitly specified in interfaces.</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">This example checks that all implicit modifiers on methods and fields are explicitly specified, but nested types do not need to be.</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">This example checks that all implicit modifiers on methods and nested types are explicitly specified, but fields do not need to be.</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">This example checks that all implicit modifiers on fields and nested types are explicitly specified, but methods do not need to be.</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>public</code> modifier on nested types does not need to be.</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>static</code> modifier on nested types does not need to be.</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>public</code> modifier on fields does not need to be.</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">This example checks that all implicit modifiers on methods, fields and nested types are explicitly specified, but the <code>static</code> modifier on fields does not need to be.</a></li>
+            </ul>
+          </li>
+          <li><a href="#InterfaceMemberImpliedModifier_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#InterfaceMemberImpliedModifier_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">
         <div>
           Checks for implicit modifiers on interface members and nested types.
@@ -47,7 +76,7 @@
           enforce that the <code>public</code> and <code>static</code> modifiers are explicitly coded and not
           implicitly added by the compiler.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public interface AddressFactory {
   // check enforces code contains "public static final"
   public static final String UNKNOWN = "Unknown";
@@ -60,7 +89,7 @@ public interface AddressFactory {
   // check enforces code contains "public abstract"
   public abstract Address createAddress(String addressLine, String city);
 
-  List&lt;Address&gt; findAddresses(String city);  // violation
+  List&amp;lt;Address&amp;gt; findAddresses(String city);  // violation
 
   // check enforces default methods are explicitly declared "public"
   public default Address createAddress(String city) {
@@ -97,49 +126,49 @@ public interface AddressFactory {
             <tr>
               <td><a id="violateImpliedAbstractMethod"/><a href="#violateImpliedAbstractMethod">violateImpliedAbstractMethod</a></td>
               <td>Control whether to enforce that <code>abstract</code> is explicitly coded on interface methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
               <td><a id="violateImpliedFinalField"/><a href="#violateImpliedFinalField">violateImpliedFinalField</a></td>
               <td>Control whether to enforce that <code>final</code> is explicitly coded on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
               <td><a id="violateImpliedPublicField"/><a href="#violateImpliedPublicField">violateImpliedPublicField</a></td>
               <td>Control whether to enforce that <code>public</code> is explicitly coded on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
               <td><a id="violateImpliedPublicMethod"/><a href="#violateImpliedPublicMethod">violateImpliedPublicMethod</a></td>
               <td>Control whether to enforce that <code>public</code> is explicitly coded on interface methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
               <td><a id="violateImpliedPublicNested"/><a href="#violateImpliedPublicNested">violateImpliedPublicNested</a></td>
               <td>Control whether to enforce that <code>public</code> is explicitly coded on interface nested types.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
               <td><a id="violateImpliedStaticField"/><a href="#violateImpliedStaticField">violateImpliedStaticField</a></td>
               <td>Control whether to enforce that <code>static</code> is explicitly coded on interface fields.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
             <tr>
               <td><a id="violateImpliedStaticNested"/><a href="#violateImpliedStaticNested">violateImpliedStaticNested</a></td>
               <td>Control whether to enforce that <code>static</code> is explicitly coded on interface nested types.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -331,6 +360,192 @@ public interface Example4 {
     // ok, because 'violateImpliedAbstractMethod' is false
     // ok, because 'violateImpliedPublicMethod' is false
 
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types
+          are explicitly specified, but the <code>public</code> modifier on nested types does not
+          need to be.
+        </p>
+        <p id="Example5-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicNested" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example5 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // violation above 'Implied modifier 'static' should be explicit'
+    // ok, because 'violateImpliedPublicNested' is false
+
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types
+          are explicitly specified, but the <code>static</code> modifier on nested types does not
+          need to be.
+        </p>
+        <p id="Example6-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedStaticNested" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example6 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 3 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // violation above 'Implied modifier 'public' should be explicit'
+    // ok, because 'violateImpliedStaticNested' is false
+
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>public</code> modifier on fields does not need to be.
+        </p>
+        <p id="Example7-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedPublicField" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example7 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 2 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'static' should be explicit'
+  // ok, because 'violateImpliedPublicField' is false
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          This example checks that all implicit modifiers on methods, fields and nested types are
+          explicitly specified, but the <code>static</code> modifier on fields does not need to be.
+        </p>
+        <p id="Example8-config">
+          Configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="InterfaceMemberImpliedModifier"&gt;
+      &lt;property name="violateImpliedStaticField" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public interface Example8 {
+
+  public static final String UNKNOWN = "Unknown";
+  String OTHER = "Other";
+  // 2 violations above:
+  //    'Implied modifier 'final' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  // ok, because 'violateImpliedStaticField' is false
+  public static Address instance() {return null;}
+
+  public abstract Address createAddress(String addressLine, String city);
+  List&lt;Address&gt; findAddresses(String city);
+  // 2 violations above:
+  //    'Implied modifier 'abstract' should be explicit'
+  //    'Implied modifier 'public' should be explicit'
+  interface Address {
+    // 2 violations above:
+    //    'Implied modifier 'public' should be explicit'
+    //    'Implied modifier 'static' should be explicit'
+    String getCity();
+    // 2 violations above:
+    //    'Implied modifier 'abstract' should be explicit'
+    //    'Implied modifier 'public' should be explicit'
   }
 }
 </code></pre></div>

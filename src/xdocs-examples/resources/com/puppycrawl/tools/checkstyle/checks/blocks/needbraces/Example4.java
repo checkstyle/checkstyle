@@ -2,8 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="NeedBraces">
-      <property name="tokens" value="LITERAL_CASE, LITERAL_DEFAULT"/>
-      <property name="allowSingleLineStatement" value="true"/>
+      <property name="allowEmptyLoopBody" value="true"/>
+      <property name="tokens" value="LITERAL_WHILE, LITERAL_FOR"/>
     </module>
   </module>
 </module>
@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-// xdoc section -- start
+// xdoc section - start
 class Example4 {
   String obj = new String();
   String value = new String();
@@ -37,7 +37,7 @@ class Example4 {
     for(int i = 0; i < 10; value.charAt(12));
     // ok above, because FOR is not a target of validation
     while (counter < 10)
-        // ok above, because WHILE is not a target of validation
+        // violation above ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) < 5);
     // ok above, because WHILE is not a target of validation
@@ -48,4 +48,7 @@ class Example4 {
     return true;
   }
 }
-// xdoc section -- end
+
+
+
+// xdoc section - end

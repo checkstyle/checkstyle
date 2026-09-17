@@ -40,6 +40,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,6 +57,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.junitpioneer.jupiter.DefaultLocale;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -67,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecke
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 
+@DefaultLocale("en")
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
 public class MainTest {
 
@@ -244,7 +247,7 @@ public class MainTest {
             boolean found = false;
 
             for (Handler savedHandler : HANDLERS) {
-                if (handler == savedHandler) {
+                if (Objects.equals(handler, savedHandler)) {
                     found = true;
                     break;
                 }
@@ -340,7 +343,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileButWithoutReadAccess(
-            @SysErr Capturable systemErr, @SysOut Capturable systemOut) throws IOException {
+            @SysErr Capturable systemErr, @SysOut Capturable systemOut)
+                    throws IOException {
         final File file = Files.createTempFile(temporaryFolder.toPath(),
                 "testExistingTargetFileButWithoutReadAccess", null).toFile();
         // skip execution if file is still readable, it is possible on some Windows machines
@@ -367,7 +371,8 @@ public class MainTest {
             + "[ERROR] ";
         final String expectedOutputEnd = addEndOfLine(
                 "InputMainCustomSeverityForGoogleConfig.java:3:1:"
-                    + " Missing a Javadoc comment. [MissingJavadocType]",
+                    + " Missing a Javadoc comment for 'InputMainCustomSeverityForGoogleConfig'."
+                    + " [MissingJavadocType]",
                 auditFinishMessage.getMessage());
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
@@ -386,7 +391,8 @@ public class MainTest {
                 + "[WARN] ";
         final String expectedOutputEnd = addEndOfLine(
                 "InputMainCustomSeverityForGoogleConfig.java:3:1:"
-                        + " Missing a Javadoc comment. [MissingJavadocType]",
+                        + " Missing a Javadoc comment for"
+                        + " 'InputMainCustomSeverityForGoogleConfig'. [MissingJavadocType]",
                 auditFinishMessage.getMessage());
         assertWithMessage("Unexpected output log")
                 .that(systemOut.getCapturedData())
@@ -450,7 +456,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileXmlOutput(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname.xml"), "-f", "xml",
                 getPath("InputMain.java"));
         final String expectedPath = getFilePath("InputMain.java");
@@ -533,7 +540,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileWithViolations(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         assertMainReturnCode(0, "-c", getPath("InputMainConfig-classname2.xml"),
                 getPath("InputMain.java"));
         final Violation invalidPatternMessageMain = new Violation(1,
@@ -592,7 +600,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileWithError(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         assertMainReturnCode(2, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain.java"));
         final Violation errorCounterTwoMessage = new Violation(1,
@@ -629,7 +638,8 @@ public class MainTest {
      */
     @Test
     public void testExistingTargetFileWithOneError(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         assertMainReturnCode(1, "-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain1.java"));
         final Violation errorCounterTwoMessage = new Violation(1,
@@ -653,7 +663,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFileWithOneErrorAgainstSunCheck(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         assertMainReturnCode(1, "-c", "/sun_checks.xml", getPath("InputMain1.java"));
         final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
@@ -688,7 +699,8 @@ public class MainTest {
 
     @Test
     public void testExistingTargetFilePlainOutputToFile(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws Exception {
+            @SysOut Capturable systemOut)
+                    throws Exception {
         final String outputFile =
                 Files.createTempFile(temporaryFolder.toPath(), "file", ".output").toFile()
                     .getCanonicalPath();
@@ -848,7 +860,8 @@ public class MainTest {
 
     @Test
     public void testExistingDirectoryWithViolations(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         // we just reference there all violations
         final String[][] outputValues = {
                 {"InputMainComplexityOverflow", "1", "108"},
@@ -1253,7 +1266,8 @@ public class MainTest {
      */
     @Test
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         final String expected = Files.readString(Path.of(
             getPath("InputMainExpectedInputJavadocComment.txt")))
             .replace("\\\\r\\\\n", "\\\\n").replace("\r\n", "\n");
@@ -1360,7 +1374,8 @@ public class MainTest {
 
     @Test
     public void testPrintSuppressionConflictingOptionsTvsO(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
         assertMainReturnCode(-1, "-o", outputPath, "-s", "2:4", getPath(""));
@@ -1635,7 +1650,8 @@ public class MainTest {
 
     @Test
     public void testGenerateChecksAndFilesSuppressionOptionCustomOutput(
-            @SysErr Capturable systemErr) throws IOException {
+            @SysErr Capturable systemErr)
+                    throws IOException {
         final String expected = addEndOfLine(
             "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
                 "<!DOCTYPE suppressions PUBLIC",
@@ -1777,7 +1793,8 @@ public class MainTest {
 
     @Test
     public void testConflictingOptionsTvsS(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
         assertMainReturnCode(-1, "-s", outputPath, "-t", getPath(""));
@@ -1791,7 +1808,8 @@ public class MainTest {
 
     @Test
     public void testConflictingOptionsTvsO(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         final String outputPath = new File(temporaryFolder, "file.output").getCanonicalPath();
 
         assertMainReturnCode(-1, "-o", outputPath, "-t", getPath(""));
@@ -1856,7 +1874,8 @@ public class MainTest {
 
     @Test
     public void testExcludeRegexpOptionFile(@SysErr Capturable systemErr,
-            @SysOut Capturable systemOut) throws IOException {
+            @SysOut Capturable systemOut)
+                    throws IOException {
         final String filePath = getFilePath("InputMain.java");
         assertMainReturnCode(-1, "-c", "/google_checks.xml", filePath, "-x", ".");
         assertWithMessage("Unexpected output log")
@@ -2089,4 +2108,5 @@ public class MainTest {
         }
 
     }
+
 }

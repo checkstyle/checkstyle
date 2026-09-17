@@ -27,11 +27,6 @@ import static java.lang.String.format; // violation 'Unused import - java.lang.S
 import static java.util.List.of; // violation 'Unused import - java.util.List.of.'
 import static java.util.Collections.emptyMap; // violation 'Unused import - java.util.Collections.emptyMap.'
 
-/**
- * This {@link Arrays::sort} is NOT a valid link,
- * same as the one below.
- * Use {@link Integer::parseInt}.
- */
 public class InputUnusedImportsFromStaticMethodRefJavadocDisabled {
 
     public static <T, R> Function<T, R> func(Function<T, R> f) { return f; }

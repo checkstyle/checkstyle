@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/descendanttoken";
@@ -71,10 +72,21 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "40:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),
+            "29:5: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_TRY", "LITERAL_SWITCH"),
+            "31:7: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_TRY", "LITERAL_SWITCH"),
+            "36:7: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "LITERAL_TRY", "LITERAL_SWITCH"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testUseCase1() throws Exception {
+        final String[] expected = {
+            "40:10: " + getCheckMessage(MSG_KEY_MIN, 0, 1, "FOR_INIT", "EXPR"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
@@ -97,92 +109,93 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
     }
 
     @Test
-    public void testExample8() throws Exception {
+    public void testUseCase2() throws Exception {
         final String[] expected = {
             "20:3: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "METHOD_DEF", "VARIABLE_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
+    }
+
+    @Test
+    public void testUseCase3() throws Exception {
+        final String[] expected = {
+            "19:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "LITERAL_RETURN"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase3.java"), expected);
+    }
+
+    @Test
+    public void testUseCase4() throws Exception {
+        final String[] expected = {
+            "20:11: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_THROWS", "IDENT"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase4.java"), expected);
+    }
+
+    @Test
+    public void testUseCase5() throws Exception {
+        final String[] expected = {
+            "19:3: " + getCheckMessage(MSG_KEY_MAX, 10, 2, "METHOD_DEF", "EXPR"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase5.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "51:5: " + "Empty statement is not allowed.",
         };
 
         verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test
+    public void testUseCase6() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "CLASS_DEF", "VARIABLE_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase6.java"), expected);
+    }
+
+    @Test
     public void testExample9() throws Exception {
         final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_KEY_MAX, 3, 2, "METHOD_DEF", "LITERAL_RETURN"),
+            "47:14: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
         };
 
         verifyWithInlineConfigParser(getPath("Example9.java"), expected);
     }
 
     @Test
+    public void testUseCase7() throws Exception {
+        final String[] expected = {
+            "46:29: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "EQUAL", "STRING_LITERAL"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase7.java"), expected);
+    }
+
+    @Test
+    public void testUseCase8() throws Exception {
+        final String[] expected = {
+            "50:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_ASSERT", "POST_INC"),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase8.java"), expected);
+    }
+
+    @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-            "20:11: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "LITERAL_THROWS", "IDENT"),
+            "24:5: Switch must contain at least one default branch.",
         };
 
         verifyWithInlineConfigParser(getPath("Example10.java"), expected);
     }
 
-    @Test
-    public void testExample11() throws Exception {
-        final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_KEY_MAX, 10, 2, "METHOD_DEF", "EXPR"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
-    }
-
-    @Test
-    public void testExample12() throws Exception {
-        final String[] expected = {
-            "51:5: " + "Empty statement is not allowed.",
-        };
-
-        verifyWithInlineConfigParser(getPath("Example12.java"), expected);
-    }
-
-    @Test
-    public void testExample13() throws Exception {
-        final String[] expected = {
-            "16:1: " + getCheckMessage(MSG_KEY_MAX, 2, 1, "CLASS_DEF", "VARIABLE_DEF"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example13.java"), expected);
-    }
-
-    @Test
-    public void testExample14() throws Exception {
-        final String[] expected = {
-            "47:14: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example14.java"), expected);
-    }
-
-    @Test
-    public void testExample15() throws Exception {
-        final String[] expected = {
-            "46:29: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "EQUAL", "STRING_LITERAL"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example15.java"), expected);
-    }
-
-    @Test
-    public void testExample16() throws Exception {
-        final String[] expected = {
-            "50:5: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_ASSERT", "POST_INC"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example16.java"), expected);
-    }
-
-    @Test
-    public void testExample17() throws Exception {
-        final String[] expected = {
-            "24:5: Switch must contain at least one default branch.",
-        };
-
-        verifyWithInlineConfigParser(getPath("Example17.java"), expected);
-    }
 }

@@ -54,6 +54,13 @@ public class AnonInnerLengthCheck extends AbstractCheck {
     /** Specify the maximum number of lines allowed. */
     private int max = DEFAULT_MAX;
 
+    /**
+     * Creates a new {@code AnonInnerLengthCheck} instance.
+     */
+    public AnonInnerLengthCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

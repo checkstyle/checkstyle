@@ -50,6 +50,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/modifier/annotateddeclarationvisibility.html#AnnotatedDeclarationVisibility">
+                AnnotatedDeclarationVisibility
+              </a>
+            </td>
+            <td>
+              Checks that elements annotated with specified annotations have only allowed visibility
+              modifiers.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/annotation/annotationlocation.html#AnnotationLocation">
                 AnnotationLocation
               </a>
@@ -86,6 +97,19 @@
             </td>
             <td>
               Checks for long anonymous inner classes.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/arraybracketnowhitespace.html#ArrayBracketNoWhitespace">
+                ArrayBracketNoWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around square-bracket tokens <code>[</code> and
+              <code>]</code> follows the Google Java Style Guide requirements for array
+              declarations, array creation, and array indexing as described in <a href="https://google.github.io/styleguide/javaguide.html#s4.6.2-horizontal-whitespace">
+              Section 4.6.2: Horizontal Whitespace</a>.
             </td>
           </tr>
           <tr>
@@ -148,6 +172,16 @@
             </td>
             <td>
               Detects inline conditionals.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/avoidmoduleimport.html#AvoidModuleImport">
+                AvoidModuleImport
+              </a>
+            </td>
+            <td>
+              Checks that there are no module imports.
             </td>
           </tr>
           <tr>
@@ -467,6 +501,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/expressionoverblocklambda.html#ExpressionOverBlockLambda">
+                ExpressionOverBlockLambda
+              </a>
+            </td>
+            <td>
+              Checks that expression lambdas are used instead of single-line block lambdas where
+              possible.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/fallthrough.html#FallThrough">
                 FallThrough
               </a>
@@ -539,6 +584,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/naming/googlemethodname.html#GoogleMethodName">
+                GoogleMethodName
+              </a>
+            </td>
+            <td>
+              Checks that method names conform to the <a href="https://google.github.io/styleguide/javaguide.html#s5.2.3-method-names">
+              Google Java Style Guide</a> for method naming.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/naming/googlenonconstantfieldname.html#GoogleNonConstantFieldName">
                 GoogleNonConstantFieldName
               </a>
@@ -589,6 +645,17 @@
             <td>
               Makes sure that utility classes (classes that contain only static methods or fields in
               their API) do not have a public constructor.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/illegalblocktag.html#IllegalBlockTag">
+                IllegalBlockTag
+              </a>
+            </td>
+            <td>
+              Detects a user-defined Javadoc block tag and reports a violation when the tag is
+              present with text that does not match <code>tagTextPattern</code>.
             </td>
           </tr>
           <tr>
@@ -703,6 +770,39 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/inappropriatejavadocblocktagsonfield.html#InappropriateJavadocBlockTagsOnField">
+                InappropriateJavadocBlockTagsOnField
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for field declarations do not contain tags that are
+              semantically invalid for fields.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/inappropriatejavadocblocktagsonpackage.html#InappropriateJavadocBlockTagsOnPackage">
+                InappropriateJavadocBlockTagsOnPackage
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for package definitions do not contain tags that are
+              semantically invalid for packages.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/inappropriatejavadocblocktagsontype.html#InappropriateJavadocBlockTagsOnType">
+                InappropriateJavadocBlockTagsOnType
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc block tags for type definitions (class, interface, enum, record,
+              annotation) do not contain tags that are semantically invalid for types.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/misc/indentation.html#Indentation">
                 Indentation
               </a>
@@ -811,6 +911,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocendcommentdelimiter.html#JavadocEndCommentDelimiter">
+                JavadocEndCommentDelimiter
+              </a>
+            </td>
+            <td>
+              Checks that the Javadoc closing delimiter contains exactly one asterisk before the
+              slash.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
                 JavadocLeadingAsteriskAlign
               </a>
@@ -818,6 +929,28 @@
             <td>
               Checks the alignment of <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
               leading asterisks</a> in a Javadoc comment.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadoclinkfirstoccurrence.html#JavadocLinkFirstOccurrence">
+                JavadocLinkFirstOccurrence
+              </a>
+            </td>
+            <td>
+              Checks that in Javadoc comments, each API name is linked with <code>{@link}</code> or
+              <code>{@linkplain}</code> only on its first occurrence.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadoclinkwellknownapi.html#JavadocLinkWellKnownApi">
+                JavadocLinkWellKnownApi
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments avoid unnecessary <code>{@link}</code> and
+              <code>{@linkplain}</code> tags for APIs that are considered well-known.
             </td>
           </tr>
           <tr>
@@ -853,6 +986,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocnoerrorinthrowstag.html#JavadocNoErrorInThrowsTag">
+                JavadocNoErrorInThrowsTag
+              </a>
+            </td>
+            <td>
+              Checks that <code>Error</code> types are not documented in <code>@throws</code> or
+              <code>@exception</code> Javadoc tags.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadocpackage.html#JavadocPackage">
                 JavadocPackage
               </a>
@@ -873,12 +1017,35 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/javadoc/javadocstyle.html#JavadocStyle">
-                JavadocStyle
+              <a href="checks/javadoc/javadocparamorder.html#JavadocParamOrder">
+                JavadocParamOrder
               </a>
             </td>
             <td>
-              Validates Javadoc comments to help ensure they are well formed.
+              Checks that <code>@param</code> tags in Javadoc comments are in the same order as the
+              parameters in the declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocregexp.html#JavadocRegexp">
+                JavadocRegexp
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc comments do not match a configured regular expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocseetagorder.html#JavadocSeeTagOrder">
+                JavadocSeeTagOrder
+              </a>
+            </td>
+            <td>
+              Checks that multiple <code>@see</code> tags are ordered in a predictable way, roughly
+              following the order in which their arguments are searched for by javadoc, from nearest
+              to farthest access, from least-qualified to fully-qualified.
             </td>
           </tr>
           <tr>
@@ -889,6 +1056,17 @@
             </td>
             <td>
               Checks the indentation of the continuation lines in block tags.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/javadocthrowsorder.html#JavadocThrowsOrder">
+                JavadocThrowsOrder
+              </a>
+            </td>
+            <td>
+              Checks that multiple <code>@throws</code> and <code>@exception</code> Javadoc tags are
+              listed alphabetically by exception name.
             </td>
           </tr>
           <tr>
@@ -991,7 +1169,7 @@
             </td>
             <td>
               Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
-              &quot;magic numbers&quot;</a> where a magic number is a numeric literal that is not
+              <code>"magic number"</code></a> where a magic number is a numeric literal that is not
               defined as a constant.
             </td>
           </tr>
@@ -1188,6 +1366,26 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/modules/moduledirectiveorder.html#ModuleDirectiveOrder">
+                ModuleDirectiveOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering, grouping and separation of directives in a module declaration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/moduleimportorder.html#ModuleImportOrder">
+                ModuleImportOrder
+              </a>
+            </td>
+            <td>
+              Checks the ordering and placement of module import declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
                 MultiFileRegexpHeader
               </a>
@@ -1195,6 +1393,17 @@
             <td>
               Checks the header of a source file against multiple header files that contain a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
               pattern</a> for each line of the source header.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/multilinecommentleadingasteriskpresence.html#MultilineCommentLeadingAsteriskPresence">
+                MultilineCommentLeadingAsteriskPresence
+              </a>
+            </td>
+            <td>
+              Checks if the <a href="https://www.oracle.com/java/technologies/javase/codeconventions-comments.html">
+              multi-line comments</a> have leading asterisks on each line.
             </td>
           </tr>
           <tr>
@@ -1424,6 +1633,29 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/annotation/openjdkannotationlocation.html#OpenjdkAnnotationLocation">
+                OpenjdkAnnotationLocation
+              </a>
+            </td>
+            <td>
+              Verifies that annotations are properly placed by <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations">
+              OpenJDK Style</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/misc/openjdkmethodthrowsalignment.html#OpenjdkMethodThrowsAlignment">
+                OpenjdkMethodThrowsAlignment
+              </a>
+            </td>
+            <td>
+              Checks that the <code>throws</code> clause of a wrapped method or constructor
+              declaration is properly aligned according to the <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-method-declarations">
+              OpenJDK Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/operatorwrap.html#OperatorWrap">
                 OperatorWrap
               </a>
@@ -1564,6 +1796,28 @@
             </td>
             <td>
               Checks that pattern variable names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/prefercodeorsnippetjavadocinlinetag.html#PreferCodeOrSnippetJavadocInlineTag">
+                PreferCodeOrSnippetJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags <code>{@code ...}</code> and <code>{@snippet
+              ...}</code> are preferred over HTML tags <code>&lt;code&gt;</code> and
+              <code>&lt;pre&gt;</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/javadoc/preferliteraljavadocinlinetag.html#PreferLiteralJavadocInlineTag">
+                PreferLiteralJavadocInlineTag
+              </a>
+            </td>
+            <td>
+              Checks that Javadoc inline tags are preferred over escaping entities.
             </td>
           </tr>
           <tr>
@@ -1902,6 +2156,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/typebodypadding.html#TypeBodyPadding">
+                TypeBodyPadding
+              </a>
+            </td>
+            <td>
+              Checks the padding of the body of type definitions (classes, interfaces, enums,
+              records).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/naming/typename.html#TypeName">
                 TypeName
               </a>
@@ -1938,6 +2203,17 @@
             </td>
             <td>
               Detects duplicated keys in properties files.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/imports/unnecessaryfullyqualifiedtype.html#UnnecessaryFullyQualifiedType">
+                UnnecessaryFullyQualifiedType
+              </a>
+            </td>
+            <td>
+              Checks for fully qualified type references that are unnecessary because the type could
+              simply be imported and referenced by its simple name.
             </td>
           </tr>
           <tr>
@@ -2002,6 +2278,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/unnecessarytypeargumentswithrecordpattern.html#UnnecessaryTypeArgumentsWithRecordPattern">
+                UnnecessaryTypeArgumentsWithRecordPattern
+              </a>
+            </td>
+            <td>
+              Checks for unnecessary explicit type arguments in record patterns.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/unusedcatchparametershouldbeunnamed.html#UnusedCatchParameterShouldBeUnnamed">
                 UnusedCatchParameterShouldBeUnnamed
               </a>
@@ -2038,6 +2324,16 @@
             </td>
             <td>
               Checks that a local variable is declared and/or assigned, but not used.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unusedprivatefield.html#UnusedPrivateField">
+                UnusedPrivateField
+              </a>
+            </td>
+            <td>
+              Check that a private field is declared, but never used.
             </td>
           </tr>
           <tr>
@@ -2123,6 +2419,16 @@
             </td>
             <td>
               Checks that a token is surrounded by whitespace.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/whitespace/whitespacebeforeemptybody.html#WhitespaceBeforeEmptyBody">
+                WhitespaceBeforeEmptyBody
+              </a>
+            </td>
+            <td>
+              Checks that a whitespace is present before the opening brace of an empty body.
             </td>
           </tr>
           <tr>

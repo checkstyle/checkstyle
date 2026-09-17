@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.api.fullident;
 
 public class InputFullIdentLiteralNewCondition {
     {
-        int j = 20; // violation, 'Unused local variable'
+        int j = 20; // violation 'Unused local variable'
         Nested obj = new Nested() {
             void method() {
                 j += 50;

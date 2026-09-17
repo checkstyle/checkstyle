@@ -8,6 +8,37 @@
   <body>
     <section name="LocalVariableName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#LocalVariableName_Description">Description</a></li>
+          <li><a href="#LocalVariableName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#LocalVariableName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by letters, digits, and underscores is</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to allow one character variable name in initialization expressions in FOR loop, where regexp allows 2 or more chars</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#LocalVariableName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase2-config" class="toc-sublink">An example of how to configure the check to that all variables have 3 or more chars in name</a></li>
+            </ul>
+          </li>
+          <li><a href="#LocalVariableName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#LocalVariableName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#LocalVariableName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#LocalVariableName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="LocalVariableName_Description">
         <div>
           Checks that local, non-<code>final</code> variable names conform to a specified pattern.
@@ -35,14 +66,14 @@
               <td><a id="allowOneCharVarInForLoop"/><a href="#allowOneCharVarInForLoop">allowOneCharVarInForLoop</a></td>
               <td>Allow one character variable name in <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
  initialization expressions</a> in FOR loop if one char variable name is prohibited by <code>format</code> regexp.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^([a-z][a-zA-Z0-9]*|_)$</code></td>
               <td>3.0</td>
             </tr>
@@ -70,24 +101,24 @@ class Example1 {
     int g = 0;
     for (int var = 1; var &lt; 10; var++) {}
     for (int VAR = 1; VAR &lt; 10; VAR++) {}
-    // violation above, 'Name 'VAR' must match pattern*'
+    // violation above 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
-    // violation above, 'Name 'var_1' must match pattern*'
+    // violation above 'Name 'var_1' must match pattern*'
     for (int v = 1; v &lt; 10; v++) {
       int a = 1;
     }
     for (int V = 1; V &lt; 10; V++) {
-      // violation above, 'Name 'V' must match pattern*'
-      int I = 1; // violation, 'Name 'I' must match pattern*'
+      // violation above 'Name 'V' must match pattern*'
+      int I = 1; // violation 'Name 'I' must match pattern*'
     }
     List list = new ArrayList();
     for (Object o : list) {
       String a = "";
     }
     for (Object O : list) {
-      // violation above, 'Name 'O' must match pattern*'
-      String A = ""; // violation, 'Name 'A' must match pattern*'
+      // violation above 'Name 'O' must match pattern*'
+      String A = ""; // violation 'Name 'A' must match pattern*'
     }
   }
 }
@@ -113,7 +144,7 @@ class Example2 {
     int g = 0;
     for (int var = 1; var &lt; 10; var++) {}
     for (int VAR = 1; VAR &lt; 10; VAR++) {}
-    // violation above, 'Name 'VAR' must match pattern*'
+    // violation above 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
 
@@ -121,22 +152,22 @@ class Example2 {
       int a = 1;
     }
     for (int V = 1; V &lt; 10; V++) {
-      // violation above, 'Name 'V' must match pattern*'
-      int I = 1; // violation, 'Name 'I' must match pattern*'
+      // violation above 'Name 'V' must match pattern*'
+      int I = 1; // violation 'Name 'I' must match pattern*'
     }
     List list = new ArrayList();
     for (Object o : list) {
       String a = "";
     }
     for (Object O : list) {
-      // violation above, 'Name 'O' must match pattern*'
-      String A = ""; // violation, 'Name 'A' must match pattern*'
+      // violation above 'Name 'O' must match pattern*'
+      String A = ""; // violation 'Name 'A' must match pattern*'
     }
   }
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example4-config">
+        <p id="Example3-config">
           An example of how to configure the check to allow one character variable name in
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
           initialization expressions</a> in FOR loop, where regexp allows 2 or more chars:
@@ -151,52 +182,55 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class Example3 {
   void MyMethod() {
     int good = 1;
-    int g = 0; // violation, 'Name 'g' must match pattern*'
+    int g = 0; // violation 'Name 'g' must match pattern*'
     for (int var = 1; var &lt; 10; var++) {}
     for (int VAR = 1; VAR &lt; 10; VAR++) {}
-    // violation above, 'Name 'VAR' must match pattern*'
+    // violation above 'Name 'VAR' must match pattern*'
     for (int i = 1; i &lt; 10; i++) {}
     for (int var_1 = 0; var_1 &lt; 10; var_1++) {}
 
     for (int v = 1; v &lt; 10; v++) {
-      int a = 1; // violation, 'Name 'a' must match pattern*'
+      int a = 1; // violation 'Name 'a' must match pattern*'
     }
     for (int V = 1; V &lt; 10; V++) {
 
-      int I = 1; // violation, 'Name 'I' must match pattern*'
+      int I = 1; // violation 'Name 'I' must match pattern*'
     }
     List list = new ArrayList();
     for (Object o : list) {
-      String a = ""; // violation, 'Name 'a' must match pattern*'
+      String a = ""; // violation 'Name 'a' must match pattern*'
     }
     for (Object O : list) {
 
-      String A = ""; // violation, 'Name 'A' must match pattern*'
+      String A = ""; // violation 'Name 'A' must match pattern*'
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-code">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalVariableName_Use_Cases">
+        <p id="UseCase1-code">
           An example of one character variable name in initialization expression(like &quot;i&quot;)
           in FOR loop:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   void myMethod () {
     for(int i = 1; i &lt; 10; i++) {}
-    for(int K = 1; K &lt; 10; K++) {} // violation, 'Name 'K' must match pattern*'
+    for(int K = 1; K &lt; 10; K++) {} // violation 'Name 'K' must match pattern*'
     List list = new ArrayList();
     for (Object o : list) {}
-    for (Object O : list) {} // violation, 'Name 'O' must match pattern*'
+    for (Object O : list) {} // violation 'Name 'O' must match pattern*'
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -208,14 +242,14 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase2 {
   void MyMethod() {
     int goodName = 0;
-    int i = 1; // violation, 'Name 'i' must match pattern*'
+    int i = 1; // violation 'Name 'i' must match pattern*'
     for (int var = 1; var &lt; 10; var++) {
-      int j = 1; // violation, 'Name 'j' must match pattern*'
+      int j = 1; // violation 'Name 'j' must match pattern*'
     }
   }
 }
@@ -231,6 +265,11 @@ class Example5 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">

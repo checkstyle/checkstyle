@@ -245,4 +245,5 @@ public class TreeTableTest extends AbstractGuiTestSupport {
                 .that(treeTable.isCellEditable(1, 0))
                 .isEqualTo(false);
     }
+
 }

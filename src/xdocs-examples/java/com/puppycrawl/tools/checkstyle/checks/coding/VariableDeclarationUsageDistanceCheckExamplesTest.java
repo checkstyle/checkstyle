@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class VariableDeclarationUsageDistanceCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/variabledeclarationusagedistance";
@@ -43,9 +44,18 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     }
 
     @Test
-    public void testExample2() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY_EXT, "minutes", 6, 3),
+        };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -63,7 +73,8 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-
+            "17:5: " + getCheckMessage(MSG_KEY_EXT, "num", 4, 3),
+            "30:5: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -72,21 +83,11 @@ public class VariableDeclarationUsageDistanceCheckExamplesTest
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "17:5: " + getCheckMessage(MSG_KEY_EXT, "num", 4, 3),
-            "30:5: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
-    }
-
-    @Test
-    public void testExample6() throws Exception {
-        final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY, "num", 4, 3),
             "19:5: " + getCheckMessage(MSG_KEY, "PI", 5, 3),
         };
 
-        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 
 }

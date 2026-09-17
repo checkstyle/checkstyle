@@ -46,4 +46,5 @@ public class CheckWhichThrowsError extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         throw new IndexOutOfBoundsException("test");
     }
+
 }

@@ -173,7 +173,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20">
      * multi-catch</a> (pipe-syntax).
      *
-     * @param binaryOr {@link TokenTypes#BOR binary or}
+     * @param binaryOr {@code TokenTypes#BOR binary or}
      * @return true if binary or is applied to exceptions in multi-catch.
      */
     private static boolean isPipeOperator(DetailAST binaryOr) {

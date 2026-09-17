@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -71,6 +70,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             "InputCheckstyleAntTaskTestChecks.xml";
     private static final String CUSTOM_ROOT_CONFIG_FILE =
             "InputCheckstyleAntTaskConfigCustomRootModule.xml";
+    private static final String IGNORED_CHILD_CONFIG_FILE =
+            "InputCheckstyleAntTaskConfigIgnoredChild.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
     private static final String FAILURE_PROPERTY_VALUE = "myValue";
 
@@ -233,9 +234,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertWithMessage("There are more files to check than expected")
                 .that(filesToCheck)
-                .hasSize(10);
+                .hasSize(11);
         assertWithMessage("The path of file differs from expected")
-                .that(filesToCheck.get(6).getAbsolutePath())
+                .that(filesToCheck.get(7).getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
         assertWithMessage("Amount of logged messages in unexpected")
                 .that(antTask.getLoggedMessages())
@@ -477,47 +478,34 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void testExecuteIgnoredModules() throws IOException {
-        final CheckstyleAntTask antTask = getCheckstyleAntTask();
-        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
-        antTask.setFailOnViolation(false);
+    public final void testExecuteIgnoredModulesKeepsIgnoredChild() throws IOException {
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(IGNORED_CHILD_CONFIG_FILE);
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.setExecuteIgnoredModules(true);
-
-        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
-        final File outputFile = new File("target/ant_task_plain_output.txt");
-        formatter.setTofile(outputFile);
-        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
-        formatterType.setValue("plain");
-        formatter.setType(formatterType);
-        formatter.createListener(null);
-
-        antTask.addFormatter(formatter);
         antTask.execute();
 
-        final ResourceBundle bundle = ResourceBundle.getBundle(
-                Definitions.CHECKSTYLE_BUNDLE, Locale.ROOT);
-        final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
-        final String auditFinishedMessage = bundle.getString(DefaultLogger.AUDIT_FINISHED_MESSAGE);
-        final List<String> output = readWholeFile(outputFile);
-        final String errorMessage = "Content of file with violations differs from expected";
-        assertWithMessage(errorMessage)
-                .that(output.getFirst())
-                .isEqualTo(auditStartedMessage);
-        assertWithMessage(errorMessage)
-                .that(output.get(1))
-                .matches("^\\[WARN].*InputCheckstyleAntTaskError.java:4: .*"
-                        + "@incomplete=Some javadoc \\[WriteTag]");
-        assertWithMessage(errorMessage)
-                .that(output.get(2))
-                .matches("^\\[ERROR].*InputCheckstyleAntTaskError.java:7: "
-                        + "Line is longer than 70 characters \\(found 80\\). \\[LineLength]");
-        assertWithMessage(errorMessage)
-                .that(output.get(3))
-                .matches("^\\[ERROR].*InputCheckstyleAntTaskError.java:9: "
-                        + "Line is longer than 70 characters \\(found 81\\). \\[LineLength]");
-        assertWithMessage(errorMessage)
-                .that(output.get(4))
-                .isEqualTo(auditFinishedMessage);
+        assertWithMessage("Checker should process files")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
+        assertWithMessage("executeIgnoredModules=true should keep severity=ignore children")
+                .that(TestRootModuleChecker.getConfig().getChildren().length)
+                .isEqualTo(1);
+    }
+
+    @Test
+    public final void testOmitIgnoredModulesRemovesIgnoredChild() throws IOException {
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(IGNORED_CHILD_CONFIG_FILE);
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+        antTask.execute();
+
+        assertWithMessage("Checker should process files")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
+        assertWithMessage("default OMIT should drop severity=ignore children")
+                .that(TestRootModuleChecker.getConfig().getChildren().length)
+                .isEqualTo(0);
     }
 
     @Test
@@ -664,11 +652,11 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> expected = readWholeFile(
             new File(getPath("ExpectedCheckstyleAntTaskXmlOutput.xml")));
         final List<String> actual = readWholeFile(outputFile);
-        for (int i = 0; i < expected.size(); i++) {
-            final String line = expected.get(i);
+        for (int index = 0; index < expected.size(); index++) {
+            final String line = expected.get(index);
             if (!line.startsWith("<checkstyle version") && !line.startsWith("<file")) {
                 assertWithMessage("Content of file with violations differs from expected")
-                        .that(actual.get(i))
+                        .that(actual.get(index))
                         .isEqualTo(line);
             }
         }
@@ -951,9 +939,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(loggedMessages)
                 .hasSize(expectedList.size());
 
-        for (int i = 0; i < expectedList.size(); i++) {
-            final MessageLevelPair expected = expectedList.get(i);
-            final MessageLevelPair actual = loggedMessages.get(i);
+        for (int index = 0; index < expectedList.size(); index++) {
+            final MessageLevelPair expected = expectedList.get(index);
+            final MessageLevelPair actual = loggedMessages.get(index);
             assertWithMessage("Log messages should match")
                     .that(actual.getMsg())
                     .matches(expected.getMsg());
@@ -1014,7 +1002,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     private static List<String> readWholeFile(File outputFile) throws IOException {
-        return Files.readAllLines(outputFile.toPath(), StandardCharsets.UTF_8);
+        return Files.readAllLines(outputFile.toPath());
     }
 
     private static long getNumberFromLine(String line) {

@@ -2,7 +2,7 @@
 JavadocVariable
 accessModifiers = (default)public,protected,package,private
 ignoreNamePattern = (default)null
-tokens = (default)ENUM_CONSTANT_DEF
+tokens = (default)VARIABLE_DEF,ENUM_CONSTANT_DEF
 
 */
 
@@ -23,5 +23,5 @@ public class InputJavadocVariableAboveComment {
      */
     /* package */ int variablePackage;
 
-    public int x;  // violation, 'Missing a Javadoc comment.'
+    public int x;  // violation 'Missing a Javadoc comment.'
 }

@@ -20,7 +20,10 @@ public class InputRightCurlyTestRecordsAndCompactCtors {
                 value = i;
             }
             return value > 10;
-        } } // 2 violations
+        } }
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 11 should be alone on a line.'
 
     record MyTestRecord2() {
         MyTestRecord2(String one, String two, String three) {

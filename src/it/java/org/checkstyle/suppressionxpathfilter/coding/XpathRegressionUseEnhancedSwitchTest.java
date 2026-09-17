@@ -95,4 +95,5 @@ public class XpathRegressionUseEnhancedSwitchTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

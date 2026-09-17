@@ -13,22 +13,22 @@ package com.puppycrawl.tools.checkstyle.checks.coding.multiplestringliterals;
 public class InputMultipleStringLiteralsTextBlocks1 {
     // violation below 'The String "string" appears 3 times in the file.'
     String string1 = "string"; // occurrence #1
-    String string2a = "string"; // violation #1
+    String string2a = "string";
     String string2b = """
-            string"""; // violation #2
+            string""";
 
     // violation below 'The String "other string" appears 2 times in the file.'
     String string3 = """
             other string"""; // occurrence #1
     String string4 = """
-            other string"""; // violation #1
+            other string""";
     // violation below 'The String "other string\\n" appears 2 times.*'
     String string5 = """
             other string
             """; // occurrence #1
     String string6 = """
             other string
-            """; // violation #1
+            """;
     // violation below 'The String "<html>.*" appears 2 times in the file.'
     String escape1 = """
             <html>\u000D\u000A\n\u2000
@@ -55,23 +55,23 @@ public class InputMultipleStringLiteralsTextBlocks1 {
                     <p>Hello, world</p>\u000D\u000A\n\u2000
                 </body>\u000D\u000A\n\u2000
             </html>\u000D\u000A\u2000
-            """; // violation #1
+            """;
     String testMoreEscapes2 = """
             fun with\n
              whitespace\t\r
              and other escapes \"""
-            """; // violation #1
+            """;
     String evenMoreEscapes2 = """
             \b \f \\ \0 \1 \2 \r \r\n \\r\\n \\''
             \\11 \\57 \n\\n\n\\\n\n \\ ""a "a
             \\' \\\' \'
-            """; // violation #1
+            """;
 
     // violation below 'The String "foo" appears 4 times in the file.'
     String str1a = "foo"; // occurrence #1
-    String str1b = "foo"; // violation #1
+    String str1b = "foo";
     String str2a = """
-            foo"""; // violation #2
+            foo""";
     String str2b = """
-            foo"""; // violation #3
+            foo""";
 }

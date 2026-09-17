@@ -41,7 +41,8 @@ import java.util.stream.Stream;
 
 import javax.naming.NamingException;
 
-public class InputClassFanOutComplexity3 { // violation
+// violation below 'Class Fan-Out Complexity is 2 (max allowed is 0).'
+public class InputClassFanOutComplexity3 {
     private class InnerClass { //singleline comment
         public List _list = new ArrayList();
     }
@@ -73,7 +74,8 @@ enum InnerEnum3 {
     private Map map2;
 }
 
-class InputThrows3 { // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+class InputThrows3 {
 
     public void get() throws NamingException, IllegalArgumentException {
         new java.lang.ref.ReferenceQueue<Integer>();

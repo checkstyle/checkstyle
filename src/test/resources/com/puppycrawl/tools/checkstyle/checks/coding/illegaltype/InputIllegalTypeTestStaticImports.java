@@ -6,9 +6,9 @@ legalAbstractClassNames = (default)
 ignoredMethodNames = foo1
 illegalAbstractClassNameFormat = (default)^(.*[.])?Abstract.*$
 memberModifiers = (default)
-tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, METHOD_DEF, \
-         METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF, \
-         RECORD_COMPONENT_DEF
+tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, IMPORT, INTERFACE_DEF, METHOD_CALL, \
+         METHOD_DEF, METHOD_REF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, \
+         RECORD_DEF, RECORD_COMPONENT_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -23,8 +23,8 @@ public class InputIllegalTypeTestStaticImports
      private boolean foo(String s) {
          return true;
      }
-     SomeStaticClass staticClass; // violation, 'Usage of type SomeStaticClass is not allowed'.
+     SomeStaticClass staticClass; // violation "Usage of type 'SomeStaticClass' is not allowed."
      private static SomeStaticClass foo1() { return null;}
      private static void foo2(SomeStaticClass s) {}
-     // violation above, 'Usage of type 'SomeStaticClass' is not allowed'
+     // violation above "Usage of type 'SomeStaticClass' is not allowed."
 }

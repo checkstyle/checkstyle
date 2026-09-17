@@ -17,7 +17,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
-// xdoc section -- start
+// xdoc section - start
 // ok below, since we are only checking for '^unchecked$|^unused$'
 @SuppressWarnings("")
 class Example2 {
@@ -35,14 +35,14 @@ class Example2 {
   // ok below, since we are only checking for '^unchecked$|^unused$'
   @SuppressWarnings("all")
   void foo2(int param) {}
-  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
   @SuppressWarnings("unused")
   void foo3(int param) {}
-  // violation below, 'The warning 'unused' cannot be suppressed at this location'
+  // violation below 'The warning 'unused' cannot be suppressed at this location'
   @SuppressWarnings(true?"all":"unused")
   void foo4(int param) {}
 }
-// violation below, 'The warning 'unchecked' cannot be suppressed at this location'
+// violation below 'The warning 'unchecked' cannot be suppressed at this location'
 @SuppressWarnings("unchecked")
 class Test2 {}
-// xdoc section -- end
+// xdoc section - end

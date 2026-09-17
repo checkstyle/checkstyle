@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="TrailingComment">
-      <property name="legalComment" value="^ (SUPPRESS CHECKSTYLE|NOPMD|NOSONAR)$"/>
+      <property name="legalComment" value="^ ok, SUPPRESS CHECKSTYLE$"/>
     </module>
   </module>
 </module>
@@ -10,25 +10,28 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
   int a;
   int b;
   int c;
-  int d; // violation, not suppressed
+  int d; // ok, SUPPRESS CHECKSTYLE
+  // ok above, matches legalComment pattern
 
   public static void main(String[] args) {
     int x = 10;
 
     if (/* OK */ x > 5) {}
-    int a = 5; // violation
+    int a = 5; // trailing comment
+    // violation above 'Don't use trailing comments.'
     doSomething(
             "param1"
-    ); // ok, by default such trailing of method/code-block ending is allowed
+    ); // trailing comment
+    // ok above, trailing comment after ');' is allowed by default
 
   }
 
   private static void doSomething(String param) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

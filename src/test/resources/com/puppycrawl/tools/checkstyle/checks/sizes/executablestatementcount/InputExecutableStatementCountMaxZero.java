@@ -1,7 +1,7 @@
 /*
 ExecutableStatementCount
 max = 0
-tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR_DEF, LAMBDA
+tokens = (default)CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,SLIST,COMPACT_CTOR_DEF,LAMBDA
 
 
 */
@@ -9,10 +9,12 @@ tokens = (default)CTOR_DEF, METHOD_DEF, INSTANCE_INIT, STATIC_INIT, COMPACT_CTOR
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
 public class InputExecutableStatementCountMaxZero {
-    public void foo() { // violation
+    // violation below 'Executable statement count is 3'
+    public void foo() {
         while (true) {
             Runnable runnable = new Runnable() {
-                public void run() { // violation
+                // violation below 'Executable statement count is 1'
+                public void run() {
                     while (true) {
                     }
                 }
@@ -22,7 +24,8 @@ public class InputExecutableStatementCountMaxZero {
         }
     }
 
-    public void bar() { // violation
+    // violation below 'Executable statement count is 2'
+    public void bar() {
         if (System.currentTimeMillis() == 0) {
             if (System.currentTimeMillis() == 0 && System.currentTimeMillis() == 0) {
             }
@@ -32,14 +35,16 @@ public class InputExecutableStatementCountMaxZero {
         }
     }
 
-    public void simpleElseIf() { // violation
+    // violation below 'Executable statement count is 1'
+    public void simpleElseIf() {
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
         } else {
         }
     }
 
-    public void stupidElseIf() { // violation
+    // violation below 'Executable statement count is 3'
+    public void stupidElseIf() {
         if (System.currentTimeMillis() == 0) {
         } else {
             if (System.currentTimeMillis() == 0) {
@@ -53,7 +58,8 @@ public class InputExecutableStatementCountMaxZero {
         }
     }
 
-    public InputExecutableStatementCountMaxZero() // violation
+    // violation below 'Executable statement count is 2'
+    public InputExecutableStatementCountMaxZero()
     {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
@@ -63,7 +69,8 @@ public class InputExecutableStatementCountMaxZero {
     }
 
     // STATIC_INIT
-    static { // violation
+    // violation below 'Executable statement count is 2'
+    static {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
@@ -72,7 +79,8 @@ public class InputExecutableStatementCountMaxZero {
     }
 
     // INSTANCE_INIT
-    { // violation
+    // violation below 'Executable statement count is 2'
+    {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
@@ -80,11 +88,13 @@ public class InputExecutableStatementCountMaxZero {
         }
     }
 
+    // violation 2 lines below 'Executable statement count is 2'
     /** Inner */
-    public InputExecutableStatementCountMaxZero(int aParam) // violation
+    public InputExecutableStatementCountMaxZero(int aParam)
     {
         Runnable runnable = new Runnable() {
-            public void run() { // violation
+            // violation below 'Executable statement count is 1'
+            public void run() {
                 while (true) {
                 }
             }
@@ -95,7 +105,8 @@ public class InputExecutableStatementCountMaxZero {
     /** Empty constructor */
     public InputExecutableStatementCountMaxZero(String someString) {}
 
-    static Runnable r1 = () -> { // violation
+    // violation below 'Executable statement count is 1'
+    static Runnable r1 = () -> {
         String.valueOf("Hello world one!");
     };
 }

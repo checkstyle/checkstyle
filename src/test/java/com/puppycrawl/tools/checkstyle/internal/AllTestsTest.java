@@ -269,7 +269,7 @@ public class AllTestsTest {
         return !fileName.endsWith("TestSupport.java")
                 // tests external utility XPathEvaluator
                 && !"XpathMapper.java".equals(fileName)
-                // JavadocMetadataScraperUtil and related classes are temporarily hosted in test
+                // Metadata-related test utility classes do not map to production classes
                 && !file.getPath().contains("meta")
                 // InlineConfigParser is hosted in test
                 && !file.getPath().contains("bdd")
@@ -294,6 +294,7 @@ public class AllTestsTest {
 
     private static boolean shouldSkipInputFileNameCheck(String path, String fileName) {
         return "package-info.java".equals(fileName)
+                || "module-info.java".equals(fileName)
                 || "package.html".equals(fileName)
                 // special directory for files that can't be renamed or are secondary inputs
                 || path.contains(File.separatorChar + "inputs" + File.separatorChar)

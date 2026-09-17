@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
  * Prerequisites for execution:
  * <ul>
  *   <li>{@code mvn clean compile}</li>
- *   <li>{@code mvn plexus-component-metadata:generate-metadata}
+ *   <li>{@code mvn process-classes}
  *       (for custom macro/parser discovery)</li>
  * </ul>
  */
@@ -130,7 +130,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
     /**
      * Scans the XDOC_CHECKS_DIR for all individual check XDoc files.
-     * It filters out common files like 'index.xml' and 'property_types.xml'.
+     * It filters out common files like 'index.xml' and 'property-types.xml'.
      *
      * @return A list of paths to check XDoc files.
      * @throws IOException if an I/O error occurs when walking the path.
@@ -141,7 +141,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().endsWith(".xml"))
                     .filter(path -> !"index.xml".equals(path.getFileName().toString()))
-                    .filter(path -> !"property_types.xml".equals(path.getFileName().toString()))
+                    .filter(path -> !"property-types.xml".equals(path.getFileName().toString()))
                     .toList();
         }
     }
@@ -152,9 +152,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      *
      * @param checkXdocFile Path to the check's XDoc file.
      * @return The main section name.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
-     * @throws IOException if an I/O error occurs reading the file.
      * @throws AssertionError if no {@literal <section name=...>} is found.
+     * @throws IOException if an I/O error occurs reading the file.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      */
     private static String getMainSectionName(Path checkXdocFile)
             throws ParserConfigurationException, IOException {
@@ -184,9 +184,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      *
      * @param checkXdocFile Path to the check's XDoc file.
      * @return The check's description text.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
-     * @throws IOException if an I/O error occurs reading the file.
      * @throws AssertionError if no suitable description subsection is found.
+     * @throws IOException if an I/O error occurs reading the file.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      */
     private static String getCheckDescriptionFromXdoc(Path checkXdocFile)
             throws ParserConfigurationException, IOException {
@@ -304,9 +304,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      * @param categoryIndexFile Path to the category's index.xml file.
      * @return A map with check names (from {@literal <a>} tag text) as keys
      *         and {@link CheckIndexInfo} objects as values.
-     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
-     * @throws IOException if an I/O error occurs reading the file.
      * @throws AssertionError if no {@literal <table>} is found in the index file.
+     * @throws IOException if an I/O error occurs reading the file.
+     * @throws ParserConfigurationException if a DocumentBuilder cannot be created.
      */
     private static Map<String, CheckIndexInfo> parseCategoryIndex(Path categoryIndexFile)
             throws ParserConfigurationException, IOException {
@@ -417,7 +417,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      * @param parent The parent DOM node.
      * @param tagName The tag name to filter child elements by.
      * @return An {@link Optional} with the first matching child element,
-     *         or empty {@link Optional} if none found or parent is null.
+     *         or empty {@code Optional} if none found or parent is null.
      */
     private static Optional<Element> getFirstChildElementByTagName(Node parent, String tagName) {
         Optional<Element> result = Optional.empty();
@@ -458,4 +458,5 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
      */
     private record CheckIndexInfo(String href, String description) {
     }
+
 }

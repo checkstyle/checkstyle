@@ -409,4 +409,36 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNeedBracesTestSingleLineCaseDefault3.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+            "15:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+            "16:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "for"),
+            "17:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNeedBracesCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileSingleLine() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNeedBracesCompactSourceFileSingleLine.java"),
+                expected);
+    }
+
+    @Test
+    public void testCompactSourceFileEmptyLoopBody() throws Exception {
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputNeedBracesCompactSourceFileEmptyLoopBody.java"),
+                expected);
+    }
+
 }

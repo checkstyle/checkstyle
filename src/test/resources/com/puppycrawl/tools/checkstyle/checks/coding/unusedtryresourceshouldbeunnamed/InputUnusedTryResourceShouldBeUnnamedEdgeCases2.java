@@ -11,7 +11,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases2 {
 
     static {
         try {
-            // violation below, 'Unused try resource 's' should be unnamed'
+            // violation below 'Unused try resource 's' should be unnamed'
             try (AutoCloseable s = staticLock()) {
             } catch (Exception e) {}
 
@@ -22,7 +22,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases2 {
     }
 
     void testFinalResource() throws Exception {
-        // violation below, 'Unused try resource 'f' should be unnamed'
+        // violation below 'Unused try resource 'f' should be unnamed'
         try (final AutoCloseable f = lock()) {
         } catch (Exception e) {}
 
@@ -50,14 +50,14 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases2 {
         try {
             mightThrow();
         } catch (Exception outer) {
-            // violation below, 'Unused try resource 'inner' should be unnamed'
+            // violation below 'Unused try resource 'inner' should be unnamed'
             try (AutoCloseable inner = staticLock()) {
             } catch (Exception e) {}
         }
     }
 
     void testCatchShadowingFirstArm() throws Exception {
-        // violation below, 'Unused try resource 'x' should be unnamed'
+        // violation below 'Unused try resource 'x' should be unnamed'
         try (AutoCloseable x = lock()) {
         } catch (IOException x) {
             System.out.println(x.getMessage());
@@ -67,7 +67,7 @@ public class InputUnusedTryResourceShouldBeUnnamedEdgeCases2 {
     }
 
     void testNoCatchShadowingDifferentName() throws Exception {
-        // violation below, 'Unused try resource 'res' should be unnamed'
+        // violation below 'Unused try resource 'res' should be unnamed'
         try (AutoCloseable res = lock()) {
         } catch (IOException e) {
             System.out.println(e.getMessage());

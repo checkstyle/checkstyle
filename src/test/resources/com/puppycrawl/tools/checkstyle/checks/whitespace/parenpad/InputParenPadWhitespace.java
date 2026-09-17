@@ -1,10 +1,10 @@
 /*
 ParenPad
 option = (default)nospace
-tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, \
-         ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, \
-         LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, \
-         METHOD_DEF, QUESTION, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF
+tokens = (default)ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, ENUM_CONSTANT_DEF, \
+         EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, METHOD_DEF, QUESTION, \
+         RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, LAMBDA, RECORD_DEF, RECORD_PATTERN_DEF
 
 
 */
@@ -242,7 +242,7 @@ class SpecialCasesInForLoop
         // bug 895072
 	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
 	int i = 0;
-	for ( ; i < 5; i++ ) { // violation, '')' is preceded with whitespace.'
+	for ( ; i < 5; i++ ) { // violation '')' is preceded with whitespace.'
 	//   ^ whitespace
 	}
         for (int anInt : getSomeInts()) {

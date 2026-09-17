@@ -1,6 +1,8 @@
 package com.openjdk.checkstyle.test.chapterformatting.ruleclassstructure;
 
-/** Input file with class structure violations */
+// violation first line 'Header mismatch'
+
+/** Input file with class structure violations. */
 public class InputClassStructureValidOrder {
 
     public int b;
@@ -10,7 +12,7 @@ public class InputClassStructureValidOrder {
     public InputClassStructureValidOrder() {
     }
 
-    public InputClassStructureValidOrder(int x) {
+    public InputClassStructureValidOrder(int z) {
     }
 
     void foo() {}

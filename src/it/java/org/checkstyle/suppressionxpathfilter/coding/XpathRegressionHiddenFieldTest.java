@@ -114,4 +114,5 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

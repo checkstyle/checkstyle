@@ -339,4 +339,15 @@ public class GenericWhitespaceCheckTest
                 expected);
     }
 
+    @Test
+    public void testParameterizedRecordPattern() throws Exception {
+        final String[] expected = {
+            "22:36: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "33:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGenericWhitespaceParameterizedRecordPattern.java"),
+                expected);
+    }
+
 }

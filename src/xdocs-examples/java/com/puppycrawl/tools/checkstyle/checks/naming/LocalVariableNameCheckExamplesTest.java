@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/localvariablename";
@@ -61,18 +62,18 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String pattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_INVALID_PATTERN, "K", pattern),
             "23:17: " + getCheckMessage(MSG_INVALID_PATTERN, "O", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
     }
 
     @Test
-    public void testExample4() throws Exception {
+    public void testExample3() throws Exception {
         final String pattern = "^[a-z][_a-zA-Z0-9]+$";
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_INVALID_PATTERN, "g", pattern),
@@ -83,17 +84,18 @@ public class LocalVariableNameCheckExamplesTest extends AbstractExamplesModuleTe
             "41:14: " + getCheckMessage(MSG_INVALID_PATTERN, "A", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
-    public void testExample5() throws Exception {
+    public void testUseCase2() throws Exception {
         final String pattern = "^[a-z][_a-zA-Z0-9]{2,}$";
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_INVALID_PATTERN, "i", pattern),
             "19:11: " + getCheckMessage(MSG_INVALID_PATTERN, "j", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("UseCase2.java"), expected);
     }
+
 }

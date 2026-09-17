@@ -139,6 +139,17 @@
           </tr>
           <tr>
             <td>
+              <a href="expressionoverblocklambda.html#ExpressionOverBlockLambda">
+                ExpressionOverBlockLambda
+              </a>
+            </td>
+            <td>
+              Checks that expression lambdas are used instead of single-line block lambdas where
+              possible.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="fallthrough.html#FallThrough">
                 FallThrough
               </a>
@@ -257,7 +268,7 @@
             </td>
             <td>
               Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
-              &quot;magic numbers&quot;</a> where a magic number is a numeric literal that is not
+              <code>"magic number"</code></a> where a magic number is a numeric literal that is not
               defined as a constant.
             </td>
           </tr>
@@ -603,6 +614,16 @@
           </tr>
           <tr>
             <td>
+              <a href="unnecessarytypeargumentswithrecordpattern.html#UnnecessaryTypeArgumentsWithRecordPattern">
+                UnnecessaryTypeArgumentsWithRecordPattern
+              </a>
+            </td>
+            <td>
+              Checks for unnecessary explicit type arguments in record patterns.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="unusedcatchparametershouldbeunnamed.html#UnusedCatchParameterShouldBeUnnamed">
                 UnusedCatchParameterShouldBeUnnamed
               </a>
@@ -629,6 +650,16 @@
             </td>
             <td>
               Checks that a local variable is declared and/or assigned, but not used.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unusedprivatefield.html#UnusedPrivateField">
+                UnusedPrivateField
+              </a>
+            </td>
+            <td>
+              Check that a private field is declared, but never used.
             </td>
           </tr>
           <tr>

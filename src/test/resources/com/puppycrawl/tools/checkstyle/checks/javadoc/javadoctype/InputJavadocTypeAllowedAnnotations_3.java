@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = Override
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -35,7 +35,7 @@ class InputJavadocTypeAllowedAnnotationByDefault_3 {
 @interface ThisIsOk_3 {}
 
 /** */
-@Generated // violation 'Type Javadoc comment is missing @param <T> tag'
+@Generated // violation 'Type Javadoc comment is missing @param '<T>' tag'
 class Application<T> {}
 
 @interface Generated {

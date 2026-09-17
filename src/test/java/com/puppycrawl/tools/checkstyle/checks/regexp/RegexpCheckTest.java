@@ -318,4 +318,5 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputRegexpCheckEmptyLine2.java"),
                 expected);
     }
+
 }

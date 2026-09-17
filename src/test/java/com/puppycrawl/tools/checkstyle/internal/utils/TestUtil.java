@@ -69,6 +69,13 @@ public final class TestUtil {
      */
     private static final int MINIMAL_STACK_SIZE = 147456;
 
+    /**
+     * The stack size used in {@link TestUtil#runWithLimitedXpathResources}.
+     * This value must be large enough for Saxon's XPath engine to initialize, but
+     * small enough to detect stack overflows in deep AST XPath traversal.
+     */
+    private static final int MINIMAL_XPATH_STACK_SIZE = 1_048_576;
+
     private TestUtil() {
     }
 
@@ -189,7 +196,8 @@ public final class TestUtil {
      */
     public static boolean isStatefulFieldClearedDuringLocalSetup(
             TreeWalkerFilter filter, TreeWalkerAuditEvent event,
-            String fieldName, Predicate<Object> isClear) throws Exception {
+            String fieldName, Predicate<Object> isClear)
+                    throws Exception {
         filter.accept(event);
         invokeVoidMethod(filter, "finishLocalSetup");
         final Field resultField = getClassDeclaredField(filter.getClass(), fieldName);
@@ -227,7 +235,7 @@ public final class TestUtil {
                 }
             }
 
-            if (curNode == toVisit || curNode == root.getParent()) {
+            if (Objects.equals(curNode, toVisit) || Objects.equals(curNode, root.getParent())) {
                 curNode = null;
                 break;
             }
@@ -279,8 +287,8 @@ public final class TestUtil {
      * for an example of how to use this method when task does not return a result, i.e.
      * the given method's return type is {@code void}.
      *
-     * @param callable the task to execute
      * @param <V> return type of task - {@code Void} if task does not return result
+     * @param callable the task to execute
      * @return result
      * @throws Exception if getting result fails
      */
@@ -290,6 +298,25 @@ public final class TestUtil {
                 "LimitedStackSizeThread", MINIMAL_STACK_SIZE);
         thread.start();
         return futureTask.get(10, TimeUnit.SECONDS);
+    }
+
+    /**
+     * Runs a given task with limited stack size suitable for XPath-based checks.
+     * The stack size is larger than
+     * {@link TestUtil#getResultWithLimitedResources} to allow Saxon's XPath engine
+     * to initialize, but still small enough to detect stack overflows in deep AST
+     * XPath traversal.
+     *
+     * @param callable the task to execute
+     * @throws Exception if getting result fails
+     */
+    public static void runWithLimitedXpathResources(Callable<Void> callable)
+            throws Exception {
+        final FutureTask<Void> futureTask = new FutureTask<>(callable);
+        final Thread thread = new Thread(null, futureTask,
+                "LimitedXpathStackSizeThread", MINIMAL_XPATH_STACK_SIZE);
+        thread.start();
+        futureTask.get(10, TimeUnit.SECONDS);
     }
 
     /**
@@ -486,11 +513,11 @@ public final class TestUtil {
     /**
      * Invokes a private method for an instance.
      *
+     * @param <T> the type of the result
      * @param instance the instance whose method to invoke
      * @param methodToExecute the name of the method to invoke
      * @param resultClazz used for cast of result
      * @param arguments the optional arguments
-     * @param <T> the type of the result
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      */
@@ -528,24 +555,25 @@ public final class TestUtil {
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
     public static Set<String> invokeMethodSet(Object instance, String methodToExecute,
-                                       Object... arguments) throws ReflectiveOperationException {
+                                       Object... arguments)
+            throws ReflectiveOperationException {
         return (Set<String>) invokeMethod(instance, methodToExecute, Set.class, arguments);
     }
 
     /**
      * Invokes a static private method for a class.
      *
+     * @param <T> the type of the result
      * @param ownerClass the class whose static method to invoke
      * @param methodToExecute the name of the method to invoke
      * @param resultClass used for cast of result
      * @param arguments the optional arguments
-     * @param <T> the type of the result
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      */
     public static <T> T invokeStaticMethod(Class<?> ownerClass,
             String methodToExecute, Class<T> resultClass, Object... arguments)
-            throws ReflectiveOperationException {
+                    throws ReflectiveOperationException {
         final Method method = getClassDeclaredMethod(ownerClass, methodToExecute, arguments.length);
         return resultClass.cast(method.invoke(null, arguments));
     }
@@ -585,9 +613,9 @@ public final class TestUtil {
      * Instantiates an object of the given class with the given arguments,
      * even if the constructor is private.
      *
+     * @param <T> the type of the object to instantiate
      * @param targetClass The class to instantiate
      * @param arguments The arguments to pass to the constructor
-     * @param <T> the type of the object to instantiate
      * @return  The instantiated object
      * @throws ReflectiveOperationException if the constructor invocation failed
      */

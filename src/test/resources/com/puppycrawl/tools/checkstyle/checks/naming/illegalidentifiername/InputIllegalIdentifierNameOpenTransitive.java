@@ -18,16 +18,20 @@ public class InputIllegalIdentifierNameOpenTransitive {
         return Record[].class;
     }
 
-    private static void record(LogRecord... logArray) { // violation
-        for (LogRecord record : logArray) { // violation
+    // violation below 'Name 'record' must match pattern'
+    private static void record(LogRecord... logArray) {
+        // violation below 'Name 'record' must match pattern'
+        for (LogRecord record : logArray) {
             record.getLevel();
         }
     }
 
     class openClass {
-        int open = 6; // violation
+        // violation below 'Name 'open' must match pattern'
+        int open = 6;
 
-        public void transitive() { // violation
+        // violation below 'Name 'transitive' must match pattern'
+        public void transitive() {
 
         }
     }
@@ -42,7 +46,8 @@ public class InputIllegalIdentifierNameOpenTransitive {
         SUN,
     }
 
-    int yield(Day day) { // violation
+    // violation below 'Name 'yield' must match pattern'
+    int yield(Day day) {
         return switch (day) {
             case MON, TUE -> Math.addExact(0, 1);
             case WED -> Math.addExact(1, 1);
@@ -54,14 +59,19 @@ public class InputIllegalIdentifierNameOpenTransitive {
     }
 
     public static void main(String... args) {
-        var var = 4; // violation
+        // violation below 'Name 'var' must match pattern'
+        var var = 4;
 
-        int record = 15; // violation
+        // violation below 'Name 'record' must match pattern'
+        int record = 15;
 
-        String yield = "yield"; // violation
+        // violation below 'Name 'yield' must match pattern'
+        String yield = "yield";
 
-        record Record // violation
-                (Record transitive) { // violation
+        // violation below 'Name 'Record' must match pattern'
+        record Record
+                // violation below 'Name 'transitive' must match pattern'
+                (Record transitive) {
                                       // used as an identifier.
         }
 
@@ -70,10 +80,15 @@ public class InputIllegalIdentifierNameOpenTransitive {
         } // ok, part of another word
         var variable = 2; // ok, part of another word
 
-        String Transitive = "record"; // violation
+        // violation below 'Name 'Transitive' must match pattern'
+        String Transitive = "record";
         Transitive = Transitive.substring(record, 20);
 
-        record MyOtherRecord(String transitive, String yield, String...var) { // 3 violations
+        record MyOtherRecord(String transitive, String yield, String...var) {
+        // 3 violations above:
+        //    'Name 'transitive' must match pattern'
+        //    'Name 'yield' must match pattern'
+        //    'Name 'var' must match pattern'
         }
 
         int requires = 3;

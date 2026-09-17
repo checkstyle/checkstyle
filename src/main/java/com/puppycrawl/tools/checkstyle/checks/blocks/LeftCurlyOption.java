@@ -32,7 +32,7 @@ public enum LeftCurlyOption {
      * if (condition) {
      *     ...
      * </pre>
-     **/
+     */
     EOL,
 
     /**
@@ -57,7 +57,7 @@ public enum LeftCurlyOption {
      *     ...
      * </pre>
      *
-     **/
+     */
     NLOW,
 
     /**

@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * The base class for checks.
  *
- * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
+ * @see <a href="{@docRoot}/../writing-checks.html" target="_top">Writing
  *     your own checks</a>
  * @noinspection NoopMethodInAbstractClass
  * @noinspectionreason NoopMethodInAbstractClass - we allow each check to
@@ -56,6 +56,13 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * the parent module.
      */
     private int tabWidth;
+
+    /**
+     * Creates a new {@code AbstractCheck} instance.
+     */
+    protected AbstractCheck() {
+        // no code by default
+    }
 
     /**
      * Returns the default token a check is interested in. Only used if the
@@ -117,7 +124,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link Violation}.
+     * @return the sorted set of {@code Violation}.
      */
     public SortedSet<Violation> getViolations() {
         return new TreeSet<>(context.get().violations);
@@ -331,13 +338,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * The actual context holder.
      */
     private static final class FileContext {
-
         /** The sorted set for collecting violations. */
         private final SortedSet<Violation> violations = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }

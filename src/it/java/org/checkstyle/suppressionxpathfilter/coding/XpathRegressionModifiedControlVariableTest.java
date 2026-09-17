@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck;
 
 public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTestSupport {
+
     private static final Class<ModifiedControlVariableCheck> CLAZZ =
             ModifiedControlVariableCheck.class;
 

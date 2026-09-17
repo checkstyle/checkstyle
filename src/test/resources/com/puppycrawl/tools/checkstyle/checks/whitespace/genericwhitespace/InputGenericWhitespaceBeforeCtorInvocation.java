@@ -14,17 +14,17 @@ import static java.lang.annotation.ElementType.TYPE_USE;
 
 public class InputGenericWhitespaceBeforeCtorInvocation {
     List<String> music = new ArrayList<>();
-    List todo = new ArrayList<> (); // violation, ''>' is followed by whitespace.'
+    List todo = new ArrayList<> (); // violation ''>' is followed by whitespace.'
 
     Gen<String, Integer> eel = new Gen<String, Integer > ();
     // 2 violations above:
     //                    ''>' is followed by whitespace.'
     //                    ''>' is preceded with whitespace.'
 
-    Pipe pipe = new Pipe< String>() { // violation, ''<' is followed by whitespace.'
+    Pipe pipe = new Pipe< String>() { // violation ''<' is followed by whitespace.'
     };
 
-    Class<?>[] classy = new Class<?> []{}; // violation, ''>' is followed by whitespace.'
+    Class<?>[] classy = new Class<?> []{}; // violation ''>' is followed by whitespace.'
 
     void method() {
         new Very.Deep<Integer>();
@@ -35,8 +35,8 @@ public class InputGenericWhitespaceBeforeCtorInvocation {
         //                    ''>' is followed by whitespace.'
         //                    ''>' is preceded with whitespace.'
 
-        new @A Gen<@A Gen, @A Gen> (); // violation, ''>' is followed by whitespace.'
-        new java.util.HashMap<Integer, Integer> (); // violation, ''>' is followed by whitespace.'
+        new @A Gen<@A Gen, @A Gen> (); // violation ''>' is followed by whitespace.'
+        new java.util.HashMap<Integer, Integer> (); // violation ''>' is followed by whitespace.'
         new ArrayList<Very <Gen<String,String>>> ();
         // 2 violations above:
         //                    ''<' is preceded with whitespace.'
@@ -44,12 +44,12 @@ public class InputGenericWhitespaceBeforeCtorInvocation {
     }
 
     static final Very<Gen<String, String>> veryGen =
-            new Very<Gen<String, String>> () {}; // violation, ''>' is followed by whitespace.'
+            new Very<Gen<String, String>> () {}; // violation ''>' is followed by whitespace.'
 
     <T> void mustPatTheCroc(boolean mustPat, T[] crocs) {
-        Very.swampPuppy(new Gen<String, String> ()); // violation, ''>' is followed by whitespace.'
+        Very.swampPuppy(new Gen<String, String> ()); // violation ''>' is followed by whitespace.'
         if (!mustPat) {
-            mustPatTheCroc(true, new Very<?> []{}); // violation, ''>' is followed by whitespace.'
+            mustPatTheCroc(true, new Very<?> []{}); // violation ''>' is followed by whitespace.'
         }
     }
 

@@ -13,17 +13,17 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.util.Collections.*;
-import static java.io.File.separator; // violation, 'Wrong lexicographical'
+import static java.io.File.separator; // violation 'Wrong lexicographical'
 
 import java.time.*;
 import javax.net.*;
 import org.apache.commons.io.FileUtils;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
-// xdoc section -- end
+// xdoc section - end
 public class Example7 {
 }

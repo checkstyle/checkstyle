@@ -5,6 +5,6 @@
 
 <suppressions>
   <suppress-xpath checks="RequireThis"
-     query="//CLASS_DEF[./IDENT[@text='Example8']]
+     query="//CLASS_DEF[./IDENT[@text='UseCase10']]
           //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/>
 </suppressions>

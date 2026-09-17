@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/emptystatement";
@@ -40,4 +41,5 @@ public class EmptyStatementCheckExamplesTest extends AbstractExamplesModuleTestS
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

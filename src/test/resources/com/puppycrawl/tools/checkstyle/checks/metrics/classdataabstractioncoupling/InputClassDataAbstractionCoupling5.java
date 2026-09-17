@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-// violation below, 'Class Data Abstraction Coupling is 2 (max allowed is 0)'
+// violation below 'Class Data Abstraction Coupling is 2 (max allowed is 0)'
 public class InputClassDataAbstractionCoupling5 {
     public void method(String... filenames) {
         Random random = new Random();

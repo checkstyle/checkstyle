@@ -99,6 +99,13 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     /** Used to count the depth of a Generic expression. */
     private int depth;
 
+    /**
+     * Creates a new {@code GenericWhitespaceCheck} instance.
+     */
+    public GenericWhitespaceCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -229,9 +236,12 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return true if generic is before record header
      */
     private static boolean isGenericBeforeRecordHeader(DetailAST ast) {
-        final DetailAST grandParent = ast.getParent().getParent();
-        return grandParent.getType() == TokenTypes.RECORD_DEF
-                || grandParent.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
+        DetailAST typeNode = ast.getParent().getParent();
+        if (typeNode.getType() == TokenTypes.DOT) {
+            typeNode = typeNode.getParent();
+        }
+        return typeNode.getType() == TokenTypes.RECORD_DEF
+                || typeNode.getParent().getType() == TokenTypes.RECORD_PATTERN_DEF;
     }
 
     /**
@@ -347,8 +357,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, int... line) {
         boolean result = true;
-        for (int i = fromIndex; i < toIndex; i++) {
-            if (!CommonUtil.isCodePointWhitespace(line, i)) {
+        for (int index = fromIndex; index < toIndex; index++) {
+            if (!CommonUtil.isCodePointWhitespace(line, index)) {
                 result = false;
                 break;
             }

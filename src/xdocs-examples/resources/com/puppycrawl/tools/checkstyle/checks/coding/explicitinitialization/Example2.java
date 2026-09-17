@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   private int intField1 = 0;
   private int intField2 = 1;
@@ -32,4 +32,4 @@ public class Example2 {
   private int arrField2[] = new int[10];
   private int arrField3[];
 }
-// xdoc section -- end
+// xdoc section - end

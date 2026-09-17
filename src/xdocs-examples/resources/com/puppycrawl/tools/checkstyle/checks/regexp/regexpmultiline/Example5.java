@@ -8,7 +8,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpmultiline;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   void testMethod1() {
 
@@ -26,19 +26,19 @@ class Example5 {
   }
 
   void testMethod2() {
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #1: this is a test string");
 
-    System.out.println("TEST #2: This is a test string");
+    System.out.println("TeSt #2: This is a test string");
 
     System.out.println("TEST #3: This is a test string");
     int i = 5;
 
     System.out.println("Value of i: " + i);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println("Test #3: This is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -61,6 +61,13 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     private Charset charset;
 
     /**
+     * Creates a new {@code AbstractHeaderCheck} instance.
+     */
+    protected AbstractHeaderCheck() {
+        // no code by default
+    }
+
+    /**
      * Hook method for post-processing header lines.
      * This implementation does nothing.
      */

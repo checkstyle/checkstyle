@@ -93,10 +93,11 @@ public class InputJavadocTagContinuationIndentationPreTag {
     public void test4() {}
     // violation 3 lines above 'Line continuation have .* expected level should be 4'
 
+    // violation 5 lines below 'Line continuation .* expected level should be 4'
     /**
      * Writes the object using a
      * <a href="{@docRoot}/serialized-form.html#ja">deserialized form</a>.
-     * @serialData // violation below 'Line continuation .* expected level should be 4'
+     * @serialData
      * Refer to the serialized form of
      * <a href="{@docRoot}/serialized-formRules">ZoneRules.writeReplace</a>
      * for the encoding of epoch seconds and offsets.

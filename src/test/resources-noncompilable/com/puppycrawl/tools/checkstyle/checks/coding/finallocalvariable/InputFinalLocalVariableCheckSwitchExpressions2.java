@@ -5,7 +5,7 @@ validateUnnamedVariables = (default)false
 tokens = (default)VARIABLE_DEF
 
 */
-
+// non-compiled with javac: Compilable with Java21 individually
 // non-compiled with eclipse: local variable may not have been initialized
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
@@ -13,7 +13,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions2 {
 
     void foo1() throws Exception {
 
-        Exception e; // violation, "Variable 'e' should be declared final"
+        Exception e; // violation "Variable 'e' should be declared final"
 
         final int a = (int) Math.random();
         final int b = (int) Math.random();
@@ -33,7 +33,7 @@ public class InputFinalLocalVariableCheckSwitchExpressions2 {
     }
 
     void foo2() {
-        int x = 0; // violation, "Variable 'x' should be declared final"
+        int x = 0; // violation "Variable 'x' should be declared final"
         final int a = (int) Math.random();
 
         switch (a) {

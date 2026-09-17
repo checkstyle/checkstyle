@@ -6,11 +6,11 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 // violation first line 'The file does not contain any code'
 /*
  public class Example2 {
  block comment is not code
  }
 */
-// xdoc section -- end
+// xdoc section - end

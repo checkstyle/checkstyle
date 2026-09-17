@@ -8,13 +8,36 @@
   <body>
     <section name="ModifiedControlVariable">
       <p>Since Checkstyle 3.5</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ModifiedControlVariable_Description">Description</a></li>
+          <li><a href="#ModifiedControlVariable_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ModifiedControlVariable_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check so that it skips enhanced For Loop Variable is</a></li>
+            </ul>
+          </li>
+          <li><a href="#ModifiedControlVariable_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ModifiedControlVariable_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ModifiedControlVariable_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ModifiedControlVariable_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="ModifiedControlVariable_Description">
         <div>
           Checks that for loop control variables are not modified
           inside the for block. An example is:
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-for (int i = 0; i &lt; 1; i++) {
+        <div class="wrapper"><pre class="prettyprint"><code>
+for (int i = 0; i &gt; 1; i++) {
   i++; // violation
 }
         </code></pre></div>
@@ -29,8 +52,8 @@ for (int i = 0; i &lt; 1; i++) {
         <p>
           Such loop would be suppressed:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-for (int i = 0; i &lt; 10;) {
+        <div class="wrapper"><pre class="prettyprint"><code>
+for (int i = 0; i &gt; 10;) {
   i++;
 }
         </code></pre></div>
@@ -39,7 +62,7 @@ for (int i = 0; i &lt; 10;) {
           NOTE:The check works with only primitive type variables.
           The check will not work for arrays used as control variable. An example is
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 for (int a[]={0};a[0] &lt; 10;a[0]++) {
  a[0]++;   // it will skip this violation
 }
@@ -60,7 +83,7 @@ for (int a[]={0};a[0] &lt; 10;a[0]++) {
               <td><a id="skipEnhancedForLoopVariable"/><a href="#skipEnhancedForLoopVariable">skipEnhancedForLoopVariable</a></td>
               <td>Control whether to check <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  enhanced for-loop</a> variable.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.8</td>
             </tr>

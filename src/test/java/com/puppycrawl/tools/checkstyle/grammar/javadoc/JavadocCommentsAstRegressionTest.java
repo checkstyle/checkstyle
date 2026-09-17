@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
 public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/javadoc/";
@@ -75,6 +76,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testLeadingAsteriskColumnPosition() throws Exception {
+        verifyJavadocTree(getPath("ExpectedLeadingAsteriskColumnPosition.txt"),
+                getPath("InputLeadingAsteriskColumnPosition.javadoc"));
+    }
+
+    @Test
     public void testDoubleAtAsText() throws Exception {
         verifyJavadocTree(getPath("ExpectedDoubleAtAsText.txt"),
                 getPath("InputDoubleAtAsText.javadoc"));
@@ -84,6 +91,24 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testAuthorTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTag.txt"),
                 getBlockTagsPath("InputAuthorTags.javadoc"));
+    }
+
+    @Test
+    public void testAuthorTagWithLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTagWithLeadingAsterisks.txt"),
+                getBlockTagsPath("InputAuthorTagWithLeadingAsterisks.javadoc"));
+    }
+
+    @Test
+    public void testCommonBlockTagsWithLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedCommonBlockTagsWithLeadingAsterisks.txt"),
+                getBlockTagsPath("InputCommonBlockTagsWithLeadingAsterisks.javadoc"));
+    }
+
+    @Test
+    public void testReferenceBlockTagsWithLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedReferenceBlockTagsWithLeadingAsterisks.txt"),
+                getBlockTagsPath("InputReferenceBlockTagsWithLeadingAsterisks.javadoc"));
     }
 
     @Test
@@ -180,6 +205,26 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testLinkInlineTagWithArrayInitializerLabel() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagWithArrayInitializerLabel.txt"),
                 getInlineTagsPath("InputLinkInlineTagWithArrayInitializerLabel.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagGenericParameterType() throws Exception {
+        verifyJavadocTree(
+                getInlineTagsPath("ExpectedLinkInlineTagGenericParameterType.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericParameterType.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagGenericParameterTypeWithWhitespace() throws Exception {
+        verifyJavadocTree(
+                getInlineTagsPath("ExpectedLinkInlineTagGenericParameterTypeWithWhitespace.txt"),
+                getInlineTagsPath("InputLinkInlineTagGenericParameterTypeWithWhitespace.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTagUnicode() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTagUnicode.txt"),
+                getInlineTagsPath("InputLinkInlineTagUnicode.javadoc"));
     }
 
     @Test
@@ -291,6 +336,30 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testHtmlCommentWithHyphens() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlCommentWithHyphens.txt"),
+                getHtmlTagsPath("InputHtmlCommentWithHyphens.javadoc"));
+    }
+
+    @Test
+    public void testHtmlAttributeWithLessThan() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlAttributeWithLessThan.txt"),
+                getHtmlTagsPath("InputHtmlAttributeWithLessThan.javadoc"));
+    }
+
+    @Test
+    public void testHtmlAttributeUnclosedQuote() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlAttributeUnclosedQuote.txt"),
+                getHtmlTagsPath("InputHtmlAttributeUnclosedQuote.javadoc"));
+    }
+
+    @Test
+    public void testHtmlAttributeUnclosedHrefFollowedByTag() throws Exception {
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlAttributeUnclosedHrefFollowedByTag.txt"),
+                getHtmlTagsPath("InputHtmlAttributeUnclosedHrefFollowedByTag.javadoc"));
+    }
+
+    @Test
     public void testReferencesToUriFragments() throws Exception {
         verifyJavadocTree(getPath("ExpectedReferencesToUriFragments.txt"),
                 getPath("InputReferencesToUriFragments.javadoc"));
@@ -301,4 +370,11 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getPath("ExpectedReferencesToUriFragments2.txt"),
                 getPath("InputReferencesToUriFragments2.javadoc"));
     }
+
+    @Test
+    public void testMethodReferencesWithoutHash() throws Exception {
+        verifyJavadocTree(getPath("ExpectedMethodReferencesWithoutHash.txt"),
+                getPath("InputMethodReferencesWithoutHash.javadoc"));
+    }
+
 }

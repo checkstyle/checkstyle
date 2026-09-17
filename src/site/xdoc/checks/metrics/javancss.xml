@@ -8,6 +8,32 @@
   <body>
     <section name="JavaNCSS">
       <p>Since Checkstyle 3.5</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavaNCSS_Description">Description</a></li>
+          <li><a href="#JavaNCSS_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavaNCSS_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With 4 allowed non commented lines for a method</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Set limit of non commented lines in class to 10</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Set limit of non commented lines in file to 10</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Set limit of non commented lines in record to 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavaNCSS_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavaNCSS_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavaNCSS_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavaNCSS_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavaNCSS_Description">
         <div>
           Determines complexity of methods, classes and files by counting
@@ -115,28 +141,28 @@
             <tr>
               <td><a id="classMaximum"/><a href="#classMaximum">classMaximum</a></td>
               <td>Specify the maximum allowed number of non commenting lines in a class.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>1500</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="fileMaximum"/><a href="#fileMaximum">fileMaximum</a></td>
               <td>Specify the maximum allowed number of non commenting lines in a file including all top level and nested classes.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>2000</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="methodMaximum"/><a href="#methodMaximum">methodMaximum</a></td>
               <td>Specify the maximum allowed number of non commenting lines in a method.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>50</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="recordMaximum"/><a href="#recordMaximum">recordMaximum</a></td>
               <td>Specify the maximum allowed number of non commenting lines in a record.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>150</code></td>
               <td>8.36</td>
             </tr>
@@ -210,7 +236,7 @@ class Example1 {
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example2 {
-  // violation below, 'NCSS for this method is 6 (max allowed is 4)'
+  // violation below 'NCSS for this method is 6 (max allowed is 4)'
   public void testMethod1() {
     System.out.println("m-1:Line 1");
     System.out.println("m-1:Line 2");
@@ -256,7 +282,7 @@ class Example2 {
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example3 {
-  // violation above, 'NCSS for this class is 18 (max allowed is 10)'
+  // violation above 'NCSS for this class is 18 (max allowed is 10)'
   public void testMethod1() {
     System.out.println("m-1:Line 1");
     System.out.println("m-1:Line 2");
@@ -300,7 +326,7 @@ class Example3 {
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
-// violation above, 'NCSS for this file is 19 (max allowed is 10)'
+// violation above 'NCSS for this file is 19 (max allowed is 10)'
 class Example4 {
 
   public void testMethod1() {
@@ -366,7 +392,7 @@ class Example5 {
     }
   }
 
-  // violation below, 'NCSS for this record is 6 (max allowed is 5)'
+  // violation below 'NCSS for this record is 6 (max allowed is 5)'
   record InvalidRecord(int x, int y) {
     public InvalidRecord {
       System.out.println("Line 1");

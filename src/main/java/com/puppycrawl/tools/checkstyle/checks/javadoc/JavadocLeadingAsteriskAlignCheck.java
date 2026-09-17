@@ -64,19 +64,21 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     /** Specifies the column number of starting block of the javadoc comment with tabs expanded. */
     private int expectedColumnNumberTabsExpanded;
 
-    /**
-     * Specifies the column number of the leading asterisk
-     * without tabs expanded.
-     */
-    private int expectedColumnNumberWithoutExpandedTabs;
-
     /** Specifies the lines of the file being processed. */
     private String[] fileLines;
+
+    /**
+     * Creates a new {@code JavadocLeadingAsteriskAlignCheck} instance.
+     */
+    public JavadocLeadingAsteriskAlignCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocCommentsTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.LEADING_ASTERISKS,
         };
     }
 
@@ -98,22 +100,23 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         // this method checks the alignment of leading asterisks.
-        final boolean isJavadocStartingLine = ast.getLineNumber() == javadocStartLineNumber;
+        final boolean isJavadocOpeningLine = ast.getLineNumber() == javadocStartLineNumber;
 
-        if (!isJavadocStartingLine) {
-            final Optional<Integer> leadingAsteriskColumnNumber =
-                                        getAsteriskColumnNumber(ast.getText());
+        if (isJavadocOpeningLine) {
+            if (ast.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK) {
+                final int previousColumn = ast.getColumnNumber() - 1;
+                if (Character.isWhitespace(
+                        fileLines[ast.getLineNumber() - 1].charAt(previousColumn))) {
+                    expectedColumnNumberTabsExpanded = getColumnNumberTabsExpanded(ast);
+                }
+            }
+        }
+        else {
+            final int columnNumberTabsExpanded = getColumnNumberTabsExpanded(ast);
 
-            leadingAsteriskColumnNumber
-                    .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
-                    .filter(columnNumber -> {
-                        return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                    })
-                    .ifPresent(columnNumber -> {
-                        logViolation(ast.getLineNumber(),
-                                columnNumber,
-                                expectedColumnNumberTabsExpanded);
-                    });
+            if (!hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
+                log(ast, MSG_KEY, columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+            }
         }
     }
 
@@ -125,30 +128,17 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
 
         endingBlockColumnNumber
-                .map(columnNumber -> expandedTabs(lastLine, columnNumber))
-                .filter(columnNumber -> {
-                    return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
-                })
+                .filter(columnNumber -> columnNumber - 1 == javadocEndToken.getColumnNo())
                 .ifPresent(columnNumber -> {
-                    logViolation(javadocEndToken.getLineNo(),
-                            columnNumber,
-                            expectedColumnNumberTabsExpanded);
-                });
-    }
+                    final int columnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
+                            lastLine, columnNumber, getTabWidth());
 
-    /**
-     * Processes and returns the column number of
-     * leading asterisk with tabs expanded.
-     * Also sets 'expectedColumnNumberWithoutExpandedTabs' if the leading asterisk is present.
-     *
-     * @param line javadoc comment line
-     * @param columnNumber column number of leading asterisk
-     * @return column number of leading asterisk with tabs expanded
-     */
-    private int expandedTabs(String line, int columnNumber) {
-        expectedColumnNumberWithoutExpandedTabs = columnNumber - 1;
-        return CommonUtil.lengthExpandedTabs(
-                    line, columnNumber, getTabWidth());
+                    if (!hasValidAlignment(
+                            expectedColumnNumberTabsExpanded, columnNumberTabsExpanded)) {
+                        log(javadocEndToken, MSG_KEY,
+                                columnNumberTabsExpanded, expectedColumnNumberTabsExpanded);
+                    }
+                });
     }
 
     /**
@@ -172,21 +162,16 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks alignment of asterisks and logs violations.
+     * Returns the tab-expanded, one-based column number of the leading asterisk node.
      *
-     * @param lineNumber line number of current comment line
-     * @param asteriskColNumber column number of leading asterisk
-     * @param expectedColNumber column number of javadoc starting token
+     * @param ast leading asterisk node
+     * @return tab-expanded column number
      */
-    private void logViolation(int lineNumber,
-                              int asteriskColNumber,
-                              int expectedColNumber) {
-
-        log(lineNumber,
-            expectedColumnNumberWithoutExpandedTabs,
-            MSG_KEY,
-            asteriskColNumber,
-            expectedColNumber);
+    private int getColumnNumberTabsExpanded(DetailNode ast) {
+        return 1 + CommonUtil.lengthExpandedTabs(
+                fileLines[ast.getLineNumber() - 1],
+                ast.getColumnNumber(),
+                getTabWidth());
     }
 
     /**
@@ -201,4 +186,5 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
                                              int asteriskColNumber) {
         return expectedColNumber - asteriskColNumber == 0;
     }
+
 }

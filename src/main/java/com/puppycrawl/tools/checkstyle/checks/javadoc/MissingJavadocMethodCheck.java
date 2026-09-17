@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -38,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  * specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
  * another scope, set property scope to a different
- * <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
+ * <a href="https://checkstyle.org/property-types.html#Scope">scope</a>.
  * </div>
  *
  * <p>
@@ -52,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * For getters and setters for the property {@code allowMissingPropertyJavadoc}, the methods must
  * match exactly the structures below.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public void setNumber(final int number)
  * {
  *     mNumber = number;
@@ -67,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {
  *     return false;
  * }
- * </code></pre></div>
+ * }
  *
  * @since 8.21
  */
@@ -78,7 +79,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
+    public static final String MSG_JAVADOC_MISSING = "javadoc.missing.named";
 
     /** Maximum children allowed in setter/getter. */
     private static final int SETTER_GETTER_MAX_CHILDREN = 7;
@@ -115,6 +116,13 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /** Configure annotations that allow missed documentation. */
     private Set<String> allowedAnnotations = Set.of("Override");
+
+    /**
+     * Creates a new {@code MissingJavadocMethodCheck} instance.
+     */
+    public MissingJavadocMethodCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to configure annotations that allow missed documentation.
@@ -208,7 +216,9 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         if (shouldCheck(ast, theScope)) {
             final DetailAST blockCommentNode = JavadocUtil.getAttachedJavadocComment(ast);
             if (blockCommentNode == null && !isMissingJavadocAllowed(ast)) {
-                log(ast, MSG_JAVADOC_MISSING);
+                final String name = NullUtil.notNull(ast.findFirstToken(TokenTypes.IDENT))
+                    .getText();
+                log(ast, MSG_JAVADOC_MISSING, name);
             }
         }
     }
@@ -389,4 +399,5 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
         }
         return childCount;
     }
+
 }

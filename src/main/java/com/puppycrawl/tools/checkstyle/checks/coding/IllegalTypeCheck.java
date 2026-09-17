@@ -61,11 +61,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This helps to avoid ambiguous cases, e.g.: {@code java.awt.List} was set as
  * illegal class name, then, code like:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * import java.util.List;
  * ...
  * List list; //No violation here
- * </code></pre></div>
+ * }
  *
  * <p>
  * will be ok.
@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </ul>
  *
  * <p>
- * as methods that are differ from interface methods are rarely used, so in most cases user will
+ * as methods that differ from interface methods are rarely used, so in most cases user will
  * benefit from checking for them.
  * </p>
  *
@@ -608,7 +608,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @since 6.3
      */
     public void setMemberModifiers(String modifiers) {
-        memberModifiers = TokenUtil.asBitSet(modifiers.split(","));
+        memberModifiers = TokenUtil.asBitSet(modifiers.split(",", -1));
     }
 
 }

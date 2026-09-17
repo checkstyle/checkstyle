@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below 'The warning '' cannot be suppressed at this location'
 @SuppressWarnings("")
 class Example1 {
@@ -36,4 +36,4 @@ class Example1 {
 // ok below as default format only checks for a blank or empty string
 @SuppressWarnings("unchecked")
 class Test1 {}
-// xdoc section -- end
+// xdoc section - end

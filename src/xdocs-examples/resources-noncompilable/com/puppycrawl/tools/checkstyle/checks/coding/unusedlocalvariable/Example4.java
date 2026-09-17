@@ -10,13 +10,13 @@
 */
 // non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
-// xdoc section -- start
+// xdoc section - start
 public class Example4 {
   sealed abstract static class Shape permits Circle, Rect {}
   static final class Circle extends Shape {}
   static final class Rect extends Shape {}
   void patternVariables(Object obj, Shape s) {
-    if (obj instanceof String str) { // violation, unused local variable 'str'
+    if (obj instanceof String str) { // violation 'Unused local variable 'str'.'
       System.out.println("string");
     }
     if (obj instanceof String t) { // ok, 't' is used
@@ -32,4 +32,4 @@ public class Example4 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -8,13 +8,36 @@
   <body>
     <section name="EmptyForIteratorPad">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#EmptyForIteratorPad_Description">Description</a></li>
+          <li><a href="#EmptyForIteratorPad_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#EmptyForIteratorPad_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Require white space at an empty for iterator</a></li>
+            </ul>
+          </li>
+          <li><a href="#EmptyForIteratorPad_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#EmptyForIteratorPad_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#EmptyForIteratorPad_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#EmptyForIteratorPad_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="EmptyForIteratorPad_Description">
         <div>
           Checks the padding of an empty for iterator; that is whether a white
           space is required at an empty for iterator, or such white space is
           forbidden. No check occurs if there is a line wrap at the iterator, as in
         </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 for (Iterator foo = very.long.line.iterator();
     foo.hasNext();
    )
@@ -34,7 +57,7 @@ for (Iterator foo = very.long.line.iterator();
             <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to pad an empty for iterator.</td>
-              <td><a href="../../property_types.html#PadOption">PadOption</a></td>
+              <td><a href="../../property-types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.0</td>
             </tr>
@@ -61,9 +84,9 @@ class Example1 {
   Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
   void example() {
     for (Iterator it = map.entrySet().iterator();  it.hasNext(););
+
     for (Iterator it = map.entrySet().iterator();  it.hasNext(); );
     // violation above '';' is followed by whitespace'
-
     for (Iterator foo = map.entrySet().iterator();
          foo.hasNext();
          );

@@ -68,7 +68,7 @@ public final class JavaParser {
 
     }
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private JavaParser() {
     }
 
@@ -131,8 +131,8 @@ public final class JavaParser {
      * @param file the file to parse
      * @param options {@link Options} to control inclusion of comment nodes
      * @return DetailAST tree
-     * @throws IOException if the file could not be read
      * @throws CheckstyleException if the file is not a valid Java source file
+     * @throws IOException if the file could not be read
      */
     public static DetailAST parseFile(File file, Options options)
             throws IOException, CheckstyleException {
@@ -245,6 +245,12 @@ public final class JavaParser {
      * Custom error listener to provide detailed exception message.
      */
     private static final class CheckstyleErrorListener extends BaseErrorListener {
+        /**
+         * Creates a new {@code CheckstyleErrorListener} instance.
+         */
+        private CheckstyleErrorListener() {
+            // no code by default
+        }
 
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
@@ -254,4 +260,5 @@ public final class JavaParser {
             throw new IllegalStateException(message, ex);
         }
     }
+
 }

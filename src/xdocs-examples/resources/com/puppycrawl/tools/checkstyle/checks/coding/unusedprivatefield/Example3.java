@@ -1,0 +1,44 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="UnusedPrivateField">
+      <property name="ignoredFieldPattern"
+        value="serialVersionUID|getter|_id|unused"/>
+    </module>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.coding.unusedprivatefield;
+
+// xdoc section - start
+
+import java.io.Serial;
+
+public class Example3 {
+
+  @SuppressWarnings("unused")
+  private String _id;
+
+  @interface Getter {}
+
+  private int unused;
+
+  private int used;
+
+  @Serial
+  private static final long serialVersionUID = 1L;
+
+  @Getter
+  private int getter; // ok, as is supressed by property
+
+  private int getUsed(){
+    return used;
+  }
+
+  private static final int CONSTANT = 10; // violation 'Unused private field'
+
+  void foo() {
+    System.out.println(used); // ok, used in inner class
+  }
+}
+// xdoc section - end

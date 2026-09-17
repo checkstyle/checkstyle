@@ -45,6 +45,9 @@ public class JavadocCommentsTokenTypesTest {
                 .that(JavadocCommentsTokenTypes.LEADING_ASTERISK)
                 .isEqualTo(2);
         assertWithMessage(msg)
+                .that(JavadocCommentsTokenTypes.LEADING_ASTERISKS)
+                .isEqualTo(117);
+        assertWithMessage(msg)
                 .that(JavadocCommentsTokenTypes.NEWLINE)
                 .isEqualTo(3);
         assertWithMessage(msg)

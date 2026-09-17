@@ -59,4 +59,5 @@ public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
     public void testFormattedTextBlockLineLimitEdgeCase() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedColumnLimitEdgeCase.java"));
     }
+
 }

@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 
 public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
+
     private final String checkName = IndentationCheck.class.getSimpleName();
 
     @Override
@@ -287,4 +288,5 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

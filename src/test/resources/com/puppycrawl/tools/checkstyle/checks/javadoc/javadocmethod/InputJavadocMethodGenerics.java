@@ -39,22 +39,22 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
     {
     }
 
+    // violation 5 lines below '.* @param .* '<NPE>'.'
     /**
      * @throws RE in some cases
      * @throws NPE in some other cases
      */
-    // violation below '.* @param .* '<NPE>'.'
     public <NPE extends NullPointerException> void method4() throws NPE, RE
     {
     }
 
     public class InnerClass <RuntimeException extends ClassCastException>
     {
+        // violation 5 lines below 'Expected @throws tag for 'RuntimeException'.'
         /**
          * @throws E in some case
          * @throws RE in some other cases
          */
-        // violation below 'Expected @throws tag for 'RuntimeException'.'
         public void method1() throws RuntimeException, RE,
             java.lang.RuntimeException // violation '.* @throws .* 'java.lang.RuntimeException'.'
         {

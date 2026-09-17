@@ -376,9 +376,9 @@ public enum JavadocTagInfo {
         TokenTypes.ANNOTATION_DEF
     );
 
-    /** Holds tag text to tag enum mappings. **/
+    /** Holds tag text to tag enum mappings. */
     private static final Map<String, JavadocTagInfo> TEXT_TO_TAG;
-    /** Holds tag name to tag enum mappings. **/
+    /** Holds tag name to tag enum mappings. */
     private static final Map<String, JavadocTagInfo> NAME_TO_TAG;
 
     static {
@@ -389,11 +389,11 @@ public enum JavadocTagInfo {
             .collect(Collectors.toUnmodifiableMap(JavadocTagInfo::getName, Function.identity()));
     }
 
-    /** The tag text. **/
+    /** The tag text. */
     private final String text;
-    /** The tag name. **/
+    /** The tag name. */
     private final String name;
-    /** The tag type. **/
+    /** The tag type. */
     private final Type type;
 
     /**
@@ -458,8 +458,8 @@ public enum JavadocTagInfo {
      *
      * @param text String representing the tag text
      * @return Returns a JavadocTag type from a String representing the tag
-     * @throws NullPointerException if the text is null
      * @throws IllegalArgumentException if the text is not a valid tag
+     * @throws NullPointerException if the text is null
      */
     public static JavadocTagInfo fromText(final String text) {
         if (text == null) {
@@ -481,9 +481,8 @@ public enum JavadocTagInfo {
      *
      * @param name String name of the tag
      * @return Returns a JavadocTag type from a String representing the tag
+     * @throws IllegalArgumentException if the text is not a valid tag
      * @throws NullPointerException if the text is null
-     * @throws IllegalArgumentException if the text is not a valid tag. The name
-     *     can be checked using {@link JavadocTagInfo#isValidName(String)}
      */
     public static JavadocTagInfo fromName(final String name) {
         if (name == null) {
@@ -498,16 +497,6 @@ public enum JavadocTagInfo {
         }
 
         return tag;
-    }
-
-    /**
-     * Returns whether the provided name is for a valid tag.
-     *
-     * @param name the tag name to check.
-     * @return whether the provided name is for a valid tag.
-     */
-    public static boolean isValidName(final String name) {
-        return NAME_TO_TAG.containsKey(name);
     }
 
     @Override
@@ -525,10 +514,10 @@ public enum JavadocTagInfo {
      */
     public enum Type {
 
-        /** Block type. **/
+        /** Block type. */
         BLOCK,
 
-        /** Inline type. **/
+        /** Inline type. */
         INLINE
 
     }

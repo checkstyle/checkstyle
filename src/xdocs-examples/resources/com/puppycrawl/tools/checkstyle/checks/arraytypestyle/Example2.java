@@ -10,17 +10,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
-  int[] nums; // violation, 'Array brackets at illegal position'
+  int[] nums; // violation 'Array brackets at illegal position'
   String strings[]; // ok as follows C style since 'javaStyle' set to false
 
   char[] toCharArray() {
     return null;
   }
 
-  byte getData()[] { // violation, 'Array brackets at illegal position'
+  byte getData()[] { // violation 'Array brackets at illegal position'
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

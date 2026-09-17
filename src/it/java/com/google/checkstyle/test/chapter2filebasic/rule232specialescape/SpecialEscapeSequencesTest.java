@@ -51,4 +51,5 @@ public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport 
     public void testIllegalTokensEscapedForEscapedS() throws Exception {
         verifyWithWholeConfig(getPath("InputSpecialEscapeSequencesForEscapedS.java"));
     }
+
 }

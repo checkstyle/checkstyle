@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks that a token is surrounded by whitespace. Empty constructor,
  * method, class, enum, interface, loop bodies (blocks), lambdas of the form
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * public MyClass() {}      // empty constructor
  * public void func() {}    // empty method
  * public interface Foo {} // empty interface
@@ -38,11 +38,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public enum Foo {} // empty enum
  * MyClass c = new MyClass() {}; // empty anonymous class
  * while (i = 1) {} // empty while loop
- * for (int i = 1; i &gt; 1; i++) {} // empty for loop
+ * for (int i = 1; i > 1; i++) {} // empty for loop
  * do {} while (i = 1); // empty do-while loop
- * Runnable noop = () -&gt; {}; // empty lambda
+ * Runnable noop = () -> {}; // empty lambda
  * public @interface Beta {} // empty annotation type
- * </code></pre></div>
+ * }
  *
  * <p>
  * may optionally be exempted from the policy using the {@code allowEmptyMethods},
@@ -54,22 +54,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * This check does not flag as violation double brace initialization like:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * new Properties() {{
  *     setProperty("key", "value");
  * }};
- * </code></pre></div>
+ * }
  *
  * <p>
  * Parameter allowEmptyCatches allows to suppress violations when token list
  * contains SLIST to check if beginning of block is surrounded by whitespace
  * and catch block is empty, for example:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * try {
  *     k = 5 / i;
  * } catch (ArithmeticException ex) {}
- * </code></pre></div>
+ * }
  *
  * <p>
  * With this property turned off, this raises violation because the beginning
@@ -119,6 +119,13 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * enhanced for</a> loop.
      */
     private boolean ignoreEnhancedForColon = true;
+
+    /**
+     * Creates a new {@code WhitespaceAroundCheck} instance.
+     */
+    public WhitespaceAroundCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -446,7 +453,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Tests if a given {@code DetailAST} is part of an empty block.
      * An example empty block might look like the following
-     * <pre>   public void myMethod(int val) {}</pre>
+     * <br>
+     * {@code public void myMethod(int val) {}}
+     * <br>
      * In the above, the method body is an empty block ("{}").
      *
      * @param ast the {@code DetailAST} to test.
@@ -598,8 +607,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Test if the given {@code DetailAST} is part of an empty block.
-     * An example empty block might look like the following
-     * <pre>   class Foo {}</pre>
+     * An example empty block might look like {@code class Foo {}}
      *
      * @param ast ast the {@code DetailAST} to test.
      * @return {@code true} if {@code ast} makes up part of an

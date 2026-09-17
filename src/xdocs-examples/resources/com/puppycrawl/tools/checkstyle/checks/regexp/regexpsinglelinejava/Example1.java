@@ -12,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
 
   private void testMethod1() {
@@ -35,7 +35,7 @@ class Example1 {
   }
 
   public void testMethod3(){
-    final Logger logger = Logger.getLogger(Example1.class.getName());
+    final Logger logger = Logger.getLogger(getClass().getName());
     logger.info("first");
     logger.info("second");
     logger.info("third");
@@ -43,4 +43,4 @@ class Example1 {
     logger.info("fifth");
   }
 }
-// xdoc section -- end
+// xdoc section - end

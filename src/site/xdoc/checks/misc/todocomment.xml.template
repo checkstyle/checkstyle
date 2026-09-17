@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TodoCommentCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TodoCommentCheck.java"/>
+      </macro>
       <subsection name="Description" id="TodoComment_Description">
         <macro name="description">
             <param name="modulePath"
@@ -68,21 +72,23 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example2.java"/>
           <param name="type" value="code"/>
         </macro>
-        <hr class="example-separator"/>
-        <p id="Example3-config">
+      </subsection>
+
+      <subsection name="Use Cases" id="TodoComment_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to detect box comments (Google Java Style Guide §4.8.6.1):
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example3-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/todocomment/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -92,6 +98,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TodoComment">

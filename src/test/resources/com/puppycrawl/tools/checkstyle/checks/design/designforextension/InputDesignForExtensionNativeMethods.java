@@ -10,10 +10,8 @@ package com.puppycrawl.tools.checkstyle.checks.design.designforextension;
 
 public class InputDesignForExtensionNativeMethods {
 
-    // has a potentially complex implementation in native code.
-    // We can't check that, so to be safe DesignForExtension requires
-    // native methods to also be final
-    public native void foo1(); // violation
+    // violation below ''foo1' does not have javadoc that explains how to do that safely'
+    public native void foo1();
 
     public static native void foo2();
 
@@ -29,7 +27,8 @@ public class InputDesignForExtensionNativeMethods {
     /*
      * Violation. Block-commend doc for native method.
      */
-    public native void foo6(); // violation
+    // violation below ''foo6' does not have javadoc that explains how to do that safely'
+    public native void foo6();
 
     @Deprecated
     public native void foo7();

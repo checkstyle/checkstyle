@@ -10,11 +10,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.missingnullcaseinswitch;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   void testString(String obj) {
-    // violation below, 'Switch using reference types should have a null case.'
+    // violation below 'Switch using reference types should have a null case.'
     switch (obj) {
       case "something" : {}
     }
@@ -26,7 +26,7 @@ public class Example1 {
   }
 
   void testPatterns(Object obj) {
-    // violation below, 'Switch using reference types should have a null case.'
+    // violation below 'Switch using reference types should have a null case.'
     switch (obj) {
       case Integer i : {} break;
       default : {}
@@ -57,4 +57,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

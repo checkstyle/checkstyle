@@ -107,4 +107,5 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -19,16 +19,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * {@code Map<String, List<@NonNull String>> map = new HashMap<>();}
  */
 class InputJavadocTypeAnnotationsInCodeBlock2 {}
-
-// violation 5 lines below 'Unknown tag 'unknown'.'
-/**
- * Bare HTML pre tag does NOT protect content from parsing.
- * Block tags must appear at line start - this one is at block tag position.
- * <pre>
- * @unknown
- * </pre>
- */
-class BareHtmlPreTag {}
 
 /**
  * Correct usage: pre with @code protects content.

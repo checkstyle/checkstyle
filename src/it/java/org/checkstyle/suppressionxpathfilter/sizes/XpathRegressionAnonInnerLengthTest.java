@@ -133,4 +133,5 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

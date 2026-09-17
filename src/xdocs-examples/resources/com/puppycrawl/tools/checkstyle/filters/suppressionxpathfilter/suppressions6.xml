@@ -4,7 +4,7 @@
 "https://checkstyle.org/dtds/suppressions_1_2_xpath.dtd">
 
 <suppressions>
-  <suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='Example6']]
+  <suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='UseCase8']]
           //METHOD_DEF[./IDENT[@text='testMethod']]
           //VARIABLE_DEF/IDENT[@text='TestVariable']"/>
 </suppressions>

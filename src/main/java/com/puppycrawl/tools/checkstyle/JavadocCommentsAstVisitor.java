@@ -431,6 +431,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
+    public JavadocNodeImpl visitMethodReferenceWithoutHash(
+            JavadocCommentsParser.MethodReferenceWithoutHashContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
+    }
+
+    @Override
     public JavadocNodeImpl visitParameterTypeList(
             JavadocCommentsParser.ParameterTypeListContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.PARAMETER_TYPE_LIST, ctx);
@@ -623,6 +629,43 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     /**
+     * Checks whether a token is a formatting token with multiple leading asterisks.
+     *
+     * @param token the token to check
+     * @return true if the token contains multiple leading asterisks
+     */
+    private static boolean isMultipleLeadingAsterisks(Token token) {
+        boolean result = false;
+
+        if (isLeadingAsterisk(token)) {
+            final String leadingAsterisks = getLeadingAsterisksText(token);
+            result = leadingAsterisks.length() > 1;
+        }
+
+        return result;
+    }
+
+    /**
+     * Checks whether a token is a leading asterisk formatting token.
+     *
+     * @param token the token to check
+     * @return true if the token is a leading asterisk token
+     */
+    private static boolean isLeadingAsterisk(Token token) {
+        return token.getType() == JavadocCommentsLexer.LEADING_ASTERISK;
+    }
+
+    /**
+     * Returns only leading asterisks from the token text, without indentation.
+     *
+     * @param token the token to process
+     * @return token text starting at the first asterisk
+     */
+    private static String getLeadingAsterisksText(Token token) {
+        return token.getText().substring(token.getText().indexOf('*'));
+    }
+
+    /**
      * Adds hidden tokens to the left of the given token to the parent node.
      * Ensures text accumulation is flushed before adding hidden tokens.
      * Hidden tokens are only added once per unique token index.
@@ -664,11 +707,19 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         }
 
         final int tokenType = token.getType();
+        if (isLeadingAsterisk(token)) {
+            final String leadingAsterisks = getLeadingAsterisksText(token);
+            node.setColumnNumber(node.getColumnNumber() + token.getText().indexOf('*'));
+            node.setText(leadingAsterisks);
+        }
         if (isJavadocTag(tokenType)) {
             node.setType(JavadocCommentsTokenTypes.TAG_NAME);
         }
         if (tokenType == JavadocCommentsLexer.WS) {
             node.setType(JavadocCommentsTokenTypes.TEXT);
+        }
+        if (isMultipleLeadingAsterisks(token)) {
+            node.setType(JavadocCommentsTokenTypes.LEADING_ASTERISKS);
         }
 
         return node;
@@ -729,6 +780,13 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         private Token startToken;
 
         /**
+         * Creates a new {@code TextAccumulator} instance.
+         */
+        private TextAccumulator() {
+            // no code by default
+        }
+
+        /**
          * Appends a TEXT token's text to the buffer and tracks the first token.
          *
          * @param token the token to accumulate
@@ -755,4 +813,5 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             }
         }
     }
+
 }

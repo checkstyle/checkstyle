@@ -8,6 +8,45 @@
   <body>
     <section name="VisibilityModifier">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#VisibilityModifier_Description">Description</a></li>
+          <li><a href="#VisibilityModifier_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#VisibilityModifier_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it allows package visible members</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it allows protected visible members</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it allows no public members</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">So that it allows public immutable fields (mostly for immutable classes)</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">In order to allow user specified immutable class names</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Passing fields annotated with @java.lang.Deprecated</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">2) To configure the check to use only 'allowPublicFinalFields' option</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#VisibilityModifier_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Note, if allowPublicImmutableFields is set to true, the check will also check whether generic type parameters are immutable. If at least one generic type parameter is mutable, there will be a violation.</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Passing fields annotated with @org.junit.Rule, @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">Passing fields annotated with short annotation name</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Use only 'allowPublicImmutableFields' option</a></li>
+            </ul>
+          </li>
+          <li><a href="#VisibilityModifier_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#VisibilityModifier_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#VisibilityModifier_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#VisibilityModifier_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="VisibilityModifier_Description">
         <div>
           Checks visibility of class members. Only static final, immutable or annotated
@@ -15,19 +54,6 @@
           other class members must be private unless the property <code>protectedAllowed</code>
           or <code>packageAllowed</code> is set.
         </div>
-
-        <p>
-          Public members are not flagged if the name matches the public
-          member regular expression (contains <code>"^serialVersionUID$"</code> by
-          default).
-        </p>
-
-        <p>
-          Note that Checkstyle 2 used to include <code>"^f[A-Z][a-zA-Z0-9]*$"</code> in the default pattern
-          to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
-          the default settings. With EJB 2.0 it is no longer necessary to have public access for
-          persistent fields, so the default has been changed.
-        </p>
 
         <p>
           Rationale: Enforce encapsulation.
@@ -89,6 +115,18 @@
         </p>
       </subsection>
 
+      <subsection name="Notes" id="VisibilityModifier_Notes">
+        <p>
+          Top-level fields of compact source files
+          (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+          are skipped by design. Their access modifiers do not provide the encapsulation
+          that this check enforces for ordinary classes.
+          Public members are not flagged if the name matches the public
+          member regular expression (contains <code>"^serialVersionUID$"</code> by
+          default).
+        </p>
+      </subsection>
+
       <subsection name="Properties" id="VisibilityModifier_Properties">
         <div class="wrapper">
           <table>
@@ -102,49 +140,49 @@
             <tr>
               <td><a id="allowPublicFinalFields"/><a href="#allowPublicFinalFields">allowPublicFinalFields</a></td>
               <td>Allow final fields to be declared as public.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.0</td>
             </tr>
             <tr>
               <td><a id="allowPublicImmutableFields"/><a href="#allowPublicImmutableFields">allowPublicImmutableFields</a></td>
               <td>Allow immutable fields to be declared as public if defined in final class.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td><a id="ignoreAnnotationCanonicalNames"/><a href="#ignoreAnnotationCanonicalNames">ignoreAnnotationCanonicalNames</a></td>
               <td>Specify annotations canonical names which ignore variables in consideration.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule</code></td>
               <td>6.5</td>
             </tr>
             <tr>
               <td><a id="immutableClassCanonicalNames"/><a href="#immutableClassCanonicalNames">immutableClassCanonicalNames</a></td>
               <td>Specify immutable classes canonical names.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String, java.math.BigDecimal, java.math.BigInteger, java.net.Inet4Address, java.net.Inet6Address, java.net.InetSocketAddress, java.net.URI, java.net.URL, java.util.Locale, java.util.UUID</code></td>
               <td>6.4.1</td>
             </tr>
             <tr>
               <td><a id="packageAllowed"/><a href="#packageAllowed">packageAllowed</a></td>
               <td>Control whether package visible members are allowed.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="protectedAllowed"/><a href="#protectedAllowed">protectedAllowed</a></td>
               <td>Control whether protected members are allowed.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td><a id="publicMemberPattern"/><a href="#publicMemberPattern">publicMemberPattern</a></td>
               <td>Specify pattern for public members that should be ignored.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^serialVersionUID$</code></td>
               <td>3.0</td>
             </tr>
@@ -266,16 +304,16 @@ class Example2 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -330,16 +368,16 @@ class Example3 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -394,16 +432,16 @@ class Example4 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
@@ -573,10 +611,10 @@ class Example8 {
 
   public static final int field4 = 42;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int field5 = 42;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final java.lang.String notes = null;
 
   // violation below, HashSet is mutable 'must be private'
@@ -597,20 +635,20 @@ class Example8 {
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
   // violation above, annotation not configured 'must be private'
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final int someIntValue = 0;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final ImmutableSet&lt;String&gt; includes = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final BigDecimal value = null;
 
-  // violation below, 'must be private'
+  // violation below 'must be private'
   public final List list = null;
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example12-config">
+        <p id="Example7-config">
           2) To configure the check to use only 'allowPublicFinalFields' option:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -622,18 +660,18 @@ class Example8 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example12-code">
+        <p id="Example7-code">
           Code example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example12 {
+class Example7 {
   private int myPrivateField1;
 
-  int field1; // violation, 'must be private'
+  int field1; // violation 'must be private'
 
-  protected String field2; // violation, 'must be private'
+  protected String field2; // violation 'must be private'
 
-  public int field3 = 42; // violation, 'must be private'
+  public int field3 = 42; // violation 'must be private'
 
   public long serialVersionUID = 1L;
 
@@ -655,11 +693,11 @@ class Example12 {
   public final ImmutableMap&lt;String, Object&gt; objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString; // violation, 'must be private'
+  String annotatedString; // violation 'must be private'
 
   @Deprecated
   String shortCustomAnnotated;
-  // violation above, 'must be private'
+  // violation above 'must be private'
   @com.google.common.annotations.VisibleForTesting
   public String testString = "";
 
@@ -675,8 +713,11 @@ class Example12 {
   // ok, allowPublicFinalFields is true
   public final List list = null;
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="VisibilityModifier_Use_Cases">
+        <p id="UseCase1-config">
           Note, if allowPublicImmutableFields is set to true, the check will also check whether
           generic type parameters are immutable. If at least one generic type parameter is mutable,
           there will be a violation.
@@ -693,13 +734,12 @@ class Example12 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example7-code">
+        <p id="UseCase1-code">
           Example of how the check works:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
+class UseCase1 {
   private int myPrivateField1;
-
   int field1; // violation, must have visibility modifier 'must be private'
 
   protected String field2; // violation, protected not allowed 'must be private'
@@ -734,7 +774,7 @@ class Example7 {
   public String testString = "";
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example9-config">
+        <p id="UseCase2-config">
           To configure the Check passing fields annotated with @org.junit.Rule,
           @org.junit.ClassRule and @com.google.common.annotations.VisibleForTesting annotations:
         </p>
@@ -745,11 +785,11 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="UseCase2-code">
           Example of allowed fields:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
+class UseCase2 {
   private int myPrivateField1;
 
   int field1; // violation, must have visibility modifier 'must be private'
@@ -786,7 +826,7 @@ class Example9 {
   public String testString = "";
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example10-config">
+        <p id="UseCase3-config">
           To configure the Check passing fields annotated with short annotation name:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -798,11 +838,11 @@ class Example9 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example10-code">
+        <p id="UseCase3-code">
           Example of allowed fields:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example10 {
+class UseCase3 {
   private int myPrivateField1;
 
   int field1; // violation, must have visibility modifier 'must be private'
@@ -844,8 +884,8 @@ class Example10 {
           To understand the difference between allowPublicImmutableFields and
           allowPublicFinalFields options, please, study the following examples.
         </p>
-        <p id="Example11-config">
-           1) To configure the check to use only 'allowPublicImmutableFields' option:
+        <p id="UseCase4-config">
+           To configure the check to use only 'allowPublicImmutableFields' option:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -856,11 +896,11 @@ class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">
+        <p id="UseCase4-code">
           Code example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example11 {
+class UseCase4 {
   public final int someIntValue = 0; // violation 'must be private'
 
   public final ImmutableSet&lt;String&gt; includes = null; // violation 'must be private'

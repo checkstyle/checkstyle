@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="MethodName_Description">
         <macro name="description">
             <param name="modulePath"
@@ -44,7 +48,7 @@
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores is:
+          followed by at least 7 letters or digits is:
         </p>
         <macro name="example">
           <param name="path"
@@ -73,22 +77,19 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          An example of how to configure the check to disallow method names to be equal to the
-          residing class name is:
+          An example of how to suppress the check to public methods:
         </p>
         <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">Code Example:</p>
         <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
+          <param name="path" value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example4.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          An example of how to suppress the check to public and protected methods:
+          An example of how to suppress the check to protected methods:
         </p>
         <macro name="example">
           <param name="path"
@@ -129,15 +130,29 @@
         <param name="path"
                value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example7.java"/>
         <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="MethodName_Use_Cases">
+        <p id="UseCase1-config">
+          An example of how to configure the check to disallow method names to be equal to the
+          residing class name is:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/UseCase1.java"/>
+          <param name="type" value="code"/>
       </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
         <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
-            Google Style</a>
-          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Sun Style</a>

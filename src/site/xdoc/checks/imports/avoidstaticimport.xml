@@ -8,6 +8,29 @@
   <body>
     <section name="AvoidStaticImport">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AvoidStaticImport_Description">Description</a></li>
+          <li><a href="#AvoidStaticImport_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AvoidStaticImport_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that the <code>java.lang.System.out</code> member and all members from <code>java.lang.Math</code> are allowed</a></li>
+            </ul>
+          </li>
+          <li><a href="#AvoidStaticImport_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AvoidStaticImport_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AvoidStaticImport_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AvoidStaticImport_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AvoidStaticImport_Description">
         <div>
           Checks that there are no static import statements.
@@ -47,7 +70,7 @@
             <tr>
               <td><a id="excludes"/><a href="#excludes">excludes</a></td>
               <td>Control whether to allow for certain classes via a star notation to be excluded such as <code>java.lang.Math.*</code> or specific static members to be excluded like <code>java.lang.System.out</code> for a variable or <code>java.lang.Math.random</code> for a method. See notes section for details.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.0</td>
             </tr>
@@ -70,9 +93,9 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-import static java.lang.Math.*;           // violation, 'Using a static member import should be avoided.'
-import static java.lang.System.out;       // violation, 'Using a static member import should be avoided.'
-import static java.lang.Integer.parseInt; // violation, 'Using a static member import should be avoided.'
+import static java.lang.Math.*;           // violation 'Using a static member import should be avoided.'
+import static java.lang.System.out;       // violation 'Using a static member import should be avoided.'
+import static java.lang.Integer.parseInt; // violation 'Using a static member import should be avoided.'
 
 import java.io.File;
 import java.util.List;
@@ -96,7 +119,7 @@ import java.util.List;
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import static java.lang.Math.*;
 import static java.lang.System.out;
-import static java.lang.Integer.parseInt; // violation, 'Using a static member import should be avoided.'
+import static java.lang.Integer.parseInt; // violation 'Using a static member import should be avoided.'
 
 import java.io.File;
 import java.util.List;

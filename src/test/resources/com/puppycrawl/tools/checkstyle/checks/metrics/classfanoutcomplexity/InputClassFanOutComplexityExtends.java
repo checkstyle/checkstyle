@@ -20,7 +20,8 @@ excludedPackages = (default)
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
-public class InputClassFanOutComplexityExtends extends ParentClass { // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+public class InputClassFanOutComplexityExtends extends ParentClass {
 }
 
 class ParentClass {}

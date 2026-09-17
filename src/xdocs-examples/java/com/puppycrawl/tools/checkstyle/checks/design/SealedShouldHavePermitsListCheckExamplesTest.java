@@ -42,4 +42,5 @@ public class SealedShouldHavePermitsListCheckExamplesTest extends
                 getPath("Example1.java"),
                 expected);
     }
+
 }

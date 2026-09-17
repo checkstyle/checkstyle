@@ -8,12 +8,47 @@
   <body>
     <section name="CommentsIndentation">
       <p>Since Checkstyle 6.10</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#CommentsIndentation_Description">Description</a></li>
+          <li><a href="#CommentsIndentation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#CommentsIndentation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Where both single-line and block comments are checked for indentation violations</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Validate only single-line comments</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#CommentsIndentation_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Comment is used as a single-line border to separate groups of methods.</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Single line block comment is placed within an empty code block. Note, if comment is placed at the end of the empty code block, we have Checkstyle's limitations to clearly detect user intention of explanation target - above or below. The only case we can assume as a violation is when a single-line comment within the empty code block has indentation level that is lower than the indentation level of the closing right curly brace.</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">'fallthrough' comments and Also similar comments placed within an empty case block.Note, if comment is placed at the end of the empty case block, we have Checkstyle limitations to clearly detect user intention of explanation target - above or below. The only case we can assume as a violation is when a single-line comment within the empty case block has indentation level that is lower than the indentation level of the next case. token.</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">Comment is placed within a distributed statement.</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">Single line block comment has previous and next statement.</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">Comment within the block tries to describe the next code block.</a></li>
+            </ul>
+          </li>
+          <li><a href="#CommentsIndentation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#CommentsIndentation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#CommentsIndentation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#CommentsIndentation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="CommentsIndentation_Description">
         <div>
           Controls the indentation between comments and surrounding code.
           Comments are indented at the same level as the surrounding code.
           Detailed info about such convention can be found
-          <a href="https://checkstyle.org/styleguides/google-java-style-20250426/javaguide.html#s4.8.6.1-block-comment-style">
+          <a href="https://checkstyle.org/styleguides/google-java-style-20260409/javaguide.html#s4.8.6.1-block-comment-style">
           here</a>
         </div>
       </subsection>
@@ -74,7 +109,7 @@ public class Example1 {
      * it is Ok
      */
     boolean bool = true;
-      // violation below, 'Block comment has incorrect indentation level 6'
+      // violation below 'Block comment has incorrect indentation level 6'
       /*
        * It is not okay
        */
@@ -134,13 +169,26 @@ public class Example2 {
   }
   // violation 2 lines above  'Comment has incorrect indentation level 8'
 }
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="CommentsIndentation_Use_Cases">
         <p>Please take a look at the following examples to understand how the check works:</p>
-        <p id="Example3-code">
-          Example #3: Comment is used as a single-line border to separate groups of methods.
+        <p id="UseCase1-config">
+          Comment is used as a single-line border to separate groups of methods.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase1-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 {
+public class UseCase1 {
   /////////////////////////////// it is OK
 
   public void foo1() {
@@ -152,16 +200,26 @@ public class Example3 {
   public void foo2() {}
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-code">
-          Example #4: Single line block comment is placed within an empty code block.
+        <p id="UseCase2-config">
+          Single line block comment is placed within an empty code block.
           Note, if comment is placed at the end of the empty code block, we have Checkstyle's
           limitations to clearly detect user intention of explanation target - above or below. The
           only case we can assume as a violation is when a single-line comment within the empty
           code block has indentation level that is lower than the indentation level of the closing
           right curly brace.
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase2-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
+public class UseCase2 {
   public void foo1() {
     // comment
     // block
@@ -175,7 +233,7 @@ public class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-code">Example #5: 'fallthrough' comments and Also similar
+        <p id="UseCase3-config">'fallthrough' comments and Also similar
            comments  placed within an empty case block.Note, if comment is placed
            at the end of the empty case block,  we have Checkstyle limitations to
            clearly detect user intention of explanation target - above or below.
@@ -183,8 +241,18 @@ public class Example4 {
            within the empty case block has indentation level that is lower than the
            indentation level of the next case.
           token.</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase3-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
+public class UseCase3 {
   void testMethod(String a) {
     switch(a) {
       case "1":
@@ -210,9 +278,19 @@ public class Example5 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-code">Example #6: Comment is placed within a distributed statement.</p>
+        <p id="UseCase4-config">Comment is placed within a distributed statement.</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase4-code">
+          Example:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
+public class UseCase4 {
   void testMethod() {
     // violation 2 lines below 'Comment has incorrect indentation level 4'
     String breaks = "J"
@@ -227,11 +305,21 @@ public class Example6 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example7-code">
-          Example #7: Single line block comment has previous and next statement.
+        <p id="UseCase5-config">
+          Single line block comment has previous and next statement.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase5-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
+public class UseCase5 {
   void testMethod() {
     String s1 = "Clean code!";
     s1.toString().toString().toString();
@@ -252,11 +340,21 @@ public class Example7 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example8-code">
-          Example #8: Comment within the block tries to describe the next code block.
+        <p id="UseCase6-config">
+          Comment within the block tries to describe the next code block.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="CommentsIndentation"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="UseCase6-code">
+          Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
+public class UseCase6 {
   public void foo42() {
     int a = 5;
     if (a == 5) {
@@ -285,6 +383,10 @@ public class Example8 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

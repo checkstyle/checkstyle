@@ -11,12 +11,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.io.IOException;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example6 {
 
   /** */
   Example6(int x) {}
-  // violation above, 'Expected @param tag for 'x''
+  // violation above 'Expected @param tag for 'x''
   /** */
   public int m1(int p1) throws IOException {
 
@@ -44,4 +44,4 @@ public class Example6 {
     return 0;
   }
 }
-// xdoc section -- end
+// xdoc section - end

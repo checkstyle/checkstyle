@@ -2,10 +2,10 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public class InputFinalLocalVariableFour {
@@ -13,7 +13,7 @@ public class InputFinalLocalVariableFour {
     class Class3 {
         public void test1() {
             final boolean b = true;
-            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal; // violation "Variable 'shouldBeFinal' should be declared final"
 
             if (b) {
                 shouldBeFinal = 1;
@@ -25,7 +25,7 @@ public class InputFinalLocalVariableFour {
 
         public void test2() {
             final int b = 10;
-            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal; // violation "Variable 'shouldBeFinal' should be declared final"
 
             switch (b) {
                 case 0:
@@ -69,7 +69,7 @@ public class InputFinalLocalVariableFour {
 
         public void test5() {
             final boolean b = false;
-            int shouldBeFinal;    // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal;    // violation "Variable 'shouldBeFinal' should be declared final"
             if(b) {
             }
             if (b) {
@@ -82,7 +82,7 @@ public class InputFinalLocalVariableFour {
 
     class class4 {
         public void foo() {
-            int shouldBeFinal;    // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal;    // violation "Variable 'shouldBeFinal' should be declared final"
             class Bar {
                 void bar () {
                     // violation below "Variable 'shouldBeFinal' should be declared final"

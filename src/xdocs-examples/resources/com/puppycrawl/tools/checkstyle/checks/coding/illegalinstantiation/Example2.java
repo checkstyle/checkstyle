@@ -10,7 +10,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalinstantiation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   class Boolean {
     boolean a;
@@ -25,10 +25,10 @@ class Example2 {
   Example2 (boolean a, int b) {
     Boolean c = new Boolean(a);
     java.lang.Boolean d = new java.lang.Boolean(a);
-    // violation above, 'Instantiation of java.lang.Boolean should be avoided'
+    // violation above 'Instantiation of java.lang.Boolean should be avoided'
     Integer e = new Integer(b);
-    // violation above, 'Instantiation of java.lang.Integer should be avoided'
+    // violation above 'Instantiation of java.lang.Integer should be avoided'
     Integer f = Integer.valueOf(b);
   }
 }
-// xdoc section -- end
+// xdoc section - end

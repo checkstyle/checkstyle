@@ -8,7 +8,7 @@ jdkVersion = 8
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.modifier.redundantmodifier;
 
 import java.util.function.BiFunction;
@@ -37,14 +37,14 @@ public class InputRedundantModifierFinalUnnamedVariablesWithOldVersion {
     }
 
     void m3() {
-        // violation below, 'Redundant 'final' modifier'
+        // violation below 'Redundant 'final' modifier.'
         try (final var a = lock();) {
 
         } catch (final Exception e) {
 
         }
 
-        // violation below, 'Redundant 'final' modifier'
+        // violation below 'Redundant 'final' modifier.'
         try (final var _ = lock();) {
 
         } catch (final Exception _) {

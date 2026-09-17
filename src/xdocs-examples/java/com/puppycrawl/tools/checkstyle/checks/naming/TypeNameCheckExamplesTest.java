@@ -19,13 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/typename";
@@ -75,6 +76,46 @@ public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "17:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "SecondName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "18:19: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Third_Name", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "FourthName_", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "20:8: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Fifth_Name", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Example7", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "17:16: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "SecondName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "18:19: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "Third_Name", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "FourthName_", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 
 }

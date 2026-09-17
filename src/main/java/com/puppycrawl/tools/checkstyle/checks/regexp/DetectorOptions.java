@@ -131,6 +131,12 @@ public final class DetectorOptions {
 
     /** Class which implements Builder pattern to build DetectorOptions instance. */
     public final class Builder {
+        /**
+         * Creates a new {@code Builder} instance.
+         */
+        public Builder() {
+            // no code by default
+        }
 
         /**
          * Specifies the violation reporter and returns Builder object.

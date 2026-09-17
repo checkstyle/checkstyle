@@ -8,14 +8,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.useenhancedswitch;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   void doSomething(String param) {
     // method implementation
   }
 
   void t1(int x)  {
-    // violation below, 'Switch can be replaced with enhanced switch'
+    // violation below 'Switch can be replaced with enhanced switch'
     switch (x) {
       case 1:
         doSomething("one");
@@ -46,4 +46,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

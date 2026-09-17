@@ -10,7 +10,7 @@ sortImportsInGroupAlphabetically = true
 
 */
 
-// non-compiled with javac: contains no package for testing
+// non-compiled with javac: missing package. Used for Testing purpose.
 import java.io.*;
 
 

@@ -7,10 +7,11 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
-  public Example1() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+  public Example1() {} // violation 'Missing a Javadoc comment for 'Example1'.'
+  // violation below 'Missing a Javadoc comment for 'testMethod1'.'
+  public void testMethod1() {}
   /**
    * Some description here.
    */
@@ -21,14 +22,17 @@ public class Example1 {
     return "Some string";
   }
 
+  // ok, private method is not checked by default
   private void testMethod3() {}
+  // ok, protected method is not checked by default
   protected void testMethod4() {}
   void testMethod5() {}
 
-  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+  // violation below 'Missing a Javadoc comment for 'testMethod6'.'
+  public void testMethod6() {
     System.out.println("line 1");
     System.out.println("line 2");
     System.out.println("line 3");
   }
 }
-// xdoc section -- end
+// xdoc section - end

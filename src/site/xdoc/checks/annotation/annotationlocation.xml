@@ -9,6 +9,32 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationLocation">
       <p>Since Checkstyle 6.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AnnotationLocation_Description">Description</a></li>
+          <li><a href="#AnnotationLocation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AnnotationLocation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check to allow one single parameterless annotation on the same line</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Use the following configuration to allow multiple annotations on the same line</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Use the following configuration to allow only one and only parameterized annotation on the same line</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Use the following configuration to only validate annotations on methods to allow one single parameterless annotation on the same line</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Use the following configuration to forbid single parameterless annotation on the same line</a></li>
+            </ul>
+          </li>
+          <li><a href="#AnnotationLocation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AnnotationLocation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AnnotationLocation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AnnotationLocation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AnnotationLocation_Description">
         <div>
           Checks location of annotation on language elements.
@@ -27,7 +53,7 @@
           Attention: Annotations among modifiers are ignored (looks like false-negative)
           as there might be a problem with annotations for return types:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public @Nullable Long getStartTimeOrNull() { ... }
         </code></pre></div>
 
@@ -39,9 +65,9 @@ public @Nullable Long getStartTimeOrNull() { ... }
         <p>
           Example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&#64;Override
-&#64;Nullable
+        <div class="wrapper"><pre class="prettyprint"><code>
+@Override
+@Nullable
 public String getNameIfPresent() { ... }
         </code></pre></div>
       </subsection>
@@ -74,21 +100,21 @@ public String getNameIfPresent() { ... }
             <tr>
               <td><a id="allowSamelineMultipleAnnotations"/><a href="#allowSamelineMultipleAnnotations">allowSamelineMultipleAnnotations</a></td>
               <td>Allow annotation(s) to be located on the same line as target element.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="allowSamelineParameterizedAnnotation"/><a href="#allowSamelineParameterizedAnnotation">allowSamelineParameterizedAnnotation</a></td>
               <td>Allow one and only parameterized annotation to be located on the same line as target element.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td><a id="allowSamelineSingleParameterlessAnnotation"/><a href="#allowSamelineSingleParameterlessAnnotation">allowSamelineSingleParameterlessAnnotation</a></td>
               <td>Allow single parameterless annotation to be located on the same line as target element.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.1</td>
             </tr>
@@ -120,6 +146,8 @@ public String getNameIfPresent() { ... }
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
                   .
               </td>
               <td>
@@ -143,6 +171,8 @@ public String getNameIfPresent() { ... }
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MODULE_DEF">
+                    MODULE_DEF</a>
                   .
               </td>
               <td>6.0</td>
@@ -177,11 +207,11 @@ class Example1 {
   @Mock
   DataLoader loader1;
   @SuppressWarnings("deprecation") DataLoader loader2;
-  // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
   @Nonnull @Mock DataLoader loader3;
-  // violation above, 'Annotation 'Mock' should be alone on line'
+  // violation above 'Annotation 'Mock' should be alone on line'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -242,7 +272,7 @@ class Example3 {
   @Nonnull
   private boolean field1;
   @Override public int hashCode() { return 1; }
-  // violation above, 'Annotation 'Override' should be alone on line'
+  // violation above 'Annotation 'Override' should be alone on line'
   @Nonnull
   private boolean field2;
   @Override
@@ -252,9 +282,9 @@ class Example3 {
   @SuppressWarnings("deprecation") DataLoader loader2;
 
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation below, 'Annotation 'Nonnull' should be alone on line'
+  // violation below 'Annotation 'Nonnull' should be alone on line'
   @Nonnull @Mock DataLoader loader3;
-  // violation above, 'Annotation 'Mock' should be alone on line'
+  // violation above 'Annotation 'Mock' should be alone on line'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -290,9 +320,43 @@ class Example4 {
   @SuppressWarnings("deprecation") DataLoader loader2;
   // ok above, as 'tokens' property set to METHOD_DEF only
   @SuppressWarnings("deprecation") public int foo() { return 1; }
-  // violation above, 'Annotation 'SuppressWarnings' should be alone on line'
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
   @Nonnull @Mock DataLoader loader3;
   // ok above, as 'tokens' property set to METHOD_DEF only
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          Use the following configuration to forbid single parameterless
+          annotation on the same line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="allowSamelineSingleParameterlessAnnotation" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  @Nonnull
+  private boolean field1;
+  @Override public int hashCode() { return 1; }
+  // violation above 'Annotation 'Override' should be alone on line'
+  @Nonnull
+  private boolean field2;
+  @Override
+  public boolean equals(Object obj) { return true; }
+  @Mock
+  DataLoader loader1;
+  @SuppressWarnings("deprecation") DataLoader loader2;
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
+  @SuppressWarnings("deprecation") public int foo() { return 1; }
+  // violation above 'Annotation 'SuppressWarnings' should be alone on line'
+  @Nonnull @Mock DataLoader loader3; // violation ''Nonnull' should be alone on line'
+  // violation above 'Annotation 'Mock' should be alone on line'
 }
 </code></pre></div>
       </subsection>

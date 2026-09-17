@@ -19,16 +19,25 @@ public interface InputInterfaceMemberImpliedModifierFieldsOnInterface2 {
 
     public static int fieldPublicStatic = 1;
 
-    public final int fieldPublicFinal = 1; // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public final int fieldPublicFinal = 1;
 
-    public int fieldPublic = 1; // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public int fieldPublic = 1;
 
-    static final int fieldStaticFinal = 1; // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static final int fieldStaticFinal = 1;
 
-    static int fieldStatic = 1; // violation
+    // violation below 'Implied modifier 'public' should be explicit.'
+    static int fieldStatic = 1;
 
-    final int fieldFinal = 1; // 2 violations
+    final int fieldFinal = 1;
+    // 2 violations above:
+    //        'Implied modifier 'public' should be explicit.'
+    //        'Implied modifier 'static' should be explicit.'
 
-    int field = 1; // 2 violations
-
+    int field = 1;
+    // 2 violations above:
+    //        'Implied modifier 'public' should be explicit.'
+    //        'Implied modifier 'static' should be explicit.'
 }

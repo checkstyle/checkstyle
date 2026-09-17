@@ -1,4 +1,4 @@
-// non-compiled with javac: compiling on jdk before Java21 (java19)
+// non-compiled with javac: but was compiled on jdk before 21, so we need to continue to support
 package com.puppycrawl.tools.checkstyle.grammar.java19;
 
 public class InputJava19BindingWithModifiers {

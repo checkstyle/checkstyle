@@ -4,7 +4,8 @@ allowSamelineMultipleAnnotations = (default)false
 allowSamelineSingleParameterlessAnnotation = (default)true
 allowSamelineParameterizedAnnotation = (default)false
 tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
-         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF, \
+         MODULE_DEF
 
 
 */
@@ -56,8 +57,9 @@ public class InputAnnotationLocationRecordsAndCompactCtors {
      * @return
      */
     public record MyRecord7() {
+        // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
         record MyInnerRecord () {@SuppressWarnings("Annotation")public MyInnerRecord {
-            } // violation above 'Annotation 'SuppressWarnings' should be alone on line.'
+            }
         }
     }
 }

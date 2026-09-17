@@ -12,7 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
   String[] value() default {};
 }
 
-// xdoc section -- start
+// xdoc section - start
 @SuppressWarnings("unchecked") // ok as it's in implied style
 @Deprecated // ok as it matches closingParens default property
 
@@ -28,4 +28,4 @@ public class Example1 {
 class TestStyle1 {
 
 }
-// xdoc section -- end
+// xdoc section - end

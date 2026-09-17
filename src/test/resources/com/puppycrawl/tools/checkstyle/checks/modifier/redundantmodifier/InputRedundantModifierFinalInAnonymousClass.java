@@ -20,8 +20,9 @@ public class InputRedundantModifierFinalInAnonymousClass {
 
     public static void test() {
         new Example() {
+            // violation 2 lines below 'Redundant 'final' modifier.'
             @Override
-            public final void innerTest() { // violation
+            public final void innerTest() {
             }
         };
     }

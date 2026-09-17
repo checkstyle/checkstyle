@@ -8,6 +8,31 @@
   <body>
     <section name="MultipleStringLiterals">
       <p>Since Checkstyle 3.5</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MultipleStringLiterals_Description">Description</a></li>
+          <li><a href="#MultipleStringLiterals_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MultipleStringLiterals_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">So that it allows two occurrences of each string</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">So that it ignores &quot;, &quot; and empty strings</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">So that it flags duplicate strings in all syntactical contexts, even in annotations like <code>@SuppressWarnings("unchecked")</code></a></li>
+            </ul>
+          </li>
+          <li><a href="#MultipleStringLiterals_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MultipleStringLiterals_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MultipleStringLiterals_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MultipleStringLiterals_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MultipleStringLiterals_Description">
         <div>
           Checks for multiple occurrences of the same string literal within a single file.
@@ -32,7 +57,7 @@
             <tr>
               <td><a id="allowedDuplicates"/><a href="#allowedDuplicates">allowedDuplicates</a></td>
               <td>Specify the maximum number of occurrences to allow without generating a warning.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>3.5</td>
             </tr>
@@ -49,7 +74,7 @@
             <tr>
               <td><a id="ignoreStringsRegexp"/><a href="#ignoreStringsRegexp">ignoreStringsRegexp</a></td>
               <td>Specify RegExp for ignored strings (with quotation marks).</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^&quot;&quot;$</code></td>
               <td>4.0</td>
             </tr>
@@ -71,14 +96,14 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  String a = "StringContents"; // violation, "StringContents" occurs twice
+  String a = "StringContents"; // violation "StringContents" occurs twice
   String a1 = "unchecked";
   @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
+    String a3 = "DuoString" + "DuoString"; // violation "DuoString" occurs twice
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
+    String a5 = ", " + ", " + ", "; // violation ", " occurs three times
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -125,12 +150,12 @@ public class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
-  String a = "StringContents"; // violation, "StringContents" occurs twice
+  String a = "StringContents"; // violation "StringContents" occurs twice
   String a1 = "unchecked";
   @SuppressWarnings("unchecked") // ok, duplicate strings are ignored in annotations
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
+    String a3 = "DuoString" + "DuoString"; // violation "DuoString" occurs twice
     String a4 = "SingleString";
     String a5 = ", " + ", " + ", "; // ok, multiple occurrences of ", " are allowed
   }
@@ -153,14 +178,14 @@ public class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-  String a = "StringContents"; // violation, "StringContents" occurs twice
-  String a1 = "unchecked"; // // violation, "unchecked" occurs twice
+  String a = "StringContents"; // violation "StringContents" occurs twice
+  String a1 = "unchecked"; // // violation "unchecked" occurs twice
   @SuppressWarnings("unchecked")
   public void myTest() {
     String a2 = "StringContents";
-    String a3 = "DuoString" + "DuoString"; // violation, "DuoString" occurs twice
+    String a3 = "DuoString" + "DuoString"; // violation "DuoString" occurs twice
     String a4 = "SingleString";
-    String a5 = ", " + ", " + ", "; // violation, ", " occurs three times
+    String a5 = ", " + ", " + ", "; // violation ", " occurs three times
   }
 }
 </code></pre></div>

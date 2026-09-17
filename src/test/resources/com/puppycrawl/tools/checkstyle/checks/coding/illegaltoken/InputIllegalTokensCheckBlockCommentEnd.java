@@ -3,13 +3,14 @@ IllegalToken
 tokens = BLOCK_COMMENT_END
 
 
-*/ // violation, 'Using '\*\/' is not allowed'
+*/ // violation 'Using '\*\/' is not allowed'
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltoken;
 
+// violation 3 lines below 'Using '\*\/' is not allowed'
 /**
  * Test for illegal tokens
- */ // violation, 'Using '\*\/' is not allowed'
+ */
 public class InputIllegalTokensCheckBlockCommentEnd
 {
     public void methodWithPreviouslyIllegalTokens()

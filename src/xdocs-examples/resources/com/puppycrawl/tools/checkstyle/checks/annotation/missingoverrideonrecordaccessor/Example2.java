@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverrideonrecordaccessor;
 
-// xdoc section -- start
+// xdoc section - start
 interface Printable {
   void print();
 }
@@ -24,6 +24,6 @@ record Document(String title) implements Printable {
     System.out.println(title);
   }
 }
-// xdoc section -- end
+// xdoc section - end
 
 class Example2 {}

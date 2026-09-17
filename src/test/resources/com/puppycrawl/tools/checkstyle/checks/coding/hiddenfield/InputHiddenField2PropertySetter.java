@@ -5,8 +5,8 @@ ignoreConstructorParameter = (default)false
 ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
-tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
+tokens = (default)VARIABLE_DEF,PARAMETER_DEF,CLASS_DEF,ENUM_DEF,ENUM_CONSTANT_DEF, \
+          PATTERN_VARIABLE_DEF,LAMBDA,RECORD_DEF,RECORD_COMPONENT_DEF,COMPACT_COMPILATION_UNIT
 
 */
 
@@ -18,19 +18,19 @@ class InputHiddenField2PropertySetter
     private int prop;
 
     /** setter */
-    public void setProp(int prop) // violation, ''prop' hides a field'
+    public void setProp(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - incorrect method name */
-    public void setprop(int prop) // violation, ''prop' hides a field'
+    public void setprop(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
 
     /** violation - more than one parameter */
-    public void setProp(int prop, int extra) // violation, ''prop' hides a field'
+    public void setProp(int prop, int extra) // violation ''prop' hides a field'
     {
         this.prop = prop;
     }
@@ -42,7 +42,7 @@ class PropertySetter22
     private int prop;
 
     /** violation - not a void method */
-    public int setProp(int prop) // violation, ''prop' hides a field'
+    public int setProp(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
         return 0;
@@ -61,7 +61,7 @@ class PropertySetter32
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter32 setProp(int prop) // violation, ''prop' hides a field'
+    public PropertySetter32 setProp(int prop) // violation ''prop' hides a field'
     {
         this.prop = prop;
         return this;
@@ -75,7 +75,7 @@ enum PropertySetter42 {
     private int prop;
     private int prop2;
 
-    public void setProp(int prop) { // violation, ''prop' hides a field'
+    public void setProp(int prop) { // violation ''prop' hides a field'
         this.prop = prop;
     }
 
@@ -86,7 +86,7 @@ enum PropertySetter42 {
      * if setterCanReturnItsClass == true then
      *     success as it is then considered to be a setter
      */
-    public PropertySetter42 setProp2(int prop2) // violation, ''prop2' hides a field'
+    public PropertySetter42 setProp2(int prop2) // violation ''prop2' hides a field'
     {
         this.prop2 = prop2;
         return this;

@@ -25,5 +25,15 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 import java.util.Set;
 
 public class InputWhitespaceAroundAllTokens {
-    private static final Set<Class<?>> FIELD = null; // 9 violations
+    private static final Set<Class<?>> FIELD = null;
+    // 9 violations above:
+    // ''<' is not followed by whitespace.'
+    // ''<' is not preceded with whitespace.'
+    // ''<' is not followed by whitespace.'
+    // ''<' is not preceded with whitespace.'
+    // ''\?' is not followed by whitespace.'
+    // ''\?' is not preceded with whitespace.'
+    // ''>' is not followed by whitespace.'
+    // ''>' is not preceded with whitespace.'
+    // ''>' is not preceded with whitespace.'
 }

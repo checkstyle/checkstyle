@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java"/>
+      </macro>
       <subsection name="Description" id="CustomImportOrder_Description">
         <macro name="description">
           <param name="modulePath"
@@ -158,7 +162,7 @@
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by single blank line</li>
         </ul><hr class="example-separator"/>
-        <p id="Example8-config">Notes:</p>
+        <p id="Example8-config">Notes for Eclipse Kepler and Luna:</p>
         <ul>
           <li>"com" package is not mentioned on configuration, because it is
               ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>

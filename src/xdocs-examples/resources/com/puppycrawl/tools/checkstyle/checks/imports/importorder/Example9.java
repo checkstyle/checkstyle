@@ -14,12 +14,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-// xdoc section -- start
+// xdoc section - start
 import static java.lang.Byte.MAX_VALUE;
 import static java.lang.Character.toLowerCase;
 import static java.lang.Character.valueOf;
 import static java.lang.Character.UnicodeBlock.BASIC_LATIN;
 // violation above 'Wrong lexicographical order for ...'
-// xdoc section -- end
+// xdoc section - end
 
 public class Example9 { }

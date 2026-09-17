@@ -91,10 +91,17 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * is to log violation upon encountering non-tight HTML in javadoc.
      *
      * @see ParseStatus#isNonTight()
-     * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * @see <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight HTML rules</a>
      */
     private boolean violateExecutionOnNonTightHtml;
+
+    /**
+     * Creates a new {@code AbstractJavadocCheck} instance.
+     */
+    protected AbstractJavadocCheck() {
+        // no code by default
+    }
 
     /**
      * Returns the default javadoc token types a check is interested in.
@@ -146,7 +153,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @return true if the check should or can process javadoc containing non-tight html tags;
      *     false otherwise
      * @see ParseStatus#isNonTight()
-     * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * @see <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight HTML rules</a>
      */
     public boolean acceptJavadocWithNonTightHtml() {
@@ -156,7 +163,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     /**
      * Setter to control when to print violations if the Javadoc being examined by this check
      * violates the tight html rules defined at
-     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     * <a href="https://checkstyle.org/writing-javadoc-checks.html#Tight-HTML_rules">
      *     Tight-HTML Rules</a>.
      *
      * @param shouldReportViolation value to which the field shall be set to
@@ -394,6 +401,19 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     }
 
     /**
+     * Logs a message against a DetailNode.
+     * This is a wrapper method to log violations using a DetailNode
+     * instead of manually specifying line and column numbers.
+     *
+     * @param node the DetailNode that has the violation
+     * @param key the message key from the check messages
+     * @param args the arguments to the message
+     */
+    protected final void log(DetailNode node, String key, Object... args) {
+        log(node.getLineNumber(), node.getColumnNumber(), key, args);
+    }
+
+    /**
      * The file context holder.
      */
     private static final class FileContext {
@@ -409,6 +429,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
          */
         private DetailAST blockCommentAst;
 
+        /**
+         * Creates a new {@code FileContext} instance.
+         */
+        private FileContext() {
+            // no code by default
+        }
     }
 
 }

@@ -106,4 +106,5 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(
                     getPath("InputFormattedIncorrectJavadocLeadingAsteriskAlignment.java"));
     }
+
 }

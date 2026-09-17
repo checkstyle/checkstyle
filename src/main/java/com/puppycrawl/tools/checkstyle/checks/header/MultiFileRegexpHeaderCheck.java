@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @FileStatefulCheck
 public class MultiFileRegexpHeaderCheck
         extends AbstractFileSetCheck implements ExternalResourceHolder {
+
     /**
      * Constant indicating that no header line mismatch was found.
      */
@@ -73,7 +74,7 @@ public class MultiFileRegexpHeaderCheck
 
     /**
      * Regex pattern for a blank line.
-     **/
+     */
     private static final String EMPTY_LINE_PATTERN = "^$";
 
     /**
@@ -83,7 +84,7 @@ public class MultiFileRegexpHeaderCheck
 
     /**
      * Compiled regex pattern for a blank line.
-     **/
+     */
     private static final Pattern BLANK_LINE = Pattern.compile(EMPTY_LINE_PATTERN);
 
     /**
@@ -100,6 +101,13 @@ public class MultiFileRegexpHeaderCheck
      */
     @XdocsPropertyType(PropertyType.STRING)
     private String headerFiles;
+
+    /**
+     * Creates a new {@code MultiFileRegexpHeaderCheck} instance.
+     */
+    public MultiFileRegexpHeaderCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify a comma-separated list of files containing the required headers.
@@ -386,4 +394,5 @@ public class MultiFileRegexpHeaderCheck
             return new MatchResult(false, lineNumber, messageKey, messageArg);
         }
     }
+
 }

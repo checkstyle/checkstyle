@@ -8,6 +8,36 @@
   <body>
     <section name="RegexpMultiline">
       <p>Since Checkstyle 5.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RegexpMultiline_Description">Description</a></li>
+          <li><a href="#RegexpMultiline_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RegexpMultiline_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">To run the check with its default configuration (no matches will be)</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Find calls to print to the console</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Match text that spans multiple lines, like normal code in a Java file</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Match a maximum of three test strings</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Match a minimum of two test strings</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Restrict an empty file</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Match a minimum of two test strings</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Find calls to print to the console with a custom message</a></li>
+              <li><a href="#Example9-config" class="toc-sublink">Match a maximum of three test strings</a></li>
+            </ul>
+          </li>
+          <li><a href="#RegexpMultiline_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RegexpMultiline_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RegexpMultiline_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RegexpMultiline_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RegexpMultiline_Description">
         <div>
           Checks that a specified pattern matches across multiple lines in any file type.
@@ -31,49 +61,49 @@
             <tr>
               <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>$.</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="ignoreCase"/><a href="#ignoreCase">ignoreCase</a></td>
               <td>Control whether to ignore case when searching.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="matchAcrossLines"/><a href="#matchAcrossLines">matchAcrossLines</a></td>
               <td>Control whether to match expressions across multiple lines.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.25</td>
             </tr>
             <tr>
               <td><a id="maximum"/><a href="#maximum">maximum</a></td>
               <td>Specify the maximum number of matches required in each file.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="message"/><a href="#message">message</a></td>
               <td>Specify the message which is used to notify about violations, if empty then default (hard-coded) message is used.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="minimum"/><a href="#minimum">minimum</a></td>
               <td>Specify the minimum number of matches required in each file.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
@@ -143,33 +173,33 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   void testMethod1() {
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.print("Example");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.err.println("Example");
     System
       .out.print("Example");
     System
-      .err.println("Example"); // violation, 'Line matches the illegal pattern'
+      .err.println("Example"); // violation 'Line matches the illegal pattern'
     System.
       out.print("Example");
     System.
-      err.println("Example"); // violation, 'Line matches the illegal pattern'
+      err.println("Example"); // violation 'Line matches the illegal pattern'
   }
 
   void testMethod2() {
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #1: this is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TeSt #2: This is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEST #3: This is a test string");
     int i = 5;
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Value of i: " + i);
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEst #5: This is a test string");
   }
 }
@@ -192,7 +222,7 @@ class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
   void testMethod1() {
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.print("Example");
 
     System.err.println("Example");
@@ -274,9 +304,9 @@ class Example4 {
     int i = 5;
 
     System.out.println("Value of i: " + i);
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("TEst #5: This is a test string");
   }
 }
@@ -313,19 +343,19 @@ class Example5 {
   }
 
   void testMethod2() {
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #1: this is a test string");
 
-    System.out.println("TEST #2: This is a test string");
+    System.out.println("TeSt #2: This is a test string");
 
     System.out.println("TEST #3: This is a test string");
     int i = 5;
 
     System.out.println("Value of i: " + i);
-    // violation below, 'Line matches the illegal pattern'
-    System.out.println("Test #3: This is a test string");
-    // violation below, 'Line matches the illegal pattern'
+    // violation below 'Line matches the illegal pattern'
     System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -356,6 +386,152 @@ class Example5 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp/Test.java // violation, a file must not be empty.
         </code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example7-config">
+        To configure the check to match a minimum of two test strings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="Test.*string"/&gt;
+    &lt;property name="fileExtensions" value="java"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {
+  void testMethod1() {
+
+    System.out.print("Example");
+
+    System.err.println("Example");
+    System
+            .out.print("Example");
+    System
+            .err.println("Example");
+    System.
+            out.print("Example");
+    System.
+            err.println("Example");
+  }
+
+  void testMethod2() {
+    // violation below 'Line matches the illegal pattern'
+    System.out.println("Test #1: this is a test string");
+
+    System.out.println("TeSt #2: This is a test string");
+
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+
+    System.out.println("Value of i: " + i);
+    // violation below 'Line matches the illegal pattern'
+    System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to find calls to print to the console
+          with a custom message:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="System\.(out|err)\.print(ln)?\("/&gt;
+    &lt;property name="message" value="Avoid using System.out/err for printing."/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+  void testMethod1() {
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.print("Example");
+    // violation below 'Avoid using System.out/err for printing.'
+    System.err.println("Example");
+    System
+            .out.print("Example");
+    System
+            .err.println("Example");
+    System.
+            out.print("Example");
+    System.
+            err.println("Example");
+  }
+
+  void testMethod2() {
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.println("Test #1: this is a test string");
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.println("TeSt #2: This is a test string");
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.println("Value of i: " + i);
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.println("Test #4: This is a test string");
+    // violation below 'Avoid using System.out/err for printing.'
+    System.out.println("TEst #5: This is a test string");
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check to match a maximum of three test strings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="RegexpMultiline"&gt;
+    &lt;property name="format" value="Test #[0-9]+:[A-Za-z ]+"/&gt;
+    &lt;property name="maximum" value="1"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example9 {
+  void testMethod1() {
+
+    System.out.print("Example");
+
+    System.err.println("Example");
+    System
+            .out.print("Example");
+    System
+            .err.println("Example");
+    System.
+            out.print("Example");
+    System.
+            err.println("Example");
+  }
+
+  void testMethod2() {
+
+    System.out.println("Test #1: this is a test string");
+
+    System.out.println("TeSt #2: This is a test string");
+
+    System.out.println("TEST #3: This is a test string");
+    int i = 5;
+
+    System.out.println("Value of i: " + i);
+    // violation below 'Line matches the illegal pattern'
+    System.out.println("Test #4: This is a test string");
+
+    System.out.println("TEst #5: This is a test string");
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">

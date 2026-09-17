@@ -29,6 +29,7 @@ public class InputJavadocMethodRecords2
                         String nickName, String fullName,
                         String email, boolean emailVerified)
     {
+        // violation 7 lines below 'Unused @param tag for 'lastName''
         /**
          * Creates a new UserInfo instance.
          *
@@ -39,7 +40,6 @@ public class InputJavadocMethodRecords2
          * @param emailVerified {@code true} if the email address has been verified
          * @throws IllegalArgumentException if any of the arguments is empty
          */
-        // violation 4 lines above 'Unused @param tag for 'lastName''
         public Inner
         {
         }
@@ -47,12 +47,12 @@ public class InputJavadocMethodRecords2
 
     public record Inner2()
     {
+        // violation 4 lines below 'Unused @param tag for 'lastName''
         /**
          * Creates a new UserInfo instance.
          *
          * @param lastName      the user's full name
          */
-        // violation 2 lines above 'Unused @param tag for 'lastName''
         public Inner2
         {
         }

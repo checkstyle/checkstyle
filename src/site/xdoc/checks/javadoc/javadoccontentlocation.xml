@@ -8,6 +8,29 @@
   <body>
     <section name="JavadocContentLocation">
       <p>Since Checkstyle 8.27</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocContentLocation_Description">Description</a></li>
+          <li><a href="#JavadocContentLocation_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocContentLocation_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check to validate that the Javadoc content starts from the second line</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">To ensure that Javadoc content starts from the first line</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocContentLocation_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocContentLocation_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocContentLocation_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocContentLocation_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocContentLocation_Description">
         <div>
           Checks that the Javadoc content begins from the same position
@@ -88,7 +111,7 @@ public void method();
             <tr>
               <td><a id="location"/><a href="#location">location</a></td>
               <td>Specify the policy on placement of the Javadoc content.</td>
-              <td><a href="../../property_types.html#JavadocContentLocationOption">JavadocContentLocationOption</a></td>
+              <td><a href="../../property-types.html#JavadocContentLocationOption">JavadocContentLocationOption</a></td>
               <td><code>second_line</code></td>
               <td>8.27</td>
             </tr>
@@ -114,19 +137,18 @@ public void method();
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-
   // violation below 'Javadoc content should start from the next line.'
-  /** This comment causes a violation because it starts from the first line
-   * and spans several lines.
+  /** This is a multi-line Javadoc.
+   * Additional description.
    */
   private int field1;
 
   /**
-   * This comment is OK because it starts from the second line.
+   * This is another multi-line Javadoc.
    */
-  private int field12;
+  private int field2;
 
-  /** This comment is OK because it is on the single-line. */
+  /** This is a single-line Javadoc. */
   private int field3;
 
 }
@@ -150,18 +172,17 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
 
-  /** This comment is OK because it starts on the first line.
-   * There may be additional text.
+  /** This is a multi-line Javadoc.
+   * Additional description.
    */
   private int field1;
-
-  // violation below, 'Javadoc content should start from the same line.'
+  // violation below 'Javadoc content should start from the same line.'
   /**
-   * This comment causes a violation because it starts on the second line.
+   * This is another multi-line Javadoc.
    */
   private int field2;
 
-  /** This single-line comment also is OK. */
+  /** This is a single-line Javadoc. */
   private int field3;
 
 }
@@ -172,6 +193,10 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
               Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+              OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">

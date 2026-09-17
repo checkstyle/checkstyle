@@ -58,12 +58,13 @@ public final class SuppressionsStringPrinter {
      * @param suppressionLineColumnNumber line and column number of the suppression
      * @param tabWidth length of the tab character
      * @return generated suppressions.
+     * @throws CheckstyleException if the file is not a Java source.
      * @throws IOException if the file could not be read.
      * @throws IllegalStateException if suppressionLineColumnNumber is not of a valid format.
-     * @throws CheckstyleException if the file is not a Java source.
      */
     public static String printSuppressions(File file, String suppressionLineColumnNumber,
-                                           int tabWidth) throws IOException, CheckstyleException {
+                                           int tabWidth)
+            throws IOException, CheckstyleException {
         final Matcher matcher =
                 VALID_SUPPRESSION_LINE_COLUMN_NUMBER_REGEX.matcher(suppressionLineColumnNumber);
         if (!matcher.matches()) {
@@ -100,4 +101,5 @@ public final class SuppressionsStringPrinter {
         return suppressions.stream().collect(Collectors.joining(LINE_SEPARATOR,
                 "", LINE_SEPARATOR));
     }
+
 }

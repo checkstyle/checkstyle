@@ -10,10 +10,10 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.metrics.cyclomaticcomplexity;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   int a, b, c, d, e, n;
-  // violation below, 'Cyclomatic Complexity is 5 (max allowed is 4)'
+  // violation below 'Cyclomatic Complexity is 5 (max allowed is 4)'
   public void testMethod1() { // 1, function declaration
     while (a < b && a > c) { // 2, while
       fun1();
@@ -67,4 +67,4 @@ class Example2 {
   }
   private void fun1() {}
 }
-// xdoc section -- end
+// xdoc section - end

@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class CamelCaseDefinedTest extends AbstractGoogleModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter5naming/rule53camelcase";
@@ -43,4 +44,5 @@ public class CamelCaseDefinedTest extends AbstractGoogleModuleTestSupport {
     public void testCamelCaseNames2() throws Exception {
         verifyWithWholeConfig(getPath("InputUnderscoreUsedInNames.java"));
     }
+
 }

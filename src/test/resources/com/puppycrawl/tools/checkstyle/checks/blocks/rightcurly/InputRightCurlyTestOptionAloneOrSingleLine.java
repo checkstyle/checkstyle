@@ -83,5 +83,8 @@ public class InputRightCurlyTestOptionAloneOrSingleLine {
         void display();
         interface Interface4 {
             void myMethod();
-        }} // 2 violations
+        }}
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 10 should be alone on a line.'
 }

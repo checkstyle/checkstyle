@@ -5,7 +5,7 @@ tokens = LITERAL_CASE
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 record ColoredPoint(int p, int x, String c) { }

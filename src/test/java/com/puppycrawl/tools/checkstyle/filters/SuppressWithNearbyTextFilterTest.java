@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
@@ -619,4 +619,5 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         return getCheckMessage(RegexpSinglelineCheck.class,
                 msgRegexExceeded, REGEXP_SINGLELINE_CHECK_FORMAT);
     }
+
 }

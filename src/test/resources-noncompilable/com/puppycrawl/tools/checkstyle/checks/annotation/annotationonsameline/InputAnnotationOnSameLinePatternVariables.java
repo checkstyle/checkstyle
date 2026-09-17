@@ -6,7 +6,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
 
 */
 
-// Java21
+// non-compiled with javac: Compilable with Java25
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
 public class InputAnnotationOnSameLinePatternVariables {
@@ -33,7 +33,7 @@ public class InputAnnotationOnSameLinePatternVariables {
 
        @Deprecated int _ = 0;
 
-       // violation below, 'Annotation 'Deprecated' should be on the same line with its target.'
+       // violation below 'Annotation 'Deprecated' should be on the same line with its target.'
        @Deprecated
        int _ = 0;
     }

@@ -11,8 +11,19 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OneStatementPerLineCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OneStatementPerLineCheck.java"/>
+      </macro>
       <subsection name="Description" id="OneStatementPerLine_Description">
         <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OneStatementPerLineCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Notes" id="OneStatementPerLine_Notes">
+        <macro name="notes">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OneStatementPerLineCheck.java"/>
         </macro>

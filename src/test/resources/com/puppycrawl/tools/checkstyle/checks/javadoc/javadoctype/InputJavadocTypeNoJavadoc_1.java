@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -134,6 +134,6 @@ class PackageClass_1 {
     void methodWithTwoStarComment() {}
 
     /** */
-    protected class ProtectedInner2<T> { // violation 'missing @param <T>.'
+    protected class ProtectedInner2<T> { // violation 'missing @param '<T>'.'
     }
 }

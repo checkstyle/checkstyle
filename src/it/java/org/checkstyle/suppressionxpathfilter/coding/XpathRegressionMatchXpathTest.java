@@ -469,4 +469,5 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

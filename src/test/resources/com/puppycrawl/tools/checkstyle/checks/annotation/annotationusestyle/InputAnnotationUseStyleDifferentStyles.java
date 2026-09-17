@@ -9,25 +9,30 @@ trailingArrayComma = (default)never
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
 @Deprecated
-@SomeArraysDiffStyle(pooches={DOGS.LEO}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
-@SuppressWarnings({""}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
+@SuppressWarnings({""})
 public class InputAnnotationUseStyleDifferentStyles
 {
 
 }
 
-// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation 2 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation 3 lines below 'Annotation cannot have closing parenthesis'
 @SomeArraysDiffStyle(pooches={DOGS.LEO},um={}, duh={"ignore"})
 @SuppressWarnings("") //compact_no_array
-@Deprecated() // violation 'Annotation cannot have closing parenthesis'
+@Deprecated()
 class Dep {
 
 }
 
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation 3 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
 @Deprecated
-@SomeArraysDiffStyle(pooches={DOGS.LEO}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY'
-@SuppressWarnings({""}) // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+@SomeArraysDiffStyle(pooches={DOGS.LEO})
+@SuppressWarnings({""})
 enum SON {
 
     // violation 2 lines below 'Annotation style must be 'COMPACT_NO_ARRAY''
@@ -42,7 +47,8 @@ enum SON {
 @InputAnnotationUseStyleCustomAnnotation3()
 enum DOGS {
 
-    @Deprecated() // violation 'Annotation cannot have closing parenthesis'
+    // violation below 'Annotation cannot have closing parenthesis'
+    @Deprecated()
     LEO,
     HERBIE
 }
@@ -50,13 +56,16 @@ enum DOGS {
 @interface SomeArraysDiffStyle {
     @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+    // violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation 'Annotation style must be 'COMPACT_NO_ARRAY''
+// violation below 'Annotation style must be 'COMPACT_NO_ARRAY''
+@Another(value={""}) //expanded
 enum E {
 
 }

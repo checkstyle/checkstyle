@@ -40,7 +40,7 @@ public final class ParserUtil {
     /** Symbols with which multiple comment ends. */
     private static final String BLOCK_MULTIPLE_COMMENT_END = "*/";
 
-    /** Stop instances being created. **/
+    /** Stop instances being created. */
     private ParserUtil() {
     }
 
@@ -150,4 +150,5 @@ public final class ParserUtil {
         }
         return new AbstractMap.SimpleEntry<>(lines, columns);
     }
+
 }

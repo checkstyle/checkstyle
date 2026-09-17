@@ -85,15 +85,17 @@ class InputJavadocTagContinuationIndentationInnerClass {
             return "null";
         }
 
+        // violation 7 lines below 'Line continuation .* expected level should be 4'
+        // violation 9 lines below 'Line continuation .* expected level should be 4'
         /**
          * Some text.
          * @param aString Some text.
          * @return Some text.
          * @param aInt Some text.
-         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *    Some javadoc.
          * @throws Exception Some text.
          * @param aBoolean Some text.
-         *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+         *    Some javadoc.
          * @see Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception

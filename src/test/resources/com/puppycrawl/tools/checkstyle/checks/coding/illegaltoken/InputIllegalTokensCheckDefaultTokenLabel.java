@@ -33,9 +33,9 @@ public class InputIllegalTokensCheckDefaultTokenLabel
     }
 
     public void methodWithLabels() {
-        label: // violation, 'Using 'label:' is not allowed'
+        label: // violation 'Using 'label:' is not allowed'
         {
-            anotherLabel: // violation, 'Using 'anotherLabel:' is not allowed'
+            anotherLabel: // violation 'Using 'anotherLabel:' is not allowed'
             do {
                 continue anotherLabel;
             } while (false);

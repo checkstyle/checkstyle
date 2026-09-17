@@ -1,4 +1,4 @@
-/* // violation
+/*
 RegexpSingleline
 format = \\r
 message = someMessage
@@ -9,6 +9,7 @@ fileExtensions = (default)""
 
 
 */
+// violation first line 'someMessage'
 
 package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsingleline;
 

@@ -19,7 +19,7 @@ public class InputUnusedLocalVariable3 {
         protected int b = 0;
         public Child(Child d) {
             InputUnusedLocalVariable3.this.super(d);
-            int a = 0; // violation, unused variable 'a'
+            int a = 0; // violation 'Unused local variable 'a'.'
             System.out.println(super.a);
         }
     }

@@ -13,7 +13,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.separator;
@@ -22,11 +22,11 @@ import static java.util.Collections.*;
 import java.time.*;
 import javax.net.*;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation, 'wrong order'
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation, 'wrong order'
+import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation 'wrong order'
+import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation 'wrong order'
 
 import org.apache.commons.io.FileUtils;
-// xdoc section -- end
+// xdoc section - end
 
 public class Example9 {
 }

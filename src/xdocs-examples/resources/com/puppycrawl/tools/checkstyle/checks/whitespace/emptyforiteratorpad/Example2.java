@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   Map<String, String> map = new HashMap<>();
   void example() {
@@ -29,4 +29,4 @@ class Example2 {
          );
   }
 }
-// xdoc section -- end
+// xdoc section - end

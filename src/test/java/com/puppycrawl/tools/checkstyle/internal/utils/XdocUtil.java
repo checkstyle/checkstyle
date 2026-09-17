@@ -25,6 +25,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -75,8 +76,6 @@ public final class XdocUtil {
 
     /**
      * Gets xdocs template file paths. These are files ending with .xml.template.
-     * This module will be removed once
-     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
      *
      * @return a set of xdocs template file paths.
      * @throws IOException if an I/O error occurs.
@@ -90,6 +89,56 @@ public final class XdocUtil {
                 })) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
+    }
+
+    /**
+     * Read the documented property names from a module's generated xdoc page.
+     *
+     * @param moduleName module class simple name
+     * @return documented property names
+     */
+    public static Set<String> getDocumentedProperties(String moduleName) {
+        String pageName = moduleName;
+        if (pageName.endsWith("Check")) {
+            pageName = pageName.substring(0, pageName.length() - "Check".length());
+        }
+        final String fileName = pageName.toLowerCase(Locale.ROOT) + ".xml";
+        final Set<String> result = new HashSet<>();
+
+        try {
+            Path xdocPath = null;
+            for (Path path : getXdocsFilePaths()) {
+                if (path.getFileName().toString().equals(fileName)) {
+                    xdocPath = path;
+                    break;
+                }
+            }
+            if (xdocPath == null) {
+                throw new IllegalStateException("Generated xdoc does not exist: " + fileName);
+            }
+            final String content = Files.readString(xdocPath);
+            final Document document = XmlUtil.getRawXml(fileName, content, content);
+            final NodeList subsections = document.getElementsByTagName("subsection");
+            for (int index = 0; index < subsections.getLength(); index++) {
+                final Element subsection = (Element) subsections.item(index);
+                if ("Properties".equals(subsection.getAttribute("name"))) {
+                    final NodeList rows = subsection.getElementsByTagName("tr");
+                    for (int rowIndex = 1; rowIndex < rows.getLength(); rowIndex++) {
+                        final NodeList columns = ((Element) rows.item(rowIndex))
+                                .getElementsByTagName("td");
+                        if (columns.getLength() > 0) {
+                            result.add(columns.item(0).getTextContent().trim());
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        catch (IOException | ParserConfigurationException exception) {
+            throw new IllegalStateException("Failed to read generated xdoc: " + fileName,
+                    exception);
+        }
+        return Set.copyOf(result);
     }
 
     /**
@@ -131,9 +180,9 @@ public final class XdocUtil {
      * Gets names of checkstyle's modules which are documented in xdocs.
      *
      * @return a set of checkstyle's modules which have xdoc documentation.
+     * @throws IOException if any IO errors occur.
      * @throws ParserConfigurationException if a DocumentBuilder cannot be created which satisfies
      *              the configuration requested.
-     * @throws IOException if any IO errors occur.
      * @throws SAXException if any parse errors occur.
      */
     public static Set<String> getModulesNamesWhichHaveXdoc() throws Exception {
@@ -167,8 +216,8 @@ public final class XdocUtil {
 
             final NodeList nodeList = document.getElementsByTagName("section");
 
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                final Node currentNode = nodeList.item(i);
+            for (int index = 0; index < nodeList.getLength(); index++) {
+                final Node currentNode = nodeList.item(index);
                 if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                     final Element module = (Element) currentNode;
                     final String moduleName = module.getAttribute("name");
@@ -283,4 +332,5 @@ public final class XdocUtil {
 
         return result;
     }
+
 }

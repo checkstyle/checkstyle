@@ -8,9 +8,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design.interfaceistype;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
-  // violation below, 'interfaces should describe a type and hence have methods.'
+  // violation below 'interfaces should describe a type and hence have methods.'
   interface Test1 {
     int a = 3;
   }
@@ -25,4 +25,4 @@ class Example1 {
     void test();
   }
 }
-// xdoc section -- end
+// xdoc section - end

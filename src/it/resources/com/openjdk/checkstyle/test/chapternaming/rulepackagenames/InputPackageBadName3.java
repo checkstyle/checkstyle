@@ -1,7 +1,9 @@
 package com.openjdk.checkstyle.test.chapte$rnaming.rul$epac$kagenames;
 
-// violation 2 lines above """Package names should be all lower
-// case without underscores or other special characters."""
+// violation first line 'Header is missing'
+// violation 3 lines above 'Name
+// 'com.openjdk.checkstyle.test.chapte$rnaming.rul$epac$kagenames'
+// must match pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'.'
 
 /**
  * Input package name with special symbols in the middle of the name.

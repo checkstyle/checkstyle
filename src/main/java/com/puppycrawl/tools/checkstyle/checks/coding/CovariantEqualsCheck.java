@@ -49,6 +49,16 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  *
  * <p>
+ * Note: Compact source files
+ * (<a href="https://openjdk.org/jeps/512">JEP 512</a>)
+ * are skipped by design. Implicit classes in compact source files are not
+ * reusable types and cannot be referenced by name, so they cannot participate
+ * in the polymorphic contexts and collections where covariant {@code equals()}
+ * silently falls back to identity comparison. The rationale for this check
+ * does not extend to compact source files.
+ * </p>
+ *
+ * <p>
  * Inspired by <a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf">
  * Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'</a>:
  * </p>
@@ -63,9 +73,9 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Programmers sometimes mistakenly use the type of their class {@code Foo}
  * as the type of the parameter to {@code equals()}:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * public boolean equals(Foo obj) {...}
- * </code></pre></div>
+ * {@snippet lang="text" :
+ * public boolean equals(Foo obj) { }
+ * }
  *
  * <p>
  * This covariant version of {@code equals()} does not override the version in
@@ -95,6 +105,13 @@ public class CovariantEqualsCheck extends AbstractCheck {
 
     /** Set of equals method definitions. */
     private final Set<DetailAST> equalsMethods = new HashSet<>();
+
+    /**
+     * Creates a new {@code CovariantEqualsCheck} instance.
+     */
+    public CovariantEqualsCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

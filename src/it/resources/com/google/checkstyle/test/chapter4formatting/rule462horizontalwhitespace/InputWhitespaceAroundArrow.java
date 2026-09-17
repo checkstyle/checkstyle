@@ -59,7 +59,7 @@ public class InputWhitespaceAroundArrow {
   }
 
   int test2(int k, Object o1) {
-    // violation below, 'WhitespaceAround: '->' is not followed by whitespace. .*'
+    // violation below 'WhitespaceAround: '->' is not followed by whitespace. .*'
     Predicate predicate = value ->(value != null);
 
     Object b = ((VoidPredicate) ()->o1 instanceof String s).get();
@@ -71,8 +71,8 @@ public class InputWhitespaceAroundArrow {
     //     ''{' is not preceded with whitespace.'
     new LinkedList<Integer>().stream()
         .map(t ->{
-            return t * 2;
-          }
+          return t * 2;
+        }
         )
         .filter(t -> {
           return false;
@@ -95,7 +95,7 @@ public class InputWhitespaceAroundArrow {
     Object result = boolList.stream().filter(
         // violation below 'WhitespaceAround: '->' is not preceded with whitespace.'
         statement-> false).findFirst()
-        // violation below, 'WhitespaceAround: '->' is not followed by whitespace. .*'
+        // violation below 'WhitespaceAround: '->' is not followed by whitespace. .*'
         .orElseThrow(() ->new IllegalStateException("big problem"));
   }
 

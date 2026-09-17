@@ -33,7 +33,7 @@ public interface MatchSuppressor {
      * @param endLineNo the ending line number
      * @param endColNo the ending column number
      * @return true if the positions intersects with a comment.
-     **/
+     */
     boolean shouldSuppress(int startLineNo, int startColNo, int endLineNo,
             int endColNo);
 

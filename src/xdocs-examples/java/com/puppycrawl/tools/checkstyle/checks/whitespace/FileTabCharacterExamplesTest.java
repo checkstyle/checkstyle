@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FileTabCharacterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/filetabcharacter";
@@ -54,9 +55,7 @@ public class FileTabCharacterExamplesTest extends AbstractExamplesModuleTestSupp
 
     @Test
     public void testExample3() throws Exception {
-        final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_FILE_CONTAINS_TAB),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
@@ -76,4 +75,5 @@ public class FileTabCharacterExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example5.html"), expected);
     }
+
 }

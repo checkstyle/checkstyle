@@ -10,6 +10,7 @@ applyToPrivate = (default)true
 */
 
 // non-compiled with eclipse: syntax error but works fine in jdk
+// non-compiled with javac: but was compiled on jdk before 21, so we need to continue to support
 package com.puppycrawl.tools.checkstyle.grammar;
 ; // non-compilable by eclipse
 import java.util.ArrayList;

@@ -15,10 +15,10 @@ public class InputMultipleStringLiterals
     String m = "StringContents";
     String m1 = "SingleString";
     String m2 = "DoubleString" + "DoubleString";
-    // violation below, 'The String "" appears 4 times in the file.'
+    // violation below 'The String "" appears 4 times in the file.'
     String m3 = "" + "";
     String m4 = "" + "";
-    // violation below, 'The String ", " appears 3 times in the file.'
+    // violation below 'The String ", " appears 3 times in the file.'
     String debugStr = ", " + ", " + ", ";
 
     void method1() {

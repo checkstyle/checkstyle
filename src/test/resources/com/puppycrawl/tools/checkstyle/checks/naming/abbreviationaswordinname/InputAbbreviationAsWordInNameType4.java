@@ -42,12 +42,14 @@ class Class1Factory14 {
 }
 
 abstract class AbstractClassName34 {
-    class AbstractINNERSClass { // violation
+    // violation below 'Abbreviation in name 'AbstractINNERSClass''
+    class AbstractINNERSClass {
     }
 }
 
 abstract class Class3Factory4 {
-    class WellNamedFACTORY { // violation
+    // violation below 'Abbreviation in name 'WellNamedFACTORY''
+    class WellNamedFACTORY {
         public void systematicMETHODName() {
             int systematicVARIABLEName = 2;
             int SYSTEMATICVariableName = 1;

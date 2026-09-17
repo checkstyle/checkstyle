@@ -8,6 +8,30 @@
   <body>
     <section name="NoWhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NoWhitespaceAfter_Description">Description</a></li>
+          <li><a href="#NoWhitespaceAfter_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NoWhitespaceAfter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Forbid linebreaks after a DOT token</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Forbid whitespace after DOT token</a></li>
+            </ul>
+          </li>
+          <li><a href="#NoWhitespaceAfter_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NoWhitespaceAfter_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NoWhitespaceAfter_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NoWhitespaceAfter_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NoWhitespaceAfter_Description">
         <div>
           Checks that there is no whitespace after a token.
@@ -59,7 +83,7 @@
             <tr>
               <td><a id="allowLineBreaks"/><a href="#allowLineBreaks">allowLineBreaks</a></td>
               <td>Control whether whitespace is allowed if the token is at a linebreak.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.0</td>
             </tr>
@@ -91,10 +115,20 @@
                     ARRAY_DECLARATOR</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
                     INDEX_OP</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DO_WHILE">
+                    DO_WHILE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                    LITERAL_IF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
                     LITERAL_SYNCHRONIZED</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                     METHOD_REF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                    LITERAL_FOR</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                    LITERAL_WHILE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                    LITERAL_CATCH</a>
                   .
               </td>
               <td>
@@ -183,6 +217,43 @@ class Example2 {
   public void lineBreak(String x) {
     Integer.
         parseInt(x); // violation above ''.' is followed by whitespace'
+    Integer.parseInt(x);
+  }
+
+  public void dotOperator(String s) {
+    Integer.parseInt(s);
+    Integer. parseInt(s); // violation ''.' is followed by whitespace'
+  }
+
+  public void arrayDec() {
+    int[] arr;
+    int [] array;
+  }
+
+  public void bitwiseNot(int a) {
+    a = ~ a;
+    a = ~a;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to forbid whitespace after DOT token:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoWhitespaceAfter"&gt;
+      &lt;property name="tokens" value="DOT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+  public void lineBreak(String x) {
+    Integer.
+            parseInt(x);
     Integer.parseInt(x);
   }
 

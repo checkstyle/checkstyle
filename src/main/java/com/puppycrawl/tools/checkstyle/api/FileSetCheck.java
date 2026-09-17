@@ -43,7 +43,7 @@ public interface FileSetCheck
      */
     void init();
 
-    /** Cleans up the object. **/
+    /** Cleans up the object. */
     void destroy();
 
     /**

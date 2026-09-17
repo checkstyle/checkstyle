@@ -7,14 +7,14 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.noarraytrailingcomma;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void InvalidExample() {
     String[] foo1 = {
       "FOO",
-      "BAR", // violation, 'Array should not contain trailing comma'
+      "BAR", // violation 'Array should not contain trailing comma'
     };
-    // violation below, 'Array should not contain trailing comma'
+    // violation below 'Array should not contain trailing comma'
     String[] foo2 = { "FOO", "BAR", };
     String[] foo3 = {
       "FOO",
@@ -23,4 +23,4 @@ class Example1 {
     String[] foo4 = { "FOO", "BAR" };
   }
 }
-// xdoc section -- end
+// xdoc section - end

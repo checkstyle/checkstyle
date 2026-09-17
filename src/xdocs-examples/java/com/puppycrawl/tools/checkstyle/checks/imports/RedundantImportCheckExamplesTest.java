@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class RedundantImportCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/redundantimport";
@@ -53,4 +54,5 @@ public class RedundantImportCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
     }
+
 }

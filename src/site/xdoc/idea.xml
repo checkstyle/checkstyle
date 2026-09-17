@@ -9,14 +9,25 @@
   </head>
 
   <body>
-    <section name="Content">
-      <macro name="toc">
-        <param name="fromDepth" value="1"/>
-        <param name="toDepth" value="1"/>
-      </macro>
-    </section>
-
     <section name="Import Checkstyle Project">
+      <div class="toc-panel">
+        <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+        <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse">&#160;</label>
+        <div class="toc-content">
+          <p class="toc-heading">On This Page</p>
+          <ul class="toc-list">
+            <li><a href="#Import_Checkstyle_Project">Import Checkstyle Project</a></li>
+            <li><a href="#Exclude_Non-Compiled_Resource_Directories">
+              Exclude Non-Compiled Resource Directories</a></li>
+            <li><a href="#Debug">Debug</a></li>
+            <li><a href="#Organize_Imports">Organize Imports</a></li>
+            <li><a href="#Inspections">Inspections</a></li>
+            <li><a href="#Disable_Auto_Indent_On_Paste">Disable Auto Indent On Paste</a></li>
+            <li><a href="#Changing_encoding_of_properties_files">
+              Changing encoding of properties files</a></li>
+          </ul>
+        </div>
+      </div>
       <p>
         If no project is currently open in IntelliJ IDEA, click Import Project on the
         Welcome screen. Otherwise, select File > New > Project from Existing Sources<br/><br/>

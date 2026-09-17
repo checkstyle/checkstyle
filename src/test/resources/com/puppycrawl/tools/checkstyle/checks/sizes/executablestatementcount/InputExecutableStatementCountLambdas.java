@@ -13,7 +13,8 @@ import java.util.function.Function;
 
 public class InputExecutableStatementCountLambdas {
 
-    Consumer a = (o) -> { // violation
+    // violation below 'Executable statement count is 6'
+    Consumer a = (o) -> {
         o.toString(); // 1
         o.toString(); // 2
         o.toString(); // 3
@@ -22,12 +23,15 @@ public class InputExecutableStatementCountLambdas {
         o.toString(); // 6
     };
 
-    Consumer b = (x) -> { // violation
-        Consumer c = (s) -> { // violation
+    // violation below 'Executable statement count is 2'
+    Consumer b = (x) -> {
+        // violation below 'Executable statement count is 2'
+        Consumer c = (s) -> {
             String str = s.toString();
             str = str + "!";
         };
-        Consumer d = (s) -> { // violation
+        // violation below 'Executable statement count is 4'
+        Consumer d = (s) -> {
             String str = s.toString();
             Consumer t = a -> a.toString().trim();
             Function x1 = a -> a;

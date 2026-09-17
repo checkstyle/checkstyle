@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="Indentation">
-      <property name="throwsIndent" value="8"/>
+      <property name="arrayInitIndent" value="2"/>
     </module>
   </module>
 </module>
@@ -10,7 +10,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;
 
-// xdoc section -- start
+// xdoc section - start
 class Example7 {
     int a;
     boolean x, y;
@@ -19,11 +19,11 @@ class Example7 {
         1, 2, 3
     };
     int[] values2 = {
-  10 // violation, 'level 2, expected level should be 8'
+  10 // violation 'level 2, expected level should be one of'
     };
 
     void method2()
-        throws Exception {   // violation, 'level 8, expected level should be 12'
+        throws Exception {
         switch (a) {
             case 1:
                 break;
@@ -40,7 +40,7 @@ class Example7 {
     }
 
     void handleValue(String aFooString,
-                     int aFooInt) {             // indent:8 ; expected: > 4;
+                     int aFooInt) {
 
         boolean cond1,cond2,cond3,cond4,cond5,cond6;
 
@@ -56,4 +56,4 @@ class Example7 {
     {
     }
 }
-// xdoc section -- end
+// xdoc section - end

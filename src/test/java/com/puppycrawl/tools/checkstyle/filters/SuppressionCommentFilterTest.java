@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck.MSG_INVALID_PATTERN;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -273,6 +273,19 @@ public class SuppressionCommentFilterTest
     public void testMessage() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser("InputSuppressionCommentFilter9.java", suppressed);
+    }
+
+    @Test
+    public void testDollarSignInMatchedText() throws Exception {
+        final String[] messages = {
+            "29:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "low$price", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifySuppressedWithParser(getPath("InputSuppressionCommentFilter12.java"),
+                messages, suppressed);
     }
 
     private void verifySuppressedWithParser(String fileName, String... suppressed)

@@ -8,7 +8,7 @@
 </module>
 */
 
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 
 import static java.io.File.separator;
@@ -18,6 +18,6 @@ import javax.net.*;
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 import org.apache.commons.io.FileUtils;
-// xdoc section -- end
+// xdoc section - end
 public class Example13 {
 }

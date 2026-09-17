@@ -52,7 +52,7 @@ public class InputRightCurlyWithEmojiAloneOrSingleLine {
         while (false);
         if(true) {
             String a = ("🤣🤣");} /*some*/ else{
-            // violation above''}' at column 31 should be alone on a line.'
+            // violation above ''}' at column 31 should be alone on a line.'
                 return;
         }
     }

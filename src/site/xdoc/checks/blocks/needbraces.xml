@@ -8,6 +8,39 @@
   <body>
     <section name="NeedBraces">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NeedBraces_Description">Description</a></li>
+          <li><a href="#NeedBraces_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NeedBraces_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For <code>if</code> and <code> else</code> blocks</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow single-line statements (<code>if, while, do-while, for</code>) without braces</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Allow loops (<code>while, for</code>) with empty bodies</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#NeedBraces_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Allow <code>case, default</code> single-line statements without braces</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">Lambdas</a></li>
+            </ul>
+          </li>
+          <li><a href="#NeedBraces_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NeedBraces_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NeedBraces_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NeedBraces_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NeedBraces_Description">
         <div>
           Checks for braces around code blocks.
@@ -31,14 +64,14 @@
             <tr>
               <td><a id="allowEmptyLoopBody"/><a href="#allowEmptyLoopBody">allowEmptyLoopBody</a></td>
               <td>Allow loops with empty bodies.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
             </tr>
             <tr>
               <td><a id="allowSingleLineStatement"/><a href="#allowSingleLineStatement">allowSingleLineStatement</a></td>
               <td>Allow single-line statements without braces.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.5</td>
             </tr>
@@ -103,26 +136,26 @@ class Example1 {
   String o = "O";
   public boolean test() {
     if (obj.equals(num)) return true;
-    // violation above, ''if' construct must use '{}'s.'
+    // violation above ''if' construct must use '{}'s.'
     if (true) {
       count = 2;
     } else
-        // violation above, ''else' construct must use '{}'s.'
+        // violation above ''else' construct must use '{}'s.'
         return false;
     for (int i = 0; i &lt; 5; i++) {
       ++count;}
-    do // violation, ''do' construct must use '{}'s.'
+    do // violation ''do' construct must use '{}'s.'
         ++count;
     while (false);
     for (int j = 0; j &lt; 10; j++);
-    // violation above, ''for' construct must use '{}'s.'
+    // violation above ''for' construct must use '{}'s.'
     for(int i = 0; i &lt; 10; value.charAt(12));
-    // violation above, ''for' construct must use '{}'s.'
+    // violation above ''for' construct must use '{}'s.'
     while (counter &lt; 10)
-        // violation above, ''while' construct must use '{}'s.'
+        // violation above ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) &lt; 5);
-    // violation above, ''while' construct must use '{}'s.'
+    // violation above ''while' construct must use '{}'s.'
     switch (num) {
       case 1: counter++; break;
       // ok above, because break in case blocks is not counted to allow compact view
@@ -155,11 +188,11 @@ class Example2 {
   String o = "O";
   public boolean test() {
     if (obj.equals(num)) return true;
-    // violation above, ''if' construct must use '{}'s.'
+    // violation above ''if' construct must use '{}'s.'
     if (true) {
       count = 2;
     } else
-        // violation above, ''else' construct must use '{}'s.'
+        // violation above ''else' construct must use '{}'s.'
         return false;
     for (int i = 0; i &lt; 5; i++) {
       ++count;}
@@ -217,7 +250,7 @@ class Example3 {
         return false;
     for (int i = 0; i &lt; 5; i++) {
       ++count;}
-    do // violation, ''do' construct must use '{}'s.'
+    do // violation ''do' construct must use '{}'s.'
         ++count;
     while (false);
     for (int j = 0; j &lt; 10; j++);
@@ -225,7 +258,7 @@ class Example3 {
     for(int i = 0; i &lt; 10; value.charAt(12));
     // ok above, because single line FOR statement is allowed in config.
     while (counter &lt; 10)
-        // violation above, ''while' construct must use '{}'s.'
+        // violation above ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) &lt; 5);
     // ok above, because single line FOR statement is allowed in config.
@@ -237,7 +270,7 @@ class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
           To configure the check to allow loops (<code>while, for</code>) with empty bodies:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -250,9 +283,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class Example4 {
   String obj = new String();
   String value = new String();
   int counter = 1;
@@ -277,7 +310,7 @@ class Example5 {
     for(int i = 0; i &lt; 10; value.charAt(12));
     // ok above, because FOR is not a target of validation
     while (counter &lt; 10)
-        // violation above, ''while' construct must use '{}'s.'
+        // violation above ''while' construct must use '{}'s.'
         ++count;
     while (value.charAt(12) &lt; 5);
     // ok above, because WHILE is not a target of validation
@@ -288,8 +321,11 @@ class Example5 {
     return true;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NeedBraces_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
         </p>
@@ -303,11 +339,11 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
         Next statements won't be violated by check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class UseCase1 {
   String obj = new String();
   String value = new String();
   int counter = 1;
@@ -344,7 +380,7 @@ class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the check to lambdas:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -357,13 +393,13 @@ class Example4 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example6-code">Results in following:</p>
+        <p id="UseCase2-code">Results in following:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
+class UseCase2 {
   enum HttpMethod {GET, OPTIONS}
   Object result = new Object();
   private CustomCompletableFuture&lt;Object&gt; allowedFuture;
-  Example6() {
+  UseCase2() {
     allowedFuture = new CustomCompletableFuture&lt;&gt;();
     // violation below ''-&gt;' construct must use '{}'s'
     allowedFuture.addCallback(result -&gt; assertEquals("Invalid response",
@@ -397,6 +433,10 @@ class CustomCompletableFuture&lt;T&gt; {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">

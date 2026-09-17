@@ -26,17 +26,17 @@ class InputAnnotationLocationIncorrect3One
         @MyAnnotation_13 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
     public int c;
-
     @MyAnnotation_13(value = "")
     public int d;
-
     @MyAnn_23
         @MyAnnotation_13 // violation '.* incorrect .* level 8, .* should be 4.'
 (value = "")
     public InputAnnotationLocationIncorrect3One() {}
 
-    @MyAnnotation_13("foo") @MyAnn_23 void foo1() {} // 2 violations
-
+    @MyAnnotation_13("foo") @MyAnn_23 void foo1() {}
+    // 2 violations above:
+    // 'Annotation 'MyAnnotation_13' should be alone on line.'
+    // 'Annotation 'MyAnn_23' should be alone on line.'
     @MyAnnotation_13(value = "")
        @MyAnn_23 // violation '.* incorrect .* level 7, .* should be 4.'
     void foo2() {}

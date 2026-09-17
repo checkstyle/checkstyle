@@ -31,14 +31,16 @@ class InputJavadocTagContinuationIndentationMethod456
         return "null";
     }
 
+    // violation 6 lines below 'Line continuation .* expected level should be 4'
+    // violation 8 lines below 'Line continuation .* expected level should be 4'
     /**
      * Some text.
      * @param aString Some text.
      * @return Some text.
-     *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+     *    Some javadoc.
      * @serialData Some javadoc.
      * @param aInt Some text.
-     *    Some javadoc. // violation, 'Line continuation .* expected level should be 4'
+     *    Some javadoc.
      * @throws Exception Some text.
      * @param aBoolean Some text.
      * @see Some text.

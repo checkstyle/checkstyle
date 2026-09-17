@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+      </macro>
       <subsection name="Description" id="NewlineAtEndOfFile_Description">
         <macro name="description">
           <param name="modulePath"
@@ -85,19 +89,27 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example4.cpp"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-
-        <p id="Example5-code">Java file <code>Example5.java</code>:</p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example5.java"/>
-          <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
 
         <p id="Example6-code">Text file <code>Example6.txt</code>:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example6.txt"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="NewlineAtEndOfFile_Use_Cases">
+        <p id="UseCase1-config">Special message if line separator is defined:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

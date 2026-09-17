@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocPackageCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocPackageCheck.java"/>
+      </macro>
       <subsection name="Description" id="MissingJavadocPackage_Description">
         <macro name="description">
             <param name="modulePath"
@@ -19,24 +23,35 @@
       </subsection>
 
       <subsection name="Examples" id="MissingJavadocPackage_Examples">
-        <p id="javadoc-package-info-config">
+        <p id="Example1-config">
             To configure the check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/javadoc/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/example1/package-info.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="javadoc-package-info-code">Example1 of package-info.java:</p>
+        <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/javadoc/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/example1/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
-        <p id="nojavadoc-package-info-code">Example2 of package-info.java:</p>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocPackage_Use_Cases">
+        <p id="UseCase1-config">
+            To catch block comments:
+        </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/nojavadoc/package-info.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/usecase1/package-info.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadocpackage/usecase1/package-info.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -46,6 +61,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
                 Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocPackage">
+                Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

@@ -50,8 +50,8 @@ public class InputJavadocMethodInheritDoc
     {
     }
 
+    // violation 2 lines below 'Invalid use of the '@inheritDoc' tag.'
     /** {@inheritDoc} */
-    // violation below 'Invalid use of the '@inheritDoc' tag.'
     protected static void protectedStaticMethod()
     {
     }

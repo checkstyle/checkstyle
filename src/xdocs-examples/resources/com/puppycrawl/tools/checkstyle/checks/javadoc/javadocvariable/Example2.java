@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
   private int a;
 
@@ -18,15 +18,15 @@ public class Example2 {
    */
   private int b;
   protected int c;
-  public int d; // violation, 'Missing a Javadoc comment'
+  public int d; // violation 'Missing a Javadoc comment for 'd'.'
   /*package*/ int e;
 
   public enum PublicEnum {
-    CONSTANT // violation, 'Missing a Javadoc comment'
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
 
   private enum PrivateEnum {
     CONSTANT
   }
 }
-// xdoc section -- end
+// xdoc section - end

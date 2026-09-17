@@ -21,7 +21,7 @@
  Attention: Annotations among modifiers are ignored (looks like false-negative)
  as there might be a problem with annotations for return types:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public @Nullable Long getStartTimeOrNull() { ... }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -33,9 +33,9 @@
  &lt;p&gt;
  Example:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
- &amp;#64;Override
- &amp;#64;Nullable
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ @Override
+ @Nullable
  public String getNameIfPresent() { ... }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -67,7 +67,7 @@
                       type="boolean">
                <description>Allow single parameterless annotation to be located on the same line as target element.</description>
             </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+            <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF,MODULE_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">

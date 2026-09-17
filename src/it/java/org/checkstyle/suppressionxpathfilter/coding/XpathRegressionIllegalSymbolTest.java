@@ -113,4 +113,5 @@ public class XpathRegressionIllegalSymbolTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

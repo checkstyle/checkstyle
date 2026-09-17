@@ -63,6 +63,13 @@ public class OperatorWrapCheck
     private WrapOption option = WrapOption.NL;
 
     /**
+     * Creates a new {@code OperatorWrapCheck} instance.
+     */
+    public OperatorWrapCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to specify policy on how to wrap lines.
      *
      * @param optionStr string to decode option from

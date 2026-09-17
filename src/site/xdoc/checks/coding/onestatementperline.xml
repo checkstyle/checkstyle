@@ -8,6 +8,29 @@
   <body>
     <section name="OneStatementPerLine">
       <p>Since Checkstyle 5.3</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OneStatementPerLine_Description">Description</a></li>
+          <li><a href="#OneStatementPerLine_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OneStatementPerLine_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check to treat resources in a try statement as statements to require them on their own line</a></li>
+            </ul>
+          </li>
+          <li><a href="#OneStatementPerLine_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OneStatementPerLine_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OneStatementPerLine_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OneStatementPerLine_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="OneStatementPerLine_Description">
         <div>
           Checks that there is only one statement per line.
@@ -25,10 +48,16 @@
 
         <p>
           OneStatementPerLineCheck checks the following types of statements:
-          variable declaration statements, empty statements, import statements,
+          block statements, variable declaration statements, import statements,
           assignment statements, expression statements, increment statements,
           object creation statements, 'for loop' statements, 'break' statements,
           'continue' statements, 'return' statements, resources statements (optional).
+        </p>
+      </subsection>
+
+      <subsection name="Notes" id="OneStatementPerLine_Notes">
+        <p>
+          Unnecessary semicolons are ignored.
         </p>
       </subsection>
 
@@ -45,7 +74,7 @@
             <tr>
               <td><a id="treatTryResourcesAsStatement"/><a href="#treatTryResourcesAsStatement">treatTryResourcesAsStatement</a></td>
               <td>Enable resources processing.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.23</td>
             </tr>
@@ -77,10 +106,9 @@ import java.io.BufferedReader; import java.io.EOFException;
 // violation above 'Only one statement per line allowed.'
 
 public class Example1 {
-
   public void method1() {
-    int var1; int var2; // violation, 'Only one statement per line allowed.'
-    var1 = 1; var2 = 2; // violation, 'Only one statement per line allowed.'
+    int var1; int var2; // violation 'Only one statement per line allowed.'
+    var1 = 1; var2 = 2; // violation 'Only one statement per line allowed.'
   }
 
   public void method2() {
@@ -88,9 +116,9 @@ public class Example1 {
     // violation below 'Only one statement per line allowed.'
     Object obj1 = new Object(); Object obj2 = new Object();
     int var1 = 1
-    ; var2 = 2; // violation, 'Only one statement per line allowed.'
+    ; var2 = 2; // violation 'Only one statement per line allowed.'
     int o = 1, p = 2
-    , r = 5; int t; // violation, 'Only one statement per line allowed.'
+    , r = 5; int t; // violation 'Only one statement per line allowed.'
   }
 
   public void method3() throws IOException {
@@ -102,7 +130,6 @@ public class Example1 {
     try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader()) {
     }
   }
-
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -139,8 +166,8 @@ import java.io.BufferedReader; import java.io.EOFException;
 
 public class Example2 {
   public void method1() {
-    int var1; int var2; // violation, 'Only one statement per line allowed.'
-    var1 = 1; var2 = 2; // violation, 'Only one statement per line allowed.'
+    int var1; int var2; // violation 'Only one statement per line allowed.'
+    var1 = 1; var2 = 2; // violation 'Only one statement per line allowed.'
   }
 
   public void method2() {
@@ -148,9 +175,9 @@ public class Example2 {
     // violation below 'Only one statement per line allowed.'
     Object obj1 = new Object(); Object obj2 = new Object();
     int var1 = 1
-    ; var2 = 2; // violation, 'Only one statement per line allowed.'
+    ; var2 = 2; // violation 'Only one statement per line allowed.'
     int o = 1, p = 2
-    , r = 5; int t; // violation, 'Only one statement per line allowed.'
+    , r = 5; int t; // violation 'Only one statement per line allowed.'
   }
 
   public void method3() throws IOException {

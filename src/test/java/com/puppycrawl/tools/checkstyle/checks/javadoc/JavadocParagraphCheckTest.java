@@ -270,4 +270,5 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphBlockTag.java"), expected);
     }
+
 }

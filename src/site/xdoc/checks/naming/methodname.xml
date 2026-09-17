@@ -8,6 +8,41 @@
   <body>
     <section name="MethodName">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#MethodName_Description">Description</a></li>
+          <li><a href="#MethodName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#MethodName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that begin with a lower case letter, followed by at least 7 letters or digits is</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">An example of how to configure the check to allow method names to be equal to the residing class name is</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">An example of how to suppress the check to public methods</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">An example of how to suppress the check to protected methods</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">An example of how to suppress the check to private methods</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">An example of how to suppress the check to package-private methods</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#MethodName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check to disallow method names to be equal to the residing class name is</a></li>
+            </ul>
+          </li>
+          <li><a href="#MethodName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#MethodName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#MethodName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#MethodName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="MethodName_Description">
         <div>
           Checks that method names conform to a specified pattern.
@@ -35,42 +70,42 @@
             <tr>
               <td><a id="allowClassName"/><a href="#allowClassName">allowClassName</a></td>
               <td>Control whether to allow a method name to have the same name as the enclosing class name. Setting this property <code>false</code> helps to avoid confusion between constructors and methods.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td><a id="applyToPackage"/><a href="#applyToPackage">applyToPackage</a></td>
               <td>Control if check should apply to package-private members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td><a id="applyToPrivate"/><a href="#applyToPrivate">applyToPrivate</a></td>
               <td>Control if check should apply to private members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td><a id="applyToProtected"/><a href="#applyToProtected">applyToProtected</a></td>
               <td>Control if check should apply to protected members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td><a id="applyToPublic"/><a href="#applyToPublic">applyToPublic</a></td>
               <td>Control if check should apply to public members.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^[a-z][a-zA-Z0-9]*$</code></td>
               <td>3.0</td>
             </tr>
@@ -95,19 +130,19 @@ class Example1 {
   public void method1() {}
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores is:
+          followed by at least 7 letters or digits is:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+       &lt;property name="format" value="^[a-z][a-zA-Z0-9]{7,}$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -115,10 +150,10 @@ class Example1 {
         <p id="Example2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-  public void method1() {}
+  public void method1() {}    // violation 'Name 'method1' must match pattern'
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
-  private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  private void Method3() {}   // violation 'Name 'Method3' must match pattern'
+  public void Example3() {}   // violation 'Name 'Example3' must match pattern'
   void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
@@ -139,11 +174,106 @@ class Example2 {
         <p id="Example3-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-  public Example3() {}
+  public void method1() {}
+  protected void Method2() {}
+  private void Method3() {}
   public void Example3() {}
+  void Method5() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
+          An example of how to suppress the check to public methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="applyToPublic" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public void method1() {}
+  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Example3() {} // ok because 'applyToPublic' is false
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to suppress the check to protected methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="applyToProtected" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  public void method1() {}
+  protected void Method2() {} // ok because 'applyToProtected' is false
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
+}
+</code></pre></div>
+      <hr class="example-separator"/>
+      <p id="Example6-config">
+        An example of how to suppress the check to private methods:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+      <p id="Example6-code">Code Example:</p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public void method1() {}
+  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
+  private void Method3() {} // ok because 'applyToPrivate' is false
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+      <p id="Example7-config">
+        An example of how to suppress the check to package-private methods:
+      </p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+      <p id="Example7-code">Code Example:</p>
+      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {
+  public void method1() {}
+  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Example3() {} // violation 'Name 'Example3' must match pattern'
+  void Method5() {} // ok because 'applyToPackage' is false
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="MethodName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check to disallow method names to be equal to the
           residing class name is:
         </p>
@@ -157,93 +287,18 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
-  public Example4() {}
-  // violation below 'Name 'Example4' must not equal the enclosing class name.'
-  public void Example4() {}
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-          An example of how to suppress the check to public and protected methods:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
-       &lt;property name="applyToPublic" value="false"/&gt;
-       &lt;property name="applyToProtected" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code">Code Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
-  public void method1() {}
-  protected void Method2() {} // ok because, 'Property 'applyToProtected' is false'
-  private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // ok because, 'Property 'applyToPublic' is false'
-  void Method5() {} // violation 'Name 'Method5' must match pattern'
-}
-</code></pre></div>
-      <hr class="example-separator"/>
-      <p id="Example6-config">
-        An example of how to suppress the check to private methods:
-      </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
-       &lt;property name="applyToPrivate" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-      <p id="Example6-code">Code Example:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example6 {
-  public void method1() {}
-  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
-  private void Method3() {}
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
-  void Method5() {} // violation 'Name 'Method5' must match pattern'
-}
-</code></pre></div><hr class="example-separator"/>
-      <p id="Example7-config">
-        An example of how to suppress the check to package-private methods:
-      </p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="MethodName"&gt;
-       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
-       &lt;property name="applyToPackage" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-      <p id="Example7-code">Code Example:</p>
-      <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example7 {
-  public void method1() {}
-  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
-  private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  public void Method4() {} // violation 'Name 'Method4' must match pattern'
-  void Method5() {}  // ok because , 'Property 'applyToPackage' is set to false'
+class UseCase1 {
+  public UseCase1() {}
+  // violation below 'Name 'UseCase1' must not equal the enclosing class name.'
+  public void UseCase1() {}
 }
 </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
         <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
-            Google Style</a>
-          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Sun Style</a>

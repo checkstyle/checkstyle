@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.useenhancedswitch;
 
 public class InputUseEnhancedSwitchSwitchStatements {
     void test(int x) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         switch (x) {
             case 1:
                 System.out.println("One");
@@ -25,7 +25,7 @@ public class InputUseEnhancedSwitchSwitchStatements {
     }
 
     void testDefault(int x) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         switch (x) {
             case 1: {
                 System.out.println("One");
@@ -48,7 +48,7 @@ public class InputUseEnhancedSwitchSwitchStatements {
     }
 
     void testReturnLabels(int x) {
-        // violation below, 'Switch can be replaced with enhanced switch.'
+        // violation below 'Switch can be replaced with enhanced switch.'
         switch (x) {
             case 1:
                 return;

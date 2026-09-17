@@ -20,10 +20,14 @@
 
  &lt;p&gt;
  OneStatementPerLineCheck checks the following types of statements:
- variable declaration statements, empty statements, import statements,
+ block statements, variable declaration statements, import statements,
  assignment statements, expression statements, increment statements,
  object creation statements, 'for loop' statements, 'break' statements,
  'continue' statements, 'return' statements, resources statements (optional).
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Unnecessary semicolons are ignored.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"

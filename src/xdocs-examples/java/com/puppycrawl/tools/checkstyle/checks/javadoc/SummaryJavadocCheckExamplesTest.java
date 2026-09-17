@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc";
@@ -37,10 +38,10 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "18:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "22:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "27:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "42:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "13:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "17:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "28:6: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "37:6: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -49,11 +50,11 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "21:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "25:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "30:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "39:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "45:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "16:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "20:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "31:6: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "35:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "40:6: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -62,14 +63,13 @@ public class SummaryJavadocCheckExamplesTest extends AbstractExamplesModuleTestS
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "20:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "24:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "29:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "34:6: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "38:6: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "49:5: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "15:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "19:6: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "25:6: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "34:6: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
 }

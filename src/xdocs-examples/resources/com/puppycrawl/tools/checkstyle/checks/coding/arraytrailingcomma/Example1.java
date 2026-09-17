@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.arraytrailingcomma;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   int[] numbers = {1, 2, 3};
   boolean[] bools = {
@@ -42,7 +42,7 @@ public class Example1 {
     2
   ,};
 }
-// xdoc section -- end
+// xdoc section - end
 
 
 

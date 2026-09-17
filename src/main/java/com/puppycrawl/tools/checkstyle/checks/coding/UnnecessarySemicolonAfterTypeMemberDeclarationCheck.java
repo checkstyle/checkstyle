@@ -50,6 +50,13 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
      */
     public static final String MSG_SEMI = "unnecessary.semicolon";
 
+    /**
+     * Creates a new {@code UnnecessarySemicolonAfterTypeMemberDeclarationCheck} instance.
+     */
+    public UnnecessarySemicolonAfterTypeMemberDeclarationCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -152,4 +159,5 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
     private static boolean isSemicolon(DetailAST ast) {
         return ast != null && ast.getType() == TokenTypes.SEMI;
     }
+
 }

@@ -9,7 +9,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.modifiedcontrolvariable;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   void InvalidExample() {
     for(int i=0;i < 8;i++) {
@@ -21,4 +21,4 @@ class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

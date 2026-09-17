@@ -59,6 +59,13 @@ public class UseEnhancedSwitchCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "use.enhanced.switch";
 
+    /**
+     * Creates a new {@code UseEnhancedSwitchCheck} instance.
+     */
+    public UseEnhancedSwitchCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

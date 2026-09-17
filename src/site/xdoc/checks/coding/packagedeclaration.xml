@@ -8,6 +8,29 @@
   <body>
     <section name="PackageDeclaration">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#PackageDeclaration_Description">Description</a></li>
+          <li><a href="#PackageDeclaration_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#PackageDeclaration_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Example of how the check works when matchDirectoryStructure option is set to false.</a></li>
+            </ul>
+          </li>
+          <li><a href="#PackageDeclaration_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#PackageDeclaration_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#PackageDeclaration_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#PackageDeclaration_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="PackageDeclaration_Description">
         <div>
           Ensures that a class has a package declaration, and (optionally) whether
@@ -40,7 +63,7 @@
             <tr>
               <td><a id="matchDirectoryStructure"/><a href="#matchDirectoryStructure">matchDirectoryStructure</a></td>
               <td>Control whether to check for directory and package name match.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>7.6.1</td>
             </tr>
@@ -61,7 +84,8 @@
 </code></pre></div>
         <p id="Example1-code">Example1:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1{ // violation, 'Missing package declaration'
+package com.nonexistent.packages;
+public class Example1{ // violation above 'Package name is not same as directory'
   String str = "Some Content";
 }
 </code></pre></div><hr class="example-separator"/>
@@ -88,6 +112,10 @@ public class Example2{
 
       <subsection name="Example of Usage" id="PackageDeclaration_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
+            Google Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageDeclaration">
             Checkstyle Style</a>

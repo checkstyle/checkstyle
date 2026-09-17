@@ -270,6 +270,51 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
+     * The file name is taken verbatim from the analysed tree, so it may contain the literal
+     * text of a report placeholder such as {@code ${message}}. Every placeholder is filled
+     * in a single pass, so that text is kept verbatim and cannot splice the message object
+     * into the uri string.
+     */
+    @Test
+    public void testAddErrorWithPlaceholderInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final AuditEvent ev = new AuditEvent(this, "report${message}.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerPlaceholderInPath.sarif"), outStream);
+    }
+
+    /**
+     * A violation message can carry the literal text of a placeholder such as {@code ${uri}},
+     * for instance when a check reports the text it matched. Every placeholder is filled in a
+     * single pass, so the file name is not pulled into the message text.
+     */
+    @Test
+    public void testAddErrorWithPlaceholderInMessage() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", new Object[] {"found ${uri} here"},
+                        SeverityLevel.ERROR, null, getClass(), "{0}");
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        logger.fileStarted(ev);
+        logger.addError(ev);
+        logger.fileFinished(ev);
+        logger.auditFinished(null);
+        verifyContent(getPath("ExpectedSarifLoggerPlaceholderInMessage.sarif"), outStream);
+    }
+
+    /**
      * Checker.process(...) obtains file paths from the current runtime File API, and
      * Checker.fireErrors(...) passes those paths through relativizePathWithCatch(...)
      * / CommonUtil.relativizePath(...). On Linux CI, File.getAbsolutePath() cannot produce
@@ -566,7 +611,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
     private static void verifyContent(
             String expectedOutputFile,
-            ByteArrayOutputStream actualOutputStream) throws IOException {
+            ByteArrayOutputStream actualOutputStream)
+                    throws IOException {
         final String expectedContent = readFile(expectedOutputFile);
         final String actualContent =
                 toLfLineEnding(actualOutputStream.toString(StandardCharsets.UTF_8));
@@ -588,4 +634,5 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
             printWriter.print("stackTrace\nexample");
         }
     }
+
 }

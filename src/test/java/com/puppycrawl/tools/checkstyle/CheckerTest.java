@@ -1394,8 +1394,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testTabViolationDefault() throws Exception {
         final String[] expected = {
-            "17:17: violation",
-            "21:49: violation",
+            "18:17: violation",
+            "22:49: violation",
         };
         verifyWithInlineConfigParser(getPath("InputCheckerTabCharacter.java"),
             expected);
@@ -1404,8 +1404,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testTabViolationCustomWidth() throws Exception {
         final String[] expected = {
-            "18:17: violation",
-            "22:37: violation",
+            "19:17: violation",
+            "23:37: violation",
         };
 
         verifyWithInlineXmlConfig(getPath("InputCheckerTabCharacterCustomWidth.java"), expected);
@@ -1607,10 +1607,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .toList();
             Arrays.sort(expected);
 
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = "[ERROR] " + path + ":" + expected[i];
-                assertWithMessage("error message %s", i)
-                        .that(actual.get(i))
+            for (int index = 0; index < expected.length; index++) {
+                final String expectedResult = "[ERROR] " + path + ":" + expected[index];
+                assertWithMessage("error message %s", index)
+                        .that(actual.get(index))
                         .isEqualTo(expectedResult);
             }
 
@@ -1689,7 +1689,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
      * Reason of non-Input based testing:
      * There are bunch of asserts that expects full path to file,
      * usage of "basedir" make it stripped and we need put everywhere code like
-     * <pre>CommonUtil.relativizePath(checker.getConfiguration().getProperty("basedir"), file)</pre>
+     * {@code CommonUtil.relativizePath(checker.getConfiguration().getProperty("basedir"), file)}
      * but Checker object is not always available in code.
      * Propagating it in all code methods will complicate code.
      */

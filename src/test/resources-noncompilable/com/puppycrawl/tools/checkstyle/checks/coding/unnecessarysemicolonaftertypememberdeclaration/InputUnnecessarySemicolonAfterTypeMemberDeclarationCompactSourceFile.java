@@ -11,45 +11,45 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, VARIABLE_D
 
 class MemberClass {
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 interface MemberInterface {
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 enum MemberEnum {
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 @interface MemberAnnotation {
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 record MemberRecord() {
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 class OuterWithNested {
 
     class Nested {
 
-    }; // violation, 'Unnecessary semicolon.'
+    }; // violation 'Unnecessary semicolon.'
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 class LeadingSemicolon {
-    ; // violation, 'Unnecessary semicolon.'
+    ; // violation 'Unnecessary semicolon.'
 }
 
 enum EnumLeadingSemicolon {
     ;
 }
 
-int field;; // violation, 'Unnecessary semicolon.'
+int field;; // violation 'Unnecessary semicolon.'
 
 void method() {
 
-}; // violation, 'Unnecessary semicolon.'
+}; // violation 'Unnecessary semicolon.'
 
 class CleanClass {
 

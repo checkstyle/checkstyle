@@ -39,6 +39,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
    */
   private String thirdName;
 
+  // violation 9 lines below '.* incorrect indentation level, expected level should be 4.'
   /**
    * Some text.
    *
@@ -47,7 +48,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
    * @return Some text.
    * @serialData Some javadoc.
    * @throws Exception Some text.
-   *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+   *    Some javadoc.
    * @deprecated Some text.
    */
   String method(String str) throws Exception {
@@ -106,15 +107,17 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
     return "null";
   }
 
+  // violation 8 lines below '.* incorrect indentation level, expected level should be 4.'
+  // violation 9 lines below '.* incorrect indentation level, expected level should be 4.'
   /**
    * Some text.
    *
    * @param str Some text.
    * @param bool Some text.
    * @param number Some text.
-   *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+   *    Some javadoc.
    * @return Some text.
-   *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+   *    Some javadoc.
    * @serialData Some javadoc.
    * @throws Exception Some text.
    * @deprecated Some text.
@@ -287,16 +290,16 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
       return "null";
     }
 
+    // violation 7 lines below '.* incorrect indentation level, expected level should be 4.'
+    // violation 8 lines below '.* incorrect indentation level, expected level should be 4.'
     /**
      * Some text.
      *
      * @param str Some text.
      * @param number Some text.
      *    Some javadoc.
-     *     // violation above '.* incorrect indentation level, expected level should be 4.'
      * @param bool Some text.
      *    Some javadoc.
-     *     // violation above '.* incorrect indentation level, expected level should be 4.'
      * @return Some text.
      * @throws Exception Some text.
      * @deprecated Some text.
@@ -308,17 +311,17 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
 
   InnerClassWithAnnotations anon =
       new InnerClassWithAnnotations() {
+        // violation 6 lines below '.* incorrect indentation level, expected level should be 4.'
+        // violation 9 lines below '.* incorrect indentation level, expected level should be 4.'
         /**
          * Some text.
          *
          * @param str Some text.
          *   Some javadoc.
-         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @return Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
          *    Some javadoc.
-         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @deprecated Some text.
          */
         String method(String str) throws Exception {
@@ -376,21 +379,21 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
           return "null";
         }
 
+        // violation 8 lines below '.* incorrect indentation level, expected level should be 4.'
+        // violation 9 lines below '.* incorrect indentation level, expected level should be 4.'
+        // violation 12 lines below '.* incorrect indentation level, expected level should be 4.'
         /**
          * Some text.
          *       Some javadoc.
          *
          * @param str Some text.
          *    Some javadoc.
-         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @param number Some text.
          *    Some javadoc.
-         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @param bool Some text.
          * @return Some text.
          * @throws Exception Some text.
          *    Some javadoc.
-         *     // violation above '.* incorrect indentation level, expected level should be 4.'
          * @deprecated Some text.
          */
         String method6(String str, int number, boolean bool) throws Exception {
@@ -398,6 +401,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
         }
       };
 
+  // violation 10 lines below '.* incorrect indentation level, expected level should be 4.'
   /**
    * Some javadoc.
    *
@@ -407,11 +411,12 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
    *     Some javadoc.
    *     Some javadoc.
    * @see Some javadoc.
-   *    Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+   *    Some javadoc.
    * @author max
    */
   enum Foo3 {}
 
+  // violation 8 lines below '.* incorrect indentation level, expected level should be 4.'
   /**
    * Some javadoc.
    *
@@ -419,7 +424,7 @@ class InputJavaDocTagContinuationIndentation implements Serializable {
    * @since Some javadoc.
    *     Some javadoc.
    * @serialData Some javadoc.
-   *   Some javadoc. // violation '.* incorrect indentation level, expected level should be 4.'
+   *   Some javadoc.
    * @author max
    */
   interface FooIn5 {}

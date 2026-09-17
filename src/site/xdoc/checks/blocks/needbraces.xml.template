@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java"/>
+      </macro>
       <subsection name="Description" id="NeedBraces_Description">
         <macro name="description">
             <param name="modulePath"
@@ -70,49 +74,52 @@
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example3.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example4-config">
           To configure the check to allow loops (<code>while, for</code>) with empty bodies:
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
             <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example5.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
             <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="NeedBraces_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to allow <code>case, default</code> single-line statements
           without braces:
         </p>
         <macro name="example">
              <param name="path"
-                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
+                    value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase1.java"/>
              <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">
+        <p id="UseCase1-code">
         Next statements won't be violated by check:
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example4.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase1.java"/>
             <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To configure the check to lambdas:
         </p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase2.java"/>
             <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">Results in following:</p>
+        <p id="UseCase2-code">Results in following:</p>
         <macro name="example">
             <param name="path"
-                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/Example6.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/blocks/needbraces/UseCase2.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -122,6 +129,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">

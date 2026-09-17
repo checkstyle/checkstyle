@@ -34,4 +34,5 @@ public class TodoCommentTest extends AbstractGoogleModuleTestSupport {
     public void testTodoCommentAllVariants() throws Exception {
         verifyWithWholeConfig(getPath("InputTodoCommentAllVariants.java"));
     }
+
 }

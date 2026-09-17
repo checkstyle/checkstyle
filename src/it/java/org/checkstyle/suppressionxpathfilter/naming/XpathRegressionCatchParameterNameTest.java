@@ -19,7 +19,7 @@
 
 package org.checkstyle.suppressionxpathfilter.naming;
 
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
 import java.util.Collections;
@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck;
 
 public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupport {
+
     private final String checkName = CatchParameterNameCheck.class.getSimpleName();
 
     @Override
@@ -233,4 +234,5 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

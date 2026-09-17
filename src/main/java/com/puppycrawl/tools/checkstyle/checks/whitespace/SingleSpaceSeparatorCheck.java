@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -52,10 +54,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * check, so both braces in the following case will be reported as violations.
  * </p>
  *
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
+ * {@snippet lang="text" :
+ * public long toNanos(long d)  { return d;             } // 2 violations
  * public long toMicros(long d) { return d / (C1 / C0); }
- * </code></pre></div>
+ * }
  *
  * @since 6.19
  */
@@ -70,6 +72,13 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     /** Control whether to validate whitespaces surrounding comments. */
     private boolean validateComments;
+
+    /**
+     * Creates a new {@code SingleSpaceSeparatorCheck} instance.
+     */
+    public SingleSpaceSeparatorCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to control whether to validate whitespaces surrounding comments.
@@ -115,6 +124,7 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      */
     private void visitEachToken(DetailAST node) {
         DetailAST currentNode = node;
+        final Set<Long> reportedPositions = new HashSet<>();
 
         do {
             final int columnNo = currentNode.getColumnNo() - 1;
@@ -124,10 +134,15 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
             // possible index for the second whitespace between non-whitespace characters.
             final int minSecondWhitespaceColumnNo = 2;
 
-            if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(
-                            getLineCodePoints(currentNode.getLineNo() - 1),
-                            columnNo)) {
+            final boolean isSeparatedIncorrectly =
+                    columnNo >= minSecondWhitespaceColumnNo
+                        && !isTextSeparatedCorrectlyFromPrevious(
+                                getLineCodePoints(currentNode.getLineNo() - 1),
+                                columnNo);
+
+            // several nodes start at the same position, so without this the same
+            // whitespace is reported once per node
+            if (isSeparatedIncorrectly && reportedPositions.add(getPositionKey(currentNode))) {
                 log(currentNode, MSG_KEY);
             }
             if (currentNode.hasChildren()) {
@@ -140,6 +155,17 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
                 currentNode = currentNode.getNextSibling();
             }
         } while (currentNode != null);
+    }
+
+    /**
+     * Combines the line and the column of a node into a single value, to keep
+     * track of the positions a violation was already reported for.
+     *
+     * @param node The node to build the value for.
+     * @return The combined position of {@code node}.
+     */
+    private static long getPositionKey(DetailAST node) {
+        return (long) node.getLineNo() << Integer.SIZE | node.getColumnNo();
     }
 
     /**

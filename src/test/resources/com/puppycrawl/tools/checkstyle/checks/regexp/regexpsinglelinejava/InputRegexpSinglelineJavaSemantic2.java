@@ -74,7 +74,8 @@ class InputRegexpSinglelineJavaSemantic2
             }
             // can never happen, empty compound statement is another workaround
         }
-        catch (UnsupportedOperationException handledException) { // violation below
+        catch (UnsupportedOperationException handledException) {
+            // violation below 'Bad line '
             System.out.println(handledException.getMessage());
         }
         catch (SecurityException ex) { /* hello */ }

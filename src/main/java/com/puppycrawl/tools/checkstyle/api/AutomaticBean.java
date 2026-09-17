@@ -30,6 +30,14 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 // -@cs[AbstractClassName] We can not break compatibility with previous versions.
 @Deprecated(since = "10.9.3")
 public abstract class AutomaticBean extends AbstractAutomaticBean {
+
+    /**
+     * Creates a new {@code AutomaticBean} instance.
+     */
+    protected AutomaticBean() {
+        // no code by default
+    }
+
     /**
      * Enum to specify behaviour regarding ignored modules.
      */
@@ -46,4 +54,5 @@ public abstract class AutomaticBean extends AbstractAutomaticBean {
         NONE,
 
     }
+
 }

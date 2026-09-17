@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AbstractAutomaticBeanTest {
+
     @Test
     public void testConfigureNoSuchAttribute() {
         final TestBean testBean = new TestBean();

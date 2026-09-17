@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * For example, this check finds the obsolete braces in
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * public void guessTheOutput()
  * {
  *   int whichIsWhich = 0;
@@ -46,17 +46,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  *   System.out.println("value = " + whichIsWhich);
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * and debugging / refactoring leftovers such as
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * // if (conditionThatIsNotUsedAnyLonger)
  * {
  *   System.out.println("unconditional");
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * A case in a switch statement does not implicitly form a block.
@@ -81,6 +81,13 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
      * Allow nested blocks if they are the only child of a switch case.
      */
     private boolean allowInSwitchCase;
+
+    /**
+     * Creates a new {@code AvoidNestedBlocksCheck} instance.
+     */
+    public AvoidNestedBlocksCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {

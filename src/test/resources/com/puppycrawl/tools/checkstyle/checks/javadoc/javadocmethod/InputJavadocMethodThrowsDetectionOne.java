@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 public class InputJavadocMethodThrowsDetectionOne {
 
     void noJavadoc() {
-        // no javadoc, no violations
+        // no javadoc
         throw new UnsupportedOperationException("");
     }
 

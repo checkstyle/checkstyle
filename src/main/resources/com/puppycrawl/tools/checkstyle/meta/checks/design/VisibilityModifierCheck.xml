@@ -12,19 +12,6 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Public members are not flagged if the name matches the public
- member regular expression (contains &lt;code&gt;"^serialVersionUID$"&lt;/code&gt; by
- default).
- &lt;/p&gt;
-
- &lt;p&gt;
- Note that Checkstyle 2 used to include &lt;code&gt;"^f[A-Z][a-zA-Z0-9]*$"&lt;/code&gt; in the default pattern
- to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with
- the default settings. With EJB 2.0 it is no longer necessary to have public access for
- persistent fields, so the default has been changed.
- &lt;/p&gt;
-
- &lt;p&gt;
  Rationale: Enforce encapsulation.
  &lt;/p&gt;
 
@@ -81,6 +68,16 @@
  Star imports are out of scope of this Check. So if one of type imported via
  star import collides with user specified one by its short name - there
  won't be Check's violation.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Top-level fields of compact source files
+ (&lt;a href="https://openjdk.org/jeps/512"&gt;JEP 512&lt;/a&gt;)
+ are skipped by design. Their access modifiers do not provide the encapsulation
+ that this check enforces for ordinary classes.
+ Public members are not flagged if the name matches the public
+ member regular expression (contains &lt;code&gt;"^serialVersionUID$"&lt;/code&gt; by
+ default).
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowPublicFinalFields" type="boolean">

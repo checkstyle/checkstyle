@@ -36,19 +36,7 @@ class InputNonEmptyAtclauseDescriptionThree {
     return j-1;
   }
 
-  /**
-   * Some summary.
-   *
-   * @param j some param
-   * @see <a href="...">a</a><p>ending with paragraph tag</p>.
-   * @see <a href="...">b</a><h1>ending with h tag</h1>
-   *
-   * @see <a href="...">c</a>
-   * <h1>ending with h tag</h1>.
-   */
-  public int testWithHtmlTags(int j){
-    return j-1;
-  }
+
 
   /**
    * some docs.

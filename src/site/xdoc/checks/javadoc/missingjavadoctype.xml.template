@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java"/>
+      </macro>
       <subsection name="Description" id="MissingJavadocType_Description">
         <macro name="description">
             <param name="modulePath"
@@ -89,20 +93,37 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example5-config">
-          To configure a check that allows missing comments for classes annotated with
-          <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
+          To configure the check for <code>INTERFACE_DEF</code> tokens only:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example5.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">
-          Example5:
-        </p>
+        <p id="Example5-code">Example5:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="MissingJavadocType_Use_Cases">
+        <p id="UseCase1-config">
+          To configure a check that allows missing comments for classes annotated with
+          <code>@Annotation</code> and <code>@MyClass.Annotation</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="UseCase1-code">
+          UseCase1:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/missingjavadoctype/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -116,6 +137,10 @@
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

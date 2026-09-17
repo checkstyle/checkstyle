@@ -118,4 +118,5 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
 }

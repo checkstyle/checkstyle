@@ -31,22 +31,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * them in other locations. To unify the coding style, the use of trailing commas should
  * be prohibited.
  * </div>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * int[] foo = new int[] {
  *   1,
  *   2
  * };
- * </code></pre></div>
+ * }
  *
  * <p>
  * The check demands that there should not be any comma after the last element of an array.
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * String[] foo = new String[] {
  *   "FOO",
  *   "BAR", // violation
  * }
- * </code></pre></div>
+ * }
  *
  * @since 8.28
  */
@@ -58,6 +58,13 @@ public class NoArrayTrailingCommaCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "no.array.trailing.comma";
+
+    /**
+     * Creates a new {@code NoArrayTrailingCommaCheck} instance.
+     */
+    public NoArrayTrailingCommaCheck() {
+        // no code by default
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -82,4 +89,5 @@ public class NoArrayTrailingCommaCheck extends AbstractCheck {
             log(previousSibling, MSG_KEY);
         }
     }
+
 }

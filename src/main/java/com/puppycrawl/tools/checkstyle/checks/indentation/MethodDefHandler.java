@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for method definitions.
@@ -47,8 +48,10 @@ public class MethodDefHandler extends BlockParentHandler {
         return null;
     }
 
-    @Override
-    protected void checkModifiers() {
+    /**
+     * Checks modifiers for method definitions.
+     */
+    private void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
         if (isOnStartOfLine(modifier)
             && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
@@ -63,9 +66,16 @@ public class MethodDefHandler extends BlockParentHandler {
         final DetailAST throwsAst = getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
 
         if (throwsAst != null) {
+            final LineWrappingHandler.LineWrappingOptions ignoreFirstLine;
+            if (isOnStartOfLine(throwsAst)) {
+                ignoreFirstLine = LineWrappingHandler.LineWrappingOptions.NONE;
+            }
+            else {
+                ignoreFirstLine = LineWrappingHandler.LineWrappingOptions.IGNORE_FIRST_LINE;
+            }
             checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
                     .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
-                    !isOnStartOfLine(throwsAst));
+                    ignoreFirstLine);
         }
     }
 
@@ -115,6 +125,33 @@ public class MethodDefHandler extends BlockParentHandler {
         if (getLeftCurly() != null) {
             super.checkIndentation();
         }
+    }
+
+    @Override
+    protected boolean shouldCheckLeftParen(DetailAST leftParen) {
+        return !isMethodParenOnItsOwnLineWithMatchingRightParen(leftParen,
+                getMethodDefParamRightParen(getMainAst()));
+    }
+
+    @Override
+    protected boolean shouldCheckRightParen(DetailAST leftParen, DetailAST rightParen) {
+        return !isMethodParenOnItsOwnLineWithMatchingRightParen(leftParen, rightParen);
+    }
+
+    /**
+     * Checks if method definition parenthesis are wrapped on separate lines and aligned.
+     *
+     * @param leftParen left parenthesis of method definition
+     * @param rightParen right parenthesis of method definition
+     * @return true if both parenthesis start their own lines and are aligned
+     */
+    private boolean isMethodParenOnItsOwnLineWithMatchingRightParen(DetailAST leftParen,
+            DetailAST rightParen) {
+        return rightParen != null
+                && !TokenUtil.areOnSameLine(leftParen, rightParen)
+                && isOnStartOfLine(leftParen)
+                && isOnStartOfLine(rightParen)
+                && expandedTabsColumnNo(leftParen) == expandedTabsColumnNo(rightParen);
     }
 
     /**

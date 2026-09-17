@@ -8,6 +8,30 @@
   <body>
     <section name="RecordComponentNumber">
       <p>Since Checkstyle 8.36</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#RecordComponentNumber_Description">Description</a></li>
+          <li><a href="#RecordComponentNumber_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#RecordComponentNumber_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow 5 record components at all access modifier levels for record definitions</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Allow 10 record components for a public record definition, but 3 for private record definitions</a></li>
+            </ul>
+          </li>
+          <li><a href="#RecordComponentNumber_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#RecordComponentNumber_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#RecordComponentNumber_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#RecordComponentNumber_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="RecordComponentNumber_Description">
         <div>
           Checks the number of record components in the
@@ -29,14 +53,14 @@
             <tr>
               <td><a id="accessModifiers"/><a href="#accessModifiers">accessModifiers</a></td>
               <td>Access modifiers of record definitions where the number of record components should be checked.</td>
-              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><a href="../../property-types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>8.36</td>
             </tr>
             <tr>
               <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of components allowed in the header of a record definition.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>8</code></td>
               <td>8.36</td>
             </tr>
@@ -64,8 +88,8 @@ class Example1{
 
   public record MyRecord2(int x, int y, double d,
                     String str, char c, float f) {}
-
-  record MyRecord3(int x, int y, int z, double d, // violation, 9 components
+  // violation below 'Number of record components is 9 (max allowed is 8).'
+  record MyRecord3(int x, int y, int z, double d,
                     String str1, String str2, char c, float f, String location) {}
 
   private record MyRecord4(int x, int y,
@@ -92,10 +116,10 @@ class Example1{
 class Example2{
   public record MyRecord1(int x, int y, String str) {}
 
-  public record MyRecord2(int x, int y, double d, // violation, 6 components
+  public record MyRecord2(int x, int y, double d, // violation 'components is 6'
                     String str, char c, float f) {}
 
-  record MyRecord3(int x, int y, int z, double d, // violation, 9 components
+  record MyRecord3(int x, int y, int z, double d, // violation 'components is 9'
                     String str1, String str2, char c, float f, String location) {}
 
   private record MyRecord4(int x, int y,
@@ -127,13 +151,13 @@ class Example2{
 class Example3 {
   public record MyRecord1(int x, int y, String str) {}
 
-  public record MyRecord2(int x, int y, double d, // violation, 6 components
+  public record MyRecord2(int x, int y, double d, // violation 'components is 6'
                     String str, char c, float f) {}
 
   record MyRecord3(int x, int y, int z, double d,
                     String str1, String str2, char c, float f, String location) {}
 
-  private record MyRecord4(int x, int y, // violation, 4 components
+  private record MyRecord4(int x, int y, // violation 'components is 4'
                            String str, double d) {}
 }
 </code></pre></div>

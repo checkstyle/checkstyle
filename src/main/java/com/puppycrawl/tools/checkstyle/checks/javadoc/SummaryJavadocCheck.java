@@ -80,7 +80,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * This regexp is used to convert multiline javadoc to single-line without stars.
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
-            Pattern.compile("\n[ \\t]+(\\*)|^[ \\t]+(\\*)");
+            Pattern.compile("\n[ \\t]*(\\*)|^[ \\t]*(\\*)");
 
     /**
      * This regexp is used to remove html tags, whitespace, and asterisks from a string.
@@ -108,6 +108,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * Whether to validate untagged summary text in Javadoc.
      */
     private boolean shouldValidateUntaggedSummary = true;
+
+    /**
+     * Creates a new {@code SummaryJavadocCheck} instance.
+     */
+    public SummaryJavadocCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify the regexp for forbidden summary fragments.
@@ -177,7 +184,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private void validateUntaggedSummary(DetailNode ast) {
         final String summaryDoc = getSummarySentence(ast);
         if (summaryDoc.isEmpty()) {
-            log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+            log(ast, MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
             if (summaryDoc.contains(period)) {
@@ -185,15 +192,15 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
                 if (firstSentence.isPresent()) {
                     if (containsForbiddenFragment(firstSentence.get())) {
-                        log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_JAVADOC);
+                        log(ast, MSG_SUMMARY_JAVADOC);
                     }
                 }
                 else {
-                    log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+                    log(ast, MSG_SUMMARY_FIRST_SENTENCE);
                 }
             }
             else {
-                log(ast.getLineNumber(), ast.getColumnNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+                log(ast, MSG_SUMMARY_FIRST_SENTENCE);
             }
         }
     }
@@ -214,6 +221,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 case JavadocCommentsTokenTypes.HTML_ELEMENT ->
                     isDefinedFirst = isHtmlTagWithoutText(currentAst);
                 case JavadocCommentsTokenTypes.LEADING_ASTERISK,
+                     JavadocCommentsTokenTypes.LEADING_ASTERISKS,
                      JavadocCommentsTokenTypes.NEWLINE -> {
                     // Ignore formatting tokens
                 }
@@ -276,19 +284,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String inlineSummary = getContentOfInlineCustomTag(descriptionNode);
         final String summaryVisible = getVisibleContent(inlineSummary);
         if (summaryVisible.isEmpty()) {
-            log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC_MISSING);
+            log(inlineSummaryTag, MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
             final boolean isPeriodNotAtEnd =
                     summaryVisible.lastIndexOf(period) != summaryVisible.length() - 1;
             if (isPeriodNotAtEnd) {
-                log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
-                        MSG_SUMMARY_MISSING_PERIOD);
+                log(inlineSummaryTag, MSG_SUMMARY_MISSING_PERIOD);
             }
             else if (containsForbiddenFragment(inlineSummary)) {
-                log(inlineSummaryTag.getLineNumber(), inlineSummaryTag.getColumnNumber(),
-                        MSG_SUMMARY_JAVADOC);
+                log(inlineSummaryTag, MSG_SUMMARY_JAVADOC);
             }
         }
     }
@@ -304,12 +309,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String inlineReturn = getContentOfInlineCustomTag(descriptionNode);
         final String returnVisible = getVisibleContent(inlineReturn);
         if (returnVisible.isEmpty()) {
-            log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC_MISSING);
+            log(inlineReturnTag, MSG_SUMMARY_JAVADOC_MISSING);
         }
-        else if (containsForbiddenFragment(inlineReturn)) {
-            log(inlineReturnTag.getLineNumber(), inlineReturnTag.getColumnNumber(),
-                    MSG_SUMMARY_JAVADOC);
+        else if (containsForbiddenFragment(prependJavadocToolWord(inlineReturn))) {
+            log(inlineReturnTag, MSG_SUMMARY_JAVADOC);
         }
     }
 
@@ -324,7 +327,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         DetailNode curNode = descriptionNode;
         while (curNode != null) {
             if (curNode.getFirstChild() == null
-                && curNode.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
+                && !isLeadingAsterisk(curNode)) {
                 customTagContent.append(curNode.getText());
             }
 
@@ -337,6 +340,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             curNode = toVisit;
         }
         return customTagContent.toString();
+    }
+
+    /**
+     * Checks whether the given node is a leading asterisk.
+     *
+     * @param node the node to check
+     * @return true if the node is a leading asterisk
+     */
+    private static boolean isLeadingAsterisk(DetailNode node) {
+        return node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                || node.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISKS;
     }
 
     /**
@@ -360,6 +374,17 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
                 .matcher(firstSentence).replaceAll(" ");
         return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Prepends the word "Returns" to the given inline {@code {@return}} tag content,
+     * since Javadoc renders {@code {@return ...}} as "Returns ..." in the method summary.
+     *
+     * @param inlineReturn String consisting of the content of inline {@code {@return}} tag
+     * @return the inline return content prefixed with "Returns "
+     */
+    private static String prependJavadocToolWord(String inlineReturn) {
+        return "Returns " + inlineReturn;
     }
 
     /**
@@ -463,6 +488,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 if (tempNode.getType() == JavadocCommentsTokenTypes.TEXT) {
                     contents.append(tempNode.getText());
                 }
+                else {
+                    final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
+                            tempNode, JavadocCommentsTokenTypes.HTML_CONTENT);
+                    contents.append(getStringInsideHtmlTag("", htmlContentToken));
+                }
                 tempNode = tempNode.getNextSibling();
             }
         }
@@ -545,4 +575,5 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         return result;
     }
+
 }

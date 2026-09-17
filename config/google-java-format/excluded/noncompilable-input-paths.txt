@@ -1,1 +1,0 @@
-src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule43onestatement/InputOneStatementPerLine2.java

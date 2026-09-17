@@ -38,4 +38,5 @@ record IntRangeFilterElement(Integer lowerBound, Integer upperBound) implements 
         return "IntRangeFilterElement{" + "lowerBound=" + lowerBound
                 + ", upperBound=" + upperBound + '}';
     }
+
 }

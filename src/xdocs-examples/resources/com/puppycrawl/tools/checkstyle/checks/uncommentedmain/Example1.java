@@ -8,30 +8,33 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
-  // violation below, 'Uncommented main method found'
-  public static void main(String... args){}
+  // violation below 'Uncommented main method found'
+  public static void main(String... args) {
+  }
+
+  class Launch {
+    // public static void main(String[] args) {}
+  }
+
+  class Start {
+    public void main() {
+    }
+  }
+
+  record MyRecord1() {
+    public void main() {
+    }
+  }
+
+  record MyRecord2() {
+    // public void main() {}
+  }
 }
 
 class MainOne {
-  // violation below, 'Uncommented main method found'
-  public static void main(String[] args){}
+  // violation below 'Uncommented main method found'
+  public static void main(String[] args) {}
 }
-
-class LaunchOne {
-  //public static void main(String[] args){}
-}
-
-class StartOne {
-  public void main(){}
-}
-
-record MyRecordOne() {
-  public void main(){}
-}
-
-record MyRecordTwo() {
-  //public void main(){}
-}
-// xdoc section -- end
+// xdoc section - end

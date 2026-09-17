@@ -176,4 +176,5 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

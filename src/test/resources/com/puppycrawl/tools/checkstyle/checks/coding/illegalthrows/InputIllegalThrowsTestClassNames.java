@@ -10,7 +10,7 @@ ignoreOverriddenMethods = (default)true
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
 public class InputIllegalThrowsTestClassNames {
-    // violation below, 'Throwing 'NullPointerException' is not allowed'
+    // violation below 'Throwing 'NullPointerException' is not allowed'
     public void method() throws NullPointerException
     { // no code
     }
@@ -24,7 +24,7 @@ public class InputIllegalThrowsTestClassNames {
     {
     }
 
-    public void finalize() throws Throwable { // violation, 'Throwing 'Throwable' is not allowed'
+    public void finalize() throws Throwable { // violation 'Throwing 'Throwable' is not allowed'
 
     }
 }

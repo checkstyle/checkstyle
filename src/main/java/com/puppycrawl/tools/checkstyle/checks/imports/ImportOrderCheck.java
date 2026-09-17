@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <li>
  * arrange static imports: ensures the relative order between type imports and static imports
  * (see
- * <a href="https://checkstyle.org/property_types.html#ImportOrderOption">ImportOrderOption</a>)
+ * <a href="https://checkstyle.org/property-types.html#ImportOrderOption">ImportOrderOption</a>)
  * </li>
  * </ul>
  *
@@ -176,7 +176,7 @@ public class ImportOrderCheck
      * both the type and static imports use the properties {@code groups} and {@code separated}.
      * When the {@code option} property is set to {@code TOP} or {@code BOTTOM}, static imports
      * uses the properties {@code staticGroups} and {@code separatedStaticGroups}.
-     **/
+     */
     private boolean staticImportsApart;
 
     /**
@@ -205,6 +205,13 @@ public class ImportOrderCheck
      * Complied array of patterns for property {@code staticGroups}.
      */
     private Pattern[] staticGroupsReg = EMPTY_PATTERN_ARRAY;
+
+    /**
+     * Creates a new {@code ImportOrderCheck} instance.
+     */
+    public ImportOrderCheck() {
+        // no code by default
+    }
 
     /**
      * Setter to specify policy on the relative order between type imports and static imports.
@@ -583,12 +590,12 @@ public class ImportOrderCheck
      * We first compare the container of the static import, container being the type enclosing
      * the static element being imported. When this returns 0, we compare the qualified
      * import name. For e.g. this is what is considered to be container names:
-     * <pre>
-     * import static HttpConstants.COLON     =&gt; HttpConstants
-     * import static HttpHeaders.addHeader   =&gt; HttpHeaders
-     * import static HttpHeaders.setHeader   =&gt; HttpHeaders
-     * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
-     * </pre>
+     * {@snippet lang="text" :
+     * import static HttpConstants.COLON     => HttpConstants
+     * import static HttpHeaders.addHeader   => HttpHeaders
+     * import static HttpHeaders.setHeader   => HttpHeaders
+     * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+     * }
      *
      * <p>
      * According to this logic, HttpHeaders.Names would come after HttpHeaders.
@@ -630,12 +637,12 @@ public class ImportOrderCheck
      * Extracts import container name from fully qualified import name.
      * An import container name is the type which encloses the static element being imported.
      * For example, HttpConstants, HttpHeaders, HttpHeaders.Names are import container names:
-     * <pre>
-     * import static HttpConstants.COLON     =&gt; HttpConstants
-     * import static HttpHeaders.addHeader   =&gt; HttpHeaders
-     * import static HttpHeaders.setHeader   =&gt; HttpHeaders
-     * import static HttpHeaders.Names.DATE  =&gt; HttpHeaders.Names
-     * </pre>
+     * {@snippet lang="text" :
+     * import static HttpConstants.COLON     => HttpConstants
+     * import static HttpHeaders.addHeader   => HttpHeaders
+     * import static HttpHeaders.setHeader   => HttpHeaders
+     * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
+     * }
      *
      * @param qualifiedImportName fully qualified import name.
      * @return import container name.
@@ -686,16 +693,16 @@ public class ImportOrderCheck
 
         // find out what group this belongs in
         // loop over patterns and get index
-        for (int i = 0; i < patterns.length; i++) {
-            final Matcher matcher = patterns[i].matcher(name);
+        for (int index = 0; index < patterns.length; index++) {
+            final Matcher matcher = patterns[index].matcher(name);
             if (matcher.find()) {
                 if (matcher.start() < bestPos) {
-                    bestIndex = i;
+                    bestIndex = index;
                     bestEnd = matcher.end();
                     bestPos = matcher.start();
                 }
                 else if (matcher.start() == bestPos && matcher.end() > bestEnd) {
-                    bestIndex = i;
+                    bestIndex = index;
                     bestEnd = matcher.end();
                 }
             }
@@ -739,8 +746,8 @@ public class ImportOrderCheck
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
-        for (int i = 0; i < packageGroups.length; i++) {
-            String pkg = packageGroups[i];
+        for (int index = 0; index < packageGroups.length; index++) {
+            String pkg = packageGroups[index];
             final Pattern grp;
 
             // if the pkg name is the wildcard, make it match zero chars
@@ -764,7 +771,7 @@ public class ImportOrderCheck
                 grp = Pattern.compile("^" + Pattern.quote(pkgBuilder.toString()));
             }
 
-            patterns[i] = grp;
+            patterns[index] = grp;
         }
         return patterns;
     }

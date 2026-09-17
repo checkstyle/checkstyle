@@ -8,6 +8,35 @@
   <body>
     <section name="JavadocMethod">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocMethod_Description">Description</a></li>
+          <li><a href="#JavadocMethod_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocMethod_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For only <code>public</code> modifier, ignoring any missing param tags is</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">For methods which are in <code>private</code> and <code>package</code>, but not any other modifier</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Ignore any missing return tags</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Ignore Methods with annotation <code>Deprecated</code></a></li>
+              <li><a href="#Example6-config" class="toc-sublink">Ly for tokens which are Constructor Definitions</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">Validate <code>throws</code> tags, you can use following config.</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">Allow inline <code>return</code> tags, you can use following config.</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocMethod_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocMethod_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocMethod_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocMethod_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="JavadocMethod_Description">
         <div>
           Checks the Javadoc of a method or constructor.
@@ -66,8 +95,8 @@
           For example, if the following method is implementing a method required by
           an interface, then the Javadoc could be done as:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&#47;** {&#64;inheritDoc} *&#47;
+        <div class="wrapper"><pre class="prettyprint"><code>
+/** {@inheritDoc} * /
 public int checkReturnTag(final int aTagIndex,
                           JavadocTag[] aTags,
                           int aLineNo)
@@ -88,49 +117,49 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td><a id="accessModifiers"/><a href="#accessModifiers">accessModifiers</a></td>
               <td>Specify the access modifiers where Javadoc comments are checked.</td>
-              <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
+              <td><a href="../../property-types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>8.42</td>
             </tr>
             <tr>
               <td><a id="allowInlineReturn"/><a href="#allowInlineReturn">allowInlineReturn</a></td>
               <td>Control whether to allow inline return tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>10.23.0</td>
             </tr>
             <tr>
               <td><a id="allowMissingParamTags"/><a href="#allowMissingParamTags">allowMissingParamTags</a></td>
               <td>Control whether to ignore violations when a method has parameters but does not have matching <code>param</code> tags in the javadoc.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="allowMissingReturnTag"/><a href="#allowMissingReturnTag">allowMissingReturnTag</a></td>
               <td>Control whether to ignore violations when a method returns non-void type and does not have a <code>return</code> tag in the javadoc.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
               <td>Specify annotations that allow missed documentation.</td>
-              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><a href="../../property-types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="validateThrows"/><a href="#validateThrows">validateThrows</a></td>
               <td>Control whether to validate <code>throws</code> tags.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>13.7.0</td>
             </tr>
@@ -182,7 +211,7 @@ public class Example1 {
 
   /** */
   Example1(int x) {}
-  // violation above, 'Expected @param tag for 'x'.'
+  // violation above 'Expected @param tag for 'x'.'
   /** */
   public int m1(int p1) throws IOException {
     // 2 violations above:
@@ -201,12 +230,12 @@ public class Example1 {
   // violation 4 lines above '@return tag should be present and have description.'
   /** */
   void m3(int p1) {}
-  // violation above, 'Expected @param tag for 'p1'.'
+  // violation above 'Expected @param tag for 'p1'.'
   /**
    * {@return the foo}
    */
   public int getFoo() {
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
     return 0;
   }
 }
@@ -235,7 +264,7 @@ public class Example2 {
 
   /** */
   public int m1(int p1) throws IOException {
-    // violation above, '@return tag should be present and have description.'
+    // violation above '@return tag should be present and have description.'
 
     // ok, allowMissingParamTags is true
     throw new IOException();
@@ -256,243 +285,7 @@ public class Example2 {
    * {@return the foo}
    */
   public int getFoo() {
-    // violation above, '@return tag should be present and have description.'
-    return 0;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
-              To configure the check to ignore any missing return tags:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"&gt;
-        &lt;property name="allowMissingReturnTag" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example4-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example4 {
-
-  /** */
-  Example4(int x) {}
-  // violation above, 'Expected @param tag for 'x'.'
-  /** */
-  public int m1(int p1) throws IOException {
-    // violation above, 'Expected @param tag for 'p1'.'
-
-    // ok, allowMissingReturnTag is true
-    throw new IOException();
-  }
-
-  /**
-   * @param p1 The first number
-   */
-  @Deprecated
-  private int m2(int p1) {
-    return p1;
-  }
-
-  /** */
-  void m3(int p1) {}
-  // violation above, 'Expected @param tag for 'p1'.'
-  /**
-   * {@return the foo}
-   */
-  public int getFoo() {
-
-    return 0;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
-              To configure the check to ignore Methods with annotation <code>Deprecated</code>:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"&gt;
-        &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example5-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example5 {
-
-  /** */
-  Example5(int x) {}
-  // violation above, 'Expected @param tag for 'x'.'
-  /** */
-  public int m1(int p1) throws IOException {
-    // 2 violations above:
-    //    '@return tag should be present and have description.'
-    //    'Expected @param tag for 'p1'.'
-    throw new IOException();
-  }
-
-  /**
-   * @param p1 The first number
-   */
-  @Deprecated
-  private int m2(int p1) {
-    return p1;
-  }
-
-  /** */
-  void m3(int p1) {}
-  // violation above, 'Expected @param tag for 'p1'.'
-  /**
-   * {@return the foo}
-   */
-  public int getFoo() {
-    // violation above, '@return tag should be present and have description.'
-    return 0;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example6-config">
-              To configure the check only for tokens which are Constructor Definitions:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"&gt;
-      &lt;property name="tokens" value="CTOR_DEF"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example6-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example6 {
-
-  /** */
-  Example6(int x) {}
-  // violation above, 'Expected @param tag for 'x''
-  /** */
-  public int m1(int p1) throws IOException {
-
-    // ok, only constructors are checked.
-
-    throw new IOException();
-  }
-  // ok, only constructors are checked
-  /**
-   * @param p1 The first number
-   */
-  @Deprecated
-  private int m2(int p1) {
-    return p1;
-  }
-  // ok, only constructors are checked
-  /** */
-  void m3(int p1) {}
-  // ok, only constructors are checked
-  /**
-   * {@return the foo}
-   */
-  public int getFoo() {
-
-    return 0;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example7-config">
-          To configure the check to validate <code>throws</code> tags, you can use following config.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"&gt;
-      &lt;property name="validateThrows" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example7-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example7 {
-
-  /** */
-  Example7(int x) {}
-  // violation above, 'Expected @param tag for 'x'.'
-  /** */ // violation below, '@return tag should be present and have description.'
-  public int m1(int p1) throws IOException {
-    // 2 violations above:
-    //    'Expected @param tag for 'p1'.'
-    //    'Expected @throws tag for 'IOException'.'
-    throw new IOException();
-  }
-
-  /**
-   * @param p1 The first number
-   */
-  @Deprecated
-  private int m2(int p1) {
-    return p1;
-  }
-  // violation 4 lines above '@return tag should be present and have description.'
-  /** */
-  void m3(int p1) {}
-  // violation above, 'Expected @param tag for 'p1'.'
-  /**
-   * {@return the foo}
-   */
-  public int getFoo() {
-    // violation above, '@return tag should be present and have description.'
-    return 0;
-  }
-}
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example8-config">
-          To configure the check to allow inline <code>return</code> tags,
-          you can use following config.
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"&gt;
-        &lt;property name="allowInlineReturn" value="true"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example8-code"> Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example8 {
-
-  /** */
-  Example8(int x) {}
-  // violation above, 'Expected @param tag for 'x'.'
-  /** */
-  public int m1(int p1) throws IOException {
-    // 2 violations above:
-    //    '@return tag should be present and have description.'
-    //    'Expected @param tag for 'p1'.'
-    throw new IOException();
-  }
-
-  /**
-   * @param p1 The first number
-   */
-  @Deprecated
-  private int m2(int p1) {
-    return p1;
-  }
-  // violation 4 lines above '@return tag should be present and have description.'
-  /** */
-  void m3(int p1) {}
-  // violation above, 'Expected @param tag for 'p1'.'
-  /**
-   * {@return the foo}
-   */
-  public int getFoo() {
-    // ok, allowInlineReturn is true
+    // violation above '@return tag should be present and have description.'
     return 0;
   }
 }
@@ -541,6 +334,242 @@ public class Example3 {
    */
   public int getFoo() {
 
+    return 0;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+              To configure the check to ignore any missing return tags:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+        &lt;property name="allowMissingReturnTag" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+
+  /** */
+  Example4(int x) {}
+  // violation above 'Expected @param tag for 'x'.'
+  /** */
+  public int m1(int p1) throws IOException {
+    // violation above 'Expected @param tag for 'p1'.'
+
+    // ok, allowMissingReturnTag is true
+    throw new IOException();
+  }
+
+  /**
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int m2(int p1) {
+    return p1;
+  }
+
+  /** */
+  void m3(int p1) {}
+  // violation above 'Expected @param tag for 'p1'.'
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+
+    return 0;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+              To configure the check to ignore Methods with annotation <code>Deprecated</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+        &lt;property name="allowedAnnotations" value="Deprecated"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+
+  /** */
+  Example5(int x) {}
+  // violation above 'Expected @param tag for 'x'.'
+  /** */
+  public int m1(int p1) throws IOException {
+    // 2 violations above:
+    //    '@return tag should be present and have description.'
+    //    'Expected @param tag for 'p1'.'
+    throw new IOException();
+  }
+
+  /**
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int m2(int p1) {
+    return p1;
+  }
+
+  /** */
+  void m3(int p1) {}
+  // violation above 'Expected @param tag for 'p1'.'
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+    // violation above '@return tag should be present and have description.'
+    return 0;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+              To configure the check only for tokens which are Constructor Definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+      &lt;property name="tokens" value="CTOR_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+
+  /** */
+  Example6(int x) {}
+  // violation above 'Expected @param tag for 'x''
+  /** */
+  public int m1(int p1) throws IOException {
+
+    // ok, only constructors are checked.
+
+    throw new IOException();
+  }
+  // ok, only constructors are checked
+  /**
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int m2(int p1) {
+    return p1;
+  }
+  // ok, only constructors are checked
+  /** */
+  void m3(int p1) {}
+  // ok, only constructors are checked
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+
+    return 0;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to validate <code>throws</code> tags, you can use following config.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+      &lt;property name="validateThrows" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+
+  /** */
+  Example7(int x) {}
+  // violation above 'Expected @param tag for 'x'.'
+  /** */ // violation below '@return tag should be present and have description.'
+  public int m1(int p1) throws IOException {
+    // 2 violations above:
+    //    'Expected @param tag for 'p1'.'
+    //    'Expected @throws tag for 'IOException'.'
+    throw new IOException();
+  }
+
+  /**
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int m2(int p1) {
+    return p1;
+  }
+  // violation 4 lines above '@return tag should be present and have description.'
+  /** */
+  void m3(int p1) {}
+  // violation above 'Expected @param tag for 'p1'.'
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+    // violation above '@return tag should be present and have description.'
+    return 0;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to allow inline <code>return</code> tags,
+          you can use following config.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocMethod"&gt;
+        &lt;property name="allowInlineReturn" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code"> Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example8 {
+
+  /** */
+  Example8(int x) {}
+  // violation above 'Expected @param tag for 'x'.'
+  /** */
+  public int m1(int p1) throws IOException {
+    // 2 violations above:
+    //    '@return tag should be present and have description.'
+    //    'Expected @param tag for 'p1'.'
+    throw new IOException();
+  }
+
+  /**
+   * @param p1 The first number
+   */
+  @Deprecated
+  private int m2(int p1) {
+    return p1;
+  }
+  // violation 4 lines above '@return tag should be present and have description.'
+  /** */
+  void m3(int p1) {}
+  // violation above 'Expected @param tag for 'p1'.'
+  /**
+   * {@return the foo}
+   */
+  public int getFoo() {
+    // ok, allowInlineReturn is true
     return 0;
   }
 }

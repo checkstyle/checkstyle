@@ -116,4 +116,5 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
             expectedXpathQueries);
     }
+
 }

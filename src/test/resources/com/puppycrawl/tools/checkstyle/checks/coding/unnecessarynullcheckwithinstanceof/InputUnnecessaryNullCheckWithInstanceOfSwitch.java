@@ -9,7 +9,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfSwitch {
     public void basicSwitch(Object obj, int type) {
         switch (type) {
             case 1:
-                // violation below, 'Unnecessary nullity check'
+                // violation below 'Unnecessary nullity check'
                 if (obj != null && obj instanceof String) {
                     String str = (String) obj;
                 }
@@ -31,7 +31,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfSwitch {
                 }
                 break;
             default:
-                // violation below, 'Unnecessary nullity check'
+                // violation below 'Unnecessary nullity check'
                 if (obj != null && obj instanceof Integer) {
                     Integer i = (Integer) obj;
                 }

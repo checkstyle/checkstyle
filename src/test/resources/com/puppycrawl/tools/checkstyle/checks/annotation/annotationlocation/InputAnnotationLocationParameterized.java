@@ -4,7 +4,8 @@ allowSamelineMultipleAnnotations = (default)false
 allowSamelineSingleParameterlessAnnotation = false
 allowSamelineParameterizedAnnotation = true
 tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
-         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF, \
+         MODULE_DEF
 
 
 */
@@ -17,13 +18,20 @@ class InputAnnotationLocationParameterized {
 
     @Annotation void singleParameterless() {} // violation '.* should be alone on line.'
 
-    @Annotation @Annotation void multipleParameterless() {} // 2 violations
+    @Annotation @Annotation void multipleParameterless() {}
+    // 2 violations above:
+    // 'Annotation 'Annotation' should be alone on line.'
+    // 'Annotation 'Annotation' should be alone on line.'
 
     @Annotation("") void parameterized() {}
 
     @Annotation(value = "") void namedParameterized() {}
 
-    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // 3 violations
+    @Annotation @Annotation("") @Annotation(value = "") void multiple() {}
+    // 3 violations above:
+    // 'Annotation 'Annotation' should be alone on line.'
+    // 'Annotation 'Annotation' should be alone on line.'
+    // 'Annotation 'Annotation' should be alone on line.'
 
     // violation below 'Annotation 'Annotation' should be alone on line.'
     @Annotation("") @Annotation(value = "") void multipleParametrized() {}

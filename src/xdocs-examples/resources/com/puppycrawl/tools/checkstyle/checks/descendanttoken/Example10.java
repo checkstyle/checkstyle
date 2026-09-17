@@ -2,23 +2,25 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DescendantToken">
-      <property name="tokens" value="LITERAL_THROWS"/>
-      <property name="limitedTokens" value="IDENT"/>
-      <property name="maximumNumber" value="1"/>
+      <property name="tokens" value="LITERAL_SWITCH"/>
+      <property name="maximumDepth" value="2"/>
+      <property name="limitedTokens" value="LITERAL_DEFAULT"/>
+      <property name="minimumNumber" value="1"/>
+      <property name="minimumMessage"
+        value="Switch must contain at least one default branch."/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
-
-// xdoc section -- start
+// xdoc section - start
 class Example10 {
   private int field1;
   private int field2;
 
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
-    // violation above, 'Count of 2 for 'LITERAL_THROWS' descendant'
+    // violation below 'Switch must contain at least one default branch.'
     switch (x) {
       case 1:
         break;
@@ -50,4 +52,4 @@ class Example10 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

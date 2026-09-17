@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/finalparameters";
@@ -66,4 +67,5 @@ public class FinalParametersCheckExamplesTest extends AbstractExamplesModuleTest
         verifyWithInlineConfigParser(
                 getNonCompilablePath("Example4.java"), expected);
     }
+
 }

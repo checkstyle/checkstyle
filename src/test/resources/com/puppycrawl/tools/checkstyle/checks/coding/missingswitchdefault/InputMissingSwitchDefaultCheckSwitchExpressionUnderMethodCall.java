@@ -16,7 +16,7 @@ public class InputMissingSwitchDefaultCheckSwitchExpressionUnderMethodCall {
     }
 
     Optional<String> faulty(Case value) {
-        switch (value) {  // violation, 'switch without "default" clause.'
+        switch (value) {  // violation 'switch without "default" clause.'
             case ONE -> System.out.println("one");
             case TWO -> System.out.println("two");
         }

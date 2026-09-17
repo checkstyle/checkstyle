@@ -8,6 +8,51 @@
   <body>
     <section name="DescendantToken">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#DescendantToken_Description">Description</a></li>
+          <li><a href="#DescendantToken_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#DescendantToken_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">A switch statement with no default case</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">A switch with too many cases</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">A switch that is nested in another switch</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">A condition in <code>for</code> which performs no check</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">A try statement without a catch block</a></li>
+              <li><a href="#Example6-config" class="toc-sublink">A return statement from within a catch or finally block</a></li>
+              <li><a href="#Example7-config" class="toc-sublink">A try statement within a catch or finally block</a></li>
+              <li><a href="#Example8-config" class="toc-sublink">An empty statement</a></li>
+              <li><a href="#Example9-config" class="toc-sublink">Comparing <code>this</code> with <code>null</code></a></li>
+              <li><a href="#Example10-config" class="toc-sublink">With a custom message when the minimum count of descendants is not reached</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#DescendantToken_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An initializer in <code>for</code> performs no setup (where a <code>while</code> statement could be used instead)</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">A method with too many local variables</a></li>
+              <li><a href="#UseCase3-config" class="toc-sublink">A method with too many returns</a></li>
+              <li><a href="#UseCase4-config" class="toc-sublink">A method which throws too many exceptions</a></li>
+              <li><a href="#UseCase5-config" class="toc-sublink">A method with too many expressions</a></li>
+              <li><a href="#UseCase6-config" class="toc-sublink">A class or interface with too many fields</a></li>
+              <li><a href="#UseCase7-config" class="toc-sublink">A <code>String</code> literal equality check</a></li>
+              <li><a href="#UseCase8-config" class="toc-sublink">An assert statement that may have side effects</a></li>
+            </ul>
+          </li>
+          <li><a href="#DescendantToken_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#DescendantToken_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#DescendantToken_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#DescendantToken_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="DescendantToken_Description">
         <div>
           Checks for restricted tokens beneath other tokens.
@@ -43,49 +88,49 @@
             <tr>
               <td><a id="maximumDepth"/><a href="#maximumDepth">maximumDepth</a></td>
               <td>Specify the maximum depth for descendant counts.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>2147483647</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="maximumMessage"/><a href="#maximumMessage">maximumMessage</a></td>
               <td>Define the violation message when the maximum count is exceeded.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="maximumNumber"/><a href="#maximumNumber">maximumNumber</a></td>
               <td>Specify a maximum count for descendants.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>2147483647</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="minimumDepth"/><a href="#minimumDepth">minimumDepth</a></td>
               <td>Specify the minimum depth for descendant counts.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="minimumMessage"/><a href="#minimumMessage">minimumMessage</a></td>
               <td>Define the violation message when the minimum count is not reached.</td>
-              <td><a href="../../property_types.html#String">String</a></td>
+              <td><a href="../../property-types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="minimumNumber"/><a href="#minimumNumber">minimumNumber</a></td>
               <td>Specify a minimum count for descendants.</td>
-              <td><a href="../../property_types.html#int">int</a></td>
+              <td><a href="../../property-types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td><a id="sumTokenCounts"/><a href="#sumTokenCounts">sumTokenCounts</a></td>
               <td>Control whether the number of tokens found should be calculated from the sum of the individual token counts.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
@@ -131,7 +176,7 @@ class Example1 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation, 'Count of 0 for 'LITERAL_SWITCH' descendant'
+    switch (x) { // violation 'Count of 0 for 'LITERAL_SWITCH' descendant'
       case 1:
         break;
       case 2:
@@ -190,7 +235,7 @@ class Example2 {
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
-    switch (x) { // violation, 'Count of 2 for 'LITERAL_SWITCH' descendant'
+    switch (x) { // violation 'Count of 2 for 'LITERAL_SWITCH' descendant'
       case 1:
         break;
       case 2:
@@ -327,7 +372,66 @@ class Example4 {
       catch (Exception ex) { }
     }
 
-    for (;;) { // violation, 'Count of 0 for 'FOR_CONDITION' descendant'
+    for (;;) { // violation 'Count of 0 for 'FOR_CONDITION' descendant'
+      break;
+    }
+    int a = 1;
+    int b = 2;
+    if (this == null || str == "abc") {
+      return 0;
+    }
+    assert a++ == 0;
+    ;
+    return 2;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example5-config">
+          To configure the check to produce a violation on a try statement
+          without a catch block:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_TRY"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_SWITCH"/&gt;
+      &lt;property name="minimumNumber" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  private int field1;
+  private int field2;
+
+  int testMethod(int x, String str)
+          throws ArithmeticException, IllegalArgumentException {
+
+    switch (x) {
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+
+    try { }    // violation 'Count of 0 for 'LITERAL_TRY' descendant'
+    catch (Exception e) {
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
+      catch (Exception ex) { }
+      return -1;
+    }
+    finally {
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
+      catch (Exception ex) { }
+    }
+
+    for (;;) {
       break;
     }
     int a = 1;
@@ -376,7 +480,7 @@ class Example6 {
     }
 
     try { }
-    catch (Exception e) {  // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+    catch (Exception e) {  // violation 'Count of 1 for 'LITERAL_CATCH' descendant'
       try { }
       catch (Exception ex) { }
       return -1;
@@ -435,12 +539,12 @@ class Example7 {
     }
 
     try { }
-    catch (Exception e) { // violation, 'Count of 1 for 'LITERAL_CATCH' descendant'
+    catch (Exception e) { // violation 'Count of 1 for 'LITERAL_CATCH' descendant'
       try { }
       catch (Exception ex) { }
       return -1;
     }
-    finally { // violation, 'Count of 1 for 'LITERAL_FINALLY' descendant '
+    finally { // violation 'Count of 1 for 'LITERAL_FINALLY' descendant '
       try { }
       catch (Exception ex) { }
     }
@@ -460,7 +564,7 @@ class Example7 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example12-config">
+        <p id="Example8-config">
           To configure the check to produce a violation on an empty statement:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -477,11 +581,11 @@ class Example7 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example12-code">
+        <p id="Example8-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example12 {
+class Example8 {
   private int field1;
   private int field2;
 
@@ -515,13 +619,13 @@ class Example12 {
       return 0;
     }
     assert a++ == 0;
-    ; // violation, 'Empty statement is not allowed'
+    ; // violation 'Empty statement is not allowed'
     return 2;
   }
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example14-config">
+        <p id="Example9-config">
           To configure the check to produce a violation on
           comparing <code>this</code> with <code>null</code>:
         </p>
@@ -538,11 +642,11 @@ class Example12 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example14-code">
+        <p id="Example9-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example14 {
+class Example9 {
   private int field1;
   private int field2;
 
@@ -571,7 +675,7 @@ class Example14 {
       break;
     }
     int a = 1;
-    int b = 2; // violation below, 'Total count of 2 exceeds maximum count 1'
+    int b = 2; // violation below 'Total count of 2 exceeds maximum count 1'
     if (this == null || str == "abc") {
       return 0;
     }
@@ -582,7 +686,7 @@ class Example14 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example17-config">
+        <p id="Example10-config">
           To configure the check to produce a violation with a custom message
           when the minimum count of descendants is not reached:
         </p>
@@ -600,11 +704,11 @@ class Example14 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example17-code">
+        <p id="Example10-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example17 {
+class Example10 {
   private int field1;
   private int field2;
 
@@ -642,8 +746,11 @@ class Example17 {
     return 2;
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="DescendantToken_Use_Cases">
+        <p id="UseCase1-config">
           To configure the check to produce a violation on an initializer in
           <code>for</code> performs no setup (where a <code>while</code>
           statement could be used instead):
@@ -659,11 +766,11 @@ class Example17 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example5-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example5 {
+class UseCase1 {
   private int field1;
   private int field2;
 
@@ -688,7 +795,7 @@ class Example5 {
       catch (Exception ex) { }
     }
 
-    for (;;) {  // violation, 'Count of 0 for 'FOR_INIT' descendant'
+    for (;;) {  // violation 'Count of 0 for 'FOR_INIT' descendant'
       break;
     }
     int a = 1;
@@ -703,7 +810,7 @@ class Example5 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example8-config">
+        <p id="UseCase2-config">
           To configure the check to produce a violation on a method with
           too many local variables:
         </p>
@@ -719,11 +826,11 @@ class Example5 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example8-code">
+        <p id="UseCase2-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example8 {
+class UseCase2 {
   private int field1;
   private int field2;
   // violation below 'Count of 2 for 'METHOD_DEF' descendant'
@@ -763,7 +870,7 @@ class Example8 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example9-config">
+        <p id="UseCase3-config">
           To configure the check to produce a violation on a method
           with too many returns:
         </p>
@@ -778,11 +885,11 @@ class Example8 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example9-code">
+        <p id="UseCase3-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example9 {
+class UseCase3 {
   private int field1;
   private int field2;
   // violation below 'Count of 3 for 'METHOD_DEF' descendant'
@@ -822,7 +929,7 @@ class Example9 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example10-config">
+        <p id="UseCase4-config">
           To configure the check to produce a violation on a method
           which throws too many exceptions:
         </p>
@@ -837,17 +944,17 @@ class Example9 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example10-code">
+        <p id="UseCase4-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example10 {
+class UseCase4 {
   private int field1;
   private int field2;
 
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
-    // violation above, 'Count of 2 for 'LITERAL_THROWS' descendant'
+    // violation above 'Count of 2 for 'LITERAL_THROWS' descendant'
     switch (x) {
       case 1:
         break;
@@ -881,7 +988,7 @@ class Example10 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example11-config">
+        <p id="UseCase5-config">
           To configure the check to produce a violation on a method
           with too many expressions:
         </p>
@@ -896,14 +1003,14 @@ class Example10 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example11-code">
+        <p id="UseCase5-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example11 {
+class UseCase5 {
   private int field1;
   private int field2;
-  // violation below, 'Count of 10 for 'METHOD_DEF' descendant'
+  // violation below 'Count of 10 for 'METHOD_DEF' descendant'
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
@@ -940,7 +1047,7 @@ class Example11 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example13-config">
+        <p id="UseCase6-config">
           To configure the check to produce a violation on a class or interface
           with too many fields:
         </p>
@@ -956,11 +1063,11 @@ class Example11 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example13-code">
+        <p id="UseCase6-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example13 {
+class UseCase6 {
   private int field1; // violation above 'Count of 2 for 'CLASS_DEF' descendant'
   private int field2;
 
@@ -1000,7 +1107,7 @@ class Example13 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example15-config">
+        <p id="UseCase7-config">
           To configure the check to produce a violation on a <code>String</code>
           literal equality check:
         </p>
@@ -1016,11 +1123,11 @@ class Example13 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example15-code">
+        <p id="UseCase7-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example15 {
+class UseCase7 {
   private int field1;
   private int field2;
 
@@ -1060,7 +1167,7 @@ class Example15 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example16-config">
+        <p id="UseCase8-config">
           To configure the check to produce a violation on an assert statement
           that may have side effects:
         </p>
@@ -1078,11 +1185,11 @@ class Example15 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example16-code">
+        <p id="UseCase8-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example16 {
+class UseCase8 {
   private int field1;
   private int field2;
 
@@ -1115,7 +1222,7 @@ class Example16 {
     if (this == null || str == "abc") {
       return 0;
     }
-    assert a++ == 0; // violation, 'Count of 1 for 'LITERAL_ASSERT' descendant'
+    assert a++ == 0; // violation 'Count of 1 for 'LITERAL_ASSERT' descendant'
     ;
     return 2;
   }

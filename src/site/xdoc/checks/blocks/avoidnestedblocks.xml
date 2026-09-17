@@ -8,6 +8,29 @@
   <body>
     <section name="AvoidNestedBlocks">
       <p>Since Checkstyle 3.1</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#AvoidNestedBlocks_Description">Description</a></li>
+          <li><a href="#AvoidNestedBlocks_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#AvoidNestedBlocks_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow nested blocks in switch case</a></li>
+            </ul>
+          </li>
+          <li><a href="#AvoidNestedBlocks_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#AvoidNestedBlocks_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#AvoidNestedBlocks_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#AvoidNestedBlocks_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="AvoidNestedBlocks_Description">
         <div>
           Finds nested blocks (blocks that are used freely in the code).
@@ -21,7 +44,7 @@
         <p>
           For example, this check finds the obsolete braces in
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public void guessTheOutput()
 {
   int whichIsWhich = 0;
@@ -35,7 +58,7 @@ public void guessTheOutput()
         <p>
           and debugging / refactoring leftovers such as
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 // if (conditionThatIsNotUsedAnyLonger)
 {
   System.out.println("unconditional");
@@ -64,7 +87,7 @@ public void guessTheOutput()
             <tr>
               <td><a id="allowInSwitchCase"/><a href="#allowInSwitchCase">allowInSwitchCase</a></td>
               <td>Allow nested blocks if they are the only child of a switch case.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>

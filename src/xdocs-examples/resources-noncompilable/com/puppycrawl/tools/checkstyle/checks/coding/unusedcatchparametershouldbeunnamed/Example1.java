@@ -9,14 +9,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedcatchparametershouldbeunnamed;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   void test() {
 
     try {
       int x = 1 / 0;
-      // violation below, 'Unused catch parameter 'exception' should be unnamed'
+      // violation below 'Unused catch parameter 'exception' should be unnamed'
     } catch (Exception exception) {
       System.out.println("infinity");
     }
@@ -37,4 +37,4 @@ public class Example1 {
 
   }
 }
-// xdoc section -- end
+// xdoc section - end

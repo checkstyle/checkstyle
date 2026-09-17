@@ -1,6 +1,6 @@
 /*
 RightCurly
-option = SAME
+option = (default)SAME
 tokens = LITERAL_SWITCH, LITERAL_IF
 
 
@@ -32,7 +32,10 @@ public class InputRightCurlyTestSwitchCase5 {
     public void someMethod2() {
         int x = 90;
         if (7>x) {
-            switch (x) { case(1): break;}} // 2 violations
+            switch (x) { case(1): break;}}
+        // 2 violations above:
+        // ''}' at column 41 should be alone on a line.'
+        // ''}' at column 42 should have line break before.'
     }
 
     public void someMethod3() {

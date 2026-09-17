@@ -110,4 +110,5 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

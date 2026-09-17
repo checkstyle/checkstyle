@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/uncommentedmain";
@@ -33,7 +34,7 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
     public void testExample1() throws Exception {
         final String[] expected = {
             "14:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
-            "19:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
+            "38:3: " + getCheckMessage(UncommentedMainCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -49,4 +50,5 @@ public class UncommentedMainCheckExamplesTest extends AbstractExamplesModuleTest
         verifyWithInlineConfigParser(
                 getPath("Example2.java"), expected);
     }
+
 }

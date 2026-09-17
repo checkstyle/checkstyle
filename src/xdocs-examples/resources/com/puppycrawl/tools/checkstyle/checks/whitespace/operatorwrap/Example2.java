@@ -16,7 +16,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   void example() {
     String s = "Hello" +
@@ -57,4 +57,4 @@ class Example2 {
             <<= 1; // violation ''<<=' should be on the previous line'
   }
 }
-// xdoc section -- end
+// xdoc section - end

@@ -91,10 +91,10 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** The basedir to strip off in file names. */
     private String basedir;
 
-    /** Locale country to report messages . **/
+    /** Locale country to report messages . */
     @XdocsPropertyType(PropertyType.LOCALE_COUNTRY)
     private String localeCountry = Locale.getDefault().getCountry();
-    /** Locale language to report messages . **/
+    /** Locale language to report messages . */
     @XdocsPropertyType(PropertyType.LOCALE_LANGUAGE)
     private String localeLanguage = Locale.getDefault().getLanguage();
 
@@ -125,7 +125,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** Name of a charset. */
     private String charset = StandardCharsets.UTF_8.name();
 
-    /** Cache file. **/
+    /** Cache file. */
     @XdocsPropertyType(PropertyType.FILE)
     private PropertyCacheFile cacheFile;
 
@@ -537,13 +537,13 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     public final void setFileExtensions(String... extensions) {
         if (extensions != null) {
             fileExtensions = new String[extensions.length];
-            for (int i = 0; i < extensions.length; i++) {
-                final String extension = extensions[i];
+            for (int index = 0; index < extensions.length; index++) {
+                final String extension = extensions[index];
                 if (extension.startsWith(EXTENSION_SEPARATOR)) {
-                    fileExtensions[i] = extension;
+                    fileExtensions[index] = extension;
                 }
                 else {
-                    fileExtensions[i] = EXTENSION_SEPARATOR + extension;
+                    fileExtensions[index] = EXTENSION_SEPARATOR + extension;
                 }
             }
         }

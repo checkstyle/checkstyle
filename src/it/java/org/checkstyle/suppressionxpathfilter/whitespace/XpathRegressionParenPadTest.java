@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck;
 
@@ -55,7 +54,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:12: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
+                    ParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -79,7 +78,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:12: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
+                    ParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -102,7 +101,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
+                    ParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -126,7 +125,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
 
         final String[] expectedViolation = {
             "5:19: " + getCheckMessage(ParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+                    ParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

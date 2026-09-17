@@ -25,8 +25,10 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/returncount";
@@ -35,7 +37,7 @@ public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "25:5: " + getCheckMessage(MSG_KEY, 4, 3),
+            "23:5: " + getCheckMessage(MSG_KEY, 4, 2),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -53,10 +55,17 @@ public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void testUseCase1() throws Exception {
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "26:3: " + getCheckMessage(MSG_KEY, 4, 2),
         };
+
+        verifyWithInlineConfigParser(getPath("UseCase1.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
@@ -64,7 +73,9 @@ public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "26:5: " + getCheckMessage(MSG_KEY, 4, 3),
+            "27:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "34:5: " + getCheckMessage(MSG_KEY, 4, 2),
+            "41:42: " + getCheckMessage(MSG_KEY, 2, 1),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -73,11 +84,10 @@ public class ReturnCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "27:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
-            "34:5: " + getCheckMessage(MSG_KEY, 4, 2),
-            "41:42: " + getCheckMessage(MSG_KEY, 2, 1),
+            "25:5: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
 }

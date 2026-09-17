@@ -2,20 +2,22 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DescendantToken">
-      <property name="tokens" value="METHOD_DEF"/>
-      <property name="limitedTokens" value="LITERAL_RETURN"/>
-      <property name="maximumNumber" value="2"/>
+      <property name="tokens" value="EQUAL,NOT_EQUAL"/>
+      <property name="limitedTokens" value="LITERAL_THIS,LITERAL_NULL"/>
+      <property name="maximumNumber" value="1"/>
+      <property name="maximumDepth" value="1"/>
+      <property name="sumTokenCounts" value="true"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example9 {
   private int field1;
   private int field2;
-  // violation below 'Count of 3 for 'METHOD_DEF' descendant'
+
   int testMethod(int x, String str)
           throws ArithmeticException, IllegalArgumentException {
 
@@ -41,7 +43,7 @@ class Example9 {
       break;
     }
     int a = 1;
-    int b = 2;
+    int b = 2; // violation below 'Total count of 2 exceeds maximum count 1'
     if (this == null || str == "abc") {
       return 0;
     }
@@ -50,4 +52,4 @@ class Example9 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

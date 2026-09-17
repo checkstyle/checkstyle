@@ -469,7 +469,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * Creates a new {@link SortedSet} with a deterministic order based on the
      * Check's name before the default ordering.
      *
-     * @return The new {@link SortedSet}.
+     * @return The new {@code SortedSet}.
      */
     private static SortedSet<AbstractCheck> createNewCheckSortedSet() {
         return new TreeSet<>(

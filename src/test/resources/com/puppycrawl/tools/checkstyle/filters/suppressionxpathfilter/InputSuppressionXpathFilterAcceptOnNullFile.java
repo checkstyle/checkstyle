@@ -1,6 +1,6 @@
 /*
 SuppressionXpathFilter
-file = (null)
+file = (default)(null)
 optional = (default)false
 
 com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck

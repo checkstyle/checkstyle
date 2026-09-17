@@ -25,6 +25,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -48,9 +50,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * A method is recognized as a setter if it is in the following form
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-text">
+ * {@snippet lang="text" :
  * ${returnType} set${Name}(${anyType} ${name}) { ... }
- * </code></pre></div>
+ * }
  *
  * <p>
  * where ${anyType} is any primitive type, class or interface name;
@@ -58,9 +60,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * capitalized form that appears in the method name. By default, it is expected
  * that setter returns void, i.e. ${returnType} is 'void'. For example
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * void setTime(long time) { ... }
- * </code></pre></div>
+ * {@snippet lang="text" :
+ * void setTime(long time) {  }
+ * }
  *
  * <p>
  * Any other return types will not let method match a setter pattern. However,
@@ -68,11 +70,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * definition of a setter is expanded, so that setter return type can also be
  * a class in which setter is declared. For example
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet lang="text" :
  * class PageBuilder {
- *   PageBuilder setName(String name) { ... }
+ *   PageBuilder setName(String name) {  }
  * }
- * </code></pre></div>
+ * }
  *
  * <p>
  * Such methods are known as chain-setters and a common when Builder-pattern
@@ -118,6 +120,13 @@ public class HiddenFieldCheck
     /** Control whether to ignore parameters of abstract methods. */
     private boolean ignoreAbstractMethods;
 
+    /**
+     * Creates a new {@code HiddenFieldCheck} instance.
+     */
+    public HiddenFieldCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getAcceptableTokens();
@@ -135,6 +144,7 @@ public class HiddenFieldCheck
             TokenTypes.LAMBDA,
             TokenTypes.RECORD_DEF,
             TokenTypes.RECORD_COMPONENT_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -145,6 +155,7 @@ public class HiddenFieldCheck
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_COMPILATION_UNIT,
         };
     }
 
@@ -216,7 +227,7 @@ public class HiddenFieldCheck
         final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
 
         // add fields to container
-        final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST objBlock = getFieldContainer(ast);
         // enum constants may not have bodies
         if (objBlock != null) {
             DetailAST child = objBlock.getFirstChild();
@@ -249,6 +260,25 @@ public class HiddenFieldCheck
         }
         // push container
         frame = newFrame;
+    }
+
+    /**
+     * Gets the member container for field declaration harvesting.
+     *
+     * @param ast the type definition node.
+     * @return the member container, either the compact compilation unit
+     *     itself or the OBJBLOCK child of a standard type definition.
+     */
+    @Nullable
+    private static DetailAST getFieldContainer(DetailAST ast) {
+        final DetailAST result;
+        if (ast.getType() == TokenTypes.COMPACT_COMPILATION_UNIT) {
+            result = ast;
+        }
+        else {
+            result = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        }
+        return result;
     }
 
     @Override

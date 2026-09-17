@@ -8,6 +8,37 @@
   <body>
     <section name="NoWhitespaceBefore">
       <p>Since Checkstyle 3.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#NoWhitespaceBefore_Description">Description</a></li>
+          <li><a href="#NoWhitespaceBefore_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#NoWhitespaceBefore_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Allow linebreaks before default tokens</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Restrict the use of whitespace before METHOD_REF and DOT tokens</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#NoWhitespaceBefore_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">Allow linebreak before METHOD_REF and DOT tokens</a></li>
+            </ul>
+          </li>
+          <li><a href="#NoWhitespaceBefore_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#NoWhitespaceBefore_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#NoWhitespaceBefore_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#NoWhitespaceBefore_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="NoWhitespaceBefore_Description">
         <div>
           Checks that there is no whitespace before a token.
@@ -32,7 +63,7 @@
             <tr>
               <td><a id="allowLineBreaks"/><a href="#allowLineBreaks">allowLineBreaks</a></td>
               <td>Control whether whitespace is allowed if the token is at a linebreak.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
@@ -252,8 +283,11 @@ class Example3 {
     }
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="NoWhitespaceBefore_Use_Cases">
+        <p id="UseCase1-config">
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -266,9 +300,9 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class UseCase1 {
   void example() {
     Lists .charactersOf("foo") // violation ''.' is preceded with whitespace'
           .listIterator()
@@ -287,6 +321,10 @@ class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
             Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
+            OpenJDK Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">

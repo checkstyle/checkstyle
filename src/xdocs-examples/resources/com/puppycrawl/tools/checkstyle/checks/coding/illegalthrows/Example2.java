@@ -9,14 +9,14 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
 
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
   void f3() throws Error {}
   void f4() throws Throwable {}
-  // violation below, 'Throwing 'NullPointerException' is not allowed'
+  // violation below 'Throwing 'NullPointerException' is not allowed'
   void f5() throws NullPointerException {}
   @Override
   public String toString() throws Error {
@@ -24,4 +24,4 @@ public class Example2 {
     return str;
   }
 }
-// xdoc section -- end
+// xdoc section - end

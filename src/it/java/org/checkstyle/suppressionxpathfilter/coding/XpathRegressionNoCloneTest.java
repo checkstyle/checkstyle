@@ -132,4 +132,5 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

@@ -2,49 +2,45 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="SuppressionCommentFilter">
-      <property name="offCommentFormat" value="csoff (\w+)"/>
-      <property name="onCommentFormat" value="cson (\w+)"/>
-      <property name="checkFormat" value="$1"/>
+      <property name="idFormat" value="MemberID"/>
     </module>
-    <module name="MemberName"/>
+    <module name="MemberName">
+      <property name="id" value="MemberID"/>
+    </module>
     <module name="ConstantName"/>
     <module name="IllegalCatch"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressioncommentfilter;
-// xdoc section -- start
-class Example7
-{
+// xdoc section - start
+class Example7 {
+
   int VAR1; // violation, Name 'VAR1' must match pattern '^[a-z][a-zA-Z0-9]*$'
 
-  //csoff MemberName
-  int VAR2; // filtered violation 'must match pattern'
-  //cson MemberName
+  //CHECKSTYLE:OFF
+  int VAR2; // violation, Name 'VAR2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+  //CHECKSTYLE:ON
 
-  public static final int var3 = 1;
-  // violation above, 'must match pattern'
+  //stop constant check
+  public static final int var3 = 1; // violation 'must match pattern'
+  //resume constant check
 
-  //csoff ConstantName
-  //csoff IllegalCatch
-
-  public static final int var4 = 1; // filtered violation 'must match pattern'
-
-  public void method1()
-  {
-    try {}
-    catch(Exception ex) {}
-    // filtered violation above 'Catching 'Exception' is not allowed'
-
-    try {}
-    catch(Exception ex) {}
-    // filtered violation above 'Catching 'Exception' is not allowed'
-    catch(Error err) {}
-    // filtered violation above 'Catching 'Error' is not allowed'
+  //ILLEGAL OFF: Exception
+  void method1() {
+    try {
+    }
+    catch (Exception ex) { }  // violation, Catching 'Exception' is not allowed
+    catch (Error err) { }     // violation, Catching 'Error' is not allowed
   }
+  //ILLEGAL ON: Exception
 
-  //cson ConstantName
-  //cson IllegalCatch
+  //CSOFF MemberID
+  int VAR4;   // filtered violation 'must match pattern'
+  //CSON MemberID
 
+  /*CHECKSTYLE:OFF*/
+  public static final int varC = 1; // violation 'must match pattern'
+  /*CHECKSTYLE:ON*/
 }
-// xdoc section -- end
+// xdoc section - end

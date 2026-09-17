@@ -8,6 +8,30 @@
   <body>
     <section name="IllegalIdentifierName">
       <p>Since Checkstyle 8.36</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#IllegalIdentifierName_Description">Description</a></li>
+          <li><a href="#IllegalIdentifierName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#IllegalIdentifierName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Include some of JLS Keywords in the set of illegal identifiers (See Java Language Specification for the full list of JLS keywords)</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Target only a specific token</a></li>
+            </ul>
+          </li>
+          <li><a href="#IllegalIdentifierName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#IllegalIdentifierName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#IllegalIdentifierName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#IllegalIdentifierName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="IllegalIdentifierName_Description">
         <div>
           Checks identifiers against a regular expression pattern to detect illegal names. Since this
@@ -30,7 +54,7 @@
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^(?!var$|\S*\$)\S+$</code></td>
               <td>8.36</td>
             </tr>
@@ -116,11 +140,11 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  Integer var = 4; // violation, 'Name 'var' must match pattern'
+  Integer var = 4; // violation 'Name 'var' must match pattern'
   int record = 15;
   String yield = "yield";
 
-  String test$stuff = "test"; // violation, 'must match pattern'
+  String test$stuff = "test"; // violation 'must match pattern'
   String when = "today";
   record Record(Record r){}
 
@@ -160,15 +184,15 @@ public class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
-  Integer var = 4; // violation, 'Name 'var' must match pattern'
-  int record = 15; // violation, 'Name 'record' must match pattern'
+  Integer var = 4; // violation 'Name 'var' must match pattern'
+  int record = 15; // violation 'Name 'record' must match pattern'
   String yield = "yield";
-  // violation above, 'Name 'yield' must match pattern'
-  String test$stuff = "test"; // violation, 'must match pattern'
-  String when = "today"; // violation, 'Name 'when' must match pattern'
-  record Record(Record r){} // violation, 'Name 'Record' must match pattern'
+  // violation above 'Name 'yield' must match pattern'
+  String test$stuff = "test"; // violation 'must match pattern'
+  String when = "today"; // violation 'Name 'when' must match pattern'
+  record Record(Record r){} // violation 'Name 'Record' must match pattern'
 
-  record R(Record record){} // violation, 'Name 'record' must match pattern'
+  record R(Record record){} // violation 'Name 'record' must match pattern'
 
   String yieldString = "yieldString";
   // ok above, word 'yield' is not used as an identifier by itself
@@ -176,13 +200,54 @@ public class Example2 {
   // ok above, word 'Record' is not used as an identifier by itself
   Integer variable = 2;
   // ok above, word 'var' is not used as an identifier by itself
-  int open = 4; // violation, 'Name 'open' must match pattern'
+  int open = 4; // violation 'Name 'open' must match pattern'
   Object transitive = "transitive";
-  // violation above, 'Name 'transitive' must match pattern'
+  // violation above 'Name 'transitive' must match pattern'
   int openInt = 4;
   // ok above, word 'open' is not used as an identifier by itself
   Object transitiveObject = "transitiveObject";
   // ok above, word 'transitive' is not used as an identifier by itself
+}
+</code></pre></div><hr class="example-separator"/>
+        <p>
+          To configure the check to target only a specific token:
+        </p>
+        <p id="Example3-config">Configuration:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalIdentifierName"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  Integer var = 4; // violation 'Name 'var' must match pattern'
+  int record = 15;
+  String yield = "yield";
+
+  String test$stuff = "test"; // violation 'must match pattern'
+  String when = "today";
+  record Record(Record r){}
+
+  record R(Record record){}
+
+  String yieldString = "yieldString";
+
+  record MyRecord(){}
+
+  Integer variable = 2;
+
+  int open = 4;
+  Object transitive = "transitive";
+
+  int openInt = 4;
+
+  Object transitiveObject = "transitiveObject";
+
 }
 </code></pre></div>
       </subsection>

@@ -181,6 +181,13 @@ public class JavaNCSSCheck extends AbstractCheck {
     /** List containing the stacked counters. */
     private Deque<Counter> counters;
 
+    /**
+     * Creates a new {@code JavaNCSSCheck} instance.
+     */
+    public JavaNCSSCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -440,6 +447,13 @@ public class JavaNCSSCheck extends AbstractCheck {
 
         /** The counters internal integer. */
         private int count;
+
+        /**
+         * Creates a new {@code Counter} instance.
+         */
+        private Counter() {
+            // no code by default
+        }
 
         /**
          * Increments the counter.

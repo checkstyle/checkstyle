@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck.MSG_KEY;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class SuperFinalizeCheckTest
         final String[] expected = {
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
-            "83:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "84:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuperFinalizeVariations.java"), expected);

@@ -90,6 +90,13 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
             TokenTypes.LABELED_STAT
     );
 
+    /**
+     * Creates a new {@code MissingSwitchDefaultCheck} instance.
+     */
+    public MissingSwitchDefaultCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -179,4 +186,5 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
             return expr != null && expr.findFirstToken(TokenTypes.LITERAL_NULL) != null;
         }).isPresent();
     }
+
 }

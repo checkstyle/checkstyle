@@ -16,15 +16,15 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 /** Documented. */
 @interface Configuration { }
 
-// xdoc section -- start
+// xdoc section - start
 /** Documented. */
-class Example4 {
+public class Example4 {
   /** Javadoc. */
   public class A {}
-  /** Javadoc. */
-  private class B {}
-  /** Javadoc. */
-  protected class C {}
+
+  private class B {}   // violation 'Missing a Javadoc comment for 'B'.'
+
+  protected class C {} // violation 'Missing a Javadoc comment for 'C'.'
   /** Javadoc. */
   class D {}
   /** Javadoc. */
@@ -33,7 +33,11 @@ class Example4 {
   /** Javadoc. */
   @Configuration
   private class Config {}
+  /** Javadoc. */
+  private class E {}
 
-  private class E {} // violation, 'Missing a Javadoc comment'
+  public interface F {} // violation 'Missing a Javadoc comment for 'F'.'
+  /** Javadoc. */
+  public interface G {}
 }
-// xdoc section -- end
+// xdoc section - end

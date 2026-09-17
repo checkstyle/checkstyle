@@ -8,7 +8,7 @@
  Checks that array initialization contains a trailing comma.
  &lt;/div&gt;
 
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  int[] a = new int[]
  {
    1,
@@ -21,7 +21,7 @@
  By default, the check demands a comma at the end if neither left nor right curly braces
  are on the same line as the last element of the array.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  return new int[] { 0 };
  return new int[] { 0
    };
@@ -34,7 +34,7 @@
  order of the elements or add new elements on the end. Main benefit of a trailing
  comma is that when you add new entry to an array, no surrounding lines are changed.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  {
    100000000000000000000,
    200000000000000000000, // OK
@@ -52,7 +52,7 @@
  (as the check does not demand a certain location of curly braces the following
  two cases will not produce a violation):
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  {100000000000000000000,
   200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway
 
@@ -64,7 +64,7 @@
  &lt;p&gt;
  If opening brace is on the same line as trailing comma there's also (more arguable) problem:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
  }
 

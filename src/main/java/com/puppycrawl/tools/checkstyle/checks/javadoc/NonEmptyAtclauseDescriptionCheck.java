@@ -40,6 +40,13 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
      */
     public static final String MSG_KEY = "non.empty.atclause";
 
+    /**
+     * Creates a new {@code NonEmptyAtclauseDescriptionCheck} instance.
+     */
+    public NonEmptyAtclauseDescriptionCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
@@ -48,6 +55,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
             JavadocCommentsTokenTypes.THROWS_BLOCK_TAG,
             JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG,
             JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SINCE_BLOCK_TAG,
         };
     }
 

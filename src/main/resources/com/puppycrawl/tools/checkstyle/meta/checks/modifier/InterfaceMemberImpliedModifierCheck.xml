@@ -42,7 +42,7 @@
  enforce that the &lt;code&gt;public&lt;/code&gt; and &lt;code&gt;static&lt;/code&gt; modifiers are explicitly coded and not
  implicitly added by the compiler.
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public interface AddressFactory {
    // check enforces code contains "public static final"
    public static final String UNKNOWN = "Unknown";
@@ -55,7 +55,7 @@
    // check enforces code contains "public abstract"
    public abstract Address createAddress(String addressLine, String city);
 
-   List&amp;lt;Address&amp;gt; findAddresses(String city);  // violation
+   List&amp;amp;lt;Address&amp;amp;gt; findAddresses(String city);  // violation
 
    // check enforces default methods are explicitly declared "public"
    public default Address createAddress(String city) {

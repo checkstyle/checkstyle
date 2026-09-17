@@ -22,16 +22,13 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -69,7 +66,6 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMultipleInputs() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
         final String filePath1 = getPath("InputMutableException2.java");
         final String filePath2 = getPath("InputMutableExceptionMultipleInputs.java");
 
@@ -81,10 +77,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             "14:9: " + getCheckMessage(MSG_KEY, "errorCode"),
             "18:9: " + getCheckMessage(MSG_KEY, "errorCode"));
 
-        final File[] inputs = {new File(filePath1), new File(filePath2)};
-
-        verify(createChecker(checkConfig), inputs,
-                ImmutableMap.of(filePath1, expected1, filePath2, expected2));
+        verifyWithInlineConfigParser(filePath1, filePath2, expected1, expected2);
     }
 
     @Test

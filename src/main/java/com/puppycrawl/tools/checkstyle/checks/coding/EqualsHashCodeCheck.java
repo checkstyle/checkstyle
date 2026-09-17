@@ -72,6 +72,13 @@ public class EqualsHashCodeCheck
     /** Maps OBJ_BLOCKs to the method definition of hashCode(). */
     private final Map<DetailAST, DetailAST> objBlockWithHashCode = new HashMap<>();
 
+    /**
+     * Creates a new {@code EqualsHashCodeCheck} instance.
+     */
+    public EqualsHashCodeCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

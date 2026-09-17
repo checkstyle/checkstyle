@@ -2,7 +2,7 @@
 SuppressionXpathSingleFilter
 files = (default)(null)
 checks = MissingJavadocTypeCheck
-message = Missing a Javadoc comment
+message = Missing a Javadoc comment for
 id = 007
 query = /COMPILATION_UNIT/CLASS_DEF \
         [./IDENT[@text='InputSuppressionXpathSingleFilterDefaultFileProperty']]
@@ -19,6 +19,6 @@ tokens = CLASS_DEF
 package com.puppycrawl.tools.checkstyle.filters.suppressionxpathsinglefilter;
 
 public class InputSuppressionXpathSingleFilterDefaultFileProperty {
-        // filtered violation above 'Missing a Javadoc comment.'
+        // filtered violation above 'Missing a Javadoc comment for'
 
 }

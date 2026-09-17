@@ -10,25 +10,28 @@
 
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example2 {
-  int a; // violation, line content before comment should match pattern "^\s*$"
-  int b; // violation, line content before comment should match pattern "^\s*$"
-  int c; // violation, line content before comment should match pattern "^\s*$"
-  int d; // violation, line content before comment should match pattern "^\s*$"
+  int a;
+  int b;
+  int c;
+  int d; // ok, SUPPRESS CHECKSTYLE
+  // violation above 'Don't use trailing comments.'
 
   public static void main(String[] args) {
     int x = 10;
 
     if (/* OK, this comment does not end the line */ x > 5) {}
-    int a = 5; // violation, line content before comment should match pattern "^\s*$"
+    int a = 5; // trailing comment
+    // violation above 'Don't use trailing comments.'
     doSomething(
             "param1"
-    ); // violation, line content before comment should match pattern "^\s*$"
+    ); // trailing comment
+    // violation above 'Don't use trailing comments.'
 
   }
 
   private static void doSomething(String param) {
   }
 }
-// xdoc section -- end
+// xdoc section - end

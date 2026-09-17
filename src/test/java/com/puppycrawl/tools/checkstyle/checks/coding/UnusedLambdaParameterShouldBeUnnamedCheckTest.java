@@ -146,4 +146,5 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
                         }))
                 .isTrue();
     }
+
 }

@@ -8,7 +8,7 @@
 package com.puppycrawl.tools.checkstyle.checks
     .numericalprefixesinfixessuffixescharactercase;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   int hex1 = 0X1A; // violation 'Numerical prefix should be in lowercase.'
   int hex2 = 0x1A;
@@ -42,4 +42,4 @@ public class Example1 {
   // ok, here 'E' is a hexadecimal digit, not a numeric infix.
   double ok4 = 0x1E2.2p2d;
 }
-// xdoc section -- end
+// xdoc section - end

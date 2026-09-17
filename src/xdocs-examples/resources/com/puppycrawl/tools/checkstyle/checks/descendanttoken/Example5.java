@@ -2,8 +2,8 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="DescendantToken">
-      <property name="tokens" value="FOR_INIT"/>
-      <property name="limitedTokens" value="EXPR"/>
+      <property name="tokens" value="LITERAL_TRY"/>
+      <property name="limitedTokens" value="LITERAL_SWITCH"/>
       <property name="minimumNumber" value="1"/>
     </module>
   </module>
@@ -11,7 +11,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 
-// xdoc section -- start
+// xdoc section - start
 class Example5 {
   private int field1;
   private int field2;
@@ -26,18 +26,18 @@ class Example5 {
         break;
     }
 
-    try { }
+    try { }    // violation 'Count of 0 for 'LITERAL_TRY' descendant'
     catch (Exception e) {
-      try { }
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
       catch (Exception ex) { }
       return -1;
     }
     finally {
-      try { }
+      try { }  // violation 'Count of 0 for 'LITERAL_TRY' descendant'
       catch (Exception ex) { }
     }
 
-    for (;;) {  // violation, 'Count of 0 for 'FOR_INIT' descendant'
+    for (;;) {
       break;
     }
     int a = 1;
@@ -50,4 +50,4 @@ class Example5 {
     return 2;
   }
 }
-// xdoc section -- end
+// xdoc section - end

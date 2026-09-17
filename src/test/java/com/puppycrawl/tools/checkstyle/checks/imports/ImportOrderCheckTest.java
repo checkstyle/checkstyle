@@ -112,7 +112,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputImportOrderNonStaticWrongSequence.java"), expected);
+                getPath("InputImportOrderNonStaticWrongSequence.java"), expected);
     }
 
     @Test

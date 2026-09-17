@@ -49,24 +49,7 @@ public class LineWrappingHandler {
         /**
          * First line's indentation should be checked.
          */
-        NONE;
-
-        /**
-         * Builds enum value from boolean.
-         *
-         * @param val value.
-         * @return enum instance.
-         *
-         * @noinspection BooleanParameter
-         * @noinspectionreason BooleanParameter - check property is essentially boolean
-         */
-        public static LineWrappingOptions ofBoolean(boolean val) {
-            LineWrappingOptions option = NONE;
-            if (val) {
-                option = IGNORE_FIRST_LINE;
-            }
-            return option;
-        }
+        NONE
 
     }
 

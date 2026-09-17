@@ -2,18 +2,17 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalTokenText">
-      <property name="tokens" value="NUM_INT,NUM_LONG"/>
-      <property name="format" value="^0[^lx]"/>
-      <property name="ignoreCase" value="true"/>
+      <property name="tokens" value="COMMENT_CONTENT"/>
+      <property name="format" value="a href"/>
     </module>
   </module>
 </module>
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltokentext;
-
-// xdoc section -- start
-public class Example4 {
+// xdoc section - start
+// violation first line 'Token text matches the illegal pattern 'a href''
+public class Example4 { // violation above 'Token text matches the illegal pattern'
   public void myTest() {
 
     String test  = "a href";
@@ -24,10 +23,10 @@ public class Example4 {
             \"""";
     int num1 = 0;
     int num2 = 0x111;
-    int num3 = 0X111; // ok, case is ignored
-    int num4 = 010;     // violation 'Token text matches the illegal pattern'
+    int num3 = 0X111;
+    int num4 = 010;
     long num5 = 0L;
-    long num6 = 010L;   // violation 'Token text matches the illegal pattern'
+    long num6 = 010L;
   }
 }
-// xdoc section -- end
+// xdoc section - end

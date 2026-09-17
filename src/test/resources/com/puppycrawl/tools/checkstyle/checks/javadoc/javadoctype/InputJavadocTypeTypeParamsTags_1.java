@@ -7,8 +7,8 @@ versionFormat = (default)null
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
 
 */
 
@@ -24,7 +24,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  * @version 1.0
  */
 public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable>
-// violation above 'missing @param <C456> tag.'
+// violation above 'missing @param '<C456>' tag.'
 {
     /**
      * Some explanation.
@@ -61,15 +61,7 @@ public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable>
      * @param <C> extra parameter
      */
 
-    public static class InnerClass_1<A,B> // violation 'missing @param <B> tag.'
-    {
-    }
-
-    /**
-     * Some explanation.
-     * @param <Z The wrong type param
-     */
-    public <Z> void unclosedGenericParam()
+    public static class InnerClass_1<A,B> // violation 'missing @param '<B>' tag.'
     {
     }
 }

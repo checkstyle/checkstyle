@@ -18,4 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.descendanttoken;
 /**
  * Created by valeria on 8/19/17.
  */
-public class InputDescendantTokenLastTokenType2 {} // 2 violations
+public class InputDescendantTokenLastTokenType2 {}
+// 2 violations above:
+// 'Count of 1 for 'OBJBLOCK' descendant 'LCURLY' exceeds maximum count 0.'
+// 'Count of 1 for 'OBJBLOCK' descendant 'RCURLY' exceeds maximum count 0.'

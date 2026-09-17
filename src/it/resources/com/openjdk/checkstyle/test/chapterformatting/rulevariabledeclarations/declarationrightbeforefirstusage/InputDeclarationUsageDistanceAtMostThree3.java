@@ -1,8 +1,6 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulevariabledeclarations.declarationrightbeforefirstusage;
 
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
+// violation first line 'Header mismatch'
 
 /** Some javadoc. */
 public class InputDeclarationUsageDistanceAtMostThree3 {
@@ -83,8 +81,11 @@ public class InputDeclarationUsageDistanceAtMostThree3 {
 
     class Session {
         public Transaction beginTransaction() { return null; }
+
         public void close() {}
+
         public Serializable save(E d2) { return null; }
+
         public Serializable save(A a) { return null; }
     }
 
@@ -98,6 +99,7 @@ public class InputDeclarationUsageDistanceAtMostThree3 {
 
     class E {
         public void setReverse(C1 c) {}
+
         public void setReverse(A a) {}
     }
 

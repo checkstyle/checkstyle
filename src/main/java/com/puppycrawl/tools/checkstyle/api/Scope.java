@@ -42,7 +42,7 @@ public enum Scope {
 
     @Override
     public String toString() {
-        return getName();
+        return name().toLowerCase(Locale.ENGLISH);
     }
 
     /**

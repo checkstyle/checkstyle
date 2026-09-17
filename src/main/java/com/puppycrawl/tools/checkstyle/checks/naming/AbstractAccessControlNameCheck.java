@@ -63,9 +63,11 @@ public abstract class AbstractAccessControlNameCheck
      *
      * @param format
      *                format to check with
+     * @param messageKey
+     *                the key for the message
      */
-    protected AbstractAccessControlNameCheck(String format) {
-        super(format);
+    protected AbstractAccessControlNameCheck(String format, String messageKey) {
+        super(format, messageKey);
     }
 
     @Override

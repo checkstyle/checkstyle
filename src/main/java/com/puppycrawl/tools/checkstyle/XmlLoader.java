@@ -54,15 +54,15 @@ public class XmlLoader
 
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;
-    /** Parser to read XML files. **/
+    /** Parser to read XML files. */
     private final XMLReader parser;
 
     /**
      * Creates a new instance.
      *
      * @param publicIdToResourceNameMap maps public IDs to DTD resource names
-     * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
+     * @throws SAXException if an error occurs
      */
     protected XmlLoader(Map<String, String> publicIdToResourceNameMap)
             throws SAXException, ParserConfigurationException {
@@ -141,7 +141,7 @@ public class XmlLoader
         public static final String EXTERNAL_PARAMETER_ENTITIES =
                 "http://xml.org/sax/features/external-parameter-entities";
 
-        /** Stop instances being created. **/
+        /** Stop instances being created. */
         private LoadExternalDtdFeatureProvider() {
         }
 
@@ -152,8 +152,8 @@ public class XmlLoader
          * it is even security problem to allow files from outside.
          *
          * @param factory factory to be configured with special features
-         * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
+         * @throws SAXException if an error occurs
          */
         public static void setFeaturesBySystemProperty(SAXParserFactory factory)
                 throws SAXException, ParserConfigurationException {

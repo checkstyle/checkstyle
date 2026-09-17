@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
+      </macro>
       <subsection name="Description" id="LineLength_Description">
         <macro name="description">
             <param name="modulePath"
@@ -103,39 +107,41 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example4.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
+        </macro>
+      </subsection>
 
-        <p id="Example5-config">
+      <subsection name="Use Cases" id="LineLength_Use_Cases">
+        <p id="UseCase1-config">
           To configure check to validate <code>import</code> statements:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/UseCase1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">
+        <p id="UseCase1-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example6-config">
+        <p id="UseCase2-config">
           To prevent this check from flagging lines in text-blocks, with
           <a href="https://github.com/checkstyle/checkstyle/issues/17707">side effects</a>:
         </p>
         <macro name="example">
           <param name="path"
-               value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example6.java"/>
+               value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example6-code">
+        <p id="UseCase2-code">
           Example:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example6.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -147,12 +153,20 @@
             Google Style</a>
           </li>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            OpenJDK Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
             Sun Style</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fdoc_comments_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
+            Documentation Comments Style</a>
           </li>
         </ul>
       </subsection>

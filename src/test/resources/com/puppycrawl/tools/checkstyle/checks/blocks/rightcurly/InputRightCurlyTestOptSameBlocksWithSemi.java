@@ -71,7 +71,10 @@ public class InputRightCurlyTestOptSameBlocksWithSemi {
         void display();
         interface Interface4 {
             void myMethod();
-        };}; // 2 violations
+        };};
+    // 2 violations above:
+    // ''}' at column 9 should be alone on a line.'
+    // ''}' at column 11 should have line break before.'
 
     interface InterfaceEndingWithSemiColon2 {
         public void fooEmpty();

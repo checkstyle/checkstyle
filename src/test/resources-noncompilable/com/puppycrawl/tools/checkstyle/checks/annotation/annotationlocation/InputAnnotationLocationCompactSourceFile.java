@@ -4,14 +4,15 @@ allowSamelineMultipleAnnotations = (default)false
 allowSamelineSingleParameterlessAnnotation = (default)true
 allowSamelineParameterizedAnnotation = (default)false
 tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
-         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF, \
+         MODULE_DEF
 
 
 */
 
 // non-compiled with javac: Compilable with Java25
 
-// violation below, 'Annotation 'SuppressWarnings' should be alone on line.'
+// violation below 'Annotation 'SuppressWarnings' should be alone on line.'
 @SuppressWarnings("unused") int field1 = 0;
 
 @Deprecated String field2 = "ok";
@@ -38,7 +39,7 @@ void main() {
 }
 
 class Nested {
-    // violation below, 'Annotation 'SuppressWarnings' should be alone on line.'
+    // violation below 'Annotation 'SuppressWarnings' should be alone on line.'
     @SuppressWarnings("unused") int nestedField1 = 0;
 
     @Deprecated String nestedField2 = "ok";

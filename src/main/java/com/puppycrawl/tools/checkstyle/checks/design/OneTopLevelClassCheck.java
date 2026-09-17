@@ -46,6 +46,13 @@ public class OneTopLevelClassCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "one.top.level.class";
 
+    /**
+     * Creates a new {@code OneTopLevelClassCheck} instance.
+     */
+    public OneTopLevelClassCheck() {
+        // no code by default
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();

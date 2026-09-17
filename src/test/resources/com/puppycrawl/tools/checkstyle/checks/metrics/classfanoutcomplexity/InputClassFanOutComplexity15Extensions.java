@@ -26,7 +26,8 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
     int version();
 }
 
-@MyAnnotation1(name = "ABC", version = 1) // violation
+// violation below 'Class Fan-Out Complexity is 1 (max allowed is 0).'
+@MyAnnotation1(name = "ABC", version = 1)
 public class InputClassFanOutComplexity15Extensions
 {
 

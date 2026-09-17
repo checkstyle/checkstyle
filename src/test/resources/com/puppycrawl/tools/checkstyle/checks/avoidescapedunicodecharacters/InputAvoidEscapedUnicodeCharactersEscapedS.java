@@ -15,9 +15,9 @@ public class InputAvoidEscapedUnicodeCharactersEscapedS {
     String value1 = "\u03bc\t";
     String value2 = "\u03bc\s";
     String value3 = "\u03bc\s not all escaped chars";
-    // violation above, 'Unicode escape(s) usage should be avoided.'
+    // violation above 'Unicode escape(s) usage should be avoided.'
     String value31 = "\u03bc\n not all escaped chars";
-    // violation above, 'Unicode escape(s) usage should be avoided.'
+    // violation above 'Unicode escape(s) usage should be avoided.'
 
     String value4 = """
             \s\s\s\n
@@ -27,19 +27,19 @@ public class InputAvoidEscapedUnicodeCharactersEscapedS {
     String value6 = """
             \s\s\s\n not all escaped chars
             """; // ok, no unicode chars
-    // violation below, 'Unicode escape(s) usage should be avoided.'
+    // violation below 'Unicode escape(s) usage should be avoided.'
     String value7 = /* bla */"""
             \u03bc\s not all escaped chars
             """;
-    // violation below, 'Unicode escape(s) usage should be avoided.'
+    // violation below 'Unicode escape(s) usage should be avoided.'
     String value8 = /* bla */"""
             \u03bc\n not all escaped chars
             """;
-    // violation below, 'Unicode escape(s) usage should be avoided.'
+    // violation below 'Unicode escape(s) usage should be avoided.'
     String value9 = /* bla */"""
             l\u03bc\n
             """;
-    // violation below, 'Unicode escape(s) usage should be avoided.'
+    // violation below 'Unicode escape(s) usage should be avoided.'
     String value10 = "\n       \u03bc\s";
     String value11 = """
         \u03bc\

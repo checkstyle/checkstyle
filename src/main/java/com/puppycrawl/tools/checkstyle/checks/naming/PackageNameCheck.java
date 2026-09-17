@@ -61,6 +61,13 @@ public class PackageNameCheck
     private Pattern format = Pattern.compile("^[a-z]+(\\.[a-zA-Z_]\\w*)*$");
 
     /**
+     * Creates a new {@code PackageNameCheck} instance.
+     */
+    public PackageNameCheck() {
+        // no code by default
+    }
+
+    /**
      * Setter to control the pattern to match valid identifiers.
      *
      * @param pattern the new pattern

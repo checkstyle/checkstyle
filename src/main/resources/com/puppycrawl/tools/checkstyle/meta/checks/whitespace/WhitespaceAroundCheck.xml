@@ -8,7 +8,7 @@
  Checks that a token is surrounded by whitespace. Empty constructor,
  method, class, enum, interface, loop bodies (blocks), lambdas of the form
  &lt;/div&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  public MyClass() {}      // empty constructor
  public void func() {}    // empty method
  public interface Foo {} // empty interface
@@ -32,7 +32,7 @@
  &lt;p&gt;
  This check does not flag as violation double brace initialization like:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  new Properties() {{
      setProperty("key", "value");
  }};
@@ -43,7 +43,7 @@
  contains SLIST to check if beginning of block is surrounded by whitespace
  and catch block is empty, for example:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  try {
      k = 5 / i;
  } catch (ArithmeticException ex) {}

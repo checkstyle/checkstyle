@@ -13,7 +13,7 @@ fi
 TARGET_VERSION=$1
 echo TARGET_VERSION="$TARGET_VERSION"
 
-CURRENT_VERSION=$(getCheckstylePomVersionWithoutSnapshot) \
+CURRENT_VERSION=$(getPomVersionWithoutSnapshot) \
   || { echo "Failed to get Checkstyle POM version."; exit 1; }
 echo CURRENT_VERSION="$CURRENT_VERSION"
 
@@ -22,13 +22,13 @@ if [ "$TARGET_VERSION" != "$CURRENT_VERSION" ]; then
   exit 1;
 fi
 
-if [[ $(grep "<section name=\"Release $TARGET_VERSION\">" src/site/xdoc/releasenotes.xml \
+if [[ $(grep "<section name=\"Release $TARGET_VERSION\">" src/site/xdoc/release-notes.xml \
            | cat | wc -l) -eq 0 ]]; then
-  echo "src/site/xdoc/releasenotes.xml do not have section for $TARGET_VERSION"
+  echo "src/site/xdoc/release-notes.xml do not have section for $TARGET_VERSION"
   exit 1
 fi
 
-SKIP_TEST="-DskipTests -DskipITs"
+SKIP_TEST="-Dcheckstyle.skipCompileInputResources=true -DskipTests -DskipITs"
 SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
 SKIP_OTHERS="-Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dxml.skip=true -Dgpg.skip"
 

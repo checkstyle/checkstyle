@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.function.Consumer;
 
-// xdoc section -- start
+// xdoc section - start
 // violation below 'Usage of type 'TreeSet' is not allowed'
 public class Example4 extends TreeSet {
   // violation below 'Usage of type 'java.util.HashSet' is not allowed'
@@ -81,4 +81,4 @@ public class Example4 extends TreeSet {
     return null;
   }
 }
-// xdoc section -- end
+// xdoc section - end

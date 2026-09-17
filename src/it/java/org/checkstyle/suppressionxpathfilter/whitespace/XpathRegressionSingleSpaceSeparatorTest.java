@@ -114,4 +114,5 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

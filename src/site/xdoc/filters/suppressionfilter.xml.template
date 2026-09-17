@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
+      </macro>
       <subsection name="Description" id="SuppressionFilter_Description">
         <macro name="description">
             <param name="modulePath"
@@ -33,54 +37,41 @@
       </subsection>
       <subsection name="Examples" id="SuppressionFilter_Examples">
         <p id="Example1-config">
-            Suppress certain checks by check name, file, and line number:
+          Default configuration does nothing:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="suppressionexample1-raw">
-          The following suppressions XML document directs
-          a <code>SuppressionFilter</code> to
-          reject <code>JavadocStyleCheck</code> violations for
-          line 4 of
-          file <code>Example1.java</code>,
-          and <code>MagicNumberCheck</code> violations for lines
-          7 and 11 of file <code>Example1.java</code>,
-          and <code>'Missing a Javadoc comment'</code> violations
-          for all lines and files:
-        </p>
-        <macro name="example">
-          <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample1.xml"/>
-          <param name="type" value="raw"/>
-        </macro>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">Code example:</p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
-            Suppress certain checks by their module id:
+            Suppress certain checks by check name, file, and line number:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="suppressionexample2-raw">
+        <p id="suppressionexample1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
-          reject <code>EqualsAvoidNullCheck</code> by
-          <a href="../config.html#Id">module id</a>
-          <code>stringEqual</code> violations for
-          all lines of file <code>Example2.java</code>:
+          reject <code>MemberNameCheck</code> violations for
+          line 20 of
+          file <code>Example2.java</code>,
+          and <code>MagicNumberCheck</code> violations for lines
+          22 and 26 of file <code>Example2.java</code>,
+          and <code>'Missing a Javadoc comment for'</code> violations
+          for all lines and files:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample2.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample1.xml"/>
           <param name="type" value="raw"/>
         </macro>
         <p id="Example2-code">Example:</p>
@@ -90,42 +81,86 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
-            Suppress all checks for hidden files and folders:
+          To ignore a missing suppressions file:
         </p>
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="suppressionexample3-raw">
+        <p id="Example3-code">Code example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        </subsection>
+        <subsection name="Use Cases" id="SuppressionFilter_Use_Cases">
+          <p>
+            The following use cases demonstrate how to suppress certain checks by their module id,
+            how to suppress all checks for hidden files and folders, and how to suppress checks by
+            violation message.
+          </p>
+        <p id="UseCase1-config">
+            Suppress certain checks by their module id:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/UseCase1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressionUseCase1-raw">
+          The following suppressions XML document directs
+          a <code>SuppressionFilter</code> to
+          reject <code>EqualsAvoidNullCheck</code> by
+          <a href="../config.html#Id">module id</a>
+          <code>stringEqual</code> violations for
+          all lines of file <code>UseCase1.java</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionUseCase1.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="UseCase1-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/UseCase1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="UseCase2-config">
+            Suppress all checks for hidden files and folders:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/UseCase2.properties"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressionUseCase2-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject all checks for hidden files and folders:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample3.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/suppressionUseCase2.xml"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="hidden-raw">
-          Below Example is suppressed because
-          <code>hidden.properties</code> file inside
-          the <code>.hidden</code> folder:
-        </p>
+        <p id="UseCase2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/hidden.properties"/>
-          <param name="type" value="raw"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/UseCase2.properties"/>
+          <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase3-config">
             Suppress checks by violation message:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/UseCase3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="suppressionexample4-raw">
+        <p id="suppressionUseCase3-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject violations on variable named
@@ -133,13 +168,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample4.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionUseCase3.xml"/>
           <param name="type" value="raw"/>
         </macro>
-        <p id="Example4-code">Example:</p>
+        <p id="UseCase3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/UseCase3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p>
@@ -148,6 +183,13 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress files="[/\\]target[/\\]" checks=".*"/&gt;
         </code></pre></div>
+        <p>
+          Suppress all checks for Maven-generated code
+          (compact form for 'files' that matches on Windows and Linux):
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        &lt;suppress files="/target/" checks=".*"/&gt;
+          </code></pre></div>
         <p>
           Suppress all checks for archives, classes and other binary files:
         </p>

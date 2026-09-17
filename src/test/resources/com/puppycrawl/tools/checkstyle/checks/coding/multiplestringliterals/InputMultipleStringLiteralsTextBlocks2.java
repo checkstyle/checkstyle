@@ -14,19 +14,19 @@ public class InputMultipleStringLiteralsTextBlocks2 {
     // violation below 'The String "another test" appears 2 times in the file.'
     String str3 = "another test"; // occurrence #1
     String str4 = """
-            another test"""; // violation #1
+            another test""";
 
     // violation below 'The String "" appears 6 times in the file.'
     String str5a = ""; // occurrence #1
     String str5b = """
-            """; // violation #1
+            """;
     String str6 = """
-                        """; // violation #2
+                        """;
     String str7 = """
-"""; // violation #3
+""";
 
     String str8 = """
-                             """; // violation #4
+                             """;
     // violation below 'The String "        .\\n         .\\n.\\n" appears 2 times in the file.'
     String str8b = """
         .

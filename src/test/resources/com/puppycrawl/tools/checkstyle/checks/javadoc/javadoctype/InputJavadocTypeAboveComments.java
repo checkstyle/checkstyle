@@ -5,8 +5,10 @@ authorFormat = Mohamed Mahfouz
 allowMissingParamTags = (default)false
 allowUnknownTags = (default)false
 allowedAnnotations = (default)Generated
+violateExecutionOnNonTightHtml = (default)false
 tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
-
+excludeScope = (default)(null)
+versionFormat = (default)(null)
 
 */
 
@@ -18,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
    Input class for JavadocType
 */
 public class InputJavadocTypeAboveComments {
-    // violation above, 'Type Javadoc comment is missing @author tag'
+    // violation above 'Type Javadoc comment is missing @author tag'
 }
 
 /**
@@ -44,5 +46,5 @@ class MyClass2 /* Comment */{
  * Test class for variable naming in for each clause.*
  */
 /* Comment */ class MyClass3 {
-// violation above, 'Type Javadoc comment is missing @author tag'
+// violation above 'Type Javadoc comment is missing @author tag'
 }

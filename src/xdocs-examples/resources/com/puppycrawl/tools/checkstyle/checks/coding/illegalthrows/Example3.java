@@ -9,13 +9,13 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.illegalthrows;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example3 {
 
   void f1() throws RuntimeException {}
   void f2() throws Exception {}
-  void f3() throws Error {} // violation, 'Throwing 'Error' is not allowed'
-  void f4() throws Throwable {} // violation, 'Throwing 'Throwable' is not allowed'
+  void f3() throws Error {} // violation 'Throwing 'Error' is not allowed'
+  void f4() throws Throwable {} // violation 'Throwing 'Throwable' is not allowed'
 
   void f5() throws NullPointerException {}
   @Override
@@ -24,4 +24,4 @@ public class Example3 {
     return str;
   }
 }
-// xdoc section -- end
+// xdoc section - end

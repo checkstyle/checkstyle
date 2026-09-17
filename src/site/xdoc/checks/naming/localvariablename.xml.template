@@ -11,6 +11,10 @@
         <param name="modulePath"
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalVariableNameCheck.java"/>
       </macro>
+      <macro name="sitetoc">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalVariableNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="LocalVariableName_Description">
         <macro name="description">
             <param name="modulePath"
@@ -59,43 +63,46 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example4-config">
+        <p id="Example3-config">
           An example of how to configure the check to allow one character variable name in
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
           initialization expressions</a> in FOR loop, where regexp allows 2 or more chars:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example4-code">Code Example:</p>
+        <p id="Example3-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example3.java"/>
           <param name="type" value="code"/>
-        </macro><hr class="example-separator"/>
-        <p id="Example3-code">
+        </macro>
+      </subsection>
+
+      <subsection name="Use Cases" id="LocalVariableName_Use_Cases">
+        <p id="UseCase1-code">
           An example of one character variable name in initialization expression(like "i")
           in FOR loop:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/UseCase1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="UseCase2-config">
         An example of how to configure the check to that all variables have 3 or more chars in name:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/UseCase2.java"/>
           <param name="type" value="config"/>
         </macro>
-        <p id="Example5-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/Example5.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/localvariablename/UseCase2.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
@@ -109,6 +116,11 @@
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
             Sun Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">
+              OpenJDK Style
+            </a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LocalVariableName">

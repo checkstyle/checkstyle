@@ -105,6 +105,13 @@ strategy:
       image: 'macOS-14'
       cmd: "JAVA_HOME=$JAVA_HOME_25_X64 ./mvnw -e --no-transfer-progress verify"
 
+    # check that the PR does not introduce outdated dependencies when pom.xml changes
+    'versions-on-pr':
+      image: 'ubuntu-24.04'
+      cmd: "./.ci/validation.sh versions-on-pr"
+      skipCache: true
+      needXmlstarlet: true
+
     # versions to update
     'versions':
       image: 'ubuntu-24.04'

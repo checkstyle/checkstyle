@@ -8,6 +8,37 @@
   <body>
     <section name="PatternVariableName">
       <p>Since Checkstyle 8.36</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#PatternVariableName_Description">Description</a></li>
+          <li><a href="#PatternVariableName_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#PatternVariableName_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">An example of how to configure the check for names that have a lower case letter, followed by letters and digits, optionally separated by underscore</a></li>
+            </ul>
+          </li>
+          <li>
+            <input type="checkbox" id="toc-sub-UseCases" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-UseCases" class="toc-sub-toggle"><a href="#PatternVariableName_Use_Cases">Use Cases</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#UseCase1-config" class="toc-sublink">An example of how to configure the check to that all variables have 3 or more chars in name</a></li>
+              <li><a href="#UseCase2-config" class="toc-sublink">An example of how to configure the check with different format for final and non-final pattern variables</a></li>
+            </ul>
+          </li>
+          <li><a href="#PatternVariableName_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#PatternVariableName_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#PatternVariableName_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#PatternVariableName_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="PatternVariableName_Description">
         <div>
           Checks that pattern variable names conform to a specified pattern.
@@ -27,7 +58,7 @@
             <tr>
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
-              <td><a href="../../property_types.html#Pattern">Pattern</a></td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
               <td><code>^([a-z][a-zA-Z0-9]*|_)$</code></td>
               <td>8.36</td>
             </tr>
@@ -52,11 +83,12 @@
 class Example1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
-    // violation above, 'Name 'num_1' must match pattern*.'
+    // violation above 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
+
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -78,14 +110,19 @@ class Example1 {
 class Example2 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
+
     if (o1 instanceof Integer n) {}
+
   }
 }
-</code></pre></div><hr class="example-separator"/>
-        <p id="Example3-config">
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Use Cases" id="PatternVariableName_Use_Cases">
+        <p id="UseCase1-config">
           An example of how to configure the check to that all variables have 3 or more
           chars in name:
         </p>
@@ -98,20 +135,21 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">Code Example:</p>
+        <p id="UseCase1-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example3 {
+class UseCase1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
+
     if (o1 instanceof Integer n) {}
-    // violation above, 'Name 'n' must match pattern*.'
+    // violation above 'Name 'n' must match pattern*.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="UseCase2-config">
           An example of how to configure the check with different format for final and non-final
           pattern variables:
         </p>
@@ -142,14 +180,17 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Code Example:</p>
+        <p id="UseCase2-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example4 {
+class UseCase2 {
   void foo(Object o1){
-    if (o1 instanceof String BAD) {} // violation
-    if (o1 instanceof String good) {}
-    if (o1 instanceof final String GOOD) {}
-    if (o1 instanceof final String bad) {} // violation
+    if (o1 instanceof String STRING) {}
+    // violation above 'Name 'STRING' must match pattern*.'
+    if (o1 instanceof Integer num) {}
+    if (o1 instanceof Integer num_1) {}
+    // violation above 'Name 'num_1' must match pattern*.'
+    if (o1 instanceof Integer n) {}
+
   }
 }
 </code></pre></div>
@@ -160,6 +201,11 @@ class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
               Google Style
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PatternVariableName">
+              OpenJDK Style
             </a>
           </li>
           <li>

@@ -17,7 +17,7 @@
  &lt;ol&gt;
    &lt;li&gt;
      The same notation/habit for C++ and Java (C++ have global methods, so having
-     &amp;quot;this.&amp;quot; do make sense in it to distinguish call of method of class
+     &lt;code&gt;"this"&lt;/code&gt;; do make sense in it to distinguish call of method of class
      instead of global).
    &lt;/li&gt;
    &lt;li&gt;

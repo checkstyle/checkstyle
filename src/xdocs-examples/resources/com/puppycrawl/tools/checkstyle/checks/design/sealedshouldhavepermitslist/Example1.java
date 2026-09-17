@@ -10,7 +10,7 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.design.sealedshouldhavepermitslist;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   // imagine hundreds of lines of code...
@@ -29,4 +29,4 @@ class CorrectedExample1 {
   final class C extends A {}
   final class D { } // this can not extend A
 }
-// xdoc section -- end
+// xdoc section - end

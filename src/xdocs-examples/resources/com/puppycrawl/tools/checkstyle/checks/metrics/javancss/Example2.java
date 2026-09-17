@@ -7,11 +7,11 @@
   </module>
 </module>
 */
-// xdoc section -- start
+// xdoc section - start
 package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
 
 class Example2 {
-  // violation below, 'NCSS for this method is 6 (max allowed is 4)'
+  // violation below 'NCSS for this method is 6 (max allowed is 4)'
   public void testMethod1() {
     System.out.println("m-1:Line 1");
     System.out.println("m-1:Line 2");
@@ -39,4 +39,4 @@ class Example2 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

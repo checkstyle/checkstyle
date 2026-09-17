@@ -128,4 +128,5 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
 }

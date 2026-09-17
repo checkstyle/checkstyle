@@ -221,7 +221,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
 
     void foo24() {
         String field1 = "Hello";
-        field1 = "Java"; // No violation. Local var allowed
+        field1 = "Java"; // ok, Local var allowed
         this.booleanField = true;
         this.booleanField = booleanField; // violation '.* variable 'booleanField' needs "this.".'
     }
@@ -231,7 +231,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
             if (true) {
                 String field1 = "Hello, World!";
                 if (true) {
-                    field1 = new String(); // No violation. Local var allowed
+                    field1 = new String(); // ok, Local var allowed
                 }
                 else {
                     field1 += field1; // violation '.* variable 'field1' needs "this.".'
@@ -389,7 +389,7 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
                 action = "" + action;
             }
         }
-        action = "action"; // No violation. Local var allowed
+        action = "action"; // ok, Local var allowed
         return processAction(action); // violation 'Method call to 'processAction' needs "this.".'
     }
 

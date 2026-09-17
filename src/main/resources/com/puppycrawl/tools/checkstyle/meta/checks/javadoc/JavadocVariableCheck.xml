@@ -24,7 +24,7 @@
             </property>
          </properties>
          <message-keys>
-            <message-key key="javadoc.missing"/>
+            <message-key key="javadoc.missing.named"/>
          </message-keys>
       </check>
    </module>

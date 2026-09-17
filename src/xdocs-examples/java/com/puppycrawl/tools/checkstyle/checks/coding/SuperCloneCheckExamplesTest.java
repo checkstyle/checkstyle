@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.AbstractSuperCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck.MSG_KEY;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,4 +40,5 @@ public class SuperCloneCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
 }

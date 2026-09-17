@@ -322,4 +322,5 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
             .that(actual)
             .isEqualTo(expected);
     }
+
 }

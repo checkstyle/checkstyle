@@ -13,7 +13,7 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 
 
-package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace; //violation ''package' has more than 1 empty lines before'
+package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace; // violation ''package' has more than 1 empty lines before'
 
 
 

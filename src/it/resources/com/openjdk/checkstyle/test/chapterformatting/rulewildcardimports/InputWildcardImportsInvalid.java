@@ -1,8 +1,10 @@
 package com.openjdk.checkstyle.test.chapterformatting.rulewildcardimports;
 
+// violation first line 'Header is missing'
+
 import java.util.*;
 
-import static java.lang.Math.*; // violation, 'Only '1' star import is allowed per file.'
+import static java.lang.Math.*; // violation 'Only '1' star import is allowed per file.'
 
 public class InputWildcardImportsInvalid {
 

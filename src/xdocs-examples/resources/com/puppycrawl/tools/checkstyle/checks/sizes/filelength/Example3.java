@@ -9,12 +9,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.filelength;
 
-// xdoc section -- start
+// xdoc section - start
 
 public class Example3 {
   public void myTest() {
     // small class with more than 5 lines less than 2000 lines
-    String test = "Some content"; // ok, no violation as only txt file validated
+    String test = "Some content"; // ok, as only txt file validated
   }
 }
-// xdoc section -- end
+// xdoc section - end

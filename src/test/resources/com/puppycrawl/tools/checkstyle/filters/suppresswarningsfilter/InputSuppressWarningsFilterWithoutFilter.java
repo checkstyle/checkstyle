@@ -98,24 +98,29 @@ class InputSuppressWarningsFilterWithoutFilter {
     @SuppressWarnings(UNUSED)
     public void annotationUsingStringConstantValue(){ }
 
-    @SuppressWarnings("checkstyle:uncommentedmain") // violation 'Uncommented main method found'
+    // violation below 'Uncommented main method found'
+    @SuppressWarnings("checkstyle:uncommentedmain")
     public static void main(String[] args) { }
 
     static class TestClass1 { // violation 'Missing a Javadoc comment'
-        @SuppressWarnings("uncommentedmain") // violation 'Uncommented main method found'
+        // violation below 'Uncommented main method found'
+        @SuppressWarnings("uncommentedmain")
         public static void main(String[] args) { }
     }
 
     static class TestClass2 { // violation 'Missing a Javadoc comment'
-        @SuppressWarnings("UncommentedMain") // violation 'Uncommented main method found'
+        // violation below 'Uncommented main method found'
+        @SuppressWarnings("UncommentedMain")
         public static void main(String[] args) { }
     }
 
     static class TestClass3 { // violation 'Missing a Javadoc comment'
-        @SuppressWarnings("checkstyle:UncommentedMain") // violation 'Uncommented main method found'
+        // violation below 'Uncommented main method found'
+        @SuppressWarnings("checkstyle:UncommentedMain")
         public static void main(String[] args) { }
     }
 
-    @SuppressWarnings("checkstyle:javadoctype") // violation 'Missing a Javadoc comment'
+    // violation below 'Missing a Javadoc comment'
+    @SuppressWarnings("checkstyle:javadoctype")
     public static abstract class Task { }
 }

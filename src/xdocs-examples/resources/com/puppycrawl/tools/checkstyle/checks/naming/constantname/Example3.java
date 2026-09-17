@@ -13,7 +13,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
 
-// xdoc section -- start
+// xdoc section - start
 class Example3 {
   public final static int FIRST_CONSTANT1 = 10;
   protected final static int SECOND_CONSTANT2 = 100;
@@ -25,4 +25,4 @@ class Example3 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1;
 }
-// xdoc section -- end
+// xdoc section - end

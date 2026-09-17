@@ -35,8 +35,11 @@ public class InputNoWrappingAfterRecordName2 {
   record Multi4 () { // violation ''(' is preceded with whitespace'
 
     @InSize(limit = 2)
-    void foo (){} // violation ''(' is preceded with whitespace'
+    void foo (){}
   }
+  // 2 violations 2 lines above:
+  // ''(' is preceded with whitespace'
+  // ''{' is not preceded with whitespace'
 
   record Multi5() {
     private static final MyRecord object =

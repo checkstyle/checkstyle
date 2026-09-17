@@ -10,10 +10,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming.interfacetypeparametername;
 
-// xdoc section -- start
+// xdoc section - start
 class Example2 {
   interface FirstInterface<T> {}
   interface SecondInterface<t> {}
   interface ThirdInterface<type> {} // violation 'Name 'type' must match pattern'
 }
-// xdoc section -- end
+// xdoc section - end

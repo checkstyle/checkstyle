@@ -54,9 +54,7 @@
     <properties>
       <!-- we allow catching Exception in certain cases to provide more details in wrapper -->
       <property name="violationSuppressXPath"
-         value="//ClassDeclaration[@SimpleName='PropertiesMacro']
-                        //MethodDeclaration[@Name='writeTablePropertiesRows']
-                    | //ClassDeclaration[@SimpleName='Checker']
+         value="//ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFiles']
                     | //ClassDeclaration[@SimpleName='Checker']
                         //MethodDeclaration[@Name='processFile']
@@ -74,6 +72,17 @@
       <property name="violationSuppressXPath"
             value="//ClassDeclaration[@SimpleName='LeftCurlyCheck']
                    //MethodDeclaration[@Name='visitToken']"/>
+    </properties>
+  </rule>
+
+  <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull">
+    <properties>
+      <!-- DetailAstImpl#getHiddenBefore/getHiddenAfter if we convert it to List.of, it
+             prevents us from reaching full Pit mutant coverage which we value
+               more than list.of. -->
+      <property name="violationSuppressXPath"
+               value="//ClassDeclaration[@SimpleName='DetailAstImpl']
+                        //MethodDeclaration[@Name='getHiddenBefore' or @Name='getHiddenAfter']"/>
     </properties>
   </rule>
 </ruleset>

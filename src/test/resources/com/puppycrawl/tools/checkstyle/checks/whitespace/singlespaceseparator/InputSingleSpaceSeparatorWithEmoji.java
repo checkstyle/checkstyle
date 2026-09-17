@@ -33,8 +33,15 @@ public class InputSingleSpaceSeparatorWithEmoji {
         String  s = "🧐  🧐"; // violation 'Use a single space to separate non-whitespace characters'
     }
 
-    private  void foo3  (String     s) { // 3 violations
-        if (s.substring(0).equals("da🎄")  )  { // 2 violations
+    private  void foo3  (String     s) {
+    // 3 violations above:
+    //     'Use a single space to separate non-whitespace characters.'
+    //     'Use a single space to separate non-whitespace characters.'
+    //     'Use a single space to separate non-whitespace characters.'
+        if (s.substring(0).equals("da🎄")  )  {
+        // 2 violations above:
+        //     'Use a single space to separate non-whitespace characters.'
+        //     'Use a single space to separate non-whitespace characters.'
           if  ("🧐". // violation 'Use a single space to separate non-whitespace characters'
                   isEmpty()){
 /*🧐*/       }  else { // violation 'Use a single space to separate non-whitespace characters'

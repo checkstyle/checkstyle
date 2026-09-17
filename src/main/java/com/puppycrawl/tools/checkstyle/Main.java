@@ -106,7 +106,7 @@ public final class Main {
      * @noinspectionreason CallToPrintStackTrace - driver class for Checkstyle must be able to
      *      show all details in case of failure
      * @noinspectionreason CallToSystemExit - driver class must call exit
-     **/
+     */
     public static void main(String... args) throws IOException {
 
         final CliOptions cliOptions = new CliOptions();
@@ -182,8 +182,8 @@ public final class Main {
      * @param parseResult generic access to options and parameters found on the command line
      * @param options encapsulates options and parameters specified on the command line
      * @return number of violations
-     * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
+     * @throws IOException if a file could not be read.
      * @noinspection UseOfSystemOutOrSystemErr
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
@@ -283,8 +283,8 @@ public final class Main {
      * @param options user-specified options
      * @param filesToProcess the list of files whose style to check
      * @return number of violations
-     * @throws IOException if a file could not be read.
      * @throws CheckstyleException if something happens processing the files.
+     * @throws IOException if a file could not be read.
      * @noinspection UseOfSystemOutOrSystemErr
      * @noinspectionreason UseOfSystemOutOrSystemErr - driver class for Checkstyle requires
      *      usage of System.out and System.err
@@ -356,10 +356,10 @@ public final class Main {
      * @param options user-specified options
      * @param filesToProcess the list of files whose style to check
      * @return number of violations of ERROR level
-     * @throws IOException
-     *         when output file could not be found
      * @throws CheckstyleException
      *         when properties file could not be loaded
+     * @throws IOException
+     *         when output file could not be found
      */
     private static int runCheckstyle(CliOptions options, List<File> filesToProcess)
             throws CheckstyleException, IOException {
@@ -506,7 +506,7 @@ public final class Main {
      * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
-     * @exception IOException when provided output location is not found
+     * @throws IOException when provided output location is not found
      */
     private static AuditListener createListener(OutputFormat format, Path outputLocation)
             throws IOException {
@@ -579,7 +579,8 @@ public final class Main {
          */
         /* package */ AuditListener createListener(
             OutputStream out,
-            OutputStreamOptions options) throws IOException {
+            OutputStreamOptions options)
+                    throws IOException {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);
@@ -608,6 +609,13 @@ public final class Main {
     private static final class OnlyCheckstyleLoggersFilter implements Filter {
         /** Name of the package used to filter on. */
         private final String packageName = Main.class.getPackage().getName();
+
+        /**
+         * Creates a new {@code OnlyCheckstyleLoggersFilter} instance.
+         */
+        private OnlyCheckstyleLoggersFilter() {
+            // no code by default
+        }
 
         /**
          * Returns whether the specified logRecord should be logged.
@@ -815,6 +823,13 @@ public final class Main {
         @Option(names = {"-b", "--branch-matching-xpath"},
             description = "Shows Abstract Syntax Tree(AST) branches that match given XPath query.")
         private String xpath;
+
+        /**
+         * Creates a new {@code CliOptions} instance.
+         */
+        private CliOptions() {
+            // no code by default
+        }
 
         /**
          * Gets the list of exclusions provided through the command line arguments.

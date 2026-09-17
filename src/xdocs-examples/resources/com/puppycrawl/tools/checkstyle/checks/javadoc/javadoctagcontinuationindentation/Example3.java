@@ -9,13 +9,12 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
-// xdoc section -- start
+// xdoc section - start
   /**
    * <a> 'a' tag is not closed
    */
 class Example3 {
   // violation 3 lines above 'Unclosed HTML tag found: a'
-
   /**
    * @param input comment with
    *     indentation spacing for the tag
@@ -57,4 +56,4 @@ class Example3 {
    */
   public void testIndentationEclipse(String input) {}
 }
-// xdoc section -- end
+// xdoc section - end

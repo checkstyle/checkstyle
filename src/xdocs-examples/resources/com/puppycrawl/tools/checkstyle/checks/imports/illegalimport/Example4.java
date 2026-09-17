@@ -12,15 +12,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-// xdoc section -- start
+// xdoc section - start
 import java.io.*;
 import java.lang.ArithmeticException;
 import java.sql.Connection;
-import java.util.List; // violation, 'Illegal import'
-import java.util.Enumeration; // violation, 'Illegal import'
-import java.util.Arrays; // violation, 'Illegal import'
-import java.util.Date; // violation, 'Illegal import'
+import java.util.List; // violation 'Illegal import'
+import java.util.Enumeration; // violation 'Illegal import'
+import java.util.Arrays; // violation 'Illegal import'
+import java.util.Date; // violation 'Illegal import'
 import sun.misc.*;
 
 public class Example4 {}
-// xdoc section -- end
+// xdoc section - end

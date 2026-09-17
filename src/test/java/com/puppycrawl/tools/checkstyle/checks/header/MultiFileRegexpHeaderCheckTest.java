@@ -29,7 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +151,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyHeaderFile() throws IOException {
         final File emptyFile = new File(temporaryFolder, "empty.header");
-        Files.write(emptyFile.toPath(), new ArrayList<>(), StandardCharsets.UTF_8);
+        Files.write(emptyFile.toPath(), new ArrayList<>());
         final URI fileUri = emptyFile.toURI();
 
         final IllegalArgumentException exc =
@@ -240,13 +239,11 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     public void testBlankPatternBranch() throws Exception {
         final File headerFile = new File(temporaryFolder, "blankPattern.header");
         Files.write(headerFile.toPath(),
-                List.of("// First line", "// Second line", "   "),
-                StandardCharsets.UTF_8);
+                List.of("// First line", "// Second line", "   "));
 
         final File testFile = new File(temporaryFolder, "testFile.java");
         Files.write(testFile.toPath(),
-                List.of("// First line", "// Second line", "   "),
-                StandardCharsets.UTF_8);
+                List.of("// First line", "// Second line", "   "));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -298,8 +295,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyPatternInHeader() throws Exception {
         final File headerFile = new File(temporaryFolder, "headerFiles.header");
-        Files.write(headerFile.toPath(), List.of("", "valid"),
-            StandardCharsets.UTF_8);
+        Files.write(headerFile.toPath(), List.of("", "valid"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -361,13 +357,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         };
 
         final File testFile = new File(temporaryFolder, "test.java");
-        Files.write(testFile.toPath(), List.of(fileLines), StandardCharsets.UTF_8);
+        Files.write(testFile.toPath(), List.of(fileLines));
 
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
             "// Second line",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -382,13 +378,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(fileWithBlank.toPath(), List.of(
             "// First line",
             "",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
             "^$",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -403,13 +399,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(fileNoBlank.toPath(), List.of(
             "// First line",
             "// Second line",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
             "^$",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -429,15 +425,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final File testFile = new File(temporaryFolder, "test.java");
         Files.write(testFile.toPath(), List.of(
             "// Different content",
-            "// Not matching any headers"), StandardCharsets.UTF_8);
+            "// Not matching any headers"));
 
         final File header1File = new File(temporaryFolder, "header1.header");
-        Files.write(header1File.toPath(), List.of("// Header 1"),
-            StandardCharsets.UTF_8);
+        Files.write(header1File.toPath(), List.of("// Header 1"));
 
         final File header2File = new File(temporaryFolder, "header2.header");
-        Files.write(header2File.toPath(), List.of("// Header 2"),
-            StandardCharsets.UTF_8);
+        Files.write(header2File.toPath(), List.of("// Header 2"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -457,16 +451,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMultipleHeaderFiles() throws Exception {
         final File headerFile1 = new File(temporaryFolder, "header1.header");
-        Files.write(headerFile1.toPath(), List.of("Copyright", "Author: .*", ""),
-            StandardCharsets.UTF_8);
+        Files.write(headerFile1.toPath(), List.of("Copyright", "Author: .*", ""));
 
         final File headerFile2 = new File(temporaryFolder, "header2.header");
-        Files.write(headerFile2.toPath(), List.of("License", "Year: \\d{4}", ""),
-            StandardCharsets.UTF_8);
+        Files.write(headerFile2.toPath(), List.of("License", "Year: \\d{4}", ""));
 
         final File testFile = new File(temporaryFolder, "TestFile.java");
-        Files.write(testFile.toPath(), List.of("Copyright", "Author: John Doe", ""),
-            StandardCharsets.UTF_8);
+        Files.write(testFile.toPath(), List.of("Copyright", "Author: John Doe", ""));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -479,8 +470,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInvalidRegex() throws Exception {
         final File corruptedHeaderFile = new File(temporaryFolder, "corrupted.header");
-        Files.write(corruptedHeaderFile.toPath(), List.of("Invalid regex [a-z"),
-            StandardCharsets.UTF_8);
+        Files.write(corruptedHeaderFile.toPath(), List.of("Invalid regex [a-z"));
 
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
@@ -510,7 +500,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final File testFile = new File(temporaryFolder, "shortFile.java");
         Files.write(testFile.toPath(), List.of(
             "// Different content",
-            "// Not matching header"), StandardCharsets.UTF_8);
+            "// Not matching header"));
 
         final File headerFile = new File(temporaryFolder, "longHeader.header");
         Files.write(headerFile.toPath(), List.of(
@@ -518,7 +508,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// Second line",
             "// Third line",
             "// Fourth line",
-            "// Fifth line"), StandardCharsets.UTF_8);
+            "// Fifth line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -539,13 +529,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(testFile.toPath(), List.of(
             "// First line matches",
             "// This line doesn't match the header pattern",
-            "// Third line matches"), StandardCharsets.UTF_8);
+            "// Third line matches"));
 
         final File headerFile = new File(temporaryFolder, "mismatchHeader.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line matches",
             "// Second line matches",
-            "// Third line matches"), StandardCharsets.UTF_8);
+            "// Third line matches"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -567,13 +557,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(testFile.toPath(), List.of(
             "// First line",
             "// Second line",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
             "// Different line",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -594,12 +584,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final File testFile = new File(temporaryFolder, "test.java");
         Files.write(testFile.toPath(), List.of(
             "// Different content",
-            "// Not matching any headers"), StandardCharsets.UTF_8);
+            "// Not matching any headers"));
 
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// Header content",
-            "// Another line"), StandardCharsets.UTF_8);
+            "// Another line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -621,14 +611,14 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// First line",
             "// Second line",
             "// Third line with different pattern"
-        ), StandardCharsets.UTF_8);
+        ));
 
         final File testFile = new File(temporaryFolder, "testFile.java");
         Files.write(testFile.toPath(), List.of(
             "// First line",
             "// Second line",
             "// Third line that does not match"
-        ), StandardCharsets.UTF_8);
+        ));
 
         final DefaultConfiguration checkConfig =
             createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -651,12 +641,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// Line 1",
             "// Line 2",
             "// Line 3"
-        ), StandardCharsets.UTF_8);
+        ));
 
         final File testFile = new File(temporaryFolder, "shorterFile.java");
         Files.write(testFile.toPath(), List.of(
             "// Line 1"
-        ), StandardCharsets.UTF_8);
+        ));
 
         final DefaultConfiguration checkConfig =
             createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -678,12 +668,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// Line 1",
             "",
             "// Line 3"
-        ), StandardCharsets.UTF_8);
+        ));
 
         final File testFile = new File(temporaryFolder, "shorterFile.java");
         Files.write(testFile.toPath(), List.of(
             "// Line 1"
-        ), StandardCharsets.UTF_8);
+        ));
 
         final DefaultConfiguration checkConfig =
             createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -704,7 +694,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(headerFile.toPath(), List.of(
             "// First line",
             "// Second line",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         // Create a test file with more lines than the header
         final File testFile = new File(temporaryFolder, "longerFile.java");
@@ -713,7 +703,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// Second line",
             "// Third line",
             "// Fourth line",
-            "// Fifth line"), StandardCharsets.UTF_8);
+            "// Fifth line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -728,13 +718,13 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(headerFile.toPath(), List.of(
                 "// First line",
                 "// Second line",
-                "// Third line"), StandardCharsets.UTF_8);
+                "// Third line"));
 
         final File testFile = new File(temporaryFolder, "longerFile.java");
         Files.write(testFile.toPath(), List.of(
                 "// First line",
                 "// Second line",
-                "// Third line"), StandardCharsets.UTF_8);
+                "// Third line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -751,7 +741,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// Second line",
             "// Third line with pattern .*",
             "// Fourth line",
-            "// Fifth line"), StandardCharsets.UTF_8);
+            "// Fifth line"));
 
         final File testFile = new File(temporaryFolder, "mismatchThirdLine.java");
         Files.write(testFile.toPath(), List.of(
@@ -759,7 +749,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
             "// Second line",
             "This line doesn't match the pattern",
             "// Fourth line",
-            "// Fifth line"), StandardCharsets.UTF_8);
+            "// Fifth line"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -780,17 +770,17 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final File matchingHeaderFile = new File(temporaryFolder, "matching.header");
         Files.write(matchingHeaderFile.toPath(), List.of(
             "// This header matches",
-            "// The file content"), StandardCharsets.UTF_8);
+            "// The file content"));
 
         final File nonMatchingHeaderFile = new File(temporaryFolder, "nonMatching.header");
         Files.write(nonMatchingHeaderFile.toPath(), List.of(
             "// This header doesn't match",
-            "// Different content"), StandardCharsets.UTF_8);
+            "// Different content"));
 
         final File testFile = new File(temporaryFolder, "TestFile.java");
         Files.write(testFile.toPath(), List.of(
             "// This header matches",
-            "// The file content"), StandardCharsets.UTF_8);
+            "// The file content"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -804,17 +794,17 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final File matchingHeader = new File(temporaryFolder, "nonMatching1.header");
         Files.write(matchingHeader.toPath(), List.of(
             "// First matching header",
-            "// Second matching header"), StandardCharsets.UTF_8);
+            "// Second matching header"));
 
         final File nonMatchingHeader = new File(temporaryFolder, "nonMatching2.header");
         Files.write(nonMatchingHeader.toPath(), List.of(
             "// First matching header",
-            "// Second no-matching header"), StandardCharsets.UTF_8);
+            "// Second no-matching header"));
 
         final File testFile = new File(temporaryFolder, "TestFile.java");
         Files.write(testFile.toPath(), List.of(
             "// First matching header",
-            "// Second matching header"), StandardCharsets.UTF_8);
+            "// Second matching header"));
 
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
@@ -855,8 +845,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         final File headerFileA = new File(temporaryFolder, "testHeaderA_clear_check.header");
-        Files.write(headerFileA.toPath(), List.of("// Header A for clear check"),
-                StandardCharsets.UTF_8);
+        Files.write(headerFileA.toPath(), List.of("// Header A for clear check"));
         final String pathA = headerFileA.getAbsolutePath();
         final URI uriA = headerFileA.toURI();
 
@@ -866,8 +855,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
                 .containsExactly(uriA.toASCIIString());
 
         final File headerFileB = new File(temporaryFolder, "testHeaderB_clear_check.header");
-        Files.write(headerFileB.toPath(), List.of("// Header B for clear check"),
-                StandardCharsets.UTF_8);
+        Files.write(headerFileB.toPath(), List.of("// Header B for clear check"));
         final String pathB = headerFileB.getAbsolutePath();
         final URI uriB = headerFileB.toURI();
 
@@ -883,7 +871,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         Files.write(headerFile.toPath(), List.of(
             "// First line",
             "",
-            "// Third line"), StandardCharsets.UTF_8);
+            "// Third line"));
 
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         check.setHeaderFiles(headerFile.getPath());
@@ -910,4 +898,5 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
                 .that(exc.getMessage())
                 .contains("unable to load header file nonexistent.header");
     }
+
 }

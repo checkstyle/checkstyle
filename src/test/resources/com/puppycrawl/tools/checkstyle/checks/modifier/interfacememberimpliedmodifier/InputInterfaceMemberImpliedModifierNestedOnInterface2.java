@@ -18,13 +18,15 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface2 {
     public static interface NestedInterfacePublicStatic {
     }
 
-    public interface NestedInterfacePublic { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public interface NestedInterfacePublic {
     }
 
     static interface NestedInterfaceStatic {
     }
 
-    interface NestedInterface { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    interface NestedInterface {
     }
 
     public static enum NestedEnumPublicStatic {
@@ -32,7 +34,8 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface2 {
         FALSE
     }
 
-    public enum NestedEnumPublic { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public enum NestedEnumPublic {
         TRUE,
         FALSE
     }
@@ -42,7 +45,8 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface2 {
         FALSE
     }
 
-    enum NestedEnum { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    enum NestedEnum {
         TRUE,
         FALSE
     }
@@ -50,13 +54,15 @@ public interface InputInterfaceMemberImpliedModifierNestedOnInterface2 {
     public static class NestedClassPublicStatic {
     }
 
-    public class NestedClassPublic { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    public class NestedClassPublic {
     }
 
     static class NestedClassStatic {
     }
 
-    class NestedClass { // violation
+    // violation below 'Implied modifier 'static' should be explicit.'
+    class NestedClass {
     }
 
     public default boolean methodWithLocalClass(String input) {

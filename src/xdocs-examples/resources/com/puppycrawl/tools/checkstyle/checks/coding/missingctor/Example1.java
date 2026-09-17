@@ -7,7 +7,7 @@
 */
 package com.puppycrawl.tools.checkstyle.checks.coding.missingctor;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
   private int a;
   Example1(int a) {
@@ -20,10 +20,10 @@ class ExampleDefaultCtor {
     s = "foobar";
   }
 }
-class InvalidExample { // violation, 'Class should define a constructor'
+class InvalidExample { // violation 'Class should define a constructor'
   public void test() {}
 }
 abstract class AbstractExample {
   public abstract void test();
 }
-// xdoc section -- end
+// xdoc section - end

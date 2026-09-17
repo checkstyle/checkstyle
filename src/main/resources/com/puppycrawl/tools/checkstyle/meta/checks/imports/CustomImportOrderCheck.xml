@@ -21,7 +21,7 @@
  SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
  Imports are considered on SAME_PACKAGE group if &lt;b&gt;n&lt;/b&gt; first domains in package
  name and import name are identical:
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  package java.util.concurrent.locks;
 
  import java.io.File;
@@ -97,7 +97,7 @@
  &lt;p&gt;
  1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
  import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -110,7 +110,7 @@
  &lt;p&gt;
  2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
  &lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
  import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 

@@ -2,17 +2,17 @@
 FinalLocalVariable
 validateEnhancedForLoopVariable = (default)false
 validateUnnamedVariables = (default)false
-tokens = (default)VARIABLE_DEF
+tokens = (default)IDENT,CTOR_DEF,METHOD_DEF,SLIST,OBJBLOCK,COMPACT_COMPILATION_UNIT,LITERAL_BREAK, \
+          LITERAL_FOR,VARIABLE_DEF,EXPR
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public class InputFinalLocalVariableFive {
     class class5 {
         public void test1(){
             final boolean b = false;
-            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal; // violation "Variable 'shouldBeFinal' should be declared final"
             if(b){
                 if(b){
                     shouldBeFinal = 1;
@@ -23,7 +23,7 @@ public class InputFinalLocalVariableFive {
         }
         public void test2() {
             final int b = 10;
-            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal; // violation "Variable 'shouldBeFinal' should be declared final"
 
             switch (b) {
                 case 0:
@@ -55,7 +55,7 @@ public class InputFinalLocalVariableFive {
             }
         }
         public void test4() {
-            int shouldBeFinal; // violation, "Variable 'shouldBeFinal' should be declared final"
+            int shouldBeFinal; // violation "Variable 'shouldBeFinal' should be declared final"
             class Bar {
                 void bar () {
                     // violation below "Variable 'shouldBeFinal' should be declared final"

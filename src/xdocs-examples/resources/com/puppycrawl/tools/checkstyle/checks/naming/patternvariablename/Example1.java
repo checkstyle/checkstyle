@@ -9,15 +9,16 @@
 // Java17
 package com.puppycrawl.tools.checkstyle.checks.naming.patternvariablename;
 
-// xdoc section -- start
+// xdoc section - start
 class Example1 {
   void foo(Object o1){
     if (o1 instanceof String STRING) {}
-    // violation above, 'Name 'STRING' must match pattern*.'
+    // violation above 'Name 'STRING' must match pattern*.'
     if (o1 instanceof Integer num) {}
     if (o1 instanceof Integer num_1) {}
-    // violation above, 'Name 'num_1' must match pattern*.'
+    // violation above 'Name 'num_1' must match pattern*.'
     if (o1 instanceof Integer n) {}
+
   }
 }
-// xdoc section -- end
+// xdoc section - end

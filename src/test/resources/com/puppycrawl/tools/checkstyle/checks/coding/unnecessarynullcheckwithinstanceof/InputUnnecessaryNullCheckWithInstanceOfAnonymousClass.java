@@ -10,7 +10,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfAnonymousClass {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                // violation below, 'Unnecessary nullity check'
+                // violation below 'Unnecessary nullity check'
                 if (obj != null && obj instanceof String) {
                     String str = (String) obj;
                 }
@@ -24,7 +24,7 @@ public class InputUnnecessaryNullCheckWithInstanceOfAnonymousClass {
         Validator v = new Validator() {
             @Override
             public boolean validate(Object obj) {
-                // violation below, 'Unnecessary nullity check'
+                // violation below 'Unnecessary nullity check'
                 return obj != null && obj instanceof String;
             }
         };

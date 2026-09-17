@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.filefilters.beforeexecutionexclusionfile
 public class Example2 {}
 
 /*
-// xdoc section -- start
+// xdoc section - start
 .../Example1.java
 .../Example2.java
 .../Example3.java
@@ -29,5 +29,5 @@ public class Example2 {}
 .../test/generated_StubBankRemote.java // violation, must start with an uppercase
 .../test/MockPaymentRemote.java
 .../module-info.java // ok, the file is not audited
-// xdoc section -- end
+// xdoc section - end
 */

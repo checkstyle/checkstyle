@@ -23,19 +23,19 @@ public class InputParameterNumberIgnoreAnnotatedBy {
     void method3(int a, int b, int c, int d) {}
 
     @Wawa
-    void method5(int a, int b, int c) { // violation, 'More than 2 parameters (found 3).'
+    void method5(int a, int b, int c) { // violation 'More than 2 parameters (found 3).'
     }
 
     @Wawa
     void method6(int a, int b) {}
 
 
-    void method7(int a, int b, int c, int d) { // violation, 'More than 2 parameters (found 4).'
+    void method7(int a, int b, int c, int d) { // violation 'More than 2 parameters (found 4).'
     }
 
     class InnerClass extends InputParameterNumberIgnoreAnnotatedBy {
         @Override
-        void method2(int a, int b, int c) { // violation, 'More than 2 parameters (found 3).'
+        void method2(int a, int b, int c) { // violation 'More than 2 parameters (found 3).'
             int d = a + c;
         }
 
@@ -43,7 +43,7 @@ public class InputParameterNumberIgnoreAnnotatedBy {
             super(1, 2, 3);
         }
 
-        InnerClass(int a, int b, int c, int d) { // violation, 'More than 2 parameters (found 4).'
+        InnerClass(int a, int b, int c, int d) { // violation 'More than 2 parameters (found 4).'
             super(1, 2, 3);
         }
     }
@@ -57,13 +57,13 @@ public class InputParameterNumberIgnoreAnnotatedBy {
                         @MyAnno
                         void roll(int a, int b, int c) {}
 
-                        // violation below, 'More than 2 parameters (found 3).'
+                        // violation below 'More than 2 parameters (found 3).'
                         void loaf(int a, int b, int c) {}
                     };
 
                     @Wawa
                     private Colors(@MyAnno int a, int b, int c) {}
-                    // violation above, 'More than 2 parameters (found 3).'
+                    // violation above 'More than 2 parameters (found 3).'
 
                     @Session(uid = ":D")
                     private Colors(@Wawa int a, @Wawa int b, @Wawa int c, @Wawa int d) {}
@@ -76,7 +76,7 @@ public class InputParameterNumberIgnoreAnnotatedBy {
                             @MyAnno @Session(uid = "G0F")
                             void method1(int a, int b, int c) {}
 
-                            // violation below, 'More than 2 parameters (found 4).'
+                            // violation below 'More than 2 parameters (found 4).'
                             void method3(@MyAnno int a, @MyAnno int b, @MyAnno int c, int d) {}
                         };
                     }
@@ -97,7 +97,7 @@ public class InputParameterNumberIgnoreAnnotatedBy {
 
     @Bit
     @Wawa
-    void method10(int a, int b, int c) { // violation, 'More than 2 parameters (found 3).'
+    void method10(int a, int b, int c) { // violation 'More than 2 parameters (found 3).'
     }
 
     interface Reader {
@@ -106,7 +106,7 @@ public class InputParameterNumberIgnoreAnnotatedBy {
         @MyAnno
         void method2 (int a, int b, int c);
 
-        void method3 (int a, int b, int c); // violation, 'More than 2 parameters (found 3).'
+        void method3 (int a, int b, int c); // violation 'More than 2 parameters (found 3).'
     }
 
     @interface Wawa {}

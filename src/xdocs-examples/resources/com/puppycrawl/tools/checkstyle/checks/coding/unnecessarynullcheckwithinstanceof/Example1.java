@@ -10,18 +10,18 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarynullcheckwithin
 import java.util.ArrayList;
 import java.util.List;
 
-// xdoc section -- start
+// xdoc section - start
 public class Example1 {
 
   public void methodWithUnnecessaryNullCheck1(Object obj) {
-    // violation below, 'Unnecessary nullity check'
+    // violation below 'Unnecessary nullity check'
     if (obj != null && obj instanceof String) {
       String str = (String) obj;
     }
     if (obj instanceof String) {
       String str = (String) obj;
     }
-    // violation below, 'Unnecessary nullity check'
+    // violation below 'Unnecessary nullity check'
     boolean isInvalid = obj != null && obj instanceof String;
 
     boolean isValid = obj instanceof String;
@@ -33,7 +33,7 @@ public class Example1 {
     Validator v = new Validator() {
       @Override
       public boolean validate(Object obj) {
-        // violation below, 'Unnecessary nullity check'
+        // violation below 'Unnecessary nullity check'
         return obj != null && obj instanceof String;
       }
     };
@@ -41,7 +41,7 @@ public class Example1 {
   private final List<Object> objects = new ArrayList<>();
 
   public String basicTernary(Object obj) {
-    // violation below, 'Unnecessary nullity check'
+    // violation below 'Unnecessary nullity check'
     return obj != null && obj instanceof String ? ((String) obj) : "";
   }
 
@@ -54,4 +54,4 @@ public class Example1 {
     }
   }
 }
-// xdoc section -- end
+// xdoc section - end

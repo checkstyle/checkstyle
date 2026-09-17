@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class WhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter";
@@ -34,17 +35,14 @@ public class WhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "19:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
-            "23:16: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "26:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
-            "29:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
-            "32:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
-            "35:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
-            "38:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "finally"),
-            "41:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
-            "44:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "synchronized"),
-            "51:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
-            "59:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
+            "18:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "21:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "24:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "27:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
+            "30:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "try"),
+            "33:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "catch"),
+            "39:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "return"),
+            "44:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -53,10 +51,11 @@ public class WhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "19:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "22:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "20:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "26:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
 }

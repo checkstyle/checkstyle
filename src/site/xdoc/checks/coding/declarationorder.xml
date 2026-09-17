@@ -8,6 +8,30 @@
   <body>
     <section name="DeclarationOrder">
       <p>Since Checkstyle 3.2</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#DeclarationOrder_Description">Description</a></li>
+          <li><a href="#DeclarationOrder_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#DeclarationOrder_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Ignore validation of constructors</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Ignore modifiers</a></li>
+            </ul>
+          </li>
+          <li><a href="#DeclarationOrder_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#DeclarationOrder_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#DeclarationOrder_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#DeclarationOrder_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
       <subsection name="Description" id="DeclarationOrder_Description">
         <div>
           Checks that the parts of a class, record, or interface declaration appear in the order
@@ -44,7 +68,7 @@
           forward references </a> from validation due to the fact that we have Checkstyle's limitations
           to clearly detect user intention of fields location and grouping. For example:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 public class A {
   private double x = 1.0;
   private double y = 2.0;
@@ -66,14 +90,14 @@ public class A {
             <tr>
               <td><a id="ignoreConstructors"/><a href="#ignoreConstructors">ignoreConstructors</a></td>
               <td>Control whether to ignore constructors.</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
             <tr>
               <td><a id="ignoreModifiers"/><a href="#ignoreModifiers">ignoreModifiers</a></td>
               <td>Control whether to ignore modifiers (fields, ...).</td>
-              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
@@ -98,7 +122,7 @@ public class Example1 {
 
   public int a;
   protected int b;
-  public int c;            // violation, variable access definition in wrong order
+  public int c;         // violation 'Variable access definition in wrong order.'
 
   Example1() {
     this.a = 0;
@@ -108,11 +132,11 @@ public class Example1 {
     // This method does nothing
   }
 
-  Example1(int a) {            // violation, constructor definition in wrong order
+  Example1(int a) {     // violation 'Constructor definition in wrong order.'
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -133,7 +157,7 @@ public class Example2 {
 
   public int a;
   protected int b;
-  public int c;            // violation, variable access definition in wrong order
+  public int c;         // violation 'Variable access definition in wrong order.'
 
   Example2() {
     this.a = 0;
@@ -143,11 +167,11 @@ public class Example2 {
     // This method does nothing
   }
 
-  Example2(int a) {            // ok, validation of constructors ignored
+  Example2(int a) {     // ok, validation of constructors ignored
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -168,7 +192,7 @@ public class Example3 {
 
   public int a;
   protected int b;
-  public int c;            // ok, access modifiers not considered while validating
+  public int c;         // ok, access modifiers not considered while validating
 
   Example3() {
     this.a = 0;
@@ -178,11 +202,11 @@ public class Example3 {
     // This method does nothing
   }
 
-  Example3(int a) {            // violation, constructor definition in wrong order
+  Example3(int a) {     // violation 'Constructor definition in wrong order.'
     this.a = a;
   }
 
-  private String name;     // violation, instance variable declaration in wrong order
+  private String name;  // violation 'Instance variable definition in wrong order.'
 }
 </code></pre></div>
       </subsection>

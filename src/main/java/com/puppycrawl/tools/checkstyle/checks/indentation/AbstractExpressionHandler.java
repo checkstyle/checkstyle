@@ -330,7 +330,14 @@ public abstract class AbstractExpressionHandler {
             // checked by a child expression)
 
             if (col != null) {
-                checkLineIndent(astSet.getAst(index), level, false);
+                final DetailAST ast = astSet.getAst(index);
+                final boolean textBlockEndAligned =
+                    ast.getType() == TokenTypes.TEXT_BLOCK_LITERAL_END
+                        && isOnStartOfLine(ast.getParent())
+                        && indentLevel.isAcceptable(expandedTabsColumnNo(ast));
+                if (!textBlockEndAligned) {
+                    checkLineIndent(ast, level, false);
+                }
             }
         }
     }
@@ -379,10 +386,10 @@ public abstract class AbstractExpressionHandler {
      * @param ignoreFirstLine Test if first line's indentation should be checked or not.
      */
     protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode,
-            int wrappedIndentLevel, int startIndent, boolean ignoreFirstLine) {
+            int wrappedIndentLevel, int startIndent,
+            LineWrappingHandler.LineWrappingOptions ignoreFirstLine) {
         indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode,
-                wrappedIndentLevel, startIndent,
-                LineWrappingHandler.LineWrappingOptions.ofBoolean(ignoreFirstLine));
+                wrappedIndentLevel, startIndent, ignoreFirstLine);
     }
 
     /**
@@ -524,23 +531,6 @@ public abstract class AbstractExpressionHandler {
                 node != null;
                 node = node.getNextSibling()) {
                 findSubtreeAst(astSet, node, allowNesting);
-            }
-        }
-    }
-
-    /**
-     * Check the indentation level of modifiers.
-     */
-    protected void checkModifiers() {
-        final DetailAST modifiers =
-            mainAst.findFirstToken(TokenTypes.MODIFIERS);
-        for (DetailAST modifier = modifiers.getFirstChild();
-             modifier != null;
-             modifier = modifier.getNextSibling()) {
-            if (isOnStartOfLine(modifier)
-                && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
-                logError(modifier, "modifier",
-                    expandedTabsColumnNo(modifier));
             }
         }
     }
