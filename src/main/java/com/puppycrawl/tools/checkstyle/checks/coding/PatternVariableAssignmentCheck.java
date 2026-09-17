@@ -219,7 +219,7 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     private static DetailAST shiftToNextTraversedBranch(DetailAST ast, DetailAST boundAst) {
         DetailAST newAst = ast;
 
-        if (ast.getFirstChild() != null) {
+        if (ast.getType() != TokenTypes.OBJBLOCK && ast.getFirstChild() != null) {
             newAst = ast.getFirstChild();
         }
         else {
