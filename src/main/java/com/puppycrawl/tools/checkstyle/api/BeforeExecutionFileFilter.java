@@ -27,9 +27,14 @@ public interface BeforeExecutionFileFilter {
 
     /**
      * Determines whether or not a before execution file filtered event is accepted.
+     * An accepted file is processed by Checkstyle and its violations are kept in
+     * the final report; a rejected file is excluded from processing entirely.
+     * In other words, returning {@code true} lets the file (and any resulting
+     * violations) reach the report, while returning {@code false} skips the file.
      *
      * @param uri the uri to filter.
-     * @return true if the event is accepted.
+     * @return true if the file is accepted and should be processed; false to
+     *     exclude the file so its violations never reach the final report.
      */
     boolean accept(String uri);
 

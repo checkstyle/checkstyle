@@ -28,9 +28,14 @@ public interface TreeWalkerFilter {
 
     /**
      * Determines whether or not a filtered {@code TreeWalkerAuditEvent} is accepted.
+     * An accepted event is kept in the final report as a violation; a rejected
+     * event is filtered out. In other words, returning {@code true} makes the
+     * violation appear in the report, while returning {@code false} suppresses
+     * it.
      *
      * @param treeWalkerAuditEvent the TreeWalkerAuditEvent to filter.
-     * @return true if the event is accepted.
+     * @return true if the event is accepted and its violation should appear in
+     *     the final report; false to suppress the event.
      */
     boolean accept(TreeWalkerAuditEvent treeWalkerAuditEvent);
 
