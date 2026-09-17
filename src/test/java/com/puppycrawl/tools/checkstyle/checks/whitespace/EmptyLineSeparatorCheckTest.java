@@ -508,12 +508,10 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testPrePreviousLineIsEmpty() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
+            "15:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
     }
 
