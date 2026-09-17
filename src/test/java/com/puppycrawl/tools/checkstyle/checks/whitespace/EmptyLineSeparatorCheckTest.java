@@ -377,11 +377,10 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testJavadocCommentAfterPackageWithImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
-            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+            "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorJavadocCommentAfterPackage.java"),
                 expected);
     }
