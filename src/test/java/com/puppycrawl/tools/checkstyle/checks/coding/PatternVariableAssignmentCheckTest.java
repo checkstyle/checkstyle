@@ -73,6 +73,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             "65:9: " + getCheckMessage(MSG_KEY, "r"),
             "74:11: " + getCheckMessage(MSG_KEY, "r"),
             "90:22: " + getCheckMessage(MSG_KEY, "string"),
+            "135:26: " + getCheckMessage(MSG_KEY, "inner"),
         };
 
         verifyWithInlineXmlConfig(getPath(
