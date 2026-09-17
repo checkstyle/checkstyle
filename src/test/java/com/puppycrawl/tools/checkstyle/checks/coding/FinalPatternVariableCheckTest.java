@@ -64,20 +64,20 @@ public class FinalPatternVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFinalPatternVariableCheck() throws Exception {
         final String[] expected = {
-            "15:33: " + getCheckMessage(MSG_KEY, "s1"),
-            "31:33: " + getCheckMessage(MSG_KEY, "s4"),
-            "42:36: " + getCheckMessage(MSG_KEY, "x"),
-            "50:34: " + getCheckMessage(MSG_KEY, "i1"),
-            "54:38: " + getCheckMessage(MSG_KEY, "s6"),
-            "60:40: " + getCheckMessage(MSG_KEY, "s7"),
-            "73:41: " + getCheckMessage(MSG_KEY, "s10"),
-            "79:35: " + getCheckMessage(MSG_KEY, "s12"),
-            "85:37: " + getCheckMessage(MSG_KEY, "s13"),
-            "93:35: " + getCheckMessage(MSG_KEY, "s14"),
-            "100:76: " + getCheckMessage(MSG_KEY, "s15"),
-            "108:38: " + getCheckMessage(MSG_KEY, "s16"),
-            "114:61: " + getCheckMessage(MSG_KEY, "s17"),
-            "126:35: " + getCheckMessage(MSG_KEY, "s20"),
+            "14:33: " + getCheckMessage(MSG_KEY, "s1"),
+            "24:33: " + getCheckMessage(MSG_KEY, "s4"),
+            "32:36: " + getCheckMessage(MSG_KEY, "x"),
+            "39:34: " + getCheckMessage(MSG_KEY, "i1"),
+            "43:38: " + getCheckMessage(MSG_KEY, "s6"),
+            "48:40: " + getCheckMessage(MSG_KEY, "s7"),
+            "57:41: " + getCheckMessage(MSG_KEY, "s10"),
+            "61:35: " + getCheckMessage(MSG_KEY, "s12"),
+            "66:37: " + getCheckMessage(MSG_KEY, "s13"),
+            "71:35: " + getCheckMessage(MSG_KEY, "s14"),
+            "77:76: " + getCheckMessage(MSG_KEY, "s15"),
+            "84:40: " + getCheckMessage(MSG_KEY, "s16"),
+            "90:61: " + getCheckMessage(MSG_KEY, "s17"),
+            "101:35: " + getCheckMessage(MSG_KEY, "s20"),
         };
 
         verifyWithInlineConfigParser(getPath(
