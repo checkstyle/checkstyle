@@ -4848,6 +4848,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, getPath("InputIndentationNewWithTabs.java"), expected);
     }
 
+    @Test
+    public void testMethodCallInLambdaAndReturnStatements() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "4");
+
+        final String fileName = getPath("InputIndentationLambdaAndReturnStatement.java");
+        final String[] expected = {
+            "34:5: " + getCheckMessage(MSG_ERROR, "s", 4, 8),
+            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
