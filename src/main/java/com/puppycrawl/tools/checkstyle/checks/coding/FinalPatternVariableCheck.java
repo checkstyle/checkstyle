@@ -195,10 +195,10 @@ public class FinalPatternVariableCheck extends AbstractCheck {
                             getMatchedAssignToken(expressionBranch);
 
                     if (assignToken != null) {
-                            final DetailAST assignedIdent =
-                                assignToken.getFirstChild();
-                            reassignedVariableIdents.add(
-                                Objects.requireNonNull(assignedIdent));
+                        final DetailAST assignedIdent =
+                            assignToken.getFirstChild();
+                        reassignedVariableIdents.add(
+                            Objects.requireNonNull(assignedIdent));
                     }
                 }
             }
