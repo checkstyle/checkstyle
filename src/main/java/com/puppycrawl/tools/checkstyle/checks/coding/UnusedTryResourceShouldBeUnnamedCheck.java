@@ -139,6 +139,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
             tryResources.stream()
                 .flatMap(Deque::stream)
                 .filter(resource -> resource.getName().equals(ast.getText()))
+                .filter(resource -> isInScope(ast, resource))
                 .findFirst()
                 .ifPresent(TryResourceDetails::registerAsUsed);
         }
@@ -180,7 +181,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
                 if (isDeclared) {
                     final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
                     if (!UNNAMED_VARIABLE_IDENTIFIER.equals(ident.getText())) {
-                        resources.addLast(new TryResourceDetails(ident));
+                        resources.addLast(new TryResourceDetails(tryAst, ident));
                     }
                 }
             });
@@ -253,9 +254,58 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
     }
 
     /**
+     * Determines whether an {@link TokenTypes#IDENT} token is within the scope
+     * of a tracked try resource.
+     *
+     * @param identAst the {@link TokenTypes#IDENT} token to check
+     * @param resource the tracked resource
+     * @return {@code true} if the token is within the resource scope
+     */
+    private static boolean isInScope(final DetailAST identAst,
+            final TryResourceDetails resource) {
+        final DetailAST tryAst = resource.getTryAst();
+        DetailAST childOfTry = identAst;
+        while (childOfTry != null && childOfTry.getParent() != tryAst) {
+            childOfTry = childOfTry.getParent();
+        }
+        return childOfTry != null
+                && (childOfTry.getType() == TokenTypes.SLIST
+                    || childOfTry.getType() == TokenTypes.RESOURCE_SPECIFICATION
+                        && isAfterResourceDeclaration(identAst, resource));
+    }
+
+    /**
+     * Determines whether an {@link TokenTypes#IDENT} token inside a resource
+     * specification appears after the declaration of the tracked resource.
+     *
+     * @param identAst the {@link TokenTypes#IDENT} token to check
+     * @param resource the tracked resource
+     * @return {@code true} if the token appears after the declaration
+     */
+    private static boolean isAfterResourceDeclaration(final DetailAST identAst,
+            final TryResourceDetails resource) {
+        DetailAST resourceAncestor = identAst;
+        while (resourceAncestor != null
+                && resourceAncestor.getType() != TokenTypes.RESOURCE) {
+            resourceAncestor = resourceAncestor.getParent();
+        }
+        final DetailAST targetResource = resource.getIdentToken().getParent();
+        return resourceAncestor != null
+                && resourceAncestor != targetResource
+                && (resourceAncestor.getLineNo() > targetResource.getLineNo()
+                    || resourceAncestor.getLineNo()
+                        == targetResource.getLineNo()
+                        && resourceAncestor.getColumnNo()
+                            > targetResource.getColumnNo());
+    }
+
+    /**
      * Maintains tracking information about a single try-with-resources resource.
      */
     private static final class TryResourceDetails {
+
+        /** The try AST that declared the resource. */
+        private final DetailAST tryAst;
 
         /** The name of the resource variable. */
         private final String name;
@@ -270,14 +320,26 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         private boolean used;
 
         /**
-         * Creates a new instance tracking the resource whose name-token is
-         * {@code identToken}.
+         * Creates a new instance tracking the resource.
          *
-         * @param identToken the {@link TokenTypes#IDENT} token for the resource name
+         * @param tryNode the {@link TokenTypes#LITERAL_TRY} token
+         * @param identNode the {@link TokenTypes#IDENT} token for the
+         *                  resource name
          */
-        private TryResourceDetails(DetailAST identToken) {
-            name = identToken.getText();
-            this.identToken = identToken;
+        private TryResourceDetails(final DetailAST tryNode,
+                final DetailAST identNode) {
+            tryAst = tryNode;
+            name = identNode.getText();
+            identToken = identNode;
+        }
+
+        /**
+         * Returns the try AST that declared the resource.
+         *
+         * @return try AST
+         */
+        private DetailAST getTryAst() {
+            return tryAst;
         }
 
         /**
