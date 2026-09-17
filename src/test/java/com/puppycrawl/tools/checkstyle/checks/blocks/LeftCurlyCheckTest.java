@@ -432,6 +432,9 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "33:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
             "47:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
             "52:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "68:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "68:9: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 9),
+            "68:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 21),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestEolSwitch.java"), expected);
@@ -639,7 +642,15 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void commentBeforeLeftCurly() throws Exception {
         final String[] expected = {
-            "32:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "24:30: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 30),
+            "29:24: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 24),
+            "34:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "42:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "48:36: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 36),
+            "60:36: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 36),
+            "75:26: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 26),
+            "89:22: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 22),
+            "93:32: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 32),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyCommentBeforeLeftCurly.java"), expected);
@@ -648,8 +659,14 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void commentBeforeLeftCurly2() throws Exception {
         final String[] expected = {
-            "54:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "27:16: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 16),
+            "33:16: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 16),
+            "40:15: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 15),
+            "46:32: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 32),
+            "56:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "66:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 29),
+            "98:8: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 8),
+            "112:43: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 43),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyCommentBeforeLeftCurly2.java"), expected);
@@ -703,12 +720,12 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTypesEol() throws Exception {
         final String[] expected = {
-            "19:11: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 11),
-            "23:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 15),
-            "27:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
-            "31:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 12),
-            "36:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
-            "40:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 12),
+            "23:11: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 11),
+            "27:15: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 15),
+            "31:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
+            "35:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 12),
+            "40:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
+            "44:12: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 12),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestTypesEol.java"), expected);
