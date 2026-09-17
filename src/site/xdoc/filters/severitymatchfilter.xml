@@ -39,6 +39,16 @@
         <p>
           SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
         </p>
+
+        <p>
+          In Checkstyle, when a filter accepts an audit event
+          (i.e. <code>accept()</code> returns <code>true</code>), the violation is kept in the
+          final report; to make a violation disappear from the report, the filter must
+          reject the event by returning <code>false</code>. For <code>SeverityMatchFilter</code>,
+          this means the <code>severity</code> and <code>acceptOnMatch</code> properties must be
+          configured so that unwanted events are not matched under
+          <code>acceptOnMatch="true"</code>, or are matched under <code>acceptOnMatch="false"</code>.
+        </p>
       </subsection>
       <subsection name="Properties" id="SeverityMatchFilter_Properties">
         <div class="wrapper">
