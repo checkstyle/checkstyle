@@ -96,19 +96,13 @@ public class EmptyLineSeparatorCheckTest
     }
 
     /**
-     * Config is defined in the method because indexOutOfBond test is also required.
+     * The target file stays without an inline config header so that a TYPE-child token
+     * can land at line 2 and keep the boundary check in
+     * EmptyLineSeparatorCheck#isTwoPrecedingPreviousLinesFromCommentEmpty covered.
+     * The check config is provided by a sidecar file.
      */
     @Test
     public void testCompactNoPackage() throws Exception {
-
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "7:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
             "11:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
@@ -118,9 +112,10 @@ public class EmptyLineSeparatorCheckTest
             "29:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
             "34:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
-
-        verify(checkerConfig, getNonCompilablePath("InputEmptyLineSeparatorCompactNoPackage.java"),
-            expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputEmptyLineSeparatorCompactNoPackageConfig.java"),
+                getNonCompilablePath("InputEmptyLineSeparatorCompactNoPackage.java"),
+                expected);
     }
 
     @Test
