@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>EmptyLineSeparatorCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck</mutatedClass>
+    <mutatedMethod>isTwoPrecedingPreviousLinesFromCommentEmpty</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (typeChild.getLineNo() &gt; 2</lineContent>
+  </mutation>
+</suppressedMutations>
