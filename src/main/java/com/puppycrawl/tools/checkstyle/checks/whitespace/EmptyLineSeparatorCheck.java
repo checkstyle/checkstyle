@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -260,7 +262,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
             for (Integer lineNo : emptyLinesToLog) {
-                log(getLastElementBeforeEmptyLines(ast, lineNo), MSG_MULTIPLE_LINES_INSIDE);
+                if (!isLineInsideNestedTypeOrAnonymousClass(ast, lineNo)) {
+                    final DetailAST elementBeforeEmptyLines =
+                            getLastElementBeforeEmptyLines(ast, lineNo);
+                    log(elementBeforeEmptyLines, MSG_MULTIPLE_LINES_INSIDE);
+                }
             }
         }
     }
@@ -313,6 +319,33 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             result = postFixAst;
         }
 
+        return result;
+    }
+
+    /**
+     * Checks whether a line is inside a nested type or anonymous class.
+     *
+     * @param memberAst class member containing the empty lines
+     * @param lineNo line number to check
+     * @return true if a line is inside a nested type or anonymous class
+     */
+    private static boolean isLineInsideNestedTypeOrAnonymousClass(DetailAST memberAst,
+            int lineNo) {
+        final Deque<DetailAST> nodesToCheck = new ArrayDeque<>();
+        nodesToCheck.push(memberAst);
+        boolean result = false;
+        while (!result && !nodesToCheck.isEmpty()) {
+            final DetailAST node = nodesToCheck.pop();
+            if (node.getType() == TokenTypes.OBJBLOCK
+                    && Integer.compare(node.getLineNo(), lineNo) == -1
+                    && lineNo < node.getLastChild().getLineNo()) {
+                result = true;
+            }
+            for (DetailAST child = node.getFirstChild(); child != null;
+                    child = child.getNextSibling()) {
+                nodesToCheck.push(child);
+            }
+        }
         return result;
     }
 
