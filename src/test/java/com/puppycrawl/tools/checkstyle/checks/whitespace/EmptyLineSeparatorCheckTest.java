@@ -506,15 +506,21 @@ public class EmptyLineSeparatorCheckTest
             getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
     }
 
+    /**
+     * The target file stays without an inline config header so that the package
+     * declaration keeps sitting at line 3 with two blank lines above it, keeping
+     * the boundary check in EmptyLineSeparatorCheck#isPrePreviousLineEmpty
+     * covered. The check config is provided by a sidecar file.
+     */
     @Test
     public void testPrePreviousLineIsEmpty() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
         };
-        verify(checkConfig,
-                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmptyConfig.java"),
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"),
+                expected);
     }
 
     @Test
