@@ -70,6 +70,18 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testNewBundleLoadsBundleFromClassPath() throws IOException {
+        final Utf8Control control = new Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ROOT, "java.class",
+                Thread.currentThread().getContextClassLoader(), false);
+        assertWithMessage("Bundle should be loaded from the class path")
+                .that(bundle)
+                .isNotNull();
+    }
+
+    @Test
     public void testBundleReloadUrlNull() throws IOException {
         final Utf8Control control = new Utf8Control();
         final ResourceBundle bundle = control.newBundle(
