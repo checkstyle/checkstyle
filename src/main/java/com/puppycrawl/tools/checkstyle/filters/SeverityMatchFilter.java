@@ -35,6 +35,16 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
  * </p>
  *
+ * <p>
+ * In Checkstyle, when a filter accepts a violation
+ * (i.e. {@code accept()} returns {@code true}), the violation is kept in the
+ * final report; to make a violation disappear from the report, the filter must
+ * reject it by returning {@code false}. For {@code SeverityMatchFilter}, set
+ * {@code severity} to the level you want to control and {@code acceptOnMatch}
+ * to {@code true} to keep matching violations in the final report, or to
+ * {@code false} to remove them from it.
+ * </p>
+ *
  * @since 3.2
  */
 public class SeverityMatchFilter
