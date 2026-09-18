@@ -20,7 +20,9 @@
             <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
             <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#SeverityMatchFilter_Examples">Examples</a><span class="toc-sub-arrow"/></label>
             <ul class="toc-sublist">
-              <li><a href="#Example1-config" class="toc-sublink">For example, the following configuration fragment directs the Checker to not report audit events with severity level <code>info</code></a></li>
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration (only accepts severity 'error')</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">For example, the following configuration fragment directs the Checker to not report audit events with severity level <code>info</code></a></li>
+              <li><a href="#Example3-config" class="toc-sublink">The following configuration fragment directs the Checker to not report audit events whose severity matches the default <code>error</code> level</a></li>
             </ul>
           </li>
           <li><a href="#SeverityMatchFilter_Example_of_Usage">Example of Usage</a></li>
@@ -69,6 +71,31 @@
       </subsection>
       <subsection name="Examples" id="SeverityMatchFilter_Examples">
         <p id="Example1-config">
+          Default configuration (only accepts severity 'error')
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="severity" value="info"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SeverityMatchFilter"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+            Example code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  // filtered violation below 'must match pattern'
+  public void method1(int V1){} // ok, ParameterName's severity is info
+
+  public void Method2(){} // violation, MethodName's severity is defaulted to error
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
           For example, the following configuration fragment directs the
           Checker to not report audit events with severity
           level <code>info</code>:
@@ -87,11 +114,41 @@
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">
+        <p id="Example2-code">
             Example code:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+public class Example2 {
+  // filtered violation below 'must match pattern'
+  public void method1(int V1){} // ok, ParameterName's severity is info
+
+  public void Method2(){} // violation, MethodName's severity is defaulted to error
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          The following configuration fragment directs the Checker to
+          not report audit events whose severity matches the default
+          <code>error</code> level:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ParameterName"&gt;
+      &lt;property name="severity" value="info"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+  &lt;module name="SeverityMatchFilter"&gt;
+    &lt;property name="severity" value="info"/&gt;
+    &lt;property name="acceptOnMatch" value="false"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+            Example code:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
   // filtered violation below 'must match pattern'
   public void method1(int V1){} // ok, ParameterName's severity is info
 
@@ -110,8 +167,8 @@ public class Example1 {
       <subsection name="Fully Qualified Name" id="SeverityMatchFilter_Fully_Qualified_Name">
         <p> com.puppycrawl.tools.checkstyle.filters.SeverityMatchFilter </p>
         <p>
-            This is the fully qualified class name of the module.
-            Use this name in configuration when an exact class reference is required.
+          This is the fully qualified class name of the module.
+          Use this name in configuration when an exact class reference is required.
         </p>
       </subsection>
 
