@@ -1,0 +1,33 @@
+/*xml
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="OpenjdkMethodParameterAlignment"/>
+  </module>
+</module>
+*/
+package com.puppycrawl.tools.checkstyle.checks.whitespace
+    .openjdkmethodparameteralignment;
+
+// xdoc section - start
+class Example1 {
+
+  Example1(int a, // violation 'Only one parameter is allowed'
+           int b, int c) {}
+
+  void oneParameterPerLine(int a,
+                           int b,
+                           int c) {}
+
+  void twoOnLastLine(int a, // violation 'Only one parameter is allowed'
+                     int b, int c) {}
+
+  void twoOnFirstLine(int a, int b, // violation 'Only one parameter is allowed'
+                      int c) {}
+
+  void notAligned(int a, // violation 'Align parameters vertically'
+      int b) {}
+
+  void wrappedByEightSpaces(int a, int b,
+          int c) {}
+}
+// xdoc section - end
