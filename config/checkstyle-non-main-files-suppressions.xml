@@ -163,6 +163,8 @@
   <suppress id="numberOfTestCasesInXpath"
          files="src/it/java/org/checkstyle/base/.*" />
   <suppress id="numberOfTestCasesInXpath"
+         files="src/it/java/org/checkstyle/modulepath/.*" />
+  <suppress id="numberOfTestCasesInXpath"
          files="src/it/resources/.*" />
   <suppress id="numberOfTestCasesInXpath"
          files="src/it/resources-noncompilable/.*" />
