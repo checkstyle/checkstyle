@@ -58,6 +58,12 @@ exclude:
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java
       - src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java
 
+  # IndentationContext is a value-object bundling everything handlers need
+  # for one file; its ctor legitimately has more parameters than the default limit.
+  - name: ParametersPerConstructor
+    paths:
+      - src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationContext.java
+
   # until https://github.com/checkstyle/checkstyle/issues/21219
   - name: Annotator
     paths:

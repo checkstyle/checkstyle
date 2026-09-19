@@ -102,7 +102,7 @@ public class HandlerFactory {
      */
     private <T> void register(int type, Class<T> handlerClass) {
         final Constructor<T> ctor = CommonUtil.getConstructor(handlerClass,
-                IndentationCheck.class,
+                IndentationContext.class,
                 // current AST
                 DetailAST.class,
                 // parent
@@ -142,13 +142,13 @@ public class HandlerFactory {
     /**
      * Get the handler for an AST.
      *
-     * @param indentCheck   the indentation check
-     * @param ast           ast to handle
-     * @param parent        the handler parent of this AST
+     * @param context   the indentation context
+     * @param ast       ast to handle
+     * @param parent    the handler parent of this AST
      *
      * @return the ExpressionHandler for ast
      */
-    public AbstractExpressionHandler getHandler(IndentationCheck indentCheck,
+    public AbstractExpressionHandler getHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
         final AbstractExpressionHandler resultHandler;
         final AbstractExpressionHandler handler =
@@ -157,12 +157,12 @@ public class HandlerFactory {
             resultHandler = handler;
         }
         else if (ast.getType() == TokenTypes.METHOD_CALL) {
-            resultHandler = createMethodCallHandler(indentCheck, ast, parent);
+            resultHandler = createMethodCallHandler(context, ast, parent);
         }
         else {
             final Constructor<?> handlerCtor = typeHandlers.get(ast.getType());
             resultHandler = (AbstractExpressionHandler) CommonUtil.invokeConstructor(
-                handlerCtor, indentCheck, ast, parent);
+                handlerCtor, context, ast, parent);
         }
         return resultHandler;
     }
@@ -170,13 +170,13 @@ public class HandlerFactory {
     /**
      * Create new instance of handler for METHOD_CALL.
      *
-     * @param indentCheck   the indentation check
-     * @param ast           ast to handle
-     * @param parent        the handler parent of this AST
+     * @param context   the indentation context
+     * @param ast       ast to handle
+     * @param parent    the handler parent of this AST
      *
      * @return new instance.
      */
-    private AbstractExpressionHandler createMethodCallHandler(IndentationCheck indentCheck,
+    private AbstractExpressionHandler createMethodCallHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
         DetailAST astNode = ast.getFirstChild();
         while (astNode.getType() == TokenTypes.DOT) {
@@ -184,10 +184,10 @@ public class HandlerFactory {
         }
         AbstractExpressionHandler theParent = parent;
         if (isHandledType(astNode.getType())) {
-            theParent = getHandler(indentCheck, astNode, theParent);
+            theParent = getHandler(context, astNode, theParent);
             createdHandlers.put(astNode, theParent);
         }
-        return new MethodCallHandler(indentCheck, ast, theParent);
+        return new MethodCallHandler(context, ast, theParent);
     }
 
     /** Clears cache of created handlers. */

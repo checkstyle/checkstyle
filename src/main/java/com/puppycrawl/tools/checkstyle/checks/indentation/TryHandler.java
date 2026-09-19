@@ -29,16 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class TryHandler extends BlockParentHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public TryHandler(IndentationCheck indentCheck,
+    public TryHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "try", ast, parent);
+        super(context, "try", ast, parent);
     }
 
     /**
@@ -102,7 +102,7 @@ public class TryHandler extends BlockParentHandler {
                                     final String subType) {
         if (isOnStartOfLine(parenAst)) {
             final IndentLevel expectedIdent = new IndentLevel(getIndent(), 0,
-                getIndentCheck().getLineWrappingIndentation());
+                getContext().getLineWrappingIndentation());
 
             checkChildIndentation(parenAst, subType, expectedIdent);
         }
@@ -118,7 +118,7 @@ public class TryHandler extends BlockParentHandler {
      * @param expectedIdent Expected indent level.
      */
     private void checkChildIndentation(DetailAST ast, String subType, IndentLevel expectedIdent) {
-        if (getIndentCheck().isForceStrictCondition()) {
+        if (getContext().isForceStrictCondition()) {
             if (!expectedIdent.isAcceptable(expandedTabsColumnNo(ast))) {
                 logError(ast, subType, expandedTabsColumnNo(ast), expectedIdent);
             }
@@ -138,7 +138,7 @@ public class TryHandler extends BlockParentHandler {
     private void checkTryResources(final DetailAST resourcesSpecAst) {
         final DetailAST resourcesAst = resourcesSpecAst.findFirstToken(TokenTypes.RESOURCES);
         final int indentation = getIndent().getFirstIndentLevel()
-            + getIndentCheck().getLineWrappingIndentation();
+            + getContext().getLineWrappingIndentation();
         final IndentLevel expectedResourceIndent = new IndentLevel(indentation);
 
         final String subType = "resource";
@@ -158,7 +158,7 @@ public class TryHandler extends BlockParentHandler {
                     checkWrappingIndentation(
                         resourceAst,
                         nextSibling,
-                        getIndentCheck().getLineWrappingIndentation(),
+                        getContext().getLineWrappingIndentation(),
                         expectedResourceIndent.getFirstIndentLevel(),
                         LineWrappingHandler.LineWrappingOptions.IGNORE_FIRST_LINE);
                 }

@@ -30,22 +30,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MethodCallHandler extends AbstractExpressionHandler {
 
     /**
-     * The instance of {@code IndentationCheck} used by this class.
+     * The indentation context used by this class.
      */
-    private final IndentationCheck indentCheck;
+    private final IndentationContext context;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public MethodCallHandler(IndentationCheck indentCheck,
+    public MethodCallHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "method call", ast, parent);
-        this.indentCheck = indentCheck;
+        super(context, "method call", ast, parent);
+        this.context = context;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             // chained method call which was moved to the next line
             else {
                 indentLevel = new IndentLevel(container.getIndent(),
-                    getIndentCheck().getLineWrappingIndentation());
+                    getContext().getLineWrappingIndentation());
             }
         }
         else if (getMainAst().getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
@@ -72,7 +72,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         else {
             // if our expression isn't first on the line, just use the start
             // of the line
-            final DetailAstSet astSet = new DetailAstSet(indentCheck);
+            final DetailAstSet astSet = new DetailAstSet(context);
             findSubtreeAst(astSet, getMainAst().getFirstChild(), true);
             final int firstCol = expandedTabsColumnNo(astSet.firstLine());
             final int lineStart = getLineStart(getFirstAst(getMainAst()));
@@ -178,7 +178,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 && !isInvocationTarget(child)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
                     getBasicOffset(),
-                    getIndentCheck().getLineWrappingIndentation());
+                    getContext().getLineWrappingIndentation());
         }
 
         // If the right parenthesis is at the start of a line;
@@ -186,7 +186,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         if (getLineStart(rparen) == rparen.getColumnNo()) {
             suggestedLevel = IndentLevel.addAcceptable(suggestedLevel, new IndentLevel(
                     getParent().getSuggestedChildIndent(this),
-                    getIndentCheck().getLineWrappingIndentation()
+                    getContext().getLineWrappingIndentation()
             ));
         }
 

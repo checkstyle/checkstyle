@@ -28,17 +28,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 public class IndexHandler extends AbstractExpressionHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public IndexHandler(IndentationCheck indentCheck,
+    public IndexHandler(IndentationContext context,
                       DetailAST ast,
                       AbstractExpressionHandler parent) {
-        super(indentCheck, "index op", ast, parent);
+        super(context, "index op", ast, parent);
     }
 
     @Override

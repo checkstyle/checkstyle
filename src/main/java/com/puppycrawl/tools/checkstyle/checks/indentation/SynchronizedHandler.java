@@ -34,16 +34,16 @@ public class SynchronizedHandler extends BlockParentHandler {
     private final boolean methodModifier;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * name, abstract syntax tree, and parent handler.
      *
-     * @param indentCheck the indentation check
+     * @param context      the indentation check
      * @param ast         the abstract syntax tree
      * @param parent      the parent handler
      */
-    public SynchronizedHandler(IndentationCheck indentCheck, DetailAST ast,
+    public SynchronizedHandler(IndentationContext context, DetailAST ast,
                                AbstractExpressionHandler parent) {
-        super(indentCheck, "synchronized", ast, parent);
+        super(context, "synchronized", ast, parent);
         methodModifier = isMethodModifier(ast);
     }
 

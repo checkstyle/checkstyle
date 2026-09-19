@@ -34,16 +34,16 @@ public class ArrayInitHandler extends BlockParentHandler {
     private static final int NOT_EXIST = -1;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public ArrayInitHandler(IndentationCheck indentCheck,
+    public ArrayInitHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "array initialization", ast, parent);
+        super(context, "array initialization", ast, parent);
     }
 
     @Override
@@ -106,8 +106,8 @@ public class ArrayInitHandler extends BlockParentHandler {
     @Override
     protected IndentLevel getChildrenExpectedIndent() {
         IndentLevel expectedIndent =
-            new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
-                    getIndentCheck().getLineWrappingIndentation());
+            new IndentLevel(getIndent(), getContext().getArrayInitIndent(),
+                    getContext().getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
@@ -135,7 +135,7 @@ public class ArrayInitHandler extends BlockParentHandler {
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
-        final int[] line = getIndentCheck().getLineCodePoints(lineNo - 1);
+        final int[] line = getContext().getLine(lineNo - 1).codePoints().toArray();
         final int lineLength = line.length;
         while (realColumnNo < lineLength
                && Character.isWhitespace(line[realColumnNo])) {
@@ -149,13 +149,13 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for the corresponding property.
      *
      * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
+     *         from the indentation context
      */
     private int getLineWrappingIndentation() {
-        return getIndentCheck().getLineWrappingIndentation();
+        return getContext().getLineWrappingIndentation();
     }
 
 }

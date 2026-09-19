@@ -37,22 +37,22 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
     };
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck the indentation check
+     * @param context      the indentation check
      * @param expr        the abstract syntax tree
      * @param parent      the parent handler
      */
-    public SwitchRuleHandler(IndentationCheck indentCheck,
+    public SwitchRuleHandler(IndentationContext context,
                        DetailAST expr, AbstractExpressionHandler parent) {
-        super(indentCheck, "case", expr, parent);
+        super(context, "case", expr, parent);
     }
 
     @Override
     protected IndentLevel getIndentImpl() {
         return new IndentLevel(getParent().getIndent(),
-            getIndentCheck().getCaseIndent());
+            getContext().getCaseIndent());
     }
 
     /**
@@ -79,7 +79,7 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
             // Single-expression switchRule (no {} block):
             // assume line wrapping and add additional indentation
             // for the statement in the next line.
-            result = new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
+            result = new IndentLevel(getIndent(), getContext().getLineWrappingIndentation());
         }
 
         return result;

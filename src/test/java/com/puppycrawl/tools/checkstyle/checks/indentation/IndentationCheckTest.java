@@ -251,9 +251,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final IndentationCheck indentationCheck = new IndentationCheck();
 
         indentationCheck.setThrowsIndent(1);
+        indentationCheck.beginTree(null);
+        final IndentationContext context =
+            TestUtil.getInternalState(indentationCheck, "context", IndentationContext.class);
 
         assertWithMessage("Invalid throws indent")
-            .that(indentationCheck.getThrowsIndent())
+            .that(context.getThrowsIndent())
             .isEqualTo(1);
     }
 
@@ -4658,7 +4661,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPrimordialHandlerCheckIndentation() {
         final IndentationCheck check = new IndentationCheck();
-        final PrimordialHandler handler = new PrimordialHandler(check);
+        check.beginTree(null);
+        final IndentationContext context =
+            TestUtil.getInternalState(check, "context", IndentationContext.class);
+        final PrimordialHandler handler = new PrimordialHandler(context);
         handler.checkIndentation();
         assertWithMessage("Method should complete without exception")
             .that(handler)
@@ -4744,16 +4750,19 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClearStateForMemoryManagement() {
         final IndentationCheck check = new IndentationCheck();
+        check.beginTree(null);
+        final IndentationContext context =
+            TestUtil.getInternalState(check, "context", IndentationContext.class);
         @SuppressWarnings("unchecked")
         final Deque<PrimordialHandler> handlers = TestUtil.getInternalState(check,
                 "handlers", Deque.class);
 
-        handlers.push(new PrimordialHandler(check));
-        handlers.push(new PrimordialHandler(check));
+        handlers.push(new PrimordialHandler(context));
+        handlers.push(new PrimordialHandler(context));
 
-        assertWithMessage("handlers should have 2 elements before beginTree")
+        assertWithMessage("handlers should have 3 elements before beginTree")
                 .that(handlers)
-                .hasSize(2);
+                .hasSize(3);
 
         check.beginTree(null);
 

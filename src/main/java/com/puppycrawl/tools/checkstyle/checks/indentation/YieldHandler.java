@@ -28,17 +28,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class YieldHandler extends AbstractExpressionHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck the indentation check
+     * @param context      the indentation check
      * @param ast         the abstract syntax tree
      * @param parent      the parent handler
      */
-    public YieldHandler(IndentationCheck indentCheck,
+    public YieldHandler(IndentationContext context,
                       DetailAST ast,
                       AbstractExpressionHandler parent) {
-        super(indentCheck, "yield", ast, parent);
+        super(context, "yield", ast, parent);
     }
 
     @Override
