@@ -48,10 +48,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
 
     @Test
     public void testCorrect() throws Exception {
-        createModuleConfig(
-                RequireEmptyLineBeforeBlockTagGroupCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
         verifyWithInlineConfigParser(
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupCorrect.java"),
                 expected);
@@ -59,10 +56,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
 
     @Test
     public void testCorrect2() throws Exception {
-        createModuleConfig(
-                RequireEmptyLineBeforeBlockTagGroupCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
         verifyWithInlineConfigParser(
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupCorrect2.java"),
                 expected);
