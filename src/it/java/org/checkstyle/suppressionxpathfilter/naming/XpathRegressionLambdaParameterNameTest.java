@@ -145,4 +145,26 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testSwitchRule() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathLambdaParameterNameSwitchRule.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(LambdaParameterNameCheck.class);
+        final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
+        final String[] expectedViolation = {
+            "8:23: " + getCheckMessage(LambdaParameterNameCheck.class,
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "Word", defaultPattern),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathLambdaParameterNameSwitchRule']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_RETURN"
+                        + "/EXPR/LITERAL_SWITCH/SWITCH_RULE/LAMBDA/IDENT[@text='Word']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
 }
