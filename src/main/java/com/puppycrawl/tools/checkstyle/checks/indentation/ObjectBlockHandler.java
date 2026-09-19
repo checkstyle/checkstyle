@@ -29,16 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ObjectBlockHandler extends BlockParentHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public ObjectBlockHandler(IndentationCheck indentCheck,
+    public ObjectBlockHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "object def", ast, parent);
+        super(context, "object def", ast, parent);
     }
 
     @Override
@@ -94,13 +94,13 @@ public class ObjectBlockHandler extends BlockParentHandler {
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for the corresponding property.
      *
      * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
+     *         from the indentation context
      */
     private int getLineWrappingIndentation() {
-        return getIndentCheck().getLineWrappingIndentation();
+        return getContext().getLineWrappingIndentation();
     }
 
 }
