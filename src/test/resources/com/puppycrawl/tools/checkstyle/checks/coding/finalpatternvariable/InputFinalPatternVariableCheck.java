@@ -114,5 +114,25 @@ public class InputFinalPatternVariableCheck {
         if (!(o instanceof String s22)) return;
         if (s22.isEmpty()) return;
         s22 = "reassigned after if";
+
+        if (o == null) {
+        } else {
+            boolean b = o instanceof String s23;
+            s23 = "else scope";
+        }
+
+        if (!(o instanceof String s24)) return;
+        if (s24.isEmpty()) {
+            s24 = "reassigned inside if";
+        }
+
+        if (!(o instanceof String s26)) return;
+        ;
+        s26 = "reassigned after empty stat";
+    }
+
+    public String checkReturn(Object o) {
+        if (!(o instanceof String s25)) return "";
+        return s25 = "reassigned inside return";
     }
 }
