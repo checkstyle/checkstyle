@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="BooleanExpressionComplexity">
-      <property name="tokens" value="BXOR,LAND,LOR"/>
+      <property name="treatUniformExpressionsAsOne" value="false"/>
     </module>
   </module>
 </module>
@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics.booleanexpressioncomplexity;
 
 // xdoc section - start
-public class Example3
+public class Example4
 {
   public static void main(String ... args)
   {
@@ -20,15 +20,15 @@ public class Example3
     boolean c = (a & b) | (b ^ a); // ok, 1(^) = 1 (max allowed 3)
 
     boolean d = (a & b) | (b ^ a) | (a ^ b);
-    // ok above, 1(^) + 1(^) = 2, & and | are ignored here
+    // violation above 'Boolean expression complexity is 5 (max allowed is 3)'
 
     boolean e = a ^ (a || b) ^ (b || a) & (a | b);
-    // violation above 'Boolean expression complexity is 4 (max allowed is 3)'
+    // violation above 'Boolean expression complexity is 6 (max allowed is 3)'
     // 1(^) + 1(||) + 1(^) + 1(||) = 4, & and | are ignored here
   }
 
   public static boolean isType(int type)
-  {
+  {// violation below 'Boolean expression complexity is 4 (max allowed is 3)'
     return type == 1
             || type == 2
             || type == 3
@@ -43,7 +43,7 @@ public class Example3
 
   public static boolean isExpressionAsOne(boolean a, boolean b, boolean c,
            boolean d, Object leftType, Object rightType)
-  {
+  {// violation below 'Boolean expression complexity is 5 (max allowed is 3)'
     return a && b && c &&
             d && leftType != null && rightType != null;
   }
