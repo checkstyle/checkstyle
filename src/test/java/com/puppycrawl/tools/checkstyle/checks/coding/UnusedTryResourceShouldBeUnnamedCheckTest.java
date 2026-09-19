@@ -197,4 +197,20 @@ public class UnusedTryResourceShouldBeUnnamedCheckTest extends AbstractModuleTes
                 .isTrue();
     }
 
+    @Test
+    public void testHandlers() throws Exception {
+        final String[] expected = {
+            "15:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "24:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "34:31: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "46:31: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "57:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "76:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "reader"),
+            "91:27: " + getCheckMessage(MSG_UNUSED_TRY_RESOURCE, "r2"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputUnusedTryResourceShouldBeUnnamedHandlers.java"),
+            expected);
+    }
+
 }
