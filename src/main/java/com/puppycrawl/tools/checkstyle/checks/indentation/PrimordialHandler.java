@@ -26,12 +26,12 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 public class PrimordialHandler extends AbstractExpressionHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check.
+     * Construct an instance of this handler with the given indentation context.
      *
-     * @param indentCheck   the indentation check
+     * @param context   the indentation context
      */
-    public PrimordialHandler(IndentationCheck indentCheck) {
-        super(indentCheck, null, null, null);
+    public PrimordialHandler(IndentationContext context) {
+        super(context, null, null, null);
     }
 
     @Override
