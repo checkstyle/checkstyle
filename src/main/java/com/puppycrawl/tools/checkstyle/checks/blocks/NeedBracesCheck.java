@@ -145,7 +145,7 @@ public class NeedBracesCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE -> !isEmptyLoopBodyAllowed(ast);
             case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT -> hasUnbracedStatements(ast);
             case TokenTypes.LITERAL_ELSE -> ast.findFirstToken(TokenTypes.LITERAL_IF) == null;
-            case TokenTypes.LAMBDA -> !isInSwitchRule(ast);
+            case TokenTypes.LAMBDA -> !isSwitchRuleLambda(ast);
             default -> true;
         };
     }
@@ -217,7 +217,7 @@ public class NeedBracesCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR -> isSingleLineFor(statement);
             case TokenTypes.LITERAL_DO -> isSingleLineDoWhile(statement);
             case TokenTypes.LITERAL_WHILE -> isSingleLineWhile(statement);
-            case TokenTypes.LAMBDA -> !isInSwitchRule(statement)
+            case TokenTypes.LAMBDA -> !isSwitchRuleLambda(statement)
                     && isSingleLineLambda(statement);
             case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT ->
                 isSingleLineSwitchMember(statement);
@@ -364,6 +364,16 @@ public class NeedBracesCheck extends AbstractCheck {
      */
     private static boolean isInSwitchRule(DetailAST ast) {
         return ast.getParent().getType() == TokenTypes.SWITCH_RULE;
+    }
+
+    /**
+     * Checks if the provided LAMBDA node is a switch rule lambda.
+     *
+     * @param lambda the ast to check.
+     * @return true if lambda is a switch rule lambda.
+     */
+    private static boolean isSwitchRuleLambda(DetailAST lambda) {
+        return !lambda.hasChildren();
     }
 
     /**
