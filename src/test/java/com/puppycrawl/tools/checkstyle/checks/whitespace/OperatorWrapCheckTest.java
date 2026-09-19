@@ -232,4 +232,16 @@ public class OperatorWrapCheckTest
                 getPath("InputOperatorWrapLambda.java"), expected);
     }
 
+    @Test
+    public void testLambdaNl() throws Exception {
+        final String[] expected = {
+            "28:28: " + getCheckMessage(MSG_LINE_NEW, "->"),
+            "33:36: " + getCheckMessage(MSG_LINE_NEW, "->"),
+            "36:43: " + getCheckMessage(MSG_LINE_NEW, "->"),
+            "56:20: " + getCheckMessage(MSG_LINE_NEW, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapLambdaNl.java"), expected);
+    }
+
 }
