@@ -26,8 +26,6 @@ import java.nio.charset.CodingErrorAction;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
@@ -146,20 +144,13 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
      *
      * @throws Exception exception
      */
-    @SuppressForbidden
     @Test
     public void testUnmappableCharacters() throws Exception {
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_KEY, 75, 287),
+            "13: " + getCheckMessage(MSG_KEY, 75, 287),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineLengthCheck.class);
-        checkConfig.addProperty("max", "75");
-
-        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addProperty("charset", "IBM1098");
-
-        verify(checkerConfig, getPath("InputLineLengthUnmappableCharacters.java"), expected);
+        verifyWithInlineXmlConfig(
+                getPath("InputLineLengthUnmappableCharacters.java"), expected);
     }
 
 }
