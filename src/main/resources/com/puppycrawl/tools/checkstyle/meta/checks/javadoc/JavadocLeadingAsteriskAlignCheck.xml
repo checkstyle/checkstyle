@@ -8,7 +8,9 @@
  Checks the alignment of
  &lt;a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks"&gt;
  leading asterisks&lt;/a&gt; in a Javadoc comment. The Check ensures that leading asterisks
- are aligned vertically under the first asterisk ( &amp;#42; )
+ are aligned vertically at the number of columns to the right of the slash ( / ) of the
+ opening Javadoc tag that is specified by the &lt;code&gt;indentation&lt;/code&gt; property. By default
+ they are aligned under the first asterisk ( &amp;#42; )
  of opening Javadoc tag. The alignment of closing Javadoc tag ( &amp;#42;/ ) is also checked.
  If a closing Javadoc tag contains non-whitespace character before it
  then it's alignment will be ignored.
@@ -21,6 +23,9 @@
  &lt;a href="https://checkstyle.org/config.html#tabWidth"&gt;tabWidth&lt;/a&gt; property.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="1" name="indentation" type="int">
+               <description>Specify the number of columns between the slash ( / ) of the opening javadoc tag and the leading asterisks.</description>
+            </property>
             <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
