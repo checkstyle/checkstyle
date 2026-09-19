@@ -415,9 +415,11 @@
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
-      <!-- The class Violation has a constructor with many parameters by design. -->
+      <!-- The class Violation has a constructor with many parameters by design.
+           IndentationContext bundles everything handlers need in one value object. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='Violation']"/>
+                value="//ClassDeclaration[@SimpleName='Violation'
+                    or @SimpleName='IndentationContext']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">

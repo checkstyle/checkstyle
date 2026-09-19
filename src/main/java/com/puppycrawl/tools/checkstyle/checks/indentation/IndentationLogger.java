@@ -20,38 +20,21 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Handler for import statements.
- *
+ * Callback used by handlers to report indentation violations without holding a
+ * reference to {@code IndentationCheck}.
  */
-public class ImportHandler extends AbstractExpressionHandler {
+@FunctionalInterface
+interface IndentationLogger {
 
     /**
-     * Construct an instance of this handler with the given indentation context,
-     * abstract syntax tree, and parent handler.
+     * Log a violation for the given AST.
      *
-     * @param context        the indentation check
-     * @param ast           the abstract syntax tree
-     * @param parent        the parent handler
+     * @param ast the AST that caused the violation
+     * @param messageKey the message key
+     * @param args message arguments
      */
-    public ImportHandler(IndentationContext context,
-        DetailAST ast, AbstractExpressionHandler parent) {
-        super(context, "import", ast, parent);
-    }
-
-    @Override
-    public void checkIndentation() {
-        final int columnNo = expandedTabsColumnNo(getMainAst());
-
-        if (!getIndent().isAcceptable(columnNo) && isOnStartOfLine(getMainAst())) {
-            logError(getMainAst(), "", columnNo);
-        }
-
-        final DetailAST semi = getMainAst().findFirstToken(TokenTypes.SEMI);
-
-        checkWrappingIndentation(getMainAst(), semi);
-    }
+    void log(DetailAST ast, String messageKey, Object... args);
 
 }
