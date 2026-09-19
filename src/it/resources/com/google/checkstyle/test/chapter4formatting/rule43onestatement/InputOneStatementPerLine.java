@@ -184,13 +184,13 @@ public class InputOneStatementPerLine {
           yys = 5
                   ;
 
+  // 2 violations 7 lines below:
+  //  'Each variable declaration must be in its own statement.'
+  //  'Only one variable definition per line allowed.'
   /**
    * Two multiline  assignment (declaration) statements
    * are illegal.
    */
-  // 2 violations 3 lines below:
-  //  'Each variable declaration must be in its own statement.'
-  //  'Only one variable definition per line allowed.'
   int abc = 1, pqr = 2,
           xyz = 5; int blah; // violation 'Only one statement per line allowed.'
 
@@ -203,27 +203,27 @@ public class InputOneStatementPerLine {
                   ;
   int seven = 2;
 
+  // 2 violations 8 lines below:
+  //  'Each variable declaration must be in its own statement.'
+  //  'Only one variable definition per line allowed.'
   /**
    * Two statements on the same line
    * (they both are distributed over two lines)
    * are illegal.
    */
-  // 2 violations 3 lines below:
-  //  'Each variable declaration must be in its own statement.'
-  //  'Only one variable definition per line allowed.'
   int var1 = 5,
       var4 = 5; int var2 = 6, // violation 'Each variable declaration must be in its own statement.'
           var3 = 5;
   // violation 2 lines above 'Only one statement per line allowed.'
 
+  // 2 violations 8 lines below:
+  //  'Only one variable definition per line allowed.'
+  //  'Each variable declaration must be in its own statement.'
   /**
    * Two statements on the same line
    * (they both are distributed over two lines)
    * are illegal.
    */
-  // 2 violations 3 lines below:
-  //  'Only one variable definition per line allowed.'
-  //  'Each variable declaration must be in its own statement.'
   int var6 = 5; int var7 = 6,
       var8 = 5;
   // violation 2 lines above 'Only one statement per line allowed.'

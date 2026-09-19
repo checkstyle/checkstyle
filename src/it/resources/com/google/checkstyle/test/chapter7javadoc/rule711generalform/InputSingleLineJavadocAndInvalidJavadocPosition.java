@@ -16,11 +16,11 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
   void foo2() {}
 
-  /** @throws CheckstyleException if a problem occurs */
-  // 3 violations above:
+  // 3 violations 4 lines below:
   //  'Javadoc tag '@throws' should be preceded with an empty line.'
   //  'Single-line Javadoc comment should be multi-line.'
   //  'Summary javadoc is missing.'
+  /** @throws CheckstyleException if a problem occurs */
   void foo3() {}
 
   /**
@@ -209,6 +209,6 @@ InputInvalidJavadocPosition5 {}
 class InputInvalidJavadocPosition6
   /** Invalid javadoc. */
   {}
+// violation above''}' at column 4 should be alone on a line.'
+// violation below 'Javadoc comment is placed in the wrong location.'
 /** Invalid javadoc. */
-// violation 2 lines above''}' at column 4 should be alone on a line.'
-// violation 2 lines above 'Javadoc comment is placed in the wrong location.'
