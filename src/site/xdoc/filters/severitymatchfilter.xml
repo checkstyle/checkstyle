@@ -31,13 +31,23 @@
 </div>
       <subsection name="Description" id="SeverityMatchFilter_Description">
         <div>
-          Filter <code>SeverityMatchFilter</code> decides audit events according to the
-          <a href="https://checkstyle.org/config.html#Severity">severity level</a> of the event.
+          Accept violation to be present in audit report according to the
+          <a href="https://checkstyle.org/config.html#Severity">severity level</a>.
         </div>
       </subsection>
       <subsection name="Notes" id="SeverityMatchFilter_Notes">
         <p>
           SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
+        </p>
+
+        <p>
+          In Checkstyle, when a filter accepts a violation
+          (i.e. <code>accept()</code> returns <code>true</code>), the violation is kept in the
+          final report; to make a violation disappear from the report, the filter must
+          reject it by returning <code>false</code>. For <code>SeverityMatchFilter</code>, set
+          <code>severity</code> to the level you want to control and <code>acceptOnMatch</code>
+          to <code>true</code> to keep matching violations in the final report, or to
+          <code>false</code> to remove them from it.
         </p>
       </subsection>
       <subsection name="Properties" id="SeverityMatchFilter_Properties">
