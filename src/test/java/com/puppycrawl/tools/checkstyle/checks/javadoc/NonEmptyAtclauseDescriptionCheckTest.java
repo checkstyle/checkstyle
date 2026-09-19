@@ -27,11 +27,8 @@ import java.nio.charset.CodingErrorAction;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class NonEmptyAtclauseDescriptionCheckTest
         extends AbstractModuleTestSupport {
@@ -119,22 +116,12 @@ public class NonEmptyAtclauseDescriptionCheckTest
      *
      * @throws Exception exception
      */
-    @SuppressForbidden
     @Test
     public void testDecoderOnMalformedInput() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        checkerConfig.addChild(treeWalkerConfig);
-        checkerConfig.addProperty("charset", "US-ASCII");
-
-        verify(checkerConfig,
-                getPath("InputNonEmptyAtclauseDescriptionDifferentCharset.java"), expected);
+        verifyWithInlineXmlConfig(
+                getPath("InputNonEmptyAtclauseDescriptionDifferentCharset.java"),
+                expected);
     }
 
     @Test
