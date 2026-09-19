@@ -40,7 +40,10 @@ public class InputSimplifyBooleanExpression
     {
         boolean tt = isOddMillis() || true; // violation 'Expression can be simplified'
         boolean ff = isOddMillis() && false; // violation 'Expression can be simplified'
-        return !false || (true != false); // 2 violations
+        return !false || (true != false);
+        // 2 violations above:
+        //                    'Expression can be simplified'
+        //                    'Expression can be simplified'
     }
 
     public void tryToProvokeNPE()
@@ -49,7 +52,6 @@ public class InputSimplifyBooleanExpression
         }
         else {
         }
-
         if (true) {
             return;
         }
@@ -79,10 +81,8 @@ public class InputSimplifyBooleanExpression
 
     boolean b() {
         boolean asd = false;
-
         if(asd);
         else;
-
         return true;
     }
 
