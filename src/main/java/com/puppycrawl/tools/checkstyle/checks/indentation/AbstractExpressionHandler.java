@@ -34,9 +34,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public abstract class AbstractExpressionHandler {
 
     /**
-     * The instance of {@code IndentationCheck} using this handler.
+     * The indentation context providing config values, source lines, and
+     * violation reporting without a direct reference to the check.
      */
-    private final IndentationCheck indentCheck;
+    private final IndentationContext context;
 
     /** The AST which is handled by this handler. */
     private final DetailAST mainAst;
@@ -51,17 +52,17 @@ public abstract class AbstractExpressionHandler {
     private IndentLevel indent;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * name, abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
-     * @param typeName      the name of the handler
-     * @param expr          the abstract syntax tree
-     * @param parent        the parent handler
+     * @param context   the indentation context
+     * @param typeName  the name of the handler
+     * @param expr      the abstract syntax tree
+     * @param parent    the parent handler
      */
-    protected AbstractExpressionHandler(IndentationCheck indentCheck, String typeName,
+    protected AbstractExpressionHandler(IndentationContext context, String typeName,
             DetailAST expr, AbstractExpressionHandler parent) {
-        this.indentCheck = indentCheck;
+        this.context = context;
         this.typeName = typeName;
         mainAst = expr;
         this.parent = parent;
@@ -143,11 +144,11 @@ public abstract class AbstractExpressionHandler {
         else {
             typeStr = " " + subtypeName;
         }
-        String messageKey = IndentationCheck.MSG_ERROR;
+        String messageKey = IndentationContext.MSG_ERROR;
         if (expectedIndent.isMultiLevel()) {
-            messageKey = IndentationCheck.MSG_ERROR_MULTI;
+            messageKey = IndentationContext.MSG_ERROR_MULTI;
         }
-        indentCheck.indentationLog(ast, messageKey,
+        context.indentationLog(ast, messageKey,
             typeName + typeStr, actualIndent, expectedIndent);
     }
 
@@ -161,11 +162,11 @@ public abstract class AbstractExpressionHandler {
     private void logChildError(DetailAST ast,
                                int actualIndent,
                                IndentLevel expectedIndent) {
-        String messageKey = IndentationCheck.MSG_CHILD_ERROR;
+        String messageKey = IndentationContext.MSG_CHILD_ERROR;
         if (expectedIndent.isMultiLevel()) {
-            messageKey = IndentationCheck.MSG_CHILD_ERROR_MULTI;
+            messageKey = IndentationContext.MSG_CHILD_ERROR_MULTI;
         }
-        indentCheck.indentationLog(ast, messageKey,
+        context.indentationLog(ast, messageKey,
             typeName, actualIndent, expectedIndent);
     }
 
@@ -223,7 +224,7 @@ public abstract class AbstractExpressionHandler {
      * @return the start of the line for the given expression
      */
     protected final int getLineStart(int lineNo) {
-        return getLineStart(indentCheck.getLine(lineNo - 1));
+        return getLineStart(context.getLine(lineNo - 1));
     }
 
     /**
@@ -239,7 +240,7 @@ public abstract class AbstractExpressionHandler {
             index++;
         }
         return CommonUtil.lengthExpandedTabs(
-            line, index, indentCheck.getIndentationTabWidth());
+            line, index, context.getIndentationTabWidth());
     }
 
     /**
@@ -278,7 +279,7 @@ public abstract class AbstractExpressionHandler {
             int startCol = expandedTabsColumnNo(startLineAst);
 
             final int realStartCol =
-                getLineStart(indentCheck.getLine(startLineAst.getLineNo() - 1));
+                getLineStart(context.getLine(startLineAst.getLineNo() - 1));
 
             if (firstLineMatches && !allowNesting) {
                 startCol = realStartCol;
@@ -319,7 +320,7 @@ public abstract class AbstractExpressionHandler {
                 && startLineAst.getType() != TokenTypes.ANNOTATION
                 && (firstLineMatches || firstLine > mainAst.getLineNo())) {
             level = new IndentLevel(indentLevel,
-                    indentCheck.getLineWrappingIndentation());
+                    context.getLineWrappingIndentation());
         }
 
         // check following lines
@@ -351,7 +352,7 @@ public abstract class AbstractExpressionHandler {
      */
     private void checkLineIndent(DetailAST ast,
         IndentLevel indentLevel, boolean mustMatch) {
-        final String line = indentCheck.getLine(ast.getLineNo() - 1);
+        final String line = context.getLine(ast.getLineNo() - 1);
         final int start = getLineStart(line);
         final int columnNumber = expandedTabsColumnNo(ast);
         // if must match is set, it is a violation if the line start is not
@@ -372,7 +373,7 @@ public abstract class AbstractExpressionHandler {
      * @param lastNode Last node to examine inclusively.
      */
     protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode) {
-        indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode);
+        context.getLineWrappingHandler().checkIndentation(firstNode, lastNode);
     }
 
     /**
@@ -388,7 +389,7 @@ public abstract class AbstractExpressionHandler {
     protected void checkWrappingIndentation(DetailAST firstNode, DetailAST lastNode,
             int wrappedIndentLevel, int startIndent,
             LineWrappingHandler.LineWrappingOptions ignoreFirstLine) {
-        indentCheck.getLineWrappingHandler().checkIndentation(firstNode, lastNode,
+        context.getLineWrappingHandler().checkIndentation(firstNode, lastNode,
                 wrappedIndentLevel, startIndent, ignoreFirstLine);
     }
 
@@ -443,7 +444,7 @@ public abstract class AbstractExpressionHandler {
         boolean firstLineMatches,
         boolean allowNesting
     ) {
-        final DetailAstSet subtreeAst = new DetailAstSet(indentCheck);
+        final DetailAstSet subtreeAst = new DetailAstSet(context);
         final int firstLine = getFirstLine(tree);
         if (firstLineMatches && !allowNesting) {
             final DetailAST firstAst = getFirstAstNode(tree);
@@ -502,10 +503,10 @@ public abstract class AbstractExpressionHandler {
      */
     protected final int expandedTabsColumnNo(DetailAST ast) {
         final String line =
-            indentCheck.getLine(ast.getLineNo() - 1);
+            context.getLine(ast.getLineNo() - 1);
 
         return CommonUtil.lengthExpandedTabs(line, ast.getColumnNo(),
-            indentCheck.getIndentationTabWidth());
+            context.getIndentationTabWidth());
     }
 
     /**
@@ -517,7 +518,7 @@ public abstract class AbstractExpressionHandler {
      */
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
-        if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
+        if (!context.getHandlerFactory().isHandledType(tree.getType())) {
             final int lineNum = tree.getLineNo();
             final Integer colNum = astSet.getStartColumn(lineNum);
 
@@ -536,12 +537,12 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Accessor for the IndentCheck attribute.
+     * Accessor for the indentation context.
      *
-     * @return the IndentCheck attribute
+     * @return the indentation context
      */
-    protected final IndentationCheck getIndentCheck() {
-        return indentCheck;
+    protected final IndentationContext getContext() {
+        return context;
     }
 
     /**
@@ -563,22 +564,21 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for {@code basicOffset} property.
      *
-     * @return value of basicOffset property of {@code IndentationCheck}
+     * @return value of basicOffset property
      */
     protected final int getBasicOffset() {
-        return indentCheck.getBasicOffset();
+        return context.getBasicOffset();
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for {@code braceAdjustment} property.
      *
      * @return value of braceAdjustment property
-     *         of {@code IndentationCheck}
      */
     protected final int getBraceAdjustment() {
-        return indentCheck.getBraceAdjustment();
+        return context.getBraceAdjustment();
     }
 
     /**
