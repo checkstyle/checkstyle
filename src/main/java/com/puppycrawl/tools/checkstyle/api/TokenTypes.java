@@ -5711,9 +5711,9 @@ public final class TokenTypes {
      * End of block comment: '* /'.
      *
      * <p>For example:</p>
-     * <pre>{@code
+     * {@snippet :
      * /*comment* /
-     * }</pre>
+     * }
      *
      * <p>parses as:</p>
      * {@snippet :
