@@ -314,6 +314,26 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
+    public void testThrowScopes() throws Exception {
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY, "value"),
+            "27:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalLocalVariableThrowScopes.java"), expected);
+    }
+
+    @Test
+    public void testThrow() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+            "22:13: " + getCheckMessage(MSG_KEY, "value"),
+            "87:13: " + getCheckMessage(MSG_KEY, "value"),
+            "110:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalLocalVariableThrow.java"), expected);
+    }
+
+    @Test
     public void testBreakOrReturn() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
