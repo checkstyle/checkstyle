@@ -12,6 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 // xdoc section - start
 public class Example4 {
   private int a; // violation 'Missing a Javadoc comment for 'a'.'
+  private int log; // ok, ignored due to ignoreNamePattern
 
   /**
    * Some description here
