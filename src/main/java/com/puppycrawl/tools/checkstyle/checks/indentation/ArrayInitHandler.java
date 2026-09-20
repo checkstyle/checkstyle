@@ -135,10 +135,10 @@ public class ArrayInitHandler extends BlockParentHandler {
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
-        final String line = getIndentCheck().getLines()[lineNo - 1];
-        final int lineLength = line.length();
+        final int[] line = getIndentCheck().getLineCodePoints(lineNo - 1);
+        final int lineLength = line.length;
         while (realColumnNo < lineLength
-               && Character.isWhitespace(line.charAt(realColumnNo))) {
+               && Character.isWhitespace(line[realColumnNo])) {
             realColumnNo++;
         }
 
