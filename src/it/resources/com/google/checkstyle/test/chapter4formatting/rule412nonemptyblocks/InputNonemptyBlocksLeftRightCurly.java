@@ -234,12 +234,14 @@ class InputRightCurlyOther2
         System.identityHashCode("heh");
       // 3 violations 4 lines below:
       //  ''if' child has incorrect indentation level 6, expected level should be 8.'
-      //  ''}' at column 21 should have line break before.'
+      //  ''}' at column 21 should be alone on a line.'
       //  'Only one statement per line allowed.'
       flag = !flag; } System
         .identityHashCode("Xe-xe");
       if (flag) { System.identityHashCode("some foo"); }
-      // violation above ''{' at column 17 should have line break after.'
+      // 2 violations above:
+      // ''{' at column 17 should have line break after.'
+      // ''}' at column 56 should be alone on a line.'
     }
   }
 
@@ -254,7 +256,10 @@ class FooCtor
   public FooCtor()
     { // violation ''{' at column 5 should be on the previous line.'
       i3 = 1;
-    } } // violation ''}' at column 5 should be alone on a line.'
+    } }
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 7 should be alone on a line.'
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 // violation below 'Top-level class FooMethod has to reside in its own source file.'
@@ -263,7 +268,10 @@ class FooMethod
     public void fooMethod()
     { // violation ''{' at column 5 should be on the previous line.'
       int i = 1;
-    } } // violation ''}' at column 5 should be alone on a line.'
+    } }
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 7 should be alone on a line.'
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
