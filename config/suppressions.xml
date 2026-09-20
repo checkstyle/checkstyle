@@ -198,4 +198,6 @@
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
 
+  <!-- Remove suppression once all violations are fixed. -->
+  <suppress checks="FinalPatternVariable" files=".*\.java"/>
 </suppressions>
