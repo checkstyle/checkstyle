@@ -574,6 +574,17 @@
           </tr>
           <tr>
             <td>
+              <a href="unnecessarypermitsclause.html#UnnecessaryPermitsClause">
+                UnnecessaryPermitsClause
+              </a>
+            </td>
+            <td>
+              Checks that a <code>permits</code> clause of a sealed class or interface is not
+              unnecessary, i.e.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="unnecessarysemicolonafteroutertypedeclaration.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
                 UnnecessarySemicolonAfterOuterTypeDeclaration
               </a>
