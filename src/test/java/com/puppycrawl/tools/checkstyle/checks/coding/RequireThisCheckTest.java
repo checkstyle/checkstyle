@@ -184,6 +184,59 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnonymousClassParentField() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousClassParentField.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassInheritedMembers() throws Exception {
+        final String outer = "InputRequireThisAnonymousInherited.";
+        final String[] expected = {
+            "27:17: " + getCheckMessage(MSG_VARIABLE, "other", outer),
+            "62:17: " + getCheckMessage(MSG_VARIABLE, "other", outer),
+            "70:17: " + getCheckMessage(MSG_VARIABLE, "field", outer),
+            "75:17: " + getCheckMessage(MSG_METHOD, "outerMethod", outer),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInherited.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassPrivateMembersAreNotInherited() throws Exception {
+        final String outer = "InputRequireThisAnonymousInheritedPrivate.";
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_VARIABLE, "separator", outer),
+            "34:17: " + getCheckMessage(MSG_METHOD, "helper", outer),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInheritedPrivate.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassInheritedInterfaceMembers() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnonymousInheritedInterfaces.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnonymousClassCyclicInheritance() throws Exception {
+        final String[] expected = {
+            "21:17: " + getCheckMessage(MSG_VARIABLE, "field",
+                    "InputRequireThisAnonymousCyclicInheritance."),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisAnonymousCyclicInheritance.java"),
+                expected);
+    }
+
+    @Test
     public void testCompactSourceFile() throws Exception {
         final String[] expected = {
             "15:15: " + getCheckMessage(MSG_VARIABLE, "field", ""),
