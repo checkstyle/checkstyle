@@ -26,6 +26,7 @@ public class InputTryCatchIfElse2 {
       System.out.println("before");
     }
 
+    // violation 3 lines below ''}' at column 24 should have line break before'
     if (after) {
       System.out.println("after");
     } else if (after) {} else if (after) {
@@ -33,6 +34,7 @@ public class InputTryCatchIfElse2 {
     } else if (!after) { /* foo */ } else {
       System.out.println("before");
     }
+    // violation 3 lines above ''}' at column 36 should have line break before'
 
     if (after) {
       System.out.println("foo");

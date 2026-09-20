@@ -61,13 +61,13 @@ class InputOperatorWrap {
         9) { /* ignore */ }
 
     while (init == // violation ''==' should be on a new line.'
-        10) { } // violation 'Empty blocks should have no spaces. .* only be represented as {}'
+        10) { } // violation 'Empty block should be concise {}'
 
     if (init > // violation ''>' should be on a new line.'
         10) { /* ignore */ }
 
     while (init < 10 || // violation ''\|\|' should be on a new line.'
-        !flag) { } // violation 'Empty blocks should have no spaces. .* only be represented as {}'
+        !flag) { } // violation 'Empty block should be concise {}'
   }
 
   class Inner {
@@ -92,7 +92,7 @@ class InputOperatorWrap {
           9) { /* ignore */ }
 
       while (init == // violation ''==' should be on a new line.'
-          10) { } // violation 'Empty blocks should have no spaces. .* only be represented as {}'
+          10) { } // violation 'Empty block should be concise {}'
 
       if (init > // violation ''>' should be on a new line.'
           10) { /* ignore */ }
@@ -124,7 +124,7 @@ class InputOperatorWrap {
               9) { /* ignore */ }
 
           while (init == // violation ''==' should be on a new line.'
-              10) { } // violation 'Empty blocks should have no spaces.* only be represented as {}'
+              10) { } // violation 'Empty block should be concise {}'
 
           if (init > // violation ''>' should be on a new line.'
               10) { /* ignore */ }
