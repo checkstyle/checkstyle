@@ -1723,6 +1723,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testArrayInitWithSupplementaryCharactersBeforeLeftCurly() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "32:16: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
+                    15, "8, 16, 18"),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationArrayInitCodePoints.java"), expected);
+    }
+
+    @Test
     public void testArrayInitWithEmoji() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
