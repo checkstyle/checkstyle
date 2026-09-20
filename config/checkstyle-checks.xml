@@ -622,6 +622,7 @@
                        UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, DOT, INDEX_OP,
                        LITERAL_NEW, BOR, BXOR, BAND, QUESTION, TYPECAST"/>
     </module>
+    <module name="UnnecessaryPermitsClause"/>
     <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     <module name="UnnecessarySemicolonInEnumeration"/>
