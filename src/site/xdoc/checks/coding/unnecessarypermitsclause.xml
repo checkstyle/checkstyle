@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnnecessaryPermitsClause</title>
+  </head>
+  <body>
+    <section name="UnnecessaryPermitsClause">
+      <p>Since Checkstyle 14.2.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#UnnecessaryPermitsClause_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#UnnecessaryPermitsClause_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#UnnecessaryPermitsClause_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#UnnecessaryPermitsClause_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#UnnecessaryPermitsClause_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#UnnecessaryPermitsClause_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="UnnecessaryPermitsClause_Description">
+        <div>
+          Checks that a <code>permits</code> clause of a sealed class or interface is not
+          unnecessary, i.e. that it is not possible to omit the clause and have the
+          compiler infer the exact same set of permitted subtypes.
+        </div>
+
+        <p>
+          See the <a href="https://docs.oracle.com/javase/specs/jls/se22/html/jls-13.html#jls-13.4.2">
+          Java Language Specification</a> for more information about sealed classes.
+        </p>
+
+        <p>
+          This Check does not perform full type resolution. It determines whether a
+          permitted type is local to the file by comparing simple names against every
+          type declaration (class, interface, enum, or record) found
+          anywhere in the compilation unit, including nested and sibling top-level
+          types. As a result, a permitted type whose simple name coincidentally
+          matches an unrelated local type declaration could, in theory, be
+          misidentified as local. In practice this situation cannot occur in code
+          that compiles, since the Java compiler would not be able to resolve such an
+          ambiguous reference in the <code>permits</code> clause.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="UnnecessaryPermitsClause_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryPermitsClause"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public sealed class Example1 permits SubA, SubB {
+    // violation above """Unnecessary 'permits' clause for classes
+    // in the same compilation unit."""
+}
+
+final class SubA extends Example1 {
+}
+
+final class SubB extends Example1 {
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnnecessaryPermitsClause"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public sealed interface Example2 permits Example2SubA, Example2SubB {
+    // ok as all permitted subclasses are not in same file
+}
+
+final class Example2SubA implements Example2 {
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2SubB-code">
+          The second file contains a permitted subclass declared in a separate compilation unit:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public final class Example2SubB implements Example2 {
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="UnnecessaryPermitsClause_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryPermitsClause">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="UnnecessaryPermitsClause_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.permits.clause%22">
+              unnecessary.permits.clause
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="UnnecessaryPermitsClause_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryPermitsClauseCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="UnnecessaryPermitsClause_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
