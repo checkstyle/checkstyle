@@ -155,11 +155,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "cr");
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrExpected2Config.java"),
                 getPath("InputLineEndingCrExpected2.java"),
                 expected);
     }
