@@ -3047,7 +3047,7 @@ public class XdocsPagesTest {
             final String fileNameWithoutExtension =
                     path.getFileName().toString().replace(".xml", "");
             final String expectedRedirect = String.format(Locale.ROOT,
-                    "window.location.replace(`./%s.html", fileNameWithoutExtension);
+                    "return `./%s.html", fileNameWithoutExtension);
             assertWithMessage(String.format(
                         Locale.ROOT,
                         "Missing redirect for %s: expected '%s...' in %s",

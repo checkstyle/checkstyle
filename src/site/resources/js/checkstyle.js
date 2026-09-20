@@ -17,34 +17,44 @@ window.addEventListener("load", function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const url = new URL(window.location.href);
+function getReleaseNotesArchiveRedirect(url) {
     if (!url.pathname.endsWith("/releasenotes.html")
             || !url.hash.startsWith("#Release_")
             || document.getElementById(url.hash.replace("#", ""))) {
-        return;
+        return null;
     }
 
     const version = url.hash.split('_')[1];
     const versionParts = version.split(".");
     if (versionParts.length < 2) {
-        return;
+        return null;
     }
 
     let major = parseInt(versionParts[0], 10);
     let minor = parseInt(versionParts[1], 10);
 
     if (major >= 1 && major < 6) {
-        window.location.replace(`./release-notes-old-1-0-5-9.html${url.hash}`);
+        return `./release-notes-old-1-0-5-9.html${url.hash}`;
     }
     else if (major === 6 || major === 7) {
-        window.location.replace(`./release-notes-old-6-0-7-8.html${url.hash}`);
+        return `./release-notes-old-6-0-7-8.html${url.hash}`;
     }
     else if (major === 8 && minor >= 0 && minor <= 34) {
-        window.location.replace(`./release-notes-old-8-0-8-34.html${url.hash}`);
+        return `./release-notes-old-8-0-8-34.html${url.hash}`;
     }
     else if (major >= 8 && major <= 10) {
-        window.location.replace(`./release-notes-old-8-35-10-26.html${url.hash}`);
+        return `./release-notes-old-8-35-10-26.html${url.hash}`;
+    }
+
+    return null;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const url = new URL(window.location.href);
+    const archiveRedirect = getReleaseNotesArchiveRedirect(url);
+
+    if (archiveRedirect) {
+        window.location.replace(archiveRedirect);
     }
 });
 
@@ -103,6 +113,13 @@ window.addEventListener("load", function () {
         };
 
         if (redirectMap[oldHtmlFile]) {
+            const archiveRedirect = getReleaseNotesArchiveRedirect(urlObj);
+
+            if (archiveRedirect) {
+                window.location.replace(archiveRedirect);
+                return;
+            }
+
             const newUrl = `./${redirectMap[oldHtmlFile]}${urlObj.hash}`;
 
             const section = document.querySelector("section[name='Redirecting'] p");
