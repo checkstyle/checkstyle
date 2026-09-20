@@ -65,7 +65,7 @@ class InputRightCurlyOther {
     if (flag) {
       System.identityHashCode("heh");
       // 3 violations 4 lines below:
-      //  ''}' at column 21 should have line break before.'
+      //  ''}' at column 21 should be alone on a line.'
       // 'Only one statement per line allowed.'
       //  ''method def' child has incorrect indentation level 6, expected level should be 4.'
       flag = !flag; } System
@@ -86,14 +86,20 @@ class FooCtorAlone {
 
   public FooCtorAlone() {
     test = 1;
-  } } // violation ''}' at column 3 should be alone on a line.'
+  } }
+// 2 violations above:
+// ''}' at column 3 should be alone on a line.'
+// ''}' at column 5 should be alone on a line.'
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 class FooMethodAlone {
   // violation above 'Top-level class FooMethodAlone has to reside in its own source file.'
   public void fooMethod() {
     int i = 1;
-  } } // violation ''}' at column 3 should be alone on a line.'
+  } }
+// 2 violations above:
+// ''}' at column 3 should be alone on a line.'
+// ''}' at column 5 should be alone on a line.'
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
