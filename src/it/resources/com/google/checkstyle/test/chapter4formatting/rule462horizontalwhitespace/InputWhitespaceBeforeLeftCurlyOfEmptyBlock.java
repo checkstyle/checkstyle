@@ -7,7 +7,7 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
       new InputWhitespaceBeforeLeftCurlyOfEmptyBlock(){};
   // violation above ''{' is not preceded with whitespace'
 
-  // violation below 'WhitespaceAround: '{' is not preceded with whitespace.'
+  // violation below ''{' is not preceded with whitespace.'
   InputWhitespaceBeforeLeftCurlyOfEmptyBlock(){}
 
   void method(){} // violation ''{' is not preceded with whitespace'
@@ -31,16 +31,22 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
     for (int i = 1; i > 1; i++){} // violation ''{' is not preceded with whitespace'
 
-    do{} while (b); // violation 'WhitespaceAround: 'do' is not followed by whitespace. *'
+    do{} while (b);
+    // 2 violations above:
+    // 'WhitespaceAround: 'do' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
 
-    Runnable noop = () ->{}; // violation 'WhitespaceAround: '->' is not followed by whitespace. *'
+    Runnable noop = () ->{};
+    // 2 violations above:
+    // 'WhitespaceAround: '->' is not followed by whitespace.'
+    // ''{' is not preceded with whitespace.'
   }
 
   static{} // violation ''{' is not preceded with whitespace'
 
   record Record2(String str) {
 
-    public Record2{} // violation 'WhitespaceAround: '{' is not preceded with whitespace.'
+    public Record2{} // violation ''{' is not preceded with whitespace.'
 
   }
 }

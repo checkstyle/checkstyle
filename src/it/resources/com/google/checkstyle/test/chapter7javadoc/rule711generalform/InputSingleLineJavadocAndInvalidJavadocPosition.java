@@ -210,5 +210,4 @@ class InputInvalidJavadocPosition6
   /** Invalid javadoc. */
   {}
 /** Invalid javadoc. */
-// violation 2 lines above''}' at column 4 should be alone on a line.'
-// violation 2 lines above 'Javadoc comment is placed in the wrong location.'
+// violation above 'Javadoc comment is placed in the wrong location.'
