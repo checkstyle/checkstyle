@@ -153,26 +153,18 @@ public class EmptyLineSeparatorCheckTest
     }
 
     /**
-     * Config is defined in the method because strictly the file with one line
-     * is required to be tested.
+     * The target file must stay a single line so the check's one-line handling
+     * is what is being tested. The check config therefore lives in a sidecar file.
      */
     @Test
     public void testMultipleEmptyLinesInOneLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
-        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "1:79: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
         };
-
-        verify(checkerConfig, getPath("InputEmptyLineSeparatorOneLine.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputEmptyLineSeparatorOneLineConfig.java"),
+                getPath("InputEmptyLineSeparatorOneLine.java"),
+                expected);
     }
 
     @Test
