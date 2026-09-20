@@ -11,14 +11,18 @@ public class InputTryCatchIfElse {
 
     if (a == 1) {
     } else {}
+    // violation above ''}' at column 13 should be alone on a line.'
 
     if (a == 1) {
     } else { }
-    // violation above 'Empty blocks should have no spaces.'
+    // violation above ''}' at column 14 should be alone on a line.'
 
     if (a == 45) {}
 
     if (a == 9) {} else {}
+    // 2 violations above:
+    // ''}' at column 18 should have line break before.'
+    // ''}' at column 26 should be alone on a line.'
 
     if (a == 99) {
       System.out.println("test");
@@ -29,22 +33,21 @@ public class InputTryCatchIfElse {
     }
 
     try (MyResource r = new MyResource()) { }
-    // violation above 'Empty blocks should have no spaces.'
+    // violation above 'Empty block should be concise {}.'
 
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
     // 3 violations above:
-    //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should have line break before.'
     //                    'Empty catch block'
     //                    ''}' at column 74 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 4 violations above:
-    //                    'Empty blocks should have no spaces.'
-    //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    // 3 violations above:
+    //                    ''}' at column 44 should have line break before.'
     //                    'Empty catch block'
-    //                    ''}' at column 75 should be alone on a line.'
+    //                    '}' at column 75 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {}
@@ -53,13 +56,14 @@ public class InputTryCatchIfElse {
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) { }
-    // 3 violations above:
-    //                    'Empty blocks should have no spaces.'
+    // 2 violations above:
     //                    'Empty catch block'
     //                    ''}' at column 36 should be alone on a line.'
 
     try (MyResource r = new MyResource()) { ; }
-    // violation above ''{' at column 43 should have line break after.'
+    // 2 violations above:
+    // ''{' at column 43 should have line break after.'
+    // ''}' at column 47 should be alone on a line.'
 
     try {
       /* foo */
