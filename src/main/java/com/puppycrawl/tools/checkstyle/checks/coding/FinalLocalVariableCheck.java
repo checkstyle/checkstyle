@@ -96,6 +96,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
             new ArrayDeque<>();
 
+    /** Unassigned candidates on entry to conditional blocks that end with a throw. */
+    private final Map<DetailAST, ThrowingBranch> throwingBranches =
+            new HashMap<>();
+
     /**
      * Control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -199,6 +203,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 scopeStack.push(new ScopeData());
 
             case TokenTypes.SLIST -> {
+                if (ThrowingBranch.isThrowingBranch(ast)) {
+                    throwingBranches.put(ast, new ThrowingBranch(scopeStack));
+                }
                 currentScopeAssignedVariables.push(new ArrayDeque<>());
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
                     || ast.getParent().getParent()
@@ -282,6 +289,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 }
                 if (containsBreak || shouldUpdateUninitializedVariables(parentAst)) {
                     updateAllUninitializedVariables();
+                }
+                final ThrowingBranch branch = throwingBranches.remove(ast);
+                if (branch != null) {
+                    branch.restore(currentScopeAssignedVariables.peek());
                 }
                 updateCurrentScopeAssignedVariables();
             }
@@ -714,6 +725,68 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isLoopAst(int ast) {
         return LOOP_TYPES.get(ast);
+    }
+
+    /** Assignment state for a conditional branch that cannot complete normally. */
+    private static final class ThrowingBranch {
+
+        /** Candidates that were unassigned before entering the branch, with their scopes. */
+        private final Map<FinalVariableCandidate, ScopeData> unassigned = new HashMap<>();
+
+        /**
+         * Captures the state before entering a throwing branch.
+         *
+         * @param scopes enclosing scopes
+         */
+        private ThrowingBranch(Deque<ScopeData> scopes) {
+            for (ScopeData data : scopes) {
+                for (FinalVariableCandidate candidate : data.scope.values()) {
+                    if (!candidate.assigned
+                            && data.uninitializedVariables.contains(candidate.variableIdent)) {
+                        unassigned.put(candidate, data);
+                    }
+                }
+            }
+        }
+
+        /**
+         * Checks for a conditional block ending in a throw outside exception handlers.
+         * Enclosing try statements are excluded because a handler can resume execution.
+         *
+         * @param ast block to inspect
+         * @return whether assignments in the block cannot reach following statements
+         */
+        private static boolean isThrowingBranch(DetailAST ast) {
+            boolean result = TokenUtil.isOfType(ast.getParent(),
+                    TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE)
+                    && TokenUtil.isOfType(ast.getLastChild().getPreviousSibling(),
+                            TokenTypes.LITERAL_THROW);
+            for (DetailAST parent = ast.getParent(); result && parent != null;
+                    parent = parent.getParent()) {
+                result = parent.getType() != TokenTypes.LITERAL_TRY;
+            }
+            return result;
+        }
+
+        /**
+         * Restores assignment state on the path that does not enter the branch.
+         * Candidates removed by a reassignment in the branch must not be restored.
+         *
+         * @param assignments assignments in the branch
+         */
+        private void restore(Deque<DetailAST> assignments) {
+            unassigned.forEach((candidate, data) -> {
+                final DetailAST ident = candidate.variableIdent;
+                if (data.scope.get(ident.getText()) == candidate) {
+                    candidate.assigned = false;
+                    if (!data.uninitializedVariables.contains(ident)) {
+                        data.uninitializedVariables.add(ident);
+                    }
+                    assignments.removeIf(assigned -> isSameVariables(assigned, ident));
+                }
+            });
+        }
+
     }
 
     /**
