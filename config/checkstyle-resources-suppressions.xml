@@ -262,6 +262,8 @@
     files="/it/resources-noncompilable/com/google/checkstyle/test/.*/.*/.*\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/avoidescapedunicodecharacters/InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters\.java"/>
+  <suppress checks="FileLength"
+    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/coding/finalpatternvariable/InputFinalPatternVariableCheck\.java"/>
 
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
   <suppress checks="FileLength"
