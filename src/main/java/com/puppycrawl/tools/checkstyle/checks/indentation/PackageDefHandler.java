@@ -29,16 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class PackageDefHandler extends AbstractExpressionHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public PackageDefHandler(IndentationCheck indentCheck,
+    public PackageDefHandler(IndentationContext context,
             DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "package def", ast, parent);
+        super(context, "package def", ast, parent);
     }
 
     @Override
