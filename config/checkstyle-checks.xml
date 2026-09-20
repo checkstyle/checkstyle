@@ -400,6 +400,9 @@
       <property name="tokens" value="INTERFACE_DEF"/>
       <property name="option" value="alone_or_singleline"/>
     </module>
+    <module name="GoogleRightCurly">
+      <property name="severity" value="ignore"/>
+    </module>
 
     <!-- Class Design -->
     <module name="DesignForExtension">
