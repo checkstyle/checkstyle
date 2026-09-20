@@ -6,17 +6,17 @@ class InputEmptyBlocksAndCatchBlocks {
 
   static {}
 
-  static { } // violation 'Empty blocks should have no spaces. .* may only be represented as {}'
+  static { } // violation 'Empty block should be concise {}.'
 
   public void fooMethod() {
     InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
     int a = 1;
     if (a == 1) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // violation above 'Empty block should be concise {}.'
     char[] s = {'1', '2'};
     int index = 2;
     if (doSideEffect() == 1) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // violation above 'Empty block should be concise {}.'
     Io in = new Io();
     while ((r = in.read()) != null) {}
     for (; index < s.length && s[index] != 'x'; index++) {}
@@ -41,26 +41,26 @@ class InputEmptyBlocksAndCatchBlocks {
     int a = 90;
 
     if (a == 1) {
-    } else {} // false-negative until #15791
+    } else {}
+    // violation above ''}' at column 13 should be alone on a line.'
 
     if (a == 1) {
     } else { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // violation above ''}' at column 14 should be alone on a line.'
 
     try (MyResource r = new MyResource()) { }
-    // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+    // violation above 'Empty block should be concise {}.'
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
     // 3 violations above:
-    //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    ''}' at column 44 should have line break before.'
     //                    'Empty catch block'
     //                    ''}' at column 74 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 4 violations above:
-    //                    'Empty blocks should have no spaces.'
-    //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    // 3 violations above:
+    //                    ''}' at column 44 should have line break before'
     //                    'Empty catch block'
     //                    ''}' at column 75 should be alone on a line.'
 
@@ -72,15 +72,15 @@ class InputEmptyBlocksAndCatchBlocks {
     try (MyResource r = new MyResource()) {
 
     } catch (Exception expected) { }
-    // 3 violations above:
-    //                    'Empty blocks should have no spaces.'
+    // 2 violations above:
     //                    'Empty catch block'
     //                    ''}' at column 36 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {;}
-    // 3 violations above:
+    // 4 violations above:
     //  'WhitespaceAround: '{' is not followed by whitespace.'
     //  ''{' at column 43 should have line break after.'
+    //  ''}' at column 45 should be alone on a line.'
     //  'WhitespaceAround: '}' is not preceded with whitespace.'
   }
 
@@ -123,11 +123,11 @@ class WithInner {
       InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
       int a = 1;
       if (a == 1) { }
-      // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+      // violation above 'Empty block should be concise {}.'
       char[] s = {'1', '2'};
       int index = 2;
       if (doSideEffect() == 1) { }
-      // violation above 'Empty blocks should have no spaces. .* may only be represented as {}'
+      // violation above 'Empty block should be concise {}.'
       Io in = new Io();
       while ((r = in.read()) != null) {}
       for (; index < s.length && s[index] != 'x'; index++) {}
@@ -160,11 +160,11 @@ class WithAnon {
             InputEmptyBlocksAndCatchBlocks r = new InputEmptyBlocksAndCatchBlocks();
             int a = 1;
             if (a == 1) { }
-            // violation above 'Empty blocks should have no spaces. .* only be represented as {}'
+            // violation above 'Empty block should be concise {}.'
             char[] s = {'1', '2'};
             int index = 2;
             if (doSideEffect() == 1) { }
-            // violation above 'Empty blocks should have no spaces. .* only be represented as {}'
+            // violation above 'Empty block should be concise {}.'
             Io in = new Io();
             while ((r = in.read()) != null) {}
             for (; index < s.length && s[index] != 'x'; index++) {}
