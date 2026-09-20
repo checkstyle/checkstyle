@@ -13,6 +13,8 @@ public class InputFinalPatternVariableCheck {
     record Rec(P p1, P p2) {}
     record Pair(Object first, Object second) {}
 
+    private String s23, s27, s30;
+
     public void run(Object o) {
         if (o instanceof String s1) { // violation "Pattern variable 's1' should be declared final."
             System.out.println(s1);
@@ -129,6 +131,21 @@ public class InputFinalPatternVariableCheck {
         if (!(o instanceof String s26)) return;
         ;
         s26 = "reassigned after empty stat";
+
+        if (o instanceof String s27) {
+            // violation above "Pattern variable 's27' should be declared final."
+        } else {
+            s27 = "reassigned in else";
+        }
+
+        if (!(o instanceof String s29)) return; // violation "Pattern variable 's29' should be declared final."
+        while (o != null) {
+            s29 = "reassigned in while";
+        }
+
+        if (!(o instanceof String s30)) return; // violation "Pattern variable 's30' should be declared final."
+        int dummy = 0;
+        s30 = "reassigned after dummy";
     }
 
     public String checkReturn(Object o) {

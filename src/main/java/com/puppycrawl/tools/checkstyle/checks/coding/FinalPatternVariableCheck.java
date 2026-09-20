@@ -225,7 +225,7 @@ public class FinalPatternVariableCheck extends AbstractCheck {
                 statements.add(nextSibling);
             }
             else {
-                if (type != TokenTypes.SEMI && type != TokenTypes.EMPTY_STAT) {
+                if (type != TokenTypes.EMPTY_STAT) {
                     break;
                 }
             }

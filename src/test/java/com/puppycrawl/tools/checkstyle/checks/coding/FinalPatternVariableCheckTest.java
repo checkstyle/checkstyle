@@ -64,20 +64,23 @@ public class FinalPatternVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFinalPatternVariableCheck() throws Exception {
         final String[] expected = {
-            "17:33: " + getCheckMessage(MSG_KEY, "s1"),
-            "27:33: " + getCheckMessage(MSG_KEY, "s4"),
-            "34:36: " + getCheckMessage(MSG_KEY, "x"),
-            "41:34: " + getCheckMessage(MSG_KEY, "i1"),
-            "45:38: " + getCheckMessage(MSG_KEY, "s6"),
-            "50:40: " + getCheckMessage(MSG_KEY, "s7"),
-            "60:41: " + getCheckMessage(MSG_KEY, "s10"),
-            "65:35: " + getCheckMessage(MSG_KEY, "s12"),
-            "70:37: " + getCheckMessage(MSG_KEY, "s13"),
-            "76:35: " + getCheckMessage(MSG_KEY, "s14"),
-            "82:76: " + getCheckMessage(MSG_KEY, "s15"),
-            "90:38: " + getCheckMessage(MSG_KEY, "s16"),
-            "95:61: " + getCheckMessage(MSG_KEY, "s17"),
-            "106:35: " + getCheckMessage(MSG_KEY, "s20"),
+            "19:33: " + getCheckMessage(MSG_KEY, "s1"),
+            "29:33: " + getCheckMessage(MSG_KEY, "s4"),
+            "36:36: " + getCheckMessage(MSG_KEY, "x"),
+            "43:34: " + getCheckMessage(MSG_KEY, "i1"),
+            "47:38: " + getCheckMessage(MSG_KEY, "s6"),
+            "52:40: " + getCheckMessage(MSG_KEY, "s7"),
+            "62:41: " + getCheckMessage(MSG_KEY, "s10"),
+            "67:35: " + getCheckMessage(MSG_KEY, "s12"),
+            "72:37: " + getCheckMessage(MSG_KEY, "s13"),
+            "78:35: " + getCheckMessage(MSG_KEY, "s14"),
+            "84:76: " + getCheckMessage(MSG_KEY, "s15"),
+            "92:38: " + getCheckMessage(MSG_KEY, "s16"),
+            "97:61: " + getCheckMessage(MSG_KEY, "s17"),
+            "108:35: " + getCheckMessage(MSG_KEY, "s20"),
+            "135:33: " + getCheckMessage(MSG_KEY, "s27"),
+            "141:35: " + getCheckMessage(MSG_KEY, "s29"),
+            "146:35: " + getCheckMessage(MSG_KEY, "s30"),
         };
 
         verifyWithInlineConfigParser(getPath(
