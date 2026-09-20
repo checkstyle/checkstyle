@@ -108,6 +108,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   private int a; // violation 'Missing a Javadoc comment for 'a'.'
+  private int log; // violation 'Missing a Javadoc comment for 'log'.'
 
   /**
    * Some description here
@@ -147,6 +148,7 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
   private int a;
+  private int log;
 
   /**
    * Some description here
@@ -183,6 +185,7 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   private int a;     // violation 'Missing a Javadoc comment for 'a'.'
+  private int log;   // violation 'Missing a Javadoc comment for 'log'.'
 
   /**
    * Some description here
@@ -223,6 +226,7 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
   private int a; // violation 'Missing a Javadoc comment for 'a'.'
+  private int log; // ok, ignored due to ignoreNamePattern
 
   /**
    * Some description here
