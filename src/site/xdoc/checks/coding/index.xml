@@ -95,6 +95,16 @@
           </tr>
           <tr>
             <td>
+              <a href="duplicateconditionifchain.html#DuplicateConditionIfChain">
+                DuplicateConditionIfChain
+              </a>
+            </td>
+            <td>
+              Checks for duplicate condition expressions in <code>if ...
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="duplicateswitchbranch.html#DuplicateSwitchBranch">
                 DuplicateSwitchBranch
               </a>

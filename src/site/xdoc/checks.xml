@@ -394,6 +394,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/duplicateconditionifchain.html#DuplicateConditionIfChain">
+                DuplicateConditionIfChain
+              </a>
+            </td>
+            <td>
+              Checks for duplicate condition expressions in <code>if ...
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/duplicateswitchbranch.html#DuplicateSwitchBranch">
                 DuplicateSwitchBranch
               </a>
