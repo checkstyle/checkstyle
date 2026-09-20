@@ -59,15 +59,17 @@ class InputOperatorWrap {
 
     if (init != // violation ''!=' should be on a new line.'
         9) { /* ignore */ }
+    // violation above ''}' at column 27 should be alone on a line.'
 
     while (init == // violation ''==' should be on a new line.'
-        10) { } // violation 'Empty blocks should have no spaces. .* only be represented as {}'
+        10) { } // violation 'Empty block should be concise {}.'
 
     if (init > // violation ''>' should be on a new line.'
         10) { /* ignore */ }
+    // violation above ''}' at column 28 should be alone on a line.'
 
     while (init < 10 || // violation ''\|\|' should be on a new line.'
-        !flag) { } // violation 'Empty blocks should have no spaces. .* only be represented as {}'
+        !flag) { } // violation 'Empty block should be concise {}.'
   }
 
   class Inner {
@@ -90,12 +92,14 @@ class InputOperatorWrap {
 
       if (init != // violation ''!=' should be on a new line.'
           9) { /* ignore */ }
+      // violation above ''}' at column 29 should be alone on a line.'
 
       while (init == // violation ''==' should be on a new line.'
-          10) { } // violation 'Empty blocks should have no spaces. .* only be represented as {}'
+          10) { } // violation 'Empty block should be concise {}.'
 
       if (init > // violation ''>' should be on a new line.'
           10) { /* ignore */ }
+      // violation above ''}' at column 30 should be alone on a line.'
 
       while (init < 10 || // violation ''\|\|' should be on a new line.'
           !flag) {}
@@ -122,12 +126,14 @@ class InputOperatorWrap {
 
           if (init != // violation ''!=' should be on a new line.'
               9) { /* ignore */ }
+          // violation above ''}' at column 33 should be alone on a line.'
 
           while (init == // violation ''==' should be on a new line.'
-              10) { } // violation 'Empty blocks should have no spaces.* only be represented as {}'
+              10) { } // violation 'Empty block should be concise {}.'
 
           if (init > // violation ''>' should be on a new line.'
               10) { /* ignore */ }
+          // violation above ''}' at column 34 should be alone on a line.'
 
           while (init < 10 || // violation ''\|\|' should be on a new line.'
               !flag) {}
