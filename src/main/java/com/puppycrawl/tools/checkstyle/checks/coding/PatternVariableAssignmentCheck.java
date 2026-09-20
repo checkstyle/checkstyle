@@ -87,11 +87,16 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
 
-        final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
-        final List<DetailAST> reassignedVariableIdents = getReassignedVariableIdents(ast);
+        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
 
-        for (DetailAST patternVariableIdent : patternVariableIdents) {
-            checkForReassignment(patternVariableIdent, reassignedVariableIdents);
+        if (scopeRoot != null) {
+            final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
+            final List<DetailAST> reassignedVariableIdents =
+                    getReassignedVariableIdents(scopeRoot);
+
+            for (DetailAST patternVariableIdent : patternVariableIdents) {
+                checkForReassignment(patternVariableIdent, reassignedVariableIdents, scopeRoot);
+            }
         }
     }
 
@@ -148,31 +153,26 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     /**
      * Gets the list of AST branches of reassigned variable identifiers.
      *
-     * @param ast ast tree of checked instanceof statement
+     * @param scopeRoot the root AST node of the reassignment scope
      * @return list of AST identifiers that represent reassigned variables
      */
-    private static List<DetailAST> getReassignedVariableIdents(DetailAST ast) {
+    private static List<DetailAST> getReassignedVariableIdents(
+            final DetailAST scopeRoot) {
 
         final List<DetailAST> reassignedVariableIdents = new ArrayList<>();
-        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
+        final List<DetailAST> branches = expandReassignmentScopes(scopeRoot);
 
-        if (scopeRoot != null) {
+        for (DetailAST branch : branches) {
+            for (DetailAST expressionBranch = branch;
+                 expressionBranch != null;
+                 expressionBranch = shiftToNextTraversedBranch(
+                         expressionBranch, branch)) {
 
-            final List<DetailAST> branches =
-                    expandReassignmentScopes(scopeRoot);
+                final DetailAST assignToken =
+                        getMatchedAssignToken(expressionBranch);
 
-            for (DetailAST branch : branches) {
-                for (DetailAST expressionBranch = branch;
-                     expressionBranch != null;
-                     expressionBranch = shiftToNextTraversedBranch(
-                             expressionBranch, branch)) {
-
-                    final DetailAST assignToken =
-                            getMatchedAssignToken(expressionBranch);
-
-                    if (assignToken != null) {
-                        reassignedVariableIdents.add(assignToken.getFirstChild());
-                    }
+                if (assignToken != null) {
+                    reassignedVariableIdents.add(assignToken.getFirstChild());
                 }
             }
         }
@@ -259,20 +259,75 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether a pattern variable is reassigned and logs a violation if so.
+     * Checks whether a pattern variable is reassigned and logs a violation.
      *
      * @param patternVariableIdent AST ident of the pattern variable
-     * @param reassignedVariableIdents list of AST idents that represent reassigned variables
+     * @param reassignedVariableIdents list of AST idents for reassigned variables
+     * @param scopeRoot the root AST node of the reassignment scope
      */
     private void checkForReassignment(
-            DetailAST patternVariableIdent,
-            Iterable<DetailAST> reassignedVariableIdents) {
+            final DetailAST patternVariableIdent,
+            final Iterable<DetailAST> reassignedVariableIdents,
+            final DetailAST scopeRoot) {
 
         for (DetailAST assignTokenIdent : reassignedVariableIdents) {
-            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
+            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())
+                    && !isShadowed(assignTokenIdent,
+                            patternVariableIdent.getText(), scopeRoot)) {
                 log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
             }
         }
+    }
+
+    /**
+     * Checks whether an identifier being assigned to is shadowed by an
+     * enclosing type's field.
+     *
+     * @param assignTokenIdent the identifier AST being assigned to
+     * @param varName name of the pattern variable
+     * @param scopeRoot the root AST node of the reassignment scope
+     * @return true if the identifier is shadowed by an enclosing type's field
+     */
+    private static boolean isShadowed(final DetailAST assignTokenIdent,
+                                      final String varName,
+                                      final DetailAST scopeRoot) {
+        boolean shadowed = false;
+        final DetailAST boundary = scopeRoot.getParent();
+
+        for (DetailAST current = assignTokenIdent.getParent();
+             current != null && !current.equals(boundary);
+             current = current.getParent()) {
+            if (current.getType() == TokenTypes.OBJBLOCK
+                    && hasField(current, varName)) {
+                shadowed = true;
+                break;
+            }
+        }
+
+        return shadowed;
+    }
+
+    /**
+     * Checks whether an OBJBLOCK declares a field with the given name.
+     *
+     * @param objBlock the OBJBLOCK AST node
+     * @param varName the name to look for
+     * @return true if a field with the given name is found
+     */
+    private static boolean hasField(final DetailAST objBlock,
+                                    final String varName) {
+        boolean hasField = false;
+        for (DetailAST child = objBlock.getFirstChild(); child != null;
+             child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                if (varName.equals(ident.getText())) {
+                    hasField = true;
+                    break;
+                }
+            }
+        }
+        return hasField;
     }
 
     /**
