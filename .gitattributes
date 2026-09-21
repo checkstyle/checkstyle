@@ -28,6 +28,7 @@ src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatend
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCrExpected1.java eol=cr
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCrExpected3.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineCrlf.txt eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineCrlf1.txt eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineCr.txt eol=cr
 /src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example2.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingMultipleEndings.java -text
