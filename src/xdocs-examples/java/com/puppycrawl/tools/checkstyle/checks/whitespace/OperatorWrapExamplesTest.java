@@ -36,9 +36,9 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
-            "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
-            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "22:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "25:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "29:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -65,12 +65,22 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
-            "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
-            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "22:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "25:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "29:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
         };
-
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "25:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "29:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "62:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+        };
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
 }
