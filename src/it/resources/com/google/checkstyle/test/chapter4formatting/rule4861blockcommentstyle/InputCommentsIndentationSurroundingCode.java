@@ -60,6 +60,7 @@ public class InputCommentsIndentationSurroundingCode {
             // violation 3 lines above '.* indentation should.* as line 62.'
             // violation 3 lines above '.* indentation should.* as line 62.'
             && b == 1)) { /* foo */ }
+    // violation above ''}' at column 37 should be alone on a line.
   }
 
   private static void com() {
@@ -82,6 +83,7 @@ public class InputCommentsIndentationSurroundingCode {
 
   private void foo4() {
     if (!Arrays.equals(new String[] {""}, new String[] {""})/* wierd comment */) { /* foo */ }
+    // violation above ''}' at column 94 should be alone on a line.'
   }
 
   /** Some javadoc. */
@@ -101,7 +103,7 @@ public class InputCommentsIndentationSurroundingCode {
     // block
     // ...
           // odd indentation comment
-    // violation above '.* indentation should be the same level as line 105.'
+    // violation above '.* indentation should be the same level as line 107.'
     String someStr = new String();
   }
 
@@ -112,7 +114,7 @@ public class InputCommentsIndentationSurroundingCode {
     // block
         // odd indentation comment
     // comment
-    // violation 2 lines above'.* indentation should be the same level as line 116.'
+    // violation 2 lines above'.* indentation should be the same level as line 118.'
     String someStr = new String();
   }
 
@@ -123,7 +125,7 @@ public class InputCommentsIndentationSurroundingCode {
     // block
     // ...
             // odd indentation comment
-    // violation above '.* indentation should be the same level as line 127.'
+    // violation above '.* indentation should be the same level as line 129.'
     String someStr = new String();
   }
 
