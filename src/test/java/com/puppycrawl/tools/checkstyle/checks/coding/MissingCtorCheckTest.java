@@ -46,6 +46,15 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputMissingCtorCompactSourceFile.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final MissingCtorCheck check = new MissingCtorCheck();
         assertWithMessage("Acceptable tokens should not be null")
