@@ -10,10 +10,14 @@ public class InputLineBreakAfterLeftCurlyOfBlockInSwitch {
             System.out.println("try");
             yield 1;
           }
-          // violation below ''{' at column 36 should have line break after'
           case 2, 9, 10, 11, 12 -> { yield 2; }
-          // violation below ''{' at column 30 should have line break after'
+          // 2 violations above:
+          // ''{' at column 36 should have line break after'
+          // ''}' at column 47 should be alone on a line.'
           case 3, 5, 4, 8 -> { yield month << 2; }
+          // 2 violations above:
+          // ''{' at column 30 should have line break after'
+          // ''}' at column 50 should be alone on a line.'
           default -> 0;
         };
   }
