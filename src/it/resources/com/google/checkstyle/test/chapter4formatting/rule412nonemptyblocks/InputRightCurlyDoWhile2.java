@@ -61,13 +61,15 @@ public class InputRightCurlyDoWhile2 {
 
   /** Some javadoc. */
   public void foo5() {
-    do {} // violation ''}' at column 9 should be on the same line as the next part of .*'
+    // violation below ''}' at column 9 should be on the same line as the next part of .*'
+    do {}
     while (true);
   }
 
   /** Some javadoc. */
   public void foo6() {
-    do {} // violation ''}' at column 9 should be on the same line as the next part of .*'
+    // violation below ''}' at column 9 should be on the same line as the next part of .*'
+    do {}
     while (true);
   }
 
@@ -78,7 +80,8 @@ public class InputRightCurlyDoWhile2 {
 
   /** Some javadoc. */
   public void foo8() {
-    do {} // violation ''}' at column 9 should be on the same line as the next part of .*'
+    // violation below ''}' at column 9 should be on the same line as the next part of .*'
+    do {}
     while (true);
   }
 
