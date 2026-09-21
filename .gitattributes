@@ -31,3 +31,4 @@ src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatend
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineCr.txt eol=cr
 /src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example2.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingMultipleEndings.java -text
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineLf1.txt -text
