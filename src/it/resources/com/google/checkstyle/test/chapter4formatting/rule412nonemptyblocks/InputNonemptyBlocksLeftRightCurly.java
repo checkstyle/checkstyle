@@ -18,8 +18,9 @@ class InputNonemptyBlocksLeftRightCurly
 
       do {
         testDoWhile();
-      } // violation ''}' at column 7 should be on the same line as the next part of .*'
+      }
       while (condition());
+      // violation 2 lines above ''}' at column 7 should be on the same line as the next part of .*'
 
       do {
         testDoWhile();
@@ -74,14 +75,17 @@ class InputNonemptyBlocksLeftRightCurly
 
       if (condition()) {
         testIf();
-      } // violation ''}' at column 7 should be on the same line as the next part of .*'
+        // violation below ''}' at column 7 should be on the same line as the next part of .*'
+      }
       else if (condition()) {
         testIf();
-      } // violation ''}' at column 7 should be on the same line as the next part of .*'
+        // violation below ''}' at column 7 should be on the same line as the next part of .*'
+      }
       else {
         testIf();
       }
 
+      // violation below ''}' at column 36 should be alone on a line.'
       if (condition()) { /* foo */ }
       if (condition()) {
         testIf();
@@ -98,7 +102,8 @@ class InputNonemptyBlocksLeftRightCurly
       }
       if (condition()) {
         testIf();
-      } // violation ''}' at column 7 should be on the same line as the next part of .*'
+        // violation below ''}' at column 7 should be on the same line as the next part of .*'
+      }
       else {
         testIf();
       }
@@ -174,7 +179,8 @@ class InputRightCurlyOther2
               } else if (x < 0) {
 
               ;
-            } // violation ''}' at column 13 should be on the same line as the next part.*'
+              // violation below ''}' at column 13 should be on the same line as the next part.*'
+            }
             else
               { // violation ''{' at column 15 should be on the previous line.'
                 break;
@@ -186,7 +192,8 @@ class InputRightCurlyOther2
               default:
                 break;
               }
-          } // violation ''}' at column 11 should be on the same line as the next part of .*'
+            // violation below ''}' at column 11 should be on the same line as the next part of .*'
+          }
           catch (Exception e)
           { // violation ''{' at column 11 should be on the previous line.'
             break;
@@ -234,12 +241,14 @@ class InputRightCurlyOther2
         System.identityHashCode("heh");
       // 3 violations 4 lines below:
       //  ''if' child has incorrect indentation level 6, expected level should be 8.'
-      //  ''}' at column 21 should have line break before.'
+      //  ''}' at column 21 should be alone on a line.'
       //  'Only one statement per line allowed.'
       flag = !flag; } System
         .identityHashCode("Xe-xe");
       if (flag) { System.identityHashCode("some foo"); }
-      // violation above ''{' at column 17 should have line break after.'
+      // 2 violations above:
+      // ''{' at column 17 should have line break after.'
+      // ''}' at column 56 should be alone on a line.'
     }
   }
 
@@ -254,7 +263,10 @@ class FooCtor
   public FooCtor()
     { // violation ''{' at column 5 should be on the previous line.'
       i3 = 1;
-    } } // violation ''}' at column 5 should be alone on a line.'
+    } }
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 7 should be alone on a line.'
 
 /** Test input for closing brace if that brace terminates a statement or the body of a method. */
 // violation below 'Top-level class FooMethod has to reside in its own source file.'
@@ -263,7 +275,10 @@ class FooMethod
     public void fooMethod()
     { // violation ''{' at column 5 should be on the previous line.'
       int i = 1;
-    } } // violation ''}' at column 5 should be alone on a line.'
+    } }
+// 2 violations above:
+// ''}' at column 5 should be alone on a line.'
+// ''}' at column 7 should be alone on a line.'
 
 /**
  * Test input for closing brace if that brace terminates a statement or the body of a named class.
