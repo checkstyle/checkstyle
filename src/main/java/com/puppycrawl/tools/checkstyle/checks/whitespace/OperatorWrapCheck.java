@@ -166,7 +166,203 @@ public class OperatorWrapCheck
             else if (option == WrapOption.EOL && isEndOfLineModeViolation(ast)) {
                 log(ast, MSG_LINE_PREVIOUS, ast.getText());
             }
+            else {
+                checkHigherLevelWrapViolation(ast);
+            }
         }
+    }
+
+    /**
+     * Checks if the operator is wrapped at a lower syntactical level
+     * when a higher-level operator was available on the same line.
+     *
+     * @param ast the operator node
+     */
+    private void checkHigherLevelWrapViolation(DetailAST ast) {
+        final DetailAST leftNode = getLeftNode(ast);
+        final DetailAST rightNode = getRightNode(ast);
+        if (leftNode == null || rightNode == null) {
+            return;
+        }
+
+        final boolean isWrapped = !TokenUtil.areOnSameLine(ast, leftNode)
+                || !TokenUtil.areOnSameLine(ast, rightNode);
+
+        if (!isWrapped) {
+            return;
+        }
+
+        final int opLine = ast.getLineNo();
+        final int leftLine = leftNode.getLineNo();
+        final int rightLine = rightNode.getLineNo();
+        final int opPrecedence = getPrecedence(ast.getType());
+
+        DetailAST current = ast.getParent();
+        while (current != null) {
+            final int type = current.getType();
+
+            if (isAcceptableToken(type)) {
+                if (isAssignment(type)) {
+                    current = current.getParent();
+                    continue;
+                }
+
+                final int currentPrecedence = getPrecedence(type);
+                if (currentPrecedence == opPrecedence) {
+                    current = current.getParent();
+                    continue;
+                }
+
+                final DetailAST parentLeft = getLeftNode(current);
+                final DetailAST parentRight = getRightNode(current);
+                if (parentLeft != null && parentRight != null) {
+                    final boolean parentWrapped = !TokenUtil.areOnSameLine(current, parentLeft)
+                            || !TokenUtil.areOnSameLine(current, parentRight);
+
+                    if (!parentWrapped) {
+                        final int parentLine = current.getLineNo();
+                        if (parentLine == opLine || parentLine == leftLine
+                                || parentLine == rightLine) {
+                            // Using MSG_LINE_NEW as temporary logging message for this violation
+                            log(ast, MSG_LINE_NEW, ast.getText());
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (!isTransparentContainer(type)) {
+                break;
+            }
+            current = current.getParent();
+        }
+    }
+
+    /**
+     * Checks if the token type is an acceptable token for this check.
+     *
+     * @param type the token type
+     * @return true if it is an acceptable token
+     */
+    private boolean isAcceptableToken(int type) {
+        for (int t : getAcceptableTokens()) {
+            if (t == type) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the token type is an assignment operator.
+     * Assignment operators are not considered for higher-level wrapping.
+     *
+     * @param type the token type
+     * @return true if it is an assignment operator
+     */
+    private static boolean isAssignment(int type) {
+        return type == TokenTypes.ASSIGN
+            || type == TokenTypes.PLUS_ASSIGN
+            || type == TokenTypes.MINUS_ASSIGN
+            || type == TokenTypes.STAR_ASSIGN
+            || type == TokenTypes.DIV_ASSIGN
+            || type == TokenTypes.MOD_ASSIGN
+            || type == TokenTypes.SR_ASSIGN
+            || type == TokenTypes.BSR_ASSIGN
+            || type == TokenTypes.SL_ASSIGN
+            || type == TokenTypes.BAND_ASSIGN
+            || type == TokenTypes.BXOR_ASSIGN
+            || type == TokenTypes.BOR_ASSIGN;
+    }
+
+    /**
+     * Checks if a token type is a transparent container node.
+     *
+     * @param type the token type
+     * @return true if transparent
+     */
+    private static boolean isTransparentContainer(int type) {
+        return type == TokenTypes.EXPR;
+    }
+
+    /**
+     * Gets the precedence level of a given operator token.
+     * Lower number means higher precedence (tighter binding).
+     *
+     * @param type the token type
+     * @return the precedence level, or -1 if not an operator
+     */
+    private static int getPrecedence(int type) {
+        final int precedence;
+        switch (type) {
+            case TokenTypes.METHOD_REF:
+                precedence = 1;
+                break;
+            case TokenTypes.STAR:
+            case TokenTypes.DIV:
+            case TokenTypes.MOD:
+                precedence = 2;
+                break;
+            case TokenTypes.PLUS:
+            case TokenTypes.MINUS:
+                precedence = 3;
+                break;
+            case TokenTypes.SL:
+            case TokenTypes.SR:
+            case TokenTypes.BSR:
+                precedence = 4;
+                break;
+            case TokenTypes.LT:
+            case TokenTypes.GT:
+            case TokenTypes.LE:
+            case TokenTypes.GE:
+            case TokenTypes.LITERAL_INSTANCEOF:
+                precedence = 5;
+                break;
+            case TokenTypes.EQUAL:
+            case TokenTypes.NOT_EQUAL:
+                precedence = 6;
+                break;
+            case TokenTypes.BAND:
+                precedence = 7;
+                break;
+            case TokenTypes.BXOR:
+                precedence = 8;
+                break;
+            case TokenTypes.BOR:
+                precedence = 9;
+                break;
+            case TokenTypes.LAND:
+                precedence = 10;
+                break;
+            case TokenTypes.LOR:
+                precedence = 11;
+                break;
+            case TokenTypes.QUESTION:
+            case TokenTypes.COLON:
+                precedence = 12;
+                break;
+            case TokenTypes.ASSIGN:
+            case TokenTypes.PLUS_ASSIGN:
+            case TokenTypes.MINUS_ASSIGN:
+            case TokenTypes.STAR_ASSIGN:
+            case TokenTypes.DIV_ASSIGN:
+            case TokenTypes.MOD_ASSIGN:
+            case TokenTypes.SR_ASSIGN:
+            case TokenTypes.BSR_ASSIGN:
+            case TokenTypes.SL_ASSIGN:
+            case TokenTypes.BAND_ASSIGN:
+            case TokenTypes.BXOR_ASSIGN:
+            case TokenTypes.BOR_ASSIGN:
+                precedence = 13;
+                break;
+            case TokenTypes.LAMBDA:
+                precedence = 14;
+                break;
+            default:
+                precedence = -1;
+                break;
+        }
+        return precedence;
     }
 
     /**
