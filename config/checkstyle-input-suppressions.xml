@@ -27,6 +27,8 @@
             files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewlineCr.java"/>
   <suppress checks="NewlineAtEndOfFile"
             files="/checks/newlineatendoffile/InputNewlineAtEndOfFileNoNewlineCrlf.java"/>
+  <suppress checks="NewlineAtEndOfFile"
+            files="/checks/lineending/InputLineEndingOneLineLf.txt"/>
 
   <suppress id="noCheckstyleInInputs"
             files="/checks/imports/redundantimport/InputRedundantImportWithoutPackage.java"/>
