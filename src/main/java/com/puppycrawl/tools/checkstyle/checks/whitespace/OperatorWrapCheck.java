@@ -63,6 +63,12 @@ public class OperatorWrapCheck
     private WrapOption option = WrapOption.NL;
 
     /**
+     * Control whether to enforce the higher-level wrap preference from the OpenJDK
+     * Java Style Guide.
+     */
+    private boolean higherLevelWrap;
+
+    /**
      * Creates a new {@code OperatorWrapCheck} instance.
      */
     public OperatorWrapCheck() {
@@ -78,6 +84,16 @@ public class OperatorWrapCheck
      */
     public void setOption(String optionStr) {
         option = WrapOption.valueOf(optionStr.trim().toUpperCase(Locale.ENGLISH));
+    }
+
+    /**
+     * Setter to control whether to enforce the higher-level wrap preference.
+     *
+     * @param higherLevelWrap whether to enforce higher-level wrapping
+     * @since 14.2.0
+     */
+    public void setHigherLevelWrap(boolean higherLevelWrap) {
+        this.higherLevelWrap = higherLevelWrap;
     }
 
     @Override
@@ -166,7 +182,176 @@ public class OperatorWrapCheck
             else if (option == WrapOption.EOL && isEndOfLineModeViolation(ast)) {
                 log(ast, MSG_LINE_PREVIOUS, ast.getText());
             }
+            else if (higherLevelWrap) {
+                checkHigherLevelWrapViolation(ast);
+            }
         }
+    }
+
+    /**
+     * Checks if the operator is wrapped at a lower syntactical level
+     * when a higher-level operator was available on the same line.
+     *
+     * @param ast the operator node
+     */
+    private void checkHigherLevelWrapViolation(DetailAST ast) {
+        final DetailAST leftNode = getLeftNode(ast);
+        final DetailAST rightNode = getRightNode(ast);
+        if (leftNode != null && rightNode != null) {
+            final boolean isWrapped = !TokenUtil.areOnSameLine(ast, leftNode)
+                    || !TokenUtil.areOnSameLine(ast, rightNode);
+
+            if (isWrapped) {
+                checkHigherLevelWrapAncestor(ast, leftNode, rightNode);
+            }
+        }
+    }
+
+    /**
+     * Checks if a higher-level ancestor was available for wrapping.
+     *
+     * @param ast the operator node
+     * @param leftNode the left node of the operator
+     * @param rightNode the right node of the operator
+     */
+    private void checkHigherLevelWrapAncestor(DetailAST ast, DetailAST leftNode,
+                                              DetailAST rightNode) {
+        final int opPrecedence = getPrecedence(ast.getType());
+
+        DetailAST current = ast.getParent();
+        while (current != null) {
+            final int type = current.getType();
+
+            if (isAcceptableToken(type)
+                    && !isAssignment(type)
+                    && getPrecedence(type) != opPrecedence
+                    && isValidHigherLevelWrap(current, ast, leftNode, rightNode)) {
+                log(current, option == WrapOption.NL ? MSG_LINE_NEW : MSG_LINE_PREVIOUS, current.getText());
+                break;
+            }
+            else if (!isTransparentContainer(type)) {
+                break;
+            }
+            current = current.getParent();
+        }
+    }
+
+    /**
+     * Checks if an ancestor node was a valid higher-level candidate for wrapping.
+     *
+     * @param ancestor the ancestor node
+     * @param opNode the original operator node
+     * @param leftNode the left node of the operator
+     * @param rightNode the right node of the operator
+     * @return true if the ancestor was a valid higher-level wrap candidate
+     */
+    private static boolean isValidHigherLevelWrap(DetailAST ancestor, DetailAST opNode,
+                                                  DetailAST leftNode, DetailAST rightNode) {
+        final DetailAST parentLeft = getLeftNode(ancestor);
+        final DetailAST parentRight = getRightNode(ancestor);
+        boolean result = false;
+
+        if (parentLeft != null && parentRight != null) {
+            final boolean parentWrapped = !TokenUtil.areOnSameLine(ancestor, parentLeft)
+                    || !TokenUtil.areOnSameLine(ancestor, parentRight);
+
+            if (!parentWrapped) {
+                final int parentLine = ancestor.getLineNo();
+                if (parentLine == opNode.getLineNo() || parentLine == leftLine(leftNode)
+                        || parentLine == rightNode.getLineNo()) {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Helper to get the line number of left node.
+     *
+     * @param leftNode the left node
+     * @return the line number
+     */
+    private static int leftLine(DetailAST leftNode) {
+        return leftNode.getLineNo();
+    }
+
+    /**
+     * Checks if the token type is an acceptable token for this check.
+     *
+     * @param type the token type
+     * @return true if it is an acceptable token
+     */
+    private boolean isAcceptableToken(int type) {
+        for (int t : getAcceptableTokens()) {
+            if (t == type) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the token type is an assignment operator.
+     * Assignment operators are not considered for higher-level wrapping.
+     *
+     * @param type the token type
+     * @return true if it is an assignment operator
+     */
+    private static boolean isAssignment(int type) {
+        return type == TokenTypes.ASSIGN
+            || type == TokenTypes.PLUS_ASSIGN
+            || type == TokenTypes.MINUS_ASSIGN
+            || type == TokenTypes.STAR_ASSIGN
+            || type == TokenTypes.DIV_ASSIGN
+            || type == TokenTypes.MOD_ASSIGN
+            || type == TokenTypes.SR_ASSIGN
+            || type == TokenTypes.BSR_ASSIGN
+            || type == TokenTypes.SL_ASSIGN
+            || type == TokenTypes.BAND_ASSIGN
+            || type == TokenTypes.BXOR_ASSIGN
+            || type == TokenTypes.BOR_ASSIGN;
+    }
+
+    /**
+     * Checks if a token type is a transparent container node.
+     *
+     * @param type the token type
+     * @return true if transparent
+     */
+    private static boolean isTransparentContainer(int type) {
+        return type == TokenTypes.EXPR;
+    }
+
+    /**
+     * Gets the precedence level of a given operator token.
+     * Lower number means higher precedence (tighter binding).
+     *
+     * @param type the token type
+     * @return the precedence level, or -1 if not an operator
+     */
+    private static int getPrecedence(int type) {
+        return switch (type) {
+            case TokenTypes.METHOD_REF -> 1;
+            case TokenTypes.STAR, TokenTypes.DIV, TokenTypes.MOD -> 2;
+            case TokenTypes.PLUS, TokenTypes.MINUS -> 3;
+            case TokenTypes.SL, TokenTypes.SR, TokenTypes.BSR -> 4;
+            case TokenTypes.LT, TokenTypes.GT, TokenTypes.LE, TokenTypes.GE,
+                 TokenTypes.LITERAL_INSTANCEOF -> 5;
+            case TokenTypes.EQUAL, TokenTypes.NOT_EQUAL -> 6;
+            case TokenTypes.BAND -> 7;
+            case TokenTypes.BXOR -> 8;
+            case TokenTypes.BOR -> 9;
+            case TokenTypes.LAND -> 10;
+            case TokenTypes.LOR -> 11;
+            case TokenTypes.QUESTION, TokenTypes.COLON -> 12;
+            case TokenTypes.ASSIGN, TokenTypes.PLUS_ASSIGN, TokenTypes.MINUS_ASSIGN,
+                 TokenTypes.STAR_ASSIGN, TokenTypes.DIV_ASSIGN, TokenTypes.MOD_ASSIGN,
+                 TokenTypes.SR_ASSIGN, TokenTypes.BSR_ASSIGN, TokenTypes.SL_ASSIGN,
+                 TokenTypes.BAND_ASSIGN, TokenTypes.BXOR_ASSIGN, TokenTypes.BOR_ASSIGN -> 13;
+            case TokenTypes.LAMBDA -> 14;
+            default -> -1;
+        };
     }
 
     /**
