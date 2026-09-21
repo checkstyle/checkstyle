@@ -183,7 +183,25 @@ public class SuppressFilterElement
     private boolean isFileMatch(String fileName) {
         boolean match = fileRegexp.matcher(fileName).find();
         if (!match) {
-            final String slashesFileName = fileName.replace('\\', '/');
+            match = matchAfterSlashNormalization(fileName);
+        }
+        return match;
+    }
+
+    /**
+     * Performance optimization: returns the file regex match against the
+     * backslash-normalized file name, but only when normalization changed the
+     * string. {@link String#replace(char, char)} returns the same instance when
+     * there is nothing to replace, so guarding against that case avoids running
+     * the same regex twice on identical input.
+     *
+     * @param fileName the original file name
+     * @return true if the normalized file name matches the file regex
+     */
+    private boolean matchAfterSlashNormalization(String fileName) {
+        final String slashesFileName = fileName.replace('\\', '/');
+        boolean match = false;
+        if (!slashesFileName.equals(fileName)) {
             match = fileRegexp.matcher(slashesFileName).find();
         }
         return match;
