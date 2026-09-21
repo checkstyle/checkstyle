@@ -20,6 +20,14 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -400,6 +408,26 @@ public class SuppressFilterElementTest {
         assertWithMessage("Path with backslash should match regex with backslash")
                 .that(testFilter.accept(event))
                 .isFalse();
+    }
+
+    @Test
+    public void testFileNameWithoutBackslashDoesNotTriggerFallbackMatch() {
+        final Pattern spiedPattern = mock(Pattern.class);
+        final Matcher spiedMatcher = mock(Matcher.class);
+        when(spiedPattern.pattern()).thenReturn("no-match");
+        when(spiedPattern.matcher(any(CharSequence.class))).thenReturn(spiedMatcher);
+        when(spiedMatcher.find()).thenReturn(false);
+
+        final SuppressFilterElement testFilter = new SuppressFilterElement(
+                spiedPattern, null, null, null, null, null);
+
+        final Violation violation = new Violation(1, 0, "", "", null, null, getClass(), null);
+        final AuditEvent event = new AuditEvent(this,
+                "src/main/java/MyClass.java", violation);
+
+        testFilter.accept(event);
+
+        verify(spiedPattern, times(1)).matcher(any(CharSequence.class));
     }
 
 }
