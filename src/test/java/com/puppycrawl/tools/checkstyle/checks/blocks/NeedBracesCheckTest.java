@@ -355,6 +355,28 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNeedBracesSwitchRuleLambdaValue() throws Exception {
+        final String[] expected = {
+            "16:39: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "20:28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "21:31: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesSwitchRuleLambdaValue.java"),
+            expected);
+    }
+
+    @Test
+    public void testNeedBracesSwitchRuleLambdaValueAllowSingleLine() throws Exception {
+        final String[] expected = {
+            "28:28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputNeedBracesSwitchRuleLambdaValueAllowSingleLine.java"),
+            expected);
+    }
+
+    @Test
     public void testNeedBracesSwitchExpressionAndLambdaAllowSingleLine() throws Exception {
         final String[] expected = {
             "27:24: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),

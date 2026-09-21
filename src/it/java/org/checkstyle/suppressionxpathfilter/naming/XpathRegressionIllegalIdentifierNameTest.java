@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck;
 
 public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestSupport {
@@ -56,7 +55,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
         final String[] expectedViolation = {
             "10:20: " + getCheckMessage(IllegalIdentifierNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "var", format),
+                IllegalIdentifierNameCheck.MSG_INVALID_PATTERN, "var", format),
             };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -81,7 +80,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
         final String[] expectedViolation = {
             "9:17: " + getCheckMessage(IllegalIdentifierNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "te$t", format),
+                IllegalIdentifierNameCheck.MSG_INVALID_PATTERN, "te$t", format),
             };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -107,7 +106,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
 
         final String[] expectedViolation = {
             "10:23: " + getCheckMessage(IllegalIdentifierNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "var", format),
+                IllegalIdentifierNameCheck.MSG_INVALID_PATTERN, "var", format),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

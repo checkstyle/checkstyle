@@ -34,9 +34,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 public class LambdaParameterNameCheck extends AbstractNameCheck {
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
     /** Creates new instance of {@code LambdaParameterNameCheck}. */
     public LambdaParameterNameCheck() {
-        super("^([a-z][a-zA-Z0-9]*|_)$");
+        super("^([a-z][a-zA-Z0-9]*|_)$", MSG_INVALID_PATTERN);
     }
 
     @Override
@@ -58,13 +64,11 @@ public class LambdaParameterNameCheck extends AbstractNameCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final boolean isInSwitchRule = ast.getParent().getType() == TokenTypes.SWITCH_RULE;
-
         if (Objects.nonNull(ast.findFirstToken(TokenTypes.PARAMETERS))) {
             final DetailAST parametersNode = ast.findFirstToken(TokenTypes.PARAMETERS);
             TokenUtil.forEachChild(parametersNode, TokenTypes.PARAMETER_DEF, super::visitToken);
         }
-        else if (!isInSwitchRule) {
+        else if (!isSwitchRuleLambda(ast)) {
             super.visitToken(ast);
         }
     }
@@ -72,6 +76,17 @@ public class LambdaParameterNameCheck extends AbstractNameCheck {
     @Override
     protected boolean mustCheckName(DetailAST ast) {
         return true;
+    }
+
+    /**
+     * Checks whether a lambda token represents a switch rule arrow.
+     * Switch rule arrows have no children, while lambda expressions do.
+     *
+     * @param lambda the lambda AST node
+     * @return true if the token represents a switch rule arrow
+     */
+    private static boolean isSwitchRuleLambda(DetailAST lambda) {
+        return !lambda.hasChildren();
     }
 
 }

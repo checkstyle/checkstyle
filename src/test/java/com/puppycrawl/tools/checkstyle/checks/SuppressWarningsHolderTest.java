@@ -41,13 +41,11 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -109,7 +107,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "21:23: "
                     + getCheckMessage(TypecastParenPadCheck.class,
-                            AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+                            TypecastParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder6.java"), expected);
@@ -441,11 +439,11 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "31:12: " + getCheckMessage(MemberNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "STRING3", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "STRING3", pattern),
             "33:12: " + getCheckMessage(MemberNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "STRING4", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "STRING4", pattern),
             "61:12: " + getCheckMessage(MemberNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "STRING8", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "STRING8", pattern),
             };
 
         verifyWithInlineConfigParser(
@@ -458,7 +456,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "20:30: " + getCheckMessage(ConstantNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "a", pattern),
         };
 
         verifyWithInlineConfigParser(
@@ -484,9 +482,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "20:29: " + getCheckMessage(ConstantNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "a", pattern),
             "23:30: " + getCheckMessage(ConstantNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "b", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "b", pattern),
         };
 
         verifyWithInlineConfigParser(
@@ -513,9 +511,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "20:30: " + getCheckMessage(ConstantNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "a", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "a", pattern),
             "23:30: " + getCheckMessage(ConstantNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "b", pattern),
+                MemberNameCheck.MSG_INVALID_PATTERN, "b", pattern),
         };
 
         verifyWithInlineConfigParser(
@@ -545,25 +543,25 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "35:18: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "Method3", pattern1),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "Method3", pattern1),
             "40:20: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "Method5", pattern1),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "Method5", pattern1),
             "45:17: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "method7", pattern2),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "method7", pattern2),
             "50:18: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "method9", pattern2),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "method9", pattern2),
             "55:20: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "method11", pattern2),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "method11", pattern2),
             "57:17: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "_methodCheck1", pattern2),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "_methodCheck1", pattern2),
             "63:18: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "_methodCheck3", pattern2),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "_methodCheck3", pattern2),
             "63:18: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "_methodCheck3", pattern1),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "_methodCheck3", pattern1),
             "71:20: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "_methodCheck5", pattern2),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "_methodCheck5", pattern2),
             "71:20: " + getCheckMessage(MethodNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "_methodCheck5", pattern1),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "_methodCheck5", pattern1),
         };
 
         verifyWithInlineConfigParser(
@@ -598,7 +596,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "22:16: " + getCheckMessage(MemberNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "K", pattern),
+                    MemberNameCheck.MSG_INVALID_PATTERN, "K", pattern),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSuppressWarningsHolder8.java"),

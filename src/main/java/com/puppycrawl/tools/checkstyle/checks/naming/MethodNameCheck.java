@@ -48,6 +48,12 @@ public class MethodNameCheck
     public static final String MSG_KEY = "method.name.equals.class.name";
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Control whether to allow a method name to have the same name as the enclosing class name.
      * Setting this property {@code false} helps to avoid confusion
      * between constructors and methods.
@@ -56,7 +62,7 @@ public class MethodNameCheck
 
     /** Creates a new {@code MethodNameCheck} instance. */
     public MethodNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z0-9]*$", MSG_INVALID_PATTERN);
     }
 
     @Override

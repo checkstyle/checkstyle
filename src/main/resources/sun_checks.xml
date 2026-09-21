@@ -150,6 +150,10 @@
     <module name="NoWhitespaceBefore"/>
     <module name="OperatorWrap"/>
     <module name="ParenPad"/>
+    <module name="SeparatorWrap">
+      <property name="tokens" value="COMMA"/>
+      <property name="option" value="EOL"/>
+    </module>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter">
       <!-- Explicit token list to avoid duplication with WhitespaceAround.

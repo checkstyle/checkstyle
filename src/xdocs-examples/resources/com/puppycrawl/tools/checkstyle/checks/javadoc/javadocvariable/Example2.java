@@ -12,6 +12,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 // xdoc section - start
 public class Example2 {
   private int a;
+  private int log;
 
   /**
    * Some description here

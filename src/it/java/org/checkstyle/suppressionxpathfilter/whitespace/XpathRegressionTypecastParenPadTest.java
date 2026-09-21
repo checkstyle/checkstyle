@@ -28,7 +28,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck;
 
@@ -56,7 +55,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
         final String[] expectedViolation = {
             "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
+                    TypecastParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -83,7 +82,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
         final String[] expectedViolation = {
             "4:18: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
+                    TypecastParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -109,7 +108,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
         final String[] expectedViolation = {
             "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
+                    TypecastParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -133,7 +132,7 @@ public class XpathRegressionTypecastParenPadTest extends AbstractXpathTestSuppor
 
         final String[] expectedViolation = {
             "4:26: " + getCheckMessage(TypecastParenPadCheck.class,
-                    AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
+                    TypecastParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

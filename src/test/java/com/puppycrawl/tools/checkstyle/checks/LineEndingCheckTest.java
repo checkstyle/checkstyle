@@ -66,10 +66,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingLfExpected2Config.java"),
                 getPath("InputLineEndingLfExpected2.java"),
                 expected);
     }
@@ -85,10 +83,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingLfExpected3Config.java"),
                 getPath("InputLineEndingLfExpected3.java"),
                 expected);
     }
@@ -113,11 +109,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "crlf");
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrlfExpected2Config.java"),
                 getPath("InputLineEndingCrlfExpected2.java"),
                 expected);
     }
@@ -133,11 +126,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "crlf");
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrlfExpected3Config.java"),
                 getPath("InputLineEndingCrlfExpected3.java"),
                 expected);
     }
@@ -162,11 +152,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "cr");
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrExpected2Config.java"),
                 getPath("InputLineEndingCrExpected2.java"),
                 expected);
     }
@@ -182,11 +169,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "cr");
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingCrExpected3Config.java"),
                 getPath("InputLineEndingCrExpected3.java"),
                 expected);
     }

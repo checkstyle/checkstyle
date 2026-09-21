@@ -39,19 +39,20 @@ public abstract class AbstractSuperCheck
         extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
+     * A key pointing to the warning message text in "messages.properties" file.
      */
-    public static final String MSG_KEY = "missing.super.call";
+    private final String messageKey;
 
     /** Stack of methods. */
     private final Deque<MethodNode> methodStack = new ArrayDeque<>();
 
     /**
      * Creates a new {@code AbstractSuperCheck} instance.
+     *
+     * @param messageKey the message key to log violations with
      */
-    protected AbstractSuperCheck() {
-        // no code by default
+    protected AbstractSuperCheck(String messageKey) {
+        this.messageKey = messageKey;
     }
 
     /**
@@ -172,7 +173,7 @@ public abstract class AbstractSuperCheck
                 final DetailAST methodAST = methodNode.getMethod();
                 final DetailAST nameAST =
                     methodAST.findFirstToken(TokenTypes.IDENT);
-                log(nameAST, MSG_KEY, nameAST.getText());
+                log(nameAST, messageKey, nameAST.getText());
             }
         }
     }

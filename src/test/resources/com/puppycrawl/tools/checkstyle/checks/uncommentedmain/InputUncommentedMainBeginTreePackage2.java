@@ -1,6 +1,13 @@
+/*
+UncommentedMain
+excludedClasses = uncommentedmain\\.InputUncommentedMainBeginTreePackage2
+
+
+*/
+
 public class InputUncommentedMainBeginTreePackage2 {
 
-    public static void main(String[] args)
+    public static void main(String[] args) // violation 'Uncommented main method found'
     {
         System.identityHashCode("InputUncommentedMain.main()");
     }
@@ -26,4 +33,3 @@ class PC2 {
 
     }
 }
-

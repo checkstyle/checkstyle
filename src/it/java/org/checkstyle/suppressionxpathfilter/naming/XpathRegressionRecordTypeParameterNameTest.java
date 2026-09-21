@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.RecordTypeParameterNameCheck;
 
 public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTestSupport {
@@ -56,7 +55,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
 
         final String[] expectedViolation = {
             "10:55: " + getCheckMessage(RecordTypeParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "foo", pattern),
+                    RecordTypeParameterNameCheck.MSG_INVALID_PATTERN, "foo", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -84,7 +83,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
 
         final String[] expectedViolation = {
             "4:60: " + getCheckMessage(RecordTypeParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "t", pattern),
+                    RecordTypeParameterNameCheck.MSG_INVALID_PATTERN, "t", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -112,7 +111,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
 
         final String[] expectedViolation = {
             "6:25: " + getCheckMessage(RecordTypeParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "abc", pattern),
+                    RecordTypeParameterNameCheck.MSG_INVALID_PATTERN, "abc", pattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(

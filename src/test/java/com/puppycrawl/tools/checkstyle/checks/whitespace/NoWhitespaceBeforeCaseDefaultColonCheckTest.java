@@ -38,8 +38,6 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
 
     @Test
     public void testDefault() throws Exception {
-        createModuleConfig(
-                NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY, ":"),
             "19:21: " + getCheckMessage(MSG_KEY, ":"),
@@ -62,8 +60,6 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
 
     @Test
     public void testDefaultNonCompilable() throws Exception {
-        createModuleConfig(
-                NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
             "36:22: " + getCheckMessage(MSG_KEY, ":"),
             "39:21: " + getCheckMessage(MSG_KEY, ":"),

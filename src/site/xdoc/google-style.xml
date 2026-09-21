@@ -2059,8 +2059,8 @@
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="checks/naming/parametername.html#ParameterName">ParameterName</a>
-                  ()<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
-                  config</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterName">
+                  config</a>)
                   <br/>
                   <br/>
                   <span class="wrapper inline">
@@ -2240,14 +2240,6 @@
                   1. Some words are ambiguously hyphenated in the
                   English language. No way to distinguish "YouTubeImporter" or
                   "YoutubeImporter".
-                  <br />
-                  <br />
-                  2. There are some false-negatives regarding the use of underscores in
-                  method names.
-                  They will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17841">
-                    #17841
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase">

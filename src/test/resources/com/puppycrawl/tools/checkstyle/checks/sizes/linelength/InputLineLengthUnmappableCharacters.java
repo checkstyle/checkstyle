@@ -1,10 +1,12 @@
-/*
-LineLength
-max = 75
-ignorePattern = (default)^(package|import) .*
-tabWidth = (default)0
-fileExtensions = (default)null
+/*xml
+<module name="Checker">
+  <property name="charset" value="IBM1098"/>
+  <module name="LineLength">
+    <property name="max" value="75"/>
+  </module>
+</module>
 */
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 public class InputLineLengthUnmappableCharacters {

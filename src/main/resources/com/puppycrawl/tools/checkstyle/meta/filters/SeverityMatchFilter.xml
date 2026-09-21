@@ -5,12 +5,22 @@
               name="SeverityMatchFilter"
               parent="com.puppycrawl.tools.checkstyle.Checker">
          <description>&lt;div&gt;
- Filter &lt;code&gt;SeverityMatchFilter&lt;/code&gt; decides audit events according to the
- &lt;a href="https://checkstyle.org/config.html#Severity"&gt;severity level&lt;/a&gt; of the event.
+ Accept violation to be present in audit report according to the
+ &lt;a href="https://checkstyle.org/config.html#Severity"&gt;severity level&lt;/a&gt;.
  &lt;/div&gt;
 
  &lt;p&gt;
  SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ In Checkstyle, when a filter accepts a violation
+ (i.e. &lt;code&gt;accept()&lt;/code&gt; returns &lt;code&gt;true&lt;/code&gt;), the violation is kept in the
+ final report; to make a violation disappear from the report, the filter must
+ reject it by returning &lt;code&gt;false&lt;/code&gt;. For &lt;code&gt;SeverityMatchFilter&lt;/code&gt;, set
+ &lt;code&gt;severity&lt;/code&gt; to the level you want to control and &lt;code&gt;acceptOnMatch&lt;/code&gt;
+ to &lt;code&gt;true&lt;/code&gt; to keep matching violations in the final report, or to
+ &lt;code&gt;false&lt;/code&gt; to remove them from it.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="acceptOnMatch" type="boolean">

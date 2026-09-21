@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -283,25 +284,25 @@ public class LeftCurlyCheck
 
     /**
      * Verifies that a specified left curly brace is placed correctly
-     * according to policy.
+     * according to policy, using the code points of the line containing the brace.
      *
      * @param brace token for left curly brace
      * @param startToken token for start of expression
      */
     private void verifyBrace(final DetailAST brace,
                              final DetailAST startToken) {
-        final String braceLine = getLine(brace.getLineNo() - 1);
+        final int[] braceLine = getLineCodePoints(brace.getLineNo() - 1);
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if (braceLine.length() <= brace.getColumnNo() + 1
-                || braceLine.charAt(brace.getColumnNo() + 1) != '}') {
+        if (braceLine.length <= brace.getColumnNo() + 1
+                || braceLine[brace.getColumnNo() + 1] != '}') {
             if (option == LeftCurlyOption.NL) {
-                if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+                if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                     log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
-                validateEol(startToken, brace, braceLine);
+                validateEol(startToken, brace);
             }
             else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
@@ -314,10 +315,9 @@ public class LeftCurlyCheck
      *
      * @param startToken token for start of expression.
      * @param brace brace AST
-     * @param braceLine line content
      */
-    private void validateEol(DetailAST startToken, DetailAST brace, String braceLine) {
-        if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+    private void validateEol(DetailAST startToken, DetailAST brace) {
+        if (!isOnLineWithBlockPreviousToken(brace)) {
             log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
         if (!hasLineBreakAfter(startToken, brace)) {
@@ -330,19 +330,19 @@ public class LeftCurlyCheck
      *
      * @param brace brace AST
      * @param startToken start Token
-     * @param braceLine content of line with Brace
+     * @param braceLine code points of the line containing the brace
      */
-    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
+    private void validateNewLinePosition(DetailAST brace, DetailAST startToken, int... braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+            if (CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                 log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
             else {
                 log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
         }
-        else if (!CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
+        else if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
             log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
         }
     }
@@ -374,6 +374,26 @@ public class LeftCurlyCheck
         return nextToken == null
                 || nextToken.getType() == TokenTypes.RCURLY
                 || !TokenUtil.areOnSameLine(curlyBrace, nextToken);
+    }
+
+    /**
+     * Checks if the given brace is with a token of a block.
+     *
+     * @param brace the brace token to check
+     * @return true if the brace is on the same line as its previous token
+     */
+    private static boolean isOnLineWithBlockPreviousToken(DetailAST brace) {
+        DetailAST endToken = brace.getPreviousSibling();
+        if (brace.getParent().getType() == TokenTypes.SLIST) {
+            endToken = brace.getParent().getPreviousSibling();
+        }
+        while (endToken != null && endToken.hasChildren()) {
+            endToken = endToken.getLastChild();
+        }
+        if (endToken == null || brace.getParent().getType() == TokenTypes.LAMBDA) {
+            endToken = brace.getParent();
+        }
+        return TokenUtil.areOnSameLine(brace, endToken);
     }
 
 }

@@ -330,13 +330,13 @@
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy</artifactId>
-        <version>1.18.13</version>
+        <version>1.18.14</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy-agent</artifactId>
-        <version>1.18.13</version>
+        <version>1.18.14</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -1061,7 +1061,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.1.4</version>
+        <version>3.2.0</version>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -2103,7 +2103,6 @@
                 <exclude>**/AbstractJavadocCheck.class</exclude>
                 <exclude>**/AtclauseOrderCheck.class</exclude>
                 <exclude>**/JavadocBlockTagLocationCheck.class</exclude>
-                <exclude>**/JavadocLeadingAsteriskAlignCheck.class</exclude>
                 <exclude>**/JavadocMethodCheck.class</exclude>
                 <exclude>**/JavadocMissingLeadingAsteriskCheck.class</exclude>
                 <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheck.class</exclude>
@@ -2239,7 +2238,7 @@
       <plugin>
         <groupId>io.fluxzero</groupId>
         <artifactId>lychee-maven-plugin</artifactId>
-        <version>0.2.18</version>
+        <version>0.2.19</version>
         <executions>
           <execution>
             <id>lychee-check</id>

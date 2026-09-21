@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
+import static com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck.MSG_INVALID_PATTERN;
 
 import org.junit.jupiter.api.Test;
 
@@ -108,6 +108,23 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputLambdaParameterNameUnnamed.java"),
             expected);
+    }
+
+    @Test
+    public void testLambdaParameterNameSwitchRule() throws Exception {
+        final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
+        final String[] expected = {
+            "17:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "18:24: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "19:31: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "21:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "32:24: " + getCheckMessage(MSG_INVALID_PATTERN, "First", pattern),
+            "46:23: " + getCheckMessage(MSG_INVALID_PATTERN, "Outer", pattern),
+            "47:33: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner", pattern),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputLambdaParameterNameSwitchRule.java"), expected);
     }
 
 }

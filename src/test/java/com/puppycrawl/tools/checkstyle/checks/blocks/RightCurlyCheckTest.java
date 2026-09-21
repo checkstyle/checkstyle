@@ -1124,4 +1124,25 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath(fileName), expected);
     }
 
+    @Test
+    public void testRightCurlyDoubleBrace2() throws Exception {
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestDoubleBrace2.java"), expected);
+    }
+
+    @Test
+    public void testRightCurlyDoubleBrace3() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
+            "13:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
+            "19:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
+            "19:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRightCurlyTestDoubleBrace3.java"), expected);
+    }
+
 }

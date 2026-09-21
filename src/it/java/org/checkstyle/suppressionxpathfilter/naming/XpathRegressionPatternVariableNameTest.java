@@ -27,7 +27,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.PatternVariableNameCheck;
 
 public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSupport {
@@ -56,7 +55,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:33: " + getCheckMessage(PatternVariableNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN,
+                    PatternVariableNameCheck.MSG_INVALID_PATTERN,
                     "STRING1", defaultPattern),
         };
 
@@ -86,7 +85,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
+                    PatternVariableNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -115,7 +114,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "STR", nonDefaultPattern),
+                PatternVariableNameCheck.MSG_INVALID_PATTERN, "STR", nonDefaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -144,7 +143,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
-                AbstractNameCheck.MSG_INVALID_PATTERN, "st", nonDefaultPattern),
+                PatternVariableNameCheck.MSG_INVALID_PATTERN, "st", nonDefaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

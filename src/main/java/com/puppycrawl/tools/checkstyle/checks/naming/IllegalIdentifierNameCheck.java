@@ -38,10 +38,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class IllegalIdentifierNameCheck extends AbstractNameCheck {
 
     /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_INVALID_PATTERN = "name.invalidPattern";
+
+    /**
      * Creates a new {@code IllegalIdentifierNameCheck} instance.
      */
     public IllegalIdentifierNameCheck() {
-        super("^(?!var$|\\S*\\$)\\S+$");
+        super("^(?!var$|\\S*\\$)\\S+$", MSG_INVALID_PATTERN);
     }
 
     @Override

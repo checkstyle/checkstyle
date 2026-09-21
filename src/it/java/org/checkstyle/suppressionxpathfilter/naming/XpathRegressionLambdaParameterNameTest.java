@@ -28,7 +28,6 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck;
 
 public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSupport {
@@ -56,7 +55,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "7:44: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -83,7 +82,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "7:45: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
@@ -132,7 +131,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final String[] expectedViolation = {
             "6:40: " + getCheckMessage(LambdaParameterNameCheck.class,
-                    AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -140,6 +139,28 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                        + "[./IDENT[@text='InputXpathLambdaParameterNameField']]"
                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='trimmer']]"
                        + "/ASSIGN/LAMBDA/IDENT[@text='S']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testSwitchRule() throws Exception {
+        final File fileToProcess =
+                new File(getPath("InputXpathLambdaParameterNameSwitchRule.java"));
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(LambdaParameterNameCheck.class);
+        final String defaultPattern = "^([a-z][a-zA-Z0-9]*|_)$";
+        final String[] expectedViolation = {
+            "8:23: " + getCheckMessage(LambdaParameterNameCheck.class,
+                    LambdaParameterNameCheck.MSG_INVALID_PATTERN, "Word", defaultPattern),
+        };
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/COMPILATION_UNIT/CLASS_DEF"
+                        + "[./IDENT[@text='InputXpathLambdaParameterNameSwitchRule']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_RETURN"
+                        + "/EXPR/LITERAL_SWITCH/SWITCH_RULE/LAMBDA/IDENT[@text='Word']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

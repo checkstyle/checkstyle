@@ -274,12 +274,14 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean skipDoubleBraceInstInit(Details details) {
         boolean skipDoubleBraceInstInit = false;
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken());
-        if (tokenAfterNextToken != null) {
+        if (TokenUtil.isOfType(tokenAfterNextToken, TokenTypes.SEMI)) {
             final DetailAST rcurly = details.rcurly();
-            skipDoubleBraceInstInit = rcurly.getParent().getParent()
+            final DetailAST tokenAfterSemi = Details.getNextToken(tokenAfterNextToken);
+            skipDoubleBraceInstInit = tokenAfterSemi != null
+                    && rcurly.getParent().getParent()
                     .getType() == TokenTypes.INSTANCE_INIT
                     && details.nextToken().getType() == TokenTypes.RCURLY
-                    && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
+                    && !TokenUtil.areOnSameLine(rcurly, tokenAfterSemi);
         }
         return skipDoubleBraceInstInit;
     }

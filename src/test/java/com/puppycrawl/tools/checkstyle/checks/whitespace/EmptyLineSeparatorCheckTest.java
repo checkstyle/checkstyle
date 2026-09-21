@@ -28,8 +28,6 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -96,19 +94,13 @@ public class EmptyLineSeparatorCheckTest
     }
 
     /**
-     * Config is defined in the method because indexOutOfBond test is also required.
+     * The target file stays without an inline config header so that a TYPE-child token
+     * can land at line 2 and keep the boundary check in
+     * EmptyLineSeparatorCheck#isTwoPrecedingPreviousLinesFromCommentEmpty covered.
+     * The check config is provided by a sidecar file.
      */
     @Test
     public void testCompactNoPackage() throws Exception {
-
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "7:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
             "11:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
@@ -118,9 +110,10 @@ public class EmptyLineSeparatorCheckTest
             "29:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
             "34:5: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
         };
-
-        verify(checkerConfig, getNonCompilablePath("InputEmptyLineSeparatorCompactNoPackage.java"),
-            expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputEmptyLineSeparatorCompactNoPackageConfig.java"),
+                getNonCompilablePath("InputEmptyLineSeparatorCompactNoPackage.java"),
+                expected);
     }
 
     @Test
@@ -158,26 +151,18 @@ public class EmptyLineSeparatorCheckTest
     }
 
     /**
-     * Config is defined in the method because strictly the file with one line
-     * is required to be tested.
+     * The target file must stay a single line so the check's one-line handling
+     * is what is being tested. The check config therefore lives in a sidecar file.
      */
     @Test
     public void testMultipleEmptyLinesInOneLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
-        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
-
-        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
-        treeWalkerConfig.addChild(checkConfig);
-
-        final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-
         final String[] expected = {
             "1:79: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
         };
-
-        verify(checkerConfig, getPath("InputEmptyLineSeparatorOneLine.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputEmptyLineSeparatorOneLineConfig.java"),
+                getPath("InputEmptyLineSeparatorOneLine.java"),
+                expected);
     }
 
     @Test
@@ -377,11 +362,10 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testJavadocCommentAfterPackageWithImports() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
-            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+            "14:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
         };
-        verify(checkConfig,
+        verifyWithInlineConfigParser(
                 getPath("InputEmptyLineSeparatorJavadocCommentAfterPackage.java"),
                 expected);
     }
@@ -499,22 +483,26 @@ public class EmptyLineSeparatorCheckTest
 
     @Test
     public void testPrePreviousLineEmptiness() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig,
-            getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
     }
 
+    /**
+     * The target file stays without an inline config header so that the package
+     * declaration keeps sitting at line 3 with two blank lines above it, keeping
+     * the boundary check in EmptyLineSeparatorCheck#isPrePreviousLineEmpty
+     * covered. The check config is provided by a sidecar file.
+     */
     @Test
     public void testPrePreviousLineIsEmpty() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
         };
-        verify(checkConfig,
-                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmptyConfig.java"),
+                getPath("InputEmptyLineSeparatorPrePreviousLineIsEmpty.java"),
+                expected);
     }
 
     @Test

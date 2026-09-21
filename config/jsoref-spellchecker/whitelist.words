@@ -225,7 +225,6 @@ concat
 config
 configurationloader
 Connell's
-connrefused
 constantname
 constructorsdeclarationgrouping
 CONTACTSERVER
@@ -1594,6 +1593,7 @@ workaround
 workflow
 worktree
 wq
+wrappinglines
 writetag
 writingchecks
 writingdoccomments
