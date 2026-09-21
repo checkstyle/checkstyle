@@ -24,6 +24,7 @@
               <li><a href="#Example2-config" class="toc-sublink"><code>public</code> access modifier</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For <code>VARIABLE_DEF</code> tokens only</a></li>
               <li><a href="#Example4-config" class="toc-sublink">To ignore absence of Javadoc comments for fields with names <code>log</code> or <code>logger</code></a></li>
+              <li><a href="#Example5-config" class="toc-sublink">To check only fields that are reachable through their enclosing type</a></li>
             </ul>
           </li>
           <li>
@@ -63,6 +64,13 @@
               <td><a href="../../property-types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>10.22.0</td>
+            </tr>
+            <tr>
+              <td><a id="considerEnclosingScope"/><a href="#considerEnclosingScope">considerEnclosingScope</a></td>
+              <td>Control whether the access modifier of the type that declares the field is taken into account, so that a field is checked only when the type that holds it is itself in one of the <code>accessModifiers</code>.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.2.0</td>
             </tr>
             <tr>
               <td><a id="ignoreNamePattern"/><a href="#ignoreNamePattern">ignoreNamePattern</a></td>
@@ -125,6 +133,10 @@ public class Example1 {
   private enum PrivateEnum {
     CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
   }
+
+  private static class Hidden {
+    public int f; // violation 'Missing a Javadoc comment for 'f'.'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -165,6 +177,10 @@ public class Example2 {
   private enum PrivateEnum {
     CONSTANT
   }
+
+  private static class Hidden {
+    public int f; // violation 'Missing a Javadoc comment for 'f'.'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -201,6 +217,10 @@ public class Example3 {
 
   private enum PrivateEnum {
     CONSTANT
+  }
+
+  private static class Hidden {
+    public int f; // violation 'Missing a Javadoc comment for 'f'.'
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -242,6 +262,54 @@ public class Example4 {
 
   private enum PrivateEnum {
     CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
+  }
+
+  private static class Hidden {
+    public int f; // violation 'Missing a Javadoc comment for 'f'.'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To check only fields that are reachable through their enclosing type:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocVariable"&gt;
+      &lt;property name="accessModifiers" value="public"/&gt;
+      &lt;property name="considerEnclosingScope" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          This setting will report a violation only if the field and the type that
+          declares it are both <code>public</code>.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  private int a;
+  private int log;
+
+  /**
+   * Some description here
+   */
+  private int b;
+  protected int c;
+  public int d; // violation 'Missing a Javadoc comment for 'd'.'
+  /*package*/ int e;
+
+  public enum PublicEnum {
+    CONSTANT // violation 'Missing a Javadoc comment for 'CONSTANT'.'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT
+  }
+
+  private static class Hidden {
+    public int f;
   }
 }
 </code></pre></div>
