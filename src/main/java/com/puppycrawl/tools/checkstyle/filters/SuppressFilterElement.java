@@ -184,7 +184,11 @@ public class SuppressFilterElement
         boolean match = fileRegexp.matcher(fileName).find();
         if (!match) {
             final String slashesFileName = fileName.replace('\\', '/');
-            match = fileRegexp.matcher(slashesFileName).find();
+            // String.replace returns the same instance when there is nothing to
+            // replace; skipping the second match avoids a duplicate regex scan.
+            if (!slashesFileName.equals(fileName)) {
+                match = fileRegexp.matcher(slashesFileName).find();
+            }
         }
         return match;
     }
