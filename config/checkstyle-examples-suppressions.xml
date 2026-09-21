@@ -116,6 +116,8 @@
     files="operatorwrap/Example1.java"/>
   <suppress id="discouragedRegexpInViolationMessage"
     files="operatorwrap/Example2.java"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+    files="operatorwrap/Example4.java"/>
   <!-- it prints user regexp -->
   <suppress id="discouragedRegexpInViolationMessage"
             files="regexponfilename/Example[24].*"/>
@@ -172,6 +174,10 @@
   <!-- Examples need to show that member, subpackage, nested class and package references are not checked -->
   <suppress checks="FileLength"
     files="javadoclinkwellknownapi/Example\d+.*"/>
+
+  <!-- Examples contain multiple operators and XML config that exceed length limit -->
+  <suppress checks="FileLength"
+    files="operatorwrap/Example\d+.*"/>
 
   <!-- No new line by design to show violation -->
   <suppress checks="NewlineAtEndOfFile"
