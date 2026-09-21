@@ -10,8 +10,8 @@
     </module>
   </module>
 </module>
-
-
+<!-- padding -->
+<!-- padding -->
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
@@ -55,6 +55,12 @@ class Example2 {
             &=1 ; // violation ''&=' should be on the previous line'
     c
             <<= 1; // violation ''<<=' should be on the previous line'
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
   }
 }
 // xdoc section - end

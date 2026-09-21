@@ -2,7 +2,7 @@
 OperatorWrap
 option = (default)nl
 tokens = ASSIGN
-
+higherLevelWrap = (default)false
 
 */
 
