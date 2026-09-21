@@ -15,6 +15,9 @@
  Java Language Specification&lt;/a&gt; for more information about &lt;code&gt;instanceof&lt;/code&gt; operator.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="false" name="higherLevelWrap" type="boolean">
+               <description>Control whether to enforce the higher-level wrap preference.</description>
+            </property>
             <property default-value="nl"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption">

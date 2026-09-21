@@ -23,6 +23,7 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">For assignment operators at the end of a line</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For operators at the beginning of a line</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">For higher-level wrapping</a></li>
             </ul>
           </li>
           <li><a href="#OperatorWrap_Example_of_Usage">Example of Usage</a></li>
@@ -54,6 +55,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="higherLevelWrap"/><a href="#higherLevelWrap">higherLevelWrap</a></td>
+              <td>Control whether to enforce the higher-level wrap preference.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.2.0</td>
             </tr>
             <tr>
               <td><a id="option"/><a href="#option">option</a></td>
@@ -368,6 +376,44 @@ class Example3 {
             &amp;=1 ;
     c
             &lt;&lt;= 1;
+  }
+}
+</code></pre></div>
+        <p id="Example4-config">
+          To configure the check to enforce higher-level wrapping:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;OperatorWrap&quot;&gt;
+      &lt;property name=&quot;higherLevelWrap&quot; value=&quot;true&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+         Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public void test() {
+    int a = 1;
+    int b = 2;
+    int c = 3;
+
+    // violation below, ''+' should be on a new line.'
+    int x = a + b
+        * c;
+        
+    int y = a + b * c; // OK
+
+    // violation below, ''&amp;&amp;' should be on a new line.'
+    boolean z = a == b &amp;&amp; b
+        == c;
+    
+    // violation below, ''+' should be on a new line.'
+    String s = "a" + "b"
+        .length();
   }
 }
 </code></pre></div>
