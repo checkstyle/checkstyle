@@ -232,4 +232,14 @@ public class OperatorWrapCheckTest
                 getPath("InputOperatorWrapLambda.java"), expected);
     }
 
+    @Test
+    public void testHigherLevelWrapping() throws Exception {
+        final String[] expected = {
+            "23:17: " + getCheckMessage(MSG_LINE_NEW, "*"),
+            "31:17: " + getCheckMessage(MSG_LINE_NEW, "-"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapHigherLevel.java"), expected);
+    }
+
 }

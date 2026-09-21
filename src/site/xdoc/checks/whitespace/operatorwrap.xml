@@ -56,6 +56,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="higherLevelWrap"/><a href="#higherLevelWrap">higherLevelWrap</a></td>
+              <td>Control whether to enforce the higher-level wrap preference.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.2.0</td>
+            </tr>
+            <tr>
               <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to wrap lines.</td>
               <td><a href="../../property-types.html#WrapOption">WrapOption</a></td>
