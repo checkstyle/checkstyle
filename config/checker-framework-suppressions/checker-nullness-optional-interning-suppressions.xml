@@ -2305,8 +2305,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Collection.add.</message>
-    <lineContent>patternVariableIdentsArray.add(ident);</lineContent>
+    <message>incompatible argument for parameter obj of Objects.requireNonNull.</message>
+    <lineContent>Objects.requireNonNull(rparen).getNextSibling()));</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
@@ -2316,8 +2316,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalPatternVariableCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of List.add.</message>
-    <lineContent>patternVariableIdentsArray.add(ident);</lineContent>
+    <message>incompatible argument for parameter obj of Objects.requireNonNull.</message>
+    <lineContent>patternVariableIdentsArray.add(Objects.requireNonNull(ident));</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
       required: @Initialized @NonNull DetailAST
