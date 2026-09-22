@@ -95,6 +95,28 @@
           </tr>
           <tr>
             <td>
+              <a href="duplicatemaporsetkey.html#DuplicateMapOrSetKey">
+                DuplicateMapOrSetKey
+              </a>
+            </td>
+            <td>
+              Checks for duplicate key or element arguments in Java factory methods like
+              <code>Map.of</code>, <code>Set.of</code>, and <code>Map.ofEntries</code>.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="duplicateswitchbranch.html#DuplicateSwitchBranch">
+                DuplicateSwitchBranch
+              </a>
+            </td>
+            <td>
+              Checks for duplicate implementations in <code>switch</code> statement or
+              <code>switch</code> expression branches.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="emptystatement.html#EmptyStatement">
                 EmptyStatement
               </a>
