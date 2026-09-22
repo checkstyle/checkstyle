@@ -213,11 +213,8 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "cr");
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingOneLineCrlf2Config.java"),
                 getPath("InputLineEndingOneLineCrlf.txt"),
                 expected);
     }
