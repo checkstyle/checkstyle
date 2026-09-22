@@ -174,10 +174,10 @@ public class InputDesignForExtensionIgnoredAnnotations {
         foo1();
     }
 
+    // violation 4 lines below ''dontUse4' does not have javadoc that explains how to do that.*'
     /**
      * @deprecated
      */
-    // violation below ''dontUse4' does not have javadoc that explains how to do that safely'
     <T> T dontUse4() {
         return null;
     }
