@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DuplicateConditionIfChainCheck"
+             name="DuplicateConditionIfChain"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for duplicate condition expressions in &lt;code&gt;if ... else if&lt;/code&gt; chains.
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="duplicate.condition.if.chain"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
