@@ -235,7 +235,6 @@ public class AllChecksCompactSourceCoverageTest {
         "UncommentedMainCheck",
         "UnnecessaryNullCheckWithInstanceOfCheck",
         "UnnecessaryParenthesesCheck",
-        "UnnecessarySemicolonAfterOuterTypeDeclarationCheck",
         "UnnecessarySemicolonAfterTypeMemberDeclarationCheck",
         "UnnecessarySemicolonInEnumerationCheck",
         "UnnecessarySemicolonInTryWithResourcesCheck",
