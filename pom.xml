@@ -2117,6 +2117,7 @@
                 <exclude>**/SingleLineJavadocCheck.class</exclude>
                 <exclude>**/SummaryJavadocCheck.class</exclude>
                 <exclude>**/WriteTagCheck.class</exclude>
+                <exclude>**/JavadocUtilizingTrailingSpaceCheck.class</exclude>
               </excludes>
             </configuration>
           </execution>
