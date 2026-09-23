@@ -29,9 +29,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import de.thetaphi.forbiddenapis.SuppressForbidden;
 
 public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
@@ -142,19 +140,11 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
                 expected);
     }
 
-    /**
-     * Cannot use verifyWithInlineConfigParser because the input file has to stay
-     * empty to cover the case of a file without any content. Inline config parser
-     * requires a config comment as the first line of the input file, and adding it
-     * would make the file non-empty.
-     */
-    @SuppressForbidden
     @Test
     public void testEmptyFile() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputPackageDeclarationEmptyFileConfig.java"),
                 getNonCompilablePath("InputPackageDeclarationEmptyFile.java"),
                 expected);
     }
