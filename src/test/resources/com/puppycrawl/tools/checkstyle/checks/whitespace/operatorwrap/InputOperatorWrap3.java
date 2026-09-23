@@ -2,7 +2,7 @@
 OperatorWrap
 option = (default)nl
 tokens = METHOD_REF
-
+higherLevelWrap = (default)false
 
 */
 

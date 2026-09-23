@@ -69,8 +69,18 @@ public class OperatorWrapExamplesTest extends AbstractExamplesModuleTestSupport 
             "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
             "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
         };
-
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "16:24: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "19:12: " + getCheckMessage(MSG_LINE_NEW, "=="),
+            "23:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "58:16: " + getCheckMessage(MSG_LINE_NEW, "/"),
+        };
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
 }
