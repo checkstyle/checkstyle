@@ -187,6 +187,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // these are covered by GenericWhitespaceCheck
                 "WILDCARD_TYPE", "GENERIC_END", "GENERIC_START")
             .collect(Collectors.toUnmodifiableSet()));
+        CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("RightCurlyAloneOrEmpty", Stream.of(
+                // these are covered by RightCurly check
+                "LITERAL_DO", "INTERFACE_DEF")
+            .collect(Collectors.toUnmodifiableSet()));
 
         // google
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
@@ -248,13 +252,6 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "LITERAL_DO", "LITERAL_FOR", "LITERAL_FINALLY", "DO_WHILE",
                 "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_CATCH",
                 "LAMBDA", "LITERAL_WHEN")
-                .collect(Collectors.toUnmodifiableSet()));
-        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceBeforeEmptyBody", Stream.of(
-                // these tokens are already validated by WhitespaceAround, having them
-                // in both checks causes duplicate violations
-                "CTOR_DEF", "COMPACT_CTOR_DEF", "LITERAL_DO", "LITERAL_IF", "LITERAL_ELSE",
-                "LITERAL_TRY", "LITERAL_CATCH", "LITERAL_FINALLY", "LITERAL_SYNCHRONIZED",
-                "LITERAL_SWITCH", "LAMBDA")
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // numerical types should not be included
