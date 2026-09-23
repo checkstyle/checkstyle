@@ -51,6 +51,12 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
                 .isEmpty();
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input must remain blank.
+     * Adding an embedded configuration would change the case being tested.
+     *
+     * @throws Exception if verification fails
+     */
     @Test
     public void testBlank() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
@@ -60,6 +66,13 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputNoCodeInFile1.java"), expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input must contain only a
+     * single-line comment. An embedded configuration would add a block comment,
+     * changing the case being tested.
+     *
+     * @throws Exception if verification fails
+     */
     @Test
     public void testSingleLineComment() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);

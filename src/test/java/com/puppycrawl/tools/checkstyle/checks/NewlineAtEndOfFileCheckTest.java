@@ -176,6 +176,12 @@ public class NewlineAtEndOfFileCheckTest
                         + "Cannot set property 'lineSeparator' to 'ct'");
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input must remain empty.
+     * Adding an embedded configuration would change the case being tested.
+     *
+     * @throws Exception if verification fails
+     */
     @Test
     public void testEmptyFileFile() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -187,6 +193,12 @@ public class NewlineAtEndOfFileCheckTest
             expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input must contain only
+     * a line ending. Adding an embedded configuration would change the case being tested.
+     *
+     * @throws Exception if verification fails
+     */
     @Test
     public void testFileWithEmptyLineOnly() throws Exception {
         final DefaultConfiguration checkConfig =
@@ -199,6 +211,12 @@ public class NewlineAtEndOfFileCheckTest
                 expected);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParser because the input must contain only
+     * a line ending. Adding an embedded configuration would change the case being tested.
+     *
+     * @throws Exception if verification fails
+     */
     @Test
     public void testFileWithEmptyLineOnlyWithLfCrCrlf() throws Exception {
         final DefaultConfiguration checkConfig =
