@@ -51,6 +51,13 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
                 .isEmpty();
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserSeparateConfigAndTarget because it reads
+     * expected violations from the target file. The input must remain blank, so adding
+     * a violation comment would change the case being tested.
+     *
+     * @throws Exception if verification fails
+     */
     @Test
     public void testBlank() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
