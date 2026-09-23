@@ -1928,8 +1928,8 @@
                         alt="" />
                   </span>
                   <a href="checks/naming/typename.html#TypeName">TypeName</a>
-                  ()<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
-                  config</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+                  config</a>)
                   <br/>
                   <br/>
                   <span class="wrapper inline">
