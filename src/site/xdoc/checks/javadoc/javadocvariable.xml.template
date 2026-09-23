@@ -103,6 +103,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To check only fields that are reachable through their enclosing type:
+        </p>
+
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">
+          This setting will report a violation only if the field and the type that
+          declares it are both <code>public</code>.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocvariable/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 

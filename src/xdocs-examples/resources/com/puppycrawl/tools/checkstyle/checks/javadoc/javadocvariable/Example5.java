@@ -3,6 +3,7 @@
   <module name="TreeWalker">
     <module name="JavadocVariable">
       <property name="accessModifiers" value="public"/>
+      <property name="considerEnclosingScope" value="true"/>
     </module>
   </module>
 </module>
@@ -10,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 // xdoc section - start
-public class Example2 {
+public class Example5 {
   private int a;
   private int log;
 
@@ -31,7 +32,7 @@ public class Example2 {
   }
 
   private static class Hidden {
-    public int f; // violation 'Missing a Javadoc comment for 'f'.'
+    public int f;
   }
 }
 // xdoc section - end

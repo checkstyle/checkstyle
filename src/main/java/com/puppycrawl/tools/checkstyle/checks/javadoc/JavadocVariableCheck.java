@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -31,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
@@ -70,6 +72,13 @@ public class JavadocVariableCheck
     private Pattern ignoreNamePattern;
 
     /**
+     * Control whether the access modifier of the type that declares the field is
+     * taken into account, so that a field is checked only when the type that holds
+     * it is itself in one of the {@code accessModifiers}.
+     */
+    private boolean considerEnclosingScope;
+
+    /**
      * Creates a new {@code JavadocVariableCheck} instance.
      */
     public JavadocVariableCheck() {
@@ -101,6 +110,18 @@ public class JavadocVariableCheck
      */
     public void setIgnoreNamePattern(Pattern pattern) {
         ignoreNamePattern = pattern;
+    }
+
+    /**
+     * Setter to control whether the access modifier of the type that declares the field is
+     * taken into account, so that a field is checked only when the type that holds it is
+     * itself in one of the {@code accessModifiers}.
+     *
+     * @param considerEnclosingScope whether to take the enclosing type into account.
+     * @since 14.2.0
+     */
+    public void setConsiderEnclosingScope(boolean considerEnclosingScope) {
+        this.considerEnclosingScope = considerEnclosingScope;
     }
 
     @Override
@@ -179,7 +200,56 @@ public class JavadocVariableCheck
         if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
             final AccessModifierOption accessModifier =
                     getAccessModifierFromModifiersTokenWithPrivateEnumSupport(ast);
-            result = matchAccessModifiers(accessModifier);
+            result = matchAccessModifiers(accessModifier)
+                    && matchEnclosingScope(ast);
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the type that declares the field is itself in one of the configured
+     * access modifiers. As in {@code JavadocMethod}, a field without a named enclosing
+     * type, such as a field of an anonymous class, is not reachable through one and is
+     * not checked.
+     *
+     * @param ast the field to check.
+     * @return whether the enclosing type allows the field to be checked.
+     */
+    private boolean matchEnclosingScope(DetailAST ast) {
+        boolean result = true;
+        if (considerEnclosingScope) {
+            DetailAST node = ast;
+            if (node.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                // the modifier of the enum already stands for the constant itself,
+                // so the type around the enum is the one left to look at
+                while (node.getType() != TokenTypes.ENUM_DEF) {
+                    node = node.getParent();
+                }
+            }
+            result = findEnclosingTypeDeclaration(node)
+                    .map(CheckUtil::getAccessModifierFromModifiersToken)
+                    .map(this::matchAccessModifiers)
+                    .orElse(Boolean.FALSE);
+        }
+        return result;
+    }
+
+    /**
+     * Finds the nearest type declaration above a node, records included. The search
+     * stops at an anonymous class, since it has no access modifier of its own.
+     *
+     * @param node the node to start above.
+     * @return the enclosing type declaration, or empty if there is none.
+     */
+    private static Optional<DetailAST> findEnclosingTypeDeclaration(DetailAST node) {
+        Optional<DetailAST> result = Optional.empty();
+        DetailAST token = node.getParent();
+        while (token != null && token.getType() != TokenTypes.LITERAL_NEW) {
+            if (TokenUtil.isTypeDeclaration(token.getType())) {
+                result = Optional.of(token);
+                break;
+            }
+            token = token.getParent();
         }
         return result;
     }
