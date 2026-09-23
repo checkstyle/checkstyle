@@ -2,7 +2,7 @@
 OperatorWrap
 option = (default)NL
 tokens = ASSIGN,COLON,LAND,LOR,STAR,QUESTION
-
+higherLevelWrap = (default)false
 
 */
 

@@ -4,8 +4,14 @@
     <module name="OperatorWrap"/>
   </module>
 </module>
-
-
+<!-- padding -->
+<!-- padding -->
+<!-- padding -->
+<!-- padding -->
+<!-- padding -->
+<!-- padding -->
+<!-- padding -->
+<!-- padding -->
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.operatorwrap;
@@ -49,6 +55,12 @@ class Example1 {
             &=1 ;
     c
             <<= 1;
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
   }
 }
 // xdoc section - end
