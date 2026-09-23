@@ -35,4 +35,9 @@ public class ModifiersTest extends AbstractOpenJdkModuleTestSupport {
         verifyWithWholeConfig(getPath("InputModifiersRedundant.java"));
     }
 
+    @Test
+    public void testModifiersOrder() throws Exception {
+        verifyWithWholeConfig(getPath("InputModifiersOrder.java"));
+    }
+
 }
