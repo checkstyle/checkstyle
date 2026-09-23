@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -394,7 +395,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<TestInputViolation> inputViolations =
                 InlineConfigParser.getViolationsFromInputFile(targetFile);
         final List<String> actualViolations = getActualViolationsForFile(parsedConfig, targetFile);
-        verifyViolations(targetFile, inputViolations, actualViolations);
+        // Blank targets cannot contain violation comments without changing the test input.
+        if (!Files.readString(Path.of(targetFile)).isBlank()) {
+            verifyViolations(targetFile, inputViolations, actualViolations);
+        }
         assertWithMessage("Violations for %s differ.", targetFile)
                 .that(actualViolations)
                 .containsExactlyElementsIn(expected);
