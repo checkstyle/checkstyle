@@ -261,6 +261,11 @@
     </module>
 
     <module name="RedundantModifier"/>
+    <module name="ModifierOrder">
+      <property name="modifiersOrder"
+                value="public, private, protected, abstract, static, final, transient, volatile,
+                       default, synchronized, native, strictfp"/>
+    </module>
 
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
