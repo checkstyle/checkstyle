@@ -1,6 +1,7 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck
 accessModifiers = (default)public,protected,package,private
+considerEnclosingScope = (default)false
 ignoreNamePattern = (default)null
 tokens = VARIABLE_DEF
 
