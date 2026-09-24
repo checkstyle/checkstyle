@@ -189,12 +189,9 @@ public class NewlineAtEndOfFileCheckTest
 
     @Test
     public void testFileWithEmptyLineOnly() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(NewlineAtEndOfFileCheck.class);
-        checkConfig.addProperty("lineSeparator", LineSeparatorOption.LF.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(
-                checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputNewlineAtEndOfFileNewlineAtEndConfig.java"),
                 getPath("InputNewlineAtEndOfFileNewlineAtEnd.txt"),
                 expected);
     }
