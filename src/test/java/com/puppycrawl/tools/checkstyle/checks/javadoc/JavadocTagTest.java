@@ -41,6 +41,15 @@ public class JavadocTagTest {
     }
 
     @Test
+    public void testConstructorWithoutFirstArgument() {
+        final JavadocTag javadocTag = new JavadocTag(1, 2, "return");
+
+        assertThat(javadocTag.getLineNo()).isEqualTo(1);
+        assertThat(javadocTag.getColumnNo()).isEqualTo(2);
+        assertThat(javadocTag.getFirstArg()).isNull();
+    }
+
+    @Test
     public void testJavadocTagReferenceImports() {
         assertThat(new JavadocTag(0, 0, "see", null).canReferenceImports()).isTrue();
         assertThat(new JavadocTag(0, 0, "link", null).canReferenceImports()).isTrue();
