@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
+
 /**
  * Represents a Javadoc tag. Provides methods to query what type of tag it is.
  */
@@ -28,10 +30,22 @@ public class JavadocTag {
     private final int lineNo;
     /** The column number of the tag. */
     private final int columnNo;
+    /** The AST node of the tag. */
+    private final DetailNode ast;
     /** An optional first argument. For example the parameter name. */
     private final String firstArg;
     /** The JavadocTagInfo representing this tag. */
     private final JavadocTagInfo tagInfo;
+
+    /**
+     * Constructs the object.
+     *
+     * @param ast the AST node of the tag
+     * @param tag the tag string
+     */
+    public JavadocTag(DetailNode ast, String tag) {
+        this(ast, tag, null);
+    }
 
     /**
      * Constructs the object.
@@ -47,14 +61,39 @@ public class JavadocTag {
     /**
      * Constructs the object.
      *
+     * @param ast the AST node of the tag
+     * @param tag the tag string
+     * @param firstArg the tag argument
+     */
+    public JavadocTag(DetailNode ast, String tag, String firstArg) {
+        this(ast.getLineNumber(), ast.getColumnNumber(), tag, firstArg, ast);
+    }
+
+    /**
+     * Constructs the object.
+     *
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
      * @param firstArg the tag argument
      */
     public JavadocTag(int line, int column, String tag, String firstArg) {
+        this(line, column, tag, firstArg, null);
+    }
+
+    /**
+     * Constructs the object.
+     *
+     * @param line the line number of the tag
+     * @param column the column number of the tag
+     * @param tag the tag string
+     * @param firstArg the tag argument
+     * @param ast the AST node of the tag
+     */
+    private JavadocTag(int line, int column, String tag, String firstArg, DetailNode ast) {
         lineNo = line;
         columnNo = column;
+        this.ast = ast;
         this.firstArg = firstArg;
         tagInfo = JavadocTagInfo.fromName(tag);
     }
@@ -84,6 +123,15 @@ public class JavadocTag {
      */
     public int getColumnNo() {
         return columnNo;
+    }
+
+    /**
+     * Gets the AST node.
+     *
+     * @return the AST node, or {@code null} if this tag was created without one
+     */
+    public DetailNode getAst() {
+        return ast;
     }
 
     @Override
