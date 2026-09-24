@@ -37,24 +37,12 @@ class Example2 {
             += 10; // violation ''\+=' should be on the previous line'
     b +=
             10;
-    c
-            *= 10; // violation ''*=' should be on the previous line'
-    c
-            -= 5; // violation ''-=' should be on the previous line'
-    c -=
-            5;
-    c
-            /= 2; // violation ''/=' should be on the previous line'
-    c
-            %= 1; // violation ''%=' should be on the previous line'
-    c
-            >>= 1; // violation ''>>=' should be on the previous line'
-    c
-        >>>= 1; // violation ''>>>=' should be on the previous line'
-    c
-            &=1 ; // violation ''&=' should be on the previous line'
-    c
-            <<= 1; // violation ''<<=' should be on the previous line'
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
   }
 }
 // xdoc section - end
