@@ -1,3 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
+    <mutatedMethod>addJavadocTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getColumnNumber</description>
+    <lineContent>ast.getLineNumber(), ast.getColumnNumber(), tagName, firstArg);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
+    <mutatedMethod>addJavadocTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getLineNumber</description>
+    <lineContent>ast.getLineNumber(), ast.getColumnNumber(), tagName, firstArg);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
+    <mutatedMethod>beginJavadocTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::clear</description>
+    <lineContent>javadocTagAsts.clear();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
+    <mutatedMethod>getAstForTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (result == null) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocMethodCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</mutatedClass>
+    <mutatedMethod>getAstForTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/lang/IllegalStateException::&lt;init&gt;</description>
+    <lineContent>throw new IllegalStateException(&quot;Javadoc tag AST is missing&quot;);</lineContent>
+  </mutation>
 </suppressedMutations>

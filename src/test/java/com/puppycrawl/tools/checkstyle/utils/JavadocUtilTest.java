@@ -467,16 +467,16 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAttachedJavadocCommentForMethodDefinitions() throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "20:5: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
             "26:29: " + getCheckMessage(JavadocMethodCheck.class,
                     MSG_EXPECTED_TAG, "@param", "value"),
-            "34: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "34:5: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
             "34:6: " + getCheckMessage(JavadocMethodCheck.class,
                     MSG_EXPECTED_TAG, "@param", "<T>"),
             "34:31: " + getCheckMessage(JavadocMethodCheck.class,
                     MSG_EXPECTED_TAG, "@param", "value"),
-            "40: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
-            "60: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "40:14: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "60:5: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilMethodDefComments.java"), expected);
@@ -505,9 +505,9 @@ public class JavadocUtilTest extends AbstractModuleTestSupport {
     public void testGetAttachedJavadocCommentForAnnotationFieldDefinitions()
             throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
-            "24: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
-            "30: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "20:5: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "24:14: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
+            "30:5: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilAnnotationFieldDefComments.java"), expected);
