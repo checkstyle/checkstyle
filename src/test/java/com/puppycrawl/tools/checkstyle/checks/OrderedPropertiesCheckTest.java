@@ -112,9 +112,11 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputOrderedProperties.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputOrderedPropertiesTxtConfig.java"),
+                getPath("InputOrderedProperties.txt"),
+                expected);
     }
 
     /**
