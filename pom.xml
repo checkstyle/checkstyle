@@ -4173,6 +4173,8 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
+                <!-- Legacy tag metadata is exercised by the parser utility tests. -->
+                <param>com.puppycrawl.tools.checkstyle.utils.JavadocUtilTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
