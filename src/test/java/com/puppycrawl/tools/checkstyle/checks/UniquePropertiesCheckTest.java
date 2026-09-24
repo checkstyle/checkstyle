@@ -116,9 +116,11 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputUniqueProperties.txt"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputUniquePropertiesTxtConfig.java"),
+                getPath("InputUniqueProperties.txt"),
+                expected);
     }
 
     /**
