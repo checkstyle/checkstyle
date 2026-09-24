@@ -427,7 +427,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>purity.functional.argument</specifier>
     <message>incompatible purity of argument to parameter filter of Collection.removeIf</message>
-    <lineContent>tags.removeIf(JavadocTag::isParamTag);</lineContent>
+    <lineContent>tags.removeIf(MethodTag::isParamTag);</lineContent>
     <details>
       found:    (no side effect annotation)
       required: @SideEffectFree
@@ -438,7 +438,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>purity.functional.argument</specifier>
     <message>incompatible purity of argument to parameter filter of Collection.removeIf</message>
-    <lineContent>tags.removeIf(JavadocTag::isParamTag);</lineContent>
+    <lineContent>tags.removeIf(MethodTag::isParamTag);</lineContent>
     <details>
       found:    (no side effect annotation)
       required: @SideEffectFree
