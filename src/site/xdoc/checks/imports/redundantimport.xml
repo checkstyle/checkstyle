@@ -41,6 +41,8 @@
           package, e.g. importing <code>java.lang.String</code>.</li>
         <li>The class non-statically imported is from the same package as the
           current package.</li>
+        <li>A non-static import is covered by a wildcard import from the same
+          package or type.</li>
         </ul>
       </subsection>
 
@@ -106,6 +108,11 @@ public class Example2{ }
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.lang%22">
               import.lang
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.redundantWildcard%22">
+              import.redundantWildcard
             </a>
           </li>
           <li>
