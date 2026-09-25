@@ -3773,20 +3773,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference paramDef</message>
-    <lineContent>paramDef.findFirstToken(TokenTypes.IDENT);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference paramIdent</message>
-    <lineContent>shadowed = paramIdent.getText().equals(identAst.getText());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedTryResourceShouldBeUnnamedCheck.java</fileName>
     <specifier>iterating.over.nullable</specifier>
     <message>iterating over possibly-null reference resources</message>
     <lineContent>for (TryResourceDetails resource : resources) {</lineContent>
