@@ -243,6 +243,53 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
         }
+        else if (isSimpleReturnMethodCall()) {
+            checkReturnStatementCallArguments();
+        }
+    }
+
+    /**
+     * Checks the indentation of arguments of a method call that appears as the
+     * expression of a {@code return} statement. This complements the SLIST-parent
+     * flow above and covers cases where args are on continuation lines but were
+     * previously not validated because the enclosing statement is not a direct
+     * SLIST child. Arguments whose leftmost token is a self-checking construct
+     * (currently {@code new}) are skipped so that dedicated handler owns the
+     * diagnostic instead of shadowing it with a generic {@code method call}
+     * message.
+     */
+    private void checkReturnStatementCallArguments() {
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        if (!TokenUtil.areOnSameLine(rparen, getMainAst())) {
+            final DetailAST elist = getMainAst().findFirstToken(TokenTypes.ELIST);
+            final IndentLevel argIndent = new IndentLevel(getIndent(), getBasicOffset());
+            for (DetailAST arg = elist.getFirstChild(); arg != null;
+                    arg = arg.getNextSibling()) {
+                if (arg.getType() == TokenTypes.EXPR) {
+                    final DetailAST firstToken = getFirstAstNode(arg);
+                    // Let NewHandler own diagnostics for `new` expressions so
+                    // the message is attributed to the more specific construct.
+                    if (firstToken.getType() != TokenTypes.LITERAL_NEW) {
+                        final int actualColumn = expandedTabsColumnNo(firstToken);
+                        if (argIndent.isGreaterThan(actualColumn)) {
+                            logChildError(firstToken, actualColumn, argIndent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Returns whether this method call is a simple (non-chained) call that is the
+     * expression of a {@code return} statement.
+     *
+     * @return {@code true} if this method call is directly returned.
+     */
+    private boolean isSimpleReturnMethodCall() {
+        final DetailAST exprNode = getMainAst().getParent();
+        return getMainAst().getFirstChild().getType() != TokenTypes.DOT
+                && exprNode.getParent().getType() == TokenTypes.LITERAL_RETURN;
     }
 
     /**
