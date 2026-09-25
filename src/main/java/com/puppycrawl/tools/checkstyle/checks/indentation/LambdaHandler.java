@@ -157,6 +157,41 @@ public class LambdaHandler extends AbstractExpressionHandler {
             //      1;
             checkSingleStatementSwitchRuleIndentation(isLineWrappedLambda);
         }
+        else if (!isSwitchRuleLambda) {
+            checkSingleExpressionBodyIndentation();
+        }
+    }
+
+    /**
+     * Checks the indentation of a single-expression lambda body when the body is placed
+     * on a line separate from the {@code ->} operator. This ensures that continuation
+     * lines like:
+     * {@snippet lang="text" :
+     * return (String s) ->
+     * s.length();
+     * }
+     * receive a wrapping-indent violation instead of being silently accepted.
+     */
+    private void checkSingleExpressionBodyIndentation() {
+        final DetailAST mainAst = getMainAst();
+        final DetailAST body = mainAst.getLastChild();
+        final boolean isInReturn =
+                mainAst.getParent().getType() == TokenTypes.LITERAL_RETURN;
+        final boolean bodyIsOnNextLine = body.getType() != TokenTypes.SLIST
+                && !TokenUtil.areOnSameLine(mainAst, body);
+        if (isInReturn && bodyIsOnNextLine) {
+            final DetailAST firstToken = getFirstAstNode(body);
+            final boolean firstTokenHasOwnHandler = getContext()
+                    .getHandlerFactory().isHandledType(firstToken.getType());
+            if (!firstTokenHasOwnHandler) {
+                final int bodyColumnNo = expandedTabsColumnNo(firstToken);
+                final IndentLevel bodyIndent = new IndentLevel(getIndent(),
+                        getContext().getLineWrappingIndentation());
+                if (isNonAcceptableIndent(bodyColumnNo, bodyIndent)) {
+                    logError(firstToken, "", bodyColumnNo, bodyIndent);
+                }
+            }
+        }
     }
 
     /**
