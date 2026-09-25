@@ -181,12 +181,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnore() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "2");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava2IgnoreConfig.java"),
+                getPath("InputHeaderjava2.header"), expected);
     }
 
     @Test
