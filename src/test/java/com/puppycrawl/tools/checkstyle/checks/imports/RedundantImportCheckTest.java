@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_DUPLICATE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_LANG;
+import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_REDUNDANT_WILDCARD;
 import static com.puppycrawl.tools.checkstyle.checks.imports.RedundantImportCheck.MSG_SAME;
 
 import java.util.Arrays;
@@ -86,6 +87,20 @@ public class RedundantImportCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputRedundantImportWithChecker.java"), expected);
+    }
+
+    @Test
+    public void testWildcardAndSpecificImports() throws Exception {
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_REDUNDANT_WILDCARD,
+                "java.util.List", "java.util.*"),
+            "13:1: " + getCheckMessage(MSG_REDUNDANT_WILDCARD,
+                "java.awt.Component", "java.awt.*"),
+            "19:1: " + getCheckMessage(MSG_REDUNDANT_WILDCARD,
+                "java.util.Date", "java.util.*"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRedundantImportWildcard.java"), expected);
     }
 
     @Test
