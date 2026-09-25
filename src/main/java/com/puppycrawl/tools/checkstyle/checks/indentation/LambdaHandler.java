@@ -157,6 +157,48 @@ public class LambdaHandler extends AbstractExpressionHandler {
             //      1;
             checkSingleStatementSwitchRuleIndentation(isLineWrappedLambda);
         }
+        else if (!isSwitchRuleLambda) {
+            checkSingleExpressionBodyIndentation();
+        }
+    }
+
+    /**
+     * Checks the indentation of a single-expression lambda body when the body is placed
+     * on a line separate from the {@code ->} operator. This ensures that continuation
+     * lines like:
+     * {@snippet lang="text" :
+     * return (String s) ->
+     * s.length();
+     * }
+     * receive a wrapping-indent violation instead of being silently accepted.
+     */
+    private void checkSingleExpressionBodyIndentation() {
+        final DetailAST mainAst = getMainAst();
+        // Only validate the body when the lambda is placed directly inside a
+        // {@code return} statement. Other contexts (variable initializers,
+        // method call arguments, {@code new} expressions, ...) have their own
+        // wrapping validation via dedicated handlers.
+        if (mainAst.getParent().getType() != TokenTypes.LITERAL_RETURN) {
+            return;
+        }
+        final DetailAST body = mainAst.getLastChild();
+        if (body.getType() == TokenTypes.SLIST
+                || TokenUtil.areOnSameLine(mainAst, body)) {
+            return;
+        }
+        final DetailAST firstToken = getFirstAstNode(body);
+        // If the body starts with an expression that owns its own handler
+        // (e.g. LITERAL_NEW), let that handler report indentation errors
+        // so violations are attributed to the more specific construct.
+        if (getIndentCheck().getHandlerFactory().isHandledType(firstToken.getType())) {
+            return;
+        }
+        final int bodyColumnNo = expandedTabsColumnNo(firstToken);
+        final IndentLevel bodyIndent = new IndentLevel(getIndent(),
+                getIndentCheck().getLineWrappingIndentation());
+        if (isNonAcceptableIndent(bodyColumnNo, bodyIndent)) {
+            logError(firstToken, "", bodyColumnNo, bodyIndent);
+        }
     }
 
     /**

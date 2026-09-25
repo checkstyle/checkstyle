@@ -21,7 +21,7 @@ public class InputIndentationLambdaAndReturnStatement {                         
 
   Function<String, Integer> methodIncorrect() {                                   //indent:2 exp:2
     return (String s) ->                                                          //indent:4 exp:4
-    s.length();    // ok until #17663                                             //indent:4 exp:4
+    s.length();                                                                   //indent:4 exp:8 warn
   }                                                                               //indent:2 exp:2
 
   Function<String, Integer> methodCorrect() {                                     //indent:2 exp:2
@@ -43,9 +43,9 @@ public class InputIndentationLambdaAndReturnStatement {                         
 
   int testCommaIncorrect() {                                                      //indent:2 exp:2
     return sumIncorrect(                                                          //indent:4 exp:4
-    1,    // ok until #17663                                                      //indent:4 exp:4
-    2,    // ok until #17663                                                      //indent:4 exp:4
-    3     // ok until #17663                                                      //indent:4 exp:4
+    1,                                                                            //indent:4 exp:8 warn
+    2,                                                                            //indent:4 exp:8 warn
+    3                                                                             //indent:4 exp:8 warn
     );                                                                            //indent:4 exp:4
   }                                                                               //indent:2 exp:2
 
@@ -55,6 +55,21 @@ public class InputIndentationLambdaAndReturnStatement {                         
         2,                                                                        //indent:8 exp:8
         3                                                                         //indent:8 exp:8
     );                                                                            //indent:4 exp:4
+  }                                                                               //indent:2 exp:2
+
+  Function<String, Integer> methodSameLineBody() {                                //indent:2 exp:2
+    return (String s) -> s.length();                                              //indent:4 exp:4
+  }                                                                               //indent:2 exp:2
+
+  Runnable methodBlockBody() {                                                    //indent:2 exp:2
+    return () -> {                                                                //indent:4 exp:4
+      System.out.println("hi");                                                   //indent:6 exp:6
+    };                                                                            //indent:4 exp:4
+  }                                                                               //indent:2 exp:2
+
+  java.util.function.Supplier<Exception> methodNewBody() {                        //indent:2 exp:2
+    return () ->                                                                  //indent:4 exp:4
+        new IllegalStateException();                                              //indent:8 exp:8
   }                                                                               //indent:2 exp:2
 
 }                                                                                 //indent:0 exp:0
