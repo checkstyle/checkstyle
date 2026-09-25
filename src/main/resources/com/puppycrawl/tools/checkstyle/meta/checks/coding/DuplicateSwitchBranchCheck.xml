@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DuplicateSwitchBranchCheck"
+             name="DuplicateSwitchBranch"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for duplicate implementations in &lt;code&gt;switch&lt;/code&gt; statement or &lt;code&gt;switch&lt;/code&gt; expression branches.
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="duplicate.switch.branch"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
