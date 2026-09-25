@@ -67,12 +67,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderRegexpNoHeaderConfig.java"),
+                getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
