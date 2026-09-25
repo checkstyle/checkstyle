@@ -443,6 +443,97 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testEmptyLineWithEnumConstant() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "24:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "28:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "32:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "41:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "50:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+            "68:7: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumConstant.java"), expected
+        );
+    }
+
+    @Test
+    public void testEmptyLineWithEnumConstantWithDefaultProperties() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumConstantDefault.java"), expected
+        );
+    }
+
+    @Test
+    public void testEmptyLineWithEnum() throws Exception {
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_DEF"),
+            "23:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_DEF"),
+            "27:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "27:23: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "39:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "42:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "42:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "52:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "76:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "91:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "94:13: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "97:21: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "113:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnum.java"), expected);
+    }
+
+    @Test
+    public void testEmptyLineBetweenEnumConstantWithComments() throws Exception {
+        final String[] expected = {
+            "29:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "34:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "39:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "47:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "53:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "57:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "62:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_DEF"),
+            "65:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "71:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "77:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "86:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "97:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "107:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumWithComments.java"), expected);
+    }
+
+    @Test
+    public void testEmptyLineBetweenEnumConstantWithJavadoc() throws Exception {
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "26:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "32:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "35:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "44:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "55:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "61:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "METHOD_DEF"),
+            "70:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "77:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "/*"),
+            "86:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "103:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
+            "115:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorEnumWithJavadoc.java"), expected);
+    }
+
+    @Test
     public void testInterfaceFields() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
@@ -468,6 +559,7 @@ public class EmptyLineSeparatorCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.STATIC_INIT,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.METHOD_DEF,
