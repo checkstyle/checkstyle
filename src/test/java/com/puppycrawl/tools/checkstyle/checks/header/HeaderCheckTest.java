@@ -282,10 +282,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHeaderIsValidWithBlankLines() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.blank-lines.header"));
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderBlankLines.java"));
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderBlankLinesConfig.java"),
+                getPath("InputHeaderBlankLines.java"));
     }
 
     @Test
