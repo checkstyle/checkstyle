@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * If you make the constructor protected you may want to consider the following constructor
  * implementation technique to disallow instantiating subclasses:
  * </p>
- * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ * {@snippet :
  * public class StringUtils // not final to allow subclassing
  * {
  *   protected StringUtils() {
@@ -55,9 +55,18 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *     // ...
  *   }
  * }
- * </code></pre></div>
+ * }
  *
  * @since 3.1
+ * @noinspection EmptyClass, NonFinalUtilityClass, UtilityClassWithoutPrivateConstructor,
+ *      NewExceptionWithoutArguments
+ * @noinspectionreason EmptyClass - example is a documentation snippet, not the enclosing file
+ * @noinspectionreason NonFinalUtilityClass - example intentionally shows a non-final class
+ *      to illustrate subclassing being blocked via a protected constructor
+ * @noinspectionreason UtilityClassWithoutPrivateConstructor - example illustrates using a
+ *      protected constructor instead of a private one, by design
+ * @noinspectionreason NewExceptionWithoutArguments - a bare exception is enough to
+ *      illustrate the constructor-blocking technique
  */
 @StatelessCheck
 public class HideUtilityClassConstructorCheck extends AbstractCheck {
