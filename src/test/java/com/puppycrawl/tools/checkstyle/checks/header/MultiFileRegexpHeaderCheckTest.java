@@ -227,11 +227,8 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllHeaderLinesMatchedExactly() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles",
-                getPath("InputRegexpHeader1.header"));
-        verify(checkConfig,
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderIgnoreExactMatchConfig.java"),
                 getPath("InputRegexpHeaderIgnore.java"), EMPTY_STRING_ARRAY);
     }
 
