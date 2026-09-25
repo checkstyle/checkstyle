@@ -29,16 +29,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class CatchHandler extends BlockParentHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public CatchHandler(IndentationCheck indentCheck,
+    public CatchHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "catch", ast, parent);
+        super(context, "catch", ast, parent);
     }
 
     /**
@@ -49,7 +49,7 @@ public class CatchHandler extends BlockParentHandler {
                 .getNextSibling();
         IndentLevel level = getIndent();
         if (isOnStartOfLine(condAst)) {
-            level = new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
+            level = new IndentLevel(getIndent(), getContext().getLineWrappingIndentation());
         }
         checkExpressionSubtree(condAst, level, true, true);
     }

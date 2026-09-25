@@ -40,16 +40,16 @@ public class LambdaHandler extends AbstractExpressionHandler {
     private boolean isLambdaCorrectlyIndented = true;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck the indentation check
+     * @param context      the indentation check
      * @param ast the abstract syntax tree
      * @param parent the parent handler
      */
-    public LambdaHandler(IndentationCheck indentCheck,
+    public LambdaHandler(IndentationContext context,
                          DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "lambda", ast, parent);
+        super(context, "lambda", ast, parent);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
                 // assume line wrapping and add additional indentation
                 // for the statement in the next line.
                 childIndent = new IndentLevel(childIndent,
-                        getIndentCheck().getLineWrappingIndentation());
+                        getContext().getLineWrappingIndentation());
             }
         }
 
@@ -112,7 +112,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
             // assume line wrapping with respect to its parent.
             final DetailAST firstChild = getMainAst().getFirstChild();
             if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
-                level = new IndentLevel(level, getIndentCheck().getLineWrappingIndentation());
+                level = new IndentLevel(level, getContext().getLineWrappingIndentation());
             }
             result = level;
         }
@@ -168,7 +168,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
      */
     private boolean isNonAcceptableIndent(int astColumnNo, IndentLevel level) {
         return astColumnNo < level.getFirstIndentLevel()
-            || getIndentCheck().isForceStrictCondition()
+            || getContext().isForceStrictCondition()
                && !level.isAcceptable(astColumnNo);
     }
 
@@ -192,11 +192,11 @@ public class LambdaHandler extends AbstractExpressionHandler {
             final int previousLineStart = getLineStart(previousSibling);
 
             level = new IndentLevel(new IndentLevel(previousLineStart),
-                    getIndentCheck().getLineWrappingIndentation());
+                    getContext().getLineWrappingIndentation());
         }
         else {
             level = new IndentLevel(getIndent(),
-                getIndentCheck().getLineWrappingIndentation());
+                getContext().getLineWrappingIndentation());
         }
 
         if (isNonAcceptableIndent(mainAstColumnNo, level)) {
@@ -224,7 +224,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         if (isLambdaFirstInLine) {
             // If the lambda operator (`->`) is at the start of the line, assume line wrapping
             // and add additional indentation for the statement in the next line.
-            level = new IndentLevel(level, getIndentCheck().getLineWrappingIndentation());
+            level = new IndentLevel(level, getContext().getLineWrappingIndentation());
         }
 
         // The first line should not match if the switch rule statement starts on the same line
@@ -276,7 +276,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
     private IndentLevel getEnumConstantBasedIndent(DetailAST enumConstDef) {
         final int enumConstIndent = getLineStart(enumConstDef);
         final IndentLevel baseLevel = new IndentLevel(enumConstIndent);
-        return new IndentLevel(baseLevel, getIndentCheck().getLineWrappingIndentation());
+        return new IndentLevel(baseLevel, getContext().getLineWrappingIndentation());
     }
 
 }
