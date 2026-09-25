@@ -217,11 +217,17 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         DetailAST lparen = null;
+        boolean returnStatementCall = false;
         if (getMainAst().getType() == TokenTypes.METHOD_CALL) {
             final DetailAST exprNode = getMainAst().getParent();
-            if (exprNode.getParent().getType() == TokenTypes.SLIST) {
+            final int grandParentType = exprNode.getParent().getType();
+            final boolean isSimpleCall =
+                    getMainAst().getFirstChild().getType() != TokenTypes.DOT;
+            if (grandParentType == TokenTypes.SLIST
+                    || grandParentType == TokenTypes.LITERAL_RETURN && isSimpleCall) {
                 checkExpressionSubtree(getMainAst().getFirstChild(), getIndent(), false, false);
                 lparen = getMainAst();
+                returnStatementCall = grandParentType == TokenTypes.LITERAL_RETURN;
             }
         }
         else {
@@ -234,9 +240,16 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             checkLeftParen(lparen);
 
             if (!TokenUtil.areOnSameLine(rparen, lparen)) {
+                final int continuationOffset;
+                if (returnStatementCall) {
+                    continuationOffset = getIndentCheck().getLineWrappingIndentation();
+                }
+                else {
+                    continuationOffset = getBasicOffset();
+                }
                 checkExpressionSubtree(
                     getMainAst().findFirstToken(TokenTypes.ELIST),
-                    new IndentLevel(getIndent(), getBasicOffset()),
+                    new IndentLevel(getIndent(), continuationOffset),
                     false, true);
 
                 checkRparenIndent(lparen, rparen);
