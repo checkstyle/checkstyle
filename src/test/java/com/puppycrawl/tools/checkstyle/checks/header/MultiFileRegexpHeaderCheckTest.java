@@ -124,11 +124,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        createChecker(checkConfig);
-        verify(checkConfig,
-                getPath("InputRegexpHeaderDefaultConfig.java"), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderDefaultConfigConfig.java"),
+                getPath("InputRegexpHeaderDefaultConfig.java"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
