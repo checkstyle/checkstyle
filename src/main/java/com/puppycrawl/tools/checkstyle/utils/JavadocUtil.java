@@ -132,7 +132,9 @@ public final class JavadocUtil {
     public static DetailAST getAttachedJavadocComment(final DetailAST ast) {
         DetailAST result = null;
         DetailAST child = ast.getFirstChild();
-        while (result == null && child.getType() != TokenTypes.IDENT) {
+        // A qualified module name is a DOT node rather than an IDENT node.
+        while (result == null
+                && !TokenUtil.isOfType(child, TokenTypes.IDENT, TokenTypes.DOT)) {
             result = findJavadocComment(child);
             child = child.getNextSibling();
         }
