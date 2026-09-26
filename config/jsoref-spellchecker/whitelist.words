@@ -136,6 +136,7 @@ btn
 btnfrs
 buf
 bugdatabase
+Bugzilla
 buildkite
 Bunsubscribe
 bw
@@ -195,7 +196,8 @@ clazz
 clemens
 Clickable
 Cloneable
-cls
+Cloudflare
+clss
 cmdline
 cmp
 cmt
@@ -720,6 +722,7 @@ jdt
 jedit
 jenkins
 jep
+jeremymanson
 jessesquires
 jetbrains
 JFile
@@ -1134,7 +1137,6 @@ Postgresql
 prebuilts
 prefercodeorsnippetjavadocinlinetag
 preferliteraljavadocinlinetag
-prefs
 PRESIZE
 prettyprint
 printf
