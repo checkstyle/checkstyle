@@ -644,6 +644,8 @@ jobs:
     needs: [ download_configs, checkout_and_cache ]
     if: always() && needs.download_configs.result == 'success'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Download workspace artifact
         uses: actions/download-artifact@v8
