@@ -467,6 +467,17 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVariableWithAllowUnnamedInAnonymousClass() throws Exception {
+        final String[] expected = {
+            "23:17: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "__"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                    "InputUnusedLocalVariableWithAllowUnnamedInAnonymousClass.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVariablePatternVariablesCondition() throws Exception {
         final String[] expected = {
             "20:37: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "redBall"),
