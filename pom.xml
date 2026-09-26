@@ -509,6 +509,21 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>com/puppycrawl/tools/checkstyle/version.properties</exclude>
+        </excludes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>com/puppycrawl/tools/checkstyle/version.properties</include>
+        </includes>
+      </resource>
+    </resources>
     <pluginManagement>
       <plugins>
         <!-- from super-pom https://maven.apache.org/ref/3.5.2/maven-model-builder/super-pom.html

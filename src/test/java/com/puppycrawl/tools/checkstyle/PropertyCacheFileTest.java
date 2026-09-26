@@ -30,6 +30,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -110,6 +111,61 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .isFalse();
     }
 
+    /**
+     * Verifies that cached results cannot survive a version change or missing version metadata.
+     *
+     * @param oldVersion the cached version, or empty for a legacy cache
+     * @throws IOException if the cache cannot be read or written
+     */
+    @ParameterizedTest
+    @ValueSource(strings = {"", "0.0.0"})
+    public void testInvalidatesCacheFromAnotherVersion(String oldVersion) throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final Path cachePath = temporaryFolder.toPath().resolve("version.cache");
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cachePath.toString());
+        cache.load();
+        cache.put("myFile", 1);
+        cache.persist();
+
+        final Properties details = new Properties();
+        try (BufferedReader reader = Files.newBufferedReader(cachePath)) {
+            details.load(reader);
+        }
+        if (oldVersion.isEmpty()) {
+            details.remove(PropertyCacheFile.VERSION_KEY);
+        }
+        else {
+            details.setProperty(PropertyCacheFile.VERSION_KEY, oldVersion);
+        }
+        try (OutputStream stream = Files.newOutputStream(cachePath)) {
+            details.store(stream, null);
+        }
+
+        cache.load();
+        assertWithMessage("Files validated by another version must be checked again")
+                .that(cache.isInCache("myFile", 1))
+                .isFalse();
+        assertWithMessage("The cache must record the current build version")
+                .that(cache.get(PropertyCacheFile.VERSION_KEY))
+                .matches("\\d+\\.\\d+\\.\\d+(?:-SNAPSHOT)?");
+    }
+
+    @Test
+    public void testPreservesCacheFromSameVersion() throws IOException {
+        final Configuration config = new DefaultConfiguration("myName");
+        final String fileName = temporaryFolder.toPath().resolve("version.cache").toString();
+        final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
+        cache.load();
+        cache.put("myFile", 1);
+        cache.persist();
+
+        final PropertyCacheFile reloaded = new PropertyCacheFile(config, fileName);
+        reloaded.load();
+        assertWithMessage("Unchanged files must remain cached within the same version")
+                .that(reloaded.isInCache("myFile", 1))
+                .isTrue();
+    }
+
     @Test
     public void testResetIfFileDoesNotExist() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
@@ -125,29 +181,29 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     @Test
     public void testPopulateDetails() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final PropertyCacheFile cache = new PropertyCacheFile(config,
-                getPath("InputPropertyCacheFile"));
+        final Path cachePath = temporaryFolder.toPath().resolve("cache.properties");
+        Files.copy(Path.of(getPath("InputPropertyCacheFile")), cachePath);
+        final PropertyCacheFile cache = new PropertyCacheFile(config, cachePath.toString());
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
         assertWithMessage("Config hash key should not be null")
-            .that(hash)
-            .isNotNull();
-        assertWithMessage("Should return null if key is not in cache")
-            .that(cache.get("key"))
-            .isNull();
+                .that(hash)
+                .isNotNull();
+        assertWithMessage("Entries without cache metadata must be discarded")
+                .that(cache.get("key"))
+                .isNull();
 
+        cache.put("key", 1);
+        cache.persist();
         cache.load();
 
         assertWithMessage("Invalid config hash key")
-            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
-            .isEqualTo(hash);
+                .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
+                .isEqualTo(hash);
         assertWithMessage("Invalid cache value")
-            .that(cache.get("key"))
-            .isEqualTo("value");
-        assertWithMessage("Config hash key should not be null")
-            .that(cache.get(PropertyCacheFile.CONFIG_HASH_KEY))
-            .isNotNull();
+                .that(cache.get("key"))
+                .isEqualTo("1");
     }
 
     @Test
@@ -408,7 +464,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         }
         assertWithMessage("Invalid details size")
             .that(details)
-            .hasSize(1);
+            .hasSize(2);
 
         // change in config
         config.addProperty("newAttr", "newValue");
@@ -432,7 +488,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         }
         assertWithMessage("Invalid cache size")
             .that(detailsAfterChangeInConfig)
-            .hasSize(1);
+            .hasSize(2);
     }
 
     @Test
@@ -574,7 +630,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
                 assertWithMessage("Unexpected number of objects in cache")
                         .that(cacheDetails)
-                        .hasSize(2);
+                        .hasSize(3);
             }
 
             assertWithMessage("Invalid config hash")
