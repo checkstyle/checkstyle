@@ -2,6 +2,7 @@
 BooleanExpressionComplexity
 max = 1
 tokens = (default)CTOR_DEF,METHOD_DEF,EXPR,LAND,BAND,LOR,BOR,BXOR,COMPACT_CTOR_DEF
+treatUniformExpressionsAsOne = false
 
 
 */
@@ -22,4 +23,37 @@ public class InputBooleanExpressionComplexitySmall {
             }
         });
     }
+
+   boolean underBor(boolean a) {
+        return a | (p() && q() && r() && s() && t());
+    } // violation above 'Boolean expression complexity is 5 (max allowed is 1).'
+
+    private boolean t() {
+        return false;
+    }
+
+    private boolean s() {
+        return true;
+    }
+
+    private boolean r() {
+        return false;
+    }
+
+    private boolean q() {
+        return false;
+    }
+
+    private boolean p() {
+        return true;
+    }
+
+    boolean check(Object o, Object p, Object q, Object r, Object s) {
+        // violation below 'Boolean expression complexity is 4 (max allowed is 1).'
+        return o instanceof String && p instanceof Integer
+                && q instanceof Long && r instanceof Double
+                && s instanceof Float;
+    }
+
+
 }
