@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.NullUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
@@ -70,6 +71,13 @@ public class JavadocVariableCheck
     private Pattern ignoreNamePattern;
 
     /**
+     * Control whether the access modifier of the type that declares the field is
+     * taken into account, so that a field is checked only when the type that holds
+     * it is itself in one of the {@code accessModifiers}.
+     */
+    private boolean considerEnclosingScope;
+
+    /**
      * Creates a new {@code JavadocVariableCheck} instance.
      */
     public JavadocVariableCheck() {
@@ -101,6 +109,18 @@ public class JavadocVariableCheck
      */
     public void setIgnoreNamePattern(Pattern pattern) {
         ignoreNamePattern = pattern;
+    }
+
+    /**
+     * Setter to control whether the access modifier of the type that declares the field is
+     * taken into account, so that a field is checked only when the type that holds it is
+     * itself in one of the {@code accessModifiers}.
+     *
+     * @param considerEnclosingScope whether to take the enclosing type into account.
+     * @since 14.2.0
+     */
+    public void setConsiderEnclosingScope(boolean considerEnclosingScope) {
+        this.considerEnclosingScope = considerEnclosingScope;
     }
 
     @Override
@@ -179,9 +199,59 @@ public class JavadocVariableCheck
         if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
             final AccessModifierOption accessModifier =
                     getAccessModifierFromModifiersTokenWithPrivateEnumSupport(ast);
-            result = matchAccessModifiers(accessModifier);
+            result = matchAccessModifiers(accessModifier)
+                    && matchEnclosingScope(ast);
         }
         return result;
+    }
+
+    /**
+     * Checks whether the type that declares the field is itself in one of the configured
+     * access modifiers. The implicit class of a compact source is final and in the unnamed
+     * package, so it counts as package-private. As in {@code JavadocMethod}, a field of an
+     * anonymous class has no named type to be reached through and is not checked.
+     *
+     * @param ast the field or enum constant to check.
+     * @return whether the enclosing type allows the field to be checked.
+     */
+    private boolean matchEnclosingScope(DetailAST ast) {
+        boolean result = true;
+        if (considerEnclosingScope) {
+            final DetailAST scope = findEnclosingScope(ast);
+            final int type = scope.getType();
+            if (type == TokenTypes.LITERAL_NEW) {
+                result = false;
+            }
+            else if (type == TokenTypes.COMPACT_COMPILATION_UNIT) {
+                result = matchAccessModifiers(AccessModifierOption.PACKAGE);
+            }
+            else {
+                result = matchAccessModifiers(
+                        CheckUtil.getAccessModifierFromModifiersToken(scope));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the node that decides the enclosing scope of a field or enum constant: the
+     * nearest type declaration, records included, the compact compilation unit of an
+     * implicit class, or the {@code new} of an anonymous class. Every field outside a
+     * code block has one of them above it, so the walk stops before the root.
+     *
+     * @param node the field or enum constant.
+     * @return the node that decides the enclosing scope.
+     */
+    private static DetailAST findEnclosingScope(DetailAST node) {
+        DetailAST scope = node;
+        int type;
+        do {
+            scope = scope.getParent();
+            type = scope.getType();
+        } while (type != TokenTypes.LITERAL_NEW
+                && type != TokenTypes.COMPACT_COMPILATION_UNIT
+                && !TokenUtil.isTypeDeclaration(type));
+        return scope;
     }
 
     /**
