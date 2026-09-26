@@ -2650,27 +2650,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
-    <specifier>flowexpr.parse.index.too.big</specifier>
-    <message>the method has no parameter #1 (total 0 parameters)</message>
-    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
-    <specifier>flowexpr.parse.index.too.big</specifier>
-    <message>the method has no parameter #1 (total 0 parameters)</message>
-    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
-    <specifier>flowexpr.parse.index.too.big</specifier>
-    <message>the method has no parameter #1 (total 0 parameters)</message>
-    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: ignoreStringsRegexp</message>
     <lineContent>public MultipleStringLiteralsCheck() {</lineContent>
