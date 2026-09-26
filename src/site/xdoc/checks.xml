@@ -1292,6 +1292,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/missingjavadocmodule.html#MissingJavadocModule">
+                MissingJavadocModule
+              </a>
+            </td>
+            <td>
+              Checks for missing Javadoc comments on module declarations.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/missingjavadocpackage.html#MissingJavadocPackage">
                 MissingJavadocPackage
               </a>
