@@ -15,7 +15,7 @@ public class InputJavadocLeadingAsteriskAlignMultipleAsterisks {
    */
   void valid() {}
 
-  // violation 2 lines below 'Leading asterisk has .* indentation .* 5, expected is 4.'
+  // violation 2 lines below 'Leading asterisk has .* indentation .* 2, expected is 1.'
   /****
     ** Misaligned multiple asterisks.
    */
