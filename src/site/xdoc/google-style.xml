@@ -696,7 +696,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule35moduledeclaration">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources-noncompilable/com/google/checkstyle/test/chapter3filestructure/rule35moduledeclaration">
                     samples</a>
                 </td>
               </tr>
