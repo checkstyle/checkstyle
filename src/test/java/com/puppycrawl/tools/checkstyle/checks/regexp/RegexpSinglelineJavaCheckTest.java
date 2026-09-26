@@ -208,4 +208,29 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
                 getPath("InputRegexpSinglelineJavaSemantic8.java"), expected);
     }
 
+    @Test
+    public void testZeroWidthMatchSuppressed() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaZeroWidthSuppressed.java"), expected);
+    }
+
+    @Test
+    public void testZeroWidthMatchNotSuppressed() throws Exception {
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(?=ZZZTOD[O])"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaZeroWidthNotSuppressed.java"), expected);
+    }
+
+    @Test
+    public void testSuppressedCommentThenCodeMatch() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "ZZZTODO"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRegexpSinglelineJavaZeroWidthMixedCodeMatch.java"), expected);
+    }
+
 }
