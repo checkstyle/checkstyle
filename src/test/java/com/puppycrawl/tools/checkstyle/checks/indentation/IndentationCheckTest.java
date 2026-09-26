@@ -4872,9 +4872,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         final String fileName = getPath("InputIndentationLambdaAndReturnStatement.java");
         final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_ERROR, "lambda", 4, 8),
             "34:5: " + getCheckMessage(MSG_ERROR, "s", 4, 8),
             "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
             "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "47:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "48:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "86:5: " + getCheckMessage(MSG_ERROR_MULTI, "new", 4, "6, 8"),
+            "91:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

@@ -158,9 +158,9 @@ public abstract class AbstractExpressionHandler {
      * @param actualIndent   the actual indent level of the expression
      * @param expectedIndent the expected indent level of the expression
      */
-    private void logChildError(DetailAST ast,
-                               int actualIndent,
-                               IndentLevel expectedIndent) {
+    protected final void logChildError(DetailAST ast,
+                                       int actualIndent,
+                                       IndentLevel expectedIndent) {
         String messageKey = IndentationCheck.MSG_CHILD_ERROR;
         if (expectedIndent.isMultiLevel()) {
             messageKey = IndentationCheck.MSG_CHILD_ERROR_MULTI;
