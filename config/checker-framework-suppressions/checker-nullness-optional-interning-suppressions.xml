@@ -4593,7 +4593,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/AbstractExpressionHandler.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: indent</message>
-    <lineContent>protected AbstractExpressionHandler(IndentationCheck indentCheck, String typeName,</lineContent>
+    <lineContent>protected AbstractExpressionHandler(IndentationContext context, String typeName,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -4998,7 +4998,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter constructor of CommonUtil.invokeConstructor.</message>
-    <lineContent>handlerCtor, indentCheck, ast, parent);</lineContent>
+    <lineContent>handlerCtor, context, ast, parent);</lineContent>
     <details>
       found   : @Initialized @Nullable Constructor&lt;capture extends @Initialized @Nullable Object&gt;
       required: @Initialized @NonNull Constructor&lt;capture extends @Initialized @Nullable Object&gt;
@@ -5488,17 +5488,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter instance of LineWrappingHandler constructor.</message>
-    <lineContent>private final LineWrappingHandler lineWrappingHandler = new LineWrappingHandler(this);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AbstractCheck.class) @NonNull IndentationCheck
-      required: @Initialized @NonNull IndentationCheck
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter parent of HandlerFactory.getHandler.</message>
     <lineContent>handlers.peek());</lineContent>
     <details>
@@ -5509,13 +5498,16 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>private final LineWrappingHandler lineWrappingHandler = new LineWrappingHandler(this);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler.class) @NonNull LineWrappingHandler
-      required: @Initialized @NonNull LineWrappingHandler
-    </details>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: context</message>
+    <lineContent>public IndentationCheck() {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: context</message>
+    <lineContent>public LineWrappingHandler() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -5757,7 +5749,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter expr of AbstractExpressionHandler constructor.</message>
-    <lineContent>super(indentCheck, null, null, null);</lineContent>
+    <lineContent>super(context, null, null, null);</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull DetailAST
@@ -5768,7 +5760,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter parent of AbstractExpressionHandler constructor.</message>
-    <lineContent>super(indentCheck, null, null, null);</lineContent>
+    <lineContent>super(context, null, null, null);</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull AbstractExpressionHandler
@@ -5779,7 +5771,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter typeName of AbstractExpressionHandler constructor.</message>
-    <lineContent>super(indentCheck, null, null, null);</lineContent>
+    <lineContent>super(context, null, null, null);</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull String
