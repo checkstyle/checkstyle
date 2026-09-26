@@ -35,6 +35,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -50,7 +51,8 @@ import com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil;
  * It uses a property file
  * for storage.  A hashcode of the Configuration is stored in the
  * cache file to ensure the cache is invalidated when the
- * configuration has changed.
+ * configuration has changed. The Checkstyle version is also stored, so upgrading
+ * Checkstyle invalidates results produced by an older version.
  *
  */
 public final class PropertyCacheFile {
@@ -63,6 +65,9 @@ public final class PropertyCacheFile {
      */
     public static final String CONFIG_HASH_KEY = "configuration*?";
 
+    /** The property key storing the version that validated the cached files. */
+    public static final String VERSION_KEY = "version*?";
+
     /**
      * The property prefix to use for storing the hashcode of an
      * external resource. To avoid name clashes with the files that are
@@ -70,6 +75,10 @@ public final class PropertyCacheFile {
      * valid file name and makes it clear it is a resource.
      */
     public static final String EXTERNAL_RESOURCE_KEY_PREFIX = "module-resource*?:";
+
+    /** Build version, available both in packaged artifacts and in the classes directory. */
+    private static final String CHECKSTYLE_VERSION = ResourceBundle.getBundle(
+            "com.puppycrawl.tools.checkstyle.version", Locale.ROOT).getString("checkstyle.version");
 
     /** Size of default byte array for buffer. */
     private static final int BUFFER_SIZE = 1024;
@@ -119,13 +128,15 @@ public final class PropertyCacheFile {
         // get the current config so if the file isn't found
         // the first time the hash will be added to output file
         configHash = getHashCodeBasedOnObjectContent(config);
+        details.clear();
         final Path path = Path.of(fileName);
         if (Files.exists(path)) {
             try (InputStream inStream = Files.newInputStream(path)) {
                 details.load(inStream);
                 final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);
-                if (!configHash.equals(cachedConfigHash)) {
-                    // Detected configuration change - clear cache
+                if (!configHash.equals(cachedConfigHash)
+                        || !CHECKSTYLE_VERSION.equals(details.getProperty(VERSION_KEY))) {
+                    // Configuration or Checkstyle version changed, or this is a legacy cache.
                     reset();
                 }
             }
@@ -154,11 +165,12 @@ public final class PropertyCacheFile {
     }
 
     /**
-     * Resets the cache to be empty except for the configuration hash.
+     * Resets the cache to be empty except for the configuration hash and Checkstyle version.
      */
     public void reset() {
         details.clear();
         details.setProperty(CONFIG_HASH_KEY, configHash);
+        details.setProperty(VERSION_KEY, CHECKSTYLE_VERSION);
     }
 
     /**
