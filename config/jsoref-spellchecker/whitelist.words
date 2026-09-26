@@ -880,6 +880,7 @@ misconfigured
 missingctor
 missingdeprecated
 missingjavadocmethod
+missingjavadocmodule
 missingjavadocpackage
 missingjavadoctype
 missingnullcaseinswitch
