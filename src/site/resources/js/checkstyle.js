@@ -17,6 +17,11 @@ window.addEventListener("load", function () {
     });
 });
 
+// Set when the archive redirect below has already chosen a destination for the
+// current URL. The filename redirect runs on "load", after this handler, and
+// would otherwise replace the archive with the release-notes index.
+let releaseNotesArchiveRequested = false;
+
 document.addEventListener("DOMContentLoaded", () => {
     const url = new URL(window.location.href);
     if (!url.pathname.endsWith("/releasenotes.html")
@@ -35,15 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let minor = parseInt(versionParts[1], 10);
 
     if (major >= 1 && major < 6) {
+        releaseNotesArchiveRequested = true;
         window.location.replace(`./release-notes-old-1-0-5-9.html${url.hash}`);
     }
     else if (major === 6 || major === 7) {
+        releaseNotesArchiveRequested = true;
         window.location.replace(`./release-notes-old-6-0-7-8.html${url.hash}`);
     }
     else if (major === 8 && minor >= 0 && minor <= 34) {
+        releaseNotesArchiveRequested = true;
         window.location.replace(`./release-notes-old-8-0-8-34.html${url.hash}`);
     }
     else if (major >= 8 && major <= 10) {
+        releaseNotesArchiveRequested = true;
         window.location.replace(`./release-notes-old-8-35-10-26.html${url.hash}`);
     }
 });
@@ -103,6 +112,10 @@ window.addEventListener("load", function () {
         };
 
         if (redirectMap[oldHtmlFile]) {
+            if (oldHtmlFile === "releasenotes.html" && releaseNotesArchiveRequested) {
+                return;
+            }
+
             const newUrl = `./${redirectMap[oldHtmlFile]}${urlObj.hash}`;
 
             const section = document.querySelector("section[name='Redirecting'] p");
