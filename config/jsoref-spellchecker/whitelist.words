@@ -468,6 +468,7 @@ finalclass
 finalizer
 finallocalvariable
 finalparameters
+finalpatternvariable
 findbugs
 Findentation
 findstr
@@ -913,6 +914,7 @@ Multiset
 multithreading
 musl
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
