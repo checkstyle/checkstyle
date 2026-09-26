@@ -243,6 +243,39 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
         }
+        else if (isSimpleReturnMethodCall()) {
+            checkReturnStatementCallArguments();
+        }
+    }
+
+    /**
+     * Checks the indentation of arguments of a method call that appears as the
+     * expression of a {@code return} statement. This complements the SLIST-parent
+     * flow above and covers cases where args are on continuation lines but were
+     * previously not validated because the enclosing statement is not a direct
+     * SLIST child.
+     */
+    private void checkReturnStatementCallArguments() {
+        final DetailAST lparen = getMainAst();
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        if (!TokenUtil.areOnSameLine(rparen, lparen)) {
+            checkExpressionSubtree(
+                getMainAst().findFirstToken(TokenTypes.ELIST),
+                new IndentLevel(getIndent(), getBasicOffset()),
+                false, true);
+        }
+    }
+
+    /**
+     * Returns whether this method call is a simple (non-chained) call that is the
+     * expression of a {@code return} statement.
+     *
+     * @return {@code true} if this method call is directly returned.
+     */
+    private boolean isSimpleReturnMethodCall() {
+        final DetailAST exprNode = getMainAst().getParent();
+        return getMainAst().getFirstChild().getType() != TokenTypes.DOT
+                && exprNode.getParent().getType() == TokenTypes.LITERAL_RETURN;
     }
 
     /**
