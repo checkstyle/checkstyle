@@ -122,6 +122,8 @@ jobs:
   make_report:
     runs-on: ubuntu-latest
     needs: parse_body
+    permissions:
+      contents: read
     if: needs.parse_body.outputs.config_link != ''
             || needs.parse_body.outputs.new_module_config_link != ''
     steps:
@@ -146,8 +148,8 @@ jobs:
         run: |
           ./.ci/diff-report.sh set-upstream
 
-      - name: Setup local maven cache
-        uses: actions/cache@v6
+      - name: Restore local maven cache (read-only)
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
