@@ -48,7 +48,11 @@ concurrency:
 jobs:
   # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: (inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report'
+    if: >-
+      ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report')
+      && (github.event_name != 'issue_comment'
+          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                      github.event.comment.author_association))
     runs-on: ubuntu-latest
     outputs:
       projects_link: ${{ steps.parse.outputs.projects_link }}
@@ -122,6 +126,8 @@ jobs:
   make_report:
     runs-on: ubuntu-latest
     needs: parse_body
+    permissions:
+      contents: read
     if: needs.parse_body.outputs.config_link != ''
             || needs.parse_body.outputs.new_module_config_link != ''
     steps:
@@ -146,8 +152,8 @@ jobs:
         run: |
           ./.ci/diff-report.sh set-upstream
 
-      - name: Setup local maven cache
-        uses: actions/cache@v6
+      - name: Restore local maven cache (read-only)
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}

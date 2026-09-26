@@ -58,6 +58,9 @@ jobs:
   check_pr_status:
     if: |
       (github.event.issue.pull_request || inputs.pr-number != '')
+      && (github.event_name != 'issue_comment'
+          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                      github.event.comment.author_association))
       && (startsWith(inputs.trigger-phrase || github.event.comment.body,
                      'Github, generate report for ')
           ||  startsWith(inputs.trigger-phrase || github.event.comment.body,
@@ -644,6 +647,8 @@ jobs:
     needs: [ download_configs, checkout_and_cache ]
     if: always() && needs.download_configs.result == 'success'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Download workspace artifact
         uses: actions/download-artifact@v8
