@@ -42,7 +42,6 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -912,8 +911,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 messageBundle,
                 Locale.ROOT,
-                Thread.currentThread().getContextClassLoader(),
-                new Utf8Control());
+                Thread.currentThread().getContextClassLoader());
         final String pattern = resourceBundle.getString(messageKey);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);
