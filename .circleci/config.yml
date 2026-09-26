@@ -241,6 +241,10 @@ workflows:
           image-name: *cs_img
           command: ./.ci/validation.sh assembly-run-all-jar
       - validate-with-maven-script:
+          name: module-path-run
+          image-name: *cs_img
+          command: ./.ci/validation.sh module-path-run
+      - validate-with-maven-script:
           name: no-error-test-sbe
           image-name: cimg/openjdk:21.0.6
           command: ./.ci/validation.sh no-error-test-sbe
