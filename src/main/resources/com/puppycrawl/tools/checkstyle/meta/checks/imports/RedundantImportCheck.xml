@@ -15,10 +15,13 @@
    package, e.g. importing &lt;code&gt;java.lang.String&lt;/code&gt;.&lt;/li&gt;
    &lt;li&gt;The class non-statically imported is from the same package as the
    current package.&lt;/li&gt;
+   &lt;li&gt;A non-static import is covered by a wildcard import from the same
+   package or type.&lt;/li&gt;
  &lt;/ul&gt;</description>
          <message-keys>
             <message-key key="import.duplicate"/>
             <message-key key="import.lang"/>
+            <message-key key="import.redundantWildcard"/>
             <message-key key="import.same"/>
          </message-keys>
       </check>
