@@ -86,6 +86,17 @@ public class NeedBracesCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     }
 
     @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "26:7: " + getCheckMessage(MSG_KEY_NEED_BRACES, "else"),
+            "31:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
+            "38:5: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
     public void testUseCase2() throws Exception {
         final String[] expected = {
             "25:38: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
