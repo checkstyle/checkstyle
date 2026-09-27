@@ -206,6 +206,8 @@
   <suppress checks="FileTabCharacter"
     files="/InputJavadocLeadingAsteriskAlignTabs\.java"/>
   <suppress checks="FileTabCharacter"
+    files="/InputJavadocLeadingAsteriskAlignIndentationTabs\.java"/>
+  <suppress checks="FileTabCharacter"
     files="/InputJavadocMissingWhitespaceAfterAsteriskValidWithTab\.java"/>
   <suppress checks="FileTabCharacter"
     files="/InputAbbreviationAsWordInNameOverridableMethod\.java"/>
