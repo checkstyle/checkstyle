@@ -454,7 +454,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.COMPACT_COMPILATION_UNIT ->
                 frameStack.addFirst(new CompactCompilationUnitFrame(frame, ast));
 
-            case TokenTypes.SLIST -> frameStack.addFirst(new BlockFrame(frame, ast));
+            case TokenTypes.SLIST -> frameStack.addFirst(createBlockFrame(frame, ast));
 
             case TokenTypes.METHOD_DEF -> collectMethodDeclarations(frameStack, ast, frame);
 
@@ -495,6 +495,23 @@ public class RequireThisCheck extends AbstractCheck {
                 // do nothing
             }
         }
+    }
+
+    /**
+     * Creates a block frame with the declarations visible in its scope.
+     *
+     * @param frame enclosing frame.
+     * @param ast statement list token.
+     * @return the block frame.
+     */
+    private static BlockFrame createBlockFrame(AbstractFrame frame, DetailAST ast) {
+        AbstractFrame parent = frame;
+        if (ast.getParent().getType() == TokenTypes.LITERAL_FINALLY
+                && frame.getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
+            // Resources are not in scope in their associated finally block.
+            parent = frame.getParent();
+        }
+        return new BlockFrame(parent, ast);
     }
 
     /**
