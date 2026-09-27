@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serial;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -381,6 +382,27 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyContent(getPath("ExpectedSarifLoggerQuoteInPath.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorWithReservedCharactersInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final String fileName = "Test#1?%<é.java";
+        logger.addError(new AuditEvent(this, fileName, violation));
+        logger.auditFinished(null);
+
+        final String uri = "file:Test%231%3F%25%3C%C3%A9.java";
+        assertWithMessage("SARIF URI should encode reserved characters")
+                .that(outStream.toString(StandardCharsets.UTF_8))
+                .contains("\"uri\": \"" + uri + "\"");
+        assertWithMessage("SARIF URI should resolve to the original file name")
+                .that(URI.create(uri).getSchemeSpecificPart())
+                .isEqualTo(fileName);
     }
 
     /**
