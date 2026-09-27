@@ -355,7 +355,8 @@ public class UseCase1 {
             Suppress all checks for hidden files and folders:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code>
-&lt;property name="fileExtensions" value="properties"/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
   &lt;module name="SuppressionFilter"&gt;
     &lt;property name="file" value="suppressionUseCase2.xml"/&gt;
   &lt;/module&gt;
