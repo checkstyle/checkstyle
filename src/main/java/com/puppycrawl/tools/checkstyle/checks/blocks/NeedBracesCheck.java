@@ -59,6 +59,16 @@ public class NeedBracesCheck extends AbstractCheck {
     private boolean allowEmptyLoopBody;
 
     /**
+     * Allow control statements ({@code if}, {@code else}, {@code for},
+     * {@code while}, {@code do-while}) whose trailing substatement is on the
+     * same line as the parent construct, even when nested inside another
+     * control statement (for example an {@code else if} chain). Enabling this
+     * property also allows simple single-line statements, so it acts as a
+     * superset of {@link #allowSingleLineStatement}.
+     */
+    private boolean allowSameLineTrailingSubstatement;
+
+    /**
      * Creates a new {@code NeedBracesCheck} instance.
      */
     public NeedBracesCheck() {
@@ -83,6 +93,21 @@ public class NeedBracesCheck extends AbstractCheck {
      */
     public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
         this.allowEmptyLoopBody = allowEmptyLoopBody;
+    }
+
+    /**
+     * Setter to allow control statements whose trailing substatement is on the
+     * same line as the parent construct (e.g. {@code else if} chains, or an
+     * {@code if} nested inside a single-line {@code for}). Enabling this
+     * property also permits simple single-line statements, so it acts as a
+     * superset of
+     * {@link #setAllowSingleLineStatement(boolean) allowSingleLineStatement}.
+     *
+     * @param allow Check's option for allowing same-line trailing substatements.
+     * @since 14.2.0
+     */
+    public void setAllowSameLineTrailingSubstatement(boolean allow) {
+        allowSameLineTrailingSubstatement = allow;
     }
 
     @Override
@@ -189,7 +214,8 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current statement can be skipped by Check.
      */
     private boolean isSkipStatement(DetailAST statement) {
-        return allowSingleLineStatement && isSingleLineStatement(statement);
+        return (allowSingleLineStatement || allowSameLineTrailingSubstatement)
+            && isSingleLineStatement(statement);
     }
 
     /**
@@ -210,7 +236,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement is single-line statement.
      */
-    private static boolean isSingleLineStatement(DetailAST statement) {
+    private boolean isSingleLineStatement(DetailAST statement) {
 
         return switch (statement.getType()) {
             case TokenTypes.LITERAL_IF -> isSingleLineIf(statement);
@@ -226,6 +252,24 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
+     * Checks whether the parent of {@code statement} is a valid context for the
+     * single-line-statement check. By default only statements whose parent is a
+     * block ({@link TokenTypes#SLIST}) qualify. When
+     * {@link #allowSameLineTrailingSubstatement} is enabled, statements nested
+     * as the trailing substatement of another control statement (for example
+     * an {@code if} inside {@code else}, or an {@code if} inside a single-line
+     * {@code for}) also qualify.
+     *
+     * @param statement the statement whose parent should be checked.
+     * @return {@code true} if the parent context is eligible for the
+     *     single-line-statement check.
+     */
+    private boolean hasEligibleParent(DetailAST statement) {
+        return allowSameLineTrailingSubstatement
+            || statement.getParent().getType() == TokenTypes.SLIST;
+    }
+
+    /**
      * Checks if current while statement is single-line statement, e.g.:
      *
      * <p>
@@ -237,9 +281,9 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param literalWhile {@link TokenTypes#LITERAL_WHILE while statement}.
      * @return true if current while statement is single-line statement.
      */
-    private static boolean isSingleLineWhile(DetailAST literalWhile) {
+    private boolean isSingleLineWhile(DetailAST literalWhile) {
         boolean result = false;
-        if (literalWhile.getParent().getType() == TokenTypes.SLIST) {
+        if (hasEligibleParent(literalWhile)) {
             final DetailAST block = literalWhile.getLastChild().getPreviousSibling();
             result = TokenUtil.areOnSameLine(literalWhile, block);
         }
@@ -258,9 +302,9 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param literalDo {@link TokenTypes#LITERAL_DO do-while statement}.
      * @return true if current do-while statement is single-line statement.
      */
-    private static boolean isSingleLineDoWhile(DetailAST literalDo) {
+    private boolean isSingleLineDoWhile(DetailAST literalDo) {
         boolean result = false;
-        if (literalDo.getParent().getType() == TokenTypes.SLIST) {
+        if (hasEligibleParent(literalDo)) {
             final DetailAST block = literalDo.getFirstChild();
             result = TokenUtil.areOnSameLine(block, literalDo);
         }
@@ -279,12 +323,12 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param literalFor {@link TokenTypes#LITERAL_FOR for statement}.
      * @return true if current for statement is single-line statement.
      */
-    private static boolean isSingleLineFor(DetailAST literalFor) {
+    private boolean isSingleLineFor(DetailAST literalFor) {
         boolean result = false;
         if (literalFor.getLastChild().getType() == TokenTypes.EMPTY_STAT) {
             result = true;
         }
-        else if (literalFor.getParent().getType() == TokenTypes.SLIST) {
+        else if (hasEligibleParent(literalFor)) {
             result = TokenUtil.areOnSameLine(literalFor, literalFor.getLastChild());
         }
         return result;
@@ -302,9 +346,9 @@ public class NeedBracesCheck extends AbstractCheck {
      * @param literalIf {@link TokenTypes#LITERAL_IF if statement}.
      * @return true if current if statement is single-line statement.
      */
-    private static boolean isSingleLineIf(DetailAST literalIf) {
+    private boolean isSingleLineIf(DetailAST literalIf) {
         boolean result = false;
-        if (literalIf.getParent().getType() == TokenTypes.SLIST) {
+        if (hasEligibleParent(literalIf)) {
             final DetailAST literalIfLastChild = literalIf.getLastChild();
             final DetailAST block;
             if (literalIfLastChild.getType() == TokenTypes.LITERAL_ELSE) {
