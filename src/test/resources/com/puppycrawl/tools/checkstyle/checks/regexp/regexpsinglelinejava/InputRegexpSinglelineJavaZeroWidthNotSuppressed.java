@@ -1,6 +1,6 @@
 /*
 RegexpSinglelineJava
-format = (?=ZZZTOD[O])
+format = (?=TO[D]O)
 message = (default)(null)
 ignoreCase = (default)false
 minimum = (default)0
@@ -14,6 +14,6 @@ package com.puppycrawl.tools.checkstyle.checks.regexp.regexpsinglelinejava;
 
 class InputRegexpSinglelineJavaZeroWidthNotSuppressed {
     // violation below 'Line matches the illegal pattern'
-    // ZZZTODO remove this
+    // TODO remove this
     void run() {}
 }
