@@ -46,6 +46,9 @@ concurrency:
 jobs:
   make_report:
     if: (github.event.issue.pull_request != null || inputs.pr-number != '')
+        && (github.event_name != 'issue_comment'
+            || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                        github.event.comment.author_association))
         && ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate ANTLR report'
             || startsWith(inputs.trigger-phrase || github.event.comment.body,
                           'GitHub, generate ANTLR report for '))

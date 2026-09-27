@@ -48,7 +48,11 @@ concurrency:
 jobs:
   # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: (inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report'
+    if: >-
+      ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report')
+      && (github.event_name != 'issue_comment'
+          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                      github.event.comment.author_association))
     runs-on: ubuntu-latest
     outputs:
       projects_link: ${{ steps.parse.outputs.projects_link }}
