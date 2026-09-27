@@ -273,6 +273,7 @@
           <item name="JavadocType" href="checks/javadoc/javadoctype.html"/>
           <item name="JavadocVariable" href="checks/javadoc/javadocvariable.html"/>
           <item name="MissingJavadocMethod" href="checks/javadoc/missingjavadocmethod.html"/>
+          <item name="MissingJavadocModule" href="checks/javadoc/missingjavadocmodule.html"/>
           <item name="MissingJavadocPackage" href="checks/javadoc/missingjavadocpackage.html"/>
           <item name="MissingJavadocType" href="checks/javadoc/missingjavadoctype.html"/>
           <item name="NonEmptyAtclauseDescription"
