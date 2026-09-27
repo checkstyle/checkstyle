@@ -2895,6 +2895,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter frame of RequireThisCheck.createBlockFrame.</message>
+    <lineContent>case TokenTypes.SLIST -&gt; frameStack.addFirst(createBlockFrame(frame, ast));</lineContent>
+    <details>
+      found   : @Initialized @Nullable AbstractFrame
+      required: @Initialized @NonNull AbstractFrame
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
     <lineContent>frame = findFrame(frame, name, lookMode);</lineContent>
     <details>
@@ -3040,17 +3051,6 @@
     <specifier>argument</specifier>
     <message>incompatible argument for parameter parent of AnonymousClassFrame constructor.</message>
     <lineContent>frameStack.addFirst(new AnonymousClassFrame(frame, ast.toString()));</lineContent>
-    <details>
-      found   : @Initialized @Nullable AbstractFrame
-      required: @Initialized @NonNull AbstractFrame
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of BlockFrame constructor.</message>
-    <lineContent>case TokenTypes.SLIST -&gt; frameStack.addFirst(new BlockFrame(frame, ast));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
