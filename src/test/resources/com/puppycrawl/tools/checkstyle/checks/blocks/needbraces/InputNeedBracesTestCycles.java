@@ -3,7 +3,7 @@ NeedBraces
 allowSingleLineStatement = true
 allowEmptyLoopBody = (default)false
 tokens = LITERAL_WHILE, LITERAL_DO, LITERAL_FOR
-
+allowSameLineTrailingSubstatement = (default)false
 
 */
 
