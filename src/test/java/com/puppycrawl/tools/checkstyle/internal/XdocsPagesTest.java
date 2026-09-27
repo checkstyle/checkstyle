@@ -213,7 +213,6 @@ public class XdocsPagesTest {
             "MissingJavadocMethod",
             "MissingSwitchDefault",
             "ModifierOrder",
-            "NeedBraces",
             "NewlineAtEndOfFile",
             "NoWhitespaceAfter",
             "NoWhitespaceBefore",
