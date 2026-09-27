@@ -278,7 +278,8 @@ public class OperatorWrapCheck
             result = adjustParens(rightNode, DetailAST::getPreviousSibling);
         }
 
-        if (!TokenUtil.isOfType(result, TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT)) {
+        if (!TokenUtil.isOfType(result, TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT,
+                TokenTypes.SLIST)) {
             while (result.getFirstChild() != null) {
                 result = result.getFirstChild();
             }
