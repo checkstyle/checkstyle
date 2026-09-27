@@ -282,13 +282,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexpHeaderMulti6() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2_4.header"));
-        checkConfig.addProperty("multiLines", "8974382");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderMulti6.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMulti6Config.java"),
+                getPath("InputRegexpHeaderMulti6.java"), expected);
     }
 
     @Test
