@@ -48,10 +48,14 @@ concurrency:
 
 jobs:
   site:
-    if: github.event.comment.body == 'GitHub, generate web site'
-          || github.event.comment.body == 'GitHub, generate website'
-          || github.event.comment.body == 'GitHub, generate site'
-          || inputs.pr-number != ''
+    if: >-
+      (github.event.comment.body == 'GitHub, generate web site'
+       || github.event.comment.body == 'GitHub, generate website'
+       || github.event.comment.body == 'GitHub, generate site'
+       || inputs.pr-number != '')
+      && (github.event_name != 'issue_comment'
+          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                      github.event.comment.author_association))
     runs-on: ubuntu-latest
     outputs:
       commit_sha: ${{ steps.pr_info.outputs.commit_sha }}

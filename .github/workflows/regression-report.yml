@@ -58,6 +58,9 @@ jobs:
   check_pr_status:
     if: |
       (github.event.issue.pull_request || inputs.pr-number != '')
+      && (github.event_name != 'issue_comment'
+          || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                      github.event.comment.author_association))
       && (startsWith(inputs.trigger-phrase || github.event.comment.body,
                      'Github, generate report for ')
           ||  startsWith(inputs.trigger-phrase || github.event.comment.body,
