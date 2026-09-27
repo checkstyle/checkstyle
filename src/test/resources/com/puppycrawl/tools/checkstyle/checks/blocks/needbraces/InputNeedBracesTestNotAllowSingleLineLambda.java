@@ -3,7 +3,7 @@ NeedBraces
 allowSingleLineStatement = (default)false
 allowEmptyLoopBody = (default)false
 tokens = LAMBDA
-
+allowSameLineTrailingSubstatement = (default)false
 
 */
 
