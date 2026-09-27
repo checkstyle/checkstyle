@@ -10,6 +10,17 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 14.3.0">
+      <div class="releaseDate">27.09.2026</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Make Checkstyle an java module with module-info.java.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/14120">#14120</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 14.2.0">
       <div class="releaseDate">27.09.2026</div>
       <p>New:</p>
