@@ -221,7 +221,6 @@ public class AllChecksCompactSourceCoverageTest {
         "SingleSpaceSeparatorCheck",
         "StaticVariableNameCheck",
         "SummaryJavadocCheck",
-        "SuperCloneCheck",
         "SuperFinalizeCheck",
         "SuppressWarningsCheck",
         "SuppressWarningsHolder",
