@@ -26,6 +26,7 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,7 +71,7 @@ public class SearchIndexGeneratorTest {
     private static final String CATEGORY_FIELD_NAME = "CHECKS_CATEGORY_DISPLAY_NAMES";
 
     private static String minimalXdoc(String sectionName) {
-        return """
+        return String.format(Locale.ROOT, """
             <?xml version="1.0"?>
             <document>
               <body>
@@ -81,7 +82,7 @@ public class SearchIndexGeneratorTest {
                 </section>
               </body>
             </document>
-            """.formatted(sectionName, sectionName);
+            """, sectionName, sectionName);
     }
 
     @Test
