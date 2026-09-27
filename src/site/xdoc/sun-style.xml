@@ -758,8 +758,22 @@
                     7.4 if, if-else, if else-if else Statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/needbraces.html#NeedBraces">
+                    NeedBraces
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter7statements/rule74ifstatements">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
