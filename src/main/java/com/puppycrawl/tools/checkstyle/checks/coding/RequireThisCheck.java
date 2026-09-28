@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -100,7 +101,9 @@ public class RequireThisCheck extends AbstractCheck {
         TokenTypes.TYPE_ARGUMENT,
         TokenTypes.RECORD_DEF,
         TokenTypes.RECORD_COMPONENT_DEF,
-        TokenTypes.RESOURCE
+        TokenTypes.RESOURCE,
+        TokenTypes.PATTERN_VARIABLE_DEF,
+        TokenTypes.RECORD_PATTERN_DEF
     );
     /** Set of all assign tokens. */
     private static final BitSet ASSIGN_TOKENS = TokenUtil.asBitSet(
@@ -384,7 +387,8 @@ public class RequireThisCheck extends AbstractCheck {
         if (!importOrPackage
                 && !typeName
                 && !DECLARATION_TOKENS.get(parentType)
-                && !isLambdaParameter(ast)) {
+                && !isLambdaParameter(ast)
+                && !isPatternVariableInScope(ast)) {
             final AbstractFrame fieldFrame = findClassFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
 
             if (fieldFrame != null && ((ClassFrame) fieldFrame).hasInstanceMember(ast)) {
@@ -1142,6 +1146,239 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static boolean isAstSimilar(DetailAST left, DetailAST right) {
         return left.getType() == right.getType() && left.getText().equals(right.getText());
+    }
+
+    /**
+     * Checks whether the given IDENT refers to a pattern variable that is in
+     * scope at its position, per the flow-scoping rules of JLS §6.3.1.
+     * When a pattern variable is in scope, it shadows any instance field of
+     * the same name and does not require a {@code this.} qualifier.
+     *
+     * @param ast IDENT token to check.
+     * @return true if a pattern variable with the same name is in scope.
+     */
+    private static boolean isPatternVariableInScope(DetailAST ast) {
+        final String name = ast.getText();
+        boolean inScope = false;
+        DetailAST child = ast;
+        DetailAST parent;
+        while ((parent = child.getParent()) != null && !inScope) {
+            if (patternVarsInScopeFor(parent, child).contains(name)) {
+                inScope = true;
+            }
+            child = parent;
+        }
+        return inScope;
+    }
+
+    /**
+     * Determines the pattern variable names that are introduced into the scope
+     * of {@code child} by virtue of its position within {@code parent}.
+     *
+     * @param parent the parent AST node.
+     * @param child the direct child of {@code parent} whose scope we are considering.
+     * @return set of pattern variable names in scope at that position.
+     */
+    private static Set<String> patternVarsInScopeFor(DetailAST parent, DetailAST child) {
+        return switch (parent.getType()) {
+            case TokenTypes.LAND, TokenTypes.LOR -> {
+                Set<String> result = Set.of();
+                if (child == getOperand(parent, false)) {
+                    final DetailAST left = getOperand(parent, true);
+                    if (parent.getType() == TokenTypes.LAND) {
+                        result = patternVarsForBranch(left, true);
+                    }
+                    else {
+                        result = patternVarsForBranch(left, false);
+                    }
+                }
+                yield result;
+            }
+            case TokenTypes.LITERAL_IF -> {
+                Set<String> result = Set.of();
+                final DetailAST rparen = parent.findFirstToken(TokenTypes.RPAREN);
+                if (rparen.getNextSibling() == child) {
+                    result = patternVarsForBranch(parent.findFirstToken(TokenTypes.EXPR), true);
+                }
+                yield result;
+            }
+            case TokenTypes.LITERAL_ELSE -> {
+                final DetailAST enclosingIf = parent.getParent();
+                final DetailAST cond = enclosingIf.findFirstToken(TokenTypes.EXPR);
+                yield patternVarsForBranch(cond, false);
+            }
+            case TokenTypes.QUESTION -> patternVarsFromTernary(parent, child);
+            default -> Set.of();
+        };
+    }
+
+    /**
+     * Returns the pattern variables in scope for the given child position
+     * within a ternary conditional expression.
+     *
+     * @param question the {@code ?} node.
+     * @param child the child within the ternary to consider.
+     * @return pattern variable names in scope at that position.
+     */
+    private static Set<String> patternVarsFromTernary(DetailAST question, DetailAST child) {
+        final DetailAST colon = question.findFirstToken(TokenTypes.COLON);
+        final DetailAST thenExpr = colon.getPreviousSibling();
+        DetailAST cond = thenExpr.getPreviousSibling();
+        if (cond.getType() == TokenTypes.RPAREN) {
+            cond = cond.getPreviousSibling();
+        }
+        final Set<String> result;
+        if (child == thenExpr) {
+            result = patternVarsForBranch(cond, true);
+        }
+        else if (child == colon.getNextSibling()) {
+            result = patternVarsForBranch(cond, false);
+        }
+        else {
+            result = Set.of();
+        }
+        return result;
+    }
+
+    /**
+     * Returns an operand of an operator by walking from a starting child in the
+     * given direction, skipping any parenthesis siblings.
+     *
+     * @param binaryOp the operator AST node.
+     * @param first {@code true} for the left operand, {@code false} for the right.
+     * @return the AST node of the requested operand.
+     */
+    private static DetailAST getOperand(DetailAST binaryOp, boolean first) {
+        DetailAST operand;
+        if (first) {
+            operand = binaryOp.getFirstChild();
+            while (operand.getType() == TokenTypes.LPAREN) {
+                operand = operand.getNextSibling();
+            }
+        }
+        else {
+            operand = binaryOp.getLastChild();
+            while (operand.getType() == TokenTypes.RPAREN) {
+                operand = operand.getPreviousSibling();
+            }
+        }
+        return operand;
+    }
+
+    /**
+     * Computes the set of pattern variables introduced by {@code expr} when it
+     * evaluates to a given branch value, per JLS §6.3.1.
+     *
+     * @param expr the expression AST node.
+     * @param whenTrue {@code true} for pattern variables introduced when the
+     *     expression is true; {@code false} for when it is false.
+     * @return set of pattern variable names introduced.
+     */
+    private static Set<String> patternVarsForBranch(DetailAST expr, boolean whenTrue) {
+        DetailAST node = unwrapExpression(expr);
+        boolean branch = whenTrue;
+        while (node.getType() == TokenTypes.LNOT) {
+            node = getOperand(node, true);
+            branch = !branch;
+        }
+        return switch (node.getType()) {
+            case TokenTypes.LAND -> combineOperands(node, branch, branch);
+            case TokenTypes.LOR -> combineOperands(node, !branch, branch);
+            case TokenTypes.LITERAL_INSTANCEOF -> instanceofPatternVars(node, branch);
+            default -> Set.of();
+        };
+    }
+
+    /**
+     * Combines pattern variable sets from the operands of a binary operator by
+     * union or intersection, based on the operator's short-circuit semantics.
+     *
+     * @param binary the {@code LAND} or {@code LOR} node.
+     * @param union {@code true} to union the operand sets, {@code false} to intersect.
+     * @param whenTrue whether to compute for the true or false branch.
+     * @return the combined pattern variable name set.
+     */
+    private static Set<String> combineOperands(DetailAST binary, boolean union, boolean whenTrue) {
+        final Set<String> left = patternVarsForBranch(getOperand(binary, true), whenTrue);
+        final Set<String> right = patternVarsForBranch(getOperand(binary, false), whenTrue);
+        final Set<String> result = new HashSet<>(left);
+        if (union) {
+            result.addAll(right);
+        }
+        else {
+            result.retainAll(right);
+        }
+        return result;
+    }
+
+    /**
+     * Returns pattern variables declared by an {@code instanceof} expression when
+     * the check succeeds; nothing is introduced when it fails.
+     *
+     * @param instanceofAst the {@code instanceof} node.
+     * @param whenTrue whether the branch is the true branch.
+     * @return declared pattern variable names, or an empty set for the false branch.
+     */
+    private static Set<String> instanceofPatternVars(DetailAST instanceofAst, boolean whenTrue) {
+        final Set<String> result;
+        if (whenTrue) {
+            result = patternVarsDeclaredBy(instanceofAst);
+        }
+        else {
+            result = Set.of();
+        }
+        return result;
+    }
+
+    /**
+     * Unwraps outer EXPR wrappers and parenthesis siblings around an expression
+     * so the underlying operator (or literal) is exposed.
+     *
+     * @param expr the AST node to unwrap.
+     * @return the underlying expression AST node, or {@code null}.
+     */
+    private static DetailAST unwrapExpression(DetailAST expr) {
+        DetailAST node = expr;
+        while (node.getType() == TokenTypes.EXPR) {
+            node = node.getFirstChild();
+        }
+        return node;
+    }
+
+    /**
+     * Collects pattern variable names declared by an {@code instanceof} expression,
+     * including those inside record patterns.
+     *
+     * @param instanceofAst the {@code instanceof} AST node.
+     * @return set of pattern variable names introduced when the check succeeds.
+     */
+    private static Set<String> patternVarsDeclaredBy(DetailAST instanceofAst) {
+        final Set<DetailAST> patternDefs = new HashSet<>();
+        collectSubtreeTokens(instanceofAst, TokenTypes.PATTERN_VARIABLE_DEF, patternDefs);
+        return patternDefs.stream()
+                .map(def -> def.findFirstToken(TokenTypes.IDENT).getText())
+                .collect(Collectors.toCollection(HashSet::new));
+    }
+
+    /**
+     * Collects all descendants of {@code root} (including {@code root} itself) whose
+     * type matches {@code tokenType}. Unlike {@link #getAllTokensOfType(DetailAST, int)},
+     * this stays strictly within the subtree rooted at {@code root} and does not
+     * traverse into sibling subtrees.
+     *
+     * @param root the root of the subtree to search.
+     * @param tokenType the token type to collect.
+     * @param collected the accumulator set to add matches to.
+     */
+    private static void collectSubtreeTokens(DetailAST root, int tokenType,
+                                             Set<DetailAST> collected) {
+        if (root.getType() == tokenType) {
+            collected.add(root);
+        }
+        for (DetailAST child = root.getFirstChild(); child != null;
+                child = child.getNextSibling()) {
+            collectSubtreeTokens(child, tokenType, collected);
+        }
     }
 
     /** An AbstractFrame type. */
