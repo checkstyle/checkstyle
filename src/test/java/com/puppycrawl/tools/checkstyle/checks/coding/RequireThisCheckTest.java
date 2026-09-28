@@ -427,6 +427,33 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFinallyResourceScope() throws Exception {
+        final String[] expected = {
+            "20:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "22:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "25:28: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "32:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "33:32: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "44:36: " + getCheckMessage(MSG_VARIABLE, "other", ""),
+            "48:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "72:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "80:32: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+            "100:36: " + getCheckMessage(MSG_VARIABLE, "resource", ""),
+        };
+        verifyWithInlineConfigParser(getPath("InputRequireThisFinally.java"), expected);
+    }
+
+    @Test
+    public void testFinallyResourceScopeDefault() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputRequireThisFinallyDefault.java"));
+    }
+
+    @Test
+    public void testFinallyResourceScopeFieldsDisabled() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputRequireThisFinallyFieldsDisabled.java"));
+    }
+
+    @Test
     public void testCatchVariables() throws Exception {
         final String[] expected = {
             "38:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
