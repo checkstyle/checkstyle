@@ -10,9 +10,9 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- The closing delimiter of a Javadoc comment is &lt;code&gt;*&amp;#47;&lt;/code&gt;. This check reports
+ The closing delimiter of a Javadoc comment is &lt;code&gt;*&lt;/code&gt;&lt;code&gt;/&lt;/code&gt;. This check reports
  Javadoc comments whose closing delimiter is preceded by another asterisk, such as
- &lt;code&gt;**&amp;#47;&lt;/code&gt; or &lt;code&gt;***&amp;#47;&lt;/code&gt;.
+ &lt;code&gt;*&lt;/code&gt;&lt;code&gt;*&lt;/code&gt;&lt;code&gt;/&lt;/code&gt; or &lt;code&gt;*&lt;/code&gt;&lt;code&gt;*&lt;/code&gt;&lt;code&gt;*&lt;/code&gt;&lt;code&gt;/&lt;/code&gt;.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="javadoc.end.delimiter"/>
