@@ -11,9 +11,9 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT, CLASS_DEF, 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-/** // violation ''/\*' should be separated from previous line.'
+/**
  * Some javadoc here.
- */
+ */ // violation 2 lines above ''/\*' should be separated from previous line.'
 
 import java.util.Map;
 
