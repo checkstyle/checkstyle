@@ -42,11 +42,11 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     public void test() throws Exception {
 
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_KEY, 4, 3),
-            "39:46: " + getCheckMessage(MSG_KEY, 4, 3),
-            "50:9: " + getCheckMessage(MSG_KEY, 6, 3),
-            "57:34: " + getCheckMessage(MSG_KEY, 4, 3),
-            "60:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "22:9: " + getCheckMessage(MSG_KEY, 4, 3),
+            "40:46: " + getCheckMessage(MSG_KEY, 4, 3),
+            "51:9: " + getCheckMessage(MSG_KEY, 6, 3),
+            "58:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "61:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
 
         verifyWithInlineConfigParser(
@@ -74,21 +74,26 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void testWrongToken() {
         final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
-            new BooleanExpressionComplexityCheck();
+                new BooleanExpressionComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         final IllegalArgumentException exc =
                 getExpectedThrowable(IllegalArgumentException.class,
                         () -> booleanExpressionComplexityCheckObj.visitToken(ast));
         assertWithMessage("Invalid exception message")
-            .that(exc.getMessage())
-            .isEqualTo("Unknown type: interface[0x-1]");
+                .that(exc.getMessage())
+                .isEqualTo("Unknown type: interface[0x-1]");
     }
 
     @Test
     public void testSmall() throws Exception {
 
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final int max = 1;
+
+        final String[] expected = {
+            "28:9: " + getCheckMessage(MSG_KEY, 5, max),
+            "53:9: " + getCheckMessage(MSG_KEY, 4, max),
+        };
 
         verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexitySmall.java"), expected);
@@ -100,15 +105,30 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final int max = 3;
 
         final String[] expected = {
-            "16:12: " + getCheckMessage(MSG_KEY, 4, max),
-            "25:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "37:23: " + getCheckMessage(MSG_KEY, 4, max),
-            "48:27: " + getCheckMessage(MSG_KEY, 4, max),
+            "17:12: " + getCheckMessage(MSG_KEY, 4, max),
+            "26:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "38:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "49:27: " + getCheckMessage(MSG_KEY, 4, max),
         };
 
         verifyWithInlineConfigParser(
                 getPath(
                         "InputBooleanExpressionComplexityRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testBooleanExpressionComplexityParenthesizedInstanceof() throws Exception {
+
+        final int max = 3;
+
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath(
+                        "InputBooleanExpressionComplexityParenthesizedInstanceof.java"),
                 expected);
     }
 
@@ -119,6 +139,47 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         verifyWithInlineConfigParser(
                 getPath("InputBooleanExpressionComplexityLeaves.java"), expected);
+    }
+
+    @Test
+    public void testComplexityUniformChain() throws Exception {
+
+        final int max = 1;
+
+        final String[] expected = {
+            "32:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "37:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "42:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "48:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "54:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "59:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "76:9: " + getCheckMessage(MSG_KEY, 5, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChain.java"), expected);
+    }
+
+    @Test
+    public void testUniformChainOperators() throws Exception {
+
+        final int max = 1;
+
+        final String[] expected = {
+            "18:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "27:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "36:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "41:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "46:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "55:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "64:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "73:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "82:9: " + getCheckMessage(MSG_KEY, 2, max),
+            "87:9: " + getCheckMessage(MSG_KEY, 2, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChainOperators.java"), expected);
     }
 
     @Test
@@ -145,6 +206,50 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
 
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputBooleanExpressionComplexityWhenExpression.java"),
+                expected);
+    }
+
+    @Test
+    public void testExcludedNodeNesting() throws Exception {
+        final int max = 0;
+        final String[] expected = {
+            "18:25: " + getCheckMessage(MSG_KEY, 1, max),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityExcludedNodeNesting.java"),
+                expected);
+    }
+
+    @Test
+    public void testUniformChainCastTarget() throws Exception {
+        final int max = 1;
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY, 2, max),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChainCastTarget.java"), expected);
+    }
+
+    @Test
+    public void testUniformChain() throws Exception {
+        final int max = 3;
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "38:9: " + getCheckMessage(MSG_KEY, 5, max),
+            "52:9: " + getCheckMessage(MSG_KEY, 6, max),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityUniformChainOperators2.java"), expected);
+    }
+
+    @Test
+    public void testUniformChain2() throws Exception {
+        final int max = 3;
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputBooleanExpressionComplexityMethodCallCanonicalization.java"),
                 expected);
     }
 
