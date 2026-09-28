@@ -54,6 +54,8 @@ jobs:
        || github.event.comment.body == 'GitHub, generate site'
        || inputs.pr-number != '')
       && (github.event_name != 'issue_comment'
+          || github.event.issue.pull_request != null)
+      && (github.event_name != 'issue_comment'
           || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
                       github.event.comment.author_association))
     runs-on: ubuntu-latest
