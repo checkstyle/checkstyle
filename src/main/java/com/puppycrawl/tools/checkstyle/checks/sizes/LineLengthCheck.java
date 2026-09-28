@@ -63,8 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @since 3.0
  * @noinspection EmptyClass
- * @noinspectionreason EmptyClass - example illustrates a single import line and
- *      intentionally has no enclosing class
+ * @noinspectionreason EmptyClass - until IDEA-394242
  */
 @StatelessCheck
 public class LineLengthCheck extends AbstractFileSetCheck {

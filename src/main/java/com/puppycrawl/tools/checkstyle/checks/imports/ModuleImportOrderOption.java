@@ -40,9 +40,8 @@ public enum ModuleImportOrderOption {
      * }
      *
      * @noinspection EmptyClass, StaticImport
-     * @noinspectionreason EmptyClass - example illustrates import ordering and
-     *      intentionally has no enclosing class
-     * @noinspectionreason StaticImport - static import is the ordering being illustrated
+     * @noinspectionreason EmptyClass - until IDEA-394242
+     * @noinspectionreason StaticImport - until IDEA-394248
      */
     TOP,
 
@@ -59,9 +58,8 @@ public enum ModuleImportOrderOption {
      * }
      *
      * @noinspection EmptyClass, StaticImport
-     * @noinspectionreason EmptyClass - example illustrates import ordering and
-     *      intentionally has no enclosing class
-     * @noinspectionreason StaticImport - static import is the ordering being illustrated
+     * @noinspectionreason EmptyClass - until IDEA-394242
+     * @noinspectionreason StaticImport - until IDEA-394248
      */
     BOTTOM,
 

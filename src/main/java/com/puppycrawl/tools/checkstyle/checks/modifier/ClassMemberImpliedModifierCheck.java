@@ -73,10 +73,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * @since 8.16
  * @noinspection EmptyClass, ConfusingMainMethod, NewClassNamingConvention, PackageVisibleInnerClass
- * @noinspectionreason EmptyClass - compact source file example intentionally has no enclosing class
- * @noinspectionreason ConfusingMainMethod - example illustrates a compact source file's
- *      instance main method, not a standard entry point
- * @noinspectionreason NewClassNamingConvention - short name is intentional for a concise example
+ * @noinspectionreason EmptyClass - until IDEA-394242
+ * @noinspectionreason ConfusingMainMethod - until IDEA-394246
+ * @noinspectionreason NewClassNamingConvention - until IDEA-394247
  * @noinspectionreason PackageVisibleInnerClass - package-private access is the point being
  *      illustrated by this example
  */

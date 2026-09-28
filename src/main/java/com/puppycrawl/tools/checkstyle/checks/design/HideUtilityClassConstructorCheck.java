@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * @since 3.1
  * @noinspection EmptyClass, NonFinalUtilityClass, UtilityClassWithoutPrivateConstructor,
  *      NewExceptionWithoutArguments
- * @noinspectionreason EmptyClass - example is a documentation snippet, not the enclosing file
+ * @noinspectionreason EmptyClass - until IDEA-394242
  * @noinspectionreason NonFinalUtilityClass - example intentionally shows a non-final class
  *      to illustrate subclassing being blocked via a protected constructor
  * @noinspectionreason UtilityClassWithoutPrivateConstructor - example illustrates using a

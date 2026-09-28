@@ -70,10 +70,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </ul>
  *
  * @since 14.1.0
- * @noinspection EmptyClass, ForwardCompatibility
- * @noinspectionreason EmptyClass - example is an XML configuration snippet, not Java
- * @noinspectionreason ForwardCompatibility - 'value' is used here as an XML attribute
- *      name, not a Java class name
  */
 @StatelessCheck
 public class PreferCodeOrSnippetJavadocInlineTagCheck extends AbstractJavadocCheck {
