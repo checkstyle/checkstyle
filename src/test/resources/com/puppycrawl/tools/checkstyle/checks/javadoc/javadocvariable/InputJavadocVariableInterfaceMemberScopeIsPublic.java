@@ -1,6 +1,7 @@
 /*
 JavadocVariable
 accessModifiers = public
+considerEnclosingScope = (default)false
 ignoreNamePattern = (default)null
 tokens = (default)ENUM_CONSTANT_DEF, VARIABLE_DEF
 
