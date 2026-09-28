@@ -256,52 +256,41 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInputLineEndingMultipleEndings1() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
-            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
-            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
-            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
-            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "9: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "10: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "12: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
+            "13: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
+            "14: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "crlf");
-
-        verify(checkConfig,
-                getPath("InputLineEndingMultipleEndings.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingMultipleEndings1.java"),
                 expected);
     }
 
     @Test
     public void testInputLineEndingMultipleEndings2() throws Exception {
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
-            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
-            "4: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
-            "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
-            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "10: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "11: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
+            "12: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "14: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
+            "15: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-
-        verify(checkConfig,
-                getPath("InputLineEndingMultipleEndings.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingMultipleEndings2.java"),
                 expected);
     }
 
     @Test
     public void testInputLineEndingMultipleEndings3() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
-            "3: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
-            "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
-            "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "9: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "11: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
+            "13: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
+            "15: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "cr");
-
-        verify(checkConfig,
-                getPath("InputLineEndingMultipleEndings.java"),
+        verifyWithInlineConfigParser(
+                getPath("InputLineEndingMultipleEndings3.java"),
                 expected);
     }
 
