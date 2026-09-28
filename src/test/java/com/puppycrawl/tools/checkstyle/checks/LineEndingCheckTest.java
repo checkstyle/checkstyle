@@ -262,12 +262,9 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, LF),
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CRLF, CR),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "crlf");
-
-        verify(checkConfig,
-                getPath("InputLineEndingMultipleEndings.java"),
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingMultipleEndings1Config.java"),
+                getPath("InputLineEndingMultipleEndings1.java"),
                 expected);
     }
 
@@ -280,11 +277,9 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "6: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CR),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, LF, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-
-        verify(checkConfig,
-                getPath("InputLineEndingMultipleEndings.java"),
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingMultipleEndings2Config.java"),
+                getPath("InputLineEndingMultipleEndings2.java"),
                 expected);
     }
 
@@ -296,12 +291,9 @@ public class LineEndingCheckTest extends AbstractModuleTestSupport {
             "5: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, LF),
             "7: " + getCheckMessage(MSG_KEY_WRONG_ENDING, CR, CRLF),
         };
-
-        final DefaultConfiguration checkConfig = createModuleConfig(LineEndingCheck.class);
-        checkConfig.addProperty("lineEnding", "cr");
-
-        verify(checkConfig,
-                getPath("InputLineEndingMultipleEndings.java"),
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputLineEndingMultipleEndings3Config.java"),
+                getPath("InputLineEndingMultipleEndings3.java"),
                 expected);
     }
 
