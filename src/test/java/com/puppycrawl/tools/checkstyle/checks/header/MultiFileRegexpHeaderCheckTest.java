@@ -282,10 +282,9 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoWarningIfSingleLinedLeft() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader4.header"));
-        verify(checkConfig, getPath("InputRegexpHeaderMulti5.java"), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMulti5NoWarningConfig.java"),
+                getPath("InputRegexpHeaderMulti5.java"), EMPTY_STRING_ARRAY);
     }
 
     @Test
