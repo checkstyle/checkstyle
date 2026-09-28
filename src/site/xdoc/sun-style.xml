@@ -724,8 +724,44 @@
                     7.2 Compound Statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/indentation.html#Indentation">
+                    Indentation
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/needbraces.html#NeedBraces">
+                    NeedBraces
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/leftcurly.html#LeftCurly">
+                    LeftCurly
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+                    config
+                  </a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter7statements/rule72compoundstatements">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
