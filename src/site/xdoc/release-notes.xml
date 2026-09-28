@@ -10,6 +10,486 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 14.3.0">
+      <div class="releaseDate">27.09.2026</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Make Checkstyle an java module with module-info.java.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/14120">#14120</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 14.2.0">
+      <div class="releaseDate">27.09.2026</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            ModifiedOrder: New property modifierOrder.
+            Author: Aman-Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/19513">#19513</a>
+          </li>
+          <li>
+            WhitespaceAfter: new token SINGLE_LINE_COMMENT to catch missing whitespace checks
+            around // comments.
+            Author: Saad Haider
+            <a href="https://github.com/checkstyle/checkstyle/issues/17723">#17723</a>
+          </li>
+          <li>
+            NoWhitespaceAfter: Allow for use of DO_WHILE, LITERAL_CATCH, LITERAL_FOR, LITERAL_IF,
+            and LITERAL_WHILE.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/8312">#8312</a>
+          </li>
+          <li>
+            AnnotationLocation new token MODULE_DEF. Google-style: incomplete coverage on
+            annotation rules for modules.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/17172">#17172</a>
+          </li>
+          <li>
+            New Check UnnecessaryPermitsClause.
+            Author: Saad Haider
+            <a href="https://github.com/checkstyle/checkstyle/issues/14986">#14986</a>
+          </li>
+          <li>
+            new Check:  GoolgeRightCurly.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/7541">#7541</a>
+          </li>
+          <li>
+            New check: JavadocSeeTagOrder.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/19949">#19949</a>
+          </li>
+          <li>
+            new Check: OpenjdkMethodThrowsAlignment.
+            Author: Saad Haider
+            <a href="https://github.com/checkstyle/checkstyle/issues/20639">#20639</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Indentation: missing violations for &#39;-&gt;&#39; and &#39;,&#39; in return
+            statement continuation.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/17663">#17663</a>
+          </li>
+          <li>
+            False Positive: Lambda is incorrectly flaged by OperatorWrap.
+            Author: Yusuf Efe Saglam
+            <a href="https://github.com/checkstyle/checkstyle/issues/20541">#20541</a>
+          </li>
+          <li>
+            UnusedLocalVariable: false positive on unnamed variable `_` inside anonymous class.
+            Author: Octavia Togami
+            <a href="https://github.com/checkstyle/checkstyle/issues/21739">#21739</a>
+          </li>
+          <li>
+            False negative: UnusedTryResourceShouldBeUnnamed treats same-named identifiers in
+            catch/finally blocks as resource usage.
+            Author: Shubham Padkonde
+            <a href="https://github.com/checkstyle/checkstyle/issues/21613">#21613</a>
+          </li>
+          <li>
+            openjdk style: use custon modifierOrder at RedundantModifier.
+            Author: NianJiuZst
+            <a href="https://github.com/checkstyle/checkstyle/issues/21695">#21695</a>
+          </li>
+          <li>
+            Add GoogleRightCurly to google_checks.xml instead of RightCurly.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21689">#21689</a>
+          </li>
+          <li>
+            All checks that use `AbstractCheck#getLine()` should check code points instead of
+            characters for spacing.
+            Author: Ishu Patel
+            <a href="https://github.com/checkstyle/checkstyle/issues/10924">#10924</a>
+          </li>
+          <li>
+            Performance: Avoid duplicate regex match in SuppressFilterElement.isFileMatch.
+            Author: Amit Kumar Deoghoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/21139">#21139</a>
+          </li>
+          <li>
+            Add checks for Sun Style [4.2 - Wrapping Lines].
+            Author: hemantch01
+            <a href="https://github.com/checkstyle/checkstyle/issues/21528">#21528</a>
+          </li>
+          <li>
+            False Negative: LambdaParameterName silently passes lambdas in switch rule.
+            Author: Noor Ahmadi
+            <a href="https://github.com/checkstyle/checkstyle/issues/21578">#21578</a>
+          </li>
+          <li>
+            False Negative: NeedBraces silently passes lambdas in switch rule.
+            Author: Zhu Tianyi
+            <a href="https://github.com/checkstyle/checkstyle/issues/21579">#21579</a>
+          </li>
+          <li>
+            CLI XML output file: file stops dead when an execption occurs.
+            Author: Ishu Patel
+            <a href="https://github.com/checkstyle/checkstyle/issues/5895">#5895</a>
+          </li>
+          <li>
+            False Negative: LeftCurlyCheck.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/11410">#11410</a>
+          </li>
+          <li>
+            Update Documentation Comments Style Guide: add JavadocSeeTagOrder.
+            Author: Somesh-coding
+            <a href="https://github.com/checkstyle/checkstyle/issues/21583">#21583</a>
+          </li>
+          <li>
+            NPE in RightCurlyCheck.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21609">#21609</a>
+          </li>
+          <li>
+            google_checks.xml: `JavadocMethod` `accessModifiers` should include `protected` to
+            match `MissingJavadocMethod` `scope`.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/19724">#19724</a>
+          </li>
+          <li>
+            False negative in LeftCurly for types with option=eol.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/20963">#20963</a>
+          </li>
+          <li>
+            add OpenjdkMethodThrowsAlignment check in openjdk_checks.xml.
+            Author: Saad Haider
+            <a href="https://github.com/checkstyle/checkstyle/issues/21547">#21547</a>
+          </li>
+          <li>
+            False negatives regarding LeftCurly  in openjdk_checks.xml.
+            Author: arturict
+            <a href="https://github.com/checkstyle/checkstyle/issues/20636">#20636</a>
+          </li>
+          <li>
+            Google-style: unfollowed rule on ordering and spacing of module directives.
+            Author: Carbon14-48
+            <a href="https://github.com/checkstyle/checkstyle/issues/17170">#17170</a>
+          </li>
+          <li>
+            google_checks.xml: false negative 4.3 One statement per line.
+            Author: Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/21454">#21454</a>
+          </li>
+          <li>
+            CommonUtil.getFileExtension includes parent-directory dots in the extension.
+            Author: Ishu Patel
+            <a href="https://github.com/checkstyle/checkstyle/issues/21501">#21501</a>
+          </li>
+          <li>
+            google_checks.xml: false negative 3.3.1.1 No module imports.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21445">#21445</a>
+          </li>
+          <li>
+            Add checks for Sun Style [4.1 - Line Length].
+            Author: hemantch01
+            <a href="https://github.com/checkstyle/checkstyle/issues/21477">#21477</a>
+          </li>
+          <li>
+            google_checks.xml: false negative 3.2 Package declaration.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21444">#21444</a>
+          </li>
+          <li>
+            SuppressWarningsCheck: StringIndexOutOfBoundsException on string concatenation or cast
+            inside a ternary in @SuppressWarnings.
+            Author: Saad Haider
+            <a href="https://github.com/checkstyle/checkstyle/issues/21478">#21478</a>
+          </li>
+          <li>
+            Add checks for Sun Style 6.3 - Placement.
+            Author: Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/21430">#21430</a>
+          </li>
+          <li>
+            SuppressionSingleFilter should not suppress anything in default configuration.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/21453">#21453</a>
+          </li>
+          <li>
+            google_checks.xml: false negative 2.3.1 Whitespace characters.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21446">#21446</a>
+          </li>
+          <li>
+            OneStatementPerLine: multiple empty statements not reported despite documentation.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17662">#17662</a>
+          </li>
+          <li>
+            escape control characters in generated xpath suppression queries.
+            Author: Aizal Khan
+            <a href="https://github.com/checkstyle/checkstyle/issues/20525">#20525</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Improve Input coverage for compact sources (JEP 512) for all Checks.
+            Author: SidheshwarSarangal, Ishu Patel, NianJiuZst, Youssef Alaa, Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/20590">#20590</a>
+          </li>
+          <li>
+            IndentationCheck: inner Handlers should not have reference to Check itself.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/14121">#14121</a>
+          </li>
+          <li>
+            Update tests to use embedded configs instead of old style verify.
+            Author: Amit Kumar Deohoria, SidheshwarSarangal, Ishu Patel, shreyo2005, Rupesh Kumar,
+            Amit Kumar Deoghoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/21480">#21480</a>
+          </li>
+          <li>
+            ModifierOrder check documentation cites JDK 16 preview spec instead of the Java
+            Language Specification.
+            Author: Somesh-coding
+            <a href="https://github.com/checkstyle/checkstyle/issues/21707">#21707</a>
+          </li>
+          <li>
+            lychee reports 9 broken external links on master (surfaced post-#21728).
+            Author: Amit Kumar Deoghoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/21730">#21730</a>
+          </li>
+          <li>
+            Competing archive and filename redirects for legacy release-notes links.
+            Author: Adarsh Mishra
+            <a href="https://github.com/checkstyle/checkstyle/issues/21619">#21619</a>
+          </li>
+          <li>
+            doc: remove stale blue from google-style coverage.
+            Author: atharv
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: kishor, thecodexbit-svg, Rafael
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Forbid mockito imports via ImportControl check.
+            Author: Amit Kumar Deoghoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/21684">#21684</a>
+          </li>
+          <li>
+            Refactor JavadocLeadingAsteriskAlign to use logging of violation on AST node.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/20896">#20896</a>
+          </li>
+          <li>
+            Fix examples with duplicate violation behavior.
+            Author: smita1078, Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/21119">#21119</a>
+          </li>
+          <li>
+            Homepage example code for AvoidStarImport has invalid syntax (java.util..*).
+            Author: Somesh-coding
+            <a href="https://github.com/checkstyle/checkstyle/issues/21662">#21662</a>
+          </li>
+          <li>
+            Add workflow_dispatch for github actions that is triggering by comment in PR.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/20545">#20545</a>
+          </li>
+          <li>
+            Migrate Windows CI from AppVeyor to GitHub Actions windows-latest.
+            Author: Amit Kumar Deoghoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/21641">#21641</a>
+          </li>
+          <li>
+            Update all filters documentation and javadoc to mention that accept() that return true
+            means violation will be in report.
+            Author: Amit Kumar Deoghoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/21625">#21625</a>
+          </li>
+          <li>
+            Table-of-contents sidebar link uses full sentence instead of short label (e.g.
+            SeverityMatchFilter page).
+            Author: Somesh-coding
+            <a href="https://github.com/checkstyle/checkstyle/issues/21632">#21632</a>
+          </li>
+          <li>
+            moving english.words to git repo to avoid network instabilities.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/16581">#16581</a>
+          </li>
+          <li>
+            doc: remove stale reference to closed issue in google-style.xml.
+            Author: atharv
+          </li>
+          <li>
+            All messages should be declared in Check.
+            Author: Sahitya0805
+            <a href="https://github.com/checkstyle/checkstyle/issues/13189">#13189</a>
+          </li>
+          <li>
+            Broken operator precedence in release-notes redirect guard.
+            Author: abhinav-phi
+            <a href="https://github.com/checkstyle/checkstyle/issues/21571">#21571</a>
+          </li>
+          <li>
+            Fix PMD violation CognitiveComplexity.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/10064">#10064</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: SidheshwarSarangal, Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Move SQE NetBeans integration from Active Tools to Inactive or Old Tools.
+            Author: Somesh-coding
+            <a href="https://github.com/checkstyle/checkstyle/issues/21554">#21554</a>
+          </li>
+          <li>
+            Fix violation message comments to use quoted text and remove associated suppressions.
+            Author: Tanvir Alam, Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/20954">#20954</a>
+          </li>
+          <li>
+            Replace multi-line string concatenations with text blocks for better readability.
+            Author: Somesh-coding
+            <a href="https://github.com/checkstyle/checkstyle/issues/21417">#21417</a>
+          </li>
+          <li>
+            `checkstyle_checks.xml` should not allow single letter variable names in for loops.
+            Author: arturict
+            <a href="https://github.com/checkstyle/checkstyle/issues/11522">#11522</a>
+          </li>
+          <li>
+            remove openjdk25 excludes for implicitly declared classes.
+            Author: arturict
+            <a href="https://github.com/checkstyle/checkstyle/issues/13987">#13987</a>
+          </li>
+          <li>
+            Enable PMD ExhaustiveSwitchHasDefault.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/20776">#20776</a>
+          </li>
+          <li>
+            Fix modules suppressed from the default-config example test.
+            Author: smita1078, dewa3355
+            <a href="https://github.com/checkstyle/checkstyle/issues/21137">#21137</a>
+          </li>
+          <li>
+            docs: Google style coverage page missing sample example for 3.4.2.1 Overloads: never
+            split.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21447">#21447</a>
+          </li>
+          <li>
+            docs: Google style coverage page missing sample example for 6.2 Caught exceptions: not
+            ignored.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21450">#21450</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: CommentsIndentation.
+            Author: Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/15049">#15049</a>
+          </li>
+          <li>
+            Add Check Support for Java 21 Pattern Matching for Switch Syntax: LeftCurly.
+            Author: Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/15032">#15032</a>
+          </li>
+          <li>
+            `no-validations` profile no longer skips integration tests since Failsafe 3.6.0.
+            Author: Stephan Schroevers
+            <a href="https://github.com/checkstyle/checkstyle/issues/21530">#21530</a>
+          </li>
+          <li>
+            doc: Add documentation for checkstyle-openrewrite-recipes.
+            Author: Somesh-coding
+          </li>
+          <li>
+            Build setting `surefire.options` ignored.
+            Author: Stephan Schroevers
+            <a href="https://github.com/checkstyle/checkstyle/issues/21460">#21460</a>
+          </li>
+          <li>
+            Fix  PMD 7.1.0 Violations.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/14870">#14870</a>
+          </li>
+          <li>
+            split google-java-format run into jdk21 and jdk25 jobs.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21508">#21508</a>
+          </li>
+          <li>
+            docs: Google style coverage page update 5.2.9 Unnamed variables.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/21449">#21449</a>
+          </li>
+          <li>
+            Resolve all violation reported by PreferCodeOrSnippetJavadocInlineTag.
+            Author: Sree Varshini S
+            <a href="https://github.com/checkstyle/checkstyle/issues/21288">#21288</a>
+          </li>
+          <li>
+            Update RegexpOnFilenameCheckTest to use embedded configs.
+            Author: Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/21441">#21441</a>
+          </li>
+          <li>
+            Renumber examples so default-config example is Example1.
+            Author: Rupesh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/21207">#21207</a>
+          </li>
+          <li>
+            Add Use Cases section to packageannotation.xml.template and improve TOC macro
+            validation.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21436">#21436</a>
+          </li>
+          <li>
+            Move violation comments above of annotated methods.
+            Author: Md Tanvir Alam, SidheshwarSarangal
+            <a href="https://github.com/checkstyle/checkstyle/issues/19803">#19803</a>
+          </li>
+          <li>
+            Fix modules with incorrect example count in  EXAMPLE_COUNT_SUPPRESSED_MODULES.
+            Author: Burak KALAYCI, Md Tanvir Alam
+            <a href="https://github.com/checkstyle/checkstyle/issues/21229">#21229</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Improve rendering of directory structure in JavadocPackage website page.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21410">#21410</a>
+          </li>
+          <li>
+            Fix xdoc IDs for package-info examples.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/21416">#21416</a>
+          </li>
+          <li>
+            Update Google Java Style Guide cached page to latest.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/20936">#20936</a>
+          </li>
+          <li>
+            Fix release workflow to update release-notes.xml instead of releasenotes.xml.
+            Author: smita1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/21400">#21400</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 14.1.0">
       <div class="releaseDate">30.08.2026</div>
       <p>New:</p>

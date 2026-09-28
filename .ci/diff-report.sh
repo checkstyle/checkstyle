@@ -142,6 +142,16 @@ parse-pr-description-text)
   echo "Validating PATCH_CONFIG_LINK..."
   validate_url "$PATCH_CONFIG_LINK"
 
+  if [[ -n "$PATCH_CONFIG_LINK" && -z "$CONFIG_LINK" ]]; then
+    echo "Error: 'Diff Regression patch config' was provided in PR description," \
+         "but 'Diff Regression config' is missing."
+    echo "A patch config is the config used on the PR branch and requires a" \
+         "base config to diff against."
+    echo "Provide both parameters, or use only 'Diff Regression config'" \
+         "if the same config should apply to both base and patch branches."
+    exit 1
+  fi
+
   ./.ci/append-to-github-output.sh "projects_link" "$PROJECTS_LINK"
   ./.ci/append-to-github-output.sh "config_link" "$CONFIG_LINK"
   ./.ci/append-to-github-output.sh "new_module_config_link" "$NEW_MODULE_CONFIG_LINK"

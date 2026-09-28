@@ -30,16 +30,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MethodDefHandler extends BlockParentHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public MethodDefHandler(IndentationCheck indentCheck,
+    public MethodDefHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, getHandlerName(ast), ast, parent);
+        super(context, getHandlerName(ast), ast, parent);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class MethodDefHandler extends BlockParentHandler {
             else {
                 ignoreFirstLine = LineWrappingHandler.LineWrappingOptions.IGNORE_FIRST_LINE;
             }
-            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
+            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getContext()
                     .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
                     ignoreFirstLine);
         }

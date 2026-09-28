@@ -41,16 +41,16 @@ public class SwitchHandler extends BlockParentHandler {
     };
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public SwitchHandler(IndentationCheck indentCheck,
+    public SwitchHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "switch", ast, parent);
+        super(context, "switch", ast, parent);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class SwitchHandler extends BlockParentHandler {
 
             if (shouldIndentDueToWrapping(parent, grandParent)) {
                 indentLevel = new IndentLevel(indentLevel,
-                    getIndentCheck().getLineWrappingIndentation());
+                    getContext().getLineWrappingIndentation());
             }
         }
         return indentLevel;

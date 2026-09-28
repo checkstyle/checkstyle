@@ -138,7 +138,8 @@
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code>
-&lt;property name="fileExtensions" value="properties"/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="UniqueProperties"/&gt;
   &lt;module name="SuppressWithPlainTextCommentFilter"/&gt;
@@ -162,7 +163,8 @@ keyC=value5
           Checker is configured to check only properties files using UniqueProperties check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code>
-&lt;property name="fileExtensions" value="properties"/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="UniqueProperties"/&gt;
 
@@ -191,7 +193,8 @@ keyC=value5
           and OrderedProperties check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code>
-&lt;property name="fileExtensions" value="properties"/&gt;
+&lt;module name="Checker"&gt;
+  &lt;property name="fileExtensions" value="properties"/&gt;
 
   &lt;module name="OrderedProperties"/&gt;
   &lt;module name="UniqueProperties"/&gt;

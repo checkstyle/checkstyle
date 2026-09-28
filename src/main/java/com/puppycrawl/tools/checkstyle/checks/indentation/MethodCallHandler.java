@@ -30,22 +30,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class MethodCallHandler extends AbstractExpressionHandler {
 
     /**
-     * The instance of {@code IndentationCheck} used by this class.
+     * The indentation context used by this class.
      */
-    private final IndentationCheck indentCheck;
+    private final IndentationContext context;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public MethodCallHandler(IndentationCheck indentCheck,
+    public MethodCallHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "method call", ast, parent);
-        this.indentCheck = indentCheck;
+        super(context, "method call", ast, parent);
+        this.context = context;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             // chained method call which was moved to the next line
             else {
                 indentLevel = new IndentLevel(container.getIndent(),
-                    getIndentCheck().getLineWrappingIndentation());
+                    getContext().getLineWrappingIndentation());
             }
         }
         else if (getMainAst().getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
@@ -72,7 +72,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         else {
             // if our expression isn't first on the line, just use the start
             // of the line
-            final DetailAstSet astSet = new DetailAstSet(indentCheck);
+            final DetailAstSet astSet = new DetailAstSet(context);
             findSubtreeAst(astSet, getMainAst().getFirstChild(), true);
             final int firstCol = expandedTabsColumnNo(astSet.firstLine());
             final int lineStart = getLineStart(getFirstAst(getMainAst()));
@@ -178,7 +178,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 && !isInvocationTarget(child)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
                     getBasicOffset(),
-                    getIndentCheck().getLineWrappingIndentation());
+                    getContext().getLineWrappingIndentation());
         }
 
         // If the right parenthesis is at the start of a line;
@@ -186,7 +186,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         if (getLineStart(rparen) == rparen.getColumnNo()) {
             suggestedLevel = IndentLevel.addAcceptable(suggestedLevel, new IndentLevel(
                     getParent().getSuggestedChildIndent(this),
-                    getIndentCheck().getLineWrappingIndentation()
+                    getContext().getLineWrappingIndentation()
             ));
         }
 
@@ -243,6 +243,54 @@ public class MethodCallHandler extends AbstractExpressionHandler {
                 checkWrappingIndentation(getMainAst(), getCallLastNode(getMainAst()));
             }
         }
+        else if (isSimpleReturnMethodCall()) {
+            checkReturnStatementCallArguments();
+        }
+    }
+
+    /**
+     * Checks the indentation of arguments of a method call that appears as the
+     * expression of a {@code return} statement. This complements the SLIST-parent
+     * flow above and covers cases where args are on continuation lines but were
+     * previously not validated because the enclosing statement is not a direct
+     * SLIST child. Arguments whose leftmost token is a self-checking construct
+     * (currently {@code new}) are skipped so that dedicated handler owns the
+     * diagnostic instead of shadowing it with a generic {@code method call}
+     * message.
+     */
+    private void checkReturnStatementCallArguments() {
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        if (!TokenUtil.areOnSameLine(rparen, getMainAst())) {
+            final DetailAST elist = getMainAst().findFirstToken(TokenTypes.ELIST);
+            final IndentLevel argIndent = new IndentLevel(getIndent(), getBasicOffset());
+            for (DetailAST arg = elist.getFirstChild(); arg != null;
+                    arg = arg.getNextSibling()) {
+                if (arg.getType() == TokenTypes.EXPR) {
+                    final DetailAST firstToken = getFirstAstNode(arg);
+                    // Let NewHandler own diagnostics for `new` expressions so
+                    // the message is attributed to the more specific construct.
+                    if (firstToken.getType() != TokenTypes.LITERAL_NEW
+                            && isOnStartOfLine(firstToken)) {
+                        final int actualColumn = expandedTabsColumnNo(firstToken);
+                        if (argIndent.isGreaterThan(actualColumn)) {
+                            logChildError(firstToken, actualColumn, argIndent);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Returns whether this method call is a simple (non-chained) call that is the
+     * expression of a {@code return} statement.
+     *
+     * @return {@code true} if this method call is directly returned.
+     */
+    private boolean isSimpleReturnMethodCall() {
+        final DetailAST exprNode = getMainAst().getParent();
+        return getMainAst().getFirstChild().getType() != TokenTypes.DOT
+                && exprNode.getParent().getType() == TokenTypes.LITERAL_RETURN;
     }
 
     /**

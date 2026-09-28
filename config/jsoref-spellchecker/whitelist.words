@@ -136,6 +136,7 @@ btn
 btnfrs
 buf
 bugdatabase
+Bugzilla
 buildkite
 Bunsubscribe
 bw
@@ -195,6 +196,7 @@ clazz
 clemens
 Clickable
 Cloneable
+Cloudflare
 cls
 cmdline
 cmp
@@ -285,6 +287,7 @@ declarationrightbeforefirstusage
 declaredwhenneeded
 Deconstruction
 dedup
+deduplicating
 defau
 defaultcomeslast
 defaultconstructors
@@ -1534,7 +1537,7 @@ userguide
 username
 usr
 UTests
-utf
+UTF
 Uth
 UUID
 UWF
