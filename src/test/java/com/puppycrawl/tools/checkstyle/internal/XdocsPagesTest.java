@@ -2987,7 +2987,7 @@ public class XdocsPagesTest {
      * @return true if it's an example element
      */
     private static boolean isExampleConfigElement(String currentId) {
-    return currentId != null && EXAMPLE_ID_PATTERN.matcher(currentId).matches();
+        return currentId != null && EXAMPLE_ID_PATTERN.matcher(currentId).matches();
     }
 
     /**
