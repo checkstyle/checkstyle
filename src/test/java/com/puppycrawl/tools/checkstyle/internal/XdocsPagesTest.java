@@ -202,7 +202,6 @@ public class XdocsPagesTest {
             "JavadocPackage",
             "JavadocType",
             "JavadocVariable",
-            "LeftCurly",
             "LocalFinalVariableName",
             "LocalVariableName",
             "MagicNumber",

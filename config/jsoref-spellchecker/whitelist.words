@@ -222,6 +222,7 @@ commitish
 commonutil
 Compat
 compilermsgs
+compoundstatements
 Comspace
 concat
 config
