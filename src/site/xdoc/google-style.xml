@@ -1216,8 +1216,19 @@
                   <a href="styleguides/google-java-style-20260409/javaguide.html#s4.8.1-enum-classes">
                     4.8.1 Enum classes</a>
                 </td>
-                <td>--</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/whitespace/emptylineseparator.html#EmptyLineSeparator">
+                    EmptyLineSeparator</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule481enumclasses">
+                    samples</a>
+                </td>
               </tr>
               <tr>
                 <td><a name="a4.8.2"/>
