@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DuplicateMapOrSetKeyCheck"
+             name="DuplicateMapOrSetKey"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks for duplicate key or element arguments in Java factory methods like
+ &lt;code&gt;Map.of&lt;/code&gt;, &lt;code&gt;Set.of&lt;/code&gt;, and &lt;code&gt;Map.ofEntries&lt;/code&gt;.
+ &lt;/div&gt;</description>
+         <message-keys>
+            <message-key key="duplicate.map.or.set.key"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
