@@ -25,7 +25,7 @@ public class InputEmptyLineSeparatorWithJavadoc {
    * Test.
    */
   void myMethod() {}
-  // violation above "'METHOD_DEF' has more than 1 empty lines before"
+  // violation 4 lines above "'/\*' has more than 1 empty lines before"
 
   /** some lines to test the one line javadoc. */
   void myMethod2() {
@@ -49,7 +49,7 @@ public class InputEmptyLineSeparatorWithJavadoc {
   /** Some javadoc. */
 
   int test3(int badFormat1, int badFormat2, final int badFormat3) throws Exception {
-    // violation above "'METHOD_DEF' has more than 1 empty lines before"
+    // violation 3 lines above "'/\*' has more than 1 empty lines before"
     return 0;
   }
   /** Some javadoc. */
@@ -63,7 +63,7 @@ public class InputEmptyLineSeparatorWithJavadoc {
   /** Some javadoc. */
 
   int test5(int badFormat1, int badFormat2, final int badFormat3) throws Exception {
-    // violation above "'METHOD_DEF' has more than 1 empty lines before"
+    // violation 4 lines above "'//' has more than 1 empty lines before"
     return 0;
   }
 
@@ -84,14 +84,14 @@ public class InputEmptyLineSeparatorWithJavadoc {
 
   /** Some javadoc. */
   int test8(int badFormat1, int badFormat2, final int badFormat3) throws Exception {
-    // violation above "'METHOD_DEF' has more than 1 empty lines before"
+    // violation 2 lines above "'/\*' has more than 1 empty lines before"
     return 0;
   } // test
 
 
   /** Some javadoc. */
   int test9(int badFormat1, int badFormat2, final int badFormat3) throws Exception {
-    // violation above "'METHOD_DEF' has more than 1 empty lines before"
+    // violation 2 lines above "'/\*' has more than 1 empty lines before"
     return 0;
   }
 
