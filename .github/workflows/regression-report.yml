@@ -122,12 +122,14 @@ jobs:
       - name: Checkout PR branch
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
       - name: Checkout master branch
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle
 
@@ -873,6 +875,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
 
       - name: Download report artifact

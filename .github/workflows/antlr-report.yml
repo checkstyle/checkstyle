@@ -71,6 +71,8 @@ jobs:
 
       - name: Download checkstyle
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Resolve PR branch and SHA
         id: branch
@@ -134,6 +136,7 @@ jobs:
       - name: Download contribution
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/contribution
           path: .ci-temp/contribution
 
@@ -214,6 +217,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download ANTLR report
         uses: actions/download-artifact@v8
@@ -261,6 +266,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Get message
         env:

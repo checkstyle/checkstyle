@@ -80,6 +80,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Getting PR description
         env:
@@ -133,6 +135,8 @@ jobs:
     steps:
       - name: Download checkstyle
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download files
         env:
@@ -167,6 +171,7 @@ jobs:
       - name: Download contribution
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/contribution
           path: .ci-temp/contribution
 
@@ -197,6 +202,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download generated report
         uses: actions/download-artifact@v8
@@ -231,6 +238,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Build PR comment message
         env:
