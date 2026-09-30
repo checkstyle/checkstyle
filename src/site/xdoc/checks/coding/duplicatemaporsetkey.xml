@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>DuplicateMapOrSetKey</title>
+  </head>
+  <body>
+    <section name="DuplicateMapOrSetKey">
+      <p>Since Checkstyle 10.22.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#DuplicateMapOrSetKey_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#DuplicateMapOrSetKey_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
+            </ul>
+          </li>
+          <li><a href="#DuplicateMapOrSetKey_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#DuplicateMapOrSetKey_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#DuplicateMapOrSetKey_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#DuplicateMapOrSetKey_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="DuplicateMapOrSetKey_Description">
+        <div>
+          Checks for duplicate key or element arguments in Java factory methods like
+          &lt;code&gt;Map.of&lt;/code&gt;, &lt;code&gt;Set.of&lt;/code&gt;, and &lt;code&gt;Map.ofEntries&lt;/code&gt;.
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="DuplicateMapOrSetKey_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DuplicateMapOrSetKey"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  void test() {
+    Map&lt;String, Integer&gt; map = Map.of("key1", 1, "key1", 2); // violation 'Duplicate key or element argument identical to the argument at line 4'
+    Set&lt;String&gt; set = Set.of("A", "B", "A");                 // violation 'Duplicate key or element argument identical to the argument at line 5'
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="DuplicateMapOrSetKey_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DuplicateMapOrSetKey">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="DuplicateMapOrSetKey_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22duplicate.map.or.set.key%22">
+              duplicate.map.or.set.key
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="DuplicateMapOrSetKey_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.DuplicateMapOrSetKeyCheck</p>
+        <p>
+            Use this fully qualified class name in configuration when an exact class reference is
+            required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="DuplicateMapOrSetKey_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

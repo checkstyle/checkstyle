@@ -394,6 +394,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/duplicatemaporsetkey.html#DuplicateMapOrSetKey">
+                DuplicateMapOrSetKey
+              </a>
+            </td>
+            <td>
+              Checks for duplicate keys or elements in Map.of, Set.of, and Map.ofEntries factory method calls.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/blocks/emptyblock.html#EmptyBlock">
                 EmptyBlock
               </a>
@@ -602,18 +612,6 @@
             <td>
               Checks that non-constant field names conform to the <a href="https://google.github.io/styleguide/javaguide.html#s5.2.5-non-constant-field-names">
               Google Java Style Guide</a> for non-constant field naming.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/blocks/googlerightcurly.html#GoogleRightCurly">
-                GoogleRightCurly
-              </a>
-            </td>
-            <td>
-              Checks the placement of right curly braces (<code>'}'</code>) for code blocks,
-              following the <a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces">
-              Google Java Style Guide </a>.
             </td>
           </tr>
           <tr>
@@ -2244,17 +2242,6 @@
             </td>
             <td>
               Checks if unnecessary parentheses are used in a statement or expression.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/coding/unnecessarypermitsclause.html#UnnecessaryPermitsClause">
-                UnnecessaryPermitsClause
-              </a>
-            </td>
-            <td>
-              Checks that a <code>permits</code> clause of a sealed class or interface is not
-              unnecessary, i.e.
             </td>
           </tr>
           <tr>
