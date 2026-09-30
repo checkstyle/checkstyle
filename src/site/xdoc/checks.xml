@@ -394,6 +394,14 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/duplicateconditionifchain.html#DuplicateConditionIfChain">
+                DuplicateConditionIfChain
+              </a>
+            </td>
+            <td>
+              Checks for duplicate condition expressions in <code>if ... else if</code> chains.
+            </td>
+          </tr>
               <a href="checks/blocks/emptyblock.html#EmptyBlock">
                 EmptyBlock
               </a>
