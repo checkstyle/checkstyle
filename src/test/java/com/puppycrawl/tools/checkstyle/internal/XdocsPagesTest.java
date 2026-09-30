@@ -222,7 +222,6 @@ public class XdocsPagesTest {
             "RedundantImport",
             "RedundantModifier",
             "RegexpSingleline",
-            "RightCurly",
             "SimplifyBooleanExpression",
             "SimplifyBooleanReturn",
             "StaticVariableName",
