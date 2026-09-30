@@ -253,11 +253,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreLinesSorted() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "4,2,3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderjava3.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava3IgnoreLinesSortedConfig.java"),
+                getPath("InputHeaderjava3.header"), expected);
     }
 
     @Test
