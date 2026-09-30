@@ -78,6 +78,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
 
       - name: Getting PR info
@@ -91,6 +92,7 @@ jobs:
       - name: Download checkstyle for PR
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           ref: refs/pull/${{ env.PR_NUMBER }}/head
           path: .ci-temp/checkstyle
           fetch-depth: 0
@@ -128,6 +130,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
 
       - name: Download generated site
@@ -162,6 +165,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/checkstyle
 
       - name: Build PR comment message
