@@ -68,16 +68,16 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
-            "5: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
-            "11: " + getCheckMessage(MSG_KEY, "onlineManual", 3),
-            "22: " + getCheckMessage(MSG_KEY, "time stamp", 3),
-            "28: " + getCheckMessage(MSG_KEY, "Support Link ", 2),
-            "34: " + getCheckMessage(MSG_KEY, "failed", 2),
+            "8: " + getCheckMessage(MSG_KEY, "general.exception", 2),
+            "11: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
+            "18: " + getCheckMessage(MSG_KEY, "onlineManual", 3),
+            "30: " + getCheckMessage(MSG_KEY, "time stamp", 3),
+            "37: " + getCheckMessage(MSG_KEY, "Support Link ", 2),
+            "44: " + getCheckMessage(MSG_KEY, "failed", 2),
         };
-        verify(checkConfig, getPath("InputUniqueProperties.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputUniqueProperties.properties"), expected);
     }
 
     /**
@@ -107,11 +107,11 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDuplicatedProperty() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_KEY, "key", 2),
+            "7: " + getCheckMessage(MSG_KEY, "key", 2),
         };
-        verify(checkConfig, getPath("InputUniquePropertiesWithDuplicates.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputUniquePropertiesWithDuplicates.properties"), expected);
     }
 
     @Test
@@ -174,11 +174,11 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexMetaCharacters() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY, "some.key[index-with-dash]", 2),
+            "6: " + getCheckMessage(MSG_KEY, "some.key[index-with-dash]", 2),
         };
-        verify(checkConfig, getPath("InputUniquePropertiesRegex.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputUniquePropertiesRegex.properties"), expected);
     }
 
     /**
