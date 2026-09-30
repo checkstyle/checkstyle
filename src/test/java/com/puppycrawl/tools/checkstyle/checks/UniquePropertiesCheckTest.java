@@ -68,7 +68,6 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
             "5: " + getCheckMessage(MSG_KEY, "DefaultLogger.auditStarted", 2),
@@ -77,7 +76,9 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
             "28: " + getCheckMessage(MSG_KEY, "Support Link ", 2),
             "34: " + getCheckMessage(MSG_KEY, "failed", 2),
         };
-        verify(checkConfig, getPath("InputUniqueProperties.properties"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputUniquePropertiesConfig.java"),
+                getPath("InputUniqueProperties.properties"), expected);
     }
 
     /**
@@ -107,11 +108,12 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDuplicatedProperty() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "2: " + getCheckMessage(MSG_KEY, "key", 2),
         };
-        verify(checkConfig, getPath("InputUniquePropertiesWithDuplicates.properties"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputUniquePropertiesWithDuplicatesConfig.java"),
+                getPath("InputUniquePropertiesWithDuplicates.properties"), expected);
     }
 
     @Test
@@ -174,11 +176,12 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexMetaCharacters() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, "some.key[index-with-dash]", 2),
         };
-        verify(checkConfig, getPath("InputUniquePropertiesRegex.properties"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputUniquePropertiesRegexConfig.java"),
+                getPath("InputUniquePropertiesRegex.properties"), expected);
     }
 
     /**
