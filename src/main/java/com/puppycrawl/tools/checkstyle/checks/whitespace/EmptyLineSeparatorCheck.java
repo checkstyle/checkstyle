@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -606,7 +607,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean hasNotAllowedTwoEmptyLinesBefore(DetailAST token) {
         return !allowMultipleEmptyLines
-                && (hasEmptyLineBefore(token) || token.findFirstToken(TokenTypes.TYPE) != null)
+                && hasEmptyLineBefore(token)
                 && isPrePreviousLineEmpty(token);
     }
 
@@ -651,6 +652,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                     }
                 }
             }
+            else if (childNode.getType() == TokenTypes.TYPE) {
+                addLeadingTypeComments(token, childNode, childNodes);
+            }
             else if (isCommentInBeginningOfLine(childNode)) {
                 childNodes.add(childNode);
             }
@@ -664,83 +668,40 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     }
 
     /**
+     * Collects comments that start a line and precede the type of a member declared
+     * without modifiers, for example a javadoc before {@code int field;}.
+     * Local variables are skipped, only type members are checked.
+     *
+     * @param token the definition token that owns the type
+     * @param type the TYPE node of the definition
+     * @param comments list to add the found comments to
+     */
+    private void addLeadingTypeComments(DetailAST token, DetailAST type,
+                                        Collection<DetailAST> comments) {
+        if (token.getType() != TokenTypes.VARIABLE_DEF || isTypeField(token)) {
+            // TYPE always ends with a non-comment token, so this loop always terminates
+            DetailAST node = type.getFirstChild();
+            while (TokenUtil.isCommentType(node.getType())) {
+                if (isCommentInBeginningOfLine(node)) {
+                    comments.add(node);
+                }
+                node = node.getNextSibling();
+            }
+        }
+    }
+
+    /**
      * Checks if a token has empty pre-previous line.
      *
      * @param token DetailAST token.
      * @return true, if token has empty lines before.
      */
     private boolean isPrePreviousLineEmpty(DetailAST token) {
-        boolean result = false;
         final int lineNo = token.getLineNo();
         // 3 is the number of the pre-previous line because the numbering starts from zero.
         final int number = 3;
-        if (lineNo >= number) {
-            final String prePreviousLine = getLine(lineNo - number);
-
-            result = CommonUtil.isBlank(prePreviousLine);
-            final boolean previousLineIsEmpty = CommonUtil.isBlank(getLine(lineNo - 2));
-
-            if (previousLineIsEmpty && result) {
-                result = true;
-            }
-            else if (token.findFirstToken(TokenTypes.TYPE) != null) {
-                result = isTwoPrecedingPreviousLinesFromCommentEmpty(token);
-            }
-        }
-        return result;
-
-    }
-
-    /**
-     * Checks if token has two preceding lines empty, starting from its describing comment.
-     *
-     * @param token token checked.
-     * @return true, if both previous and pre-previous lines from dependent comment are empty
-     */
-    private boolean isTwoPrecedingPreviousLinesFromCommentEmpty(DetailAST token) {
-        boolean upToPrePreviousLinesEmpty = false;
-
-        for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
-             typeChild != null; typeChild = typeChild.getPreviousSibling()) {
-
-            if (typeChild.getLineNo() > 2
-                && isTokenNotOnPreviousSiblingLines(typeChild, token)) {
-
-                final String commentBeginningPreviousLine =
-                    getLine(typeChild.getLineNo() - 2);
-                final String commentBeginningPrePreviousLine =
-                    getLine(typeChild.getLineNo() - 3);
-
-                if (CommonUtil.isBlank(commentBeginningPreviousLine)
-                    && CommonUtil.isBlank(commentBeginningPrePreviousLine)) {
-                    upToPrePreviousLinesEmpty = true;
-                    break;
-                }
-
-            }
-
-        }
-
-        return upToPrePreviousLinesEmpty;
-    }
-
-    /**
-     * Checks if token is not placed on the realm of previous sibling of token's parent.
-     *
-     * @param token token checked.
-     * @param parentToken parent token.
-     * @return true, if child token doesn't occupy parent token's previous sibling's realm.
-     */
-    private static boolean isTokenNotOnPreviousSiblingLines(DetailAST token,
-                                                            DetailAST parentToken) {
-        DetailAST previousSibling = parentToken.getPreviousSibling();
-        for (DetailAST astNode = previousSibling; astNode != null;
-             astNode = astNode.getLastChild()) {
-            previousSibling = astNode;
-        }
-
-        return previousSibling == null
-                || token.getLineNo() != previousSibling.getLineNo();
+        // start is clamped so tokens on the first lines of a file do not read before line 1
+        return hasConsecutiveEmptyLines(Math.max(0, lineNo - number), lineNo);
     }
 
     /**
