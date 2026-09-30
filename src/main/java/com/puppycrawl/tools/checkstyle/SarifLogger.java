@@ -571,12 +571,13 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
          * @return rule ID in format: sourceName[#moduleId]
          */
         private String toRuleId() {
+            final String id = moduleId;
             final String result;
-            if (moduleId == null) {
+            if (id == null) {
                 result = sourceName;
             }
             else {
-                result = sourceName + '#' + moduleId;
+                result = sourceName + '#' + id;
             }
             return result;
         }
