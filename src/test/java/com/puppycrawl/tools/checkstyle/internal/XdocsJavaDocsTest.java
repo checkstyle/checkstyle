@@ -27,6 +27,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -438,10 +439,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static String getJavaDocText(DetailAST node) {
-            final String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document>\n"
-                    + node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
+            final String template =
+                """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <document>
+                %s
+                </document>
+                """;
+            final String text = String.format(Locale.ROOT, template,
+                    node.getFirstChild().getText().replaceAll("(^|\\r?\\n)\\s*\\* ?", "\n")
                             .replaceAll("\\n?@noinspection.*\\r?\\n[^@]*", "\n")
-                            .trim() + "\n</document>";
+                            .trim());
             String result = null;
 
             try {
