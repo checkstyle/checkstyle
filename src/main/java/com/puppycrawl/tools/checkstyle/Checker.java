@@ -461,7 +461,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AbstractAutomaticBean bean) {
+            if (child instanceof final AbstractAutomaticBean bean) {
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }

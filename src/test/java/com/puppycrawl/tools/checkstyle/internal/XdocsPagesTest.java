@@ -1636,7 +1636,7 @@ public class XdocsPagesTest {
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
         String result;
-        if (value instanceof Collection<?> collection) {
+        if (value instanceof final Collection<?> collection) {
             final Pattern[] newArray = new Pattern[collection.size()];
             final Iterator<?> iterator = collection.iterator();
             int index = 0;
@@ -1685,7 +1685,7 @@ public class XdocsPagesTest {
         }
         else {
             final Stream<?> valuesStream;
-            if (value instanceof Collection<?> collection) {
+            if (value instanceof final Collection<?> collection) {
                 valuesStream = collection.stream();
             }
             else {
