@@ -52,62 +52,61 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testDefault() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_KEY, "key1", "key2"),
-            "11: " + getCheckMessage(MSG_KEY, "B", "key4"),
-            "14: " + getCheckMessage(MSG_KEY, "key3", "key5"),
-            "17: " + getCheckMessage(MSG_KEY, "key3", "key5"),
+            "13: " + getCheckMessage(MSG_KEY, "key1", "key2"),
+            "17: " + getCheckMessage(MSG_KEY, "B", "key4"),
+            "21: " + getCheckMessage(MSG_KEY, "key3", "key5"),
+            "25: " + getCheckMessage(MSG_KEY, "key3", "key5"),
         };
-        verify(checkConfig, getPath("InputOrderedProperties.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties.properties"), expected);
     }
 
     @Test
     public void testKeysOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "key1", "key2"),
+            "8: " + getCheckMessage(MSG_KEY, "key1", "key2"),
         };
-        verify(checkConfig, getPath("InputOrderedProperties1OrderKey.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties1OrderKey.properties"), expected);
     }
 
     @Test
     public void testEmptyKeys() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "key11", "key2"),
+            "8: " + getCheckMessage(MSG_KEY, "key11", "key2"),
         };
-        verify(checkConfig, getPath("InputOrderedProperties2EmptyValue.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties2EmptyValue.properties"), expected);
     }
 
     @Test
     public void testMalformedValue() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String fileName =
                 getPath("InputOrderedProperties3MalformedValue.properties");
-
-        verify(checkConfig, fileName, "1: "
-                + getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, "Malformed \\uxxxx encoding."));
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName,
+                    "Malformed \\uxxxx encoding."),
+        };
+        verifyWithInlineConfigParser(fileName, expected);
     }
 
     @Test
     public void testCommentsMultiLine() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_KEY, "aKey", "multi.line"),
+            "10: " + getCheckMessage(MSG_KEY, "aKey", "multi.line"),
         };
-        verify(checkConfig, getPath("InputOrderedProperties5CommentsMultiLine.properties"),
-                expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties5CommentsMultiLine.properties"), expected);
     }
 
     @Test
     public void testLineNumberRepeatingPreviousKey() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, "a", "b"),
+            "8: " + getCheckMessage(MSG_KEY, "a", "b"),
         };
-        verify(checkConfig, getPath("InputOrderedProperties6RepeatingPreviousKey.properties"),
-                expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties6RepeatingPreviousKey.properties"), expected);
     }
 
     @Test
@@ -184,30 +183,30 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexInKey() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_KEY, "some.key[a-b-c]", "some.key[index-with-dash]"),
-            "3: " + getCheckMessage(MSG_KEY, "array[0-1]", "some.key[a-b-c]"),
+            "7: " + getCheckMessage(MSG_KEY, "some.key[a-b-c]", "some.key[index-with-dash]"),
+            "9: " + getCheckMessage(MSG_KEY, "array[0-1]", "some.key[a-b-c]"),
         };
-        verify(checkConfig, getPath("InputOrderedPropertiesRegex.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedPropertiesRegex.properties"), expected);
     }
 
     @Test
     public void testSpacesInKey() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_KEY, "key with spaces", "key2"),
+            "7: " + getCheckMessage(MSG_KEY, "key with spaces", "key2"),
         };
-        verify(checkConfig, getPath("InputOrderedPropertiesSpaces.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedPropertiesSpaces.properties"), expected);
     }
 
     @Test
     public void test() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY, " A ", " B"),
+            "8: " + getCheckMessage(MSG_KEY, " A ", " B"),
         };
-        verify(checkConfig, getPath("InputOrderedProperties2.properties"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputOrderedProperties2.properties"), expected);
     }
 
     /**
