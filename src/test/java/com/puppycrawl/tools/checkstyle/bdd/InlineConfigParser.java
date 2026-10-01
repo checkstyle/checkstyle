@@ -835,16 +835,16 @@ public final class InlineConfigParser {
         if (value == null) {
             defaultValueAsString = NULL_STRING;
         }
-        else if (value instanceof String strValue) {
+        else if (value instanceof final String strValue) {
             defaultValueAsString = toStringForStringValue(strValue);
         }
         else if (value.getClass().isArray()) {
             defaultValueAsString = toStringConvertForArrayValue(value);
         }
-        else if (value instanceof BitSet set) {
+        else if (value instanceof final BitSet set) {
             defaultValueAsString = toStringForBitSetValue(set);
         }
-        else if (value instanceof Collection<?> values) {
+        else if (value instanceof final Collection<?> values) {
             defaultValueAsString = toStringForCollectionValue(values);
         }
         else {
