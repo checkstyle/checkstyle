@@ -39,7 +39,11 @@ public class InputMultipleVariableDeclarations
     }
 
     void method3() {
-        java.lang.Object obj; Object obj1; Object obj2; Object obj3; // 3 violations
+        java.lang.Object obj; Object obj1; Object obj2; Object obj3;
+        // 3 violations above:
+        //    'Only one variable definition per line allowed.'
+        //    'Only one variable definition per line allowed.'
+        //    'Only one variable definition per line allowed.'
         for (String s : new String[] {}) {}
     }
 }
