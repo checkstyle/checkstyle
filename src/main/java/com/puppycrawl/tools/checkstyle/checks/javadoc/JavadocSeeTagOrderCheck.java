@@ -59,26 +59,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>For example, this is the order recommended by the OpenJDK documentation
  * comments style guide:</p>
- * <div class="wrapper"><pre>
- * &#64;see #field
- * &#64;see #Constructor(Type, Type...)
- * &#64;see #Constructor(Type id, Type id...)
- * &#64;see #method(Type, Type,...)
- * &#64;see #method(Type id, Type, id...)
- * &#64;see Class
- * &#64;see Class#field
- * &#64;see Class#Constructor(Type, Type...)
- * &#64;see Class#Constructor(Type id, Type id)
- * &#64;see Class#method(Type, Type,...)
- * &#64;see Class#method(Type id, Type id,...)
- * &#64;see package.Class
- * &#64;see package.Class#field
- * &#64;see package.Class#Constructor(Type, Type...)
- * &#64;see package.Class#Constructor(Type id, Type id)
- * &#64;see package.Class#method(Type, Type,...)
- * &#64;see package.Class#method(Type id, Type, id)
- * &#64;see package
- * </pre></div>
+ * {@snippet lang="text" :
+ * @see #field
+ * @see #Constructor(Type, Type...)
+ * @see #Constructor(Type id, Type id...)
+ * @see #method(Type, Type,...)
+ * @see #method(Type id, Type, id...)
+ * @see Class
+ * @see Class#field
+ * @see Class#Constructor(Type, Type...)
+ * @see Class#Constructor(Type id, Type id)
+ * @see Class#method(Type, Type,...)
+ * @see Class#method(Type id, Type id,...)
+ * @see package.Class
+ * @see package.Class#field
+ * @see package.Class#Constructor(Type, Type...)
+ * @see package.Class#Constructor(Type id, Type id)
+ * @see package.Class#method(Type, Type,...)
+ * @see package.Class#method(Type id, Type, id)
+ * @see package
+ * }
  *
  * <p>References that are not in a recognizable structured form (for example
  * {@code @see "Effective Java"}, or an HTML anchor) are ignored for ordering
