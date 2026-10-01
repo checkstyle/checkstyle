@@ -31,13 +31,16 @@ public enum ModuleImportOrderOption {
      * Represents the policy that module imports are all at the top.
      * For example:
      *
-     * <pre>
+     * {@snippet :
      *  import module java.desktop;
      *  import module java.sql;
      *
      *  import java.awt.Button;
      *  import static java.io.File.createTempFile;
-     * </pre>
+     * }
+     *
+     * @noinspection StaticImport
+     * @noinspectionreason StaticImport - until IDEA-394248
      */
     TOP,
 
@@ -45,13 +48,16 @@ public enum ModuleImportOrderOption {
      * Represents the policy that module imports are all at the bottom.
      * For example:
      *
-     * <pre>
+     * {@snippet :
      *  import java.awt.Button;
      *  import static java.io.File.createTempFile;
      *
      *  import module java.desktop;
      *  import module java.sql;
-     * </pre>
+     * }
+     *
+     * @noinspection StaticImport
+     * @noinspectionreason StaticImport - until IDEA-394248
      */
     BOTTOM,
 
