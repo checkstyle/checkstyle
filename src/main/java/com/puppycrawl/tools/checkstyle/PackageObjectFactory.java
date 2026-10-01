@@ -509,6 +509,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.DeclarationOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("DefaultComesLastCheck",
                 BASE_PACKAGE + ".checks.coding.DefaultComesLastCheck");
+        NAME_TO_FULL_MODULE_NAME.put("DuplicateSwitchBranchCheck",
+                BASE_PACKAGE + ".checks.coding.DuplicateSwitchBranchCheck");
         NAME_TO_FULL_MODULE_NAME.put("EmptyStatementCheck",
                 BASE_PACKAGE + ".checks.coding.EmptyStatementCheck");
         NAME_TO_FULL_MODULE_NAME.put("EqualsAvoidNullCheck",
