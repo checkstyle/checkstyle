@@ -27,26 +27,26 @@
 
  &lt;p&gt;For example, this is the order recommended by the OpenJDK documentation
  comments style guide:&lt;/p&gt;
- &lt;div class="wrapper"&gt;&lt;pre&gt;
- &amp;#64;see #field
- &amp;#64;see #Constructor(Type, Type...)
- &amp;#64;see #Constructor(Type id, Type id...)
- &amp;#64;see #method(Type, Type,...)
- &amp;#64;see #method(Type id, Type, id...)
- &amp;#64;see Class
- &amp;#64;see Class#field
- &amp;#64;see Class#Constructor(Type, Type...)
- &amp;#64;see Class#Constructor(Type id, Type id)
- &amp;#64;see Class#method(Type, Type,...)
- &amp;#64;see Class#method(Type id, Type id,...)
- &amp;#64;see package.Class
- &amp;#64;see package.Class#field
- &amp;#64;see package.Class#Constructor(Type, Type...)
- &amp;#64;see package.Class#Constructor(Type id, Type id)
- &amp;#64;see package.Class#method(Type, Type,...)
- &amp;#64;see package.Class#method(Type id, Type, id)
- &amp;#64;see package
- &lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code&gt;
+ @see #field
+ @see #Constructor(Type, Type...)
+ @see #Constructor(Type id, Type id...)
+ @see #method(Type, Type,...)
+ @see #method(Type id, Type, id...)
+ @see Class
+ @see Class#field
+ @see Class#Constructor(Type, Type...)
+ @see Class#Constructor(Type id, Type id)
+ @see Class#method(Type, Type,...)
+ @see Class#method(Type id, Type id,...)
+ @see package.Class
+ @see package.Class#field
+ @see package.Class#Constructor(Type, Type...)
+ @see package.Class#Constructor(Type id, Type id)
+ @see package.Class#method(Type, Type,...)
+ @see package.Class#method(Type id, Type, id)
+ @see package
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;References that are not in a recognizable structured form (for example
  &lt;code&gt;@see "Effective Java"&lt;/code&gt;, or an HTML anchor) are ignored for ordering
