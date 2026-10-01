@@ -164,7 +164,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
         for (int sectionIndex = 0; sectionIndex < sections.getLength(); sectionIndex++) {
             final Node sectionNode = sections.item(sectionIndex);
-            if (sectionNode instanceof Element sectionElement
+            if (sectionNode instanceof final Element sectionElement
                   && sectionElement.hasAttribute("name")) {
                 return sectionElement.getAttribute("name");
             }
@@ -196,7 +196,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
         for (int subsectionIdx = 0; subsectionIdx < subsections.getLength(); subsectionIdx++) {
             final Node subsectionNode = subsections.item(subsectionIdx);
-            if (subsectionNode instanceof Element subsectionElement
+            if (subsectionNode instanceof final Element subsectionElement
                 && "Description".equals(subsectionElement.getAttribute("name"))) {
                 final Optional<String> description =
                             getDescriptionFromSubsection(subsectionElement);
@@ -323,7 +323,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
         for (int tableIdx = 0; tableIdx < tableNodes.getLength(); tableIdx++) {
             final Node tableNode = tableNodes.item(tableIdx);
-            if (tableNode instanceof Element element) {
+            if (tableNode instanceof final Element element) {
                 processTableElement(element, indexedChecks);
             }
         }
@@ -403,7 +403,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final NodeList children = parent.getChildNodes();
             for (int childIdx = 0; childIdx < children.getLength(); childIdx++) {
                 final Node child = children.item(childIdx);
-                if (child instanceof Element element && tagName.equals(child.getNodeName())) {
+                if (child instanceof final Element element && tagName.equals(child.getNodeName())) {
                     elements.add(element);
                 }
             }
@@ -425,7 +425,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final NodeList children = parent.getChildNodes();
             for (int childIdx = 0; childIdx < children.getLength(); childIdx++) {
                 final Node child = children.item(childIdx);
-                if (child instanceof Element element && tagName.equals(child.getNodeName())) {
+                if (child instanceof final Element element && tagName.equals(child.getNodeName())) {
                     result = Optional.of(element);
                     break;
                 }

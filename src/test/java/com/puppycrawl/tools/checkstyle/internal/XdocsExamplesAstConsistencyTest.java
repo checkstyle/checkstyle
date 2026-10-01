@@ -644,7 +644,7 @@ public class XdocsExamplesAstConsistencyTest {
             final NodeList children = element.getChildNodes();
             for (int index = 0; result == null && index < children.getLength(); index++) {
                 final Node node = children.item(index);
-                if (node instanceof Element childElement
+                if (node instanceof final Element childElement
                     && "module".equals(node.getNodeName())) {
                     result = findModuleElement(childElement, moduleName);
                 }
@@ -666,7 +666,7 @@ public class XdocsExamplesAstConsistencyTest {
 
         for (int index = 0; index < children.getLength(); index++) {
             final Node node = children.item(index);
-            if (node instanceof Element childElement
+            if (node instanceof final Element childElement
                 && "property".equals(node.getNodeName())) {
                 names.add(childElement.getAttribute("name"));
             }
@@ -1869,7 +1869,7 @@ public class XdocsExamplesAstConsistencyTest {
 
         @Override
         public boolean equals(Object obj) {
-            if (!(obj instanceof StructuralAstNode other)) {
+            if (!(obj instanceof final StructuralAstNode other)) {
                 return false;
             }
             final boolean typeMatch = type == other.type;

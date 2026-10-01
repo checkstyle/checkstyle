@@ -850,7 +850,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>if (tree.getLastSelectedPathComponent() instanceof DetailAST ast) {</lineContent>
+    <lineContent>if (tree.getLastSelectedPathComponent() instanceof final DetailAST ast) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

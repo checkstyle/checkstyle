@@ -1808,7 +1808,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     private static IllegalStateException findRelativizePathException(Throwable throwable) {
         Throwable current = throwable;
         while (current != null) {
-            if (current instanceof IllegalStateException exception
+            if (current instanceof final IllegalStateException exception
                     && current.getCause() instanceof IllegalArgumentException) {
                 return exception;
             }
