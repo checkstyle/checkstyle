@@ -38,12 +38,14 @@ public class ExpressionOverBlockLambdaCheckTest
     @Test
     public void testSingleLineBlockLambdas() throws Exception {
         final String[] expected = {
-            "22:25: " + getCheckMessage(MSG_KEY),
-            "30:42: " + getCheckMessage(MSG_KEY),
-            "39:20: " + getCheckMessage(MSG_KEY),
-            "47:33: " + getCheckMessage(MSG_KEY),
-            "56:23: " + getCheckMessage(MSG_KEY),
-            "58:24: " + getCheckMessage(MSG_KEY),
+            "23:25: " + getCheckMessage(MSG_KEY),
+            "31:42: " + getCheckMessage(MSG_KEY),
+            "40:20: " + getCheckMessage(MSG_KEY),
+            "48:33: " + getCheckMessage(MSG_KEY),
+            "57:23: " + getCheckMessage(MSG_KEY),
+            "59:24: " + getCheckMessage(MSG_KEY),
+            "69:26: " + getCheckMessage(MSG_KEY),
+            "71:27: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputExpressionOverBlockLambdaInvalid.java"), expected);
