@@ -134,7 +134,11 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * @since 4.4
      */
     public final void setIgnoreOccurrenceContext(String... strRep) {
-        ignoreOccurrenceContext.clear();
+        // BitSet#clear() is skipped in favor of the range overload, as the annotated
+        // JDK of Checker Framework declares a contract on the no-argument method that
+        // refers to a parameter it does not have, which the checkers report as a
+        // 'flowexpr.parse.index.too.big' violation at every call site.
+        ignoreOccurrenceContext.clear(0, ignoreOccurrenceContext.length());
         for (final String s : strRep) {
             final int type = TokenUtil.getTokenId(s);
             ignoreOccurrenceContext.set(type);
