@@ -275,7 +275,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
