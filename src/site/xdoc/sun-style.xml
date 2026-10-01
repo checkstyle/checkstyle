@@ -836,8 +836,53 @@
                     7.5 for Statements
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/needbraces.html#NeedBraces">
+                    NeedBraces
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NeedBraces">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="checks/blocks/leftcurly.html#LeftCurly">
+                    LeftCurly
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LeftCurly">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
+                  <a href="checks/misc/descendanttoken.html#DescendantToken">
+                    DescendantToken
+                  </a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken+ForClauseMaxVariables">
+                    config
+                  </a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt=""/>
+                  </span>
+                  The empty for statement form
+                  <code>for (initialization; condition; update);</code>
+                  is intentionally not allowed: Checkstyle's config is stricter
+                  than Sun here, so NeedBraces and EmptyStatement report it.
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/sun/checkstyle/test/chapter7statements/rule75forstatements">
+                    samples
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
