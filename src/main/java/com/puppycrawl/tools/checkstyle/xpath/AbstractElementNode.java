@@ -99,7 +99,7 @@ public abstract class AbstractElementNode extends AbstractNode {
     @Override
     public int compareOrder(NodeInfo other) {
         int result = 0;
-        if (other instanceof AbstractNode node) {
+        if (other instanceof final AbstractNode node) {
             result = Integer.compare(depth, node.getDepth());
             if (result == 0) {
                 result = compareCommonAncestorChildrenOrder(this, other);
