@@ -77,7 +77,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * contexts like annotations or static initializers from the check.
      */
     @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
-    private final BitSet ignoreOccurrenceContext = new BitSet();
+    private BitSet ignoreOccurrenceContext = new BitSet();
 
     /**
      * Specify the maximum number of occurrences to allow without generating a warning.
@@ -134,11 +134,12 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * @since 4.4
      */
     public final void setIgnoreOccurrenceContext(String... strRep) {
-        ignoreOccurrenceContext.clear();
+        final BitSet contexts = new BitSet();
         for (final String s : strRep) {
             final int type = TokenUtil.getTokenId(s);
-            ignoreOccurrenceContext.set(type);
+            contexts.set(type);
         }
+        ignoreOccurrenceContext = contexts;
     }
 
     @Override

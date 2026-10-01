@@ -574,13 +574,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java</fileName>
-    <specifier>flowexpr.parse.index.too.big</specifier>
-    <message>the method has no parameter #1 (total 0 parameters)</message>
-    <lineContent>ignoreOccurrenceContext.clear();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
