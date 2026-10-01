@@ -63,7 +63,7 @@ public final class Person {
           Enum, interface, and record declarations in a compact source file are members of the
           implicitly declared class, so they are also implicitly <code>static</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <div class="wrapper"><pre class="prettyprint"><code>
 enum Age {  // violation
   CHILD, ADULT
 }
