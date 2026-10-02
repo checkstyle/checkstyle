@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RedundantThisCheck"
+             name="RedundantThis"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that references to instance variables and methods of the current object
+ avoid unnecessary use of &lt;code&gt;this&lt;/code&gt;, unless it is required to resolve
+ ambiguity with a shadowed field.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ By default, a redundant &lt;code&gt;this&lt;/code&gt; is tolerated when the same statement, or the
+ statement immediately before or after it, contains a &lt;code&gt;this&lt;/code&gt; that is required
+ to resolve a shadowed field. This keeps groups of assignments consistent, for example
+ constructor bodies where only some parameters shadow fields. Set
+ &lt;code&gt;allowAdjacentToRequiredThis&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt; to report every redundant
+ &lt;code&gt;this&lt;/code&gt;.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true"
+                      name="allowAdjacentToRequiredThis"
+                      type="boolean">
+               <description>Allow redundant "this" when the same statement, or the statement immediately before or after it, contains a required "this".</description>
+            </property>
+            <property default-value="false" name="checkMethods" type="boolean">
+               <description>Check whether to check redundant "this" with method call.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="redundant.this.field"/>
+            <message-key key="redundant.this.method"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
