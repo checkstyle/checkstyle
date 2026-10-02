@@ -29,7 +29,7 @@ jobs:
 
       - name: PR linked issues
         id: links
-        uses: mondeja/pr-linked-issues-action@v2
+        uses: mondeja/pr-linked-issues-action@15e15b5aa999ae8a742117c9489aa63b1a007b76  # v2
         if: github.event_name == 'pull_request'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

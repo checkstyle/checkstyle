@@ -34,7 +34,7 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - uses: robinraju/release-downloader@v1
+      - uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1
         with:
           repository: 'checkstyle/checkstyle'
           latest: true
