@@ -26,6 +26,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,12 +100,6 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
 
     /** Two backslashes to not duplicate strings. */
     private static final String TWO_BACKSLASHES = "\\\\";
-
-    /** A pattern for two backslashes. */
-    private static final Pattern A_SPACE_PATTERN = Pattern.compile(" ");
-
-    /** A pattern for a double quote. */
-    private static final Pattern A_QUOTE_PATTERN = Pattern.compile("\"");
 
     /** A pattern for two backslashes. */
     private static final Pattern TWO_BACKSLASHES_PATTERN = Pattern.compile(TWO_BACKSLASHES);
@@ -460,17 +456,19 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      *
      * @param fileName the file name to render the URI for
      * @return the rendered URI for the given file name
+     * @throws IllegalArgumentException if the file name cannot be converted to a URI
      */
     private static String renderFileNameUri(final String fileName) {
-        final String withoutSpaces =
-                A_SPACE_PATTERN
-                        .matcher(TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/"))
-                        .replaceAll("%20");
-        String normalized = A_QUOTE_PATTERN.matcher(withoutSpaces).replaceAll("%22");
+        String normalized = TWO_BACKSLASHES_PATTERN.matcher(fileName).replaceAll("/");
         if (WINDOWS_DRIVE_LETTER_PATTERN.matcher(normalized).find()) {
             normalized = '/' + normalized;
         }
-        return "file:" + normalized;
+        try {
+            return "file:" + new URI(null, null, normalized, null).toASCIIString();
+        }
+        catch (URISyntaxException exc) {
+            throw new IllegalArgumentException("Invalid file name: " + fileName, exc);
+        }
     }
 
     /**
