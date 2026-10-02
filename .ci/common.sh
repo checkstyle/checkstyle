@@ -29,7 +29,8 @@ function should_run_job {
 
          # This identifies the PR's original commit
          # if it notices a merge commit
-         local HEAD=$(git rev-parse HEAD)
+         local HEAD=$(git rev-parse HEAD) \
+              || { echo "Failed to get HEAD commit."; exit 1; }
 
          if git show --summary HEAD | grep ^Merge: ; then
               HEAD=$(git log -n 1 --no-merges --pretty=format:"%H")
@@ -38,7 +39,8 @@ function should_run_job {
          # Identify previous commit to know how much to examine
          # Script assumes we are only working with 1 commit if we are in master
          # Otherwise, it looks for the common ancestor with master
-         local PREVIOUS_COMMIT=$(git rev-parse HEAD~1)
+         local PREVIOUS_COMMIT=$(git rev-parse HEAD~1) \
+              || { echo "Failed to get previous commit."; exit 1; }
 
          if [[ $DEBUG == "true" ]]; then
               echo "Head commit: $HEAD"
