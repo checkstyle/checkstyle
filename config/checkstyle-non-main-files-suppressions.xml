@@ -62,6 +62,8 @@
 
   <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
   <suppress id="lineLength" files="pom.xml"/>
+  <!-- pinned docker digest for actionlint cannot be split, see Issue #21642 -->
+  <suppress id="lineLength" files=".github/workflows/actionlint.yml"/>
   <!-- this file cannot be line wraped -->
   <suppress id="lineLength" files="config/signatures.txt"/>
   <suppress id="lineLength" files="config/signatures-test.txt"/>

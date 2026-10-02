@@ -105,7 +105,6 @@ basedir
 basefont
 baz
 bc
-bdc
 bdd
 beanutils
 beforeexecutionexclusionfilefilter
@@ -149,10 +148,10 @@ cacio
 caciocavallosilano
 calledmethods
 camelcase
+cas
 casegroup
 catchparametername
 cba
-cbeaff
 CComments
 CDATA
 cde
@@ -281,7 +280,6 @@ Dcyclonedx
 DDDL
 Ddokka
 Ddry
-DEADBEEF
 DECCHARS
 declarationorder
 declarationrightbeforefirstusage
@@ -442,7 +440,6 @@ FEF
 fenum
 ffc
 ffcp
-ffd
 fff
 FFFA
 FFFB
@@ -1236,6 +1233,7 @@ Rr
 Rsa
 rsh
 RSPEC
+rsqm
 rsync
 Rtl
 ru
