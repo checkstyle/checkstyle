@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serial;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -270,10 +271,10 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * The file name is taken verbatim from the analysed tree, so it may contain the literal
-     * text of a report placeholder such as {@code ${message}}. Every placeholder is filled
-     * in a single pass, so that text is kept verbatim and cannot splice the message object
-     * into the uri string.
+     * The file name may contain the literal text of a report placeholder such as
+     * {@code ${message}}. Its braces are percent-encoded in the SARIF URI, which still
+     * identifies the original file name when decoded. Template substitution happens in a
+     * single pass, so the file name cannot splice the message object into the URI string.
      */
     @Test
     public void testAddErrorWithPlaceholderInPath() throws IOException {
@@ -381,6 +382,49 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyContent(getPath("ExpectedSarifLoggerQuoteInPath.sarif"), outStream);
+    }
+
+    @Test
+    public void testAddErrorWithReservedCharactersInPath() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        // The non-ASCII character U+00E9 (LATIN SMALL LETTER E WITH ACUTE) is built from
+        // its code point to keep this source file ASCII-only.
+        final String fileName = "Test#1?%<" + (char) 0xE9 + ".java";
+        logger.addError(new AuditEvent(this, fileName, violation));
+        logger.auditFinished(null);
+
+        final String uri = "file:Test%231%3F%25%3C%C3%A9.java";
+        assertWithMessage("SARIF URI should encode reserved characters")
+                .that(outStream.toString(StandardCharsets.UTF_8))
+                .contains("\"uri\": \"" + uri + "\"");
+        assertWithMessage("SARIF URI should resolve to the original file name")
+                .that(URI.create(uri).getSchemeSpecificPart())
+                .isEqualTo(fileName);
+    }
+
+    /**
+     * A file name that starts with a colon cannot be parsed into a valid URI reference,
+     * so the logger must fail loudly instead of writing a broken URI into the SARIF report.
+     */
+    @Test
+    public void testAddErrorWithInvalidFileName() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
+                        getClass(), "found an error");
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class,
+                        () -> logger.addError(new AuditEvent(this, ":invalid.java", violation)),
+                        "IllegalArgumentException was expected");
+        assertWithMessage("Invalid error message")
+                .that(exception.getMessage())
+                .isEqualTo("Invalid file name: :invalid.java");
     }
 
     /**
