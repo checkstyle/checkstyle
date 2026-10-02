@@ -30,16 +30,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public class IfHandler extends BlockParentHandler {
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public IfHandler(IndentationCheck indentCheck,
+    public IfHandler(IndentationContext context,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "if", ast, parent);
+        super(context, "if", ast, parent);
     }
 
     @Override

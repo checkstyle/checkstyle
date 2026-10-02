@@ -46,6 +46,9 @@ concurrency:
 jobs:
   make_report:
     if: (github.event.issue.pull_request != null || inputs.pr-number != '')
+        && (github.event_name != 'issue_comment'
+            || contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                        github.event.comment.author_association))
         && ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate ANTLR report'
             || startsWith(inputs.trigger-phrase || github.event.comment.body,
                           'GitHub, generate ANTLR report for '))
@@ -68,6 +71,8 @@ jobs:
 
       - name: Download checkstyle
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Resolve PR branch and SHA
         id: branch
@@ -131,6 +136,7 @@ jobs:
       - name: Download contribution
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/contribution
           path: .ci-temp/contribution
 
@@ -211,6 +217,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download ANTLR report
         uses: actions/download-artifact@v8
@@ -258,6 +266,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Get message
         env:

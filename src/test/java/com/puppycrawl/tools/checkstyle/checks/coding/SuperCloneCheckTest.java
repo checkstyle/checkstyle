@@ -66,6 +66,15 @@ public class SuperCloneCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:15: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputSuperCloneCompactSourceFile.java"), expected);
+    }
+
+    @Test
     public void testMethodReference() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

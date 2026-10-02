@@ -52,10 +52,12 @@ public class InputOneStatementPerLine {
       one++; two++; // violation 'Only one statement per line allowed.'
     }
     if (one != 1) { one++; } else { one--; }
-    // 3 violations above:
+    // 5 violations above:
     //  ''{' at column 19 should have line break after.'
+    // ''}' at column 28 should have line break before.'
     //  ''{' at column 35 should have line break after.'
     //  'Only one statement per line allowed.'
+    //  ''}' at column 44 should be alone on a line.'
     int n = 10;
 
     doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
@@ -104,10 +106,12 @@ public class InputOneStatementPerLine {
         one++; two++; // violation 'Only one statement per line allowed.'
       }
       if (one != 1) { one++; } else { one--; }
-      // 3 violations above:
+      // 5 violations above:
       //  ''{' at column 21 should have line break after.'
+      // ''}' at column 30 should have line break before.'
       //  ''{' at column 37 should have line break after.'
       //  'Only one statement per line allowed.'
+      //  ''}' at column 46 should be alone on a line.'
       int n = 10;
 
       doLegal(); doLegal(); // violation 'Only one statement per line allowed.'
@@ -303,7 +307,7 @@ public class InputOneStatementPerLine {
     //  ''{' at column 30 should have line break after.'
     //  ''}' at column 41 should be alone on a line.'
 
-    // violation below 'Multiline comment line(s) 308, 309, 310 should start with leading asterisk'
+    // violation below 'Multiline comment line(s) 312, 313, 314 should start with leading asterisk'
     /*
       One statement inside for block where
       increment and conditional expressions are empty

@@ -94,6 +94,18 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_SEMI),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath(
+                        "compact/InputUnnecessarySemicolonInEnumerationCompactSourceFile.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final UnnecessarySemicolonInEnumerationCheck check =
                 new UnnecessarySemicolonInEnumerationCheck();

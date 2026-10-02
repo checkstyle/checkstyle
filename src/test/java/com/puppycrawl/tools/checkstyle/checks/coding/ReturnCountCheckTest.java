@@ -47,6 +47,28 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_KEY, 3, 2),
+            "26:1: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputReturnCountCompactSourceFile.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileCustom() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_KEY, 2, 1),
+            "23:1: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
+            "27:1: " + getCheckMessage(MSG_KEY, 2, 1),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("compact/InputReturnCountCompactSourceFileCustom.java"),
+                expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),

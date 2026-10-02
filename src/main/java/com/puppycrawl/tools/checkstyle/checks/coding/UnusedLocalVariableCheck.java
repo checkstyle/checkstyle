@@ -866,7 +866,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         switch (type) {
             case TokenTypes.DOT -> visitDotToken(ast, variablesStack);
 
-            case TokenTypes.VARIABLE_DEF -> addLocalVariables(ast, variablesStack);
+            case TokenTypes.VARIABLE_DEF -> {
+                if (!skipUnnamedVariables(ast)) {
+                    addLocalVariables(ast, variablesStack);
+                }
+            }
 
             case TokenTypes.IDENT -> visitIdentToken(ast, variablesStack);
 

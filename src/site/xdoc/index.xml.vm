@@ -45,7 +45,7 @@
 
         <div class="cs-workflow-card">
           <p class="cs-workflow-title">2 - Your Java code</p>
-          <div class="wrapper"><pre class="cs-workflow-code"><span class="cs-code-keyword">import</span> java.util.<span class="cs-workflow-em"><span class="cs-code-string">.*</span></span>;
+          <div class="wrapper"><pre class="cs-workflow-code"><span class="cs-code-keyword">import</span> java.util<span class="cs-workflow-em"><span class="cs-code-string">.*</span></span>;
 <span class="cs-workflow-dim"><span class="cs-code-keyword">class</span> Test {
   List names;
 }</span></pre></div>

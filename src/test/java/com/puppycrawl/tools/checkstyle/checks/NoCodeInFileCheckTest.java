@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck.MSG_KEY_N
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
@@ -53,20 +52,23 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlank() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
         };
-        verify(checkConfig, getPath("InputNoCodeInFile1.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputNoCodeInFile1Config.java"),
+                getPath("InputNoCodeInFile1.java"), expected);
     }
 
     @Test
     public void testSingleLineComment() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
         };
-        verify(checkConfig, getPath("InputNoCodeInFile2.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputNoCodeInFile2Config.java"),
+                getPath("InputNoCodeInFile2.java"),
+                expected);
     }
 
     @Test

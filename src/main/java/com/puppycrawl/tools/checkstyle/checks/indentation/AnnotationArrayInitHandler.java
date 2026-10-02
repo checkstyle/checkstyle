@@ -34,16 +34,16 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
     private static final int NOT_EXIST = -1;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public AnnotationArrayInitHandler(IndentationCheck indentCheck,
+    public AnnotationArrayInitHandler(IndentationContext context,
                             DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "annotation array initialization", ast, parent);
+        super(context, "annotation array initialization", ast, parent);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
-        final String line = getIndentCheck().getLines()[lineNo - 1];
+        final String line = getContext().getLine(lineNo - 1);
         final int lineLength = line.length();
         while (realColumnNo < lineLength
             && Character.isWhitespace(line.charAt(realColumnNo))) {
@@ -145,23 +145,23 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for the corresponding property.
      *
      * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
+     *         from the indentation context
      */
     private int getLineWrappingIndentation() {
-        return getIndentCheck().getLineWrappingIndentation();
+        return getContext().getLineWrappingIndentation();
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for the corresponding property.
      *
      * @return value of arrayInitIndent property
-     *         of {@code IndentationCheck}
+     *         from the indentation context
      */
     private int getArrayInitIndentation() {
-        return getIndentCheck().getArrayInitIndent();
+        return getContext().getArrayInitIndent();
     }
 
 }

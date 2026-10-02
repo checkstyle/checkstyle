@@ -60,6 +60,9 @@
   <suppress id="exampleFileXmlConfigPresence"
             files="suppressionxpathsinglefilter/src.*"/>
 
+  <suppress id="exampleFileName"
+            files="unnecessarypermitsclause/Example2SubB.java"/>
+
   <!-- Check deals with tab characters. -->
   <suppress checks="FileTabCharacter|Indentation"
     files="filetabcharacter/Example\d+.java"/>

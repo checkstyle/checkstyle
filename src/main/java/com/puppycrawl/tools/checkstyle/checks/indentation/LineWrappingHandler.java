@@ -74,20 +74,24 @@ public class LineWrappingHandler {
     };
 
     /**
-     * The current instance of {@code IndentationCheck} class using this
-     * handler. This field used to get access to private fields of
-     * IndentationCheck instance.
+     * The indentation context. Set lazily via {@link #setContext} because the
+     * context and this handler are created together at {@code beginTree} time.
      */
-    private final IndentationCheck indentCheck;
+    private IndentationContext context;
+
+    /** Default constructor. Call {@link #setContext} before use. */
+    public LineWrappingHandler() {
+        // context is injected via setContext to break construction cycle with
+        // IndentationContext, which needs a LineWrappingHandler reference.
+    }
 
     /**
-     * Sets values of class field, finds last node and calculates indentation level.
+     * Injects the indentation context. Must be called before any check method.
      *
-     * @param instance
-     *            instance of IndentationCheck.
+     * @param indentationContext the indentation context to use
      */
-    public LineWrappingHandler(IndentationCheck instance) {
-        indentCheck = instance;
+    /* package */ void setContext(IndentationContext indentationContext) {
+        context = indentationContext;
     }
 
     /**
@@ -98,7 +102,7 @@ public class LineWrappingHandler {
      * @param lastNode Last node to examine inclusively.
      */
     public void checkIndentation(DetailAST firstNode, DetailAST lastNode) {
-        checkIndentation(firstNode, lastNode, indentCheck.getLineWrappingIndentation());
+        checkIndentation(firstNode, lastNode, context.getLineWrappingIndentation());
     }
 
     /**
@@ -384,10 +388,10 @@ public class LineWrappingHandler {
      */
     private int expandedTabsColumnNo(DetailAST ast) {
         final String line =
-            indentCheck.getLine(ast.getLineNo() - 1);
+            context.getLine(ast.getLineNo() - 1);
 
         return CommonUtil.lengthExpandedTabs(line, ast.getColumnNo(),
-            indentCheck.getIndentationTabWidth());
+            context.getIndentationTabWidth());
     }
 
     /**
@@ -398,7 +402,7 @@ public class LineWrappingHandler {
      * @return the start of the line for the given expression
      */
     private int getLineStart(DetailAST ast) {
-        final String line = indentCheck.getLine(ast.getLineNo() - 1);
+        final String line = context.getLine(ast.getLineNo() - 1);
         return getLineStart(line);
     }
 
@@ -413,7 +417,7 @@ public class LineWrappingHandler {
         while (Character.isWhitespace(line.charAt(index))) {
             index++;
         }
-        return CommonUtil.lengthExpandedTabs(line, index, indentCheck.getIndentationTabWidth());
+        return CommonUtil.lengthExpandedTabs(line, index, context.getIndentationTabWidth());
     }
 
     /**
@@ -425,17 +429,17 @@ public class LineWrappingHandler {
      *            correct indentation.
      */
     private void logWarningMessage(DetailAST currentNode, int currentIndent) {
-        if (indentCheck.isForceStrictCondition()) {
+        if (context.isForceStrictCondition()) {
             if (expandedTabsColumnNo(currentNode) != currentIndent) {
-                indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
+                context.indentationLog(currentNode,
+                        IndentationContext.MSG_ERROR, currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
         else {
             if (expandedTabsColumnNo(currentNode) < currentIndent) {
-                indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
+                context.indentationLog(currentNode,
+                        IndentationContext.MSG_ERROR, currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }

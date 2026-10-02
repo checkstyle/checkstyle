@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
+import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_CUSTOM_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
 
 import org.junit.jupiter.api.Test;
@@ -36,11 +37,24 @@ public class ModifierOrderCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:9: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "18:10: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@Deprecated"),
+            "19:9: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "21:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "26:10: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@Deprecated"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+    }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "public"),
+            "21:10: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "public"),
+            "26:10: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@Deprecated"),
+            "28:10: " + getCheckMessage(MSG_MODIFIER_CUSTOM_ORDER, "strictfp"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
 }

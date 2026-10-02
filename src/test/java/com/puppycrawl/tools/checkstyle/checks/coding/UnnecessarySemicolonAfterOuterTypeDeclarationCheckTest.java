@@ -71,7 +71,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
 
         verifyWithInlineConfigParser(
             getNonCompilablePath(
-                "InputUnnecessarySemicolonAfterOuterTypeDeclarationCompactSourceFile.java"),
+                "compact/InputUnnecessarySemicolonAfterOuterTypeDeclarationCompactSourceFile.java"),
             expected);
     }
 

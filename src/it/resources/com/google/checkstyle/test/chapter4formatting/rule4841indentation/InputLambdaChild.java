@@ -29,20 +29,26 @@ public class InputLambdaChild {
         .findFirst().orElse("defaultValue");
   }
 
-  // violation 3 lines below ''{' at column 56 should have line break after'
-  // violation 3 lines below ''{' at column 56 should have line break after'
+  // 2 violations 4 lines below:
+  // ''{' at column 56 should have line break after.'
+  // ''}' at column 76 should be alone on a line.'
   void main(String[] args) {
     group((Function<Integer, Integer>) x -> switch (x) { default: yield x; },
           (Function<Integer, Integer>) x -> switch (x) { default: yield x; });
   }
+  // 2 violations 2 lines above:
+  // ''{' at column 56 should have line break after.'
+  // ''}' at column 76 should be alone on a line.'
 
-  // violation 3 lines below ''{' at column 31 should have line break after'
   List<String> getThrowsTrees(Object input) {
     return getBlockTags(input,
         kind -> switch (kind) { case "EXCEPTION", "THROWS" -> true; default -> false; },
         String.class);
   }
-  // violation 3 lines above 'Only one statement per line allowed.'
+  // 3 violations 3 lines above:
+  // ''{' at column 31 should have line break after.'
+  //  'Only one statement per line allowed.'
+  // ''}' at column 87 should be alone on a line.'
 
   void group(Function<Integer, Integer> f1, Function<Integer, Integer> f2) {
     // Dummy method to test syntax/indentation

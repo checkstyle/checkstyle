@@ -251,9 +251,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final IndentationCheck indentationCheck = new IndentationCheck();
 
         indentationCheck.setThrowsIndent(1);
+        indentationCheck.beginTree(null);
+        final IndentationContext context =
+            TestUtil.getInternalState(indentationCheck, "context", IndentationContext.class);
 
         assertWithMessage("Invalid throws indent")
-            .that(indentationCheck.getThrowsIndent())
+            .that(context.getThrowsIndent())
             .isEqualTo(1);
     }
 
@@ -1720,6 +1723,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationValidArrayInitIndentTwo.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testArrayInitWithSupplementaryCharactersBeforeLeftCurly() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "32:16: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization",
+                    15, "8, 16, 18"),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationArrayInitCodePoints.java"), expected);
     }
 
     @Test
@@ -4646,7 +4661,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPrimordialHandlerCheckIndentation() {
         final IndentationCheck check = new IndentationCheck();
-        final PrimordialHandler handler = new PrimordialHandler(check);
+        check.beginTree(null);
+        final IndentationContext context =
+            TestUtil.getInternalState(check, "context", IndentationContext.class);
+        final PrimordialHandler handler = new PrimordialHandler(context);
         handler.checkIndentation();
         assertWithMessage("Method should complete without exception")
             .that(handler)
@@ -4732,16 +4750,19 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClearStateForMemoryManagement() {
         final IndentationCheck check = new IndentationCheck();
+        check.beginTree(null);
+        final IndentationContext context =
+            TestUtil.getInternalState(check, "context", IndentationContext.class);
         @SuppressWarnings("unchecked")
         final Deque<PrimordialHandler> handlers = TestUtil.getInternalState(check,
                 "handlers", Deque.class);
 
-        handlers.push(new PrimordialHandler(check));
-        handlers.push(new PrimordialHandler(check));
+        handlers.push(new PrimordialHandler(context));
+        handlers.push(new PrimordialHandler(context));
 
-        assertWithMessage("handlers should have 2 elements before beginTree")
+        assertWithMessage("handlers should have 3 elements before beginTree")
                 .that(handlers)
-                .hasSize(2);
+                .hasSize(3);
 
         check.beginTree(null);
 
@@ -4860,9 +4881,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         final String fileName = getPath("InputIndentationLambdaAndReturnStatement.java");
         final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_ERROR, "lambda", 4, 8),
             "34:5: " + getCheckMessage(MSG_ERROR, "s", 4, 8),
             "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
             "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "47:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "48:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "86:5: " + getCheckMessage(MSG_ERROR_MULTI, "new", 4, "6, 8"),
+            "91:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

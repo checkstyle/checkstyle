@@ -136,6 +136,7 @@ btn
 btnfrs
 buf
 bugdatabase
+Bugzilla
 buildkite
 Bunsubscribe
 bw
@@ -195,6 +196,7 @@ clazz
 clemens
 Clickable
 Cloneable
+Cloudflare
 cls
 cmdline
 cmp
@@ -220,6 +222,7 @@ commitish
 commonutil
 Compat
 compilermsgs
+compoundstatements
 Comspace
 concat
 config
@@ -285,6 +288,7 @@ declarationrightbeforefirstusage
 declaredwhenneeded
 Deconstruction
 dedup
+deduplicating
 defau
 defaultcomeslast
 defaultconstructors
@@ -529,6 +533,7 @@ googleecommon
 googlegroups
 googlemethodname
 googlenonconstantfieldname
+googlerightcurly
 googlesource
 GPath
 gpg
@@ -594,6 +599,7 @@ identifiernames
 Idref
 idx
 ietf
+ifstatements
 Igno
 IGNORETHIS
 igorminar
@@ -1503,6 +1509,7 @@ Unitless
 unnecessaryfullyqualifiedtype
 unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
+unnecessarypermitsclause
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
@@ -1532,7 +1539,7 @@ userguide
 username
 usr
 UTests
-utf
+UTF
 Uth
 UUID
 UWF

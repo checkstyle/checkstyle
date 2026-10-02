@@ -48,7 +48,12 @@ concurrency:
 jobs:
   # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: (inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report'
+    if: >-
+      ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report')
+      && (github.event_name != 'issue_comment'
+          || (github.event.issue.pull_request != null
+              && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
+                          github.event.comment.author_association)))
     runs-on: ubuntu-latest
     outputs:
       projects_link: ${{ steps.parse.outputs.projects_link }}
@@ -76,6 +81,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Getting PR description
         env:
@@ -122,11 +129,15 @@ jobs:
   make_report:
     runs-on: ubuntu-latest
     needs: parse_body
+    permissions:
+      contents: read
     if: needs.parse_body.outputs.config_link != ''
             || needs.parse_body.outputs.new_module_config_link != ''
     steps:
       - name: Download checkstyle
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download files
         env:
@@ -146,8 +157,8 @@ jobs:
         run: |
           ./.ci/diff-report.sh set-upstream
 
-      - name: Setup local maven cache
-        uses: actions/cache@v6
+      - name: Restore local maven cache (read-only)
+        uses: actions/cache/restore@v6
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -161,6 +172,7 @@ jobs:
       - name: Download contribution
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: checkstyle/contribution
           path: .ci-temp/contribution
 
@@ -191,6 +203,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Download generated report
         uses: actions/download-artifact@v8
@@ -225,6 +239,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Build PR comment message
         env:

@@ -32,9 +32,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class DetailAstSet {
 
     /**
-     * The instance of {@code IndentationCheck} used by this class.
+     * The indentation context used by this class.
      */
-    private final IndentationCheck indentCheck;
+    private final IndentationContext context;
 
     /**
      * Maps line numbers to their ast.
@@ -42,12 +42,12 @@ public class DetailAstSet {
     private final SortedMap<Integer, DetailAST> astLines = new TreeMap<>();
 
     /**
-     * Construct an instance of this class with {@code IndentationCheck} parameters.
+     * Construct an instance of this class with the given indentation context.
      *
-     * @param indentCheck IndentationCheck parameters
+     * @param context indentation context
      */
-    public DetailAstSet(IndentationCheck indentCheck) {
-        this.indentCheck = indentCheck;
+    public DetailAstSet(IndentationContext context) {
+        this.context = context;
     }
 
     /**
@@ -133,10 +133,10 @@ public class DetailAstSet {
      */
     protected final int expandedTabsColumnNo(DetailAST ast) {
         final String line =
-            indentCheck.getLine(ast.getLineNo() - 1);
+            context.getLine(ast.getLineNo() - 1);
 
         return CommonUtil.lengthExpandedTabs(line, ast.getColumnNo(),
-            indentCheck.getIndentationTabWidth());
+            context.getIndentationTabWidth());
     }
 
 }

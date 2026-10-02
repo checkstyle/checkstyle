@@ -28,6 +28,10 @@
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
 
+  <!-- Disallow mockito to keep tests using the standard checkstyle test
+       style; new consumers must justify the exception per file. -->
+  <disallow pkg="org.mockito" />
+
   <allow pkg=".*" regex="true" />
 
   <subpackage name="grammar">
@@ -55,6 +59,8 @@
         <allow pkg="java.lang.reflect" />
         <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
         <allow class="org.junit.jupiter.api.Assertions.assertThrows" />
+        <!-- Pre-existing mockito consumer, see #21684. -->
+        <allow pkg="org.mockito" />
       </file>
     </subpackage>
 
@@ -81,6 +87,8 @@
     <file name="CommonUtilTest">
       <!-- CommonUtil.getConstructor returns a Constructor, so the test needs this import too. -->
       <allow class="java.lang.reflect.Constructor" />
+      <!-- Pre-existing mockito consumer, see #21684. -->
+      <allow pkg="org.mockito" />
     </file>
 
     <file name="InlineConfigUtilsTest">
@@ -102,5 +110,56 @@
   <file name="PackageObjectFactoryTest">
     <!-- BeforeAll is used to set up the Locale, not Checkstyle classes. -->
     <allow class="org.junit.jupiter.api.BeforeAll" />
+    <!-- Pre-existing mockito consumer, see #21684. -->
+    <allow pkg="org.mockito" />
   </file>
+
+  <!-- Pre-existing mockito consumers, see #21684. -->
+  <file name="ConfigurationLoaderTest">
+    <allow pkg="org.mockito" />
+  </file>
+  <file name="MainTest">
+    <allow pkg="org.mockito" />
+  </file>
+  <file name="PropertyCacheFileTest">
+    <allow pkg="org.mockito" />
+  </file>
+  <file name="TreeWalkerTest">
+    <allow pkg="org.mockito" />
+  </file>
+
+  <subpackage name="checks">
+    <subpackage name="header">
+      <!-- Pre-existing mockito consumer, see #21684. -->
+      <file name="HeaderCheckTest">
+        <allow pkg="org.mockito" />
+      </file>
+    </subpackage>
+    <subpackage name="imports">
+      <!-- Pre-existing mockito consumer, see #21684. -->
+      <file name="ImportControlLoaderTest">
+        <allow pkg="org.mockito" />
+      </file>
+    </subpackage>
+  </subpackage>
+
+  <subpackage name="filters">
+    <!-- Pre-existing mockito consumer, see #21684. -->
+    <file name="SuppressionCommentFilterTest">
+      <allow pkg="org.mockito" />
+    </file>
+  </subpackage>
+
+  <subpackage name="gui">
+    <!-- Pre-existing mockito consumers, see #21684. -->
+    <file name="MainFrameModelTest">
+      <allow pkg="org.mockito" />
+    </file>
+    <file name="MainFrameTest">
+      <allow pkg="org.mockito" />
+    </file>
+    <file name="TreeTableTest">
+      <allow pkg="org.mockito" />
+    </file>
+  </subpackage>
 </import-control>

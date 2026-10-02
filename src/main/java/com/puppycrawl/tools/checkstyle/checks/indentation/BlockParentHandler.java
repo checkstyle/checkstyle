@@ -60,19 +60,19 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     };
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * name, abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param name          the name of the handler
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      * @noinspection WeakerAccess
      * @noinspectionreason WeakerAccess - we avoid 'protected' when possible
      */
-    public BlockParentHandler(IndentationCheck indentCheck,
+    public BlockParentHandler(IndentationContext context,
         String name, DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, name, ast, parent);
+        super(context, name, ast, parent);
     }
 
     /**
@@ -336,13 +336,13 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for the corresponding property.
      *
      * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
+     *         from the indentation context
      */
     private int getLineWrappingIndent() {
-        return getIndentCheck().getLineWrappingIndentation();
+        return getContext().getLineWrappingIndentation();
     }
 
 }

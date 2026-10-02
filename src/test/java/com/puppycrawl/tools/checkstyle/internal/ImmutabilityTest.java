@@ -143,7 +143,6 @@ public class ImmutabilityTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck.xpathExpression",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.DEFAULT_ORDER",
         "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck.DEFAULT_TAGS",
-        "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.JLS_ORDER",
         "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"
             + ".TOKENS_FOR_INTERFACE_MODIFIERS",
         "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck.detector",

@@ -41,17 +41,17 @@ public class NewHandler extends AbstractExpressionHandler {
     private final DetailAST mainAst;
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public NewHandler(IndentationCheck indentCheck,
+    public NewHandler(IndentationContext context,
                       DetailAST ast,
                       AbstractExpressionHandler parent) {
-        super(indentCheck, "new", ast, parent);
+        super(context, "new", ast, parent);
         mainAst = ast;
     }
 
@@ -62,7 +62,7 @@ public class NewHandler extends AbstractExpressionHandler {
             final int columnNo = expandedTabsColumnNo(mainAst);
             final IndentLevel level = getIndentImpl();
 
-            final boolean forceStrictCondition = getIndentCheck().isForceStrictCondition();
+            final boolean forceStrictCondition = getContext().isForceStrictCondition();
             if (forceStrictCondition && !level.isAcceptable(columnNo)
                 || !forceStrictCondition && level.isGreaterThan(columnNo)) {
                 logError(mainAst, "", columnNo, level);
@@ -147,13 +147,13 @@ public class NewHandler extends AbstractExpressionHandler {
     }
 
     /**
-     * A shortcut for {@code IndentationCheck} property.
+     * A shortcut for the corresponding property.
      *
      * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
+     *         from the indentation context
      */
     private int getLineWrappingIndent() {
-        return getIndentCheck().getLineWrappingIndentation();
+        return getContext().getLineWrappingIndentation();
     }
 
     @Override

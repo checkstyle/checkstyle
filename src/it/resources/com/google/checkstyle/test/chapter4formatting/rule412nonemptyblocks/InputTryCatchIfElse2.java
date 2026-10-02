@@ -33,6 +33,8 @@ public class InputTryCatchIfElse2 {
     } else if (!after) { /* foo */ } else {
       System.out.println("before");
     }
+    // violation 5 lines above ''}' at column 24 should have line break before.'
+    // violation 4 lines above ''}' at column 36 should have line break before.'
 
     if (after) {
       System.out.println("foo");

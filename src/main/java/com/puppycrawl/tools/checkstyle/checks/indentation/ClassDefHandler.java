@@ -32,17 +32,17 @@ public class ClassDefHandler extends BlockParentHandler {
     private static final String MODIFIER = "modifier";
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public ClassDefHandler(IndentationCheck indentCheck,
+    public ClassDefHandler(IndentationContext context,
                            DetailAST ast,
                            AbstractExpressionHandler parent) {
-        super(indentCheck, getHandlerName(ast), ast, parent);
+        super(context, getHandlerName(ast), ast, parent);
     }
 
     @Override

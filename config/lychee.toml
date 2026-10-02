@@ -25,6 +25,15 @@ exclude = [
   "https://github.com/checkstyle/checkstyle/issues/2788",
   # OpenCollective returns 403 to automated link checkers
   "https://opencollective.com/.*",
+  # OpenJDK JIRA (Cloudflare) blocks automated link checkers with 403
+  "https://bugs.openjdk.org/browse/.*",
+  # Eclipse Bugzilla returns 500 to automated link checkers
+  "https://bugs.eclipse.org/bugs/show_bug\\.cgi.*",
+  # Google/Blogspot returns 429 (rate limit) after anti-bot redirect chain
+  "https?://[^/]*\\.blogspot\\.com/.*",
+  # styleguides/* is not published to checkstyle.org (see pom.xml scan exclude);
+  # absolute references from other pages must be excluded until the deployment gap is fixed
+  "https://checkstyle\\.org/styleguides/.*",
 ]
 
 # Timeout for each link check (in seconds)

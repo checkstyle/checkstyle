@@ -120,11 +120,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testDefaultConfiguration() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderDefaultConfigForRegexpConfig.java"),
+                getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
@@ -230,56 +229,42 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexpHeaderIgnore() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader1.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderIgnore.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderIgnoreForRegexpConfig.java"),
+                getPath("InputRegexpHeaderIgnore.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti1() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addProperty("multiLines", "3, 6");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderDefaultConfigMulti1Config.java"),
+                getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti2() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addProperty("multiLines", "3, 6");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderMulti2.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMulti2Config.java"),
+                getPath("InputRegexpHeaderMulti2.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti3() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addProperty("multiLines", "3, 7");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderDefaultConfig.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderDefaultConfigMulti3Config.java"),
+                getPath("InputRegexpHeaderDefaultConfig.java"), expected);
     }
 
     @Test
     public void testRegexpHeaderMulti4() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2.header"));
-        checkConfig.addProperty("multiLines", "3, 5, 6, 7");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderMulti4.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMulti4Config.java"),
+                getPath("InputRegexpHeaderMulti4.java"), expected);
     }
 
     @Test
@@ -297,13 +282,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegexpHeaderMulti6() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader2_4.header"));
-        checkConfig.addProperty("multiLines", "8974382");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputRegexpHeaderMulti6.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderMulti6Config.java"),
+                getPath("InputRegexpHeaderMulti6.java"), expected);
     }
 
     @Test

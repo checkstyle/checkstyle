@@ -12,7 +12,13 @@ tokens = (default)CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodcount;
 
-public class InputMethodCount1One { // 5 violations
+public class InputMethodCount1One {
+  // 5 violations above:
+  //   'Number of package methods is 4 (max allowed is 3).'
+  //   'Number of private methods is 4 (max allowed is 3).'
+  //   'Number of protected methods is 4 (max allowed is 3).'
+  //   'Number of public methods is 4 (max allowed is 3).'
+  //   'Total number of methods is 16 (max allowed is 3).'
 
   /**
    * Dummy method doing nothing

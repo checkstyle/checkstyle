@@ -118,10 +118,10 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             "14:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
             "14:1: " + getCheckMessage(MSG_PRIVATE_METHODS, 4, 3),
             "14:1: " + getCheckMessage(MSG_MANY_METHODS, 8, 3),
-            "20:3: " + getCheckMessage(MSG_PROTECTED_METHODS, 4, 3),
-            "20:3: " + getCheckMessage(MSG_MANY_METHODS, 4, 3),
-            "50:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 4, 3),
-            "50:3: " + getCheckMessage(MSG_MANY_METHODS, 4, 3),
+            "24:3: " + getCheckMessage(MSG_PROTECTED_METHODS, 4, 3),
+            "24:3: " + getCheckMessage(MSG_MANY_METHODS, 4, 3),
+            "49:3: " + getCheckMessage(MSG_PUBLIC_METHODS, 4, 3),
+            "49:3: " + getCheckMessage(MSG_MANY_METHODS, 4, 3),
         };
 
         verifyWithInlineConfigParser(

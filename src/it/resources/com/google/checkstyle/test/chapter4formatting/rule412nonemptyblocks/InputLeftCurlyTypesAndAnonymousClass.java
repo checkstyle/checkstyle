@@ -48,7 +48,9 @@ public class InputLeftCurlyTypesAndAnonymousClass {
       int num = 1;
   }
 
-  // violation below ''{' at column 20 should have line break after'
+  // 2 violations 3 lines below:
+  // ''{' at column 20 should have line break after.'
+  // ''}' at column 42 should be alone on a line.'
   interface InnerC { void doSomething(); }
 
   static class InnerD extends Thread {

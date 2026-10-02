@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -42,7 +43,6 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -391,10 +391,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parse(fileWithConfig);
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration1.createConfiguration();
-        final List<TestInputViolation> inputViolations =
-                InlineConfigParser.getViolationsFromInputFile(targetFile);
         final List<String> actualViolations = getActualViolationsForFile(parsedConfig, targetFile);
-        verifyViolations(targetFile, inputViolations, actualViolations);
+        // Blank targets cannot contain violation comments without changing the test input.
+        if (!Files.readString(Path.of(targetFile)).isBlank()) {
+            final List<TestInputViolation> inputViolations =
+                    InlineConfigParser.getViolationsFromInputFile(targetFile);
+            verifyViolations(targetFile, inputViolations, actualViolations);
+        }
         assertWithMessage("Violations for %s differ.", targetFile)
                 .that(actualViolations)
                 .containsExactlyElementsIn(expected);
@@ -912,8 +915,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final ResourceBundle resourceBundle = ResourceBundle.getBundle(
                 messageBundle,
                 Locale.ROOT,
-                Thread.currentThread().getContextClassLoader(),
-                new Utf8Control());
+                Thread.currentThread().getContextClassLoader());
         final String pattern = resourceBundle.getString(messageKey);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);

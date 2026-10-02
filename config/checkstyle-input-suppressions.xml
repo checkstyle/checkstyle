@@ -61,6 +61,10 @@
   <suppress id="noCheckstyleInInputs"
             files="/checks/imports/redundantimport/InputRedundantImportWithChecker.java"/>
   <suppress id="noCheckstyleInInputs"
+            files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseRecordsAndEnums.java"/>
+  <suppress id="noCheckstyleInInputs"
+            files="/checks/coding/unnecessarypermitsclause/InputUnnecessaryPermitsClauseSubClassesInAnotherFile.java"/>
+  <suppress id="noCheckstyleInInputs"
           files="/packageobjectfactory/bar/FooCheck.java"/>
   <suppress id="noCheckstyleInInputs"
           files="/packageobjectfactory/foo/FooCheck.java"/>

@@ -606,6 +606,18 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/blocks/googlerightcurly.html#GoogleRightCurly">
+                GoogleRightCurly
+              </a>
+            </td>
+            <td>
+              Checks the placement of right curly braces (<code>'}'</code>) for code blocks,
+              following the <a href="https://google.github.io/styleguide/javaguide.html#s4.1-braces">
+              Google Java Style Guide </a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/header/header.html#Header">
                 Header
               </a>
@@ -1359,9 +1371,7 @@
               </a>
             </td>
             <td>
-              Checks that the order of modifiers conforms to the suggestions in the <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
-              Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">
-              9.4</a>.
+              Validates that the modifiers appear in the correct, standard order.
             </td>
           </tr>
           <tr>
@@ -2234,6 +2244,17 @@
             </td>
             <td>
               Checks if unnecessary parentheses are used in a statement or expression.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarypermitsclause.html#UnnecessaryPermitsClause">
+                UnnecessaryPermitsClause
+              </a>
+            </td>
+            <td>
+              Checks that a <code>permits</code> clause of a sealed class or interface is not
+              unnecessary, i.e.
             </td>
           </tr>
           <tr>

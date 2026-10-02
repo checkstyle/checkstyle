@@ -36,16 +36,16 @@ public class LabelHandler extends AbstractExpressionHandler {
     };
 
     /**
-     * Construct an instance of this handler with the given indentation check,
+     * Construct an instance of this handler with the given indentation context,
      * abstract syntax tree, and parent handler.
      *
-     * @param indentCheck   the indentation check
+     * @param context        the indentation check
      * @param expr          the abstract syntax tree
      * @param parent        the parent handler
      */
-    public LabelHandler(IndentationCheck indentCheck,
+    public LabelHandler(IndentationContext context,
         DetailAST expr, AbstractExpressionHandler parent) {
-        super(indentCheck, "label", expr, parent);
+        super(context, "label", expr, parent);
     }
 
     @Override

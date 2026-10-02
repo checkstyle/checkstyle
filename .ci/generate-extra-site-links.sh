@@ -61,9 +61,10 @@ if [[ -z "$CHANGED_XDOCS_PATHS" ]]; then
   exit 0
 fi
 
-# Fetch the diff of the pull request.
 PR_DIFF=$(curl --fail-with-body -s \
-  "https://patch-diff.githubusercontent.com/raw/$GITHUB_REPOSITORY_OWNER/checkstyle/pull/$PR_NUMBER.diff")
+  -H "Accept: application/vnd.github.v3.diff" \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
+  "https://api.github.com/repos/$GITHUB_REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER")
 
 # Iterate through all changed xdocs files.
 while IFS= read -r CURRENT_XDOC_PATH; do

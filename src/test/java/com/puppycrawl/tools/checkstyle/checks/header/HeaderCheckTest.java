@@ -67,23 +67,18 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNoHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderRegexpNoHeaderConfig.java"),
+                getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
     public void testWhitespaceHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("header", "\n    \n");
-
-        createChecker(checkConfig);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderRegexp.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderRegexpWhitespaceHeaderConfig.java"),
+                getPath("InputHeaderRegexp.java"), expected);
     }
 
     @Test
@@ -181,12 +176,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnore() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "2");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava2IgnoreConfig.java"),
+                getPath("InputHeaderjava2.header"), expected);
     }
 
     @Test
@@ -260,11 +253,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIgnoreLinesSorted() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "4,2,3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputHeaderjava3.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava3IgnoreLinesSortedConfig.java"),
+                getPath("InputHeaderjava3.header"), expected);
     }
 
     @Test
@@ -284,18 +276,16 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testHeaderIsValidWithBlankLines() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.blank-lines.header"));
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderBlankLines.java"));
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderBlankLinesConfig.java"),
+                getPath("InputHeaderBlankLines.java"));
     }
 
     @Test
     public void testHeaderIsValidWithBlankLinesBlockStyle() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.blank-lines2.header"));
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderBlankLines2.java"));
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderBlankLines2Config.java"),
+                getPath("InputHeaderBlankLines2.java"));
     }
 
     @Test

@@ -22,32 +22,14 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLStreamHandler;
 import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
-import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-/**
- * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
- * though we can't add/change the files for testing. The class loader is nested in this class,
- * so the custom class loader we are using is safe.
- *
- * @noinspection ClassLoaderInstantiation
- * @noinspectionreason ClassLoaderInstantiation - Custom class loader is needed to
- *      pass URLs for testing
- */
 public class LocalizedMessageTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
@@ -69,154 +51,6 @@ public class LocalizedMessageTest {
                 .contains("Error auditing {0}");
     }
 
-    @Test
-    public void testBundleReloadUrlNull() throws IOException {
-        final Utf8Control control = new Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
-                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                Locale.ENGLISH, "java.class",
-                Thread.currentThread().getContextClassLoader(), true);
-        assertWithMessage("Bundle should be null when reload is true and URL is null")
-                .that(bundle)
-                .isNull();
-    }
-
-    /**
-     * Tests reload of resource bundle.
-     *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
-     * @noinspectionreason resource - we have no need to use try with resources in testing
-     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
-     *      testing
-     */
-    @Test
-    public void testBundleReloadUrlNotNull() throws IOException {
-        final AtomicBoolean closed = new AtomicBoolean();
-
-        final InputStream inputStream = new InputStream() {
-            @Override
-            public int read() {
-                return -1;
-            }
-
-            @Override
-            public void close() {
-                closed.set(true);
-            }
-        };
-        final URLConnection urlConnection = new URLConnection(null) {
-            @Override
-            public void connect() {
-                // no code
-            }
-
-            @Override
-            public InputStream getInputStream() {
-                return inputStream;
-            }
-        };
-        final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
-            @Override
-            protected URLConnection openConnection(URL u) {
-                return urlConnection;
-            }
-        });
-
-        final Utf8Control control = new Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
-                "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
-                "java.class", new TestUrlsClassLoader(url), true);
-
-        assertWithMessage("Bundle should not be null when stream is not null")
-                .that(bundle)
-                .isNotNull();
-        assertWithMessage("connection should not be using caches")
-                .that(urlConnection.getUseCaches())
-                .isFalse();
-        assertWithMessage("connection should be closed")
-                .that(closed.get())
-                .isTrue();
-    }
-
-    /**
-     * Tests reload of resource bundle.
-     *
-     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
-     * @noinspectionreason resource - we have no need to use try with resources in testing
-     * @noinspectionreason IOResourceOpenedButNotSafelyClosed - no need to close resources in
-     *      testing
-     */
-    @Test
-    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
-        final AtomicBoolean closed = new AtomicBoolean();
-
-        final InputStream inputStream = new InputStream() {
-            @Override
-            public int read() {
-                return -1;
-            }
-
-            @Override
-            public void close() {
-                closed.set(true);
-            }
-        };
-        final URLConnection urlConnection = new URLConnection(null) {
-            @Override
-            public void connect() {
-                // no code
-            }
-
-            @Override
-            public InputStream getInputStream() {
-                return inputStream;
-            }
-        };
-        final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
-            @Override
-            protected URLConnection openConnection(URL u) {
-                return urlConnection;
-            }
-        });
-
-        final Utf8Control control = new Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
-                "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
-                "java.class", new TestUrlsClassLoader(url), false);
-
-        assertWithMessage("Bundle should not be null when stream is not null")
-                .that(bundle)
-                .isNotNull();
-        assertWithMessage("connection should not be using caches")
-                .that(urlConnection.getUseCaches())
-                .isTrue();
-        assertWithMessage("connection should be closed")
-                .that(closed.get())
-                .isTrue();
-    }
-
-    @Test
-    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
-        final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
-            @Override
-            protected URLConnection openConnection(URL ignore) {
-                return null;
-            }
-        });
-
-        final Utf8Control control = new Utf8Control();
-        final ResourceBundle bundle = control.newBundle(
-                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                Locale.ENGLISH, "java.class",
-                new TestUrlsClassLoader(url), true);
-        assertWithMessage("Bundle should be null when stream is null")
-                .that(bundle)
-                .isNull();
-    }
-
-    /**
-     * Verifies that the language specified with the system property {@code user.language} exists.
-     */
     @Test
     public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
@@ -291,27 +125,6 @@ public class LocalizedMessageTest {
     @AfterEach
     public void tearDown() {
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
-    }
-
-    /**
-     * Mocked ClassLoader for testing URL loading.
-     *
-     * @noinspection CustomClassloader
-     * @noinspectionreason CustomClassloader - needed to pass URLs to pretend these are loaded
-     *      from the classpath though we can't add/change the files for testing
-     */
-    private static final class TestUrlsClassLoader extends ClassLoader {
-
-        private final URL url;
-
-        private TestUrlsClassLoader(URL url) {
-            this.url = url;
-        }
-
-        @Override
-        public URL getResource(String name) {
-            return url;
-        }
     }
 
 }

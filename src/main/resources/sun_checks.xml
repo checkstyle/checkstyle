@@ -204,6 +204,7 @@
     <!-- See https://checkstyle.org/checks/misc/index.html -->
     <module name="ArrayTypeStyle"/>
     <module name="FinalParameters"/>
+    <module name="Indentation"/>
     <module name="TodoComment"/>
     <module name="UpperEll"/>
 

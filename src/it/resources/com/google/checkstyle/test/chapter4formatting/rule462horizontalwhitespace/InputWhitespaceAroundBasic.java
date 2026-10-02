@@ -224,7 +224,10 @@ class InputWhitespaceAroundBasic {
       Runnable l;
 
       l = ()-> {}; // violation ''->' is not preceded with whitespace.'
-      l = () ->{}; // violation ''->' is not followed by whitespace.'
+      l = () ->{};
+      // 2 violations above:
+      // ''->' is not followed by whitespace.'
+      // ''{' is not preceded with whitespace.'
       l = () -> {};
       l = () -> {};
 

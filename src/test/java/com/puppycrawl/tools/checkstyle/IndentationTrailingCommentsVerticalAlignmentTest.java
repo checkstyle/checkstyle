@@ -33,7 +33,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class IndentationTrailingCommentsVerticalAlignmentTest {
@@ -122,16 +121,40 @@ public class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static int extractTabWidthFromConfig(Configuration config) throws CheckstyleException {
         int result = 4;
+        final Configuration indentModule = findIndentationModule(config);
+        if (indentModule != null) {
+            result = readTabWidthProperty(indentModule, result);
+        }
+        return result;
+    }
+
+    private static Configuration findIndentationModule(Configuration config) {
+        Configuration result = null;
         for (Configuration child : config.getChildren()) {
             if ("TreeWalker".equals(child.getName())) {
-                for (Configuration module : child.getChildren()) {
-                    if ("IndentationCheck".equals(module.getName())
-                            || "Indentation".equals(module.getName())) {
-                        final IndentationCheck check = new IndentationCheck();
-                        check.configure(module);
-                        result = check.getIndentationTabWidth();
-                    }
-                }
+                result = findIndentationChild(child);
+            }
+        }
+        return result;
+    }
+
+    private static Configuration findIndentationChild(Configuration treeWalker) {
+        Configuration result = null;
+        for (Configuration module : treeWalker.getChildren()) {
+            if ("IndentationCheck".equals(module.getName())
+                    || "Indentation".equals(module.getName())) {
+                result = module;
+            }
+        }
+        return result;
+    }
+
+    private static int readTabWidthProperty(Configuration module, int defaultValue)
+            throws CheckstyleException {
+        int result = defaultValue;
+        for (String propertyName : module.getPropertyNames()) {
+            if ("tabWidth".equals(propertyName)) {
+                result = Integer.parseInt(module.getProperty(propertyName));
             }
         }
         return result;
