@@ -78,7 +78,7 @@ public class ExpressionOverBlockLambdaCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!isSwitchRuleLambda(ast)
+        if (!isSwitchRuleArrow(ast)
                 && isSingleLineLambda(ast)) {
             final DetailAST body = ast.getLastChild();
             final DetailAST statement =
@@ -92,13 +92,14 @@ public class ExpressionOverBlockLambdaCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the lambda is a switch rule lambda.
+     * Checks if the given lambda node is the arrow token of a switch rule.
+     * Such token is the only lambda which has no children.
      *
      * @param lambda the lambda AST node
-     * @return true if the lambda is part of a switch rule
+     * @return true if the lambda is the arrow token of a switch rule
      */
-    private static boolean isSwitchRuleLambda(DetailAST lambda) {
-        return lambda.getParent().getType() == TokenTypes.SWITCH_RULE;
+    private static boolean isSwitchRuleArrow(DetailAST lambda) {
+        return !lambda.hasChildren();
     }
 
     /**
