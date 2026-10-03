@@ -128,7 +128,10 @@ public class InputFallThrough
                 default:
                     return;
                 }
-            default: // 2 violations
+            default:
+            // 2 violations above:
+            //    'Fall through from previous branch of the switch statement.'
+            //    'Fall through from the last branch of the switch statement.'
                 // this is the last label
                 i++;
             }
