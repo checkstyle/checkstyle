@@ -46,14 +46,44 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Parse PR Body, search for links to .properties and .xml files
-  parse_body:
+  check_triggerer:
     if: >-
       ((inputs.trigger-phrase || github.event.comment.body) == 'GitHub, generate report')
       && (github.event_name != 'issue_comment'
-          || (github.event.issue.pull_request != null
-              && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'),
-                          github.event.comment.author_association)))
+          || github.event.issue.pull_request != null)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject comment from untrusted triggerer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTHOR_ASSOCIATION: ${{ github.event.comment.author_association }}
+          LOGIN: ${{ github.event.comment.user.login }}
+          REPO: ${{ github.repository }}
+          MIN_MERGED_PRS: 5
+        run: |
+          set -eu
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Trusted via workflow_dispatch"
+            exit 0
+          fi
+          case "$AUTHOR_ASSOCIATION" in
+            OWNER|MEMBER|COLLABORATOR)
+              echo "Trusted via author_association=$AUTHOR_ASSOCIATION"
+              exit 0
+              ;;
+          esac
+          QUERY="repo:$REPO+is:pr+is:merged+author:$LOGIN"
+          COUNT=$(gh api "search/issues?q=$QUERY" --jq .total_count)
+          echo "Merged PR count for $LOGIN in $REPO: $COUNT (threshold $MIN_MERGED_PRS)"
+          if [ "$COUNT" -ge "$MIN_MERGED_PRS" ]; then
+            exit 0
+          fi
+          echo "Rejecting: $LOGIN has $COUNT merged PRs, below threshold $MIN_MERGED_PRS"
+          exit 1
+
+  # Parse PR Body, search for links to .properties and .xml files
+  parse_body:
+    needs: check_triggerer
     runs-on: ubuntu-latest
     outputs:
       projects_link: ${{ steps.parse.outputs.projects_link }}
