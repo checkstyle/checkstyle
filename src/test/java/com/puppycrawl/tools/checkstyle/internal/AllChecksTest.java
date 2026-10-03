@@ -434,7 +434,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 throw new CheckstyleException("Couldn't find check: " + checkName, exc);
             }
             final AbstractCheck check;
-            if (instance instanceof AbstractCheck abstractCheck
+            if (instance instanceof final AbstractCheck abstractCheck
                     && !isAllTokensAcceptable(abstractCheck)) {
                 check = abstractCheck;
             }
