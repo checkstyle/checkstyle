@@ -200,6 +200,10 @@
              files="src/test/resources/.*/defaultlogger/ExpectedDefaultLoggerErrorsTestIgnoreSeverityLevel\.txt"/>
   <suppress id="noEmptyFile"
              files="src/test/resources/.*/InputLineEndingOneLineLf\.txt"/>
+  <suppress id="noEmptyFile"
+             files="src/test/resources/.*/regexpmultiline/InputRegexpMultilineMinimum\.txt"/>
+  <suppress id="noEmptyFile"
+             files="src/test/resources/.*/regexpmultiline/InputRegexpMultilineMinimumCustomMessage\.txt"/>
   <!-- can be empty until new modern syntax started to be used -->
   <suppress id="noEmptyFile"
             files="config/google-java-format/excluded/noncompilable-input-paths\.txt"/>
