@@ -203,6 +203,17 @@
     <!-- Miscellaneous other checks.                   -->
     <!-- See https://checkstyle.org/checks/misc/index.html -->
     <module name="ArrayTypeStyle"/>
+    <module name="DescendantToken">
+      <!-- At most three variables in the initialization or update clause
+       of a for statement. -->
+      <property name="id" value="ForClauseMaxVariables"/>
+      <property name="tokens" value="FOR_INIT, FOR_ITERATOR"/>
+      <property name="limitedTokens" value="COMMA"/>
+      <property name="maximumDepth" value="2"/>
+      <property name="maximumNumber" value="2"/>
+      <property name="maximumMessage"
+                value="Avoid using more than three variables in the for clause."/>
+    </module>
     <module name="FinalParameters"/>
     <module name="Indentation"/>
     <module name="TodoComment"/>
