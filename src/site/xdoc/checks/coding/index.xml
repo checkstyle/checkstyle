@@ -467,6 +467,18 @@
           </tr>
           <tr>
             <td>
+              <a href="redundantthis.html#RedundantThis">
+                RedundantThis
+              </a>
+            </td>
+            <td>
+              Checks that references to instance variables and methods of the current object avoid
+              unnecessary use of <code>this</code>, unless it is required to resolve ambiguity with
+              a shadowed field.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="requirethis.html#RequireThis">
                 RequireThis
               </a>
