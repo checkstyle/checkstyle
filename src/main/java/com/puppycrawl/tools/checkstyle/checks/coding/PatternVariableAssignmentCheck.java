@@ -63,6 +63,13 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
         TokenTypes.BOR_ASSIGN);
 
     /**
+     * The set of nested type definition tokens that create a new scope and should not be traversed.
+     */
+    private static final Set<Integer> NESTED_TYPE_DEFS = Set.of(
+        TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
+        TokenTypes.RECORD_DEF, TokenTypes.ANNOTATION_DEF, TokenTypes.LAMBDA);
+
+    /**
      * Creates a new {@code PatternVariableAssignmentCheck} instance.
      */
     public PatternVariableAssignmentCheck() {
@@ -209,6 +216,51 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
+     * Finds the first child of the given node that is not a nested scope to skip.
+     *
+     * @param node the parent node
+     * @return the first non-skipped child, or null if none
+     */
+    @Nullable
+    private static DetailAST getFirstNonSkippedChild(DetailAST node) {
+        DetailAST child = node.getFirstChild();
+        while (child != null && isNestedScopeToSkip(child)) {
+            child = child.getNextSibling();
+        }
+        return child;
+    }
+
+    /**
+     * Finds the next sibling of the given node that is not a nested scope to skip.
+     *
+     * @param node the current node
+     * @return the next non-skipped sibling, or null if none
+     */
+    @Nullable
+    private static DetailAST getNextNonSkippedSibling(DetailAST node) {
+        DetailAST sibling = node.getNextSibling();
+        while (sibling != null && isNestedScopeToSkip(sibling)) {
+            sibling = sibling.getNextSibling();
+        }
+        return sibling;
+    }
+
+    /**
+     * Checks whether a node represents a nested type or anonymous class that creates
+     * a new scope and should be skipped during traversal.
+     *
+     * @param node the AST node to check
+     * @return true if the node should be skipped, false otherwise
+     */
+    private static boolean isNestedScopeToSkip(DetailAST node) {
+        final boolean isNestedTypeDef = NESTED_TYPE_DEFS.contains(node.getType());
+        final boolean isAnonymousClassBody = node.getType() == TokenTypes.OBJBLOCK
+                && node.getParent() != null
+                && node.getParent().getType() == TokenTypes.LITERAL_NEW;
+        return isNestedTypeDef || isAnonymousClassBody;
+    }
+
+    /**
      * Shifts once to the next possible branch within traverse trajectory.
      *
      * @param ast AST branch to shift from.
@@ -219,18 +271,19 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     private static DetailAST shiftToNextTraversedBranch(DetailAST ast, DetailAST boundAst) {
         DetailAST newAst = ast;
 
-        if (ast.getFirstChild() != null) {
-            newAst = ast.getFirstChild();
+        final DetailAST firstChild = getFirstNonSkippedChild(ast);
+        if (firstChild != null) {
+            newAst = firstChild;
         }
         else {
-            while (newAst.getNextSibling() == null && !newAst.equals(boundAst)) {
+            while (getNextNonSkippedSibling(newAst) == null && !newAst.equals(boundAst)) {
                 newAst = newAst.getParent();
             }
             if (newAst.equals(boundAst)) {
                 newAst = null;
             }
             else {
-                newAst = newAst.getNextSibling();
+                newAst = getNextNonSkippedSibling(newAst);
             }
         }
 
