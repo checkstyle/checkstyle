@@ -340,7 +340,7 @@ jobs:
           ./.ci/append-to-github-output.sh "input_file" "$FOUND_FILE"
 
       - name: Download Extractor JAR
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@efa4cd07bd0195e6cc65e9e30c251b49ce4d3e51 # v1.8
         with:
           repository: "checkstyle/test-configs"
           tag: "extractor-${{env.EXTRACTOR_VERSION}}"
@@ -710,7 +710,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Download DiffTool JAR
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@efa4cd07bd0195e6cc65e9e30c251b49ce4d3e51 # v1.8
         with:
           repository: "checkstyle/test-configs"
           tag: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}"
@@ -718,7 +718,7 @@ jobs:
           out-file-path: ".ci-temp"
 
       - name: Download patch-diff-report-tool JAR
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@efa4cd07bd0195e6cc65e9e30c251b49ce4d3e51 # v1.8
         with:
           repository: "checkstyle/contribution"
           tag: "patch-diff-report-tool-${{ env.PATCH_DIFF_TOOL_VERSION }}"
@@ -920,7 +920,7 @@ jobs:
           rm regression-report.tar
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -1134,7 +1134,7 @@ jobs:
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
-        uses: peter-evans/create-or-update-comment@v5
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
