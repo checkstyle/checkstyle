@@ -14,7 +14,8 @@
   <suppress id="lineLengthXml" files="/meta/"/>
 
   <suppress checks="FileLength"
-             files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
+             files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java|
+                    |XdocsExamplesAstConsistencyTest.java"
              lines="1"/>
   <!-- Until reduce the suppression data blocks -->
   <suppress checks="FileLength"
