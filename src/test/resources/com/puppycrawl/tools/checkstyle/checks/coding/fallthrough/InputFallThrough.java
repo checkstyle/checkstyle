@@ -102,7 +102,7 @@ public class InputFallThrough
                 }
             case 22:
                 try {
-                    i++;
+                        i++;
                     break;
                 } catch (RuntimeException e) {
                     i--;
@@ -128,7 +128,8 @@ public class InputFallThrough
                 default:
                     return;
                 }
-            default: // 2 violations
+            default: // violation 'Fall\ through from previous branch of the switch statement.'
+                // violation above 'Fall .* from the last branch of the switch statement.'
                 // this is the last label
                 i++;
             }

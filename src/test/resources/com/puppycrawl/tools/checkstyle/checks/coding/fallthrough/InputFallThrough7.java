@@ -47,7 +47,8 @@ public class InputFallThrough7 {
             case 4:
             case 3:
                 c = 4;
-            case 2: // 2 violations
+            case 2: // violation 'Fall through from previous branch of the switch statement'
+                // violation above 'Fall .* from the last branch of the switch statement'
             case 1:
             default:
                 c = 9;
