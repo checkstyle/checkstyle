@@ -95,6 +95,16 @@
           </tr>
           <tr>
             <td>
+              <a href="duplicatemaporsetkey.html#DuplicateMapOrSetKey">
+                DuplicateMapOrSetKey
+              </a>
+            </td>
+            <td>
+              Checks for duplicate key or element arguments in Java collection factory methods.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="emptystatement.html#EmptyStatement">
                 EmptyStatement
               </a>
