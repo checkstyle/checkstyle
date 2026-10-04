@@ -318,8 +318,7 @@ public final class ConfigurationLoader {
      * Implements the SAX document handler interfaces, so they do not
      * appear in the public API of the ConfigurationLoader.
      */
-    private final class InternalLoader
-        extends XmlLoader {
+    private final class InternalLoader extends XmlLoader {
 
         /** Module elements. */
         private static final String MODULE = "module";

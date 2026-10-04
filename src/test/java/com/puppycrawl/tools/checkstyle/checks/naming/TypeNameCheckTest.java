@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class TypeNameCheckTest
-    extends AbstractModuleTestSupport {
+public class TypeNameCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

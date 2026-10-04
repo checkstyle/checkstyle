@@ -38,8 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *
  * @since 3.0
  */
-public class MethodNameCheck
-    extends AbstractAccessControlNameCheck {
+public class MethodNameCheck extends AbstractAccessControlNameCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

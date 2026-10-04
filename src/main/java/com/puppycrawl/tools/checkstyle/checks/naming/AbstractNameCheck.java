@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  */
 @StatelessCheck
-public abstract class AbstractNameCheck
-    extends AbstractCheck {
+public abstract class AbstractNameCheck extends AbstractCheck {
 
     /** The key for the message. */
     private final String messageKey;

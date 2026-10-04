@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class NewlineAtEndOfFileCheckTest
-    extends AbstractModuleTestSupport {
+public class NewlineAtEndOfFileCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class OperatorWrapCheckTest
-    extends AbstractModuleTestSupport {
+public class OperatorWrapCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

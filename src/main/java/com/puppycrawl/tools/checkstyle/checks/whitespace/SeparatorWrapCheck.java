@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.8
  */
 @StatelessCheck
-public class SeparatorWrapCheck
-    extends AbstractCheck {
+public class SeparatorWrapCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

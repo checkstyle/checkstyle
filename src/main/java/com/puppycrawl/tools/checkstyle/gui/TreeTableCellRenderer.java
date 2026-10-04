@@ -34,8 +34,7 @@ import javax.swing.tree.TreeModel;
 /**
  * A TreeCellRenderer that displays a JTree.
  */
-class TreeTableCellRenderer extends JTree implements
-        TableCellRenderer {
+class TreeTableCellRenderer extends JTree implements TableCellRenderer {
 
     /**
      * Serial ID.

@@ -89,8 +89,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * @since 3.1
  */
 @StatelessCheck
-public class NewlineAtEndOfFileCheck
-    extends AbstractFileSetCheck {
+public class NewlineAtEndOfFileCheck extends AbstractFileSetCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

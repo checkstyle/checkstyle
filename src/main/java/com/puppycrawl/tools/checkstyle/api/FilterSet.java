@@ -28,8 +28,7 @@ import java.util.Set;
  * If a filter in the set rejects an AuditEvent, then the
  * AuditEvent is rejected. Otherwise, the AuditEvent is accepted.
  */
-public class FilterSet
-    implements Filter {
+public class FilterSet implements Filter {
 
     /** Filter set. */
     private final Set<Filter> filters = new HashSet<>();

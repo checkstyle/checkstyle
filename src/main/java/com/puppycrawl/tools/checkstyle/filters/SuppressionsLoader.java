@@ -43,8 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Loads a filter chain of suppressions.
  */
-public final class SuppressionsLoader
-    extends XmlLoader {
+public final class SuppressionsLoader extends XmlLoader {
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =

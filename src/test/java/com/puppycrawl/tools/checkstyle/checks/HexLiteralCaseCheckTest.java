@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class HexLiteralCaseCheckTest
-        extends AbstractModuleTestSupport {
+public class HexLiteralCaseCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

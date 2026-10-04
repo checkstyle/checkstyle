@@ -27,8 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class CovariantEqualsCheckTest
-    extends AbstractModuleTestSupport {
+public class CovariantEqualsCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

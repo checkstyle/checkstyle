@@ -328,7 +328,8 @@ public class ModuleReflectionUtilTest {
     }
 
     private static final class TreeWalkerFilterClass
-            extends AbstractAutomaticBean implements TreeWalkerFilter {
+            extends AbstractAutomaticBean
+            implements TreeWalkerFilter {
 
         @Override
         protected void finishLocalSetup() {
@@ -343,7 +344,8 @@ public class ModuleReflectionUtilTest {
     }
 
     private static final class AuditListenerClass
-            extends AbstractAutomaticBean implements AuditListener {
+            extends AbstractAutomaticBean
+            implements AuditListener {
 
         @Override
         protected void finishLocalSetup() {

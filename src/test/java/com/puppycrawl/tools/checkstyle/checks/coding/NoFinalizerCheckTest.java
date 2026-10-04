@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * NoFinalizerCheck test.
  *
  */
-public class NoFinalizerCheckTest
-    extends AbstractModuleTestSupport {
+public class NoFinalizerCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

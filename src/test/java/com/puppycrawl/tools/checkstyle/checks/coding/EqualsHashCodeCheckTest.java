@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class EqualsHashCodeCheckTest
-    extends AbstractModuleTestSupport {
+public class EqualsHashCodeCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
