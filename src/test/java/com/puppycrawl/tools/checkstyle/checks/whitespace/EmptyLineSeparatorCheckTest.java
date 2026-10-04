@@ -484,6 +484,8 @@ public class EmptyLineSeparatorCheckTest
             "94:13: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
             "97:21: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
             "113:9: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "ENUM_CONSTANT_DEF"),
+            "122:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
+            "129:9: " + getCheckMessage(MSG_MULTIPLE_LINES, "ENUM_CONSTANT_DEF"),
         };
 
         verifyWithInlineConfigParser(

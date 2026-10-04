@@ -114,4 +114,19 @@ public class InputEmptyLineSeparatorEnum {
 
 
     }
+
+    private enum State10 {
+        FIRST,
+
+
+        SECOND, THIRD; // violation ''ENUM_CONSTANT_DEF' has more than 1 empty lines before.'
+    }
+
+    private enum State11 {
+        ONE, TWO,
+
+
+        THREE, FOUR, FIVE; // violation ''ENUM_CONSTANT_DEF' has more than 1 empty lines before.'
+    }
 }
+
