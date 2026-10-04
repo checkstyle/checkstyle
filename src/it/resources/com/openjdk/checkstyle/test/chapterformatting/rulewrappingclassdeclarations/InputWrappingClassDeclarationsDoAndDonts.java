@@ -20,8 +20,8 @@ public class InputWrappingClassDeclarationsDoAndDonts {
                                                         List<R>> {
     }
 
-    // Not covered until https://github.com/checkstyle/checkstyle/issues/20595
     abstract class MyGenericClassOne<T> implements Comparable<T>,
+            // violation above 'should be on a new line'
             Predicate<T> {
     }
 }
