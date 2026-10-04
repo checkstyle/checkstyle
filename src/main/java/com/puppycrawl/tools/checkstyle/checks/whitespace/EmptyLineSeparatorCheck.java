@@ -524,13 +524,14 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             result = true;
         }
         else {
-            // For multiline enum, true if token is placed in group of single line
-            // except first enum constant
-            final DetailAST firstConstant =
-                    objectBlock.findFirstToken(TokenTypes.ENUM_CONSTANT_DEF);
-            if (firstConstant.getLineNo() == ast.getLineNo()
-                    && firstConstant.getColumnNo() < ast.getColumnNo()) {
-                result = true;
+            for (DetailAST previousSibling = ast.getPreviousSibling();
+                 previousSibling != null;
+                 previousSibling = previousSibling.getPreviousSibling()) {
+                if (previousSibling.getType() == TokenTypes.ENUM_CONSTANT_DEF
+                        && previousSibling.getLineNo() == ast.getLineNo()) {
+                    result = true;
+                    break;
+                }
             }
         }
 
