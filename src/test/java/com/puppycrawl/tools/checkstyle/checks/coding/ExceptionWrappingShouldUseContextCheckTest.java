@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ExceptionWrappingShouldUseContextCheckTest extends AbstractModuleTestSupport {
 
@@ -62,6 +63,51 @@ public class ExceptionWrappingShouldUseContextCheckTest extends AbstractModuleTe
 
         verifyWithInlineConfigParser(
                 getPath("InputExceptionWrappingShouldUseContext.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases1() throws Exception {
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_KEY),
+            "57:13: " + getCheckMessage(MSG_KEY),
+            "77:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionWrappingShouldUseContextEdgeCases1.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionWrappingShouldUseContextEdgeCases2.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases3() throws Exception {
+        final String[] expected = {
+            "46:17: " + getCheckMessage(MSG_KEY),
+            "58:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionWrappingShouldUseContextEdgeCases3.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecord() throws Exception {
+        final String[] expected = {
+            "33:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionWrappingShouldUseContextRecord.java"),
                 expected);
     }
 
