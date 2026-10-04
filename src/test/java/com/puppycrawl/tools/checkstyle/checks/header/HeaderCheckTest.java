@@ -55,14 +55,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStaticHeader() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
             "1: " + getCheckMessage(MSG_MISSING),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeader.java"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderStaticConfig.java"),
+                getPath("InputHeader.java"), expected);
     }
 
     @Test
@@ -162,16 +160,14 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNotMatch() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
-        checkConfig.addProperty("ignoreLines", "");
         final String[] expected = {
             "2: " + getCheckMessage(MSG_MISMATCH,
                     "// checkstyle: Checks Java source code and other text files for adherence to a"
                         + " set of rules."),
         };
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, getPath("InputHeaderjava2.header"), expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputHeaderjava2NotMatchConfig.java"),
+                getPath("InputHeaderjava2NotMatch.header"), expected);
     }
 
     @Test
