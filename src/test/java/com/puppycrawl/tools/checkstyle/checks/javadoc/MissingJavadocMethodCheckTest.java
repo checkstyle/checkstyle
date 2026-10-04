@@ -412,6 +412,15 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSetterGetterWithBlockComments() throws Exception {
+        final String[] expected = {
+            "72:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "getWithCalculation"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputMissingJavadocMethodSetterGetterBlockComment.java"), expected);
+    }
+
+    @Test
     public void test11684081() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
