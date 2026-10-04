@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class SeparatorWrapCheckTest
-        extends AbstractModuleTestSupport {
+public class SeparatorWrapCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

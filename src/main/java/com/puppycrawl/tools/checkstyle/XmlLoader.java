@@ -49,8 +49,7 @@ import org.xml.sax.helpers.DefaultHandler;
  * @noinspectionreason ThisEscapedInObjectConstruction - only reference is used and not
  *      accessed until initialized
  */
-public class XmlLoader
-    extends DefaultHandler {
+public class XmlLoader extends DefaultHandler {
 
     /** Maps public id to resolve to resource name for the DTD. */
     private final Map<String, String> publicIdToResourceNameMap;

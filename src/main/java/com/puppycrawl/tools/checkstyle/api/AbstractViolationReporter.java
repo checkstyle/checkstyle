@@ -33,8 +33,7 @@ import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
  *      define these methods, as needed. They should be overridden only
  *      by demand in subclasses
  */
-public abstract class AbstractViolationReporter
-    extends AbstractAutomaticBean {
+public abstract class AbstractViolationReporter extends AbstractAutomaticBean {
 
     /** The severity level of any violations found. */
     private SeverityLevel severityLevel = SeverityLevel.ERROR;

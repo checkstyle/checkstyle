@@ -29,8 +29,7 @@ import java.util.stream.Collectors;
  * underlying {@code Properties} object.
  *
  */
-public final class PropertiesExpander
-    implements PropertyResolver {
+public final class PropertiesExpander implements PropertyResolver {
 
     /** The underlying values. */
     private final Map<String, String> values;

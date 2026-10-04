@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class WhitespaceAroundCheckTest
-    extends AbstractModuleTestSupport {
+public class WhitespaceAroundCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

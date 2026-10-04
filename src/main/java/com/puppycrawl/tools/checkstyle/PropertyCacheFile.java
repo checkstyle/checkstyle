@@ -384,8 +384,7 @@ public final class PropertyCacheFile {
      * @param location       resource location.
      * @param contentHashSum content hash sum.
      */
-    private record ExternalResource(String location,
-                                    String contentHashSum) {
+    private record ExternalResource(String location, String contentHashSum) {
     }
 
 }

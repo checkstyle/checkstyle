@@ -26,8 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class NoWhitespaceBeforeCheckTest
-    extends AbstractModuleTestSupport {
+public class NoWhitespaceBeforeCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

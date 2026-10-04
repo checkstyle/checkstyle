@@ -41,8 +41,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class LeftCurlyCheck
-    extends AbstractCheck {
+public class LeftCurlyCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

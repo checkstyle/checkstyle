@@ -26,8 +26,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 
-public class EmptyStatementCheckTest
-    extends AbstractModuleTestSupport {
+public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

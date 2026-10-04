@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class DeclarationOrderCheckTest
-    extends AbstractModuleTestSupport {
+public class DeclarationOrderCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

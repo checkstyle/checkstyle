@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 /**
  * Loads a list of package names from a package name XML file.
  */
-public final class PackageNamesLoader
-    extends XmlLoader {
+public final class PackageNamesLoader extends XmlLoader {
 
     /** The public ID for the configuration dtd. */
     private static final String DTD_PUBLIC_ID =

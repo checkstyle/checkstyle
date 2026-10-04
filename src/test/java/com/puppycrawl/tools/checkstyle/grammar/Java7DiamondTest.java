@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests Java 7 diamond can be parsed.
  */
-public class Java7DiamondTest
-    extends AbstractModuleTestSupport {
+public class Java7DiamondTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

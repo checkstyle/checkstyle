@@ -31,8 +31,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class EmptyLineSeparatorCheckTest
-    extends AbstractModuleTestSupport {
+public class EmptyLineSeparatorCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

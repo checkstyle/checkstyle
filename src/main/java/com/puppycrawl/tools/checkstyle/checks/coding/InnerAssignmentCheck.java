@@ -69,8 +69,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @StatelessCheck
-public class InnerAssignmentCheck
-        extends AbstractCheck {
+public class InnerAssignmentCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

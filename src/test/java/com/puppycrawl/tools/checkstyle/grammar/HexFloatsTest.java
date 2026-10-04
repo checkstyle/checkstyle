@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests hex floats and doubles can be parsed.
  */
-public class HexFloatsTest
-    extends AbstractModuleTestSupport {
+public class HexFloatsTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
