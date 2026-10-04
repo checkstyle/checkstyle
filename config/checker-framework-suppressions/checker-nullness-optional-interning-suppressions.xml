@@ -6040,6 +6040,28 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter firstArg of JavadocMethodCheck.addJavadocTag.</message>
+    <lineContent>addJavadocTag(ast, tagName, null);</lineContent>
+    <details>
+      found   : null (NullType)
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter obj of Objects.requireNonNull.</message>
+    <lineContent>return Objects.requireNonNull(javadocTagAsts.get(tag));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailNode
+      required: @Initialized @NonNull DetailNode
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference params</message>
     <lineContent>DetailAST child = params.getFirstChild();</lineContent>
