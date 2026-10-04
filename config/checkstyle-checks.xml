@@ -792,6 +792,11 @@
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
     </module>
+    <module name="JavadocUtilizingTrailingSpace">
+      <!-- This Check is very demanding and prone to cause a lot of changes for whole
+           javadoc just to move one word from one line to another -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="PreferLiteralJavadocInlineTag"/>
     <module name="JavadocVariable"/>
     <module name="MissingJavadocMethod">

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocUtilizingTrailingSpace</title>
+  </head>
+  <body>
+    <section name="JavadocUtilizingTrailingSpace">
+      <p>Since Checkstyle 14.4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#JavadocUtilizingTrailingSpace_Description">Description</a></li>
+          <li><a href="#JavadocUtilizingTrailingSpace_Properties">Properties</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#JavadocUtilizingTrailingSpace_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">With default settings</a></li>
+              <li><a href="#Example2-config" class="toc-sublink">With a custom line limit</a></li>
+              <li><a href="#Example3-config" class="toc-sublink">Report long lines that have a URL or a link</a></li>
+            </ul>
+          </li>
+          <li><a href="#JavadocUtilizingTrailingSpace_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#JavadocUtilizingTrailingSpace_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#JavadocUtilizingTrailingSpace_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#JavadocUtilizingTrailingSpace_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="JavadocUtilizingTrailingSpace_Description">
+        <div>
+          Checks that Javadoc lines efficiently utilize the available horizontal space.
+        </div>
+
+        <p>
+          Every line of a Javadoc comment is compared with <code>lineLimit</code>, the preferred line
+          length. A line is reported when it is longer than the limit, or when it stops early although
+          the first word of the next line would still have fit. Blank lines are never reported.
+          The examples on this page use the default limit of 80 characters, and show the Javadoc
+          of a method, indented by four spaces.
+        </p>
+
+        <p>
+          <b>Lines that stop too early.</b> Words are expected to fill a line up to the limit,
+          so a line is reported when the first word of the next line would still fit on it.
+          The fix is to move words up until the next word does not fit. Words are never moved up
+          from a line that is blank, or that starts with a block tag, an inline tag, a URL or an
+          HTML tag, so the line before such a line is not reported.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // violation, "not" would fit on the first line
+    &#47;**
+     * Not part of the API. This is returned when a type
+     * not known to this wrapper is returned.
+     *&#47;
+
+    // ok
+    &#47;**
+     * Not part of the API. This is returned when a type not known to this
+     * wrapper is returned.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Lines that are too long.</b> A line is reported when it is longer than the limit.
+          The fix is to wrap it at a word.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // violation, longer than 80 characters
+    &#47;**
+     * Creates a client for the service and loads its settings from the given file path.
+     *&#47;
+
+    // ok
+    &#47;**
+     * Creates a client for the service and loads its settings from the given
+     * file path.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Block tags.</b> The value of a block tag, such as <code>@param</code>, <code>@return</code>
+          or <code>@throws</code>, is checked like any other text. A line that has only the name of
+          the block tag is not reported, so the value can start on the next line. A line that
+          starts with a block tag is never joined to the line before it.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // violation, longer than 80 characters
+    &#47;**
+     * &#64;return Date the company was closed or dissolved, see {&#64;link #getStatus()}.
+     *&#47;
+
+    // ok, the value starts on the next line
+    &#47;**
+     * &#64;return
+     *     Date the company was closed or dissolved, see {&#64;link #getStatus()}.
+     *&#47;
+
+    // ok, wrapped before the inline tag
+    &#47;**
+     * &#64;return Date the company was closed or dissolved, see
+     * {&#64;link #getStatus()}.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Inline tags.</b> An inline tag, such as a link to a class, cannot be wrapped. A line
+          that starts with an inline tag and has nothing else on it is not reported, even when it is
+          longer than the limit. When other words follow on the same line, the line is reported,
+          because those words can move to the next line. A block tag never gets this exception for
+          its value.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // ok, a tag alone on a line may be longer than 80 characters
+    &#47;**
+     * Refer to the method
+     * {&#64;link com.example.registry.status.CompanyStatusRegistry#findStatus(String)}
+     *&#47;
+
+    // violation, other words follow the tag
+    &#47;**
+     * {&#64;link com.example.registry.status.CompanyStatusRegistry#findStatus(String)} finds it.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>URLs and links.</b> A URL cannot be wrapped, so a line that matches
+          <code>ignorePattern</code> is not reported as too long. By default this is every line that has
+          a URL or the <code>href</code> attribute of a link. A block tag line whose value starts with a
+          link, such as <code>@see &lt;a href="..."&gt;</code>, is therefore not reported, whether the link ends
+          on that line or on a later one. Such lines can still be reported as stopping too early.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // ok, lines that have a URL or a link may be longer than 80 characters
+    &#47;**
+     * See https://example.com/documentation/company-registry/api/v2/status-endpoints/details
+     *
+     * &#64;see &lt;a href="https://example.com/documentation/company-registry/api/v2/status"&gt;
+     *     Status endpoints&lt;/a&gt;
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>HTML.</b> A line that starts with an HTML tag, such as <code>&lt;p&gt;</code> or <code>&lt;/li&gt;</code>, is
+          not reported as too short, and it is not joined to the line before it, so tags can be
+          placed on their own lines. Such a line, and the text inside an HTML element, must still
+          not be longer than the limit.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // ok, a line that starts with an HTML tag is never too short
+    &#47;**
+     * &lt;p&gt;Companies House allows you to query
+     * information on registered companies in Britain.&lt;/p&gt;
+     *&#47;
+
+    // violation, text inside an HTML element is checked
+    &#47;**
+     * &lt;ul&gt;
+     * &lt;li&gt;Static configuration reads files from the classpath or a given path.&lt;/li&gt;
+     * &lt;/ul&gt;
+     *&#47;
+
+    // ok
+    &#47;**
+     * &lt;ul&gt;
+     * &lt;li&gt;Static configuration reads files from the classpath or a given
+     * path.&lt;/li&gt;
+     * &lt;/ul&gt;
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Pre and code elements.</b> The content of <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> elements,
+          and HTML comments, is ignored, so code samples can keep their own formatting.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // ok, the content of a pre element is ignored
+    &#47;**
+     * Example:
+     * &lt;pre&gt;
+     * new CompanyRegistry().findStatus("00000006").orElseThrow(NotRegisteredException::new);
+     * &lt;/pre&gt;
+     *&#47;
+        </code></pre></div>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocUtilizingTrailingSpace_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="ignorePattern"/><a href="#ignorePattern">ignorePattern</a></td>
+              <td>Specify pattern for lines that are not reported as too long.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://</code></td>
+              <td>14.4.0</td>
+            </tr>
+            <tr>
+              <td><a id="lineLimit"/><a href="#lineLimit">lineLimit</a></td>
+              <td>Specify the line length limit.</td>
+              <td><a href="../../property-types.html#int">int</a></td>
+              <td><code>80</code></td>
+              <td>14.4.0</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.4.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocUtilizingTrailingSpace_Examples">
+        <p id="Example1-config">
+          To configure the check with default settings:
+        </p>
+
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocUtilizingTrailingSpace"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example1-code">Example of violations:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  // violation 2 lines below 'Line under-utilized (31/80). Words from below could be moved up'
+  /**
+   * The company returned value
+   * is invalid.
+   */
+  public void shortLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 86)'
+  /**
+   * Refer to the specific status {@link com.wide.bundles.exceeds.limit.CompanyStatus}
+   */
+  public void longLine() { }
+
+  // ok, long inline tag at start of line is allowed
+  /**
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void longTagAtStart() { }
+
+  // ok, properly wrapped
+  /**
+   * Refer to the specific status
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void properlyWrapped() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 85)'
+  /**
+   * @return the status of the company, which is defined by the registry of companies
+   */
+  public String blockTagTooLong() { return ""; }
+
+  // ok, the content of a pre element is ignored
+  /**
+   * Example:
+   * &lt;pre&gt;
+   * CompanyStatus status = new CompanyStatusFactory().createStatus(companyNumber);
+   * &lt;/pre&gt;
+   */
+  public void preElementContent() { }
+
+  // ok, a line that has a URL is not reported as too long
+  /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
+  public void longUrl() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check with a custom line limit:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocUtilizingTrailingSpace"&gt;
+      &lt;property name="lineLimit" value="100"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example2:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+
+  // violation 2 lines below 'Line under-utilized (31/100). Words from below could be moved up'
+  /**
+   * The company returned value
+   * is invalid.
+   */
+  public void shortLine() { }
+
+  // ok, line is under 100 characters
+  /**
+   * Refer to the specific status {@link com.wide.bundles.exceeds.limit.CompanyStatus}
+   */
+  public void longLine() { }
+
+  // ok, long inline tag at start of line is allowed
+  /**
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void longTagAtStart() { }
+
+  // ok, properly wrapped
+  /**
+   * Refer to the specific status
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void properlyWrapped() { }
+
+  // ok, line is under 100 characters
+  /**
+   * @return the status of the company, which is defined by the registry of companies
+   */
+  public String blockTagTooLong() { return ""; }
+
+  // ok, the content of a pre element is ignored
+  /**
+   * Example:
+   * &lt;pre&gt;
+   * CompanyStatus status = new CompanyStatusFactory().createStatus(companyNumber);
+   * &lt;/pre&gt;
+   */
+  public void preElementContent() { }
+
+  // ok, line is under 100 characters
+  /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
+  public void longUrl() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to report long lines that have a URL or a link:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocUtilizingTrailingSpace"&gt;
+      &lt;property name="ignorePattern" value="^$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example3:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example3 {
+
+  // violation 2 lines below 'Line under-utilized (31/80). Words from below could be moved up'
+  /**
+   * The company returned value
+   * is invalid.
+   */
+  public void shortLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 86)'
+  /**
+   * Refer to the specific status {@link com.wide.bundles.exceeds.limit.CompanyStatus}
+   */
+  public void longLine() { }
+
+  // ok, long inline tag at start of line is allowed
+  /**
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void longTagAtStart() { }
+
+  // ok, properly wrapped
+  /**
+   * Refer to the specific status
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void properlyWrapped() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 85)'
+  /**
+   * @return the status of the company, which is defined by the registry of companies
+   */
+  public String blockTagTooLong() { return ""; }
+
+  // ok, the content of a pre element is ignored
+  /**
+   * Example:
+   * &lt;pre&gt;
+   * CompanyStatus status = new CompanyStatusFactory().createStatus(companyNumber);
+   * &lt;/pre&gt;
+   */
+  public void preElementContent() { }
+
+  // violation below 'Line is longer than 80 characters (found 93)'
+  /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
+  public void longUrl() { }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="JavadocUtilizingTrailingSpace_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocUtilizingTrailingSpace">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="JavadocUtilizingTrailingSpace_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.utilizing.trailing.space.too.long%22">
+              javadoc.utilizing.trailing.space.too.long
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.utilizing.trailing.space.too.short%22">
+              javadoc.utilizing.trailing.space.too.short
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                   id="JavadocUtilizingTrailingSpace_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocUtilizingTrailingSpaceCheck</p>
+        <p>
+              Use this fully qualified class name in configuration when an exact class reference is
+              required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocUtilizingTrailingSpace_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
