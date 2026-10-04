@@ -491,6 +491,7 @@ Fopenjdk
 forbiddenapis
 Foreach
 formatofdoccomment
+forstatements
 Fpuppycrawl
 fq
 Fqcn
