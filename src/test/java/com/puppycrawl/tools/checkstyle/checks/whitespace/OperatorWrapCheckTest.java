@@ -244,4 +244,24 @@ public class OperatorWrapCheckTest
                 getPath("InputOperatorWrapLambdaNl.java"), expected);
     }
 
+    @Test
+    public void testHigherLevelWrapping() throws Exception {
+        final String[] expected = {
+            "23:20: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "31:20: " + getCheckMessage(MSG_LINE_NEW, "/"),
+            "53:20: " + getCheckMessage(MSG_LINE_NEW, "->"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapHigherLevel.java"), expected);
+    }
+
+    @Test
+    public void testHigherLevelWrappingEol() throws Exception {
+        final String[] expected = {
+            "19:20: " + getCheckMessage(MSG_LINE_PREVIOUS, "+"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOperatorWrapHigherLevelEol.java"), expected);
+    }
+
 }
