@@ -479,6 +479,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/exceptionwrappingshouldusecontext.html#ExceptionWrappingShouldUseContext">
+                ExceptionWrappingShouldUseContext
+              </a>
+            </td>
+            <td>
+              Checks that exception wrapping includes context variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/sizes/executablestatementcount.html#ExecutableStatementCount">
                 ExecutableStatementCount
               </a>

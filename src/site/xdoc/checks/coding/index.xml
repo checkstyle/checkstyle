@@ -127,6 +127,16 @@
           </tr>
           <tr>
             <td>
+              <a href="exceptionwrappingshouldusecontext.html#ExceptionWrappingShouldUseContext">
+                ExceptionWrappingShouldUseContext
+              </a>
+            </td>
+            <td>
+              Checks that exception wrapping includes context variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="explicitinitialization.html#ExplicitInitialization">
                 ExplicitInitialization
               </a>
