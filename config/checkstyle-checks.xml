@@ -792,6 +792,10 @@
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
     </module>
+    <module name="JavadocUtilizingTrailingSpace">
+      <!-- Javadoc of the project does not comply yet, to be enabled after it is reformatted -->
+      <property name="severity" value="ignore"/>
+    </module>
     <module name="PreferLiteralJavadocInlineTag"/>
     <module name="JavadocVariable"/>
     <module name="MissingJavadocMethod">
