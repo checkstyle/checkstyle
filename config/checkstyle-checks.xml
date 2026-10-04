@@ -862,6 +862,7 @@
     <module name="AvoidEscapedUnicodeCharacters">
       <property name="allowIfAllCharactersEscaped" value="true"/>
     </module>
+    <module name="ClassHeaderWrapOpenjdk"/>
     <module name="CommentsIndentation"/>
     <module name="DescendantToken"/>
     <module name="FinalParameters">
