@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * new-line.
  *
  */
-public class LineCommentAtTheEndOfFileTest
-    extends AbstractModuleTestSupport {
+public class LineCommentAtTheEndOfFileTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

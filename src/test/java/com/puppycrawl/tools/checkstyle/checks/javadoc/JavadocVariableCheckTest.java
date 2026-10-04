@@ -28,8 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocVariableCheckTest
-    extends AbstractModuleTestSupport {
+public class JavadocVariableCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

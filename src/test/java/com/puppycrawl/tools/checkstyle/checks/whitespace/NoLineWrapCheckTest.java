@@ -26,8 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class NoLineWrapCheckTest
-    extends AbstractModuleTestSupport {
+public class NoLineWrapCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

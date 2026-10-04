@@ -26,8 +26,7 @@ import java.util.SortedSet;
  * Interface for Checking a set of files for some criteria.
  *
  */
-public interface FileSetCheck
-    extends Configurable, Contextualizable {
+public interface FileSetCheck extends Configurable, Contextualizable {
 
     /**
      * Sets the MessageDispatcher that is used to dispatch audit events

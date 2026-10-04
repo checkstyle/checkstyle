@@ -35,8 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class JavadocPackageCheckTest
-    extends AbstractModuleTestSupport {
+public class JavadocPackageCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

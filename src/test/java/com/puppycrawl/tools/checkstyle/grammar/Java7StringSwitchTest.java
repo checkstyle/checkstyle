@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * Tests Java 7 String in switch can be parsed.
  */
-public class Java7StringSwitchTest
-    extends AbstractModuleTestSupport {
+public class Java7StringSwitchTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

@@ -34,8 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  */
 @StatelessCheck
-public abstract class AbstractParenPadCheck
-    extends AbstractCheck {
+public abstract class AbstractParenPadCheck extends AbstractCheck {
 
     /** Open parenthesis literal. */
     private static final char OPEN_PARENTHESIS = '(';

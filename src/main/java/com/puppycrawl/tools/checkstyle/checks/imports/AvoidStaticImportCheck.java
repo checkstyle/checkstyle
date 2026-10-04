@@ -53,8 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.0
  */
 @StatelessCheck
-public class AvoidStaticImportCheck
-    extends AbstractCheck {
+public class AvoidStaticImportCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

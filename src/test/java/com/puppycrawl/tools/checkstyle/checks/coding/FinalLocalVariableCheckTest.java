@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FinalLocalVariableCheckTest
-    extends AbstractModuleTestSupport {
+public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

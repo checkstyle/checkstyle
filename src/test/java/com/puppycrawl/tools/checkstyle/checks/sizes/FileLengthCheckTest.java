@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FileLengthCheckTest
-    extends AbstractModuleTestSupport {
+public class FileLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
