@@ -703,6 +703,8 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from indentation package.
      */
     private static void fillChecksFromIndentationPackage() {
+        NAME_TO_FULL_MODULE_NAME.put("ClassHeaderWrapOpenjdkCheck",
+                BASE_PACKAGE + ".checks.indentation.ClassHeaderWrapOpenjdkCheck");
         NAME_TO_FULL_MODULE_NAME.put("CommentsIndentationCheck",
                 BASE_PACKAGE + ".checks.indentation.CommentsIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("IndentationCheck",
