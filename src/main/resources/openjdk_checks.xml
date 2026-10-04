@@ -169,6 +169,7 @@
     <module name="VariableDeclarationUsageDistance"/>
     <module name="OpenjdkAnnotationLocation"/>
     <module name="OpenjdkMethodThrowsAlignment"/>
+    <module name="ClassHeaderWrapOpenjdk"/>
 
     <module name="MethodName">
       <property name="format" value="^[a-z]{2,}[a-zA-Z0-9]*$"/>
