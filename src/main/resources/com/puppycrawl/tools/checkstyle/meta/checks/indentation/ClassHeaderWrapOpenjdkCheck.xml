@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.indentation.ClassHeaderWrapOpenjdkCheck"
+             name="ClassHeaderWrapOpenjdk"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that a wrapped class, interface, enum, or record header is wrapped according to the
+ &lt;a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-class-declarations"&gt;
+ OpenJDK Java Style Guide&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check only applies when the type declaration header, from the declaration
+ keyword through the opening curly brace, spans more than one line. Single-line
+ headers are not in scope.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ The two rules enforced are:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;Each of the &lt;code&gt;extends&lt;/code&gt; and &lt;code&gt;implements&lt;/code&gt; clauses, when present, must
+ &lt;em&gt;stand out&lt;/em&gt; on its own new line once the header has started wrapping, or once
+ that clause's own list of supertypes wraps across lines. Wrapping that happens only
+ inside a single supertype's type arguments (the same way method arguments may wrap)
+ does not require the clause keyword itself to move to a new line.&lt;/li&gt;
+ &lt;li&gt;Only checked when rule 1 above found nothing to report: the header should not have
+ been wrapped in the first place if, joined back onto one line, it would still fit
+ within 80 columns.&lt;/li&gt;
+ &lt;/ol&gt;</description>
+         <message-keys>
+            <message-key key="openjdk.classheader.new.line"/>
+            <message-key key="openjdk.classheader.unnecessary.wrap"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
