@@ -414,6 +414,7 @@ ev
 Evt
 exceptionoverrides
 exceptionstodocument
+exceptionwrappingshouldusecontext
 executablestatementcount
 Exif
 explicitinitialization
