@@ -166,8 +166,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns string value. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns string value. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return string value
      */
@@ -177,8 +177,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns namespace array. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns namespace array. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @param namespaceBindings namespace array
      * @return namespace array
@@ -189,8 +189,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns namespace array. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns namespace array. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return namespace map
      */
@@ -200,8 +200,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return boolean
      */
@@ -211,8 +211,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return boolean
      */
@@ -222,8 +222,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return boolean
      */
@@ -233,8 +233,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns boolean. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return boolean
      */
@@ -244,8 +244,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns configuration. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns configuration. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return configuration
      */
@@ -255,8 +255,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Sets system id. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Sets system id. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @param systemId system id
      */
@@ -266,8 +266,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns system id. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns system id. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return system id
      */
@@ -277,8 +277,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns public id. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns public id. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return public id
      */
@@ -288,8 +288,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns base uri. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns base uri. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return base uri
      */
@@ -299,8 +299,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns location. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns location. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return location
      */
@@ -311,8 +311,8 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Returns the value of the item as a Unicode string.
-     * Throws {@code UnsupportedOperationException}, because no child class implements it and
-     * this method is not used for querying.
+     * Throws {@code UnsupportedOperationException}, because no child class implements it and this
+     * method is not used for querying.
      *
      * @return CharSequence string value
      */
@@ -322,8 +322,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns fingerprint. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns fingerprint. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return fingerprint
      */
@@ -333,8 +333,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns display name. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns display name. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return display name
      */
@@ -344,8 +344,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns prefix. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns prefix. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return prefix
      */
@@ -366,8 +366,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns AtomicSequence. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Returns AtomicSequence. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @return AtomicSequence
      */
@@ -377,8 +377,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Generate id method. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Generate id method. Throws {@code UnsupportedOperationException}, because no child class
+     * implements it and this method is not used for querying.
      *
      * @param buffer buffer
      */
@@ -388,8 +388,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Copy method. Throws {@code UnsupportedOperationException}, because no child
-     * class implements it and this method is not used for querying.
+     * Copy method. Throws {@code UnsupportedOperationException}, because no child class implements
+     * it and this method is not used for querying.
      *
      * @param receiver receiver
      * @param index index
@@ -401,8 +401,8 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Returns UnsupportedOperationException exception. Methods which throws this exception are
-     * not supported for all nodes.
+     * Returns UnsupportedOperationException exception. Methods which throws this exception are not
+     * supported for all nodes.
      *
      * @return UnsupportedOperationException exception
      */

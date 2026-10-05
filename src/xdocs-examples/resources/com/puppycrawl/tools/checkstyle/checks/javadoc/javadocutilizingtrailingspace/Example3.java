@@ -11,9 +11,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocutilizingtrailings
 
 // xdoc section - start
 class Example3 {
-
-  // violation 2 lines below 'Line under-utilized (31/80). Words from below could be moved up'
+  // violation 3 lines below 'Line under-utilized (31/80). Words from below could be moved up'
   /**
+   * Checks the status.
    * The company returned value
    * is invalid.
    */

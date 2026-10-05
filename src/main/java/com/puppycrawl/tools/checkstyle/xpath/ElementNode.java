@@ -49,8 +49,7 @@ public class ElementNode extends AbstractElementNode {
     }
 
     /**
-     * Iterates children of the current node and
-     * recursively creates new Xpath-nodes.
+     * Iterates children of the current node and recursively creates new Xpath-nodes.
      *
      * @return children list
      */

@@ -62,8 +62,8 @@ public abstract class AbstractRootNode extends AbstractNode {
     }
 
     /**
-     * Returns attribute value. Throws {@code UnsupportedOperationException} because root node
-     * has no attributes.
+     * Returns attribute value. Throws {@code UnsupportedOperationException} because root node has
+     * no attributes.
      *
      * @param namespace namespace
      * @param localPart actual name of the attribute

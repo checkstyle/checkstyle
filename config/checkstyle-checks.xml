@@ -51,6 +51,13 @@
     <property name="checks" value="WriteTag"/>
     <property name="files" value=".*(?&lt;!Check)\.java$"/>
   </module>
+  <!-- Until https://github.com/checkstyle/checkstyle/issues/21813
+       JavadocUtilizingTrailingSpace is enabled for one package only -->
+  <module name="SuppressionSingleFilter">
+    <property name="checks" value="JavadocUtilizingTrailingSpace"/>
+    <property name="files"
+              value="^(?!.*[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]).*$"/>
+  </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="WriteTag"/>
     <property name="files" value="Abstract\w*Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
@@ -800,9 +807,10 @@
       <property name="allowUnknownTags" value="true"/>
     </module>
     <module name="JavadocUtilizingTrailingSpace">
-      <!-- This Check is very demanding and prone to cause a lot of changes for whole
-           javadoc just to move one word from one line to another -->
-      <property name="severity" value="ignore"/>
+      <property name="lineLimit" value="100"/>
+      <!-- default value and lines that have a single word, as in LineLength -->
+      <property name="ignorePattern"
+                value="^ *\* *[^ ]+$|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
     </module>
     <module name="PreferLiteralJavadocInlineTag"/>
     <module name="JavadocVariable"/>
