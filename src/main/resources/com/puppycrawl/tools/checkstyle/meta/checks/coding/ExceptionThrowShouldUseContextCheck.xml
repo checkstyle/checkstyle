@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck"
+             name="ExceptionThrowShouldUseContext"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that exception throw statements in catch blocks use context variables.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Rationale: When catching an exception and throwing a new exception, it is
+ recommended to include contextual information in the new exception constructor
+ (such as method parameters, local variables declared outside the catch block, or fields).
+ Failing to include context makes troubleshooting and debugging production issues
+ significantly harder.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="exception.throw.should.use.context"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
