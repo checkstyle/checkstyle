@@ -2,7 +2,7 @@
 OperatorWrap
 option = eol
 tokens = ASSIGN,COLON,LAND,LOR,STAR,QUESTION
-
+higherLevelWrap = (default)false
 
 */
 
