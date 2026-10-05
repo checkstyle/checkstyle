@@ -37,26 +37,65 @@ public class EmptyStatementCheckTest extends AbstractModuleTestSupport {
     public void testEmptyStatements()
             throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_KEY),
-            "23:7: " + getCheckMessage(MSG_KEY),
-            "28:19: " + getCheckMessage(MSG_KEY),
-            "32:10: " + getCheckMessage(MSG_KEY),
-            "35:16: " + getCheckMessage(MSG_KEY),
-            "39:10: " + getCheckMessage(MSG_KEY),
-            "49:10: " + getCheckMessage(MSG_KEY),
-            "55:13: " + getCheckMessage(MSG_KEY),
-            "57:13: " + getCheckMessage(MSG_KEY),
-            "60:19: " + getCheckMessage(MSG_KEY),
-            "64:10: " + getCheckMessage(MSG_KEY),
-            "67:9: " + getCheckMessage(MSG_KEY),
-            "72:10: " + getCheckMessage(MSG_KEY),
-            "78:10: " + getCheckMessage(MSG_KEY),
-            "82:10: " + getCheckMessage(MSG_KEY),
-            "86:10: " + getCheckMessage(MSG_KEY),
+            "16:4: " + getCheckMessage(MSG_KEY),
+            "17:4: " + getCheckMessage(MSG_KEY),
+            "21:7: " + getCheckMessage(MSG_KEY),
+            "24:4: " + getCheckMessage(MSG_KEY),
+            "28:7: " + getCheckMessage(MSG_KEY),
+            "33:19: " + getCheckMessage(MSG_KEY),
+            "37:10: " + getCheckMessage(MSG_KEY),
+            "40:16: " + getCheckMessage(MSG_KEY),
+            "44:10: " + getCheckMessage(MSG_KEY),
+            "54:10: " + getCheckMessage(MSG_KEY),
+            "60:13: " + getCheckMessage(MSG_KEY),
+            "62:13: " + getCheckMessage(MSG_KEY),
+            "65:19: " + getCheckMessage(MSG_KEY),
+            "69:10: " + getCheckMessage(MSG_KEY),
+            "72:9: " + getCheckMessage(MSG_KEY),
+            "77:10: " + getCheckMessage(MSG_KEY),
+            "83:10: " + getCheckMessage(MSG_KEY),
+            "87:10: " + getCheckMessage(MSG_KEY),
+            "91:10: " + getCheckMessage(MSG_KEY),
+            "95:22: " + getCheckMessage(MSG_KEY),
+            "96:13: " + getCheckMessage(MSG_KEY),
+            "97:6: " + getCheckMessage(MSG_KEY),
+            "98:27: " + getCheckMessage(MSG_KEY),
+            "99:19: " + getCheckMessage(MSG_KEY),
+            "100:34: " + getCheckMessage(MSG_KEY),
+            "104:29: " + getCheckMessage(MSG_KEY),
+            "106:38: " + getCheckMessage(MSG_KEY),
+            "109:52: " + getCheckMessage(MSG_KEY),
+            "113:39: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputEmptyStatement.java"), expected);
+    }
+
+    @Test
+    public void testTopLevelSemicolons() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY),
+            "13:2: " + getCheckMessage(MSG_KEY),
+            "14:1: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyStatementTopLevel.java"), expected);
+    }
+
+    @Test
+    public void testEnumSemicolons() throws Exception {
+        final String[] expected = {
+            "14:6: " + getCheckMessage(MSG_KEY),
+            "19:10: " + getCheckMessage(MSG_KEY),
+            "29:10: " + getCheckMessage(MSG_KEY),
+            "34:9: " + getCheckMessage(MSG_KEY),
+            "39:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyStatementEnum.java"), expected);
     }
 
     @Test
