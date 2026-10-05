@@ -23,6 +23,7 @@
               <li><a href="#Example1-config" class="toc-sublink">Default configuration</a></li>
               <li><a href="#Example2-config" class="toc-sublink">For assignment operators at the end of a line</a></li>
               <li><a href="#Example3-config" class="toc-sublink">For operators at the beginning of a line</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">For higher level operator wrapping</a></li>
             </ul>
           </li>
           <li><a href="#OperatorWrap_Example_of_Usage">Example of Usage</a></li>
@@ -61,6 +62,13 @@
               <td><a href="../../property-types.html#WrapOption">WrapOption</a></td>
               <td><code>nl</code></td>
               <td>3.0</td>
+            </tr>
+            <tr>
+              <td><a id="shouldWrapAtHigherLevel"/><a href="#shouldWrapAtHigherLevel">shouldWrapAtHigherLevel</a></td>
+              <td>Control whether to enforce the higher-level wrap preference.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.4.0</td>
             </tr>
             <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
@@ -250,6 +258,12 @@ class Example1 {
             &amp;=1 ;
     c
             &lt;&lt;= 1;
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -311,6 +325,12 @@ class Example2 {
             &amp;=1 ; // violation ''&amp;=' should be on the previous line'
     c
             &lt;&lt;= 1; // violation ''&lt;&lt;=' should be on the previous line'
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
   }
 }
 </code></pre></div><hr class="example-separator"/>
@@ -368,6 +388,176 @@ class Example3 {
             &amp;=1 ;
     c
             &lt;&lt;= 1;
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1);
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="shouldWrapAtHigherLevel-precedence">
+          The following table shows the operator precedence hierarchy used when
+          <code>shouldWrapAtHigherLevel</code> is enabled, ordered from highest
+          precedence (tighter binding, lower syntactical level) to lowest precedence
+          (looser binding, higher syntactical level). Wrapping at a higher syntactical level
+          (lower precedence) is preferred over wrapping at a lower syntactical level:
+        </p>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>Precedence Level</th>
+              <th>Operators</th>
+              <th>TokenTypes</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td><code>::</code></td>
+              <td><code>METHOD_REF</code></td>
+              <td>Method reference</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><code>*</code>, <code>/</code>, <code>%</code></td>
+              <td><code>STAR</code>, <code>DIV</code>, <code>MOD</code></td>
+              <td>Multiplicative</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><code>+</code>, <code>-</code></td>
+              <td><code>PLUS</code>, <code>MINUS</code></td>
+              <td>Additive</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;&gt;</code></td>
+              <td><code>SL</code>, <code>SR</code>, <code>BSR</code></td>
+              <td>Shift</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>instanceof</code></td>
+              <td><code>LT</code>, <code>GT</code>, <code>LE</code>, <code>GE</code>, <code>LITERAL_INSTANCEOF</code></td>
+              <td>Relational</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><code>==</code>, <code>!=</code></td>
+              <td><code>EQUAL</code>, <code>NOT_EQUAL</code></td>
+              <td>Equality</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><code>&amp;</code></td>
+              <td><code>BAND</code></td>
+              <td>Bitwise AND</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><code>^</code></td>
+              <td><code>BXOR</code></td>
+              <td>Bitwise XOR</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td><code>|</code></td>
+              <td><code>BOR</code></td>
+              <td>Bitwise OR</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td><code>&amp;&amp;</code></td>
+              <td><code>LAND</code></td>
+              <td>Logical AND</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td><code>||</code></td>
+              <td><code>LOR</code></td>
+              <td>Logical OR</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td><code>? :</code></td>
+              <td><code>QUESTION</code>, <code>COLON</code></td>
+              <td>Ternary / conditional</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td><code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, etc.</td>
+              <td><code>ASSIGN</code>, <code>PLUS_ASSIGN</code>, etc.</td>
+              <td>Assignment</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td><code>-&gt;</code></td>
+              <td><code>LAMBDA</code></td>
+              <td>Lambda expression</td>
+            </tr>
+          </table>
+        </div>
+        <p id="Example4-config">
+          To configure the check for higher level operator wrapping:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OperatorWrap"&gt;
+      &lt;property name="shouldWrapAtHigherLevel" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+         Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  void example() {
+    String s = "Hello" +
+      "World"; // violation above ''\+' should be on a new line'
+
+    if (10 ==
+            20) { // violation above ''==' should be on a new line'
+    }
+
+    int c = 10 /
+            5; // violation above ''/' should be on a new line'
+
+    int b
+            = 10;
+    int e =
+            10;
+    b
+            += 10;
+    b +=
+            10;
+    c
+            *= 10;
+    c
+            -= 5;
+    c -=
+            5;
+    c
+            /= 2;
+    c
+            %= 1;
+    c
+            &gt;&gt;= 1;
+    c
+        &gt;&gt;&gt;= 1;
+    c
+            &amp;=1 ;
+    c
+            &lt;&lt;= 1;
+
+    int a = 1;
+    int b1 = 2;
+    int c1 = 3;
+    int x4 = a / (b1
+            - c1); // violation above ''/' should be on a new line'
   }
 }
 </code></pre></div>
