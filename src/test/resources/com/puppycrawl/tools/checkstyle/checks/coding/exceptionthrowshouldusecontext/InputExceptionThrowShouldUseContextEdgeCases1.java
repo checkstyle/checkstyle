@@ -1,24 +1,24 @@
 /*
-ExceptionWrappingShouldUseContext
+ExceptionThrowShouldUseContext
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.exceptionwrappingshouldusecontext;
+package com.puppycrawl.tools.checkstyle.checks.coding.exceptionthrowshouldusecontext;
 
 import java.io.IOException;
 
-public class InputExceptionWrappingShouldUseContextEdgeCases1 {
+public class InputExceptionThrowShouldUseContextEdgeCases1 {
 
     static String staticField = "static";
     String instanceField = "instance";
 
-    public InputExceptionWrappingShouldUseContextEdgeCases1(String ctorParam) {
+    public InputExceptionThrowShouldUseContextEdgeCases1(String ctorParam) {
         try {
             riskyOperation();
         }
         catch (IOException ex) {
-            // violation below 'Exception wrapping should always use context variables.'
+            // violation below 'Exception throw should always use context variables.'
             throw new RuntimeException("no context used", ex);
         }
     }
@@ -53,28 +53,22 @@ public class InputExceptionWrappingShouldUseContextEdgeCases1 {
             riskyOperation();
         }
         catch (IOException ex) {
-            // violation below 'Exception wrapping should always use context variables.'
+            // violation below 'Exception throw should always use context variables.'
             throw new RuntimeException("fail", ex);
         }
     }
 
-    static void staticMethodWithContext() {
+    static void staticMethod() {
         try {
             riskyOperation();
         }
-        catch (IOException ex) {
+        catch (IOException ex1) {
             // ok, uses staticField
-            throw new RuntimeException(staticField, ex);
+            throw new RuntimeException(staticField, ex1);
         }
-    }
-
-    static void staticMethodNoContext() {
-        try {
-            riskyOperation();
-        }
-        catch (IOException ex) {
-            // violation below 'Exception wrapping should always use context variables.'
-            throw new RuntimeException("error", ex);
+        catch (Exception ex2) {
+            // violation below 'Exception throw should always use context variables.'
+            throw new RuntimeException("error", ex2);
         }
     }
 

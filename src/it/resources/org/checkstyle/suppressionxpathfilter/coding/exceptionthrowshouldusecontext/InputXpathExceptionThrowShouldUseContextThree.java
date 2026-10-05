@@ -1,6 +1,6 @@
-package org.checkstyle.suppressionxpathfilter.coding.exceptionwrappingshouldusecontext;
+package org.checkstyle.suppressionxpathfilter.coding.exceptionthrowshouldusecontext;
 
-public class InputXpathExceptionWrappingShouldUseContextThree {
+public class InputXpathExceptionThrowShouldUseContextThree {
 
     class Inner {
         void test(String param) {

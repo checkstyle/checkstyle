@@ -27,13 +27,13 @@ import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.checks.coding.ExceptionWrappingShouldUseContextCheck;
+import com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck;
 
-public class XpathRegressionExceptionWrappingShouldUseContextTest
+public class XpathRegressionExceptionThrowShouldUseContextTest
         extends AbstractXpathTestSupport {
 
-    private static final Class<ExceptionWrappingShouldUseContextCheck> CLASS =
-            ExceptionWrappingShouldUseContextCheck.class;
+    private static final Class<ExceptionThrowShouldUseContextCheck> CLASS =
+            ExceptionThrowShouldUseContextCheck.class;
 
     @Override
     protected String getCheckName() {
@@ -42,25 +42,25 @@ public class XpathRegressionExceptionWrappingShouldUseContextTest
 
     @Override
     public String getPackageLocation() {
-        return "org/checkstyle/suppressionxpathfilter/coding/exceptionwrappingshouldusecontext";
+        return "org/checkstyle/suppressionxpathfilter/coding/exceptionthrowshouldusecontext";
     }
 
     @Test
     public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathExceptionWrappingShouldUseContextOne.java"));
+                "InputXpathExceptionThrowShouldUseContextOne.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "10:13: " + getCheckMessage(CLASS,
-                ExceptionWrappingShouldUseContextCheck.MSG_KEY),
+                ExceptionThrowShouldUseContextCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathExceptionWrappingShouldUseContextOne']]/OBJBLOCK"
+                    + "[./IDENT[@text='InputXpathExceptionThrowShouldUseContextOne']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                     + "/LITERAL_TRY/LITERAL_CATCH/SLIST/LITERAL_THROW"
         );
@@ -71,20 +71,20 @@ public class XpathRegressionExceptionWrappingShouldUseContextTest
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathExceptionWrappingShouldUseContextTwo.java"));
+                "InputXpathExceptionThrowShouldUseContextTwo.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "10:13: " + getCheckMessage(CLASS,
-                ExceptionWrappingShouldUseContextCheck.MSG_KEY),
+                ExceptionThrowShouldUseContextCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathExceptionWrappingShouldUseContextTwo']]/OBJBLOCK"
-                    + "/CTOR_DEF[./IDENT[@text='InputXpathExceptionWrappingShouldUseContextTwo']]"
+                    + "[./IDENT[@text='InputXpathExceptionThrowShouldUseContextTwo']]/OBJBLOCK"
+                    + "/CTOR_DEF[./IDENT[@text='InputXpathExceptionThrowShouldUseContextTwo']]"
                     + "/SLIST/LITERAL_TRY/LITERAL_CATCH/SLIST/LITERAL_THROW"
         );
 
@@ -94,19 +94,19 @@ public class XpathRegressionExceptionWrappingShouldUseContextTest
     @Test
     public void testThree() throws Exception {
         final File fileToProcess = new File(getPath(
-                "InputXpathExceptionWrappingShouldUseContextThree.java"));
+                "InputXpathExceptionThrowShouldUseContextThree.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
             "11:17: " + getCheckMessage(CLASS,
-                ExceptionWrappingShouldUseContextCheck.MSG_KEY),
+                ExceptionThrowShouldUseContextCheck.MSG_KEY),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
-                    + "[./IDENT[@text='InputXpathExceptionWrappingShouldUseContextThree']]"
+                    + "[./IDENT[@text='InputXpathExceptionThrowShouldUseContextThree']]"
                     + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='Inner']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='test']]/SLIST"
                     + "/LITERAL_TRY/LITERAL_CATCH/SLIST/LITERAL_THROW"

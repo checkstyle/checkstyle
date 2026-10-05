@@ -19,18 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import static com.puppycrawl.tools.checkstyle.checks.coding.ExceptionWrappingShouldUseContextCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck.MSG_KEY;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class ExceptionWrappingShouldUseContextCheckExamplesTest
+public class ExceptionThrowShouldUseContextCheckExamplesTest
         extends AbstractExamplesModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/coding/exceptionwrappingshouldusecontext";
+        return "com/puppycrawl/tools/checkstyle/checks/coding/exceptionthrowshouldusecontext";
     }
 
     @Test

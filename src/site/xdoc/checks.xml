@@ -479,12 +479,12 @@
           </tr>
           <tr>
             <td>
-              <a href="checks/coding/exceptionwrappingshouldusecontext.html#ExceptionWrappingShouldUseContext">
-                ExceptionWrappingShouldUseContext
+              <a href="checks/coding/exceptionthrowshouldusecontext.html#ExceptionThrowShouldUseContext">
+                ExceptionThrowShouldUseContext
               </a>
             </td>
             <td>
-              Checks that exception wrapping includes context variables.
+              Checks that exception throw statements in catch blocks use context variables.
             </td>
           </tr>
           <tr>

@@ -1,32 +1,26 @@
 /*
-ExceptionWrappingShouldUseContext
+ExceptionThrowShouldUseContext
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.exceptionwrappingshouldusecontext;
+package com.puppycrawl.tools.checkstyle.checks.coding.exceptionthrowshouldusecontext;
 
 import java.io.IOException;
 
-public class InputExceptionWrappingShouldUseContextEdgeCases2 {
+public class InputExceptionThrowShouldUseContextEdgeCases2 {
 
-    void methodNoArgException(String param) {
+    void methodNoArgAndRethrow(String param) throws IOException {
         try {
             riskyOperation();
         }
-        catch (IOException ex) {
-            // ok, no wrapping
+        catch (IOException ex1) {
+            // violation below 'Exception throw should always use context variables.'
             throw new RuntimeException();
         }
-    }
-
-    void methodThrowExistingException(String param) throws IOException {
-        try {
-            riskyOperation();
-        }
-        catch (IOException ex) {
+        catch (Exception ex2) {
             // ok, rethrow
-            throw ex;
+            throw ex2;
         }
     }
 

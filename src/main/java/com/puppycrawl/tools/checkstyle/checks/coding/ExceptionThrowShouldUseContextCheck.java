@@ -31,13 +31,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <div>
- * Checks that exception wrapping includes context variables.
+ * Checks that exception throw statements in catch blocks use context variables.
  * </div>
  *
  * <p>
- * Rationale: When catching an exception and re-throwing a new exception that wraps
- * the caught exception, it is recommended to include contextual information in the
- * new exception constructor (such as method parameters, local variables, or fields).
+ * Rationale: When catching an exception and throwing a new exception, it is
+ * recommended to include contextual information in the new exception constructor
+ * (such as method parameters, local variables declared outside the catch block, or fields).
  * Failing to include context makes troubleshooting and debugging production issues
  * significantly harder.
  * </p>
@@ -45,17 +45,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @since 14.4.0
  */
 @StatelessCheck
-public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
+public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties" file.
      */
-    public static final String MSG_KEY = "exception.wrapping.should.use.context";
+    public static final String MSG_KEY = "exception.throw.should.use.context";
 
     /**
-     * Creates a new {@code ExceptionWrappingShouldUseContextCheck} instance.
+     * Creates a new {@code ExceptionThrowShouldUseContextCheck} instance.
      */
-    public ExceptionWrappingShouldUseContextCheck() {
+    public ExceptionThrowShouldUseContextCheck() {
         // no code by default
     }
 
@@ -80,7 +80,13 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST paramDef = ast.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST paramIdent = paramDef.findFirstToken(TokenTypes.IDENT);
-        final String catchParamName = paramIdent.getText();
+        final String catchParamName;
+        if (paramIdent == null) {
+            catchParamName = "";
+        }
+        else {
+            catchParamName = paramIdent.getText();
+        }
         final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
         final List<DetailAST> throwStatements = new ArrayList<>();
         collectThrowStatements(slist, throwStatements);
@@ -90,7 +96,7 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if a throw statement wraps the caught exception without using context variables.
+     * Checks if a throw statement throws a new exception without using context variables.
      *
      * @param throwAst throw statement ast
      * @param catchParamName name of the catch parameter
@@ -101,12 +107,11 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
         final DetailAST expr = throwAst.getFirstChild();
         final DetailAST thrownExpr = expr.getFirstChild();
         if (thrownExpr.getType() == TokenTypes.LITERAL_NEW) {
-            final DetailAST elist = thrownExpr.findFirstToken(TokenTypes.ELIST);
-            if (isWrappingException(elist, catchParamName)) {
-                final Set<String> contextVars = collectContextVariables(catchAst,
-                        catchParamName);
-                if (!contextVars.isEmpty()
-                        && !containsAnyVariable(elist, contextVars, catchParamName)) {
+            final Set<String> contextVars = collectContextVariables(catchAst,
+                    catchParamName);
+            if (!contextVars.isEmpty()) {
+                final DetailAST elist = thrownExpr.findFirstToken(TokenTypes.ELIST);
+                if (elist == null || !containsAnyVariable(elist, contextVars, catchParamName)) {
                     log(throwAst, MSG_KEY);
                 }
             }
@@ -115,7 +120,7 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
 
     /**
      * Recursively collects all throw statements in a block, skipping nested catches,
-     * classes, and lambdas.
+     * classes, records, interfaces, object blocks, and lambdas.
      *
      * @param node AST node to search
      * @param result list to collect throw statements into
@@ -131,47 +136,11 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
                     && type != TokenTypes.CLASS_DEF
                     && type != TokenTypes.RECORD_DEF
                     && type != TokenTypes.INTERFACE_DEF
+                    && type != TokenTypes.OBJBLOCK
                     && type != TokenTypes.LAMBDA) {
                 collectThrowStatements(child, result);
             }
         }
-    }
-
-    /**
-     * Checks if the argument list of a new exception constructor passes the caught exception
-     * directly as an argument.
-     *
-     * @param elist argument list AST node
-     * @param catchParamName name of the catch parameter
-     * @return true if the caught exception is wrapped
-     */
-    private static boolean isWrappingException(DetailAST elist, String catchParamName) {
-        boolean result = false;
-        for (DetailAST arg = elist.getFirstChild(); arg != null; arg = arg.getNextSibling()) {
-            if (arg.getType() == TokenTypes.EXPR && isDirectReference(arg, catchParamName)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Checks if an expression directly references the catch parameter, optionally unwrapping
-     * type casts.
-     *
-     * @param expr expression AST node
-     * @param catchParamName name of the catch parameter
-     * @return true if the expression directly references the catch parameter
-     */
-    private static boolean isDirectReference(DetailAST expr, String catchParamName) {
-        DetailAST child = expr.getFirstChild();
-        while (child.getType() == TokenTypes.TYPECAST) {
-            final DetailAST rparen = child.findFirstToken(TokenTypes.RPAREN);
-            child = rparen.getNextSibling();
-        }
-        return child.getType() == TokenTypes.IDENT
-                && catchParamName.equals(child.getText());
     }
 
     /**
@@ -187,10 +156,10 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
         boolean result = false;
         for (DetailAST child = node.getFirstChild(); child != null;
                 child = child.getNextSibling()) {
-            if (child.getType() == TokenTypes.IDENT
+            final boolean isContextIdent = child.getType() == TokenTypes.IDENT
                     && !excludedName.equals(child.getText())
-                    && variables.contains(child.getText())
-                    || containsAnyVariable(child, variables, excludedName)) {
+                    && variables.contains(child.getText());
+            if (isContextIdent || containsAnyVariable(child, variables, excludedName)) {
                 result = true;
                 break;
             }
@@ -216,8 +185,10 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
             collectLocalVariablesOutsideCatch(methodScope, catchAst, contextVars, catchParamName);
         }
         final DetailAST enclosingClass = findEnclosingClassLike(catchAst);
-        final boolean isStaticMethod = isStaticScope(methodScopes);
-        collectFields(enclosingClass, contextVars, isStaticMethod);
+        if (enclosingClass != null) {
+            final boolean isStaticMethod = isStaticScope(methodScopes);
+            collectFields(enclosingClass, contextVars, isStaticMethod);
+        }
         collectCatchVariablesWithContext(catchAst, contextVars, catchParamName);
         return contextVars;
     }
@@ -231,7 +202,7 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
     private static List<DetailAST> findEnclosingMethodScopes(DetailAST node) {
         final List<DetailAST> scopes = new ArrayList<>();
         DetailAST current = node.getParent();
-        while (current.getType() != TokenTypes.OBJBLOCK) {
+        while (current != null && current.getType() != TokenTypes.OBJBLOCK) {
             final int type = current.getType();
             if (type == TokenTypes.METHOD_DEF
                     || type == TokenTypes.CTOR_DEF
@@ -333,7 +304,9 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
         }
         else {
             final DetailAST singleParam = methodAst.findFirstToken(TokenTypes.IDENT);
-            contextVars.add(singleParam.getText());
+            if (singleParam != null) {
+                contextVars.add(singleParam.getText());
+            }
         }
     }
 
@@ -421,7 +394,8 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
      */
     private static DetailAST findEnclosingClassLike(DetailAST node) {
         DetailAST current = node.getParent();
-        while (current.getType() != TokenTypes.CLASS_DEF
+        while (current != null
+                && current.getType() != TokenTypes.CLASS_DEF
                 && current.getType() != TokenTypes.RECORD_DEF
                 && current.getType() != TokenTypes.INTERFACE_DEF
                 && current.getType() != TokenTypes.ENUM_DEF) {
@@ -441,16 +415,18 @@ public class ExceptionWrappingShouldUseContextCheck extends AbstractCheck {
     private static void collectFields(DetailAST classDef, Set<String> contextVars,
                                       boolean isStaticMethod) {
         final DetailAST objBlock = classDef.findFirstToken(TokenTypes.OBJBLOCK);
-        for (DetailAST child = objBlock.getFirstChild();
-             child != null;
-             child = child.getNextSibling()) {
-            if (child.getType() == TokenTypes.VARIABLE_DEF) {
-                final DetailAST modifiers = child.findFirstToken(TokenTypes.MODIFIERS);
-                final boolean isStaticField =
-                        modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-                if (!isStaticMethod || isStaticField) {
-                    final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-                    contextVars.add(ident.getText());
+        if (objBlock != null) {
+            for (DetailAST child = objBlock.getFirstChild();
+                 child != null;
+                 child = child.getNextSibling()) {
+                if (child.getType() == TokenTypes.VARIABLE_DEF) {
+                    final DetailAST modifiers = child.findFirstToken(TokenTypes.MODIFIERS);
+                    final boolean isStaticField = modifiers != null
+                            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                    if (!isStaticMethod || isStaticField) {
+                        final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                        contextVars.add(ident.getText());
+                    }
                 }
             }
         }

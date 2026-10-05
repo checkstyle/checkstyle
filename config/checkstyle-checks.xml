@@ -440,9 +440,7 @@
     <module name="EmptyStatement"/>
     <module name="EqualsAvoidNull"/>
     <module name="EqualsHashCode"/>
-    <module name="ExceptionWrappingShouldUseContext">
-      <property name="severity" value="ignore"/>
-    </module>
+    <module name="ExceptionThrowShouldUseContext"/>
     <module name="ExplicitInitialization"/>
     <module name="ExpressionOverBlockLambda"/>
     <module name="FallThrough"/>

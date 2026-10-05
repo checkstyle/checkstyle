@@ -3,32 +3,32 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
-    <title>ExceptionWrappingShouldUseContext</title>
+    <title>ExceptionThrowShouldUseContext</title>
   </head>
   <body>
-    <section name="ExceptionWrappingShouldUseContext">
+    <section name="ExceptionThrowShouldUseContext">
       <macro name="since">
         <param name="modulePath"
-               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionWrappingShouldUseContextCheck.java"/>
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionThrowShouldUseContextCheck.java"/>
       </macro>
       <macro name="sitetoc">
         <param name="modulePath"
-               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionWrappingShouldUseContextCheck.java"/>
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionThrowShouldUseContextCheck.java"/>
       </macro>
-      <subsection name="Description" id="ExceptionWrappingShouldUseContext_Description">
+      <subsection name="Description" id="ExceptionThrowShouldUseContext_Description">
         <macro name="description">
             <param name="modulePath"
-                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionWrappingShouldUseContextCheck.java"/>
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExceptionThrowShouldUseContextCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Examples" id="ExceptionWrappingShouldUseContext_Examples">
+      <subsection name="Examples" id="ExceptionThrowShouldUseContext_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/exceptionwrappingshouldusecontext/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/exceptionthrowshouldusecontext/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">
@@ -36,24 +36,24 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/exceptionwrappingshouldusecontext/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/exceptionthrowshouldusecontext/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="ExceptionWrappingShouldUseContext_Example_of_Usage">
+      <subsection name="Example of Usage" id="ExceptionThrowShouldUseContext_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExceptionWrappingShouldUseContext">
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ExceptionThrowShouldUseContext">
               Checkstyle Style</a>
           </li>
         </ul>
       </subsection>
 
       <subsection name="Violation Messages"
-            id="ExceptionWrappingShouldUseContext_Violation_Messages">
+            id="ExceptionThrowShouldUseContext_Violation_Messages">
         <macro name="violation-messages">
-          <param name="checkName" value="ExceptionWrappingShouldUseContext"/>
+          <param name="checkName" value="ExceptionThrowShouldUseContext"/>
         </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
@@ -63,17 +63,17 @@
       </subsection>
 
       <subsection name="Fully Qualified Name"
-                 id="ExceptionWrappingShouldUseContext_Fully_Qualified_Name">
-        <p>com.puppycrawl.tools.checkstyle.checks.coding.ExceptionWrappingShouldUseContextCheck</p>
+                 id="ExceptionThrowShouldUseContext_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck</p>
         <p>
           Use this fully qualified class name in configuration when an exact class reference is
           required.
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="ExceptionWrappingShouldUseContext_Parent_Module">
+      <subsection name="Parent Module" id="ExceptionThrowShouldUseContext_Parent_Module">
         <macro name="parent-module">
-          <param name="moduleName" value="ExceptionWrappingShouldUseContext"/>
+          <param name="moduleName" value="ExceptionThrowShouldUseContext"/>
         </macro>
       </subsection>
     </section>

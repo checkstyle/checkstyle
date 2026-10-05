@@ -1,14 +1,14 @@
 /*
-ExceptionWrappingShouldUseContext
+ExceptionThrowShouldUseContext
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.coding.exceptionwrappingshouldusecontext;
+package com.puppycrawl.tools.checkstyle.checks.coding.exceptionthrowshouldusecontext;
 
 import java.io.IOException;
 
-public class InputExceptionWrappingShouldUseContextEdgeCases3 {
+public class InputExceptionThrowShouldUseContextEdgeCases3 {
 
     String instanceField = "instance";
     private final java.io.Closeable closeableField = null;
@@ -42,7 +42,7 @@ public class InputExceptionWrappingShouldUseContextEdgeCases3 {
                 riskyOperation();
             }
             catch (IOException ex) {
-                // violation below 'Exception wrapping should always use context variables.'
+                // violation below 'Exception throw should always use context variables.'
                 throw new RuntimeException("error", ex);
             }
         }
@@ -54,7 +54,7 @@ public class InputExceptionWrappingShouldUseContextEdgeCases3 {
                 // empty
             }
             catch (Exception ex) {
-                // violation below 'Exception wrapping should always use context variables.'
+                // violation below 'Exception throw should always use context variables.'
                 throw new RuntimeException("error", ex);
             }
         }
@@ -84,19 +84,13 @@ public class InputExceptionWrappingShouldUseContextEdgeCases3 {
         try {
             riskyOperation();
         }
-        catch (IOException ex) {
-            // ok, not direct reference
-            throw new RuntimeException("error", new Exception(ex));
+        catch (IOException ex1) {
+            // violation below 'Exception throw should always use context variables.'
+            throw new RuntimeException("error", new Exception(ex1));
         }
-    }
-
-    void methodVarSameNameAfterCatch(String param) {
-        try {
-            riskyOperation();
-        }
-        catch (IOException ex) {
+        catch (Exception ex2) {
             // ok, uses param
-            throw new RuntimeException(param, ex);
+            throw new RuntimeException(param, ex2);
         }
         String ex = "after";
     }

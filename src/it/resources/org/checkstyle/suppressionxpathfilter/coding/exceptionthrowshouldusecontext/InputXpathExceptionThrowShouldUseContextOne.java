@@ -1,6 +1,6 @@
-package org.checkstyle.suppressionxpathfilter.coding.exceptionwrappingshouldusecontext;
+package org.checkstyle.suppressionxpathfilter.coding.exceptionthrowshouldusecontext;
 
-public class InputXpathExceptionWrappingShouldUseContextOne {
+public class InputXpathExceptionThrowShouldUseContextOne {
 
     void test(String param) {
         try {

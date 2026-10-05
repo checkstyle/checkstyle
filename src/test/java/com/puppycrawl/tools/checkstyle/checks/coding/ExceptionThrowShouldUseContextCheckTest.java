@@ -20,25 +20,24 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.coding.ExceptionWrappingShouldUseContextCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck.MSG_KEY;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ExceptionWrappingShouldUseContextCheckTest extends AbstractModuleTestSupport {
+public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/coding/exceptionwrappingshouldusecontext";
+        return "com/puppycrawl/tools/checkstyle/checks/coding/exceptionthrowshouldusecontext";
     }
 
     @Test
     public void testGetRequiredTokens() {
-        final ExceptionWrappingShouldUseContextCheck check =
-                new ExceptionWrappingShouldUseContextCheck();
+        final ExceptionThrowShouldUseContextCheck check =
+                new ExceptionThrowShouldUseContextCheck();
         final int[] expected = {
             TokenTypes.LITERAL_CATCH,
         };
@@ -57,12 +56,14 @@ public class ExceptionWrappingShouldUseContextCheckTest extends AbstractModuleTe
     public void testDefault() throws Exception {
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_KEY),
-            "76:13: " + getCheckMessage(MSG_KEY),
-            "87:13: " + getCheckMessage(MSG_KEY),
+            "46:13: " + getCheckMessage(MSG_KEY),
+            "51:13: " + getCheckMessage(MSG_KEY),
+            "64:13: " + getCheckMessage(MSG_KEY),
+            "75:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputExceptionWrappingShouldUseContext.java"),
+                getPath("InputExceptionThrowShouldUseContext.java"),
                 expected);
     }
 
@@ -71,20 +72,22 @@ public class ExceptionWrappingShouldUseContextCheckTest extends AbstractModuleTe
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY),
             "57:13: " + getCheckMessage(MSG_KEY),
-            "77:13: " + getCheckMessage(MSG_KEY),
+            "71:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputExceptionWrappingShouldUseContextEdgeCases1.java"),
+                getPath("InputExceptionThrowShouldUseContextEdgeCases1.java"),
                 expected);
     }
 
     @Test
     public void testEdgeCases2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "19:13: " + getCheckMessage(MSG_KEY),
+        };
 
         verifyWithInlineConfigParser(
-                getPath("InputExceptionWrappingShouldUseContextEdgeCases2.java"),
+                getPath("InputExceptionThrowShouldUseContextEdgeCases2.java"),
                 expected);
     }
 
@@ -93,21 +96,22 @@ public class ExceptionWrappingShouldUseContextCheckTest extends AbstractModuleTe
         final String[] expected = {
             "46:17: " + getCheckMessage(MSG_KEY),
             "58:17: " + getCheckMessage(MSG_KEY),
+            "89:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputExceptionWrappingShouldUseContextEdgeCases3.java"),
+                getPath("InputExceptionThrowShouldUseContextEdgeCases3.java"),
                 expected);
     }
 
     @Test
     public void testRecord() throws Exception {
         final String[] expected = {
-            "33:17: " + getCheckMessage(MSG_KEY),
+            "19:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
-                getPath("InputExceptionWrappingShouldUseContextRecord.java"),
+                getPath("InputExceptionThrowShouldUseContextRecord.java"),
                 expected);
     }
 
