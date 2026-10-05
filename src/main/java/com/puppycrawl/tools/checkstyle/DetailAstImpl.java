@@ -102,7 +102,8 @@ public final class DetailAstImpl implements DetailAST {
         text = token.getText();
         type = token.getType();
         lineNo = token.getLine();
-        columnNo = token.getCharPositionInLine();
+        // ANTLR columns start at 0, Checkstyle columns start at 1
+        columnNo = token.getCharPositionInLine() + 1;
     }
 
     /**

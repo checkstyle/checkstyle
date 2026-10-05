@@ -62,7 +62,7 @@ public class ParserUtilTest {
                 .isEqualTo(0);
         assertWithMessage("Invalid column number")
                 .that(contentCommentBlock.getColumnNo())
-                .isEqualTo(-1);
+                .isEqualTo(0);
 
         final DetailAST endCommentBlock = contentCommentBlock.getNextSibling();
         assertWithMessage("Invalid token type")

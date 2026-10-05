@@ -233,8 +233,8 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
 
-        assertWithMessage("Value at Column (0, 3) expected to equal 0")
-                .that(treeTable.getValueAt(0, 3).equals(0))
+        assertWithMessage("Value at Column (0, 3) expected to equal 1")
+                .that(treeTable.getValueAt(0, 3).equals(1))
                 .isEqualTo(true);
 
         assertWithMessage("getColumn class expected to return string class")

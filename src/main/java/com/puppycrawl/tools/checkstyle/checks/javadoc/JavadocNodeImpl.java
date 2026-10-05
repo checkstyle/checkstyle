@@ -88,7 +88,8 @@ public class JavadocNodeImpl implements DetailNode {
         type = token.getType();
         text = token.getText();
         lineNumber = token.getLine() - 1;
-        columnNumber = token.getCharPositionInLine();
+        // ANTLR columns start at 0, Checkstyle columns start at 1
+        columnNumber = token.getCharPositionInLine() + 1;
     }
 
     @Override

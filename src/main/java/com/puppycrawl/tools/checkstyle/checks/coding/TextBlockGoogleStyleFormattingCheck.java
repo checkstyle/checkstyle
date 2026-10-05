@@ -202,7 +202,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @return true if text-block content is properly indented.
      */
     private static boolean isContentIndentedProperly(DetailAST openingQuotes) {
-        final int quoteIndent = openingQuotes.getColumnNo();
+        final int quoteIndent = openingQuotes.getColumnNo() - 1;
         final DetailAST textAst = openingQuotes.getFirstChild();
         boolean result = true;
 
