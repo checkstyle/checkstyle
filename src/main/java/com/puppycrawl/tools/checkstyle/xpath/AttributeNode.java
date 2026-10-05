@@ -196,8 +196,8 @@ public class AttributeNode extends AbstractNode {
     }
 
     /**
-     * Creates nodes for children. Attribute node has no children, so
-     * this method throws unsupported exception.
+     * Creates nodes for children. Attribute node has no children, so this method throws unsupported
+     * exception.
      *
      * @return never
      */
