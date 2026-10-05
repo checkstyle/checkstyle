@@ -3393,7 +3393,9 @@ public class XdocsPagesTest {
 
     @FunctionalInterface
     private interface PredicateProcess {
+
         boolean hasFit(Path path);
+
     }
 
 }

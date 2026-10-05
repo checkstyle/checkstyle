@@ -239,6 +239,7 @@ public class ModuleReflectionUtilTest {
             final AbstractInvalidClass ref = this;
             ref.method();
         }
+
     }
 
     private static final class CheckClass extends AbstractCheck {

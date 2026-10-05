@@ -666,6 +666,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     private static final class TestException extends RuntimeException {
+
         @Serial
         private static final long serialVersionUID = 1L;
 
@@ -677,6 +678,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         public void printStackTrace(PrintWriter printWriter) {
             printWriter.print("stackTrace\nexample");
         }
+
     }
 
 }

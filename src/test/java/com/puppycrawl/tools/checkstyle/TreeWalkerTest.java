@@ -1003,6 +1003,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
      * Tracks execution order to verify sorting.
      */
     public static class TestCheck extends AbstractCheck {
+
         private static final List<String> EXECUTION_ORDER = new ArrayList<>();
 
         @Override
@@ -1059,6 +1060,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         /* package */ static List<String> getExecutionOrder() {
             return new ArrayList<>(EXECUTION_ORDER);
         }
+
     }
 
 }

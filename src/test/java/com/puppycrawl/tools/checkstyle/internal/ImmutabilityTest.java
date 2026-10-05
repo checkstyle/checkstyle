@@ -336,6 +336,7 @@ public class ImmutabilityTest {
      * ArchCondition checking fields are immutable.
      */
     private static final class ImmutableFieldArchCondition extends ArchCondition<JavaField> {
+
         private ImmutableFieldArchCondition() {
             super("be among immutable types");
         }
@@ -400,6 +401,7 @@ public class ImmutabilityTest {
                 events.add(SimpleConditionEvent.violated(item, message));
             }
         }
+
     }
 
     /**
@@ -435,12 +437,14 @@ public class ImmutabilityTest {
         public boolean test(JavaField input) {
             return isModuleProperty(input);
         }
+
     }
 
     /**
      * DescribedPredicate defining condition for a class to have immutable fields.
      */
     private static final class ImmutableFieldsPredicate extends DescribedPredicate<JavaClass> {
+
         private ImmutableFieldsPredicate() {
             super("immutable fields");
         }
@@ -462,6 +466,7 @@ public class ImmutabilityTest {
                             || ImmutableFieldArchCondition.isParameterizedTypeImmutable(javaField));
                 });
         }
+
     }
 
     /**
@@ -491,6 +496,7 @@ public class ImmutabilityTest {
                 events.add(SimpleConditionEvent.violated(item, message));
             }
         }
+
     }
 
 }

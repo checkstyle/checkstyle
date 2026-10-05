@@ -2385,6 +2385,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 pair.child = ast;
             }
         }
+
     }
 
 }

@@ -294,6 +294,7 @@ public class UnusedTryResourceShouldBeUnnamedCheck extends AbstractCheck {
         private boolean isUsed() {
             return used;
         }
+
     }
 
 }

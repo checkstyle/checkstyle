@@ -458,6 +458,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
             return match;
         }
+
     }
 
 }
