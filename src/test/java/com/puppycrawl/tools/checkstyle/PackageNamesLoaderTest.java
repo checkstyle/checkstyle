@@ -276,6 +276,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         public Enumeration<URL> getResources(String name) {
             return urls;
         }
+
     }
 
     /**
@@ -286,10 +287,12 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
      *      test a catch statement
      */
     private static final class TestIoExceptionClassLoader extends ClassLoader {
+
         @Override
         public Enumeration<URL> getResources(String name) throws IOException {
             throw new IOException("test");
         }
+
     }
 
     /**
@@ -310,6 +313,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
         public InputStream getInputStream() throws IOException {
             throw new IOException("Simulated IO failure");
         }
+
     }
 
 }

@@ -423,6 +423,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     }
 
     private static final class CountComments {
+
         private final List<String> lineComments = new ArrayList<>();
         private final List<String> blockComments = new ArrayList<>();
 
@@ -442,6 +443,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 forEachChild(ast.getFirstChild());
             }
         }
+
     }
 
 }

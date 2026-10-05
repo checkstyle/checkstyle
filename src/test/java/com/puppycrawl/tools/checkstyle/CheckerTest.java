@@ -1839,6 +1839,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         public void fileFinished(AuditEvent event) {
             fileFinishedCount++;
         }
+
     }
 
     public static class DummyFilter implements Filter {

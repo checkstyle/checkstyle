@@ -1806,6 +1806,7 @@ public class XdocsExamplesAstConsistencyTest {
      * false positives.
      */
     private static final class StructuralAstNode {
+
         private final int type;
         private final String text;
         /** Section-relative line number; null when position is intentionally ignored. */
@@ -1932,6 +1933,7 @@ public class XdocsExamplesAstConsistencyTest {
             sb.append('}');
             return sb.toString();
         }
+
     }
 
     /**

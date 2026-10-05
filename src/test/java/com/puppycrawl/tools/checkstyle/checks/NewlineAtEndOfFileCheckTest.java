@@ -258,6 +258,7 @@ public class NewlineAtEndOfFileCheckTest extends AbstractModuleTestSupport {
         public int read(byte[] bytes) {
             return 0;
         }
+
     }
 
 }

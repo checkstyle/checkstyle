@@ -583,6 +583,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 throw new IllegalStateException("mismatch in visitCount and leaveCount");
             }
         }
+
     }
 
     public static class ParseJavadocOnlyCheck extends AbstractJavadocCheck {
@@ -600,6 +601,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     public static class JavadocCatchCheck extends AbstractJavadocCheck {
+
         private static int javadocsNumber;
 
         public static void clearCounter() {
@@ -714,6 +716,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     public static class NonTightHtmlTagCheck extends AbstractJavadocCheck {
+
         // extra variable to make it explicit in test expected array
         // that message is from NonTightHtmlTagCheck
         public static final String MSG_KEY = MSG_TAG_FORMAT;
@@ -744,9 +747,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         public boolean acceptJavadocWithNonTightHtml() {
             return false;
         }
+
     }
 
     public static class NonTightHtmlTagTolerantCheck extends AbstractJavadocCheck {
+
         // extra variable to make it explicit in test expected array
         // that message is from NonTightHtmlTagCheck
         public static final String MSG_KEY = MSG_TAG_FORMAT;

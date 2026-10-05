@@ -766,6 +766,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * preserving the starting token for accurate location metadata.
      */
     private final class TextAccumulator {
+
         /**
          * Buffer to accumulate TEXT token texts.
          *
@@ -812,6 +813,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 buffer.setLength(0);
             }
         }
+
     }
 
 }

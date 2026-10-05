@@ -120,6 +120,7 @@ public class ReverseListIteratorTest {
         public boolean hasChildNodes() {
             return false;
         }
+
     }
 
 }

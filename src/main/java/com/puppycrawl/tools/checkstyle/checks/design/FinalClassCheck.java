@@ -474,6 +474,7 @@ public class FinalClassCheck extends AbstractCheck {
         /* package */ DetailAST getTypeDeclarationAst() {
             return typeDeclarationAst;
         }
+
     }
 
     /**
@@ -596,6 +597,7 @@ public class FinalClassCheck extends AbstractCheck {
         private boolean isDeclaredAsPrivate() {
             return declaredAsPrivate;
         }
+
     }
 
 }

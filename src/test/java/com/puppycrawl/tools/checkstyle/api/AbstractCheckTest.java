@@ -465,6 +465,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             super.visitToken(ast);
             count++;
         }
+
     }
 
     public static class ViolationCheck extends AbstractCheck {

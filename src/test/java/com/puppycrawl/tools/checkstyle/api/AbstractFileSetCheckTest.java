@@ -332,6 +332,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     public static class ViolationDispatcher implements MessageDispatcher {
+
         private String name;
         private SortedSet<Violation> errorList;
 

@@ -284,6 +284,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
         private boolean isUsed() {
             return used;
         }
+
     }
 
 }

@@ -349,6 +349,7 @@ public final class JavadocPropertiesGenerator {
         private CliOptions() {
             // no code by default
         }
+
     }
 
 }

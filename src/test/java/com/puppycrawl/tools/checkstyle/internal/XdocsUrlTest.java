@@ -196,6 +196,7 @@ public class XdocsUrlTest {
                 singleCheckNameList = null;
             }
         }
+
     }
 
 }
