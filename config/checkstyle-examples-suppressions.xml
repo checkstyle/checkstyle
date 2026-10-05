@@ -128,6 +128,16 @@
   <suppress checks="FileLength"
             files="googlenonconstantfieldname/Example1.java"/>
 
+  <!-- XdocsExamplesAstConsistencyTest requires Example2 to keep Example1's javadoc
+       text and code line positions, and the property config costs two extra lines -->
+  <suppress checks="FileLength"
+            files="javadocleadingasteriskalign/Example2.java"/>
+
+  <!-- The javadoc text is fixed by that same test, so the inline violation marker
+       it needs cannot be shortened or moved off the line -->
+  <suppress checks="LineLength"
+            files="javadocleadingasteriskalign/Example2.java"/>
+
   <!-- Suppress forbidden regex messages for avoidstarimport examples -->
   <suppress id="forbiddenRegexpInViolationMessage"
     files="avoidstarimport/(Example|UseCase)[1-9].java"/>
