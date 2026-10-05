@@ -1,6 +1,7 @@
 /*
 JavadocUtilizingTrailingSpace
 ignorePattern = ^$
+ignoreTooShortPattern = ^$
 lineLimit = 100
 violateExecutionOnNonTightHtml = (default)false
 
