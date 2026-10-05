@@ -2,7 +2,7 @@
 OperatorWrap
 option = EOL
 tokens = LAMBDA
-
+higherLevelWrap = (default)false
 
 */
 

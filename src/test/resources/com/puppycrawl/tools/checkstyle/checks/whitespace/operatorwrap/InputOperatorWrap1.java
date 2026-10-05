@@ -4,7 +4,7 @@ option = (default)nl
 tokens = (default)QUESTION, COLON, EQUAL, NOT_EQUAL, DIV, PLUS, MINUS, STAR, MOD, \
          SR, BSR, GE, GT, SL, LE, LT, BXOR, BOR, LOR, BAND, LAND, TYPE_EXTENSION_AND, \
          LITERAL_INSTANCEOF
-
+higherLevelWrap = (default)false
 
 */
 
@@ -84,6 +84,12 @@ class Switch1 {
             ;
         }
         for (int k : new int[]{1,2,3}) {}
+    }
+
+    void testHigherLevelDefault() {
+        int a = 1, b = 2, c = 3;
+        int x = a + b
+                * c;
     }
 }
 interface Foo {}
