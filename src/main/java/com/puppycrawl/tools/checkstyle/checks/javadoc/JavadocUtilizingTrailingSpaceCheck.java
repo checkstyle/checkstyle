@@ -63,6 +63,29 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </code></pre></div>
  *
  * <p>
+ * <b>Lines that end with punctuation.</b> A line that matches {@code ignoreTooShortPattern}
+ * is not reported as stopping too early, and no words are moved up to it. By default this is
+ * every line that ends with a period, a colon or a comma, so a sentence, or a part of it,
+ * can end before the limit. Trailing whitespace of the line is ignored when the pattern is
+ * applied. The line after such a line is checked on its own. Such lines can still be
+ * reported as too long.
+ * </p>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ *     // ok, the first line ends with a period
+ *     &#47;**
+ *      * Not part of the API.
+ *      * This is returned when a type not known to this wrapper is returned.
+ *      *&#47;
+ *
+ *     // violation, "known" would fit on the second line
+ *     &#47;**
+ *      * Not part of the API.
+ *      * This is returned when a type not
+ *      * known to this wrapper is returned.
+ *      *&#47;
+ * </code></pre></div>
+ *
+ * <p>
  * <b>Lines that are too long.</b> A line is reported when it is longer than the limit.
  * The fix is to wrap it at a word.
  * </p>
@@ -211,6 +234,9 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     private Pattern ignorePattern =
             Pattern.compile("href\\s*=\\s*\"[^\"]*\"|http://|https://|ftp://");
 
+    /** Pattern for lines that are not reported as too short. */
+    private Pattern ignoreTooShortPattern = Pattern.compile("[.:,]$");
+
     /** Current line being built. */
     private JavadocLine currentLine;
 
@@ -262,6 +288,16 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
      */
     public void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;
+    }
+
+    /**
+     * Setter to specify pattern for lines that are not reported as too short.
+     *
+     * @param pattern a pattern.
+     * @since 14.4.0
+     */
+    public void setIgnoreTooShortPattern(Pattern pattern) {
+        ignoreTooShortPattern = pattern;
     }
 
     @Override
@@ -495,14 +531,17 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     private boolean canPullFromNextLine(int currentIndex) {
         boolean pullNext = false;
 
-        if (currentIndex + 1 < lines.size() && !lines.get(currentIndex).skippedLinesFollow) {
+        final JavadocLine line = lines.get(currentIndex);
+
+        if (!line.skippedLinesFollow && currentIndex + 1 < lines.size()
+                && !ignoreTooShortPattern.matcher(
+                    getLine(line.lineNumber - 1).stripTrailing()).find()) {
 
             final JavadocLine nextLine = lines.get(currentIndex + 1);
 
             if (nextLine.hasContent && !nextLine.startsWithUnbreakable
                     && !nextLine.startsWithBlockTag && !nextLine.startsWithHtml) {
-                final int currentLength = lines.get(currentIndex).length;
-                final int potentialLength = currentLength + 1 + nextLine.firstWordLength();
+                final int potentialLength = line.length + 1 + nextLine.firstWordLength();
                 pullNext = potentialLength <= lineLimit;
             }
         }
