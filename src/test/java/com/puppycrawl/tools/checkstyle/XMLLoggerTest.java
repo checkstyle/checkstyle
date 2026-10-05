@@ -478,6 +478,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     private static final class TestException extends RuntimeException {
+
         @Serial
         private static final long serialVersionUID = 1L;
 

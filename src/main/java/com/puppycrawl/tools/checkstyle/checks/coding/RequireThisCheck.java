@@ -1428,6 +1428,7 @@ public class RequireThisCheck extends AbstractCheck {
             return identToFind.equals(ast.getText())
                 && CheckUtil.isBeforeInSource(ast, ident);
         }
+
     }
 
     /**

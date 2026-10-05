@@ -238,6 +238,7 @@ public class JavadocDetailNodeParser {
             }
             return result.toString();
         }
+
     }
 
     /**

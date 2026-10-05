@@ -677,6 +677,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 listener.auditFinished(event);
             }
         }
+
     }
 
     /** Starts the file audit and completes it when processing ends. */
@@ -700,6 +701,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         public void close() {
             fireFileFinished(fileName);
         }
+
     }
 
 }

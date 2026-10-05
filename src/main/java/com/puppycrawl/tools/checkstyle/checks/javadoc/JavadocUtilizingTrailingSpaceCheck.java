@@ -637,6 +637,7 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
         private int firstWordLength() {
             return firstWord.length();
         }
+
     }
 
 }

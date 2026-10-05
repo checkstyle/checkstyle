@@ -397,6 +397,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
         private ScopeState() {
             // no code by default
         }
+
     }
 
 }

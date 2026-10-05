@@ -320,6 +320,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     public static class JavaDocCapture extends AbstractCheck {
+
         private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
 
         @Override
@@ -480,6 +481,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         private static String makeFirstLower(String str) {
             return Character.toLowerCase(str.charAt(0)) + str.substring(1);
         }
+
     }
 
 }
