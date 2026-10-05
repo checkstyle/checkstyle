@@ -38,6 +38,28 @@
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
+ &lt;b&gt;Lines that end with punctuation.&lt;/b&gt; A line that matches &lt;code&gt;ignoreTooShortPattern&lt;/code&gt;
+ is not reported as stopping too early, and no words are moved up to it. By default this is
+ every line that ends with a period, a colon or a comma, so a sentence, or a part of it,
+ can end before the limit. The line after such a line is checked on its own. Such lines
+ can still be reported as too long.
+ &lt;/p&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
+     // ok, the first line ends with a period
+     &amp;#47;**
+      * Not part of the API.
+      * This is returned when a type not known to this wrapper is returned.
+      *&amp;#47;
+
+     // violation, "known" would fit on the second line
+     &amp;#47;**
+      * Not part of the API.
+      * This is returned when a type not
+      * known to this wrapper is returned.
+      *&amp;#47;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
  &lt;b&gt;Lines that are too long.&lt;/b&gt; A line is reported when it is longer than the limit.
  The fix is to wrap it at a word.
  &lt;/p&gt;
@@ -163,6 +185,11 @@
                       name="ignorePattern"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for lines that are not reported as too long.</description>
+            </property>
+            <property default-value="[.:,]$"
+                      name="ignoreTooShortPattern"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern for lines that are not reported as too short.</description>
             </property>
             <property default-value="80" name="lineLimit" type="int">
                <description>Specify the line length limit.</description>
