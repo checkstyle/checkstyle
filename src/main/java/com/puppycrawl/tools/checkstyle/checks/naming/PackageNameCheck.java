@@ -45,8 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @since 3.0
  */
 @StatelessCheck
-public class PackageNameCheck
-    extends AbstractCheck {
+public class PackageNameCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

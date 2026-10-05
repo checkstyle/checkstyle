@@ -213,4 +213,8 @@
   <suppress checks="LineLength"
             files="annotateddeclarationvisibility/Example3.java"/>
 
+  <!-- Example files contain intentionally long Javadoc lines to demonstrate the check -->
+  <suppress checks="LineLength"
+            files="javadocutilizingtrailingspace[\\/]Example.*\.java"/>
+
 </suppressions>

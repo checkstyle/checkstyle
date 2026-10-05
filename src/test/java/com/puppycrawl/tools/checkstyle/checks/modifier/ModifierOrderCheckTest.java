@@ -30,8 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class ModifierOrderCheckTest
-    extends AbstractModuleTestSupport {
+public class ModifierOrderCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

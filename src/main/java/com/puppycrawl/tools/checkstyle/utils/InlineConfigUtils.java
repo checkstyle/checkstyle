@@ -206,10 +206,7 @@ public final class InlineConfigUtils {
      * @param xmlStyleConfig true if the config content is XML ({@code <module>} form),
      *     false if it is the legacy bare key=value form.
      */
-    public record MatchedDelimiter(
-            String end,
-            boolean xmlStyleConfig
-    ) {
+    public record MatchedDelimiter(String end, boolean xmlStyleConfig) {
     }
 
 }

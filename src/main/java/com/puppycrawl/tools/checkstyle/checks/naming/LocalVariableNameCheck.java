@@ -37,8 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * @since 3.0
  */
-public class LocalVariableNameCheck
-    extends AbstractNameCheck {
+public class LocalVariableNameCheck extends AbstractNameCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

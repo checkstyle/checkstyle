@@ -28,8 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class FileSetCheckTest
-    extends AbstractModuleTestSupport {
+public class FileSetCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

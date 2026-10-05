@@ -76,8 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * @since 3.2
  */
 @FileStatefulCheck
-public class CyclomaticComplexityCheck
-    extends AbstractCheck {
+public class CyclomaticComplexityCheck extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"

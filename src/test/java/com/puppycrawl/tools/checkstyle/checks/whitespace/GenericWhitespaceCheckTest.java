@@ -43,8 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class GenericWhitespaceCheckTest
-    extends AbstractModuleTestSupport {
+public class GenericWhitespaceCheckTest extends AbstractModuleTestSupport {
 
     @Override
     public String getPackageLocation() {

@@ -32,8 +32,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-public class SuppressWarningsFilterTest
-    extends AbstractModuleTestSupport {
+public class SuppressWarningsFilterTest extends AbstractModuleTestSupport {
 
     private static final String[] ALL_MESSAGES = {
         "50:5: "
