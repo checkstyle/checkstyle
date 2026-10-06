@@ -35,8 +35,8 @@ public class InputVariablesInvalid {
 
     public boolean myMethod(String sentence) {
         return Stream.of(sentence.split(" "))
-               .map(word -> word.trim())
-               .anyMatch(Word -> "in".equals(Word));
+                .map(word -> word.trim())
+                .anyMatch(Word -> "in".equals(Word));
         // violation above 'Name 'Word' must match pattern'
     }
 
