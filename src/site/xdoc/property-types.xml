@@ -47,6 +47,7 @@
             <li><a href="#Pattern.5B.5D">Pattern[]</a></li>
             <li><a href="#RightCurlyOption">RightCurlyOption</a></li>
             <li><a href="#Scope">Scope</a></li>
+            <li><a href="#SeparatorOption">SeparatorOption</a></li>
             <li><a href="#SeverityLevel">SeverityLevel</a></li>
             <li><a href="#String">String</a></li>
             <li><a href="#String.5B.5D">String[]</a></li>
@@ -1056,6 +1057,49 @@ if (a &#62; 0) {
         others, then you must set the exclude scope property, if available, to the scope above
         it in the table. In this case you would exclude <code>package</code>.
       </p>
+    </section>
+
+    <section name="SeparatorOption">
+      <p>
+        This type represents the policy for empty lines at the top and bottom
+        of a block. The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="separator options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td>
+              <a id="SeparatorOption-empty_line"/>
+              <a href="#SeparatorOption-empty_line">empty_line</a>
+            </td>
+            <td>
+              Exactly one empty line is required.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a id="SeparatorOption-empty_line_allowed"/>
+              <a href="#SeparatorOption-empty_line_allowed">empty_line_allowed</a>
+            </td>
+            <td>
+              Presence or absence of an empty line is OK.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a id="SeparatorOption-no_empty_line"/>
+              <a href="#SeparatorOption-no_empty_line">no_empty_line</a>
+            </td>
+            <td>
+              An empty line is not allowed.
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="SeverityLevel">
