@@ -135,31 +135,21 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     @Test
     public void testSuppressionCommentsInPropertiesFile() throws Exception {
-        final DefaultConfiguration filterCfg =
-            createModuleConfig(SuppressWithPlainTextCommentFilter.class);
-        filterCfg.addProperty("offCommentFormat", "# CHECKSTYLE:OFF");
-        filterCfg.addProperty("onCommentFormat", "# CHECKSTYLE:ON");
-
-        final DefaultConfiguration checkCfg = createModuleConfig(RegexpSinglelineCheck.class);
-        checkCfg.addProperty("format", "^key[0-9]=$");
-
         final String[] suppressed = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "13: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
         };
 
         final String[] violationMessages = {
-            "2: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "13: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
-            "4: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
+            "16: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 "^key[0-9]=$"),
         };
 
-        verifySuppressed(
-            "InputSuppressWithPlainTextCommentFilter.properties",
-            removeSuppressed(violationMessages, suppressed),
-            filterCfg, checkCfg
-        );
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithPlainTextCommentFilter.properties"),
+            violationMessages, removeSuppressed(violationMessages, suppressed));
     }
 
     @Test
