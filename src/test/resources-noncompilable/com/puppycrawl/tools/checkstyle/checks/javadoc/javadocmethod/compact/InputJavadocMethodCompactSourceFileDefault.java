@@ -59,6 +59,6 @@ class Holder {
  */
 record Point(int x) {
     /** Compact constructor. */
-    Point { // ok until https://github.com/checkstyle/checkstyle/issues/21697
+    Point { // violation 'Expected @param tag for 'x'.'
     }
 }
