@@ -233,19 +233,10 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testBlankPatternBranch() throws Exception {
-        final File headerFile = new File(temporaryFolder, "blankPattern.header");
-        Files.write(headerFile.toPath(),
-                List.of("// First line", "// Second line", "   "));
-
-        final File testFile = new File(temporaryFolder, "testFile.java");
-        Files.write(testFile.toPath(),
-                List.of("// First line", "// Second line", "   "));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderBlankPatternConfig.java"),
+                getPath("InputRegexpHeaderBlankPattern.txt"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
@@ -345,47 +336,18 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAllLinesMatch() throws Exception {
-        final String[] fileLines = {
-            "// First line",
-            "// Second line",
-            "// Third line",
-        };
-
-        final File testFile = new File(temporaryFolder, "test.java");
-        Files.write(testFile.toPath(), List.of(fileLines));
-
-        final File headerFile = new File(temporaryFolder, "header.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// First line",
-            "// Second line",
-            "// Third line"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderAllLinesMatchConfig.java"),
+                getPath("InputRegexpHeaderAllLinesMatch.txt"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
     public void testEmptyPatternMatch() throws Exception {
-        final File fileWithBlank = new File(temporaryFolder, "blank.java");
-        Files.write(fileWithBlank.toPath(), List.of(
-            "// First line",
-            "",
-            "// Third line"));
-
-        final File headerFile = new File(temporaryFolder, "header.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// First line",
-            "^$",
-            "// Third line"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        verify(checkConfig, fileWithBlank.getPath(), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderEmptyPatternConfig.java"),
+                getPath("InputRegexpHeaderEmptyPattern.txt"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
