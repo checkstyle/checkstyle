@@ -375,10 +375,7 @@ public final class CheckUtil {
              returnValue.isEmpty() && !TokenUtil.isRootNode(token);
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.ENUM_DEF) {
+            if (TokenUtil.isTypeDeclaration(type)) {
                 returnValue = Optional.ofNullable(getAccessModifierFromModifiersToken(token));
             }
             else if (type == TokenTypes.LITERAL_NEW) {
