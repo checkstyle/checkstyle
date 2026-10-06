@@ -187,7 +187,8 @@ public final class SuppressionsLoader extends XmlLoader {
         }
         catch (final PatternSyntaxException exc) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks or message format", exc);
+            throw new SAXException("invalid files or checks or message format for checks: "
+                    + checks, exc);
         }
         return suppress;
     }
@@ -216,8 +217,8 @@ public final class SuppressionsLoader extends XmlLoader {
         }
         catch (final PatternSyntaxException exc) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
-            throw new SAXException("invalid files or checks or message format for suppress-xpath",
-                    exc);
+            throw new SAXException("invalid files or checks or message format for suppress-xpath: "
+                    + checks, exc);
         }
         return filter;
     }
