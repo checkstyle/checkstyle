@@ -152,10 +152,12 @@ public final class PackageNamesLoader extends XmlLoader {
             result = namesLoader.packageNames;
         }
         catch (IOException exc) {
-            throw new CheckstyleException("unable to get package file resources", exc);
+            throw new CheckstyleException("unable to get package file resources with "
+                    + classLoader.getClass().getName(), exc);
         }
         catch (ParserConfigurationException | SAXException exc) {
-            throw new CheckstyleException("unable to open one of package files", exc);
+            throw new CheckstyleException("unable to open one of package files with "
+                    + classLoader.getClass().getName(), exc);
         }
 
         return Collections.unmodifiableSet(result);
