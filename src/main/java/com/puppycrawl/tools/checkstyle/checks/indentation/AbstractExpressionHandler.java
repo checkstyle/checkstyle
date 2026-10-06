@@ -444,15 +444,37 @@ public abstract class AbstractExpressionHandler {
         boolean firstLineMatches,
         boolean allowNesting
     ) {
-        final DetailAstSet subtreeAst = new DetailAstSet(context);
-        final int firstLine = getFirstLine(tree);
-        if (firstLineMatches && !allowNesting) {
-            final DetailAST firstAst = getFirstAstNode(tree);
-            subtreeAst.addAst(firstAst);
+        if (shouldCheckReturnWrapping(tree, indentLevel)) {
+            checkLineIndent(tree, indentLevel, firstLineMatches);
+            checkWrappingIndentation(tree, tree.getLastChild());
         }
-        findSubtreeAst(subtreeAst, tree, allowNesting);
+        else {
+            final DetailAstSet subtreeAst = new DetailAstSet(context);
+            final int firstLine = getFirstLine(tree);
+            if (firstLineMatches && !allowNesting) {
+                final DetailAST firstAst = getFirstAstNode(tree);
+                subtreeAst.addAst(firstAst);
+            }
+            findSubtreeAst(subtreeAst, tree, allowNesting);
 
-        checkLinesIndent(subtreeAst, indentLevel, firstLineMatches, firstLine, allowNesting);
+            checkLinesIndent(subtreeAst, indentLevel, firstLineMatches, firstLine, allowNesting);
+        }
+    }
+
+    /**
+     * Whether line wrapping owns the returned expression's indentation.
+     * Nested constructs retain their existing handlers, and an incorrectly indented
+     * return keyword must not cause additional continuation errors.
+     *
+     * @param tree the expression subtree
+     * @param indentLevel the expected statement indentation
+     * @return whether the returned expression should be checked for line wrapping
+     */
+    private boolean shouldCheckReturnWrapping(DetailAST tree, IndentLevel indentLevel) {
+        return tree.getType() == TokenTypes.LITERAL_RETURN
+                && tree.getFirstChild().getType() == TokenTypes.EXPR
+                && (!isOnStartOfLine(tree)
+                        || indentLevel.isAcceptable(expandedTabsColumnNo(tree)));
     }
 
     /**

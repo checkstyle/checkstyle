@@ -2162,10 +2162,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputIndentationMultilineStatements.java");
 
         final String[] expected = {
-            "23:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "23:7: " + getCheckMessage(MSG_ERROR, "&&", 6, 8),
             "39:7: " + getCheckMessage(MSG_ERROR, 0, 6, 8),
             "40:7: " + getCheckMessage(MSG_ERROR, 1, 6, 8),
-            "65:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "65:7: " + getCheckMessage(MSG_ERROR, "\"\"\"", 6, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -4870,6 +4870,50 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWrappedReturnExpressions() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "22:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "23:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "28:25: " + getCheckMessage(MSG_ERROR, ".", 24, 16),
+            "29:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            "62:5: " + getCheckMessage(MSG_ERROR, "?", 4, 16),
+            "63:13: " + getCheckMessage(MSG_ERROR, ":", 12, 16),
+            "88:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "93:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "97:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "101:19: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "106:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "107:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationWrappedReturn.java"), expected);
+    }
+
+    @Test
+    public void testWrappedReturnExpressionsNonStrict() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "29:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            "62:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "67:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "71:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "75:19: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "80:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "81:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationWrappedReturnNonStrict.java"), expected);
+    }
+
+    @Test
     public void testMethodCallInLambdaAndReturnStatements() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("basicOffset", "2");
@@ -4883,8 +4927,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "24:5: " + getCheckMessage(MSG_ERROR, "lambda", 4, 8),
             "34:5: " + getCheckMessage(MSG_ERROR, "s", 4, 8),
-            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
-            "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "40:5: " + getCheckMessage(MSG_ERROR, "+", 4, 8),
+            "41:5: " + getCheckMessage(MSG_ERROR, "+", 4, 8),
             "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
             "47:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
             "48:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
