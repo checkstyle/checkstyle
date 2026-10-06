@@ -58,6 +58,9 @@ public final class DetailAstImpl implements DetailAST {
     /** First child of this DetailAST. */
     private DetailAstImpl firstChild;
 
+    /** Cached last child of this DetailAST. */
+    private DetailAstImpl lastChild;
+
     /** First sibling of this DetailAST.*/
     private DetailAstImpl nextSibling;
 
@@ -171,16 +174,18 @@ public final class DetailAstImpl implements DetailAST {
             final DetailAstImpl astImpl = (DetailAstImpl) child;
             astImpl.setParent(this);
         }
-        DetailAST temp = firstChild;
+        final DetailAST temp = getLastChild();
         if (temp == null) {
             firstChild = (DetailAstImpl) child;
         }
         else {
-            while (temp.getNextSibling() != null) {
-                temp = temp.getNextSibling();
-            }
-
             ((DetailAstImpl) temp).setNextSibling(child);
+        }
+        if (child == null) {
+            lastChild = (DetailAstImpl) temp;
+        }
+        else {
+            lastChild = getLastSibling((DetailAstImpl) child);
         }
     }
 
@@ -317,11 +322,24 @@ public final class DetailAstImpl implements DetailAST {
 
     @Override
     public DetailAST getLastChild() {
-        DetailAstImpl ast = firstChild;
-        while (ast != null && ast.nextSibling != null) {
-            ast = ast.nextSibling;
+        if (lastChild == null) {
+            lastChild = getLastSibling(firstChild);
         }
-        return ast;
+        return lastChild;
+    }
+
+    /**
+     * Finds the last node in a sibling chain.
+     *
+     * @param ast first node in the chain
+     * @return the last sibling, or null for an empty chain
+     */
+    private static DetailAstImpl getLastSibling(DetailAstImpl ast) {
+        DetailAstImpl result = ast;
+        while (result != null && result.nextSibling != null) {
+            result = result.nextSibling;
+        }
+        return result;
     }
 
     /**
@@ -470,6 +488,9 @@ public final class DetailAstImpl implements DetailAST {
     public void setNextSibling(DetailAST nextSibling) {
         clearBranchTokenTypes();
         clearChildCountCache(parent);
+        if (parent != null) {
+            parent.lastChild = null;
+        }
         this.nextSibling = (DetailAstImpl) nextSibling;
         if (nextSibling != null && parent != null) {
             ((DetailAstImpl) nextSibling).setParent(parent);
@@ -487,6 +508,7 @@ public final class DetailAstImpl implements DetailAST {
     public void setFirstChild(DetailAST firstChild) {
         clearBranchTokenTypes();
         clearChildCountCache(this);
+        lastChild = null;
         this.firstChild = (DetailAstImpl) firstChild;
         if (firstChild != null) {
             ((DetailAstImpl) firstChild).setParent(this);
@@ -498,6 +520,7 @@ public final class DetailAstImpl implements DetailAST {
      */
     public void removeChildren() {
         firstChild = null;
+        lastChild = null;
     }
 
     /**
