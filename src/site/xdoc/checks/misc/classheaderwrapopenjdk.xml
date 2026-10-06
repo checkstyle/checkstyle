@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ClassHeaderWrapOpenjdk</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ClassHeaderWrapOpenjdk">
+      <p>Since Checkstyle 14.4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#ClassHeaderWrapOpenjdk_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#ClassHeaderWrapOpenjdk_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">Follow openjdk guidelines for class header wrapping</a></li>
+            </ul>
+          </li>
+          <li><a href="#ClassHeaderWrapOpenjdk_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#ClassHeaderWrapOpenjdk_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#ClassHeaderWrapOpenjdk_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#ClassHeaderWrapOpenjdk_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="ClassHeaderWrapOpenjdk_Description">
+        <div>
+          Checks that a wrapped class, interface, enum, or record header is wrapped according to the
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-class-declarations">
+          OpenJDK Java Style Guide</a>.
+        </div>
+
+        <p>
+          This check only applies when the type declaration header, from the declaration
+          keyword through the end of its <code>extends</code>/<code>implements</code> clauses (or its
+          name/type parameters/record components when neither clause is present), spans more
+          than one line. A header whose content is entirely on one line is not in scope, even
+          if its opening curly brace is pushed onto its own following line; that is a brace
+          placement choice for other checks (such as <code>LeftCurly</code>) to enforce, not a
+          wrapping concern this check is about.
+        </p>
+
+        <p>
+          The two rules enforced are:
+        </p>
+        <ol>
+        <li>Each of the <code>extends</code> and <code>implements</code> clauses, when present, must
+          <em>stand out</em> on its own new line once the header has started wrapping, or once
+          that clause's own list of supertypes wraps across lines. Wrapping that happens only
+          inside a single supertype's type arguments (the same way method arguments may wrap)
+          does not require the clause keyword itself to move to a new line.</li>
+        <li>Only checked when rule 1 above found nothing to report: the header should not have
+          been wrapped in the first place if, joined back onto one line, it would still fit
+          within 80 columns.</li>
+        </ol>
+      </subsection>
+
+      <subsection name="Examples" id="ClassHeaderWrapOpenjdk_Examples">
+        <p id="Example1-config">
+          To configure the check to follow openjdk guidelines for class header wrapping:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ClassHeaderWrapOpenjdk"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  abstract static class ValidGenericContainer&lt;T, S&gt;
+          extends HashMap&lt;T, S&gt;
+          implements Comparable&lt;T&gt; {
+  }
+
+  abstract static class InvalidGenericContainer&lt;T, S&gt;
+          extends HashMap&lt;T, S&gt; implements Comparable&lt;T&gt; {
+    // violation above """The 'implements' clause should be on a new line when
+    // the class header is wrapped."""
+  }
+
+  static class UnnecessaryWrap
+          extends Object {
+    // violation 2 lines above """The class header should not be wrapped as it
+    // fits within the maximum column limit of 80."""
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ClassHeaderWrapOpenjdk_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassHeaderWrapOpenjdk">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassHeaderWrapOpenjdk">
+            OpenJDK Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ClassHeaderWrapOpenjdk_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22openjdk.classheader.new.line%22">
+              openjdk.classheader.new.line
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22openjdk.classheader.unnecessary.wrap%22">
+              openjdk.classheader.unnecessary.wrap
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name"
+                  id="ClassHeaderWrapOpenjdk_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.indentation.ClassHeaderWrapOpenjdkCheck</p>
+        <p>
+          Use this fully qualified class name in configuration when an exact class reference is
+          required.
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ClassHeaderWrapOpenjdk_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

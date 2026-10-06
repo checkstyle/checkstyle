@@ -333,6 +333,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/misc/openjdkmethodthrowsalignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/misc/classheaderwrapopenjdk.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]unnecessaryfullyqualifiedtype.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src/site/xdoc/checks/javadoc/javadocendcommentdelimiter.xml.template"/>
