@@ -1030,6 +1030,7 @@ OOQ
 opencollective
 openjdk
 openjdkannotationlocation
+openjdklinewrapping
 openjdkmethodparameteralignment
 openjdkmethodthrowsalignment
 openrewrite
