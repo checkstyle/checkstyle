@@ -149,6 +149,9 @@
     files="src[\\/]test[\\/]resources[\\/].*[\\/]Input.*\.java"/>
 
   <!-- intentional problem for testing -->
+  <!-- Real tabs are required to test expanded continuation columns. -->
+  <suppress checks="FileTabCharacter"
+    files="/openjdklinewrapping/InputOpenjdkLineWrappingTabs\.java"/>
   <suppress checks="FileTabCharacter"
     files="/InputJavadocWithCrAsNewline\.javadoc"/>
   <suppress checks="FileTabCharacter"
