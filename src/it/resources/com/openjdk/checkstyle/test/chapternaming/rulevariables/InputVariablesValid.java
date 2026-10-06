@@ -35,8 +35,8 @@ public class InputVariablesValid {
 
     public boolean myMethod(String sentence) {
         return Stream.of(sentence.split(" "))
-               .map(word -> word.trim())
-               .anyMatch(words -> "in".equals(words));
+                .map(word -> word.trim())
+                .anyMatch(words -> "in".equals(words));
     }
 
     void foo(Object o1) {
