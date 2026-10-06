@@ -186,7 +186,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
             catch (IOException exc) {
                 throw new IllegalStateException(
-                        getLocalizedMessage("Checker.cacheFilesException"), exc);
+                        getLocalizedMessage("Checker.cacheFilesException") + ": "
+                                + cacheFile.getFileName(), exc);
             }
         }
     }

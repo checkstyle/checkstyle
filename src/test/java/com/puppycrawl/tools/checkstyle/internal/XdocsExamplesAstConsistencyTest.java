@@ -621,7 +621,8 @@ public class XdocsExamplesAstConsistencyTest {
                 new ByteArrayInputStream(xmlBlock.getBytes(StandardCharsets.UTF_8)));
         }
         catch (IOException exception) {
-            throw new IllegalStateException("Failed to parse in-memory XML block", exception);
+            throw new IllegalStateException("Failed to parse in-memory XML block for "
+                    + moduleName, exception);
         }
 
         return findModuleElement(document.getDocumentElement(), moduleName);
@@ -1056,8 +1057,8 @@ public class XdocsExamplesAstConsistencyTest {
             }
         }
         catch (IOException exception) {
-            throw new IllegalStateException("Failed to build module simple name index",
-                exception);
+            throw new IllegalStateException("Failed to build module simple name index into "
+                + index.getClass().getName(), exception);
         }
 
         return index;
