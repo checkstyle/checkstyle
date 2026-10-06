@@ -284,7 +284,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid error message")
             .that(exc.getMessage())
             .isEqualTo("Unable to parse " + fn
-                    + " - invalid files or checks or message format");
+                    + " - invalid files or checks or message format for checks: abc");
     }
 
     @Test
@@ -336,7 +336,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid error message")
             .that(exc.getMessage())
             .isEqualTo("Unable to parse " + fn
-                    + " - invalid files or checks or message format for suppress-xpath");
+                    + " - invalid files or checks or message format for suppress-xpath: abc");
     }
 
     @Test

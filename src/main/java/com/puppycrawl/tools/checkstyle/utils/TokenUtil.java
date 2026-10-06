@@ -107,7 +107,7 @@ public final class TokenUtil {
             return field.getInt(object);
         }
         catch (final IllegalAccessException exception) {
-            throw new IllegalStateException(exception);
+            throw new IllegalStateException(field.getName(), exception);
         }
     }
 

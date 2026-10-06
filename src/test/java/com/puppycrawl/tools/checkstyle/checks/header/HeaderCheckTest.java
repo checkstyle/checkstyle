@@ -315,7 +315,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             assertWithMessage("Invalid exception message")
                     .that(ex)
                     .hasMessageThat()
-                            .isEqualTo("unable to load header");
+                            .isEqualTo("unable to load header: header");
         }
     }
 

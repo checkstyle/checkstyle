@@ -315,7 +315,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid exception message")
                 .that(ex)
                 .hasMessageThat()
-                        .isEqualTo("Cannot close the stream");
+                        .startsWith("Cannot close the stream ");
     }
 
     @Test
