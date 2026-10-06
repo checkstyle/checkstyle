@@ -70,6 +70,10 @@
   <suppress checks="Indentation"
     files="returncount/Example\d+.java"/>
 
+  <!-- Demonstrates OpenJDK's four-space blocks rather than the examples' two-space blocks. -->
+  <suppress checks="Indentation"
+    files="openjdklinewrapping/Example1\.java"/>
+
   <!-- Example deals with line wrapping and check does not take that into account.  -->
   <suppress id="exampleClassName"
     files="nolinewrap/Example5.java"/>
