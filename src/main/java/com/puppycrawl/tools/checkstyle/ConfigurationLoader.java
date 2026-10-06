@@ -517,7 +517,7 @@ public final class ConfigurationLoader {
                 catch (final CheckstyleException exc) {
                     // -@cs[IllegalInstantiation] SAXException is in the overridden
                     // method signature
-                    throw new SAXException(exc);
+                    throw new SAXException(attributesValue, exc);
                 }
 
                 final String name = attributes.getValue(NAME);
