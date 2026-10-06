@@ -150,7 +150,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
                         () -> classDataAbstractionCouplingCheckObj.visitToken(ast));
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
-            .isEqualTo("Unknown type: ctor[0x-1]");
+            .isEqualTo("Unknown type: ctor[0x0]");
     }
 
     @Test

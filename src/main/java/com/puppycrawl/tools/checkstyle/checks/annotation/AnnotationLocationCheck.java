@@ -229,7 +229,17 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * @return the annotation indentation.
      */
     private static int getExpectedAnnotationIndentation(DetailAST node) {
-        return node.getColumnNo();
+        return getIndentation(node);
+    }
+
+    /**
+     * Returns the indentation of the node, i.e. the number of characters before it in the line.
+     *
+     * @param node node.
+     * @return the indentation of the node.
+     */
+    private static int getIndentation(DetailAST node) {
+        return node.getColumnNo() - 1;
     }
 
     /**
@@ -250,9 +260,10 @@ public class AnnotationLocationCheck extends AbstractCheck {
                 log(annotation,
                         MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
             }
-            else if (annotation.getColumnNo() != correctIndentation && !hasNodeBefore(annotation)) {
+            else if (getIndentation(annotation) != correctIndentation
+                    && !hasNodeBefore(annotation)) {
                 log(annotation, MSG_KEY_ANNOTATION_LOCATION,
-                    getAnnotationName(annotation), annotation.getColumnNo(), correctIndentation);
+                    getAnnotationName(annotation), getIndentation(annotation), correctIndentation);
             }
             annotation = annotation.getNextSibling();
         }

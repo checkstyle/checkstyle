@@ -201,13 +201,14 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * same line as the provided token.
      *
      * @param token the token whose line should be checked
-     * @param columnNo the column number to inspect for whitespace
+     * @param columnNo the column number to inspect for whitespace, starting from 1
      * @return true if the character at {@code columnNo} is a whitespace character
      */
     private boolean isWhitespaceAt(DetailAST token, int columnNo) {
         final int[] line = getLineCodePoints(token.getLineNo() - 1);
-        return columnNo >= 0 && columnNo < line.length
-                && CommonUtil.isCodePointWhitespace(line, columnNo);
+        final int index = columnNo - 1;
+        return index >= 0 && index < line.length
+                && CommonUtil.isCodePointWhitespace(line, index);
     }
 
     /**

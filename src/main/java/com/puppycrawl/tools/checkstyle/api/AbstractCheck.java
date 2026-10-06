@@ -255,14 +255,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param args arguments to format
      */
     public final void log(DetailAST ast, String key, Object... args) {
-        // CommonUtil.lengthExpandedTabs returns column number considering tabulation
-        // characters, it takes line from the file by line number, ast column number and tab
-        // width as arguments. Returned value is 0-based, but user must see column number starting
-        // from 1, that is why result of the method CommonUtil.lengthExpandedTabs
-        // is increased by one.
-
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
-                getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
+        final int col = expandedTabsColumnNo(ast.getLineNo(), ast.getColumnNo());
         context.get().violations.add(
                 new Violation(
                         ast.getLineNo(),
@@ -281,8 +274,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
-            getLines()[lineNo - 1], colNo, tabWidth);
+        final int col = expandedTabsColumnNo(lineNo, colNo);
         context.get().violations.add(
             new Violation(
                 lineNo,
@@ -294,6 +286,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                 getId(),
                 getClass(),
                 getCustomMessages().get(key)));
+    }
+
+    /**
+     * Returns the column number with tabulation characters expanded. Each tab is counted as
+     * the number of characters it takes to jump to the next tab stop.
+     *
+     * @param lineNo the line number, starting from 1
+     * @param colNo the column number, starting from 1
+     * @return the column number with tabs expanded, starting from 1
+     */
+    private int expandedTabsColumnNo(int lineNo, int colNo) {
+        return 1 + CommonUtil.lengthExpandedTabs(getLines()[lineNo - 1], colNo - 1, tabWidth);
     }
 
     /**

@@ -305,7 +305,10 @@ public class SuppressWarningsHolder extends AbstractCheck {
     private static void addSuppressions(List<String> values, DetailAST targetAST) {
         // get text range of target
         final int firstLine = targetAST.getLineNo();
-        final int firstColumn = targetAST.getColumnNo();
+        // the text range starts one column before the target, so that a violation reported
+        // at the character right before the annotated element, e.g. the opening parenthesis
+        // of a typecast with an annotated type, is suppressed too
+        final int firstColumn = targetAST.getColumnNo() - 1;
         final DetailAST nextAST = targetAST.getNextSibling();
         final int lastLine;
         final int lastColumn;
@@ -315,7 +318,8 @@ public class SuppressWarningsHolder extends AbstractCheck {
         }
         else {
             lastLine = nextAST.getLineNo();
-            lastColumn = nextAST.getColumnNo();
+            // the text range of the target ends right before the next sibling
+            lastColumn = nextAST.getColumnNo() - 1;
         }
 
         final List<Entry> entries = ENTRIES.get();
