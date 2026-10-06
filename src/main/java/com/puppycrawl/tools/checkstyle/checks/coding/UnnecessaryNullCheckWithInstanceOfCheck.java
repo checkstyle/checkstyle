@@ -246,22 +246,33 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         boolean found = false;
 
         if (node.getType() == TokenTypes.DOT
-            || node.getType() == TokenTypes.METHOD_CALL
-            || node.getType() == TokenTypes.LAND
-            || node.getType() == TokenTypes.LOR) {
+            || node.getType() == TokenTypes.METHOD_CALL) {
 
             DetailAST firstChild = node.getFirstChild();
 
             while (firstChild != null) {
                 if (variableName.equals(firstChild.getText())
-                        && firstChild.getNextSibling().getType() != TokenTypes.ELIST
-                            || containsVariableDereference(firstChild, variableName)) {
+                        && firstChild.getNextSibling() != null
+                        && firstChild.getNextSibling().getType() != TokenTypes.ELIST) {
                     found = true;
                     break;
                 }
                 firstChild = firstChild.getNextSibling();
             }
         }
+
+        if (!found) {
+            DetailAST child = node.getFirstChild();
+
+            while (child != null) {
+                if (containsVariableDereference(child, variableName)) {
+                    found = true;
+                    break;
+                }
+                child = child.getNextSibling();
+            }
+        }
+
         return found;
     }
 
