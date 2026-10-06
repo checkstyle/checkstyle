@@ -45,13 +45,14 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
                     new PropertiesExpander(System.getProperties()));
         }
         catch (CheckstyleException exc) {
-            throw new IllegalStateException(exc);
+            throw new IllegalStateException("Failed to load configuration " + XML_NAME, exc);
         }
         try {
             CHECKSTYLE_MODULES = CheckUtil.getCheckstyleModules();
         }
         catch (IOException exc) {
-            throw new IllegalStateException(exc);
+            throw new IllegalStateException("Failed to get checkstyle modules for " + XML_NAME,
+                    exc);
         }
     }
 
