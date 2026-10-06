@@ -315,6 +315,7 @@
           <item name="NoCodeInFile" href="checks/misc/nocodeinfile.html"/>
           <item name="NumericalPrefixesInfixesSuffixesCharacterCase"
                 href="checks/misc/numericalprefixesinfixessuffixescharactercase.html"/>
+          <item name="OpenjdkLineWrapping" href="checks/misc/openjdklinewrapping.html"/>
           <item name="OpenjdkMethodThrowsAlignmentCheck"
                 href="checks/misc/openjdkmethodthrowsalignment.html"/>
           <item name="OrderedProperties" href="checks/misc/orderedproperties.html"/>
