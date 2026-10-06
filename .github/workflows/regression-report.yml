@@ -340,7 +340,7 @@ jobs:
           ./.ci/append-to-github-output.sh "input_file" "$FOUND_FILE"
 
       - name: Download Extractor JAR
-        uses: robinraju/release-downloader@efa4cd07bd0195e6cc65e9e30c251b49ce4d3e51  # v1.8
+        uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1.13
         with:
           repository: "checkstyle/test-configs"
           tag: "extractor-${{env.EXTRACTOR_VERSION}}"
@@ -710,7 +710,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Download DiffTool JAR
-        uses: robinraju/release-downloader@efa4cd07bd0195e6cc65e9e30c251b49ce4d3e51  # v1.8
+        uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1.13
         with:
           repository: "checkstyle/test-configs"
           tag: "diff-java-tool-${{ env.DIFF_TOOL_VERSION }}"
@@ -718,7 +718,7 @@ jobs:
           out-file-path: ".ci-temp"
 
       - name: Download patch-diff-report-tool JAR
-        uses: robinraju/release-downloader@efa4cd07bd0195e6cc65e9e30c251b49ce4d3e51  # v1.8
+        uses: robinraju/release-downloader@28fc21f50d76778e7023361aa1f863e717d3d56f  # v1.13
         with:
           repository: "checkstyle/contribution"
           tag: "patch-diff-report-tool-${{ env.PATCH_DIFF_TOOL_VERSION }}"
