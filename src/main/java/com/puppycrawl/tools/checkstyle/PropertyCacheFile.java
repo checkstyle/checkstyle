@@ -225,7 +225,7 @@ public final class PropertyCacheFile {
         }
         catch (final IOException | NoSuchAlgorithmException exc) {
             // rethrow as unchecked exception
-            throw new IllegalStateException("Unable to calculate hashcode.", exc);
+            throw new IllegalStateException("Unable to calculate hashcode for " + object, exc);
         }
     }
 

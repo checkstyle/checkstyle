@@ -436,7 +436,7 @@ public abstract class AbstractAutomaticBean
                     result = CommonUtil.getUriByFilename(url);
                 }
                 catch (CheckstyleException exc) {
-                    throw new IllegalArgumentException(exc);
+                    throw new IllegalArgumentException(url, exc);
                 }
             }
 

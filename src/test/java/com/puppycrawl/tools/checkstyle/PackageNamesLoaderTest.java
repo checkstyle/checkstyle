@@ -215,7 +215,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                 .isInstanceOf(IOException.class);
         assertWithMessage("Invalid exception message")
             .that(exc.getMessage())
-            .isEqualTo("unable to get package file resources");
+            .startsWith("unable to get package file resources with ");
     }
 
     @Test
