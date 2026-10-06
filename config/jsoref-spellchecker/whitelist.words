@@ -918,6 +918,7 @@ Multiset
 multithreading
 musl
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
@@ -1043,6 +1044,7 @@ OOQ
 opencollective
 openjdk
 openjdkannotationlocation
+openjdklinewrapping
 openjdkmethodthrowsalignment
 openrewrite
 operatorwrap

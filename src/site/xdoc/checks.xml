@@ -1675,6 +1675,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/openjdklinewrapping.html#OpenjdkLineWrapping">
+                OpenjdkLineWrapping
+              </a>
+            </td>
+            <td>
+              Checks continuation-line alignment in expressions according to the <a href="https://checkstyle.org/styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-lines">
+              OpenJDK Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/misc/openjdkmethodthrowsalignment.html#OpenjdkMethodThrowsAlignment">
                 OpenjdkMethodThrowsAlignment
               </a>
