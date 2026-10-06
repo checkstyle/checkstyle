@@ -69,7 +69,8 @@ public class XpathFileGeneratorAuditListenerTest {
             constructEvents();
         }
         catch (Exception exc) {
-            throw new ExceptionInInitializerError(exc);
+            throw new IllegalStateException("Failed to construct events for "
+                    + FOURTH_MESSAGE.getSourceName(), exc);
         }
     }
 

@@ -38,6 +38,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -2084,7 +2085,8 @@ public class MainTest {
             Main.main(arguments);
         }
         catch (IOException exception) {
-            throw new IllegalStateException("Unexpected IOException", exception);
+            throw new IllegalStateException("Unexpected IOException for "
+                    + Arrays.toString(arguments), exception);
         }
         verify(mock).exit(expectedExitCode);
     }
