@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>OpenjdkLineWrappingCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkLineWrappingCheck</mutatedClass>
+    <mutatedMethod>firstToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>&amp;&amp; candidate.getColumnNo() &lt; result.getColumnNo()) {</lineContent>
+  </mutation>
 </suppressedMutations>
