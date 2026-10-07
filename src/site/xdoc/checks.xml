@@ -447,6 +447,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/emptylinewrappinginblock.html#EmptyLineWrappingInBlock">
+                EmptyLineWrappingInBlock
+              </a>
+            </td>
+            <td>
+              Checks the empty line right after the opening brace and right before the closing brace
+              of a block.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/emptystatement.html#EmptyStatement">
                 EmptyStatement
               </a>
