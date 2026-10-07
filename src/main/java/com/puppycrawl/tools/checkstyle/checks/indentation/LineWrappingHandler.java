@@ -243,8 +243,19 @@ public class LineWrappingHandler {
 
         result.put(firstNode.getLineNo(), firstNode);
         DetailAST curNode = firstNode.getFirstChild();
+        final boolean returnedExpression = firstNode.getType() == TokenTypes.LITERAL_RETURN;
 
         while (curNode != lastNode) {
+            // Returned expressions have dedicated handlers for arguments and nested bodies.
+            if (returnedExpression
+                    && TokenUtil.isOfType(curNode, TokenTypes.ELIST, TokenTypes.LAMBDA,
+                            TokenTypes.LITERAL_NEW, TokenTypes.LITERAL_SWITCH)) {
+                while (curNode.hasChildren()) {
+                    curNode = curNode.getLastChild();
+                }
+                curNode = getNextCurNode(curNode);
+                continue;
+            }
             if (curNode.getType() == TokenTypes.OBJBLOCK
                     || curNode.getType() == TokenTypes.SLIST) {
                 curNode = curNode.getLastChild();
@@ -252,13 +263,29 @@ public class LineWrappingHandler {
 
             final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
 
-            if (firstTokenOnLine == null
-                || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
+            if (shouldCollectNode(curNode, returnedExpression)
+                    && (firstTokenOnLine == null
+                        || expandedTabsColumnNo(firstTokenOnLine)
+                            >= expandedTabsColumnNo(curNode))) {
                 result.put(curNode.getLineNo(), curNode);
             }
             curNode = getNextCurNode(curNode);
         }
         return result;
+    }
+
+    /**
+     * Whether a node participates in line-wrapping validation.
+     * Returned expressions use concrete tokens that begin source lines.
+     *
+     * @param node the node to examine
+     * @param returnedExpression whether a return statement is being checked
+     * @return whether this node should be collected
+     */
+    private boolean shouldCollectNode(DetailAST node, boolean returnedExpression) {
+        return !returnedExpression
+                || node.getType() != TokenTypes.EXPR
+                    && expandedTabsColumnNo(node) == getLineStart(node);
     }
 
     /**
