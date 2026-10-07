@@ -28,7 +28,10 @@ public class InputEqualsAvoidNullRecordPattern {
                                      ColoredPoint(Point(int a, int b), String y))) {
             boolean bb = x.equals("yellow")   // violation 'left .* of .* equals'
                     || y.equals("blue");     // violation 'left .* of .* equals'
-            boolean c = x.equals("yellow") && y.equals("blue"); // 2 violations
+            boolean c = x.equals("yellow") && y.equals("blue");
+            // 2 violations above:
+            //    'String literal expressions should be on the left side of an equals comparison.'
+            //    'String literal expressions should be on the left side of an equals comparison.'
         }
 
     }
