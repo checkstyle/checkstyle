@@ -412,6 +412,7 @@ ev
 Evt
 exceptionoverrides
 exceptionstodocument
+exceptionthrowshouldusecontext
 executablestatementcount
 Exif
 explicitinitialization
@@ -917,6 +918,7 @@ Multiset
 multithreading
 musl
 mutableexception
+mutationtest
 MVC
 mvn
 mvnrepository
