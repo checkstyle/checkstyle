@@ -101,8 +101,6 @@
 
 
 
-  <suppress id="noViolationCommentsInJavadoc"
-            files="/filters/suppresswithnearbytextfilter/InputSuppressWithNearbyTextFilterNearbyTextPatternUrlLineLengthSuppression.java"/>
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsCompact2\.java"/>
