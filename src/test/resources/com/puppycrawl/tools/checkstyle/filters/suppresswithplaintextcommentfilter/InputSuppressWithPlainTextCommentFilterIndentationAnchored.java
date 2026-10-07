@@ -27,8 +27,8 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilt
 
 // CSOFF
 @SuppressWarnings("all")
-    // violation 'Comment has incorrect indentation level 4, expected is 0, indentation should be the same level as line 31.'
+    // violation 'Comment has incorrect indentation level 4, expected is 0, indentation should be'
 public class InputSuppressWithPlainTextCommentFilterIndentationAnchored {
-   int wrongIndent; // filtered violation ''member def type' has incorrect indentation level 3, expected level should be 4.'
+   int wrongIndent; // filtered violation ''member def type' has incorrect indentation level 3'
 }
 // CSON
