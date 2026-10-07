@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>OpenjdkLineWrapping</title>
+  </head>
+  <body>
+    <section name="OpenjdkLineWrapping">
+      <p>Since Checkstyle 14.4.0</p>
+      <div class="toc-panel">
+  <input type="checkbox" id="toc-toggle" class="toc-toggle-checkbox" checked="checked"/>
+  <label for="toc-toggle" class="toc-toggle-arrow" title="Collapse"/>
+  <div class="toc-content">
+    <p class="toc-heading">On This Page</p>
+    <ul class="toc-list">
+          <li><a href="#OpenjdkLineWrapping_Description">Description</a></li>
+          <li>
+            <input type="checkbox" id="toc-sub-Examples" class="toc-sub-toggle-checkbox" checked="checked"/>
+            <label for="toc-sub-Examples" class="toc-sub-toggle"><a href="#OpenjdkLineWrapping_Examples">Examples</a><span class="toc-sub-arrow"/></label>
+            <ul class="toc-sublist">
+              <li><a href="#Example1-config" class="toc-sublink">To validate OpenJDK expression continuation alignment</a></li>
+            </ul>
+          </li>
+          <li><a href="#OpenjdkLineWrapping_Example_of_Usage">Example of Usage</a></li>
+          <li><a href="#OpenjdkLineWrapping_Violation_Messages">Violation Messages</a></li>
+          <li><a href="#OpenjdkLineWrapping_Fully_Qualified_Name">Fully Qualified Name</a></li>
+          <li><a href="#OpenjdkLineWrapping_Parent_Module">Parent Module</a></li>
+    </ul>
+  </div>
+</div>
+      <subsection name="Description" id="OpenjdkLineWrapping_Description">
+        <div>
+          Checks continuation-line alignment in expressions according to the
+          <a href="https://checkstyle.org/styleguides/openjdk-java-style-v6/openjdk-styleguide.html#wrapping-lines">
+          OpenJDK Java Style Guide</a>.
+        </div>
+
+        <p>
+          A continuation may use eight additional columns relative to the expression's first line,
+          the previous code line, or the start of the wrapped expression. It may also align with a
+          preceding argument or method call in a chain. Sibling alignment must stand out from the
+          indentation of the surrounding block. Tabs are expanded using <code>tabWidth</code>.
+        </p>
+
+        <p>
+          This check complements <code>Indentation</code>; it does not check block indentation, declaration
+          wrapping, or closing delimiters. The guide's exception for logical argument grouping is
+          subjective, so this check validates columns without inferring semantic groups.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="OpenjdkLineWrapping_Examples">
+        <p id="Example1-config">To validate OpenJDK expression continuation alignment:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="OpenjdkLineWrapping"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+    int sum(int first, int second) {
+        int fixed = first
+                + second;
+        int expression = first
+                                 + second;
+        int incorrect = first
+                     + second; // violation 'incorrect indentation level 21'
+        return sum(first,
+                   second);
+    }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="OpenjdkLineWrapping_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OpenjdkLineWrapping">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="OpenjdkLineWrapping_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation+path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22indentation.error.multi%22">
+              indentation.error.multi
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Fully Qualified Name" id="OpenjdkLineWrapping_Fully_Qualified_Name">
+        <p>com.puppycrawl.tools.checkstyle.checks.indentation.OpenjdkLineWrappingCheck</p>
+      </subsection>
+
+      <subsection name="Parent Module" id="OpenjdkLineWrapping_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
