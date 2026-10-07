@@ -480,7 +480,10 @@ public class InputVariableDeclarationUsageDistanceRegExp {
     }
 
     public void testIssue32_8(Writer w1, Writer w2, Writer w3) {
-        String l1="1", l2="2", l3="3"; // 2 violations
+        String l1="1", l2="2", l3="3";
+        // 2 violations above:
+        //    'Distance between variable 'l1' declaration and its first usage is 3, but allowed 1.'
+        //    'Distance between variable 'l2' declaration and its first usage is 2, but allowed 1.'
         w1.write(l3); //distance=1
         w2.write(l2); //distance=2
         w3.write(l1); //distance=3
