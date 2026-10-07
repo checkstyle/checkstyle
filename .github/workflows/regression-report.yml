@@ -163,14 +163,16 @@ jobs:
           path: .ci-temp/checkstyle
 
       - name: Setup Git remotes
+        env:
+          FORK_REPO: ${{ steps.get_pr_details.outputs.fork_repo }}
+          BRANCH: ${{ steps.get_pr_details.outputs.branch }}
         run: |
           cd .ci-temp/checkstyle
           git remote add upstream https://github.com/checkstyle/checkstyle.git
-          git remote add forked https://github.com/${{ steps.get_pr_details.outputs.fork_repo }}.git
+          git remote add forked "https://github.com/$FORK_REPO.git"
           git fetch upstream
           git fetch forked
-          git checkout -b ${{ steps.get_pr_details.outputs.branch }} \
-               forked/${{ steps.get_pr_details.outputs.branch }}
+          git checkout -b "$BRANCH" "forked/$BRANCH"
 
       - name: Tar workspace artifact
         run: |
