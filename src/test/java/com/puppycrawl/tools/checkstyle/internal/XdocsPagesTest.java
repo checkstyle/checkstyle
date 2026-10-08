@@ -2930,7 +2930,7 @@ public class XdocsPagesTest {
      */
     private static void validateSubSectionExampleSeparation(Path template, Element subsection) {
         final NodeList children = subsection.getChildNodes();
-        String lastExampleIdPrefix = null;
+        String lastConfigExamplePrefix = null;
         boolean separatorSeen = false;
 
         for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
@@ -2945,22 +2945,22 @@ public class XdocsPagesTest {
             }
             else {
                 final String currentId = element.getAttribute("id");
-                if (isExampleElement(currentId)) {
+                if (isExampleConfigElement(currentId)) {
                     final String currentExPrefix = getExamplePrefix(currentId);
-                    if (lastExampleIdPrefix != null
-                            && !lastExampleIdPrefix.equals(currentExPrefix)) {
+                    if (lastConfigExamplePrefix != null
+                            && !lastConfigExamplePrefix.equals(currentExPrefix)) {
                         final boolean isSeparated = separatorSeen
-                                || isSeparatorSuppressed(template, lastExampleIdPrefix,
+                                || isSeparatorSuppressed(template, lastConfigExamplePrefix,
                                         currentExPrefix);
                         assertWithMessage(
                             "Missing <hr class=\"example-separator\"/> "
                                 + "between %s and %s in file: %s",
-                                lastExampleIdPrefix, currentExPrefix, template)
+                                lastConfigExamplePrefix, currentExPrefix, template)
                                 .that(isSeparated)
                                 .isTrue();
-                        separatorSeen = false;
                     }
-                    lastExampleIdPrefix = currentExPrefix;
+                    lastConfigExamplePrefix = currentExPrefix;
+                    separatorSeen = false;
                 }
             }
         }
@@ -2983,9 +2983,8 @@ public class XdocsPagesTest {
      * @param currentId the element ID
      * @return true if it's an example element
      */
-    private static boolean isExampleElement(String currentId) {
-        return currentId != null
-                && (currentId.startsWith("Example") || currentId.startsWith("UseCase"));
+    private static boolean isExampleConfigElement(String currentId) {
+        return currentId != null && EXAMPLE_ID_PATTERN.matcher(currentId).matches();
     }
 
     /**
