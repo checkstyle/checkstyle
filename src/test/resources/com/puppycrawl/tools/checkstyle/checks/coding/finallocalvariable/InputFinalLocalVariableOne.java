@@ -14,7 +14,10 @@ public class InputFinalLocalVariableOne {
     //static block
     static
     {
-        int i, j = 0; // 2 violations
+        int i, j = 0;
+        // 2 violations above:
+        //    "Variable 'i' should be declared final"
+        //    "Variable 'j' should be declared final"
         // violation below "Variable 'runnable' should be declared final"
         Runnable runnable = new Runnable()
         {
