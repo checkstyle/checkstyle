@@ -80,7 +80,7 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "57:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
             "57:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "106:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "107:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterBraces.java"),
@@ -318,12 +318,12 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWhitespaceAfterWithEmoji() throws Exception {
         final String[] expected = {
-            "13:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "13:52: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
-            "29:32: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "38:23: " + getCheckMessage(MSG_WS_TYPECAST, ";"),
-            "48:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
-            "48:53: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "14:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "14:52: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
+            "31:32: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "40:23: " + getCheckMessage(MSG_WS_TYPECAST, ";"),
+            "51:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "51:53: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
         verifyWithInlineConfigParser(
             getPath("InputWhitespaceAfterWithEmoji.java"), expected);

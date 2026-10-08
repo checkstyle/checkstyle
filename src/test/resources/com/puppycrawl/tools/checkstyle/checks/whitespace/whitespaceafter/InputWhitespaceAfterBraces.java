@@ -54,7 +54,8 @@ class InputWhitespaceAfterBraces
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++); // 2 violations
+        for(int i = 1;i < 5;i++); // violation '';' is not followed by whitespace'
+        // violation above '';' is not followed by whitespace'
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
