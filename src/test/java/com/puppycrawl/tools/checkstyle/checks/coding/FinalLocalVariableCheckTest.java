@@ -419,6 +419,23 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFallThrough() throws Exception {
+        final String[] expected = {
+            "53:13: " + getCheckMessage(MSG_KEY, "result"),
+            "65:13: " + getCheckMessage(MSG_KEY, "result"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFallThrough.java"), expected);
+    }
+
+    @Test
+    public void testFallThroughNested() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableFallThroughNested.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testConstructor() throws Exception {
         final String[] expected = {
             "14:44: " + getCheckMessage(MSG_KEY, "a"),
