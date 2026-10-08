@@ -762,6 +762,7 @@
     <module name="InappropriateJavadocBlockTagsOnField"/>
     <module name="InappropriateJavadocBlockTagsOnPackage"/>
     <module name="InappropriateJavadocBlockTagsOnType"/>
+    <module name="BlockCommentEndPosition"/>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation">
       <!-- default tags -->
