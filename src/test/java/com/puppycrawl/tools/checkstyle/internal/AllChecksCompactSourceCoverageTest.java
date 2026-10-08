@@ -115,6 +115,7 @@ public class AllChecksCompactSourceCoverageTest {
         "EmptyForIteratorPadCheck",
         "EmptyLineSeparatorCheck",
         "EqualsAvoidNullCheck",
+        "ExceptionThrowShouldUseContextCheck",
         "ExecutableStatementCountCheck",
         "ExplicitInitializationCheck",
         "FallThroughCheck",
