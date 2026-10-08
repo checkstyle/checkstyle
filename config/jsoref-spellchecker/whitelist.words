@@ -413,6 +413,7 @@ ev
 Evt
 exceptionoverrides
 exceptionstodocument
+exceptionthrowshouldusecontext
 executablestatementcount
 Exif
 explicitinitialization
