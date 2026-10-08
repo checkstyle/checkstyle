@@ -10,4 +10,5 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT, CLASS_DEF, 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; import java.util.Map; public class  /* Config: default */ InputEmptyLineSeparatorPackageImportClassInOneLine {} // 2 violations
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; import java.util.Map; public class  /* Config: default */ InputEmptyLineSeparatorPackageImportClassInOneLine {} // violation ''import' should be separated from previous line.'
+// violation above ''CLASS_DEF' should be separated from previous line.'
