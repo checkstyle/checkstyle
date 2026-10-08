@@ -490,6 +490,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/coding/exceptionthrowshouldusecontext.html#ExceptionThrowShouldUseContext">
+                ExceptionThrowShouldUseContext
+              </a>
+            </td>
+            <td>
+              Checks that exception throw statements in catch blocks use context variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/sizes/executablestatementcount.html#ExecutableStatementCount">
                 ExecutableStatementCount
               </a>
