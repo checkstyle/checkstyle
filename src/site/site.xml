@@ -140,6 +140,8 @@
           <item name="EmptyStatement" href="checks/coding/emptystatement.html"/>
           <item name="EqualsAvoidNull" href="checks/coding/equalsavoidnull.html"/>
           <item name="EqualsHashCode" href="checks/coding/equalshashcode.html"/>
+          <item name="ExceptionThrowShouldUseContext"
+                href="checks/coding/exceptionthrowshouldusecontext.html"/>
           <item name="ExplicitInitialization" href="checks/coding/explicitinitialization.html"/>
           <item name="ExpressionOverBlockLambda"
                 href="checks/coding/expressionoverblocklambda.html"/>
