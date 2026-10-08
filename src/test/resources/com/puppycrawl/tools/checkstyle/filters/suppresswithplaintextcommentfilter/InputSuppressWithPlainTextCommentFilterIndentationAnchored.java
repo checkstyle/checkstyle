@@ -26,8 +26,8 @@ tokens = (default)SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN
 package com.puppycrawl.tools.checkstyle.filters.suppresswithplaintextcommentfilter;
 
 // CSOFF
-@SuppressWarnings("all")
     // violation 'Comment has incorrect indentation level 4, expected is 0, indentation should be'
+@SuppressWarnings("all")
 public class InputSuppressWithPlainTextCommentFilterIndentationAnchored {
    int wrongIndent; // filtered violation ''member def type' has incorrect indentation level 3'
 }

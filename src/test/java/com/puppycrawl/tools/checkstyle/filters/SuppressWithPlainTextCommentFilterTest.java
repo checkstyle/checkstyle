@@ -723,8 +723,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         };
 
         final String[] expectedViolationMessages = {
-            "30:5: " + getCheckMessage(CommentsIndentationCheck.class, MSG_KEY_SINGLE,
-                31, 4, 0),
+            "29:5: " + getCheckMessage(CommentsIndentationCheck.class, MSG_KEY_SINGLE,
+                30, 4, 0),
             "32:4: " + getCheckMessage(IndentationCheck.class, MSG_ERROR,
                 "member def type", 3, 4),
         };
