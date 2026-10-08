@@ -93,8 +93,10 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         fileLines = getLines();
         final String startLine = fileLines[rootAst.getLineNumber() - 1];
         javadocStartLineNumber = rootAst.getLineNumber();
+        // the javadoc content starts two characters after the first asterisk of '/**',
+        // so this is the tab-expanded column number of that asterisk
         expectedColumnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
-            startLine, rootAst.getColumnNumber() - 1, getTabWidth());
+            startLine, rootAst.getColumnNumber() - 2, getTabWidth());
     }
 
     @Override
@@ -104,9 +106,9 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
         if (isJavadocOpeningLine) {
             if (ast.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK) {
-                final int previousColumn = ast.getColumnNumber() - 1;
+                final int previousIndex = ast.getColumnNumber() - 2;
                 if (Character.isWhitespace(
-                        fileLines[ast.getLineNumber() - 1].charAt(previousColumn))) {
+                        fileLines[ast.getLineNumber() - 1].charAt(previousIndex))) {
                     expectedColumnNumberTabsExpanded = getColumnNumberTabsExpanded(ast);
                 }
             }
@@ -128,7 +130,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
         final Optional<Integer> endingBlockColumnNumber = getAsteriskColumnNumber(lastLine);
 
         endingBlockColumnNumber
-                .filter(columnNumber -> columnNumber - 1 == javadocEndToken.getColumnNo())
+                .filter(columnNumber -> columnNumber == javadocEndToken.getColumnNo())
                 .ifPresent(columnNumber -> {
                     final int columnNumberTabsExpanded = CommonUtil.lengthExpandedTabs(
                             lastLine, columnNumber, getTabWidth());
@@ -170,7 +172,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     private int getColumnNumberTabsExpanded(DetailNode ast) {
         return 1 + CommonUtil.lengthExpandedTabs(
                 fileLines[ast.getLineNumber() - 1],
-                ast.getColumnNumber(),
+                ast.getColumnNumber() - 1,
                 getTabWidth());
     }
 

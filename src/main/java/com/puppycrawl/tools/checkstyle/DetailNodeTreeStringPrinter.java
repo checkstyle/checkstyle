@@ -109,7 +109,7 @@ public final class DetailNodeTreeStringPrinter {
             messageBuilder.append(getIndentation(node))
                     .append(JavadocUtil.getTokenName(node.getType())).append(" -> ")
                     .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
-                    .append(node.getLineNumber()).append(':').append(node.getColumnNumber() + 1)
+                    .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
                     .append(']').append(LINE_SEPARATOR)
                     .append(printTree(node.getFirstChild(), rootPrefix, prefix));
             node = node.getNextSibling();

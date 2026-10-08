@@ -34,7 +34,8 @@ public class VerifyPositionAfterLastTabFileSet extends AbstractFileSetCheck {
             lineNumber++;
 
             if (position != -1) {
-                log(lineNumber, position + 1, "violation");
+                // column of the character after the tab
+                log(lineNumber, position + 2, "violation");
             }
         }
     }

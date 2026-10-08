@@ -75,7 +75,7 @@ public interface DetailAST {
     int getLineNo();
 
     /**
-     * Gets column number.
+     * Gets column number. Column numbers start at 1, the same as line numbers.
      *
      * @return the column number
      */

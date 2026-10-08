@@ -293,11 +293,11 @@ public class LeftCurlyCheck extends AbstractCheck {
         final int[] braceLine = getLineCodePoints(brace.getLineNo() - 1);
 
         // Check for being told to ignore, or have '{}' which is a special case
-        if (braceLine.length <= brace.getColumnNo() + 1
-                || braceLine[brace.getColumnNo() + 1] != '}') {
+        if (braceLine.length <= brace.getColumnNo()
+                || braceLine[brace.getColumnNo()] != '}') {
             if (option == LeftCurlyOption.NL) {
-                if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
-                    log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+                if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo() - 1, braceLine)) {
+                    log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo());
                 }
             }
             else if (option == LeftCurlyOption.EOL) {
@@ -317,10 +317,10 @@ public class LeftCurlyCheck extends AbstractCheck {
      */
     private void validateEol(DetailAST startToken, DetailAST brace) {
         if (!isOnLineWithBlockPreviousToken(brace)) {
-            log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+            log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo());
         }
         if (!hasLineBreakAfter(startToken, brace)) {
-            log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+            log(brace, MSG_KEY_LINE_BREAK_AFTER, OPEN_CURLY_BRACE, brace.getColumnNo());
         }
     }
 
@@ -334,15 +334,15 @@ public class LeftCurlyCheck extends AbstractCheck {
     private void validateNewLinePosition(DetailAST brace, DetailAST startToken, int... braceLine) {
         // not on the same line
         if (startToken.getLineNo() + 1 == brace.getLineNo()) {
-            if (CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
-                log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+            if (CodePointUtil.hasWhitespaceBefore(brace.getColumnNo() - 1, braceLine)) {
+                log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo());
             }
             else {
-                log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+                log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo());
             }
         }
-        else if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
-            log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
+        else if (!CodePointUtil.hasWhitespaceBefore(brace.getColumnNo() - 1, braceLine)) {
+            log(brace, MSG_KEY_LINE_NEW, OPEN_CURLY_BRACE, brace.getColumnNo());
         }
     }
 

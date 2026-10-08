@@ -93,7 +93,7 @@ public class NoWhitespaceBeforeCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int columnNoBeforeToken = ast.getColumnNo() - 1;
+        final int columnNoBeforeToken = ast.getColumnNo() - 2;
         final boolean isFirstToken = columnNoBeforeToken == -1;
 
         if ((isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))

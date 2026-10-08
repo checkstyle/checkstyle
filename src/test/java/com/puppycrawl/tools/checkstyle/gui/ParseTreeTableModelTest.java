@@ -261,9 +261,9 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         assertWithMessage("Class identifier should start on line 6")
             .that(line)
             .isEqualTo(6);
-        assertWithMessage("Class name should start from column 6")
+        assertWithMessage("Class name should start from column 7")
             .that(column)
-            .isEqualTo(6);
+            .isEqualTo(7);
         assertWithMessage("Wrong class name")
             .that(text)
             .isEqualTo("InputParseTreeTablePresentation");
@@ -325,7 +325,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
             .isEqualTo(3);
         assertWithMessage("Invalid column")
             .that(column)
-            .isEqualTo(3);
+            .isEqualTo(4);
         assertWithMessage("Invalid text")
             .that(text)
             .isEqualTo(expectedText);

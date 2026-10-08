@@ -581,11 +581,11 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
         /**
          * Updates the line length based on column position and content length.
          *
-         * @param startColumn   the starting column (0-indexed)
+         * @param startColumn   the starting column, starting from 1
          * @param contentLength the length of the content
          */
         private void updateLength(int startColumn, int contentLength) {
-            length = startColumn + contentLength;
+            length = startColumn - 1 + contentLength;
         }
 
         /**
