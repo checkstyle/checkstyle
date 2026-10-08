@@ -22,6 +22,10 @@ public record InputExceptionThrowShouldUseContextRecord(String name, int value) 
             // ok - uses 'name'
             throw new RuntimeException(name, ex2);
         }
+        catch (Throwable ex3) {
+            // ok - uses 'value'
+            throw new RuntimeException(String.valueOf(value), ex3);
+        }
     }
 
     private static void riskyOperation() throws IOException {

@@ -81,9 +81,8 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
         final DetailAST paramDef = ast.findFirstToken(TokenTypes.PARAMETER_DEF);
         final DetailAST paramIdent = paramDef.findFirstToken(TokenTypes.IDENT);
         final String catchParamName = paramIdent.getText();
-        final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
         final List<DetailAST> throwStatements = new ArrayList<>();
-        collectThrowStatements(slist, throwStatements);
+        collectThrowStatements(ast, throwStatements);
         for (DetailAST throwAst : throwStatements) {
             checkThrowStatement(throwAst, catchParamName, ast);
         }
@@ -114,7 +113,7 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
 
     /**
      * Recursively collects all throw statements in a block, skipping nested catches,
-     * classes, records, interfaces, object blocks, and lambdas.
+     * classes, records, interfaces, and lambdas.
      *
      * @param node AST node to search
      * @param result list to collect throw statements into
@@ -123,15 +122,19 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
         for (DetailAST child = node.getFirstChild(); child != null;
                 child = child.getNextSibling()) {
             final int type = child.getType();
-            if (type == TokenTypes.LITERAL_THROW) {
-                result.add(child);
-            }
-            else if (type != TokenTypes.LITERAL_CATCH
-                    && type != TokenTypes.CLASS_DEF
-                    && type != TokenTypes.RECORD_DEF
-                    && type != TokenTypes.INTERFACE_DEF
-                    && type != TokenTypes.LAMBDA) {
-                collectThrowStatements(child, result);
+            switch (type) {
+                case TokenTypes.LITERAL_THROW:
+                    result.add(child);
+                    break;
+                case TokenTypes.CLASS_DEF:
+                case TokenTypes.RECORD_DEF:
+                case TokenTypes.INTERFACE_DEF:
+                case TokenTypes.LAMBDA:
+                case TokenTypes.LITERAL_CATCH:
+                    break;
+                default:
+                    collectThrowStatements(child, result);
+                    break;
             }
         }
     }
@@ -149,10 +152,13 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
         boolean result = false;
         for (DetailAST child = node.getFirstChild(); child != null;
                 child = child.getNextSibling()) {
-            final boolean isContextIdent = child.getType() == TokenTypes.IDENT
-                    && !excludedName.equals(child.getText())
-                    && variables.contains(child.getText());
-            if (isContextIdent || containsAnyVariable(child, variables, excludedName)) {
+            if (child.getType() == TokenTypes.IDENT) {
+                if (!excludedName.equals(child.getText()) && variables.contains(child.getText())) {
+                    result = true;
+                    break;
+                }
+            }
+            else if (containsAnyVariable(child, variables, excludedName)) {
                 result = true;
                 break;
             }
@@ -175,7 +181,7 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
         final List<DetailAST> methodScopes = findEnclosingMethodScopes(catchAst);
         for (DetailAST methodScope : methodScopes) {
             collectParameters(methodScope, contextVars);
-            collectLocalVariablesOutsideCatch(methodScope, catchAst, contextVars, catchParamName);
+            collectLocalVariablesOutsideCatch(methodScope, catchAst, contextVars);
         }
         final DetailAST enclosingClass = findEnclosingClassLike(catchAst);
         final boolean isStaticMethod = isStaticScope(methodScopes);
@@ -196,17 +202,20 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
      */
     private static List<DetailAST> findEnclosingMethodScopes(DetailAST node) {
         final List<DetailAST> scopes = new ArrayList<>();
-        DetailAST current = node.getParent();
+        DetailAST current = node;
         while (current.getType() != TokenTypes.OBJBLOCK) {
             final int type = current.getType();
-            if (type == TokenTypes.METHOD_DEF
-                    || type == TokenTypes.CTOR_DEF
-                    || type == TokenTypes.COMPACT_CTOR_DEF) {
-                scopes.add(current);
-                break;
-            }
-            if (type == TokenTypes.LAMBDA) {
-                scopes.add(current);
+            switch (type) {
+                case TokenTypes.METHOD_DEF:
+                case TokenTypes.CTOR_DEF:
+                case TokenTypes.COMPACT_CTOR_DEF:
+                    scopes.add(current);
+                    return scopes;
+                case TokenTypes.LAMBDA:
+                    scopes.add(current);
+                    break;
+                default:
+                    break;
             }
             current = current.getParent();
         }
@@ -310,22 +319,20 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
      * @param node AST node to search
      * @param catchAst catch AST node to skip
      * @param contextVars set to add variable names to
-     * @param catchParamName catch parameter name to exclude
      */
     private static void collectLocalVariablesOutsideCatch(DetailAST node, DetailAST catchAst,
-                                                          Set<String> contextVars,
-                                                          String catchParamName) {
+                                                          Set<String> contextVars) {
         for (DetailAST child = node.getFirstChild(); child != null;
                 child = child.getNextSibling()) {
             if (child.equals(catchAst)) {
                 continue;
             }
-            processLocalVariableDef(child, contextVars, catchParamName);
+            processLocalVariableDef(child, contextVars);
             final int type = child.getType();
             if (type != TokenTypes.CLASS_DEF
                     && type != TokenTypes.RECORD_DEF
                     && type != TokenTypes.INTERFACE_DEF) {
-                collectLocalVariablesOutsideCatch(child, catchAst, contextVars, catchParamName);
+                collectLocalVariablesOutsideCatch(child, catchAst, contextVars);
             }
         }
     }
@@ -360,22 +367,23 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
      *
      * @param child AST node to inspect
      * @param contextVars set to add variable names to
-     * @param catchParamName catch parameter name to exclude
      */
-    private static void processLocalVariableDef(DetailAST child, Set<String> contextVars,
-                                                String catchParamName) {
+    private static void processLocalVariableDef(DetailAST child, Set<String> contextVars) {
         final int type = child.getType();
-        if (type == TokenTypes.VARIABLE_DEF || type == TokenTypes.PATTERN_VARIABLE_DEF) {
-            final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-            if (!catchParamName.equals(ident.getText())) {
+        switch (type) {
+            case TokenTypes.VARIABLE_DEF:
+            case TokenTypes.PATTERN_VARIABLE_DEF:
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
                 contextVars.add(ident.getText());
-            }
-        }
-        else if (type == TokenTypes.RESOURCE) {
-            final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-            if (ident != null) {
-                contextVars.add(ident.getText());
-            }
+                break;
+            case TokenTypes.RESOURCE:
+                final DetailAST resourceIdent = child.findFirstToken(TokenTypes.IDENT);
+                if (resourceIdent != null) {
+                    contextVars.add(resourceIdent.getText());
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -386,10 +394,12 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
      * @return true if the class is a non-static inner class
      */
     private static boolean isInnerClass(DetailAST classDef) {
+        final DetailAST modifiers = classDef.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isStatic =
+                modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
         return classDef.getType() == TokenTypes.CLASS_DEF
                 && classDef.getParent().getType() == TokenTypes.OBJBLOCK
-                && classDef.findFirstToken(TokenTypes.MODIFIERS)
-                        .findFirstToken(TokenTypes.LITERAL_STATIC) == null;
+                && !isStatic;
     }
 
     /**
@@ -400,13 +410,19 @@ public class ExceptionThrowShouldUseContextCheck extends AbstractCheck {
      */
     private static DetailAST findEnclosingClassLike(DetailAST node) {
         DetailAST current = node.getParent();
-        while (current.getType() != TokenTypes.CLASS_DEF
-                && current.getType() != TokenTypes.RECORD_DEF
-                && current.getType() != TokenTypes.INTERFACE_DEF
-                && current.getType() != TokenTypes.ENUM_DEF) {
-            current = current.getParent();
+        while (true) {
+            final int type = current.getType();
+            switch (type) {
+                case TokenTypes.CLASS_DEF:
+                case TokenTypes.RECORD_DEF:
+                case TokenTypes.INTERFACE_DEF:
+                case TokenTypes.ENUM_DEF:
+                    return current;
+                default:
+                    current = current.getParent();
+                    break;
+            }
         }
-        return current;
     }
 
     /**

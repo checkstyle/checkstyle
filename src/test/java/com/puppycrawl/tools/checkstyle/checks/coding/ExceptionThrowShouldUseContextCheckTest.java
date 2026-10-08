@@ -74,6 +74,9 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
             "54:13: " + getCheckMessage(MSG_KEY),
             "68:13: " + getCheckMessage(MSG_KEY),
             "105:13: " + getCheckMessage(MSG_KEY),
+            "116:17: " + getCheckMessage(MSG_KEY),
+            "144:13: " + getCheckMessage(MSG_KEY),
+            "157:17: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -85,6 +88,16 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
     public void testEdgeCases2() throws Exception {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_KEY),
+            "58:13: " + getCheckMessage(MSG_KEY),
+            "159:17: " + getCheckMessage(MSG_KEY),
+            "186:17: " + getCheckMessage(MSG_KEY),
+            "209:13: " + getCheckMessage(MSG_KEY),
+            "232:17: " + getCheckMessage(MSG_KEY),
+            "258:17: " + getCheckMessage(MSG_KEY),
+            "288:17: " + getCheckMessage(MSG_KEY),
+            "302:17: " + getCheckMessage(MSG_KEY),
+            "323:17: " + getCheckMessage(MSG_KEY),
+            "366:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
