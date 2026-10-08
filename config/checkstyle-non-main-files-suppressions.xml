@@ -274,6 +274,8 @@
   <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/equalshashcode.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+         files="src/site/xdoc/checks/coding/exceptionthrowshouldusecontext.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/expressionoverblocklambda.xml.template"/>
   <suppress id="propertiesMacroMustExist"
           files="src/site/xdoc/checks/coding/innerassignment.xml.template"/>
