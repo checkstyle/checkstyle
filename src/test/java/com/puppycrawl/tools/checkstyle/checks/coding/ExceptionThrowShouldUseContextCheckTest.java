@@ -74,9 +74,6 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
             "54:13: " + getCheckMessage(MSG_KEY),
             "68:13: " + getCheckMessage(MSG_KEY),
             "105:13: " + getCheckMessage(MSG_KEY),
-            "116:17: " + getCheckMessage(MSG_KEY),
-            "144:13: " + getCheckMessage(MSG_KEY),
-            "157:17: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -89,15 +86,6 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_KEY),
             "58:13: " + getCheckMessage(MSG_KEY),
-            "159:17: " + getCheckMessage(MSG_KEY),
-            "186:17: " + getCheckMessage(MSG_KEY),
-            "209:13: " + getCheckMessage(MSG_KEY),
-            "232:17: " + getCheckMessage(MSG_KEY),
-            "258:17: " + getCheckMessage(MSG_KEY),
-            "288:17: " + getCheckMessage(MSG_KEY),
-            "302:17: " + getCheckMessage(MSG_KEY),
-            "323:17: " + getCheckMessage(MSG_KEY),
-            "366:13: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -115,6 +103,57 @@ public class ExceptionThrowShouldUseContextCheckTest extends AbstractModuleTestS
 
         verifyWithInlineConfigParser(
                 getPath("InputExceptionThrowShouldUseContextEdgeCases3.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases4() throws Exception {
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_KEY),
+            "48:13: " + getCheckMessage(MSG_KEY),
+            "61:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionThrowShouldUseContextEdgeCases4.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases5() throws Exception {
+        final String[] expected = {
+            "64:17: " + getCheckMessage(MSG_KEY),
+            "91:17: " + getCheckMessage(MSG_KEY),
+            "114:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionThrowShouldUseContextEdgeCases5.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases6() throws Exception {
+        final String[] expected = {
+            "32:17: " + getCheckMessage(MSG_KEY),
+            "58:17: " + getCheckMessage(MSG_KEY),
+            "88:17: " + getCheckMessage(MSG_KEY),
+            "109:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionThrowShouldUseContextEdgeCases6.java"),
+                expected);
+    }
+
+    @Test
+    public void testEdgeCases7() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputExceptionThrowShouldUseContextEdgeCases7.java"),
                 expected);
     }
 
