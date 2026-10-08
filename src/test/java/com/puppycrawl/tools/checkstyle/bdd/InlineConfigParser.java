@@ -283,8 +283,7 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck",
-            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"
     );
 
     /**
