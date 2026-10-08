@@ -12,7 +12,7 @@ import java.io.IOException;
 
 enum InputJavadocVariableTagsEnum
 {
-    CONSTANT_A, // violation 'Missing a Javadoc comment
+    CONSTANT_A, // violation 'Missing a Javadoc comment'
 
     /**
      *
