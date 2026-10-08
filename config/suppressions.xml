@@ -199,7 +199,7 @@
   <!-- MissingCtor only matters for production code (src/main/java) which generates Javadoc -->
   <suppress checks="MissingCtor" files=".*/src/(test|it|xdocs-examples)/.*\.java"/>
 
-  <!-- suppress until https://github.com/checkstyle/checkstyle/issues/21861 -->
+  <!-- suppress for xpathTestsUseInlineConfigParser -->
   <suppress id="xpathTestsUseInlineConfigParser"
             files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAvoidEscapedUnicodeCharactersTest\.java"/>
   <suppress id="xpathTestsUseInlineConfigParser"
