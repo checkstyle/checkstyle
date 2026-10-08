@@ -113,7 +113,10 @@ public class InputJavadocMethodTags1Three {
      * misplaced @param aParam
      * misplaced @return something very important.
      */
-    int method29(int aParam) // 2 violations
+    int method29(int aParam)
+    // 2 violations above:
+    //    '@return tag should be present and have description.'
+    //    'Expected @param tag for 'aParam'.'
     { return 0;
     }
 }
