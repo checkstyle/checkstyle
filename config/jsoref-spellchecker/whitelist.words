@@ -186,6 +186,8 @@ classannotations
 classdataabstractioncoupling
 classdeclarations
 classfanoutcomplexity
+classheader
+classheaderwrapopenjdk
 classloader
 classmemberimpliedmodifier
 classname
