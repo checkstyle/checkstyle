@@ -436,7 +436,7 @@ public class JavadocVariableCheckTest extends AbstractModuleTestSupport {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING, "field22"),
             "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "INVALID"),
             "21:18: " + getCheckMessage(MSG_JAVADOC_MISSING, "CHECKED"),
-            "43:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "pinned"),
+            "46:9: " + getCheckMessage(MSG_JAVADOC_MISSING, "pinned"),
         };
         verifyWithInlineConfigParser(
             getPath("InputJavadocVariableOddCases.java"),
