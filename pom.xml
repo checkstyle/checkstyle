@@ -3591,6 +3591,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck*</param>
@@ -3626,6 +3627,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.ExceptionThrowShouldUseContextCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FallThroughCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheckTest</param>
