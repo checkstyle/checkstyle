@@ -401,10 +401,6 @@
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/emptylineseparator/InputEmptyLineSeparator2\.java"/>
   <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/InputWhitespaceAfterDefaultConfig\.java"/>
-  <suppress checks="FileLength"
-    files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/whitespaceafter/InputWhitespaceAfterTypeCast\.java"/>
-  <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadLeftRightAndNoSpace2\.java"/>
   <suppress checks="FileLength"
     files="/test/resources/com/puppycrawl/tools/checkstyle/checks/whitespace/parenpad/InputParenPadWhitespace\.java"/>
