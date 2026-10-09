@@ -51,11 +51,12 @@
     <property name="checks" value="WriteTag"/>
     <property name="files" value=".*(?&lt;!Check)\.java$"/>
   </module>
-  <!-- JavadocUtilizingTrailingSpace is enabled for one package only -->
+  <!-- JavadocUtilizingTrailingSpace is not enforced on sevntu, contribution and
+       checkstyle-openrewrite-recipes, that reuse this config -->
   <module name="SuppressionSingleFilter">
     <property name="checks" value="JavadocUtilizingTrailingSpace"/>
     <property name="files"
-              value="^(?!.*[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]).*$"/>
+              value="[\\/]src[\\/](main|test)[\\/]java[\\/](com[\\/]github|org[\\/]checkstyle[\\/]autofix)[\\/]"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="WriteTag"/>
