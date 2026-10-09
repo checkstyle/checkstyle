@@ -65,10 +65,10 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "177:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "177:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "177:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "183:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "183:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "183:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "211:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
+            "187:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "187:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "187:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "219:25: " + getCheckMessage(MSG_VARIABLE, "field", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs.java"),
@@ -102,9 +102,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "179:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "179:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "179:24: " + getCheckMessage(MSG_VARIABLE, "a", ""),
-            "185:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "185:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "185:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "189:16: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "189:20: " + getCheckMessage(MSG_VARIABLE, "b", ""),
+            "189:24: " + getCheckMessage(MSG_VARIABLE, "b", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumInnerClassesAndBugs3.java"),
@@ -348,12 +348,12 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "279:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
             "284:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "284:18: " + getCheckMessage(MSG_METHOD, "addSuf2F", ""),
-            "310:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "349:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
-            "383:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
-            "385:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "393:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
-            "499:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
+            "313:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "352:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
+            "386:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
+            "388:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "396:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "502:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
@@ -448,7 +448,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
             "71:29: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "71:34: " + getCheckMessage(MSG_VARIABLE, "b", ""),
-            "81:17: " + getCheckMessage(MSG_VARIABLE, "thread", ""),
+            "84:17: " + getCheckMessage(MSG_VARIABLE, "thread", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAllowLambdaParameters.java"), expected);
@@ -471,9 +471,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "103:51: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
             "107:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
             "107:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
-            "110:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
-            "111:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
-            "111:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
+            "113:24: " + getCheckMessage(MSG_VARIABLE, "fldStreamReader", ""),
+            "114:23: " + getCheckMessage(MSG_VARIABLE, "fldBufferedReader", ""),
+            "114:54: " + getCheckMessage(MSG_VARIABLE, "fldScanner", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisTryWithResourcesOnlyOverlappingFalse.java"), expected);
