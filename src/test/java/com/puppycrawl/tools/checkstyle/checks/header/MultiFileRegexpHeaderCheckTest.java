@@ -647,47 +647,18 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFileSizeGreaterThanHeaderPatternSize() throws Exception {
-        final File headerFile = new File(temporaryFolder, "shorterHeader.header");
-        Files.write(headerFile.toPath(), List.of(
-            "// First line",
-            "// Second line",
-            "// Third line"));
-
-        // Create a test file with more lines than the header
-        final File testFile = new File(temporaryFolder, "longerFile.java");
-        Files.write(testFile.toPath(), List.of(
-            "// First line",
-            "// Second line",
-            "// Third line",
-            "// Fourth line",
-            "// Fifth line"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderFileSizeGreaterConfig.java"),
+                getPath("InputRegexpHeaderFileSizeGreater.txt"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
     public void testFileSizeEqualHeaderPatternSize() throws Exception {
-        final File headerFile = new File(temporaryFolder, "shorterHeader.header");
-        Files.write(headerFile.toPath(), List.of(
-                "// First line",
-                "// Second line",
-                "// Third line"));
-
-        final File testFile = new File(temporaryFolder, "longerFile.java");
-        Files.write(testFile.toPath(), List.of(
-                "// First line",
-                "// Second line",
-                "// Third line"));
-
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MultiFileRegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFiles", headerFile.getPath());
-
-        verify(checkConfig, testFile.getPath(), EMPTY_STRING_ARRAY);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeaderFileSizeEqualConfig.java"),
+                getPath("InputRegexpHeaderFileSizeEqual.txt"),
+                EMPTY_STRING_ARRAY);
     }
 
     @Test
