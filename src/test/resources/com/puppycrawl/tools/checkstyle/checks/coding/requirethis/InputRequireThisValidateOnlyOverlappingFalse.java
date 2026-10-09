@@ -281,7 +281,10 @@ public class InputRequireThisValidateOnlyOverlappingFalse {
     }
 
     String foo33(String field1 ) {
-        field1 = addSuf2F(field1); // 2 violations
+        field1 = addSuf2F(field1);
+        // 2 violations above:
+        //    'Reference to instance variable 'field1' needs "this.".'
+        //    'Method call to 'addSuf2F' needs "this.".'
         return "New String";
     }
 

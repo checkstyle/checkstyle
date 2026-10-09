@@ -68,7 +68,10 @@ class Calculator {
         IntegerMath addition = (a, b) -> a = a + b;
         IntegerMath subtraction = (a, b) -> a = a - b;
         myApp.operateBinary(20, 10, subtraction);
-        myApp.operateBinary(a++, b, addition);  // 2 violations
+        myApp.operateBinary(a++, b, addition);
+        // 2 violations above:
+        //    'Reference to instance variable 'a' needs "this.".'
+        //    'Reference to instance variable 'b' needs "this.".'
     }
 }
 

@@ -15,8 +15,8 @@ class Example4 {
 
   Example4(int field1) {
     this.field1 = field1;
-    field2 = 0; // violation, reference to instance variable "field2" requires "this"
-    foo(5); // violation, method call "foo(5)" requires "this"
+    field2 = 0; // violation 'Reference to instance variable 'field2' needs "this.".'
+    foo(5); // violation 'Method call to 'foo' needs "this.".'
   }
 
   void method2(int i) {
@@ -24,7 +24,7 @@ class Example4 {
   }
 
   void foo(int field3) {
-    // violation below, reference to instance variable "field3" requires "this"
+    // violation below 'Reference to instance variable 'field3' needs "this.".'
     field3 = field3;
   }
 }
