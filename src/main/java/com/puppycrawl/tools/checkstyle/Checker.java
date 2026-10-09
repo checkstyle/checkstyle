@@ -468,8 +468,9 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             }
         }
         catch (final CheckstyleException exc) {
-            throw new CheckstyleException(
-                    getLocalizedMessage("Checker.setupChildModule", name, exc.getMessage()), exc);
+            final String message = getLocalizedMessage(
+                    "Checker.setupChildModule", name, exc.getMessage());
+            throw new CheckstyleException(message, exc);
         }
         switch (child) {
             case FileSetCheck fsc -> {
