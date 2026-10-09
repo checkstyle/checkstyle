@@ -1738,6 +1738,22 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationArrayInitWithSupplementaryCharactersBeforeLeftCurly()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("arrayInitIndent", "0");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("lineWrappingIndentation", "0");
+        final String[] expected = {
+            "22:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 6, "2, 5, 7"),
+        };
+        verifyWarns(checkConfig,
+                getPath("InputIndentationAnnotationArrayInitCodePoints.java"), expected);
+    }
+
+    @Test
     public void testArrayInitWithEmoji() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
