@@ -51,12 +51,6 @@
     <property name="checks" value="WriteTag"/>
     <property name="files" value=".*(?&lt;!Check)\.java$"/>
   </module>
-  <!-- JavadocUtilizingTrailingSpace is enabled for one package only -->
-  <module name="SuppressionSingleFilter">
-    <property name="checks" value="JavadocUtilizingTrailingSpace"/>
-    <property name="files"
-              value="^(?!.*[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]).*$"/>
-  </module>
   <module name="SuppressionSingleFilter">
     <property name="checks" value="WriteTag"/>
     <property name="files" value="Abstract\w*Check\.java|FileSetCheck\.java|FileStatefulCheck\.java|StatelessCheck\.java|GlobalStatefulCheck\.java"/>
