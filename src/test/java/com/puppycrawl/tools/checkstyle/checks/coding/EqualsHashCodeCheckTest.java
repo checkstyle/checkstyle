@@ -23,16 +23,13 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY_EQUALS;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY_HASHCODE;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class EqualsHashCodeCheckTest extends AbstractModuleTestSupport {
@@ -69,9 +66,6 @@ public class EqualsHashCodeCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMultipleInputs() throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(EqualsHashCodeCheck.class);
-
         final List<String> expectedFirstInputErrors = Collections.singletonList(
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS)
         );
@@ -85,17 +79,10 @@ public class EqualsHashCodeCheckTest extends AbstractModuleTestSupport {
         final String secondInput = getPath("InputEqualsHashCodeSemanticTwo.java");
         final String thirdInput = getPath("InputEqualsHashCode.java");
 
-        final File[] inputs = {
-            new File(firstInput),
-            new File(secondInput),
-            new File(thirdInput),
-        };
-
-        verify(createChecker(checkConfig), inputs, ImmutableMap.of(
-            firstInput, expectedFirstInputErrors,
-            secondInput, expectedSecondInputErrors,
-            thirdInput, expectedThirdInputErrors
-        ));
+        verifyWithInlineConfigParser(
+                Arrays.asList(firstInput, secondInput, thirdInput),
+                Arrays.asList(expectedFirstInputErrors, expectedSecondInputErrors,
+                        expectedThirdInputErrors));
     }
 
     @Test
