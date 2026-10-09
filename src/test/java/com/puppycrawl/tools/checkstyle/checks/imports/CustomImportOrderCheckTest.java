@@ -106,8 +106,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "28:1: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
             "29:1: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
             "30:1: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
-            "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
-            "34:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
+            "37:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
+            "37:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
                     "com.google.errorprone.annotations.*"),
         };
 
@@ -127,8 +127,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "28:1: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
             "29:1: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
             "30:1: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
-            "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
-            "34:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
+            "37:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
+            "37:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
                     "com.google.errorprone.annotations.*"),
         };
 
@@ -200,19 +200,19 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                     "java.io.File.createTempFile"),
-            "19:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
-            "19:1: " + getCheckMessage(MSG_LEX, "java.util.List", "javax.swing.WindowConstants.*"),
-            "20:1: " + getCheckMessage(MSG_LEX, "java.util.StringTokenizer",
+            "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
+            "22:1: " + getCheckMessage(MSG_LEX, "java.util.List", "javax.swing.WindowConstants.*"),
+            "23:1: " + getCheckMessage(MSG_LEX, "java.util.StringTokenizer",
                     "javax.swing.WindowConstants.*"),
-            "21:1: " + getCheckMessage(MSG_LEX, "java.util.*", "javax.swing.WindowConstants.*"),
-            "22:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.AbstractExecutorService",
+            "24:1: " + getCheckMessage(MSG_LEX, "java.util.*", "javax.swing.WindowConstants.*"),
+            "25:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.AbstractExecutorService",
                     "javax.swing.WindowConstants.*"),
-            "23:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.*",
+            "26:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.*",
                     "javax.swing.WindowConstants.*"),
-            "26:1: " + getCheckMessage(MSG_LEX, "com.google.errorprone.annotations.*",
+            "29:1: " + getCheckMessage(MSG_LEX, "com.google.errorprone.annotations.*",
                     "com.google.errorprone.annotations.concurrent.*"),
-            "28:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.base.*"),
-            "28:1: " + getCheckMessage(MSG_LEX, "com.google.common.base.*",
+            "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.base.*"),
+            "34:1: " + getCheckMessage(MSG_LEX, "com.google.common.base.*",
                     "com.google.errorprone.annotations.concurrent.*"),
         };
 
@@ -311,8 +311,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "29:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.IOException"),
             "30:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.InputStream"),
             "31:1: " + getCheckMessage(MSG_ORDER, STD, THIRD, "java.io.Reader"),
-            "35:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.*"),
-            "35:1: " + getCheckMessage(MSG_LEX, "com.google.common.*", "com.puppycrawl.tools.*"),
+            "38:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.*"),
+            "38:1: " + getCheckMessage(MSG_LEX, "com.google.common.*", "com.puppycrawl.tools.*"),
         };
 
         verifyWithInlineConfigParser(
@@ -722,9 +722,9 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "java.util.Collections.*"),
             "18:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC,
                 "java.lang.String.CASE_INSENSITIVE_ORDER"),
-            "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
+            "24:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                 "java.net.Socket"),
-            "21:1: " + getCheckMessage(MSG_LEX, "java.net.Socket",
+            "24:1: " + getCheckMessage(MSG_LEX, "java.net.Socket",
                 "java.util.*"),
         };
         verifyWithInlineConfigParser(
