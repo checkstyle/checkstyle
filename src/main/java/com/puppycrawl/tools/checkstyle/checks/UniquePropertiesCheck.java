@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serial;
 import java.nio.file.Files;
@@ -90,7 +89,10 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);
         }
-        catch (IOException exc) {
+        // -@cs[IllegalCatch] Properties.load can throw unchecked exceptions such as
+        // IllegalArgumentException on a malformed unicode escape, so any exception
+        // from reading the file is reported rather than aborting the audit.
+        catch (final Exception exc) {
             log(1, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     exc.getLocalizedMessage());
         }
