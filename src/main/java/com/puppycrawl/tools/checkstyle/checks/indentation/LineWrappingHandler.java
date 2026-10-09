@@ -156,13 +156,81 @@ public class LineWrappingHandler {
                     || !shouldProcessTextBlockLiteral(node)) {
                 continue;
             }
+            final int nestedIndent = getNestedCallIndent(node, firstNode, indentLevel);
             if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
+                logWarningMessage(node, firstNodeIndent + nestedIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                logWarningMessage(node, currentIndent + nestedIndent);
             }
         }
+    }
+
+    /**
+     * Gets the additional strict wrapping indentation introduced by nested call arguments.
+     * A call beginning on a continuation line starts a new wrapping context for its
+     * subsequent lines, including its closing parenthesis.
+     *
+     * @param node the first token on the line being checked
+     * @param firstNode the start of the enclosing wrapping context
+     * @param indentLevel the configured continuation offset
+     * @return the additional indentation for nested wrapping contexts
+     */
+    private int getNestedCallIndent(DetailAST node, DetailAST firstNode, int indentLevel) {
+        int result = 0;
+        if (context.isForceStrictCondition()) {
+            for (DetailAST parent = node.getParent(); parent != null && !parent.equals(firstNode);
+                    parent = parent.getParent()) {
+                if (parent.getType() == TokenTypes.METHOD_CALL
+                        || parent.getType() == TokenTypes.LITERAL_NEW) {
+                    final DetailAST argument = getCallArgument(parent);
+                    if (argument.getParent().getType() != TokenTypes.EXPR
+                            || argument.getParent().getParent().getType() != TokenTypes.ELIST) {
+                        continue;
+                    }
+                    final DetailAST enclosingCall =
+                            argument.getParent().getParent().getParent();
+                    final DetailAST callStart = getCallStart(parent);
+                    if (!TokenUtil.areOnSameLine(callStart, getCallStart(enclosingCall))
+                            && node.getLineNo() > parent.getLineNo()) {
+                        result += indentLevel;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the argument expression containing an invocation and its receiver chain.
+     *
+     * @param ast the invocation
+     * @return the outermost invocation in the receiver chain
+     */
+    private static DetailAST getCallArgument(DetailAST ast) {
+        DetailAST result = ast;
+        while (result.getParent().getType() == TokenTypes.DOT
+                || result.getParent().getType() == TokenTypes.METHOD_CALL) {
+            result = result.getParent();
+        }
+        return result;
+    }
+
+    /**
+     * Gets the first token of a method or constructor invocation, without visiting arguments.
+     *
+     * @param ast the invocation
+     * @return the first token of the invocation
+     */
+    private static DetailAST getCallStart(DetailAST ast) {
+        DetailAST result = ast;
+        if (ast.getType() == TokenTypes.METHOD_CALL) {
+            result = ast.getFirstChild();
+            while (result.getFirstChild() != null) {
+                result = result.getFirstChild();
+            }
+        }
+        return result;
     }
 
     /**
