@@ -37,8 +37,12 @@ import org.junit.jupiter.api.io.TempDir;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
@@ -182,6 +186,24 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     }
 
     /**
+     * Returns the TreeWalker child of the root configuration produced by the inline
+     * config parser.
+     *
+     * @param rootConfig root (Checker) configuration.
+     * @return the TreeWalker configuration.
+     * @throws IllegalArgumentException if the root has no TreeWalker child.
+     */
+    private static DefaultConfiguration getTreeWalkerConfig(DefaultConfiguration rootConfig) {
+        for (Configuration child : rootConfig.getChildren()) {
+            if (TreeWalker.class.getName().equals(child.getName())) {
+                return (DefaultConfiguration) child;
+            }
+        }
+        throw new IllegalArgumentException(
+                "Xpath tests require the check to be configured under TreeWalker.");
+    }
+
+    /**
      * Runs three verifications:
      * First one executes checker with defined module configuration and compares output with
      * expected violations.
@@ -224,6 +246,57 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         verify(moduleConfig, fileToProcess.getPath(), expectedViolation, warnList);
         verifyXpathQueries(generatedXpathQueries, expectedXpathQueries);
         verify(treeWalkerConfigWithXpath, fileToProcess.getPath(), CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    /**
+     * Runs the same three verifications as {@link #runVerifications}, but the module
+     * configuration and the violation lines are taken from the inline config and the
+     * {@code // violation} comments of the Input file.
+     * First one executes checker with the inline config and compares output with expected
+     * violation.
+     * Second one generates xpath queries for the violation position and compares them with
+     * expected xpath queries.
+     * Third one adds {@code SuppressionXpathFilter} using generated xpath queries, executes
+     * checker and checks if no violation occurred.
+     *
+     * @param filePath path of the Input file with inline config.
+     * @param expectedXpathQueries expected generated xpath queries.
+     * @param expectedViolation expected violation message, exactly one.
+     * @throws Exception if an error occurs
+     * @throws IllegalArgumentException if length of expectedViolation is not 1
+     */
+    protected final void verifyXpathWithInlineConfigParser(String filePath,
+                                                           List<String> expectedXpathQueries,
+                                                           String... expectedViolation)
+            throws Exception {
+        if (expectedViolation.length != 1) {
+            throw new IllegalArgumentException(
+                    "Expected violations should contain exactly one element."
+                            + " Multiple violations are not supported."
+            );
+        }
+
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(filePath);
+
+        final Integer[] violationLines = testInputConfiguration.violations().stream()
+                .map(TestInputViolation::lineNo)
+                .toArray(Integer[]::new);
+        verify(testInputConfiguration.createConfiguration(), filePath,
+                expectedViolation, violationLines);
+
+        final ViolationPosition position = extractLineAndColumnNumber(expectedViolation);
+        final List<String> generatedXpathQueries =
+                generateXpathQueries(new File(filePath), position);
+        verifyXpathQueries(generatedXpathQueries, expectedXpathQueries);
+
+        final DefaultConfiguration configWithFilter =
+                testInputConfiguration.createConfiguration();
+        final DefaultConfiguration treeWalkerConfig = getTreeWalkerConfig(configWithFilter);
+        final String checkName = treeWalkerConfig.getChildren()[0].getName();
+        treeWalkerConfig.addChild(
+                createSuppressionXpathFilter(checkName, generatedXpathQueries));
+        verify(configWithFilter, filePath, CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     private record ViolationPosition(int violationLineNumber, int violationColumnNumber) {
