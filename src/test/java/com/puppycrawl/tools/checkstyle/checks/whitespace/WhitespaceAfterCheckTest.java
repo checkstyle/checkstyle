@@ -45,7 +45,7 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefaultConfig() throws Exception {
         final String[] expected = {
             "45:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
             "74:29: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ","),
@@ -56,13 +56,48 @@ public class WhitespaceAfterCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCast() throws Exception {
+    public void testTypeCast() throws Exception {
         final String[] expected = {
             "91:20: " + getCheckMessage(MSG_WS_TYPECAST),
         };
         verifyWithInlineConfigParser(
                 getPath("InputWhitespaceAfterTypeCast.java"),
                 expected);
+    }
+
+    @Test
+    public void testDefaultMethods() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterDefaultMethods.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testDefaultTypes() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterDefaultTypes.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testTypeCastOperators() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterTypeCastOperators.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testTypeCastAnonymousClasses() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterTypeCastAnonymousClasses.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testTypeCastForLoops() throws Exception {
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAfterTypeCastForLoops.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
