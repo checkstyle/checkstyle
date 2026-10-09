@@ -1,5 +1,12 @@
+/*
+ArrayTypeStyle
+javaStyle = (default)true
+
+
+*/
+
 package org.checkstyle.suppressionxpathfilter.arraytypestyle;
 
 public class InputXpathArrayTypeStyleVariable {
-    String strings[]; // warn
+    String strings[]; // violation 'Array brackets at illegal position'
 }
