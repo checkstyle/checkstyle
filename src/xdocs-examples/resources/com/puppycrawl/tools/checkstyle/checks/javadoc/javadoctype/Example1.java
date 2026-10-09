@@ -33,10 +33,10 @@ public class Example1 {
   public class ClassD {}
 
   /** */
-  public class ClassE<T> {} // violation, as param tag for <T> is missing
+  public class ClassE<T> {} // violation 'missing @param '<T>' tag.'
 
   /** */
-  private class ClassF<T> {} // violation, as param tag for <T> is missing
+  private class ClassF<T> {} // violation 'missing @param '<T>' tag.'
 
   /** */
   @Generated("tool")

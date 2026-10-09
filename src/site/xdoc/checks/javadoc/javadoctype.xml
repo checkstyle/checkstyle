@@ -203,10 +203,10 @@ public class Example1 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool")
@@ -252,7 +252,7 @@ public class Example2 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   private class ClassF&lt;T&gt; {}
@@ -301,10 +301,10 @@ public class Example3 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool")
@@ -350,10 +350,10 @@ public class Example4 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool")
@@ -403,7 +403,7 @@ public class Example5 {
   public class ClassE&lt;T&gt; {}
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool")
@@ -498,10 +498,10 @@ public class Example7 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool")
@@ -550,10 +550,10 @@ public class Example8 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool") // violation 'Type Javadoc comment is missing @param '&lt;T&gt;' tag'
@@ -601,10 +601,10 @@ public class Example9 {
   public class ClassD {}
 
   /** */
-  public class ClassE&lt;T&gt; {}  // violation, as param tag for &lt;T&gt; is missing
+  public class ClassE&lt;T&gt; {}  // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
-  private class ClassF&lt;T&gt; {} // violation, as param tag for &lt;T&gt; is missing
+  private class ClassF&lt;T&gt; {} // violation 'missing @param '&lt;T&gt;' tag.'
 
   /** */
   @Generated("tool")
