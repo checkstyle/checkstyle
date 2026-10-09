@@ -228,6 +228,12 @@ public final class InlineConfigParser {
     /** The String "(null)". */
     private static final String NULL_STRING = "(null)";
 
+    /** Package of xpath regression Inputs, followed by the check's sub-package. */
+    private static final String XPATH_INPUT_ROOT = "org.checkstyle.suppressionxpathfilter.";
+
+    /** Root package of checks. */
+    private static final String CHECKS_PACKAGE = "com.puppycrawl.tools.checkstyle.checks.";
+
     private static final String LATEST_DTD = String.format(Locale.ROOT,
             "<!DOCTYPE module PUBLIC \"%s\" \"%s\">%n",
             ConfigurationLoader.DTD_PUBLIC_CS_ID_1_3,
@@ -672,15 +678,36 @@ public final class InlineConfigParser {
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
-                    + ". Please check for spelling errors or specify fully qualified class name.");
+                        + ". Please check for spelling errors or specify fully qualified "
+                        + " class name.");
             }
-            final int beginIndex = path.indexOf("com.puppycrawl");
-            fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
+            fullyQualifiedClassName =
+                    getPackageName(path, endIndex, moduleName) + moduleName;
             if (!fullyQualifiedClassName.endsWith("Filter")) {
                 fullyQualifiedClassName += "Check";
             }
         }
         return fullyQualifiedClassName;
+    }
+
+    private static String getPackageName(String path, int endIndex, String moduleName)
+            throws CheckstyleException {
+        final String packageName;
+        final int beginIndex = path.indexOf("com.puppycrawl");
+        if (beginIndex == -1) {
+            final int rootIndex = path.indexOf(XPATH_INPUT_ROOT);
+            if (rootIndex == -1) {
+                throw new CheckstyleException("Unable to resolve module name: " + moduleName
+                        + ". Please check for spelling errors or specify "
+                        + " fully qualified class name.");
+            }
+            packageName = CHECKS_PACKAGE
+                    + path.substring(rootIndex + XPATH_INPUT_ROOT.length(), endIndex);
+        }
+        else {
+            packageName = path.substring(beginIndex, endIndex);
+        }
+        return packageName;
     }
 
     private static String getFilePath(String fileName, String inputFilePath) {
