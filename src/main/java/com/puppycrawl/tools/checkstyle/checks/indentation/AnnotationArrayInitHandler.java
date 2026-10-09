@@ -119,27 +119,27 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
 
     /**
      * Returns column number of first non-blank char after
-     * specified column on specified line or -1 if
+     * specified column on specified line or {@code NOT_EXIST} if
      * such char doesn't exist.
      *
      * @param lineNo   number of line on which we search
      * @param columnNo number of column after which we search
      *
      * @return column number of first non-blank char after
-     *         specified column on specified line or -1 if
+     *         specified column on specified line or {@code NOT_EXIST} if
      *         such char doesn't exist.
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
         int realColumnNo = columnNo + 1;
-        final String line = getContext().getLine(lineNo - 1);
-        final int lineLength = line.length();
+        final int[] line = getContext().getLine(lineNo - 1).codePoints().toArray();
+        final int lineLength = line.length;
         while (realColumnNo < lineLength
-            && Character.isWhitespace(line.charAt(realColumnNo))) {
+            && Character.isWhitespace(line[realColumnNo])) {
             realColumnNo++;
         }
 
         if (realColumnNo == lineLength) {
-            realColumnNo = -1;
+            realColumnNo = NOT_EXIST;
         }
         return realColumnNo;
     }
