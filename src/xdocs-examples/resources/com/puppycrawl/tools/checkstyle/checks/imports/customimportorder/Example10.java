@@ -19,11 +19,19 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 import static java.io.File.separator;
 import static java.util.Collections.*;
 
-import java.time.*; // violation, should be in standard package group
+// violation 2 lines below """Should be in the 'STANDARD_JAVA_PACKAGE' group,
+//   expecting not assigned imports on this line."""
+import java.time.*;
 
-import javax.net.*; // violation, should be in special import group
+// violation 2 lines below """Should be in the 'SPECIAL_IMPORTS' group, expecting not
+//   assigned imports on this line."""
+import javax.net.*;
 
-import org.apache.commons.io.FileUtils; // violation, should be in THIRD PARTY PACKAGE GROUP
+// violation 4 lines below """Import statement for 'org.apache.commons.io.FileUtils'
+//   is in the wrong order. Should be in the
+//   'THIRD_PARTY_PACKAGE' group, expecting not assigned
+//   imports on this line."""
+import org.apache.commons.io.FileUtils;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation 'wrong order'
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // violation 'wrong order'

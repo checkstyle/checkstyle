@@ -18,7 +18,10 @@ import    static   java.util.Collections   .*; // violation '.* wrong order. Sho
 import static java.lang.String . CASE_INSENSITIVE_ORDER; // violation '.* wrong order. Should be in the .*group, expecting not assigned imports.*'
 
 
-import java . // 2 violations
+// 2 violations 3 lines below:
+//   'Extra separation in import group before 'java.net.Socket''
+//   'Wrong lexicographical order for 'java.net.Socket' import.'
+import java .
         net.Socket    ;
 
 public class InputCustomImportOrderViolationsSameLine {}

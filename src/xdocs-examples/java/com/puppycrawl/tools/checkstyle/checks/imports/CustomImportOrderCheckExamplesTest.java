@@ -142,16 +142,16 @@ public class CustomImportOrderCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
-                    "STANDARD_JAVA_PACKAGE", "java.time.*"),
             "24:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
-                    "SPECIAL_IMPORTS", "javax.net.*"),
-            "26:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
-                    "THIRD_PARTY_PACKAGE", "org.apache.commons.io.FileUtils"),
+                    "STANDARD_JAVA_PACKAGE", "java.time.*"),
             "28:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
+                    "SPECIAL_IMPORTS", "javax.net.*"),
+            "34:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
+                    "THIRD_PARTY_PACKAGE", "org.apache.commons.io.FileUtils"),
+            "36:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
                     "THIRD_PARTY_PACKAGE",
                     "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"),
-            "29:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
+            "37:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED,
                     "THIRD_PARTY_PACKAGE",
                     "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck"),
         };
@@ -192,7 +192,7 @@ public class CustomImportOrderCheckExamplesTest extends AbstractExamplesModuleTe
     @Test
     public void testExample14() throws Exception {
         final String[] expected = {
-            "17:1: " + getCheckMessage(MSG_LEX,
+            "19:1: " + getCheckMessage(MSG_LEX,
                     "java.awt.Frame", "java.awt.color.ColorSpace"),
         };
 

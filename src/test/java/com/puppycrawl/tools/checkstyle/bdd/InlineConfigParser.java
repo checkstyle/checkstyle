@@ -275,7 +275,6 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
             "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
-            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
             "com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck",
