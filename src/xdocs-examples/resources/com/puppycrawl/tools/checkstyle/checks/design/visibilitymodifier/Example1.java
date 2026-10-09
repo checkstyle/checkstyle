@@ -19,15 +19,15 @@ import java.util.List;
 import java.util.Set;
 
 // xdoc section - start
-class Example1 {
+final class Example1 {
   private int myPrivateField1;
 
-  int field1; // violation, must have a visibility modifier 'must be private'
-
-  protected String field2; // violation, protected not allowed 'must be private'
-
-  public int field3 = 42; // violation, not final 'must be private'
-
+  int field1;
+  // violation above, must have a visibility modifier ''field1' must be private'
+  protected String field2;
+  // violation above, protected not allowed ''field2' must be private'
+  public int field3 = 42;
+  // violation above, not final ''field3' must be private'
   public long serialVersionUID = 1L;
 
   public static final int field4 = 42;
@@ -48,8 +48,8 @@ class Example1 {
   public final ImmutableMap<String, Object> objects1 = null;
 
   @java.lang.Deprecated
-  String annotatedString; // violation, annotation not configured 'must be private'
-
+  String annotatedString;
+  // violation above, annotation not configured ''annotatedString' must be private'
   @Deprecated
   String shortCustomAnnotated;
   // violation above, annotation not configured 'must be private'
