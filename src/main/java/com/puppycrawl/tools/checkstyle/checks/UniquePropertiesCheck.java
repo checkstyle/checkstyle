@@ -90,7 +90,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         try (InputStream inputStream = Files.newInputStream(file.toPath())) {
             properties.load(inputStream);
         }
-        catch (IOException exc) {
+        catch (IOException | IllegalArgumentException exc) {
             log(1, MSG_IO_EXCEPTION_KEY, file.getPath(),
                     exc.getLocalizedMessage());
         }
