@@ -451,13 +451,13 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "61:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
             "64:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myString"),
             "64:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myInt"),
-            "69:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
-            "71:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myList"),
-            "78:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "X"),
-            "82:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
-            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
-            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myInt"),
-            "85:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myString"),
+            "72:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "74:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myList"),
+            "81:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "X"),
+            "85:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "88:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "<T>"),
+            "88:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myInt"),
+            "88:1: " + getCheckMessage(MSG_MISSING_TAG_WITH_QUOTES, "@param", "myString"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeRecordComponents2.java"), expected);
