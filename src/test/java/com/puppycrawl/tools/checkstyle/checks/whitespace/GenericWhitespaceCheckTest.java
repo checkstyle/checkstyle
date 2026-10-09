@@ -63,44 +63,52 @@ public class GenericWhitespaceCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMultipleViolations() throws Exception {
+        final String[] expected = {
+            "18:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "18:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "18:24: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "18:44: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "18:44: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "18:54: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "18:54: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "19:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "19:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "19:21: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "19:21: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "19:31: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "19:31: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "19:33: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "19:53: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "19:53: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "19:60: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "19:60: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
+            "19:70: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "19:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "19:72: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
+            "19:72: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGenericWhitespaceMultipleViolations.java"), expected);
+    }
+
+    @Test
     public void testDefault() throws Exception {
         final String[] expected = {
-            "22:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "22:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "22:24: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "22:44: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "22:44: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "22:54: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "22:54: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "23:14: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "23:14: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "23:21: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "23:21: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "23:31: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "23:31: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "23:33: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "23:53: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "23:53: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "23:60: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "23:60: " + getCheckMessage(MSG_WS_FOLLOWED, "<"),
-            "23:70: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "23:70: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "23:72: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
-            "23:72: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "36:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "36:20: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
-            "48:22: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
-            "48:29: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "66:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
-            "69:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "87:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "88:34: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "89:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "89:41: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "92:26: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "93:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
-            "94:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
-            "94:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "29:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "29:20: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, ">"),
+            "44:22: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
+            "44:29: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "65:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
+            "68:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "86:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "87:34: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "88:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "88:41: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "94:26: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "95:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "96:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "96:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceDefault.java"), expected);
@@ -168,8 +176,8 @@ public class GenericWhitespaceCheckTest extends AbstractModuleTestSupport {
             "35:2: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
             "40:35: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
             "40:42: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
-            "44:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, '<'),
-            "45:53: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
+            "47:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, '<'),
+            "48:53: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceWithEmoji.java"), expected);
