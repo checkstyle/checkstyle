@@ -242,26 +242,53 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      * @return true if the variable is dereferenced, false otherwise
      */
     private static boolean containsVariableDereference(DetailAST node, String variableName) {
-
         boolean found = false;
 
         if (node.getType() == TokenTypes.DOT
-            || node.getType() == TokenTypes.METHOD_CALL
-            || node.getType() == TokenTypes.LAND
-            || node.getType() == TokenTypes.LOR) {
+                || node.getType() == TokenTypes.METHOD_CALL
+                || node.getType() == TokenTypes.LAND
+                || node.getType() == TokenTypes.LOR) {
+            found = containsVariableDereferenceInChildren(node, variableName);
+        }
+        else {
+            DetailAST child = node.getFirstChild();
 
-            DetailAST firstChild = node.getFirstChild();
-
-            while (firstChild != null) {
-                if (variableName.equals(firstChild.getText())
-                        && firstChild.getNextSibling().getType() != TokenTypes.ELIST
-                            || containsVariableDereference(firstChild, variableName)) {
-                    found = true;
-                    break;
-                }
-                firstChild = firstChild.getNextSibling();
+            while (child != null && !found) {
+                found = containsVariableDereference(child, variableName);
+                child = child.getNextSibling();
             }
         }
+
+        return found;
+    }
+
+    /**
+     * Checks the children of the given node for a dereference of the given variable.
+     * A child counts as a dereference when its text matches the variable name
+     * and it is followed by another node that is not an argument list.
+     *
+     * @param node the AST node whose children are searched
+     * @param variableName the name of the variable
+     * @return true if the variable is dereferenced, false otherwise
+     */
+    private static boolean containsVariableDereferenceInChildren(
+            DetailAST node, String variableName) {
+        boolean found = false;
+        DetailAST child = node.getFirstChild();
+
+        while (child != null && !found) {
+            if (variableName.equals(child.getText())
+                    && child.getNextSibling() != null
+                    && child.getNextSibling().getType() != TokenTypes.ELIST) {
+                found = true;
+            }
+            else {
+                found = containsVariableDereference(child, variableName);
+            }
+
+            child = child.getNextSibling();
+        }
+
         return found;
     }
 
