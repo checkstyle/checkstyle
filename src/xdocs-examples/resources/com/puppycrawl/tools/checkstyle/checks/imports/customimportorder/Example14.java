@@ -14,7 +14,9 @@ package com.puppycrawl.tools.checkstyle.checks.imports.customimportorder;
 import java.awt.Dialog;
 import java.awt.Window;
 import java.awt.color.ColorSpace;
-import java.awt.Frame; // violation, in ASCII order all uppercase comes before lowercase letters
+// violation 2 lines below """Wrong lexicographical order for 'java.awt.Frame'
+//   import. Should be before 'java.awt.color.ColorSpace'."""
+import java.awt.Frame;
 
 // xdoc section - end
 public class Example14 {
