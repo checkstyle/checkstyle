@@ -150,6 +150,12 @@
     <Bug pattern="REC_CATCH_EXCEPTION"/>
   </Match>
   <Match>
+    <!-- Properties.load can throw a runtime exception on malformed input. -->
+    <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"/>
+    <Method name="processFiltered"/>
+    <Bug pattern="REC_CATCH_EXCEPTION"/>
+  </Match>
+  <Match>
     <!-- Creates too many false positives on classes stored in sets/maps
          which require multiple objects to be stored. -->
     <Bug pattern="FCBL_FIELD_COULD_BE_LOCAL"/>
