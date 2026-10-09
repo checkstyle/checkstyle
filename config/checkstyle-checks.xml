@@ -568,6 +568,13 @@
       <message key="matchxpath.match"
                value="All example test classes should extend AbstractExamplesModuleTestSupport."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="xpathTestsUseInlineConfigParser"/>
+      <property name="query"
+                value="//METHOD_CALL[.//IDENT[@text='runVerifications']]"/>
+      <message key="matchxpath.match"
+               value="Use verifyXpathWithInlineConfigParser instead of runVerifications."/>
+    </module>
     <module name="MissingCtor"/>
     <module name="MissingNullCaseInSwitch"/>
     <module name="MissingSwitchDefault"/>
