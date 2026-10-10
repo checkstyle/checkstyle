@@ -41,8 +41,8 @@ public class InputSuppressWarningsSingle2
             @SuppressWarnings("unused")
             Object o = new InputSuppressWarningsSingle2() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
-                // violation below 'The warning 'unchecked' cannot be suppressed at this location'
                 @SuppressWarnings("unchecked")
                 public String toString() {
                     return "";
@@ -58,9 +58,9 @@ public class InputSuppressWarningsSingle2
         int cool();
     }
 
+    // violation 2 lines below 'The warning 'invalid' cannot be suppressed at this location'
     @Documented
     @SuppressWarnings("invalid")
-    // violation above 'The warning 'invalid' cannot be suppressed at this location'
     @interface MoreSweetness {
 
         // violation below 'The warning 'unused' cannot be suppressed at this location'

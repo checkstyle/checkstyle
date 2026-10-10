@@ -34,9 +34,9 @@ public class InputSuppressWarningsSingle4
             @SuppressWarnings("unused")
             Object o = new InputSuppressWarningsSingle4() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
                 @SuppressWarnings("unchecked")
-                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
