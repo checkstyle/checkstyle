@@ -338,6 +338,56 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNestedCallArguments() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputIndentationNestedCallArguments.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testNestedCallArgumentsInvalid() throws Exception {
+        final String[] expected = {
+            "19:15: " + getCheckMessage(MSG_ERROR, "\"under\"", 14, 16),
+            "24:19: " + getCheckMessage(MSG_ERROR, "\"over\"", 18, 16),
+            "30:11: " + getCheckMessage(MSG_ERROR, ")", 10, 12),
+            "35:15: " + getCheckMessage(MSG_ERROR, ")", 14, 12),
+            "38:11: " + getCheckMessage(MSG_ERROR, "call", 10, 12),
+            "46:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "49:11: " + getCheckMessage(MSG_ERROR, "\"same line\"", 10, 12),
+            "56:15: " + getCheckMessage(MSG_ERROR, "\"under\"", 14, 16),
+            "57:15: " + getCheckMessage(MSG_ERROR, ")", 14, 12),
+            "61:19: " + getCheckMessage(MSG_ERROR, "\"over\"", 18, 16),
+            "62:15: " + getCheckMessage(MSG_ERROR, ")", 14, 12),
+            "63:19: " + getCheckMessage(MSG_ERROR, "0", 18, 16),
+        };
+        verifyWithInlineConfigParser(getPath("InputIndentationNestedCallArgumentsInvalid.java"),
+                expected);
+    }
+
+    @Test
+    public void testNestedCallArgumentsReport() throws Exception {
+        final String[] expected = {
+            "25:21: " + getCheckMessage(MSG_ERROR, "childNamespace", 20, 16),
+            "40:27: " + getCheckMessage(MSG_ERROR, "getValue", 26, 20),
+            "42:31: " + getCheckMessage(MSG_ERROR, "properties", 30, 24),
+            "44:31: " + getCheckMessage(MSG_ERROR, "String", 30, 24),
+        };
+        verifyWithInlineConfigParser(getPath("InputIndentationNestedCallArgumentsReport.java"),
+                expected);
+    }
+
+    @Test
+    public void testNestedCallArgumentsOffset() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputIndentationNestedCallArgumentsOffset.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testNestedCallArgumentsNonStrict() throws Exception {
+        verifyWithInlineConfigParser(getPath("InputIndentationNestedCallArgumentsNonStrict.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testMethodCallLineWrap() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
