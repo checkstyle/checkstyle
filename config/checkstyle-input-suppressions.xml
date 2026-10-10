@@ -118,18 +118,6 @@
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant7\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsHolderNonConstant\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle3\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle4\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle5\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle6\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle7\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/checks/coding/onestatementperline/InputOneStatementPerLineSingleLineSmallTalkStyle\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
@@ -258,8 +246,6 @@
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedBadJavadoc\.java"/>
   <suppress id="violationBetweenJavadocAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/annotation/missingdeprecated/InputMissingDeprecatedClass\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/com/puppycrawl/tools/checkstyle/checks/annotation/suppresswarnings/InputSuppressWarningsSingle1\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/com/puppycrawl/tools/checkstyle/checks/coding/illegalthrows/InputIllegalThrowsNotIgnoreOverriddenMethod\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
