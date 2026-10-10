@@ -114,9 +114,9 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * @param first {@code NodeInfo} to compare
      * @param second {@code NodeInfo} to compare
-     * @return the value {@code 0} if {@code first == second};
-     *         a value less than {@code 0} if {@code first} should be first;
-     *         a value greater than {@code 0} if {@code second} should be first.
+     * @return the value {@code 0} if {@code first == second}; a value less than
+     *         {@code 0} if {@code first} should be first; a value greater than
+     *         {@code 0} if {@code second} should be first.
      */
     private static int compareCommonAncestorChildrenOrder(NodeInfo first, NodeInfo second) {
         NodeInfo child1 = first;
@@ -197,8 +197,8 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * <p>Reason of suppression for resource, IOResourceOpenedButNotSafelyClosed:
      * {@link AxisIterator} implements {@link java.io.Closeable} interface,
-     * but none of the subclasses of the {@code AxisIterator}
-     * class has non-empty {@code close()} method.
+     * but none of the subclasses of the {@code AxisIterator} class has non-empty
+     * {@code close()} method.
      *
      * @param axisNumber element from {@code AxisInfo}
      * @return {@code AxisIterator} object
@@ -239,8 +239,8 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * <p>Reason of suppression for resource, IOResourceOpenedButNotSafelyClosed:
      * {@link AxisIterator} implements {@link java.io.Closeable} interface,
-     * but none of the subclasses of the {@code AxisIterator}
-     * class has non-empty {@code close()} method.
+     * but none of the subclasses of the {@code AxisIterator} class has non-empty
+     * {@code close()} method.
      *
      * @return iterator
      */
@@ -260,8 +260,8 @@ public abstract class AbstractElementNode extends AbstractNode {
      *
      * <p>Reason of suppression for resource, IOResourceOpenedButNotSafelyClosed:
      * {@link AxisIterator} implements {@link java.io.Closeable} interface,
-     * but none of the subclasses of the {@code AxisIterator}
-     * class has non-empty {@code close()} method.
+     * but none of the subclasses of the {@code AxisIterator} class has non-empty
+     * {@code close()} method.
      *
      * @return iterator
      */
