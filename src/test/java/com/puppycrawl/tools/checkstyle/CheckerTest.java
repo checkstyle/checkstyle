@@ -639,8 +639,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             cache.load(reader);
         }
 
-        // There should 2 objects in cache: processed file (file.java) and checker configuration.
-        final int expectedNumberOfObjectsInCache = 2;
+        // Cache contains the processed file, checker configuration hash, and Checkstyle version.
+        final int expectedNumberOfObjectsInCache = 3;
         assertWithMessage("Cache has unexpected size")
             .that(cache)
             .hasSize(expectedNumberOfObjectsInCache);
@@ -678,7 +678,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Cache has unexpected size")
             .that(cacheAfterClear)
-            .hasSize(1);
+            .hasSize(2);
         assertWithMessage("Cache has null hash")
             .that(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY))
             .isNotNull();
@@ -699,7 +699,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cash have changed it hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
-        final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
+        final int expectedNumberOfObjectsInCacheAfterSecondRun = 3;
         assertWithMessage("Cache has changed number of items")
             .that(cacheAfterSecondRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
@@ -733,7 +733,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Cache has unexpected size")
             .that(cacheAfterClear)
-            .hasSize(1);
+            .hasSize(2);
     }
 
     @Test
@@ -913,7 +913,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has changed its hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
-        final int expectedNumberOfObjectsInCache = 2;
+        final int expectedNumberOfObjectsInCache = 3;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterFirstRun)
             .hasSize(expectedNumberOfObjectsInCache);
@@ -960,7 +960,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             cacheAfterFirstRun.load(reader);
         }
 
-        final int expectedNumberOfObjectsInCacheAfterFirstRun = 4;
+        final int expectedNumberOfObjectsInCacheAfterFirstRun = 5;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterFirstRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterFirstRun);
@@ -995,7 +995,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has null as a resource key")
             .that(cacheAfterFirstRun.getProperty(firstExternalResourceKey))
             .isNotNull();
-        final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
+        final int expectedNumberOfObjectsInCacheAfterSecondRun = 5;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterSecondRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
@@ -1150,7 +1150,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Cache has unexpected size")
             .that(cache)
-            .hasSize(1);
+            .hasSize(2);
         assertWithMessage("testFile is not in cache")
             .that(cache.getProperty(filePath))
             .isNull();
@@ -1232,7 +1232,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Cache has unexpected size")
             .that(cache)
-            .hasSize(1);
+            .hasSize(2);
         assertWithMessage("testFile is not in cache")
             .that(cache.getProperty("testFile"))
             .isNull();
@@ -1304,7 +1304,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Cache has unexpected size")
             .that(cache)
-            .hasSize(1);
+            .hasSize(2);
     }
 
     /**
@@ -1418,7 +1418,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         assertWithMessage("Cache has unexpected size")
             .that(cache)
-            .hasSize(1);
+            .hasSize(2);
     }
 
     @Test
