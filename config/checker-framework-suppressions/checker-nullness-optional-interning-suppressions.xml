@@ -3223,6 +3223,13 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference mods</message>
+    <lineContent>if (mods.findFirstToken(TokenTypes.FINAL) != null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference mods</message>
     <lineContent>if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {</lineContent>
   </checkerFrameworkError>
 
