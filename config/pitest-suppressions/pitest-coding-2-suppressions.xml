@@ -1,3 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>hasAbruptCompletionAfter</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>for (DetailAST sibling = statement.getNextSibling(); sibling != null &amp;&amp; !result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>hasAbruptCompletionAfter</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling with receiver</description>
+    <lineContent>for (DetailAST sibling = statement.getNextSibling(); sibling != null &amp;&amp; !result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isAssignmentFollowedByAbruptCompletion</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent</description>
+    <lineContent>if (slist.getParent() == loopAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isAssignmentFollowedByAbruptCompletion</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (slist.getParent() == loopAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isAssignmentFollowedByAbruptCompletion</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>if (slist.getParent() == loopAst) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>isInsideTryStatement</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getParent with receiver</description>
+    <lineContent>for (DetailAST parent = ast.getParent(); parent != loopAst;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>FinalLocalVariableCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck</mutatedClass>
+    <mutatedMethod>shouldRemoveFinalVariableCandidate</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (currAstLoopAstParent != null</lineContent>
+  </mutation>
 </suppressedMutations>

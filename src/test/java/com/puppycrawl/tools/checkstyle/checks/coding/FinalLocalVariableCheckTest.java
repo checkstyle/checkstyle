@@ -341,6 +341,52 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturn() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+            "22:13: " + getCheckMessage(MSG_KEY, "value"),
+            "33:13: " + getCheckMessage(MSG_KEY, "value"),
+            "48:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalLocalVariableReturn.java"), expected);
+    }
+
+    @Test
+    public void testReturnBranches() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableReturnBranches.java"), expected);
+    }
+
+    @Test
+    public void testReturnInLoop() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+            "21:13: " + getCheckMessage(MSG_KEY, "value"),
+            "50:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableReturnInLoop.java"), expected);
+        final String[] expected2 = {
+            "23:13: " + getCheckMessage(MSG_KEY, "value"),
+            "76:17: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableReturnInLoop2.java"), expected2);
+    }
+
+    @Test
+    public void testReturnInLabeledLoop() throws Exception {
+        final String[] expected = {
+            "49:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableReturnInLabeledLoop.java"), expected);
+    }
+
+    @Test
     public void testBreakOrReturn() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
