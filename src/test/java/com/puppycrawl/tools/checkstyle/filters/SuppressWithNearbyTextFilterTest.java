@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,7 @@ import org.junit.jupiter.api.io.TempDir;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -469,6 +471,26 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
         assertWithMessage("File name should not be null")
             .that(auditEvent.getFileName())
             .isNull();
+    }
+
+    /**
+     * Verifies that the filter uses the {@link FileText} carried by the {@link AuditEvent}
+     * instead of reading the file from disk. The file name points to a non-existent file, so
+     * any attempt to read it from disk would throw an exception.
+     */
+    @Test
+    public void testUsesFileTextFromEvent() {
+        final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
+        final FileText fileText = new FileText(new File("nonexistent.java"),
+                Collections.singletonList("SUPPRESS CHECKSTYLE test"));
+        final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
+                "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
+        final AuditEvent event =
+                new AuditEvent(this, "nonexistent.java", message, fileText);
+
+        assertWithMessage("Filter should suppress using file text from the event")
+                .that(filter.accept(event))
+                .isFalse();
     }
 
     /**
