@@ -246,4 +246,12 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
                 "InputUnnecessaryNullCheckWithInstanceOfMutationKillerTwo.java"), expected);
     }
 
+    @Test
+    public void testUnnecessaryNullCheckWithInstanceOfBooleanCondition() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath(
+                "InputUnnecessaryNullCheckWithInstanceOfBooleanCondition.java"), expected);
+    }
+
 }
