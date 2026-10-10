@@ -61,6 +61,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="forceStrictCondition"/><a href="#forceStrictCondition">forceStrictCondition</a></td>
+              <td>Force exact <code>offset</code> indentation for continuation lines outside HTML elements.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.4.0</td>
+            </tr>
+            <tr>
               <td><a id="offset"/><a href="#offset">offset</a></td>
               <td>Specify how many spaces to use for new indentation level.</td>
               <td><a href="../../property-types.html#int">int</a></td>
