@@ -277,9 +277,13 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
         DetailAST child = node.getFirstChild();
 
         while (child != null && !found) {
-            found = variableName.equals(child.getText())
-                    && child.getNextSibling() != null
-                    && child.getNextSibling().getType() != TokenTypes.ELIST || containsVariableDereference(child, variableName);
+            final boolean isVariableDereference =
+                variableName.equals(child.getText())
+                && child.getNextSibling() != null
+                && child.getNextSibling().getType() != TokenTypes.ELIST;
+
+            found = isVariableDereference
+                || containsVariableDereference(child, variableName);
 
             child = child.getNextSibling();
         }
