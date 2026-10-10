@@ -29,12 +29,12 @@ class Example1 {
    */
   public void longTagAtStart() { }
 
-  // ok, properly wrapped
+  // ok, only a part of the next line fits
   /**
-   * Refer to the specific status
-   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   * The status is read from the registry of companies
+   * that is configured for the country of the given company.
    */
-  public void properlyWrapped() { }
+  public void partOfNextLine() { }
 
   // violation 2 lines below 'Line is longer than 80 characters (found 85)'
   /**
