@@ -18,6 +18,9 @@
  &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
+            <property default-value="false" name="forceStrictCondition" type="boolean">
+               <description>Force exact &lt;code&gt;offset&lt;/code&gt; indentation for continuation lines outside HTML elements.</description>
+            </property>
             <property default-value="4" name="offset" type="int">
                <description>Specify how many spaces to use for new indentation level.</description>
             </property>
