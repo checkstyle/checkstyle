@@ -118,6 +118,8 @@
   <suppress id="noTrailingWhitespace"
     files="/InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
+    files="/InputJavadocUtilizingTrailingSpaceIgnoreTooShortPatternSpaces\.java"/>
+  <suppress id="noTrailingWhitespace"
     files="/InputJavadocParagraphCorrect\.java"/>
   <suppress id="noTrailingWhitespace"
     files="/InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
