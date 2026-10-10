@@ -49,11 +49,10 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testDefaultConfiguration() throws Exception {
         final String[] expected = {
-            "22:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 39),
-            "44:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 59),
-            "71:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 44),
-            "98:7: " + getCheckMessage(MSG_TOO_LONG, 80, 85),
-            "99:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 12),
+            "23:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 39),
+            "80:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 44),
+            "107:7: " + getCheckMessage(MSG_TOO_LONG, 80, 85),
+            "108:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 12),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpace.java"), expected);
@@ -76,9 +75,9 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testBlockTagValues() throws Exception {
         final String[] expected = {
-            "18:8: " + getCheckMessage(MSG_TOO_LONG, 80, 131),
-            "43:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 29),
-            "76:8: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
+            "19:8: " + getCheckMessage(MSG_TOO_LONG, 80, 131),
+            "44:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 29),
+            "77:8: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceBlockTagValues.java"), expected);
@@ -87,7 +86,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testClassLevel() throws Exception {
         final String[] expected = {
-            "31:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 31),
+            "32:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 31),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceClassLevel.java"), expected);
@@ -96,9 +95,9 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testCustomLimit() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_LONG, 50, 58),
-            "34:7: " + getCheckMessage(MSG_TOO_SHORT, 50, 12),
-            "46:8: " + getCheckMessage(MSG_TOO_LONG, 50, 60),
+            "19:7: " + getCheckMessage(MSG_TOO_LONG, 50, 58),
+            "35:7: " + getCheckMessage(MSG_TOO_SHORT, 50, 12),
+            "47:8: " + getCheckMessage(MSG_TOO_LONG, 50, 60),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceCustomLimit.java"), expected);
@@ -107,7 +106,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testDocsBlockTags() throws Exception {
         final String[] expected = {
-            "18:8: " + getCheckMessage(MSG_TOO_LONG, 80, 82),
+            "19:8: " + getCheckMessage(MSG_TOO_LONG, 80, 82),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceDocsBlockTags.java"), expected);
@@ -116,8 +115,8 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testDocsLineLength() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 56),
-            "31:7: " + getCheckMessage(MSG_TOO_LONG, 80, 88),
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 56),
+            "32:7: " + getCheckMessage(MSG_TOO_LONG, 80, 88),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceDocsLineLength.java"), expected);
@@ -126,8 +125,8 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testDocsSkipped() throws Exception {
         final String[] expected = {
-            "25:8: " + getCheckMessage(MSG_TOO_LONG, 80, 93),
-            "38:8: " + getCheckMessage(MSG_TOO_LONG, 80, 84),
+            "26:8: " + getCheckMessage(MSG_TOO_LONG, 80, 93),
+            "39:8: " + getCheckMessage(MSG_TOO_LONG, 80, 84),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceDocsSkipped.java"), expected);
@@ -136,8 +135,8 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testEdgeCases() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 8),
-            "82:7: " + getCheckMessage(MSG_TOO_LONG, 80, 81),
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 8),
+            "83:7: " + getCheckMessage(MSG_TOO_LONG, 80, 81),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceEdgeCases.java"), expected);
@@ -146,7 +145,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testHtmlCode() throws Exception {
         final String[] expected = {
-            "51:7: " + getCheckMessage(MSG_TOO_LONG, 80, 88),
+            "52:7: " + getCheckMessage(MSG_TOO_LONG, 80, 88),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceHtmlCode.java"), expected);
@@ -155,7 +154,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testHtmlInMiddle() throws Exception {
         final String[] expected = {
-            "38:7: " + getCheckMessage(MSG_TOO_LONG, 80, 102),
+            "39:7: " + getCheckMessage(MSG_TOO_LONG, 80, 102),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceHtmlInMiddle.java"), expected);
@@ -164,9 +163,9 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testHtmlLineStart() throws Exception {
         final String[] expected = {
-            "25:8: " + getCheckMessage(MSG_TOO_LONG, 80, 143),
-            "26:8: " + getCheckMessage(MSG_TOO_LONG, 80, 141),
-            "70:7: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
+            "26:8: " + getCheckMessage(MSG_TOO_LONG, 80, 143),
+            "27:8: " + getCheckMessage(MSG_TOO_LONG, 80, 141),
+            "71:7: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceHtmlLineStart.java"), expected);
@@ -175,7 +174,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testHtmlLink() throws Exception {
         final String[] expected = {
-            "45:8: " + getCheckMessage(MSG_TOO_LONG, 80, 95),
+            "46:8: " + getCheckMessage(MSG_TOO_LONG, 80, 95),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceHtmlLink.java"), expected);
@@ -184,7 +183,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testHtmlTags() throws Exception {
         final String[] expected = {
-            "21:7: " + getCheckMessage(MSG_TOO_LONG, 80, 95),
+            "22:7: " + getCheckMessage(MSG_TOO_LONG, 80, 95),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceHtmlTags.java"), expected);
@@ -193,9 +192,9 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testIgnorePatternCustom() throws Exception {
         final String[] expected = {
-            "23:7: " + getCheckMessage(MSG_TOO_LONG, 80, 83),
-            "29:8: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
-            "35:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 36),
+            "24:7: " + getCheckMessage(MSG_TOO_LONG, 80, 83),
+            "30:8: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
+            "36:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 36),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceIgnorePatternCustom.java"), expected);
@@ -204,10 +203,10 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testIgnorePatternNone() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_LONG, 80, 83),
-            "24:7: " + getCheckMessage(MSG_TOO_LONG, 80, 88),
-            "30:8: " + getCheckMessage(MSG_TOO_LONG, 80, 110),
-            "36:8: " + getCheckMessage(MSG_TOO_LONG, 80, 92),
+            "19:7: " + getCheckMessage(MSG_TOO_LONG, 80, 83),
+            "25:7: " + getCheckMessage(MSG_TOO_LONG, 80, 88),
+            "31:8: " + getCheckMessage(MSG_TOO_LONG, 80, 110),
+            "37:8: " + getCheckMessage(MSG_TOO_LONG, 80, 92),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceIgnorePatternNone.java"), expected);
@@ -216,7 +215,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testIndentation() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 19),
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 19),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceIndentation.java"), expected);
@@ -225,7 +224,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testInlineCode() throws Exception {
         final String[] expected = {
-            "23:7: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
+            "24:7: " + getCheckMessage(MSG_TOO_LONG, 80, 87),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceInlineCode.java"), expected);
@@ -234,20 +233,55 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testInlineLink() throws Exception {
         final String[] expected = {
-            "18:8: " + getCheckMessage(MSG_TOO_LONG, 80, 116),
-            "45:8: " + getCheckMessage(MSG_TOO_LONG, 80, 96),
-            "51:7: " + getCheckMessage(MSG_TOO_LONG, 80, 92),
+            "19:8: " + getCheckMessage(MSG_TOO_LONG, 80, 116),
+            "46:8: " + getCheckMessage(MSG_TOO_LONG, 80, 96),
+            "52:7: " + getCheckMessage(MSG_TOO_LONG, 80, 92),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceInlineLink.java"), expected);
     }
 
     @Test
+    public void testJoinableLines() throws Exception {
+        final String[] expected = {
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 33),
+            "33:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 53),
+            "47:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 21),
+            "56:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 36),
+            "64:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 36),
+            "71:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 69),
+            "84:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 26),
+            "91:1: " + getCheckMessage(MSG_TOO_SHORT, 80, 25),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilizingTrailingSpaceJoinableLines.java"), expected);
+    }
+
+    @Test
+    public void testJoinableLinesOff() throws Exception {
+        final String[] expected = {
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 33),
+            "26:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 53),
+            "33:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 53),
+            "40:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 53),
+            "47:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 21),
+            "56:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 36),
+            "63:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 70),
+            "71:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 69),
+            "78:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 68),
+            "84:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 26),
+            "91:1: " + getCheckMessage(MSG_TOO_SHORT, 80, 25),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocUtilizingTrailingSpaceJoinableLinesOff.java"), expected);
+    }
+
+    @Test
     public void testMixed() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 74),
-            "61:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 45),
-            "100:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 70),
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 74),
+            "62:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 45),
+            "101:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 70),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceMixed.java"), expected);
@@ -256,7 +290,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testMultiParagraph() throws Exception {
         final String[] expected = {
-            "68:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 14),
+            "69:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 14),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceMultiParagraph.java"), expected);
@@ -272,8 +306,8 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testOpeningLine() throws Exception {
         final String[] expected = {
-            "17:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 33),
-            "51:7: " + getCheckMessage(MSG_TOO_LONG, 80, 85),
+            "18:8: " + getCheckMessage(MSG_TOO_SHORT, 80, 33),
+            "52:7: " + getCheckMessage(MSG_TOO_LONG, 80, 85),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceOpeningLine.java"), expected);
@@ -296,8 +330,8 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testSingleLine() throws Exception {
         final String[] expected = {
-            "52:8: " + getCheckMessage(MSG_TOO_LONG, 80, 97),
-            "62:8: " + getCheckMessage(MSG_TOO_LONG, 80, 118),
+            "53:8: " + getCheckMessage(MSG_TOO_LONG, 80, 97),
+            "63:8: " + getCheckMessage(MSG_TOO_LONG, 80, 118),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceSingleLine.java"), expected);
@@ -313,14 +347,14 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testTooLong() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_LONG, 80, 108),
-            "30:7: " + getCheckMessage(MSG_TOO_LONG, 80, 116),
-            "43:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 19),
-            "44:7: " + getCheckMessage(MSG_TOO_LONG, 80, 121),
-            "57:8: " + getCheckMessage(MSG_TOO_LONG, 80, 124),
-            "63:8: " + getCheckMessage(MSG_TOO_LONG, 80, 129),
-            "71:8: " + getCheckMessage(MSG_TOO_LONG, 80, 118),
-            "83:7: " + getCheckMessage(MSG_TOO_LONG, 80, 92),
+            "19:7: " + getCheckMessage(MSG_TOO_LONG, 80, 108),
+            "31:7: " + getCheckMessage(MSG_TOO_LONG, 80, 116),
+            "44:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 19),
+            "45:7: " + getCheckMessage(MSG_TOO_LONG, 80, 121),
+            "58:8: " + getCheckMessage(MSG_TOO_LONG, 80, 124),
+            "64:8: " + getCheckMessage(MSG_TOO_LONG, 80, 129),
+            "72:8: " + getCheckMessage(MSG_TOO_LONG, 80, 118),
+            "84:7: " + getCheckMessage(MSG_TOO_LONG, 80, 92),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceTooLong.java"), expected);
@@ -329,13 +363,13 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testTooShort() throws Exception {
         final String[] expected = {
-            "18:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 25),
-            "30:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 20),
-            "42:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 13),
-            "54:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 44),
-            "66:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 12),
-            "80:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 34),
-            "94:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 22),
+            "19:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 25),
+            "31:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 20),
+            "43:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 13),
+            "55:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 44),
+            "67:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 12),
+            "81:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 34),
+            "95:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 22),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceTooShort.java"), expected);
@@ -344,7 +378,7 @@ public class JavadocUtilizingTrailingSpaceCheckTest extends AbstractModuleTestSu
     @Test
     public void testUrl() throws Exception {
         final String[] expected = {
-            "78:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 40),
+            "79:7: " + getCheckMessage(MSG_TOO_SHORT, 80, 40),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocUtilizingTrailingSpaceUrl.java"), expected);

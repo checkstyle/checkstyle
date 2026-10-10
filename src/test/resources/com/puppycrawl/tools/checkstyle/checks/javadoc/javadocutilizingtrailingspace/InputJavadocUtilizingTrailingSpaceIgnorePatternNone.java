@@ -2,6 +2,7 @@
 JavadocUtilizingTrailingSpace
 ignorePattern = ^$
 lineLimit = (default)80
+validateOnlyJoinableLines = (default)true
 violateExecutionOnNonTightHtml = (default)false
 
 */

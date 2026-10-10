@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocUtilizingTrailingSpace">
-      <property name="ignorePattern" value="^$"/>
+      <property name="validateOnlyJoinableLines" value="false"/>
     </module>
   </module>
 </module>
@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocutilizingtrailingspace;
 
 // xdoc section - start
-class Example3 {
+class Example4 {
 
   // violation 2 lines below 'Line under-utilized (31/80). Words from below could be moved up'
   /**
@@ -31,7 +31,7 @@ class Example3 {
    */
   public void longTagAtStart() { }
 
-  // ok, only a part of the next line fits
+  // violation 2 lines below 'Line under-utilized (54/80). Words from below could be moved up'
   /**
    * The status is read from the registry of companies
    * that is configured for the country of the given company.
@@ -53,7 +53,7 @@ class Example3 {
    */
   public void preElementContent() { }
 
-  // violation below 'Line is longer than 80 characters (found 93)'
+  // ok, a line that has a URL is not reported as too long
   /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
   public void longUrl() { }
 }
