@@ -341,6 +341,26 @@ public class FinalLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturn() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+            "22:13: " + getCheckMessage(MSG_KEY, "value"),
+            "33:13: " + getCheckMessage(MSG_KEY, "value"),
+            "48:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalLocalVariableReturn.java"), expected);
+    }
+
+    @Test
+    public void testReturnBranches() throws Exception {
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY, "value"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputFinalLocalVariableReturnBranches.java"), expected);
+    }
+
+    @Test
     public void testBreakOrReturn() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
