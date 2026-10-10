@@ -36,17 +36,38 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <p>
  * Every line of a Javadoc comment is compared with {@code lineLimit}, the preferred line
  * length. A line is reported when it is longer than the limit, or when it stops early although
- * the first word of the next line would still have fit. Blank lines are never reported.
+ * the next line would still have fit on it. Blank lines are never reported.
  * The examples on this page use the default limit of 80 characters, and show the Javadoc
  * of a method, indented by four spaces.
  * </p>
  *
  * <p>
- * <b>Lines that stop too early.</b> Words are expected to fill a line up to the limit,
- * so a line is reported when the first word of the next line would still fit on it.
- * The fix is to move words up until the next word does not fit. Words are never moved up
- * from a line that is blank, or that starts with a block tag, an inline tag, a URL or an
- * HTML tag, so the line before such a line is not reported.
+ * <b>Lines that stop too early.</b> A line is reported when the whole next line would
+ * still fit on it. The fix is to join the two lines, so the comment gets one line shorter.
+ * When only a part of the next line would fit, the line is not reported, because moving
+ * words up would not make the comment shorter. Lines are never joined with a line that is
+ * blank, or that starts with a block tag, an inline tag, a URL or an HTML tag, so the line
+ * before such a line is not reported.
+ * </p>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ *     // violation, the second line would fit on the first line
+ *     &#47;**
+ *      * Not part of the API. This is returned when a type
+ *      * is not known.
+ *      *&#47;
+ *
+ *     // ok, only a part of the second line would fit on the first line
+ *     &#47;**
+ *      * Not part of the API. This is returned when a type
+ *      * not known to this wrapper is returned.
+ *      *&#47;
+ * </code></pre></div>
+ *
+ * <p>
+ * <b>Lines that could take more words.</b> When {@code validateOnlyJoinableLines} is set
+ * to {@code false}, words are expected to fill a line up to the limit, so a line is also
+ * reported when only the first word of the next line would still fit on it. The fix is to
+ * move words up until the next word does not fit.
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  *     // violation, "not" would fit on the first line
@@ -59,6 +80,29 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *     &#47;**
  *      * Not part of the API. This is returned when a type not known to this
  *      * wrapper is returned.
+ *      *&#47;
+ * </code></pre></div>
+ *
+ * <p>
+ * <b>Lines that end with punctuation.</b> A line that matches {@code ignoreTooShortPattern}
+ * is not reported as stopping too early, and no words are moved up to it. By default this is
+ * every line that ends with a period, a colon or a comma, so a sentence, or a part of it,
+ * can end before the limit. Trailing whitespace of the line is ignored when the pattern is
+ * applied. The line after such a line is checked on its own. Such lines can still be
+ * reported as too long.
+ * </p>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+ *     // ok, the first line ends with a period
+ *     &#47;**
+ *      * Not part of the API.
+ *      * This is returned when a type not known to this wrapper is returned.
+ *      *&#47;
+ *
+ *     // violation, the third line would fit on the second line
+ *     &#47;**
+ *      * Not part of the API.
+ *      * This is returned when a type not
+ *      * known to this wrapper is returned.
  *      *&#47;
  * </code></pre></div>
  *
@@ -198,6 +242,9 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     /** Pattern that recognizes URLs. */
     private static final Pattern URL_PATTERN = Pattern.compile("https?://|ftp://");
 
+    /** Pattern for the indentation and the leading asterisk of a Javadoc line. */
+    private static final Pattern LINE_PREFIX = Pattern.compile("^\\s*\\*?\\s*");
+
     /** Default maximum line length. */
     private static final int DEFAULT_LINE_LIMIT = 80;
 
@@ -210,6 +257,12 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
     /** Pattern for lines that are not reported as too long. */
     private Pattern ignorePattern =
             Pattern.compile("href\\s*=\\s*\"[^\"]*\"|http://|https://|ftp://");
+
+    /** Pattern for lines that are not reported as too short. */
+    private Pattern ignoreTooShortPattern = Pattern.compile("[.:,]$");
+
+    /** Control whether a line is reported as too short only when the whole next line fits on it. */
+    private boolean validateOnlyJoinableLines = true;
 
     /** Current line being built. */
     private JavadocLine currentLine;
@@ -262,6 +315,28 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
      */
     public void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;
+    }
+
+    /**
+     * Setter to specify pattern for lines that are not reported as too short.
+     *
+     * @param pattern a pattern.
+     * @since 14.4.0
+     */
+    public void setIgnoreTooShortPattern(Pattern pattern) {
+        ignoreTooShortPattern = pattern;
+    }
+
+    /**
+     * Setter to control whether a line is reported as too short only when the whole next
+     * line fits on it.
+     *
+     * @param validateOnlyJoinableLines true if a line is reported as too short only when
+     *     the whole next line fits on it, false if the first word of the next line is enough.
+     * @since 14.4.0
+     */
+    public void setValidateOnlyJoinableLines(boolean validateOnlyJoinableLines) {
+        this.validateOnlyJoinableLines = validateOnlyJoinableLines;
     }
 
     @Override
@@ -489,25 +564,49 @@ public class JavadocUtilizingTrailingSpaceCheck extends AbstractJavadocCheck {
      * Checks if content can be pulled from the next line.
      *
      * @param currentIndex current line index
-     * @return true if the first word from the next content line fits within
-     *         lineLimit
+     * @return true if the content to pull from the next content line fits within lineLimit
      */
     private boolean canPullFromNextLine(int currentIndex) {
         boolean pullNext = false;
 
-        if (currentIndex + 1 < lines.size() && !lines.get(currentIndex).skippedLinesFollow) {
+        final JavadocLine line = lines.get(currentIndex);
+
+        if (!line.skippedLinesFollow && currentIndex + 1 < lines.size()
+                && !ignoreTooShortPattern.matcher(
+                    getLine(line.lineNumber - 1).stripTrailing()).find()) {
 
             final JavadocLine nextLine = lines.get(currentIndex + 1);
 
             if (nextLine.hasContent && !nextLine.startsWithUnbreakable
                     && !nextLine.startsWithBlockTag && !nextLine.startsWithHtml) {
-                final int currentLength = lines.get(currentIndex).length;
-                final int potentialLength = currentLength + 1 + nextLine.firstWordLength();
+                final int potentialLength = line.length + 1 + getPullLength(nextLine);
                 pullNext = potentialLength <= lineLimit;
             }
         }
 
         return pullNext;
+    }
+
+    /**
+     * Returns the length of the content that has to fit on the line before the given
+     * line, for that line to be too short.
+     *
+     * @param nextLine the line to pull content from
+     * @return the length of the whole content of the line if only joinable lines are
+     *         validated, the length of its first word otherwise
+     */
+    private int getPullLength(JavadocLine nextLine) {
+        final int pullLength;
+        if (validateOnlyJoinableLines) {
+            final String sourceLine = getLine(nextLine.lineNumber - 1);
+            final int contentStart = sourceLine.length()
+                    - LINE_PREFIX.matcher(sourceLine).replaceFirst("").length();
+            pullLength = nextLine.length - contentStart;
+        }
+        else {
+            pullLength = nextLine.firstWordLength();
+        }
+        return pullLength;
     }
 
     /**

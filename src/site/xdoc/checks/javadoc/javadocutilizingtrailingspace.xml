@@ -23,6 +23,8 @@
               <li><a href="#Example1-config" class="toc-sublink">With default settings</a></li>
               <li><a href="#Example2-config" class="toc-sublink">With a custom line limit</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Report long lines that have a URL or a link</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Report lines that stop early after punctuation</a></li>
+              <li><a href="#Example5-config" class="toc-sublink">Report lines that can take a part of the next line</a></li>
             </ul>
           </li>
           <li><a href="#JavadocUtilizingTrailingSpace_Example_of_Usage">Example of Usage</a></li>
@@ -40,17 +42,38 @@
         <p>
           Every line of a Javadoc comment is compared with <code>lineLimit</code>, the preferred line
           length. A line is reported when it is longer than the limit, or when it stops early although
-          the first word of the next line would still have fit. Blank lines are never reported.
+          the next line would still have fit on it. Blank lines are never reported.
           The examples on this page use the default limit of 80 characters, and show the Javadoc
           of a method, indented by four spaces.
         </p>
 
         <p>
-          <b>Lines that stop too early.</b> Words are expected to fill a line up to the limit,
-          so a line is reported when the first word of the next line would still fit on it.
-          The fix is to move words up until the next word does not fit. Words are never moved up
-          from a line that is blank, or that starts with a block tag, an inline tag, a URL or an
-          HTML tag, so the line before such a line is not reported.
+          <b>Lines that stop too early.</b> A line is reported when the whole next line would
+          still fit on it. The fix is to join the two lines, so the comment gets one line shorter.
+          When only a part of the next line would fit, the line is not reported, because moving
+          words up would not make the comment shorter. Lines are never joined with a line that is
+          blank, or that starts with a block tag, an inline tag, a URL or an HTML tag, so the line
+          before such a line is not reported.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // violation, the second line would fit on the first line
+    &#47;**
+     * Not part of the API. This is returned when a type
+     * is not known.
+     *&#47;
+
+    // ok, only a part of the second line would fit on the first line
+    &#47;**
+     * Not part of the API. This is returned when a type
+     * not known to this wrapper is returned.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Lines that could take more words.</b> When <code>validateOnlyJoinableLines</code> is set
+          to <code>false</code>, words are expected to fill a line up to the limit, so a line is also
+          reported when only the first word of the next line would still fit on it. The fix is to
+          move words up until the next word does not fit.
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
     // violation, "not" would fit on the first line
@@ -63,6 +86,29 @@
     &#47;**
      * Not part of the API. This is returned when a type not known to this
      * wrapper is returned.
+     *&#47;
+        </code></pre></div>
+
+        <p>
+          <b>Lines that end with punctuation.</b> A line that matches <code>ignoreTooShortPattern</code>
+          is not reported as stopping too early, and no words are moved up to it. By default this is
+          every line that ends with a period, a colon or a comma, so a sentence, or a part of it,
+          can end before the limit. Trailing whitespace of the line is ignored when the pattern is
+          applied. The line after such a line is checked on its own. Such lines can still be
+          reported as too long.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+    // ok, the first line ends with a period
+    &#47;**
+     * Not part of the API.
+     * This is returned when a type not known to this wrapper is returned.
+     *&#47;
+
+    // violation, the third line would fit on the second line
+    &#47;**
+     * Not part of the API.
+     * This is returned when a type not
+     * known to this wrapper is returned.
      *&#47;
         </code></pre></div>
 
@@ -207,10 +253,24 @@
               <td>14.4.0</td>
             </tr>
             <tr>
+              <td><a id="ignoreTooShortPattern"/><a href="#ignoreTooShortPattern">ignoreTooShortPattern</a></td>
+              <td>Specify pattern for lines that are not reported as too short.</td>
+              <td><a href="../../property-types.html#Pattern">Pattern</a></td>
+              <td><code>[.:,]$</code></td>
+              <td>14.4.0</td>
+            </tr>
+            <tr>
               <td><a id="lineLimit"/><a href="#lineLimit">lineLimit</a></td>
               <td>Specify the line length limit.</td>
               <td><a href="../../property-types.html#int">int</a></td>
               <td><code>80</code></td>
+              <td>14.4.0</td>
+            </tr>
+            <tr>
+              <td><a id="validateOnlyJoinableLines"/><a href="#validateOnlyJoinableLines">validateOnlyJoinableLines</a></td>
+              <td>Control whether a line is reported as too short only when the whole next line fits on it.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
               <td>14.4.0</td>
             </tr>
             <tr>
@@ -240,9 +300,9 @@
         <p id="Example1-code">Example of violations:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-
-  // violation 2 lines below 'Line under-utilized (31/80). Words from below could be moved up'
+  // violation 3 lines below 'Line under-utilized (31/80). Words from below could be moved up'
   /**
+   * Checks the status.
    * The company returned value
    * is invalid.
    */
@@ -260,12 +320,12 @@ class Example1 {
    */
   public void longTagAtStart() { }
 
-  // ok, properly wrapped
+  // ok, only a part of the next line fits
   /**
-   * Refer to the specific status
-   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   * The status is read from the registry of companies
+   * that is configured for the country of the given company.
    */
-  public void properlyWrapped() { }
+  public void partOfNextLine() { }
 
   // violation 2 lines below 'Line is longer than 80 characters (found 85)'
   /**
@@ -302,9 +362,9 @@ class Example1 {
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-
-  // violation 2 lines below 'Line under-utilized (31/100). Words from below could be moved up'
+  // violation 3 lines below 'Line under-utilized (31/100). Words from below could be moved up'
   /**
+   * Checks the status.
    * The company returned value
    * is invalid.
    */
@@ -322,12 +382,12 @@ class Example2 {
    */
   public void longTagAtStart() { }
 
-  // ok, properly wrapped
+  // ok, only a part of the next line fits
   /**
-   * Refer to the specific status
-   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   * The status is read from the registry of companies
+   * that is configured for the country of the given company.
    */
-  public void properlyWrapped() { }
+  public void partOfNextLine() { }
 
   // ok, line is under 100 characters
   /**
@@ -364,9 +424,9 @@ class Example2 {
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
-
-  // violation 2 lines below 'Line under-utilized (31/80). Words from below could be moved up'
+  // violation 3 lines below 'Line under-utilized (31/80). Words from below could be moved up'
   /**
+   * Checks the status.
    * The company returned value
    * is invalid.
    */
@@ -384,12 +444,12 @@ class Example3 {
    */
   public void longTagAtStart() { }
 
-  // ok, properly wrapped
+  // ok, only a part of the next line fits
   /**
-   * Refer to the specific status
-   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   * The status is read from the registry of companies
+   * that is configured for the country of the given company.
    */
-  public void properlyWrapped() { }
+  public void partOfNextLine() { }
 
   // violation 2 lines below 'Line is longer than 80 characters (found 85)'
   /**
@@ -407,6 +467,130 @@ class Example3 {
   public void preElementContent() { }
 
   // violation below 'Line is longer than 80 characters (found 93)'
+  /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
+  public void longUrl() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to report lines that stop early after punctuation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocUtilizingTrailingSpace"&gt;
+      &lt;property name="ignoreTooShortPattern" value="^$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example4:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  // violation 2 lines below 'Line under-utilized (23/80). Words from below could be moved up'
+  /**
+   * Checks the status.
+   * The company returned value
+   * is invalid.
+   */
+  public void shortLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 86)'
+  /**
+   * Refer to the specific status {@link com.wide.bundles.exceeds.limit.CompanyStatus}
+   */
+  public void longLine() { }
+
+  // ok, long inline tag at start of line is allowed
+  /**
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void longTagAtStart() { }
+
+  // ok, only a part of the next line fits
+  /**
+   * The status is read from the registry of companies
+   * that is configured for the country of the given company.
+   */
+  public void partOfNextLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 85)'
+  /**
+   * @return the status of the company, which is defined by the registry of companies
+   */
+  public String blockTagTooLong() { return ""; }
+
+  // ok, the content of a pre element is ignored
+  /**
+   * Example:
+   * &lt;pre&gt;
+   * CompanyStatus status = new CompanyStatusFactory().createStatus(companyNumber);
+   * &lt;/pre&gt;
+   */
+  public void preElementContent() { }
+
+  // ok, a line that has a URL is not reported as too long
+  /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
+  public void longUrl() { }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to report lines that can take a part of the next line:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocUtilizingTrailingSpace"&gt;
+      &lt;property name="validateOnlyJoinableLines" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example5:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  // violation 3 lines below 'Line under-utilized (31/80). Words from below could be moved up'
+  /**
+   * Checks the status.
+   * The company returned value
+   * is invalid.
+   */
+  public void shortLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 86)'
+  /**
+   * Refer to the specific status {@link com.wide.bundles.exceeds.limit.CompanyStatus}
+   */
+  public void longLine() { }
+
+  // ok, long inline tag at start of line is allowed
+  /**
+   * {@link com.very.wide.bundles.name.that.exceeds.limit.CompanyStatus}
+   */
+  public void longTagAtStart() { }
+
+  // violation 2 lines below 'Line under-utilized (54/80). Words from below could be moved up'
+  /**
+   * The status is read from the registry of companies
+   * that is configured for the country of the given company.
+   */
+  public void partOfNextLine() { }
+
+  // violation 2 lines below 'Line is longer than 80 characters (found 85)'
+  /**
+   * @return the status of the company, which is defined by the registry of companies
+   */
+  public String blockTagTooLong() { return ""; }
+
+  // ok, the content of a pre element is ignored
+  /**
+   * Example:
+   * &lt;pre&gt;
+   * CompanyStatus status = new CompanyStatusFactory().createStatus(companyNumber);
+   * &lt;/pre&gt;
+   */
+  public void preElementContent() { }
+
+  // ok, a line that has a URL is not reported as too long
   /** See https://example.com/documentation/company-registry/api/v2/status-endpoints/details */
   public void longUrl() { }
 }

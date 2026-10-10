@@ -337,10 +337,10 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Escape {@literal <}, {@literal >}, {@literal &}, {@literal '} and {@literal "}
-     * as their entities.
-     * Custom method for Xpath generation to maintain compatibility
-     * with Saxon and encoding outside Ascii range characters.
+     * Escape {@literal <}, {@literal >}, {@literal &}, {@literal '} and {@literal "} as their
+     * entities.
+     * Custom method for Xpath generation to maintain compatibility with Saxon and encoding outside
+     * Ascii range characters.
      *
      * <p>According to
      * <a href="https://saxon.sourceforge.net/saxon7.1/expressions.html">Saxon documentation</a>:
@@ -349,8 +349,7 @@ public class XpathQueryGenerator {
      * the delimiter itself: for example select='"He said, ""Go!"""'.
      *
      * <p>Guava cannot as Guava encoding does not meet our requirements like
-     * double encoding for apos, removed slashes which are basic requirements
-     * for Saxon to decode.
+     * double encoding for apos, removed slashes which are basic requirements for Saxon to decode.
      *
      * @param value the value to escape.
      * @return the escaped value if necessary.
@@ -367,8 +366,8 @@ public class XpathQueryGenerator {
 
     /**
      * Encodes escape character for Xpath. Escape characters need '{@literal &}' before, but it also
-     * requires XML 1.1
-     * until <a href="https://github.com/checkstyle/checkstyle/issues/5168">#5168</a>.
+     * requires XML 1.1 until
+     * <a href="https://github.com/checkstyle/checkstyle/issues/5168">#5168</a>.
      *
      * @param chr Character to check.
      * @return String, Encoded string.
@@ -385,12 +384,12 @@ public class XpathQueryGenerator {
     }
 
     /**
-     * Renders control characters that are illegal in XML 1.0 as a {@code #x}-prefixed
-     * hexadecimal escape so the value stays well-formed when written into an XML attribute,
+     * Renders control characters that are illegal in XML 1.0 as a {@code #x}-prefixed hexadecimal
+     * escape so the value stays well-formed when written into an XML attribute,
      * mirroring
-     * {@link com.puppycrawl.tools.checkstyle.XMLLogger#encode}. Tab is legal in XML 1.0 and
-     * kept as is. Line feed and carriage return never reach here as they are already replaced
-     * with the literal {@code \n} and {@code \r} text earlier by
+     * {@link com.puppycrawl.tools.checkstyle.XMLLogger#encode}. Tab is legal in XML 1.0 and kept as
+     * is. Line feed and carriage return never reach here as they are already replaced with the
+     * literal {@code \n} and {@code \r} text earlier by
      * {@link XpathUtil#getTextAttributeValue}.
      *
      * @param chr the character to render.
