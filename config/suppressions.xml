@@ -136,6 +136,7 @@
   <suppress id="noConsecutiveLines" files="/parenpad.xml"/>
   <suppress id="noConsecutiveLines" files="/singlespaceseparator.xml"/>
   <suppress id="noConsecutiveLines" files="/typebodypadding.xml"/>
+  <suppress id="noConsecutiveLines" files="/unnecessaryparentheses.xml"/>
 
   <!-- permanent suppression to allow regexp on content of the line -->
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>

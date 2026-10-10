@@ -16,7 +16,11 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 public class InputUnnecessaryParenthesesCheckTextBlocks {
   void method() {
-    String string1 = ("this") + ("that") + ("other"); // 3 violations
+    String string1 = ("this") + ("that") + ("other");
+    // 3 violations above:
+    //  'Unnecessary parentheses around string "this"'
+    //  'Unnecessary parentheses around string "that"'
+    //  'Unnecessary parentheses around string "other"'
     String string2 = ("""
         this""") // violation above 'Unnecessary parentheses around string "\\n        this\"'
         + ("""

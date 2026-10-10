@@ -15,14 +15,29 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 public class InputUnnecessaryParenthesesOperatorsAndCasts {
     int f1() {
         int x = 0;
-        for (int i = (0+1); ((i) < (6+6)); i += (1+0)) { // 4 violations
+        for (int i = (0+1); ((i) < (6+6)); i += (1+0)) {
+        // 4 violations above:
+        //  'Unnecessary parentheses around assignment right-hand side'
+        //  'Unnecessary parentheses around expression'
+        //  'Unnecessary parentheses around identifier 'i''
+        //  'Unnecessary parentheses around assignment right-hand side'
             x += (i + 100); // violation 'Unnecessary parentheses around assignment right-hand side'
-            (x) += (i + 100/**comment test*/); // 2 violations
+            (x) += (i + 100/**comment test*/);
+            // 2 violations above:
+            //  'Unnecessary parentheses around identifier 'x''
+            //  'Unnecessary parentheses around assignment right-hand side'
             x = (x + i + 100); // violation 'Unnecessary parentheses around assignment right.*side'
-            (x) = (x + i + 100); // 2 violations
+            (x) = (x + i + 100);
+            // 2 violations above:
+            //  'Unnecessary parentheses around identifier 'x''
+            //  'Unnecessary parentheses around assignment right-hand side'
         }
 
-        for (int i = (0+1); (i) < ((6+6)); i += (1+0)) { // 3 violations
+        for (int i = (0+1); (i) < ((6+6)); i += (1+0)) {
+        // 3 violations above:
+        //  'Unnecessary parentheses around assignment right-hand side'
+        //  'Unnecessary parentheses around identifier 'i''
+        //  'Unnecessary parentheses around assignment right-hand side'
             System.identityHashCode("hi");
         }
 
@@ -46,15 +61,30 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         a = (a + b) * (c + d);
         b = ((((a + b) * (c + d)))); // violation 'parentheses around assignment right.*side'
         c = (((a) <= b)) ? 0 : 1; // violation 'Unnecessary parentheses around identifier 'a''
-        d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2); // 5 violations
-        e = ("this") + ("that") + ("is" + "other"); // 2 violations
-        f = ("this is a really, really long string that should be truncated."); // 2 violations
+        d = (a) + (b) * (600) / (int) (12.5f) + (int) (arg2);
+        // 5 violations above:
+        //  'Unnecessary parentheses around identifier 'a''
+        //  'Unnecessary parentheses around identifier 'b''
+        //  'Unnecessary parentheses around literal '600''
+        //  'Unnecessary parentheses around literal '12.5f''
+        //  'Unnecessary parentheses around identifier 'arg2''
+        e = ("this") + ("that") + ("is" + "other");
+        // 2 violations above:
+        //  'Unnecessary parentheses around string "this"'
+        //  'Unnecessary parentheses around string "that"'
+        f = ("this is a really, really long string that should be truncated.");
+        // 2 violations above:
+        //  'Unnecessary parentheses around assignment right-hand side'
+        //  'Unnecessary parentheses around string "this is a really, really..."'
 
         return (x + a + b + d); // violation 'Unnecessary parentheses around return value'
     }
 
     private boolean f3() {
-        int x = f2((1), (13.5)); // 2 violations
+        int x = f2((1), (13.5));
+        // 2 violations above:
+        //  'Unnecessary parentheses around literal '1''
+        //  'Unnecessary parentheses around literal '13.5''
         boolean b = (true); // violation 'Unnecessary parentheses around literal 'true''
         return (b); // violation 'Unnecessary parentheses around identifier 'b''
     }
@@ -91,7 +121,10 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
         TypeB b = (TypeB) a;
         TypeC c = ((TypeC) a); // violation 'Unnecessary parentheses around assignment right.*side'
         int r = 12345;
-        r <<= (3); // 2 violations
+        r <<= (3);
+        // 2 violations above:
+        //  'Unnecessary parentheses around assignment right-hand side'
+        //  'Unnecessary parentheses around literal '3''
         GenT<String> d = ((GenT<String>) a); // violation 'paren.* around assignment right.*side'
     }
 
@@ -103,7 +136,10 @@ public class InputUnnecessaryParenthesesOperatorsAndCasts {
     private int f7() {
         String f;
 
-        f = ("12345678901234567890123"); // 2 violations
+        f = ("12345678901234567890123");
+        // 2 violations above:
+        //  'Unnecessary parentheses around assignment right-hand side'
+        //  'Unnecessary parentheses around string "12345678901234567890123"'
 
         return 0;
     }
