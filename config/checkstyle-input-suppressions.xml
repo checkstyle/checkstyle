@@ -103,20 +103,6 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/19803 -->
   <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant1\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant2\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant3\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant4\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant5\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant6\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
-            files="/checks/annotation/suppresswarnings/InputSuppressWarningsExpandedNonConstant7\.java"/>
-  <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsHolderNonConstant\.java"/>
   <suppress id="violationBetweenAnnotationAndMethod"
             files="/checks/annotation/suppresswarnings/InputSuppressWarningsSingle2\.java"/>
