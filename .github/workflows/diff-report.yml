@@ -19,8 +19,9 @@ env:
     ${{ github.event.issue.pull_request.url
         || format('https://api.github.com/repos/checkstyle/checkstyle/pulls/{0}',
                   inputs.pr-number) }}
+  # pinned to a known-good contribution commit; bump manually as needed
   # yamllint disable-line rule:line-length
-  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/b649ee4cd4d72d7e74b44800d9ce559fc80915f2/checkstyle-tester/projects-to-test-on-for-github-action.properties"
 
 on:
   issue_comment:
@@ -204,6 +205,8 @@ jobs:
         with:
           persist-credentials: false
           repository: checkstyle/contribution
+          # pinned to a known-good commit; bump manually as needed
+          ref: b649ee4cd4d72d7e74b44800d9ce559fc80915f2
           path: .ci-temp/contribution
 
       - name: Prepare environment

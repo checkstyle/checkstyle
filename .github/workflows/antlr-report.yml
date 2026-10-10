@@ -167,6 +167,8 @@ jobs:
         with:
           persist-credentials: false
           repository: checkstyle/contribution
+          # pinned to a known-good commit; bump manually as needed
+          ref: b649ee4cd4d72d7e74b44800d9ce559fc80915f2
           path: .ci-temp/contribution
 
       - name: Build patch-diff-report-tool
