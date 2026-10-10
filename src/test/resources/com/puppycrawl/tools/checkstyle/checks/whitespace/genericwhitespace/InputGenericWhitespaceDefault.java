@@ -19,8 +19,32 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     {
         List<Integer> x = new ArrayList<Integer>();
         List<List<Integer>> y = new ArrayList<List<Integer>>();
-        List < Integer > a = new ArrayList < Integer > (); // 7 violations
-        List < List < Integer > > b = new ArrayList < List < Integer > > (); // 15 violations
+        List < Integer > a = new ArrayList < Integer > ();
+        // 7 violations above:
+        //                    ''<' is followed by whitespace.'
+        //                    ''<' is preceded with whitespace.'
+        //                    ''>' is preceded with whitespace.'
+        //                    ''<' is followed by whitespace.'
+        //                    ''<' is preceded with whitespace.'
+        //                    ''>' is followed by whitespace.'
+        //                    ''>' is preceded with whitespace.'
+        List < List < Integer > > b = new ArrayList < List < Integer > > ();
+        // 15 violations above:
+        //                    ''<' is followed by whitespace.'
+        //                    ''<' is preceded with whitespace.'
+        //                    ''<' is followed by whitespace.'
+        //                    ''<' is preceded with whitespace.'
+        //                    ''>' is followed by whitespace.'
+        //                    ''>' is preceded with whitespace.'
+        //                    ''>' is preceded with whitespace.'
+        //                    ''<' is followed by whitespace.'
+        //                    ''<' is preceded with whitespace.'
+        //                    ''<' is followed by whitespace.'
+        //                    ''<' is preceded with whitespace.'
+        //                    ''>' is followed by whitespace.'
+        //                    ''>' is preceded with whitespace.'
+        //                    ''>' is followed by whitespace.'
+        //                    ''>' is preceded with whitespace.'
     }
     //always 0
     public int compareTo(Object aObject)
@@ -33,7 +57,10 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
         return null;
     }
 
-    public static<T>Callable<T> callable2(Runnable task, T result) // 2 violations
+    public static<T>Callable<T> callable2(Runnable task, T result)
+    // 2 violations above:
+    //                    ''<' is not preceded with whitespace.'
+    //                    ''>' is followed by an illegal character.'
     {
         Map<Class<?>, Integer> x = new HashMap<Class<?>, Integer>();
         for (final Map.Entry<Class<?>, Integer> entry : x.entrySet()) {
@@ -45,7 +72,10 @@ class InputGenericWhitespaceDefault implements Comparable<Object>, Serializable
     public int getConstructor(Class<?>... parameterTypes)
     {
         Collections.<Object>emptySet();
-        Collections. <Object> emptySet(); // 2 violations
+        Collections. <Object> emptySet();
+        // 2 violations above:
+        //                    ''<' is preceded with whitespace.'
+        //                    ''>' is followed by whitespace.'
         return 666;
     }
 
@@ -86,12 +116,18 @@ Integer> x = new ArrayList<Integer
     Object ok = new <String>Object();
     Object notOkStart = new<String>Object(); // violation ''<' is not preceded with whitespace.'
     Object notOkEnd = new <String> Object(); // violation ''>' is followed by whitespace.'
-    Object notOkStartAndEnd = new<String> Object(); // 2 violations
+    Object notOkStartAndEnd = new<String> Object();
+    // 2 violations above:
+    //                    ''<' is not preceded with whitespace.'
+    //                    ''>' is followed by whitespace.'
     Object okWithPackage = new <String>java.lang.Object();
     Object ok2 = new <String>Outer.Inner();
     Object notOkSt2 = new<String>Outer.Inner(); // violation ''<' is not preceded with whitespace.'
     Object notOkEnd2 = new <String> Outer.Inner(); // violation '>' is followed by whitespace.'
-    Object notOkStartAndEnd2 = new<String> Outer.Inner(); // 2 violations
+    Object notOkStartAndEnd2 = new<String> Outer.Inner();
+    // 2 violations above:
+    //                    ''<' is not preceded with whitespace.'
+    //                    ''>' is followed by whitespace.'
 }
 interface SupplierFunction<T> extends Map<List<T>, T> {}
 
