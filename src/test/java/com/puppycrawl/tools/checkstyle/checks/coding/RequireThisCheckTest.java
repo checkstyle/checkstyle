@@ -542,11 +542,23 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFinalInstanceVariable() throws Exception {
         final String[] expected = {
-            "18:9: " + getCheckMessage(MSG_VARIABLE, "y", ""),
-            "19:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "18:13: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "19:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisFinalInstanceVariable.java"), expected);
+    }
+
+    @Test
+    public void testFinalInstanceVariableViolationLocation() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+            "19:9: " + getCheckMessage(MSG_VARIABLE, "v", ""),
+            "21:17: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "35:9: " + getCheckMessage(MSG_VARIABLE, "w", ""),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisFinalInstanceVariableViolationLocation.java"), expected);
     }
 
     @Test
