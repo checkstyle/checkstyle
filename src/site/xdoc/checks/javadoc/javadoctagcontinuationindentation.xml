@@ -23,6 +23,7 @@
               <li><a href="#Example1-config" class="toc-sublink">The default check</a></li>
               <li><a href="#Example2-config" class="toc-sublink">With two spaces indentation</a></li>
               <li><a href="#Example3-config" class="toc-sublink">Show violations for Tight-HTML Rules</a></li>
+              <li><a href="#Example4-config" class="toc-sublink">Force strict indentation of continuation lines</a></li>
             </ul>
           </li>
           <li><a href="#JavadocTagContinuationIndentation_Example_of_Usage">Example of Usage</a></li>
@@ -59,6 +60,13 @@
               <th>type</th>
               <th>default value</th>
               <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="forceStrictCondition"/><a href="#forceStrictCondition">forceStrictCondition</a></td>
+              <td>Force exact <code>offset</code> indentation for continuation lines outside HTML elements.</td>
+              <td><a href="../../property-types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>14.4.0</td>
             </tr>
             <tr>
               <td><a id="offset"/><a href="#offset">offset</a></td>
@@ -263,6 +271,69 @@ class Example3 {
    * @param input comment with
    *          This is the predefined indentation applied by Eclipse formatter.
    */
+  public void testIndentationEclipse(String input) {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to force strict indentation of continuation lines:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocTagContinuationIndentation"&gt;
+      &lt;property name="forceStrictCondition" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+   * &lt;a&gt; 'a' tag is not closed
+   */
+class Example4 {
+
+  /**
+   * @param input comment with
+   *     indentation spacing for the tag
+   */
+  public void testIndentation4(String input) {}
+   // ok, Indentation is exactly 4
+
+  /**
+   * @param input comment with
+   *   indentation spacing for the tag
+   */
+  public void testIndentation2(String input) {}
+   // violation 3 lines above 'Line continuation have incorrect indentation level'
+
+  /**
+   * &lt;pre&gt;
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."&lt;/pre&gt;
+   */
+  public void testMethodPre(String input) {}
+
+  /**
+   * Writes the object using a
+   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
+   * @serialData
+   * &lt;code&gt; // violation 'expected level should be 4'
+   * out.writeByte(1); // violation 'expected level should be 4'
+   * out.writeInt(nanos); // violation 'expected level should be 4'
+   * &lt;/code&gt; // violation 'expected level should be 4'
+   */
+  public void testMethodCode(String input) {}
+
+  /**
+   * Test class.
+   *
+   * @param input comment with
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */ // violation above 'expected level should be 4'
   public void testIndentationEclipse(String input) {}
 }
 </code></pre></div><hr class="example-separator"/>

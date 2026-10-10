@@ -68,6 +68,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private int offset = DEFAULT_INDENTATION;
 
     /**
+     * Force exact {@code offset} indentation for continuation lines outside HTML elements.
+     */
+    private boolean forceStrictCondition;
+
+    /**
      * Creates a new {@code JavadocTagContinuationIndentationCheck} instance.
      */
     public JavadocTagContinuationIndentationCheck() {
@@ -82,6 +87,17 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     public void setOffset(int offset) {
         this.offset = offset;
+    }
+
+    /**
+     * Setter to force exact {@code offset} indentation for continuation lines outside
+     * HTML elements.
+     *
+     * @param forceStrictCondition new value.
+     * @since 14.4.0
+     */
+    public void setForceStrictCondition(boolean forceStrictCondition) {
+        this.forceStrictCondition = forceStrictCondition;
     }
 
     @Override
@@ -282,6 +298,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * detected if the text is not blank or the next node is not a newline.
      * If the text is longer than {@code offset} characters, then a violation is
      * detected if any of the first {@code offset} characters are not blank.
+     * If {@code forceStrictCondition} is true, then a violation is also detected
+     * if the text is indented more than {@code offset} characters.
      *
      * @param textNode the node to check.
      * @return true if the node has a violation.
@@ -302,11 +320,46 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
                 result = true;
             }
         }
-        else if (!CommonUtil.isBlank(text.substring(1, offset + 1))) {
+        else if (CommonUtil.isBlank(text.substring(1, offset + 1))) {
+            result = forceStrictCondition && isOverIndented(textNode);
+        }
+        else {
             // first offset number of characters are not blank
             result = true;
         }
         return result;
+    }
+
+    /**
+     * Checks if a text node is indented more than {@code offset} characters.
+     * Lines inside HTML elements and blank lines are not considered over indented.
+     *
+     * @param textNode the node to check.
+     * @return true if the node is indented more than {@code offset} characters.
+     */
+    private boolean isOverIndented(DetailNode textNode) {
+        final String text = textNode.getText();
+        final boolean isBlankLine = CommonUtil.isBlank(text)
+            && textNode.getNextSibling().getType() == JavadocCommentsTokenTypes.NEWLINE;
+        return text.length() > offset + 1
+            && Character.isWhitespace(text.charAt(offset + 1))
+            && !isBlankLine
+            && !isInsideHtmlElement(textNode);
+    }
+
+    /**
+     * Checks if a text node is located inside an HTML element of a block tag description.
+     *
+     * @param textNode the node to check.
+     * @return true if the node is inside an HTML element.
+     */
+    private static boolean isInsideHtmlElement(DetailNode textNode) {
+        DetailNode node = textNode;
+        while (node.getType() != JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG
+                && node.getType() != JavadocCommentsTokenTypes.HTML_ELEMENT) {
+            node = node.getParent();
+        }
+        return node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT;
     }
 
     /**
