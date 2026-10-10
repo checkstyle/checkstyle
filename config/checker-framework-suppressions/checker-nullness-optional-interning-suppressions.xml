@@ -2838,6 +2838,13 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>if (varName.equals(ident.getText())) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Deque.push.</message>
