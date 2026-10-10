@@ -25,7 +25,10 @@ public class InputUnnecessaryParentheses15Extensions
 
 }
 
-@MyAnnotation1(name = ("ABC" + "DEF"), version = (1)) // 2 violations
+// 2 violations 3 lines below:
+//  'Unnecessary parentheses around expression'
+//  'Unnecessary parentheses around literal '1''
+@MyAnnotation1(name = ("ABC" + "DEF"), version = (1))
 class AnnotationWithUnnecessaryParentheses
 {
 
