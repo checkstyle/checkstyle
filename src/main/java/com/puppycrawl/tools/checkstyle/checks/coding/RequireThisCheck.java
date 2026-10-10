@@ -291,7 +291,7 @@ public class RequireThisCheck extends AbstractCheck {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
                     final boolean canUseThis = !isInCompactConstructor(ast);
                     if (frame != null && canUseThis) {
-                        logViolation(MSG_VARIABLE, ast, frame);
+                        logViolation(MSG_VARIABLE, getIdentToLogViolation(ast, frame), frame);
                     }
                 }
             }
@@ -368,6 +368,49 @@ public class RequireThisCheck extends AbstractCheck {
                 && !(frame instanceof CompactCompilationUnitFrame)) {
             log(ast, msgKey, ast.getText(), frame.getFrameName() + '.');
         }
+    }
+
+    /**
+     * Returns the ident the violation should be attached to. When a constructor assigns
+     * a field to itself (for example, {@code y = y}) and the field is final and already
+     * initialized, at its declaration or in an instance initializer block, qualifying
+     * the ident on the left-hand side with 'this' would not compile, so the violation
+     * is attached to the ident on the right-hand side instead. In all other cases the
+     * given ident is returned.
+     *
+     * @param ast IDENT to check.
+     * @param frame the class frame where the violation is found.
+     * @return the ident to log the violation on.
+     */
+    private DetailAST getIdentToLogViolation(DetailAST ast, AbstractFrame frame) {
+        DetailAST result = ast;
+        final DetailAST parent = ast.getParent();
+        if (parent.getType() == TokenTypes.ASSIGN
+                && ast.getPreviousSibling() == null
+                && frame instanceof ClassFrame
+                && ((ClassFrame) frame).hasInitializedFinalField(ast)
+                && isInsideConstructor(ast)) {
+            final DetailAST rhs = ast.getNextSibling();
+            if (rhs.getType() == TokenTypes.IDENT && ast.getText().equals(rhs.getText())) {
+                result = rhs;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given ident is used inside a constructor, possibly in a
+     * nested block of the constructor body.
+     *
+     * @param ast IDENT to check.
+     * @return true if the ident is used inside a constructor.
+     */
+    private boolean isInsideConstructor(DetailAST ast) {
+        AbstractFrame frame = findFrame(ast, LookMode.NO_LOOK_FOR_METHOD);
+        while (frame.getType() == FrameType.BLOCK_FRAME) {
+            frame = frame.getParent();
+        }
+        return frame.getType() == FrameType.CTOR_FRAME;
     }
 
     /**
@@ -1480,6 +1523,12 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private static class ClassFrame extends AbstractFrame {
 
+        /** Token types that open a scope whose assignments do not initialize this class. */
+        private static final Set<Integer> SCOPE_BOUNDARY_TYPES = Set.of(
+                TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
+                TokenTypes.ANNOTATION_DEF, TokenTypes.RECORD_DEF, TokenTypes.LITERAL_NEW,
+                TokenTypes.LAMBDA);
+
         /** Set of idents of instance members declared in this frame. */
         private final Set<DetailAST> instanceMembers;
         /** Set of idents of instance methods declared in this frame. */
@@ -1639,6 +1688,105 @@ public class RequireThisCheck extends AbstractCheck {
                         result = true;
                     }
                 }
+            }
+            return result;
+        }
+
+        /**
+         * Checks whether the given instance member is a final field that is already
+         * initialized, either by an initializer at its declaration or by an assignment
+         * in an instance initializer block, so it cannot be assigned in a constructor
+         * anymore.
+         *
+         * @param ident the IDENT ast of the field reference.
+         * @return true if the field is final and already initialized.
+         */
+        /* package */ boolean hasInitializedFinalField(final DetailAST ident) {
+            boolean result = false;
+            for (DetailAST member : instanceMembers) {
+                final DetailAST parent = member.getParent();
+                if (parent.getType() == TokenTypes.VARIABLE_DEF && isAstSimilar(member, ident)) {
+                    final DetailAST mods = parent.findFirstToken(TokenTypes.MODIFIERS);
+                    if (mods.findFirstToken(TokenTypes.FINAL) != null
+                            && (hasInitializer(parent)
+                                || isAssignedInInitializerBlock(parent, member.getText()))) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Checks whether the given field declaration has an initializer.
+         *
+         * @param fieldDef the VARIABLE_DEF ast of the field declaration.
+         * @return true if the field is initialized at its declaration.
+         */
+        private static boolean hasInitializer(DetailAST fieldDef) {
+            return fieldDef.findFirstToken(TokenTypes.ASSIGN) != null;
+        }
+
+        /**
+         * Checks whether the given field is assigned in an instance initializer
+         * block of its class.
+         *
+         * @param fieldDef the VARIABLE_DEF ast of the field declaration.
+         * @param fieldName name of the field.
+         * @return true if the field is assigned in an instance initializer block.
+         */
+        private static boolean isAssignedInInitializerBlock(DetailAST fieldDef,
+                                                            String fieldName) {
+            boolean result = false;
+            DetailAST member = fieldDef.getParent().getFirstChild();
+            while (member != null && !result) {
+                if (member.getType() == TokenTypes.INSTANCE_INIT) {
+                    result = containsAssignmentToField(member, fieldName);
+                }
+                member = member.getNextSibling();
+            }
+            return result;
+        }
+
+        /**
+         * Checks whether the given subtree contains an assignment to the field with
+         * the given name, either as a plain ident or via 'this'. Nested type
+         * declarations, anonymous classes and lambdas are not descended into, as
+         * assignments inside them do not initialize the field of this class.
+         *
+         * @param ast root of the subtree to search.
+         * @param fieldName name of the field.
+         * @return true if the subtree contains an assignment to the field.
+         */
+        private static boolean containsAssignmentToField(DetailAST ast, String fieldName) {
+            boolean result = false;
+            if (ast.getType() == TokenTypes.ASSIGN) {
+                result = isFieldReference(ast.getFirstChild(), fieldName);
+            }
+            if (!result && !SCOPE_BOUNDARY_TYPES.contains(ast.getType())) {
+                DetailAST child = ast.getFirstChild();
+                while (child != null && !result) {
+                    result = containsAssignmentToField(child, fieldName);
+                    child = child.getNextSibling();
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Checks whether the given node, the left-hand side of an assignment, references
+         * the field with the given name, either as a plain ident or via 'this'.
+         *
+         * @param ast the left-hand side of an assignment.
+         * @param fieldName name of the field.
+         * @return true if the node references the field.
+         */
+        private static boolean isFieldReference(DetailAST ast, String fieldName) {
+            boolean result = ast.getText().equals(fieldName);
+            if (ast.getType() == TokenTypes.DOT) {
+                result = ast.getFirstChild().getType() == TokenTypes.LITERAL_THIS
+                        && fieldName.equals(ast.getLastChild().getText());
             }
             return result;
         }
