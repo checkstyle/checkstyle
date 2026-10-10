@@ -28,6 +28,9 @@ class Example2 {
 
       int x = (i + 1);
       sumOfSquares += (square(x,x));
+
+
+
     }
   }
 
