@@ -9,6 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.expressionoverblocklambda;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Test input for expression lambda preferred over single-line block lambda - valid cases.
@@ -103,6 +104,17 @@ public class InputExpressionOverBlockLambdaValid {
             case 1 -> System.out.println("one");
             default -> System.out.println("other");
         }
+    }
+
+    public Supplier<String> testSwitchRuleValidCases(int x) {
+        return switch (x) {
+            case 1 -> () -> "one";
+            case 2 -> { yield () -> "two"; }
+            case 3 -> () -> {
+                return "three"; };
+            case 4 -> () -> { int y = 1; return "four" + y; };
+            default -> () -> "d";
+        };
     }
 
 }
