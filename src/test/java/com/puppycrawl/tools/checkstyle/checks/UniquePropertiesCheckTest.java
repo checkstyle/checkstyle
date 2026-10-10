@@ -115,6 +115,17 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMalformedValue() throws Exception {
+        final String fileName =
+                getPath("InputUniquePropertiesMalformedValue.properties");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName,
+                    "Malformed \\uxxxx encoding."),
+        };
+        verifyWithInlineConfigParser(fileName, expected);
+    }
+
+    @Test
     public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParserSeparateConfigAndTarget(
