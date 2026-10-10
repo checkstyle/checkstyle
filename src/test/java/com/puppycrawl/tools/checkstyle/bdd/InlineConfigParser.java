@@ -762,7 +762,7 @@ public final class InlineConfigParser {
     private static String toStringConvertForArrayValue(Object value) {
         String result = NULL_STRING;
 
-        if (value instanceof double[] arr) {
+        if (value instanceof final double[] arr) {
             result = Arrays.stream(arr)
                            .boxed()
                            .map(number -> {
@@ -772,16 +772,16 @@ public final class InlineConfigParser {
                            })
                            .collect(Collectors.joining(","));
         }
-        else if (value instanceof int[] ints) {
+        else if (value instanceof final int[] ints) {
             result = Arrays.toString(ints).replaceAll("[\\[\\]\\s]", "");
         }
-        else if (value instanceof boolean[] booleans) {
+        else if (value instanceof final boolean[] booleans) {
             result = Arrays.toString(booleans).replaceAll("[\\[\\]\\s]", "");
         }
-        else if (value instanceof long[] longs) {
+        else if (value instanceof final long[] longs) {
             result = Arrays.toString(longs).replaceAll("[\\[\\]\\s]", "");
         }
-        else if (value instanceof Object[] objects) {
+        else if (value instanceof final Object[] objects) {
             result = Arrays.toString(objects).replaceAll("[\\[\\]\\s]", "");
         }
         return result;
