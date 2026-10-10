@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Set;
 
 // xdoc section - start
-class Example2 {
+final class Example2 {
   private int myPrivateField1;
 
   int field1;
 
-  protected String field2; // violation, protected not allowed 'must be private'
-
+  protected String field2;
+  // violation above, protected not allowed ''field2' must be private'
   public int field3 = 42;
   // violation above, not final nor matching pattern 'must be private'
   public long serialVersionUID = 1L;
