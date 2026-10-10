@@ -25,7 +25,10 @@ class Example1 {
     for (int i = (0); i < 10; i++) {
       // violation below 'Unnecessary parentheses around assignment right-hand side'
       int x = (i + 1);
-      sumOfSquares += (square(x,x));  // 2 violations
+      sumOfSquares += (square(x,x));
+      // 2 violations above:
+      //  'Unnecessary parentheses around assignment right-hand side'
+      //  'Unnecessary parentheses around identifier 'square''
     }
   }
 
