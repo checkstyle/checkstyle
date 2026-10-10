@@ -51,8 +51,8 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "37:18: " + getCheckMessage(MSG_EXPR),
-            "44:19: " + getCheckMessage(MSG_EXPR),
+            "40:18: " + getCheckMessage(MSG_EXPR),
+            "47:19: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
