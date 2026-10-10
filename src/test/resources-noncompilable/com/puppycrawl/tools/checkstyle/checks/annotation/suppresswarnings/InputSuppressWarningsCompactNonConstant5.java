@@ -38,9 +38,9 @@ public class InputSuppressWarningsCompactNonConstant5 {
             @SuppressWarnings({"unused"})
             Object o = new InputSuppressWarningsCompactNonConstant5() {
 
+                // violation 2 lines below 'The warning 'unchecked' cannot be suppressed'
                 @Override
                 @SuppressWarnings({"unchecked"})
-                // violation above 'The warning 'unchecked' cannot be suppressed at this location'
                 public String toString() {
                     return "";
                 }
@@ -87,14 +87,14 @@ public class InputSuppressWarningsCompactNonConstant5 {
         public Cond() {
 
         }
-        // 2 violations 3 lines below:
+        // 2 violations 6 lines below:
+        // 'cannot be suppressed at this location'
+        // 'cannot be suppressed at this location'
+        // 2 violations 4 lines below:
         // 'cannot be suppressed at this location'
         // 'cannot be suppressed at this location'
         @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked",
             (false) ? (true) ? "   " : "unused" : "unchecked"})
-        // 2 violations above:
-        // 'cannot be suppressed at this location'
-        // 'cannot be suppressed at this location'
         public void aCond1() {
 
         }
