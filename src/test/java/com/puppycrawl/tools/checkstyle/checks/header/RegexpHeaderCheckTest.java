@@ -366,12 +366,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCharsetProperty1() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile", getPath("InputRegexpHeader7.header"));
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final String path = getPath("InputRegexpHeader4.java");
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, path, expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeader4CharsetProperty1Config.java"),
+                getPath("InputRegexpHeader4.java"), expected);
     }
 
     @Test
@@ -391,14 +389,10 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testCharsetProperty3() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(RegexpHeaderCheck.class);
-        checkConfig.addProperty("headerFile",
-                getPath("InputRegexpHeader7.header"));
-        checkConfig.addProperty("charset", "US-ASCII");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        final String path = getPath("InputRegexpHeader3.java");
-        // Content header is conflicting with Input inline header
-        verify(checkConfig, path, expected);
+        verifyWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("InputRegexpHeader3CharsetProperty3Config.java"),
+                getPath("InputRegexpHeader3.java"), expected);
     }
 
 }
