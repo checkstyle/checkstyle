@@ -593,8 +593,8 @@ public class CheckstyleAntTask extends Task {
                 logIndex, fileNames.length, scanner.getBasedir()), Project.MSG_VERBOSE);
 
         return Arrays.stream(fileNames)
-          .map(scanner.getBasedir().toPath()::resolve)
-          .toList();
+            .map(scanner.getBasedir().toPath()::resolve)
+            .toList();
     }
 
     /**
